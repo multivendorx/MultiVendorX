@@ -1,0 +1,876 @@
+/* fonts */
+@font-face {
+  font-family: 'mvx-frontend-font';
+  src: url("../../frontend/fonts/mvx-frontend-font.eot?vtl65e");
+  src: url("../../frontend/fonts/mvx-frontend-font.eot?vtl65e#iefix") format("embedded-opentype"), url("../../frontend/fonts/mvx-frontend-font.ttf?vtl65e") format("truetype"), url("../../frontend/fonts/mvx-frontend-font.woff?vtl65e") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* map */
+/* vendor badge */
+/* map box */
+/* responsive */
+i.mvx-font {
+  font-family: 'mvx-frontend-font' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ico-store-icon:before {
+  content: "\e90a";
+  color: #5d5e5e;
+}
+
+.ico-location-icon2:before {
+  content: "\e90b";
+  color: #5d5e5e;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.mvx-toggle-checkbox-content {
+  position: relative;
+}
+
+.mvx-toggle-checkbox-content:after {
+  content: '';
+  position: absolute;
+  top: 0.65rem;
+  left: 2.5rem;
+  width: 0.25rem;
+  height: 0.25rem;
+  border: 2px solid #5b646c;
+  border-radius: 8rem;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  z-index: 000;
+}
+
+.mvx-toggle-checkbox-content input[type=checkbox] {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+  display: none;
+}
+
+.mvx-toggle-checkbox-content label {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 3.5rem;
+  height: 1.8rem;
+  background: transparent;
+  display: block;
+  border-radius: 8rem;
+  position: relative;
+  border: 0.17rem solid #817d7d;
+}
+
+.mvx-toggle-checkbox-content label:after {
+  content: '';
+  position: absolute;
+  top: 0.1rem;
+  left: 0.2125rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  background: #5e5c5c;
+  border-radius: 8rem;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  z-index: 999;
+}
+
+.mvx-toggle-checkbox-content label:before {
+  content: '';
+  position: absolute;
+  top: 0.4125rem;
+  left: 0.5rem;
+  width: 0.17rem;
+  height: 0.7rem;
+  background: #fff;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.mvx-toggle-checkbox-content input:checked + label {
+  background: #6955da;
+  border: .17rem solid #6955da;
+}
+
+.mvx-toggle-checkbox-content input:checked + label:after {
+  left: calc(100% - 0.3125rem);
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+  background: #fff;
+}
+
+.mvx-toggle-checkbox-content label:active:after {
+  width: 1rem;
+}
+
+.mvx-module-section-nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-left: -1.4rem;
+  background: #fff;
+  border-bottom: 0.06rem solid #b5bfc9;
+}
+
+.mvx-module-section-nav .mvx-module-section-nav-child-data {
+  padding: 0.6rem 1rem;
+  margin: 0;
+}
+
+.mvx-module-section-nav .mvx-module-nav-left-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+.mvx-module-section-nav .mvx-module-nav-left-section:before {
+  position: absolute;
+  content: "";
+  width: 0.07rem;
+  height: 100%;
+  background-color: #b5bfc9;
+  top: 0;
+  left: 4rem;
+}
+
+.mvx-module-section-nav .mvx-module-nav-right-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.mvx-module-help-grid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.mvx-module-help-grid .mvx-module-settings-box {
+  border: 0.06rem solid #b5bfc9;
+  background-color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  margin: 2rem;
+}
+
+.mvx-module-help-grid .mvx-module-settings-box ul.mvx-module-section-list-icon li a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: unset;
+      -ms-flex-pack: unset;
+          justify-content: unset;
+  text-decoration: none;
+  color: #000;
+  padding: .5rem 0;
+}
+
+.mvx-module-help-grid .mvx-module-settings-box ul.mvx-module-section-list-icon li a i.dashicons.dashicons-star-filled {
+  color: #F7D070;
+  background: #253142;
+  height: 3.125rem;
+  width: 3.125rem;
+  font-size: 2.5rem;
+  padding: 0.15rem 0;
+  border-radius: .3rem;
+}
+
+.mvx-module-help-grid .mvx-module-settings-box ul.mvx-module-section-list-icon li a .mvx-module-help-content {
+  padding: 0 0 0 1rem;
+  width: 70%;
+}
+
+.mvx-module-help-grid .mvx-module-settings-box ul.mvx-module-section-list-icon li a .mvx-module-help-content p {
+  margin: 0;
+}
+
+.mvx-module-settings-box .mvx-module-require-name {
+  font-size: 1rem;
+  font-weight: 600;
+  border-bottom: 0.1rem solid #000;
+  padding: 0.3rem 0;
+  margin: 0 4rem;
+}
+
+.mvx-module-settings-box ul {
+  margin: 0 0 0 3.5rem;
+}
+
+.mvx-module-settings-box ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.mvx-module-settings-box ul li .inactive-plugin-class, .mvx-module-settings-box ul li .mvx-module-active-plugin-class {
+  padding: 0 .5rem;
+}
+
+.mvx-module-settings-box ul li a {
+  text-decoration: none;
+}
+
+.MuiPaper-root.MuiDialog-paper.MuiDialog-paperScrollPaper.MuiDialog-paperWidthSm.MuiPaper-elevation24.MuiPaper-rounded {
+  max-width: 600px;
+}
+
+.MuiPaper-root.MuiDialog-paper.MuiDialog-paperScrollPaper.MuiDialog-paperWidthSm.MuiPaper-elevation24.MuiPaper-rounded .MuiDialogTitle-root {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  margin: 0 4rem;
+  padding: 1rem 2rem;
+  text-align: center;
+  border-bottom: 0.02rem solid #c2c2c2;
+  color: #fff;
+}
+
+.mvx-module-current-status {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.mvx-module-current-status a.mvx-module-url-button {
+  margin: 0 0.5rem 0 0;
+  padding: 0 1rem;
+  color: #b5bfc9;
+  border-color: #b5bfc9;
+}
+
+.mvx-module-current-status .mvx-toggle-checkbox-content {
+  margin-left: auto;
+}
+
+.mvx-module-grid {
+  border-top: 0.06rem solid #b5bfc9;
+  margin: -0.03rem -1.25rem 0 -1.25rem;
+  background-color: #fafafa;
+}
+
+.mvx-module-grid .mvx-module-list-start {
+  margin-left: 1.5rem;
+}
+
+ul.mvx-dashboard-tabs-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0;
+}
+
+ul.mvx-dashboard-tabs-list li {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 2.6rem;
+  position: relative;
+  margin: 0 0 0 -0.08rem;
+  padding: 0 1rem;
+  text-decoration: none;
+  border: 0.06rem solid #b5bfc9;
+  background: #f0f2f4;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-column-gap: 1rem;
+          column-gap: 1rem;
+}
+
+ul.mvx-dashboard-tabs-list li:hover {
+  background-color: #fafafa;
+}
+
+ul.mvx-dashboard-tabs-list li a {
+  text-decoration: none;
+  color: #5b646c;
+}
+
+ul.mvx-dashboard-tabs-list li.activedashboardtabs {
+  background: #fafafa;
+  border-bottom: 0.06rem solid #fafafa;
+}
+
+ul.mvx-dashboard-tabs-list li.activedashboardtabs a {
+  color: #000;
+}
+
+@media only screen and (max-width: 736px) {
+  .mvx-module-list-container .mvx-module-section-options-list {
+    width: 100% !important;
+  }
+}
+
+.mvx-module-list-container .mvx-module-option-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.mvx-module-list-container .mvx-module-section-options-list {
+  text-align: center;
+  margin: 0 0.9375rem 0.9375rem 0;
+  border: 0.06rem solid #b5bfc9;
+  background-color: #fff;
+  padding: 2.875rem 1.25rem 6rem;
+  border-radius: 0.2rem;
+  position: relative;
+  width: 25%;
+}
+
+.mvx-module-list-container .mvx-module-section-options-list .mvx-module-active-plugin-class {
+  position: relative;
+}
+
+.mvx-module-list-container .mvx-module-section-options-list .mvx-module-active-plugin-class::after {
+  position: absolute;
+  height: 1rem;
+  width: 1rem;
+  content: "";
+}
+
+.mvx-module-list-container .mvx-module-section-options-list .mvx-module-current-status.wp-clearfix {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  clear: both;
+  width: 100%;
+  padding: 1rem 1.25rem;
+  border-top: .06rem solid #b5bfc9;
+  background: #f8f9fa;
+  border-radius: 0 0 0.09rem 0.09rem;
+}
+
+.container {
+  margin: 2rem 0;
+}
+
+.general-tab-header-area {
+  border: 0.06rem solid #b5bfc9;
+  border-bottom: none;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 0.4rem 0.4rem 0 0;
+}
+
+.general-tab-header-area p {
+  margin: 0;
+}
+
+.general-tab-area {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: solid #b5bfc9;
+  border-width: .08rem 0 0 0;
+}
+
+.general-tab-area ul.mvx-general-tabs-list {
+  width: 20%;
+  margin: 0;
+}
+
+.general-tab-area ul.mvx-general-tabs-list li {
+  padding: 0.8rem 0.8rem;
+  border: solid #b5bfc9;
+  border-width: 0 .08rem .08rem .08rem;
+  margin: 0;
+  font-size: 1rem;
+  background: #f0f0f1;
+  position: relative;
+  -webkit-transition: .2s all ease;
+  transition: .2s all ease;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-column-gap: 1rem;
+          column-gap: 1rem;
+}
+
+.general-tab-area ul.mvx-general-tabs-list li::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: .2rem;
+  opacity: 0;
+  background-color: #9595d8;
+}
+
+.general-tab-area ul.mvx-general-tabs-list li:hover::before {
+  opacity: 1;
+}
+
+.general-tab-area ul.mvx-general-tabs-list li:hover a {
+  color: #9595d8;
+}
+
+.general-tab-area ul.mvx-general-tabs-list li:hover {
+  background-color: #fff;
+}
+
+.general-tab-area ul.mvx-general-tabs-list li a {
+  text-decoration: none;
+  color: #000;
+}
+
+.general-tab-area ul.mvx-general-tabs-list li.activegeneraltabs {
+  background-color: #fff;
+  border-right: .08rem solid #fff;
+}
+
+.general-tab-area ul.mvx-general-tabs-list li.activegeneraltabs::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: .2rem;
+  opacity: 1;
+  background-color: #9595d8;
+}
+
+.general-tab-area .tabcontentclass {
+  padding: 2rem;
+  border: .06rem solid #b5bfc9;
+  border-left: none;
+  border-top: none;
+  border-radius: 0 0 0.4rem 0.4rem;
+  background: #fff;
+  width: 80%;
+}
+
+.general-tab-area .tabcontentclass h3 {
+  color: #1d2327;
+  font-size: 2em;
+  margin: 0.8rem;
+  line-height: 2rem;
+}
+
+.general-tab-area .tabcontentclass .form-actions {
+  padding: .8rem;
+}
+
+.general-tab-area .tabcontentclass .form-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 1.5rem 0;
+}
+
+.general-tab-area .tabcontentclass .form-group p.mvx-settings-metabox-description {
+  font-size: 14px;
+  font-style: normal;
+  padding-top: 10px;
+  color: #7f868d;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-mvx-form-group-radio input {
+  margin: 0 0.4rem 0 1rem;
+}
+
+.general-tab-area .tabcontentclass .form-group .horizontal-class {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+}
+
+.general-tab-area .tabcontentclass .form-group .horizontal-class .button-controls {
+  margin-right: .5rem;
+}
+
+.general-tab-area .tabcontentclass .form-group label.mvx-settings-form-label {
+  width: 30%;
+  font-weight: 600;
+  font-size: .89rem;
+  padding: 0 .9rem 0 0;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-form-checkbox-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-checkbox-list-side-by-side {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content {
+  width: 70%;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-toggle-checkbox-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.5rem 0rem;
+  width: 50%;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-toggle-checkbox-header p.mvx-settings-metabox-description {
+  margin: 0;
+  padding: 0 0 0 1rem;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-toggle-checkbox-header span.dashicons.dashicons-info {
+  padding: 0 0 0 1rem;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-toggle-checkbox-header span.dashicons.dashicons-info .mvx-hover-tooltip {
+  font-size: 0.5rem;
+  position: absolute;
+  background: #5e5c5c;
+  color: #fff;
+  padding: 0.4rem;
+  font-size: .7rem;
+  opacity: 0;
+  -webkit-transition: .5s all ease;
+  transition: .5s all ease;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-toggle-checkbox-header span.dashicons.dashicons-info:hover .mvx-hover-tooltip {
+  opacity: 1;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-settings-basic-input-class input.mvx-setting-form-input {
+  width: 100%;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-boarder-parent .mvx-boarder-parent-loop {
+  margin-bottom: 0.8rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-boarder-parent .mvx-boarder-parent-loop label.mvx-setting-form-label {
+  font-size: .7rem;
+  font-weight: 500;
+  width: 11%;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-boarder-parent .mvx-boarder-nested-child-start .mvx-boarder-nested-child .mvx-boarder-nested-child-loop {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 0.8rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-boarder-parent .mvx-boarder-nested-child-start .mvx-boarder-nested-child .mvx-boarder-nested-child-loop .mvx-setting-form-label {
+  width: 11%;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-boarder-parent .mvx-boarder-nested-child-start .mvx-boarder-nested-child .mvx-boarder-nested-child-loop .mvx-setting-form-input {
+  margin: 0;
+  width: 89%;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-boarder-parent input.mvx-setting-form-input {
+  width: 90%;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-boarder-parent input.mvx-setting-form-input[type="checkbox"] {
+  width: 0% !important;
+  margin-top: 0.1rem;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-boarder-parent, .general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-boarder-nested-child {
+  border: 0.06rem solid #c2c2c2;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin: .5rem 0;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvxsetting-from-textarea textarea {
+  width: 100%;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .radio-select-active {
+  border: .17rem solid #6955da !important;
+  background-color: #fff;
+  color: #6955da !important;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-radioselect-class {
+  border: 0.06rem solid #b5bfc9;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  color: #938885;
+  font-weight: 600;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-radioselect-class .mvx-setting-form-input {
+  visibility: hidden;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-radioselect-class label.mvx-radio-select-under-label-class {
+  position: relative;
+  margin-left: 0.2rem;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-radioselect-class label.mvx-radio-select-under-label-class::before {
+  position: absolute;
+  content: "";
+  height: 1.06rem;
+  width: 1.06rem;
+  top: 0.01rem;
+  left: -1.5rem;
+  border-radius: 1rem;
+  background-color: #270e0e62;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-radioselect-class .mvx-setting-form-input:checked + label.mvx-radio-select-under-label-class::before {
+  background-color: #069de3;
+  border: 0.06rem solid #069de3;
+  content: url("https://api.iconify.design/dashicons/arrow-down-alt2.svg");
+  color: #fff;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-radioselect-class:hover {
+  border-color: #6955da;
+  border-width: 0.17rem;
+  color: #6955da;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-radioselect-class p.mvx-radio-select-before-label {
+  text-align: center;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-radioselect-class input.mvx-setting-form-input {
+  margin-bottom: 1rem;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-form-group-radio-color {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-form-group-radio-color .radio-color-active {
+  background: #c2c2c2;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-form-group-radio-color .mvx-settings-radio-color {
+  width: 40%;
+  margin: 0 3rem 0.5rem 0;
+  padding: 0.5rem;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-form-group-radio-color .mvx-settings-radio-color:hover {
+  background: #c2c2c2;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-form-group-radio-color .mvx-settings-radio-color .mvx-merge-radio-color-input-label label {
+  font-weight: 500;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-form-group-radio-color .mvx-settings-radio-color .color-palette {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-form-group-radio-color .mvx-settings-radio-color .color-palette div {
+  width: 25%;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-setting-file-uploader-class {
+  position: relative;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-setting-file-uploader-class button {
+  position: absolute;
+  bottom: 3rem;
+  margin-left: 0.8rem;
+  padding: 0.5rem 1rem;
+  color: #fff;
+  border-radius: 0.3rem;
+  border: 0.06rem solid #3f85b9;
+  background-color: #3f85b9;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-toggle-rectangle-merge ul {
+  position: relative;
+  padding: 0 .4rem;
+  border: 0.06rem solid #b5bfc9;
+  border-radius: 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-toggle-rectangle-merge ul li {
+  list-style: none;
+  padding: 1rem .1rem;
+  margin: 0;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-toggle-rectangle-merge ul input {
+  position: absolute !important;
+  clip: rect(0, 0, 0, 0);
+  height: 0.06rem;
+  width: 0.06rem;
+  border: 0;
+  overflow: hidden;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-toggle-rectangle-merge ul label {
+  color: rgba(85, 83, 83, 0.6);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+  padding: .5rem 1rem;
+  margin-right: -0.06rem;
+  border-radius: 0.3rem;
+  border: 0.06rem solid rgba(0, 0, 0, 0.2);
+  -webkit-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-toggle-rectangle-merge ul label:hover {
+  cursor: pointer;
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-toggle-rectangle-merge ul input:checked + label {
+  background-color: #069de3;
+  color: #fff;
+}
+
+.general-tab-area .tabcontentclass #poststuff {
+  padding-top: 0;
+  min-width: 0rem;
+}
+
+@media only screen and (max-width: 736px) {
+  .general-tab-area {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .general-tab-area ul.mvx-general-tabs-list {
+    width: 100%;
+    margin: 0;
+  }
+  .general-tab-area .tabcontentclass {
+    width: 100%;
+  }
+  .general-tab-area .tabcontentclass textarea.form-input {
+    width: 100%;
+  }
+}
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-settings-basic-input-class input.mvx-setting-form-input {
+  width: 100%;
+  padding: 0.5rem;
+}
+
+img.mvx-section-img-fluid {
+  height: 100%;
+  width: 100%;
+}
+
+.mvx-setting-section-divider {
+  height: 0.1rem;
+  width: 100%;
+  margin: auto;
+  background-color: #b5bfc9;
+}
+
+.wp-media-buttons .insert-media {
+  padding-left: 5px;
+  background-color: #485adb;
+  color: #faf6f6;
+}
+/*# sourceMappingURL=admin.css.map */

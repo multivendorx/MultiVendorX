@@ -1,0 +1,764 @@
+
+/* fonts */
+@font-face {
+    font-family: 'mvx-frontend-font';
+    src: url("../../frontend/fonts/mvx-frontend-font.eot?vtl65e");
+    src: url("../../frontend/fonts/mvx-frontend-font.eot?vtl65e#iefix") format('embedded-opentype'), url("../../frontend/fonts/mvx-frontend-font.ttf?vtl65e") format('truetype'), url("../../frontend/fonts/mvx-frontend-font.woff?vtl65e") format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+/* map */
+/* vendor badge */
+/* map box */
+/* responsive */
+
+i.mvx-font {
+    font-family: 'mvx-frontend-font' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.ico-store-icon {
+    &:before {
+        content: "\e90a";
+        color: #5d5e5e;
+    }
+}
+.ico-location-icon2 {
+    &:before {
+        content: "\e90b";
+        color: #5d5e5e;
+    }
+}
+    
+*{
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+$tab_color: #5b646c;
+$border_color:#b5bfc9;
+
+@mixin tab_flex{
+    display: flex;
+    border: solid $border_color;
+    border-width:.08rem 0 0 0;
+}
+
+@mixin nav_flex {
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+// chackbox-----
+
+
+ .mvx-toggle-checkbox-content{
+     position: relative;
+     &:after{
+        content: '';
+    position: absolute;
+    top: 0.65rem;
+    left: 2.5rem;
+    width: 0.25rem;
+    height: 0.25rem;
+    border: 2px solid $tab_color;
+    border-radius: 8rem;
+    transition: 0.3s;
+    z-index: 000;
+}
+    input[type=checkbox]{
+        height: 0;
+        width: 0;
+        visibility: hidden;
+        display: none;
+    
+    }
+
+    label {
+        cursor: pointer;
+        text-indent: -9999px;
+        width: 3.5rem;
+        height: 1.8rem;
+        background: transparent;
+        display: block;
+        border-radius: 8rem;
+        position: relative;
+        border: 0.17rem solid rgb(129, 125, 125);
+    }
+
+    label:after {
+        content: '';
+        position: absolute;
+        top: 0.1rem;
+        left: 0.2125rem;
+        width: 1.25rem;
+        height: 1.25rem;
+        background: #5e5c5c;
+        border-radius: 8rem;
+        transition: 0.3s;
+        z-index: 999;
+    }
+    label:before {
+        content: '';
+    position: absolute;
+    top: 0.4125rem;
+    left: 0.5rem;
+    width: 0.17rem;
+    height: 0.7rem;
+    background: #fff;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    }
+    input:checked + label {
+        background: #6955da;
+        border: .17rem solid #6955da;
+    }
+
+    input:checked + label:after {
+        left: calc(100% - 0.3125rem);
+        transform: translateX(-100%);
+         background: #fff;
+
+    }
+  
+
+    label:active:after {
+        width: 1rem;
+     }
+    }
+
+// chackbox-close----
+// -----dashboard-css----
+.mvx-module-section-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; 
+    margin-left: -1.4rem;
+    background: #fff;
+    border-bottom: 0.06rem solid $border_color;
+
+
+    .mvx-module-section-nav-child-data {
+        padding: 0.6rem 1rem;
+        margin: 0;
+    }
+    .mvx-module-nav-left-section {
+       @include nav_flex();
+       position: relative;
+
+       &:before{
+        position: absolute;
+        content: "";
+        width: 0.07rem;
+        height: 100%;
+        background-color: $border_color;
+        top: 0;
+        left: 4rem;
+       }
+    }
+    .mvx-module-nav-right-section {
+        @include nav_flex();
+     }
+}
+
+// dashboard-help-----css---
+
+.mvx-module-help-grid{
+   display: flex;
+   flex-wrap: wrap;
+
+    .mvx-module-settings-box {
+                border: 0.06rem solid $border_color;
+                background-color: #fff;
+                padding: 0.5rem 1rem;
+                border-radius: 0.3rem;
+                margin: 2rem;
+        
+                ul.mvx-module-section-list-icon li a {
+                    display: flex;
+                    align-items: center;
+                    justify-content: unset;
+                    text-decoration: none;
+                    color: #000;
+                    padding: .5rem 0;
+
+                    i.dashicons.dashicons-star-filled {
+                        color: #F7D070;
+                        background: #253142;
+                        height: 3.125rem;
+                        width: 3.125rem;
+                        font-size: 2.5rem;
+                        padding: 0.15rem 0;
+                        border-radius: .3rem;
+                    }
+                    .mvx-module-help-content {
+                        padding: 0 0 0 1rem;
+                        width: 70%;
+                        p{
+                            margin: 0;
+                        }
+                    }
+                }
+    }
+    
+}
+
+
+    
+.mvx-module-settings-box {
+    .mvx-module-require-name {
+        font-size: 1rem;
+        font-weight: 600;
+        border-bottom: 0.1rem solid #000;
+        padding: 0.3rem 0;
+        margin: 0 4rem;
+    }
+    ul{
+        margin: 0 0 0 3.5rem;
+     li{
+        display: flex;
+        // justify-content: center;
+        .inactive-plugin-class, .mvx-module-active-plugin-class{
+            padding:0 .5rem;
+        }
+        a{
+            text-decoration: none;
+        }
+    }
+}
+}
+.MuiPaper-root.MuiDialog-paper.MuiDialog-paperScrollPaper.MuiDialog-paperWidthSm.MuiPaper-elevation24.MuiPaper-rounded {
+    max-width: 600px;
+
+.MuiDialogTitle-root {
+    flex: 0 0 auto;
+    margin: 0 4rem;
+    padding: 1rem 2rem;
+    text-align: center;
+    border-bottom: 0.02rem solid #c2c2c2;
+    color: #fff;
+}
+
+}
+.mvx-module-current-status{
+    display: flex;
+    justify-content: space-between;
+   a.mvx-module-url-button{
+    margin: 0 0.5rem 0 0;
+    padding: 0 1rem;
+    color: $border_color;
+    border-color: $border_color;
+    }
+    .mvx-toggle-checkbox-content{
+        margin-left: auto;
+    }
+}
+.mvx-module-grid {
+    border-top: 0.06rem solid $border_color;
+    margin:-0.03rem -1.25rem 0 -1.25rem;
+    background-color: #fafafa;
+
+    .mvx-module-list-start {
+        margin-left: 1.5rem;
+    }
+}
+ul.mvx-dashboard-tabs-list {
+          display: flex;  
+          margin: 0;
+
+    li {
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 2.6rem;
+        position: relative;
+        margin: 0 0 0 -0.08rem;
+        padding: 0 1rem;
+        text-decoration: none;
+        border: 0.06rem solid $border_color;
+        background: #f0f2f4;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        column-gap: 1rem;
+        
+        &:hover{
+            background-color: #fafafa;
+        }
+        a{
+            text-decoration: none;
+            color: $tab_color;
+
+        }
+  }
+  li.activedashboardtabs {
+    background: #fafafa;
+    border-bottom: 0.06rem solid #fafafa;
+    a{
+    color: #000;
+    }
+}
+}
+@media only screen and (max-width: 736px){
+    .mvx-module-list-container{
+        .mvx-module-section-options-list{
+            width: 100% !important;
+        }
+    }
+}
+.mvx-module-list-container{
+.mvx-module-option-row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.mvx-module-section-options-list {
+    text-align: center;
+    margin: 0 0.9375rem 0.9375rem 0;
+    border: 0.06rem solid #b5bfc9;
+    background-color: #fff;
+    padding: 2.875rem 1.25rem 6rem;
+    border-radius: 0.2rem;
+    position: relative;
+    width: 25%;
+
+    .mvx-module-active-plugin-class{
+        position: relative;
+        &::after{
+            position: absolute;
+            height: 1rem;
+            width: 1rem;
+            content: "";
+
+        }
+    }
+    .mvx-module-current-status.wp-clearfix {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        clear: both;
+        width: 100%;
+        padding: 1rem 1.25rem;
+        border-top: .06rem solid #b5bfc9;
+        background: #f8f9fa;
+        border-radius: 0 0 0.09rem 0.09rem;
+    }
+}
+}
+// generalsettings-----
+.container {
+    margin: 2rem 0;
+}
+.general-tab-header-area {
+        border: 0.06rem solid #b5bfc9;
+        border-bottom: none;
+        text-align: center;
+        padding: 1rem;
+        border-radius: 0.4rem 0.4rem 0 0;
+
+        p{
+        margin: 0;
+    }
+}
+
+.general-tab-area {
+    @include tab_flex;
+
+  ul.mvx-general-tabs-list {
+    width: 20%;
+    margin: 0;
+
+    li {
+        padding: 0.8rem 0.8rem;
+        border: solid #b5bfc9;
+        border-width: 0 .08rem .08rem .08rem;
+        margin: 0;
+        font-size: 1rem;
+        background: #f0f0f1;
+        position: relative;
+        transition: .2s all ease;
+        display: flex;
+        align-items: center;
+        column-gap: 1rem;
+
+        &::before{
+            position: absolute;
+            content: "";
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: .2rem;
+            opacity: 0;
+            background-color:rgb(149, 149, 216) ;
+        }
+        &:hover::before{
+            opacity: 1;
+        }
+        &:hover a{
+            color: rgb(149, 149, 216);
+        }
+        &:hover{
+            background-color: #fff;
+        }
+        a{
+            text-decoration: none;
+            color: #000;
+        }
+       
+    }
+    li.activegeneraltabs {
+        background-color: #fff;
+        border-right: .08rem solid #fff;
+
+        &::before{
+            position: absolute;
+            content: "";
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: .2rem;
+            opacity: 1;
+            background-color:rgb(149, 149, 216) ;
+          }
+        }
+  
+}
+.tabcontentclass{   
+    padding: 2rem;
+    border: .06rem solid #b5bfc9;
+    border-left: none;
+    border-top: none;
+    border-radius:0 0 0.4rem 0.4rem;
+    background: #fff;
+    width: 80%;
+     h3 {
+        color: #1d2327;
+        font-size: 2em;
+        margin: 0.8rem;
+        line-height: 2rem;
+    }
+    .form-actions {
+        padding: .8rem;
+    }
+    
+    .form-group {
+        display: flex;
+        padding: 1.5rem 0;
+        p.mvx-settings-metabox-description {
+            font-size: 14px;
+            font-style: normal;
+            padding-top: 10px;
+            color: #7f868d;
+        }
+        .mvx-settings-mvx-form-group-radio input {
+            margin: 0 0.4rem 0 1rem;
+        }
+              .horizontal-class {
+                display: flex;
+                align-items: center;
+                justify-content: end;
+                .button-controls{
+                    margin-right: .5rem;
+                }
+            }
+      
+        label.mvx-settings-form-label {
+            width: 30%;
+            font-weight: 600;
+            font-size: .89rem;
+            padding: 0 .9rem 0 0;
+      
+        }  
+        .mvx-form-checkbox-list {
+            display: flex;
+            align-items: center;
+        } 
+        .mvx-checkbox-list-side-by-side {
+            display: flex;
+            flex-wrap: wrap;
+        }
+       .mvx-settings-input-content{
+           width: 70%;
+
+           .mvx-toggle-checkbox-header {
+            display: flex;
+            align-items: center;  
+            padding: 0.5rem 0rem;
+            width: 50%;
+            p.mvx-settings-metabox-description {
+                margin: 0;
+                padding: 0 0 0 1rem;
+            }
+            span.dashicons.dashicons-info{
+                padding: 0 0 0 1rem;
+                .mvx-hover-tooltip {
+                    font-size: 0.5rem;
+                    position: absolute;
+                    background: #5e5c5c;
+                    color: #fff;
+                    padding: 0.4rem;
+                    font-size: .7rem;
+                    opacity: 0;
+                    transition: .5s all ease;
+                }
+                &:hover .mvx-hover-tooltip{
+                    opacity: 1;
+                }
+            }
+        }
+        .mvx-settings-basic-input-class{
+           input.mvx-setting-form-input {
+            width: 100%;
+        }
+    }
+           .mvx-boarder-parent{
+
+            .mvx-boarder-parent-loop{
+                margin-bottom: 0.8rem;
+                display: flex;
+                align-items: center;
+                label.mvx-setting-form-label {
+                    font-size: .7rem;
+                    font-weight: 500;
+                    width: 11%;
+                }
+            }
+            .mvx-boarder-nested-child-start{
+                .mvx-boarder-nested-child{
+                    .mvx-boarder-nested-child-loop{
+                        display: flex;
+                        margin-bottom: 0.8rem;
+                        align-items: center;
+                        .mvx-setting-form-label{
+                            width: 11%;
+                        }
+                        .mvx-setting-form-input{
+                            margin: 0;
+                            width: 89%;
+                        }
+                    }
+                }
+            }
+            input.mvx-setting-form-input {
+                width: 90%;
+            }
+            input.mvx-setting-form-input[type="checkbox"] {
+                width: 0% !important;
+                margin-top: 0.1rem;
+            }
+          
+           }
+           .mvx-boarder-parent, .mvx-boarder-nested-child {
+            border: 0.06rem solid #c2c2c2;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: .5rem 0;
+        }
+           .mvxsetting-from-textarea textarea {
+            width: 100%;
+        }
+
+        .radio-select-active{
+            border:.17rem solid #6955da !important;
+            background-color: #fff;
+            color: #6955da !important;
+        }
+           .mvx-radioselect-class {
+            border: 0.06rem solid $border_color;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            color: #938885;
+            font-weight: 600;
+            .mvx-setting-form-input{
+                visibility: hidden;
+            }
+            label.mvx-radio-select-under-label-class{
+                position: relative;
+                margin-left: 0.2rem;
+                &::before{
+                    position: absolute;
+                    content: "";
+                    height: 1.06rem;
+                    width: 1.06rem;
+                    top: 0.01rem;
+                    left: -1.5rem;
+                    border-radius: 1rem;
+                    background-color: #270e0e62;
+                }
+            }
+            .mvx-setting-form-input:checked + label.mvx-radio-select-under-label-class::before{
+                background-color: #069de3;
+                border: 0.06rem solid #069de3;
+                content: url('https://api.iconify.design/dashicons/arrow-down-alt2.svg');
+                color: #fff;
+            }          
+            &:hover{
+                border-color: #6955da;
+                border-width: 0.17rem;
+                color: #6955da;
+            }
+            p.mvx-radio-select-before-label {
+                text-align: center;
+            }
+            input.mvx-setting-form-input {
+                margin-bottom: 1rem;
+            }
+        }
+           .mvx-form-group-radio-color {
+            display: flex;
+            flex-wrap: wrap;
+            .radio-color-active {
+                background: #c2c2c2;
+            }
+            .mvx-settings-radio-color {
+                width: 40%;
+                margin: 0 3rem 0.5rem 0;
+                padding: 0.5rem;
+                &:hover{
+                    background: #c2c2c2;
+
+                }
+                .mvx-merge-radio-color-input-label label {
+                    font-weight: 500;
+                }
+                .color-palette {
+                    width: 100%;
+                    border-spacing: 0;
+                    border-collapse: collapse;
+                    display: flex;
+                     div {
+                        width: 25%;
+                    }
+                }
+            }
+        }
+           .mvx-setting-file-uploader-class {
+            position: relative;
+            button{
+                position: absolute;
+                bottom: 3rem;
+                margin-left: 0.8rem;
+                padding: 0.5rem 1rem;
+                color: #fff;
+                border-radius: 0.3rem;
+                border: 0.06rem solid #3f85b9;
+                background-color: #3f85b9;
+            }
+        }
+       }     
+
+       .mvx-toggle-rectangle-merge{
+       
+ul {
+    position: relative;
+    padding:  0 .4rem;
+    border: 0.06rem solid #b5bfc9;
+    border-radius: 4px;
+    display: flex;
+    overflow: hidden;
+    width: fit-content;
+    margin: 0;
+    li{
+        list-style: none;
+        padding: 1rem .1rem;
+        margin: 0;
+    }
+}
+
+ul input {
+    position: absolute !important;
+    clip: rect(0, 0, 0, 0);
+    height: 0.06rem;
+    width: 0.06rem;
+    border: 0;
+    overflow: hidden;
+}
+
+ul label {
+    color: rgba(85, 83, 83, 0.6);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1;
+    text-align: center;
+    padding: .5rem 1rem;
+    margin-right: -0.06rem;
+    border-radius: 0.3rem;
+    border: 0.06rem solid rgba(0, 0, 0, 0.2);
+    transition: all 0.1s ease-in-out;
+}
+
+ul label:hover {
+    cursor: pointer;
+}
+
+ul input:checked + label {
+    background-color: #069de3;
+    color: #fff;
+}
+
+    }
+    }
+       #poststuff {
+        padding-top: 0;
+        min-width: 0rem;
+       }
+}
+
+}
+
+@media only screen and (max-width: 736px) {
+    .general-tab-area {
+        display: flex;
+        flex-wrap: wrap;
+    
+    ul.mvx-general-tabs-list {
+        width: 100%;
+        margin: 0;
+    }
+    .tabcontentclass{
+        width: 100%;
+        
+        textarea.form-input{
+            width: 100%;
+        }
+    }
+    
+   
+}
+}
+
+
+
+    
+
+
+
+.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-settings-basic-input-class input.mvx-setting-form-input {
+    width: 100%;
+    padding: 0.5rem;
+}
+    img.mvx-section-img-fluid {
+        height: 100%;
+        width:  100%;
+    }
+    .mvx-setting-section-divider{
+        height: 0.1rem;
+        width: 100%;
+        margin: auto;
+        background-color: $border_color;
+    }
+    .wp-media-buttons .insert-media {
+        padding-left: 5px;
+        background-color: #485adb;
+        color: #faf6f6;
+    }
