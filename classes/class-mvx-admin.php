@@ -363,6 +363,222 @@ class MVX_Admin {
             )
         );
 
+        $woo_countries = new WC_Countries();
+        $countries = $woo_countries->get_allowed_countries();
+        $country_list = [];
+        foreach ($countries as $countries_key => $countries_value) {
+            $country_list[] = array(
+                'label' => $countries_value,
+                'value' => $countries_key
+            );
+        }
+
+
+
+        //vendor_country_code
+        //vendor_state_code
+
+
+
+
+        $user = null;
+        $mvx_shipping_by_distance = $mvx_shipping_by_country = $vendor_default_shipping_options = '';
+        $display_name_option = $shipping_options_list = $showdisplayname = $showpayment_method = array();
+        if(isset($_GET['ID']) && absint($_GET['ID']) > 0) {
+            $user = get_user_by("ID", $_GET['ID']);
+                        
+            // display name for vendor start
+
+            if(isset($user->display_name)) {
+                if ($user->user_login) {
+                    $display_name_option[] = array(
+                        'value'=> $user->user_login,
+                        'label'=> $user->user_login,
+                        'key'=> $user->user_login,
+                    );
+                }
+                if ($user->first_name) {
+                    $display_name_option[] = array(
+                        'value'=> $user->first_name,
+                        'label'=> $user->first_name,
+                        'key'=> $user->first_name,
+                    );
+                }
+                if ($user->last_name) {
+                    $display_name_option[] = array(
+                        'value'=> $user->last_name,
+                        'label'=> $user->last_name,
+                        'key'=> $user->last_name,
+                    );
+                }
+
+                if ($user->first_name && $user->last_name) {
+                    $display_name_option[] = array(
+                        'value'=> $user->first_name . " " . $user->last_name,
+                        'label'=> $user->first_name . " " . $user->last_name,
+                        'key'=> $user->first_name . " " . $user->last_name,
+                    );
+                     $display_name_option[] = array(
+                        'value'=> $user->last_name . " " . $user->first_name,
+                        'label'=> $user->last_name . " " . $user->first_name,
+                        'key'=> $user->last_name . " " . $user->first_name,
+                    );
+                }
+            }
+
+            foreach ($display_name_option as $display_key => $display_value) {
+                if ($display_value['value'] && $display_value['value'] == $user->display_name) {
+                    $showdisplayname[]  = $display_name_option[$display_key];
+                }
+            }
+
+
+            // set option vendor payment method
+            $payment_admin_settings = get_option('mvx_commission-configuration_tab_settings');
+            $payment_mode = array('payment_mode' => __('Payment Mode', 'dc-woocommerce-multi-vendor'));
+            if ($payment_admin_settings && isset($payment_admin_settings['payment_method_disbursement']) && !empty($payment_admin_settings['payment_method_disbursement']) && in_array('paypal_masspay', $payment_admin_settings['payment_method_disbursement'])) {
+                $payment_mode['paypal_masspay'] = __('PayPal Masspay', 'dc-woocommerce-multi-vendor');
+            }
+            if ($payment_admin_settings && isset($payment_admin_settings['payment_method_disbursement']) && !empty($payment_admin_settings['payment_method_disbursement']) && in_array('paypal_payout', $payment_admin_settings['payment_method_disbursement'])) {
+                $payment_mode['paypal_payout'] = __('PayPal Payout', 'dc-woocommerce-multi-vendor');
+            }
+            if ($payment_admin_settings && isset($payment_admin_settings['payment_method_disbursement']) && !empty($payment_admin_settings['payment_method_disbursement']) && in_array('stripe_masspay', $payment_admin_settings['payment_method_disbursement'])) {
+                $payment_mode['stripe_masspay'] = __('Stripe Connect', 'dc-woocommerce-multi-vendor');
+            }
+            if ($payment_admin_settings && isset($payment_admin_settings['payment_method_disbursement']) && !empty($payment_admin_settings['payment_method_disbursement']) && in_array('direct_bank', $payment_admin_settings['payment_method_disbursement'])) {
+                $payment_mode['direct_bank'] = __('Direct Bank', 'dc-woocommerce-multi-vendor');
+            }
+            $vendor_payment_mode_select = apply_filters('mvx_vendor_payment_mode', $payment_mode);
+            $vendor_payment_method_display_section  =   array();
+            foreach ($vendor_payment_mode_select as $selectkey => $selectvalue) {
+                $vendor_payment_method_display_section[]    =   array(
+                    'label' =>  $selectvalue,
+                    'value' =>  $selectkey
+                );
+            }
+
+            $payment_method = get_user_meta($_GET['ID'], '_vendor_payment_mode', true);
+            foreach ($vendor_payment_method_display_section as $payment_key => $payment_value) {
+                if ($payment_value['value'] && $payment_value['value'] == $payment_method) {
+                    $showpayment_method  = $vendor_payment_method_display_section[$payment_key];
+                }
+            }
+
+            $commission_value = get_user_meta($_GET['ID'], '_vendor_commission', true);
+            $vendor_paypal_email = get_user_meta($_GET['ID'], '_vendor_paypal_email', true);
+
+            $vendor_bank_name = get_user_meta($_GET['ID'], '_vendor_bank_name', true);
+            $vendor_aba_routing_number = get_user_meta($_GET['ID'], '_vendor_aba_routing_number', true);
+            $vendor_destination_currency = get_user_meta($_GET['ID'], '_vendor_destination_currency', true);
+            $vendor_bank_address = get_user_meta($_GET['ID'], '_vendor_bank_address', true);
+            $vendor_iban = get_user_meta($_GET['ID'], '_vendor_iban', true);
+            $vendor_account_holder_name = get_user_meta($_GET['ID'], '_vendor_account_holder_name', true);
+            $vendor_bank_account_number = get_user_meta($_GET['ID'], '_vendor_bank_account_number', true);
+
+
+            $_vendor_shipping_policy = get_user_meta( $user->data->ID, 'vendor_shipping_policy', true ) ? get_user_meta( $user->data->ID, 'vendor_shipping_policy', true ) : __( 'No policy found', 'dc-woocommerce-multi-vendor' );
+            $_vendor_refund_policy = get_user_meta( $user->data->ID, 'vendor_refund_policy', true ) ? get_user_meta( $user->data->ID, 'vendor_refund_policy', true ) : __( 'No policy found', 'dc-woocommerce-multi-vendor' );
+            $_vendor_cancellation_policy = get_user_meta( $user->data->ID, 'vendor_cancellation_policy', true ) ? get_user_meta( $user->data->ID, 'vendor_cancellation_policy', true ) : __( 'No policy found', 'dc-woocommerce-multi-vendor' );
+
+
+            $vendor_phone = get_user_meta( $user->data->ID, '_vendor_phone', true ) ? get_user_meta( $user->data->ID, '_vendor_phone', true ) : '';
+            $vendor_address_1 = get_user_meta( $user->data->ID, '_vendor_address_1', true ) ? get_user_meta( $user->data->ID, '_vendor_address_1', true ) : '';
+            $vendor_address_2 = get_user_meta( $user->data->ID, '_vendor_address_2', true ) ? get_user_meta( $user->data->ID, '_vendor_address_2', true ) : '';
+            $vendor_city = get_user_meta( $user->data->ID, '_vendor_city', true ) ? get_user_meta( $user->data->ID, '_vendor_city', true ) : '';
+            $vendor_postcode = get_user_meta( $user->data->ID, '_vendor_postcode', true ) ? get_user_meta( $user->data->ID, '_vendor_postcode', true ) : '';
+
+
+
+
+            $vendor_country_code = get_user_meta( $user->data->ID, '_vendor_country_code', true ) ? get_user_meta( $user->data->ID, '_vendor_country_code', true ) : '';
+            $vendor_state_code = get_user_meta( $user->data->ID, '_vendor_state_code', true ) ? get_user_meta( $user->data->ID, '_vendor_state_code', true ) : '';
+
+            // display country value from database
+            $vendor_country_code_data = $vendor_state_code_data = array();
+            foreach ($country_list as $display_country_key => $display_country_value) {
+                if ($display_country_value['value'] && $display_country_value['value'] == $vendor_country_code) {
+                    $vendor_country_code_data[]  = $country_list[$display_country_key];
+                }
+            }
+
+            // display state value from database
+            $state_list = wc_clean( wp_unslash( WC()->countries->get_states($vendor_country_code) ) );
+            if ($state_list) {
+                foreach ($state_list as $display_state_key => $display_state_value) {
+                    if ($display_state_key && $display_state_key == $vendor_state_code) {
+                        $vendor_state_code_data[]  = [
+                            'label' => $display_state_value,
+                            'value' => $display_state_key
+                        ];
+                    }
+                }
+            }
+            
+
+            $user_vendor = get_mvx_vendor($user->data->ID);
+
+            $current_offset = get_user_meta($user->data->ID, 'gmt_offset', true);
+            $tzstring = get_user_meta($user->data->ID, 'timezone_string', true);
+            // Remove old Etc mappings. Fallback to gmt_offset.
+            if (false !== strpos($tzstring, 'Etc/GMT')) {
+                $tzstring = '';
+            }
+
+
+            $vendor_fb_profile = get_user_meta($user->data->ID, '_vendor_fb_profile', true) ? get_user_meta($user->data->ID, '_vendor_fb_profile', true) : '';
+            $vendor_twitter_profile = get_user_meta($user->data->ID, '_vendor_twitter_profile', true) ? get_user_meta($user->data->ID, '_vendor_twitter_profile', true) : '';
+            $vendor_linkdin_profile = get_user_meta($user->data->ID, '_vendor_linkdin_profile', true) ? get_user_meta($user->data->ID, '_vendor_linkdin_profile', true) : '';
+            $vendor_youtube_profile = get_user_meta($user->data->ID, '_vendor_youtube', true) ? get_user_meta($user->data->ID, '_vendor_youtube', true) : '';
+            $vendor_instagram_profile = get_user_meta($user->data->ID, '_vendor_instagram', true) ? get_user_meta($user->data->ID, '_vendor_instagram', true) : '';
+
+            if (empty($tzstring)) { // Create a UTC+- zone if no timezone string exists
+                $check_zone_info = false;
+                if (0 == $current_offset) {
+                    $tzstring = 'UTC+0';
+                } elseif ($current_offset < 0) {
+                    $tzstring = 'UTC' . $current_offset;
+                } else {
+                    $tzstring = 'UTC+' . $current_offset;
+                }
+            }
+
+            // Shipping options
+            
+            $vendor_default_shipping_options_database_value = get_user_meta($_GET['ID'], 'vendor_shipping_options', true) ? get_user_meta($_GET['ID'], 'vendor_shipping_options', true) : '';
+            $shipping_options = apply_filters('mvx_vendor_shipping_option_to_vendor', array(
+                'distance_by_zone' => __('Shipping by Zone', 'dc-woocommerce-multi-vendor'),
+            ) );
+            if (get_mvx_vendor_settings( 'enabled_distance_by_shipping_for_vendor', 'general' ) && 'Enable' === get_mvx_vendor_settings( 'enabled_distance_by_shipping_for_vendor', 'general' )) {
+                $shipping_options['distance_by_shipping'] = __('Shipping by Distance', 'dc-woocommerce-multi-vendor');
+            }
+            if (get_mvx_vendor_settings( 'enabled_shipping_by_country_for_vendor', 'general' ) && 'Enable' === get_mvx_vendor_settings( 'enabled_shipping_by_country_for_vendor', 'general' )) {
+                $shipping_options['shipping_by_country'] = __('Shipping by Country', 'dc-woocommerce-multi-vendor');
+            }
+            foreach ($shipping_options as $shipping_key => $shipping_value) {
+                $shipping_options_list[] = array(
+                    'value' => sanitize_text_field($shipping_key),
+                    'label' => sanitize_text_field($shipping_value)
+                );
+            }
+
+            $vendor_default_shipping_options = array();
+            foreach ($shipping_options_list as $key => $value) {
+                if ($value['value'] == $vendor_default_shipping_options_database_value) {
+                    $vendor_default_shipping_options[] = $shipping_options_list[$key];
+                }
+            }
+
+            $shipping_distance_rate = mvx_get_user_meta( $_GET['ID'], '_mvx_shipping_by_distance_rates', true ) ? mvx_get_user_meta( $_GET['ID'], '_mvx_shipping_by_distance_rates', true ) : $default_nested_data;
+
+            $mvx_shipping_by_distance = mvx_get_user_meta( $_GET['ID'], '_mvx_shipping_by_distance', true ) ? get_user_meta( $_GET['ID'], '_mvx_shipping_by_distance', true ) : array();
+
+            $mvx_shipping_by_country = mvx_get_user_meta( $_GET['ID'], '_mvx_shipping_by_country', true ) ? mvx_get_user_meta( $_GET['ID'], '_mvx_shipping_by_country', true ) : '';
+
+            $shipping_country_rate = mvx_get_user_meta( $_GET['ID'], '_mvx_country_shipping_rates', true ) ? mvx_get_user_meta( $_GET['ID'], '_mvx_country_shipping_rates', true ) : $default_nested_data;
+
+        }
+
+
         $settings_fields = [
             'dashbaord-management'   => [
                 [
@@ -1287,7 +1503,7 @@ class MVX_Admin {
             ],
 
             'policy-configure'  => [
-                [
+                /*[
                     'key'       => 'store-policy',
                     'type'      => 'wpeditor',
                     'class'     =>  'mvx-setting-wpeditor-class',
@@ -1301,7 +1517,7 @@ class MVX_Admin {
                     'class'     =>  'mvx-setting-wpeditor-class',
                     'desc'      => __('policy details data added', 'dc-woocommerce-multi-vendor'),
                     'label'     => __( 'Shipping Policy Content', 'dc-woocommerce-multi-vendor' ),
-                    'database_value' => '',
+                    'database_value' => $_vendor_shipping_policy ? $_vendor_shipping_policy : '',
                 ],
                 [
                     'key'       => 'refund_policy',
@@ -1318,7 +1534,7 @@ class MVX_Admin {
                     'desc'      => __('policy details data added', 'dc-woocommerce-multi-vendor'),
                     'label'     => __( 'Cancellation / Return / Exchange Policy Content', 'dc-woocommerce-multi-vendor' ),
                     'database_value' => '',
-                ],
+                ],*/
             ],
             'payment-disbursement'  => [
                 [
@@ -1757,6 +1973,515 @@ class MVX_Admin {
                     'database_value' => array(),
                 ],
             ],
+
+            'vendor_personal' => [
+                [
+                    'key'       => 'user_login',
+                    'type'      => 'text',
+                    'label'     => __( 'Username (required)', 'dc-woocommerce-multi-vendor' ),
+                    'desc' => __('Usernames cannot be changed.', 'dc-woocommerce-multi-vendor'),
+                    'props'     => array(
+                        'required'  => true
+                    ),
+                    'database_value' => isset($user->user_login) ? $user->user_login : '',
+                ],
+                [
+                    'key'       => 'password',
+                    'type'      => 'password',
+                    'label'     => __( 'Password', 'dc-woocommerce-multi-vendor' ),
+                    'desc'     => __('Keep it blank for not to update.', 'dc-woocommerce-multi-vendor'),
+                    'props'     => array(
+                        'required'  => true
+                    ),
+                    'database_value' => '',
+                ],
+                [
+                    'key'       => 'first_name',
+                    'type'      => 'text',
+                    'label'     => __( 'First Name', 'dc-woocommerce-multi-vendor' ),
+                    'database_value' => isset($user->first_name) ? $user->first_name : '',
+                ],
+                [
+                    'key'       => 'last_name',
+                    'type'      => 'text',
+                    'label'     => __( 'Last Name', 'dc-woocommerce-multi-vendor' ),
+                    'database_value' => isset($user->last_name) ? $user->last_name : '',
+                ],
+                [
+                    'key'       => 'user_email',
+                    'type'      => 'email',
+                    'label'     => __( 'Email (required)', 'dc-woocommerce-multi-vendor' ),
+                    'props'     => array(
+                        'required'  => true
+                    ),
+                    'database_value' => isset($user->user_email) ? $user->user_email : '',
+                ],
+                [
+                    'key'       => 'user_nicename',
+                    'type'      => 'text',
+                    'label'     => __( 'Nick Name (required)', 'dc-woocommerce-multi-vendor' ),
+                    'props'     => array(
+                        'required'  => true
+                    ),
+                    'database_value' => isset($user->user_nicename) ? $user->user_nicename : '',
+                ],
+                isset($_GET['name']) && $_GET['name'] == 'add_new' ? [] : [
+                    'key'       => 'display_name',
+                    'type'      => 'select',
+                    'label'     => __( 'Display name', 'dc-woocommerce-multi-vendor' ),
+                    'desc'      => __( 'If you are not sure where to add widget, just go to admin <a href=".admin_url("widgets.php")." terget="_blank">widget</a> section and add your preferred widgets to <b>vendor store sidebar</b>.', 'dc-woocommerce-multi-vendor' ),
+                    'options' => $display_name_option,
+                    'restricted_page'   => '?page=vendors&name=add_new',
+                    'database_value' => isset($showdisplayname) ? $showdisplayname : '',
+                ],
+                [
+                    'key'    => 'vendor_profile_image',
+                    'label'   => __( 'Profile Image', 'dc-woocommerce-multi-vendor' ),
+                    'type'    => 'file',
+                    'width' =>  75,
+                    'height'    => 75,
+                    'database_value' => array(),
+                ],
+                
+            ],
+            'vendor_store' => [
+                [
+                    'label' => __('Store Name *', 'dc-woocommerce-multi-vendor'),
+                    'type' => 'text',
+                    'key' => 'vendor_page_title',
+                    'database_value' => isset($user_vendor->page_title) ? $user_vendor->page_title : '' 
+                ],
+                [
+                    'label' => __('Store Slug *', 'dc-woocommerce-multi-vendor'),
+                    'type' => 'text',
+                    'key' => 'vendor_page_slug',
+                    'desc' => sprintf(__('Store URL will be something like - %s', 'dc-woocommerce-multi-vendor'), trailingslashit(get_home_url()) . 'vendor_slug'),
+                    'database_value' => isset($user_vendor->page_slug) ? $user_vendor->page_slug : '',
+                ],
+                [
+                    'label' => __('Store Description', 'dc-woocommerce-multi-vendor'),
+                    'type' => 'wpeditor', 
+                    'key' => 'vendor_description', 
+                    'database_value' => isset($vendor_description) ? $vendor_description : ''
+                ],
+
+                [
+                    'label' => __('Phone', 'dc-woocommerce-multi-vendor'), 
+                    'type' => 'number', 
+                    'key' => 'vendor_phone', 
+                    'database_value' => isset($vendor_phone) ? $vendor_phone : ''
+                ],
+                [
+                    'label' => __('Address', 'dc-woocommerce-multi-vendor'), 
+                    'type' => 'text', 
+                    'key' => 'vendor_address_1', 
+                    'database_value' => isset($vendor_address_1) ? $vendor_address_1 : ''
+                ],
+                [
+                    'label' => '', 
+                    'type' => 'text', 
+                    'key' => 'vendor_address_2', 
+                    'database_value' => isset($vendor_address_2) ? $vendor_address_2 : ''
+                ],
+                [
+                    'label' => __('Country', 'dc-woocommerce-multi-vendor'), 
+                    'type' => 'country', 
+                    'key' => 'vendor_country', 
+                    'class' => 'country_to_state regular-text', 
+                    'options' => $country_list, 
+                    'database_value' => isset($vendor_country_code_data) ? $vendor_country_code_data : ''
+                ],
+                [
+                    'label' => __('State', 'dc-woocommerce-multi-vendor'), 
+                    'type' => 'state', 
+                    'key' => 'vendor_state', 
+                    'class' => 'regular-text', 
+                    'options' => array(), 
+                    'database_value' => isset($vendor_state_code_data) ? $vendor_state_code_data : ''
+                ],
+                [
+                    'label' => __('City', 'dc-woocommerce-multi-vendor'), 
+                    'type' => 'text', 
+                    'key' => 'vendor_city', 
+                    'database_value' => isset($vendor_city) ? $vendor_city : ''
+                ],
+                [
+                    'label' => __('ZIP code', 'dc-woocommerce-multi-vendor'), 
+                    'type' => 'text', 
+                    'key' => 'vendor_postcode', 
+                    'database_value' => isset($vendor_postcode) ? $vendor_postcode : ''
+                ],
+                [
+                    'label' => __('Timezone', 'dc-woocommerce-multi-vendor'),
+                    'type' => 'text', 
+                    'key' => 'timezone_string',
+                    'props'     => array(
+                        'disabled'  => true
+                    ),
+                    'database_value' => isset($tzstring) ? $tzstring : '', 
+                ],
+            ],
+
+
+
+            'vendor_social' => [
+                [
+                    'label' => __('Facebook', 'dc-woocommerce-multi-vendor'), 
+                    'type' => 'url', 
+                    'key' => 'vendor_fb_profile', 
+                    'database_value' => isset($vendor_fb_profile) ? $vendor_fb_profile : ''
+                ],
+                [
+                    'label' => __('Twitter', 'dc-woocommerce-multi-vendor'), 
+                    'type' => 'url', 
+                    'key' => 'vendor_twitter_profile', 
+                    'database_value' => isset($vendor_twitter_profile) ? $vendor_twitter_profile : ''
+                ],
+                [
+                    'label' => __('LinkedIn', 'dc-woocommerce-multi-vendor'), 
+                    'type' => 'url', 
+                    'key' => 'vendor_linkdin_profile', 
+                    'database_value' => isset($vendor_linkdin_profile) ? $vendor_linkdin_profile : ''
+                ],
+                [
+                    'label' => __('YouTube', 'dc-woocommerce-multi-vendor'), 
+                    'type' => 'url', 
+                    'key' => 'vendor_youtube', 
+                    'database_value' => isset($vendor_youtube_profile) ? $vendor_youtube_profile : ''
+                ],
+                [
+                    'label' => __('Instagram', 'dc-woocommerce-multi-vendor'), 
+                    'type' => 'url', 
+                    'key' => 'vendor_instagram', 
+                    'database_value' => isset($vendor_instagram_profile) ? $vendor_instagram_profile : ''
+                ],
+            ],
+            'vendor_application' => [
+
+            ],
+            'vendor_shipping' => [
+
+            ],
+            'vendor_followers' => [
+
+            ],
+
+            'vendor_payments'   =>  [
+                [
+                    'key'       => 'vendor_payment_mode',
+                    'type'      => 'select',
+                    'label'     => __( 'Choose Payment Method', 'dc-woocommerce-multi-vendor' ),
+                    'options'   => isset($vendor_payment_method_display_section) ? $vendor_payment_method_display_section : array(),
+                    'database_value' => isset($showpayment_method) ? $showpayment_method : '',
+                ],
+                [
+                    'label' => __('Commission Amount', 'dc-woocommerce-multi-vendor'), 
+                    'type' => 'number', 
+                    'key' => 'vendor_commission',
+                    'placeholder' => '0.00',
+                    'database_value' => isset($commission_value) ? $commission_value : ''
+                ],
+                [
+                    'label' => __('Paypal Email', 'dc-woocommerce-multi-vendor'), 
+                    'type' => 'text', 
+                    'key' => 'vendor_paypal_email',
+                    'placeholder' => '0.00',
+                    'depend'    => 'vendor_payment_mode',
+                    'dependvalue'       =>  'paypal_masspay',
+                    'database_value' => isset($vendor_paypal_email) ? $vendor_paypal_email : ''
+                ],
+                [
+                    'label' => __('Paypal Email', 'dc-woocommerce-multi-vendor'), 
+                    'type' => 'text', 
+                    'key' => 'vendor_paypal_email',
+                    'placeholder' => '0.00',
+                    'depend'    => 'vendor_payment_mode',
+                    'dependvalue'       =>  'paypal_payout',
+                    'database_value' => isset($vendor_paypal_email) ? $vendor_paypal_email : ''
+                ],
+
+               /* [
+                    'label' => __('Account type', 'dc-woocommerce-multi-vendor'), 
+                    'type' => 'select', 
+                    'key' => 'vendor_bank_account_type', 
+                    'label_for' => 'vendor_bank_account_type', 
+                    'name' => 'vendor_bank_account_type', 
+                    'options' => $vendor_bank_account_type_select, 
+                    'database_value' => $vendor_obj->bank_account_type, 
+                ],*/
+                [
+                    'label' => __('Bank Name', 'dc-woocommerce-multi-vendor'), 
+                    'type' => 'text',
+                    'depend'    => 'vendor_payment_mode',
+                    'dependvalue'       =>  'direct_bank',
+                    'key' => 'vendor_bank_name', 
+                    'database_value' => isset($vendor_bank_name) ? $vendor_bank_name : '' 
+                ],
+
+                [
+                    'label' => __('ABA Routing Number', 'dc-woocommerce-multi-vendor'), 
+                    'type' => 'text',
+                    'depend'    => 'vendor_payment_mode',
+                    'dependvalue'       =>  'direct_bank',
+                    'key' => 'vendor_aba_routing_number', 
+                    'database_value' => isset($vendor_aba_routing_number) ? $vendor_aba_routing_number : ''
+                ],
+
+                [
+                    'label' => __('Destination Currency', 'dc-woocommerce-multi-vendor'), 
+                    'type' => 'text',
+                    'depend'    => 'vendor_payment_mode',
+                    'dependvalue'       =>  'direct_bank',
+                    'key' => 'vendor_destination_currency', 
+                    'database_value' => isset($vendor_destination_currency) ? $vendor_destination_currency : ''
+                ],
+                [
+                    'label' => __('Bank Address', 'dc-woocommerce-multi-vendor'), 
+                    'type' => 'textarea', 
+                    'key' => 'vendor_bank_address', 
+                    'depend'    => 'vendor_payment_mode',
+                    'dependvalue'       =>  'direct_bank',
+                    'rows'=>'6', 
+                    'cols'=>'53', 
+                    'database_value' => isset($vendor_bank_address) ? $vendor_bank_address : ''
+                ],
+                [
+                    'label' => __('IBAN', 'dc-woocommerce-multi-vendor'), 
+                    'type' => 'text',
+                    'depend'    => 'vendor_payment_mode',
+                    'dependvalue'       =>  'direct_bank',
+                    'key' => 'vendor_iban', 
+                    'database_value' => isset($vendor_iban) ? $vendor_iban : ''
+                ],
+                [
+                    'label' => __('Account Holder Name', 'dc-woocommerce-multi-vendor'), 
+                    'type' => 'text',
+                    'depend'    => 'vendor_payment_mode',
+                    'dependvalue'       =>  'direct_bank',
+                    'key' => 'vendor_account_holder_name', 
+                    'database_value' => isset($vendor_account_holder_name) ? $vendor_account_holder_name : ''
+                ],
+                [
+                    'label' => __('Account Number', 'dc-woocommerce-multi-vendor'), 
+                    'type' => 'text',
+                    'depend'    => 'vendor_payment_mode',
+                    'dependvalue'       =>  'direct_bank',
+                    'key' => 'vendor_bank_account_number', 
+                    'database_value' => isset($vendor_bank_account_number) ? $vendor_bank_account_number : ''
+                ],
+            ],
+
+            'vendor_policy' => [
+                [
+                    'label' => __('Shipping Policy', 'dc-woocommerce-multi-vendor'), 
+                    'type' => 'wpeditor', 
+                    'key' => 'vendor_shipping_policy', 
+                    'database_value' => isset($_vendor_shipping_policy) ? $_vendor_shipping_policy : ''
+                ],
+                [
+                    'label' => __('Refund Policy', 'dc-woocommerce-multi-vendor'), 
+                    'type' => 'wpeditor', 
+                    'key' => 'vendor_refund_policy', 
+                    'database_value' => isset($_vendor_refund_policy) ? $_vendor_refund_policy : ''
+                ],
+                [
+                    'label' => __('Cancellation/Return/Exchange Policy', 'dc-woocommerce-multi-vendor'),
+                     'type' => 'wpeditor', 
+                     'key' => 'vendor_cancellation_policy', 
+                     'database_value' => isset($_vendor_cancellation_policy) ? $_vendor_cancellation_policy : ''
+                 ],
+            ],
+
+            'distance_shipping' => [
+                [
+                    'label' => __('Default Cost', 'dc-woocommerce-multi-vendor'), 
+                    'type' => 'text', 
+                    'key' => 'mvx_byd_default_cost',
+                    'placeholder' => '0.00',
+                    'database_value' => isset($mvx_shipping_by_distance['_default_cost']) ? $mvx_shipping_by_distance['_default_cost'] : ''
+                ],
+                [
+                    'label' => __('Max Distance (km)', 'dc-woocommerce-multi-vendor'), 
+                    'type' => 'text',
+                    'placeholder' => __('No Limit', 'dc-woocommerce-multi-vendor'), 
+                    'key' => 'mvx_byd_max_distance', 
+                    'database_value' => isset($mvx_shipping_by_distance['_max_distance']) ? $mvx_shipping_by_distance['_max_distance'] : ''
+                ],
+                [
+                    'label' => __('Enable Local Pickup', 'dc-woocommerce-multi-vendor'), 
+                    'type' => 'checkbox', 
+                    'key' => 'mvx_byd_enable_local_pickup',
+                    'options' => array(
+                        array(
+                            'key'=> "mvx_byd_enable_local_pickup",
+                            'label'=> __('', 'dc-woocommerce-multi-vendor'),
+                            'value'=> "mvx_byd_enable_local_pickup"
+                        ),
+                    ),
+                    'database_value' => isset($mvx_shipping_by_distance['_enable_local_pickup']) ? $mvx_shipping_by_distance['_enable_local_pickup'] : ''
+                ],
+                [
+                    'label' => __('Local Pickup Cost', 'dc-woocommerce-multi-vendor'), 
+                    'type' => 'text', 
+                    'key' => 'mvx_byd_local_pickup_cost', 
+                    'placeholder' => '0.00',
+                    'database_value' => isset($mvx_shipping_by_distance['_local_pickup_cost']) ? $mvx_shipping_by_distance['_local_pickup_cost'] : ''
+                ],
+                [
+                    'key'       => 'mvx_shipping_by_distance_rates',
+                    'type'      => 'nested',
+                    'label'     => __( 'Distance-Cost Rules:', 'dc-woocommerce-multi-vendor' ),
+                    'parent_options' => array(
+                        array(
+                            'key'=>'mvx_distance_rule',
+                            'type'=> "select",
+                            'class' => "nested-parent-class",
+                            'name' => "nested-parent-name",
+                            'label'=> __('Distance Rule', 'dc-woocommerce-multi-vendor'),
+                            'options' => array(
+                                array(
+                                    'key'=> "up_to",
+                                    'label'=> __('Distance up to', 'dc-woocommerce-multi-vendor'),
+                                    'value'=> __('up_to', 'dc-woocommerce-multi-vendor'),
+                                ),
+                                array(
+                                    'key'=> "more_than",
+                                    'label'=> __('Distance more than', 'dc-woocommerce-multi-vendor'),
+                                    'value'=> __('more_than', 'dc-woocommerce-multi-vendor'),
+                                ),
+                            ),
+                        ),
+                        array(
+                            'key'   => 'mvx_distance_unit',
+                            'type'  => "text",
+                            'class' => "nested-parent-class",
+                            'name'  => "nested-parent-name",
+                            'label' => __('Distance', 'dc-woocommerce-multi-vendor') . ' ( '. __('km', 'dc-woocommerce-multi-vendor') .' )', 
+                        ),
+                        array(
+                            'key'   => 'mvx_distance_price',
+                            'type'  => "text",
+                            'class' => "nested-parent-class",
+                            'name'  => "nested-parent-name",
+                            'label' => __('Cost', 'dc-woocommerce-multi-vendor') . ' ('.get_woocommerce_currency_symbol().')',
+                        ),
+                    ),
+                    'child_options' => array(
+                        
+                    ),
+                    'database_value' => isset($_GET['ID']) ? $shipping_distance_rate : $default_nested_data,
+                ]
+            ],
+
+            'country_shipping' => [
+
+                [
+                    'label' => __('Default Shipping Price', 'dc-woocommerce-multi-vendor'), 
+                    'placeholder' => '0.00', 
+                    'type' => 'text', 
+                    'class' => 'col-md-6 col-sm-9', 
+                    'key' => 'mvx_shipping_type_price', 
+                    'database_value' => isset($mvx_shipping_by_country['_mvx_shipping_type_price']) ? $mvx_shipping_by_country['_mvx_shipping_type_price'] : '', 
+                ],
+
+                [
+                    'label' => __('Per Product Additional Price', 'dc-woocommerce-multi-vendor'), 
+                    'placeholder' => '0.00', 
+                    'type' => 'text', 
+                    'class' => 'col-md-6 col-sm-9', 
+                    'key' => 'mvx_additional_product', 
+                    'database_value' => isset($mvx_shipping_by_country['_mvx_additional_product']) ? $mvx_shipping_by_country['_mvx_additional_product'] : '',
+                    'desc' => __('If a customer buys more than one type product from your store, first product of the every second type will be charged with this price', 'dc-woocommerce-multi-vendor') 
+                ],
+
+                [
+                    'label' => __('Per Qty Additional Price', 'dc-woocommerce-multi-vendor'), 
+                    'placeholder' => '0.00', 
+                    'type' => 'text', 
+                    'class' => 'col-md-6 col-sm-9', 
+                    'key' => 'mvx_additional_qty', 
+                    'database_value' => isset($mvx_shipping_by_country['_mvx_additional_qty']) ? $mvx_shipping_by_country['_mvx_additional_qty'] : '', 
+                    'hints' => __('Every second product of same type will be charged with this price', 'dc-woocommerce-multi-vendor'),
+                ],
+
+                [
+                    'label' => __('Free Shipping Minimum Order Amount', 'dc-woocommerce-multi-vendor'), 
+                    'placeholder' => __( 'NO Free Shipping', 'dc-woocommerce-multi-vendor'), 
+                    'type' => 'text', 
+                    'class' => 'col-md-6 col-sm-9', 
+                    'key' => 'mvx_byc_free_shipping_amount', 
+                    'database_value' => isset($mvx_shipping_by_country['_free_shipping_amount']) ? $mvx_shipping_by_country['_free_shipping_amount'] : '', 
+                    'hints' => __('Free shipping will be available if order amount more than this. Leave empty to disable Free Shipping.', 'dc-woocommerce-multi-vendor') 
+                ],
+
+                [
+                    'label' => __('Enable Local Pickup', 'dc-woocommerce-multi-vendor'), 
+                    'type' => 'checkbox', 
+                    'class' => 'mvx-checkbox mvx_ele', 
+                    'key' => 'mvx_byc_enable_local_pickup', 
+                    'options' => array(
+                        array(
+                            'key'=> "mvx_byc_enable_local_pickup",
+                            'label'=> __('', 'dc-woocommerce-multi-vendor'),
+                            'value'=> "mvx_byc_enable_local_pickup"
+                        ),
+                    ),
+                    'database_value' => isset($mvx_shipping_by_country['_enable_local_pickup']) ? $mvx_shipping_by_country['_enable_local_pickup'] : '' 
+                ],
+
+                [
+                    'label' => __('Local Pickup Cost', 'dc-woocommerce-multi-vendor'), 
+                    'placeholder' => '0.00', 
+                    'type' => 'text', 
+                    'class' => 'col-md-6 col-sm-9', 
+                    'key' => 'mvx_byc_local_pickup_cost', 
+                    'database_value' => isset($mvx_shipping_by_country['_local_pickup_cost']) ? $mvx_shipping_by_country['_local_pickup_cost'] : '' 
+                ],
+
+                [
+                    'key'       => 'mvx_country_shipping_rates',
+                    'type'      => 'nested',
+                    'label'     => __( 'Shipping Rates by Country', 'dc-woocommerce-multi-vendor' ),
+                    'desc' => __( 'Add the countries you deliver your products to. You can specify states as well. If the shipping price is same except some countries, there is an option Everywhere Else, you can use that.', 'dc-woocommerce-multi-vendor' ),
+                    'parent_options' => array(
+                        array(
+                            'key'       =>'mvx_country_to',
+                            'type'      => "country",
+                            'class'     => "nested-parent-class",
+                            'name'      => "nested-parent-name",
+                            'label'     => __('Country', 'dc-woocommerce-multi-vendor'),
+                            'options'   => $country_list
+                        ),
+                        array(
+                            'key'           => 'mvx_country_to_price',
+                            'type'          => "text",
+                            'class'         => "nested-parent-class",
+                            'name'          => "nested-parent-name",
+                            'placeholder'   => '0.00 (' . __('Free Shipping', 'dc-woocommerce-multi-vendor') . ')',
+                            'label'         => __('Cost', 'dc-woocommerce-multi-vendor') . ' ('.get_woocommerce_currency_symbol().')',
+                        ),
+                    ),
+                    'child_options' => array(
+                        array(
+                            'key'       =>'mvx_state_to',
+                            'type'      => "state",
+                            'class'     => "nested-parent-class",
+                            'name'      => "nested-parent-name",
+                            'label'     => __('State', 'dc-woocommerce-multi-vendor'),
+                            'options'   => array()
+                        ),
+                        array(
+                            'key'   => 'mvx_state_to_price',
+                            'type'  => "text",
+                            'class' => "nested-parent-class",
+                            'name'  => "nested-parent-name",
+                            'placeholder' => '0.00 (' . __('Free Shipping', 'dc-woocommerce-multi-vendor') . ')',
+                            'label' => __('Cost', 'dc-woocommerce-multi-vendor') . ' ('.get_woocommerce_currency_symbol().')',
+                        ),
+                    ),
+                    'database_value' => isset($_GET['ID']) ? $shipping_country_rate : $default_nested_data,
+                ]
+            ],
         ];
 
         $dashboard_page_endpoint = [
@@ -2036,13 +2761,74 @@ class MVX_Admin {
             )
         );
 
+        $marketplace_vendors = array(
+            array(
+                'tabname'       =>  'vendor_personal',
+                'tablabel'      =>  __('Personal', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/update_vendor',
+                'classname'     =>  'form',
+                'modelname'     =>  'vendor_personal'
+            ),
+            array(
+                'tabname'       =>  'vendor_store',
+                'tablabel'      =>  __('Store', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/update_vendor',
+                'classname'     =>  'form',
+                'modelname'     =>  'vendor_store'
+            ),
+            array(
+                'tabname'       =>  'vendor_social',
+                'tablabel'      =>  __('Social', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/update_vendor',
+                'classname'     =>  'form',
+                'modelname'     =>  'vendor_social'
+            ),
+            array(
+                'tabname'       =>  'vendor_payments',
+                'tablabel'      =>  __('Payment', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/update_vendor',
+                'classname'     =>  'form',
+                'modelname'     =>  'vendor_payments'
+            ),
+            array(
+                'tabname'       =>  'vendor_application',
+                'tablabel'      =>  __('Vendor Application', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/update_vendor',
+                'classname'     =>  'form',
+                'modelname'     =>  'vendor_application'
+            ),
+            array(
+                'tabname'       =>  'vendor_shipping',
+                'tablabel'      =>  __('Vendor Shipping', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/update_vendor',
+                'classname'     =>  'form',
+                'modelname'     =>  'vendor_shipping'
+            ),
+            array(
+                'tabname'       =>  'vendor_followers',
+                'tablabel'      =>  __('Vendor Followers', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/update_vendor',
+                'classname'     =>  'form',
+                'modelname'     =>  'vendor_followers'
+            ),
+            array(
+                'tabname'       =>  'vendor_policy',
+                'tablabel'      =>  __('Vendor Policy', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/update_vendor',
+                'classname'     =>  'form',
+                'modelname'     =>  'vendor_policy'
+            ),
+
+        );
+
         $mvx_all_backend_tab_list = array(
             'dashboard-page'                    => $dashboard_page_endpoint,
             'marketplace-manager'               => $marketplace_manager_endpoint,
             'marketplace-advance-settings'      => $advance_page_endpoint,
             'marketplace-analytics'             => $analytics_page_endpoint,
             'marketplace-payments'              => $payment_page_endpoint,
-            'marketplace-general-settings'      => $general_settings_page_endpoint
+            'marketplace-general-settings'      => $general_settings_page_endpoint,
+            'marketplace-vendors'               => $marketplace_vendors
         );
 
         if (!empty($settings_fields)) {
@@ -2051,15 +2837,17 @@ class MVX_Admin {
                     $option_name = 'mvx_'.$settings_key.'_tab_settings';
                     $database_value = get_option($option_name) ? get_option($option_name) : array();
                     if (!empty($database_value)) {
-                        if (array_key_exists($inter_value['key'], $database_value)) {
-                            $settings_fields[$settings_key][$inter_key]['database_value'] = $database_value[$inter_value['key']];
+                        if (isset($inter_value['key']) && array_key_exists($inter_value['key'], $database_value)) {
+                            if (empty($settings_fields[$settings_key][$inter_key]['database_value'])) {
+                               $settings_fields[$settings_key][$inter_key]['database_value'] = $database_value[$inter_value['key']];
+                            }
                         }
                     }
                 }
             }
         }
-
-        $page_details = array('mvx_page_modules', 'mvx_page_marketplace-analytics-settings', 'mvx_page_general-settings', 'mvx_page_payment-configuration', 'mvx_page_advance-marketplace-settings', 'mvx_page_marketplace-manager-settings');
+        //print_r($screen->id);die;
+        $page_details = array('mvx_page_modules', 'mvx_page_marketplace-analytics-settings', 'mvx_page_general-settings', 'mvx_page_payment-configuration', 'mvx_page_advance-marketplace-settings', 'mvx_page_marketplace-manager-settings', 'mvx_page_vendors', 'mvx_page_commission');
         wp_enqueue_script(
             'mvx-modules-build-frontend',
             $MVX->plugin_url . 'mvx-modules/build/index.js',
@@ -2068,13 +2856,77 @@ class MVX_Admin {
             true
         );
 
+        $commission_bulk_list_action = array();
+        $commission_bulk_list = array(
+            'mark_paid' => __('Mark paid', 'dc-woocommerce-multi-vendor'),
+            //'export' => __('Export', 'dc-woocommerce-multi-vendor')
+        );
+        if ($commission_bulk_list) {
+            foreach($commission_bulk_list as $bulk_key => $bulk_value) {
+                $commission_bulk_list_action[] = array(
+                    'value' => $bulk_key,
+                    'label' => $bulk_value
+                );
+            }
+        }
+
+        // Commission header
+        $commission_header = [];
+        $headers = apply_filters('mvx_vendor_commission_data_header',array(
+            'Recipient',
+            'Currency',
+            'Commission',
+            'Shipping',
+            'Tax',
+            'Total',
+            'Status',
+        ));
+        foreach ($headers as $headerskey => $headersvalue) {
+            $commission_header[] = array(
+                'label' => $headersvalue,
+                'key' => $headersvalue
+            );
+        }
+
+        $commission_status_list_action = array();
+        $commission_status = mvx_get_commission_statuses();
+        foreach ($commission_status as $status_key => $status_value) {
+            $commission_status_list_action[] = array(
+                'value' => $status_key,
+                'label' => $status_value
+            );
+        }
+
+        $commission_page_string     =   array(
+            'details'   =>  __('details', 'dc-woocommerce-multi-vendor'),
+            'general'   =>  __('General', 'dc-woocommerce-multi-vendor'),
+            'associated_order'   =>  __('Associated order', 'dc-woocommerce-multi-vendor'),
+            'order_status'   =>  __('Order status', 'dc-woocommerce-multi-vendor'),
+            'commission_status'   =>  __('Commission Status', 'dc-woocommerce-multi-vendor'),
+            'vendor_details'   =>  __('Vendor details', 'dc-woocommerce-multi-vendor'),
+            'email'   =>  __('Email', 'dc-woocommerce-multi-vendor'),
+            'payment_mode'   =>  __('Payment mode', 'dc-woocommerce-multi-vendor'),
+            'commission_data'   =>  __('Commission data', 'dc-woocommerce-multi-vendor'),
+            'commission_amount'   =>  __('Commission amount', 'dc-woocommerce-multi-vendor'),
+            'shipping'   =>  __('Shipping', 'dc-woocommerce-multi-vendor'),
+            'tax'   =>  __('Tax', 'dc-woocommerce-multi-vendor'),
+            'commission'   =>  __('Commission', 'dc-woocommerce-multi-vendor'),
+            'total'   =>  __('Total', 'dc-woocommerce-multi-vendor'),
+            'refunded'   =>  __('Refunded', 'dc-woocommerce-multi-vendor'),
+            'commission_notes'   =>  __('Commission Notes', 'dc-woocommerce-multi-vendor'),
+            'search_commission'   =>  __('Search Commission', 'dc-woocommerce-multi-vendor'),
+            'show_commission_status'   =>  __('Show Commission Status', 'dc-woocommerce-multi-vendor'),
+            'show_all_vendor'   =>  __('Show All Vendor', 'dc-woocommerce-multi-vendor'),
+            'bulk_action'   =>  __('Bulk Action', 'dc-woocommerce-multi-vendor'),
+        );
+
         wp_localize_script( 'mvx-modules-build-frontend', 'appLocalizer', [
             'apiUrl' => home_url( '/wp-json' ),
             'nonce' => wp_create_nonce( 'wp_rest' ),
             'mvx_logo' => $MVX->plugin_url.'assets/images/dclogo.png',
             'knowledgebase' => 'https://wc-marketplace.com/knowledgebase/',
             'knowledgebase_title' => __('MVX knowledge Base', 'dc-woocommerce-multi-vendor'),
-            'marketplace_text' => __('WC Marketplace', 'dc-woocommerce-multi-vendor'),
+            'marketplace_text' => __('Multivendor X', 'dc-woocommerce-multi-vendor'),
             'search_module_placeholder' => __('Search Modules', 'dc-woocommerce-multi-vendor'),
             'pro_text' => __('PRO', 'dc-woocommerce-multi-vendor'),
             'documentation_extra_text' => __('For more info, please check the', 'dc-woocommerce-multi-vendor'),
@@ -2090,6 +2942,12 @@ class MVX_Admin {
             'default_logo'  => $MVX->plugin_url.'assets/images/WP-stdavatar.png',
             'right_logo'    => $MVX->plugin_url.'assets/images/right_tick.jpg',
             'cross_logo'    => $MVX->plugin_url.'assets/images/cross_tick.png',
+            'commission_bulk_list_option'   =>  $commission_bulk_list_action,
+            'commission_header' => $commission_header,
+            'shipping_options'  => $shipping_options_list,
+            'vendor_default_shipping_options'   => $vendor_default_shipping_options,
+            'commission_status_list_action' =>  $commission_status_list_action,
+            'commission_page_string'    =>  $commission_page_string
         ] );
 
         if ( in_array($screen->id, $page_details)) {

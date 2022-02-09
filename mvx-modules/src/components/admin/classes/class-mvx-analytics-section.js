@@ -70,22 +70,42 @@ class App extends Component {
       window.location.href = window.location.href+'&name=admin_overview';
     }
     return (
-      <div className="container">
-        <div className="general-tab-header-area">
-        <h1>{queryt.get("name")}</h1>
-        <p>links data are there</p>
-        </div>
-        <div className="general-tab-area">
-          <ul className="mvx-general-tabs-list">
-          {appLocalizer.mvx_all_backend_tab_list['marketplace-analytics'].map((data, index) => (
-              <li className={queryt.get("name") == data.tabname ? 'activegeneraltabs' : ''}><i class="mvx-font ico-store-icon"></i><Link to={`?page=marketplace-analytics-settings&name=${data.tabname}`} >{data.tablabel}</Link></li>
-          ))}
-          </ul>
+      <div>
 
-          <div className="tabcontentclass">
-            <this.Child name={queryt.get("name")} />
+
+        <div className="mvx-module-section-nav">
+          <div className="mvx-module-nav-left-section">
+            <div className="mvx-module-section-nav-child-data">
+              <img src={appLocalizer.mvx_logo} className="mvx-section-img-fluid"/>
+            </div>
+            <h1 className="mvx-module-section-nav-child-data">
+              {appLocalizer.marketplace_text}
+            </h1>
           </div>
+          <div className="mvx-module-nav-right-section">
+            <Select placeholder={appLocalizer.search_module_placeholder} options={this.state.module_ids} className="mvx-module-section-nav-child-data" isLoading={this.state.isLoading} onChange={this.handleselectmodule} />
+            <a href={appLocalizer.knowledgebase} title={appLocalizer.knowledgebase_title} target="_blank" className="mvx-module-section-nav-child-data"><i className="dashicons dashicons-admin-users"></i></a>
+          </div>
+        </div>
 
+
+        <div className="container">
+          <div className="general-tab-header-area">
+          <h1>{queryt.get("name")}</h1>
+          <p>links data are there</p>
+          </div>
+          <div className="general-tab-area">
+            <ul className="mvx-general-tabs-list">
+            {appLocalizer.mvx_all_backend_tab_list['marketplace-analytics'].map((data, index) => (
+                <li className={queryt.get("name") == data.tabname ? 'activegeneraltabs' : ''}><i class="mvx-font ico-store-icon"></i><Link to={`?page=marketplace-analytics-settings&name=${data.tabname}`} >{data.tablabel}</Link></li>
+            ))}
+            </ul>
+
+            <div className="tabcontentclass">
+              <this.Child name={queryt.get("name")} />
+            </div>
+
+          </div>
         </div>
       </div>
     );
@@ -94,6 +114,7 @@ class App extends Component {
 Child({ name }) {
   return (
     <div>
+
     {appLocalizer.mvx_all_backend_tab_list['marketplace-analytics'].map((data, index) => (
       <div>
         

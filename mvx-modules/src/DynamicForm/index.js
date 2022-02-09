@@ -64,10 +64,18 @@ export default class DynamicForm extends React.Component {
       }
     }
     
-    this.setState({
-      [m['database_value']]: itemsnested
-    });
+    /*this.setState({
+      //[m['database_value']]: itemsnested
+    });*/
   
+    if(this.props.submitbutton && this.props.submitbutton == 'false') {
+      setTimeout(() => {
+        this.onSubmit('');
+      }, 10)
+    }
+
+
+
     //console.log(m);
     //console.log(JSON.parse(appLocalizer.countries.replace( /&quot;/g, '"' )));
 
@@ -203,7 +211,10 @@ export default class DynamicForm extends React.Component {
   onSubmit = e => {
 
     // block to refresh pages
-    //e.preventDefault();
+    let prop_submitbutton = this.props.submitbutton && this.props.submitbutton == 'false' ? '' : 'true';
+    if (prop_submitbutton) {
+      e.preventDefault();
+    }
 
     this.setState({ from_loading: true });
     this.props.model.map(key => {
@@ -212,17 +223,13 @@ export default class DynamicForm extends React.Component {
       }
     });
     
-    
-    //return false;
-
-    
-
     axios({
       method: this.props.method,
       url: appLocalizer.apiUrl + '/' + this.props.url,
       data: {
         model: this.state,
-        modelname: this.props.modelname
+        modelname: this.props.modelname,
+        vendor_id: this.props.vendor_id ? this.props.vendor_id : ''
       }
     })
     .then( ( res ) => {
@@ -345,6 +352,7 @@ export default class DynamicForm extends React.Component {
         );
         
       } else if ( from_type && from_type === "country" || from_type === "state") {
+
         this.setState(
           {
             [key]: array_values[e.index]
@@ -352,7 +360,7 @@ export default class DynamicForm extends React.Component {
           () => {}
         );
         var country_list_array = [];
-        var statefromcountrycode = JSON.parse(appLocalizer.countries.replace( /&quot;/g, '"' ))[e.key];
+        var statefromcountrycode = JSON.parse(appLocalizer.countries.replace( /&quot;/g, '"' ))[e.value];
         for (const key_country in statefromcountrycode) {
           country_list_array.push({label:key_country, value:statefromcountrycode[key_country]});
         }
@@ -430,7 +438,12 @@ export default class DynamicForm extends React.Component {
       let target = key;
       value = this.state[target] || "";
 
-      //console.log(this.state[m.depend]);
+      if (m.restricted_page && m.restricted_page == this.props.location) {
+        return false;
+      }
+
+      // If no array key found
+      if (!m.key) {return false;}
 
       if(m.depend && this.state[m.depend] && this.state[m.depend].value != m.dependvalue) {
         return false;
@@ -775,7 +788,7 @@ export default class DynamicForm extends React.Component {
             this.onChange(e, target);
           }}
         />
-          <img src={appLocalizer.default_logo}  width={m.width} height={m.height}/>
+          <img src={value ? value : appLocalizer.default_logo}  width={m.width} height={m.height}/>
           <button {...props} className="mvx-upload-button-class" type='button' onClick={e => {
               this.runUploader(e, target, index);
             }} >
@@ -811,7 +824,7 @@ export default class DynamicForm extends React.Component {
       if (type == "country") {
          let countryselectdrop = [];
         input = m.options.map((selectdata, index) => {
-            countryselectdrop[index] = {value:selectdata.value, label:selectdata.value, index:index, key:selectdata.lebel };
+            countryselectdrop[index] = {value:selectdata.value, label:selectdata.label, index:index, key:selectdata.lebel };
         });
 
         input = (
@@ -832,7 +845,7 @@ export default class DynamicForm extends React.Component {
       if (type == "state") {
          let stateselectdrop = [];
         input = this.state.statedrop.length > 0 ? this.state.statedrop.map((selectdata, index) => {
-            stateselectdrop[index] = {value:selectdata.value, label:selectdata.value, index:index, key:selectdata.lebel };
+            stateselectdrop[index] = {value:selectdata.value, label:selectdata.value, index:index, key:selectdata.label };
         }) : '';
 
         input = (
@@ -864,7 +877,7 @@ export default class DynamicForm extends React.Component {
                   <div className="mvx-boarder-parent-loop">
 
                   <label className="mvx-setting-form-label">
-                  {op.label} :
+                  <p dangerouslySetInnerHTML={{ __html: op.label }}></p>
                   </label>
 
                   {op.type == 'text' ? 
@@ -896,7 +909,7 @@ export default class DynamicForm extends React.Component {
                   {
                     op.type == 'select' ? 
                     op.options.map((selectdata, index) => {
-                      parentseectoption[index] = {value:selectdata.value, label:selectdata.value, index:index };
+                      parentseectoption[index] = {value:selectdata.value, label:selectdata.label, index:index };
                     }) : ''
                   ,
                     op.type == 'select' ?
@@ -937,9 +950,10 @@ export default class DynamicForm extends React.Component {
 
                   {
                     o.nested_datas ? o.nested_datas.map((opn, indexchildop) =>
-                    <div className="mvx-boarder-nested-child"> 
+                    <div>
                     { m.child_options.map((opnjj, indexcop) => 
-                      <div className="mvx-boarder-nested-child-loop">
+                      <div className="mvx-boarder-nested-child"> 
+                        <div className="mvx-boarder-nested-child-loop">
                         
                         <label className="mvx-setting-form-label">
                         {opnjj.label} :
@@ -1013,6 +1027,7 @@ export default class DynamicForm extends React.Component {
                         }
 
 
+                        </div>
                         </div>
                     )}
 
@@ -1091,7 +1106,7 @@ export default class DynamicForm extends React.Component {
         {m.type == 'section' ? input :
         <div key={"g" + key} className="form-group">
             <label className="mvx-settings-form-label" key={"l" + key} htmlFor={key}>
-              {m.label}
+            <p dangerouslySetInnerHTML={{ __html: m.label }}></p>
             </label>
             
           <div className="mvx-settings-input-content">

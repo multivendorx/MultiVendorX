@@ -50,7 +50,22 @@ class MVX_Shipping_Zone {
         return $zone;
     }
 
-    public static function add_shipping_methods( $data ) {
+    public static function get_vendor_zone( $zone_id = 0, $vendor_id = 0 ) {
+        $zone = array();
+        $zone_obj = WC_Shipping_Zones::get_zone_by( 'zone_id', $zone_id );
+        $enabled_methods    = $zone_obj->get_shipping_methods( true );
+        $methods_ids        = wp_list_pluck( $enabled_methods, 'id' );
+
+        if ( in_array( 'mvx_vendor_shipping', $methods_ids ) ) {
+            $zone['data']                    = $zone_obj->get_data();
+            $zone['formatted_zone_location'] = $zone_obj->get_formatted_location();
+            $zone['shipping_methods']        = self::get_shipping_methods( $zone_id, $vendor_id );
+            $zone['locations']               = self::get_locations( $zone_id, $vendor_id );
+        }
+        return $zone;
+    }
+
+    public static function add_shipping_methods( $data, $vendor_id = 0 ) {
         global $wpdb;
 
         $table_name = "{$wpdb->prefix}mvx_shipping_zone_methods";
@@ -64,7 +79,7 @@ class MVX_Shipping_Zone {
             array(
                 'method_id' => esc_sql($data['method_id']),
                 'zone_id'   => esc_sql($data['zone_id']),
-                'vendor_id' => apply_filters( 'mvx_current_vendor_id', esc_sql(get_current_user_id()) )
+                'vendor_id' => $vendor_id ? $vendor_id : apply_filters( 'wcmp_current_vendor_id', esc_sql(get_current_user_id()) )
             ),
             array(
                 '%s',
@@ -80,12 +95,12 @@ class MVX_Shipping_Zone {
         return $wpdb->insert_id;
     }
 
-    public static function delete_shipping_methods( $data ) {
+    public static function delete_shipping_methods( $data, $vendor_id = 0 ) {
         global $wpdb;
 
         $table_name = "{$wpdb->prefix}mvx_shipping_zone_methods";
-
-        $result = $wpdb->query( $wpdb->prepare( "DELETE FROM {$table_name} WHERE zone_id=%d AND vendor_id=%d AND instance_id=%d", $data['zone_id'], apply_filters( 'mvx_current_vendor_id', get_current_user_id() ), $data['instance_id'] ) );
+        $vendor_id = $vendor_id ? $vendor_id : apply_filters( 'mvx_current_vendor_id', get_current_user_id() );
+        $result = $wpdb->query( $wpdb->prepare( "DELETE FROM {$table_name} WHERE zone_id=%d AND vendor_id=%d AND instance_id=%d", $data['zone_id'], $vendor_id, $data['instance_id'] ) );
 
         if ( ! $result ) {
             return new WP_Error( 'method-not-deleted', __( 'Shipping method not deleted', 'dc-woocommerce-multi-vendor' ) );
@@ -155,7 +170,7 @@ class MVX_Shipping_Zone {
         return false;
     }
 
-    public static function toggle_shipping_method( $data ) {
+    public static function toggle_shipping_method( $data, $vendor_id = 0 ) {
         global $wpdb;
         $table_name = "{$wpdb->prefix}mvx_shipping_zone_methods";
         $updated    = $wpdb->update( 
@@ -166,7 +181,7 @@ class MVX_Shipping_Zone {
             array( 
                 'instance_id' => esc_sql($data['instance_id' ]), 
                 'zone_id' => esc_sql($data['zone_id']), 
-                'vendor_id' => apply_filters( 'mvx_current_vendor_id', esc_sql(get_current_user_id()) ) 
+                'vendor_id' => $vendor_id ? $vendor_id : apply_filters( 'mvx_current_vendor_id', esc_sql(get_current_user_id()) ) 
             ), 
             array( '%d' ) 
         );
@@ -178,12 +193,10 @@ class MVX_Shipping_Zone {
         return true;
     }
 
-    public static function get_locations( $zone_id, $vendor_id = null ) {
+    public static function get_locations( $zone_id, $vendor_id = 0 ) {
         global $wpdb;
 
-        if ( ! $vendor_id ) {
-            $vendor_id  = apply_filters( 'mvx_current_vendor_id', get_current_user_id() );
-        }
+        $vendor_id  = $vendor_id ? $vendor_id : apply_filters( 'mvx_current_vendor_id', get_current_user_id() );
 
         $results = $wpdb->get_results( $wpdb->prepare("SELECT * FROM {$wpdb->prefix}mvx_shipping_zone_locations WHERE zone_id=%s AND vendor_id=%d", $zone_id, $vendor_id) );
 
@@ -201,13 +214,13 @@ class MVX_Shipping_Zone {
         return $locations;
     }
 
-    public static function save_location( $location, $zone_id ) {
+    public static function save_location( $location, $zone_id, $vendor_id = 0 ) {
         global $wpdb;
 
         // Setup arrays for Actual Values, and Placeholders
         $values        = array();
         $place_holders = array();
-        $vendor_id     = apply_filters( 'mvx_current_vendor_id', get_current_user_id() );
+        $vendor_id     = $vendor_id ? $vendor_id : apply_filters( 'mvx_current_vendor_id', get_current_user_id() );
         $table_name    = "{$wpdb->prefix}mvx_shipping_zone_locations";
 
         $query = "INSERT INTO {$table_name} (vendor_id, zone_id, location_code, location_type) VALUES ";

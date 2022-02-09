@@ -78,12 +78,12 @@ class MVX_Commission {
             'publicly_queryable' => false,
             'exclude_from_search' => true,
             'show_ui' => true,
-            'show_in_menu' => current_user_can('manage_woocommerce') ? 'mvx' : false,
+            'show_in_menu' => false,
             'show_in_nav_menus' => false,
             'query_var' => false,
             'rewrite' => true,
             'capability_type' => 'shop_order',
-            'create_posts' => 'do_not_allow',
+            'create_posts' => false,
             'map_meta_cap' => true,
             'has_archive' => true,
             'hierarchical' => true,
@@ -1612,7 +1612,7 @@ class MVX_Commission {
      */
     public function mvx_generate_commissions_csv($post_ids) {
         // Security check
-        check_admin_referer('bulk-posts');
+        // check_admin_referer('bulk-posts');
         // Set filename
         $date = date('Y-m-d H:i:s');
         $filename = 'Commissions ' . $date . '.csv';
@@ -1672,6 +1672,7 @@ class MVX_Commission {
         fclose($file);
         $csv = ob_get_clean();
         // Send CSV to browser for download
+        print_r($file);die;
         echo $csv;
         die();
     }

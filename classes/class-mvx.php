@@ -36,6 +36,7 @@ final class MVX {
     public $vendor_caps;
     public $vendor_dashboard;
     public $transaction;
+    public $postcommission;
     public $email;
     public $review_rating;
     public $coupon;
@@ -338,7 +339,7 @@ final class MVX {
         /* Commission post type */
         $this->load_class('post-commission');
 
-        new MVX_Commission();
+        $this->postcommission = new MVX_Commission();
         /* transaction post type */
         $this->load_class('post-transaction');
         $this->transaction = new mvx_transaction();

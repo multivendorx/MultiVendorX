@@ -63,6 +63,9 @@ class App extends Component {
 
   QueryParamsDemo() {
     let queryt = this.useQuery();
+    if(!queryt.get("name")) {
+      window.location.href = window.location.href+'&name=buddypress';
+    }
     return (
       <div className="container">
         <div className="general-tab-header-area">

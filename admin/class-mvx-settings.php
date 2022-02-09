@@ -27,6 +27,8 @@ class MVX_Settings {
         );
         add_submenu_page( 'mvx', __( 'Dashboard', 'dc-woocommerce-multi-vendor' ), __( 'Dashboard', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'modules', array( $this, 'mvx_modules_callback' ) );
 
+        add_submenu_page( 'mvx', __( 'Commission', 'dc-woocommerce-multi-vendor' ), __( 'Commission', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'commission', array( $this, 'mvx_commission_callback' ) );
+
         add_submenu_page( 'mvx', __( 'Marketplace Manager', 'dc-woocommerce-multi-vendor' ), __( 'Marketplace Manager', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'marketplace-manager-settings', array( $this, 'mvx_marketplce_manager_settings_callback' ) );
 
         add_submenu_page( 'mvx', __( 'General Settings', 'dc-woocommerce-multi-vendor' ), __( 'General Settings', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'general-settings', array( $this, 'mvx_general_settings_callback' ) );
@@ -43,7 +45,7 @@ class MVX_Settings {
 
         // Assign priority incrmented by 1
         $mvx_submenu_priority = array(
-            'edit.php?post_type=dc_commission' => 2,
+            'commission' => 2,
             'advance-marketplace-settings' => 7,
             'vendors' => 1,
             'marketplace-manager-settings' => 3,
@@ -74,6 +76,10 @@ class MVX_Settings {
 
     public function mvx_modules_callback() {
         echo '<div id="mvx-modules-admin-dashboard-display"></div>';
+    }
+
+    public function mvx_commission_callback() {
+        echo '<div id="mvx-modules-admin-commission-display"></div>';
     }
 
     public function mvx_payment_configureation_callback() {
