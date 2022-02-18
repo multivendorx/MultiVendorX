@@ -268,6 +268,12 @@ class MVX_REST_API {
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
 
+        register_rest_route( 'mvx_module/v1', '/product_list_option', [
+            'methods' => WP_REST_Server::READABLE,
+            'callback' => array( $this, 'mvx_product_list_option' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
         register_rest_route( 'mvx_module/v1', '/specific_search_vendor', [
             'methods' => WP_REST_Server::READABLE,
             'callback' => array( $this, 'mvx_specific_search_vendor' ),
@@ -370,6 +376,18 @@ class MVX_REST_API {
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
 
+        register_rest_route( 'mvx_module/v1', '/export_csv_for_report_product_chart', [
+            'methods' => WP_REST_Server::EDITABLE,
+            'callback' => array( $this, 'mvx_export_csv_for_report_product_chart' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
+        register_rest_route( 'mvx_module/v1', '/export_csv_for_report_vendor_chart', [
+            'methods' => WP_REST_Server::EDITABLE,
+            'callback' => array( $this, 'mvx_export_csv_for_report_vendor_chart' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
         register_rest_route( 'mvx_module/v1', '/update_specific_vendor_shipping_option', [
             'methods' => WP_REST_Server::EDITABLE,
             'callback' => array( $this, 'mvx_update_specific_vendor_shipping_option' ),
@@ -400,6 +418,654 @@ class MVX_REST_API {
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
 
+
+        register_rest_route( 'mvx_module/v1', '/get_report_overview_data', [
+            'methods' => WP_REST_Server::EDITABLE,
+            'callback' => array( $this, 'mvx_get_report_overview_data' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
+        register_rest_route( 'mvx_module/v1', '/fetch_report_overview_data', [
+            'methods' => WP_REST_Server::READABLE,
+            'callback' => array( $this, 'mvx_fetch_report_overview_data' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
+    }
+
+    public function mvx_fetch_report_overview_data() {
+        return $this->mvx_report_data('');
+    }
+
+    public function mvx_get_report_overview_data($request) {
+        return $this->mvx_report_data($request);
+    }
+
+    public function mvx_report_data($request) {
+        global $MVX;
+        // get date value from datepicker
+        $value = $request && $request->get_param('value') ? ($request->get_param('value')) : 0;
+        $product = $request && $request->get_param('product') ? ($request->get_param('product')) : 0;
+        $selectvendor = $request && $request->get_param('vendor') ? ($request->get_param('vendor')) : 0;
+
+        //print_r($product);die;
+
+        // Bydefault last 7 days
+        $start_date    = strtotime( '-6 days', strtotime( 'midnight', current_time( 'timestamp' ) ) );
+        $end_date      = strtotime( 'midnight', current_time( 'timestamp' ) );
+
+        if ($value) {
+            $initial_start = $value ? $value[0] : '';
+            $initial_end = $value ? $value[1] : '';
+            $start_date = max( strtotime( '-20 years' ), strtotime( sanitize_text_field( $initial_start ) ) );
+            $end_date = strtotime( 'midnight', strtotime( sanitize_text_field( $initial_end ) ) );
+        }
+
+        $end_date = strtotime('+1 day', $end_date);
+
+
+        /** *Report overview* **/
+        $overview_sales = $gross_sales = $vendor_earning = $overview_admin_earning = $pending_vendors = $overview_vendors = $products = $transactions = $report_product_net_sales = $total_item_sold = $report_vendor_net_sales = 0;
+        $report_html = '';
+        $product_number_stack = $total_orders_product_chart = $product_sales_data_chart = $product_item_sold_chart = $total_number_order_data_chart = $net_sales_data_chart = $total_sales = $banking_datas = array();
+
+
+        // transaction history
+        if ( $selectvendor ) {
+            $requestData = array('from_date'=> date("Y-m-d", $start_date) , 'to_date' => date("Y-m-d", $end_date) );
+
+            $data_store = $MVX->ledger->load_ledger_data_store();
+            $vendor_all_ledgers = apply_filters('mvx_admin_report_banking_data', $data_store->get_ledger( array( 'vendor_id' => $selectvendor ), '', $requestData )); 
+            if ( !empty( $vendor_all_ledgers ) ) {
+                foreach ($vendor_all_ledgers as $ledger ) {
+                    // total credited balance
+                    $total_credit += floatval( $ledger->credit );
+                    // total debited balance
+                    $total_debit += floatval( $ledger->debit );
+                    $order = wc_get_order( $ledger->order_id );
+                    $currency = ( $order ) ? $order->get_currency() : '';
+                    $ref_types = get_mvx_ledger_types();
+                    $ref_type = isset($ref_types[$ledger->ref_type]) ? $ref_types[$ledger->ref_type] : ucfirst( $ledger->ref_type );
+                    $type = '<mark class="type ' . $ledger->ref_type . '"><span>' . $ref_type . '</span></mark>';
+                    $status = $ledger->ref_status;
+                    if($ref_type == 'Commission') {
+                        $link = admin_url('post.php?post=' . $ledger->order_id . '&action=edit');
+                        $ref_link = '<a href="'.esc_url($link).'">#'.$ledger->order_id.'</a>';
+                    } elseif($ref_type == 'Refund' && $ref_type == 'Withdrawal') {
+                        $com_id = get_post_meta( $ledger->order_id, '_commission_id', true );
+                        $link = admin_url('post.php?post=' . $com_id . '&action=edit');
+                        $ref_link = '<a href="'.esc_url($link).'">#'.$com_id.'</a>';
+                    }
+                    $credit = ( $ledger->credit ) ? wc_price($ledger->credit, array('currency' => $currency)) : '';
+                    $debit = ( $ledger->debit ) ? wc_price($ledger->debit, array('currency' => $currency)) : '';
+                    $banking_datas[] = apply_filters( 'mvx_admin_report_banking_details', array( 
+                        'status' => ucfirst( $status ), 
+                        'date' => mvx_date($ledger->created), 
+                        'type' => $ref_type, 
+                        'reference_id' => $ref_link, 
+                        'Credit' => $credit, 
+                        'Debit' => $debit, 
+                        'balance' => wc_price($ledger->balance, array('currency' => $currency))
+                    ), $ledger );
+                }
+            }
+        }
+
+
+        $args_overview = apply_filters('mvx_report_admin_overview_query_args', array(
+                'post_type' => 'shop_order',
+                'posts_per_page' => -1,
+                'post_parent' => 0,
+                'post_status' => array('wc-processing', 'wc-completed'),
+                'date_query' => array(
+                    'inclusive' => true,
+                    'after' => array(
+                        'year' => date('Y', $start_date),
+                        'month' => date('n', $start_date),
+                        'day' => date('1'),
+                    ),
+                    'before' => array(
+                        'year' => date('Y', $end_date),
+                        'month' => date('n', $end_date),
+                        'day' => date('j', $end_date),
+                    ),
+                )
+            ));
+
+        $qry = new WP_Query($args_overview);
+        $orders_overview = apply_filters('mvx_report_admin_overview_orders_overview', $qry->get_posts());
+        $sales_data_chart = array();
+
+         if ( !empty( $orders_overview ) ) {
+            foreach ( $orders_overview as $order_obj ) {
+                $order = wc_get_order($order_obj->ID);
+                $date = date_create($order->order_date);
+                $sales_data_chart[] = array(
+                    'name'  =>  date_format($date,"d M"),
+                    'Net Sales'  =>  $order->get_subtotal(),
+                );
+                
+                $overview_sales += $order->get_subtotal();
+                $mvx_suborders = get_mvx_suborders($order_obj->ID);
+                if(!empty($mvx_suborders)) {
+                    foreach ($mvx_suborders as $suborder) {
+                        $vendor_order = mvx_get_order($suborder->get_id());
+                        if( $vendor_order ) {
+                            $gross_sales += $suborder->get_total( 'edit' );
+                            $vendor_earning += $vendor_order->get_commission_total('edit');
+                        }
+                    }
+                }
+            }
+            $overview_admin_earning = $gross_sales - $vendor_earning;
+        }
+
+        $user_args = array(
+            'role' => 'dc_vendor',
+            'date_query' => array(
+                'inclusive' => true,
+                'after' => array(
+                    'year' => date('Y', $start_date),
+                    'month' => date('n', $start_date),
+                    'day' => date('1'),
+                ),
+                'before' => array(
+                    'year' => date('Y', $end_date),
+                    'month' => date('n', $end_date),
+                    'day' => date('j', $end_date),
+                ),
+            )
+        );
+        $user_query = new WP_User_Query($user_args);
+        if (!empty($user_query->results)) 
+            $overview_vendors = count($user_query->results);
+        
+        $pending_user_args = array(
+            'role' => 'dc_pending_vendor',
+            'date_query' => array(
+                'inclusive' => true,
+                'after' => array(
+                    'year' => date('Y', $start_date),
+                    'month' => date('n', $start_date),
+                    'day' => date('1'),
+                ),
+                'before' => array(
+                    'year' => date('Y', $end_date),
+                    'month' => date('n', $end_date),
+                    'day' => date('j', $end_date),
+                ),
+            )
+        );
+        $pending_user_query = new WP_User_Query($pending_user_args);
+        if (!empty($pending_user_query->results)) 
+            $pending_vendors = count($pending_user_query->results);
+
+        $product_args = array(
+            'posts_per_page' => -1,
+            //'author__in' => $vendor_ids,
+            'post_type' => 'product',
+            'post_status' => 'pending',
+            'date_query' => array(
+                'inclusive' => true,
+                'after' => array(
+                    'year' => date('Y', $start_date),
+                    'month' => date('n', $start_date),
+                    'day' => date('1'),
+                ),
+                'before' => array(
+                    'year' => date('Y', $end_date),
+                    'month' => date('n', $end_date),
+                    'day' => date('j', $end_date),
+                ),
+            )
+        );
+        $get_pending_products = new WP_Query($product_args);
+        if (!empty($get_pending_products->get_posts())) 
+            $products = count($get_pending_products->get_posts());
+
+        $transactions_args = array(
+            'post_type' => 'mvx_transaction',
+            'post_status' => 'mvx_processing',
+            'meta_key' => 'transaction_mode',
+            'meta_value' => 'direct_bank',
+            'posts_per_page' => -1,
+            'date_query' => array(
+                'inclusive' => true,
+                'after' => array(
+                    'year' => date('Y', $start_date),
+                    'month' => date('n', $start_date),
+                    'day' => date('1'),
+                ),
+                'before' => array(
+                    'year' => date('Y', $end_date),
+                    'month' => date('n', $end_date),
+                    'day' => date('j', $end_date),
+                ),
+            )
+        );
+        $transactions = get_posts($transactions_args);
+        if (!empty($transactions)) 
+            $transactions = count($transactions);
+
+
+
+        /** * ------------------------------------------- report product overview ------------------------------------------------------- * **/
+
+        $args_report_product = apply_filters( 'mvx_report_data_product_query_args', array(
+            'post_type' => 'shop_order',
+            'posts_per_page' => -1,
+            'post_status' => array('wc-processing', 'wc-completed'),
+            'meta_query' => array(
+                array(
+                    'key' => '_commissions_processed',
+                    'value' => 'yes',
+                    'compare' => '='
+                )
+            ),
+            'date_query' => array(
+                'inclusive' => true,
+                'after' => array(
+                    'year' => date('Y', $start_date),
+                    'month' => date('n', $start_date),
+                    'day' => date('j', $start_date),
+                ),
+                'before' => array(
+                    'year' => date('Y', $end_date),
+                    'month' => date('n', $end_date),
+                    'day' => date('j', $end_date),
+                ),
+            )
+        ) );
+
+        $qry_report_product = new WP_Query($args_report_product);
+        $overview_orders_product = apply_filters('mvx_filter_orders_report_product', $qry_report_product->get_posts());
+
+        if (!empty($overview_orders_product)) {
+            $pro_total = $vendor_total = array();
+            foreach ($overview_orders_product as $order_obj) {
+                try {
+                    $order = wc_get_order($order_obj->ID);
+                    if ($order) :
+
+                        $date = date_create($order->order_date);
+                        /*$total_orders_product_chart[] = array(
+                            'name'  =>  date_format($date,"d M"),
+                            'Net Sales'  =>  absint(1),
+                        );*/
+
+                        $vendor_order = mvx_get_order($order->get_id());
+                        if( $vendor_order ) {
+                            $line_items = $order->get_items( 'line_item' );
+                            
+                            foreach ($line_items as $item_id => $item) {
+                                
+                                if ( $product && $product != $item->get_product_id() ) {
+                                    continue;
+                                }
+
+                                $total_orders_product_chart[] = array(
+                                    'name'  =>  date_format($date,"d M"),
+                                    'Net Sales'  =>  absint(1),
+                                );
+
+                                $pro_total[$item->get_product_id()] = isset( $pro_total[$item->get_product_id()] ) ? $pro_total[$item->get_product_id()] + $item->get_subtotal() : $item->get_subtotal();
+                                $total_sales[$item->get_product_id()]['product_id'] = $item->get_product_id();
+                                $total_sales[$item->get_product_id()]['total_sales'] = $pro_total[$item->get_product_id()];
+                                $total_sales[$item->get_product_id()]['quantities'] = $item->get_quantity();
+                                $total_sales[$item->get_product_id()]['order_id'] = $order_obj->ID;
+
+                                $total_sales[$item->get_product_id()]['details'][] = array(
+                                    'date'  =>  date_format($date,"d M"),
+                                    'value' =>  $item->get_subtotal()
+                                );
+
+                                $meta_data = $item->get_meta_data();
+                                // get item commission
+                                foreach ( $meta_data as $meta ) {
+                                    if($meta->key == '_vendor_item_commission') {
+                                        $vendor_total[$item->get_product_id()] = isset( $vendor_total[$item->get_product_id()] ) ? $vendor_total[$item->get_product_id()] + floatval($meta->value) : floatval($meta->value);
+                                        $total_sales[$item->get_product_id()]['vendor_earning'] = $vendor_total[$item->get_product_id()];
+                                    }
+                                }
+                                // admin part
+                                $total_sales[$item->get_product_id()]['admin_earning'] = $total_sales[$item->get_product_id()]['total_sales'] - $total_sales[$item->get_product_id()]['vendor_earning'];
+                            }
+                        }
+                    endif;
+                } catch (Exception $ex) {
+
+                }
+            }
+
+            if (sizeof($total_sales) > 0) {
+                foreach ($total_sales as $product_id => $sales_report) {
+                    $report_product_net_sales += ( $sales_report['total_sales'] > 0 ) ? $sales_report['total_sales'] : 0;
+
+                        foreach ($sales_report['details'] as $detailskey => $detailsvalue) {
+                            $product_sales_data_chart[] = array(
+                                'name'  =>  $detailsvalue['date'],
+                                'Net Sales'  => $detailsvalue['value'],
+                            );
+                        }
+
+                    /*$order_id = wc_get_order($sales_report['order_id']);
+
+                    $order = wc_get_order($order_id);
+                    $date = date_create($order->order_date);
+                    $product_sales_data_chart[] = array(
+                        'name'  =>  date_format($date,"d M"),
+                        'Net Sales'  => ( $sales_report['total_sales'] > 0 ) ? $sales_report['total_sales'] : 0,
+                    );*/
+                    
+                    //$total_sales_width = ( $sales_report['total_sales'] > 0 ) ? round($sales_report['total_sales']) / round($sales_report['total_sales']) * 100 : 0;
+                    //$admin_earning_width = ( $sales_report['admin_earning'] > 0 ) ? ( $sales_report['admin_earning'] / round($sales_report['total_sales']) ) * 100 : 0;
+                    //$vendor_earning_width = ( $sales_report['vendor_earning'] > 0 ) ? ( $sales_report['vendor_earning'] / round($sales_report['total_sales']) ) * 100 : 0;
+                    $product = wc_get_product($product_id);
+                    if( $product ) {
+
+                        $product_item_sold_chart[] = array(
+                            'name'  =>  date_format($date,"d M"),
+                            'Net Sales'  => 1,
+                        );
+                        // set product in an array
+                        $product_number_stack[]   =   $product_id;
+                        $product_url = admin_url('post.php?post=' . $product_id . '&action=edit');
+                    }
+                }
+            } else {
+                $report_html = '<tr><td colspan="3">' . __('No product was sold in the given period.', 'dc-woocommerce-multi-vendor') . '</td></tr>';
+            }
+        } else {
+            $report_html = '<tr><td colspan="3">' . __('Your store has no products.', 'dc-woocommerce-multi-vendor') . '</td></tr>';
+        }
+
+        // total item sold **
+        $total_item_sold = count($product_number_stack);
+
+        // product report end
+
+        $product_report_datatable = array();
+        if ($total_sales) {
+            foreach ($total_sales as $total_sales_key => $total_sales_value) {
+                $product = wc_get_product( $total_sales_key );
+                $product_report_datatable[] = array(
+                    'id'                    =>  $total_sales_key,
+                    'title'                 =>  $product->get_name(),
+                    'admin_earning'         =>  $total_sales_value['admin_earning'],
+                    'vendor_earning'        =>  $total_sales_value['vendor_earning'],
+                    'gross'                 =>  $total_sales_value['total_sales'],
+                );
+            }
+        }
+
+
+        //print_r($total_sales);die;
+
+        /** * ---------------------------------------------------- vendor report start ------------------------------------------------------------- * **/
+
+        $all_vendors = get_mvx_vendors();
+
+        $total_sales = $admin_earning = $vendor_report = $report_bk = $total_number_orders = array();
+
+        if (!empty($all_vendors) && is_array($all_vendors)) {
+            foreach ($all_vendors as $vendor) {
+                $gross_sales = $my_earning = $vendor_earning = 0;
+                $chosen_product_ids = array();
+                $vendor_id = $vendor->id;
+
+                if ( $selectvendor && $selectvendor != $vendor_id ) {
+                    continue;
+                }
+                
+
+                $args = apply_filters('mvx_report_admin_vendor_tab_query_args', array(
+                    'post_type' => 'shop_order',
+                    'posts_per_page' => -1,
+                    'author' => $vendor_id,
+                    'post_status' => array('wc-processing', 'wc-completed'),
+                    'meta_query' => array(
+                        array(
+                            'key' => '_commissions_processed',
+                            'value' => 'yes',
+                            'compare' => '='
+                        ),
+                        array(
+                            'key' => '_vendor_id',
+                            'value' => $vendor_id,
+                            'compare' => '='
+                        )
+                    ),
+                    'date_query' => array(
+                        'inclusive' => true,
+                        'after' => array(
+                            'year' => date('Y', $start_date),
+                            'month' => date('n', $start_date),
+                            'day' => date('j', $start_date),
+                        ),
+                        'before' => array(
+                            'year' => date('Y', $end_date),
+                            'month' => date('n', $end_date),
+                            'day' => date('j', $end_date),
+                        ),
+                    )
+                ) );
+
+                $qry = new WP_Query($args);
+
+                $orders = apply_filters('mvx_filter_orders_report_vendor', $qry->get_posts());
+
+                if ( !empty( $orders ) ) {
+                    foreach ( $orders as $order_obj ) {
+                        try {
+                            $order = wc_get_order($order_obj->ID);
+                            if ($order) :
+
+                                $date = date_create($order->order_date);
+                                $total_number_order_data_chart[] = array(
+                                    'name'  =>  date_format($date,"d M"),
+                                    'Net Sales'  => 1,
+                                );
+
+
+                                $net_sales_data_chart[] = array(
+                                    'name'  =>  date_format($date,"d M"),
+                                    'Net Sales'  => $order->get_total( 'edit' ),
+                                );
+
+                                $total_number_orders[] = $order_obj->ID;
+                                $vendor_order = mvx_get_order($order->get_id());
+                                $gross_sales += $order->get_total( 'edit' );
+                                $vendor_earning += $vendor_order->get_commission_total('edit');
+                            endif;
+                        } catch (Exception $ex) {
+
+                        }
+                        
+                    }
+                }
+                
+                $total_sales[$vendor_id]['total_sales'] = $gross_sales;
+                $total_sales[$vendor_id]['vendor_earning'] = $vendor_earning;
+                $total_sales[$vendor_id]['admin_earning'] = $gross_sales - $vendor_earning;
+                $total_sales[$vendor_id]['vendor_id'] = $vendor_id; // for report filter
+            }
+
+            $html_chart = '';
+            
+            foreach ($total_sales as $vendor_id => $report) {
+                $report_vendor_net_sales += ( $report['total_sales'] > 0 ) ? $report['total_sales'] : 0;
+                //$total_sales_width = ( $report['total_sales'] > 0 ) ? round($report['total_sales']) / round($report['total_sales']) * 100 : 0;
+                //$admin_earning_width = ( $report['admin_earning'] > 0 ) ? ( $report['admin_earning'] / round($report['total_sales']) ) * 100 : 0;
+                //$vendor_earning_width = ( $report['vendor_earning'] > 0 ) ? ( $report['vendor_earning'] / round($report['total_sales']) ) * 100 : 0;
+            }
+
+        } else {
+            $html_chart = '<tr><td colspan="3">' . __('Your store has no vendors.', 'dc-woocommerce-multi-vendor') . '</td></tr>';
+        }
+
+        $order_number_count = !empty($total_number_orders) ? count($total_number_orders) : 0;
+        // vendor report end
+
+
+        
+        //print_r($total_sales);die;
+
+        $vendor_report_datatable = array();
+        if ($total_sales) {
+            foreach ($total_sales as $total_sales_key => $total_sales_value) {
+                $vendor = get_mvx_vendor($total_sales_key);
+                $name_display = "<b><a href='". sprintf('?page=%s&ID=%s&name=vendor_personal', 'vendors', $vendor->id) ."'>" . $vendor->page_title . "</a>";
+                $vendor_report_datatable[] = array(
+                    'id'                    =>  $vendor->id,
+                    'title'                 =>  $name_display,
+                    'defalt_title'          =>  $vendor->page_title,
+                    'admin_earning'         =>  $total_sales_value['admin_earning'],
+                    'vendor_earning'        =>  $total_sales_value['vendor_earning'],
+                    'gross'                 =>  $total_sales_value['total_sales'],
+                );
+            }
+        }
+
+        // merge work product
+
+        // order count ** 
+        $total_orders_product = $total_orders_product_chart ? count($total_orders_product_chart) : 0;
+
+        $order_count_pro_chart = array();
+        foreach ($total_orders_product_chart as $chart_key => $chart_value) {
+            $order_count_pro_chart[$chart_value['name']] += $chart_value['Net Sales'];
+        }
+
+        $net_sales_pro_chart = array();
+        foreach ($product_sales_data_chart as $chart_key => $chart_value) {
+            $net_sales_pro_chart[$chart_value['name']] += $chart_value['Net Sales'];
+        }
+
+        $item_count = array();
+        foreach ($product_item_sold_chart as $chart_key => $chart_value) {
+            $item_count[$chart_value['name']] += $chart_value['Net Sales'];
+        }
+
+        $merge_three_data = array_merge_recursive($order_count_pro_chart,$net_sales_pro_chart, $item_count);
+        $final_array_product_chart = [];
+
+        foreach ($merge_three_data as $merge_three_data_key => $merge_three_data_value) {
+            $final_array_product_chart[] = array(
+                'Date'          => $merge_three_data_key,
+                'Order Count'   => isset($merge_three_data_value[0]) ? $merge_three_data_value[0] : 0,
+                'Net Sales'     => isset($merge_three_data_value[1]) ? $merge_three_data_value[1] : 0,
+                'Item Sold'     => isset($merge_three_data_value[2]) ? $merge_three_data_value[2] : 0
+            );
+        }
+
+        // merge work vendor
+
+        $order_count_ven_chart = array();
+        foreach ($total_number_order_data_chart as $chart_key => $chart_value) {
+            $order_count_ven_chart[$chart_value['name']] += $chart_value['Net Sales'];
+        }
+
+        $net_sales_ven_chart = array();
+        foreach ($net_sales_data_chart as $chart_key => $chart_value) {
+            $net_sales_ven_chart[$chart_value['name']] += $chart_value['Net Sales'];
+        }
+
+        $item_ven_count = array();
+        foreach ($product_item_sold_chart as $chart_key => $chart_value) {
+            $item_ven_count[$chart_value['name']] += $chart_value['Net Sales'];
+        }
+
+        $merge_three_data_ven = array_merge_recursive($order_count_ven_chart,$net_sales_ven_chart, $item_ven_count);
+        $final_array_vendor_chart = [];
+
+        foreach ($merge_three_data_ven as $merge_three_data_key => $merge_three_data_value) {
+            $final_array_vendor_chart[] = array(
+                'Date'          => $merge_three_data_key,
+                'Order Count'   => isset($merge_three_data_value[0]) ? $merge_three_data_value[0] : 0,
+                'Net Sales'     => isset($merge_three_data_value[1]) ? $merge_three_data_value[1] : 0,
+                'Item Sold'     => isset($merge_three_data_value[2]) ? $merge_three_data_value[2] : 0
+            );
+        }
+
+
+
+
+
+        $report_by_admin_overview = array(
+            'admin_overview'    =>  array(
+                'sales' =>  array( 
+                    'value'  => wc_price($overview_sales), 
+                    'label'    =>  __('Total Sales', 'dc-woocommerce-multi-vendor') 
+                ),
+                'admin_earning' =>  array( 
+                    'value'  => wc_price($overview_admin_earning), 
+                    'label'    =>  __('Admin Earnings', 'dc-woocommerce-multi-vendor') 
+                ),
+                'vendors'   =>  array( 
+                    'value'  => ($overview_vendors), 
+                    'label'    =>  __('Signup Vendors', 'dc-woocommerce-multi-vendor') 
+                ),
+                'pending_vendors'   =>  array( 
+                    'value'  => ($pending_vendors), 
+                    'label'    =>  __('Awaiting Vendors', 'dc-woocommerce-multi-vendor') 
+                ),
+                'products'  =>  array( 
+                    'value'  => ($products), 
+                    'label'    =>  __('Awaiting Products', 'dc-woocommerce-multi-vendor') 
+                ),
+                'transactions'  =>  array( 
+                    'value'  => wc_price($transactions), 
+                    'label'    =>  __('Awaiting Withdrawals', 'dc-woocommerce-multi-vendor') 
+                ),
+                'sales_data_chart'  =>  $sales_data_chart
+            ),
+
+            'vendor'    =>  array(
+                'total_number_orders'   =>  array(
+                    'value' =>  ($order_number_count),
+                    'label' =>  __('Orders', 'dc-woocommerce-multi-vendor')
+                ),
+                'net_sales'   =>  array(
+                    'value' =>  wc_price($report_vendor_net_sales),
+                    'label' =>  __('Net Sales', 'dc-woocommerce-multi-vendor')
+                ),
+                'total_item_sold'   =>  array(
+                    'value' =>  ($total_item_sold),
+                    'label' =>  __('Items Sold', 'dc-woocommerce-multi-vendor')
+                ),
+                'sales_data_chart'  =>  $final_array_vendor_chart, /*array(
+                    'total_orders_product_chart'    =>  $total_number_order_data_chart,
+                    'product_sales_data_chart'      =>  $net_sales_data_chart,
+                    'product_item_sold_chart'       =>  $product_item_sold_chart
+                )*/
+                'vendor_report_datatable'  =>  $vendor_report_datatable
+            ),
+
+            'product'   =>  array(
+                'total_orders_product'  =>  array(
+                    'value' =>  ($total_orders_product),
+                    'label' =>  __('Orders', 'dc-woocommerce-multi-vendor')
+                ),
+                'net_sales'  =>  array(
+                    'value' =>  wc_price($report_product_net_sales),
+                    'label' =>  __('Net Sales', 'dc-woocommerce-multi-vendor')
+                ),
+                'total_item_sold'  =>  array(
+                    'value' =>  ($total_item_sold),
+                    'label' =>  __('Items Sold', 'dc-woocommerce-multi-vendor')
+                ),
+                'sales_data_chart'  =>  $final_array_product_chart,/*array(
+                    'total_orders_product_chart'    =>  $total_orders_product_chart,
+                    'product_sales_data_chart'      =>  $product_sales_data_chart,
+                    'product_item_sold_chart'       =>  $product_item_sold_chart
+                )*/
+                'product_report_datatable'  =>  $product_report_datatable
+            ),
+            'banking_overview'  =>  $banking_datas
+        );
+
+        //print_r($report_by_admin_overview);die;
+        return rest_ensure_response($report_by_admin_overview);
     }
 
     public function mvx_update_commission_status($request) {
@@ -467,7 +1133,7 @@ class MVX_REST_API {
         /* translators: %s: Commission status */
         $status = MVX_Commission::get_status($commission_id, 'edit');
         $status_html = '';
-        if($status == 'paid'){
+        if($status == 'paid') {
             $status_html .= '<mark class="order-status status-processing tips"><span>'.MVX_Commission::get_status($commission_id).'</span></mark>';
         }else{
             $status_html .= '<mark class="order-status status-refunded tips"><span>'.MVX_Commission::get_status($commission_id).'</span></mark>';
@@ -700,6 +1366,38 @@ class MVX_REST_API {
         $value = $request->get_param('value') ? ($request->get_param('value')) : 0;
         $vendor_id = $request->get_param('vendor_id') ? ($request->get_param('vendor_id')) : 0;
         mvx_update_user_meta($vendor_id, 'vendor_shipping_options', wc_clean($value));
+    }
+
+    public function mvx_export_csv_for_report_product_chart($request) {
+        global $MVX;
+        $product_list = $request->get_param('product_list') ? ($request->get_param('product_list')) : array();
+        $csv_data_data = array();
+
+        foreach ($product_list as $value_details) {
+            $csv_data_data[] = array(
+                'Product Name'      =>  $value_details['title'],
+                'Net Sales'     =>  $value_details['gross'],
+                'Admin Earning'      =>  $value_details['admin_earning'],
+                'Vendor Earning'    =>  $value_details['vendor_earning'],
+            );
+        }
+        return rest_ensure_response($csv_data_data);
+    }
+
+    public function mvx_export_csv_for_report_vendor_chart($request) {
+        global $MVX;
+        $vendor_list = $request->get_param('vendor_list') ? ($request->get_param('vendor_list')) : array();
+        $csv_data_data = array();
+
+        foreach ($vendor_list as $value_details) {
+            $csv_data_data[] = array(
+                'Vendor Name'       =>  $value_details['defalt_title'],
+                'Net Sales'         =>  $value_details['gross'],
+                'Admin Earning'     =>  $value_details['admin_earning'],
+                'Vendor Earning'    =>  $value_details['vendor_earning'],
+            );
+        }
+        return rest_ensure_response($csv_data_data);
     }
 
     public function mvx_update_commission_bulk($request) {
@@ -1227,6 +1925,21 @@ class MVX_REST_API {
                 'value' => sanitize_text_field($user->data->ID),
                 'label' => sanitize_text_field($user->data->display_name)
             );
+        }
+        return rest_ensure_response($option_lists);
+    }
+
+    public function mvx_product_list_option() {
+        $option_lists[] = array('value' => 'all', 'label' => __('All Product', 'dc-woocommerce-multi-vendor'));
+        $products = get_posts( array( 'post_type' => 'product', 'posts_per_page' => -1, 'fields' => 'ids' ) );
+        if ($products) {
+            foreach($products as $product_id) {
+                $product = wc_get_product($product_id);
+                $option_lists[] = array(
+                    'value' => sanitize_text_field($product_id),
+                    'label' => $product->get_name()
+                );
+            }
         }
         return rest_ensure_response($option_lists);
     }

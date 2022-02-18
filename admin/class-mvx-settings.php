@@ -46,12 +46,12 @@ class MVX_Settings {
         // Assign priority incrmented by 1
         $mvx_submenu_priority = array(
             'commission' => 2,
-            'advance-marketplace-settings' => 7,
+            'advance-marketplace-settings' => 6,
             'vendors' => 1,
             'marketplace-manager-settings' => 3,
-            'marketplace-analytics-settings' => 8,
-            'payment-configuration' => 6,
-            'mvx-extensions' => 8,
+            'marketplace-analytics-settings' => 7,
+            'payment-configuration' => 5,
+            //'mvx-extensions' => 8,
             'modules' => 0,
             'general-settings' => 4
 		);
@@ -69,7 +69,8 @@ class MVX_Settings {
         	ksort($submenu_mvx_sort);
         	
         	$submenu_mvx_sort = array_merge($submenu_mvx_sort, $submenu_mvx_sort_duplicates);
-        	
+            //print_r($submenu_mvx_sort);die;
+            unset($submenu_mvx_sort[8]);
         	$submenu['mvx'] = $submenu_mvx_sort;
         }
     }

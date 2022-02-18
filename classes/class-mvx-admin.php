@@ -1498,7 +1498,7 @@ class MVX_Admin {
             'product'  => [
 
             ],
-            'banking_overview'  => [
+            'transaction_history'  => [
 
             ],
 
@@ -2753,11 +2753,11 @@ class MVX_Admin {
                 'modelname'     =>  'product'
             ),
             array(
-                'tabname'       =>  'banking_overview',
-                'tablabel'      =>  __('Banking Overview', 'dc-woocommerce-multi-vendor'),
+                'tabname'       =>  'transaction_history',
+                'tablabel'      =>  __('Transaction History', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'classname'     =>  'form',
-                'modelname'     =>  'banking_overview'
+                'modelname'     =>  'transaction_history'
             )
         );
 
@@ -2920,6 +2920,50 @@ class MVX_Admin {
             'bulk_action'   =>  __('Bulk Action', 'dc-woocommerce-multi-vendor'),
         );
 
+        $report_page_string = array(
+            'vendor_select' =>  __('Select your vendor to view transaction details', 'dc-woocommerce-multi-vendor'),
+            'choose_vendor' =>  __('Search Vendors', 'dc-woocommerce-multi-vendor'),
+            'choose_product'    =>  __('Search Product', 'dc-woocommerce-multi-vendor'),
+            'performance'    =>  __('Performance', 'dc-woocommerce-multi-vendor'),
+            'charts'    =>  __('Charts', 'dc-woocommerce-multi-vendor'),
+            'net_sales'    =>  __('Charts', 'dc-woocommerce-multi-vendor'),
+            'order_count'    =>  __('Order Count', 'dc-woocommerce-multi-vendor'),
+            'item_sold'    =>  __('Item Sold', 'dc-woocommerce-multi-vendor'),
+            'download_csv'  =>  __('Download CSV', 'dc-woocommerce-multi-vendor'),
+            'leaderboards'  =>  __('Leaderboards', 'dc-woocommerce-multi-vendor')
+        );
+
+        // product report chart data
+        $report_product_header = [];
+        $headers = apply_filters('mvx_vendor_commission_data_header',array(
+            __('Product Name', 'dc-woocommerce-multi-vendor'),
+            __('Net Sales', 'dc-woocommerce-multi-vendor'),
+            __('Admin Earning', 'dc-woocommerce-multi-vendor'),
+            __('Vendor Earning', 'dc-woocommerce-multi-vendor'),
+        ));
+        foreach ($headers as $headerskey => $headersvalue) {
+            $report_product_header[] = array(
+                'label' => $headersvalue,
+                'key' => $headersvalue
+            );
+        }
+
+        // vendor report chart data
+        $report_vendor_header = [];
+        $headers = apply_filters('mvx_vendor_commission_data_header',array(
+            __('Vendor Name', 'dc-woocommerce-multi-vendor'),
+            __('Net Sales', 'dc-woocommerce-multi-vendor'),
+            __('Admin Earning', 'dc-woocommerce-multi-vendor'),
+            __('Vendor Earning', 'dc-woocommerce-multi-vendor'),
+        ));
+        foreach ($headers as $headerskey => $headersvalue) {
+            $report_vendor_header[] = array(
+                'label' => $headersvalue,
+                'key' => $headersvalue
+            );
+        }
+
+
         wp_localize_script( 'mvx-modules-build-frontend', 'appLocalizer', [
             'apiUrl' => home_url( '/wp-json' ),
             'nonce' => wp_create_nonce( 'wp_rest' ),
@@ -2947,11 +2991,15 @@ class MVX_Admin {
             'shipping_options'  => $shipping_options_list,
             'vendor_default_shipping_options'   => $vendor_default_shipping_options,
             'commission_status_list_action' =>  $commission_status_list_action,
-            'commission_page_string'    =>  $commission_page_string
+            'commission_page_string'    =>  $commission_page_string,
+            'report_product_header' =>  $report_product_header,
+            'report_vendor_header'  =>  $report_vendor_header,
+            'report_page_string'    =>  $report_page_string
         ] );
 
         if ( in_array($screen->id, $page_details)) {
             wp_enqueue_style('mvx_admin_css', $MVX->plugin_url . 'assets/admin/css/admin' . '' . '.css', array(), $MVX->version);
+            wp_enqueue_style('mvx_admin_rsuite_css', $MVX->plugin_url . 'assets/admin/css/rsuite-default' . '.min' . '.css', array(), $MVX->version);
         }
 
         
