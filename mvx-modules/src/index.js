@@ -9,6 +9,7 @@ import VendorAnalytics from './components/admin/load/mvx-vendor-analytics-sectio
 import VendorManager from './components/admin/load/mvx-vendor-manager-section';
 import VendorManage from './components/admin/load/mvx-vendor-manage-section';
 import VendorCommission from './components/admin/load/mvx-vendor-commission-section';
+import WorkBoard from './components/admin/load/mvx-workboard-section';
 
 // shortcode section
 import Vendorregistration from './components/shortcode/load/mvx-shortcode-vendor-registration-section';
@@ -63,6 +64,11 @@ document.addEventListener( 'DOMContentLoaded', function() {
     var element9 = document.getElementById( 'mvx-modules-admin-commission-display' );
     if ( typeof element9 !== 'undefined' && element9 !== null ) {
         ReactDOM.render( <VendorCommission />, document.getElementById( 'mvx-modules-admin-commission-display' ) );
+    }
+
+    var element10 = document.getElementById( 'mvx-workboard-section' );
+    if ( typeof element10 !== 'undefined' && element10 !== null ) {
+        ReactDOM.render( <WorkBoard />, document.getElementById( 'mvx-workboard-section' ) );
     }
 
 } )
