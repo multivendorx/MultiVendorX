@@ -503,6 +503,44 @@ export default class DynamicForm extends React.Component {
          );
        }
 
+
+      if (type == "blocktext") {
+        input = (
+          <div>
+            {m.blocktext ? <p className="mvx-settings-metabox-description" dangerouslySetInnerHTML={{ __html: m.blocktext }}></p> : ''}
+          </div>
+       );
+     }
+
+    if (type == "table") {
+        var inputlabels = m.label_options.map(ol => {
+          return (
+            <th>Company</th>
+          );
+        });  
+
+        input =  m.options.map(o => {
+          return (
+            <tr>
+              <td>{o.variable}</td>
+              </tr>
+            
+          );
+        }) ;
+        input = <div className="mvx-settings-mvx-form-table">
+          <table>
+            <tr>
+              {inputlabels}
+            </tr>
+
+            
+            {input}
+            
+          </table>
+        </div>;
+     }
+
+
       if (type == "normalfile") {
        input = (
           <input
@@ -1143,7 +1181,7 @@ export default class DynamicForm extends React.Component {
               />
               )}
               {this.state.from_loading && <span>Saving..</span>}
-              {!this.state.from_loading && <span>Save</span>}</button>
+              {!this.state.from_loading && <span>{this.props.submit_title ? this.props.submit_title : 'Save'}</span>}</button>
           </div>
           : ''}
         </form>

@@ -52,43 +52,48 @@ class App extends Component {
       get_commission_id_status: [],
       columns_commission: [
         {
-            name: <h1>Title</h1>,
+            name: <h6 className="mvx-datatable-header-text">Title</h6>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.title}}></div>,
             sortable: true,
         },
         {
-            name: <h1>Order ID</h1>,
+            name: <h6 className="mvx-datatable-header-text">Order ID</h6>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.order_id}}></div>,
             sortable: true,
         },
         {
-            name: <h1>Product</h1>,
+            name: <h6 className="mvx-datatable-header-text">Product</h6>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.product}}></div>,
             sortable: true,
         },
         {
-            name: <h1>Vendor</h1>,
+            name: <h6 className="mvx-datatable-header-text">Vendor</h6>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.vendor}}></div>,
             sortable: true,
         },
         {
-            name: <h1>Amount</h1>,
+            name: <h6 className="mvx-datatable-header-text">Amount</h6>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.amount}}></div>,
             sortable: true,
         },
         {
-            name: <h1>Net Earning</h1>,
+            name: <h6 className="mvx-datatable-header-text">Net Earning</h6>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.net_earning}}></div>,
             sortable: true,
         },
         {
-            name: <h1>Status</h1>,
+            name: <h6 className="mvx-datatable-header-text">Status</h6>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.status}}></div>,
             sortable: true,
         },
         {
-            name: <h1>Date</h1>,
+            name: <h6 className="mvx-datatable-header-text">Date</h6>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.date}}></div>,
+            sortable: true,
+        },
+        {
+            name: <h6 className="mvx-datatable-header-text">Action</h6>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.action}}></div>,
             sortable: true,
         },
       ],
@@ -597,23 +602,34 @@ class App extends Component {
       :
 
       <div>
-        <CSVLink data={this.state.commissiondata} headers={appLocalizer.commission_header} filename={"Commissions.csv"} className="button-secondary">Download CSV</CSVLink>
 
-        <Select placeholder={appLocalizer.commission_page_string.search_commission} options={this.state.details_commission} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e, 'searchvendor')} />
+        <div className="mvx-table-text-and-add-wrap">
+          <div className="mvx-datatable-text">Commission</div>
+          <CSVLink data={this.state.commissiondata} headers={appLocalizer.commission_header} filename={"Commissions.csv"} className="button-secondary">Download CSV</CSVLink>
+        </div>
 
+        <div className="mvx-search-and-multistatus-wrap">
+          <div className="mvx-multistatus-check">All (10)| Paid (10)| Unpaid (10)</div>
+          <Select placeholder={appLocalizer.commission_page_string.search_commission} options={this.state.details_commission} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e, 'searchvendor')} />
+        </div>
+
+        
         <Select placeholder={appLocalizer.commission_page_string.show_commission_status} options={this.state.show_commission_status} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e, 'searchstatus')} />
 
         <Select placeholder={appLocalizer.commission_page_string.show_all_vendor} options={this.state.show_vendor_name} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e, 'showvendor')} />
 
         <Select placeholder={appLocalizer.commission_page_string.bulk_action} options={appLocalizer.commission_bulk_list_option} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlecommissionwork(e)} />
-
-        <DataTable
-          columns={this.state.columns_commission}
-          data={this.state.datacommission}
-          selectableRows
-          onSelectedRowsChange={this.handleChange}
-          pagination
-        />
+          
+          <div className="mvx-backend-datatable-wrapper">
+            <DataTable
+              columns={this.state.columns_commission}
+              data={this.state.datacommission}
+              selectableRows
+              onSelectedRowsChange={this.handleChange}
+              pagination
+            />
+          </div>
+        
         </div>
       }
       </div>

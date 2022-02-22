@@ -18,6 +18,7 @@ import {
 
 
 import DynamicForm from "../../../DynamicForm";
+import DataTable from 'react-data-table-component';
 
 class App extends Component {
   constructor(props) {
@@ -42,6 +43,32 @@ class App extends Component {
       first_toggle: '',
       second_toggle: '',      
       current: {},
+      display_announcement: [],
+      default_array_fileds: [],
+      columns_announcement: [
+        {
+            name: <h2>Title</h2>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.title}}></div>,
+            sortable: true,
+        },
+        {
+            name: <h2>Date</h2>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.date}}></div>,
+            sortable: true,
+        },
+      ],
+      columns_knowladgebase: [
+        {
+            name: <h2>Title</h2>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.name}}></div>,
+            sortable: true,
+        },
+        {
+            name: <h2>Date</h2>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.date}}></div>,
+            sortable: true,
+        },
+      ],
     };
 
     this.query = null;
@@ -56,7 +83,16 @@ class App extends Component {
 
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    axios.get(
+    `${appLocalizer.apiUrl}/mvx_module/v1/display_announcement`
+    )
+    .then(response => {
+      this.setState({
+        display_announcement: response.data,
+      });
+    })
+  }
 
   useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -110,34 +146,90 @@ class App extends Component {
   }
 
 Child({ name }) {
+  console.log(this.state.display_announcement);
+  var get_current_name = this.useQuery();
   return (
     <div>
-    {appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'].map((data, index) => (
-      <div>
+    {
+      name == 'activity_reminder' ?
 
-      {
-        name = !name ? 'paypal_masspay' : name,
+      'activity_reminder'
 
-        data.tabname == name ?
-          
-            <div>
-              <DynamicForm
-              key={`dynamic-form-${data.tabname}`}
-              className={data.classname}
-              title={data.tablabel}
-              defaultValues={this.state.current}
-              model= {appLocalizer.settings_fields[data.modelname]}
-              method="post"
-              modelname={data.modelname}
-              url={data.apiurl}
-              submitbutton="false"
-              />
-            </div>
-            
-        : ''
-      }
+      :
+
+      name == 'announcement' ?
+
+      <div className="mvx-backend-datatable-wrapper">
+        <div className="button-secondary"><Link to={`?page=work_board&name=announcement&create=announcement`}>Add Announcement</Link></div>
+
+        {get_current_name && get_current_name.get("create") == 'announcement' ?
+
+          <DynamicForm
+            key={`dynamic-form-announcement-add-new`}
+            className="mvx-announcement-add-new"
+            title="Add new Announcement"
+            model= {appLocalizer.settings_fields['create_announcement']}
+            method="post"
+            modelname="create_announcement"
+            url="mvx_module/v1/create_announcement"
+            submit_title="Publish"
+          />
+         :
+
+         get_current_name.get("AnnouncementID") ?
+
+          <DynamicForm
+            key={`dynamic-form-announcement-add-new`}
+            className="mvx-announcement-add-new"
+            title="Update Announcement"
+            model= {appLocalizer.settings_fields['update_announcement']}
+            method="post"
+            modelname="update_announcement"
+            url="mvx_module/v1/update_announcement"
+            submit_title="Update"
+          />
+
+          :
+
+          <DataTable
+            columns={this.state.columns_announcement}
+            data={this.state.display_announcement}
+            selectableRows
+            pagination
+          />
+        }
       </div>
-    ))}
+
+      :
+
+      name == 'knowladgebase' ?
+
+      <div className="mvx-backend-datatable-wrapper">
+        <DataTable
+          columns={this.state.columns_knowladgebase}
+          data={this.state.default_array_fileds}
+          selectableRows
+          pagination
+        />
+      </div>
+
+      :
+
+      name == 'store_review' ?
+
+      'store_review'
+
+      :
+
+      name == 'report_abuse' ?
+
+      'report_abuse'
+
+      :
+
+      ''
+
+    }
     </div>
   );
 }

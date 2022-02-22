@@ -66,40 +66,45 @@ class App extends React.Component {
 
       columns_vendor: [
         {
-            name: <h1>Name</h1>,
+            name: <h6 className="mvx-datatable-header-text">Name</h6>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.name}}></div>,
             sortable: true,
         },
         {
-            name: <h1>Email</h1>,
+            name: <h6 className="mvx-datatable-header-text">Email</h6>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.email}}></div>,
             sortable: true,
         },
         {
-            name: <h1>Registered</h1>,
+            name: <h6 className="mvx-datatable-header-text">Registered</h6>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.registered}}></div>,
             sortable: true,
         },
         {
-            name: <h1>Products</h1>,
+            name: <h6 className="mvx-datatable-header-text">Products</h6>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.products}}></div>,
             sortable: true,
         },
         {
-            name: <h1>Status</h1>,
+            name: <h6 className="mvx-datatable-header-text">Status</h6>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.status}}></div>,
+            sortable: true,
+        },
+        {
+            name: <h6 className="mvx-datatable-header-text">Action</h6>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.action}}></div>,
             sortable: true,
         },
       ],
 
       columns_followers: [
         {
-            name: <h1>Customer Name</h1>,
+            name: <h6 className="mvx-datatable-header-text">Customer Name</h6>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.name}}></div>,
             sortable: true,
         },
         {
-            name: <h1>Date</h1>,
+            name: <h6 className="mvx-datatable-header-text">Date</h6>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.time}}></div>,
             sortable: true,
         }
@@ -107,17 +112,17 @@ class App extends React.Component {
 
       columns_zone_shipping: [
         {
-            name: <h1>Zone name</h1>,
+            name: <h6 className="mvx-datatable-header-text">Zone name</h6>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.zone_name}}></div>,
             sortable: true,
         },
         {
-            name: <h1>Region(s)</h1>,
+            name: <h6 className="mvx-datatable-header-text">Region(s)</h6>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.region}}></div>,
             sortable: true,
         },
         {
-            name: <h1>Shipping method(s) </h1>,
+            name: <h6 className="mvx-datatable-header-text">Shipping method(s) </h6>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.shipping_method}}></div>,
             sortable: true,
         }
@@ -442,17 +447,17 @@ class App extends React.Component {
 
       <div className="container">
 
-        <div className="general-tab-area">
-          <ul className="mvx-general-tabs-list">
-            <li><Link to={`?page=vendors&name=add_new`}>Add Vendor</Link></li>
-          </ul>
+       
+          
 
           {queryt.get("name") == 'add_new' ?
-            <div className="tabcontentclass">
-              <this.Childparent name={queryt.get("name")} />
+           <div className="general-tab-area">
+              <div className="tabcontentclass">
+                <this.Childparent name={queryt.get("name")} />
+              </div>
             </div>
           : '' }
-        </div>
+        
 
 
       {!queryt.get("ID") ?
@@ -460,16 +465,41 @@ class App extends React.Component {
         queryt.get("name") == "add_new" ? '' :
 
           <div>
-          <Select placeholder="Search Vendors" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-nav-child-data" onChange={this.handlevendorsearch} />
-          <button type="button" className="button-primary" onClick={(e) => this.handledeletevendor(e)}>Delete Vendor</button>
 
-          <DataTable
-            columns={this.state.columns_vendor}
-            data={this.state.datavendor}
-            selectableRows
-            onSelectedRowsChange={this.handleChange}
-            pagination
-          />
+            <div className="mvx-table-text-and-add-wrap">
+              <div className="mvx-datatable-text">Vendors</div>
+              <Link to={`?page=vendors&name=add_new`}><span class="dashicons dashicons-plus"></span>Add Vendor</Link>
+            </div>
+            
+            <div className="mvx-search-and-multistatus-wrap">
+              <div className="mvx-multistatus-check">All (10)| Approve (10)| Pending (10)| Rejected (10)</div>
+              <Select placeholder="Search Vendors" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-nav-child-data" onChange={this.handlevendorsearch} />
+            </div>
+
+            <div className="mvx-wrap-bulk-all-date">
+              <div className="mvx-wrap-bulk-action">
+                <Select placeholder="Bulk actions" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-nav-child-data" onChange={this.handlevendorsearch} />
+                <button type="button" className="button-secondary" onClick={(e) => this.handledeletevendor(e)}>Apply</button>
+              </div>
+
+              <div className="mvx-wrap-date-action">
+                <Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-nav-child-data" onChange={this.handlevendorsearch} />
+                <button type="button" className="button-secondary" onClick={(e) => this.handledeletevendor(e)}><span class="dashicons dashicons-menu"></span></button>
+              </div>
+            </div>
+
+            { /*<button type="button" className="button-primary" onClick={(e) => this.handledeletevendor(e)}>Delete Vendor</button> */}
+
+            <div className="mvx-backend-datatable-wrapper">
+              <DataTable
+                columns={this.state.columns_vendor}
+                data={this.state.datavendor}
+                selectableRows
+                onSelectedRowsChange={this.handleChange}
+                pagination
+              />
+            </div>
+
           </div>
         : 
           <div>
