@@ -1229,4 +1229,18 @@ p.mvx-settings-metabox-description-code::before {
   top: 0;
   left: 0;
 }
+
+table.mvx-settings-table-wrap {
+      width: 100%;
+      border: 1px solid #dddddd;
+  }
+  tr.mvx-settings-tr-wrap:nth-child(even)  {
+      background-color: #ece8f1;
+  }
+  
+  th.mvx-settings-th-wrap{
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
 /*# sourceMappingURL=admin.css.map */
