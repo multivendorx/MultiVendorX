@@ -331,7 +331,9 @@ class App extends Component {
       ?
 
       this.state.commission_details ?
-      <div>
+      <div className="container">
+
+        <div className="mvx-sub-container">
 
         <div id="order_data" className="woocommerce-order-data">
           <h2 className="woocommerce-order-data__heading">
@@ -491,109 +493,103 @@ class App extends Component {
 
 
 
-  <div className="wc-order-data-row wc-order-totals-items wc-order-items-editable">
-    <div className="wc-used-coupons">
-      <ul className="wc_coupon_list">
-      { this.state.commission_details.order_total_discount > 0 && this.state.commission_details.commission_include_coupon ? <li><em>*Commission calculated including coupon</em></li> : '' }
-      { this.state.commission_details.is_shipping > 0 && this.state.commission_details.commission_total_include_shipping ? <li><em>*Commission total calcutated including shipping charges.</em></li> : '' }
-      { this.state.commission_details.is_tax > 0 && this.state.commission_details.commission_total_include_tax ? <li><em>*Commission total calcutated including tax charges.</em></li> : '' }
-      </ul>
-    </div>
+              <div className="wc-order-data-row wc-order-totals-items wc-order-items-editable">
+                <div className="wc-used-coupons">
+                  <ul className="wc_coupon_list">
+                  { this.state.commission_details.order_total_discount > 0 && this.state.commission_details.commission_include_coupon ? <li><em>*Commission calculated including coupon</em></li> : '' }
+                  { this.state.commission_details.is_shipping > 0 && this.state.commission_details.commission_total_include_shipping ? <li><em>*Commission total calcutated including shipping charges.</em></li> : '' }
+                  { this.state.commission_details.is_tax > 0 && this.state.commission_details.commission_total_include_tax ? <li><em>*Commission total calcutated including tax charges.</em></li> : '' }
+                  </ul>
+                </div>
 
 
-  <table className="wc-order-totals">
-    <tbody>
-    {this.state.commission_details.commission_amount !=0 ?
-      <tr>
-        <td className="label">
-        {this.state.commission_details.order_total_discount > 0 && this.state.commission_details.commission_include_coupon ? '*' : ''}
-        {appLocalizer.commission_page_string.commission}:
-        </td>
-        <td width="1%" />
-        <td className="total">
-          <div dangerouslySetInnerHTML={{__html: this.state.commission_details.formated_commission_total}}></div>
-        </td>
-      </tr>
-     : '' }
+              <table className="wc-order-totals">
+                <tbody>
+                {this.state.commission_details.commission_amount !=0 ?
+                  <tr>
+                    <td className="label">
+                    {this.state.commission_details.order_total_discount > 0 && this.state.commission_details.commission_include_coupon ? '*' : ''}
+                    {appLocalizer.commission_page_string.commission}:
+                    </td>
+                    <td width="1%" />
+                    <td className="total">
+                      <div dangerouslySetInnerHTML={{__html: this.state.commission_details.formated_commission_total}}></div>
+                    </td>
+                  </tr>
+                 : '' }
 
-     { this.state.commission_details.get_shipping_method ?
-      <tr>
-        <td className="label">
-          {appLocalizer.commission_page_string.shipping}:
-        </td>
-        <td width="1%" />
-        <td className="total">
-        <div dangerouslySetInnerHTML={{__html: this.state.commission_details.get_total_shipping_refunded > 0 ? this.state.commission_details.refund_shipping_display : this.state.commission_details.else_shipping}}></div>
-        </td>
-      </tr>
-      : '' }
-
-
-      {this.state.commission_details.tax_data ? 
-        this.state.commission_details.tax_data.map((data, index) => (
-        <tr>
-          <td className="label">
-            <div dangerouslySetInnerHTML={{__html: data.tax_label}}></div>
-          </td>
-          <td width="1%" />
-          <td className="total">
-          <div dangerouslySetInnerHTML={{__html: data.get_total_tax_refunded_by_rate_id > 0 ? data.greater_zero : data.else_output}}></div>
-          </td>
-        </tr>
-        ))
-      : '' }
-      
-      <tr>
-        <td className="label">
-          **{appLocalizer.commission_page_string.total}:
-        </td>
-        <td width="1%" />
-        <td className="total">
-        <div dangerouslySetInnerHTML={{__html: !this.state.commission_details.is_migration_order && this.state.commission_details.commission_total != this.state.commission_details.commission_total_edit ? this.state.commission_details.commission_total_display : this.state.commission_details.commission_total_edit}}></div>
-        </td>
-      </tr>
+                 { this.state.commission_details.get_shipping_method ?
+                  <tr>
+                    <td className="label">
+                      {appLocalizer.commission_page_string.shipping}:
+                    </td>
+                    <td width="1%" />
+                    <td className="total">
+                    <div dangerouslySetInnerHTML={{__html: this.state.commission_details.get_total_shipping_refunded > 0 ? this.state.commission_details.refund_shipping_display : this.state.commission_details.else_shipping}}></div>
+                    </td>
+                  </tr>
+                  : '' }
 
 
-      {this.state.commission_details.is_refuned ? 
-      <tr>
-        <td className="label refunded-total">
-          {appLocalizer.commission_page_string.refunded}:
-        </td>
-        <td width="1%" />
-        <td className="total refunded-total">
-        <div dangerouslySetInnerHTML={{__html: this.state.commission_details.refunded_output}}></div>
-        </td>
-      </tr>
-      : '' }
+                  {this.state.commission_details.tax_data ? 
+                    this.state.commission_details.tax_data.map((data, index) => (
+                    <tr>
+                      <td className="label">
+                        <div dangerouslySetInnerHTML={{__html: data.tax_label}}></div>
+                      </td>
+                      <td width="1%" />
+                      <td className="total">
+                      <div dangerouslySetInnerHTML={{__html: data.get_total_tax_refunded_by_rate_id > 0 ? data.greater_zero : data.else_output}}></div>
+                      </td>
+                    </tr>
+                    ))
+                  : '' }
+                  
+                  <tr>
+                    <td className="label">
+                      **{appLocalizer.commission_page_string.total}:
+                    </td>
+                    <td width="1%" />
+                    <td className="total">
+                    <div dangerouslySetInnerHTML={{__html: !this.state.commission_details.is_migration_order && this.state.commission_details.commission_total != this.state.commission_details.commission_total_edit ? this.state.commission_details.commission_total_display : this.state.commission_details.commission_total_edit}}></div>
+                    </td>
+                  </tr>
 
 
-    </tbody>
-  </table>
-  <div className="clear" />
+                  {this.state.commission_details.is_refuned ? 
+                  <tr>
+                    <td className="label refunded-total">
+                      {appLocalizer.commission_page_string.refunded}:
+                    </td>
+                    <td width="1%" />
+                    <td className="total refunded-total">
+                    <div dangerouslySetInnerHTML={{__html: this.state.commission_details.refunded_output}}></div>
+                    </td>
+                  </tr>
+                  : '' }
 
 
-    ***** {appLocalizer.commission_page_string.commission_notes}
-    <div className="mvx_commision_note_clm">
-      <p dangerouslySetInnerHTML={{__html: this.state.commission_details.notes_data.comment_content}}></p>
-      <small dangerouslySetInnerHTML={{__html: this.state.commission_details.notes_data.comment_date}}></small>
-    </div>
+                </tbody>
+              </table>
+              <div className="clear" />
+
+                ***** {appLocalizer.commission_page_string.commission_notes}
+                <div className="mvx_commision_note_clm">
+                  <p dangerouslySetInnerHTML={{__html: this.state.commission_details.notes_data.comment_content}}></p>
+                  <small dangerouslySetInnerHTML={{__html: this.state.commission_details.notes_data.comment_date}}></small>
+                </div>
+
+                <Select placeholder={appLocalizer.commission_page_string.show_commission_status} options={appLocalizer.commission_status_list_action} defaultValue={this.state.get_commission_id_status} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handleupdatecommission(e)} />
+            </div>
+            
+            </div>
 
 
-    <Select placeholder={appLocalizer.commission_page_string.show_commission_status} options={appLocalizer.commission_status_list_action} defaultValue={this.state.get_commission_id_status} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handleupdatecommission(e)} />
-
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
+          <div className="mvx-adv-image-display">
+            <a href="https://www.qries.com/" target="__blank">
+              <img alt="Multivendor X" src={appLocalizer.multivendor_logo}/>
+            </a>
+          </div>
 
         </div>
 
@@ -601,44 +597,55 @@ class App extends Component {
 
       :
 
-      <div>
+        <div className="container">
 
-        <div className="mvx-table-text-and-add-wrap">
-          <div className="mvx-datatable-text">Commission</div>
-          <CSVLink data={this.state.commissiondata} headers={appLocalizer.commission_header} filename={"Commissions.csv"} className="button-secondary">Download CSV</CSVLink>
-        </div>
+          <div className="mvx-sub-container">
+            <div className="mvx-table-text-and-add-wrap">
+              <div className="mvx-datatable-text">Commission</div>
+              <CSVLink data={this.state.commissiondata} headers={appLocalizer.commission_header} filename={"Commissions.csv"} className="button-secondary">Download CSV</CSVLink>
+            </div>
 
-        <div className="mvx-search-and-multistatus-wrap">
-          <div className="mvx-multistatus-check">All (10)| Paid (10)| Unpaid (10)</div>
-          <Select placeholder={appLocalizer.commission_page_string.search_commission} options={this.state.details_commission} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e, 'searchvendor')} />
-        </div>
+            <div className="mvx-search-and-multistatus-wrap">
+              <div className="mvx-multistatus-check">All (10)| Paid (10)| Unpaid (10)</div>
+              <Select placeholder={appLocalizer.commission_page_string.search_commission} options={this.state.details_commission} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e, 'searchvendor')} />
+            </div>
 
 
-        <div className="mvx-wrap-bulk-all-date">
-          <div className="mvx-wrap-bulk-action">
-            <Select placeholder="Bulk Action" options={this.state.show_commission_status} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e, 'searchstatus')} />
-            <button type="button" className="button-secondary">Apply</button>
+            <div className="mvx-wrap-bulk-all-date">
+              <div className="mvx-wrap-bulk-action">
+                <Select placeholder="Bulk Action" options={this.state.show_commission_status} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e, 'searchstatus')} />
+                <button type="button" className="button-secondary">Apply</button>
+              </div>
+
+              <div className="mvx-wrap-bulk-action">
+                <Select placeholder="Bulk Action" options={this.state.show_commission_status} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e, 'searchstatus')} />
+                <Select placeholder={appLocalizer.commission_page_string.show_commission_status} options={this.state.show_commission_status} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e, 'searchstatus')} />
+                <Select placeholder={appLocalizer.commission_page_string.show_all_vendor} options={this.state.show_vendor_name} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e, 'showvendor')} />
+                <Select placeholder={appLocalizer.commission_page_string.bulk_action} options={appLocalizer.commission_bulk_list_option} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlecommissionwork(e)} />
+              </div>
+            </div>
+
+            <div className="mvx-backend-datatable-wrapper">
+              <DataTable
+                columns={this.state.columns_commission}
+                data={this.state.datacommission}
+                selectableRows
+                onSelectedRowsChange={this.handleChange}
+                pagination
+              />
+            </div>
+
           </div>
 
-          <div className="mvx-wrap-bulk-action">
-            <Select placeholder="Bulk Action" options={this.state.show_commission_status} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e, 'searchstatus')} />
-            <Select placeholder={appLocalizer.commission_page_string.show_commission_status} options={this.state.show_commission_status} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e, 'searchstatus')} />
-            <Select placeholder={appLocalizer.commission_page_string.show_all_vendor} options={this.state.show_vendor_name} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e, 'showvendor')} />
-            <Select placeholder={appLocalizer.commission_page_string.bulk_action} options={appLocalizer.commission_bulk_list_option} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlecommissionwork(e)} />
+          <div className="mvx-adv-image-display">
+            <a href="https://www.qries.com/" target="__blank">
+              <img alt="Multivendor X" src={appLocalizer.multivendor_logo}/>
+            </a>
           </div>
+
         </div>
 
-        <div className="mvx-backend-datatable-wrapper">
-          <DataTable
-            columns={this.state.columns_commission}
-            data={this.state.datacommission}
-            selectableRows
-            onSelectedRowsChange={this.handleChange}
-            pagination
-          />
-        </div>
-        
-        </div>
+
       }
       </div>
     );

@@ -447,7 +447,7 @@ class App extends React.Component {
 
       <div className="container">
 
-       
+       <div className="mvx-sub-container">
           
 
           {queryt.get("name") == 'add_new' ?
@@ -521,6 +521,14 @@ class App extends React.Component {
           </div>
         </div>
         }
+
+        </div>
+
+        <div className="mvx-adv-image-display">
+          <a href="https://www.qries.com/" target="__blank">
+            <img alt="Multivendor X" src={appLocalizer.multivendor_logo}/>
+          </a>
+        </div>
 
       </div>
       </div>

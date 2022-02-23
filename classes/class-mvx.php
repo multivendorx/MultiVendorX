@@ -48,6 +48,7 @@ final class MVX {
     public $commission;
     public $shipping_gateway;
     public $ledger;
+    public $vendor_rest_api;
 
     /**
      * Class construct
@@ -209,7 +210,7 @@ final class MVX {
     // Initializing Rest API
     function init_mvx_rest_api() {
         include_once ($this->plugin_path . "/api/class-mvx-rest-controller.php" );
-        new MVX_REST_API();
+        $this->vendor_rest_api = new MVX_REST_API();
     }
     
     // Initializing Packages

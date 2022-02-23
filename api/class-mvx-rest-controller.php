@@ -431,6 +431,58 @@ class MVX_REST_API {
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
 
+        register_rest_route( 'mvx_module/v1', '/create_announcement', [
+            'methods' => WP_REST_Server::EDITABLE,
+            'callback' => array( $this, 'mvx_create_announcement' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
+        register_rest_route( 'mvx_module/v1', '/display_announcement', [
+            'methods' => WP_REST_Server::READABLE,
+            'callback' => array( $this, 'mvx_display_announcement' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
+    }
+
+    public function mvx_create_announcement($request) {
+        $fetch_data = $request->get_param('model');
+
+        $announcement_title = $fetch_data && isset($fetch_data['announcement_title']) ? $fetch_data['announcement_title'] : '';
+        $announcement_url = $fetch_data && isset($fetch_data['announcement_url']) ? $fetch_data['announcement_url'] : '';
+        $announcement_content = $fetch_data && isset($fetch_data['announcement_content']) ? $fetch_data['announcement_content'] : '';
+        $announcement_vendors = $fetch_data && isset($fetch_data['announcement_vendors']) ? $fetch_data['announcement_vendors'] : '';
+        print_r($announcement_vendors);die;
+        $post_id = wp_insert_post( array( 'post_title' => $announcement_title, 'post_type' => 'wcmp_vendor_notice', 'post_status' => 'publish', 'post_content' => $announcement_content ) );
+        update_post_meta( $post_id, '_wcmp_vendor_notices_url', wc_clean($announcement_url) );
+
+        
+
+/*
+        $notify_vendors = isset($_POST['show_announcement_vendors']) ? array_filter($_POST['show_announcement_vendors']) : get_wcmp_vendors( array(), 'ids' );
+        if($notify_vendors) {
+            update_post_meta($post_id, '_wcmp_vendor_notices_vendors', $notify_vendors);
+        } */
+    }
+
+    public function mvx_display_announcement() {
+        $announcement_list = array();
+        $args = array(
+            'post_type' => 'wcmp_vendor_notice',
+            'post_status' => array('publish', 'auto-draft'),
+            'posts_per_page' => -1,
+        );
+        $announcement = get_posts($args);
+
+        foreach ($announcement as $announcementkey => $announcementvalue) {
+            $announcement_list[] = array(
+                'id'            =>  $announcementvalue->ID,
+                'title'         =>  '<a href="' . sprintf('?page=%s&name=%s&AnnouncementID=%s', 'work_board', 'announcement', $announcementvalue->ID) . '">#' . $announcementvalue->post_title . '</a>',
+                'date'          =>  $announcementvalue->post_modified,
+            );
+        }
+        //print_r($announcement_list);die;
+        return rest_ensure_response($announcement_list);
     }
 
     public function mvx_fetch_report_overview_data() {
@@ -1434,7 +1486,8 @@ class MVX_REST_API {
     }
 
     public function mvx_show_vendor_name() {
-        $option_lists[] = array('value' => 'all', 'label' => __('Show All Commission', 'dc-woocommerce-multi-vendor'));
+        //$option_lists[] = array('value' => 'all', 'label' => __('Show All Commission', 'dc-woocommerce-multi-vendor'));
+        $option_lists[] = array();
         $vendors = get_mvx_vendors();
         if ($vendors) {
             foreach($vendors as $vendor_key => $vendor_value) {
@@ -1569,6 +1622,19 @@ class MVX_REST_API {
                     }
                 }
 
+                $action_display = "
+                    <div class='mvx-vendor-action-icon'>
+                        <span class='dashicons dashicons-edit'></span>
+                        <span class='dashicons dashicons-no'></span>
+                    </div>
+                ";
+
+                if (get_post_meta($commission_value, '_paid_status', true) == "paid") {
+                    $status_display = "<p class='commission-status commission-status-paid'>" . __('Paid', 'dc-woocommerce-multi-vendor') . "</p>";
+                } else {
+                    $status_display = "<p class='commission-status commission-status-paid'>" . ucfirst(get_post_meta($commission_value, '_paid_status', true)) . "</p>";
+                }
+
                 $commission_list[] = array(
                     'id'            =>  $commission_value,
                     'title'         =>  '<a href="' . sprintf('?page=%s&CommissionID=%s', 'commission', $commission_value) . '">#' . $commission_details->post_title . '</a>',
@@ -1577,8 +1643,9 @@ class MVX_REST_API {
                     'vendor'        =>  $vendor_list,
                     'amount'        =>  $commission_amount,
                     'net_earning'   =>  $net_earning,
-                    'status'        =>  get_post_meta($commission_value, '_paid_status', true) ? ucfirst(get_post_meta($commission_value, '_paid_status', true)) : '',
+                    'status'        =>  $status_display,
                     'date'          =>  $commission_details->post_modified,
+                    'action'        =>  $action_display
                 );
             }
         }
@@ -2179,6 +2246,7 @@ class MVX_REST_API {
     }
 
     public function mvx_list_all_vendor($specific_id = array()) {
+        global $MVX;
         $user_list = array();
         $user_query = new WP_User_Query(array('role' => 'dc_vendor', 'orderby' => 'registered', 'order' => 'ASC', 'include' => $specific_id));
         $users = $user_query->get_results();
@@ -2207,8 +2275,17 @@ class MVX_REST_API {
                 $status = "<p class='vendor-status pending-vendor'>" . __('Pending', 'dc-woocommerce-multi-vendor') . "</p>";
             }
 
-            $name_display = "<b><a href='". sprintf('?page=%s&ID=%s&name=vendor_personal', 'vendors', $user->data->ID) ."'>" . $user->data->display_name . "</a>|   |<a href='".$vendor->permalink."'>Shop</a></b>";
-            
+            $vendor_profile_image = get_user_meta($user->data->ID, '_vendor_profile_image', true);
+            if(isset($vendor_profile_image)) $image_info = wp_get_attachment_image_src( $vendor_profile_image , array(32, 32) );
+
+            $name_display = "<div class='mvx-vendor-icon-name'><img src='". $MVX->plugin_url.'assets/images/dclogo.png' ."' ></img><b><a href='". sprintf('?page=%s&ID=%s&name=vendor_personal', 'vendors', $user->data->ID) ."'>" . $user->data->display_name . "</a>|   |<a href='".$vendor->permalink."'>Shop</a></b></div>";
+
+            $action_display = "
+            <div class='mvx-vendor-action-icon'>
+                <span class='dashicons dashicons-edit'></span>
+                <span class='dashicons dashicons-no'></span>
+            </div>";
+
             $user_list[] = apply_filters('mvx_list_table_vendors_columns_data', array(
                 'ID' => $user->data->ID,
                 'name' => $name_display,
@@ -2217,7 +2294,8 @@ class MVX_REST_API {
                 'products' => $product_count,
                 'status' => $status,
                 'permalink' => $vendor_permalink,
-                'username' => $user->data->user_login
+                'username' => $user->data->user_login,
+                'action'    => $action_display 
             ), $user);
         }
         return rest_ensure_response($user_list);

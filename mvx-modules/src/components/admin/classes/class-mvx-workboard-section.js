@@ -122,23 +122,30 @@ class App extends Component {
         </div>
 
       <div className="container">
-        <div className="general-tab-header-area">
-        <h1>{queryt.get("name")}</h1>
-        <p>links data are there</p>
-        </div>
-        <div className="general-tab-area">
+              <div className="mvx-sub-container">
+                <div className="general-tab-header-area">
+                  <h1>{queryt.get("name")}</h1>
+                  <p>links data are there</p>
+                </div>
+                <div className="general-tab-area">
 
-          <ul className="mvx-general-tabs-list">
-          {appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'].map((data, index) => (
-              <li className={queryt.get("name") == data.tabname ? 'activegeneraltabs' : ''}><i class="mvx-font ico-store-icon"></i><Link to={`?page=work_board&name=${data.tabname}`} >{data.tablabel}</Link></li>
-          ))}
-          </ul>
+                  <ul className="mvx-general-tabs-list">
+                    {appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'].map((data, index) => (
+                        <li className={queryt.get("name") == data.tabname ? 'activegeneraltabs' : ''}><i class="mvx-font ico-store-icon"></i><Link to={`?page=work_board&name=${data.tabname}`} >{data.tablabel}</Link></li>
+                    ))}
+                  </ul>
+                  <div className="tabcontentclass">
+                    <this.Child name={queryt.get("name")} />
+                  </div>
+                </div>
+              </div>
 
-        <div className="tabcontentclass">
-          <this.Child name={queryt.get("name")} />
+        <div className="mvx-adv-image-display">
+          <a href="https://www.qries.com/" target="__blank">
+            <img alt="Multivendor X" src={appLocalizer.multivendor_logo}/>
+          </a>
         </div>
 
-        </div>
       </div>
 
       </div>
