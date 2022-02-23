@@ -613,22 +613,30 @@ class App extends Component {
           <Select placeholder={appLocalizer.commission_page_string.search_commission} options={this.state.details_commission} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e, 'searchvendor')} />
         </div>
 
-        
-        <Select placeholder={appLocalizer.commission_page_string.show_commission_status} options={this.state.show_commission_status} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e, 'searchstatus')} />
 
-        <Select placeholder={appLocalizer.commission_page_string.show_all_vendor} options={this.state.show_vendor_name} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e, 'showvendor')} />
-
-        <Select placeholder={appLocalizer.commission_page_string.bulk_action} options={appLocalizer.commission_bulk_list_option} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlecommissionwork(e)} />
-          
-          <div className="mvx-backend-datatable-wrapper">
-            <DataTable
-              columns={this.state.columns_commission}
-              data={this.state.datacommission}
-              selectableRows
-              onSelectedRowsChange={this.handleChange}
-              pagination
-            />
+        <div className="mvx-wrap-bulk-all-date">
+          <div className="mvx-wrap-bulk-action">
+            <Select placeholder="Bulk Action" options={this.state.show_commission_status} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e, 'searchstatus')} />
+            <button type="button" className="button-secondary">Apply</button>
           </div>
+
+          <div className="mvx-wrap-bulk-action">
+            <Select placeholder="Bulk Action" options={this.state.show_commission_status} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e, 'searchstatus')} />
+            <Select placeholder={appLocalizer.commission_page_string.show_commission_status} options={this.state.show_commission_status} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e, 'searchstatus')} />
+            <Select placeholder={appLocalizer.commission_page_string.show_all_vendor} options={this.state.show_vendor_name} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e, 'showvendor')} />
+            <Select placeholder={appLocalizer.commission_page_string.bulk_action} options={appLocalizer.commission_bulk_list_option} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlecommissionwork(e)} />
+          </div>
+        </div>
+
+        <div className="mvx-backend-datatable-wrapper">
+          <DataTable
+            columns={this.state.columns_commission}
+            data={this.state.datacommission}
+            selectableRows
+            onSelectedRowsChange={this.handleChange}
+            pagination
+          />
+        </div>
         
         </div>
       }
