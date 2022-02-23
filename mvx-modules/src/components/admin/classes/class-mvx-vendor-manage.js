@@ -447,9 +447,10 @@ class App extends React.Component {
 
       <div className="container">
 
+      <div className="mvx-child-container">
+
        <div className="mvx-sub-container">
           
-
           {queryt.get("name") == 'add_new' ?
            <div className="general-tab-area">
               <div className="tabcontentclass">
@@ -464,7 +465,7 @@ class App extends React.Component {
 
         queryt.get("name") == "add_new" ? '' :
 
-          <div>
+          <div className="mvx-before-table-content">
 
             <div className="mvx-table-text-and-add-wrap">
               <div className="mvx-datatable-text">Vendors</div>
@@ -472,18 +473,24 @@ class App extends React.Component {
             </div>
             
             <div className="mvx-search-and-multistatus-wrap">
-              <div className="mvx-multistatus-check">All (10)| Approve (10)| Pending (10)| Rejected (10)</div>
-              <Select placeholder="Search Vendors" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-nav-child-data" onChange={this.handlevendorsearch} />
+
+              <div className="mvx-multistatus-check">
+                <div className="mvx-multistatus-check-all">All (10)</div>
+                <div className="mvx-multistatus-check-approve">Approve (10)</div>
+                <div className="mvx-multistatus-check-pending">Pending (10)</div>
+                <div className="mvx-multistatus-check-rejected">Rejected (10)</div>
+              </div>
+              <Select placeholder="Search Vendors" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handlevendorsearch} />
             </div>
 
             <div className="mvx-wrap-bulk-all-date">
               <div className="mvx-wrap-bulk-action">
-                <Select placeholder="Bulk actions" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-nav-child-data" onChange={this.handlevendorsearch} />
+                <Select placeholder="Bulk actions" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handlevendorsearch} />
                 <button type="button" className="button-secondary" onClick={(e) => this.handledeletevendor(e)}>Apply</button>
               </div>
 
               <div className="mvx-wrap-date-action">
-                <Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-nav-child-data" onChange={this.handlevendorsearch} />
+                <Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handlevendorsearch} />
                 <button type="button" className="button-secondary" onClick={(e) => this.handledeletevendor(e)}><span class="dashicons dashicons-menu"></span></button>
               </div>
             </div>
@@ -521,13 +528,17 @@ class App extends React.Component {
           </div>
         </div>
         }
-
         </div>
+
 
         <div className="mvx-adv-image-display">
           <a href="https://www.qries.com/" target="__blank">
             <img alt="Multivendor X" src={appLocalizer.multivendor_logo}/>
           </a>
+        </div>
+
+
+
         </div>
 
       </div>

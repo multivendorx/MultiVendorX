@@ -427,6 +427,9 @@ class App extends Component {
 
 
         <div className="container">
+
+          <div className="mvx-child-container">
+
           <div className="mvx-sub-container">
             <div className="general-tab-header-area">
               <h1>{tab_name_display}</h1>
@@ -451,6 +454,8 @@ class App extends Component {
             <a href="https://www.qries.com/" target="__blank">
               <img alt="Multivendor X" src={appLocalizer.multivendor_logo}/>
             </a>
+          </div>
+
           </div>
 
       </div>
@@ -491,11 +496,19 @@ Child({ name }) {
                 {
                  this.state.report_overview_data.admin_overview ? Object.entries(this.state.report_overview_data.admin_overview).map((data, index) => (
 
+                  data[0] && data[0] != "sales_data_chart" ?
+
                     <div className="mvx-performance-wrapper-content">
                       <div>{data[1].label}</div>
                       <div><div dangerouslySetInnerHTML={{__html: data[1].value}}></div></div>
                     </div>
+
+                    : ''
+
                     ))
+
+
+
                  : ''
                 }
                 </div>
@@ -566,7 +579,7 @@ Child({ name }) {
                       </BarChart>
                     </ResponsiveContainer>
                   }
-                  <div className="mvx-pro-image-display"><img src="https://wc-marketplace.com//wp-content//uploads//2021//06//722x415-paypal-300x172.jpg"/></div>
+                  { /*<div className="mvx-pro-image-display"><img src="https://wc-marketplace.com//wp-content//uploads//2021//06//722x415-paypal-300x172.jpg"/></div> */}
                 </div>
 
               </div>
@@ -613,9 +626,9 @@ Child({ name }) {
                   <div className="mvx-report-datepicker"><DateRangePicker onChange={(e) => this.handleupdatereport(e)} /></div>
                 </div>
               
-                <div className="mvx-wrapper-show-specific">
+                <div className="mvx-vendor-wrapper-show-specific">
                   <div className="mvx-date-range">Show:</div>
-                  <Select placeholder={appLocalizer.report_page_string.choose_vendor} options={this.state.details_vendor} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e)} />
+                  <Select placeholder={appLocalizer.report_page_string.choose_vendor} options={this.state.details_vendor} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e)} />
                 </div>
               </div>
 
@@ -629,10 +642,18 @@ Child({ name }) {
                 <div className="mvx-wrapper-performance-content">
                 {
                    this.state.report_overview_data.admin_overview ? Object.entries(this.state.report_overview_data.vendor).map((data, index) => (
+
+                   data[0] && data[0] != "sales_data_chart"  ?
+
+                    data[0] != "vendor_report_datatable" ? 
+
                      <div className="mvx-performance-wrapper-content">
                         <div>{data[1].label}</div>
                         <div><div dangerouslySetInnerHTML={{__html: data[1].value}}></div></div>
                       </div>
+                      : ''
+
+                      : ''
                       ))
                    : ''
                 }
@@ -763,7 +784,7 @@ Child({ name }) {
                   <div className="mvx-report-datepicker"><DateRangePicker onChange={(e) => this.handleupdatereport(e)} /></div>
                 </div>
               
-                <div className="mvx-wrapper-show-specific">
+                <div className="mvx-product-wrapper-show-specific">
                   <div className="mvx-date-range">Show:</div>
                 <Select placeholder={appLocalizer.report_page_string.choose_product} options={this.state.details_product} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handleproductsearch(e)} />
                 </div>
@@ -905,7 +926,7 @@ Child({ name }) {
                     <div className="mvx-report-datepicker"><DateRangePicker onChange={(e) => this.handleupdatereport(e)} /></div>
                   </div>
                 
-                  <div className="mvx-wrapper-show-specific">
+                  <div className="mvx-transaction-wrapper-show-specific">
                     <div className="mvx-date-range">{appLocalizer.report_page_string.vendor_select}</div>
                     <Select placeholder={appLocalizer.report_page_string.choose_vendor} options={this.state.details_vendor} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e)} />
                   </div>

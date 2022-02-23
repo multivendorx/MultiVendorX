@@ -86,7 +86,7 @@ class App extends Component {
         </div>
 
       <div className="container">
-
+      <div className="mvx-child-container">
         <div className="mvx-sub-container">
 
           <div className="general-tab-header-area">
@@ -112,6 +112,8 @@ class App extends Component {
           <a href="https://www.qries.com/" target="__blank">
             <img alt="Multivendor X" src={appLocalizer.multivendor_logo}/>
           </a>
+        </div>
+
         </div>
 
       </div>

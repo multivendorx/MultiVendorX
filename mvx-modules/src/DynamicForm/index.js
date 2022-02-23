@@ -506,7 +506,7 @@ export default class DynamicForm extends React.Component {
 
       if (type == "blocktext") {
         input = (
-          <div>
+          <div className="mvx-blocktext-class">
             {m.blocktext ? <p className="mvx-settings-metabox-description" dangerouslySetInnerHTML={{ __html: m.blocktext }}></p> : ''}
           </div>
        );
@@ -515,25 +515,24 @@ export default class DynamicForm extends React.Component {
     if (type == "table") {
         var inputlabels = m.label_options.map(ol => {
           return (
-            <th>Company</th>
+            <th className="mvx-settings-th-wrap">{ol}</th>
           );
         });  
 
         input =  m.options.map(o => {
           return (
-            <tr>
-              <td>{o.variable}</td>
-              </tr>
+            <tr className="mvx-settings-tr-wrap">
+              <td className="mvx-settings-td-wrap"><p className="mvx-settings-metabox-description" dangerouslySetInnerHTML={{ __html: o.variable }}></p></td>
+              <td className="mvx-settings-td-wrap">{o.description}</td>
+            </tr>
             
           );
         }) ;
         input = <div className="mvx-settings-mvx-form-table">
-          <table>
-            <tr>
+          <table className="mvx-settings-table-wrap">
+            <tr className="mvx-settings-tr-wrap">
               {inputlabels}
             </tr>
-
-            
             {input}
             
           </table>
@@ -1128,7 +1127,7 @@ export default class DynamicForm extends React.Component {
                 <label for={`mvx-toggle-switch-${o.key}`}></label>
               </div>
               <p className="mvx-settings-metabox-description" dangerouslySetInnerHTML={{ __html: o.label }}></p>
-              {o.hints ? <span class="dashicons dashicons-info"><div className="mvx-hover-tooltip">My name is khan</div></span> : ''}
+              {o.hints ? <span class="dashicons dashicons-info"><div className="mvx-hover-tooltip">{o.hints}</div></span> : ''}
 
             </React.Fragment>
               
@@ -1136,6 +1135,7 @@ export default class DynamicForm extends React.Component {
           );
         })
       }
+        {m.desc ? <p className="mvx-settings-metabox-description" dangerouslySetInnerHTML={{ __html: m.desc }}></p> : ''}
         </div>
         )
       }

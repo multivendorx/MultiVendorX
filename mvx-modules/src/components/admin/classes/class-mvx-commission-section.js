@@ -333,6 +333,9 @@ class App extends Component {
       this.state.commission_details ?
       <div className="container">
 
+      <div className="mvx-child-container">
+
+
         <div className="mvx-sub-container">
 
         <div id="order_data" className="woocommerce-order-data">
@@ -591,6 +594,8 @@ class App extends Component {
             </a>
           </div>
 
+          </div>
+
         </div>
 
       : ''
@@ -599,14 +604,20 @@ class App extends Component {
 
         <div className="container">
 
+          <div className="mvx-child-container">
+
           <div className="mvx-sub-container">
-            <div className="mvx-table-text-and-add-wrap">
+            <div className="mvx-commission-table-text-and-add-wrap">
               <div className="mvx-datatable-text">Commission</div>
-              <CSVLink data={this.state.commissiondata} headers={appLocalizer.commission_header} filename={"Commissions.csv"} className="button-secondary">Download CSV</CSVLink>
+              <CSVLink data={this.state.commissiondata} headers={appLocalizer.commission_header} filename={"Commissions.csv"} className="button-commission-secondary">Download CSV</CSVLink>
             </div>
 
             <div className="mvx-search-and-multistatus-wrap">
-              <div className="mvx-multistatus-check">All (10)| Paid (10)| Unpaid (10)</div>
+              <div className="mvx-multistatus-check">
+                <div className="mvx-multistatus-check-all">All (10)</div>
+                <div className="mvx-multistatus-check-paid">Paid (10)</div>
+                <div className="mvx-multistatus-check-paid">Unpaid (10)</div>
+              </div>
               <Select placeholder={appLocalizer.commission_page_string.search_commission} options={this.state.details_commission} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e, 'searchvendor')} />
             </div>
 
@@ -641,6 +652,8 @@ class App extends Component {
             <a href="https://www.qries.com/" target="__blank">
               <img alt="Multivendor X" src={appLocalizer.multivendor_logo}/>
             </a>
+          </div>
+
           </div>
 
         </div>

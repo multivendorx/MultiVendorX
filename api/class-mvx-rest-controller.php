@@ -1630,9 +1630,9 @@ class MVX_REST_API {
                 ";
 
                 if (get_post_meta($commission_value, '_paid_status', true) == "paid") {
-                    $status_display = "<p class='commission-status commission-status-paid'>" . __('Paid', 'dc-woocommerce-multi-vendor') . "</p>";
+                    $status_display = "<p class='commission-status-paid'>" . __('Paid', 'dc-woocommerce-multi-vendor') . "</p>";
                 } else {
-                    $status_display = "<p class='commission-status commission-status-paid'>" . ucfirst(get_post_meta($commission_value, '_paid_status', true)) . "</p>";
+                    $status_display = "<p class='commission-status-unpaid'>" . ucfirst(get_post_meta($commission_value, '_paid_status', true)) . "</p>";
                 }
 
                 $commission_list[] = array(
@@ -2278,7 +2278,7 @@ class MVX_REST_API {
             $vendor_profile_image = get_user_meta($user->data->ID, '_vendor_profile_image', true);
             if(isset($vendor_profile_image)) $image_info = wp_get_attachment_image_src( $vendor_profile_image , array(32, 32) );
 
-            $name_display = "<div class='mvx-vendor-icon-name'><img src='". $MVX->plugin_url.'assets/images/dclogo.png' ."' ></img><b><a href='". sprintf('?page=%s&ID=%s&name=vendor_personal', 'vendors', $user->data->ID) ."'>" . $user->data->display_name . "</a>|   |<a href='".$vendor->permalink."'>Shop</a></b></div>";
+            $name_display = "<div class='mvx-vendor-icon-name'><img src='". $MVX->plugin_url.'assets/images/dclogo.png' ."' width='20' height='20' ></img><b><a href='". sprintf('?page=%s&ID=%s&name=vendor_personal', 'vendors', $user->data->ID) ."'>" . $user->data->display_name . "</a>|   |<a href='".$vendor->permalink."'>Shop</a></b></div>";
 
             $action_display = "
             <div class='mvx-vendor-action-icon'>

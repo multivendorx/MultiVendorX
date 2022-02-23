@@ -539,7 +539,7 @@ class App extends Component {
         </div>
 
       <div className="container">
-
+      <div className="mvx-child-container">
         <div className="mvx-sub-container">
           <div className="general-tab-header-area">
             <h1>{tab_name_display}</h1>
@@ -564,7 +564,7 @@ class App extends Component {
           </a>
         </div>
 
-
+        </div>
       </div>
 
       </div>
