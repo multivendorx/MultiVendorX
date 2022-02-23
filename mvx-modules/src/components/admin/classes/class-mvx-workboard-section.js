@@ -101,8 +101,17 @@ class App extends Component {
   QueryParamsDemo() {
     let queryt = this.useQuery();
     if(!queryt.get("name")) {
-      window.location.href = window.location.href+'&name=paypal_masspay';
+      window.location.href = window.location.href+'&name=activity_reminder';
     }
+    var tab_name_display = '';
+    var tab_description_display = '';
+    appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'].map((data, index) => {
+        if(queryt.get("name") == data.tabname) {
+          tab_name_display = data.tablabel;
+          tab_description_display = data.description;
+        }
+      }
+    )
     return (
       <div>
 
@@ -125,8 +134,8 @@ class App extends Component {
         <div className="mvx-child-container">
               <div className="mvx-sub-container">
                 <div className="general-tab-header-area">
-                  <h1>{queryt.get("name")}</h1>
-                  <p>links data are there</p>
+                  <h1>{tab_name_display}</h1>
+                  <p>{tab_description_display}</p>
                 </div>
                 <div className="general-tab-area">
 

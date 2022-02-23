@@ -875,6 +875,25 @@ img.mvx-section-img-fluid {
 }
 
 /*css add to here*/
+.mvx-child-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  background: #f7f6f9;
+  padding: 1rem;
+}
+
+.mvx-sub-container {
+  width: 75%;
+  padding-right: 1rem;
+}
+
+.mvx-adv-image-display {
+  width: 20%;
+}
+
 .mvx-date-and-show-wrapper, .mvx-wrapper-performance-content,
 .mvx-chart-text-and-bar-line-wrap, .mvx-bar-and-line-wrap,
 .mvx-text-with-line-wrapper, .mvx-chart-graph-visible, .mvx-wrap-chart-header-content {
@@ -968,6 +987,13 @@ img.mvx-section-img-fluid {
     width: 100%;
     border-right: 0.08rem solid #b5bfc9;
   }
+  .mvx-sub-container {
+    width: 100%;
+  }
+  .mvx-adv-image-display {
+    width: 100%;
+    margin: auto;
+  }
 }
 
 .rs-picker-toggle.rs-btn.rs-btn-default {
@@ -988,6 +1014,7 @@ input.rs-picker-toggle-textbox.rs-picker-toggle-read-only {
 
 .rs-picker-daterange .rs-picker-toggle.rs-btn .rs-picker-toggle-caret {
   top: 20px !important;
+  /*to middle the icon*/
 }
 
 @media only screen and (max-width: 1024px) {
@@ -1048,7 +1075,7 @@ input[type=checkbox]:checked::before {
 .mvx-table-text-and-add-wrap,
 .mvx-search-and-multistatus-wrap,
 .mvx-wrap-bulk-all-date,
-.mvx-wrap-bulk-action, .mvx-wrap-date-action {
+.mvx-wrap-bulk-action, .mvx-wrap-date-action, .mvx-multistatus-check {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1058,7 +1085,36 @@ input[type=checkbox]:checked::before {
   padding: 0 1rem 0 0;
 }
 
-.mvx-table-text-and-add-wrap a, .mvx-table-text-and-add-wrap .button-secondary {
+.mvx-commission-table-text-and-add-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.mvx-multistatus-check div {
+  padding: 0 0.5rem;
+  border-right: 0.11rem solid #181718;
+}
+
+.mvx-multistatus-check-paid, .mvx-multistatus-check-approve {
+  color: #3f1473;
+}
+
+.mvx-multistatus-check-unpaid, .mvx-multistatus-check-rejected {
+  color: #db4b54;
+}
+
+.mvx-multistatus-check-pending {
+  color: #B95E89;
+}
+
+.mvx-table-text-and-add-wrap a, .mvx-table-text-and-add-wrap .button-secondary, a.button-commission-secondary {
   color: #f9f8fb;
   background: #3f1473;
   padding: 0.5rem;
@@ -1082,21 +1138,14 @@ input[type=checkbox]:checked::before {
 
 .css-1s2u09g-control {
   background: #ece8f1 !important;
+  /*searchbar style*/
   border: 0 !important;
   margin: 0px 0.51rem 0 0;
 }
 
 .css-14el2xx-placeholder {
   color: #181718 !important;
-  -ms-grid-row: 1;
-  -ms-grid-row-span: 1;
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 2;
-  grid-area: 1/1/2/3;
-  margin-left: 2px;
-  margin-right: 2px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  /* tocolor the searchbar text*/
 }
 
 h6.mvx-datatable-header-text {
@@ -1124,6 +1173,10 @@ h6.mvx-datatable-header-text {
   color: #3F1473;
 }
 
+.mvx-vendor-icon-name img {
+  padding: 0.2rem 0.4rem 0.2rem 0;
+}
+
 .mvx-wrap-bulk-action button.button-secondary, .mvx-wrap-date-action button.button-secondary {
   background: unset;
   color: #3f1473;
@@ -1136,5 +1189,44 @@ h6.mvx-datatable-header-text {
 
 .sc-bdvvtL.hLGqlg.rdt_Table {
   background: #f7f6f9;
+}
+
+p.vendor-status.approved-vendor, p.commission-status-paid {
+  background: #f4f0fa;
+  color: #3F1473;
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.4rem;
+}
+
+p.vendor-status.pending-vendor {
+  background: #fcf0f6;
+  color: #AF3B74;
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.4rem;
+}
+
+p.vendor-status.rejected-vendor, p.commission-status-unpaid {
+  background: #FFF0F1;
+  color: red;
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.4rem;
+}
+
+p.mvx-settings-metabox-description-code {
+  background-color: #fcf9e8;
+  padding: 0.5rem;
+  border: 0.1rem solid #c2c2c2;
+  border-radius: 0.4rem;
+  position: relative;
+}
+
+p.mvx-settings-metabox-description-code::before {
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: .2rem;
+  background-color: #dba617;
+  top: 0;
+  left: 0;
 }
 /*# sourceMappingURL=admin.css.map */

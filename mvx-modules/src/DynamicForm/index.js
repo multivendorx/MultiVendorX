@@ -507,7 +507,7 @@ export default class DynamicForm extends React.Component {
       if (type == "blocktext") {
         input = (
           <div className="mvx-blocktext-class">
-            {m.blocktext ? <p className="mvx-settings-metabox-description" dangerouslySetInnerHTML={{ __html: m.blocktext }}></p> : ''}
+            {m.blocktext ? <p className="mvx-settings-metabox-description-code" dangerouslySetInnerHTML={{ __html: m.blocktext }}></p> : ''}
           </div>
        );
      }

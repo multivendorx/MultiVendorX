@@ -448,13 +448,16 @@ class App extends Component {
 
               </div>
             </div>
-          </div>
 
-          <div className="mvx-adv-image-display">
+
+            <div className="mvx-adv-image-display">
             <a href="https://www.qries.com/" target="__blank">
               <img alt="Multivendor X" src={appLocalizer.multivendor_logo}/>
             </a>
           </div>
+          </div>
+
+          
 
           </div>
 

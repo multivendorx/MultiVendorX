@@ -698,48 +698,50 @@ class MVX_Admin {
                             'description'=> __('At Left', 'dc-woocommerce-multi-vendor'),
                         ),
                         array(
-                            'variable'=> "vendor_registration",
+                            'variable'=> "<code>vendor_registration</code>",
                             'description'=> __('At Right', 'dc-woocommerce-multi-vendor'),
                         ),
                         array(
-                            'variable'=> "vendor_coupons",
+                            'variable'=> "<code>vendor_coupons</code>",
                             'description'=> __('At Right', 'dc-woocommerce-multi-vendor'),
                         ),
                         array(
-                            'variable'=> "mvx_recent_products",
+                            'variable'=> "<code>mvx_recent_products</code>",
                             'description'=> __('At Right', 'dc-woocommerce-multi-vendor'),
                         ),
                         array(
-                            'variable'=> "mvx_products",
+                            'variable'=> "<code>mvx_products</code>",
                             'description'=> __('At Right', 'dc-woocommerce-multi-vendor'),
                         ),
                         array(
-                            'variable'=> "mvx_featured_products",
+                            'variable'=> "<code>mvx_featured_products</code>",
                             'description'=> __('At Right', 'dc-woocommerce-multi-vendor'),
                         ),
                         array(
-                            'variable'=> "mvx_sale_products",
+                            'variable'=> "<code>mvx_sale_products</code>",
                             'description'=> __('At Right', 'dc-woocommerce-multi-vendor'),
                         ),
                         array(
-                            'variable'=> "mvx_top_rated_products",
+                            'variable'=> "<code>mvx_top_rated_products</code>",
                             'description'=> __('At Right', 'dc-woocommerce-multi-vendor'),
                         ),
                         array(
-                            'variable'=> "mvx_best_selling_products",
+                            'variable'=> "<code>mvx_best_selling_products</code>",
                             'description'=> __('At Right', 'dc-woocommerce-multi-vendor'),
                         ),
                         array(
-                            'variable'=> "mvx_product_category",
+                            'variable'=> "<code>mvx_product_category</code>",
                             'description'=> __('At Right', 'dc-woocommerce-multi-vendor'),
                         ),
                         array(
-                            'variable'=> "mvx_vendorslist",
+                            'variable'=> "<code>mvx_vendorslist</code>",
                             'description'=> __('At Right', 'dc-woocommerce-multi-vendor'),
                         ),
                     ),
                     'database_value' => '',
                 ],
+            ],
+            'registration'  =>  [
             ],
             'social'    =>  [
                 [
@@ -1167,6 +1169,29 @@ class MVX_Admin {
                             'label'=> __('Grouped', 'dc-woocommerce-multi-vendor'),
                             'hints'=>   __('Grouped', 'dc-woocommerce-multi-vendor'),
                             'value'=> "grouped"
+                        )
+                    ),
+                    'database_value' => array(),
+                ],
+                [
+                    'key'    => 'type_options',
+                    'label'   => __( 'Type options', 'dc-woocommerce-multi-vendor' ),
+                    'class'     => 'mvx-toggle-checkbox',
+                    'parent_class'  => 'mvx-toggle-checkbox-header',
+                    'type'    => 'checkbox',
+                    'desc' => __('lets vendors transforms products into either non-tangible vitual products or product that can be downloaded', 'dc-woocommerce-multi-vendor'),
+                    'options' => array(
+                        array(
+                            'key'=> "virtual",
+                            'label'=> __('Virtual', 'dc-woocommerce-multi-vendor'),
+                            'hints'=>   __('Virtual', 'dc-woocommerce-multi-vendor'),
+                            'value'=> "virtual"
+                        ),
+                        array(
+                            'key'=> "downloadable",
+                            'label'=> __('Downloadable', 'dc-woocommerce-multi-vendor'),
+                            'hints'=>   __('Downloadable', 'dc-woocommerce-multi-vendor'),
+                            'value'=> "downloadable"
                         )
                     ),
                     'database_value' => array(),
@@ -2405,14 +2430,21 @@ class MVX_Admin {
        
             'review-management'   => [
                 [
+                    'key'       =>  'vendor_rating_page',
+                    'type'      =>  'blocktext',
+                    'label'     =>  __( '', 'dc-woocommerce-multi-vendor' ),
+                    'blocktext'      =>  __( "<b>Admin needs to enable product review from woocommerce settings</b>", 'dc-woocommerce-multi-vendor' ),
+                    'database_value' => '',
+                ],
+                [
                     'key'    => 'is_sellerreview',
-                    'label'   => __( 'Enable Vendor Review', 'dc-woocommerce-multi-vendor' ),
+                    'label'   => __( 'Vendor Review', 'dc-woocommerce-multi-vendor' ),
                     'class'     => 'mvx-toggle-checkbox',
                     'type'    => 'checkbox',
                     'options' => array(
                         array(
                             'key'=> "is_sellerreview",
-                            'label'=> __('Buyers can rate and review vendor.', 'dc-woocommerce-multi-vendor'),
+                            'label'=> __('This option lets buyers rate and review a vendor.', 'dc-woocommerce-multi-vendor'),
                             'value'=> "is_sellerreview"
                         )
                     ),
@@ -2420,13 +2452,13 @@ class MVX_Admin {
                 ],
                 [
                     'key'    => 'is_sellerreview_varified',
-                    'label'   => __( 'Review only store users?', 'dc-woocommerce-multi-vendor' ),
+                    'label'   => __( 'Buyer only reviews', 'dc-woocommerce-multi-vendor' ),
                     'class'     => 'mvx-toggle-checkbox',
                     'type'    => 'checkbox',
                     'options' => array(
                         array(
                             'key'=> "is_sellerreview_varified",
-                            'label'=> __('Only buyers, purchased from the vendor can rate.', 'dc-woocommerce-multi-vendor'),
+                            'label'=> __('Accept only verified buyer reviews, Other cant review vendors', 'dc-woocommerce-multi-vendor'),
                             'value'=> "is_sellerreview_varified"
                         )
                     ),
@@ -2434,13 +2466,13 @@ class MVX_Admin {
                 ],
                 [
                     'key'    => 'product_review_sync',
-                    'label'   => __( 'Product review sync?', 'dc-woocommerce-multi-vendor' ),
+                    'label'   => __( 'Product Rating Sync', 'dc-woocommerce-multi-vendor' ),
                     'class'     => 'mvx-toggle-checkbox',
                     'type'    => 'checkbox',
                     'options' => array(
                         array(
                             'key'=> "product_review_sync",
-                            'label'=> __('Enable this to allow vendor\'s products review consider as store review.', 'dc-woocommerce-multi-vendor'),
+                            'label'=> __('Store Rating will be calcuated based on Store Rating + Product Rating', 'dc-woocommerce-multi-vendor'),
                             'value'=> "product_review_sync"
                         )
                     ),
@@ -2449,8 +2481,8 @@ class MVX_Admin {
                 [
                     'key'       => 'mvx_review_categories',
                     'type'      => 'nested',
-                    'label'     => __( 'Review Categories :', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __( 'Used as site logo on vendor dashboard pages', 'dc-woocommerce-multi-vendor' ),
+                    'label'     => __( 'Rating Parameters', 'dc-woocommerce-multi-vendor' ),
+                    'desc'      => __( 'Specify parameters for which you want to have ratings, e.g. Packaging, Delivery, Behaviour, Policy etc', 'dc-woocommerce-multi-vendor' ),
                     'parent_options' => array(
                         array(
                             'key'=>'category',
@@ -2837,10 +2869,10 @@ class MVX_Admin {
                 ],
                 [
                     'key'       => 'test_client_id',
-                    'type'      => 'label',
+                    'type'      => 'blocktext',
                     'label'     => __( 'Config redirect URI', 'dc-woocommerce-multi-vendor' ),
                     'valuename' => '<code>' . admin_url('admin-ajax.php') . "?action=marketplace_stripe_authorize". '</code>',
-                    'desc' => '<a href="https://dashboard.stripe.com/account/applications/settings" target="_blank">'.__('Copy the URI and configured stripe redirect URI with above.', 'dc-woocommerce-multi-vendor').'</a>',
+                    'blocktext' => '<code>' . admin_url('admin-ajax.php') . "?action=marketplace_stripe_authorize". '</code><a href="https://dashboard.stripe.com/account/applications/settings" target="_blank">'.__('Copy the URI and configured stripe redirect URI with above.', 'dc-woocommerce-multi-vendor').'</a>',
                     'database_value' => '',
                 ],
                 [
@@ -3634,6 +3666,14 @@ class MVX_Admin {
                 'modelname'     =>  'social'
             ),
             array(
+                'tabname'       =>  'registration',
+                'tablabel'      =>  __('Registration Form', 'dc-woocommerce-multi-vendor'),
+                'classname'     =>  'form',
+                'description'   =>  __('Customise Your Own Seller Registration Form for Your Marketplace', 'dc-woocommerce-multi-vendor'),
+                'activeclass'   =>  'settings-active-registration',
+                'modelname'     =>  'registration'
+            ),
+            array(
                 'tabname'       =>  'seller-dashbaord',
                 'tablabel'      =>  __('Seller Dashbaord', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
@@ -3715,13 +3755,16 @@ class MVX_Admin {
                 'modelname'     =>  'refund-management'
             ),
             array(
-                'tabname'       =>  'registration',
-                'tablabel'      =>  __('Registration Form', 'dc-woocommerce-multi-vendor'),
+                'tabname'       =>  'reviewmanagement',
+                'tablabel'      =>  __('Reviews & Rating', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'classname'     =>  'form',
-                'description'   =>  __('Customise Your Own Seller Registration Form for Your Marketplace', 'dc-woocommerce-multi-vendor'),
-                'activeclass'   =>  'settings-active-registration',
+                'description'   =>  __('Manage Settings For Product and Store Review', 'dc-woocommerce-multi-vendor'),
+                'activeclass'   =>  'settings-active-reviewmanagement',
+                'modelname'     =>  'review-management'
             ),
-            array(
+            
+            /*array(
                 'tabname'       =>  'management',
                 'tablabel'      =>  __('Dashbaord Management', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
@@ -3774,7 +3817,7 @@ class MVX_Admin {
                 'description'   =>  __('Default description', 'dc-woocommerce-multi-vendor'),
                 'activeclass'   =>  'settings-active-productcapability',
                 'modelname'     =>  'product-capability'
-            ),
+            ),*/
             /*array(
                 'tabname'       =>  'commissionconfiguration',
                 'tablabel'      =>  __('Commission Configuration', 'dc-woocommerce-multi-vendor'),
@@ -3787,7 +3830,7 @@ class MVX_Admin {
             
             
 
-            array(
+            /*array(
                 'tabname'       =>  'suborderconfigure',
                 'tablabel'      =>  __('Sub Order Configuration', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
@@ -3805,15 +3848,7 @@ class MVX_Admin {
                 'activeclass'   =>  'settings-active-reportsettings',
                 'modelname'     =>  'report-settings'
             ),
-            array(
-                'tabname'       =>  'reviewmanagement',
-                'tablabel'      =>  __('Review Management', 'dc-woocommerce-multi-vendor'),
-                'apiurl'        =>  'mvx_module/v1/save_dashpages',
-                'classname'     =>  'form',
-                'description'   =>  __('Default description', 'dc-woocommerce-multi-vendor'),
-                'activeclass'   =>  'settings-active-reviewmanagement',
-                'modelname'     =>  'review-management'
-            ),
+            
             
             array(
                 'tabname'       =>  'store-location',
@@ -3823,7 +3858,7 @@ class MVX_Admin {
                 'description'   =>  __('Default description', 'dc-woocommerce-multi-vendor'),
                 'activeclass'   =>  'settings-active-store-location',
                 'modelname'     =>  'store-location'
-            ),
+            ),*/
         );
 
 
@@ -3833,7 +3868,7 @@ class MVX_Admin {
                 'tablabel'      =>  __('PayPal Masspay', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'classname'     =>  'form',
-                'description'   =>  __('Default description', 'dc-woocommerce-multi-vendor'),
+                'description'   =>  __('Schedule payment to multiple vendors at the same time', 'dc-woocommerce-multi-vendor'),
                 'activeclass'   =>  'settings-active-masspay',
                 'modelname'     =>  'payment-masspay'
             ),
@@ -3842,7 +3877,7 @@ class MVX_Admin {
                 'tablabel'      =>  __('PayPal Payout', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'classname'     =>  'form',
-                'description'   =>  __('Default description', 'dc-woocommerce-multi-vendor'),
+                'description'   =>  __('Send payments automatically to multiple vendors as per scheduled', 'dc-woocommerce-multi-vendor'),
                 'activeclass'   =>  'settings-active-payout',
                 'modelname'     =>  'payment-payout'
             ),
@@ -3851,7 +3886,7 @@ class MVX_Admin {
                 'tablabel'      =>  __('Stripe Connect', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'classname'     =>  'form',
-                'description'   =>  __('Default description', 'dc-woocommerce-multi-vendor'),
+                'description'   =>  __('Connect to vendors stripe account and make hassle-free transfers as scheduled', 'dc-woocommerce-multi-vendor'),
                 'activeclass'   =>  'settings-active-stripe_connect',
                 'modelname'     =>  'payment-stripe_connect'
             )
@@ -3873,6 +3908,7 @@ class MVX_Admin {
             array(
                 'tabname'       =>  'admin_overview',
                 'tablabel'      =>  __('Overview', 'dc-woocommerce-multi-vendor'),
+                'description'   =>  __('View the Overall Performance of The Site', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'classname'     =>  'form',
                 'modelname'     =>  'admin_overview'
@@ -3880,6 +3916,7 @@ class MVX_Admin {
             array(
                 'tabname'       =>  'vendor',
                 'tablabel'      =>  __('Vendor', 'dc-woocommerce-multi-vendor'),
+                'description'   =>  __('Get Reports on Vendor Sales', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'classname'     =>  'form',
                 'modelname'     =>  'vendor'
@@ -3887,6 +3924,7 @@ class MVX_Admin {
             array(
                 'tabname'       =>  'product',
                 'tablabel'      =>  __('Product', 'dc-woocommerce-multi-vendor'),
+                'description'   =>  __('View Porduct Sales', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'classname'     =>  'form',
                 'modelname'     =>  'product'
@@ -3894,6 +3932,7 @@ class MVX_Admin {
             array(
                 'tabname'       =>  'transaction_history',
                 'tablabel'      =>  __('Transaction History', 'dc-woocommerce-multi-vendor'),
+                'description'   =>  __('Get Detailed Reports On Vendor Commission', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'classname'     =>  'form',
                 'modelname'     =>  'transaction_history'
@@ -3964,6 +4003,7 @@ class MVX_Admin {
             array(
                 'tabname'       =>  'activity_reminder',
                 'tablabel'      =>  __('Activity Reminder', 'dc-woocommerce-multi-vendor'),
+                'description'   =>  __('Keeps track of all important marketplace chores', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/update_vendor',
                 'classname'     =>  'form',
                 'modelname'     =>  'activity_reminder'
@@ -3971,6 +4011,7 @@ class MVX_Admin {
             array(
                 'tabname'       =>  'announcement',
                 'tablabel'      =>  __('Announcement', 'dc-woocommerce-multi-vendor'),
+                'description'   =>  __('Announcements are visible only to vendors through the vendor dashboard(message section). You may use this section to broadcast your announcements.', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/update_vendor',
                 'classname'     =>  'form',
                 'modelname'     =>  'announcement'
@@ -3978,6 +4019,7 @@ class MVX_Admin {
             array(
                 'tabname'       =>  'knowladgebase',
                 'tablabel'      =>  __('Knowladgebase', 'dc-woocommerce-multi-vendor'),
+                'description'   =>  __('"Knowledgebase" section is visible only to vendors through the vendor dashboard. You may use this section to onboard your vendors. Share tutorials, best practices, "how to" guides or whatever you feel is appropriate with your vendors.', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/update_vendor',
                 'classname'     =>  'form',
                 'modelname'     =>  'knowladgebase'

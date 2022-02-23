@@ -509,6 +509,11 @@ class App extends Component {
 
   QueryParamsDemo() {
     let queryt = this.useQuery();
+
+    if(!queryt.get("name")) {
+      window.location.href = window.location.href+'&name=settings-general';
+    }
+
     var tab_name_display = '';
     var tab_description_display = '';
     appLocalizer.mvx_all_backend_tab_list['marketplace-general-settings'].map((data, index) => {
@@ -579,7 +584,7 @@ Child({ name }) {
       <div>
 
       {
-        name = !name ? 'registration' : name,
+        /*name = !name ? 'registration' : name,*/
 
         data.tabname == name ?
           data.tabname == 'registration' ?

@@ -29,28 +29,29 @@ class MVX_Settings {
 
         add_submenu_page( 'mvx', __( 'Commission', 'dc-woocommerce-multi-vendor' ), __( 'Commission', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'commission', array( $this, 'mvx_commission_callback' ) );
 
-        add_submenu_page( 'mvx', __( 'Marketplace Manager', 'dc-woocommerce-multi-vendor' ), __( 'Marketplace Manager', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'marketplace-manager-settings', array( $this, 'mvx_marketplce_manager_settings_callback' ) );
+        add_submenu_page( 'mvx', __( 'Work Board', 'dc-woocommerce-multi-vendor' ), __( 'Work Board', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'work_board', array( $this, 'mvx_workboard' ) );
+       // add_submenu_page( 'mvx', __( 'Marketplace Manager', 'dc-woocommerce-multi-vendor' ), __( 'Marketplace Manager', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'marketplace-manager-settings', array( $this, 'mvx_marketplce_manager_settings_callback' ) );
 
         add_submenu_page( 'mvx', __( 'Settings', 'dc-woocommerce-multi-vendor' ), __( 'Settings', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'general-settings', array( $this, 'mvx_general_settings_callback' ) );
 
-        add_submenu_page( 'mvx', __( 'Payment Configuration', 'dc-woocommerce-multi-vendor' ), __( 'Payment Configuration', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'payment-configuration', array( $this, 'mvx_payment_configureation_callback' ) );
+        add_submenu_page( 'mvx', __( 'Payments', 'dc-woocommerce-multi-vendor' ), __( 'Payments', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'payment-configuration', array( $this, 'mvx_payment_configureation_callback' ) );
 
-        add_submenu_page( 'mvx', __( 'Advanced Marketplce Settings', 'dc-woocommerce-multi-vendor' ), __( 'Advanced Marketplce Settings', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'advance-marketplace-settings', array( $this, 'mvx_advanced_marketplce_settings_callback' ) );
+        add_submenu_page( 'mvx', __( 'Pro Module Settings', 'dc-woocommerce-multi-vendor' ), __( 'Pro Module Settings', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'advance-marketplace-settings', array( $this, 'mvx_advanced_marketplce_settings_callback' ) );
 
-        add_submenu_page( 'mvx', __( 'Marketplace Analytics', 'dc-woocommerce-multi-vendor' ), __( 'Marketplace Analytics', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'marketplace-analytics-settings', array( $this, 'mvx_marketplce_analytics_settings_callback' ) );
+        add_submenu_page( 'mvx', __( 'Analytics', 'dc-woocommerce-multi-vendor' ), __( 'Analytics', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'marketplace-analytics-settings', array( $this, 'mvx_marketplce_analytics_settings_callback' ) );
 
         add_submenu_page( 'mvx', __( 'Vendors', 'dc-woocommerce-multi-vendor' ), __( 'Vendors', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'vendors', array( $this, 'mvx_vendors' ) );
         // transaction details page
         add_submenu_page( null, __( 'Transaction Details', 'dc-woocommerce-multi-vendor' ), __( 'Transaction Details', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'mvx-transaction-details', array( $this, 'mvx_transaction_details' ) );
 
-        add_submenu_page( 'mvx', __( 'Work Board', 'dc-woocommerce-multi-vendor' ), __( 'Work Board', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'work_board', array( $this, 'mvx_workboard' ) );
+        
 
         // Assign priority incrmented by 1
         $mvx_submenu_priority = array(
             'commission' => 2,
             'advance-marketplace-settings' => 6,
             'vendors' => 1,
-            'marketplace-manager-settings' => 3,
+            'work_board' => 3,
             'marketplace-analytics-settings' => 7,
             'payment-configuration' => 5,
             //'mvx-extensions' => 8,
