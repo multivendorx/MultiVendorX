@@ -762,3 +762,318 @@ ul input:checked + label {
         background-color: #485adb;
         color: #faf6f6;
     }
+
+    /*css add to here*/
+    
+.mvx-child-container {
+    // margin: -2rem -1.07rem;
+    display: flex;
+    flex-wrap: wrap;
+    background: #f7f6f9;
+    padding: 1rem;
+}
+.mvx-sub-container {
+    width: 75%;
+    padding-right: 1rem;
+}
+.mvx-adv-image-display {
+    width: 20%;
+}
+    .mvx-date-and-show-wrapper,  .mvx-wrapper-performance-content, 
+    .mvx-chart-text-and-bar-line-wrap, .mvx-bar-and-line-wrap,
+     .mvx-text-with-line-wrapper, .mvx-chart-graph-visible, .mvx-wrap-chart-header-content {
+        display: flex;
+        align-items: center;
+    }
+    .mvx-wrapper-performance-content, .mvx-chart-graph-visible, .mvx-date-and-show-wrapper {
+        flex-wrap: wrap;
+       /* justify-content: center;*/
+    }
+    .mvx-module-vendor-section-nav-child-data.css-b62m3t-container {
+        width: 100%;
+        height: 100%;
+    }
+    .mvx-vendor-wrapper-show-specific, .mvx-product-wrapper-show-specific, .mvx-transaction-wrapper-show-specific {
+        width: 50%;
+        .css-1s2u09g-control {
+            padding: 0.4rem 0;
+            background-color: #fff !important;
+            border: 1px solid #000 !important;
+            font-size: 17px;
+        }
+    }
+    .mvx-chart-text-and-bar-line-wrap, .mvx-wrap-chart-header-content{
+        justify-content: space-between;
+    }
+    .mvx-text-with-line-wrapper,  .wvx-report-text-fade-line {
+        width: 100%;
+    }
+    .recharts-responsive-container, .mvx-wrapper-show-specific {
+        width: 50%; 
+    }
+    .mvx-bar-and-line-wrap div a {
+        display: -webkit-inline-box;
+        display: -ms-inline-flexbox;
+        display: inline-flex;
+        padding: 8px;
+        color: #7c7c83;
+        text-decoration: underline;
+        opacity: .2;
+    }
+    .mvx-bar-and-line-wrap div a:focus,
+        .mvx-bar-and-line-wrap div a:active{
+        opacity: 1;
+        outline: none;
+    }
+    .mvx-report-performance-content, h2.mvx-report-text, .mvx-bar-and-line-wrap, .mvx-wrap-chart-header-content {
+        padding: 1rem 0;
+    }
+
+    .css-1s2u09g-control{
+        border: #000;
+    }
+    .mvx-wrapper-date-picker {
+        padding-right:2rem;
+    }
+    .mvx-date-and-show-wrapper{
+        padding:0 2rem 2rem 0;
+    }
+    .wvx-report-text-fade-line {
+        border-top: 1px solid #a7aaad;
+        margin: 0 1rem;
+    }
+    .mvx-performance-wrapper-content {
+        padding: 1rem;
+        border: solid #b5bfc9;
+        border-width: 0.08rem 0 0.08rem 0.08rem;
+        text-align: center;   
+        background: #fff;
+        &:hover{
+            background: #f0f0f1;
+            transition: .5s all ease-in-out;
+        }
+        &:last-child{
+            border-right:0.08rem solid #b5bfc9 ;
+        }
+    }
+    @media only screen and (max-width: 782px) {
+    .mvx-performance-wrapper-content {
+        width: 100%;
+        border-right:0.08rem solid #b5bfc9 ;
+    }
+    }
+    @media only screen and (min-width: 1800px) {
+        .mvx-adv-image-display {
+       width: 18%;
+        }
+        .mvx-sub-container {
+            width: 82%;
+        }
+    }
+    .rs-picker-toggle.rs-btn.rs-btn-default {
+        display: grid;
+    }
+    .general-tab-area .tabcontentclass {
+           background: #f7f6f9;
+           width: 100%;
+    }
+  
+    input.rs-picker-toggle-textbox.rs-picker-toggle-read-only {
+        background: unset;
+        border: 0;
+        font-weight: 600;
+        color: #040404;
+    }
+    .rs-picker-daterange .rs-picker-toggle.rs-btn .rs-picker-toggle-caret {
+        top: 20px !important; /*to middle the icon*/
+    }
+    @media only screen and (max-width: 1024px) {
+        .mvx-wrapper-show-specific {
+            width: 81%;
+        }
+        .mvx-table-text-and-add-wrap, 
+        .mvx-search-and-multistatus-wrap,
+         .mvx-wrap-bulk-all-date,
+          .mvx-wrap-bulk-action, .mvx-wrap-date-action {  
+            flex-wrap: wrap;
+        padding: 1rem 0;
+        }
+        .css-b62m3t-container {
+            margin: .5rem 0;
+        }
+        .mvx-sub-container {
+            width: 100%;
+        }
+    }
+    input[type=checkbox]:checked::before {
+        content: ' \2714';
+        margin: -0.1875rem 0 0 -0.25rem;
+        height: 1.3125rem;
+        width: 1.3125rem;
+        background: #3f1473;
+        line-height: 1;
+        color: #fff;
+        border-radius: 0.2rem;
+    }
+    .sc-crHmcD.fFBlx.rdt_TableCol_Sortable h1 {
+        font-size: 12px;
+        color: #5e5d60;
+    }
+    .mvx-wrap-chart-header-content {
+        background: #f9fbfb;
+        padding: 0.8rem;
+        border-radius: 0.4rem;
+        border: 0.1rem solid #eee;
+        a.button-csv-primary {
+            color: #181718;
+            font-weight: 600;
+            span{
+                padding-right: .8rem;
+            }
+        }
+    }
+    .mvx-chart-data-text {
+        font-size: 1.4rem;
+        font-weight: 600;
+    }
+    /*vendor-page*/
+    .mvx-table-text-and-add-wrap, 
+    .mvx-search-and-multistatus-wrap,
+     .mvx-wrap-bulk-all-date,
+      .mvx-wrap-bulk-action, .mvx-wrap-date-action, .mvx-multistatus-check {
+        display: flex;
+        align-items: center;
+        padding: 0 1rem 0 0;  
+    }
+    .mvx-commission-table-text-and-add-wrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .mvx-multistatus-check div {
+        padding: 0 0.5rem;
+        border-right: 0.11rem solid #181718;
+    }
+    .mvx-multistatus-check-paid, .mvx-multistatus-check-approve {
+        color: #3f1473;
+    }
+    .mvx-multistatus-check-unpaid, .mvx-multistatus-check-rejected {
+        color: #db4b54;
+    }
+    .mvx-multistatus-check-pending {
+        color: #B95E89;
+    }
+    .mvx-table-text-and-add-wrap a, .mvx-table-text-and-add-wrap .button-secondary, a.button-commission-secondary {
+        color: #f9f8fb;
+        background: #3f1473;
+        padding: 0.5rem;
+        border-radius: 0.3rem;
+        border: 0;
+    }
+    .mvx-datatable-text {
+        color: #181718;
+        font-size: 1.5rem;
+        font-weight: 600;
+        padding-right: 1rem;
+    }
+    .mvx-search-and-multistatus-wrap {
+        justify-content: space-between;
+        padding: 0px 0.51rem 0 0;
+    }
+    .css-1s2u09g-control {
+        background: rgba(236, 232, 241, 1) !important;/*searchbar style*/
+        border: 0 !important;
+        margin: 0px 0.51rem 0 0;
+    }
+    .css-14el2xx-placeholder {
+        color: #181718 !important;/* tocolor the searchbar text*/
+          }
+    h6.mvx-datatable-header-text {
+        font-size: 14px;
+        color: #5E5D60;
+    }
+    .mvx-search-and-multistatus-wrap {
+        padding: 1rem 0;
+    }
+    .mvx-backend-datatable-wrapper {
+        padding: 0.8rem 0;
+    }
+    .mvx-backend-datatable-wrapper div.rdt_TableBody .sc-jrQzAO, 
+        .mvx-backend-datatable-wrapper div.rdt_TableHead .sc-dkPtRN {
+        background: #fdfdfe;
+        border: #ece8f1 solid 1px;
+        border-radius: 0.5rem;
+        margin: 0.2rem 0;
+    }
+    .mvx-backend-datatable-wrapper div.rdt_TableBody .sc-jrQzAO div a{
+            color: #3F1473;
+    }
+    .mvx-vendor-icon-name img {
+        padding: 0.2rem 0.4rem 0.2rem 0;
+    }
+    .mvx-wrap-bulk-action button.button-secondary, .mvx-wrap-date-action button.button-secondary{
+        background: unset;
+        color: #3f1473;
+        border:#3f1473 0.05rem solid;
+    }
+    .dashicons, .dashicons-before:before {
+        vertical-align: middle;
+    }
+    .sc-bdvvtL.hLGqlg.rdt_Table {
+        background: #f7f6f9;
+    }
+    p.vendor-status.approved-vendor, p.commission-status-paid {
+        background: #f4f0fa;
+        color: #3F1473;
+        padding: 0.5rem 0.8rem;
+        border-radius: 0.4rem;
+    }
+    p.vendor-status.pending-vendor {
+        background: rgba(252, 240, 246, 1);
+        color: #AF3B74;
+        padding: 0.5rem 0.8rem;
+        border-radius: 0.4rem;
+    }
+    p.vendor-status.rejected-vendor, p.commission-status-unpaid{
+        background: #FFF0F1;
+        color: red;
+        padding: 0.5rem 0.8rem;
+        border-radius: 0.4rem;
+    }
+    p.mvx-settings-metabox-description-code {
+        background-color: #fcf9e8;
+        padding: 0.5rem;
+        border: 0.1rem solid #c2c2c2;
+        border-left: 0;
+        border-radius: 0.4rem;
+        position: relative;
+        z-index: 999;
+        overflow: hidden;
+        &::before{
+            position: absolute;
+            content: "";
+            height: 100%;
+            width: .2rem;
+            background-color:#dba617 ;
+            top: 0;
+            left: 0;
+        }
+    }
+    .mvx-form-table {
+        overflow-x: auto;
+    }
+    table.mvx-settings-table-wrap {
+        width: 100%;
+        border: 1px solid #dddddd;
+    }
+    tr.mvx-settings-tr-wrap:nth-child(even)  {
+        background-color: #ece8f1;
+    }
+    td.mvx-settings-td-wrap {
+        padding: 0.5rem 1rem;
+    }
+    th.mvx-settings-th-wrap{
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }

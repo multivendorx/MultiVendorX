@@ -332,260 +332,265 @@ class App extends Component {
 
       this.state.commission_details ?
       <div className="container">
+        <div className="mvx-child-container">
+          <div className="mvx-sub-container">
+            <div className="woocommerce-order-data">
+              { /* Commission Details Start */  }
+              <div className="mvx-commission-details-section">
+                <h2 className="woocommerce-order-data-heading">
+                  {this.state.commission_details.commission_type_object ? this.state.commission_details.commission_type_object.labels.singular_name + ' #' + this.state.commission_details.commission_id + ' ' + appLocalizer.commission_page_string.details : ''}
+                </h2>
 
-      <div className="mvx-child-container">
-
-
-        <div className="mvx-sub-container">
-
-        <div id="order_data" className="woocommerce-order-data">
-          <h2 className="woocommerce-order-data__heading">
-            {this.state.commission_details.commission_type_object ? this.state.commission_details.commission_type_object.labels.singular_name + ' #' + this.state.commission_details.commission_id + ' ' + appLocalizer.commission_page_string.details : ''}
-          </h2>
-          <p className="woocommerce-order-data__meta order_number" dangerouslySetInnerHTML={{__html: this.state.commission_details.order_meta_details}} ></p>
-
-          <div className="order_data_column_container">
-            <div className="order_data_column">
-
-              <h3>General</h3>
-              <p className="form-field form-field-wide">
-                <label><strong>{appLocalizer.commission_page_string.associated_order}:</strong></label> 
-                <a href={this.state.commission_details.order_edit_link}>#{this.state.commission_details.commission_order_id}</a>
-              </p>
-
-
-              <p className="form-field form-field-wide">
-                <label><strong>{appLocalizer.commission_page_string.order_status}:</strong></label>
-                {this.state.commission_details.order_status_display}
-              </p>
-
-            </div>
-
-            <div className="order_data_column">
-              <h3>{appLocalizer.commission_page_string.vendor_details}</h3>
-
-              {this.state.commission_details.vendor ? 
-                <div>
-                  <span className="commission-vendor">
-                  <p dangerouslySetInnerHTML={{__html: this.state.commission_details.avater_image}} ></p>
-                    <a href={this.state.commission_details.vendor_edit_link}>{this.state.commission_details.vendor.user_data.data.display_name}</a>
-                  </span>
-
+                <div className="mvx-commission-wrap-vendor-order-status">
+                  <p className="woocommerce-order-data-meta order_number" dangerouslySetInnerHTML={{__html: this.state.commission_details.meta_list_associate_vendor}} ></p>
                   <p className="form-field form-field-wide">
-                    <label><strong>{appLocalizer.commission_page_string.email}:</strong></label>
-                    <a href={`mailto:${this.state.commission_details.vendor.user_data.data.user_email}`}>{this.state.commission_details.vendor.user_data.data.user_email}</a>
+                    <label><strong>{appLocalizer.commission_page_string.associated_order}:</strong></label> 
+                    <a href={this.state.commission_details.order_edit_link}>#{this.state.commission_details.commission_order_id}</a>
                   </p>
-
                   <p className="form-field form-field-wide">
-                    <label><strong>{appLocalizer.commission_page_string.payment_mode}:</strong></label>
-                    {this.state.commission_details.payment_title}
+                    <label><strong>{appLocalizer.commission_page_string.order_status}:</strong></label>
+                    {this.state.commission_details.order_status_display}
                   </p>
                 </div>
-              : '' }
 
-            </div>
+                <div className="mvx-commission-wrap-amount-shipping-tax">
 
-            <div className="order_data_column">
-              <h3>{this.state.commission_details.commission_data}</h3>
+                  <div className="mvx-commission-status-wrap">
+                    <div className="commission-status-text">Commission Status</div>
+                    <Select placeholder={appLocalizer.commission_page_string.show_commission_status} options={appLocalizer.commission_status_list_action} defaultValue={this.state.get_commission_id_status} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handleupdatecommission(e)} />
+                  </div>
 
-
-              <p className="form-field form-field-wide mvx-commission-amount">
-                <label>
-                  <strong>{appLocalizer.commission_page_string.commission_amount}:</strong>
-                </label>
-
-                <span className="commission-amount-view">
-                <p dangerouslySetInnerHTML={{__html: this.state.commission_details.commission_amount != this.state.commission_details.commission_total_calculate ? this.state.commission_details.commission_totals : this.state.commission_details.commission_total_calculate}} ></p>
-                </span>
-              </p>
-
-
-              <p className="form-field form-field-wide">
-                <label><strong>{appLocalizer.commission_page_string.shipping}:</strong></label>
-                  {this.state.commission_details.shipping_amount != this.state.commission_details.commission_shipping_totals ? this.state.commission_details.commission_shipping_totals_output : this.state.commission_details.commission_shipping_totals}
-              </p>
-
-              <p className="form-field form-field-wide">
-                <label><strong>{appLocalizer.commission_page_string.tax}:</strong></label>
-                {this.state.commission_details.tax_amount != this.state.commission_details.commission_tax_total ? this.state.commission_details.commission_tax_total_output : this.state.commission_details.commission_tax_total}
-              </p>
-            </div>
-          </div>
-          <div className="clear" />
-        </div>
-
-
-          <div className="mvx-commission-order-data woocommerce_order_items_wrapper wc-order-items-editable">
-            <table cellpadding="0" cellspacing="0" className="woocommerce_order_items">
-                <thead>
-                    <tr>
-                      <th className="item sortable" colspan="2">Item</th>
-                      <th className="item_cost sortable" data-sort="float">Cost</th>
-                      <th className="quantity sortable" data-sort="int">Qty</th>
-                      <th className="line_cost sortable" data-sort="float">Total</th>
-                    </tr>
-                </thead>
-                
-                <tbody id="order_line_items">
-
-                {this.state.commission_details.line_items ? 
-                  <tr>
-                    <td className="thumb">
-                      <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.item_thunbail}}></div>
-                    </td>
-                    
-                    <td>
-                      <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.product_link_display}}></div>
-                      <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.product_sku}}></div>
-                      <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.check_variation_id ? this.state.commission_details.line_items.variation_id_text : ''}}></div>
-                      
-                      {this.state.commission_details.line_items.check_variation_id ? <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.get_variation_post_type === 'product_variation' ? this.state.commission_details.line_items.item_variation_display : this.state.commission_details.line_items.no_longer_exist}}></div> : '' }
-
-                      <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.close_div}}></div>
-
-
-                      <div className="view">
-                      {
-                        this.state.commission_details.line_items.meta_format_data ? 
-
-                        <table cellspacing="0" className="display_meta">
-                          {
-                          this.state.commission_details.line_items.meta_data.map((data, index) => (
-                            <tr>
-                              <th>{data.display_key}:</th>
-                              <td><div dangerouslySetInnerHTML={{__html: data.display_value}}></div></td>
-                            </tr>
-                          ))
-                          }
-                        </table>
-
-                        : ''
-                      }
-                      </div>
-
-
-                    </td>
-                  </tr>
-                  : '' }
-
-                  <td className="item_cost">
-                      <div className="view">
-                          <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.item_cost}}></div>
-                          <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.line_cost_html}}></div>
-                      </div>
-                  </td>
-
-                  <td className="quantity">
-                      <div className="view">
-                          <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.quantity_1st}}></div>
-                          <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.quantity_2nd}}></div>
-                      </div>
-                  </td>
-
-                  <td class="line_cost">
-                      <div class="view">
-                          <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.line_cost}}></div>
-                          <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.line_cost_1st}}></div>
-                          <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.line_cost_2nd}}></div>
-                      </div>
-                    </td>
-
-                </tbody>
-              </table>
-          </div>
-
-
-
-              <div className="wc-order-data-row wc-order-totals-items wc-order-items-editable">
-                <div className="wc-used-coupons">
-                  <ul className="wc_coupon_list">
-                  { this.state.commission_details.order_total_discount > 0 && this.state.commission_details.commission_include_coupon ? <li><em>*Commission calculated including coupon</em></li> : '' }
-                  { this.state.commission_details.is_shipping > 0 && this.state.commission_details.commission_total_include_shipping ? <li><em>*Commission total calcutated including shipping charges.</em></li> : '' }
-                  { this.state.commission_details.is_tax > 0 && this.state.commission_details.commission_total_include_tax ? <li><em>*Commission total calcutated including tax charges.</em></li> : '' }
-                  </ul>
-                </div>
-
-
-              <table className="wc-order-totals">
-                <tbody>
-                {this.state.commission_details.commission_amount !=0 ?
-                  <tr>
-                    <td className="label">
-                    {this.state.commission_details.order_total_discount > 0 && this.state.commission_details.commission_include_coupon ? '*' : ''}
-                    {appLocalizer.commission_page_string.commission}:
-                    </td>
-                    <td width="1%" />
-                    <td className="total">
-                      <div dangerouslySetInnerHTML={{__html: this.state.commission_details.formated_commission_total}}></div>
-                    </td>
-                  </tr>
-                 : '' }
-
-                 { this.state.commission_details.get_shipping_method ?
-                  <tr>
-                    <td className="label">
-                      {appLocalizer.commission_page_string.shipping}:
-                    </td>
-                    <td width="1%" />
-                    <td className="total">
-                    <div dangerouslySetInnerHTML={{__html: this.state.commission_details.get_total_shipping_refunded > 0 ? this.state.commission_details.refund_shipping_display : this.state.commission_details.else_shipping}}></div>
-                    </td>
-                  </tr>
-                  : '' }
-
-
-                  {this.state.commission_details.tax_data ? 
-                    this.state.commission_details.tax_data.map((data, index) => (
-                    <tr>
-                      <td className="label">
-                        <div dangerouslySetInnerHTML={{__html: data.tax_label}}></div>
-                      </td>
-                      <td width="1%" />
-                      <td className="total">
-                      <div dangerouslySetInnerHTML={{__html: data.get_total_tax_refunded_by_rate_id > 0 ? data.greater_zero : data.else_output}}></div>
-                      </td>
-                    </tr>
-                    ))
-                  : '' }
+                  { /*<p className="woocommerce-order-data-meta order_number" dangerouslySetInnerHTML={{__html: this.state.commission_details.order_meta_details}} ></p> */ }
                   
-                  <tr>
-                    <td className="label">
-                      **{appLocalizer.commission_page_string.total}:
-                    </td>
-                    <td width="1%" />
-                    <td className="total">
-                    <div dangerouslySetInnerHTML={{__html: !this.state.commission_details.is_migration_order && this.state.commission_details.commission_total != this.state.commission_details.commission_total_edit ? this.state.commission_details.commission_total_display : this.state.commission_details.commission_total_edit}}></div>
-                    </td>
-                  </tr>
+                  <p className="form-field form-field-wide mvx-commission-amount">
+                    <label>
+                      <strong>{appLocalizer.commission_page_string.commission_amount}:</strong>
+                    </label>
 
+                    <span className="commission-amount-view">
+                    <p dangerouslySetInnerHTML={{__html: this.state.commission_details.commission_amount != this.state.commission_details.commission_total_calculate ? this.state.commission_details.commission_totals : this.state.commission_details.commission_total_calculate}} ></p>
+                    </span>
+                  </p>
 
-                  {this.state.commission_details.is_refuned ? 
-                  <tr>
-                    <td className="label refunded-total">
-                      {appLocalizer.commission_page_string.refunded}:
-                    </td>
-                    <td width="1%" />
-                    <td className="total refunded-total">
-                    <div dangerouslySetInnerHTML={{__html: this.state.commission_details.refunded_output}}></div>
-                    </td>
-                  </tr>
-                  : '' }
+                  <p className="form-field form-field-wide">
+                    <label><strong>{appLocalizer.commission_page_string.shipping}:</strong></label>
+                      {this.state.commission_details.shipping_amount != this.state.commission_details.commission_shipping_totals ? this.state.commission_details.commission_shipping_totals_output : this.state.commission_details.commission_shipping_totals}
+                  </p>
 
-
-                </tbody>
-              </table>
-              <div className="clear" />
-
-                ***** {appLocalizer.commission_page_string.commission_notes}
-                <div className="mvx_commision_note_clm">
-                  <p dangerouslySetInnerHTML={{__html: this.state.commission_details.notes_data.comment_content}}></p>
-                  <small dangerouslySetInnerHTML={{__html: this.state.commission_details.notes_data.comment_date}}></small>
+                  <p className="form-field form-field-wide">
+                    <label><strong>{appLocalizer.commission_page_string.tax}:</strong></label>
+                    {this.state.commission_details.tax_amount != this.state.commission_details.commission_tax_total ? this.state.commission_details.commission_tax_total_output : this.state.commission_details.commission_tax_total}
+                  </p>
                 </div>
+              </div>
+              {/* Commission Details End */}
 
-                <Select placeholder={appLocalizer.commission_page_string.show_commission_status} options={appLocalizer.commission_status_list_action} defaultValue={this.state.get_commission_id_status} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handleupdatecommission(e)} />
-            </div>
-            
-            </div>
+              {/* Commission vendor and order details start*/}
+              <div className="mvx-order-details-vendor-details-wrap">
+
+                  {/* Commission order details start*/}
+                  <div className="mvx-order-details-wrap">
+                    <div className="mvx-commission-order-details-text">Order Details</div>
+                      <div className="mvx-commission-order-data woocommerce_order_items_wrapper wc-order-items-editable">
+                        <table cellpadding="0" cellspacing="0" className="woocommerce_order_items">
+                            <thead>
+                                <tr>
+                                  <th className="item sortable" colspan="2">Item</th>
+                                  <th className="item_cost sortable" data-sort="float">Cost</th>
+                                  <th className="quantity sortable" data-sort="int">Qty</th>
+                                  <th className="line_cost sortable" data-sort="float">Total</th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody id="order_line_items">
+
+                            {this.state.commission_details.line_items ? 
+                              <tr>
+                                <td className="thumb">
+                                  <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.item_thunbail}}></div>
+                                </td>
+                                
+                                <td>
+                                  <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.product_link_display}}></div>
+                                  <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.product_sku}}></div>
+                                  <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.check_variation_id ? this.state.commission_details.line_items.variation_id_text : ''}}></div>
+                                  
+                                  {this.state.commission_details.line_items.check_variation_id ? <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.get_variation_post_type === 'product_variation' ? this.state.commission_details.line_items.item_variation_display : this.state.commission_details.line_items.no_longer_exist}}></div> : '' }
+
+                                  <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.close_div}}></div>
+
+
+                                  <div className="view">
+                                  {
+                                    this.state.commission_details.line_items.meta_format_data ? 
+
+                                    <table cellspacing="0" className="display_meta">
+                                      {
+                                      this.state.commission_details.line_items.meta_data.map((data, index) => (
+                                        <tr>
+                                          <th>{data.display_key}:</th>
+                                          <td><div dangerouslySetInnerHTML={{__html: data.display_value}}></div></td>
+                                        </tr>
+                                      ))
+                                      }
+                                    </table>
+
+                                    : ''
+                                  }
+                                  </div>
+
+
+                                </td>
+                              </tr>
+                              : '' }
+
+                              <td className="item_cost">
+                                  <div className="view">
+                                      <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.item_cost}}></div>
+                                      <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.line_cost_html}}></div>
+                                  </div>
+                              </td>
+
+                              <td className="quantity">
+                                  <div className="view">
+                                      <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.quantity_1st}}></div>
+                                      <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.quantity_2nd}}></div>
+                                  </div>
+                              </td>
+
+                              <td class="line_cost">
+                                  <div class="view">
+                                      <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.line_cost}}></div>
+                                      <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.line_cost_1st}}></div>
+                                      <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.line_cost_2nd}}></div>
+                                  </div>
+                                </td>
+
+                            </tbody>
+                          </table>
+                      </div>
+
+                      <div className="wc-used-coupons">
+                        <ul className="wc_coupon_list">
+                        { this.state.commission_details.order_total_discount > 0 && this.state.commission_details.commission_include_coupon ? <li><em>*Commission calculated including coupon</em></li> : '' }
+                        { this.state.commission_details.is_shipping > 0 && this.state.commission_details.commission_total_include_shipping ? <li><em>*Commission total calcutated including shipping charges.</em></li> : '' }
+                        { this.state.commission_details.is_tax > 0 && this.state.commission_details.commission_total_include_tax ? <li><em>*Commission total calcutated including tax charges.</em></li> : '' }
+                        </ul>
+                      </div>
+
+
+                    <table className="wc-order-totals">
+                      <tbody>
+                        <tr>
+                          <td className="label">
+                          {this.state.commission_details.order_total_discount > 0 && this.state.commission_details.commission_include_coupon ? '*' : ''}
+                          {appLocalizer.commission_page_string.commission}:
+                          </td>
+                          <td width="1%" />
+                          <td className="total">
+                            <div dangerouslySetInnerHTML={{__html: this.state.commission_details.formated_commission_total}}></div>
+                          </td>
+                        </tr>
+
+                       { this.state.commission_details.get_shipping_method ?
+                        <tr>
+                          <td className="label">
+                            {appLocalizer.commission_page_string.shipping}:
+                          </td>
+                          <td width="1%" />
+                          <td className="total">
+                          <div dangerouslySetInnerHTML={{__html: this.state.commission_details.get_total_shipping_refunded > 0 ? this.state.commission_details.refund_shipping_display : this.state.commission_details.else_shipping}}></div>
+                          </td>
+                        </tr>
+                        : '' }
+
+
+                        {this.state.commission_details.tax_data ? 
+                          this.state.commission_details.tax_data.map((data, index) => (
+                          <tr>
+                            <td className="label">
+                              <div dangerouslySetInnerHTML={{__html: data.tax_label}}></div>
+                            </td>
+                            <td width="1%" />
+                            <td className="total">
+                            <div dangerouslySetInnerHTML={{__html: data.get_total_tax_refunded_by_rate_id > 0 ? data.greater_zero : data.else_output}}></div>
+                            </td>
+                          </tr>
+                          ))
+                        : '' }
+                        
+                        <tr>
+                          <td className="label">
+                            **{appLocalizer.commission_page_string.total}:
+                          </td>
+                          <td width="1%" />
+                          <td className="total">
+                          <div dangerouslySetInnerHTML={{__html: !this.state.commission_details.is_migration_order && this.state.commission_details.commission_total != this.state.commission_details.commission_total_edit ? this.state.commission_details.commission_total_display : this.state.commission_details.commission_total_edit}}></div>
+                          </td>
+                        </tr>
+
+
+                        {this.state.commission_details.is_refuned ? 
+                        <tr>
+                          <td className="label refunded-total">
+                            {appLocalizer.commission_page_string.refunded}:
+                          </td>
+                          <td width="1%" />
+                          <td className="total refunded-total">
+                          <div dangerouslySetInnerHTML={{__html: this.state.commission_details.refunded_output}}></div>
+                          </td>
+                        </tr>
+                        : '' }
+
+                      </tbody>
+                    </table>
+                </div>
+                {/* Commission order details end*/}
+
+
+                {/* Commission vendor and notes details start*/}
+                <div className="mvx-vendor-notes-details-wrap">
+                  {/* Commission vendor details start*/}
+                  <div className="mvx-vendor-details-wrap">
+                    <div className="mvx-commission-vendor-details-class">{appLocalizer.commission_page_string.vendor_details}</div>
+                    {this.state.commission_details.vendor ? 
+                      <div className="mvx-child-vendor-details">
+                        <span className="commission-vendor">
+                        <p dangerouslySetInnerHTML={{__html: this.state.commission_details.avater_image}} ></p>
+                          <a href={this.state.commission_details.vendor_edit_link}>{this.state.commission_details.vendor.user_data.data.display_name}</a>
+                        </span>
+
+                        <p className="form-field form-field-wide">
+                          <label><strong>{appLocalizer.commission_page_string.email}:</strong></label>
+                          <a href={`mailto:${this.state.commission_details.vendor.user_data.data.user_email}`}>{this.state.commission_details.vendor.user_data.data.user_email}</a>
+                        </p>
+
+                        <p className="form-field form-field-wide">
+                          <label><strong>{appLocalizer.commission_page_string.payment_mode}:</strong></label>
+                          {this.state.commission_details.payment_title}
+                        </p>
+                      </div>
+                    : '' }
+                  </div>
+                  {/* Commission vendor details end*/}
+
+                  {/* Commission notes start*/}
+                  <div className="mvx-notes-details-wrap">
+                    <div className="mvx-commission-notes-details-class">{appLocalizer.commission_page_string.commission_notes}</div>
+                      <div className="mvx_commision_note_clm">
+                        <p dangerouslySetInnerHTML={{__html: this.state.commission_details.notes_data.comment_content}}></p>
+                        <small dangerouslySetInnerHTML={{__html: this.state.commission_details.notes_data.comment_date}}></small>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Commission notes end*/}
+                </div>
+                {/* Commission vendor and notes details end*/}
+          
+          </div>
+          {/* Commission vendor and order details end*/}
+
+        </div>
 
 
           <div className="mvx-adv-image-display">

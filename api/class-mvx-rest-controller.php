@@ -1170,7 +1170,7 @@ class MVX_REST_API {
         $commission_amount =  get_post_meta( $commission_id, '_commission_amount', true );
 
 
-        $meta_list = array();
+        $meta_list = $meta_list_associate_vendor = array();
 
         if ( $vendor ) {
             /* translators: %s: associated vendor */
@@ -1179,7 +1179,7 @@ class MVX_REST_API {
                 '<a href="' . sprintf('?page=%s&ID=%s&name=vendor_personal', 'vendors', $vendor->id) . '" target="_blank">'.$vendor->page_title.'</a>'
             );
 
-            $meta_list[] = $vendor_string;
+            $meta_list_associate_vendor[] = $vendor_string;
         }
 
         /* translators: %s: Commission status */
@@ -1195,7 +1195,7 @@ class MVX_REST_API {
             __( 'Commission status: %s', 'dc-woocommerce-multi-vendor' ),
             $status_html
         );
-
+        $meta_list_associate_vendor = wp_kses_post( implode( '. ', $meta_list_associate_vendor ) );
         $order_meta_details = wp_kses_post( implode( '. ', $meta_list ) );
 
 
@@ -1369,6 +1369,7 @@ class MVX_REST_API {
             'commission_tax_total'  =>  MVX_Commission::commission_tax_totals($commission_id, 'edit'),
             'commission_tax_total_output'   =>  '<del>' . wc_price($tax_amount, array('currency' => $order->get_currency())) . '</del> <ins>' . MVX_Commission::commission_tax_totals($commission_id).'</ins>',
             'order_meta_details'    =>  $order_meta_details,
+            'meta_list_associate_vendor'    =>  $meta_list_associate_vendor,
             'order_status_display'  =>  ucfirst($order->get_status()),
             'commission_amount' =>  $commission_amount,
             'line_items'    =>  $line_items_details,

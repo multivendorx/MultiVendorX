@@ -16975,7 +16975,7 @@ textarea.rs-picker-search-input {
     outline: none;
     cursor: pointer;
     color: #575757;
-    border: 1px solid #e5e5ea;
+    border: 1px solid #000;
 }
 .rs-picker-default .rs-picker-toggle-custom-title {
     padding: 0 !important;
@@ -21532,4 +21532,5 @@ textarea.rs-picker-menu .rs-picker-search-bar .rs-picker-search-bar-input {
         width: 36px;
     }
 }
+
 /*# sourceMappingURL=rsuite-default.min.css.map */
