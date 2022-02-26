@@ -321,7 +321,7 @@ class App extends Component {
             </h1>
           </div>
           <div className="mvx-module-nav-right-section">
-            <Select placeholder={appLocalizer.search_module_placeholder} options={this.state.module_ids} className="mvx-module-section-nav-child-data" isLoading={this.state.isLoading} onChange={this.handleselectmodule} />
+            <Select placeholder={appLocalizer.search_module_placeholder} options={this.state.module_ids} className="mvx-module-section-top-nav-select" isLoading={this.state.isLoading} onChange={this.handleselectmodule} />
             <a href={appLocalizer.knowledgebase} title={appLocalizer.knowledgebase_title} target="_blank" className="mvx-module-section-nav-child-data"><i className="dashicons dashicons-admin-users"></i></a>
           </div>
         </div>
@@ -335,6 +335,9 @@ class App extends Component {
         <div className="mvx-child-container">
           <div className="mvx-sub-container">
             <div className="woocommerce-order-data">
+
+              <div className="mvx-datatable-text">Edit Commission</div>
+
               { /* Commission Details Start */  }
               <div className="mvx-commission-details-section">
                 <h2 className="woocommerce-order-data-heading">
@@ -342,44 +345,47 @@ class App extends Component {
                 </h2>
 
                 <div className="mvx-commission-wrap-vendor-order-status">
-                  <p className="woocommerce-order-data-meta order_number" dangerouslySetInnerHTML={{__html: this.state.commission_details.meta_list_associate_vendor}} ></p>
-                  <p className="form-field form-field-wide">
-                    <label><strong>{appLocalizer.commission_page_string.associated_order}:</strong></label> 
-                    <a href={this.state.commission_details.order_edit_link}>#{this.state.commission_details.commission_order_id}</a>
+
+                  <p className="commission-details-data-value" dangerouslySetInnerHTML={{__html: this.state.commission_details.meta_list_associate_vendor}} ></p>
+
+                  <p className="commission-details-data-value">
+                    <div className="mvx-commission-label-class">{appLocalizer.commission_page_string.associated_order}:</div>
+                    <div className="mvx-commission-value-class"><a href={this.state.commission_details.order_edit_link}>#{this.state.commission_details.commission_order_id}</a></div>
                   </p>
-                  <p className="form-field form-field-wide">
-                    <label><strong>{appLocalizer.commission_page_string.order_status}:</strong></label>
-                    {this.state.commission_details.order_status_display}
+
+                  <p className="commission-details-data-value">
+                    <div className="mvx-commission-label-class">{appLocalizer.commission_page_string.order_status}:</div>
+                    <div className="mvx-commission-value-class">{this.state.commission_details.order_status_display}</div>
                   </p>
+
                 </div>
 
                 <div className="mvx-commission-wrap-amount-shipping-tax">
 
                   <div className="mvx-commission-status-wrap">
-                    <div className="commission-status-text">Commission Status</div>
-                    <Select placeholder={appLocalizer.commission_page_string.show_commission_status} options={appLocalizer.commission_status_list_action} defaultValue={this.state.get_commission_id_status} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handleupdatecommission(e)} />
+                    { /*<Select placeholder={appLocalizer.commission_page_string.show_commission_status} options={appLocalizer.commission_status_list_action} defaultValue={this.state.get_commission_id_status} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handleupdatecommission(e)} /> */}
+                    <div className="woocommerce-order-data-meta order_number" dangerouslySetInnerHTML={{__html: this.state.commission_details.order_meta_details}} ></div>
+                    <span class='dashicons dashicons-edit'></span>
+
                   </div>
 
                   { /*<p className="woocommerce-order-data-meta order_number" dangerouslySetInnerHTML={{__html: this.state.commission_details.order_meta_details}} ></p> */ }
                   
                   <p className="form-field form-field-wide mvx-commission-amount">
-                    <label>
-                      <strong>{appLocalizer.commission_page_string.commission_amount}:</strong>
-                    </label>
-
-                    <span className="commission-amount-view">
-                    <p dangerouslySetInnerHTML={{__html: this.state.commission_details.commission_amount != this.state.commission_details.commission_total_calculate ? this.state.commission_details.commission_totals : this.state.commission_details.commission_total_calculate}} ></p>
-                    </span>
+                    <div className="mvx-commission-label-class">{appLocalizer.commission_page_string.commission_amount}:</div>
+                    <div className="mvx-commission-value-class">
+                      <p dangerouslySetInnerHTML={{__html: this.state.commission_details.commission_amount != this.state.commission_details.commission_total_calculate ? this.state.commission_details.commission_totals : this.state.commission_details.commission_total_calculate}} ></p>
+                    </div>
                   </p>
 
-                  <p className="form-field form-field-wide">
-                    <label><strong>{appLocalizer.commission_page_string.shipping}:</strong></label>
-                      {this.state.commission_details.shipping_amount != this.state.commission_details.commission_shipping_totals ? this.state.commission_details.commission_shipping_totals_output : this.state.commission_details.commission_shipping_totals}
+                  <p className="commission-details-data-value">
+                      <div className="mvx-commission-label-class">{appLocalizer.commission_page_string.shipping}:</div>
+                      <div className="mvx-commission-value-class">{this.state.commission_details.shipping_amount != this.state.commission_details.commission_shipping_totals ? this.state.commission_details.commission_shipping_totals_output : this.state.commission_details.commission_shipping_totals}</div>
                   </p>
 
-                  <p className="form-field form-field-wide">
-                    <label><strong>{appLocalizer.commission_page_string.tax}:</strong></label>
-                    {this.state.commission_details.tax_amount != this.state.commission_details.commission_tax_total ? this.state.commission_details.commission_tax_total_output : this.state.commission_details.commission_tax_total}
+                  <p className="commission-details-data-value">
+                    <div className="mvx-commission-label-class">{appLocalizer.commission_page_string.tax}:</div>
+                    <div className="mvx-commission-value-class">{this.state.commission_details.tax_amount != this.state.commission_details.commission_tax_total ? this.state.commission_details.commission_tax_total_output : this.state.commission_details.commission_tax_total}</div>
                   </p>
                 </div>
               </div>
@@ -404,67 +410,70 @@ class App extends Component {
                             
                             <tbody id="order_line_items">
 
-                            {this.state.commission_details.line_items ? 
-                              <tr>
-                                <td className="thumb">
-                                  <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.item_thunbail}}></div>
-                                </td>
-                                
-                                <td>
-                                  <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.product_link_display}}></div>
-                                  <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.product_sku}}></div>
-                                  <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.check_variation_id ? this.state.commission_details.line_items.variation_id_text : ''}}></div>
-                                  
-                                  {this.state.commission_details.line_items.check_variation_id ? <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.get_variation_post_type === 'product_variation' ? this.state.commission_details.line_items.item_variation_display : this.state.commission_details.line_items.no_longer_exist}}></div> : '' }
+                                <tr>
 
-                                  <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.close_div}}></div>
+                                  {this.state.commission_details.line_items ? 
+                                    <td className="thumb">
+                                      <p dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.item_thunbail}}></p>
+                                    </td>
+                                  : '' }
 
+                                  {this.state.commission_details.line_items ? 
+                                  <td>
+                                    <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.product_link_display}}></div>
+                                    <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.product_sku}}></div>
+                                    <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.check_variation_id ? this.state.commission_details.line_items.variation_id_text : ''}}></div>
+                                    
+                                    {this.state.commission_details.line_items.check_variation_id ? <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.get_variation_post_type === 'product_variation' ? this.state.commission_details.line_items.item_variation_display : this.state.commission_details.line_items.no_longer_exist}}></div> : '' }
 
-                                  <div className="view">
-                                  {
-                                    this.state.commission_details.line_items.meta_format_data ? 
-
-                                    <table cellspacing="0" className="display_meta">
-                                      {
-                                      this.state.commission_details.line_items.meta_data.map((data, index) => (
-                                        <tr>
-                                          <th>{data.display_key}:</th>
-                                          <td><div dangerouslySetInnerHTML={{__html: data.display_value}}></div></td>
-                                        </tr>
-                                      ))
-                                      }
-                                    </table>
-
-                                    : ''
-                                  }
-                                  </div>
+                                    <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.close_div}}></div>
 
 
-                                </td>
-                              </tr>
-                              : '' }
+                                    <div className="view">
+                                    {
+                                      this.state.commission_details.line_items.meta_format_data ? 
 
-                              <td className="item_cost">
-                                  <div className="view">
-                                      <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.item_cost}}></div>
-                                      <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.line_cost_html}}></div>
-                                  </div>
-                              </td>
+                                      <table cellspacing="0" className="display_meta">
+                                        {
+                                        this.state.commission_details.line_items.meta_data.map((data, index) => (
+                                          <tr>
+                                            <th>{data.display_key}:</th>
+                                            <td><div dangerouslySetInnerHTML={{__html: data.display_value}}></div></td>
+                                          </tr>
+                                        ))
+                                        }
+                                      </table>
 
-                              <td className="quantity">
-                                  <div className="view">
-                                      <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.quantity_1st}}></div>
-                                      <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.quantity_2nd}}></div>
-                                  </div>
-                              </td>
+                                      : ''
+                                    }
+                                    </div>
+                                  </td>
+                                  : ''}
 
-                              <td class="line_cost">
-                                  <div class="view">
-                                      <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.line_cost}}></div>
-                                      <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.line_cost_1st}}></div>
-                                      <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.line_cost_2nd}}></div>
-                                  </div>
-                                </td>
+
+                                  <td className="item_cost">
+                                      <div className="view">
+                                          <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.item_cost}}></div>
+                                          <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.line_cost_html}}></div>
+                                      </div>
+                                  </td>
+
+                                  <td className="quantity">
+                                      <div className="view">
+                                          <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.quantity_1st}}></div>
+                                          <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.quantity_2nd}}></div>
+                                      </div>
+                                  </td>
+
+                                  <td class="line_cost">
+                                    <div class="view">
+                                        <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.line_cost}}></div>
+                                        <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.line_cost_1st}}></div>
+                                        <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.line_cost_2nd}}></div>
+                                    </div>
+                                  </td>
+
+                                </tr>
 
                             </tbody>
                           </table>
@@ -472,6 +481,10 @@ class App extends Component {
 
                       <div className="wc-used-coupons">
                         <ul className="wc_coupon_list">
+
+
+
+
                         { this.state.commission_details.order_total_discount > 0 && this.state.commission_details.commission_include_coupon ? <li><em>*Commission calculated including coupon</em></li> : '' }
                         { this.state.commission_details.is_shipping > 0 && this.state.commission_details.commission_total_include_shipping ? <li><em>*Commission total calcutated including shipping charges.</em></li> : '' }
                         { this.state.commission_details.is_tax > 0 && this.state.commission_details.commission_total_include_tax ? <li><em>*Commission total calcutated including tax charges.</em></li> : '' }
@@ -479,10 +492,20 @@ class App extends Component {
                       </div>
 
 
-                    <table className="wc-order-totals">
+                    <table className="mvx-order-totals">
                       <tbody>
+
+
+                      <div className="mvx-coupon-shipping-tax">
+                        <ul className="mvx-child-coupon-shipping-tax">
+                          <li><em>*Commission calculated including coupon</em></li>
+                          <li><em>*Commission total calcutated including shipping charges.</em></li>
+                          <li><em>*Commission total calcutated including tax charges.</em></li>
+                       </ul>
+                      </div>
+
                         <tr>
-                          <td className="label">
+                          <td className="mvx-order-label-td">
                           {this.state.commission_details.order_total_discount > 0 && this.state.commission_details.commission_include_coupon ? '*' : ''}
                           {appLocalizer.commission_page_string.commission}:
                           </td>
@@ -494,7 +517,7 @@ class App extends Component {
 
                        { this.state.commission_details.get_shipping_method ?
                         <tr>
-                          <td className="label">
+                          <td className="mvx-order-label-td">
                             {appLocalizer.commission_page_string.shipping}:
                           </td>
                           <td width="1%" />
@@ -508,7 +531,7 @@ class App extends Component {
                         {this.state.commission_details.tax_data ? 
                           this.state.commission_details.tax_data.map((data, index) => (
                           <tr>
-                            <td className="label">
+                            <td className="mvx-order-label-td">
                               <div dangerouslySetInnerHTML={{__html: data.tax_label}}></div>
                             </td>
                             <td width="1%" />
@@ -520,7 +543,7 @@ class App extends Component {
                         : '' }
                         
                         <tr>
-                          <td className="label">
+                          <td className="mvx-order-label-td">
                             **{appLocalizer.commission_page_string.total}:
                           </td>
                           <td width="1%" />
@@ -555,19 +578,20 @@ class App extends Component {
                     <div className="mvx-commission-vendor-details-class">{appLocalizer.commission_page_string.vendor_details}</div>
                     {this.state.commission_details.vendor ? 
                       <div className="mvx-child-vendor-details">
-                        <span className="commission-vendor">
-                        <p dangerouslySetInnerHTML={{__html: this.state.commission_details.avater_image}} ></p>
-                          <a href={this.state.commission_details.vendor_edit_link}>{this.state.commission_details.vendor.user_data.data.display_name}</a>
-                        </span>
 
-                        <p className="form-field form-field-wide">
-                          <label><strong>{appLocalizer.commission_page_string.email}:</strong></label>
-                          <a href={`mailto:${this.state.commission_details.vendor.user_data.data.user_email}`}>{this.state.commission_details.vendor.user_data.data.user_email}</a>
+                        <p className="commission-details-data-value">
+                          <div className="mvx-commission-label-class"><p dangerouslySetInnerHTML={{__html: this.state.commission_details.avater_image}} ></p></div>
+                          <div className="mvx-commission-value-class"><a href={this.state.commission_details.vendor_edit_link}>{this.state.commission_details.vendor.user_data.data.display_name}</a></div>
                         </p>
 
-                        <p className="form-field form-field-wide">
-                          <label><strong>{appLocalizer.commission_page_string.payment_mode}:</strong></label>
-                          {this.state.commission_details.payment_title}
+                        <p className="commission-details-data-value">
+                          <div className="mvx-commission-label-class">{appLocalizer.commission_page_string.email}:</div>
+                          <div className="mvx-commission-value-class"><a href={`mailto:${this.state.commission_details.vendor.user_data.data.user_email}`}>{this.state.commission_details.vendor.user_data.data.user_email}</a></div>
+                        </p>
+
+                        <p className="commission-details-data-value">
+                          <div className="mvx-commission-label-class">{appLocalizer.commission_page_string.payment_mode}:</div>
+                          <div className="mvx-commission-value-class">{this.state.commission_details.payment_title}</div>
                         </p>
                       </div>
                     : '' }
@@ -614,7 +638,7 @@ class App extends Component {
           <div className="mvx-sub-container">
             <div className="mvx-commission-table-text-and-add-wrap">
               <div className="mvx-datatable-text">Commission</div>
-              <CSVLink data={this.state.commissiondata} headers={appLocalizer.commission_header} filename={"Commissions.csv"} className="button-commission-secondary">Download CSV</CSVLink>
+              <CSVLink data={this.state.commissiondata} headers={appLocalizer.commission_header} filename={"Commissions.csv"} className="button-commission-secondary"><span class="dashicons dashicons-download"></span>Download CSV</CSVLink>
             </div>
 
             <div className="mvx-search-and-multistatus-wrap">
@@ -623,7 +647,7 @@ class App extends Component {
                 <div className="mvx-multistatus-check-paid">Paid (10)</div>
                 <div className="mvx-multistatus-check-paid">Unpaid (10)</div>
               </div>
-              <Select placeholder={appLocalizer.commission_page_string.search_commission} options={this.state.details_commission} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e, 'searchvendor')} />
+              <Select placeholder={appLocalizer.commission_page_string.search_commission} options={this.state.details_commission} isClearable={true} className="mvx-module-search-commission-data" onChange={(e) => this.handlevendorsearch(e, 'searchvendor')} />
             </div>
 
 
