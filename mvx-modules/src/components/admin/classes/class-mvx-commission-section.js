@@ -492,81 +492,82 @@ class App extends Component {
                       </div>
 
 
-                    <table className="mvx-order-totals">
-                      <tbody>
+                      <div className="mvx-wrap-table-commission-and-coupon-commission">
+                        <div className="mvx-coupon-shipping-tax">
+                          <ul className="mvx-child-coupon-shipping-tax">
+                            <li><em>*Commission calculated including coupon</em></li>
+                            <li><em>*Commission total calcutated including shipping charges.</em></li>
+                            <li><em>*Commission total calcutated including tax charges.</em></li>
+                         </ul>
+                        </div>
+
+                        <table className="mvx-order-totals">
+                          <tbody>
+                            <tr>
+                              <td className="mvx-order-label-td">
+                              {this.state.commission_details.order_total_discount > 0 && this.state.commission_details.commission_include_coupon ? '*' : ''}
+                              {appLocalizer.commission_page_string.commission}:
+                              </td>
+                              <td width="1%" />
+                              <td className="total">
+                                <div dangerouslySetInnerHTML={{__html: this.state.commission_details.formated_commission_total}}></div>
+                              </td>
+                            </tr>
+
+                           { this.state.commission_details.get_shipping_method ?
+                            <tr>
+                              <td className="mvx-order-label-td">
+                                {appLocalizer.commission_page_string.shipping}:
+                              </td>
+                              <td width="1%" />
+                              <td className="total">
+                              <div dangerouslySetInnerHTML={{__html: this.state.commission_details.get_total_shipping_refunded > 0 ? this.state.commission_details.refund_shipping_display : this.state.commission_details.else_shipping}}></div>
+                              </td>
+                            </tr>
+                            : '' }
 
 
-                      <div className="mvx-coupon-shipping-tax">
-                        <ul className="mvx-child-coupon-shipping-tax">
-                          <li><em>*Commission calculated including coupon</em></li>
-                          <li><em>*Commission total calcutated including shipping charges.</em></li>
-                          <li><em>*Commission total calcutated including tax charges.</em></li>
-                       </ul>
+                            {this.state.commission_details.tax_data ? 
+                              this.state.commission_details.tax_data.map((data, index) => (
+                              <tr>
+                                <td className="mvx-order-label-td">
+                                  <div dangerouslySetInnerHTML={{__html: data.tax_label}}></div>
+                                </td>
+                                <td width="1%" />
+                                <td className="total">
+                                <div dangerouslySetInnerHTML={{__html: data.get_total_tax_refunded_by_rate_id > 0 ? data.greater_zero : data.else_output}}></div>
+                                </td>
+                              </tr>
+                              ))
+                            : '' }
+                            
+                            <tr>
+                              <td className="mvx-order-label-td">
+                                **{appLocalizer.commission_page_string.total}:
+                              </td>
+                              <td width="1%" />
+                              <td className="total">
+                              <div dangerouslySetInnerHTML={{__html: !this.state.commission_details.is_migration_order && this.state.commission_details.commission_total != this.state.commission_details.commission_total_edit ? this.state.commission_details.commission_total_display : this.state.commission_details.commission_total_edit}}></div>
+                              </td>
+                            </tr>
+
+
+                            {this.state.commission_details.is_refuned ? 
+                            <tr>
+                              <td className="label refunded-total">
+                                {appLocalizer.commission_page_string.refunded}:
+                              </td>
+                              <td width="1%" />
+                              <td className="total refunded-total">
+                              <div dangerouslySetInnerHTML={{__html: this.state.commission_details.refunded_output}}></div>
+                              </td>
+                            </tr>
+                            : '' }
+
+                          </tbody>
+                        </table>
                       </div>
 
-                        <tr>
-                          <td className="mvx-order-label-td">
-                          {this.state.commission_details.order_total_discount > 0 && this.state.commission_details.commission_include_coupon ? '*' : ''}
-                          {appLocalizer.commission_page_string.commission}:
-                          </td>
-                          <td width="1%" />
-                          <td className="total">
-                            <div dangerouslySetInnerHTML={{__html: this.state.commission_details.formated_commission_total}}></div>
-                          </td>
-                        </tr>
-
-                       { this.state.commission_details.get_shipping_method ?
-                        <tr>
-                          <td className="mvx-order-label-td">
-                            {appLocalizer.commission_page_string.shipping}:
-                          </td>
-                          <td width="1%" />
-                          <td className="total">
-                          <div dangerouslySetInnerHTML={{__html: this.state.commission_details.get_total_shipping_refunded > 0 ? this.state.commission_details.refund_shipping_display : this.state.commission_details.else_shipping}}></div>
-                          </td>
-                        </tr>
-                        : '' }
-
-
-                        {this.state.commission_details.tax_data ? 
-                          this.state.commission_details.tax_data.map((data, index) => (
-                          <tr>
-                            <td className="mvx-order-label-td">
-                              <div dangerouslySetInnerHTML={{__html: data.tax_label}}></div>
-                            </td>
-                            <td width="1%" />
-                            <td className="total">
-                            <div dangerouslySetInnerHTML={{__html: data.get_total_tax_refunded_by_rate_id > 0 ? data.greater_zero : data.else_output}}></div>
-                            </td>
-                          </tr>
-                          ))
-                        : '' }
-                        
-                        <tr>
-                          <td className="mvx-order-label-td">
-                            **{appLocalizer.commission_page_string.total}:
-                          </td>
-                          <td width="1%" />
-                          <td className="total">
-                          <div dangerouslySetInnerHTML={{__html: !this.state.commission_details.is_migration_order && this.state.commission_details.commission_total != this.state.commission_details.commission_total_edit ? this.state.commission_details.commission_total_display : this.state.commission_details.commission_total_edit}}></div>
-                          </td>
-                        </tr>
-
-
-                        {this.state.commission_details.is_refuned ? 
-                        <tr>
-                          <td className="label refunded-total">
-                            {appLocalizer.commission_page_string.refunded}:
-                          </td>
-                          <td width="1%" />
-                          <td className="total refunded-total">
-                          <div dangerouslySetInnerHTML={{__html: this.state.commission_details.refunded_output}}></div>
-                          </td>
-                        </tr>
-                        : '' }
-
-                      </tbody>
-                    </table>
                 </div>
                 {/* Commission order details end*/}
 
