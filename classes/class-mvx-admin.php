@@ -650,7 +650,7 @@ class MVX_Admin {
                     'class'     => 'mvx-toggle-checkbox',
                     'type'    => 'checkbox',
                     'props'     => array(
-                        'disabled'  => true
+                        //'disabled'  => true
                     ),
                     'options' => array(
                         array(
@@ -3763,102 +3763,6 @@ class MVX_Admin {
                 'activeclass'   =>  'settings-active-reviewmanagement',
                 'modelname'     =>  'review-management'
             ),
-            
-            /*array(
-                'tabname'       =>  'management',
-                'tablabel'      =>  __('Dashbaord Management', 'dc-woocommerce-multi-vendor'),
-                'apiurl'        =>  'mvx_module/v1/save_dashpages',
-                'classname'     =>  'form',
-                'description'   =>  __('Default description', 'dc-woocommerce-multi-vendor'),
-                'activeclass'   =>  'settings-active-management',
-                'modelname'     =>  'dashbaord-management'
-            ),
-            array(
-                'tabname'       =>  'dashpages',
-                'tablabel'      =>  __('Dashbaord pages', 'dc-woocommerce-multi-vendor'),
-                'apiurl'        =>  'mvx_module/v1/save_dashpages',
-                'classname'     =>  'form',
-                'description'   =>  __('Default description', 'dc-woocommerce-multi-vendor'),
-                'activeclass'   =>  'settings-active-dashpages',
-                'modelname'     =>  'dashbaord-pages'
-            ),
-            array(
-                'tabname'       =>  'dashendpoint',
-                'tablabel'      =>  __('Dashbaord endpoint', 'dc-woocommerce-multi-vendor'),
-                'apiurl'        =>  'mvx_module/v1/save_dashpages',
-                'classname'     =>  'form',
-                'description'   =>  __('Default description', 'dc-woocommerce-multi-vendor'),
-                'activeclass'   =>  'settings-active-dashendpoint',
-                'modelname'     =>  'dashbaord-endpoints'
-            ),
-            array(
-                'tabname'       =>  'storemanagement',
-                'tablabel'      =>  __('Store Management', 'dc-woocommerce-multi-vendor'),
-                'apiurl'        =>  'mvx_module/v1/save_dashpages',
-                'classname'     =>  'form',
-                'description'   =>  __('Default description', 'dc-woocommerce-multi-vendor'),
-                'activeclass'   =>  'settings-active-storemanagement',
-                'modelname'     =>  'store-management'
-            ),
-            array(
-                'tabname'       =>  'productsettings',
-                'tablabel'      =>  __('Product Settings', 'dc-woocommerce-multi-vendor'),
-                'apiurl'        =>  'mvx_module/v1/save_dashpages',
-                'classname'     =>  'form',
-                'description'   =>  __('Default description', 'dc-woocommerce-multi-vendor'),
-                'activeclass'   =>  'settings-active-productsettings',
-                'modelname'     =>  'product-settings'
-            ),
-            array(
-                'tabname'       =>  'productcapability',
-                'tablabel'      =>  __('Products Capability', 'dc-woocommerce-multi-vendor'),
-                'apiurl'        =>  'mvx_module/v1/save_dashpages',
-                'classname'     =>  'form',
-                'description'   =>  __('Default description', 'dc-woocommerce-multi-vendor'),
-                'activeclass'   =>  'settings-active-productcapability',
-                'modelname'     =>  'product-capability'
-            ),*/
-            /*array(
-                'tabname'       =>  'commissionconfiguration',
-                'tablabel'      =>  __('Commission Configuration', 'dc-woocommerce-multi-vendor'),
-                'apiurl'        =>  'mvx_module/v1/save_dashpages',
-                'classname'     =>  'form',
-                'description'   =>  __('Default description', 'dc-woocommerce-multi-vendor'),
-                'activeclass'   =>  'settings-active-commissionconfiguration',
-                'modelname'     =>  'commission-configuration'
-            ),*/
-            
-            
-
-            /*array(
-                'tabname'       =>  'suborderconfigure',
-                'tablabel'      =>  __('Sub Order Configuration', 'dc-woocommerce-multi-vendor'),
-                'apiurl'        =>  'mvx_module/v1/save_dashpages',
-                'classname'     =>  'form',
-                'description'   =>  __('Default description', 'dc-woocommerce-multi-vendor'),
-                'activeclass'   =>  'settings-active-suborderconfigure',
-                'modelname'     =>  'suborder-configure'
-            ),
-            array(
-                'tabname'       =>  'reportsettings',
-                'tablabel'      =>  __('Report Settings', 'dc-woocommerce-multi-vendor'),
-                'apiurl'        =>  'mvx_module/v1/save_dashpages',
-                'classname'     =>  'form',
-                'description'   =>  __('Default description', 'dc-woocommerce-multi-vendor'),
-                'activeclass'   =>  'settings-active-reportsettings',
-                'modelname'     =>  'report-settings'
-            ),
-            
-            
-            array(
-                'tabname'       =>  'store-location',
-                'tablabel'      =>  __('Store Location', 'dc-woocommerce-multi-vendor'),
-                'apiurl'        =>  'mvx_module/v1/save_dashpages',
-                'classname'     =>  'form',
-                'description'   =>  __('Default description', 'dc-woocommerce-multi-vendor'),
-                'activeclass'   =>  'settings-active-store-location',
-                'modelname'     =>  'store-location'
-            ),*/
         );
 
 
@@ -4067,7 +3971,7 @@ class MVX_Admin {
             }
         }
         //print_r($screen->id);die;
-        $page_details = array('mvx_page_modules', 'mvx_page_marketplace-analytics-settings', 'mvx_page_general-settings', 'mvx_page_payment-configuration', 'mvx_page_advance-marketplace-settings', 'mvx_page_marketplace-manager-settings', 'mvx_page_vendors', 'mvx_page_commission', 'mvx_page_work_board');
+        $page_details = array('toplevel_page_mvx');
         wp_enqueue_script(
             'mvx-modules-build-frontend',
             $MVX->plugin_url . 'mvx-modules/build/index.js',
@@ -4124,7 +4028,7 @@ class MVX_Admin {
             'order_status'   =>  __('Order status', 'dc-woocommerce-multi-vendor'),
             'commission_status'   =>  __('Commission Status', 'dc-woocommerce-multi-vendor'),
             'vendor_details'   =>  __('Vendor details', 'dc-woocommerce-multi-vendor'),
-            'email'   =>  __('Email', 'dc-woocommerce-multi-vendor'),
+            'email'   =>  __('Email Address', 'dc-woocommerce-multi-vendor'),
             'payment_mode'   =>  __('Payment mode', 'dc-woocommerce-multi-vendor'),
             'commission_data'   =>  __('Commission data', 'dc-woocommerce-multi-vendor'),
             'commission_amount'   =>  __('Commission amount', 'dc-woocommerce-multi-vendor'),

@@ -476,7 +476,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-
+    
   axios({
       url: `${appLocalizer.apiUrl}/mvx_module/v1/get_registration`
     })
@@ -504,14 +504,16 @@ class App extends Component {
   }
 
   useQuery() {
-    return new URLSearchParams(useLocation().search);
+    return new URLSearchParams(useLocation().hash);
   }
 
   QueryParamsDemo() {
     let queryt = this.useQuery();
 
+    
+
     if(!queryt.get("name")) {
-      window.location.href = window.location.href+'&name=settings-general';
+      //window.location.href = window.location.href+'&name=settings-general';
     }
 
     var tab_name_display = '';
@@ -554,7 +556,7 @@ class App extends Component {
           <div className="general-tab-area">
             <ul className="mvx-general-tabs-list">
             {appLocalizer.mvx_all_backend_tab_list['marketplace-general-settings'].map((data, index) => (
-                <li className={queryt.get("name") == data.tabname ? 'activegeneraltabs' : ''} ><i class="mvx-font ico-store-icon"></i><Link to={`?page=general-settings&name=${data.tabname}`} className={queryt.get("name") == data.tabname ? data.activeclass : ''}>{data.tablabel}</Link></li>
+                <li className={queryt.get("name") == data.tabname ? 'activegeneraltabs' : ''} ><i class="mvx-font ico-store-icon"></i><Link to={`?page=mvx#&submenu=settings&name=${data.tabname}`} className={queryt.get("name") == data.tabname ? data.activeclass : ''}>{data.tablabel}</Link></li>
             ))}
             </ul>
             <div className="tabcontentclass">

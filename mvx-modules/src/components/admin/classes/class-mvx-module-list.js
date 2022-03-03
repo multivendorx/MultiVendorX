@@ -21,7 +21,19 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-      
+
+// import vendor page
+import VendorManage from './class-mvx-vendor-manage';
+import WorkBoard from './class-mvx-workboard-section';
+import PaymentSettings from './class-mvx-payemnt-section';
+import VendorManager from './class-mvx-manager-section';
+import CommissionSettings from './class-mvx-commission-section';
+import AnalyticsSettings from './class-mvx-analytics-section';
+import AdvanceSettings from './class-mvx-advance-section';
+import GESettings from './class-mvx-general-settings';
+
+
+
 const override = css`
   display: block;
   margin: 0 auto;
@@ -146,63 +158,124 @@ class App extends Component {
   }
 
   useQuery() {
-    return new URLSearchParams(useLocation().search);
+    return new URLSearchParams(useLocation().hash);
   }
 
   QueryParamsDemo() {
+
+
+    var $ = jQuery;
+    let menuRoot = $('#toplevel_page_' + 'mvx');
+    let currentUrl = window.location.href;
+    let currentPath = currentUrl.substr( currentUrl.indexOf('admin.php') );
+
+    menuRoot.on('click', 'a', function() {
+        var self = $(this);
+
+        $('ul.wp-submenu li', menuRoot).removeClass('current');
+
+        if ( self.hasClass('wp-has-submenu') ) {
+            $('li.wp-first-item', menuRoot).addClass('current');
+        } else {
+            self.parents('li').addClass('current');
+        }
+    });
+
+    $('ul.wp-submenu a', menuRoot).each(function(index, el) {
+        if ( $(el).attr( 'href' ) === currentPath ) {
+            $(el).parent().addClass('current');
+            return;
+        }
+    });
+
+
     const loader_text_display = this.state.isLoaded ? "loading_ongoing" : '';
     let queryt = this.useQuery();
 
-    return (
+    if (new URLSearchParams(useLocation().hash).get("submenu") && new URLSearchParams(useLocation().hash).get("submenu") == 'vendor') {
+       return (
+          <VendorManage />
+        );
+    } else if (new URLSearchParams(useLocation().hash).get("submenu") && new URLSearchParams(useLocation().hash).get("submenu") == 'commission') {
+       return (
+          <CommissionSettings />
+        );
+    } else if (new URLSearchParams(useLocation().hash).get("submenu") && new URLSearchParams(useLocation().hash).get("submenu") == 'manager') {
+       return (
+          <VendorManage />
+        );
+    } else if (new URLSearchParams(useLocation().hash).get("submenu") && new URLSearchParams(useLocation().hash).get("submenu") == 'settings') {
+       return (
+          <GESettings />
+        );
+    } else if (new URLSearchParams(useLocation().hash).get("submenu") && new URLSearchParams(useLocation().hash).get("submenu") == 'payment') {
+       return (
+          <PaymentSettings />
+        );
+    } else if (new URLSearchParams(useLocation().hash).get("submenu") && new URLSearchParams(useLocation().hash).get("submenu") == 'advance') {
+       return (
+          <AdvanceSettings />
+        );
+    } else if (new URLSearchParams(useLocation().hash).get("submenu") && new URLSearchParams(useLocation().hash).get("submenu") == 'analytics') {
+       return (
+          <AnalyticsSettings />
+        );
+    } else if (new URLSearchParams(useLocation().hash).get("submenu") && new URLSearchParams(useLocation().hash).get("submenu") == 'work-board') {
+       return (
+          <WorkBoard />
+        );
+    } else {
+      return (
 
-      <div className="mvx-module-section-before-header">
+        <div className="mvx-module-section-before-header">
+          
+          <div className="mvx-module-section-nav">
+            <div className="mvx-module-nav-left-section">
+              <div className="mvx-module-section-nav-child-data">
+                <img src={appLocalizer.mvx_logo} alt="WC Marketplace" className="mvx-section-img-fluid"/>
+              </div>
+              <h1 className="mvx-module-section-nav-child-data">
+                {appLocalizer.marketplace_text}
+              </h1>
+            </div>
+            <div className="mvx-module-nav-right-section">
+              <Select placeholder={appLocalizer.search_module_placeholder} options={this.state.module_ids} className="mvx-module-section-nav-child-data" isLoading={this.state.isLoading} onChange={this.handleselectmodule} />
+              <a href={appLocalizer.knowledgebase} title={appLocalizer.knowledgebase_title} target="_blank" className="mvx-module-section-nav-child-data"><i className="dashicons dashicons-admin-users"></i></a>
+            </div>
+          </div>
+
+
+          {loader_text_display == 'loading_ongoing' ? <RingLoader css={override} color={"#228B22"} size={500} loading={this.state.loading} /> : ''}
+          <div className="wrap mvx-module-section-wrap dashboard">
+            <div className="dashboard-tab-area">
+            <ul className="mvx-dashboard-tabs-list">
+              {appLocalizer.mvx_all_backend_tab_list['dashboard-page'].map((data, index) => (
+                  <li className={queryt.get("name") == data.tabname ? 'activedashboardtabs' : ''} ><i class="mvx-font ico-store-icon"></i>{data.link ? <a href={data.link}>{data.tablabel}</a> : <Link to={`?page=modules&name=${data.tabname}`}>{data.tablabel}</Link>}</li>
+              ))}
+            </ul>
+            <div className="dashboard-tabcontentclass">
+              <this.Child name={queryt.get("name")} />
+            </div>
+          </div>
         
-        <div className="mvx-module-section-nav">
-          <div className="mvx-module-nav-left-section">
-            <div className="mvx-module-section-nav-child-data">
-              <img src={appLocalizer.mvx_logo} alt="WC Marketplace" className="mvx-section-img-fluid"/>
-            </div>
-            <h1 className="mvx-module-section-nav-child-data">
-              {appLocalizer.marketplace_text}
-            </h1>
-          </div>
-          <div className="mvx-module-nav-right-section">
-            <Select placeholder={appLocalizer.search_module_placeholder} options={this.state.module_ids} className="mvx-module-section-nav-child-data" isLoading={this.state.isLoading} onChange={this.handleselectmodule} />
-            <a href={appLocalizer.knowledgebase} title={appLocalizer.knowledgebase_title} target="_blank" className="mvx-module-section-nav-child-data"><i className="dashicons dashicons-admin-users"></i></a>
-          </div>
-        </div>
+          <Dialog open={this.state.open_model} onClose={this.handleClose} aria-labelledby="form-dialog-title">
+            <DialogTitle id="form-dialog-title"><div className="mvx-module-dialog-title">Upgrade To Pro</div></DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+              <div className="mvx-module-dialog-content">
+                To use this paid module, Please visit <a href="https://wc-marketplace.com/addons/">WC Marketplace</a> Site.
+              </div>
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={this.handleClose} color="primary">Cancel</Button>
+            </DialogActions>
+          </Dialog>
 
-
-        {loader_text_display == 'loading_ongoing' ? <RingLoader css={override} color={"#228B22"} size={500} loading={this.state.loading} /> : ''}
-        <div className="wrap mvx-module-section-wrap dashboard">
-          <div className="dashboard-tab-area">
-          <ul className="mvx-dashboard-tabs-list">
-            {appLocalizer.mvx_all_backend_tab_list['dashboard-page'].map((data, index) => (
-                <li className={queryt.get("name") == data.tabname ? 'activedashboardtabs' : ''} ><i class="mvx-font ico-store-icon"></i>{data.link ? <a href={data.link}>{data.tablabel}</a> : <Link to={`?page=modules&name=${data.tabname}`}>{data.tablabel}</Link>}</li>
-            ))}
-          </ul>
-          <div className="dashboard-tabcontentclass">
-            <this.Child name={queryt.get("name")} />
           </div>
         </div>
-      
-        <Dialog open={this.state.open_model} onClose={this.handleClose} aria-labelledby="form-dialog-title">
-          <DialogTitle id="form-dialog-title"><div className="mvx-module-dialog-title">Upgrade To Pro</div></DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-            <div className="mvx-module-dialog-content">
-              To use this paid module, Please visit <a href="https://wc-marketplace.com/addons/">WC Marketplace</a> Site.
-            </div>
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={this.handleClose} color="primary">Cancel</Button>
-          </DialogActions>
-        </Dialog>
-
-        </div>
-      </div>
-    );
+      );
+    }
 }
 
 Child({ name }) {

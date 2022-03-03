@@ -140,7 +140,7 @@ class App extends Component {
       url: `${appLocalizer.apiUrl}/mvx_module/v1/update_commission_status`,
       data: {
         value: e.value,
-        commission_id: new URLSearchParams(window.location.search).get("CommissionID")
+        commission_id: new URLSearchParams(window.location.hash).get("CommissionID")
       }
     })
     .then( ( responce ) => {
@@ -207,7 +207,7 @@ class App extends Component {
 
     //complete commission details
     var params = {
-      commission_id: new URLSearchParams(window.location.search).get("CommissionID"),
+      commission_id: new URLSearchParams(window.location.hash).get("CommissionID"),
     };
     axios.get(
     `${appLocalizer.apiUrl}/mvx_module/v1/details_specific_commission`, { params }
@@ -326,7 +326,7 @@ class App extends Component {
           </div>
         </div>
 
-      { new URLSearchParams(window.location.search).get("CommissionID") 
+      { new URLSearchParams(window.location.hash).get("CommissionID") 
 
       ?
 
@@ -394,9 +394,14 @@ class App extends Component {
               {/* Commission vendor and order details start*/}
               <div className="mvx-order-details-vendor-details-wrap">
 
-                  {/* Commission order details start*/}
+
+
+                  {/* Commission order and others details start*/}
                   <div className="mvx-order-details-wrap">
-                    <div className="mvx-commission-order-details-text">Order Details</div>
+                    
+
+                      {/* Commission order details start*/}
+                      <div className="mvx-commission-order-details-text">Order Details</div>
                       <div className="mvx-commission-order-data woocommerce_order_items_wrapper wc-order-items-editable">
                         <table cellpadding="0" cellspacing="0" className="woocommerce_order_items">
                             <thead>
@@ -478,13 +483,79 @@ class App extends Component {
                             </tbody>
                           </table>
                       </div>
+                    {/* Commission order details end*/}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    {/* Commission order details start*/}
+                      <div className="mvx-commission-order-details-text">Shipping</div>
+                      <div className="mvx-commission-order-data woocommerce_order_items_wrapper wc-order-items-editable">
+                        <table cellpadding="0" cellspacing="0" className="woocommerce_order_items">
+                            
+                            <tbody id="order_line_items">
+                                <tr>
+                                  <td className="thumb"></td>
+                                  {this.state.commission_details.shipping_items_details ? 
+                                  <td>
+                                    <p dangerouslySetInnerHTML={{__html: this.state.commission_details.shipping_items_details.shipping_text}}></p>
+                                    <div className="view">
+                                    {
+                                      this.state.commission_details.shipping_items_details.meta_data ? 
+
+                                      <table cellspacing="0" className="display_meta">
+                                        {
+                                        this.state.commission_details.shipping_items_details.meta_data.map((data, index) => (
+                                          <tr>
+                                            <th>{data.display_key}:</th>
+                                            <td><div dangerouslySetInnerHTML={{__html: data.display_value}}></div></td>
+                                          </tr>
+                                        ))
+                                        }
+                                      </table>
+
+                                      : ''
+                                    }
+                                    </div>
+                                  </td>
+                                  : ''}
+
+                                  <td className="item_cost" width="1%">&nbsp;</td>
+
+                                  <td className="quantity" width="1%">&nbsp;</td>
+
+                                  <td className="line_cost" width="1%">
+                                    <div className="view">
+                                        <p dangerouslySetInnerHTML={{__html: this.state.commission_details.shipping_items_details.shipping_price}}></p>
+                                        <p dangerouslySetInnerHTML={{__html: this.state.commission_details.shipping_items_details.refunded_shipping}}></p>
+                                    </div>
+                                  </td>
+
+                                </tr>
+
+                            </tbody>
+                          </table>
+                      </div>
+                    {/* Commission order details end*/}
+
+
+
+
+
+
 
                       <div className="wc-used-coupons">
                         <ul className="wc_coupon_list">
-
-
-
-
                         { this.state.commission_details.order_total_discount > 0 && this.state.commission_details.commission_include_coupon ? <li><em>*Commission calculated including coupon</em></li> : '' }
                         { this.state.commission_details.is_shipping > 0 && this.state.commission_details.commission_total_include_shipping ? <li><em>*Commission total calcutated including shipping charges.</em></li> : '' }
                         { this.state.commission_details.is_tax > 0 && this.state.commission_details.commission_total_include_tax ? <li><em>*Commission total calcutated including tax charges.</em></li> : '' }
@@ -527,8 +598,8 @@ class App extends Component {
                             : '' }
 
 
-                            {this.state.commission_details.tax_data ? 
-                              this.state.commission_details.tax_data.map((data, index) => (
+                            {this.state.commission_details.tax_data && Object.keys(this.state.commission_details.tax_data).length > 0 ? 
+                              Object.keys(this.state.commission_details.tax_data).map((data, index) => (
                               <tr>
                                 <td className="mvx-order-label-td">
                                   <div dangerouslySetInnerHTML={{__html: data.tax_label}}></div>
@@ -569,7 +640,7 @@ class App extends Component {
                       </div>
 
                 </div>
-                {/* Commission order details end*/}
+                {/* Commission order and others details end*/}
 
 
                 {/* Commission vendor and notes details start*/}

@@ -61,7 +61,7 @@ class App extends Component {
   componentDidMount() {}
 
   useQuery() {
-    return new URLSearchParams(useLocation().search);
+    return new URLSearchParams(useLocation().hash);
   }
 
   QueryParamsDemo() {
@@ -94,7 +94,7 @@ class App extends Component {
                 <div className="general-tab-area">
                   <ul className="mvx-general-tabs-list">
                   {appLocalizer.mvx_all_backend_tab_list['marketplace-advance-settings'].map((data, index) => (
-                      <li className={queryt.get("name") == data.tabname ? 'activegeneraltabs' : ''}><i class="mvx-font ico-store-icon"></i><Link to={`?page=advance-marketplace-settings&name=${data.tabname}`} >{data.tablabel}</Link></li>
+                      <li className={queryt.get("name") == data.tabname ? 'activegeneraltabs' : ''}><i class="mvx-font ico-store-icon"></i><Link to={`?page=mvx#&submenu=advance&name=${data.tabname}`} >{data.tablabel}</Link></li>
                   ))}
                   </ul>
                   <div className="tabcontentclass">

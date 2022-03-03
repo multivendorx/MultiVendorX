@@ -95,13 +95,13 @@ class App extends Component {
   }
 
   useQuery() {
-    return new URLSearchParams(useLocation().search);
+    return new URLSearchParams(useLocation().hash);
   }
 
   QueryParamsDemo() {
     let queryt = this.useQuery();
     if(!queryt.get("name")) {
-      window.location.href = window.location.href+'&name=activity_reminder';
+      //window.location.href = window.location.href+'&name=activity_reminder';
     }
     var tab_name_display = '';
     var tab_description_display = '';
@@ -141,7 +141,7 @@ class App extends Component {
 
                   <ul className="mvx-general-tabs-list">
                     {appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'].map((data, index) => (
-                        <li className={queryt.get("name") == data.tabname ? 'activegeneraltabs' : ''}><i class="mvx-font ico-store-icon"></i><Link to={`?page=work_board&name=${data.tabname}`} >{data.tablabel}</Link></li>
+                        <li className={queryt.get("name") == data.tabname ? 'activegeneraltabs' : ''}><i class="mvx-font ico-store-icon"></i><Link to={`?page=mvx#&submenu=work-board&name=${data.tabname}`} >{data.tablabel}</Link></li>
                     ))}
                   </ul>
                   <div className="tabcontentclass">

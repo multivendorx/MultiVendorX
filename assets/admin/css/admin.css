@@ -392,10 +392,6 @@ ul.mvx-dashboard-tabs-list li.activedashboardtabs a {
   border-radius: 0 0 0.09rem 0.09rem;
 }
 
-.container {
-  margin: 2rem 0;
-}
-
 .general-tab-header-area {
   border: 0.06rem solid #b5bfc9;
   border-bottom: none;
@@ -876,13 +872,14 @@ img.mvx-section-img-fluid {
 
 /*css add to here*/
 .mvx-child-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  margin-left: -1.4rem;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   background: #f7f6f9;
   padding: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .mvx-sub-container {
@@ -908,7 +905,6 @@ img.mvx-section-img-fluid {
 .mvx-wrapper-performance-content, .mvx-chart-graph-visible, .mvx-date-and-show-wrapper {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  /* justify-content: center;*/
 }
 
 .mvx-module-vendor-section-nav-child-data.css-b62m3t-container {
@@ -1019,7 +1015,6 @@ img.mvx-section-img-fluid {
 
 .general-tab-area .tabcontentclass {
   background: #f7f6f9;
-  width: 100%;
 }
 
 input.rs-picker-toggle-textbox.rs-picker-toggle-read-only {
@@ -1039,7 +1034,6 @@ input.rs-picker-toggle-textbox.rs-picker-toggle-read-only {
     width: 81%;
   }
   .mvx-table-text-and-add-wrap,
-  .mvx-search-and-multistatus-wrap,
   .mvx-wrap-bulk-all-date,
   .mvx-wrap-bulk-action, .mvx-wrap-date-action {
     -ms-flex-wrap: wrap;
@@ -1093,7 +1087,6 @@ input[type=checkbox]:checked::before {
 
 /*vendor-page*/
 .mvx-table-text-and-add-wrap,
-.mvx-search-and-multistatus-wrap,
 .mvx-wrap-bulk-all-date,
 .mvx-wrap-bulk-action, .mvx-wrap-date-action, .mvx-multistatus-check {
   display: -webkit-box;
@@ -1109,6 +1102,8 @@ input[type=checkbox]:checked::before {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -1118,27 +1113,34 @@ input[type=checkbox]:checked::before {
 }
 
 .mvx-multistatus-check div {
-  padding: 0 0.5rem;
+  padding-right: 0.5rem;
   border-right: 0.11rem solid #181718;
+}
+
+.mvx-multistatus-check div:last-child {
+  border: none;
 }
 
 .mvx-multistatus-check-paid, .mvx-multistatus-check-approve {
   color: #3f1473;
+  padding-left: 0.5rem;
 }
 
 .mvx-multistatus-check-unpaid, .mvx-multistatus-check-rejected {
   color: #db4b54;
+  padding-left: 0.5rem;
 }
 
 .mvx-multistatus-check-pending {
   color: #B95E89;
+  padding-left: 0.5rem;
 }
 
 .mvx-table-text-and-add-wrap a, .mvx-table-text-and-add-wrap .button-secondary, a.button-commission-secondary {
   color: #f9f8fb;
   background: #3f1473;
-  padding: 0.5rem;
-  border-radius: 0.3rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.2rem;
   border: 0;
 }
 
@@ -1153,7 +1155,12 @@ input[type=checkbox]:checked::before {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 0px 0.51rem 0 0;
+  padding: 0.51rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .css-1s2u09g-control {
@@ -1173,10 +1180,6 @@ h6.mvx-datatable-header-text {
   color: #5E5D60;
 }
 
-.mvx-search-and-multistatus-wrap {
-  padding: 1rem 0;
-}
-
 .mvx-backend-datatable-wrapper {
   padding: 0.8rem 0;
 }
@@ -1186,10 +1189,15 @@ h6.mvx-datatable-header-text {
   background: #fdfdfe;
   border: #ece8f1 solid 1px;
   border-radius: 0.5rem;
-  margin: 0.2rem 0;
+  margin: .1rem 0;
 }
 
-.mvx-backend-datatable-wrapper div.rdt_TableBody .sc-jrQzAO div a {
+.mvx-backend-datatable-wrapper div.rdt_TableHead .sc-dkPtRN {
+  margin: .2rem 0;
+}
+
+.mvx-backend-datatable-wrapper div.rdt_TableBody .sc-jrQzAO div a, p.woocommerce-order-data-meta.order_number a,
+p.form-field.form-field-wide a, span.commission-vendor a, .mvx_commision_note_clm a {
   color: #3F1473;
 }
 
@@ -1201,6 +1209,7 @@ h6.mvx-datatable-header-text {
   background: unset;
   color: #3f1473;
   border: #3f1473 0.05rem solid;
+  padding: 0.32rem .8rem;
 }
 
 .dashicons, .dashicons-before:before {
@@ -1274,5 +1283,108 @@ th.mvx-settings-th-wrap {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
+}
+
+select.sc-cxpSdN.fWWeYy {
+  background: unset;
+  border: 0.08rem solid #3f1473;
+}
+
+/*commission page*/
+.mvx-commission-details-section,
+.mvx-commission-order-details-text,
+.mvx-commission-vendor-details-class, .mvx-child-vendor-details {
+  background: #fdfdfe;
+  padding: 1rem;
+  border-radius: 0.3rem;
+  border: 0.1rem solid #ece8f1;
+  margin-bottom: 0.3rem;
+}
+
+.mvx-vendor-notes-details-wrap, .mvx-order-details-wrap {
+  width: 49%;
+}
+
+.mvx-commission-order-data.woocommerce_order_items_wrapper.wc-order-items-editable,
+table.wc-order-totals, .mvx-commission-notes-details-class, .mvx_commision_note_clm {
+  background-color: #fdfdfe;
+  border-radius: 0.3rem;
+  border: 0.1rem solid #ece8f1;
+  margin-bottom: 0.2rem;
+}
+
+.mvx-commission-notes-details-class, .mvx_commision_note_clm, table.wc-order-totals {
+  padding: 1rem;
+}
+
+.mvx-commission-order-details-text, .mvx-commission-vendor-details-class, .mvx-commission-notes-details-class {
+  color: #181718;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 2rem;
+}
+
+.mvx-commission-order-data.woocommerce_order_items_wrapper.wc-order-items-editable thead th {
+  background: #f4f1f7;
+  text-align: left;
+  padding: 0.5rem 1rem;
+}
+
+h2.woocommerce-order-data-heading, .mvx-commission-details-section {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.mvx-order-details-vendor-details-wrap, .mvx-commission-details-section, table.wc-order-totals {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+p.woocommerce-order-data-meta.order_number, p.form-field.form-field-wide, .mvx-commission-status-wrap, span.commission-vendor {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-column-gap: 1.5rem;
+          column-gap: 1.5rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.wc-order-item-thumbnail {
+  height: 3rem;
+  width: 3rem;
+}
+
+@media only screen and (max-width: 991px) {
+  .mvx-vendor-notes-details-wrap, .mvx-order-details-wrap {
+    width: 100%;
+  }
+  .woocommerce-order-data {
+    text-align: center;
+  }
+  table.woocommerce_order_items {
+    width: 100%;
+  }
+  .mvx-commission-wrap-vendor-order-status, .mvx-commission-wrap-amount-shipping-tax {
+    width: 100%;
+    padding: 1rem 0;
+    border-bottom: 1px solid #eee;
+  }
+  .mvx-child-container {
+    margin: auto;
+  }
+  .mvx-commission-wrap-vendor-order-status p, .mvx-commission-wrap-amount-shipping-tax p, .mvx-commission-status-wrap {
+    width: 100%;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
 }
 /*# sourceMappingURL=admin.css.map */

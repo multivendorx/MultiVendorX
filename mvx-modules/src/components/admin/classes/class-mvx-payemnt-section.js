@@ -59,13 +59,13 @@ class App extends Component {
   componentDidMount() {}
 
   useQuery() {
-    return new URLSearchParams(useLocation().search);
+    return new URLSearchParams(useLocation().hash);
   }
 
   QueryParamsDemo() {
     let queryt = this.useQuery();
     if(!queryt.get("name")) {
-      window.location.href = window.location.href+'&name=paypal_masspay';
+      //window.location.href = window.location.href+'&name=paypal_masspay';
     }
     var tab_name_display = '';
     var tab_description_display = '';
@@ -107,7 +107,7 @@ class App extends Component {
 
             <ul className="mvx-general-tabs-list">
             {appLocalizer.mvx_all_backend_tab_list['marketplace-payments'].map((data, index) => (
-                <li className={queryt.get("name") == data.tabname ? 'activegeneraltabs' : ''}><i class="mvx-font ico-store-icon"></i><Link to={`?page=payment-configuration&name=${data.tabname}`} >{data.tablabel}</Link></li>
+                <li className={queryt.get("name") == data.tabname ? 'activegeneraltabs' : ''}><i class="mvx-font ico-store-icon"></i><Link to={`?page=mvx#&submenu=payment&name=${data.tabname}`} >{data.tablabel}</Link></li>
             ))}
             </ul>
 

@@ -59,6 +59,7 @@ class App extends React.Component {
       open1: false,
       vendor_shipping_option_choice: '',
       bulkselectlist: [],
+      data_setting_fileds: [],
       
       /*filteredItems: fakeUsers.filter(
         item => item.name && item.name.toLowerCase().includes(filterText.toLowerCase()),
@@ -409,10 +410,38 @@ class App extends React.Component {
   }
 
   useQuery() {
-    return new URLSearchParams(useLocation().search);
+    return new URLSearchParams(useLocation().hash);
   }
 
   QueryParamsDemo(e) {
+
+    if (new URLSearchParams(window.location.hash).get("ID")) {
+
+    axios.get(
+    `${appLocalizer.apiUrl}/mvx_module/v1/list_of_all_tab_based_settings_field`, { params: { vendor_id: new URLSearchParams(window.location.hash).get("ID") } 
+    })
+    .then(response => {
+      if (response.data) {
+        this.setState({
+          data_setting_fileds: response.data,
+        });
+        //return false;
+
+        console.log(response.data);
+
+      }
+      
+
+      /*this.setState({
+        data_setting_fileds: response.data,
+      });*/
+    })
+
+      
+    }
+
+
+
     let queryt = this.useQuery();
     var tab_name_display = '';
     var tab_description_display = '';
@@ -423,6 +452,7 @@ class App extends React.Component {
         }
       }
     )
+
     if(queryt.get("ID")) {
       //window.location.href = window.location.href+'&name=vendor_personal';
     }
@@ -496,7 +526,6 @@ class App extends React.Component {
             </div>
 
             { /*<button type="button" className="button-primary" onClick={(e) => this.handledeletevendor(e)}>Delete Vendor</button> */}
-
             <div className="mvx-backend-datatable-wrapper">
               <DataTable
                 columns={this.state.columns_vendor}
@@ -518,7 +547,7 @@ class App extends React.Component {
             <div className="general-tab-area">
               <ul className="mvx-general-tabs-list">
               {appLocalizer.mvx_all_backend_tab_list['marketplace-vendors'].map((data, index) => (
-                  <li className={queryt.get("name") == data.tabname ? 'activegeneraltabs' : ''}><i class="mvx-font ico-store-icon"></i><Link to={`?page=vendors&ID=${queryt.get("ID")}&name=${data.tabname}`} >{data.tablabel}</Link></li>
+                  <li className={queryt.get("name") == data.tabname ? 'activegeneraltabs' : ''}><i class="mvx-font ico-store-icon"></i><Link to={`?page=mvx#&submenu=vendor&ID=${queryt.get("ID")}&name=${data.tabname}`} >{data.tablabel}</Link></li>
               ))}
               </ul>
 
@@ -568,6 +597,7 @@ class App extends React.Component {
 
 
   Child({ name }) {
+    
   return (
     <div>
     {appLocalizer.mvx_all_backend_tab_list['marketplace-vendors'].map((data, index) => (
@@ -870,35 +900,40 @@ class App extends React.Component {
 
                   this.state.vendor_shipping_option_choice == 'shipping_by_country' ? 
 
-              <DynamicForm
-              key={`dynamic-form`}
-              className="class"
-              title="country wise shipping"
-              model= {appLocalizer.settings_fields['country_shipping']}
-              method="post"
-              modelname="country_shipping"
-              vendor_id={name.get("ID")}
-              url="mvx_module/v1/update_vendor"
-              submitbutton="false"
-              />
-              :
+                    <DynamicForm
+                    key={`dynamic-form`}
+                    className="class"
+                    title="country wise shipping"
+                    model= {appLocalizer.settings_fields['country_shipping']}
+                    method="post"
+                    modelname="country_shipping"
+                    vendor_id={name.get("ID")}
+                    url="mvx_module/v1/update_vendor"
+                    submitbutton="false"
+                    />
+                  : '' }
 
-              '' }
              </div>
 
             :
             <div>
+
+            { this.state.data_setting_fileds && Object.keys(this.state.data_setting_fileds).length > 0 ?
+
               <DynamicForm
               key={`dynamic-form-${data.tabname}`}
               className={data.classname}
               title={data.tablabel}
-              model= {appLocalizer.settings_fields[data.modelname]}
+              model= {this.state.data_setting_fileds[data.modelname]}
               method="post"
               vendor_id={name.get("ID")}
               modelname={data.modelname}
               url={data.apiurl}
               submitbutton="false"
               />
+
+              : '' }
+
             </div>
             
         : ''
@@ -927,6 +962,17 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+
+    axios.get(
+    `${appLocalizer.apiUrl}/mvx_module/v1/list_of_all_tab_based_settings_field`, { params: { vendor_id: new URLSearchParams(window.location.hash).get("ID") } 
+    })
+    .then(response => {
+      this.setState({
+        data_setting_fileds: response.data,
+      });
+    })
+
+
     axios({
       url: `${appLocalizer.apiUrl}/mvx_module/v1/all_vendors`
     })
@@ -937,7 +983,7 @@ class App extends React.Component {
     })
 
     axios.get(
-    `${appLocalizer.apiUrl}/mvx_module/v1/all_vendor_followers`, { params: { vendor_id: new URLSearchParams(window.location.search).get("ID") } 
+    `${appLocalizer.apiUrl}/mvx_module/v1/all_vendor_followers`, { params: { vendor_id: new URLSearchParams(window.location.hash).get("ID") } 
     })
     .then(response => {
       this.setState({
@@ -957,7 +1003,7 @@ class App extends React.Component {
 
 
     axios.get(
-    `${appLocalizer.apiUrl}/mvx_module/v1/specific_vendor_shipping`, { params: { vendor_id: new URLSearchParams(window.location.search).get("ID") } 
+    `${appLocalizer.apiUrl}/mvx_module/v1/specific_vendor_shipping`, { params: { vendor_id: new URLSearchParams(window.location.hash).get("ID") } 
     })
     .then(response => {
       this.setState({
@@ -967,8 +1013,8 @@ class App extends React.Component {
 
 
     var params = {
-      vendor_id: new URLSearchParams(window.location.search).get("ID"),
-      zone_id: new URLSearchParams(window.location.search).get("zone_id")
+      vendor_id: new URLSearchParams(window.location.hash).get("ID"),
+      zone_id: new URLSearchParams(window.location.hash).get("zone_id")
     };
 
     axios.get(
@@ -993,7 +1039,7 @@ class App extends React.Component {
       });
     })
 
-    if (new URLSearchParams(window.location.search).get("ID") && new URLSearchParams(window.location.search).get("name") == 'vendor_shipping' && appLocalizer.vendor_default_shipping_options[0]) {
+    if (new URLSearchParams(window.location.hash).get("ID") && new URLSearchParams(window.location.hash).get("name") == 'vendor_shipping' && appLocalizer.vendor_default_shipping_options[0]) {
       this.setState({
         vendor_shipping_option_choice: appLocalizer.vendor_default_shipping_options[0].value,
       });
