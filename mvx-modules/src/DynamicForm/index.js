@@ -239,6 +239,11 @@ export default class DynamicForm extends React.Component {
 
       this.setState({ errordisplay: res.data.error });
 
+
+      setTimeout(() => {
+        this.setState({ errordisplay: '' });
+      }, 2000)
+
       if (res.data.redirect_link) {
         window.location.href = res.data.redirect_link;
       }
@@ -1163,7 +1168,7 @@ export default class DynamicForm extends React.Component {
     let prop_submitbutton = this.props.submitbutton && this.props.submitbutton == 'false' ? '' : 'true';
     return (
       <div className={this.props.className}>
-        <h3 className="form-title">{this.state.errordisplay}</h3>
+        {this.state.errordisplay ? <div className="mvx-notic-display-title">{this.state.errordisplay}</div> : '' }
         
         <form
           className="dynamic-form"

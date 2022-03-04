@@ -725,7 +725,7 @@ class App extends Component {
             <div className="mvx-search-and-multistatus-wrap">
               <div className="mvx-multistatus-check">
                 <div className="mvx-multistatus-check-all">All (10)</div>
-                <div className="mvx-multistatus-check-paid">| Paid (10)</div>
+                <div className="mvx-multistatus-check-paid status-active">| Paid (10)</div>
                 <div className="mvx-multistatus-check-paid">| Unpaid (10)</div>
               </div>
 

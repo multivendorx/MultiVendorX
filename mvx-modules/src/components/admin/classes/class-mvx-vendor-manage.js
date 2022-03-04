@@ -490,7 +490,7 @@ class App extends React.Component {
               <div className="mvx-multistatus-check">
                 <div className="mvx-multistatus-check-all">All (10)</div>
                 <div className="mvx-multistatus-check-approve">| Approve (10)</div>
-                <div className="mvx-multistatus-check-pending">| Pending (10)</div>
+                <div className="mvx-multistatus-check-pending status-active">| Pending (10)</div>
                 <div className="mvx-multistatus-check-rejected">| Rejected (10)</div>
               </div>
 
