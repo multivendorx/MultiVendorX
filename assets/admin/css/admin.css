@@ -23,6 +23,11 @@ i.mvx-font {
   -moz-osx-font-smoothing: grayscale;
 }
 
+a:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
 .ico-store-icon:before {
   content: "\e90a";
   color: #5d5e5e;
@@ -70,7 +75,7 @@ body {
 
 .mvx-toggle-checkbox-content label {
   cursor: pointer;
-  text-indent: -9999px;
+  text-indent: -9999;
   width: 3.5rem;
   height: 1.8rem;
   background: transparent;
@@ -131,9 +136,8 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  margin-left: -1.4rem;
   background: #fff;
-  border-bottom: 0.06rem solid #b5bfc9;
+  border-bottom: 0.06rem solid #ece8f1;
 }
 
 .mvx-module-section-nav .mvx-module-section-nav-child-data {
@@ -159,7 +163,7 @@ body {
   content: "";
   width: 0.07rem;
   height: 100%;
-  background-color: #b5bfc9;
+  background-color: #ece8f1;
   top: 0;
   left: 4rem;
 }
@@ -185,7 +189,7 @@ body {
 }
 
 .mvx-module-help-grid .mvx-module-settings-box {
-  border: 0.06rem solid #b5bfc9;
+  border: 0.06rem solid #ece8f1;
   background-color: #fff;
   padding: 0.5rem 1rem;
   border-radius: 0.3rem;
@@ -267,6 +271,10 @@ body {
   color: #fff;
 }
 
+.mvx-module-nav-right-section {
+  padding-left: 1.5rem;
+}
+
 .mvx-module-current-status {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -279,8 +287,8 @@ body {
 .mvx-module-current-status a.mvx-module-url-button {
   margin: 0 0.5rem 0 0;
   padding: 0 1rem;
-  color: #b5bfc9;
-  border-color: #b5bfc9;
+  color: #ece8f1;
+  border-color: #ece8f1;
 }
 
 .mvx-module-current-status .mvx-toggle-checkbox-content {
@@ -288,7 +296,7 @@ body {
 }
 
 .mvx-module-grid {
-  border-top: 0.06rem solid #b5bfc9;
+  border-top: 0.06rem solid #ece8f1;
   margin: -0.03rem -1.25rem 0 -1.25rem;
   background-color: #fafafa;
 }
@@ -312,7 +320,7 @@ ul.mvx-dashboard-tabs-list li {
   margin: 0 0 0 -0.08rem;
   padding: 0 1rem;
   text-decoration: none;
-  border: 0.06rem solid #b5bfc9;
+  border: 0.06rem solid #ece8f1;
   background: #f0f2f4;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -361,7 +369,7 @@ ul.mvx-dashboard-tabs-list li.activedashboardtabs a {
 .mvx-module-list-container .mvx-module-section-options-list {
   text-align: center;
   margin: 0 0.9375rem 0.9375rem 0;
-  border: 0.06rem solid #b5bfc9;
+  border: 0.06rem solid #ece8f1;
   background-color: #fff;
   padding: 2.875rem 1.25rem 6rem;
   border-radius: 0.2rem;
@@ -387,13 +395,13 @@ ul.mvx-dashboard-tabs-list li.activedashboardtabs a {
   clear: both;
   width: 100%;
   padding: 1rem 1.25rem;
-  border-top: .06rem solid #b5bfc9;
+  border-top: 0.06rem solid #ece8f1;
   background: #f8f9fa;
   border-radius: 0 0 0.09rem 0.09rem;
 }
 
 .general-tab-header-area {
-  border: 0.06rem solid #b5bfc9;
+  border: 0.06rem solid #ece8f1;
   border-bottom: none;
   text-align: center;
   padding: 1rem;
@@ -408,8 +416,7 @@ ul.mvx-dashboard-tabs-list li.activedashboardtabs a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  border: solid #b5bfc9;
-  border-width: .08rem 0 0 0;
+  border-top: 0.08rem solid #ece8f1;
 }
 
 .general-tab-area ul.mvx-general-tabs-list {
@@ -419,8 +426,8 @@ ul.mvx-dashboard-tabs-list li.activedashboardtabs a {
 
 .general-tab-area ul.mvx-general-tabs-list li {
   padding: 0.8rem 0.8rem;
-  border: solid #b5bfc9;
-  border-width: 0 .08rem .08rem .08rem;
+  border: 0.08rem solid #ece8f1;
+  border-width: 0 0 .08rem .08rem;
   margin: 0;
   font-size: 1rem;
   background: #f0f0f1;
@@ -437,27 +444,16 @@ ul.mvx-dashboard-tabs-list li.activedashboardtabs a {
           column-gap: 1rem;
 }
 
-.general-tab-area ul.mvx-general-tabs-list li::before {
-  position: absolute;
-  content: "";
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: .2rem;
-  opacity: 0;
-  background-color: #9595d8;
-}
-
-.general-tab-area ul.mvx-general-tabs-list li:hover::before {
-  opacity: 1;
+.general-tab-area ul.mvx-general-tabs-list li:hover {
+  border-left: .2rem solid #3f1473;
 }
 
 .general-tab-area ul.mvx-general-tabs-list li:hover a {
-  color: #9595d8;
+  color: #3f1473;
 }
 
 .general-tab-area ul.mvx-general-tabs-list li:hover {
-  background-color: #fff;
+  background-color: #f7f6f9;
 }
 
 .general-tab-area ul.mvx-general-tabs-list li a {
@@ -466,25 +462,24 @@ ul.mvx-dashboard-tabs-list li.activedashboardtabs a {
 }
 
 .general-tab-area ul.mvx-general-tabs-list li.activegeneraltabs {
-  background-color: #fff;
-  border-right: .08rem solid #fff;
+  background-color: #f7f6f9;
+  border-left: .2rem solid #3f1473;
+  position: relative;
 }
 
-.general-tab-area ul.mvx-general-tabs-list li.activegeneraltabs::before {
+.general-tab-area ul.mvx-general-tabs-list li.activegeneraltabs:after {
   position: absolute;
-  content: "";
   top: 0;
-  left: 0;
+  right: -1px;
+  width: 1px;
   height: 100%;
-  width: .2rem;
-  opacity: 1;
-  background-color: #9595d8;
+  content: '';
+  background: #f7f6f9;
 }
 
 .general-tab-area .tabcontentclass {
   padding: 2rem;
-  border: .06rem solid #b5bfc9;
-  border-left: none;
+  border: 0.06rem solid #ece8f1;
   border-top: none;
   border-radius: 0 0 0.4rem 0.4rem;
   background: #fff;
@@ -666,7 +661,7 @@ ul.mvx-dashboard-tabs-list li.activedashboardtabs a {
 }
 
 .general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-radioselect-class {
-  border: 0.06rem solid #b5bfc9;
+  border: 0.06rem solid #ece8f1;
   margin-bottom: 1rem;
   padding: 1rem;
   border-radius: 0.5rem;
@@ -760,7 +755,6 @@ ul.mvx-dashboard-tabs-list li.activedashboardtabs a {
 
 .general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-setting-file-uploader-class button {
   position: absolute;
-  bottom: 3rem;
   margin-left: 0.8rem;
   padding: 0.5rem 1rem;
   color: #fff;
@@ -772,7 +766,7 @@ ul.mvx-dashboard-tabs-list li.activedashboardtabs a {
 .general-tab-area .tabcontentclass .form-group .mvx-toggle-rectangle-merge ul {
   position: relative;
   padding: 0 .4rem;
-  border: 0.06rem solid #b5bfc9;
+  border: 0.06rem solid #ece8f1;
   border-radius: 4px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -818,7 +812,7 @@ ul.mvx-dashboard-tabs-list li.activedashboardtabs a {
 }
 
 .general-tab-area .tabcontentclass .form-group .mvx-toggle-rectangle-merge ul input:checked + label {
-  background-color: #069de3;
+  background-color: #3f1473;
   color: #fff;
 }
 
@@ -861,7 +855,7 @@ img.mvx-section-img-fluid {
   height: 0.1rem;
   width: 100%;
   margin: auto;
-  background-color: #b5bfc9;
+  background-color: #ece8f1;
 }
 
 .wp-media-buttons .insert-media {
@@ -872,10 +866,8 @@ img.mvx-section-img-fluid {
 
 /*css add to here*/
 .mvx-child-container {
-  margin-left: -1.4rem;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  background: #f7f6f9;
   padding: 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -976,7 +968,7 @@ img.mvx-section-img-fluid {
 
 .mvx-performance-wrapper-content {
   padding: 1rem;
-  border: solid #b5bfc9;
+  border: solid #ece8f1;
   border-width: 0.08rem 0 0.08rem 0.08rem;
   text-align: center;
   background: #fff;
@@ -989,13 +981,13 @@ img.mvx-section-img-fluid {
 }
 
 .mvx-performance-wrapper-content:last-child {
-  border-right: 0.08rem solid #b5bfc9;
+  border-right: 0.08rem solid #ece8f1;
 }
 
 @media only screen and (max-width: 782px) {
   .mvx-performance-wrapper-content {
     width: 100%;
-    border-right: 0.08rem solid #b5bfc9;
+    border-right: 0.08rem solid #ece8f1;
   }
 }
 
@@ -1050,18 +1042,25 @@ input.rs-picker-toggle-textbox.rs-picker-toggle-read-only {
 
 input[type=checkbox]:checked::before {
   content: ' \2714';
-  margin: -0.1875rem 0 0 -0.25rem;
-  height: 1.3125rem;
-  width: 1.3125rem;
+  margin: 0;
+  height: 1rem;
+  width: 1rem;
   background: #3f1473;
   line-height: 1;
   color: #fff;
+  font-size: 0.81rem;
   border-radius: 0.2rem;
 }
 
 .sc-crHmcD.fFBlx.rdt_TableCol_Sortable h1 {
   font-size: 12px;
   color: #5e5d60;
+}
+
+.sc-dlVxhl.hkMDrI .fvAeSn {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .mvx-wrap-chart-header-content {
@@ -1144,6 +1143,10 @@ input[type=checkbox]:checked::before {
   border: 0;
 }
 
+span.dashicons {
+  margin-right: 0.3rem;
+}
+
 .mvx-datatable-text {
   color: #181718;
   font-size: 1.5rem;
@@ -1163,20 +1166,13 @@ input[type=checkbox]:checked::before {
       flex-wrap: wrap;
 }
 
-.css-1s2u09g-control {
-  background: #ece8f1 !important;
-  /*searchbar style*/
-  border: 0 !important;
-  margin: 0px 0.51rem 0 0;
-}
-
 .css-14el2xx-placeholder {
   color: #181718 !important;
   /* tocolor the searchbar text*/
 }
 
 h6.mvx-datatable-header-text {
-  font-size: 14px;
+  font-size: 100%;
   color: #5E5D60;
 }
 
@@ -1188,7 +1184,7 @@ h6.mvx-datatable-header-text {
 .mvx-backend-datatable-wrapper div.rdt_TableHead .sc-dkPtRN {
   background: #fdfdfe;
   border: #ece8f1 solid 1px;
-  border-radius: 0.5rem;
+  border-radius: 0.3rem;
   margin: .1rem 0;
 }
 
@@ -1196,20 +1192,22 @@ h6.mvx-datatable-header-text {
   margin: .2rem 0;
 }
 
-.mvx-backend-datatable-wrapper div.rdt_TableBody .sc-jrQzAO div a, p.woocommerce-order-data-meta.order_number a,
-p.form-field.form-field-wide a, span.commission-vendor a, .mvx_commision_note_clm a {
+.mvx-backend-datatable-wrapper div.rdt_TableBody .sc-jrQzAO div a,
+span.commission-vendor a, .mvx_commision_note_clm a, p.commission-details-data-value a, .mvx-commission-value-class a,
+tbody#order_line_items a {
   color: #3F1473;
 }
 
 .mvx-vendor-icon-name img {
-  padding: 0.2rem 0.4rem 0.2rem 0;
+  margin: 0.2rem 0.4rem 0.2rem 0;
+  border-radius: 50%;
+  padding: 0.2rem;
 }
 
 .mvx-wrap-bulk-action button.button-secondary, .mvx-wrap-date-action button.button-secondary {
   background: unset;
   color: #3f1473;
   border: #3f1473 0.05rem solid;
-  padding: 0.32rem .8rem;
 }
 
 .dashicons, .dashicons-before:before {
@@ -1224,6 +1222,13 @@ p.vendor-status.approved-vendor, p.commission-status-paid {
   background: #f4f0fa;
   color: #3F1473;
   padding: 0.5rem 0.8rem;
+  border-radius: 0.4rem;
+}
+
+p.commission-status-paid, mark.order-status.status-processing.tips {
+  background: #f4f0fa;
+  color: #3F1473;
+  padding: 0.2rem 0.8rem;
   border-radius: 0.4rem;
 }
 
@@ -1287,7 +1292,25 @@ th.mvx-settings-th-wrap {
 
 select.sc-cxpSdN.fWWeYy {
   background: unset;
+  padding: 0rem 1.5rem 0 0.5rem;
   border: 0.08rem solid #3f1473;
+}
+
+.tabcontentclass.tabcontentclass-child {
+  width: 100%;
+}
+
+.mvx-module-search-commission-data.css-b62m3t-container .css-1s2u09g-control,
+.mvx-module-section-list-data.css-b62m3t-container .css-1s2u09g-control {
+  background-color: #ece8f1;
+  border: 0;
+}
+
+.mvx-module-section-nav-child-data.css-b62m3t-container .css-1s2u09g-control,
+.mvx-module-section-list-data.css-b62m3t-container .css-1s2u09g-control {
+  background-color: #ece8f1;
+  margin-right: 0.4rem;
+  border: 0;
 }
 
 /*commission page*/
@@ -1306,14 +1329,14 @@ select.sc-cxpSdN.fWWeYy {
 }
 
 .mvx-commission-order-data.woocommerce_order_items_wrapper.wc-order-items-editable,
-table.wc-order-totals, .mvx-commission-notes-details-class, .mvx_commision_note_clm {
+.mvx-commission-notes-details-class, .mvx_commision_note_clm, .mvx-wrap-table-commission-and-coupon-commission {
   background-color: #fdfdfe;
   border-radius: 0.3rem;
   border: 0.1rem solid #ece8f1;
   margin-bottom: 0.2rem;
 }
 
-.mvx-commission-notes-details-class, .mvx_commision_note_clm, table.wc-order-totals {
+.mvx-commission-notes-details-class, .mvx_commision_note_clm {
   padding: 1rem;
 }
 
@@ -1330,12 +1353,17 @@ table.wc-order-totals, .mvx-commission-notes-details-class, .mvx_commision_note_
   padding: 0.5rem 1rem;
 }
 
-h2.woocommerce-order-data-heading, .mvx-commission-details-section {
-  width: 100%;
-  margin-bottom: 1rem;
+.mvx-commission-order-data.woocommerce_order_items_wrapper.wc-order-items-editable tbody td {
+  padding: 0.5rem 1rem;
 }
 
-.mvx-order-details-vendor-details-wrap, .mvx-commission-details-section, table.wc-order-totals {
+h2.woocommerce-order-data-heading, .woocommerce-order-data .mvx-datatable-text {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #181718;
+}
+
+.mvx-order-details-vendor-details-wrap, .mvx-commission-details-section {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1346,7 +1374,22 @@ h2.woocommerce-order-data-heading, .mvx-commission-details-section {
       flex-wrap: wrap;
 }
 
-p.woocommerce-order-data-meta.order_number, p.form-field.form-field-wide, .mvx-commission-status-wrap, span.commission-vendor {
+p.commission-details-data-value,
+p.form-field.form-field-wide {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-column-gap: .8rem;
+          column-gap: .8rem;
+}
+
+.mvx_commision_note_clm p, table.mvx-order-totals tr:last-child {
+  font-weight: 600;
+}
+
+.woocommerce-order-data-meta.order_number, .mvx-commission-status-wrap, span.commission-vendor {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1362,29 +1405,212 @@ p.woocommerce-order-data-meta.order_number, p.form-field.form-field-wide, .mvx-c
   width: 3rem;
 }
 
+table.woocommerce_order_items {
+  width: 100%;
+}
+
+.mvx-commission-label-class {
+  width: 62%;
+}
+
+.mvx-commission-value-class {
+  width: 20%;
+  white-space: nowrap;
+}
+
+.mvx-child-vendor-details p.commission-details-data-value {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.mvx-child-vendor-details p.commission-details-data-value .mvx-commission-label-class {
+  width: 25%;
+}
+
+.mvx-child-vendor-details p.commission-details-data-value .mvx-commission-value-class {
+  width: 35%;
+}
+
+.mvx-wrap-table-commission-and-coupon-commission {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: #FBFAFC;
+  padding: 1rem;
+  -webkit-column-gap: 3rem;
+          column-gap: 3rem;
+  position: relative;
+}
+
+.mvx-wrap-table-commission-and-coupon-commission:before {
+  content: '';
+  position: absolute;
+  top: 59%;
+  left: 0;
+  width: 100%;
+  height: 0.06rem;
+  background-color: #F4F1F7;
+}
+
+.mvx-wrap-table-commission-and-coupon-commission .mvx-coupon-shipping-tax, .mvx-wrap-table-commission-and-coupon-commission table.mvx-order-totals {
+  width: 48%;
+}
+
+.sc-dlVxhl.hkMDrI {
+  overflow: inherit;
+}
+
+.sc-dlVxhl.hkMDrI .fvAeSn {
+  min-width: 0%;
+  padding: 0.2rem;
+}
+
+.sc-dlVxhl.hkMDrI input[type="checkbox"] {
+  width: auto;
+  height: 1rem;
+  margin: 0;
+}
+
+.sc-dlVxhl.hkMDrI .sc-fKVqWL.XlRpR {
+  display: block;
+}
+
+.wp-admin .form-table select, .wp-core-ui select {
+  min-height: 0px;
+}
+
+table.mvx-order-totals td {
+  vertical-align: top;
+}
+
+nav.sc-iJKOTD.bhoXfZ.rdt_Pagination {
+  background: unset;
+  border: 0;
+}
+
+.bsgpsK div:first-child, h6.mvx-datatable-header-text {
+  line-height: normal;
+}
+
+.css-14dclt2-Input {
+  display: none !important;
+}
+
+@media only screen and (max-width: 420px) {
+  .mvx-vendor-icon-name img {
+    width: 44%;
+    height: 51%;
+  }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1600px) {
+  .mvx-performance-wrapper-content {
+    font-size: 64%;
+  }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1190px) {
+  .mvx-performance-wrapper-content {
+    font-size: 56%;
+  }
+}
+
 @media only screen and (max-width: 991px) {
+  .mvx-module-section-nav {
+    font-size: 52%;
+  }
+  .sc-dlVxhl.hkMDrI .fvAeSn {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .mvx-adv-image-display {
+    width: 100%;
+    display: -ms-grid;
+    display: grid;
+    place-items: center;
+    margin-top: 2rem;
+  }
+  .bsgpsK div:first-child, h6.mvx-datatable-header-text {
+    overflow: visible;
+  }
+  div#cell-6-undefined:last-child div, div#cell-9-23:last-child div {
+    text-overflow: clip;
+  }
+  .sc-crHmcD.fFBlx.rdt_TableCol_Sortable {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: start;
+  }
+  .sc-dlVxhl.hkMDrI input[type="checkbox"] {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+    border-radius: 0.09rem;
+  }
+  p.vendor-status.approved-vendor, p.commission-status-paid, p.commission-status-unpaid {
+    background: unset;
+    padding: 0;
+  }
+  .ksOnjL, .sc-hKwDye.sc-gKclnd.grZUZw.kIfSjT.rdt_TableCell {
+    -webkit-box-flex: 0 !important;
+        -ms-flex: 0 0 1.56rem !important;
+            flex: 0 0 1.56rem !important;
+    min-width: 1.56rem;
+  }
   .mvx-vendor-notes-details-wrap, .mvx-order-details-wrap {
     width: 100%;
   }
-  .woocommerce-order-data {
-    text-align: center;
-  }
-  table.woocommerce_order_items {
-    width: 100%;
+  .mvx-commission-value-class {
+    width: unset;
   }
   .mvx-commission-wrap-vendor-order-status, .mvx-commission-wrap-amount-shipping-tax {
     width: 100%;
     padding: 1rem 0;
-    border-bottom: 1px solid #eee;
   }
-  .mvx-child-container {
-    margin: auto;
+  .mvx-sub-container {
+    padding: 0;
   }
-  .mvx-commission-wrap-vendor-order-status p, .mvx-commission-wrap-amount-shipping-tax p, .mvx-commission-status-wrap {
+  p.commission-details-data-value, .mvx-commission-wrap-amount-shipping-tax p,
+  .mvx-commission-status-wrap {
     width: 100%;
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
   }
+  .sc-dlVxhl.hkMDrI .fvAeSn, p.commission-status-paid, p.commission-status-unpaid,
+  .approved-vendor, .mvx-child-container {
+    font-size: 70%;
+  }
+  .mvx-vendor-action-icon span {
+    visibility: hidden;
+  }
+  .woocommerce-order-data-meta.order_number, .mvx-commission-label-class, p.commission-details-data-value {
+    font-size: .8rem;
+  }
+  .mvx-vendor-action-icon:before {
+    content: '\205D';
+    position: absolute;
+    font-size: 11px;
+    font-weight: 700;
+    right: 50%;
+    top: 30%;
+  }
+  .auto-fold #wpcontent {
+    padding: 0;
+  }
+}
+
+div#wpcontent {
+  padding: 0;
+}
+
+#wpbody {
+  background: #f7f6f9;
+}
+
+#wpfooter, .mvx-module-section-nav {
+  background-color: #fdfdfe;
+  border-top: 0.06rem solid #ece8f1;
 }
 /*# sourceMappingURL=admin.css.map */

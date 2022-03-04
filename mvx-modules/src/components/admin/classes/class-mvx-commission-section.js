@@ -23,6 +23,7 @@ import DynamicForm from "../../../DynamicForm";
 
 import { CSVLink } from "react-csv";
 
+import HeaderSection from './class-mvx-page-header';
 
 class App extends Component {
   constructor(props) {
@@ -47,7 +48,7 @@ class App extends Component {
       first_toggle: '',
       second_toggle: '',      
       current: {},
-      commission_details: '',
+      commission_details: [],
       updated_commission_status: [],
       get_commission_id_status: [],
       columns_commission: [
@@ -162,6 +163,29 @@ class App extends Component {
     .then( ( responce ) => {
       console.log('success');
     } );
+  }
+
+
+  componentDidUpdate(prevProps) {
+
+    if (new URLSearchParams(window.location.hash).get("CommissionID")) {
+      var set_default_value = this.state.commission_details.length;
+      set_default_value = 0;
+      //complete commission details
+      var params = {
+        commission_id: new URLSearchParams(window.location.hash).get("CommissionID"),
+      };
+      axios.get(
+      `${appLocalizer.apiUrl}/mvx_module/v1/details_specific_commission`, { params }
+      )
+      .then(response => {
+        if (response.data && this.state.commission_details.commission_id != new URLSearchParams(window.location.hash).get("CommissionID")) {
+          this.setState({
+            commission_details: response.data,
+          });
+        }
+      })
+    }
   }
 
 
@@ -311,20 +335,7 @@ class App extends Component {
     return (
       <div>
 
-        <div className="mvx-module-section-nav">
-          <div className="mvx-module-nav-left-section">
-            <div className="mvx-module-section-nav-child-data">
-              <img src={appLocalizer.mvx_logo} alt="WC Marketplace" className="mvx-section-img-fluid"/>
-            </div>
-            <h1 className="mvx-module-section-nav-child-data">
-              {appLocalizer.marketplace_text}
-            </h1>
-          </div>
-          <div className="mvx-module-nav-right-section">
-            <Select placeholder={appLocalizer.search_module_placeholder} options={this.state.module_ids} className="mvx-module-section-top-nav-select" isLoading={this.state.isLoading} onChange={this.handleselectmodule} />
-            <a href={appLocalizer.knowledgebase} title={appLocalizer.knowledgebase_title} target="_blank" className="mvx-module-section-nav-child-data"><i className="dashicons dashicons-admin-users"></i></a>
-          </div>
-        </div>
+        <HeaderSection />
 
       { new URLSearchParams(window.location.hash).get("CommissionID") 
 
@@ -458,25 +469,26 @@ class App extends Component {
 
                                   <td className="item_cost">
                                       <div className="view">
-                                          <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.item_cost}}></div>
-                                          <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.line_cost_html}}></div>
+                                          <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items ? this.state.commission_details.line_items.item_cost : ''}}></div>
+                                          <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items ? this.state.commission_details.line_items.line_cost_html : ''}}></div>
                                       </div>
                                   </td>
 
                                   <td className="quantity">
                                       <div className="view">
-                                          <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.quantity_1st}}></div>
-                                          <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.quantity_2nd}}></div>
+                                          <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items ? this.state.commission_details.line_items.quantity_1st : ''}}></div>
+                                          <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items ? this.state.commission_details.line_items.quantity_2nd : ''}}></div>
                                       </div>
                                   </td>
 
                                   <td class="line_cost">
                                     <div class="view">
-                                        <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.line_cost}}></div>
-                                        <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.line_cost_1st}}></div>
-                                        <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items.line_cost_2nd}}></div>
+                                        <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items ? this.state.commission_details.line_items.line_cost : ''}}></div>
+                                        <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items ? this.state.commission_details.line_items.line_cost_1st : ''}}></div>
+                                        <div dangerouslySetInnerHTML={{__html: this.state.commission_details.line_items ? this.state.commission_details.line_items.line_cost_2nd : ''}}></div>
                                     </div>
                                   </td>
+
 
                                 </tr>
 
@@ -536,8 +548,8 @@ class App extends Component {
 
                                   <td className="line_cost" width="1%">
                                     <div className="view">
-                                        <p dangerouslySetInnerHTML={{__html: this.state.commission_details.shipping_items_details.shipping_price}}></p>
-                                        <p dangerouslySetInnerHTML={{__html: this.state.commission_details.shipping_items_details.refunded_shipping}}></p>
+                                        <p dangerouslySetInnerHTML={{__html: this.state.commission_details.shipping_items_details ? this.state.commission_details.shipping_items_details.shipping_price : ''}}></p>
+                                        <p dangerouslySetInnerHTML={{__html: this.state.commission_details.shipping_items_details ? this.state.commission_details.shipping_items_details.refunded_shipping : ''}}></p>
                                     </div>
                                   </td>
 
@@ -556,19 +568,16 @@ class App extends Component {
 
                       <div className="wc-used-coupons">
                         <ul className="wc_coupon_list">
-                        { this.state.commission_details.order_total_discount > 0 && this.state.commission_details.commission_include_coupon ? <li><em>*Commission calculated including coupon</em></li> : '' }
-                        { this.state.commission_details.is_shipping > 0 && this.state.commission_details.commission_total_include_shipping ? <li><em>*Commission total calcutated including shipping charges.</em></li> : '' }
-                        { this.state.commission_details.is_tax > 0 && this.state.commission_details.commission_total_include_tax ? <li><em>*Commission total calcutated including tax charges.</em></li> : '' }
-                        </ul>
+                                                </ul>
                       </div>
 
 
                       <div className="mvx-wrap-table-commission-and-coupon-commission">
                         <div className="mvx-coupon-shipping-tax">
                           <ul className="mvx-child-coupon-shipping-tax">
-                            <li><em>*Commission calculated including coupon</em></li>
-                            <li><em>*Commission total calcutated including shipping charges.</em></li>
-                            <li><em>*Commission total calcutated including tax charges.</em></li>
+                            { this.state.commission_details.order_total_discount > 0 && this.state.commission_details.commission_include_coupon ? <li><em>*Commission calculated including coupon</em></li> : '' }
+                            { this.state.commission_details.is_shipping > 0 && this.state.commission_details.commission_total_include_shipping ? <li><em>*Commission total calcutated including shipping charges.</em></li> : '' }
+                            { this.state.commission_details.is_tax > 0 && this.state.commission_details.commission_total_include_tax ? <li><em>*Commission total calcutated including tax charges.</em></li> : '' }
                          </ul>
                         </div>
 
@@ -674,8 +683,8 @@ class App extends Component {
                   <div className="mvx-notes-details-wrap">
                     <div className="mvx-commission-notes-details-class">{appLocalizer.commission_page_string.commission_notes}</div>
                       <div className="mvx_commision_note_clm">
-                        <p dangerouslySetInnerHTML={{__html: this.state.commission_details.notes_data.comment_content}}></p>
-                        <small dangerouslySetInnerHTML={{__html: this.state.commission_details.notes_data.comment_date}}></small>
+                        <p dangerouslySetInnerHTML={{__html: this.state.commission_details.notes_data ? this.state.commission_details.notes_data.comment_content : ''}}></p>
+                        <small dangerouslySetInnerHTML={{__html: this.state.commission_details.notes_data ? this.state.commission_details.notes_data.comment_date : ''}}></small>
                       </div>
                     </div>
                   </div>
@@ -716,10 +725,16 @@ class App extends Component {
             <div className="mvx-search-and-multistatus-wrap">
               <div className="mvx-multistatus-check">
                 <div className="mvx-multistatus-check-all">All (10)</div>
-                <div className="mvx-multistatus-check-paid">Paid (10)</div>
-                <div className="mvx-multistatus-check-paid">Unpaid (10)</div>
+                <div className="mvx-multistatus-check-paid">| Paid (10)</div>
+                <div className="mvx-multistatus-check-paid">| Unpaid (10)</div>
               </div>
-              <Select placeholder={appLocalizer.commission_page_string.search_commission} options={this.state.details_commission} isClearable={true} className="mvx-module-search-commission-data" onChange={(e) => this.handlevendorsearch(e, 'searchvendor')} />
+
+              <div className="mvx-module-search-commission-data"> 
+                <label><span class="dashicons dashicons-search"></span></label>
+                <input type="text" placeholder="Search Commissions" name="search"/>
+              </div>
+
+              { /*<Select placeholder={appLocalizer.commission_page_string.search_commission} options={this.state.details_commission} isClearable={true} className="mvx-module-search-commission-data" onChange={(e) => this.handlevendorsearch(e, 'searchvendor')} /> */}
             </div>
 
 

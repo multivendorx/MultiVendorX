@@ -17,6 +17,7 @@ import {
 } from "react-router-dom";
 
 
+import HeaderSection from './class-mvx-page-header';
 
 
 import DynamicForm from "../../../DynamicForm";
@@ -69,20 +70,7 @@ class App extends Component {
     return (
       <div>
 
-        <div className="mvx-module-section-nav">
-          <div className="mvx-module-nav-left-section">
-            <div className="mvx-module-section-nav-child-data">
-              <img src={appLocalizer.mvx_logo} className="mvx-section-img-fluid"/>
-            </div>
-            <h1 className="mvx-module-section-nav-child-data">
-              {appLocalizer.marketplace_text}
-            </h1>
-          </div>
-          <div className="mvx-module-nav-right-section">
-            <Select placeholder={appLocalizer.search_module_placeholder} options={this.state.module_ids} className="mvx-module-section-top-nav-select" isLoading={this.state.isLoading} onChange={this.handleselectmodule} />
-            <a href={appLocalizer.knowledgebase} title={appLocalizer.knowledgebase_title} target="_blank" className="mvx-module-section-nav-child-data"><i className="dashicons dashicons-admin-users"></i></a>
-          </div>
-        </div>
+        <HeaderSection />
 
         <div className="container">
             <div className="mvx-child-container">

@@ -31,6 +31,7 @@ import CommissionSettings from './class-mvx-commission-section';
 import AnalyticsSettings from './class-mvx-analytics-section';
 import AdvanceSettings from './class-mvx-advance-section';
 import GESettings from './class-mvx-general-settings';
+import HeaderSection from './class-mvx-page-header';
 
 
 
@@ -229,20 +230,7 @@ class App extends Component {
 
         <div className="mvx-module-section-before-header">
           
-          <div className="mvx-module-section-nav">
-            <div className="mvx-module-nav-left-section">
-              <div className="mvx-module-section-nav-child-data">
-                <img src={appLocalizer.mvx_logo} alt="WC Marketplace" className="mvx-section-img-fluid"/>
-              </div>
-              <h1 className="mvx-module-section-nav-child-data">
-                {appLocalizer.marketplace_text}
-              </h1>
-            </div>
-            <div className="mvx-module-nav-right-section">
-              <Select placeholder={appLocalizer.search_module_placeholder} options={this.state.module_ids} className="mvx-module-section-nav-child-data" isLoading={this.state.isLoading} onChange={this.handleselectmodule} />
-              <a href={appLocalizer.knowledgebase} title={appLocalizer.knowledgebase_title} target="_blank" className="mvx-module-section-nav-child-data"><i className="dashicons dashicons-admin-users"></i></a>
-            </div>
-          </div>
+          <HeaderSection />
 
 
           {loader_text_display == 'loading_ongoing' ? <RingLoader css={override} color={"#228B22"} size={500} loading={this.state.loading} /> : ''}
@@ -250,7 +238,7 @@ class App extends Component {
             <div className="dashboard-tab-area">
             <ul className="mvx-dashboard-tabs-list">
               {appLocalizer.mvx_all_backend_tab_list['dashboard-page'].map((data, index) => (
-                  <li className={queryt.get("name") == data.tabname ? 'activedashboardtabs' : ''} ><i class="mvx-font ico-store-icon"></i>{data.link ? <a href={data.link}>{data.tablabel}</a> : <Link to={`?page=modules&name=${data.tabname}`}>{data.tablabel}</Link>}</li>
+                  <li className={queryt.get("name") == data.tabname ? 'activedashboardtabs' : ''} ><i class="mvx-font ico-store-icon"></i>{data.link ? <a href={data.link}>{data.tablabel}</a> : <Link to={`?page=mvx#&submenu=dashboard&name=${data.tabname}`}>{data.tablabel}</Link>}</li>
               ))}
             </ul>
             <div className="dashboard-tabcontentclass">
@@ -291,18 +279,18 @@ Child({ name }) {
 
               <div className="mvx-module-list-start">
                 <div className="mvx-module-list-container">
-                <h3 className="mvx-module-category-label">{student1.label}</h3>
+                <div className="mvx-module-category-label">{student1.label}</div>
                   <div className="mvx-module-option-row">
                   
                   {student1.options.map((student, index) => (
                     <div className="mvx-module-section-options-list">
                       <div className = {`mvx-module-settings-box ${student.is_active? 'active' : ''}`}>
-                        <img src={student.thumbnail_dir ? student.thumbnail_dir : "https://wc-marketplace.com//wp-content//uploads//2021//06//722x415-paypal-300x172.jpg"} alt="Trulli" width="50" height="50"/>
+                          <span class="dashicons dashicons-cover-image"></span>                        
                         <header>
-                          <h3>
-                          {student.name}
+                          <div className="mvx-module-list-label-plan-action-swap">
+                          <div className="mvx-module-list-label-text">{student.name}</div>
                           {student.plan == 'pro' ? <span className="mvx-module-section-pro-badge">{appLocalizer.pro_text}</span> : ''}
-                          </h3>
+                          </div>
                           <p>
                           {student.description}
                           </p>

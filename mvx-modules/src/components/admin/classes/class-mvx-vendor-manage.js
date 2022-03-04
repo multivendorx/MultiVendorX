@@ -26,6 +26,7 @@ import Button from '@material-ui/core/Button';
 
 import DynamicForm from "../../../DynamicForm";
 
+import HeaderSection from './class-mvx-page-header';
 
 class App extends React.Component {
   constructor(props) {
@@ -415,7 +416,7 @@ class App extends React.Component {
 
   QueryParamsDemo(e) {
 
-    if (new URLSearchParams(window.location.hash).get("ID")) {
+/*    if (new URLSearchParams(window.location.hash).get("ID")) {
 
     axios.get(
     `${appLocalizer.apiUrl}/mvx_module/v1/list_of_all_tab_based_settings_field`, { params: { vendor_id: new URLSearchParams(window.location.hash).get("ID") } 
@@ -425,21 +426,16 @@ class App extends React.Component {
         this.setState({
           data_setting_fileds: response.data,
         });
-        //return false;
 
-        console.log(response.data);
+
 
       }
-      
 
-      /*this.setState({
-        data_setting_fileds: response.data,
-      });*/
     })
 
       
     }
-
+*/
 
 
     let queryt = this.useQuery();
@@ -459,20 +455,7 @@ class App extends React.Component {
     return (
       <div>
           
-        <div className="mvx-module-section-nav">
-          <div className="mvx-module-nav-left-section">
-            <div className="mvx-module-section-nav-child-data">
-              <img src={appLocalizer.mvx_logo} alt="WC Marketplace" className="mvx-section-img-fluid"/>
-            </div>
-            <h1 className="mvx-module-section-nav-child-data">
-              {appLocalizer.marketplace_text}
-            </h1>
-          </div>
-          <div className="mvx-module-nav-right-section">
-            <Select placeholder={appLocalizer.search_module_placeholder} options={this.state.module_ids} className="mvx-module-section-top-nav-select" isLoading={this.state.isLoading} onChange={this.handleselectmodule} />
-            <a href={appLocalizer.knowledgebase} title={appLocalizer.knowledgebase_title} target="_blank" className="mvx-module-section-nav-child-data"><i className="dashicons dashicons-admin-users"></i></a>
-          </div>
-        </div>
+      <HeaderSection />
 
 
       <div className="container">
@@ -506,11 +489,18 @@ class App extends React.Component {
 
               <div className="mvx-multistatus-check">
                 <div className="mvx-multistatus-check-all">All (10)</div>
-                <div className="mvx-multistatus-check-approve">Approve (10)</div>
-                <div className="mvx-multistatus-check-pending">Pending (10)</div>
-                <div className="mvx-multistatus-check-rejected">Rejected (10)</div>
+                <div className="mvx-multistatus-check-approve">| Approve (10)</div>
+                <div className="mvx-multistatus-check-pending">| Pending (10)</div>
+                <div className="mvx-multistatus-check-rejected">| Rejected (10)</div>
               </div>
-              <Select placeholder="Search Vendors" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handlevendorsearch} />
+
+
+              <div className="mvx-module-section-list-data"> 
+                <label><span class="dashicons dashicons-search"></span></label>
+                <input type="text" placeholder="Search Vendors" name="search"/>
+              </div>
+
+              { /*<Select placeholder="Search Vendors" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handlevendorsearch} /> */}
             </div>
 
             <div className="mvx-wrap-bulk-all-date">
@@ -521,7 +511,6 @@ class App extends React.Component {
 
               <div className="mvx-wrap-date-action">
                 <Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handlevendorsearch} />
-                <button type="button" className="button-secondary" onClick={(e) => this.handledeletevendor(e)}><span class="dashicons dashicons-menu"></span></button>
               </div>
             </div>
 
@@ -597,6 +586,25 @@ class App extends React.Component {
 
 
   Child({ name }) {
+
+    if (!new URLSearchParams(window.location.hash).get("ID")) {
+      this.state.data_setting_fileds = [];
+    }
+
+    if (new URLSearchParams(window.location.hash).get("ID")) {
+      axios.get(
+      `${appLocalizer.apiUrl}/mvx_module/v1/list_of_all_tab_based_settings_field`, { params: { vendor_id: new URLSearchParams(window.location.hash).get("ID") } 
+      })
+      .then(response => {
+        if (response.data && this.state.data_setting_fileds.length == 0) {
+
+            this.setState({
+              data_setting_fileds: response.data,
+            });
+            
+        }
+      })
+    }
     
   return (
     <div>
@@ -864,38 +872,43 @@ class App extends React.Component {
             :
 
             <div>
-            {console.log(this.state.vendor_shipping_option_choice)}
-              <Select
-                className="shipping_choice"
-                options={appLocalizer.shipping_options}
-                defaultValue={appLocalizer.vendor_default_shipping_options}
-                onChange={e => {
-                  this.onChangeshippingoption(e, name.get("ID"));
-                }} 
-              />
+            {console.log(this.state.data_setting_fileds.shipping_options ? this.state.data_setting_fileds.vendor_default_shipping_options : '')}
 
-              {this.state.vendor_shipping_option_choice && this.state.vendor_shipping_option_choice == 'distance_by_zone' ?
-                <DataTable
-                  columns={this.state.columns_zone_shipping}
-                  data={this.state.data_zone_shipping}
-                  selectableRows
-                  pagination
-                />
-                :
+              { this.state.data_setting_fileds.shipping_options ?
                 
-                this.state.vendor_shipping_option_choice == 'distance_by_shipping' ? 
+                <div>
 
-              <DynamicForm
-                key={`dynamic-form`}
-                className="class"
-                title="distance wise shipping"
-                model= {appLocalizer.settings_fields['distance_shipping']}
-                method="post"
-                modelname="distance_shipping"
-                vendor_id={name.get("ID")}
-                url="mvx_module/v1/update_vendor"
-                submitbutton="false"
-              />
+                  <Select
+                    className="shipping_choice"
+                    options={this.state.data_setting_fileds.shipping_options}
+                    defaultValue={this.state.data_setting_fileds.vendor_default_shipping_options}
+                    onChange={e => {
+                      this.onChangeshippingoption(e, name.get("ID"));
+                    }} 
+                  />
+
+                  {this.state.vendor_shipping_option_choice == 'distance_by_zone' || this.state.data_setting_fileds.vendor_default_shipping_options[0].value == 'distance_by_zone' ?
+                    <DataTable
+                      columns={this.state.columns_zone_shipping}
+                      data={this.state.data_zone_shipping}
+                      selectableRows
+                      pagination
+                    />
+                  :
+                  
+                  this.state.vendor_shipping_option_choice == 'distance_by_shipping' ? 
+
+                    <DynamicForm
+                      key={`dynamic-form`}
+                      className="class"
+                      title="distance wise shipping"
+                      model= {appLocalizer.settings_fields['distance_shipping']}
+                      method="post"
+                      modelname="distance_shipping"
+                      vendor_id={name.get("ID")}
+                      url="mvx_module/v1/update_vendor"
+                      submitbutton="false"
+                    />
                   :
 
                   this.state.vendor_shipping_option_choice == 'shipping_by_country' ? 
@@ -911,7 +924,12 @@ class App extends React.Component {
                     url="mvx_module/v1/update_vendor"
                     submitbutton="false"
                     />
+                  
                   : '' }
+
+                  </div>
+
+                : '' }
 
              </div>
 
@@ -961,16 +979,15 @@ class App extends React.Component {
       }, [this.state.filterText, this.state.resetPaginationToggle]);
   }
 
+  componentDidUpdate(prevProps) {
+
+
+
+  }
+
   componentDidMount() {
 
-    axios.get(
-    `${appLocalizer.apiUrl}/mvx_module/v1/list_of_all_tab_based_settings_field`, { params: { vendor_id: new URLSearchParams(window.location.hash).get("ID") } 
-    })
-    .then(response => {
-      this.setState({
-        data_setting_fileds: response.data,
-      });
-    })
+  
 
 
     axios({
@@ -1039,9 +1056,9 @@ class App extends React.Component {
       });
     })
 
-    if (new URLSearchParams(window.location.hash).get("ID") && new URLSearchParams(window.location.hash).get("name") == 'vendor_shipping' && appLocalizer.vendor_default_shipping_options[0]) {
+    if (new URLSearchParams(window.location.hash).get("ID") && new URLSearchParams(window.location.hash).get("name") == 'vendor_shipping' && this.state.data_setting_fileds && Object.keys(this.state.data_setting_fileds).length > 0 && this.state.data_setting_fileds.vendor_default_shipping_options[0]) {
       this.setState({
-        vendor_shipping_option_choice: appLocalizer.vendor_default_shipping_options[0].value,
+        vendor_shipping_option_choice: this.state.data_setting_fileds.vendor_default_shipping_options[0].value,
       });
     }
     

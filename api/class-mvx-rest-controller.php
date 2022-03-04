@@ -711,6 +711,11 @@ class MVX_REST_API {
         }
 
         $settings_fields = [
+            'user_ID'   =>  [
+                'userid'    =>  $vendor_id
+            ],
+            'vendor_default_shipping_options'   => $vendor_default_shipping_options,
+            'shipping_options'  => $shipping_options_list,
             'settings-general'  =>  [
                 [
                     'key'       => 'approve_vendor',
