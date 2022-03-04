@@ -728,7 +728,6 @@ class App extends React.Component {
                           
                           Object.entries(this.state.data_zone_in_shipping.vendor_shipping_methods).map((data, index) => (
 
-                          <div>
                             <tr className="wcmp-shipping-zone-method">
                               <td>
                                 {data[1].title}
@@ -751,17 +750,17 @@ class App extends React.Component {
                                 </div>
                               </td>
 
-                            </tr>
 
 
-                            <Dialog open={this.state.open_child_model[index]} onClose={this.handlechildClose} aria-labelledby="form-dialog-title">
+
+                              <Dialog open={this.state.open_child_model[index]} onClose={this.handlechildClose} aria-labelledby="form-dialog-title">
                             <DialogTitle id="form-dialog-title"><div className="wcmp-module-dialog-title">Differnet method</div></DialogTitle>
                             <DialogContent>
                             <DialogContentText>
 
                                     {data[1].id && data[1].id == 'flat_rate' ?
 
-                                    <div>
+                                    <div className="mvx-vendor-shipping-method-details">
                                       <label className="control-label col-sm-3 col-md-3">Method Title</label>
                                       <input type="text" defaultValue={data[1].title} onChange={(e) => this.handleOnChange(e, data[1], name.get("zone_id"), name.get("ID"), 'title')}/>
                                     
@@ -819,7 +818,13 @@ class App extends React.Component {
                             </Dialog>
 
 
-                          </div>
+
+                            </tr>
+
+
+                            
+
+
 
 
                           ))

@@ -5265,7 +5265,7 @@ class MVX_REST_API {
                 $vendor_shipping_methods_titles = implode('', $vendor_shipping_methods_titles);
 
                 $user_list[] = apply_filters('mvx_list_table_vendors_columns_data', array(
-                        'zone_name' => "<a href='". sprintf('?page=%s&ID=%s&name=%s&zone_id=%s', 'vendors', $vendor_id, 'vendor_shipping', $vendor_shipping_zones['zone_id']) ."'>". $vendor_shipping_zones['zone_name'] ."</a>",
+                        'zone_name' => "<a href='". sprintf('?page=%s&ID=%s&name=%s&zone_id=%s', 'mvx#&submenu=vendor', $vendor_id, 'vendor_shipping', $vendor_shipping_zones['zone_id']) ."'>". $vendor_shipping_zones['zone_name'] ."</a>",
                         'region' => $vendor_shipping_zones['formatted_zone_location'],
                         'shipping_method' => $vendor_shipping_methods_titles,
                     ));
