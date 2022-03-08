@@ -81,6 +81,90 @@ class App extends Component {
             sortable: true,
         },
       ],
+
+
+
+
+      pending_product: [
+        {
+            name: <div className="mvx-datatable-header-text">Title</div>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.title}}></div>,
+            sortable: true,
+        },
+        {
+            name: <div className="mvx-datatable-header-text">Date</div>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.date}}></div>,
+            sortable: true,
+        },
+      ],
+      pending_vendor: [
+        {
+            name: <div className="mvx-datatable-header-text">Title</div>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.title}}></div>,
+            sortable: true,
+        },
+        {
+            name: <div className="mvx-datatable-header-text">Date</div>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.date}}></div>,
+            sortable: true,
+        },
+      ],
+      pending_coupon: [
+        {
+            name: <div className="mvx-datatable-header-text">Title</div>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.title}}></div>,
+            sortable: true,
+        },
+        {
+            name: <div className="mvx-datatable-header-text">Date</div>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.date}}></div>,
+            sortable: true,
+        },
+      ],
+      pending_tranaction: [
+        {
+            name: <div className="mvx-datatable-header-text">Title</div>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.title}}></div>,
+            sortable: true,
+        },
+        {
+            name: <div className="mvx-datatable-header-text">Date</div>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.date}}></div>,
+            sortable: true,
+        },
+      ],
+      columns_knowladgebase: [
+        {
+            name: <div className="mvx-datatable-header-text">Vendor Name</div>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.title}}></div>,
+            sortable: true,
+        },
+        {
+            name: <div className="mvx-datatable-header-text">Date</div>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.date}}></div>,
+            sortable: true,
+        },
+      ],
+      pending_questions: [
+        {
+            name: <div className="mvx-datatable-header-text">Question by</div>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.question_by}}></div>,
+            sortable: true,
+        },
+        {
+            name: <div className="mvx-datatable-header-text">Product Name</div>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.product_name}}></div>,
+            sortable: true,
+        },
+        {
+            name: <div className="mvx-datatable-header-text">Question details</div>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.question_details}}></div>,
+            sortable: true,
+        },
+      ],
+
+
+
     };
 
     this.query = null;

@@ -421,25 +421,32 @@ class App extends Component {
           <div className="mvx-child-container">
 
           <div className="mvx-sub-container">
-            <div className="general-tab-header-area">
-              <div className="mvx-tab-name-display">{tab_name_display}</div>
-              <p>{tab_description_display}</p>
-              </div>
-              <div className="general-tab-area">
-                <ul className="mvx-general-tabs-list">
+            
+
+
+            <div className="dashboard-tab-area">
+              <ul className="mvx-dashboard-tabs-list">
                 {appLocalizer.mvx_all_backend_tab_list['marketplace-analytics'].map((data, index) => (
-                    <li className={queryt.get("name") == data.tabname ? 'activegeneraltabs' : ''}><i class="mvx-font ico-store-icon"></i><Link to={`?page=mvx#&submenu=analytics&name=${data.tabname}`} >{data.tablabel}</Link></li>
-                ))}
-                </ul>
-
-                <div className="tabcontentclass">
-                  <this.Child name={queryt.get("name")} />
-                </div>
-
+                  <li className={queryt.get("name") == data.tabname ? 'activedashboardtabs' : ''}><i class="mvx-font ico-store-icon"></i><Link to={`?page=mvx#&submenu=analytics&name=${data.tabname}`} >{data.tablabel}</Link></li>                ))}
+              </ul>
+              <div className="dashboard-tabcontentclass">
+                <this.Child name={queryt.get("name")} />
               </div>
             </div>
 
 
+
+            </div>
+
+
+
+
+
+            <div className="mvx-adv-image-display">
+              <a href="https://www.qries.com/" target="__blank">
+                <img alt="Multivendor X" src={appLocalizer.multivendor_logo}/>
+              </a>
+            </div>
 
           </div>
 
@@ -489,7 +496,11 @@ Child({ name }) {
 
                     <div className="mvx-performance-wrapper-content">
                       <div>{data[1].label}</div>
-                      <div><div dangerouslySetInnerHTML={{__html: data[1].value}}></div></div>
+                      <div className="mvx-wrap-price-and-percent">
+                        <div className="mvx-price-display" dangerouslySetInnerHTML={{__html: data[1].value}}>
+                        </div>
+                        <div className="mvx-percent-show">0%</div>
+                      </div>
                     </div>
 
                     : ''
@@ -525,49 +536,104 @@ Child({ name }) {
 
 
                 <div className="mvx-chart-graph-visible">
-                  {!this.useQuery().get('type') || this.useQuery().get('type') == 'line' ?
-                    <ResponsiveContainer width="100%" height="100%" aspect={3}>
-                      <LineChart
-                        width={500}
-                        height={300}
-                        data={this.state.report_overview_data.admin_overview.sales_data_chart}
-                        margin={{
-                          top: 100,
-                          right: 30,
-                          left: 20,
-                          bottom: 5,
-                        }}
-                        >
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="name" />
-                        <YAxis tickFormatter={this.state.formatter} />
-                        <Tooltip />
-                        <Legend />
-                        <Line type="monotone" dataKey="Net Sales" stroke="red" activeDot={{ r: 8 }} />
-                      </LineChart>
-                    </ResponsiveContainer>
-                    :
-                    <ResponsiveContainer width="100%" height="100%" aspect={3}>
-                      <BarChart
-                        width={500}
-                        height={300}
-                        data={this.state.report_overview_data.admin_overview.sales_data_chart}
-                        margin={{
-                          top: 5,
-                          right: 30,
-                          left: 20,
-                          bottom: 5,
-                        }}
-                        >
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="Date" />
-                        <YAxis tickFormatter={this.state.formatter} />
-                        <Tooltip />
-                        <Legend />
-                        <Bar dataKey="Net Sales" fill="red"  />
-                      </BarChart>
-                    </ResponsiveContainer>
-                  }
+                  
+
+                        {!this.useQuery().get('type') || this.useQuery().get('type') == 'line' ?
+                          <ResponsiveContainer width="50%" height="50%" aspect={3}>
+                            <LineChart
+                              width={500}
+                              height={300}
+                              data={this.state.report_overview_data.admin_overview.sales_data_chart}
+                              margin={{
+                                top: 100,
+                                right: 30,
+                                left: 20,
+                                bottom: 5,
+                              }}
+                              >
+                              <CartesianGrid strokeDasharray="3 3" />
+                              <XAxis dataKey="name" />
+                              <YAxis tickFormatter={this.state.formatter} />
+                              <Tooltip />
+                              <Legend />
+                              <Line type="monotone" dataKey="Net Sales" stroke="red" activeDot={{ r: 8 }} />
+                            </LineChart>
+                          </ResponsiveContainer>
+                          :
+                          <ResponsiveContainer width="50%" height="50%" aspect={3}>
+                            <BarChart
+                              width={500}
+                              height={300}
+                              data={this.state.report_overview_data.admin_overview.sales_data_chart}
+                              margin={{
+                                top: 5,
+                                right: 30,
+                                left: 20,
+                                bottom: 5,
+                              }}
+                              >
+                              <CartesianGrid strokeDasharray="3 3" />
+                              <XAxis dataKey="Date" />
+                              <YAxis tickFormatter={this.state.formatter} />
+                              <Tooltip />
+                              <Legend />
+                              <Bar dataKey="Net Sales" fill="red"  />
+                            </BarChart>
+                          </ResponsiveContainer>
+                        }
+
+
+
+
+                        {!this.useQuery().get('type') || this.useQuery().get('type') == 'line' ?
+                          <ResponsiveContainer width="50%" height="50%" aspect={3}>
+                            <LineChart
+                              width={500}
+                              height={300}
+                              data={this.state.report_overview_data.admin_overview.sales_data_chart}
+                              margin={{
+                                top: 100,
+                                right: 30,
+                                left: 20,
+                                bottom: 5,
+                              }}
+                              >
+                              <CartesianGrid strokeDasharray="3 3" />
+                              <XAxis dataKey="name" />
+                              <YAxis tickFormatter={this.state.formatter} />
+                              <Tooltip />
+                              <Legend />
+                              <Line type="monotone" dataKey="Net Sales" stroke="red" activeDot={{ r: 8 }} />
+                            </LineChart>
+                          </ResponsiveContainer>
+                          :
+                          <ResponsiveContainer width="50%" height="50%" aspect={3}>
+                            <BarChart
+                              width={500}
+                              height={300}
+                              data={this.state.report_overview_data.admin_overview.sales_data_chart}
+                              margin={{
+                                top: 5,
+                                right: 30,
+                                left: 20,
+                                bottom: 5,
+                              }}
+                              >
+                              <CartesianGrid strokeDasharray="3 3" />
+                              <XAxis dataKey="Date" />
+                              <YAxis tickFormatter={this.state.formatter} />
+                              <Tooltip />
+                              <Legend />
+                              <Bar dataKey="Net Sales" fill="red"  />
+                            </BarChart>
+                          </ResponsiveContainer>
+                        }
+
+
+
+
+
+
                   { /*<div className="mvx-pro-image-display"><img src="https://wc-marketplace.com//wp-content//uploads//2021//06//722x415-paypal-300x172.jpg"/></div> */}
                 </div>
 
@@ -638,7 +704,11 @@ Child({ name }) {
 
                      <div className="mvx-performance-wrapper-content">
                         <div>{data[1].label}</div>
-                        <div><div dangerouslySetInnerHTML={{__html: data[1].value}}></div></div>
+                          <div className="mvx-wrap-price-and-percent">
+                            <div className="mvx-price-display" dangerouslySetInnerHTML={{__html: data[1].value}}>
+                            </div>
+                            <div className="mvx-percent-show">0%</div>
+                          </div>
                       </div>
                       : ''
 
@@ -670,65 +740,69 @@ Child({ name }) {
 
               <div className="mvx-chart-graph-visible">
 
-                {!this.useQuery().get('type') || this.useQuery().get('type') == 'line' ?
-                <ResponsiveContainer width="100%" height="100%" aspect={3}>
-                  <LineChart
-                    width={500}
-                    height={300}
-                    data={this.state.report_overview_data.vendor.sales_data_chart}
-                    margin={{
-                      top: 100,
-                      right: 30,
-                      left: 20,
-                      bottom: 5,
-                    }}
-                    >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="Date" />
-                    <YAxis tickFormatter={this.state.formatter} />
-                    <Tooltip />
-                    <Legend />
-                    <Line dataKey="Net Sales" stroke="red" activeDot={{ r: 8 }} />
+                              {!this.useQuery().get('type') || this.useQuery().get('type') == 'line' ?
+                              <ResponsiveContainer width="100%" height="100%" aspect={3}>
+                                <LineChart
+                                  width={500}
+                                  height={300}
+                                  data={this.state.report_overview_data.vendor.sales_data_chart}
+                                  margin={{
+                                    top: 100,
+                                    right: 30,
+                                    left: 20,
+                                    bottom: 5,
+                                  }}
+                                  >
+                                  <CartesianGrid strokeDasharray="3 3" />
+                                  <XAxis dataKey="Date" />
+                                  <YAxis tickFormatter={this.state.formatter} />
+                                  <Tooltip />
+                                  <Legend />
+                                  <Line dataKey="Net Sales" stroke="red" activeDot={{ r: 8 }} />
 
-                    <Line dataKey="Order Count"
-                          stroke="black" activeDot={{ r: 8 }} />
-                      
-                    <Line dataKey="Item Sold"
-                          stroke="green" activeDot={{ r: 8 }} />
+                                  <Line dataKey="Order Count"
+                                        stroke="black" activeDot={{ r: 8 }} />
+                                    
+                                  <Line dataKey="Item Sold"
+                                        stroke="green" activeDot={{ r: 8 }} />
 
-                  </LineChart>
-                </ResponsiveContainer>
+                                </LineChart>
+                              </ResponsiveContainer>
 
-                :
+                              :
 
-                <ResponsiveContainer width="100%" height="100%" aspect={3}>
-                  <BarChart
-                    width={500}
-                    height={300}
-                    data={this.state.report_overview_data.vendor.sales_data_chart}
-                    margin={{
-                      top: 5,
-                      right: 30,
-                      left: 20,
-                      bottom: 5,
-                    }}
-                    >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="Date" />
-                    <YAxis tickFormatter={this.state.formatter} />
-                    <Tooltip />
-                    <Legend />
-                    <Bar dataKey="Net Sales" fill="red"  />
+                              <ResponsiveContainer width="100%" height="100%" aspect={3}>
+                                <BarChart
+                                  width={500}
+                                  height={300}
+                                  data={this.state.report_overview_data.vendor.sales_data_chart}
+                                  margin={{
+                                    top: 5,
+                                    right: 30,
+                                    left: 20,
+                                    bottom: 5,
+                                  }}
+                                  >
+                                  <CartesianGrid strokeDasharray="3 3" />
+                                  <XAxis dataKey="Date" />
+                                  <YAxis tickFormatter={this.state.formatter} />
+                                  <Tooltip />
+                                  <Legend />
+                                  <Bar dataKey="Net Sales" fill="red"  />
 
-                    <Bar dataKey="Order Count"
-                    fill="black"  />
+                                  <Bar dataKey="Order Count"
+                                  fill="black"  />
 
-                    <Bar dataKey="Item Sold"
-                    fill="green"  />
+                                  <Bar dataKey="Item Sold"
+                                  fill="green"  />
 
-                  </BarChart>
-                </ResponsiveContainer>
-                }
+                                </BarChart>
+                              </ResponsiveContainer>
+                              }
+
+
+
+                             
               </div>
 
             </div>
@@ -792,7 +866,11 @@ Child({ name }) {
                     data && data[1].label ? 
                       <div className="mvx-performance-wrapper-content">
                         <div>{data[1].label}</div>
-                        <div><div dangerouslySetInnerHTML={{__html: data[1].value}}></div></div>
+                          <div className="mvx-wrap-price-and-percent">
+                            <div className="mvx-price-display" dangerouslySetInnerHTML={{__html: data[1].value}}>
+                            </div>
+                            <div className="mvx-percent-show">0%</div>
+                          </div>
                       </div>
                     : '' 
                       ))
