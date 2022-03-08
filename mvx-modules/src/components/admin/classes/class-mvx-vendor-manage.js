@@ -68,32 +68,32 @@ class App extends React.Component {
 
       columns_vendor: [
         {
-            name: <h6 className="mvx-datatable-header-text">Name</h6>,
-            selector: row => <div dangerouslySetInnerHTML={{__html: row.name}}></div>,
+            name: <div className="mvx-datatable-header-text">Name</div>,
+            selector: row => <div className="mvx-vendor-table-name" dangerouslySetInnerHTML={{__html: row.name}}></div>,
             sortable: true,
         },
         {
-            name: <h6 className="mvx-datatable-header-text">Email</h6>,
-            selector: row => <div dangerouslySetInnerHTML={{__html: row.email}}></div>,
+            name: <div className="mvx-datatable-header-text">Email</div>,
+            selector: row => <div className="mvx-vendor-table-email" dangerouslySetInnerHTML={{__html: row.email}}></div>,
             sortable: true,
         },
         {
-            name: <h6 className="mvx-datatable-header-text">Registered</h6>,
+            name: <div className="mvx-datatable-header-text">Registered</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.registered}}></div>,
             sortable: true,
         },
         {
-            name: <h6 className="mvx-datatable-header-text">Products</h6>,
+            name: <div className="mvx-datatable-header-text">Products</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.products}}></div>,
             sortable: true,
         },
         {
-            name: <h6 className="mvx-datatable-header-text">Status</h6>,
+            name: <div className="mvx-datatable-header-text">Status</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.status}}></div>,
             sortable: true,
         },
         {
-            name: <h6 className="mvx-datatable-header-text">Action</h6>,
+            name: <div className="mvx-datatable-header-text">Action</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.action}}></div>,
             sortable: true,
         },
@@ -101,12 +101,12 @@ class App extends React.Component {
 
       columns_followers: [
         {
-            name: <h6 className="mvx-datatable-header-text">Customer Name</h6>,
+            name: <div className="mvx-datatable-header-text">Customer Name</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.name}}></div>,
             sortable: true,
         },
         {
-            name: <h6 className="mvx-datatable-header-text">Date</h6>,
+            name: <div className="mvx-datatable-header-text">Date</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.time}}></div>,
             sortable: true,
         }
@@ -114,17 +114,17 @@ class App extends React.Component {
 
       columns_zone_shipping: [
         {
-            name: <h6 className="mvx-datatable-header-text">Zone name</h6>,
+            name: <div className="mvx-datatable-header-text">Zone name</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.zone_name}}></div>,
             sortable: true,
         },
         {
-            name: <h6 className="mvx-datatable-header-text">Region(s)</h6>,
+            name: <div className="mvx-datatable-header-text">Region(s)</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.region}}></div>,
             sortable: true,
         },
         {
-            name: <h6 className="mvx-datatable-header-text">Shipping method(s) </h6>,
+            name: <div className="mvx-datatable-header-text">Shipping method(s) </div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.shipping_method}}></div>,
             sortable: true,
         }
@@ -482,7 +482,7 @@ class App extends React.Component {
 
             <div className="mvx-table-text-and-add-wrap">
               <div className="mvx-datatable-text">Vendors</div>
-              <Link to={`?page=vendors&name=add_new`}><span class="dashicons dashicons-plus"></span>Add Vendor</Link>
+              <Link to={`?page=mvx#&submenu=vendor&name=add_new`}><span class="dashicons dashicons-plus"></span>Add Vendor</Link>
             </div>
             
             <div className="mvx-search-and-multistatus-wrap">
@@ -529,7 +529,7 @@ class App extends React.Component {
         : 
           <div>
             <div className="general-tab-header-area">
-              <h1>{tab_name_display}</h1>
+              <div className="mvx-tab-name-display">{tab_name_display}</div>
               <p>{tab_description_display}</p>
             </div>
 
@@ -573,10 +573,10 @@ class App extends React.Component {
       key={`dynamic-form-add-new`}
       className="mvx-vendor-add-new"
       title="Add new vendor"
-      model= {appLocalizer.settings_fields['vendor_personal']}
+      model= {appLocalizer.settings_fields['vendor_add_personal']}
       method="post"
       location={useLocation().search}
-      modelname="vendor_personal"
+      modelname="vendor_add_personal"
       url="mvx_module/v1/create_vendor"
       />
       : '' }
@@ -589,6 +589,11 @@ class App extends React.Component {
 
     if (!new URLSearchParams(window.location.hash).get("ID")) {
       this.state.data_setting_fileds = [];
+      this.state.data_zone_shipping = [];
+    }
+
+    if (!new URLSearchParams(window.location.hash).get("zone_id")) {
+      this.state.data_zone_in_shipping = [];
     }
 
     if (new URLSearchParams(window.location.hash).get("ID")) {
@@ -602,6 +607,42 @@ class App extends React.Component {
               data_setting_fileds: response.data,
             });
             
+        }
+      })
+    }
+
+
+    if (new URLSearchParams(window.location.hash).get("name") == 'vendor_shipping') {
+      axios.get(
+      `${appLocalizer.apiUrl}/mvx_module/v1/specific_vendor_shipping`, { params: { vendor_id: new URLSearchParams(window.location.hash).get("ID") } 
+      })
+      .then(response => {
+        if (response.data && this.state.data_zone_shipping.length == 0) {
+          this.setState({
+            data_zone_shipping: response.data,
+          });
+        }
+      })
+    }
+
+
+    if (new URLSearchParams(window.location.hash).get("zone_id")) {
+      var params = {
+        vendor_id: new URLSearchParams(window.location.hash).get("ID"),
+        zone_id: new URLSearchParams(window.location.hash).get("zone_id")
+      };
+
+      axios.get(
+      `${appLocalizer.apiUrl}/mvx_module/v1/specific_vendor_shipping_zone`, { params }
+      )
+      .then(response => {
+
+        var add_module_false = response.data.vendor_shipping_methods ? new Array(Object. keys(response.data.vendor_shipping_methods).length).fill(false) : '';
+        if (response.data && this.state.data_zone_in_shipping.length == 0) {
+          this.setState({
+            data_zone_in_shipping: response.data,
+            open_child_model: add_module_false
+          });
         }
       })
     }
@@ -673,7 +714,6 @@ class App extends React.Component {
                       Select specific states
                       </label>
                     </th>
-                    {console.log(this.state.data_zone_in_shipping.get_database_state_name ? this.state.data_zone_in_shipping.get_database_state_name[1] : '')}
                     <td className="forminp">
                         <Select
                         value={this.state.data_zone_in_shipping.get_database_state_name ? this.state.data_zone_in_shipping.get_database_state_name : ''}
@@ -691,8 +731,8 @@ class App extends React.Component {
                       Set your postcode
                       </label>
                     </th>
-                    <td className="forminp">
-                    <input id="select_zone_postcodes" className="form-control" type="text" defaultValue={this.state.data_zone_in_shipping.postcodes} placeholder="Postcodes need to be comma separated" onChange={(e) => this.update_post_code(e,  name.get("zone_id"), name.get("ID"), 'postcode')}/>
+                    <td className="mvx-settings-basic-input-class">
+                      <input id="select_zone_postcodes" className="mvx-setting-form-input" type="text" defaultValue={this.state.data_zone_in_shipping.postcodes} placeholder="Postcodes need to be comma separated" onChange={(e) => this.update_post_code(e,  name.get("zone_id"), name.get("ID"), 'postcode')}/>
                     </td>
                   </tr>
 
@@ -1024,33 +1064,6 @@ class App extends React.Component {
     })
 
 
-    axios.get(
-    `${appLocalizer.apiUrl}/mvx_module/v1/specific_vendor_shipping`, { params: { vendor_id: new URLSearchParams(window.location.hash).get("ID") } 
-    })
-    .then(response => {
-      this.setState({
-        data_zone_shipping: response.data,
-      });
-    })
-
-
-    var params = {
-      vendor_id: new URLSearchParams(window.location.hash).get("ID"),
-      zone_id: new URLSearchParams(window.location.hash).get("zone_id")
-    };
-
-    axios.get(
-    `${appLocalizer.apiUrl}/mvx_module/v1/specific_vendor_shipping_zone`, { params }
-    )
-    .then(response => {
-
-      var add_module_false = response.data.vendor_shipping_methods ? new Array(Object. keys(response.data.vendor_shipping_methods).length).fill(false) : '';
-
-      this.setState({
-        data_zone_in_shipping: response.data,
-        open_child_model: add_module_false
-      });
-    })
 
     axios({
       url: `${appLocalizer.apiUrl}/mvx_module/v1/add_shipping_option`

@@ -222,14 +222,15 @@ export default class DynamicForm extends React.Component {
         this.state[key['key']] = wp.editor.getContent(key['key']);
       }
     });
-    
     axios({
       method: this.props.method,
       url: appLocalizer.apiUrl + '/' + this.props.url,
       data: {
         model: this.state,
         modelname: this.props.modelname,
-        vendor_id: this.props.vendor_id ? this.props.vendor_id : ''
+        vendor_id: this.props.vendor_id ? this.props.vendor_id : '',
+        announcement_id: this.props.announcement_id ? this.props.announcement_id : '',
+        knowladgebase_id: this.props.knowladgebase_id ? this.props.knowladgebase_id : ''
       }
     })
     .then( ( res ) => {

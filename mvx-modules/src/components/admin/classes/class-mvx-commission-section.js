@@ -53,47 +53,47 @@ class App extends Component {
       get_commission_id_status: [],
       columns_commission: [
         {
-            name: <h6 className="mvx-datatable-header-text">Title</h6>,
+            name: <div className="mvx-datatable-header-text">Title</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.title}}></div>,
             sortable: true,
         },
         {
-            name: <h6 className="mvx-datatable-header-text">Order ID</h6>,
+            name: <div className="mvx-datatable-header-text">Order ID</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.order_id}}></div>,
             sortable: true,
         },
         {
-            name: <h6 className="mvx-datatable-header-text">Product</h6>,
+            name: <div className="mvx-datatable-header-text">Product</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.product}}></div>,
             sortable: true,
         },
         {
-            name: <h6 className="mvx-datatable-header-text">Vendor</h6>,
+            name: <div className="mvx-datatable-header-text">Vendor</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.vendor}}></div>,
             sortable: true,
         },
         {
-            name: <h6 className="mvx-datatable-header-text">Amount</h6>,
+            name: <div className="mvx-datatable-header-text">Amount</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.amount}}></div>,
             sortable: true,
         },
         {
-            name: <h6 className="mvx-datatable-header-text">Net Earning</h6>,
+            name: <div className="mvx-datatable-header-text">Net Earning</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.net_earning}}></div>,
             sortable: true,
         },
         {
-            name: <h6 className="mvx-datatable-header-text">Status</h6>,
+            name: <div className="mvx-datatable-header-text">Status</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.status}}></div>,
             sortable: true,
         },
         {
-            name: <h6 className="mvx-datatable-header-text">Date</h6>,
+            name: <div className="mvx-datatable-header-text">Date</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.date}}></div>,
             sortable: true,
         },
         {
-            name: <h6 className="mvx-datatable-header-text">Action</h6>,
+            name: <div className="mvx-datatable-header-text">Action</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.action}}></div>,
             sortable: true,
         },
@@ -351,9 +351,9 @@ class App extends Component {
 
               { /* Commission Details Start */  }
               <div className="mvx-commission-details-section">
-                <h2 className="woocommerce-order-data-heading">
+                <div className="woocommerce-order-data-heading">
                   {this.state.commission_details.commission_type_object ? this.state.commission_details.commission_type_object.labels.singular_name + ' #' + this.state.commission_details.commission_id + ' ' + appLocalizer.commission_page_string.details : ''}
-                </h2>
+                </div>
 
                 <div className="mvx-commission-wrap-vendor-order-status">
 

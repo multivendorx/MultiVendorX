@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import axios from 'axios';
 import Select from 'react-select';
-import RingLoader from "react-spinners/RingLoader";
+import PuffLoader from "react-spinners/PuffLoader";
 import { css } from "@emotion/react";
 
 import { ReactSortable } from "react-sortablejs";
@@ -22,6 +22,12 @@ import DataTable from 'react-data-table-component';
 
 import HeaderSection from './class-mvx-page-header';
 
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: green;
+`;
 
 class App extends Component {
   constructor(props) {
@@ -47,27 +53,30 @@ class App extends Component {
       second_toggle: '',      
       current: {},
       display_announcement: [],
-      default_array_fileds: [],
+      knowledge_data_fileds: [],
+      edit_announcement_fileds: [],
+      edit_knowledgebase_fileds: [],
+      display_list_knowladgebase: [],
       columns_announcement: [
         {
-            name: <h2>Title</h2>,
+            name: <div className="mvx-datatable-header-text">Title</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.title}}></div>,
             sortable: true,
         },
         {
-            name: <h2>Date</h2>,
+            name: <div className="mvx-datatable-header-text">Date</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.date}}></div>,
             sortable: true,
         },
       ],
       columns_knowladgebase: [
         {
-            name: <h2>Title</h2>,
-            selector: row => <div dangerouslySetInnerHTML={{__html: row.name}}></div>,
+            name: <div className="mvx-datatable-header-text">Title</div>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.title}}></div>,
             sortable: true,
         },
         {
-            name: <h2>Date</h2>,
+            name: <div className="mvx-datatable-header-text">Date</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.date}}></div>,
             sortable: true,
         },
@@ -93,6 +102,16 @@ class App extends Component {
     .then(response => {
       this.setState({
         display_announcement: response.data,
+      });
+    })
+  
+
+    axios.get(
+    `${appLocalizer.apiUrl}/mvx_module/v1/display_list_knowladgebase`
+    )
+    .then(response => {
+      this.setState({
+        display_list_knowladgebase: response.data,
       });
     })
   }
@@ -124,7 +143,7 @@ class App extends Component {
         <div className="mvx-child-container">
               <div className="mvx-sub-container">
                 <div className="general-tab-header-area">
-                  <h1>{tab_name_display}</h1>
+                  <div className="mvx-tab-name-display">{tab_name_display}</div>
                   <p>{tab_description_display}</p>
                 </div>
                 <div className="general-tab-area">
@@ -155,8 +174,42 @@ class App extends Component {
   }
 
 Child({ name }) {
-  console.log(this.state.display_announcement);
   var get_current_name = this.useQuery();
+
+  if (!get_current_name.get("AnnouncementID")) {
+    this.state.edit_announcement_fileds = [];
+  }
+
+  if (!get_current_name.get("knowladgebaseID")) {
+    this.state.edit_knowledgebase_fileds = [];
+  }
+
+  if (get_current_name.get("AnnouncementID")) {
+    axios.get(
+    `${appLocalizer.apiUrl}/mvx_module/v1/update_announcement_display`, { params: { announcement_id: get_current_name.get("AnnouncementID") } 
+    })
+    .then(response => {
+      if (response.data && this.state.edit_announcement_fileds.length == 0) {
+          this.setState({
+            edit_announcement_fileds: response.data,
+          });
+      }
+    })
+  }
+
+  if (get_current_name.get("knowladgebaseID")) {
+    axios.get(
+    `${appLocalizer.apiUrl}/mvx_module/v1/update_knowladgebase_display`, { params: { knowladgebase_id: get_current_name.get("knowladgebaseID") } 
+    })
+    .then(response => {
+      if (response.data && this.state.edit_knowledgebase_fileds.length == 0) {
+          this.setState({
+            edit_knowledgebase_fileds: response.data,
+          });
+      }
+    })
+  }
+
   return (
     <div>
     {
@@ -169,7 +222,7 @@ Child({ name }) {
       name == 'announcement' ?
 
       <div className="mvx-backend-datatable-wrapper">
-        <div className="button-secondary"><Link to={`?page=work_board&name=announcement&create=announcement`}>Add Announcement</Link></div>
+        <div className="button-secondary"><Link to={`?page=mvx#&submenu=work-board&name=announcement&create=announcement`}>Add Announcement</Link></div>
 
         {get_current_name && get_current_name.get("create") == 'announcement' ?
 
@@ -187,16 +240,19 @@ Child({ name }) {
 
          get_current_name.get("AnnouncementID") ?
 
-          <DynamicForm
-            key={`dynamic-form-announcement-add-new`}
-            className="mvx-announcement-add-new"
-            title="Update Announcement"
-            model= {appLocalizer.settings_fields['update_announcement']}
-            method="post"
-            modelname="update_announcement"
-            url="mvx_module/v1/update_announcement"
-            submit_title="Update"
-          />
+            this.state.edit_announcement_fileds && Object.keys(this.state.edit_announcement_fileds).length > 0 ? 
+              <DynamicForm
+                key={`dynamic-form-announcement-add-new`}
+                className="mvx-announcement-add-new"
+                title="Update Announcement"
+                model= {this.state.edit_announcement_fileds['update_announcement_display']}
+                method="post"
+                announcement_id={get_current_name.get("AnnouncementID")}
+                modelname="update_announcement"
+                url="mvx_module/v1/update_announcement"
+                submitbutton="false"
+              />
+            : <PuffLoader css={override} color={"#3f1473"} size={100} loading={true} />
 
           :
 
@@ -214,12 +270,49 @@ Child({ name }) {
       name == 'knowladgebase' ?
 
       <div className="mvx-backend-datatable-wrapper">
-        <DataTable
-          columns={this.state.columns_knowladgebase}
-          data={this.state.default_array_fileds}
-          selectableRows
-          pagination
-        />
+        <div className="button-secondary"><Link to={`?page=mvx#&submenu=work-board&name=knowladgebase&create=knowladgebase`}>Add Knowledgebase</Link></div>
+        
+        {get_current_name && get_current_name.get("create") == 'knowladgebase' ?
+
+          <DynamicForm
+            key={`dynamic-form-knowladgebase-add-new`}
+            className="mvx-knowladgebase-add-new"
+            title="Add new knowladgebase"
+            model= {appLocalizer.settings_fields['create_knowladgebase']}
+            method="post"
+            modelname="create_knowladgebase"
+            url="mvx_module/v1/create_knowladgebase"
+            submit_title="Publish"
+          />
+         :
+
+         get_current_name.get("knowladgebaseID") ?
+
+            this.state.edit_knowledgebase_fileds && Object.keys(this.state.edit_knowledgebase_fileds).length > 0 ? 
+              <DynamicForm
+                key={`dynamic-form-knowladgebase-add-new`}
+                className="mvx-knowladgebase-add-new"
+                title="Update Announcement"
+                model= {this.state.edit_knowledgebase_fileds['update_knowladgebase_display']}
+                method="post"
+                knowladgebase_id={get_current_name.get("knowladgebaseID")}
+                modelname="update_knowladgebase"
+                url="mvx_module/v1/update_knowladgebase"
+                submitbutton="false"
+              />
+            : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
+
+          :
+
+          <DataTable
+            columns={this.state.columns_knowladgebase}
+            data={this.state.display_list_knowladgebase}
+            selectableRows
+            pagination
+          />
+        
+        }
+
       </div>
 
       :

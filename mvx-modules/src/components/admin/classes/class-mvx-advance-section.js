@@ -76,7 +76,7 @@ class App extends Component {
             <div className="mvx-child-container">
               <div className="mvx-sub-container">
                 <div className="general-tab-header-area">
-                  <h1>{queryt.get("name")}</h1>
+                  <div className="mvx-tab-name-display">{queryt.get("name")}</div>
                   <p>links data are there</p>
                 </div>
                 <div className="general-tab-area">

@@ -87,7 +87,7 @@ class MVX_Settings {
         $dashboard = add_menu_page( __( 'MVX', 'dc-woocommerce-multi-vendor' ), __( 'MVX', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', $slug, [ $this, 'mvx_modules_callback' ],  $MVX->plugin_url . 'assets/images/dualcube.png', 50 );
 
         if ( current_user_can( 'manage_woocommerce' ) ) {
-            $submenu[ $slug ][] = [ __( 'Dashboard', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=dashboard' ];
+            $submenu[ $slug ][] = [ __( 'Dashboard', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=dashboard&name=modules' ];
             $submenu[ $slug ][] = [ __( 'Commission', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=commission' ];
 
             $submenu[ $slug ][] = [ __( 'Vendors', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=vendor' ];

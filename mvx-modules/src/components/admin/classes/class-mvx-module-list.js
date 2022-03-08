@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import axios from 'axios';
 import Select from 'react-select';
-import RingLoader from "react-spinners/RingLoader";
+import PuffLoader from "react-spinners/PuffLoader";
 import { css } from "@emotion/react";
 
 import {
@@ -232,35 +232,45 @@ class App extends Component {
           
           <HeaderSection />
 
+          
+            <div className="mvx-child-container">
+              
+              <div className="mvx-sub-container">
+                  <div className="dashboard-tab-area">
+                    <ul className="mvx-dashboard-tabs-list">
+                      {appLocalizer.mvx_all_backend_tab_list['dashboard-page'].map((data, index) => (
+                          <li className={queryt.get("name") == data.tabname ? 'activedashboardtabs' : ''} ><i class="mvx-font ico-store-icon"></i>{data.link ? <a href={data.link}>{data.tablabel}</a> : <Link to={`?page=mvx#&submenu=dashboard&name=${data.tabname}`}>{data.tablabel}</Link>}</li>
+                      ))}
+                    </ul>
+                    <div className="dashboard-tabcontentclass">
+                      <this.Child name={queryt.get("name")} />
+                    </div>
+                  </div>
 
-          {loader_text_display == 'loading_ongoing' ? <RingLoader css={override} color={"#228B22"} size={500} loading={this.state.loading} /> : ''}
-          <div className="wrap mvx-module-section-wrap dashboard">
-            <div className="dashboard-tab-area">
-            <ul className="mvx-dashboard-tabs-list">
-              {appLocalizer.mvx_all_backend_tab_list['dashboard-page'].map((data, index) => (
-                  <li className={queryt.get("name") == data.tabname ? 'activedashboardtabs' : ''} ><i class="mvx-font ico-store-icon"></i>{data.link ? <a href={data.link}>{data.tablabel}</a> : <Link to={`?page=mvx#&submenu=dashboard&name=${data.tabname}`}>{data.tablabel}</Link>}</li>
-              ))}
-            </ul>
-            <div className="dashboard-tabcontentclass">
-              <this.Child name={queryt.get("name")} />
-            </div>
-          </div>
-        
-          <Dialog open={this.state.open_model} onClose={this.handleClose} aria-labelledby="form-dialog-title">
-            <DialogTitle id="form-dialog-title"><div className="mvx-module-dialog-title">Upgrade To Pro</div></DialogTitle>
-            <DialogContent>
-              <DialogContentText>
-              <div className="mvx-module-dialog-content">
-                To use this paid module, Please visit <a href="https://wc-marketplace.com/addons/">WC Marketplace</a> Site.
+                  <Dialog open={this.state.open_model} onClose={this.handleClose} aria-labelledby="form-dialog-title">
+                    <DialogTitle id="form-dialog-title"><div className="mvx-module-dialog-title">Upgrade To Pro</div></DialogTitle>
+                    <DialogContent>
+                      <DialogContentText>
+                      <div className="mvx-module-dialog-content">
+                        To use this paid module, Please visit <a href="https://wc-marketplace.com/addons/">WC Marketplace</a> Site.
+                      </div>
+                      </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                      <Button onClick={this.handleClose} color="primary">Cancel</Button>
+                    </DialogActions>
+                  </Dialog>
+              </div>  
+
+              <div className="mvx-adv-image-display">
+                <a href="https://www.qries.com/" target="__blank">
+                  <img alt="Multivendor X" src={appLocalizer.multivendor_logo}/>
+                </a>
               </div>
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={this.handleClose} color="primary">Cancel</Button>
-            </DialogActions>
-          </Dialog>
 
-          </div>
+            </div>
+
+
         </div>
       );
     }
@@ -268,6 +278,10 @@ class App extends Component {
 
 Child({ name }) {
   const loader_text_display = this.state.isLoaded ? "loading_ongoing" : '';
+
+  if (this.state.isLoaded) {
+      return ( <PuffLoader css={override} color={"#cd0000"} size={200} loading={this.state.loading} />);
+    }
   return (
     <div>
       {!name || name == 'modules' ? 
@@ -288,8 +302,10 @@ Child({ name }) {
                           <span class="dashicons dashicons-cover-image"></span>                        
                         <header>
                           <div className="mvx-module-list-label-plan-action-swap">
-                          <div className="mvx-module-list-label-text">{student.name}</div>
-                          {student.plan == 'pro' ? <span className="mvx-module-section-pro-badge">{appLocalizer.pro_text}</span> : ''}
+                            <div className="mvx-module-list-label-text">
+                              {student.name}
+                              {student.plan == 'pro' ? <span className="mvx-module-section-pro-badge">{appLocalizer.pro_text}</span> : ''}
+                            </div>
                           </div>
                           <p>
                           {student.description}

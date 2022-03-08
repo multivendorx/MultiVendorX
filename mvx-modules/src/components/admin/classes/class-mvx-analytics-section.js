@@ -65,86 +65,86 @@ class App extends Component {
       report_overview_data: [],
       columns_product: [
         {
-            name: <h1>Product Title</h1>,
+            name: <div className="mvx-datatable-header-text">Product Title</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.title}}></div>,
             sortable: true,
         },
         {
-            name: <h1>Admin Earning</h1>,
+            name: <div className="mvx-datatable-header-text">Admin Earning</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.admin_earning}}></div>,
             sortable: true,
         },
         {
-            name: <h1>Vendor Earning</h1>,
+            name: <div className="mvx-datatable-header-text">Vendor Earning</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.vendor_earning}}></div>,
             sortable: true,
         },
         {
-            name: <h1>Gross Sales</h1>,
+            name: <div className="mvx-datatable-header-text">Gross Sales</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.gross}}></div>,
             sortable: true,
         }
       ],
       columns_vendor: [
         {
-            name: <h1>Vendor Name</h1>,
+            name: <div className="mvx-datatable-header-text">Vendor Name</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.title}}></div>,
             sortable: true,
         },
         {
-            name: <h1>Admin Earning</h1>,
+            name: <div className="mvx-datatable-header-text">Admin Earning</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.admin_earning}}></div>,
             sortable: true,
         },
         {
-            name: <h1>Vendor Earning</h1>,
+            name: <div className="mvx-datatable-header-text">Vendor Earning</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.vendor_earning}}></div>,
             sortable: true,
         },
         {
-            name: <h1>Gross Sales</h1>,
+            name: <div className="mvx-datatable-header-text">Gross Sales</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.gross}}></div>,
             sortable: true,
         }
       ],
       columns_commission: [
         {
-            name: <h1>Title</h1>,
+            name: <div className="mvx-datatable-header-text">Title</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.title}}></div>,
             sortable: true,
         },
         {
-            name: <h1>Order ID</h1>,
+            name: <div className="mvx-datatable-header-text">Order ID</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.order_id}}></div>,
             sortable: true,
         },
         {
-            name: <h1>Product</h1>,
+            name: <div className="mvx-datatable-header-text">Product</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.product}}></div>,
             sortable: true,
         },
         {
-            name: <h1>Vendor</h1>,
+            name: <div className="mvx-datatable-header-text">Vendor</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.vendor}}></div>,
             sortable: true,
         },
         {
-            name: <h1>Amount</h1>,
+            name: <div className="mvx-datatable-header-text">Amount</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.amount}}></div>,
             sortable: true,
         },
         {
-            name: <h1>Net Earning</h1>,
+            name: <div className="mvx-datatable-header-text">Net Earning</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.net_earning}}></div>,
             sortable: true,
         },
         {
-            name: <h1>Status</h1>,
+            name: <div className="mvx-datatable-header-text">Status</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.status}}></div>,
             sortable: true,
         },
         {
-            name: <h1>Date</h1>,
+            name: <div className="mvx-datatable-header-text">Date</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.date}}></div>,
             sortable: true,
         },
@@ -162,37 +162,37 @@ class App extends Component {
       vendor_report_chart_data: [],
       columns_transaction: [
         {
-            name: <h1>Status</h1>,
+            name: <div className="mvx-datatable-header-text">Status</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.status}}></div>,
             sortable: true,
         },
         {
-            name: <h1>Date</h1>,
+            name: <div className="mvx-datatable-header-text">Date</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.date}}></div>,
             sortable: true,
         },
         {
-            name: <h1>Type</h1>,
+            name: <div className="mvx-datatable-header-text">Type</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.type}}></div>,
             sortable: true,
         },
         {
-            name: <h1>Reference ID</h1>,
+            name: <div className="mvx-datatable-header-text">Reference ID</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.reference_id}}></div>,
             sortable: true,
         },
         {
-            name: <h1>Credit</h1>,
+            name: <div className="mvx-datatable-header-text">Credit</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.Credit}}></div>,
             sortable: true,
         },
         {
-            name: <h1>Debit</h1>,
+            name: <div className="mvx-datatable-header-text">Debit</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.Debit}}></div>,
             sortable: true,
         },
         {
-            name: <h1>Balance</h1>,
+            name: <div className="mvx-datatable-header-text">Balance</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.balance}}></div>,
             sortable: true,
         },
@@ -422,7 +422,7 @@ class App extends Component {
 
           <div className="mvx-sub-container">
             <div className="general-tab-header-area">
-              <h1>{tab_name_display}</h1>
+              <div className="mvx-tab-name-display">{tab_name_display}</div>
               <p>{tab_description_display}</p>
               </div>
               <div className="general-tab-area">
@@ -440,11 +440,7 @@ class App extends Component {
             </div>
 
 
-            <div className="mvx-adv-image-display">
-            <a href="https://www.qries.com/" target="__blank">
-              <img alt="Multivendor X" src={appLocalizer.multivendor_logo}/>
-            </a>
-          </div>
+
           </div>
 
           

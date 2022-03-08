@@ -539,7 +539,7 @@ class App extends Component {
       <div className="mvx-child-container">
         <div className="mvx-sub-container">
           <div className="general-tab-header-area">
-            <h1>{tab_name_display}</h1>
+            <div className="mvx-tab-name-display">{tab_name_display}</div>
             <p>{tab_description_display}</p>
           </div>
 
