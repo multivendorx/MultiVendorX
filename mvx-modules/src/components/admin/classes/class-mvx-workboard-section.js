@@ -52,6 +52,7 @@ class App extends Component {
       first_toggle: '',
       second_toggle: '',      
       current: {},
+      bulkselectlist: [],
       display_announcement: [],
       knowledge_data_fileds: [],
       edit_announcement_fileds: [],
@@ -212,7 +213,44 @@ class App extends Component {
 
     this.Child = this.Child.bind(this);
 
+    this.handle_post_check_publish = this.handle_post_check_publish.bind(this);
 
+    this.handle_post_bulk_status = this.handle_post_bulk_status.bind(this);
+    
+    this.onSelectedRowsChange = this.onSelectedRowsChange.bind(this);
+
+    
+  }
+
+
+  onSelectedRowsChange(e) {
+    this.setState({
+      bulkselectlist: e.selectedRows,
+    });
+  }
+
+  handle_post_check_publish(e) {
+    console.log('saffffffffffff');
+  }
+
+
+  handle_post_bulk_status(e, type) {
+
+    axios({
+      method: 'post',
+      url: `${appLocalizer.apiUrl}/mvx_module/v1/search_announcement`,
+      data: {
+        ids: this.state.bulkselectlist,
+      }
+    })
+    .then( ( responce ) => {
+      /*location.reload();
+      if (responce.data.redirect_link) {
+         window.location.href = responce.data.redirect_link;
+      }*/
+    } );
+
+    console.log(type)
   }
 
   componentDidMount() {
@@ -323,21 +361,27 @@ class App extends Component {
       <div className="container">
         <div className="mvx-child-container">
               <div className="mvx-sub-container">
+                
+
                 <div className="general-tab-header-area">
                   <div className="mvx-tab-name-display">{tab_name_display}</div>
                   <p>{tab_description_display}</p>
                 </div>
-                <div className="general-tab-area">
 
-                  <ul className="mvx-general-tabs-list">
+
+                <div className="dashboard-tab-area">
+                  <ul className="mvx-dashboard-tabs-list">
                     {appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'].map((data, index) => (
-                        <li className={queryt.get("name") == data.tabname ? 'activegeneraltabs' : ''}><i class="mvx-font ico-store-icon"></i><Link to={`?page=mvx#&submenu=work-board&name=${data.tabname}`} >{data.tablabel}</Link></li>
+                        <li className={queryt.get("name") == data.tabname ? 'activedashboardtabs' : ''}><i class="mvx-font ico-store-icon"></i><Link to={`?page=mvx#&submenu=work-board&name=${data.tabname}`} >{data.tablabel}</Link></li>
                     ))}
                   </ul>
                   <div className="tabcontentclass">
                     <this.Child name={queryt.get("name")} />
                   </div>
                 </div>
+
+
+
               </div>
 
         <div className="mvx-adv-image-display">
@@ -488,12 +532,46 @@ Child({ name }) {
 
           :
 
-          <DataTable
-            columns={this.state.columns_announcement}
-            data={this.state.display_announcement}
-            selectableRows
-            pagination
-          />
+
+          <div>
+            <div className="mvx-search-and-multistatus-wrap">
+              <div className="mvx-multistatus-check">
+                <div className="mvx-multistatus-check-all">All (10)</div>
+                <div className="mvx-multistatus-check-approve" onClick={this.handle_post_check_publish}>| Published (10)</div>
+                <div className="mvx-multistatus-check-pending status-active">| Pending (10)</div>
+              </div>
+
+
+              <div className="mvx-module-section-list-data"> 
+                <label><span class="dashicons dashicons-search"></span></label>
+                <input type="text" placeholder="Search Announcement" onChange={(e) => this.handle_post_bulk_status(e, 'announcement')}/>
+              </div>
+
+
+            </div>
+
+
+            <div className="mvx-wrap-bulk-all-date">
+              <div className="mvx-wrap-bulk-action">
+                <Select placeholder="Bulk actions" options={appLocalizer.post_bulk_status} isClearable={true} className="mvx-module-section-list-data" onChange={(e) => this.handlevendorsearch(e, 'announcement')}/>
+              </div>
+
+              <div className="mvx-wrap-date-action">
+                <Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handlevendorsearch} />
+              </div>
+            </div>
+
+            <div className="mvx-backend-datatable-wrapper">
+              <DataTable
+                columns={this.state.columns_announcement}
+                data={this.state.display_announcement}
+                selectableRows
+                onSelectedRowsChange={this.onSelectedRowsChange}
+                pagination
+              />
+
+            </div>
+          </div>
         }
       </div>
 
@@ -536,12 +614,42 @@ Child({ name }) {
 
           :
 
-          <DataTable
-            columns={this.state.columns_knowladgebase}
-            data={this.state.display_list_knowladgebase}
-            selectableRows
-            pagination
-          />
+          <div>
+            <div className="mvx-search-and-multistatus-wrap">
+              <div className="mvx-multistatus-check">
+                <div className="mvx-multistatus-check-all">All (10)</div>
+                <div className="mvx-multistatus-check-approve" onClick={this.handle_post_check_publish}>| Published (10)</div>
+                <div className="mvx-multistatus-check-pending status-active">| Pending (10)</div>
+              </div>
+
+
+              <div className="mvx-module-section-list-data"> 
+                <label><span class="dashicons dashicons-search"></span></label>
+                <input type="text" placeholder="Search Knowledgebase" name="search"/>
+              </div>
+            </div>
+
+
+            <div className="mvx-wrap-bulk-all-date">
+              <div className="mvx-wrap-bulk-action">
+                <Select placeholder="Bulk actions" options={appLocalizer.post_bulk_status} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_post_bulk_status} />
+              </div>
+
+              <div className="mvx-wrap-date-action">
+                <Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handlevendorsearch} />
+              </div>
+            </div>
+
+            <div className="mvx-backend-datatable-wrapper">
+
+              <DataTable
+                columns={this.state.columns_knowladgebase}
+                data={this.state.display_list_knowladgebase}
+                selectableRows
+                pagination
+              />
+            </div>
+          </div>
         
         }
 
@@ -551,13 +659,40 @@ Child({ name }) {
 
       name == 'store_review' ?
 
-      <div>
-          <DataTable
-              columns={this.state.store_review}
-              data={this.state.list_of_store_review}
-              selectableRows
-              pagination
-            />
+        <div>
+          <div className="mvx-search-and-multistatus-wrap">
+            <div className="mvx-multistatus-check">
+              <div className="mvx-multistatus-check-all">All (10)</div>
+              <div className="mvx-multistatus-check-approve" onClick={this.handle_post_check_publish}>| Approve (10)</div>
+              <div className="mvx-multistatus-check-pending status-active">| Pending (10)</div>
+            </div>
+
+
+            <div className="mvx-module-section-list-data"> 
+              <label><span class="dashicons dashicons-search"></span></label>
+              <input type="text" placeholder="Search Review" name="search"/>
+            </div>
+          </div>
+
+
+          <div className="mvx-wrap-bulk-all-date">
+            <div className="mvx-wrap-bulk-action">
+              <Select placeholder="Bulk actions" options={appLocalizer.post_bulk_status} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_post_bulk_status} />
+            </div>
+
+            <div className="mvx-wrap-date-action">
+              <Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handlevendorsearch} />
+            </div>
+          </div>
+
+          <div className="mvx-backend-datatable-wrapper">
+            <DataTable
+                columns={this.state.store_review}
+                data={this.state.list_of_store_review}
+                selectableRows
+                pagination
+              />
+          </div>
       </div>
 
       :
@@ -569,15 +704,44 @@ Child({ name }) {
       :
 
       name == 'question_ans' ?
+
         <div>
-          {this.state.pending_questions ?
-            <DataTable
-                columns={this.state.pending_questions}
-                data={this.state.list_of_pending_question}
-                selectableRows
-                pagination
-              />
-          : '' }
+
+          <div className="mvx-search-and-multistatus-wrap">
+            <div className="mvx-multistatus-check">
+              <div className="mvx-multistatus-check-all">All (10)</div>
+              <div className="mvx-multistatus-check-approve" onClick={this.handle_post_check_publish}>| Published (10)</div>
+              <div className="mvx-multistatus-check-pending status-active">| Pending (10)</div>
+            </div>
+
+
+            <div className="mvx-module-section-list-data"> 
+              <label><span class="dashicons dashicons-search"></span></label>
+              <input type="text" placeholder="Search Question" name="search"/>
+            </div>
+          </div>
+
+
+          <div className="mvx-wrap-bulk-all-date">
+            <div className="mvx-wrap-bulk-action">
+              <Select placeholder="Bulk actions" options={appLocalizer.post_bulk_status} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_post_bulk_status} />
+            </div>
+
+            <div className="mvx-wrap-date-action">
+              <Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handlevendorsearch} />
+            </div>
+          </div>
+
+          <div className="mvx-backend-datatable-wrapper">
+            {this.state.pending_questions ?
+              <DataTable
+                  columns={this.state.pending_questions}
+                  data={this.state.list_of_pending_question}
+                  selectableRows
+                  pagination
+                />
+            : '' }
+          </div>
         </div>
 
       :

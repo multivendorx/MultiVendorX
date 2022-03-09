@@ -381,7 +381,7 @@ class MVX_Admin {
             ]
         ];
 
-        $marketplace_manager_endpoint = [
+        /*$marketplace_manager_endpoint = [
             [
                 'tabname'       =>  'tast-list',
                 'tablabel'      =>  __('My Task List', 'dc-woocommerce-multi-vendor'),
@@ -403,7 +403,7 @@ class MVX_Admin {
                 'description'   =>  __('Default description', 'dc-woocommerce-multi-vendor'),
                 'activeclass'   =>  'report-abuse',
             ]
-        ];
+        ];*/
 
         $general_settings_page_endpoint = array(
             array(
@@ -700,12 +700,19 @@ class MVX_Admin {
                 'apiurl'        =>  'mvx_module/v1/update_vendor',
                 'classname'     =>  'form',
                 'modelname'     =>  'report_abuse'
+            ),
+            array(
+                'tabname'       =>  'question_ans',
+                'tablabel'      =>  __('Question & Answer', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/update_vendor',
+                'classname'     =>  'form',
+                'modelname'     =>  'question_ans'
             )
         );
 
         $mvx_all_backend_tab_list = array(
             'dashboard-page'                    => $dashboard_page_endpoint,
-            'marketplace-manager'               => $marketplace_manager_endpoint,
+            //'marketplace-manager'               => $marketplace_manager_endpoint,
             'marketplace-advance-settings'      => $advance_page_endpoint,
             'marketplace-analytics'             => $analytics_page_endpoint,
             'marketplace-payments'              => $payment_page_endpoint,
@@ -846,6 +853,17 @@ class MVX_Admin {
             );
         }
 
+        $post_bulk_status = array(
+                array(
+                    'value' => 'pending',
+                    'label' => __('Pending', 'dc-woocommerce-multi-vendor')
+                ),
+                array(
+                    'value' => 'published',
+                    'label' => __('Published', 'dc-woocommerce-multi-vendor')
+                ),
+            );
+
 
         wp_localize_script( 'mvx-modules-build-frontend', 'appLocalizer', [
             'apiUrl' => home_url( '/wp-json' ),
@@ -867,18 +885,19 @@ class MVX_Admin {
             'settings_fields' => apply_filters('mvx-settings-fileds-details', $settings_fields),
             'countries'                 => wp_json_encode( array_merge( WC()->countries->get_allowed_country_states(), WC()->countries->get_shipping_country_states() ) ),
             'mvx_all_backend_tab_list' => $mvx_all_backend_tab_list,
-            'default_logo'  => $MVX->plugin_url.'assets/images/WP-stdavatar.png',
-            'right_logo'    => $MVX->plugin_url.'assets/images/right_tick.jpg',
-            'cross_logo'    => $MVX->plugin_url.'assets/images/cross_tick.png',
+            'default_logo'                  => $MVX->plugin_url.'assets/images/WP-stdavatar.png',
+            'right_logo'                    => $MVX->plugin_url.'assets/images/right_tick.jpg',
+            'cross_logo'                    => $MVX->plugin_url.'assets/images/cross_tick.png',
             'commission_bulk_list_option'   =>  $commission_bulk_list_action,
-            'commission_header' => $commission_header,
+            'commission_header'             => $commission_header,
             //'shipping_options'  => $shipping_options_list,
             //'vendor_default_shipping_options'   => $vendor_default_shipping_options,
             'commission_status_list_action' =>  $commission_status_list_action,
-            'commission_page_string'    =>  $commission_page_string,
-            'report_product_header' =>  $report_product_header,
-            'report_vendor_header'  =>  $report_vendor_header,
-            'report_page_string'    =>  $report_page_string
+            'commission_page_string'        =>  $commission_page_string,
+            'report_product_header'         =>  $report_product_header,
+            'report_vendor_header'          =>  $report_vendor_header,
+            'report_page_string'            =>  $report_page_string,
+            'post_bulk_status'              =>  $post_bulk_status
         ] );
 
         if ( in_array($screen->id, $page_details)) {

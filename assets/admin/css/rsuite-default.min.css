@@ -1,6 +1,5 @@
-*,
-:after,
-:before {
+*
+{
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
@@ -1170,9 +1169,7 @@ tbody.collapse.in {
 html {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-body {
-    font-family: Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, STXihei, sans-serif;
-}
+
 a {
     color: #1675e0;
     text-decoration: none;
@@ -1207,10 +1204,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: inherit;
-    font-weight: bolder;
-    color: inherit;
-    margin: 0;
+       margin: 0;
 }
 h1 small,
 h2 small,
@@ -1230,22 +1224,7 @@ h2 {
     /*font-size: 36px;
     line-height: 50px;*/
 }
-h3 {
-    font-size: 28px;
-    line-height: 42px;
-}
-h4 {
-    font-size: 22px;
-    line-height: 34px;
-}
-h5 {
-    font-size: 18px;
-    line-height: 24px;
-}
-h6 {
-    font-size: 16px;
-    line-height: 22px;
-}
+
 p {
     margin: 0;
 }

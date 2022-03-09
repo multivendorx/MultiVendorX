@@ -472,7 +472,7 @@ if (!function_exists('MVX_action_links')) {
      */
     function MVX_action_links($links) {
         $plugin_links = array(
-            '<a href="' . admin_url('admin.php?page=mvx-setting-admin') . '">' . __('Settings', 'dc-woocommerce-multi-vendor') . '</a>');
+            '<a href="' . admin_url('admin.php?page=mvx#&submenu=dashboard&name=modules') . '">' . __('Settings', 'dc-woocommerce-multi-vendor') . '</a>');
         return array_merge($plugin_links, $links);
     }
 
@@ -7291,6 +7291,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
             'knowladgebase' =>  [],
             'store_review'  =>  [],
             'report_abuse'  =>  [],
+            'question_ans'  =>  [],
         ];
 
         return $settings_fields;

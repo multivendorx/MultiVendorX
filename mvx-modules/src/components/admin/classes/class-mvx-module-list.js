@@ -185,8 +185,12 @@ class App extends Component {
     $('ul.wp-submenu a', menuRoot).each(function(index, el) {
         if ( $(el).attr( 'href' ) === currentPath ) {
             $(el).parent().addClass('current');
-            return;
+            
+        } else {
+          $(el).parent().removeClass('current');
+            
         }
+        return;
     });
 
 
@@ -236,6 +240,8 @@ class App extends Component {
             <div className="mvx-child-container">
               
               <div className="mvx-sub-container">
+
+              
                   <div className="dashboard-tab-area">
                     <ul className="mvx-dashboard-tabs-list">
                       {appLocalizer.mvx_all_backend_tab_list['dashboard-page'].map((data, index) => (
