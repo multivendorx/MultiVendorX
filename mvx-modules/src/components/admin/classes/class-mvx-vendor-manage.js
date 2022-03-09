@@ -506,7 +506,7 @@ class App extends React.Component {
             <div className="mvx-wrap-bulk-all-date">
               <div className="mvx-wrap-bulk-action">
                 <Select placeholder="Bulk actions" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handlevendorsearch} />
-                <button type="button" className="button-secondary" onClick={(e) => this.handledeletevendor(e)}>Apply</button>
+                { /*<button type="button" className="button-secondary" onClick={(e) => this.handledeletevendor(e)}>Apply</button> */ }
               </div>
 
               <div className="mvx-wrap-date-action">

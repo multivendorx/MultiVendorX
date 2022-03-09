@@ -741,7 +741,6 @@ class App extends Component {
             <div className="mvx-wrap-bulk-all-date">
               <div className="mvx-wrap-bulk-action">
                 <Select placeholder="Bulk Action" options={this.state.show_commission_status} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e, 'searchstatus')} />
-                <button type="button" className="button-secondary">Apply</button>
               </div>
 
               <div className="mvx-wrap-bulk-action">

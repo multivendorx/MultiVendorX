@@ -1169,8 +1169,8 @@ export default class DynamicForm extends React.Component {
     let prop_submitbutton = this.props.submitbutton && this.props.submitbutton == 'false' ? '' : 'true';
     return (
       <div className={this.props.className}>
-        {this.state.errordisplay ? <div className="mvx-notic-display-title">{this.state.errordisplay}</div> : '' }
-        
+        { /*this.state.errordisplay ? <div className="mvx-notic-display-title">{this.state.errordisplay}</div> : '' */}
+        <div className="mvx-notic-display-title">Setting Saved</div>
         <form
           className="dynamic-form"
           onSubmit={e => {

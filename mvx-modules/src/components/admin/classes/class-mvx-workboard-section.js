@@ -57,10 +57,21 @@ class App extends Component {
       edit_announcement_fileds: [],
       edit_knowledgebase_fileds: [],
       display_list_knowladgebase: [],
+      list_of_pending_vendor_product: [],
+      list_of_pending_vendor: [],
+      list_of_pending_vendor_coupon: [],
+      list_of_pending_transaction: [],
+      list_of_pending_question: [],
+      list_of_store_review: [],
       columns_announcement: [
         {
             name: <div className="mvx-datatable-header-text">Title</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.title}}></div>,
+            sortable: true,
+        },
+        {
+            name: <div className="mvx-datatable-header-text">Vendors</div>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.vendor}}></div>,
             sortable: true,
         },
         {
@@ -87,64 +98,61 @@ class App extends Component {
 
       pending_product: [
         {
-            name: <div className="mvx-datatable-header-text">Title</div>,
-            selector: row => <div dangerouslySetInnerHTML={{__html: row.title}}></div>,
+            name: <div className="mvx-datatable-header-text">Vendor Name</div>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.vendor}}></div>,
             sortable: true,
         },
         {
-            name: <div className="mvx-datatable-header-text">Date</div>,
-            selector: row => <div dangerouslySetInnerHTML={{__html: row.date}}></div>,
+            name: <div className="mvx-datatable-header-text">Product Name</div>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.product}}></div>,
             sortable: true,
         },
       ],
+
       pending_vendor: [
         {
-            name: <div className="mvx-datatable-header-text">Title</div>,
-            selector: row => <div dangerouslySetInnerHTML={{__html: row.title}}></div>,
+            name: <div className="mvx-datatable-header-text">Edit</div>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.vendor}}></div>,
             sortable: true,
-        },
-        {
-            name: <div className="mvx-datatable-header-text">Date</div>,
-            selector: row => <div dangerouslySetInnerHTML={{__html: row.date}}></div>,
-            sortable: true,
-        },
+        }
       ],
+
       pending_coupon: [
         {
-            name: <div className="mvx-datatable-header-text">Title</div>,
-            selector: row => <div dangerouslySetInnerHTML={{__html: row.title}}></div>,
+            name: <div className="mvx-datatable-header-text">Vendor Name</div>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.vendor}}></div>,
             sortable: true,
         },
         {
-            name: <div className="mvx-datatable-header-text">Date</div>,
-            selector: row => <div dangerouslySetInnerHTML={{__html: row.date}}></div>,
+            name: <div className="mvx-datatable-header-text">Coupon Name</div>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.coupon}}></div>,
             sortable: true,
         },
       ],
+
       pending_tranaction: [
         {
-            name: <div className="mvx-datatable-header-text">Title</div>,
-            selector: row => <div dangerouslySetInnerHTML={{__html: row.title}}></div>,
-            sortable: true,
-        },
-        {
-            name: <div className="mvx-datatable-header-text">Date</div>,
-            selector: row => <div dangerouslySetInnerHTML={{__html: row.date}}></div>,
-            sortable: true,
-        },
-      ],
-      columns_knowladgebase: [
-        {
             name: <div className="mvx-datatable-header-text">Vendor Name</div>,
-            selector: row => <div dangerouslySetInnerHTML={{__html: row.title}}></div>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.vendor}}></div>,
             sortable: true,
         },
         {
-            name: <div className="mvx-datatable-header-text">Date</div>,
-            selector: row => <div dangerouslySetInnerHTML={{__html: row.date}}></div>,
+            name: <div className="mvx-datatable-header-text">Commission</div>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.commission}}></div>,
+            sortable: true,
+        },
+        {
+            name: <div className="mvx-datatable-header-text">Amount</div>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.amount}}></div>,
+            sortable: true,
+        },
+        {
+            name: <div className="mvx-datatable-header-text">Account Detail</div>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.account_details}}></div>,
             sortable: true,
         },
       ],
+      
       pending_questions: [
         {
             name: <div className="mvx-datatable-header-text">Question by</div>,
@@ -159,6 +167,34 @@ class App extends Component {
         {
             name: <div className="mvx-datatable-header-text">Question details</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.question_details}}></div>,
+            sortable: true,
+        },
+      ],
+
+      store_review: [
+        {
+            name: <div className="mvx-datatable-header-text">Customer</div>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.author}}></div>,
+            sortable: true,
+        },
+        {
+            name: <div className="mvx-datatable-header-text">Vendor</div>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.user_id}}></div>,
+            sortable: true,
+        },
+        {
+            name: <div className="mvx-datatable-header-text">Content</div>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.content}}></div>,
+            sortable: true,
+        },
+        {
+            name: <div className="mvx-datatable-header-text">Time</div>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.time}}></div>,
+            sortable: true,
+        },
+        {
+            name: <div className="mvx-datatable-header-text">review</div>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.review}}></div>,
             sortable: true,
         },
       ],
@@ -198,6 +234,67 @@ class App extends Component {
         display_list_knowladgebase: response.data,
       });
     })
+
+
+    // pending details
+
+
+    axios.get(
+    `${appLocalizer.apiUrl}/mvx_module/v1/list_of_pending_question`
+    )
+    .then(response => {
+      this.setState({
+        list_of_pending_question: response.data,
+      });
+    })
+
+    axios.get(
+    `${appLocalizer.apiUrl}/mvx_module/v1/list_of_pending_transaction`
+    )
+    .then(response => {
+      this.setState({
+        list_of_pending_transaction: response.data,
+      });
+    })
+
+    axios.get(
+    `${appLocalizer.apiUrl}/mvx_module/v1/list_of_pending_vendor_coupon`
+    )
+    .then(response => {
+      this.setState({
+        list_of_pending_vendor_coupon: response.data,
+      });
+    })
+
+    axios.get(
+    `${appLocalizer.apiUrl}/mvx_module/v1/list_of_pending_vendor`
+    )
+    .then(response => {
+      this.setState({
+        list_of_pending_vendor: response.data,
+      });
+    })
+
+    axios.get(
+    `${appLocalizer.apiUrl}/mvx_module/v1/list_of_pending_vendor_product`
+    )
+    .then(response => {
+      this.setState({
+        list_of_pending_vendor_product: response.data,
+      });
+    })
+
+    // fetch review
+    axios.get(
+    `${appLocalizer.apiUrl}/mvx_module/v1/list_of_store_review`
+    )
+    .then(response => {
+      this.setState({
+        list_of_store_review: response.data,
+      });
+    })
+
+
   }
 
   useQuery() {
@@ -299,7 +396,58 @@ Child({ name }) {
     {
       name == 'activity_reminder' ?
 
-      'activity_reminder'
+      <div>
+
+
+
+
+
+      {console.log(this.state.pending_product)}
+
+
+
+
+        {this.state.list_of_pending_vendor_product ?
+          <DataTable
+            columns={this.state.pending_product}
+            data={this.state.list_of_pending_vendor_product}
+            selectableRows
+            pagination
+          />
+        : '' }
+
+        {this.state.list_of_pending_vendor ?
+          <DataTable
+              columns={this.state.pending_vendor}
+              data={this.state.list_of_pending_vendor}
+              selectableRows
+              pagination
+            />
+        : '' }
+
+          {this.state.list_of_pending_vendor_coupon ?
+            <DataTable
+                columns={this.state.pending_coupon}
+                data={this.state.list_of_pending_vendor_coupon}
+                selectableRows
+                pagination
+              />
+          : '' }
+
+
+          {this.state.list_of_pending_transaction ?
+            <DataTable
+                columns={this.state.pending_tranaction}
+                data={this.state.list_of_pending_transaction}
+                selectableRows
+                pagination
+              />
+          : '' }
+
+
+        
+
+      </div>
 
       :
 
@@ -403,13 +551,34 @@ Child({ name }) {
 
       name == 'store_review' ?
 
-      'store_review'
+      <div>
+          <DataTable
+              columns={this.state.store_review}
+              data={this.state.list_of_store_review}
+              selectableRows
+              pagination
+            />
+      </div>
 
       :
 
       name == 'report_abuse' ?
 
       'report_abuse'
+
+      :
+
+      name == 'question_ans' ?
+        <div>
+          {this.state.pending_questions ?
+            <DataTable
+                columns={this.state.pending_questions}
+                data={this.state.list_of_pending_question}
+                selectableRows
+                pagination
+              />
+          : '' }
+        </div>
 
       :
 
