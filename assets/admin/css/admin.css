@@ -396,6 +396,21 @@ i.mvx-font.ico-store-icon {
   padding: 0 0.7rem;
 }
 
+.mvx-module-grid {
+  position: relative;
+}
+
+.mvx-module-grid:after {
+  position: absolute;
+  content: '';
+  height: 3rem;
+  width: 3%;
+  right: -.125rem;
+  top: -3rem;
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), color-stop(134%, #f2eff5));
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, #f2eff5 134%);
+}
+
 ul.mvx-dashboard-tabs-list {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -522,23 +537,30 @@ span.mvx-module-section-pro-badge {
   right: 16px;
 }
 
-.general-tab-header-area {
-  border: 0.06rem solid #d4d1d9;
-  /* border-bottom: none; */
+.mvx-upper-tab-header-area {
+  border-bottom: 0.06rem solid #d4d1d9;
   margin-bottom: 2rem;
+}
+
+.general-tab-header-area {
+  border-bottom: none;
+}
+
+.general-tab-header-area, .mvx-upper-tab-header-area {
+  border: 0.06rem solid #d4d1d9;
   text-align: center;
   padding: 1rem;
   border-radius: 0.254rem 0.254rem 0 0;
   background: #f7f6f9;
 }
 
-.general-tab-header-area .mvx-tab-name-display {
+.general-tab-header-area .mvx-tab-name-display, .mvx-upper-tab-header-area .mvx-tab-name-display {
   font-size: 24px;
   font-weight: 600;
   color: #181718;
 }
 
-.general-tab-header-area p {
+.general-tab-header-area p, .mvx-upper-tab-header-area p {
   font-size: 14px;
   color: #5e5d60;
 }
@@ -1055,7 +1077,7 @@ img.mvx-section-img-fluid {
           justify-content: space-between;
 }
 
-.mvx-text-with-line-wrapper, .wvx-report-text-fade-line {
+.mvx-text-with-line-wrapper, .mvx-report-text-fade-line {
   width: 100%;
 }
 
@@ -1096,7 +1118,7 @@ img.mvx-section-img-fluid {
   padding: 0 2rem 2rem 0;
 }
 
-.wvx-report-text-fade-line {
+.mvx-report-text-fade-line {
   border-top: 0.06rem solid #a7aaad;
   margin: 0 1rem;
 }
@@ -1782,12 +1804,12 @@ table.mvx-order-totals td {
 }
 
 /*workboard page*/
-.card {
+.mvx-workboard-card-wrapper-child {
   position: relative;
   padding: 3rem 0.5rem;
 }
 
-.card .heading, .card .mvx-module-current-status.wp-clearfix {
+.mvx-workboard-card-wrapper-child .mvx-workboard-card-wrapper-heading, .mvx-workboard-card-wrapper-child .mvx-module-current-status.wp-clearfix {
   position: absolute;
   left: 0;
   font-size: 1.25rem;
@@ -1798,19 +1820,19 @@ table.mvx-order-totals td {
   color: #fbf8f9;
 }
 
-.card .heading {
+.mvx-workboard-card-wrapper-child .mvx-workboard-card-wrapper-heading {
   top: 0;
 }
 
-.card .mvx-module-current-status.wp-clearfix {
+.mvx-workboard-card-wrapper-child .mvx-module-current-status.wp-clearfix {
   bottom: 0;
 }
 
-.card .mvx-commission-label-class {
+.mvx-workboard-card-wrapper-child .mvx-commission-label-class {
   width: unset;
 }
 
-.card .top-part, .card .img-part, .card .mvx-module-current-status.wp-clearfix {
+.mvx-workboard-card-wrapper-child .mvx-workboard-top-part, .mvx-workboard-card-wrapper-child .mvx-workboard-img-part, .mvx-workboard-card-wrapper-child .mvx-module-current-status.wp-clearfix, .mvx-workboard-card-wrapper-child .mvx-todo-list-details-data-value {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

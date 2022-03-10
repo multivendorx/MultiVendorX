@@ -415,7 +415,6 @@ class App extends Component {
 
         <HeaderSection />
 
-
         <div className="container">
 
           <div className="mvx-child-container">
@@ -424,7 +423,7 @@ class App extends Component {
             
 
             <div className="mvx-upper-tab-header-area">
-              <h1>{tab_name_display}</h1>
+              <div className="mvx-tab-name-display">{tab_name_display}</div>
               <p>{tab_description_display}</p>
             </div>
 
@@ -432,7 +431,7 @@ class App extends Component {
             <div className="dashboard-tab-area">
               <ul className="mvx-dashboard-tabs-list">
                 {appLocalizer.mvx_all_backend_tab_list['marketplace-analytics'].map((data, index) => (
-                  <li className={queryt.get("name") == data.modulename ? 'activedashboardtabs' : ''}>{data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}<Link to={`?page=mvx#&submenu=analytics&name=${data.modulename}`} >{data.tablabel}</Link></li>                ))}
+                  <Link to={`?page=mvx#&submenu=analytics&name=${data.modulename}`} ><li className={queryt.get("name") == data.modulename ? 'activedashboardtabs' : ''}>{data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}{data.tablabel}</li></Link>                ))}
               </ul>
               <div className="dashboard-tabcontentclass">
                 <this.Child name={queryt.get("name")} />

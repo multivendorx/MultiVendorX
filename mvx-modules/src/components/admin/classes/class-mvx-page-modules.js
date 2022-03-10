@@ -173,14 +173,26 @@ class App extends Component {
               <div className="mvx-sub-container">
 
               
-                  <div className="mvx-module-section-ui module-listing dashboard-wrapper">
+              <div className="mvx-upper-tab-header-area">
+                <div className="mvx-tab-name-display">Module</div>
+                <p>Module description</p>
+              </div>
+
+
+          <div className="mvx-module-section-ui module-listing dashboard-wrapper">
             <div className="mvx-module-grid">
 
             {this.state.items.length == 0 ? <PuffLoader css={override} color={"#cd0000"} size={200} loading={true} /> : this.state.items.map((student1, index1) => (
 
               <div className="mvx-module-list-start">
                 <div className="mvx-module-list-container">
-                <div className="mvx-module-category-label">{student1.label}</div>
+
+
+                <div className="mvx-text-with-line-wrapper">
+                  <div className="mvx-module-category-label">{student1.label}</div>
+                  <div className="mvx-report-text-fade-line"></div>
+                </div>
+
                   <div className="mvx-module-option-row">
                   
                   {student1.options.map((student, index) => (

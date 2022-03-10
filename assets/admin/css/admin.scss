@@ -324,12 +324,25 @@ div#wpcontent {
       padding: 0 0.7rem;
     }
 }
+.mvx-module-grid{
+    position: relative;
+    &:after {
+        position: absolute;
+        content: '';
+        height: 3rem;
+        width: 3%;
+        right: -.125rem;
+        top: -3rem;
+        background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, #f2eff5 134%);
+    }
+}
 ul.mvx-dashboard-tabs-list {
           display: flex;  
         overflow-x: auto;
         overflow-y: hidden;
         white-space: nowrap;
           margin: 0 0 0 1.4rem;
+          
           &::-webkit-scrollbar {
             display: none;
         }
@@ -432,10 +445,15 @@ span.mvx-module-section-pro-badge{
     right: 16px;
 }
 // generalsettings-----
-.general-tab-header-area {
-    border: 0.06rem solid #d4d1d9;
-    /* border-bottom: none; */
+.mvx-upper-tab-header-area{
+    border-bottom: 0.06rem solid #d4d1d9;
     margin-bottom: 2rem;
+}
+.general-tab-header-area{
+    border-bottom: none;
+}
+.general-tab-header-area, .mvx-upper-tab-header-area {
+    border: 0.06rem solid #d4d1d9;
     text-align: center;
     padding: 1rem;
     border-radius: 0.254rem 0.254rem 0 0;
@@ -855,7 +873,7 @@ ul input:checked + label {
     .mvx-chart-text-and-bar-line-wrap, .mvx-wrap-chart-header-content{
         justify-content: space-between;
     }
-    .mvx-text-with-line-wrapper,  .wvx-report-text-fade-line {
+    .mvx-text-with-line-wrapper,  .mvx-report-text-fade-line {
         width: 100%;
     }
     .recharts-responsive-container, .mvx-wrapper-show-specific {
@@ -886,7 +904,7 @@ ul input:checked + label {
     .mvx-date-and-show-wrapper{
         padding:0 2rem 2rem 0;
     }
-    .wvx-report-text-fade-line {
+    .mvx-report-text-fade-line {
         border-top: 0.06rem solid #a7aaad;
         margin: 0 1rem;
     }
@@ -1422,10 +1440,10 @@ table.mvx-order-totals td {
     color: #3f1473;
 }
 /*workboard page*/
-.card {
+.mvx-workboard-card-wrapper-child {
     position: relative;
     padding: 3rem 0.5rem;
-    .heading, .mvx-module-current-status.wp-clearfix{
+    .mvx-workboard-card-wrapper-heading, .mvx-module-current-status.wp-clearfix{
         position: absolute;
         left: 0;
         font-size: 1.25rem;
@@ -1435,7 +1453,7 @@ table.mvx-order-totals td {
         padding: 0.8rem;
         color: #fbf8f9;
     }
-    .heading{
+    .mvx-workboard-card-wrapper-heading{
         top: 0;
     }
     .mvx-module-current-status.wp-clearfix{
@@ -1444,7 +1462,7 @@ table.mvx-order-totals td {
     .mvx-commission-label-class{
         width: unset;
     }
-    .top-part, .img-part, .mvx-module-current-status.wp-clearfix {
+    .mvx-workboard-top-part, .mvx-workboard-img-part, .mvx-module-current-status.wp-clearfix, .mvx-todo-list-details-data-value {
         display: flex;
         justify-content: space-between;
         align-items: center;

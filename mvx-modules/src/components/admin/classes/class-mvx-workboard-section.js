@@ -503,7 +503,13 @@ Child({ name }) {
 
       name == appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'][1]['modulename'] ?
       <div className="mvx-module-grid">
-        <div className="button-secondary"><Link to={`?page=mvx#&submenu=work-board&name=announcement&create=announcement`}>Add Announcement</Link></div>
+
+
+        <div className="mvx-table-text-and-add-wrap">
+          <Link to={`?page=mvx#&submenu=work-board&name=announcement&create=announcement`}><span class="dashicons dashicons-plus"></span>Add Announcement</Link>
+        </div>
+
+
 
         {get_current_name && get_current_name.get("create") == 'announcement' ?
 
@@ -585,8 +591,12 @@ Child({ name }) {
       name == appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'][2]['modulename'] ?
 
       <div className="mvx-module-grid">
-        <div className="button-secondary"><Link to={`?page=mvx#&submenu=work-board&name=knowladgebase&create=knowladgebase`}>Add Knowledgebase</Link></div>
-        
+
+
+        <div className="mvx-table-text-and-add-wrap">
+          <Link to={`?page=mvx#&submenu=work-board&name=knowladgebase&create=knowladgebase`}><span class="dashicons dashicons-plus"></span>Add Knowladgebase</Link>
+        </div>
+
         {get_current_name && get_current_name.get("create") == 'knowladgebase' ?
 
           <DynamicForm
