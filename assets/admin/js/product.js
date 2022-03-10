@@ -1,42 +1,8 @@
 /* global ajaxurl */
 
 jQuery(document).ready(function($) {
-	$('select.ajax_chosen_select_vendor').ajaxChosen({
-		method : 'GET',
-		url : ajaxurl,
-		dataType : 'json',
-		afterTypeDelay : 100,
-		minTermLength : 1,
-		data : {
-			action : 'woocommerce_json_search_vendors',
-		}
-	}, function(data) {
-
-		var terms = {};
-
-		$.each(data, function(i, val) {
-			terms[i] = val;
-		});
-
-		return terms;
-	});
-	
-	$('select.ajax_chosen_select_products_and_variations').ajaxChosen({
-			method: 	'GET',
-			url: 		ajaxurl,
-			dataType: 	'json',
-			afterTypeDelay: 100,
-			data:		{
-				action: 'woocommerce_json_search_products_and_variations',
-				security: dc_vendor_object.security
-			}
-	}, function (data) {
-	
-		var terms = {};
-			$.each(data, function (i, val) {
-					terms[i] = val;
-			});
-			return terms;
+	$('select.mvx_select_vendor').select2({
+		minimumInputLength: 1, // only start searching when the user has input 3 or more characters
 	});
 	
 	$( '.delete_vendor_data' ).click(function() {
@@ -45,7 +11,7 @@ jQuery(document).ready(function($) {
 			'product_id': unassign_vendors_data.current_product_id,
 		};
 		
-		$.post( ajaxurl, unassign_vendor, function(response) {
+		$.post( 'admin-ajax.php', unassign_vendor, function(response) {
 			$('.chosen-single span').html('Choose a vendor');
 			$('#choose_vendor_ajax option:selected').remove();
 			$('.input-commision').val('');
@@ -58,10 +24,9 @@ jQuery(document).ready(function($) {
 	
 	});
         
-        if ( $.isFunction($.fn.singleProductMulipleVendor) ) {
-            $('input[name=post_title]').singleProductMulipleVendor({
-                ajaxurl : ajaxurl
-            });
-        }
-		
-}); 
+    if ( $.isFunction($.fn.singleProductMulipleVendor) ) {
+        $('input[name=post_title]').singleProductMulipleVendor({
+            ajaxurl : 'admin-ajax.php'
+        });
+    }	
+});
