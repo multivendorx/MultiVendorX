@@ -423,7 +423,7 @@ class App extends Component {
           <div className="mvx-sub-container">
             
 
-            <div className="general-tab-header-area">
+            <div className="mvx-upper-tab-header-area">
               <h1>{tab_name_display}</h1>
               <p>{tab_description_display}</p>
             </div>
@@ -486,8 +486,8 @@ Child({ name }) {
               <div className="mvx-report-performance-content">
                 {this.state.report_overview_data.admin_overview ? 
                   <div className="mvx-text-with-line-wrapper">
-                    <h2 className="mvx-report-text">{appLocalizer.report_page_string.performance}</h2>
-                    <div className="wvx-report-text-fade-line"></div>
+                    <div className="mvx-report-text">{appLocalizer.report_page_string.performance}</div>
+                    <div className="mvx-report-text-fade-line"></div>
                   </div>
 
                    : ''}
@@ -528,8 +528,8 @@ Child({ name }) {
                 <div className="mvx-chart-text-and-bar-line-wrap">
 
                   <div className="mvx-text-with-line-wrapper">
-                    <h2 className="mvx-report-text">{appLocalizer.report_page_string.charts}</h2>
-                    <div className="wvx-report-text-fade-line"></div>
+                    <div className="mvx-report-text">{appLocalizer.report_page_string.charts}</div>
+                    <div className="mvx-report-text-fade-line"></div>
                   </div>
 
                   <div className="mvx-bar-and-line-wrap">
@@ -647,8 +647,8 @@ Child({ name }) {
             <div className="mvx-report-leaderboard-content">
 
               <div className="mvx-text-with-line-wrapper">
-                <h2 className="mvx-report-text">{appLocalizer.report_page_string.leaderboards}</h2>
-                <div className="wvx-report-text-fade-line"></div>
+                <div className="mvx-report-text">{appLocalizer.report_page_string.leaderboards}</div>
+                <div className="mvx-report-text-fade-line"></div>
               </div>
 
               <div className="mvx-backend-datatable-wrapper">
@@ -694,8 +694,8 @@ Child({ name }) {
 
               <div className="mvx-report-performance-content">
                 <div className="mvx-text-with-line-wrapper">
-                  <h2 className="mvx-report-text">{appLocalizer.report_page_string.performance}</h2>
-                  <div className="wvx-report-text-fade-line"></div>
+                  <div className="mvx-report-text">{appLocalizer.report_page_string.performance}</div>
+                  <div className="mvx-report-text-fade-line"></div>
                 </div>
 
                 <div className="mvx-wrapper-performance-content">
@@ -731,8 +731,8 @@ Child({ name }) {
                 <div className="mvx-chart-text-and-bar-line-wrap">
 
                   <div className="mvx-text-with-line-wrapper">
-                    <h2 className="mvx-report-text">{appLocalizer.report_page_string.charts}</h2>
-                    <div className="wvx-report-text-fade-line"></div>
+                    <div className="mvx-report-text">{appLocalizer.report_page_string.charts}</div>
+                    <div className="mvx-report-text-fade-line"></div>
                   </div>
 
                   <div className="mvx-bar-and-line-wrap">
@@ -860,8 +860,8 @@ Child({ name }) {
 
               <div className="mvx-report-performance-content">
                 <div className="mvx-text-with-line-wrapper">
-                  <h2 className="mvx-report-text">{appLocalizer.report_page_string.performance}</h2>
-                  <div className="wvx-report-text-fade-line"></div>
+                  <div className="mvx-report-text">{appLocalizer.report_page_string.performance}</div>
+                  <div className="mvx-report-text-fade-line"></div>
                 </div>
 
                 <div className="mvx-wrapper-performance-content">
@@ -892,8 +892,8 @@ Child({ name }) {
 
                 <div className="mvx-chart-text-and-bar-line-wrap">
                   <div className="mvx-text-with-line-wrapper">
-                    <h2 className="mvx-report-text">{appLocalizer.report_page_string.charts}</h2>
-                    <div className="wvx-report-text-fade-line"></div>
+                    <div className="mvx-report-text">{appLocalizer.report_page_string.charts}</div>
+                    <div className="mvx-report-text-fade-line"></div>
                   </div>
 
                   <div className="mvx-bar-and-line-wrap">

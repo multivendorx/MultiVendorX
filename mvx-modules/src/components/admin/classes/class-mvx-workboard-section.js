@@ -363,7 +363,7 @@ class App extends Component {
               <div className="mvx-sub-container">
                 
 
-                <div className="general-tab-header-area">
+                <div className="mvx-upper-tab-header-area">
                   <div className="mvx-tab-name-display">{tab_name_display}</div>
                   <p>{tab_description_display}</p>
                 </div>
@@ -440,52 +440,52 @@ Child({ name }) {
     {
       name == appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'][0]['modulename'] ?
 
-           <div className="mvx-module-grid">
-        <div className="vendor-verification">
+      <div className="mvx-module-grid">
+        <div className="mvx-todo-status-check">
             <div className="mvx-text-with-line-wrapper">
                 <div className="mvx-report-text">Vendor Verification</div>
-                <div className="wvx-report-text-fade-line"></div>
-                <div className="bulk-action"><Select placeholder={appLocalizer.report_page_string.choose_vendor} options={this.state.details_vendor} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e)} /></div>
+                <div className="mvx-report-text-fade-line"></div>
+                <div className="mvx-select-bulk-action"><Select placeholder={appLocalizer.report_page_string.choose_vendor} options={this.state.details_vendor} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e)} /></div>
             </div>
             <div className="mvx-workboard-card-wrapper">
-                <div className="card">
-                    <div className="heading">Address Verification</div>
-                    <div className="top-part">
-                        <div className="img-part">
+                <div className="mvx-workboard-card-wrapper-child">
+                    <div className="mvx-workboard-card-wrapper-heading">Address Verification</div>
+                    <div className="mvx-workboard-top-part">
+                        <div className="mvx-workboard-img-part">
                             <img alt="Multivendor X" src={appLocalizer.mvx_logo}/>
-                            <div className="vendor-name">vendor test 01</div>
+                            <div className="mvx-workboard-vendor-name">vendor test 01</div>
                         </div>
-                        <div className="select-icon"> $</div>
+                        <div className="mvx-workboard-select-icon">$</div>
                     </div>
-                    <div className="address-area">
-                        <p className="commission-details-data-value">
+                    <div className="mvx-workboard-address-area">
+                        <p className="mvx-todo-list-details-data-value">
                         <div className="mvx-commission-label-class">Email Address:</div>
                         <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
                         </p>
-                        <p className="commission-details-data-value">
+                        <p className="mvx-todo-list-details-data-value">
                         <div className="mvx-commission-label-class">Email Address:</div>
                         <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
                         </p>
-                        <p className="commission-details-data-value">
+                        <p className="mvx-todo-list-details-data-value">
                         <div className="mvx-commission-label-class">Email Address:</div>
                         <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
                         </p>
-                        <p className="commission-details-data-value">
+                        <p className="mvx-todo-list-details-data-value">
                         <div className="mvx-commission-label-class">Email Address:</div>
                         <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
                         </p>
-                        <p className="commission-details-data-value">
+                        <p className="mvx-todo-list-details-data-value">
                         <div className="mvx-commission-label-class">Email Address:</div>
                         <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
                         </p>
-                        <p className="commission-details-data-value">
+                        <p className="mvx-todo-list-details-data-value">
                         <div className="mvx-commission-label-class">Email Address:</div>
                         <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
                         </p>
 
                     </div>
                     <div className="mvx-module-current-status wp-clearfix">
-                        <div className="left-icons-wrap">
+                        <div className="mvx-left-icons-wrap">
                             <i class="mvx-font ico-store-icon"></i>
                             <i class="mvx-font ico-store-icon"></i>
                             <i class="mvx-font ico-store-icon"></i>
@@ -494,89 +494,15 @@ Child({ name }) {
 
                     </div>
                 </div>
-                <div className="card">
-                    <div className="heading">Address Verification</div>
-                    <div className="top-part">
-                        <div className="img-part">
-                            <img alt="Multivendor X" src={appLocalizer.mvx_logo}/>
-                            <div className="vendor-name">vendor test 01</div>
-                        </div>
-                        <div className="select-icon"></div>
-                    </div>
-                    <div className="address-area">
-                        <p className="commission-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="commission-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-
-
-                    </div>
-                    <div className="mvx-module-current-status wp-clearfix">
-                        <div className="left-icons-wrap">
-                            <i class="mvx-font ico-store-icon"></i>
-                            <i class="mvx-font ico-store-icon"></i>
-                            <i class="mvx-font ico-store-icon"></i>
-
-                        </div>
-                        <div className="right-download-icon">
-                            <span>download icon</span>
-                        </div>
-                    </div>
-                </div>
-                <div className="card">
-                    <div className="heading">Address Verification</div>
-                    <div className="top-part">
-                        <div className="img-part">
-                            <img alt="Multivendor X" src={appLocalizer.mvx_logo}/>
-                            <div className="vendor-name">vendor test 01</div>
-                        </div>
-                        <div className="select-icon"></div>
-                    </div>
-                    <div className="address-area">
-                        <p className="commission-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="commission-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="commission-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="commission-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-
-
-                    </div>
-                    <div className="mvx-module-current-status wp-clearfix">
-                        <div className="left-icons-wrap">
-                            <i class="mvx-font ico-store-icon"></i>
-                            <i class="mvx-font ico-store-icon"></i>
-                            <i class="mvx-font ico-store-icon"></i>
-
-                        </div>
-                        <div className="right-download-icon">
-                            <span>download icon</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                
+              </div>
         </div>
     </div>
 
       :
 
       name == appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'][1]['modulename'] ?
-
-      <div className="mvx-backend-datatable-wrapper">
+      <div className="mvx-module-grid">
         <div className="button-secondary"><Link to={`?page=mvx#&submenu=work-board&name=announcement&create=announcement`}>Add Announcement</Link></div>
 
         {get_current_name && get_current_name.get("create") == 'announcement' ?
@@ -658,7 +584,7 @@ Child({ name }) {
 
       name == appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'][2]['modulename'] ?
 
-      <div className="mvx-backend-datatable-wrapper">
+      <div className="mvx-module-grid">
         <div className="button-secondary"><Link to={`?page=mvx#&submenu=work-board&name=knowladgebase&create=knowladgebase`}>Add Knowledgebase</Link></div>
         
         {get_current_name && get_current_name.get("create") == 'knowladgebase' ?
@@ -738,7 +664,7 @@ Child({ name }) {
 
       name == appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'][3]['modulename'] ?
 
-        <div>
+        <div className="mvx-module-grid">
           <div className="mvx-search-and-multistatus-wrap">
             <div className="mvx-multistatus-check">
               <div className="mvx-multistatus-check-all">All (10)</div>
@@ -784,7 +710,7 @@ Child({ name }) {
 
       name == appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'][5]['modulename'] ?
 
-        <div>
+        <div className="mvx-module-grid">
 
           <div className="mvx-search-and-multistatus-wrap">
             <div className="mvx-multistatus-check">

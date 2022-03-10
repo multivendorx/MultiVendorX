@@ -258,11 +258,6 @@ export default class DynamicForm extends React.Component {
         [m['key']]: m['database_value']
       });
 
-      if(m['type'] == 'nested') {
-
-      }
-
-
       
       if(m['type'] == 'wpeditor') {
         // add wp editor from textarea
@@ -343,6 +338,69 @@ export default class DynamicForm extends React.Component {
       console.log(ggggggggg);*/
 
     });
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+
+  /*  this.props.model.map(m => {
+      this.setState({
+        [m['key']]: m['database_value']
+      });
+
+      
+      if(m['type'] == 'wpeditor') {
+        // add wp editor from textarea
+        wp.editor.initialize(m['key'], {
+          mediaButtons: true,
+          tinymce: {
+            wpautop  : true,
+            theme    : 'modern',
+            skin     : 'lightgray',
+            language : 'en',
+            formats  : {
+              alignleft  : [
+              { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li', styles: { textAlign: 'left' } },
+              { selector: 'img,table,dl.wp-caption', classes: 'alignleft' }
+              ],
+              aligncenter: [
+              { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li', styles: { textAlign: 'center' } },
+              { selector: 'img,table,dl.wp-caption', classes: 'aligncenter' }
+              ],
+              alignright : [
+              { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li', styles: { textAlign: 'right' } },
+              { selector: 'img,table,dl.wp-caption', classes: 'alignright' }
+              ],
+              strikethrough: { inline: 'del' }
+            },
+            relative_urls       : true,
+            remove_script_host  : true,
+            convert_urls        : true,
+            browser_spellcheck  : true,
+            fix_list_elements   : true,
+            entities            : '38,amp,60,lt,62,gt',
+            entity_encoding     : 'raw',
+            keep_styles         : true,
+            paste_webkit_styles : 'font-weight font-style color',
+            preview_styles      : 'font-family font-size font-weight font-style text-decoration text-transform',
+            tabfocus_elements   : ':prev,:next',
+            plugins    : 'charmap,hr,media,paste,tabfocus,textcolor,fullscreen,wordpress,wpeditimage,wpgallery,wplink,wpdialogs,wpview',
+            resize     : 'vertical',
+            menubar    : true,
+            indent     : true,
+            toolbar1   : 'bold,italic,strikethrough,bullist,numlist,blockquote,hr,alignleft,aligncenter,alignright,link,unlink,wp_more,spellchecker,fullscreen,wp_adv',
+            toolbar2   : 'formatselect,underline,alignjustify,forecolor,pastetext,removeformat,charmap,outdent,indent,undo,redo,wp_help',
+            toolbar3   : '',
+            toolbar4   : '',
+            body_class : 'id post-type-post post-status-publish post-format-standard',
+            wpeditimage_disable_captions: true,
+            wpeditimage_html5_captions  : true
+
+          },
+          quicktags: true
+        });
+      }
+
+    });*/
   }
 
   onChange = (e, key, type = "single", from_type = '', array_values = []) => {
@@ -665,6 +723,7 @@ export default class DynamicForm extends React.Component {
             <React.Fragment key={"fr" + o.key}>
             <div className={`mvx-radioselect-class ${checked? 'radio-select-active' : ''}`}>
               
+              
               <input
                 {...props}
                 className="mvx-setting-form-input"
@@ -678,8 +737,8 @@ export default class DynamicForm extends React.Component {
                   this.onChange(e, o.name);
                 }}
               />
-              <label className="mvx-radio-select-under-label-class" for={`mvx-radio-select-under-${o.key}`}>{o.label}</label>
-              <img src={o.color} alt={o.label} className="mvx-section-img-fluid"/>
+              <label className="mvx-radio-select-under-label-class" for={`mvx-radio-select-under-${o.key}`}>{o.label}<img src={o.color} alt={o.label} className="mvx-section-img-fluid"/><div className="mvx-radioselect-overlay-text">Select your Store</div></label>
+              
               
               </div>
             </React.Fragment>
@@ -706,22 +765,27 @@ export default class DynamicForm extends React.Component {
                   name={o.name}
                   checked={checked}
                   value={o.value}
+                  id={`mvx-radio-color-under-${o.key}`}
                   onChange={e => {
                     this.onChange(e, o.name);
                   }}
                 />
-                <label key={"ll" + o.key}>{o.label}</label>
+                <label key={"ll" + o.key} for={`mvx-radio-color-under-${o.key}`}>{o.label}
+
+                <p className="color-palette">
+                  {
+                    o.color.map((color1, indexc) => 
+                    (
+                      <div style={{ backgroundColor: color1 }}>&nbsp;</div>
+                    )
+                    )
+                  }  
+                </p>
+
+                </label>
               </div>
 
-              <p className="color-palette">
-                {
-                  o.color.map((color1, indexc) => 
-                  (
-                    <div style={{ backgroundColor: color1 }}>&nbsp;</div>
-                  )
-                  )
-                }  
-              </p>
+              
                   
 
 
@@ -1168,7 +1232,7 @@ export default class DynamicForm extends React.Component {
     let prop_submitbutton = this.props.submitbutton && this.props.submitbutton == 'false' ? '' : 'true';
     return (
       <div className={this.props.className}>
-        {this.state.errordisplay ? <div className="mvx-notic-display-title">{this.state.errordisplay}</div> : ''}
+        {this.state.errordisplay ? <div className="mvx-notic-display-title"><span class="dashicons dashicons-saved"></span>{this.state.errordisplay}</div> : ''}
         {/*<div className="mvx-notic-display-title">Setting Saved</div>*/}
         <form
           className="dynamic-form"
