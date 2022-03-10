@@ -84,22 +84,30 @@ class MVX_Settings {
 
         global $submenu;
         $slug = 'mvx';
-        $dashboard = add_menu_page( __( 'MultiVendorX', 'dc-woocommerce-multi-vendor' ), __( 'MultiVendorX', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', $slug, [ $this, 'mvx_modules_callback' ],  $MVX->plugin_url . 'assets/images/mvx-menu.svg', 50 );
+        $dashboard = add_menu_page( __( 'MultiVendorX', 'dc-woocommerce-multi-vendor' ), __( 'MultiVendorX', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', $slug, [ $this, 'mvx_modules_callback' ],  $MVX->plugin_url . 'assets/images/dualcube.png', 50 );
 
         if ( current_user_can( 'manage_woocommerce' ) ) {
+
             $submenu[ $slug ][] = [ __( 'Dashboard', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=dashboard&name=help' ];
-            $submenu[ $slug ][] = [ __( 'Commission', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=commission' ];
 
-            $submenu[ $slug ][] = [ __( 'Vendors', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=vendor' ];
-
-            $submenu[ $slug ][] = [ __( 'Modules', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=modules' ];
 
             $submenu[ $slug ][] = [ __( 'Work Board', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=work-board&name=activity-reminder' ];
 
+            $submenu[ $slug ][] = [ __( 'Modules', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=modules' ];
+
+            $submenu[ $slug ][] = [ __( 'Vendors', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=vendor' ];
+            
+            $submenu[ $slug ][] = [ __( 'Payments', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=payment&name=payment-masspay' ];
+
+
+            $submenu[ $slug ][] = [ __( 'Commission', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=commission' ];
+
+
+
             $submenu[ $slug ][] = [ __( 'Settings', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=settings&name=settings-general' ];
 
-            $submenu[ $slug ][] = [ __( 'Payments', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=payment&name=payment-masspay' ];
-            $submenu[ $slug ][] = [ __( 'Pro Module Settings', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=advance&name=buddypress' ];
+            //$submenu[ $slug ][] = [ __( 'Pro Module Settings', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=advance&name=buddypress' ];
+
             $submenu[ $slug ][] = [ __( 'Analytics', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=analytics&name=admin-overview' ];
             
 
