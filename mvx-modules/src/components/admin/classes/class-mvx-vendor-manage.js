@@ -442,7 +442,7 @@ class App extends React.Component {
     var tab_name_display = '';
     var tab_description_display = '';
     appLocalizer.mvx_all_backend_tab_list['marketplace-vendors'].map((data, index) => {
-        if(queryt.get("name") == data.tabname) {
+        if(queryt.get("name") == data.modulename) {
           tab_name_display = data.tablabel;
           tab_description_display = data.description;
         }
@@ -536,7 +536,7 @@ class App extends React.Component {
             <div className="general-tab-area">
               <ul className="mvx-general-tabs-list">
               {appLocalizer.mvx_all_backend_tab_list['marketplace-vendors'].map((data, index) => (
-                  <li className={queryt.get("name") == data.tabname ? 'activegeneraltabs' : ''}><i class="mvx-font ico-store-icon"></i><Link to={`?page=mvx#&submenu=vendor&ID=${queryt.get("ID")}&name=${data.tabname}`} >{data.tablabel}</Link></li>
+                  <li className={queryt.get("name") == data.modulename ? 'activegeneraltabs' : ''}>{data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}<Link to={`?page=mvx#&submenu=vendor&ID=${queryt.get("ID")}&name=${data.modulename}`} >{data.tablabel}</Link></li>
               ))}
               </ul>
 
@@ -576,7 +576,7 @@ class App extends React.Component {
       model= {appLocalizer.settings_fields['vendor_add_personal']}
       method="post"
       location={useLocation().search}
-      modelname="vendor_add_personal"
+      modulename="vendor_add_personal"
       url="mvx_module/v1/create_vendor"
       />
       : '' }
@@ -654,7 +654,7 @@ class App extends React.Component {
         
       {
 
-        data.tabname == name.get("name") ?
+        data.modulename == name.get("name") ?
 
 
           name.get("name") == 'vendor_followers' ? 
@@ -949,7 +949,7 @@ class App extends React.Component {
                       title="distance wise shipping"
                       model= {appLocalizer.settings_fields['distance_shipping']}
                       method="post"
-                      modelname="distance_shipping"
+                      modulename="distance_shipping"
                       vendor_id={name.get("ID")}
                       url="mvx_module/v1/update_vendor"
                       submitbutton="false"
@@ -964,7 +964,7 @@ class App extends React.Component {
                     title="country wise shipping"
                     model= {appLocalizer.settings_fields['country_shipping']}
                     method="post"
-                    modelname="country_shipping"
+                    modulename="country_shipping"
                     vendor_id={name.get("ID")}
                     url="mvx_module/v1/update_vendor"
                     submitbutton="false"
@@ -984,13 +984,13 @@ class App extends React.Component {
             { this.state.data_setting_fileds && Object.keys(this.state.data_setting_fileds).length > 0 ?
 
               <DynamicForm
-              key={`dynamic-form-${data.tabname}`}
+              key={`dynamic-form-${data.modulename}`}
               className={data.classname}
               title={data.tablabel}
-              model= {this.state.data_setting_fileds[data.modelname]}
+              model= {this.state.data_setting_fileds[data.modulename]}
               method="post"
               vendor_id={name.get("ID")}
-              modelname={data.modelname}
+              modulename={data.modulename}
               url={data.apiurl}
               submitbutton="false"
               />

@@ -1123,7 +1123,7 @@ class MVX_REST_API {
         $settings_fields_data['vendor_default_shipping_options']   = $vendor_default_shipping_options;
         $settings_fields_data['shipping_options']  = $shipping_options_list;
 
-        $settings_fields_data['vendor_personal'] =   [
+        $settings_fields_data['vendor-personal'] =   [
             [
                 'key'       => 'user_login',
                 'type'      => 'text',
@@ -1194,7 +1194,7 @@ class MVX_REST_API {
             
         ];
 
-        $settings_fields_data['vendor_store'] =   [
+        $settings_fields_data['vendor-store'] =   [
             [
                 'label' => __('Store Name *', 'dc-woocommerce-multi-vendor'),
                 'type' => 'text',
@@ -1273,7 +1273,7 @@ class MVX_REST_API {
         ];
 
 
-        $settings_fields_data['vendor_social'] =   [
+        $settings_fields_data['vendor-social'] =   [
             [
                 'label' => __('Facebook', 'dc-woocommerce-multi-vendor'), 
                 'type' => 'url', 
@@ -1306,7 +1306,7 @@ class MVX_REST_API {
             ],
         ];
 
-        $settings_fields_data['vendor_payments'] =   [
+        $settings_fields_data['vendor-payments'] =   [
                 [
                     'key'       => 'vendor_payment_mode',
                     'type'      => 'select',
@@ -1411,7 +1411,7 @@ class MVX_REST_API {
                 ],
         ];
 
-        $settings_fields_data['vendor_policy'] =   [
+        $settings_fields_data['vendor-policy'] =   [
             [
                 'label' => __('Shipping Policy', 'dc-woocommerce-multi-vendor'), 
                 'type' => 'wpeditor', 
@@ -1432,7 +1432,7 @@ class MVX_REST_API {
              ],
         ];
 
-        $settings_fields_data['distance_shipping'] =   [
+        $settings_fields_data['distance-shipping'] =   [
             [
                 'label' => __('Default Cost', 'dc-woocommerce-multi-vendor'), 
                 'type' => 'text', 
@@ -1513,7 +1513,7 @@ class MVX_REST_API {
             ]
         ];
 
-        $settings_fields_data['country_shipping'] =   [
+        $settings_fields_data['country-shipping'] =   [
                 [
                     'label' => __('Default Shipping Price', 'dc-woocommerce-multi-vendor'), 
                     'placeholder' => '0.00', 
@@ -1622,11 +1622,11 @@ class MVX_REST_API {
                 ]
         ];
 
-        $settings_fields_data['vendor_application'] =   [];
+        $settings_fields_data['vendor-application'] =   [];
 
-        $settings_fields_data['vendor_shipping'] =   [];
+        $settings_fields_data['vendor-shipping'] =   [];
 
-        $settings_fields_data['vendor_followers'] =   [];
+        $settings_fields_data['vendor-followers'] =   [];
 
         //$settings_fields_data['vendor_personal'] =   [];
 
@@ -2163,7 +2163,7 @@ class MVX_REST_API {
         if ($total_sales) {
             foreach ($total_sales as $total_sales_key => $total_sales_value) {
                 $vendor = get_mvx_vendor($total_sales_key);
-                $name_display = "<b><a href='". sprintf('?page=%s&ID=%s&name=vendor_personal', 'vendors', $vendor->id) ."'>" . $vendor->page_title . "</a>";
+                $name_display = "<b><a href='". sprintf('?page=%s&ID=%s&name=vendor-personal', 'vendors', $vendor->id) ."'>" . $vendor->page_title . "</a>";
                 $vendor_report_datatable[] = array(
                     'id'                    =>  $vendor->id,
                     'title'                 =>  $name_display,
@@ -2373,7 +2373,7 @@ class MVX_REST_API {
             /* translators: %s: associated vendor */
             $vendor_string = sprintf(
                 __( '<div class="mvx-commission-label-class">Associated vendor</div> <div class="mvx-commission-value-class">%s</div>', 'dc-woocommerce-multi-vendor' ),
-                '<a href="' . sprintf('?page=%s&ID=%s&name=vendor_personal', 'vendors', $vendor->id) . '" target="_blank">'.$vendor->page_title.'</a>'
+                '<a href="' . sprintf('?page=%s&ID=%s&name=vendor-personal', 'vendors', $vendor->id) . '" target="_blank">'.$vendor->page_title.'</a>'
             );
 
             $meta_list_associate_vendor[] = $vendor_string;
@@ -2564,7 +2564,7 @@ class MVX_REST_API {
             'commission_id' => $commission_id,
             'commission_order_id'   => $commission_order_id,
             'commission_type_object'    =>  $commission_type_object,
-            'vendor_edit_link'  => sprintf('?page=%s&ID=%s&name=vendor_personal', 'mvx#&submenu=vendor', $vendor->id),
+            'vendor_edit_link'  => sprintf('?page=%s&ID=%s&name=vendor-personal', 'mvx#&submenu=vendor', $vendor->id),
             'vendor'    =>  $vendor,
             'status'    =>  MVX_Commission::get_status($commission_id, 'edit'),
             'order_edit_link'   =>  $order_edit_link,
@@ -3270,7 +3270,7 @@ class MVX_REST_API {
             $email->trigger( $user_id, $userdata['user_pass'], false);
             if (isset($fetch_data['vendor_profile_image']) && $fetch_data['vendor_profile_image'] != '') update_user_meta($user_id, "_vendor_profile_image", absint( $fetch_data['vendor_profile_image']));
             $message = __( 'Vendor successfully created!', 'dc-woocommerce-multi-vendor' );
-            $redirect_to = apply_filters('mvx_add_new_vendor_redirect_url', admin_url('admin.php?page=vendors&ID='.$user_id. '&name=vendor_personal'));
+            $redirect_to = apply_filters('mvx_add_new_vendor_redirect_url', admin_url('admin.php?page=vendors&ID='.$user_id. '&name=vendor-personal'));
         }
 
         if ($redirect_to) {
@@ -3285,7 +3285,7 @@ class MVX_REST_API {
     public function mvx_update_vendor($request) {
         $user_id = $request->get_param('vendor_id') ? absint( $request->get_param('vendor_id') ) : 0;
         $model = $request->get_param('model') ? ( $request->get_param('model') ) : 0;
-        $modelname = $request->get_param('modelname') ? ( $request->get_param('modelname') ) : 0;
+        $modulename = $request->get_param('modulename') ? ( $request->get_param('modulename') ) : 0;
 
         $mvx_shipping_by_distance = $mvx_shipping_by_country = array();
 
@@ -3355,7 +3355,7 @@ class MVX_REST_API {
             if ($vendor) {
 
                 // vendor personal
-                if ($modelname == 'vendor_personal') {
+                if ($modulename == 'vendor-personal') {
                     $userdata = array(
                         'ID' => $user_id,
                         /*'user_login' => isset( $model['user_login'] ) ? sanitize_user( $model['user_login'] ) : '',
@@ -3393,7 +3393,7 @@ class MVX_REST_API {
                     $user_id = wp_update_user( $userdata ) ;
                 }
 
-                if ($modelname == 'vendor_store' || $modelname == 'vendor_social' || $modelname == 'vendor_payments') {
+                if ($modulename == 'vendor-store' || $modulename == 'vendor-social' || $modulename == 'vendor-payments') {
                     foreach($model as $key => $value) {
                         $skip_vendor_update_data = apply_filters('mvx_skipped_vendor_update_keys', array('mvx_commission_type'));
                         if (in_array($key, $skip_vendor_update_data)) continue;
@@ -3444,7 +3444,7 @@ class MVX_REST_API {
     }
 
         // policy details
-        if ($modelname == 'vendor_policy') {
+        if ($modulename == 'vendor-policy') {
             if ( isset( $model['vendor_shipping_policy'] ) ) {
                 update_user_meta( $user_id, 'vendor_shipping_policy', stripslashes( html_entity_decode( $model['vendor_shipping_policy'], ENT_QUOTES, get_bloginfo( 'charset' ) ) ) );
             }
@@ -3515,7 +3515,7 @@ class MVX_REST_API {
             $vendor_profile_image = get_user_meta($user->data->ID, '_vendor_profile_image', true);
             if(isset($vendor_profile_image)) $image_info = wp_get_attachment_image_src( $vendor_profile_image , array(32, 32) );
 
-            $name_display = "<div class='mvx-vendor-icon-name'><img src='". $MVX->plugin_url.'assets/images/dclogo.png' ."' width='20' height='20' ></img><a href='". sprintf('?page=%s&ID=%s&name=vendor_personal', 'mvx#&submenu=vendor', $user->data->ID) ."'>" . $user->data->display_name . "</a>|   |<a href='".$vendor->permalink."'>Shop</a></div>";
+            $name_display = "<div class='mvx-vendor-icon-name'><img src='". $MVX->plugin_url.'assets/images/dclogo.png' ."' width='20' height='20' ></img><a href='". sprintf('?page=%s&ID=%s&name=vendor-personal', 'mvx#&submenu=vendor', $user->data->ID) ."'>" . $user->data->display_name . "</a>|   |<a href='".$vendor->permalink."'>Shop</a></div>";
 
             $action_display = "
             <div class='mvx-vendor-action-icon'>
@@ -3596,9 +3596,11 @@ class MVX_REST_API {
 
     public function mvx_save_dashpages($req) {
         $all_details = array();
-        $modelname = $req->get_param('modelname');
+        $modulename = $req->get_param('modulename');
+        $modulename = str_replace("-", "_", $modulename);
         $get_managements_data = $req->get_param( 'model' );
-        $optionname = 'mvx_'.$modelname.'_tab_settings';
+        $optionname = 'mvx_'.$modulename.'_tab_settings';
+
         update_option($optionname, $get_managements_data);
         $all_details['error'] = 'Settings Saved';
         return $all_details; 

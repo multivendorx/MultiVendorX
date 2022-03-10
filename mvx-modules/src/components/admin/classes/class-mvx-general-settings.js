@@ -522,7 +522,7 @@ class App extends Component {
     var tab_name_display = '';
     var tab_description_display = '';
     appLocalizer.mvx_all_backend_tab_list['marketplace-general-settings'].map((data, index) => {
-        if(queryt.get("name") == data.tabname) {
+        if(queryt.get("name") == data.modulename) {
           tab_name_display = data.tablabel;
           tab_description_display = data.description;
         }
@@ -546,7 +546,7 @@ class App extends Component {
           <div className="general-tab-area">
             <ul className="mvx-general-tabs-list">
             {appLocalizer.mvx_all_backend_tab_list['marketplace-general-settings'].map((data, index) => (
-                <li className={queryt.get("name") == data.tabname ? 'activegeneraltabs' : ''} ><i class="mvx-font ico-store-icon"></i><Link to={`?page=mvx#&submenu=settings&name=${data.tabname}`} className={queryt.get("name") == data.tabname ? data.activeclass : ''}>{data.tablabel}</Link></li>
+                <li className={queryt.get("name") == data.modulename ? 'activegeneraltabs' : ''} >{data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}<Link to={`?page=mvx#&submenu=settings&name=${data.modulename}`} className={queryt.get("name") == data.modulename ? data.activeclass : ''}>{data.tablabel}</Link></li>
             ))}
             </ul>
             <div className="tabcontentclass">
@@ -578,8 +578,8 @@ Child({ name }) {
       {
         /*name = !name ? 'registration' : name,*/
 
-        data.tabname == name ?
-          data.tabname == 'registration' ?
+        data.modulename == name ?
+          data.modulename == 'registration' ?
 
             <div id="nav-menus-frame">
 
@@ -871,13 +871,13 @@ Child({ name }) {
           
             <div>
               <DynamicForm
-              key={`dynamic-form-${data.tabname}`}
+              key={`dynamic-form-${data.modulename}`}
               className={data.classname}
               title={data.tablabel}
               defaultValues={this.state.current}
-              model= {appLocalizer.settings_fields[data.modelname]}
+              model= {appLocalizer.settings_fields[data.modulename]}
               method="post"
-              modelname={data.modelname}
+              modulename={data.modulename}
               url={data.apiurl}
               submitbutton="false"
               />

@@ -73,7 +73,7 @@ class App extends Component {
     var tab_name_display = '';
     var tab_description_display = '';
     appLocalizer.mvx_all_backend_tab_list['marketplace-payments'].map((data, index) => {
-        if(queryt.get("name") == data.tabname) {
+        if(queryt.get("name") == data.modulename) {
           tab_name_display = data.tablabel;
           tab_description_display = data.description;
         }
@@ -97,7 +97,7 @@ class App extends Component {
 
             <ul className="mvx-general-tabs-list">
             {appLocalizer.mvx_all_backend_tab_list['marketplace-payments'].map((data, index) => (
-                <li className={queryt.get("name") == data.tabname ? 'activegeneraltabs' : ''}><i class="mvx-font ico-store-icon"></i><Link to={`?page=mvx#&submenu=payment&name=${data.tabname}`} >{data.tablabel}</Link></li>
+                <li className={queryt.get("name") == data.modulename ? 'activegeneraltabs' : ''}><i class="mvx-font ico-store-icon"></i><Link to={`?page=mvx#&submenu=payment&name=${data.modulename}`} >{data.tablabel}</Link></li>
             ))}
             </ul>
 
@@ -131,17 +131,17 @@ Child({ name }) {
       {
         name = !name ? 'paypal_masspay' : name,
 
-        data.tabname == name ?
+        data.modulename == name ?
           
             <div>
               <DynamicForm
-              key={`dynamic-form-${data.tabname}`}
+              key={`dynamic-form-${data.modulename}`}
               className={data.classname}
               title={data.tablabel}
               defaultValues={this.state.current}
-              model= {appLocalizer.settings_fields[data.modelname]}
+              model= {appLocalizer.settings_fields[data.modulename]}
               method="post"
-              modelname={data.modelname}
+              modulename={data.modulename}
               url={data.apiurl}
               submitbutton="false"
               />

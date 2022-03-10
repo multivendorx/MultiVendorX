@@ -402,7 +402,7 @@ class App extends Component {
     var tab_name_display = '';
     var tab_description_display = '';
     appLocalizer.mvx_all_backend_tab_list['marketplace-analytics'].map((data, index) => {
-        if(queryt.get("name") == data.tabname) {
+        if(queryt.get("name") == data.modulename) {
           tab_name_display = data.tablabel;
           tab_description_display = data.description;
         }
@@ -432,7 +432,7 @@ class App extends Component {
             <div className="dashboard-tab-area">
               <ul className="mvx-dashboard-tabs-list">
                 {appLocalizer.mvx_all_backend_tab_list['marketplace-analytics'].map((data, index) => (
-                  <li className={queryt.get("name") == data.tabname ? 'activedashboardtabs' : ''}><i class="mvx-font ico-store-icon"></i><Link to={`?page=mvx#&submenu=analytics&name=${data.tabname}`} >{data.tablabel}</Link></li>                ))}
+                  <li className={queryt.get("name") == data.modulename ? 'activedashboardtabs' : ''}>{data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}<Link to={`?page=mvx#&submenu=analytics&name=${data.modulename}`} >{data.tablabel}</Link></li>                ))}
               </ul>
               <div className="dashboard-tabcontentclass">
                 <this.Child name={queryt.get("name")} />
@@ -464,7 +464,6 @@ class App extends Component {
   }
 
 Child({ name }) {
-  //console.log(this.state.details_product);
   return (
     <div>
 
@@ -473,9 +472,9 @@ Child({ name }) {
       
 
       {
-        name = !name ? 'admin_overview' : name,
+        name = !name ? appLocalizer.mvx_all_backend_tab_list['marketplace-analytics'][0]['modulename'] : name,
 
-        name == 'admin_overview' ?
+        name == appLocalizer.mvx_all_backend_tab_list['marketplace-analytics'][0]['modulename'] ?
           
             <div className="mvx-report-start-content">
 
@@ -675,7 +674,7 @@ Child({ name }) {
 
             :
 
-            name == 'vendor' ?
+            name == appLocalizer.mvx_all_backend_tab_list['marketplace-analytics'][1]['modulename'] ?
 
             <div className="mvx-report-start-content">
 
@@ -841,7 +840,7 @@ Child({ name }) {
 
             :
 
-            name == 'product' ?
+            name == appLocalizer.mvx_all_backend_tab_list['marketplace-analytics'][2]['modulename'] ?
             
             <div className="mvx-report-start-content">
 
@@ -989,7 +988,7 @@ Child({ name }) {
 
             :
 
-            name == 'transaction_history' ?
+            name == appLocalizer.mvx_all_backend_tab_list['marketplace-analytics'][3]['modulename'] ?
               <div className="mvx-report-start-content">
 
                 <div className="mvx-date-and-show-wrapper">

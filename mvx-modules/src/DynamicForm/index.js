@@ -227,14 +227,13 @@ export default class DynamicForm extends React.Component {
       url: appLocalizer.apiUrl + '/' + this.props.url,
       data: {
         model: this.state,
-        modelname: this.props.modelname,
+        modulename: this.props.modulename,
         vendor_id: this.props.vendor_id ? this.props.vendor_id : '',
         announcement_id: this.props.announcement_id ? this.props.announcement_id : '',
         knowladgebase_id: this.props.knowladgebase_id ? this.props.knowladgebase_id : ''
       }
     })
     .then( ( res ) => {
-      //console.log(res.data.ddddddddddd);
 
       this.setState({ from_loading: false });
 

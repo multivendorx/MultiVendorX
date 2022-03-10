@@ -347,7 +347,7 @@ class App extends Component {
     var tab_name_display = '';
     var tab_description_display = '';
     appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'].map((data, index) => {
-        if(queryt.get("name") == data.tabname) {
+        if(queryt.get("name") == data.modulename) {
           tab_name_display = data.tablabel;
           tab_description_display = data.description;
         }
@@ -372,7 +372,7 @@ class App extends Component {
                 <div className="dashboard-tab-area">
                   <ul className="mvx-dashboard-tabs-list">
                     {appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'].map((data, index) => (
-                        <li className={queryt.get("name") == data.tabname ? 'activedashboardtabs' : ''}><i class="mvx-font ico-store-icon"></i><Link to={`?page=mvx#&submenu=work-board&name=${data.tabname}`} >{data.tablabel}</Link></li>
+                        <li className={queryt.get("name") == data.modulename ? 'activedashboardtabs' : ''}>{data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}<Link to={`?page=mvx#&submenu=work-board&name=${data.modulename}`} >{data.tablabel}</Link></li>
                     ))}
                   </ul>
                   <div className="tabcontentclass">
@@ -438,64 +438,143 @@ Child({ name }) {
   return (
     <div>
     {
-      name == 'activity_reminder' ?
+      name == appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'][0]['modulename'] ?
 
-      <div>
+           <div className="mvx-module-grid">
+        <div className="vendor-verification">
+            <div className="mvx-text-with-line-wrapper">
+                <div className="mvx-report-text">Vendor Verification</div>
+                <div className="wvx-report-text-fade-line"></div>
+                <div className="bulk-action"><Select placeholder={appLocalizer.report_page_string.choose_vendor} options={this.state.details_vendor} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e)} /></div>
+            </div>
+            <div className="mvx-workboard-card-wrapper">
+                <div className="card">
+                    <div className="heading">Address Verification</div>
+                    <div className="top-part">
+                        <div className="img-part">
+                            <img alt="Multivendor X" src={appLocalizer.mvx_logo}/>
+                            <div className="vendor-name">vendor test 01</div>
+                        </div>
+                        <div className="select-icon"> $</div>
+                    </div>
+                    <div className="address-area">
+                        <p className="commission-details-data-value">
+                        <div className="mvx-commission-label-class">Email Address:</div>
+                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
+                        </p>
+                        <p className="commission-details-data-value">
+                        <div className="mvx-commission-label-class">Email Address:</div>
+                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
+                        </p>
+                        <p className="commission-details-data-value">
+                        <div className="mvx-commission-label-class">Email Address:</div>
+                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
+                        </p>
+                        <p className="commission-details-data-value">
+                        <div className="mvx-commission-label-class">Email Address:</div>
+                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
+                        </p>
+                        <p className="commission-details-data-value">
+                        <div className="mvx-commission-label-class">Email Address:</div>
+                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
+                        </p>
+                        <p className="commission-details-data-value">
+                        <div className="mvx-commission-label-class">Email Address:</div>
+                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
+                        </p>
+
+                    </div>
+                    <div className="mvx-module-current-status wp-clearfix">
+                        <div className="left-icons-wrap">
+                            <i class="mvx-font ico-store-icon"></i>
+                            <i class="mvx-font ico-store-icon"></i>
+                            <i class="mvx-font ico-store-icon"></i>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div className="card">
+                    <div className="heading">Address Verification</div>
+                    <div className="top-part">
+                        <div className="img-part">
+                            <img alt="Multivendor X" src={appLocalizer.mvx_logo}/>
+                            <div className="vendor-name">vendor test 01</div>
+                        </div>
+                        <div className="select-icon"></div>
+                    </div>
+                    <div className="address-area">
+                        <p className="commission-details-data-value">
+                        <div className="mvx-commission-label-class">Email Address:</div>
+                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
+                        </p>
+                        <p className="commission-details-data-value">
+                        <div className="mvx-commission-label-class">Email Address:</div>
+                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
+                        </p>
 
 
+                    </div>
+                    <div className="mvx-module-current-status wp-clearfix">
+                        <div className="left-icons-wrap">
+                            <i class="mvx-font ico-store-icon"></i>
+                            <i class="mvx-font ico-store-icon"></i>
+                            <i class="mvx-font ico-store-icon"></i>
+
+                        </div>
+                        <div className="right-download-icon">
+                            <span>download icon</span>
+                        </div>
+                    </div>
+                </div>
+                <div className="card">
+                    <div className="heading">Address Verification</div>
+                    <div className="top-part">
+                        <div className="img-part">
+                            <img alt="Multivendor X" src={appLocalizer.mvx_logo}/>
+                            <div className="vendor-name">vendor test 01</div>
+                        </div>
+                        <div className="select-icon"></div>
+                    </div>
+                    <div className="address-area">
+                        <p className="commission-details-data-value">
+                        <div className="mvx-commission-label-class">Email Address:</div>
+                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
+                        </p>
+                        <p className="commission-details-data-value">
+                        <div className="mvx-commission-label-class">Email Address:</div>
+                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
+                        </p>
+                        <p className="commission-details-data-value">
+                        <div className="mvx-commission-label-class">Email Address:</div>
+                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
+                        </p>
+                        <p className="commission-details-data-value">
+                        <div className="mvx-commission-label-class">Email Address:</div>
+                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
+                        </p>
 
 
+                    </div>
+                    <div className="mvx-module-current-status wp-clearfix">
+                        <div className="left-icons-wrap">
+                            <i class="mvx-font ico-store-icon"></i>
+                            <i class="mvx-font ico-store-icon"></i>
+                            <i class="mvx-font ico-store-icon"></i>
 
-      {console.log(this.state.pending_product)}
-
-
-
-
-        {this.state.list_of_pending_vendor_product ?
-          <DataTable
-            columns={this.state.pending_product}
-            data={this.state.list_of_pending_vendor_product}
-            selectableRows
-            pagination
-          />
-        : '' }
-
-        {this.state.list_of_pending_vendor ?
-          <DataTable
-              columns={this.state.pending_vendor}
-              data={this.state.list_of_pending_vendor}
-              selectableRows
-              pagination
-            />
-        : '' }
-
-          {this.state.list_of_pending_vendor_coupon ?
-            <DataTable
-                columns={this.state.pending_coupon}
-                data={this.state.list_of_pending_vendor_coupon}
-                selectableRows
-                pagination
-              />
-          : '' }
-
-
-          {this.state.list_of_pending_transaction ?
-            <DataTable
-                columns={this.state.pending_tranaction}
-                data={this.state.list_of_pending_transaction}
-                selectableRows
-                pagination
-              />
-          : '' }
-
-
-        
-
-      </div>
+                        </div>
+                        <div className="right-download-icon">
+                            <span>download icon</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
       :
 
-      name == 'announcement' ?
+      name == appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'][1]['modulename'] ?
 
       <div className="mvx-backend-datatable-wrapper">
         <div className="button-secondary"><Link to={`?page=mvx#&submenu=work-board&name=announcement&create=announcement`}>Add Announcement</Link></div>
@@ -508,7 +587,7 @@ Child({ name }) {
             title="Add new Announcement"
             model= {appLocalizer.settings_fields['create_announcement']}
             method="post"
-            modelname="create_announcement"
+            modulename="create_announcement"
             url="mvx_module/v1/create_announcement"
             submit_title="Publish"
           />
@@ -524,7 +603,7 @@ Child({ name }) {
                 model= {this.state.edit_announcement_fileds['update_announcement_display']}
                 method="post"
                 announcement_id={get_current_name.get("AnnouncementID")}
-                modelname="update_announcement"
+                modulename="update_announcement"
                 url="mvx_module/v1/update_announcement"
                 submitbutton="false"
               />
@@ -577,7 +656,7 @@ Child({ name }) {
 
       :
 
-      name == 'knowladgebase' ?
+      name == appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'][2]['modulename'] ?
 
       <div className="mvx-backend-datatable-wrapper">
         <div className="button-secondary"><Link to={`?page=mvx#&submenu=work-board&name=knowladgebase&create=knowladgebase`}>Add Knowledgebase</Link></div>
@@ -590,7 +669,7 @@ Child({ name }) {
             title="Add new knowladgebase"
             model= {appLocalizer.settings_fields['create_knowladgebase']}
             method="post"
-            modelname="create_knowladgebase"
+            modulename="create_knowladgebase"
             url="mvx_module/v1/create_knowladgebase"
             submit_title="Publish"
           />
@@ -606,7 +685,7 @@ Child({ name }) {
                 model= {this.state.edit_knowledgebase_fileds['update_knowladgebase_display']}
                 method="post"
                 knowladgebase_id={get_current_name.get("knowladgebaseID")}
-                modelname="update_knowladgebase"
+                modulename="update_knowladgebase"
                 url="mvx_module/v1/update_knowladgebase"
                 submitbutton="false"
               />
@@ -657,7 +736,7 @@ Child({ name }) {
 
       :
 
-      name == 'store_review' ?
+      name == appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'][3]['modulename'] ?
 
         <div>
           <div className="mvx-search-and-multistatus-wrap">
@@ -697,13 +776,13 @@ Child({ name }) {
 
       :
 
-      name == 'report_abuse' ?
+      name == appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'][4]['modulename'] ?
 
       'report_abuse'
 
       :
 
-      name == 'question_ans' ?
+      name == appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'][5]['modulename'] ?
 
         <div>
 

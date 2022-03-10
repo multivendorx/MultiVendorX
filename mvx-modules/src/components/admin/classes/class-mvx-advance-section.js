@@ -82,7 +82,7 @@ class App extends Component {
                 <div className="general-tab-area">
                   <ul className="mvx-general-tabs-list">
                   {appLocalizer.mvx_all_backend_tab_list['marketplace-advance-settings'].map((data, index) => (
-                      <li className={queryt.get("name") == data.tabname ? 'activegeneraltabs' : ''}><i class="mvx-font ico-store-icon"></i><Link to={`?page=mvx#&submenu=advance&name=${data.tabname}`} >{data.tablabel}</Link></li>
+                      <li className={queryt.get("name") == data.modulename ? 'activegeneraltabs' : ''}>{data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}<Link to={`?page=mvx#&submenu=advance&name=${data.modulename}`} >{data.tablabel}</Link></li>
                   ))}
                   </ul>
                   <div className="tabcontentclass">
@@ -112,17 +112,17 @@ Child({ name }) {
       {
         name = !name ? 'buddypress' : name,
 
-        data.tabname == name ?
+        data.modulename == name ?
           
             <div>
               <DynamicForm
-              key={`dynamic-form-${data.tabname}`}
+              key={`dynamic-form-${data.modulename}`}
               className={data.classname}
               title={data.tablabel}
               defaultValues={this.state.current}
-              model= {appLocalizer.settings_fields[data.modelname]}
+              model= {appLocalizer.settings_fields[data.modulename]}
               method="post"
-              modelname={data.modelname}
+              modulename={data.modulename}
               url={data.apiurl}
               submitbutton="false"
               />

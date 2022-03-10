@@ -472,7 +472,7 @@ if (!function_exists('MVX_action_links')) {
      */
     function MVX_action_links($links) {
         $plugin_links = array(
-            '<a href="' . admin_url('admin.php?page=mvx#&submenu=dashboard&name=modules') . '">' . __('Settings', 'dc-woocommerce-multi-vendor') . '</a>');
+            '<a href="' . admin_url('admin.php?page=mvx#&submenu=dashboard&name=help') . '">' . __('Settings', 'dc-woocommerce-multi-vendor') . '</a>');
         return array_merge($plugin_links, $links);
     }
 
@@ -5876,160 +5876,6 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'database_value' => '',
                 ],
             ],
-            'dashbaord-endpoints'   => [
-                [
-                    'key'       => 'mvx_vendor_announcements_endpoint',
-                    'type'      => 'text',
-                    'label'     => __( 'Vendor Announcements', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __( 'Set endpoint for vendor announcements page', 'dc-woocommerce-multi-vendor' ),
-                    'placeholder'   => __('vendor-announcements', 'dc-woocommerce-multi-vendor'),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'mvx_store_settings_endpoint',
-                    'type'      => 'text',
-                    'label'     => __( 'Storefront', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __( 'Used as site logo on vendor dashboard pages', 'dc-woocommerce-multi-vendor' ),
-                    'placeholder'   => __('storefront', 'dc-woocommerce-multi-vendor'),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'mvx_profile_endpoint',
-                    'type'      => 'text',
-                    'label'     => __( 'Vendor Profile', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __( 'Set endpoint for vendor profile management page', 'dc-woocommerce-multi-vendor' ),
-                    'placeholder'   => __('profile', 'dc-woocommerce-multi-vendor'),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'mvx_vendor_policies_endpoint',
-                    'type'      => 'text',
-                    'label'     => __( 'Vendor Policies', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __( 'Set endpoint for vendor policies page', 'dc-woocommerce-multi-vendor' ),
-                    'placeholder'   => __('vendor-policies', 'dc-woocommerce-multi-vendor'),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'mvx_vendor_billing_endpoint',
-                    'type'      => 'text',
-                    'label'     => __( 'Vendor Billing', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __( 'Set endpoint for vendor billing page', 'dc-woocommerce-multi-vendor' ),
-                    'placeholder'   => __('vendor-billing', 'dc-woocommerce-multi-vendor'),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'mvx_vendor_shipping_endpoint',
-                    'type'      => 'text',
-                    'label'     => __( 'Vendor Shipping', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __( 'Set endpoint for vendor shipping page', 'dc-woocommerce-multi-vendor' ),
-                    'placeholder'   => __('vendor-shipping', 'dc-woocommerce-multi-vendor'),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'mvx_vendor_report_endpoint',
-                    'type'      => 'text',
-                    'label'     => __( 'Vendor Report', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __( 'Set endpoint for vendor report page', 'dc-woocommerce-multi-vendor' ),
-                    'placeholder'   => __('vendor-report', 'dc-woocommerce-multi-vendor'),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'mvx_vendor_banking_overview_endpoint',
-                    'type'      => 'text',
-                    'label'     => __( 'Banking Overview', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __( 'Set endpoint for vendor banking overview page', 'dc-woocommerce-multi-vendor' ),
-                    'placeholder'   => __('banking-overview', 'dc-woocommerce-multi-vendor'),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'mvx_add_product_endpoint',
-                    'type'      => 'text',
-                    'label'     => __( 'Add Product', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __( 'Set endpoint for add new product page', 'dc-woocommerce-multi-vendor' ),
-                    'placeholder'   => __('add-product', 'dc-woocommerce-multi-vendor'),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'mvx_edit_product_endpoint',
-                    'type'      => 'text',
-                    'label'     => __( 'Edit Product', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __( 'Set endpoint for edit product page', 'dc-woocommerce-multi-vendor' ),
-                    'placeholder'   => __('edit-product', 'dc-woocommerce-multi-vendor'),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'mvx_products_endpoint',
-                    'type'      => 'text',
-                    'label'     => __( 'Products List', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __( 'Set endpoint for products list page', 'dc-woocommerce-multi-vendor' ),
-                    'placeholder'   => __('products', 'dc-woocommerce-multi-vendor'),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'mvx_add_coupon_endpoint',
-                    'type'      => 'text',
-                    'label'     => __( 'Add Coupon', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __( 'Set endpoint for add new coupon page', 'dc-woocommerce-multi-vendor' ),
-                    'placeholder'   => __('add-coupon', 'dc-woocommerce-multi-vendor'),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'mvx_coupons_endpoint',
-                    'type'      => 'text',
-                    'label'     => __( 'Coupons List', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __( 'Set endpoint for coupons list page', 'dc-woocommerce-multi-vendor' ),
-                    'placeholder'   => __('coupons', 'dc-woocommerce-multi-vendor'),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'mvx_vendor_orders_endpoint',
-                    'type'      => 'text',
-                    'label'     => __( 'Vendor Orders', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __( 'Set endpoint for vendor orders page', 'dc-woocommerce-multi-vendor' ),
-                    'placeholder'   => __('vendor-orders', 'dc-woocommerce-multi-vendor'),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'mvx_vendor_withdrawal_endpoint',
-                    'type'      => 'text',
-                    'label'     => __( 'Vendor Widthdrawals', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __( 'Set endpoint for vendor widthdrawals page', 'dc-woocommerce-multi-vendor' ),
-                    'placeholder'   => __('vendor-withdrawal', 'dc-woocommerce-multi-vendor'),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'mvx_transaction_details_endpoint',
-                    'type'      => 'text',
-                    'label'     => __( 'Transaction Details', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __( 'Set endpoint for transaction details page', 'dc-woocommerce-multi-vendor' ),
-                    'placeholder'   => __('transaction-details', 'dc-woocommerce-multi-vendor'),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'mvx_vendor_knowledgebase_endpoint',
-                    'type'      => 'text',
-                    'label'     => __( 'Vendor Knowledgebase', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __( 'Set endpoint for vendor knowledgebase page', 'dc-woocommerce-multi-vendor' ),
-                    'placeholder'   => __('vendor-knowledgebase', 'dc-woocommerce-multi-vendor'),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'mvx_vendor_tools_endpoint',
-                    'type'      => 'text',
-                    'label'     => __( 'Vendor Tools', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __( 'Set endpoint for vendor tools page', 'dc-woocommerce-multi-vendor' ),
-                    'placeholder'   => __('vendor-tools', 'dc-woocommerce-multi-vendor'),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'mvx_vendor_products_qnas_endpoint',
-                    'type'      => 'text',
-                    'label'     => __( 'Vendor Products Q&As', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __( 'Set endpoint for vendor products Q&As page', 'dc-woocommerce-multi-vendor' ),
-                    'placeholder'   => __('products-qna', 'dc-woocommerce-multi-vendor'),
-                    'database_value' => '',
-                ],                
-            ],
             'store-management'   => [
                 [
                     'key'    => 'is_enable_store_sidebar',
@@ -6653,7 +6499,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
 
             ],
 
-            'admin_overview'  => [
+            'admin-overview'  => [
 
             ],
 
@@ -6664,7 +6510,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
             'product'  => [
 
             ],
-            'transaction_history'  => [
+            'transaction-history'  => [
 
             ],
 
@@ -6987,7 +6833,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'database_value' => '',
                 ],
             ],
-            'payment-stripe_connect' => [
+            'payment-stripe-connect' => [
                 [
                     'key'    => 'testmode',
                     'label'   => __( 'Enable Test Mode', 'dc-woocommerce-multi-vendor' ),
@@ -7048,7 +6894,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 ],
 
             ],
-            'advance-buddypress' => [
+            'buddypress' => [
                 [
                     'key'    => 'profile_sync',
                     'label'   => __( 'Vendor Capability Sync', 'dc-woocommerce-multi-vendor' ),
@@ -7252,48 +7098,312 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 ],
                 
             ],
-            /*'update_announcement'   =>  [
-                [
-                    'key'       => 'announcement_title',
-                    'type'      => 'text',
-                    'label'     => __( 'Title (required)', 'dc-woocommerce-multi-vendor' ),
-                    'props'     => array(
-                        'required'  => true
-                    ),
-                    'database_value' => isset($announcement_title) ? $announcement_title : '',
-                ],
-                [
-                    'key'       => 'announcement_url',
-                    'type'      => 'url',
-                    'label'     => __( 'Enter Url', 'dc-woocommerce-multi-vendor' ),
-                    'props'     => array(
-                        'required'  => true
-                    ),
-                    'database_value' => isset($announcement_url) ? $announcement_url : '',
-                ],
-                [
-                    'label' => __('Enter Content', 'dc-woocommerce-multi-vendor'),
-                    'type' => 'wpeditor', 
-                    'key' => 'announcement_content', 
-                    'database_value' => isset($announcement_content) ? $announcement_content : ''
-                ],
-                [
-                    'key'       => 'announcement_vendors',
-                    'type'      => 'multi-select',
-                    'label'     => __( 'Vendors', 'dc-woocommerce-multi-vendor' ),
-                    'options' => ($MVX->vendor_rest_api->mvx_show_vendor_name()->data),
-                    'database_value' => '',
-                ]
-            ],*/
-            
-            'activity_reminder' =>  [],
+            'activity-reminder' =>  [],
             'announcement'  =>  [],
             'knowladgebase' =>  [],
             'store_review'  =>  [],
-            'report_abuse'  =>  [],
-            'question_ans'  =>  [],
+            'report-abuse'  =>  [],
+            'question-ans'  =>  [],
         ];
 
         return $settings_fields;
+    }
+}
+
+
+if (!function_exists('mvx_admin_backend_tab_settings')) {
+    function mvx_admin_backend_tab_settings() {
+        $dashboard_page_endpoint = [
+            /*[
+                'icon'          =>  'ico-store-icon',
+                'modulename'       =>  'modules',
+                'tablabel'      =>  __('Modules', 'dc-woocommerce-multi-vendor'),
+                'description'   =>  __('Default description', 'dc-woocommerce-multi-vendor'),
+            ],*/
+            [
+                'icon'          =>  'ico-store-icon',
+                'modulename'       =>  'help',
+                'tablabel'      =>  __('Help', 'dc-woocommerce-multi-vendor'),
+                'description'   =>  __('Default description', 'dc-woocommerce-multi-vendor'),
+            ],
+            [
+                'icon'          =>  'ico-store-icon',
+                'modulename'       =>  'setup-widget',
+                'tablabel'      =>  __('Setup Widget', 'dc-woocommerce-multi-vendor'),
+                'link'          =>  admin_url( 'index.php?page=mvx-setup' ),
+                'description'   =>  __('Default description', 'dc-woocommerce-multi-vendor'),
+            ],
+            [
+                'icon'          =>  'ico-store-icon',
+                'modulename'       =>  'migration',
+                'tablabel'      =>  __('Migration', 'dc-woocommerce-multi-vendor'),
+                'link'          =>  admin_url('index.php?page=mvx-migrator'),
+                'description'   =>  __('Default description', 'dc-woocommerce-multi-vendor'),
+            ]
+        ];
+
+        $general_settings_page_endpoint = array(
+            array(
+                'tablabel'          =>  __('General', 'dc-woocommerce-multi-vendor'),
+                'apiurl'            =>  'mvx_module/v1/save_dashpages',
+                'description'       =>  __('Default description', 'dc-woocommerce-multi-vendor'),
+                'icon'          =>  'ico-store-icon',
+                'modulename'        =>  'settings-general'
+            ),
+            array(
+                'tablabel'      =>  __('Social', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/save_dashpages',
+                'description'   =>  __('Default description', 'dc-woocommerce-multi-vendor'),
+                'icon'          =>  'ico-store-icon',
+                'modulename'     =>  'social'
+            ),
+            array(
+                'tablabel'      =>  __('Registration Form', 'dc-woocommerce-multi-vendor'),
+                'description'   =>  __('Customise Your Own Seller Registration Form for Your Marketplace', 'dc-woocommerce-multi-vendor'),
+                'icon'          =>  'ico-store-icon',
+                'modulename'     => 'registration'
+            ),
+            array(
+                'tablabel'      =>  __('Seller Dashbaord', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/save_dashpages',
+                'description'   =>  __("Manage the appearence of  Your Vendor's Dashboard", 'dc-woocommerce-multi-vendor'),
+                'icon'          =>  'ico-store-icon',
+                'modulename'     =>  'seller-dashbaord'
+            ),
+            array(
+                'tablabel'      =>  __('Store', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/save_dashpages',
+                'description'   =>  __("Shows Customer The Location of a Particular Store or Vendor", 'dc-woocommerce-multi-vendor'),
+                'icon'          =>  'ico-store-icon',
+                'modulename'     =>  'store'
+            ),
+            array(
+                'tablabel'      =>  __('Products', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/save_dashpages',
+                'description'   =>  __("Shows Customer The Location of a Particular products or Vendor", 'dc-woocommerce-multi-vendor'),
+                'icon'          =>  'ico-store-icon',
+                'modulename'     =>  'products'
+            ),
+            array(
+                'tablabel'      =>  __('Products Capability', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/save_dashpages',
+                'description'   =>  __("Manage the Capabilities You Want Your Vendors to Have", 'dc-woocommerce-multi-vendor'),
+                'icon'          =>  'ico-store-icon',
+                'modulename'     =>  'products-capability'
+            ),
+            array(
+                'tablabel'      =>  __('SPMV', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/save_dashpages',
+                'description'   =>  __("Let's Your Vendor Publish Fellow Vendor's Product as Theirs", 'dc-woocommerce-multi-vendor'),
+                'icon'          =>  'ico-store-icon',
+                'modulename'     =>  'spmv-pages'
+            ),
+            array(
+                'tablabel'      =>  __('Commissions', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/save_dashpages',
+                'description'   =>  __("Configure Commission Settings to Customise Your Commission Plan", 'dc-woocommerce-multi-vendor'),
+                'icon'          =>  'ico-store-icon',
+                'modulename'     =>  'commissions'
+            ),
+            array(
+                'tablabel'      =>  __('Disbursement', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/save_dashpages',
+                'description'   =>  __('Manage Payment and Disbursement', 'dc-woocommerce-multi-vendor'),
+                'icon'          =>  'ico-store-icon',
+                'modulename'     =>  'disbursement'
+            ),
+            array(
+                'tablabel'      =>  __('Policy', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/save_dashpages',
+                'description'   =>  __('Add Policies For Your Site', 'dc-woocommerce-multi-vendor'),
+                'icon'          =>  'ico-store-icon',
+                'modulename'     =>  'policy'
+            ),
+            array(
+                'tablabel'      =>  __('Refunds', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/save_dashpages',
+                'description'   =>  __('Default description', 'dc-woocommerce-multi-vendor'),
+                'icon'          =>  'ico-store-icon',
+                'modulename'     =>  'refund-management'
+            ),
+            array(
+                'tablabel'      =>  __('Reviews & Rating', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/save_dashpages',
+                'description'   =>  __('Manage Settings For Product and Store Review', 'dc-woocommerce-multi-vendor'),
+                'icon'          =>  'ico-store-icon',
+                'modulename'     =>  'review-management'
+            ),
+        );
+
+
+        $payment_page_endpoint = array(
+            array(
+                'tablabel'      =>  __('PayPal Masspay', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/save_dashpages',
+                'description'   =>  __('Schedule payment to multiple vendors at the same time', 'dc-woocommerce-multi-vendor'),
+                'icon'          =>  'ico-store-icon',
+                'modulename'     =>  'payment-masspay'
+            ),
+            array(
+                'tablabel'      =>  __('PayPal Payout', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/save_dashpages',
+                'description'   =>  __('Send payments automatically to multiple vendors as per scheduled', 'dc-woocommerce-multi-vendor'),
+                'icon'          =>  'ico-store-icon',
+                'modulename'     =>  'payment-payout'
+            ),
+            array(
+                'tablabel'      =>  __('Stripe Connect', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/save_dashpages',
+                'description'   =>  __('Connect to vendors stripe account and make hassle-free transfers as scheduled', 'dc-woocommerce-multi-vendor'),
+                'icon'          =>  'ico-store-icon',
+                'modulename'     =>  'payment-stripe-connect'
+            )
+        );
+
+        $advance_page_endpoint = array(
+            array(
+                'tablabel'      =>  __('Buddypress', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/save_dashpages',
+                'description'   =>  __('Default description', 'dc-woocommerce-multi-vendor'),
+                'icon'          =>  'ico-store-icon',
+                'modulename'     =>  'buddypress'
+            )
+        );
+
+        $analytics_page_endpoint = array(
+            array(
+                'tablabel'      =>  __('Overview', 'dc-woocommerce-multi-vendor'),
+                'description'   =>  __('View the Overall Performance of The Site', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/save_dashpages',
+                'icon'          =>  'ico-store-icon',
+                'modulename'     =>  'admin-overview'
+            ),
+            array(
+                'tablabel'      =>  __('Vendor', 'dc-woocommerce-multi-vendor'),
+                'description'   =>  __('Get Reports on Vendor Sales', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/save_dashpages',
+                'icon'          =>  'ico-store-icon',
+                'modulename'     =>  'vendor'
+            ),
+            array(
+                'tablabel'      =>  __('Product', 'dc-woocommerce-multi-vendor'),
+                'description'   =>  __('View Porduct Sales', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/save_dashpages',
+                'icon'          =>  'ico-store-icon',
+                'modulename'     =>  'product'
+            ),
+            array(
+                'tablabel'      =>  __('Transaction History', 'dc-woocommerce-multi-vendor'),
+                'description'   =>  __('Get Detailed Reports On Vendor Commission', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/save_dashpages',
+                'icon'          =>  'ico-store-icon',
+                'modulename'     =>  'transaction-history'
+            )
+        );
+
+        $marketplace_vendors = array(
+            array(
+                'tablabel'      =>  __('Personal', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/update_vendor',
+                'icon'          =>  'ico-store-icon',
+                'modulename'     =>  'vendor-personal'
+            ),
+            array(
+                'tablabel'      =>  __('Store', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/update_vendor',
+                'icon'          =>  'ico-store-icon',
+                'modulename'     =>  'vendor-store'
+            ),
+            array(
+                'tablabel'      =>  __('Social', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/update_vendor',
+                'icon'          =>  'ico-store-icon',
+                'modulename'     =>  'vendor-social'
+            ),
+            array(
+                'tablabel'      =>  __('Payment', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/update_vendor',
+                'icon'          =>  'ico-store-icon',
+                'modulename'     =>  'vendor-payments'
+            ),
+            array(
+                'tablabel'      =>  __('Vendor Application', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/update_vendor',
+                'icon'          =>  'ico-store-icon',
+                'modulename'     =>  'vendor-application'
+            ),
+            array(
+                'tablabel'      =>  __('Vendor Shipping', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/update_vendor',
+                'icon'          =>  'ico-store-icon',
+                'modulename'     =>  'vendor-shipping'
+            ),
+            array(
+                'tablabel'      =>  __('Vendor Followers', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/update_vendor',
+                'icon'          =>  'ico-store-icon',
+                'modulename'     =>  'vendor-followers'
+            ),
+            array(
+                'tablabel'      =>  __('Vendor Policy', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/update_vendor',
+                'icon'          =>  'ico-store-icon',
+                'modulename'     =>  'vendor-policy'
+            ),
+
+        );
+
+        $marketplace_workboard = array(
+            array(
+                'tablabel'      =>  __('Activity Reminder', 'dc-woocommerce-multi-vendor'),
+                'description'   =>  __('Keeps track of all important marketplace chores', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/update_vendor',
+                'icon'          =>  'ico-store-icon',
+                'modulename'     =>  'activity-reminder'
+            ),
+            array(
+                'tablabel'      =>  __('Announcement', 'dc-woocommerce-multi-vendor'),
+                'description'   =>  __('Announcements are visible only to vendors through the vendor dashboard(message section). You may use this section to broadcast your announcements.', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/update_vendor',
+                'icon'          =>  'ico-store-icon',
+                'modulename'     =>  'announcement'
+            ),
+            array(
+                'tablabel'      =>  __('Knowladgebase', 'dc-woocommerce-multi-vendor'),
+                'description'   =>  __('"Knowledgebase" section is visible only to vendors through the vendor dashboard. You may use this section to onboard your vendors. Share tutorials, best practices, "how to" guides or whatever you feel is appropriate with your vendors.', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/update_vendor',
+                'icon'          =>  'ico-store-icon',
+                'modulename'     =>  'knowladgebase'
+            ),
+            array(
+                'tablabel'      =>  __('Store Review', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/update_vendor',
+                'icon'          =>  'ico-store-icon',
+                'modulename'     =>  'store-review'
+            ),
+            array(
+                'tablabel'      =>  __('Report Abuse', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/update_vendor',
+                'icon'          =>  'ico-store-icon',
+                'modulename'     =>  'report-abuse'
+            ),
+            array(
+                'tablabel'      =>  __('Question & Answer', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/update_vendor',
+                'icon'          =>  'ico-store-icon',
+                'modulename'     =>  'question-ans'
+            )
+        );
+
+        $mvx_all_backend_tab_list = array(
+            'dashboard-page'                    => $dashboard_page_endpoint,
+            'marketplace-advance-settings'      => $advance_page_endpoint,
+            'marketplace-analytics'             => $analytics_page_endpoint,
+            'marketplace-payments'              => $payment_page_endpoint,
+            'marketplace-general-settings'      => $general_settings_page_endpoint,
+            'marketplace-vendors'               => $marketplace_vendors,
+            'marketplace-workboard'             => $marketplace_workboard
+        );
+        return $mvx_all_backend_tab_list;
     }
 }

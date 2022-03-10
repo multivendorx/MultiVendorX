@@ -32,7 +32,7 @@ import AnalyticsSettings from './class-mvx-analytics-section';
 import AdvanceSettings from './class-mvx-advance-section';
 import GESettings from './class-mvx-general-settings';
 import HeaderSection from './class-mvx-page-header';
-
+import Modules from './class-mvx-page-modules';
 
 
 const override = css`
@@ -229,7 +229,11 @@ class App extends Component {
        return (
           <WorkBoard />
         );
-    } else {
+    } else if (new URLSearchParams(useLocation().hash).get("submenu") && new URLSearchParams(useLocation().hash).get("submenu") == 'modules') {
+       return (
+          <Modules />
+        );
+    }else {
       return (
 
         <div className="mvx-module-section-before-header">
@@ -245,7 +249,7 @@ class App extends Component {
                   <div className="dashboard-tab-area">
                     <ul className="mvx-dashboard-tabs-list">
                       {appLocalizer.mvx_all_backend_tab_list['dashboard-page'].map((data, index) => (
-                          <li className={queryt.get("name") == data.tabname ? 'activedashboardtabs' : ''} ><i class="mvx-font ico-store-icon"></i>{data.link ? <a href={data.link}>{data.tablabel}</a> : <Link to={`?page=mvx#&submenu=dashboard&name=${data.tabname}`}>{data.tablabel}</Link>}</li>
+                          <li className={queryt.get("name") == data.modulename ? 'activedashboardtabs' : ''} ><i class="mvx-font ico-store-icon"></i>{data.link ? <a href={data.link}>{data.tablabel}</a> : <Link to={`?page=mvx#&submenu=dashboard&name=${data.modulename}`}>{data.tablabel}</Link>}</li>
                       ))}
                     </ul>
                     <div className="dashboard-tabcontentclass">
