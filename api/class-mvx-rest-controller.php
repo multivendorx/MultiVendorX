@@ -524,6 +524,33 @@ class MVX_REST_API {
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
 
+
+        // store review
+        register_rest_route( 'mvx_module/v1', '/search_announcement', [
+            'methods' => WP_REST_Server::EDITABLE,
+            'callback' => array( $this, 'mvx_search_announcement' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
+        
+    }
+
+    public function mvx_search_announcement($request) {
+        $ids = $request && $request->get_param('ids') ? ($request->get_param('ids')) : 0;
+        $value = $request && $request->get_param('value') ? ($request->get_param('value')) : 0;
+        $all_announcement   =   $this->mvx_display_announcement();
+        $search_announcement_renew = [];
+        if ($all_announcement->data && !empty($all_announcement->data) && !empty($value)) {
+            foreach ($all_announcement->data as $announce_key => $anounce_value) {
+                if (strpos($anounce_value['sample_title'], $value) !== false) {
+                    $search_announcement_renew[]    =   $all_announcement->data[$announce_key];
+                }
+            }            
+        } else {
+            return rest_ensure_response($all_announcement->data);
+        }
+        return rest_ensure_response($search_announcement_renew);
+        
     }
 
     public function mvx_list_of_store_review() {
@@ -1644,11 +1671,11 @@ class MVX_REST_API {
         $post_id = wp_insert_post( array( 'post_title' => $announcement_title, 'post_type' => 'mvx_vendor_notice', 'post_status' => 'publish', 'post_content' => $announcement_content ) );
         update_post_meta( $post_id, '_mvx_vendor_notices_url', wc_clean($announcement_url) );
 
-        $notify_vendors = isset($fetch_data['announcement_vendors']) ? wp_list_pluck(array_filter($fetch_data['announcement_vendors']), 'value')  : get_mvx_vendors( array(), 'ids' );
-        if (isset($fetch_data['announcement_vendors'])) {
+        $notify_vendors = isset($fetch_data['announcement_vendors']) && !empty($fetch_data['announcement_vendors']) ? wp_list_pluck(array_filter($fetch_data['announcement_vendors']), 'value')  : get_mvx_vendors( array(), 'ids' );
+        if (isset($fetch_data['announcement_vendors']) && !empty($fetch_data['announcement_vendors'])) {
             update_post_meta($post_id, '_mvx_vendor_notices_vendors', $notify_vendors);
         } else {
-            //update_post_meta($post_id, '_mvx_vendor_notices_vendors', $notify_vendors);
+            update_post_meta($post_id, '_mvx_vendor_notices_vendors', get_mvx_vendors( array(), 'ids' ));
         }
 
     }
@@ -1663,9 +1690,10 @@ class MVX_REST_API {
         $announcement = get_posts($args);
 
         foreach ($announcement as $announcementkey => $announcementvalue) {
+            $vedors_list_renew = [];
             $vedors_list = get_post_meta($announcementvalue->ID, '_mvx_vendor_notices_vendors', true);
 
-            if ($vedors_list) {
+            if ($vedors_list && is_array($vedors_list) && !empty($vedors_list)) {
                 foreach ($vedors_list as $key => $value) {
                     $vendor = get_mvx_vendor($value);
                     $vedors_list_renew[] = $vendor->page_title;
@@ -1673,12 +1701,12 @@ class MVX_REST_API {
             }
             $announcement_list[] = array(
                 'id'            =>  $announcementvalue->ID,
-                'title'         =>  '<a href="' . sprintf('?page=%s&name=%s&AnnouncementID=%s', 'mvx#&submenu=work-board', 'announcement', $announcementvalue->ID) . '">#' . $announcementvalue->post_title . '</a>',
-                'date'          =>  $announcementvalue->post_modified,
+                'sample_title'  =>  $announcementvalue->post_title,
+                'title'         =>  '<a href="' . sprintf('?page=%s&name=%s&AnnouncementID=%s', 'mvx#&submenu=work-board', 'announcement', $announcementvalue->ID) . '">' . $announcementvalue->post_title . '</a>',
+                'date'          =>  human_time_diff(strtotime($announcementvalue->post_modified)),
                 'vendor'        =>  $vedors_list_renew ? implode(',', $vedors_list_renew) : ''
             );
         }
-        //print_r($announcement_list);die;
         return rest_ensure_response($announcement_list);
     }
 

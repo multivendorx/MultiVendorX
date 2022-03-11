@@ -259,9 +259,9 @@ export default class DynamicForm extends React.Component {
       });
 
       
-      /*if(m['type'] == 'wpeditor') {
+      if(m['type'] == 'wpeditor') {
         // add wp editor from textarea
-        wp.editor.initialize(m['key'], {
+       /* wp.editor.initialize(m['key'], {
           mediaButtons: true,
           tinymce: {
             wpautop  : true,
@@ -308,8 +308,8 @@ export default class DynamicForm extends React.Component {
 
           },
           quicktags: true
-        });
-      }*/
+        });*/
+      }
 
      /* var parent_nested_array = new Array({});
       var child_nested_array = new Array({});

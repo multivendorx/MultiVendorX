@@ -220,17 +220,11 @@ class MVX_Admin {
         global $MVX;
         $screen = get_current_screen();
         $suffix = defined('MVX_SCRIPT_DEBUG') && MVX_SCRIPT_DEBUG ? '' : '.min';
-        wp_enqueue_script( 'mce-view' );
         wp_enqueue_script('media-upload');
         wp_enqueue_media();
         wp_enqueue_editor();
         wp_enqueue_script( 'mce-view' );
         $MVX->library->load_upload_lib();
-
-        if (in_array($screen->id, array('product', 'edit-product'))) {
-            wp_register_script('mvx-admin-product-js', $MVX->plugin_url . 'assets/admin/js/product' . $suffix . '.js', array('jquery'), $MVX->version, true);
-            wp_enqueue_script('mvx-admin-product-js');
-        }
 
         // get all settings fileds
         $settings_fields = mvx_admin_backend_settings_fields_details();
@@ -255,6 +249,12 @@ class MVX_Admin {
             }
         }
         $page_details = array('toplevel_page_mvx');
+
+        if (in_array($screen->id, array('product', 'edit-product'))) {
+            wp_register_script('mvx-admin-product-js', $MVX->plugin_url . 'assets/admin/js/product' . $suffix . '.js', array('jquery'), $MVX->version, true);
+            wp_enqueue_script('mvx-admin-product-js');
+        }
+        
         wp_enqueue_script(
             'mvx-modules-build-frontend',
             $MVX->plugin_url . 'mvx-modules/build/index.js',
@@ -382,6 +382,27 @@ class MVX_Admin {
             );
 
 
+
+        $columns_announcement = array(
+            array(
+                'name'  =>  'Title',
+                'selector'  => "title",
+                
+            ),
+            array(
+                'name'  =>  'Vendors',
+                'selector'  => "vendor",
+                
+            ),
+            array(
+                'name'  =>  'Date',
+                'selector'  => "date",
+                
+            )
+
+        );
+
+
         wp_localize_script( 'mvx-modules-build-frontend', 'appLocalizer', apply_filters('mvx_module_complete_settings', [
             'apiUrl' => home_url( '/wp-json' ),
             'nonce' => wp_create_nonce( 'wp_rest' ),
@@ -414,7 +435,8 @@ class MVX_Admin {
             'report_product_header'         =>  $report_product_header,
             'report_vendor_header'          =>  $report_vendor_header,
             'report_page_string'            =>  $report_page_string,
-            'post_bulk_status'              =>  $post_bulk_status
+            'post_bulk_status'              =>  $post_bulk_status,
+            'columns_announcement'          =>  $columns_announcement
         ] ) );
 
         if ( in_array($screen->id, $page_details)) {

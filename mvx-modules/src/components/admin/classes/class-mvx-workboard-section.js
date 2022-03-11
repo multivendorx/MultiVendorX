@@ -64,6 +64,7 @@ class App extends Component {
       list_of_pending_transaction: [],
       list_of_pending_question: [],
       list_of_store_review: [],
+      columns_announcement_new: [],
       columns_announcement: [
         {
             name: <div className="mvx-datatable-header-text">Title</div>,
@@ -236,21 +237,22 @@ class App extends Component {
 
   handle_post_bulk_status(e, type) {
 
-    axios({
-      method: 'post',
-      url: `${appLocalizer.apiUrl}/mvx_module/v1/search_announcement`,
-      data: {
-        ids: this.state.bulkselectlist,
-      }
-    })
-    .then( ( responce ) => {
-      /*location.reload();
-      if (responce.data.redirect_link) {
-         window.location.href = responce.data.redirect_link;
-      }*/
-    } );
+    if (type == 'announcement') {
+      axios({
+        method: 'post',
+        url: `${appLocalizer.apiUrl}/mvx_module/v1/search_announcement`,
+        data: {
+          ids: this.state.bulkselectlist,
+          value: e.target.value
+        }
+      })
+      .then( ( responce ) => {
+        this.setState({
+          display_announcement: responce.data,
+        });
 
-    console.log(type)
+      } );
+    }
   }
 
   componentDidMount() {
@@ -372,12 +374,10 @@ class App extends Component {
                 <div className="dashboard-tab-area">
                   <ul className="mvx-dashboard-tabs-list">
                     {appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'].map((data, index) => (
-                        <li className={queryt.get("name") == data.modulename ? 'activedashboardtabs' : ''}>{data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}<Link to={`?page=mvx#&submenu=work-board&name=${data.modulename}`} >{data.tablabel}</Link></li>
+                        <Link to={`?page=mvx#&submenu=work-board&name=${data.modulename}`} ><li className={queryt.get("name") == data.modulename ? 'activedashboardtabs' : ''}>{data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}{data.tablabel}</li></Link>
                     ))}
                   </ul>
-                  <div className="tabcontentclass">
                     <this.Child name={queryt.get("name")} />
-                  </div>
                 </div>
 
 
@@ -399,6 +399,31 @@ class App extends Component {
   }
 
 Child({ name }) {
+
+  var gggggggggggggggggggg;
+
+  appLocalizer.columns_announcement.map((data_ann, index_ann) => {
+    data_ann.name = data_ann.name;
+
+    gggggggggggggggggggg = data_ann.selector;
+
+    console.log(gggggggggggggggggggg);
+
+    data_ann.selector = row => <div dangerouslySetInnerHTML={{__html: row.gggggggggggggggggggg}}></div>;
+    this.state.columns_announcement_new[index_ann] = data_ann
+    }
+  )
+
+
+
+
+
+
+
+
+
+
+
   var get_current_name = this.useQuery();
 
   if (!get_current_name.get("AnnouncementID")) {
@@ -445,7 +470,7 @@ Child({ name }) {
             <div className="mvx-text-with-line-wrapper">
                 <div className="mvx-report-text">Vendor Verification</div>
                 <div className="mvx-report-text-fade-line"></div>
-                <div className="mvx-select-bulk-action"><Select placeholder={appLocalizer.report_page_string.choose_vendor} options={this.state.details_vendor} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e)} /></div>
+                <Select placeholder={appLocalizer.report_page_string.choose_vendor} options={this.state.details_vendor} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e)} />
             </div>
             <div className="mvx-workboard-card-wrapper">
                 <div className="mvx-workboard-card-wrapper-child">
@@ -486,9 +511,9 @@ Child({ name }) {
                     </div>
                     <div className="mvx-module-current-status wp-clearfix">
                         <div className="mvx-left-icons-wrap">
-                            <i class="mvx-font ico-store-icon"></i>
-                            <i class="mvx-font ico-store-icon"></i>
-                            <i class="mvx-font ico-store-icon"></i>
+                            <div className="mvx-left-icon"><i className="mvx-font ico-store-icon"></i></div>
+                            <div className="mvx-left-icon"><i className="mvx-font ico-store-icon"></i></div>
+                            <div className="mvx-left-icon"><i className="mvx-font ico-store-icon"></i></div>
 
                         </div>
 
@@ -503,7 +528,6 @@ Child({ name }) {
 
       name == appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'][1]['modulename'] ?
       <div className="mvx-module-grid">
-
 
         <div className="mvx-table-text-and-add-wrap">
           <Link to={`?page=mvx#&submenu=work-board&name=announcement&create=announcement`}><span class="dashicons dashicons-plus"></span>Add Announcement</Link>
@@ -574,7 +598,7 @@ Child({ name }) {
 
             <div className="mvx-backend-datatable-wrapper">
               <DataTable
-                columns={this.state.columns_announcement}
+                columns={this.state.columns_announcement_new}
                 data={this.state.display_announcement}
                 selectableRows
                 onSelectedRowsChange={this.onSelectedRowsChange}

@@ -3,11 +3,11 @@ if (!defined('ABSPATH'))
     exit;
 
 /**
- * @class 		MVX Product Class
+ * @class       MVX Product Class
  *
- * @version		2.2.0
- * @package		MVX
- * @author 		Multivendor X
+ * @version     2.2.0
+ * @package     MVX
+ * @author      Multivendor X
  */
 class MVX_Product {
 
@@ -545,7 +545,7 @@ class MVX_Product {
             <label>
                 <span class="title"><?php esc_html_e('Vendor', 'dc-woocommerce-multi-vendor'); ?></span>
                 <span class="input-text-wrap vendor_bulk">
-                    <select name="choose_vendor_bulk" id="choose_vendor_ajax_bulk" class="mvx_select_vendor" data-placeholder="<?php esc_attr_e('Search for vendor', 'dc-woocommerce-multi-vendor') ?>" >
+                    <select name="choose_vendor_bulk" id="choose_vendor_ajax_bulk" class="mvx_select_vendor" data-placeholder="<?php esc_attr_e('Search for vendor', 'dc-woocommerce-multi-vendor') ?>" style="width:300px;" >
                         <?php echo $option; ?>
                     </select>
                 </span>
@@ -734,7 +734,7 @@ class MVX_Product {
         }
         $html .= '<tr valign="top"><td scope="row"><label id="vendor-label" for="' . esc_attr('vendor') . '">' . __("Vendor", 'dc-woocommerce-multi-vendor') . '</label></td><td>';
         if (!$current_user_is_vendor) {
-            $html .= '<select name="' . esc_attr('choose_vendor') . '" data-placeholder="'. esc_attr("Choose vendor", "dc-woocommerce-multi-vendor").'" id="' . esc_attr('choose_vendor_ajax') . '" class="mvx_select_vendor" >' . $option . '</select>';
+            $html .= '<select name="' . esc_attr('choose_vendor') . '" data-placeholder="'. esc_attr("Choose vendor", "dc-woocommerce-multi-vendor").'" id="' . esc_attr('choose_vendor_ajax') . '" class="mvx_select_vendor" style="width:300px;" >' . $option . '</select>';
             $html .= '<p class="description">' . 'choose vendor' . '</p>';
         } else {
             $html .= '<label id="vendor-label" for="' . esc_attr('vendor') . '">' . $vendor->page_title . '</label>';
@@ -912,7 +912,7 @@ class MVX_Product {
                         do_action('mvx_product_options_policy_product_data');
                         ?>
                     </tbody>
-                </table>			
+                </table>            
             </div>
         </div>
         <?php
@@ -1115,106 +1115,106 @@ class MVX_Product {
             if (is_user_mvx_vendor(get_current_vendor_id())) {
                 if (isset($commission_percentage) && !empty($commission_percentage)) {
                     $html .= '<tr>
-											<td>
-												<div class="_product_vendors_commission_percentage">
-													<label for="_product_vendors_commission_percentage_' . $loop . '">' . __('Commission (percentage)', 'dc-woocommerce-multi-vendor') . ':</label>
-													<span class="variable_commission_cls">' . $commission_percentage . '</span>
-												</div>
-											</td>
-										</tr>';
+                                            <td>
+                                                <div class="_product_vendors_commission_percentage">
+                                                    <label for="_product_vendors_commission_percentage_' . $loop . '">' . __('Commission (percentage)', 'dc-woocommerce-multi-vendor') . ':</label>
+                                                    <span class="variable_commission_cls">' . $commission_percentage . '</span>
+                                                </div>
+                                            </td>
+                                        </tr>';
                 }
                 if (isset($commission_percentage) && !empty($commission_percentage)) {
                     $html .= '<tr>
-											<td>
-												<div class="_product_vendors_commission_fixed_per_trans">
-													<label for="_product_vendors_commission_fixed_per_trans_' . $loop . '">' . __('Commission (fixed) Per Transaction', 'dc-woocommerce-multi-vendor') . ':</label>
-													<span class="variable_commission_cls">' . $commission_fixed_per_trans . '</span>
-												</div>
-											</td>
-										</tr>';
+                                            <td>
+                                                <div class="_product_vendors_commission_fixed_per_trans">
+                                                    <label for="_product_vendors_commission_fixed_per_trans_' . $loop . '">' . __('Commission (fixed) Per Transaction', 'dc-woocommerce-multi-vendor') . ':</label>
+                                                    <span class="variable_commission_cls">' . $commission_fixed_per_trans . '</span>
+                                                </div>
+                                            </td>
+                                        </tr>';
                 }
             } else {
                 $html .= '<tr>
-										<td>
-											<div class="_product_vendors_commission_percentage">
-												<label for="_product_vendors_commission_percentage_' . $loop . '">' . __('Commission (percentage)', 'dc-woocommerce-multi-vendor') . ':</label>
-												<input size="4" type="text" name="variable_product_vendors_commission_percentage[' . $loop . ']" id="_product_vendors_commission_percentage_' . $loop . '" value="' . $commission_percentage . '" />
-											</div>
-										</td>
-									</tr>';
+                                        <td>
+                                            <div class="_product_vendors_commission_percentage">
+                                                <label for="_product_vendors_commission_percentage_' . $loop . '">' . __('Commission (percentage)', 'dc-woocommerce-multi-vendor') . ':</label>
+                                                <input size="4" type="text" name="variable_product_vendors_commission_percentage[' . $loop . ']" id="_product_vendors_commission_percentage_' . $loop . '" value="' . $commission_percentage . '" />
+                                            </div>
+                                        </td>
+                                    </tr>';
                 $html .= '<tr>
-										<td>
-											<div class="_product_vendors_commission_fixed_per_trans">
-												<label for="_product_vendors_commission_fixed_per_trans_' . $loop . '">' . __('Commission (fixed) Per Transaction', 'dc-woocommerce-multi-vendor') . ':</label>
-												<input size="4" type="text" name="variable_product_vendors_commission_fixed_per_trans[' . $loop . ']" id="_product_vendors_commission_fixed_per_trans__' . $loop . '" value="' . $commission_fixed_per_trans . '" />
-											</div>
-										</td>
-									</tr>';
+                                        <td>
+                                            <div class="_product_vendors_commission_fixed_per_trans">
+                                                <label for="_product_vendors_commission_fixed_per_trans_' . $loop . '">' . __('Commission (fixed) Per Transaction', 'dc-woocommerce-multi-vendor') . ':</label>
+                                                <input size="4" type="text" name="variable_product_vendors_commission_fixed_per_trans[' . $loop . ']" id="_product_vendors_commission_fixed_per_trans__' . $loop . '" value="' . $commission_fixed_per_trans . '" />
+                                            </div>
+                                        </td>
+                                    </tr>';
             }
         } else if ($MVX->vendor_caps->payment_cap['commission_type'] == 'fixed_with_percentage_qty') {
 
             if (is_user_mvx_vendor(get_current_vendor_id())) {
                 if (isset($commission_percentage) && !empty($commission_percentage)) {
                     $html .= '<tr>
-											<td>
-												<div class="_product_vendors_commission_percentage">
-													<label for="_product_vendors_commission_percentage_' . $loop . '">' . __('Commission Percentage', 'dc-woocommerce-multi-vendor') . ':</label>
-													<span class="variable_commission_cls">' . $commission_percentage . '</span>
-												</div>
-											</td>
-										</tr>';
+                                            <td>
+                                                <div class="_product_vendors_commission_percentage">
+                                                    <label for="_product_vendors_commission_percentage_' . $loop . '">' . __('Commission Percentage', 'dc-woocommerce-multi-vendor') . ':</label>
+                                                    <span class="variable_commission_cls">' . $commission_percentage . '</span>
+                                                </div>
+                                            </td>
+                                        </tr>';
                 }
 
                 if (isset($commission_fixed_per_qty) && !empty($commission_fixed_per_qty)) {
                     $html .= '<tr>
-										<td>
-											<div class="_product_vendors_commission_fixed_per_qty">
-												<label for="_product_vendors_commission_fixed_per_qty_' . $loop . '">' . __('Commission Fixed per unit', 'dc-woocommerce-multi-vendor') . ':</label>
-												<span class="variable_commission_cls">' . $commission_fixed_per_qty . '</span>
-											</div>
-										</td>
-									</tr';
+                                        <td>
+                                            <div class="_product_vendors_commission_fixed_per_qty">
+                                                <label for="_product_vendors_commission_fixed_per_qty_' . $loop . '">' . __('Commission Fixed per unit', 'dc-woocommerce-multi-vendor') . ':</label>
+                                                <span class="variable_commission_cls">' . $commission_fixed_per_qty . '</span>
+                                            </div>
+                                        </td>
+                                    </tr';
                 }
             } else {
                 $html .= '<tr>
-										<td>
-											<div class="_product_vendors_commission_percentage">
-												<label for="_product_vendors_commission_percentage_' . $loop . '">' . __('Commission Percentage', 'dc-woocommerce-multi-vendor') . ':</label>
-												<input size="4" type="text" name="variable_product_vendors_commission_percentage[' . $loop . ']" id="_product_vendors_commission_percentage_' . $loop . '" value="' . $commission_percentage . '" />
-											</div>
-										</td>
-									</tr>';
+                                        <td>
+                                            <div class="_product_vendors_commission_percentage">
+                                                <label for="_product_vendors_commission_percentage_' . $loop . '">' . __('Commission Percentage', 'dc-woocommerce-multi-vendor') . ':</label>
+                                                <input size="4" type="text" name="variable_product_vendors_commission_percentage[' . $loop . ']" id="_product_vendors_commission_percentage_' . $loop . '" value="' . $commission_percentage . '" />
+                                            </div>
+                                        </td>
+                                    </tr>';
 
                 $html .= '<tr>
-										<td>
-											<div class="_product_vendors_commission_fixed_per_qty">
-												<label for="_product_vendors_commission_fixed_per_qty_' . $loop . '">' . __('Commission Fixed per unit', 'dc-woocommerce-multi-vendor') . ':</label>
-												<input size="4" type="text" name="variable_product_vendors_commission_fixed_per_qty[' . $loop . ']" id="_product_vendors_commission_fixed_per_qty__' . $loop . '" value="' . $commission_fixed_per_qty . '" />
-											</div>
-										</td>
-									</tr';
+                                        <td>
+                                            <div class="_product_vendors_commission_fixed_per_qty">
+                                                <label for="_product_vendors_commission_fixed_per_qty_' . $loop . '">' . __('Commission Fixed per unit', 'dc-woocommerce-multi-vendor') . ':</label>
+                                                <input size="4" type="text" name="variable_product_vendors_commission_fixed_per_qty[' . $loop . ']" id="_product_vendors_commission_fixed_per_qty__' . $loop . '" value="' . $commission_fixed_per_qty . '" />
+                                            </div>
+                                        </td>
+                                    </tr';
             }
         } else {
             if (is_user_mvx_vendor(get_current_vendor_id())) {
                 if (isset($commission) && !empty($commission)) {
                     $html .= '<tr>
-											<td>
-												<div class="_product_vendors_commission">
-													<label for="_product_vendors_commission_' . $loop . '">' . __('Commission', 'dc-woocommerce-multi-vendor') . ':</label>
-													<span class="variable_commission_cls">' . $commission . '</span>
-												</div>
-											</td>
-										</tr>';
+                                            <td>
+                                                <div class="_product_vendors_commission">
+                                                    <label for="_product_vendors_commission_' . $loop . '">' . __('Commission', 'dc-woocommerce-multi-vendor') . ':</label>
+                                                    <span class="variable_commission_cls">' . $commission . '</span>
+                                                </div>
+                                            </td>
+                                        </tr>';
                 }
             } else {
                 $html .= '<tr>
-										<td>
-											<div class="_product_vendors_commission">
-												<label for="_product_vendors_commission_' . $loop . '">' . __('Commission', 'dc-woocommerce-multi-vendor') . ':</label>
-												<input size="4" type="text" name="variable_product_vendors_commission[' . $loop . ']" id="_product_vendors_commission_' . $loop . '" value="' . $commission . '" />
-											</div>
-										</td>
-									</tr>';
+                                        <td>
+                                            <div class="_product_vendors_commission">
+                                                <label for="_product_vendors_commission_' . $loop . '">' . __('Commission', 'dc-woocommerce-multi-vendor') . ':</label>
+                                                <input size="4" type="text" name="variable_product_vendors_commission[' . $loop . ']" id="_product_vendors_commission_' . $loop . '" value="' . $commission . '" />
+                                            </div>
+                                        </td>
+                                    </tr>';
             }
         }
 
@@ -1368,7 +1368,7 @@ class MVX_Product {
                         </div>
                     </div>
                 </div>
-            </div>							
+            </div>                          
             <?php
         }
     }

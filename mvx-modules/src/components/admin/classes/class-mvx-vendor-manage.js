@@ -536,7 +536,7 @@ class App extends React.Component {
             <div className="general-tab-area">
               <ul className="mvx-general-tabs-list">
               {appLocalizer.mvx_all_backend_tab_list['marketplace-vendors'].map((data, index) => (
-                  <li className={queryt.get("name") == data.modulename ? 'activegeneraltabs' : ''}>{data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}<Link to={`?page=mvx#&submenu=vendor&ID=${queryt.get("ID")}&name=${data.modulename}`} >{data.tablabel}</Link></li>
+                  <Link to={`?page=mvx#&submenu=vendor&ID=${queryt.get("ID")}&name=${data.modulename}`} ><li className={queryt.get("name") == data.modulename ? 'activegeneraltabs' : ''}>{data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}{data.tablabel}</li></Link>
               ))}
               </ul>
 
