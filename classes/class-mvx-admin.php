@@ -227,8 +227,10 @@ class MVX_Admin {
         wp_enqueue_script( 'mce-view' );
         $MVX->library->load_upload_lib();
 
-        wp_register_script('mvx-admin-product-js', $MVX->plugin_url . 'assets/admin/js/product' . '.min' . '.js', array('jquery'), $MVX->version, true);
-        wp_enqueue_script('mvx-admin-product-js');
+        if (in_array($screen->id, array('product', 'edit-product'))) {
+            wp_register_script('mvx-admin-product-js', $MVX->plugin_url . 'assets/admin/js/product' . $suffix . '.js', array('jquery'), $MVX->version, true);
+            wp_enqueue_script('mvx-admin-product-js');
+        }
 
         // get all settings fileds
         $settings_fields = mvx_admin_backend_settings_fields_details();

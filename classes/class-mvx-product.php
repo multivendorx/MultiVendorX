@@ -545,7 +545,7 @@ class MVX_Product {
             <label>
                 <span class="title"><?php esc_html_e('Vendor', 'dc-woocommerce-multi-vendor'); ?></span>
                 <span class="input-text-wrap vendor_bulk">
-                    <select name="choose_vendor_bulk" id="choose_vendor_ajax_bulk" class="mvx_select_vendor" data-placeholder="<?php esc_attr_e('Search for vendor', 'dc-woocommerce-multi-vendor') ?>" style="width:300px;" >
+                    <select name="choose_vendor_bulk" id="choose_vendor_ajax_bulk" class="mvx_select_vendor" data-placeholder="<?php esc_attr_e('Search for vendor', 'dc-woocommerce-multi-vendor') ?>" >
                         <?php echo $option; ?>
                     </select>
                 </span>
@@ -734,7 +734,7 @@ class MVX_Product {
         }
         $html .= '<tr valign="top"><td scope="row"><label id="vendor-label" for="' . esc_attr('vendor') . '">' . __("Vendor", 'dc-woocommerce-multi-vendor') . '</label></td><td>';
         if (!$current_user_is_vendor) {
-            $html .= '<select name="' . esc_attr('choose_vendor') . '" data-placeholder="'. esc_attr("Choose vendor", "dc-woocommerce-multi-vendor").'" id="' . esc_attr('choose_vendor_ajax') . '" class="mvx_select_vendor" style="width:300px;" >' . $option . '</select>';
+            $html .= '<select name="' . esc_attr('choose_vendor') . '" data-placeholder="'. esc_attr("Choose vendor", "dc-woocommerce-multi-vendor").'" id="' . esc_attr('choose_vendor_ajax') . '" class="mvx_select_vendor" >' . $option . '</select>';
             $html .= '<p class="description">' . 'choose vendor' . '</p>';
         } else {
             $html .= '<label id="vendor-label" for="' . esc_attr('vendor') . '">' . $vendor->page_title . '</label>';
