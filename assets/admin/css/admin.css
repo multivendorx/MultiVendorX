@@ -237,6 +237,7 @@ i.mvx-font.ico-store-icon {
   font-weight: 500;
   color: #3f1473;
   padding: .8rem 0;
+  white-space: nowrap;
 }
 
 .mvx-module-list-label-text {
@@ -275,7 +276,7 @@ i.mvx-font.ico-store-icon {
   background-color: #fff;
   padding: 0.5rem 1rem;
   border-radius: 0.253rem;
-  margin: 2rem;
+  margin: 0.51rem 0.25rem 0.51rem 0;
 }
 
 .mvx-module-help-grid .mvx-module-settings-box ul.mvx-module-section-list-icon li a {
@@ -425,6 +426,20 @@ ul.mvx-dashboard-tabs-list::-webkit-scrollbar {
   display: none;
 }
 
+ul.mvx-dashboard-tabs-list:first-child {
+  border-left: 0.06rem solid #d4d1d9;
+}
+
+ul.mvx-dashboard-tabs-list a {
+  text-decoration: none;
+  color: #5E5D60;
+  font-size: 0.875rem;
+}
+
+ul.mvx-dashboard-tabs-list a:hover {
+  background-color: #fdfdfe;
+}
+
 ul.mvx-dashboard-tabs-list li {
   font-weight: 500;
   position: relative;
@@ -444,20 +459,6 @@ ul.mvx-dashboard-tabs-list li {
           column-gap: 0.5rem;
 }
 
-ul.mvx-dashboard-tabs-list li:first-child {
-  border-left: 0.06rem solid #d4d1d9;
-}
-
-ul.mvx-dashboard-tabs-list li:hover {
-  background-color: #fdfdfe;
-}
-
-ul.mvx-dashboard-tabs-list li a {
-  text-decoration: none;
-  color: #5E5D60;
-  font-size: 0.875rem;
-}
-
 ul.mvx-dashboard-tabs-list li.activedashboardtabs {
   background: #f7f6f9;
   border-bottom: 0;
@@ -472,6 +473,7 @@ ul.mvx-dashboard-tabs-list li.activedashboardtabs::after {
   background-color: #f7f6f9;
   bottom: -0.08rem;
   left: 0;
+  z-index: 99;
 }
 
 ul.mvx-dashboard-tabs-list li.activedashboardtabs a {
@@ -484,7 +486,7 @@ ul.mvx-dashboard-tabs-list li.activedashboardtabs a {
   }
 }
 
-.mvx-module-list-container .mvx-module-option-row {
+.mvx-module-list-container .mvx-module-option-row, .mvx-module-list-container .mvx-workboard-card-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -537,21 +539,13 @@ span.mvx-module-section-pro-badge {
   right: 16px;
 }
 
-.mvx-upper-tab-header-area {
-  border-bottom: 0.06rem solid #d4d1d9;
-  margin-bottom: 2rem;
-}
-
-.general-tab-header-area {
-  border-bottom: none;
-}
-
 .general-tab-header-area, .mvx-upper-tab-header-area {
-  border: 0.06rem solid #d4d1d9;
+  border: solid #d4d1d9;
+  border-width: 0.06rem 0.06rem 0 0.06rem;
   text-align: center;
   padding: 1rem;
   border-radius: 0.254rem 0.254rem 0 0;
-  background: #f7f6f9;
+  background-color: #f7f6f9;
 }
 
 .general-tab-header-area .mvx-tab-name-display, .mvx-upper-tab-header-area .mvx-tab-name-display {
@@ -565,6 +559,18 @@ span.mvx-module-section-pro-badge {
   color: #5e5d60;
 }
 
+.mvx-upper-tab-header-area {
+  margin-bottom: 2rem;
+  border-bottom: 0.06rem solid #d4d1d9;
+  background: #fdfdfe;
+}
+
+.form-actions .button-secondary {
+  background: #E03C32;
+  color: #f8f9fb;
+  border: 0;
+}
+
 .general-tab-area {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -575,6 +581,15 @@ span.mvx-module-section-pro-badge {
 .general-tab-area ul.mvx-general-tabs-list {
   width: 25%;
   margin: 0;
+}
+
+.general-tab-area ul.mvx-general-tabs-list:hover a, .general-tab-area ul.mvx-general-tabs-list:active a {
+  color: #3f1473;
+}
+
+.general-tab-area ul.mvx-general-tabs-list a {
+  text-decoration: none;
+  color: #181718;
 }
 
 .general-tab-area ul.mvx-general-tabs-list li {
@@ -597,17 +612,8 @@ span.mvx-module-section-pro-badge {
           column-gap: 0.5rem;
 }
 
-.general-tab-area ul.mvx-general-tabs-list li:hover a, .general-tab-area ul.mvx-general-tabs-list li:active a {
-  color: #3f1473;
-}
-
 .general-tab-area ul.mvx-general-tabs-list li:hover {
   background-color: #fdfdfe;
-}
-
-.general-tab-area ul.mvx-general-tabs-list li a {
-  text-decoration: none;
-  color: #181718;
 }
 
 .general-tab-area ul.mvx-general-tabs-list li.activegeneraltabs {
@@ -635,7 +641,7 @@ span.mvx-module-section-pro-badge {
   right: 0.8rem;
 }
 
-.general-tab-area .tabcontentclass {
+.tabcontentclass {
   padding: 2rem;
   border: 0.06rem solid #d4d1d9;
   border-top: none;
@@ -644,18 +650,18 @@ span.mvx-module-section-pro-badge {
   width: 75%;
 }
 
-.general-tab-area .tabcontentclass .form-actions {
-  padding: .8rem;
+.form-actions {
+  padding: .8rem 0;
 }
 
-.general-tab-area .tabcontentclass .form-group {
+.form-group {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   padding: 1.5rem 0;
 }
 
-.general-tab-area .tabcontentclass .form-group p.mvx-settings-metabox-description {
+.form-group p.mvx-settings-metabox-description {
   font-size: 0.875rem;
   font-style: normal;
   padding-top: 0.625rem;
@@ -663,11 +669,11 @@ span.mvx-module-section-pro-badge {
   clear: left;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-settings-mvx-form-group-radio input {
+.form-group .mvx-settings-mvx-form-group-radio input {
   margin: 0 0.4rem 0 1rem;
 }
 
-.general-tab-area .tabcontentclass .form-group .horizontal-class {
+.form-group .horizontal-class {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -679,22 +685,22 @@ span.mvx-module-section-pro-badge {
           justify-content: end;
 }
 
-.general-tab-area .tabcontentclass .form-group .horizontal-class .button-controls {
+.form-group .horizontal-class .button-controls {
   margin-right: .5rem;
 }
 
-.general-tab-area .tabcontentclass .form-group label.mvx-settings-form-label {
+.form-group label.mvx-settings-form-label {
   width: 30%;
   font-weight: 600;
   font-size: .89rem;
   padding: 0 .9rem 0 0;
 }
 
-.general-tab-area .tabcontentclass .form-group label.mvx-settings-form-label p {
+.form-group label.mvx-settings-form-label p {
   color: #181718;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-form-checkbox-list {
+.form-group .mvx-form-checkbox-list {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -703,7 +709,7 @@ span.mvx-module-section-pro-badge {
           align-items: center;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-checkbox-list-side-by-side {
+.form-group .mvx-checkbox-list-side-by-side {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -711,11 +717,11 @@ span.mvx-module-section-pro-badge {
       flex-wrap: wrap;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content {
+.form-group .mvx-settings-input-content {
   width: 70%;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-toggle-checkbox-header {
+.form-group .mvx-settings-input-content .mvx-toggle-checkbox-header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -726,16 +732,16 @@ span.mvx-module-section-pro-badge {
   width: 50%;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-toggle-checkbox-header p.mvx-settings-metabox-description {
+.form-group .mvx-settings-input-content .mvx-toggle-checkbox-header p.mvx-settings-metabox-description {
   margin: 0;
   padding: 0 0 0 1rem;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-toggle-checkbox-header span.dashicons.dashicons-info {
+.form-group .mvx-settings-input-content .mvx-toggle-checkbox-header span.dashicons.dashicons-info {
   padding: 0 0 0 1rem;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-toggle-checkbox-header span.dashicons.dashicons-info .mvx-hover-tooltip {
+.form-group .mvx-settings-input-content .mvx-toggle-checkbox-header span.dashicons.dashicons-info .mvx-hover-tooltip {
   font-size: 0.5rem;
   position: absolute;
   background: #5e5c5c;
@@ -747,15 +753,15 @@ span.mvx-module-section-pro-badge {
   transition: .5s all ease;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-toggle-checkbox-header span.dashicons.dashicons-info:hover .mvx-hover-tooltip {
+.form-group .mvx-settings-input-content .mvx-toggle-checkbox-header span.dashicons.dashicons-info:hover .mvx-hover-tooltip {
   opacity: 1;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-settings-basic-input-class input.mvx-setting-form-input {
+.form-group .mvx-settings-input-content input.mvx-setting-form-input, .form-group .mvx-settings-input-content textarea.mvx-setting-form-input {
   width: 100%;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-boarder-parent .mvx-boarder-parent-loop {
+.form-group .mvx-settings-input-content .mvx-boarder-parent .mvx-boarder-parent-loop {
   margin-bottom: 0.8rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -765,13 +771,13 @@ span.mvx-module-section-pro-badge {
           align-items: center;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-boarder-parent .mvx-boarder-parent-loop label.mvx-setting-form-label {
+.form-group .mvx-settings-input-content .mvx-boarder-parent .mvx-boarder-parent-loop label.mvx-setting-form-label {
   font-size: .7rem;
   font-weight: 500;
   width: 11%;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-boarder-parent .mvx-boarder-nested-child-start .mvx-boarder-nested-child .mvx-boarder-nested-child-loop {
+.form-group .mvx-settings-input-content .mvx-boarder-parent .mvx-boarder-nested-child-start .mvx-boarder-nested-child .mvx-boarder-nested-child-loop {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -781,91 +787,106 @@ span.mvx-module-section-pro-badge {
           align-items: center;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-boarder-parent .mvx-boarder-nested-child-start .mvx-boarder-nested-child .mvx-boarder-nested-child-loop .mvx-setting-form-label {
+.form-group .mvx-settings-input-content .mvx-boarder-parent .mvx-boarder-nested-child-start .mvx-boarder-nested-child .mvx-boarder-nested-child-loop .mvx-setting-form-label {
   width: 11%;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-boarder-parent .mvx-boarder-nested-child-start .mvx-boarder-nested-child .mvx-boarder-nested-child-loop .mvx-setting-form-input {
+.form-group .mvx-settings-input-content .mvx-boarder-parent .mvx-boarder-nested-child-start .mvx-boarder-nested-child .mvx-boarder-nested-child-loop .mvx-setting-form-input {
   margin: 0;
   width: 89%;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-boarder-parent input.mvx-setting-form-input {
+.form-group .mvx-settings-input-content .mvx-boarder-parent input.mvx-setting-form-input {
   width: 90%;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-boarder-parent input.mvx-setting-form-input[type="checkbox"] {
+.form-group .mvx-settings-input-content .mvx-boarder-parent input.mvx-setting-form-input[type="checkbox"] {
   width: 0% !important;
   margin-top: 0.1rem;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-boarder-parent, .general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-boarder-nested-child {
+.form-group .mvx-settings-input-content .mvx-boarder-parent, .form-group .mvx-settings-input-content .mvx-boarder-nested-child {
   border: 0.06rem solid #c2c2c2;
   padding: 1rem;
   border-radius: 0.5rem;
   margin: .5rem 0;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvxsetting-from-textarea textarea {
+.form-group .mvx-settings-input-content .mvxsetting-from-textarea textarea {
   width: 100%;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .radio-select-active {
-  -webkit-box-shadow: 0px 0 13px #3f14732e;
-          box-shadow: 0px 0 13px #3f14732e;
-  -webkit-transform: scale(1.02);
-          transform: scale(1.02);
+.form-group .mvx-settings-input-content .radio-select-active {
+  background-color: #f2eff5;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-radioselect-class {
+.form-group .mvx-settings-input-content .mvx-radioselect-class {
   margin-bottom: 1rem;
   padding: 1rem;
-  border-radius: 0.125rem;
+  border-radius: 0.5rem;
   font-weight: 600;
+  position: relative;
   -webkit-transition: .4s all ease-in-out;
   transition: .4s all ease-in-out;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-radioselect-class:hover {
-  -webkit-box-shadow: 0px 0 13px #3f14732e;
-          box-shadow: 0px 0 13px #3f14732e;
+.form-group .mvx-settings-input-content .mvx-radioselect-class .mvx-setting-form-input {
+  display: none;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-radioselect-class .mvx-setting-form-input {
-  visibility: hidden;
-}
-
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-radioselect-class label.mvx-radio-select-under-label-class {
-  position: relative;
+.form-group .mvx-settings-input-content .mvx-radioselect-class label.mvx-radio-select-under-label-class {
   margin-left: 0.2rem;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-radioselect-class label.mvx-radio-select-under-label-class::before {
+.form-group .mvx-settings-input-content .mvx-radioselect-class label.mvx-radio-select-under-label-class::before {
   position: absolute;
-  content: "";
   height: 1.06rem;
   width: 1.06rem;
-  top: 0.01rem;
-  left: -1.5rem;
+  top: 0.5rem;
+  right: 0.5rem;
   border-radius: 1rem;
-  background-color: #270e0e62;
+  z-index: 1;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-radioselect-class .mvx-setting-form-input:checked + label.mvx-radio-select-under-label-class::before {
-  background-color: #069de3;
-  border: 0.06rem solid #069de3;
-  content: url("https://api.iconify.design/dashicons/arrow-down-alt2.svg");
+.form-group .mvx-settings-input-content .mvx-radioselect-class label.mvx-radio-select-under-label-class:hover .mvx-radioselect-overlay-text {
+  opacity: 1;
+  -webkit-transition: .5s all ease-in-out;
+  transition: .5s all ease-in-out;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-radioselect-class p.mvx-radio-select-before-label {
+.form-group .mvx-settings-input-content .mvx-radioselect-class label.mvx-radio-select-under-label-class .mvx-radioselect-overlay-text {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#f1e8e800), color-stop(#f1e8e800), to(#160b2461));
+  background-image: linear-gradient(#f1e8e800, #f1e8e800, #160b2461);
+  color: #f9f8fb;
+  opacity: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.form-group .mvx-settings-input-content .mvx-radioselect-class .mvx-setting-form-input:checked + label.mvx-radio-select-under-label-class::before {
+  background-color: #678be2;
+  color: #fff;
+  content: "\f15e";
+  padding: 0.25rem;
+  font-family: 'dashicons';
+}
+
+.form-group .mvx-settings-input-content .mvx-radioselect-class p.mvx-radio-select-before-label {
   text-align: center;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-radioselect-class input.mvx-setting-form-input {
-  margin-bottom: 1rem;
-}
-
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-form-group-radio-color {
+.form-group .mvx-settings-input-content .mvx-form-group-radio-color {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -873,25 +894,25 @@ span.mvx-module-section-pro-badge {
       flex-wrap: wrap;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-form-group-radio-color .radio-color-active {
+.form-group .mvx-settings-input-content .mvx-form-group-radio-color .radio-color-active {
   background: #c2c2c2;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-form-group-radio-color .mvx-settings-radio-color {
+.form-group .mvx-settings-input-content .mvx-form-group-radio-color .mvx-settings-radio-color {
   width: 40%;
   margin: 0.3rem;
   padding: 0.5rem;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-form-group-radio-color .mvx-settings-radio-color:hover {
+.form-group .mvx-settings-input-content .mvx-form-group-radio-color .mvx-settings-radio-color:hover {
   background: #c2c2c2;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-form-group-radio-color .mvx-settings-radio-color .mvx-merge-radio-color-input-label label {
+.form-group .mvx-settings-input-content .mvx-form-group-radio-color .mvx-settings-radio-color .mvx-merge-radio-color-input-label label {
   font-weight: 500;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-form-group-radio-color .mvx-settings-radio-color .color-palette {
+.form-group .mvx-settings-input-content .mvx-form-group-radio-color .mvx-settings-radio-color .color-palette {
   width: 100%;
   border-spacing: 0;
   border-collapse: collapse;
@@ -900,15 +921,15 @@ span.mvx-module-section-pro-badge {
   display: flex;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-form-group-radio-color .mvx-settings-radio-color .color-palette div {
+.form-group .mvx-settings-input-content .mvx-form-group-radio-color .mvx-settings-radio-color .color-palette div {
   width: 25%;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-setting-file-uploader-class {
+.form-group .mvx-settings-input-content .mvx-setting-file-uploader-class {
   clear: both;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-setting-file-uploader-class button {
+.form-group .mvx-settings-input-content .mvx-setting-file-uploader-class button {
   padding: 0.5rem 1rem;
   color: #f9f8fb;
   border-radius: 0.125rem;
@@ -917,12 +938,13 @@ span.mvx-module-section-pro-badge {
   float: left;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-settings-input-content .mvx-setting-file-uploader-class img {
+.form-group .mvx-settings-input-content .mvx-setting-file-uploader-class img {
   float: left;
   margin-bottom: .5rem;
+  border-radius: 0.25rem;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-toggle-rectangle-merge ul {
+.form-group .mvx-toggle-rectangle-merge ul {
   position: relative;
   padding: 0 .4rem;
   border: 0.06rem solid #d4d1d9;
@@ -937,13 +959,13 @@ span.mvx-module-section-pro-badge {
   margin: 0;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-toggle-rectangle-merge ul li {
+.form-group .mvx-toggle-rectangle-merge ul li {
   list-style: none;
   padding: 1rem .1rem;
   margin: 0;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-toggle-rectangle-merge ul input {
+.form-group .mvx-toggle-rectangle-merge ul input {
   position: absolute !important;
   clip: rect(0, 0, 0, 0);
   height: 0.06rem;
@@ -952,7 +974,7 @@ span.mvx-module-section-pro-badge {
   overflow: hidden;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-toggle-rectangle-merge ul label {
+.form-group .mvx-toggle-rectangle-merge ul label {
   color: #181718;
   font-size: 1rem;
   font-weight: 500;
@@ -966,18 +988,18 @@ span.mvx-module-section-pro-badge {
   transition: all 0.1s ease-in-out;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-toggle-rectangle-merge ul label:hover {
+.form-group .mvx-toggle-rectangle-merge ul label:hover {
   cursor: pointer;
 }
 
-.general-tab-area .tabcontentclass .form-group .mvx-toggle-rectangle-merge ul input:checked + label {
+.form-group .mvx-toggle-rectangle-merge ul input:checked + label {
   background-image: linear-gradient(110deg, #3f1473, #522c81);
   color: #f9f8fb;
   border: 0.06rem solid #3f1473;
   border-radius: 0.22rem;
 }
 
-.general-tab-area .tabcontentclass #poststuff {
+#poststuff {
   padding-top: 0;
   min-width: 0rem;
 }
@@ -1056,8 +1078,7 @@ img.mvx-section-img-fluid {
 }
 
 .mvx-module-vendor-section-nav-child-data.css-b62m3t-container {
-  width: 100%;
-  height: 100%;
+  width: 50%;
 }
 
 .mvx-vendor-wrapper-show-specific, .mvx-product-wrapper-show-specific, .mvx-transaction-wrapper-show-specific {
@@ -1065,10 +1086,7 @@ img.mvx-section-img-fluid {
 }
 
 .mvx-vendor-wrapper-show-specific .css-1s2u09g-control, .mvx-product-wrapper-show-specific .css-1s2u09g-control, .mvx-transaction-wrapper-show-specific .css-1s2u09g-control {
-  padding: 0.4rem 0;
-  background-color: #fff !important;
   border: 0.06rem solid #000 !important;
-  font-size: 1rem;
 }
 
 .mvx-chart-text-and-bar-line-wrap, .mvx-wrap-chart-header-content {
@@ -1101,8 +1119,15 @@ img.mvx-section-img-fluid {
   outline: none;
 }
 
-.mvx-report-performance-content, h2.mvx-report-text, .mvx-bar-and-line-wrap, .mvx-wrap-chart-header-content {
+.mvx-report-performance-content, .mvx-report-text, .mvx-bar-and-line-wrap, .mvx-wrap-chart-header-content {
   padding: 1rem 0;
+}
+
+.mvx-report-text {
+  white-space: nowrap;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #181718;
 }
 
 .css-1s2u09g-control {
@@ -1214,6 +1239,13 @@ input.rs-picker-toggle-textbox.rs-picker-toggle-read-only {
   .mvx-sub-container {
     width: 100%;
   }
+  .mvx-adv-image-display {
+    width: 100%;
+    display: -ms-grid;
+    display: grid;
+    place-items: center;
+    margin-top: 2rem;
+  }
 }
 
 input[type=checkbox]:checked::before {
@@ -1300,7 +1332,7 @@ input[type=checkbox]:checked::before {
           align-items: center;
 }
 
-.mvx-multistatus-check-paid, .mvx-multistatus-check-approve {
+.mvx-multistatus-check-paid, .mvx-multistatus-check-approve, .mvx-workboard-vendor-name {
   color: #3f1473;
   padding-left: 0.5rem;
 }
@@ -1321,6 +1353,11 @@ input[type=checkbox]:checked::before {
   padding: 0.35rem 0.8rem;
   border-radius: 0.2rem;
   border: 0;
+}
+
+.mvx-table-text-and-add-wrap a:focus, .mvx-table-text-and-add-wrap a:hover, .mvx-table-text-and-add-wrap .button-secondary:focus, .mvx-table-text-and-add-wrap .button-secondary:hover, a.button-commission-secondary:focus, a.button-commission-secondary:hover {
+  color: #f9f8fb;
+  text-decoration: none;
 }
 
 span.dashicons {
@@ -1642,7 +1679,7 @@ table.woocommerce_order_items {
 .mvx-wrap-table-commission-and-coupon-commission:before {
   content: '';
   position: absolute;
-  top: 59%;
+  top: 63%;
   left: 0;
   width: 100%;
   height: 0.06rem;
@@ -1676,6 +1713,7 @@ table.woocommerce_order_items {
 
 table.mvx-order-totals td {
   vertical-align: top;
+  padding: 0.5rem 0;
 }
 
 .bsgpsK div:first-child, h6.mvx-datatable-header-text {
@@ -1726,19 +1764,8 @@ table.mvx-order-totals td {
         -ms-flex-pack: center;
             justify-content: center;
   }
-  .mvx-module-grid .mvx-module-list-start {
-    margin: auto;
-    width: 80%;
-  }
   .mvx-module-grid .mvx-module-list-start .mvx-module-list-container .mvx-module-section-options-list {
     margin: 0.6rem 0;
-  }
-  .mvx-adv-image-display {
-    width: 100%;
-    display: -ms-grid;
-    display: grid;
-    place-items: center;
-    margin-top: 2rem;
   }
   .bsgpsK div:first-child, h6.mvx-datatable-header-text {
     overflow: visible;
@@ -1806,33 +1833,40 @@ table.mvx-order-totals td {
 /*workboard page*/
 .mvx-workboard-card-wrapper-child {
   position: relative;
-  padding: 3rem 0.5rem;
+  padding: 4rem 1rem;
+  margin: 0 0.5rem 0.5rem 0;
+  border: 0.06rem solid #d4d1d9;
+  background-color: #fdfdfe;
+  border-radius: .125rem;
+  max-width: 300px;
 }
 
 .mvx-workboard-card-wrapper-child .mvx-workboard-card-wrapper-heading, .mvx-workboard-card-wrapper-child .mvx-module-current-status.wp-clearfix {
   position: absolute;
   left: 0;
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 500;
-  background-color: #000;
   width: 100%;
   padding: 0.8rem;
-  color: #fbf8f9;
 }
 
 .mvx-workboard-card-wrapper-child .mvx-workboard-card-wrapper-heading {
   top: 0;
+  background-color: #f2eff5;
+  color: #181718;
+  border-bottom: 0.06rem solid #d4d1d9;
 }
 
 .mvx-workboard-card-wrapper-child .mvx-module-current-status.wp-clearfix {
   bottom: 0;
+  border-top: 0.06rem solid #d4d1d9;
 }
 
 .mvx-workboard-card-wrapper-child .mvx-commission-label-class {
   width: unset;
 }
 
-.mvx-workboard-card-wrapper-child .mvx-workboard-top-part, .mvx-workboard-card-wrapper-child .mvx-workboard-img-part, .mvx-workboard-card-wrapper-child .mvx-module-current-status.wp-clearfix, .mvx-workboard-card-wrapper-child .mvx-todo-list-details-data-value {
+.mvx-workboard-card-wrapper-child .mvx-workboard-top-part, .mvx-workboard-card-wrapper-child .mvx-workboard-card-wrapper, .mvx-workboard-card-wrapper-child .mvx-workboard-img-part, .mvx-workboard-card-wrapper-child .mvx-module-current-status.wp-clearfix, .mvx-workboard-card-wrapper-child .mvx-todo-list-details-data-value, .mvx-workboard-card-wrapper-child .mvx-left-icons-wrap {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1842,5 +1876,26 @@ table.mvx-order-totals td {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.mvx-workboard-card-wrapper-child .mvx-todo-list-details-data-value .mvx-commission-value-class {
+  width: 60%;
+}
+
+.mvx-workboard-card-wrapper-child .mvx-workboard-top-part {
+  padding: 0.5rem 0;
+}
+
+.mvx-workboard-card-wrapper-child .mvx-left-icons-wrap .mvx-left-icon {
+  background-color: #f2eff5;
+  padding: 0.25rem;
+  margin: 0 0.25rem;
+  border-radius: 0.125rem;
+}
+
+.mvx-workboard-card-wrapper-child .mvx-workboard-select-icon {
+  position: absolute;
+  top: 3.5rem;
+  right: 0.85rem;
 }
 /*# sourceMappingURL=admin.css.map */

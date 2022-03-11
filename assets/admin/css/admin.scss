@@ -199,6 +199,7 @@ div#wpcontent {
     font-weight: 500;
     color: #3f1473;
     padding: .8rem 0;
+    white-space: nowrap;
 }
 .mvx-module-list-label-text {
     font-size: 1.125rem;
@@ -230,7 +231,7 @@ div#wpcontent {
                 background-color: #fff;
                 padding: 0.5rem 1rem;
                 border-radius: 0.253rem;
-                margin: 2rem;
+                margin: 0.51rem 0.25rem 0.51rem 0;
                 ul.mvx-module-section-list-icon li a {
                     display: flex;
                     align-items: center;
@@ -342,9 +343,19 @@ ul.mvx-dashboard-tabs-list {
         overflow-y: hidden;
         white-space: nowrap;
           margin: 0 0 0 1.4rem;
-          
           &::-webkit-scrollbar {
             display: none;
+        }
+        &:first-child{
+            border-left: 0.06rem solid $border_color;
+            }
+        a{
+            text-decoration: none;
+            color: $tab_color;
+            font-size: 0.875rem;
+            &:hover{
+                background-color: #fdfdfe;
+            }
         }
     li {
         font-weight: 500;
@@ -357,19 +368,7 @@ ul.mvx-dashboard-tabs-list {
         background: #fdfdfe;
         display: flex;
         align-items: center;
-        column-gap: 0.5rem;
-        &:first-child{
-        border-left: 0.06rem solid $border_color;
-
-        }
-        &:hover{
-            background-color: #fdfdfe;
-        }
-        a{
-            text-decoration: none;
-            color: $tab_color;
-            font-size: 0.875rem;
-        }
+        column-gap: 0.5rem;    
   }
   li.activedashboardtabs {
     background: #f7f6f9;
@@ -383,6 +382,7 @@ ul.mvx-dashboard-tabs-list {
         background-color: #f7f6f9;
         bottom: -0.08rem;
         left: 0;
+        z-index: 99;
     }
     a{
     color: #3f1473;
@@ -397,7 +397,7 @@ ul.mvx-dashboard-tabs-list {
     }
 }
 .mvx-module-list-container{
-.mvx-module-option-row {
+.mvx-module-option-row, .mvx-workboard-card-wrapper {
     display: flex;
     flex-wrap: wrap;
 }
@@ -445,19 +445,14 @@ span.mvx-module-section-pro-badge{
     right: 16px;
 }
 // generalsettings-----
-.mvx-upper-tab-header-area{
-    border-bottom: 0.06rem solid #d4d1d9;
-    margin-bottom: 2rem;
-}
-.general-tab-header-area{
-    border-bottom: none;
-}
+
 .general-tab-header-area, .mvx-upper-tab-header-area {
-    border: 0.06rem solid #d4d1d9;
+    border: solid #d4d1d9;
+    border-width: 0.06rem 0.06rem 0 0.06rem ;
     text-align: center;
     padding: 1rem;
     border-radius: 0.254rem 0.254rem 0 0;
-    background: #f7f6f9;
+    background-color: #f7f6f9;
         .mvx-tab-name-display {
             font-size: 24px;
             font-weight: 600;
@@ -468,12 +463,29 @@ span.mvx-module-section-pro-badge{
             color: #5e5d60;
         }
       }
+      .mvx-upper-tab-header-area{
+        margin-bottom: 2rem;
+        border-bottom: 0.06rem solid #d4d1d9;
+        background:#fdfdfe ;
+    }
+    .form-actions .button-secondary {
+        background: #E03C32;
+        color: #f8f9fb;
+        border: 0;
+    }
 .general-tab-area {
    display: flex;
    border-top:0.08rem solid $border_color ;
   ul.mvx-general-tabs-list {
     width: 25%;
     margin: 0;
+    &:hover a, &:active a{
+        color: #3f1473 ; 
+    }
+    a{
+        text-decoration: none;
+        color: #181718;
+    }
     li {
         padding: 0.8rem 0.8rem;
         border: 0.08rem solid $border_color;
@@ -486,15 +498,8 @@ span.mvx-module-section-pro-badge{
         display: flex;
         align-items: center;
         column-gap: 0.5rem;
-        &:hover a, &:active a{
-            color: #3f1473 ; 
-        }
         &:hover{
             background-color: #fdfdfe;
-        }
-        a{
-            text-decoration: none;
-            color: #181718;
         }
     }
     li.activegeneraltabs {
@@ -520,15 +525,16 @@ span.mvx-module-section-pro-badge{
     top: 6.4rem;
     right: 0.8rem;
 }
+}
 .tabcontentclass{   
     padding: 2rem;
     border: .06rem solid $border_color;
     border-top: none;
     border-radius:0 0 0.4rem 0.4rem;
     background: #fff;
-    width: 75%;
+    width: 75%;}
     .form-actions {
-        padding: .8rem;
+        padding: .8rem 0;
     }
     .form-group {
         display: flex;
@@ -598,11 +604,10 @@ span.mvx-module-section-pro-badge{
                 }
             }
         }
-        .mvx-settings-basic-input-class{
-           input.mvx-setting-form-input {
+           input.mvx-setting-form-input, textarea.mvx-setting-form-input {
             width: 100%;
         }
-    }
+    
            .mvx-boarder-parent{
 
             .mvx-boarder-parent-loop{
@@ -649,47 +654,59 @@ span.mvx-module-section-pro-badge{
            .mvxsetting-from-textarea textarea {
             width: 100%;
         }
-        .radio-select-active{
-            box-shadow: 0px 0 13px #3f14732e;
-            transform: scale(1.02);
+        .radio-select-active {
+            background-color: #f2eff5;
         }
            .mvx-radioselect-class {
             margin-bottom: 1rem;
             padding: 1rem;
-            border-radius: 0.125rem;    
+            border-radius: 0.5rem;    
             font-weight: 600;
+            position: relative;
             transition: .4s all ease-in-out;
-            &:hover{
-                box-shadow: 0px 0 13px #3f14732e;
-            }
             .mvx-setting-form-input{
-                visibility: hidden;
+                display:none;
             }
             label.mvx-radio-select-under-label-class{
-                position: relative;
                 margin-left: 0.2rem;
                 &::before{
                     position: absolute;
-                    content: "";
                     height: 1.06rem;
                     width: 1.06rem;
-                    top: 0.01rem;
-                    left: -1.5rem;
+                    top: 0.5rem;
+                    right: 0.5rem;
                     border-radius: 1rem;
-                    background-color: #270e0e62;
+                    z-index: 1;
+                }
+                &:hover .mvx-radioselect-overlay-text{
+                    opacity: 1;
+                    transition: .5s all ease-in-out;
+                }
+                .mvx-radioselect-overlay-text{
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    left: 0;
+                    background-image: linear-gradient(#f1e8e800, #f1e8e800, #160b2461);
+                    color: #f9f8fb;
+                    opacity: 0;
+                    display: flex;
+                    align-items: flex-end;
+                    padding: 0.5rem;
+                    border-radius: 0.5rem;
                 }
             }
             .mvx-setting-form-input:checked + label.mvx-radio-select-under-label-class::before{
-                background-color: #069de3;
-                border: 0.06rem solid #069de3;
-                content: url('https://api.iconify.design/dashicons/arrow-down-alt2.svg');
+                background-color: #678be2;
+                color: #fff;
+                content: "\f15e";
+                padding: 0.25rem;
+                font-family: 'dashicons';
             }          
          
             p.mvx-radio-select-before-label {
                 text-align: center;
-            }
-            input.mvx-setting-form-input {
-                margin-bottom: 1rem;
             }
         }
            .mvx-form-group-radio-color {
@@ -733,6 +750,7 @@ span.mvx-module-section-pro-badge{
             img{
               float: left;
               margin-bottom: .5rem;
+              border-radius: 0.25rem;
             }
         }
        }     
@@ -794,9 +812,6 @@ ul input:checked + label {
         padding-top: 0;
         min-width: 0rem;
        }
-}
-
-}
 
 @media only screen and (max-width: 736px) {
     .general-tab-area {
@@ -809,7 +824,6 @@ ul input:checked + label {
     }
     .tabcontentclass{
         width: 100%;
-        
         textarea.form-input{
             width: 100%;
         }
@@ -856,20 +870,17 @@ ul input:checked + label {
         flex-wrap: wrap;
     }
     .mvx-module-vendor-section-nav-child-data.css-b62m3t-container {
-        width: 100%;
-        height: 100%;
+        width: 50%;
     }
     .mvx-vendor-wrapper-show-specific, .mvx-product-wrapper-show-specific, .mvx-transaction-wrapper-show-specific {
         width: 50%;
         .css-1s2u09g-control{
-            padding: 0.4rem 0;
-            background-color: #fff !important;
+            // padding: 0.4rem 0;
+            // background-color: #fff !important;
             border: 0.06rem solid #000 !important;
-            font-size: 1rem;
+            // font-size: 1rem;
         }
     }
- 
-
     .mvx-chart-text-and-bar-line-wrap, .mvx-wrap-chart-header-content{
         justify-content: space-between;
     }
@@ -891,8 +902,14 @@ ul input:checked + label {
         opacity: 1;
         outline: none;
     }
-    .mvx-report-performance-content, h2.mvx-report-text, .mvx-bar-and-line-wrap, .mvx-wrap-chart-header-content {
+    .mvx-report-performance-content, .mvx-report-text, .mvx-bar-and-line-wrap, .mvx-wrap-chart-header-content {
         padding: 1rem 0;
+    }
+    .mvx-report-text {
+        white-space: nowrap;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #181718;
     }
     .css-1s2u09g-control{
         border:$border_color;
@@ -981,6 +998,12 @@ ul input:checked + label {
         .mvx-sub-container {
             width: 100%;
         }
+        .mvx-adv-image-display {
+            width: 100%;
+            display: grid;
+            place-items: center;
+            margin-top: 2rem;
+        }
     }
     input[type=checkbox]:checked::before {
         content: ' \2714';
@@ -1038,7 +1061,7 @@ ul input:checked + label {
         justify-content: space-between;
         align-items: center;
     }
-    .mvx-multistatus-check-paid, .mvx-multistatus-check-approve {
+    .mvx-multistatus-check-paid, .mvx-multistatus-check-approve, .mvx-workboard-vendor-name {
         color: #3f1473;
         padding-left: 0.5rem;
     }
@@ -1056,6 +1079,10 @@ ul input:checked + label {
         padding: 0.35rem 0.8rem;
         border-radius: 0.2rem;
         border: 0;
+        &:focus, &:hover{
+        color: #f9f8fb;
+        text-decoration: none;
+        }
     }
     span.dashicons {
         margin-right: 0.3rem;
@@ -1296,7 +1323,7 @@ table.woocommerce_order_items {
     &:before {
         content: '';
         position: absolute;
-        top: 59%;
+        top: 63%;
         left: 0;
         width: 100%;
         height: 0.06rem;
@@ -1327,6 +1354,7 @@ table.woocommerce_order_items {
 }
 table.mvx-order-totals td {
     vertical-align: top;
+    padding: 0.5rem 0;
 }
 .bsgpsK div:first-child, h6.mvx-datatable-header-text {
     line-height: normal;
@@ -1366,24 +1394,13 @@ table.mvx-order-totals td {
     .mvx-module-section-nav{
         font-size: 60%;
     }
-    // .bsgpsK div:first-child {
-    //     text-overflow: clip
-    // }
     .sc-dlVxhl.hkMDrI .fvAeSn {
         justify-content: center;
     }
     .mvx-module-grid .mvx-module-list-start {
-        margin: auto;
-        width: 80%;
         .mvx-module-list-container .mvx-module-section-options-list{
             margin: 0.6rem 0;
         }
-    }
-    .mvx-adv-image-display {
-        width: 100%;
-        display: grid;
-        place-items: center;
-        margin-top: 2rem;
     }
     .bsgpsK div:first-child, h6.mvx-datatable-header-text {
         overflow: visible;
@@ -1427,8 +1444,7 @@ table.mvx-order-totals td {
     }
     .sc-dlVxhl.hkMDrI .fvAeSn, p.commission-status-paid, p.commission-status-unpaid,
     .approved-vendor, .mvx-child-container{
-      font-size: 80%;
-      }
+      font-size: 80%;  }
     .woocommerce-order-data-meta.order_number, .mvx-commission-label-class, p.commission-details-data-value {
         font-size: .8rem;
     }
@@ -1442,29 +1458,52 @@ table.mvx-order-totals td {
 /*workboard page*/
 .mvx-workboard-card-wrapper-child {
     position: relative;
-    padding: 3rem 0.5rem;
+    padding: 4rem 1rem;
+    margin: 0 0.5rem 0.5rem 0;
+    border: 0.06rem solid $border_color;
+    background-color: #fdfdfe;
+    border-radius: .125rem;
+   max-width: 300px;
     .mvx-workboard-card-wrapper-heading, .mvx-module-current-status.wp-clearfix{
         position: absolute;
         left: 0;
-        font-size: 1.25rem;
+        font-size: 1rem;
         font-weight: 500;
-        background-color: #000;
         width: 100%;
         padding: 0.8rem;
-        color: #fbf8f9;
     }
     .mvx-workboard-card-wrapper-heading{
         top: 0;
+        background-color: #f2eff5;
+        color: #181718;
+        border-bottom: 0.06rem solid $border_color;
     }
     .mvx-module-current-status.wp-clearfix{
         bottom: 0;
+        border-top: 0.06rem solid $border_color;
     }
     .mvx-commission-label-class{
         width: unset;
     }
-    .mvx-workboard-top-part, .mvx-workboard-img-part, .mvx-module-current-status.wp-clearfix, .mvx-todo-list-details-data-value {
+    .mvx-workboard-top-part, .mvx-workboard-card-wrapper, .mvx-workboard-img-part, .mvx-module-current-status.wp-clearfix, .mvx-todo-list-details-data-value, .mvx-left-icons-wrap {
         display: flex;
         justify-content: space-between;
         align-items: center;
+    } .mvx-todo-list-details-data-value .mvx-commission-value-class {
+        width: 60%;
+    }
+    .mvx-workboard-top-part{
+        padding:0.5rem 0 ;
+    }
+    .mvx-left-icons-wrap .mvx-left-icon {
+        background-color: #f2eff5;
+        padding: 0.25rem;
+        margin: 0 0.25rem;
+        border-radius: 0.125rem;
+    }
+    .mvx-workboard-select-icon {
+        position: absolute;
+        top: 3.5rem;
+        right: 0.85rem;
     }
 }
