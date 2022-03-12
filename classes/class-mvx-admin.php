@@ -254,7 +254,7 @@ class MVX_Admin {
             wp_register_script('mvx-admin-product-js', $MVX->plugin_url . 'assets/admin/js/product' . $suffix . '.js', array('jquery'), $MVX->version, true);
             wp_enqueue_script('mvx-admin-product-js');
         }
-        
+
         wp_enqueue_script(
             'mvx-modules-build-frontend',
             $MVX->plugin_url . 'mvx-modules/build/index.js',
@@ -444,7 +444,9 @@ class MVX_Admin {
             wp_enqueue_style('mvx_admin_rsuite_css', $MVX->plugin_url . 'assets/admin/css/rsuite-default' . '.min' . '.css', array(), $MVX->version);
         }
 
+        //wp_enqueue_style('fffffffffffff', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css', array(), $MVX->version);
         
+
         $mvx_admin_screens = apply_filters('mvx_enable_admin_script_screen_ids', array(
             'dc_commission',
             'product',

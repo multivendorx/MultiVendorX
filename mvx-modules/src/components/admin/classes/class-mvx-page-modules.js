@@ -180,7 +180,7 @@ class App extends Component {
 
 
           <div className="mvx-module-section-ui module-listing dashboard-wrapper">
-            <div className="mvx-module-grid">
+            <div>
 
             {this.state.items.length == 0 ? <PuffLoader css={override} color={"#cd0000"} size={200} loading={true} /> : this.state.items.map((student1, index1) => (
 

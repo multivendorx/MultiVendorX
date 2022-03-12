@@ -538,8 +538,12 @@ Child({ name }) {
                 </div>
 
 
-                <div className="mvx-chart-graph-visible">
-                  
+                <div className="mvx-content-two-graph-wrap">
+                  <div className="mvx-header-and-graph-wrap">
+
+                    <div className="mvx-commission-order-details-text">First header</div>
+
+                    <div className="mvx-chart-graph-visible">
 
                         {!this.useQuery().get('type') || this.useQuery().get('type') == 'line' ?
                           <ResponsiveContainer width="50%" height="50%" aspect={3}>
@@ -586,7 +590,15 @@ Child({ name }) {
                         }
 
 
+                    { /*<div className="mvx-pro-image-display"><img src="https://wc-marketplace.com//wp-content//uploads//2021//06//722x415-paypal-300x172.jpg"/></div> */}
+                  </div>
 
+                </div>
+
+
+                  <div className="mvx-header-and-graph-wrap">
+                    <div className="mvx-commission-order-details-text">second header</div>
+                    <div className="mvx-chart-graph-visible">
 
                         {!this.useQuery().get('type') || this.useQuery().get('type') == 'line' ?
                           <ResponsiveContainer width="50%" height="50%" aspect={3}>
@@ -639,6 +651,9 @@ Child({ name }) {
 
                   { /*<div className="mvx-pro-image-display"><img src="https://wc-marketplace.com//wp-content//uploads//2021//06//722x415-paypal-300x172.jpg"/></div> */}
                 </div>
+              </div>
+
+              </div>
 
               </div>
             : '' }
@@ -650,22 +665,30 @@ Child({ name }) {
                 <div className="mvx-report-text-fade-line"></div>
               </div>
 
-              <div className="mvx-backend-datatable-wrapper">
-                <DataTable
-                  columns={this.state.columns_vendor}
-                  data={this.state.report_overview_data.vendor ? this.state.report_overview_data.vendor.vendor_report_datatable : this.state.dataproductchart}
-                  selectableRows
-                  pagination
-                />
+              <div className="mvx-analytic-details-wrap">
+                <div className="mvx-commission-order-details-text">Vendor Details</div>
+                <div className="mvx-backend-datatable-wrapper">
+                  <DataTable
+                    columns={this.state.columns_vendor}
+                    data={this.state.report_overview_data.vendor ? this.state.report_overview_data.vendor.vendor_report_datatable : this.state.dataproductchart}
+                    selectableRows
+                    pagination
+                  />
+                </div>
+
               </div>
 
-              <div className="mvx-backend-datatable-wrapper">
-                <DataTable
-                  columns={this.state.columns_commission}
-                  data={this.state.datacommission}
-                  selectableRows
-                  pagination
-                />
+
+              <div className="mvx-analytic-details-wrap">
+                <div className="mvx-commission-order-details-text">Commission Details</div>
+                <div className="mvx-backend-datatable-wrapper">
+                  <DataTable
+                    columns={this.state.columns_commission}
+                    data={this.state.datacommission}
+                    selectableRows
+                    pagination
+                  />
+                </div>
               </div>
 
             </div>
