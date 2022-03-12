@@ -546,7 +546,7 @@ Child({ name }) {
                     <div className="mvx-chart-graph-visible">
 
                         {!this.useQuery().get('type') || this.useQuery().get('type') == 'line' ?
-                          <ResponsiveContainer width="50%" height="50%" aspect={3}>
+                          <ResponsiveContainer aspect={3}>
                             <LineChart
                               width={500}
                               height={300}
@@ -567,7 +567,7 @@ Child({ name }) {
                             </LineChart>
                           </ResponsiveContainer>
                           :
-                          <ResponsiveContainer width="50%" height="50%" aspect={3}>
+                          <ResponsiveContainer aspect={3}>
                             <BarChart
                               width={500}
                               height={300}
@@ -601,7 +601,7 @@ Child({ name }) {
                     <div className="mvx-chart-graph-visible">
 
                         {!this.useQuery().get('type') || this.useQuery().get('type') == 'line' ?
-                          <ResponsiveContainer width="50%" height="50%" aspect={3}>
+                          <ResponsiveContainer aspect={3}>
                             <LineChart
                               width={500}
                               height={300}
@@ -622,7 +622,7 @@ Child({ name }) {
                             </LineChart>
                           </ResponsiveContainer>
                           :
-                          <ResponsiveContainer width="50%" height="50%" aspect={3}>
+                          <ResponsiveContainer aspect={3}>
                             <BarChart
                               width={500}
                               height={300}

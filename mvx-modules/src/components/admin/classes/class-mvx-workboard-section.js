@@ -374,29 +374,21 @@ class App extends Component {
     })
 
 
-    var grhrhrhrh = '';
+
+
+    var set_for_dynamic_column = '';
     appLocalizer.columns_announcement.map((data_ann, index_ann) => {
-      var gggggggggggggggggggg = '';
-
-      gggggggggggggggggggg = data_ann['selector'];
-      data_ann.selector = row => <div dangerouslySetInnerHTML={{__html: row[gggggggggggggggggggg]}}></div>;
+      var data_selector = '';
+      data_selector = data_ann['selector'];
+      data_ann.selector = row => <div dangerouslySetInnerHTML={{__html: row[data_selector]}}></div>;
       this.state.columns_announcement_new[index_ann] = data_ann
-      grhrhrhrh = this.state.columns_announcement_new;
-
-
-      this.setState({
-      columns_announcement_new: grhrhrhrh,
-    });
-
+      set_for_dynamic_column = this.state.columns_announcement_new;
+        this.setState({
+        columns_announcement_new: set_for_dynamic_column,
+      });
 
       }
     )
-
-
-    console.log(this.state.columns_announcement_new);
-
-    
-
 
 
   }
@@ -479,6 +471,13 @@ Child({ name }) {
 
 
   var get_current_name = this.useQuery();
+
+
+
+
+  if (get_current_name.get("name") != 'announcement') {
+    this.state.columns_announcement_new = [];
+  }
 
   if (!get_current_name.get("AnnouncementID")) {
     this.state.edit_announcement_fileds = [];
@@ -1000,7 +999,7 @@ Child({ name }) {
         </div>
 
 
-        
+
     </div>
 
       :
@@ -1076,14 +1075,15 @@ Child({ name }) {
             </div>
 
             <div className="mvx-backend-datatable-wrapper">
-              <DataTable
-                columns={this.state.columns_announcement_new}
-                data={this.state.display_announcement}
-                selectableRows
-                onSelectedRowsChange={this.onSelectedRowsChange}
-                pagination
-              />
-
+              {this.state.columns_announcement_new.length > 0 ?
+                <DataTable
+                  columns={this.state.columns_announcement_new}
+                  data={this.state.display_announcement}
+                  selectableRows
+                  onSelectedRowsChange={this.onSelectedRowsChange}
+                  pagination
+                />
+              : '' }
             </div>
 
 
