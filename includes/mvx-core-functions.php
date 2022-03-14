@@ -1,5 +1,21 @@
 <?php
 
+
+if (!function_exists('mvx_is_module_active')) {
+
+    /**
+     * check is module active
+     * @return array
+     */
+    function mvx_is_module_active($module_name = '') {
+        global $MVX;
+        if (empty($module_name)) {
+            return false;
+        }
+        return $MVX->vendor_rest_api->is_current_module_active($module_name);   
+    }
+}
+
 if (!function_exists('get_mvx_vendor_settings')) {
 
     /**
@@ -3697,13 +3713,13 @@ if ( ! function_exists( 'mvx_is_allowed_vendor_shipping' ) ) {
 
     function mvx_is_allowed_vendor_shipping() {
         global $MVX;
-        if ( version_compare( $MVX->version, '3.1.5', '<' ) && ! get_mvx_vendor_settings( 'is_vendor_shipping_on', 'general' ) ) {
+        if ( version_compare( $MVX->version, '3.1.5', '<' ) && mvx_is_module_active('vendor-shipping') != true ) {
             // new vendor shipping setting value based on payment shipping settings
             if ( 'Enable' === get_mvx_vendor_settings( 'give_shipping', 'payment' ) ) {
                 update_mvx_vendor_settings( 'is_vendor_shipping_on', 'Enable', 'general' );
             }
         }
-        return 'Enable' === get_mvx_vendor_settings( 'is_vendor_shipping_on', 'general' );
+        return true === mvx_is_module_active('vendor-shipping');
     }
 
 }

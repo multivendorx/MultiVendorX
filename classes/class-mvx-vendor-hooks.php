@@ -400,7 +400,7 @@ class MVX_Vendor_Hooks {
         $MVX->library->load_select2_lib();
         $mvx_payment_settings_name = get_option( 'mvx_payment_settings_name' );
         $_vendor_give_shipping = get_user_meta( get_current_vendor_id(), '_vendor_give_shipping', true );
-        if ( get_mvx_vendor_settings( 'is_vendor_shipping_on', 'general' ) && 'Enable' === get_mvx_vendor_settings( 'is_vendor_shipping_on', 'general' ) && empty( $_vendor_give_shipping ) ) {
+        if ( mvx_is_module_active('vendor-shipping') && empty( $_vendor_give_shipping ) ) {
             if (wp_script_is('mvx-vendor-shipping', 'registered') &&
                 !wp_script_is('mvx-vendor-shipping', 'enqueued')) {
                 wp_enqueue_script('mvx-vendor-shipping');
