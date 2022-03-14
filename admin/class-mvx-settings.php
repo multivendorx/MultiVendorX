@@ -84,7 +84,7 @@ class MVX_Settings {
 
         global $submenu;
         $slug = 'mvx';
-        $dashboard = add_menu_page( __( 'MultiVendorX', 'dc-woocommerce-multi-vendor' ), __( 'MultiVendorX', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', $slug, [ $this, 'mvx_modules_callback' ],  $MVX->plugin_url . 'assets/images/mvx-menu.svg', 50 );
+        $dashboard = add_menu_page( __( 'MultiVendorX', 'dc-woocommerce-multi-vendor' ), __( 'MultiVendorX', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', $slug, [ $this, 'mvx_modules_callback' ],  'data:image/svg+xml;base64,' . base64_encode( '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 auto 20"><g fill="#9EA3A8" fill-rule="nonzero"><path class="cls-1" d="M8.64,0h-1A2.25,2.25,0,0,0,5.37,2.24v.93l.39.09v-1A1.86,1.86,0,0,1,7.62.38h1A1.86,1.86,0,0,1,10.5,2.24V3.63l.39,0V2.24A2.25,2.25,0,0,0,8.64,0Z" transform="translate(-1.14)"/><path class="cls-1" d="M13.44,3.54c-7.37,1.89-10.46-2-12,.39-.86,1.34.2,6.09,1,10.4A10.21,10.21,0,0,0,8,16a10.06,10.06,0,0,0,5.8-1.82C14.91,9.87,15.63,3,13.44,3.54ZM5.38,8.26V7.9H5.9v.53H5.38ZM4.5,7.08h.22V7.3H4.5Zm-1.42.31h.48v.48H3.08ZM4,8.63H3.47V8.12H4Zm.06-.74H3.79V7.63h.26Zm.2-.59H3.89V6.94h.36Zm.09.24h.55V8.1H4.34Zm7.07,5.54H10.9v-.51h.51Zm-.25-.78v-.25h.25v.25Zm-1.82-.91,1.12,1.32H10v.76h.77V13l.63.75H9.45L8.2,12.38,7,13.78H5l2-2.39L5.32,9.34V8.81H4.87l-.41-.48h.71v.3h.94v-.3h.23L8.2,10.41l2.23-2.55a1.81,1.81,0,0,1,1.34-.61h1.15Zm1.15,1V12h.4v.4Zm.08.5v.42h-.43v-.42ZM4.68,9.45V9h.43v.42Z" transform="translate(-1.14)"/></g></svg>' ), 50 );
 
         if ( current_user_can( 'manage_woocommerce' ) ) {
 

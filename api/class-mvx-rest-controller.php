@@ -449,6 +449,13 @@ class MVX_REST_API {
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
 
+
+        register_rest_route( 'mvx_module/v1', '/update_custom_post_status', [
+            'methods' => WP_REST_Server::EDITABLE,
+            'callback' => array( $this, 'mvx_update_custom_post_status' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
         register_rest_route( 'mvx_module/v1', '/update_announcement', [
             'methods' => WP_REST_Server::EDITABLE,
             'callback' => array( $this, 'mvx_update_announcement' ),
@@ -533,6 +540,18 @@ class MVX_REST_API {
         ] );
 
         
+    }
+
+    public function mvx_update_custom_post_status($request) {
+        $ids = $request && $request->get_param('ids') ? wp_list_pluck($request->get_param('ids'), 'id') : 0;
+        $value = $request && $request->get_param('value') ? ($request->get_param('value')) : 0;
+        foreach ($ids as $key_id => $value_id) {
+            $post_update = array(
+                'ID'           => $value_id,
+                'post_status' => $value,
+            );
+            wp_update_post( $post_update );
+        }
     }
 
     public function mvx_search_announcement($request) {
@@ -1699,12 +1718,22 @@ class MVX_REST_API {
                     $vedors_list_renew[] = $vendor->page_title;
                 }
             }
+            
+            $action_display = "
+                <div class='mvx-vendor-action-icon'>
+                    <div class='activate_announcemnet'><span class='dashicons dashicons-edit'></span></div>
+
+                    <div class='dismiss_button' data-id=" . $announcementvalue->ID . "><span class='dashicons dashicons-no'></span></div>
+                </div>
+            ";
+
             $announcement_list[] = array(
                 'id'            =>  $announcementvalue->ID,
                 'sample_title'  =>  $announcementvalue->post_title,
                 'title'         =>  '<a href="' . sprintf('?page=%s&name=%s&AnnouncementID=%s', 'mvx#&submenu=work-board', 'announcement', $announcementvalue->ID) . '">' . $announcementvalue->post_title . '</a>',
                 'date'          =>  human_time_diff(strtotime($announcementvalue->post_modified)),
-                'vendor'        =>  $vedors_list_renew ? implode(',', $vedors_list_renew) : ''
+                'vendor'        =>  $vedors_list_renew ? implode(',', $vedors_list_renew) : '',
+                'action'        =>  $action_display
             );
         }
         return rest_ensure_response($announcement_list);

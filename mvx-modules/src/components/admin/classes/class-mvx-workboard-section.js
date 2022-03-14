@@ -259,7 +259,23 @@ class App extends Component {
     
     this.onSelectedRowsChange = this.onSelectedRowsChange.bind(this);
 
-    
+    this.handle_work_board_chenage = this.handle_work_board_chenage.bind(this);
+
+  }
+
+  handle_work_board_chenage(e, type) {
+    if (type == 'announcement' && e) {
+      axios({
+        method: 'post',
+        url: `${appLocalizer.apiUrl}/mvx_module/v1/update_custom_post_status`,
+        data: {
+          ids: this.state.bulkselectlist,
+          value: e.value
+        }
+      })
+      .then( ( responce ) => {
+      } );
+    }
   }
 
 
@@ -375,20 +391,9 @@ class App extends Component {
 
 
 
+    
+    
 
-    var set_for_dynamic_column = '';
-    appLocalizer.columns_announcement.map((data_ann, index_ann) => {
-      var data_selector = '';
-      data_selector = data_ann['selector'];
-      data_ann.selector = row => <div dangerouslySetInnerHTML={{__html: row[data_selector]}}></div>;
-      this.state.columns_announcement_new[index_ann] = data_ann
-      set_for_dynamic_column = this.state.columns_announcement_new;
-        this.setState({
-        columns_announcement_new: set_for_dynamic_column,
-      });
-
-      }
-    )
 
 
   }
@@ -398,14 +403,24 @@ class App extends Component {
   }
 
   QueryParamsDemo() {
-    let queryt = this.useQuery();
-    if(!queryt.get("name")) {
+
+    var $ = jQuery;
+      $('.dismiss_button').click(function (e) {
+       e.preventDefault();
+       console.log($(this).attr('data-id'));
+    });
+
+
+
+
+    let query_name = this.useQuery();
+    if(!query_name.get("name")) {
       //window.location.href = window.location.href+'&name=activity_reminder';
     }
     var tab_name_display = '';
     var tab_description_display = '';
     appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'].map((data, index) => {
-        if(queryt.get("name") == data.modulename) {
+        if(query_name.get("name") == data.modulename) {
           tab_name_display = data.tablabel;
           tab_description_display = data.description;
         }
@@ -430,10 +445,10 @@ class App extends Component {
                 <div className="dashboard-tab-area">
                   <ul className="mvx-dashboard-tabs-list">
                     {appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'].map((data, index) => (
-                        <Link to={`?page=mvx#&submenu=work-board&name=${data.modulename}`} ><li className={queryt.get("name") == data.modulename ? 'activedashboardtabs' : ''}>{data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}{data.tablabel}</li></Link>
+                        <Link to={`?page=mvx#&submenu=work-board&name=${data.modulename}`} ><li className={query_name.get("name") == data.modulename ? 'activedashboardtabs' : ''}>{data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}{data.tablabel}</li></Link>
                     ))}
                   </ul>
-                    <this.Child name={queryt.get("name")} />
+                    <this.Child name={query_name.get("name")} />
                 </div>
 
 
@@ -473,12 +488,6 @@ Child({ name }) {
   var get_current_name = this.useQuery();
 
 
-
-
-  if (get_current_name.get("name") != 'announcement') {
-    this.state.columns_announcement_new = [];
-  }
-
   if (!get_current_name.get("AnnouncementID")) {
     this.state.edit_announcement_fileds = [];
   }
@@ -513,6 +522,30 @@ Child({ name }) {
     })
   }
 
+
+
+
+
+
+
+
+  // Display table column and row slection
+  if (this.state.columns_announcement_new.length == 0 && new URLSearchParams(window.location.hash).get("name") == 'announcement') {
+      appLocalizer.columns_announcement.map((data_ann, index_ann) => {
+        var data_selector = '';
+        var set_for_dynamic_column = '';
+        data_selector = data_ann['selector_choice'];
+        data_ann.selector = row => <div dangerouslySetInnerHTML={{__html: row[data_selector]}}></div>;
+        this.state.columns_announcement_new[index_ann] = data_ann
+        set_for_dynamic_column = this.state.columns_announcement_new;
+            this.setState({
+              columns_announcement_new: set_for_dynamic_column,
+            });
+        }
+      )
+    }
+    // Display table column and row slection end
+
   return (
     <div>
     {
@@ -534,7 +567,7 @@ Child({ name }) {
                     <span className="mvx-select-all-text">Select All</span>
                   </div>
 
-                  <Select placeholder="Bulk Action" options={this.state.details_vendor} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e)} />
+                  <Select placeholder="Bulk Action" options={this.state.details_vendor} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_work_board_chenage(e)} />
                 </div>
 
             </div>
@@ -781,7 +814,7 @@ Child({ name }) {
                     <span className="mvx-select-all-text">Select All</span>
                   </div>
 
-                  <Select placeholder="Bulk Action" options={this.state.details_vendor} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e)} />
+                  <Select placeholder="Bulk Action" options={this.state.details_vendor} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_work_board_chenage(e)} />
                 </div>
 
             </div>
@@ -1066,16 +1099,17 @@ Child({ name }) {
 
             <div className="mvx-wrap-bulk-all-date">
               <div className="mvx-wrap-bulk-action">
-                <Select placeholder="Bulk actions" options={appLocalizer.post_bulk_status} isClearable={true} className="mvx-module-section-list-data" onChange={(e) => this.handlevendorsearch(e, 'announcement')}/>
+                <Select placeholder="Bulk actions" options={appLocalizer.post_bulk_status} isClearable={true} className="mvx-module-section-list-data" onChange={(e) => this.handle_work_board_chenage(e, 'announcement')}/>
               </div>
 
               <div className="mvx-wrap-date-action">
-                <Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handlevendorsearch} />
+                <Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_work_board_chenage} />
               </div>
             </div>
 
+
             <div className="mvx-backend-datatable-wrapper">
-              {this.state.columns_announcement_new.length > 0 ?
+              {this.state.columns_announcement_new && this.state.columns_announcement_new.length > 0 ?
                 <DataTable
                   columns={this.state.columns_announcement_new}
                   data={this.state.display_announcement}
@@ -1159,7 +1193,7 @@ Child({ name }) {
               </div>
 
               <div className="mvx-wrap-date-action">
-                <Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handlevendorsearch} />
+                <Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_work_board_chenage} />
               </div>
             </div>
 
@@ -1204,7 +1238,7 @@ Child({ name }) {
             </div>
 
             <div className="mvx-wrap-date-action">
-              <Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handlevendorsearch} />
+              <Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_work_board_chenage} />
             </div>
           </div>
 
@@ -1251,7 +1285,7 @@ Child({ name }) {
             </div>
 
             <div className="mvx-wrap-date-action">
-              <Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handlevendorsearch} />
+              <Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_work_board_chenage} />
             </div>
           </div>
 

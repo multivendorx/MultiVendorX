@@ -255,6 +255,10 @@ class MVX_Admin {
             wp_enqueue_script('mvx-admin-product-js');
         }
 
+
+        wp_register_script('mvx-admin-to-do-js', $MVX->plugin_url . 'assets/admin/js/mvx-to-do-action' . $suffix . '.js', array('jquery'), $MVX->version, true);
+        wp_enqueue_script('mvx-admin-to-do-js');
+
         wp_enqueue_script(
             'mvx-modules-build-frontend',
             $MVX->plugin_url . 'mvx-modules/build/index.js',
@@ -376,7 +380,7 @@ class MVX_Admin {
                     'label' => __('Pending', 'dc-woocommerce-multi-vendor')
                 ),
                 array(
-                    'value' => 'published',
+                    'value' => 'publish',
                     'label' => __('Published', 'dc-woocommerce-multi-vendor')
                 ),
             );
@@ -385,21 +389,31 @@ class MVX_Admin {
 
         $columns_announcement = array(
             array(
-                'name'  =>  'Title',
-                'selector'  => "title",
+                'name'      =>  __('Title', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "title",
                 
             ),
             array(
-                'name'  =>  'Vendors',
-                'selector'  => "vendor",
+                'name'      =>  __('Vendors', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "vendor",
                 
             ),
             array(
-                'name'  =>  'Date',
-                'selector'  => "date",
-                
+                'name'      =>  __('Date', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "date",
+            ),
+            array(
+                'name'      =>  __('Action', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "action",
             )
-
         );
 
 
