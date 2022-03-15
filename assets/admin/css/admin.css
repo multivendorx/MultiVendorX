@@ -1,8 +1,11 @@
 /* fonts */
 @font-face {
-  font-family: 'mvx-frontend-font';
-  src: url("../../frontend/fonts/mvx-frontend-font.eot?vtl65e");
-  src: url("../../frontend/fonts/mvx-frontend-font.eot?vtl65e#iefix") format("embedded-opentype"), url("../../frontend/fonts/mvx-frontend-font.ttf?vtl65e") format("truetype"), url("../../frontend/fonts/mvx-frontend-font.woff?vtl65e") format("woff");
+  font-family: 'mvx-admin-font';
+  src:  url('../fonts/mvx-admin-font.eot?411a7m');
+  src:  url('../fonts/mvx-admin-font.eot?411a7m#iefix') format('embedded-opentype'),
+    url('../fonts/mvx-admin-font.ttf?411a7m') format('truetype'),
+    url('../fonts/mvx-admin-font.woff?411a7m') format('woff'),
+    url('../fonts/mvx-admin-font.svg?411a7m#ico1') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -11,13 +14,19 @@
 /* vendor badge */
 /* map box */
 /* responsive */
-i.mvx-font {
-  font-family: 'mvx-frontend-font' !important;
+
+/* icon */
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'mvx-admin-font' !important;
+  speak: never;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
   text-transform: none;
   line-height: 1;
+
+  /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -27,15 +36,131 @@ a:focus {
           box-shadow: none;
 }
 
-.ico-store-icon:before {
+.icon-add:before {
+  content: "\e900";
+}
+.icon-approve:before {
+  content: "\e901";
+}
+.icon-close:before {
+  content: "\e902";
+}
+.icon-down-arrow:before {
+  content: "\e903";
+}
+.icon-download:before {
+  content: "\e904";
+}
+.icon-edit:before {
+  content: "\e905";
+}
+.icon-knowledge-topbar:before {
+  content: "\e906";
+}
+.icon-no:before {
+  content: "\e907";
+}
+.icon-search:before {
+  content: "\e908";
+}
+.icon-select-checkbox:before {
+  content: "\e909";
+}
+.icon-yes:before {
   content: "\e90a";
-  color: #5d5e5e;
+}
+.icon-tab-activity-reminder:before {
+  content: "\e90b";
+}
+.icon-tab-announcement:before {
+  content: "\e90c";
+}
+.icon-tab-commissions:before {
+  content: "\e90d";
+}
+.icon-tab-disbursement:before {
+  content: "\e90e";
+}
+.icon-tab-general:before {
+  content: "\e90f";
+}
+.icon-tab-help:before {
+  content: "\e910";
+}
+.icon-tab-knowladgebase:before {
+  content: "\e911";
+}
+.icon-tab-migration:before {
+  content: "\e912";
+}
+.icon-tab-policy:before {
+  content: "\e913";
+}
+.icon-tab-products:before {
+  content: "\e914";
+}
+.icon-tab-products-capability:before {
+  content: "\e915";
+}
+.icon-tab-question-and-answer:before {
+  content: "\e916";
+}
+.icon-tab-refunds:before {
+  content: "\e917";
+}
+.icon-tab-registration-form:before {
+  content: "\e918";
+}
+.icon-tab-report-abuse:before {
+  content: "\e919";
+}
+.icon-tab-reviews-and-rating:before {
+  content: "\e91a";
+}
+.icon-tab-seller-dashbaord:before {
+  content: "\e91b";
+}
+.icon-tab-setup-widget:before {
+  content: "\e91c";
+}
+.icon-tab-social:before {
+  content: "\e91d";
+}
+.icon-tab-SPMV:before {
+  content: "\e91e";
+}
+.icon-tab-store:before {
+  content: "\e91f";
+}
+.icon-tab-store-review:before {
+  content: "\e920";
+}
+.icon-vendor-application:before {
+  content: "\e921";
+}
+.icon-vendor-follower:before {
+  content: "\e922";
+}
+.icon-vendor-payment:before {
+  content: "\e923";
+}
+.icon-vendor-personal:before {
+  content: "\e924";
+}
+.icon-vendor-policy:before {
+  content: "\e925";
+}
+.icon-vendor-shipping:before {
+  content: "\e926";
+}
+.icon-vendor-social:before {
+  content: "\e927";
+}
+.icon-vendor-store:before {
+  content: "\e928";
 }
 
-.ico-location-icon2:before {
-  content: "\e90b";
-  color: #5d5e5e;
-}
+/*icon end*/
 
 * {
   -webkit-box-sizing: border-box;
