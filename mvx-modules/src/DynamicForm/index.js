@@ -1170,7 +1170,7 @@ export default class DynamicForm extends React.Component {
 
       if (type == "checkbox") {
         input = (
-        <div className={m.right_content ? 'mvx-checkbox-list-side-by-side' : '' }>
+        <div className={m.right_content ? 'mvx-checkbox-list-side-by-side' : m.parent_class ? "mvx-checkbox-list-side-by-side" : '' }>
         {
         m.options.map(o => {
           //let checked = o.value == value;
@@ -1179,7 +1179,7 @@ export default class DynamicForm extends React.Component {
             checked = value.indexOf(o.value) > -1 ? true : false;
           }
           return (
-            <div className={m.right_content ? 'mvx-toggle-checkbox-header' : '' }>
+            <div className={m.right_content ? 'mvx-toggle-checkbox-header' : m.parent_class ? m.parent_class : '' }>
             <React.Fragment key={"cfr" + o.key}>
               {m.right_content ? <p className="mvx-settings-metabox-description" dangerouslySetInnerHTML={{ __html: o.label }}></p> : ''}
               <div className="mvx-toggle-checkbox-content">
