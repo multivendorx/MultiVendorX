@@ -51,9 +51,9 @@ class App extends Component {
       abcarray: [],
       first_toggle: '',
       second_toggle: '',
-      abcarraynew: [],
+      mvx_registration_fileds_list: [],
       current: {},
-      
+      registration_title_hidden: false,
     };
 
     this.query = null;
@@ -67,6 +67,16 @@ class App extends Component {
     this.Child = this.Child.bind(this);
 
     this.handleAddClick = this.handleAddClick.bind(this);
+
+    // add new click
+    this.handleAddClickNew = this.handleAddClickNew.bind(this);
+    // remove click
+    this.handleRemoveClickNew = this.handleRemoveClickNew.bind(this);
+    // for active from content
+    this.handleActiveClick = this.handleActiveClick.bind(this);
+    // select from dropdown
+    this.OnRegistrationSelectChange = this.OnRegistrationSelectChange.bind(this);
+    
     
     this.onlebelchange = this.onlebelchange.bind(this);
 
@@ -193,6 +203,110 @@ class App extends Component {
       items,
     });
   }
+
+  // new registration settings
+
+  handleAddClickNew(e) {
+    var formJson = this.state.mvx_registration_fileds_list;
+    var jsonLength = formJson.length;
+
+    formJson.push({
+        id: jsonLength,
+        type: 'multiple_choice',
+        label: '',
+        hidden: false,
+        placeholder: '',
+        required: false,
+        cssClass: '',
+        tip_description: ''
+    });
+
+    this.setState({
+      mvx_registration_fileds_list: formJson
+    });
+
+  }
+
+  handleRemoveClickNew(e , index) {
+    this.state.mvx_registration_fileds_list.splice(index, 1);
+    this.setState({
+      mvx_registration_fileds_list: this.state.mvx_registration_fileds_list
+    });
+  }
+
+  handleActiveClick(e, index, label) {
+    
+    if (label == 'parent') {
+      this.state.mvx_registration_fileds_list[0].hidden = true;
+
+
+      this.state.mvx_registration_fileds_list.map((data_active, index_active) => {
+          if (index == 0) {} else {
+            this.state.mvx_registration_fileds_list[index_active].hidden = false;
+          }
+        }
+      )
+
+    } else if (label == 'sub') {
+      this.state.mvx_registration_fileds_list.map((data_active, index_active) => {
+          if (index == 0) {} else {
+            if (index_active == index) {
+              this.state.mvx_registration_fileds_list[index].hidden = true;
+            } else {
+              this.state.mvx_registration_fileds_list[index_active].hidden = false;
+            }
+          }
+        }
+      )
+    }
+
+    //registration_title_hidden
+
+    this.setState({
+      mvx_registration_fileds_list: this.state.mvx_registration_fileds_list
+    });
+  }
+
+  OnRegistrationSelectChange(e, index, types) {
+    let new_items = this.state.mvx_registration_fileds_list;
+
+    if (types == 'select_drop') {
+      new_items[index]['type'] = e.target.value;
+    } else if (types == 'label') {
+      new_items[index]['label'] = e.target.value;
+    }
+
+
+    this.setState({
+      new_items,
+    });
+    console.log(e.target.value);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   handleAddClick(e, type, b) {
     var formJson = this.state.abcarray;
@@ -489,21 +603,36 @@ class App extends Component {
       });
     })
 
-    var formJson4 = this.state.abcarraynew;
+
+    // new registration from
+    var formJson4 = this.state.mvx_registration_fileds_list;
+    
     formJson4.push({
-      id: formJson4.length,
-      type: 'multiple_choice',
-      label: '',
-      hidden: false,
-      placeholder: '',
-      required: false,
-      cssClass: '',
-      tip_description: ''
+        id: 'parent_title',
+        type: 'p_title',
+        label: '',
+        hidden: false,
+        label_placeholder: '',
+        description: '',
+        description_placeholder: '',
     });
 
-    this.setState({
-        abcarraynew: formJson4
+    if (this.state.mvx_registration_fileds_list.length == 1) {
+      formJson4.push({
+        id: formJson4.length,
+        type: 'multiple_choice',
+        label: '',
+        hidden: false,
+        placeholder: '',
+        required: false,
+        cssClass: '',
+        tip_description: ''
       });
+    }
+
+    this.setState({
+      mvx_registration_fileds_list: formJson4
+    });
   }
 
   useQuery() {
@@ -574,56 +703,6 @@ class App extends Component {
 Child({ name }) {
 
 
-
-  wp.editor.initialize('setup_wizard_introduction', {
-          mediaButtons: true,
-          tinymce: {
-            wpautop  : true,
-            theme    : 'modern',
-            skin     : 'lightgray',
-            language : 'en',
-            formats  : {
-              alignleft  : [
-              { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li', styles: { textAlign: 'left' } },
-              { selector: 'img,table,dl.wp-caption', classes: 'alignleft' }
-              ],
-              aligncenter: [
-              { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li', styles: { textAlign: 'center' } },
-              { selector: 'img,table,dl.wp-caption', classes: 'aligncenter' }
-              ],
-              alignright : [
-              { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li', styles: { textAlign: 'right' } },
-              { selector: 'img,table,dl.wp-caption', classes: 'alignright' }
-              ],
-              strikethrough: { inline: 'del' }
-            },
-            relative_urls       : true,
-            remove_script_host  : true,
-            convert_urls        : true,
-            browser_spellcheck  : true,
-            fix_list_elements   : true,
-            entities            : '38,amp,60,lt,62,gt',
-            entity_encoding     : 'raw',
-            keep_styles         : true,
-            paste_webkit_styles : 'font-weight font-style color',
-            preview_styles      : 'font-family font-size font-weight font-style text-decoration text-transform',
-            tabfocus_elements   : ':prev,:next',
-            plugins    : 'charmap,hr,media,paste,tabfocus,textcolor,fullscreen,wordpress,wpeditimage,wpgallery,wplink,wpdialogs,wpview',
-            resize     : 'vertical',
-            menubar    : true,
-            indent     : true,
-            toolbar1   : 'bold,italic,strikethrough,bullist,numlist,blockquote,hr,alignleft,aligncenter,alignright,link,unlink,wp_more,spellchecker,fullscreen,wp_adv',
-            toolbar2   : 'formatselect,underline,alignjustify,forecolor,pastetext,removeformat,charmap,outdent,indent,undo,redo,wp_help',
-            toolbar3   : '',
-            toolbar4   : '',
-            body_class : 'id post-type-post post-status-publish post-format-standard',
-            wpeditimage_disable_captions: true,
-            wpeditimage_html5_captions  : true
-
-          },
-          quicktags: true
-        });
-
  
   return (
     <div>
@@ -636,16 +715,62 @@ Child({ name }) {
         data.modulename == name ?
           data.modulename == 'registration' ?
 
-            <div id="nav-menus-frame">
+            <div className="mvx-form-vendor-register">
+
+              <div className={`mvx-top-part-from ${this.state.mvx_registration_fileds_list && this.state.mvx_registration_fileds_list.length > 0 && this.state.mvx_registration_fileds_list[0].hidden ? 'mvx-form-left-line-active' : ''}`} onClick={(e) => this.handleActiveClick(e, '', 'parent')}>
+                  <div className="content">
+                   <div className="mvx-untitle-content"><input type="text" placeholder="Untitled form"/></div>
+                   <div className="mvx-from-description"><input type="text" placeholder="From Description"/></div>
+                  </div>
+              </div>
+
+
+
+
+              {console.log(this.state.mvx_registration_fileds_list)}
 
 
             
+            {JSON.stringify(this.state.mvx_registration_fileds_list)}
 
-            {this.state.abcarraynew.map((xl, il) => 
-              <div className="mvx-google-from-loop">
-              <input type="text" className="mvx-vendor-form-input-field" value={xl.placeholder} onChange={e => {this.onlebelchange(e, il, 'placeholder') }} />
-                {JSON.stringify(xl)}
+            {this.state.mvx_registration_fileds_list.map((registration_json_value, registration_json_index) => (
+              
+              registration_json_value.id == 'parent_title' ? '' :
+
+              <div className= {`mvx-option-part ${registration_json_value.hidden ? 'mvx-form-left-line-active' : ''}`} onClick={(e) => this.handleActiveClick(e, registration_json_index, 'sub')}>
+                <div className="content">
+                    <div className="question-input">
+                        <div className="question-input-items first-question"><input type="text" placeholder="Untitled Question" value={registration_json_value.label}
+                                        onChange={e => {this.OnRegistrationSelectChange(e, registration_json_index, 'label') }}/></div>
+                         
+                          <div className="question-input-items ">
+                            <select className="mvx-registration-select-choice" value={registration_json_value.type}
+                                        onChange={e => {this.OnRegistrationSelectChange(e, registration_json_index, 'select_drop') }}>
+                              <option value="checkbox">Checkbox</option>
+                              <option value="multiple_choice">Multiple Choice</option>
+                              <option value="dropdown">Dropdown</option>
+                              <option value="file_upload">File Upload</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div className="next_option_part">
+                        <p className="add-option"><sapn><i className="far fa-circle"></i> <input type="text" placeholder="option 1"/></sapn></p>
+
+                        <p className="add-option"><sapn><i className="far fa-circle"></i> <input type="text" placeholder="Add option  or add others"/></sapn></p>
+
+                       </div>
+                      <div className="mvx-footer-icon-form">
+                          <span class="dashicons dashicons-admin-page"></span>
+                          <span class="dashicons dashicons-trash" onClick={(e) => this.handleRemoveClickNew(e, registration_json_index)}></span>
+                          <span class="dashicons dashicons-plus-alt" onClick={(e) => this.handleAddClickNew(e)}></span>
+                          <span>Require <input type="checkbox"/></span>
+                      </div>
+                </div>
               </div>
+            
+            )
+
             )}
 
 
@@ -672,255 +797,7 @@ Child({ name }) {
 
 
 
-          {/* registration work start */}
-            <div id="menu-settings-column" className="metabox-holder">
-            <div id="side-sortables" className="meta-box-sortables ui-sortable">
-              <div className={`postbox ${this.state.first_toggle}`} >
-                <div className="postbox-header">
-                <h3 className="hndle ui-sortable-handle"><span>Form Fields</span></h3>
-                <button type="button" className="handlediv" aria-expanded="true" onClick={this.togglePostbox}><span className="screen-reader-text">Toggle panel: Format</span><span className="toggle-indicator" aria-hidden="true"></span></button>
-              </div>
-              <div className="inside">
-                <p className="button-controls"><a onClick={(e) => this.handleAddClick(e, 'textbox', 'Text Box')} className="button-secondary">Textbox</a></p>
-                <p className="button-controls"><a onClick={(e) => this.handleAddClick(e, 'email', 'Email')} className="button-secondary">Email</a></p>
-                <p className="button-controls"><a onClick={(e) => this.handleAddClick(e, 'url', 'Url')} className="button-secondary">Url</a></p>
-                <p className="button-controls"><a onClick={(e) => this.handleAddClick(e, 'textarea', 'Text Area')} className="button-secondary">Textarea</a></p>
-                <p className="button-controls"><a onClick={(e) => this.handleAddClick(e, 'selectbox', 'Select Box')} className="button-secondary">List</a></p>
-                <p className="button-controls"><a onClick={(e) => this.handleAddClick(e, 'checkbox', 'Checkbox')} className="button-secondary">Checkbox</a></p>
-                <p className="button-controls"><a onClick={(e) => this.handleAddClick(e, 'recaptcha', 'Recaptcha')} className="button-secondary">Recaptcha</a></p>    
-                <p className="button-controls"><a onClick={(e) => this.handleAddClick(e, 'file', 'Attachment')} className="button-secondary">Attachment</a></p> 
-                <p className="button-controls"><a onClick={(e) => this.handleAddClick(e, 'separator', 'Section')} className="button-secondary">Section</a></p>
-              </div>
-            </div>
-            </div>
-            <div id="side-sortables" class="meta-box-sortables ui-sortable">
-            <div class={`postbox ${this.state.second_toggle}`}>
-              <div class="postbox-header">
-                <h3 class="hndle ui-sortable-handle">
-                    <span>Vendor Store Fields</span>
-                </h3>
-                <button type="button" class="handlediv" aria-expanded="true" onClick={this.togglevendorStoreField}><span class="screen-reader-text">Toggle panel: Format</span><span class="toggle-indicator" aria-hidden="true"></span></button>
-              </div>
-              <div class="inside">
-                <p class="button-controls"><a onClick={(e) => this.handleAddClick(e, 'vendor_description', 'Store Description')} class="button-secondary">Store Description</a></p>
-                <p class="button-controls"><a onClick={(e) => this.handleAddClick(e, 'vendor_address_1', 'Address 1')} class="button-secondary">Address 1</a></p>
-                <p class="button-controls"><a onClick={(e) => this.handleAddClick(e, 'vendor_address_2', 'Address 2')} class="button-secondary">Address 2</a></p>
-                <p class="button-controls"><a onClick={(e) => this.handleAddClick(e, 'vendor_phone', 'Phone')} class="button-secondary">Phone</a></p>
-                <p class="button-controls"><a onClick={(e) => this.handleAddClick(e, 'vendor_country', 'Country')} class="button-secondary">Country</a></p>
-                <p class="button-controls"><a onClick={(e) => this.handleAddClick(e, 'vendor_state', 'State')} class="button-secondary">State</a></p>
-                <p class="button-controls"><a onClick={(e) => this.handleAddClick(e, 'vendor_city', 'City')} class="button-secondary">City</a></p>
-                <p class="button-controls"><a onClick={(e) => this.handleAddClick(e, 'vendor_postcode', 'PostCode')} class="button-secondary">Postcode</a></p>
-                <p class="button-controls"><a onClick={(e) => this.handleAddClick(e, 'vendor_paypal_email', 'Paypal Email')} class="button-secondary">PayPal Email</a></p>
-              </div>
-            </div>
-            </div>
-            </div>
-            {/*JSON.stringify(this.state.abcarray)*/}
-            <div id="poststuff">
-            <div id="post-body">
-            <div id="post-body-content">
-              <div id="mvx-vendor-form">
-              <button className="button-primary menu-save" onClick={this.handleSaveRegistration} disabled={this.state.loading}>
-                {this.state.loading && (
-                  <i className="dashicons dashicons-update" style={{ marginRight: "5px" }} />
-                  )}
-                  {this.state.loading && <span>Saving..</span>}
-                  {!this.state.loading && <span>Save</span>}
-              </button>
-              { this.state.abcarray.length === 0 ? <div className="mvx-form-empty-container">Build your form here</div> : '' }
-              <ul className="meta-box-sortables">
-                <ReactSortable list={this.state.abcarray} setList={(newState) => this.setState({ abcarray: newState })}>    
-                  {this.state.abcarray.map((x, i) => 
-                    <li>
-                      <div className={`postbox ${x.hidden ? 'closed' : ''}`}>
-                        <div className="postbox-header">
-                          <h3 className="hndle ui-sortable-handle">
-                            <span>{x.label}</span>
-                          </h3>
-                          <button type="button" className="handlediv" onClick={(e) => this.togglePostboxField(e, i)} aria-expanded="true"><span className="screen-reader-text">Toggle panel: Format</span><span className="toggle-indicator" aria-hidden="true"></span></button>
-                        </div>
-                          <div className="inside">
-                              <div id="post-formats-select">
-                                <div className="mvx-vendor-form-field-content">
-                                  <div className="mvx-vendor-form-input-field-container">
-                                    <label>Label</label>
-                                    <input type="text" className="mvx-vendor-form-input-field" value={x.label} onChange={e => {this.onlebelchange(e, i, 'label') }} />
-                                  </div>
-
-                                  {x.hasOwnProperty('placeholder') ?
-                                    <div className="mvx-vendor-form-input-field-container">
-                                      <label>Placeholder</label>
-                                      <input type="text" className="mvx-vendor-form-input-field" value={x.placeholder} onChange={e => {this.onlebelchange(e, i, 'placeholder') }} />
-                                    </div>
-                                    : ''
-                                  }
-
-                                  {x.hasOwnProperty('limit') ?
-                                  <div className="mvx-vendor-form-input-field-container">
-                                    <label>Characters Limit</label>
-                                    <input type="number" className="mvx-vendor-form-input-field" value={x.limit} onChange={e => {this.onlebelchange(e, i, 'limit') }} />
-                                  </div>
-                                  : '' }
-
-                                  {x.hasOwnProperty('required') ?
-                                  <div className="mvx-vendor-form-input-field-container">
-                                    <input type="checkbox" className="mvx-vendor-form-input-field" checked={x.required} onChange={e => {this.onlebelchange(e, i, 'required') }} />
-                                    <label> Required</label>
-                                  </div>
-                                  : '' }
-
-                                  {x.hasOwnProperty('tip_description') ? 
-                                  <div className="mvx-vendor-form-input-field-container">
-                                    <label>Tooltip description</label>
-                                    <input type="text" className="mvx-vendor-form-input-field" value={x.tip_description} onChange={e => {this.onlebelchange(e, i, 'tip_description') }} />
-                                  </div>
-                                  : '' }
-
-                                  {x.hasOwnProperty('cssClass') ? 
-                                  <div className="mvx-vendor-form-input-field-container">
-                                    <label>Custom CSS classes</label>
-                                    <input type="text" className="mvx-vendor-form-input-field" value={x.cssClass} onChange={e => {this.onlebelchange(e, i, 'cssClass') }} />
-                                  </div>
-                                  : '' }
-
-                                  {x.type && x.type == 'checkbox' ?
-                                  <div className="mvx-vendor-form-input-field-container" value={x.defaultValue}
-                                      onChange={e => {this.onlebelchange(e, i, 'defaultValue') }}>
-                                    <label>Default Value</label>
-                                    <select className="mvx-vendor-form-input-field">
-                                      <option value="unchecked">Unchecked</option>
-                                      <option value="checked">Checked</option>
-                                    </select>
-                                  </div>
-                                  : '' }
-
-                                  {x.type && x.type == 'file' ?
-                                  <div className="mvx-vendor-form-input-field-container">
-                                    <input type="checkbox" className="mvx-vendor-form-input-field" checked={x.muliple} onChange={e => {this.onlebelchange(e, i, 'muliple') }} />
-                                    <label>Multiple</label>
-                                  </div>
-                                  : '' }
-
-                                  {x.type && x.type == 'file' ?
-                                  <div className="mvx-vendor-form-input-field-container">
-                                    <label>File size limit (bytes)</label>
-                                    <input type="text" className="mvx-vendor-form-input-field" value={x.fileSize} onChange={e => {this.onlebelchange(e, i, 'fileSize') }} />
-                                  </div>
-                                  : '' }
-
-                                  {x.type && x.type == 'file' ?
-                                  <div className="mvx-vendor-form-input-field-container">
-                                    <label>Acceptable file types</label>
-                                    {x.fileType.map((xnew, inew) => 
-                                        <div>
-                                          <input type="checkbox" checked={xnew.selected} onChange={e => {this.onlebelchange(e, i, 'selected', inew) }} />
-                                          <label>{xnew.label}</label>
-                                        </div>
-                                      )}
-                                  </div>
-                                  : '' }
-
-                                  {x.type && x.type == 'selectbox' ?
-                                  <div className="mvx-vendor-form-input-field-container">
-                                    <label>List Type</label>
-                                    <select className="mvx-vendor-form-input-field" value={x.selecttype}
-                                        onChange={e => {this.onlebelchange(e, i, 'selecttype') }} >
-                                      <option value="dropdown">Dropdown</option>
-                                      <option value="radio">Radio</option>
-                                      <option value="checkboxes">Checkboxes</option>
-                                      <option value="multi-select">Multi select</option>
-                                    </select>
-                                  </div>
-                                  : '' }
-
-                                  {x.type && x.type == 'selectbox' ?
-                                  <div className="mvx-vendor-form-input-field-container">
-                                    <label>Options</label>
-                                    <a className="button-secondary" onClick={(e) => this.addSelectBoxOption(e, i)}>Add New</a>
-                                    <ul className="field-selectbox-options">
-                                    {x.options.map((key, option) =>
-                                      <li>
-                                        <a onClick={(e) => this.removeSelectboxOption(e, i, option)}><span className="dashicons dashicons-dismiss"></span></a>
-                                        Label
-                                        <input type="text" value={key.label} onChange={e => {this.onlebelchange(e, i, 'select_option', option) }}/>
-                                        Value 
-                                        <input type="text" value={key.value} onChange={e => {this.onlebelchange(e, i, 'select_option1', option) }} />
-                                        Selected
-                                        {x.type && x.selecttype === 'radio' || x.selecttype === 'dropdown' ?
-                                        <input type="radio" value="1"  name={`option-${x.id}`} checked={key.selected} onChange={e => {this.onlebelchange(e, i, 'selected_radio_box', option) }} />
-                                        :
-                                        <input type="checkbox" value="true" checked={key.selected} onChange={e => {this.onlebelchange(e, i, 'selected_box', option) }} />
-                                        }
-                                      </li>
-                                    )}
-                                    </ul>
-                                  </div>
-                                  : '' }
-
-                                  {x.type && x.type == 'recaptcha' ?
-                                    <div className="mvx-vendor-form-input-field-container" value={x.recaptchatype}
-                                        onChange={e => {this.onlebelchange(e, i, 'recaptchatype') }}>
-                                      <label>reCAPTCHA Type</label>
-                                      <select className="mvx-vendor-form-input-field">
-                                        <option value="v3">reCAPTCHA v3</option>
-                                        <option value="v2">reCAPTCHA v2</option>
-                                      </select>
-                                    </div>
-                                  : '' }
-
-                                  {x.type && x.type == 'recaptcha' && x.recaptchatype === 'v3' ?
-                                    <div class="mvx-vendor-form-input-field-container">
-                                      <label>Site key</label>
-                                      <input type="text" class="mvx-vendor-form-input-field" value={x.sitekey} onChange={e => {this.onlebelchange(e, i, 'sitekey') }} />
-                                    </div>
-                                  : '' }
-
-                                  {x.type && x.type == 'recaptcha' && x.recaptchatype === 'v3' ?
-                                    <div class="mvx-vendor-form-input-field-container">
-                                      <label>Secret key</label>
-                                      <input type="text" ng-model="field.secretkey" class="mvx-vendor-form-input-field" value={x.secretkey} onChange={e => {this.onlebelchange(e, i, 'secretkey') }} />
-                                    </div>
-                                  : '' }
-
-                                  {x.type && x.type == 'recaptcha' && x.recaptchatype === 'v2' ?
-                                    <div class="mvx-vendor-form-input-field-container">
-                                      <label>Recaptcha Script</label>
-                                      <textarea cols="20" rows="3" class="mvx-vendor-form-input-field" value={x.script} onChange={e => {this.onlebelchange(e, i, 'script') }}></textarea>
-                                    </div>
-                                  : '' }
-
-                                  {x.type && x.type == 'recaptcha' ?
-                                    <div class="mvx-vendor-form-input-field-container">
-                                      <p>To get <b>reCAPTCHA</b> script, register your site with google account <a href="https://www.google.com/recaptcha" target="_blank">Register</a></p>
-                                    </div>
-                                  : '' }
-
-                                </div>
-                              </div>
-                            <div className="mvx-vendor-form-input-field-container">
-                              <a onClick={(e) => this.removeFormField(e, i)} className="mvx-remove-form-field">Remove</a>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                    )}
-                </ReactSortable>     
-              </ul>
-              <button className="button-primary menu-save" onClick={this.handleSaveRegistration} disabled={this.state.loading}>
-                {this.state.loading && (
-                  <i
-                  className="dashicons dashicons-update"
-                  style={{ marginRight: "5px" }}
-                  />
-                  )}
-                  {this.state.loading && <span>Saving..</span>}
-                  {!this.state.loading && <span>Save</span>}
-              </button>
-              </div>
-            </div>
-            </div>
-            </div>
-            {/* registration work end */}
+          
             </div>
             :
           

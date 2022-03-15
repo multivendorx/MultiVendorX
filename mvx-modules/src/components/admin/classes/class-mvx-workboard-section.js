@@ -404,13 +404,59 @@ class App extends Component {
 
   QueryParamsDemo() {
 
+    // delete post start
+    var this_data = this;
     var $ = jQuery;
-      $('.dismiss_button').click(function (e) {
+      $('.dismiss_button').unbind().click(function (e) {
+
        e.preventDefault();
-       console.log($(this).attr('data-id'));
+
+       if ( confirm("Are you sure to delete?") ) {
+         $.ajax({
+          url: `${appLocalizer.apiUrl}/mvx_module/v1/delete_post_details`,
+          data: {
+              ids: $(this).attr('data-id'),
+          },
+          type: 'POST',
+          success: function( response ) {
+            this_data.setState({
+              display_announcement: response,
+            });  
+          }
+        });
+       }
+
     });
+    // delete post end
 
 
+    // update announcement table
+
+      /*if (new URLSearchParams(window.location.hash).get("name") == 'announcement') {
+        this.state.display_announcement = [];
+
+        var hhvhvh = '';
+
+        axios.get(
+        `${appLocalizer.apiUrl}/mvx_module/v1/display_announcement`
+        )
+        .then(response => {
+          if (hhvhvh == '') {
+            hhvhvh = 'abc';
+            this.setState({
+              display_announcement: response.data,
+            });
+          }
+        })
+
+      }*/
+
+      /*if (new URLSearchParams(window.location.hash).get("name") == 'announcement') {
+
+        
+      }*/
+
+    // update announcement table end
 
 
     let query_name = this.useQuery();

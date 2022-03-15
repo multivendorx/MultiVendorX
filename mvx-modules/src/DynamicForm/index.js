@@ -261,7 +261,7 @@ export default class DynamicForm extends React.Component {
       
       if(m['type'] == 'wpeditor') {
         // add wp editor from textarea
-       /* wp.editor.initialize(m['key'], {
+        wp.editor.initialize(m['key'], {
           mediaButtons: true,
           tinymce: {
             wpautop  : true,
@@ -308,7 +308,7 @@ export default class DynamicForm extends React.Component {
 
           },
           quicktags: true
-        });*/
+        });
       }
 
      /* var parent_nested_array = new Array({});
@@ -917,7 +917,7 @@ export default class DynamicForm extends React.Component {
           key={key}
           name={name}
           value={value}
-          rows="4"
+          rows="3"
           cols="50"
           onChange={e => {
             this.onChange(e, target);
@@ -1170,7 +1170,7 @@ export default class DynamicForm extends React.Component {
 
       if (type == "checkbox") {
         input = (
-        <div className={m.parent_class ? "mvx-checkbox-list-side-by-side" : '' }>
+        <div className={m.right_content ? 'mvx-checkbox-list-side-by-side' : '' }>
         {
         m.options.map(o => {
           //let checked = o.value == value;
@@ -1179,8 +1179,9 @@ export default class DynamicForm extends React.Component {
             checked = value.indexOf(o.value) > -1 ? true : false;
           }
           return (
-            <div className={m.parent_class ? m.parent_class : '' }>
+            <div className={m.right_content ? 'mvx-toggle-checkbox-header' : '' }>
             <React.Fragment key={"cfr" + o.key}>
+              {m.right_content ? <p className="mvx-settings-metabox-description" dangerouslySetInnerHTML={{ __html: o.label }}></p> : ''}
               <div className="mvx-toggle-checkbox-content">
                 <input
                   {...props}
@@ -1197,7 +1198,7 @@ export default class DynamicForm extends React.Component {
                 />
                 <label for={`mvx-toggle-switch-${o.key}`}></label>
               </div>
-              <p className="mvx-settings-metabox-description" dangerouslySetInnerHTML={{ __html: o.label }}></p>
+              {m.right_content ? '' : <p className="mvx-settings-metabox-description" dangerouslySetInnerHTML={{ __html: o.label }}></p>}
               {o.hints ? <span class="dashicons dashicons-info"><div className="mvx-hover-tooltip">{o.hints}</div></span> : ''}
 
             </React.Fragment>

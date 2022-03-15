@@ -539,7 +539,19 @@ class MVX_REST_API {
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
 
-        
+        // delete post
+        register_rest_route( 'mvx_module/v1', '/delete_post_details', [
+            'methods' => WP_REST_Server::EDITABLE,
+            'callback' => array( $this, 'mvx_delete_post_details' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
+    }
+
+    public function mvx_delete_post_details($request) {
+        $ids = $request && $request->get_param('ids') ? $request->get_param('ids') : 0;
+        wp_delete_post($ids);
+        return $this->mvx_display_announcement();
     }
 
     public function mvx_update_custom_post_status($request) {
@@ -1681,6 +1693,7 @@ class MVX_REST_API {
     }
 
     public function mvx_create_announcement($request) {
+        $all_details = [];
         $fetch_data = $request->get_param('model');
 
         $announcement_title = $fetch_data && isset($fetch_data['announcement_title']) ? $fetch_data['announcement_title'] : '';
@@ -1697,6 +1710,8 @@ class MVX_REST_API {
             update_post_meta($post_id, '_mvx_vendor_notices_vendors', get_mvx_vendors( array(), 'ids' ));
         }
 
+        $all_details['redirect_link'] = admin_url('admin.php?page=mvx#&submenu=work-board&name=announcement&AnnouncementID='. $post_id .'');
+        return $all_details;
     }
 
     public function mvx_display_announcement() {
@@ -1721,9 +1736,9 @@ class MVX_REST_API {
             
             $action_display = "
                 <div class='mvx-vendor-action-icon'>
-                    <div class='activate_announcemnet'><span class='dashicons dashicons-edit'></span></div>
+                    <a href=" . sprintf('?page=%s&name=%s&AnnouncementID=%s', 'mvx#&submenu=work-board', 'announcement', $announcementvalue->ID) . "><span class='dashicons dashicons-edit'></span></a>
 
-                    <div class='dismiss_button' data-id=" . $announcementvalue->ID . "><span class='dashicons dashicons-no'></span></div>
+                    <div class='dismiss_button' data-id=" . $announcementvalue->ID . " id=" . $announcementvalue->ID . "><span class='dashicons dashicons-no'></span></div>
                 </div>
             ";
 

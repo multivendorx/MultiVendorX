@@ -5587,6 +5587,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'desc'  =>  __( "display only enabled payment gateways. To enable your choosen disbursement type click here (link module page)", 'dc-woocommerce-multi-vendor' ),
                     'class'     => 'mvx-toggle-checkbox',
                     'type'    => 'checkbox',
+                    'right_content' =>  true,
                     'options' => array(
                         array(
                             'key'=> "paypal_masspay",
