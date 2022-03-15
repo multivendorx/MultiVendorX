@@ -33,128 +33,210 @@ a:focus {
     box-shadow: none;
 }
 
-.icon-add:before {
-  content: "\e900";
+.icon-add {
+  &:before {
+    content: "\e900";
+  }
 }
-.icon-approve:before {
-  content: "\e901";
+.icon-approve {
+  &:before {
+    content: "\e901";
+  }
 }
-.icon-close:before {
-  content: "\e902";
+.icon-close {
+  &:before {
+    content: "\e902";
+  }
 }
-.icon-down-arrow:before {
-  content: "\e903";
+.icon-down-arrow {
+  &:before {
+    content: "\e903";
+  }
 }
-.icon-download:before {
-  content: "\e904";
+.icon-download {
+  &:before {
+    content: "\e904";
+  }
 }
-.icon-edit:before {
-  content: "\e905";
+.icon-edit {
+  &:before {
+    content: "\e905";
+  }
 }
-.icon-knowledge-topbar:before {
-  content: "\e906";
+.icon-knowledge-topbar {
+  &:before {
+    content: "\e906";
+  }
 }
-.icon-no:before {
-  content: "\e907";
+.icon-no {
+  &:before {
+    content: "\e907";
+  }
 }
-.icon-search:before {
-  content: "\e908";
+.icon-search {
+  &:before {
+    content: "\e908";
+  }
 }
-.icon-select-checkbox:before {
-  content: "\e909";
+.icon-select-checkbox {
+  &:before {
+    content: "\e909";
+  }
 }
-.icon-yes:before {
-  content: "\e90a";
+.icon-yes {
+  &:before {
+    content: "\e90a";
+  }
 }
-.icon-tab-activity-reminder:before {
-  content: "\e90b";
+.icon-tab-activity-reminder {
+  &:before {
+    content: "\e90b";
+  }
 }
-.icon-tab-announcement:before {
-  content: "\e90c";
+.icon-tab-announcement {
+  &:before {
+    content: "\e90c";
+  }
 }
-.icon-tab-commissions:before {
-  content: "\e90d";
+.icon-tab-commissions {
+  &:before {
+    content: "\e90d";
+  }
 }
-.icon-tab-disbursement:before {
-  content: "\e90e";
+.icon-tab-disbursement {
+  &:before {
+    content: "\e90e";
+  }
 }
-.icon-tab-general:before {
-  content: "\e90f";
+.icon-tab-general {
+  &:before {
+    content: "\e90f";
+  }
 }
-.icon-tab-help:before {
-  content: "\e910";
+.icon-tab-help {
+  &:before {
+    content: "\e910";
+  }
 }
-.icon-tab-knowladgebase:before {
-  content: "\e911";
+.icon-tab-knowladgebase {
+  &:before {
+    content: "\e911";
+  }
 }
-.icon-tab-migration:before {
-  content: "\e912";
+.icon-tab-migration {
+  &:before {
+    content: "\e912";
+  }
 }
-.icon-tab-policy:before {
-  content: "\e913";
+.icon-tab-policy {
+  &:before {
+    content: "\e913";
+  }
 }
-.icon-tab-products:before {
-  content: "\e914";
+.icon-tab-products {
+  &:before {
+    content: "\e914";
+  }
 }
-.icon-tab-products-capability:before {
-  content: "\e915";
+.icon-tab-products-capability {
+  &:before {
+    content: "\e915";
+  }
 }
-.icon-tab-question-and-answer:before {
-  content: "\e916";
+.icon-tab-question-and-answer {
+  &:before {
+    content: "\e916";
+  }
 }
-.icon-tab-refunds:before {
-  content: "\e917";
+.icon-tab-refunds {
+  &:before {
+    content: "\e917";
+  }
 }
-.icon-tab-registration-form:before {
-  content: "\e918";
+.icon-tab-registration-form {
+  &:before {
+    content: "\e918";
+  }
 }
-.icon-tab-report-abuse:before {
-  content: "\e919";
+.icon-tab-report-abuse {
+  &:before {
+    content: "\e919";
+  }
 }
-.icon-tab-reviews-and-rating:before {
-  content: "\e91a";
+.icon-tab-reviews-and-rating {
+  &:before {
+    content: "\e91a";
+  }
 }
-.icon-tab-seller-dashbaord:before {
-  content: "\e91b";
+.icon-tab-seller-dashbaord {
+  &:before {
+    content: "\e91b";
+  }
 }
-.icon-tab-setup-widget:before {
-  content: "\e91c";
+.icon-tab-setup-widget {
+  &:before {
+    content: "\e91c";
+  }
 }
-.icon-tab-social:before {
-  content: "\e91d";
+.icon-tab-social {
+  &:before {
+    content: "\e91d";
+  }
 }
-.icon-tab-SPMV:before {
-  content: "\e91e";
+.icon-tab-SPMV {
+  &:before {
+    content: "\e91e";
+  }
 }
-.icon-tab-store:before {
-  content: "\e91f";
+.icon-tab-store {
+  &:before {
+    content: "\e91f";
+  }
 }
-.icon-tab-store-review:before {
-  content: "\e920";
+.icon-tab-store-review {
+  &:before {
+    content: "\e920";
+  }
 }
-.icon-vendor-application:before {
-  content: "\e921";
+.icon-vendor-application {
+  &:before {
+    content: "\e921";
+  }
 }
-.icon-vendor-follower:before {
-  content: "\e922";
+.icon-vendor-follower {
+  &:before {
+    content: "\e922";
+  }
 }
-.icon-vendor-payment:before {
-  content: "\e923";
+.icon-vendor-payment {
+  &:before {
+    content: "\e923";
+  }
 }
-.icon-vendor-personal:before {
-  content: "\e924";
+.icon-vendor-personal {
+  &:before {
+    content: "\e924";
+  }
 }
-.icon-vendor-policy:before {
-  content: "\e925";
+.icon-vendor-policy {
+  &:before {
+    content: "\e925";
+  }
 }
-.icon-vendor-shipping:before {
-  content: "\e926";
+.icon-vendor-shipping {
+  &:before {
+    content: "\e926";
+  }
 }
-.icon-vendor-social:before {
-  content: "\e927";
+.icon-vendor-social {
+  &:before {
+    content: "\e927";
+  }
 }
-.icon-vendor-store:before {
-  content: "\e928";
+.icon-vendor-store {
+  &:before {
+    content: "\e928";
+  }
 }
 
 /*icon end*/ 
