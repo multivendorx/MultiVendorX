@@ -3653,16 +3653,15 @@ class MVX_REST_API {
         $form_data = json_decode(stripslashes_deep($request->get_param( 'form_data' )), true);
         if (!empty($form_data) && is_array($form_data)) {
             foreach ($form_data as $key => $value) {
-                $form_data[$key]['hidden'] = true;
+                $form_data[$key]['hidden'] = false;
             }
         }
-
-        mvx_update_option('mvx_vendor_registration_form_data', $form_data);
+        mvx_update_option('mvx_new_vendor_registration_form_data', $form_data);
         die;
     }
 
     public function mvx_get_registration_forms_data() {
-        $mvx_vendor_registration_form_data = mvx_get_option('mvx_vendor_registration_form_data');
+        $mvx_vendor_registration_form_data = mvx_get_option('mvx_new_vendor_registration_form_data') ? mvx_get_option('mvx_new_vendor_registration_form_data') : [];
         return rest_ensure_response( $mvx_vendor_registration_form_data );
     }
 

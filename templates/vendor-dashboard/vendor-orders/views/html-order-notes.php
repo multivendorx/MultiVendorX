@@ -71,7 +71,7 @@ global $MVX;
                     </form>  
                     <?php endif; ?>  
                 </li>
-                <?php if ('Enable' === get_mvx_vendor_settings( 'is_vendor_shipping_on', 'general' )) : ?>
+                <?php if (mvx_is_module_active('vendor-shipping')) : ?>
                 <li class="list-group-item list-group-item-action flex-column align-items-start">
                     <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#shipping_tracking_wrap"><?php _e('Tracking number', 'dc-woocommerce-multi-vendor'); ?></button>
                 </li>
