@@ -1733,14 +1733,6 @@ class MVX_REST_API {
                     $vedors_list_renew[] = $vendor->page_title;
                 }
             }
-            
-            $action_display = "
-                <div class='mvx-vendor-action-icon'>
-                    <a href=" . sprintf('?page=%s&name=%s&AnnouncementID=%s', 'mvx#&submenu=work-board', 'announcement', $announcementvalue->ID) . "><span class='dashicons dashicons-edit'></span></a>
-
-                    <div class='dismiss_button' data-id=" . $announcementvalue->ID . " id=" . $announcementvalue->ID . "><span class='dashicons dashicons-no'></span></div>
-                </div>
-            ";
 
             $announcement_list[] = array(
                 'id'            =>  $announcementvalue->ID,
@@ -1748,7 +1740,8 @@ class MVX_REST_API {
                 'title'         =>  '<a href="' . sprintf('?page=%s&name=%s&AnnouncementID=%s', 'mvx#&submenu=work-board', 'announcement', $announcementvalue->ID) . '">' . $announcementvalue->post_title . '</a>',
                 'date'          =>  human_time_diff(strtotime($announcementvalue->post_modified)),
                 'vendor'        =>  $vedors_list_renew ? implode(',', $vedors_list_renew) : '',
-                'action'        =>  $action_display
+                'link'          =>  sprintf('?page=%s&name=%s&AnnouncementID=%s', 'mvx#&submenu=work-board', 'announcement', $announcementvalue->ID),
+                'type'          =>  'post',
             );
         }
         return rest_ensure_response($announcement_list);

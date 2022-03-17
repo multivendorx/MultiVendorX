@@ -412,7 +412,12 @@ class MVX_Admin {
                 'name'      =>  __('Action', 'dc-woocommerce-multi-vendor'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
-                'selector_choice'  => "action",
+                'cell'  =>  'cell',
+                'ignoreRowClick'=> true,
+                'allowOverflow'=> true,
+                'button'=> true,
+
+
             )
         );
 

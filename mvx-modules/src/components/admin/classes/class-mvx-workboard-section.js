@@ -261,6 +261,52 @@ class App extends Component {
 
     this.handle_work_board_chenage = this.handle_work_board_chenage.bind(this);
 
+
+    this.handlePostDismiss = this.handlePostDismiss.bind(this);
+
+
+  }
+
+  handlePostDismiss(e, title) {
+    console.log(title);
+
+
+    if ( confirm("Are you sure to delete?") ) {
+
+
+      axios({
+        method: 'post',
+        url: `${appLocalizer.apiUrl}/mvx_module/v1/delete_post_details`,
+        data: {
+          ids: e,
+        }
+      })
+      .then( ( responce ) => {
+
+        this.setState({
+          display_announcement: responce.data,
+        });  
+
+      } );
+
+
+
+
+
+     /*  $.ajax({
+        url: `${appLocalizer.apiUrl}/mvx_module/v1/delete_post_details`,
+        data: {
+            ids: $(this).attr('data-id'),
+        },
+        type: 'POST',
+        success: function( response ) {
+          this_data.setState({
+            display_announcement: response,
+          });  
+        }
+      });*/
+     }
+
   }
 
   handle_work_board_chenage(e, type) {
@@ -403,58 +449,17 @@ class App extends Component {
   }
 
   QueryParamsDemo() {
-
-    // delete post start
-    var this_data = this;
-    var $ = jQuery;
-      $('.dismiss_button').unbind().click(function (e) {
-
-       e.preventDefault();
-
-       if ( confirm("Are you sure to delete?") ) {
-         $.ajax({
-          url: `${appLocalizer.apiUrl}/mvx_module/v1/delete_post_details`,
-          data: {
-              ids: $(this).attr('data-id'),
-          },
-          type: 'POST',
-          success: function( response ) {
-            this_data.setState({
-              display_announcement: response,
-            });  
-          }
-        });
-       }
-
-    });
-    // delete post end
-
-
-    // update announcement table
-
-      /*if (new URLSearchParams(window.location.hash).get("name") == 'announcement') {
-        this.state.display_announcement = [];
-
-        var hhvhvh = '';
-
+      
+      // update announcement table when clock on announcement tab
+      if (new URLSearchParams(window.location.hash).get("name") == 'announcement') {
         axios.get(
         `${appLocalizer.apiUrl}/mvx_module/v1/display_announcement`
         )
         .then(response => {
-          if (hhvhvh == '') {
-            hhvhvh = 'abc';
-            this.setState({
-              display_announcement: response.data,
-            });
-          }
+            this.state.display_announcement = response.data;
         })
 
-      }*/
-
-      /*if (new URLSearchParams(window.location.hash).get("name") == 'announcement') {
-
-        
-      }*/
+      }
 
     // update announcement table end
 
@@ -582,6 +587,16 @@ Child({ name }) {
         var set_for_dynamic_column = '';
         data_selector = data_ann['selector_choice'];
         data_ann.selector = row => <div dangerouslySetInnerHTML={{__html: row[data_selector]}}></div>;
+
+
+        data_ann.cell ? data_ann.cell = (row) => <div className="mvx-vendor-action-icon">
+
+          <a href={row.link}><span class='dashicons dashicons-edit'></span></a>
+          <div onClick={() => this.handlePostDismiss(row.id, row.type)} id={row.id}><span class='dashicons dashicons-no'></span></div>
+
+        </div> : '';
+
+
         this.state.columns_announcement_new[index_ann] = data_ann
         set_for_dynamic_column = this.state.columns_announcement_new;
             this.setState({
@@ -601,234 +616,75 @@ Child({ name }) {
 
 
 
+        {/* Pending Vendor approval */}
         <div className="mvx-todo-status-check">
             <div className="mvx-text-with-line-wrapper">
-                <div className="mvx-report-text">Vendor Verification</div>
+                <div className="mvx-report-text">Pending Product Approval</div>
                 <div className="mvx-report-text-fade-line"></div>
-
-
                 <div className="mvx-select-all-bulk-wrap">
                   <div className="mvx-select-all-checkbox">
                     <input type="checkbox" className="mvx-select-all" />
                     <span className="mvx-select-all-text">Select All</span>
                   </div>
-
                   <Select placeholder="Bulk Action" options={this.state.details_vendor} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_work_board_chenage(e)} />
                 </div>
-
             </div>
             <div className="mvx-workboard-card-wrapper">
-                <div className="mvx-workboard-card-wrapper-child">
-                    <div className="mvx-workboard-card-wrapper-heading">Address Verification</div>
-                    <div className="mvx-workboard-top-part">
-                        <div className="mvx-workboard-img-part">
-                            <img alt="Multivendor X" src={appLocalizer.mvx_logo}/>
-                            <div className="mvx-workboard-vendor-name">vendor test 01</div>
-                        </div>
-                        <div className="mvx-workboard-select-icon"><input type="checkbox" className="mvx-workboard-checkbox"/></div>
-                    </div>
-                    <div className="mvx-workboard-address-area">
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-
-                    </div>
-                    <div className="mvx-module-current-status wp-clearfix">
-                        <div className="mvx-left-icons-wrap">
-                            <div className="mvx-left-icon"><i className="mvx-font ico-store-icon"></i></div>
-                            <div className="mvx-left-icon"><i className="mvx-font ico-store-icon"></i></div>
-                            <div className="mvx-left-icon"><i className="mvx-font ico-store-icon"></i></div>
-
-                        </div>
-
-                    </div>
-                </div>
-
-
-
-
-
-                <div className="mvx-workboard-card-wrapper-child">
-                    <div className="mvx-workboard-card-wrapper-heading">Address Verification</div>
-                    <div className="mvx-workboard-top-part">
-                        <div className="mvx-workboard-img-part">
-                            <img alt="Multivendor X" src={appLocalizer.mvx_logo}/>
-                            <div className="mvx-workboard-vendor-name">vendor test 01</div>
-                        </div>
-                        <div className="mvx-workboard-select-icon"><input type="checkbox" className="mvx-workboard-checkbox"/></div>
-                    </div>
-                    <div className="mvx-workboard-address-area">
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-
-                    </div>
-                    <div className="mvx-module-current-status wp-clearfix">
-                        <div className="mvx-left-icons-wrap">
-                            <div className="mvx-left-icon"><i className="mvx-font ico-store-icon"></i></div>
-                            <div className="mvx-left-icon"><i className="mvx-font ico-store-icon"></i></div>
-                            <div className="mvx-left-icon"><i className="mvx-font ico-store-icon"></i></div>
-                        </div>
-
-                        <div className="mvx-right-icons-wrap">
-                          <div className="mvx-right-icon"><i className="mvx-font ico-store-icon"></i></div>
-                        </div>
-
-                    </div>
-                </div>
-
-
-
-                <div className="mvx-workboard-card-wrapper-child">
-                    <div className="mvx-workboard-card-wrapper-heading">Address Verification</div>
-                    <div className="mvx-workboard-top-part">
-                        <div className="mvx-workboard-img-part">
-                            <img alt="Multivendor X" src={appLocalizer.mvx_logo}/>
-                            <div className="mvx-workboard-vendor-name">vendor test 01</div>
-                        </div>
-                        <div className="mvx-workboard-select-icon"><input type="checkbox" className="mvx-workboard-checkbox"/></div>
-                    </div>
-                    <div className="mvx-workboard-address-area">
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-
-                    </div>
-                    <div className="mvx-module-current-status wp-clearfix">
-                        <div className="mvx-left-icons-wrap">
-                            <div className="mvx-left-icon"><i className="mvx-font ico-store-icon"></i></div>
-                            <div className="mvx-left-icon"><i className="mvx-font ico-store-icon"></i></div>
-                            <div className="mvx-left-icon"><i className="mvx-font ico-store-icon"></i></div>
-                        </div>
-
-                        <div className="mvx-right-icons-wrap">
-                          <div className="mvx-right-icon"><i className="mvx-font ico-store-icon"></i></div>
-                        </div>
-
-                    </div>
-                </div>
-
-
-
-                <div className="mvx-workboard-card-wrapper-child">
-                    <div className="mvx-workboard-card-wrapper-heading">Address Verification</div>
-                    <div className="mvx-workboard-top-part">
-                        <div className="mvx-workboard-img-part">
-                            <img alt="Multivendor X" src={appLocalizer.mvx_logo}/>
-                            <div className="mvx-workboard-vendor-name">vendor test 01</div>
-                        </div>
-                        <div className="mvx-workboard-select-icon"><input type="checkbox" className="mvx-workboard-checkbox"/></div>
-                    </div>
-                    <div className="mvx-workboard-address-area">
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-
-                    </div>
-                    <div className="mvx-module-current-status wp-clearfix">
-                        <div className="mvx-left-icons-wrap">
-                            <div className="mvx-left-icon"><i className="mvx-font ico-store-icon"></i></div>
-                            <div className="mvx-left-icon"><i className="mvx-font ico-store-icon"></i></div>
-                            <div className="mvx-left-icon"><i className="mvx-font ico-store-icon"></i></div>
-                        </div>
-
-                        <div className="mvx-right-icons-wrap">
-                          <div className="mvx-right-icon"><i className="mvx-font ico-store-icon"></i></div>
-                        </div>
-
-                    </div>
-                </div>
-
-
-
-
                 
-              </div>
-        </div>
+              {
+                this.state.list_of_pending_vendor_product.map((pending_data, pending_index) => (
+
+                    <div className="mvx-workboard-card-wrapper-child">
+                      <div className="mvx-workboard-card-wrapper-heading">Pending Vendor Product</div>
+                      <div className="mvx-workboard-top-part">
+                          <div className="mvx-workboard-img-part">
+                              <img alt="Multivendor X" src={appLocalizer.mvx_logo}/>
+                              <div className="mvx-workboard-vendor-name">{pending_data.product}</div>
+                          </div>
+                          <div className="mvx-workboard-select-icon"><input type="checkbox" className="mvx-workboard-checkbox"/></div>
+                      </div>
+                      <div className="mvx-workboard-address-area">
+                          <p className="mvx-todo-list-details-data-value">
+                          <div className="mvx-commission-label-class">Name:</div>
+                          <div className="mvx-commission-value-class"><a href="">{pending_data.product}</a></div>
+                          </p>
+                          <p className="mvx-todo-list-details-data-value">
+                          <div className="mvx-commission-label-class">Address 1:</div>
+                          <div className="mvx-commission-value-class"><a href="">{pending_data.product}</a></div>
+                          </p>
+                          <p className="mvx-todo-list-details-data-value">
+                          <div className="mvx-commission-label-class">Address 2:</div>
+                          <div className="mvx-commission-value-class"><a href="">{pending_data.product}</a></div>
+                          </p>
+                          <p className="mvx-todo-list-details-data-value">
+                          <div className="mvx-commission-label-class">Town:</div>
+                          <div className="mvx-commission-value-class"><a href="">{pending_data.product}</a></div>
+                          </p>
+                          <p className="mvx-todo-list-details-data-value">
+                          <div className="mvx-commission-label-class">Country:</div>
+                          <div className="mvx-commission-value-class"><a href="">{pending_data.product}</a></div>
+                          </p>
+                          <p className="mvx-todo-list-details-data-value">
+                          <div className="mvx-commission-label-class">Zip:</div>
+                          <div className="mvx-commission-value-class"><a href="">{pending_data.product}</a></div>
+                          </p>
+
+                      </div>
+                      <div className="mvx-module-current-status wp-clearfix">
+                          <div className="mvx-left-icons-wrap">
+                              <div className="mvx-left-icon"><i className="mvx-font icon-tab-SPMV"></i></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-tab-SPMV"></i></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-tab-SPMV"></i></div>
+                          </div>
+                      </div>
+                    </div>
+                  )
+                )
+              }
+
+            </div>
+          </div>
+        {/* Pending Vendor approval end */}
 
 
 
@@ -836,246 +692,237 @@ Child({ name }) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+        {/* Pending Vendor approval */}
         <div className="mvx-todo-status-check">
             <div className="mvx-text-with-line-wrapper">
-                <div className="mvx-report-text">Vendor Verification</div>
+                <div className="mvx-report-text">Pending Vendor Approval</div>
                 <div className="mvx-report-text-fade-line"></div>
-
-
                 <div className="mvx-select-all-bulk-wrap">
                   <div className="mvx-select-all-checkbox">
                     <input type="checkbox" className="mvx-select-all" />
                     <span className="mvx-select-all-text">Select All</span>
                   </div>
-
                   <Select placeholder="Bulk Action" options={this.state.details_vendor} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_work_board_chenage(e)} />
                 </div>
-
             </div>
             <div className="mvx-workboard-card-wrapper">
-                <div className="mvx-workboard-card-wrapper-child">
-                    <div className="mvx-workboard-card-wrapper-heading">Address Verification</div>
-                    <div className="mvx-workboard-top-part">
-                        <div className="mvx-workboard-img-part">
-                            <img alt="Multivendor X" src={appLocalizer.mvx_logo}/>
-                            <div className="mvx-workboard-vendor-name">vendor test 01</div>
-                        </div>
-                        <div className="mvx-workboard-select-icon"><input type="checkbox" className="mvx-workboard-checkbox"/></div>
-                    </div>
-                    <div className="mvx-workboard-address-area">
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-
-                    </div>
-                    <div className="mvx-module-current-status wp-clearfix">
-                        <div className="mvx-left-icons-wrap">
-                            <div className="mvx-left-icon"><i className="mvx-font ico-store-icon"></i></div>
-                            <div className="mvx-left-icon"><i className="mvx-font ico-store-icon"></i></div>
-                            <div className="mvx-left-icon"><i className="mvx-font ico-store-icon"></i></div>
-
-                        </div>
-
-                    </div>
-                </div>
-
-
-
-
-
-                <div className="mvx-workboard-card-wrapper-child">
-                    <div className="mvx-workboard-card-wrapper-heading">Address Verification</div>
-                    <div className="mvx-workboard-top-part">
-                        <div className="mvx-workboard-img-part">
-                            <img alt="Multivendor X" src={appLocalizer.mvx_logo}/>
-                            <div className="mvx-workboard-vendor-name">vendor test 01</div>
-                        </div>
-                        <div className="mvx-workboard-select-icon"><input type="checkbox" className="mvx-workboard-checkbox"/></div>
-                    </div>
-                    <div className="mvx-workboard-address-area">
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-
-                    </div>
-                    <div className="mvx-module-current-status wp-clearfix">
-                        <div className="mvx-left-icons-wrap">
-                            <div className="mvx-left-icon"><i className="mvx-font ico-store-icon"></i></div>
-                            <div className="mvx-left-icon"><i className="mvx-font ico-store-icon"></i></div>
-                            <div className="mvx-left-icon"><i className="mvx-font ico-store-icon"></i></div>
-                        </div>
-
-                        <div className="mvx-right-icons-wrap">
-                          <div className="mvx-right-icon"><i className="mvx-font ico-store-icon"></i></div>
-                        </div>
-
-                    </div>
-                </div>
-
-
-
-                <div className="mvx-workboard-card-wrapper-child">
-                    <div className="mvx-workboard-card-wrapper-heading">Address Verification</div>
-                    <div className="mvx-workboard-top-part">
-                        <div className="mvx-workboard-img-part">
-                            <img alt="Multivendor X" src={appLocalizer.mvx_logo}/>
-                            <div className="mvx-workboard-vendor-name">vendor test 01</div>
-                        </div>
-                        <div className="mvx-workboard-select-icon"><input type="checkbox" className="mvx-workboard-checkbox"/></div>
-                    </div>
-                    <div className="mvx-workboard-address-area">
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-
-                    </div>
-                    <div className="mvx-module-current-status wp-clearfix">
-                        <div className="mvx-left-icons-wrap">
-                            <div className="mvx-left-icon"><i className="mvx-font ico-store-icon"></i></div>
-                            <div className="mvx-left-icon"><i className="mvx-font ico-store-icon"></i></div>
-                            <div className="mvx-left-icon"><i className="mvx-font ico-store-icon"></i></div>
-                        </div>
-
-                        <div className="mvx-right-icons-wrap">
-                          <div className="mvx-right-icon"><i className="mvx-font ico-store-icon"></i></div>
-                        </div>
-
-                    </div>
-                </div>
-
-
-
-                <div className="mvx-workboard-card-wrapper-child">
-                    <div className="mvx-workboard-card-wrapper-heading">Address Verification</div>
-                    <div className="mvx-workboard-top-part">
-                        <div className="mvx-workboard-img-part">
-                            <img alt="Multivendor X" src={appLocalizer.mvx_logo}/>
-                            <div className="mvx-workboard-vendor-name">vendor test 01</div>
-                        </div>
-                        <div className="mvx-workboard-select-icon"><input type="checkbox" className="mvx-workboard-checkbox"/></div>
-                    </div>
-                    <div className="mvx-workboard-address-area">
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-                        <p className="mvx-todo-list-details-data-value">
-                        <div className="mvx-commission-label-class">Email Address:</div>
-                        <div className="mvx-commission-value-class"><a href="">bvjhb@gmail.com</a></div>
-                        </p>
-
-                    </div>
-                    <div className="mvx-module-current-status wp-clearfix">
-                        <div className="mvx-left-icons-wrap">
-                            <div className="mvx-left-icon"><i className="mvx-font ico-store-icon"></i></div>
-                            <div className="mvx-left-icon"><i className="mvx-font ico-store-icon"></i></div>
-                            <div className="mvx-left-icon"><i className="mvx-font ico-store-icon"></i></div>
-                        </div>
-
-                        <div className="mvx-right-icons-wrap">
-                          <div className="mvx-right-icon"><i className="mvx-font ico-store-icon"></i></div>
-                        </div>
-
-                    </div>
-                </div>
-
-
-
-
                 
-              </div>
-        </div>
+              {
+                this.state.list_of_pending_vendor.map((pending_data, pending_index) => (
+
+                    <div className="mvx-workboard-card-wrapper-child">
+                      <div className="mvx-workboard-card-wrapper-heading">Pending User</div>
+                      <div className="mvx-workboard-top-part">
+                          <div className="mvx-workboard-img-part">
+                              <img alt="Multivendor X" src={appLocalizer.mvx_logo}/>
+                              <div className="mvx-workboard-vendor-name">{pending_data.vendor}</div>
+                          </div>
+                          <div className="mvx-workboard-select-icon"><input type="checkbox" className="mvx-workboard-checkbox"/></div>
+                      </div>
+                      <div className="mvx-workboard-address-area">
+                          <p className="mvx-todo-list-details-data-value">
+                          <div className="mvx-commission-label-class">Name:</div>
+                          <div className="mvx-commission-value-class"><a href="">{pending_data.vendor}</a></div>
+                          </p>
+                          <p className="mvx-todo-list-details-data-value">
+                          <div className="mvx-commission-label-class">Address 1:</div>
+                          <div className="mvx-commission-value-class"><a href="">{pending_data.vendor}</a></div>
+                          </p>
+                          <p className="mvx-todo-list-details-data-value">
+                          <div className="mvx-commission-label-class">Address 2:</div>
+                          <div className="mvx-commission-value-class"><a href="">{pending_data.vendor}</a></div>
+                          </p>
+                          <p className="mvx-todo-list-details-data-value">
+                          <div className="mvx-commission-label-class">Town:</div>
+                          <div className="mvx-commission-value-class"><a href="">{pending_data.vendor}</a></div>
+                          </p>
+                          <p className="mvx-todo-list-details-data-value">
+                          <div className="mvx-commission-label-class">Country:</div>
+                          <div className="mvx-commission-value-class"><a href="">{pending_data.vendor}</a></div>
+                          </p>
+                          <p className="mvx-todo-list-details-data-value">
+                          <div className="mvx-commission-label-class">Zip:</div>
+                          <div className="mvx-commission-value-class"><a href="">{pending_data.vendor}</a></div>
+                          </p>
+
+                      </div>
+                      <div className="mvx-module-current-status wp-clearfix">
+                          <div className="mvx-left-icons-wrap">
+                              <div className="mvx-left-icon"><i className="mvx-font icon-tab-SPMV"></i></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-tab-SPMV"></i></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-tab-SPMV"></i></div>
+                          </div>
+                      </div>
+                    </div>
+                  )
+                )
+              }
+
+            </div>
+          </div>
+        {/* Pending Vendor approval end */}
+
+
+
+
+
+
+
+
+
+        {/* Pending Vendor approval */}
+        <div className="mvx-todo-status-check">
+            <div className="mvx-text-with-line-wrapper">
+                <div className="mvx-report-text">Pending Coupon</div>
+                <div className="mvx-report-text-fade-line"></div>
+                <div className="mvx-select-all-bulk-wrap">
+                  <div className="mvx-select-all-checkbox">
+                    <input type="checkbox" className="mvx-select-all" />
+                    <span className="mvx-select-all-text">Select All</span>
+                  </div>
+                  <Select placeholder="Bulk Action" options={this.state.details_vendor} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_work_board_chenage(e)} />
+                </div>
+            </div>
+            <div className="mvx-workboard-card-wrapper">
+                
+              {
+                this.state.list_of_pending_vendor_coupon.map((pending_data, pending_index) => (
+
+                    <div className="mvx-workboard-card-wrapper-child">
+                      <div className="mvx-workboard-card-wrapper-heading">Pending coupon</div>
+                      <div className="mvx-workboard-top-part">
+                          <div className="mvx-workboard-img-part">
+                              <img alt="Multivendor X" src={appLocalizer.mvx_logo}/>
+                              <div className="mvx-workboard-vendor-name">{pending_data.coupon}</div>
+                          </div>
+                          <div className="mvx-workboard-select-icon"><input type="checkbox" className="mvx-workboard-checkbox"/></div>
+                      </div>
+                      <div className="mvx-workboard-address-area">
+                          <p className="mvx-todo-list-details-data-value">
+                          <div className="mvx-commission-label-class">Name:</div>
+                          <div className="mvx-commission-value-class"><a href="">{pending_data.coupon}</a></div>
+                          </p>
+                          <p className="mvx-todo-list-details-data-value">
+                          <div className="mvx-commission-label-class">Address 1:</div>
+                          <div className="mvx-commission-value-class"><a href="">{pending_data.coupon}</a></div>
+                          </p>
+                          <p className="mvx-todo-list-details-data-value">
+                          <div className="mvx-commission-label-class">Address 2:</div>
+                          <div className="mvx-commission-value-class"><a href="">{pending_data.coupon}</a></div>
+                          </p>
+                          <p className="mvx-todo-list-details-data-value">
+                          <div className="mvx-commission-label-class">Town:</div>
+                          <div className="mvx-commission-value-class"><a href="">{pending_data.coupon}</a></div>
+                          </p>
+                          <p className="mvx-todo-list-details-data-value">
+                          <div className="mvx-commission-label-class">Country:</div>
+                          <div className="mvx-commission-value-class"><a href="">{pending_data.coupon}</a></div>
+                          </p>
+                          <p className="mvx-todo-list-details-data-value">
+                          <div className="mvx-commission-label-class">Zip:</div>
+                          <div className="mvx-commission-value-class"><a href="">{pending_data.coupon}</a></div>
+                          </p>
+
+                      </div>
+                      <div className="mvx-module-current-status wp-clearfix">
+                          <div className="mvx-left-icons-wrap">
+                              <div className="mvx-left-icon"><i className="mvx-font icon-tab-SPMV"></i></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-tab-SPMV"></i></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-tab-SPMV"></i></div>
+                          </div>
+                      </div>
+                    </div>
+                  )
+                )
+              }
+
+            </div>
+          </div>
+        {/* Pending Vendor approval end */}
+
+
+
+
+
+
+        {/* Pending tranasction approval */}
+        <div className="mvx-todo-status-check">
+            <div className="mvx-text-with-line-wrapper">
+                <div className="mvx-report-text">Pending Transaction</div>
+                <div className="mvx-report-text-fade-line"></div>
+                <div className="mvx-select-all-bulk-wrap">
+                  <div className="mvx-select-all-checkbox">
+                    <input type="checkbox" className="mvx-select-all" />
+                    <span className="mvx-select-all-text">Select All</span>
+                  </div>
+                  <Select placeholder="Bulk Action" options={this.state.details_vendor} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_work_board_chenage(e)} />
+                </div>
+            </div>
+            <div className="mvx-workboard-card-wrapper">
+                
+              {
+                this.state.list_of_pending_transaction.map((pending_data, pending_index) => (
+
+                    <div className="mvx-workboard-card-wrapper-child">
+                      <div className="mvx-workboard-card-wrapper-heading">Pending coupon</div>
+                      <div className="mvx-workboard-top-part">
+                          <div className="mvx-workboard-img-part">
+                              <img alt="Multivendor X" src={appLocalizer.mvx_logo}/>
+                              <div className="mvx-workboard-vendor-name">{pending_data.coupon}</div>
+                          </div>
+                          <div className="mvx-workboard-select-icon"><input type="checkbox" className="mvx-workboard-checkbox"/></div>
+                      </div>
+                      <div className="mvx-workboard-address-area">
+                          <p className="mvx-todo-list-details-data-value">
+                          <div className="mvx-commission-label-class">Name:</div>
+                          <div className="mvx-commission-value-class"><a href="">{pending_data.coupon}</a></div>
+                          </p>
+                          <p className="mvx-todo-list-details-data-value">
+                          <div className="mvx-commission-label-class">Address 1:</div>
+                          <div className="mvx-commission-value-class"><a href="">{pending_data.coupon}</a></div>
+                          </p>
+                          <p className="mvx-todo-list-details-data-value">
+                          <div className="mvx-commission-label-class">Address 2:</div>
+                          <div className="mvx-commission-value-class"><a href="">{pending_data.coupon}</a></div>
+                          </p>
+                          <p className="mvx-todo-list-details-data-value">
+                          <div className="mvx-commission-label-class">Town:</div>
+                          <div className="mvx-commission-value-class"><a href="">{pending_data.coupon}</a></div>
+                          </p>
+                          <p className="mvx-todo-list-details-data-value">
+                          <div className="mvx-commission-label-class">Country:</div>
+                          <div className="mvx-commission-value-class"><a href="">{pending_data.coupon}</a></div>
+                          </p>
+                          <p className="mvx-todo-list-details-data-value">
+                          <div className="mvx-commission-label-class">Zip:</div>
+                          <div className="mvx-commission-value-class"><a href="">{pending_data.coupon}</a></div>
+                          </p>
+
+                      </div>
+                      <div className="mvx-module-current-status wp-clearfix">
+                          <div className="mvx-left-icons-wrap">
+                              <div className="mvx-left-icon"><i className="mvx-font icon-tab-SPMV"></i></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-tab-SPMV"></i></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-tab-SPMV"></i></div>
+                          </div>
+                      </div>
+                    </div>
+                  )
+                )
+              }
+
+            </div>
+          </div>
+        {/* Pending tranasction approval end */}
+
+
+
+
+
+
+
+
+
 
 
 
