@@ -1589,11 +1589,11 @@ Class MVX_Admin_Dashboard {
             $this->mvx_add_dashboard_widget('mvx_vendor_product_stats', __('Product Stats', 'dc-woocommerce-multi-vendor'), array(&$this, 'mvx_vendor_product_stats'), 'side', '', array('action' => array('title' => __('Add Product', 'dc-woocommerce-multi-vendor'), 'link' => apply_filters( 'mvx_vendor_dashboard_add_product_url', mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_add_product_endpoint', 'vendor', 'general', 'add-product' ))))));
             $this->mvx_add_dashboard_widget('mvx_vendor_product_sales_report', __('Product Sales Report', 'dc-woocommerce-multi-vendor'), array(&$this, 'mvx_vendor_product_sales_report'));
         }
-        if (get_mvx_vendor_settings('is_sellerreview', 'general') == 'Enable') {
+        if (mvx_is_module_active('vendor-review')) {
             $this->mvx_add_dashboard_widget('mvx_customer_reviews', __('Reviews', 'dc-woocommerce-multi-vendor'), array(&$this, 'mvx_customer_review'));
         }
         // Vendor followeres list
-        if ( get_mvx_vendor_settings('store_follow_enabled', 'general') && get_mvx_vendor_settings('store_follow_enabled', 'general') == 'Enable' ) {
+        if ( mvx_is_module_active('store-follow') ) {
             $this->mvx_add_dashboard_widget('mvx_vendor_follower', __('Followers', 'dc-woocommerce-multi-vendor'), array(&$this, 'mvx_vendor_followers'));
         }
         $this->mvx_add_dashboard_widget('mvx_vendor_products_cust_qna', __('Customer Questions', 'dc-woocommerce-multi-vendor'), array(&$this, 'mvx_vendor_products_cust_qna'), 'side', '', array('action' => array('title' => __('Show All Q&As', 'dc-woocommerce-multi-vendor'), 'link' => esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_products_qnas_endpoint', 'vendor', 'general', 'products-qna'))))));
@@ -2073,7 +2073,7 @@ Class MVX_Admin_Dashboard {
                     delete_post_meta($post_id, '_dismiss_to_do_list');
 
                 // Policy tab data save
-                if ( get_mvx_vendor_settings( 'is_policy_on', 'general' ) == 'Enable' && apply_filters( 'mvx_vendor_can_overwrite_policies', true ) ) {
+                if ( mvx_is_module_active('store-policy') && apply_filters( 'mvx_vendor_can_overwrite_policies', true ) ) {
                     if ( apply_filters( 'can_vendor_edit_shipping_policy_field', true ) && isset( $_POST['_mvx_shipping_policy'] ) ) {
                         update_post_meta( $post_id, '_mvx_shipping_policy', stripslashes( html_entity_decode( $_POST['_mvx_shipping_policy'], ENT_QUOTES, get_bloginfo( 'charset' ) ) ) );
                     }

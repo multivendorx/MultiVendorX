@@ -67,13 +67,13 @@ class MVX_Frontend {
         // Review tab section
         add_action( 'mvx_vendor_shop_page_reviews_endpoint', array(&$this, 'mvx_vendor_shop_page_reviews_endpoint' ), 10, 2 );
         // Pllicies tab section
-        if (get_mvx_vendor_settings('is_policy_on', 'general') && get_mvx_vendor_settings('is_policy_on', 'general') == 'Enable') {
+        if (mvx_is_module_active('store-policy')) {
             add_action( 'mvx_vendor_shop_page_policies_endpoint', array(&$this, 'mvx_vendor_shop_page_policies_endpoint' ), 10, 2 );
         }
         flush_rewrite_rules();
 
         // Customer follows vendor list on my account page
-        if ( get_mvx_vendor_settings('store_follow_enabled', 'general') && get_mvx_vendor_settings('store_follow_enabled', 'general') == 'Enable' ) {
+        if ( mvx_is_module_active('store-follow') ) {
             add_filter( 'woocommerce_account_menu_items',array($this, 'mvx_customer_followers_vendor'), 99 );
             add_action( 'woocommerce_account_followers_endpoint', array($this, 'mvx_customer_followers_vendor_callback' ));
         }
@@ -894,7 +894,7 @@ class MVX_Frontend {
                 'priority' => 1
             )
         );
-        if (get_mvx_vendor_settings('is_policy_on', 'general') && get_mvx_vendor_settings('is_policy_on', 'general') == 'Enable') {
+        if (mvx_is_module_active('store-policy')) {
             $tabs['policies'] = array(
                 'id' => 'policies',
                 'title' => __( 'Policies', 'dc-woocommerce-multi-vendor' ),
@@ -903,7 +903,7 @@ class MVX_Frontend {
             );
         }
 
-        if (get_mvx_vendor_settings('is_sellerreview', 'general') == 'Enable') {
+        if (mvx_is_module_active('vendor-review')) {
             $tabs['reviews'] = array(
                 'id' => 'reviews',
                 'title' => __( 'Reviews', 'dc-woocommerce-multi-vendor' ),

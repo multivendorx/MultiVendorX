@@ -6,59 +6,60 @@ if (!function_exists('get_mvx_vendor_settings')) {
      * get plugin settings
      * @return array
      */
-    function get_mvx_vendor_settings($name = '', $tab = '', $subtab = '', $default = false) {
-        if (empty($tab) && empty($name)) {
+    function get_mvx_vendor_settings($key = '', $tab = '', $default = false) {
+        if (empty($key) && empty($tab)) {
             return $default;
         }
         if (empty($tab)) {
-            return get_mvx_global_settings($name, $default);
+            return get_mvx_global_settings($key, $default);
         }
-        if (empty($name)) {
-            return get_option("mvx_{$tab}_settings_name", $default);
+        if (empty($key)) {
+            return get_option("wcmp_{$tab}_tab_settings", $default);
         }
-        if (!empty($subtab)) {
-            $settings = get_option("mvx_{$tab}_{$subtab}_settings_name", $default);
-        } else {
-            $settings = get_option("mvx_{$tab}_settings_name", $default);
+        if (!empty($key) && !empty($tab)) {
+            $settings = get_option("mvx_{$tab}_tab_settings", $default);
         }
-        if (!isset($settings[$name]) || empty($settings[$name])) {
+        if (!isset($settings[$key]) || empty($settings[$key])) {
             return $default;
         }
-        return $settings[$name];
+        return $settings[$key];
     }
 
 }
 
 if (!function_exists('get_mvx_global_settings')) {
 
-    function get_mvx_global_settings($name = '', $default = false) {
+    function get_mvx_global_settings($key = '', $default = false) {
         $options = array();
         $all_options = apply_filters('mvx_all_admin_options', array(
-            'mvx_general_settings_name',
-            'mvx_product_settings_name',
-            'mvx_capabilities_settings_name',
-            'mvx_payment_settings_name',
-            'mvx_general_policies_settings_name',
-            'mvx_general_customer_support_details_settings_name',
-            'mvx_vendor_general_settings_name',
-            'mvx_capabilities_product_settings_name',
-            'mvx_capabilities_order_settings_name',
-            'mvx_capabilities_miscellaneous_settings_name',
-            'mvx_payment_paypal_payout_settings_name',
-            'mvx_payment_paypal_masspay_settings_name',
-            'mvx_vendor_dashboard_settings_name'
+            'mvx_settings_general_tab_settings',
+            'mvx_social_tab_settings',
+            'mvx_vendor_registration_form_data',
+            'mvx_seller_dashbaord_tab_settings',
+            'mvx_store_tab_settings',
+            'mvx_products_tab_settings',
+            'mvx_products_capability_tab_settings',
+            'mvx_spmv_pages_tab_settings',
+            'mvx_commissions_tab_settings',
+            'mvx_disbursement_tab_settings',
+            'mvx_policy_tab_settings',
+            'mvx_refund_management_tab_settings',
+            'mvx_review_management_tab_settings',
+            'mvx_payment_masspay_tab_settings',
+            'mvx_payment_payout_tab_settings',
+            'mvx_payment_stripe_connect_tab_settings',
                 )
         );
         foreach ($all_options as $option_name) {
             $options = array_merge($options, get_option($option_name, array()));
         }
-        if (empty($name)) {
+        if (empty($key)) {
             return $options;
         }
-        if (!isset($options[$name]) || empty($options[$name])) {
+        if (!isset($options[$key]) || empty($options[$key])) {
             return $default;
         }
-        return $options[$name];
+        return $options[$key];
     }
 
 }
@@ -812,7 +813,7 @@ if (!function_exists('mvx_seller_review_enable')) {
         $is_enable = false;
         $current_user = wp_get_current_user();
         if ($current_user->ID > 0) {
-            if (get_mvx_vendor_settings('is_sellerreview', 'general') == 'Enable') {
+            if (mvx_is_module_active('vendor-review')) {
                 if (get_mvx_vendor_settings('is_sellerreview_varified', 'general') == 'Enable') {
                     $is_enable = mvx_find_user_purchased_with_vendor($current_user->ID, $vendor_term_id);
                 } else {
@@ -1180,7 +1181,7 @@ if (!function_exists('do_mvx_data_migrate')) {
                     update_mvx_vendor_settings('is_singleproductmultiseller', 'Enable', 'general');
                 }
                 delete_mvx_vendor_settings('is_singleproductmultiseller', 'general', 'singleproductmultiseller');
-                if (get_mvx_vendor_settings('is_sellerreview', 'general', 'sellerreview') && get_mvx_vendor_settings('is_sellerreview', 'general', 'sellerreview') == 'Enable') {
+                if (mvx_is_module_active('vendor-review')) {
                     update_mvx_vendor_settings('is_sellerreview', 'Enable', 'general');
                 }
                 delete_mvx_vendor_settings('is_sellerreview', 'general', 'sellerreview');
@@ -1188,7 +1189,7 @@ if (!function_exists('do_mvx_data_migrate')) {
                     update_mvx_vendor_settings('is_sellerreview_varified', 'Enable', 'general');
                 }
                 delete_mvx_vendor_settings('is_sellerreview_varified', 'general', 'sellerreview');
-                if (get_mvx_vendor_settings('is_policy_on', 'general', 'policies') && get_mvx_vendor_settings('is_policy_on', 'general', 'policies') == 'Enable') {
+                if (mvx_is_module_active('store-policy')) {
                     update_mvx_vendor_settings('is_policy_on', 'Enable', 'general');
                 }
                 delete_mvx_vendor_settings('is_policy_on', 'general', 'policies');
@@ -2497,7 +2498,7 @@ if (!function_exists('get_mvx_vendor_dashboard_visitor_stats_data')) {
             $stats_data_visitors = array(
                 'lang' => array('visitors' => __(' visitors', 'dc-woocommerce-multi-vendor'))
             );
-            $color_palet = get_mvx_vendor_settings('vendor_color_scheme_picker', 'vendor', 'dashboard', 'outer_space_blue');
+            $color_palet = get_mvx_vendor_settings('vendor_color_scheme_picker', 'seller_dashbaord', 'outer_space_blue');
             $color_palet_array = array('outer_space_blue' => '#316fa8', 'green_lagoon' => '#00796a', 'old_west' => '#ad8162', 'wild_watermelon' => '#fb3f4e');
             $color_shade = apply_filters('mvx_visitor_map_widget_primary_color_n_shade', array($color_palet_array[$color_palet], '0.2'));
             $primary_color = isset($color_shade[0]) ? $color_shade[0] : $color_palet_array[$color_palet];

@@ -620,7 +620,7 @@ class MVX_User {
             'value' => $vendor->paypal_email,
             'class' => "user-profile-fields regular-text"
         ); // Text
-        if (apply_filters('mvx_vendor_can_overwrite_policies', true) && get_mvx_vendor_settings('is_policy_on', 'general') == 'Enable') {
+        if (apply_filters('mvx_vendor_can_overwrite_policies', true) && mvx_is_module_active('store-policy')) {
             $_wp_editor_settings = array('tinymce' => true);
             if (!$MVX->vendor_caps->vendor_can('is_upload_files')) {
                 $_wp_editor_settings['media_buttons'] = false;
