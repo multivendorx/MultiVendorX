@@ -421,6 +421,78 @@ class MVX_Admin {
             )
         );
 
+        $columns_knowledgebase = array(
+            array(
+                'name'      =>  __('Title', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "title",
+                
+            ),
+            array(
+                'name'      =>  __('Date', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "date",
+            ),
+            array(
+                'name'      =>  __('Action', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'cell'  =>  'cell',
+                'ignoreRowClick'=> true,
+                'allowOverflow'=> true,
+                'button'=> true,
+            )
+        );
+
+
+        $columns_store_review = array(
+            array(
+                'name'      =>  __('Customer', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "author",
+                
+            ),
+            array(
+                'name'      =>  __('Vendor', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "user_id",
+                
+            ),
+            array(
+                'name'      =>  __('Content', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "content",
+                
+            ),
+            array(
+                'name'      =>  __('Time', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "time",
+                
+            ),
+            array(
+                'name'      =>  __('Review', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "review",
+                
+            ),
+            array(
+                'name'      =>  __('Action', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'cell'  =>  'cell',
+                'ignoreRowClick'=> true,
+                'allowOverflow'=> true,
+                'button'=> true,
+            )
+        );
 
         wp_localize_script( 'mvx-modules-build-frontend', 'appLocalizer', apply_filters('mvx_module_complete_settings', [
             'apiUrl' => home_url( '/wp-json' ),
@@ -455,7 +527,9 @@ class MVX_Admin {
             'report_vendor_header'          =>  $report_vendor_header,
             'report_page_string'            =>  $report_page_string,
             'post_bulk_status'              =>  $post_bulk_status,
-            'columns_announcement'          =>  $columns_announcement
+            'columns_announcement'          =>  $columns_announcement,
+            'columns_knowledgebase'         =>  $columns_knowledgebase,
+            'columns_store_review'          =>  $columns_store_review
         ] ) );
 
         if ( in_array($screen->id, $page_details)) {

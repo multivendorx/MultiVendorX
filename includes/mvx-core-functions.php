@@ -4800,8 +4800,8 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 [
                     'key'       =>  'vendor_list_page',
                     'type'      =>  'blocktext',
-                    'label'     =>  __( 'Vendor List Page', 'dc-woocommerce-multi-vendor' ),
-                    'blocktext'      =>  __( "Use the following shortcode to display vendor's list on your site <a href='https://www.w3schools.com'>Learn More</a> <code>[wcmp_vendorlist]</code>", 'dc-woocommerce-multi-vendor' ),
+                    'label'     =>  __( 'no_label', 'dc-woocommerce-multi-vendor' ),
+                    'blocktext'      =>  __( "Use the <code>[wcmp_vendorlist]</code> shortcode to display vendor's list on your site <a href='https://www.w3schools.com'>Learn More</a>", 'dc-woocommerce-multi-vendor' ),
                     'database_value' => '',
                 ],
                 [
@@ -5280,6 +5280,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'class'     => 'mvx-toggle-checkbox',
                     'parent_class'  => 'mvx-toggle-checkbox-header',
                     'type'    => 'checkbox',
+                    'select_deselect'   =>  true,
                     'desc' => __('lets vendors transforms simple products into either nontangible virtual product or into a product that can be downloaded', 'dc-woocommerce-multi-vendor'),
                     'options' => array(
                         array(
@@ -5314,6 +5315,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'label'   => __( 'Type options', 'dc-woocommerce-multi-vendor' ),
                     'class'     => 'mvx-toggle-checkbox',
                     'parent_class'  => 'mvx-toggle-checkbox-header',
+                    'select_deselect'   =>  true,
                     'type'    => 'checkbox',
                     'desc' => __('lets vendors transforms products into either non-tangible vitual products or product that can be downloaded', 'dc-woocommerce-multi-vendor'),
                     'options' => array(
@@ -6415,7 +6417,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 [
                     'key'       =>  'vendor_rating_page',
                     'type'      =>  'blocktext',
-                    'label'     =>  __( '', 'dc-woocommerce-multi-vendor' ),
+                    'label'     =>  __( 'no_label', 'dc-woocommerce-multi-vendor' ),
                     'blocktext'      =>  __( "<b>Admin needs to enable product review from woocommerce settings</b>", 'dc-woocommerce-multi-vendor' ),
                     'database_value' => '',
                 ],

@@ -61,6 +61,7 @@ class App extends Component {
       current: {},
       bulkselectlist: [],
       display_announcement: [],
+      display_pending_announcement: [],
       knowledge_data_fileds: [],
       edit_announcement_fileds: [],
       edit_knowledgebase_fileds: [],
@@ -73,7 +74,9 @@ class App extends Component {
       list_of_store_review: [],
       columns_announcement_new: [],
 
+      columns_knowledgebase_new: [],
 
+      columns_store_review: [],
 
       datassssssssssss: [
      {
@@ -253,7 +256,7 @@ class App extends Component {
 
     this.Child = this.Child.bind(this);
 
-    this.handle_post_check_publish = this.handle_post_check_publish.bind(this);
+    this.handle_post_retrive_status = this.handle_post_retrive_status.bind(this);
 
     this.handle_post_bulk_status = this.handle_post_bulk_status.bind(this);
     
@@ -268,17 +271,14 @@ class App extends Component {
   }
 
   handlePostDismiss(e, title) {
-    console.log(title);
-
 
     if ( confirm("Are you sure to delete?") ) {
-
-
       axios({
         method: 'post',
         url: `${appLocalizer.apiUrl}/mvx_module/v1/delete_post_details`,
         data: {
           ids: e,
+          title: title
         }
       })
       .then( ( responce ) => {
@@ -288,23 +288,6 @@ class App extends Component {
         });  
 
       } );
-
-
-
-
-
-     /*  $.ajax({
-        url: `${appLocalizer.apiUrl}/mvx_module/v1/delete_post_details`,
-        data: {
-            ids: $(this).attr('data-id'),
-        },
-        type: 'POST',
-        success: function( response ) {
-          this_data.setState({
-            display_announcement: response,
-          });  
-        }
-      });*/
      }
 
   }
@@ -321,6 +304,9 @@ class App extends Component {
       })
       .then( ( responce ) => {
       } );
+
+
+
     }
   }
 
@@ -331,8 +317,17 @@ class App extends Component {
     });
   }
 
-  handle_post_check_publish(e) {
-    console.log('saffffffffffff');
+  handle_post_retrive_status(e, status, type) {
+
+    axios.get(
+    `${appLocalizer.apiUrl}/mvx_module/v1/display_announcement`, { params: { status: status } 
+    })
+    .then(response => {
+      this.setState({
+        display_announcement: response.data,
+      });
+    })
+  
   }
 
 
@@ -357,6 +352,8 @@ class App extends Component {
   }
 
   componentDidMount() {
+
+    // all announcement
     axios.get(
     `${appLocalizer.apiUrl}/mvx_module/v1/display_announcement`
     )
@@ -366,6 +363,15 @@ class App extends Component {
       });
     })
   
+    // pending announcement
+    axios.get(
+    `${appLocalizer.apiUrl}/mvx_module/v1/display_announcement`, { params: { status: 'pending' } 
+    })
+    .then(response => {
+      this.setState({
+        display_pending_announcement: response.data,
+      });
+    })
 
     axios.get(
     `${appLocalizer.apiUrl}/mvx_module/v1/display_list_knowladgebase`
@@ -606,6 +612,59 @@ Child({ name }) {
       )
     }
     // Display table column and row slection end
+
+
+    // Display table column and row slection
+    if (this.state.columns_knowledgebase_new.length == 0 && new URLSearchParams(window.location.hash).get("name") == 'knowladgebase') {
+      appLocalizer.columns_knowledgebase.map((data_anno_knowl, index_knowledge) => {
+        var data_knowledgebase_selector = '';
+        var set_for_dynamic_column_know = '';
+        data_knowledgebase_selector = data_anno_knowl['selector_choice'];
+        data_anno_knowl.selector = row => <div dangerouslySetInnerHTML={{__html: row[data_knowledgebase_selector]}}></div>;
+
+
+        data_anno_knowl.cell ? data_anno_knowl.cell = (row) => <div className="mvx-vendor-action-icon">
+
+          <a href={row.link}><span class='dashicons dashicons-edit'></span></a>
+          <div onClick={() => this.handlePostDismiss(row.id, row.type)} id={row.id}><span class='dashicons dashicons-no'></span></div>
+
+        </div> : '';
+
+
+        this.state.columns_knowledgebase_new[index_knowledge] = data_anno_knowl
+        set_for_dynamic_column_know = this.state.columns_knowledgebase_new;
+            this.setState({
+              columns_knowledgebase_new: set_for_dynamic_column_know,
+            });
+        }
+      )
+    }
+
+
+    // Display table column and row slection
+    if (this.state.columns_store_review.length == 0 && new URLSearchParams(window.location.hash).get("name") == 'store-review') {
+      appLocalizer.columns_store_review.map((data_store_review_content, index_store_review) => {
+        var data_store_review_selector = '';
+        var set_for_dynamic_column_store_review = '';
+        data_store_review_selector = data_store_review_content['selector_choice'];
+        data_store_review_content.selector = row => <div dangerouslySetInnerHTML={{__html: row[data_store_review_selector]}}></div>;
+
+
+        data_store_review_content.cell ? data_store_review_content.cell = (row) => <div className="mvx-vendor-action-icon">
+
+          <a href={row.link}><span class='dashicons dashicons-edit'></span></a>
+          <div onClick={() => this.handlePostDismiss(row.id, row.type)} id={row.id}><span class='dashicons dashicons-no'></span></div>
+
+        </div> : '';
+
+        this.state.columns_store_review[index_store_review] = data_store_review_content
+        set_for_dynamic_column_store_review = this.state.columns_store_review;
+            this.setState({
+              columns_store_review: set_for_dynamic_column_store_review,
+            });
+        }
+      )
+    }
 
   return (
     <div>
@@ -975,9 +1034,9 @@ Child({ name }) {
           <div>
             <div className="mvx-search-and-multistatus-wrap">
               <div className="mvx-multistatus-check">
-                <div className="mvx-multistatus-check-all">All (10)</div>
-                <div className="mvx-multistatus-check-approve" onClick={this.handle_post_check_publish}>| Published (10)</div>
-                <div className="mvx-multistatus-check-pending status-active">| Pending (10)</div>
+                <div className="mvx-multistatus-check-all" onClick={(e) => this.handle_post_retrive_status(e, 'all', 'announcement')}>All ({this.state.display_announcement.length})</div>
+                <div className="mvx-multistatus-check-approve" onClick={(e) => this.handle_post_retrive_status(e, 'publish', 'announcement')}>| Published (10)</div>
+                <div className="mvx-multistatus-check-pending status-active" onClick={(e) => this.handle_post_retrive_status(e, 'pending', 'announcement')}>| Pending ({this.state.display_pending_announcement.length})</div>
               </div>
 
 
@@ -1068,7 +1127,7 @@ Child({ name }) {
             <div className="mvx-search-and-multistatus-wrap">
               <div className="mvx-multistatus-check">
                 <div className="mvx-multistatus-check-all">All (10)</div>
-                <div className="mvx-multistatus-check-approve" onClick={this.handle_post_check_publish}>| Published (10)</div>
+                <div className="mvx-multistatus-check-approve" onClick={this.handle_post_retrive_status}>| Published (10)</div>
                 <div className="mvx-multistatus-check-pending status-active">| Pending (10)</div>
               </div>
 
@@ -1091,13 +1150,15 @@ Child({ name }) {
             </div>
 
             <div className="mvx-backend-datatable-wrapper">
-
+            {this.state.columns_knowledgebase_new && this.state.columns_knowledgebase_new.length > 0 ?
               <DataTable
-                columns={this.state.columns_knowladgebase}
+                columns={this.state.columns_knowledgebase_new}
                 data={this.state.display_list_knowladgebase}
                 selectableRows
+                onSelectedRowsChange={this.onSelectedRowsChange}
                 pagination
               />
+              : '' }
             </div>
           </div>
         
@@ -1113,7 +1174,7 @@ Child({ name }) {
           <div className="mvx-search-and-multistatus-wrap">
             <div className="mvx-multistatus-check">
               <div className="mvx-multistatus-check-all">All (10)</div>
-              <div className="mvx-multistatus-check-approve" onClick={this.handle_post_check_publish}>| Approve (10)</div>
+              <div className="mvx-multistatus-check-approve" onClick={this.handle_post_retrive_status}>| Approve (10)</div>
               <div className="mvx-multistatus-check-pending status-active">| Pending (10)</div>
             </div>
 
@@ -1136,12 +1197,14 @@ Child({ name }) {
           </div>
 
           <div className="mvx-backend-datatable-wrapper">
+            {this.state.columns_store_review && this.state.columns_store_review.length > 0 ?
             <DataTable
-                columns={this.state.store_review}
-                data={this.state.list_of_store_review}
-                selectableRows
-                pagination
-              />
+              columns={this.state.columns_store_review}
+              data={this.state.list_of_store_review}
+              selectableRows
+              pagination
+            />
+            : '' }
           </div>
       </div>
 
@@ -1160,7 +1223,7 @@ Child({ name }) {
           <div className="mvx-search-and-multistatus-wrap">
             <div className="mvx-multistatus-check">
               <div className="mvx-multistatus-check-all">All (10)</div>
-              <div className="mvx-multistatus-check-approve" onClick={this.handle_post_check_publish}>| Published (10)</div>
+              <div className="mvx-multistatus-check-approve" onClick={this.handle_post_retrive_status}>| Published (10)</div>
               <div className="mvx-multistatus-check-pending status-active">| Pending (10)</div>
             </div>
 

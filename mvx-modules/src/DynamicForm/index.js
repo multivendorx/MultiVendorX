@@ -23,8 +23,32 @@ export default class DynamicForm extends React.Component {
     
     this.onnestedChange = this.onnestedChange.bind(this);
 
-    //this.onChange = this.onChange.bind(this);
+    this.onSelectDeselectChange = this.onSelectDeselectChange.bind(this);
     
+  }
+
+  onSelectDeselectChange(e, m) {
+
+    if (this.state[m.key].length > 0) {
+      this.setState({
+        [m.key]: []
+      });
+    } else {
+      var complete_option_value = [];
+      m.options.map((o, index) => {
+        complete_option_value[index] = o.value;
+      })
+
+      this.setState({
+        [m.key]: complete_option_value
+      });
+    }
+
+    if(this.props.submitbutton && this.props.submitbutton == 'false') {
+      setTimeout(() => {
+        this.onSubmit('');
+      }, 10)
+    }
   }
 
   onnestedChange(e, target, index, filedsdetails, nestedchild, childindex, selectarray, m) {
@@ -1171,7 +1195,11 @@ export default class DynamicForm extends React.Component {
       if (type == "checkbox") {
         input = (
         <div className={m.right_content ? 'mvx-checkbox-list-side-by-side' : m.parent_class ? "mvx-checkbox-list-side-by-side" : '' }>
+
+        {m.select_deselect ? <div className="mvx-select-deselect-trigger" onClick={e => { this.onSelectDeselectChange(e, m); }}>Select / Deselect All</div> : '' }
+
         {
+
         m.options.map(o => {
           //let checked = o.value == value;
           let checked = false;
@@ -1213,7 +1241,7 @@ export default class DynamicForm extends React.Component {
       }
       return (
         <div>
-        {m.type == 'section' ? input :
+        {m.type == 'section' || m.label == 'no_label' ? input :
         <div key={"g" + key} className="form-group">
             <label className="mvx-settings-form-label" key={"l" + key} htmlFor={key}>
             <p dangerouslySetInnerHTML={{ __html: m.label }}></p>

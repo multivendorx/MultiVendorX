@@ -11,171 +11,171 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 }
 
 /**
  * API class.
  */
 class MVX_REST_API {
-	/**
-	 * Setup class.
-	 *
-	 * @since 3.1
-	 */
-	public function __construct() {
+    /**
+     * Setup class.
+     *
+     * @since 3.1
+     */
+    public function __construct() {
 
-		// Add query vars.
-		add_filter( 'query_vars', array( $this, 'add_query_vars' ), 0 );
+        // Add query vars.
+        add_filter( 'query_vars', array( $this, 'add_query_vars' ), 0 );
 
-		// Register API endpoints.
-		add_action( 'init', array( $this, 'add_endpoint' ), 0 );
+        // Register API endpoints.
+        add_action( 'init', array( $this, 'add_endpoint' ), 0 );
 
-		// Handle wc-api endpoint requests.
-		add_action( 'parse_request', array( $this, 'handle_api_requests' ), 0 );
-		
-		// WP REST API.
-		$this->rest_api_init();
+        // Handle wc-api endpoint requests.
+        add_action( 'parse_request', array( $this, 'handle_api_requests' ), 0 );
+        
+        // WP REST API.
+        $this->rest_api_init();
 
-		add_action( 'rest_api_init', array( $this, 'mvx_rest_routes_react_module' ) );
-	}
-	
+        add_action( 'rest_api_init', array( $this, 'mvx_rest_routes_react_module' ) );
+    }
+    
 
-	/**
-	 * Add new query vars.
-	 *
-	 * @since 3.1
-	 * @param array $vars Query vars.
-	 * @return string[]
-	 */
-	public function add_query_vars( $vars ) {
-		$vars[] = 'mvx-api';
-		return $vars;
-	}
+    /**
+     * Add new query vars.
+     *
+     * @since 3.1
+     * @param array $vars Query vars.
+     * @return string[]
+     */
+    public function add_query_vars( $vars ) {
+        $vars[] = 'mvx-api';
+        return $vars;
+    }
 
-	/**
-	 * MVX API for payment gateway IPNs, etc.
-	 *
-	 * @since 3.1
-	 */
-	public static function add_endpoint() {
-		add_rewrite_endpoint( 'mvx-api', EP_ALL );
-	}
+    /**
+     * MVX API for payment gateway IPNs, etc.
+     *
+     * @since 3.1
+     */
+    public static function add_endpoint() {
+        add_rewrite_endpoint( 'mvx-api', EP_ALL );
+    }
 
-	/**
-	 * API request - Trigger any API requests.
-	 *
-	 * @since   3.1
-	 */
-	public function handle_api_requests() {
-		global $wp;
+    /**
+     * API request - Trigger any API requests.
+     *
+     * @since   3.1
+     */
+    public function handle_api_requests() {
+        global $wp;
 
-		if ( ! empty( $_GET['mvx-api'] ) ) { // WPCS: input var okay, CSRF ok.
-			$wp->query_vars['mvx-api'] = sanitize_key( wp_unslash( $_GET['mvx-api'] ) ); // WPCS: input var okay, CSRF ok.
-		}
+        if ( ! empty( $_GET['mvx-api'] ) ) { // WPCS: input var okay, CSRF ok.
+            $wp->query_vars['mvx-api'] = sanitize_key( wp_unslash( $_GET['mvx-api'] ) ); // WPCS: input var okay, CSRF ok.
+        }
 
-		// mvx-api endpoint requests.
-		if ( ! empty( $wp->query_vars['mvx-api'] ) ) {
+        // mvx-api endpoint requests.
+        if ( ! empty( $wp->query_vars['mvx-api'] ) ) {
 
-			// Buffer, we won't want any output here.
-			ob_start();
+            // Buffer, we won't want any output here.
+            ob_start();
 
-			// No cache headers.
-			wc_nocache_headers();
+            // No cache headers.
+            wc_nocache_headers();
 
-			// Clean the API request.
-			$api_request = strtolower( wc_clean( $wp->query_vars['mvx-api'] ) );
+            // Clean the API request.
+            $api_request = strtolower( wc_clean( $wp->query_vars['mvx-api'] ) );
 
-			// Trigger generic action before request hook.
-			do_action( 'mvx_rest_api_request', $api_request );
+            // Trigger generic action before request hook.
+            do_action( 'mvx_rest_api_request', $api_request );
 
-			// Is there actually something hooked into this API request? If not trigger 400 - Bad request.
-			status_header( has_action( 'mvx_rest_api_' . $api_request ) ? 200 : 400 );
+            // Is there actually something hooked into this API request? If not trigger 400 - Bad request.
+            status_header( has_action( 'mvx_rest_api_' . $api_request ) ? 200 : 400 );
 
-			// Trigger an action which plugins can hook into to fulfill the request.
-			do_action( 'mvx_rest_api_' . $api_request );
+            // Trigger an action which plugins can hook into to fulfill the request.
+            do_action( 'mvx_rest_api_' . $api_request );
 
-			// Done, clear buffer and exit.
-			ob_end_clean();
-			die( '-1' );
-		}
-	}
+            // Done, clear buffer and exit.
+            ob_end_clean();
+            die( '-1' );
+        }
+    }
 
-	/**
-	 * Init WP REST API.
-	 *
-	 * @since 3.1
-	 */
-	private function rest_api_init() {
-		// REST API was included starting WordPress 4.4.
-		if ( ! class_exists( 'WP_REST_Server' ) ) {
-			return;
-		}
+    /**
+     * Init WP REST API.
+     *
+     * @since 3.1
+     */
+    private function rest_api_init() {
+        // REST API was included starting WordPress 4.4.
+        if ( ! class_exists( 'WP_REST_Server' ) ) {
+            return;
+        }
 
-		// Init REST API routes.
-		add_action( 'rest_api_init', array( $this, 'register_rest_routes' ), 10 );
-	}
+        // Init REST API routes.
+        add_action( 'rest_api_init', array( $this, 'register_rest_routes' ), 10 );
+    }
 
-	/**
-	 * Include REST API classes.
-	 *
-	 * @since 3.1
-	 */
-	private function rest_api_includes() {
-		// REST API v1 controllers.
-		$this->load_controller_class('vendors');
-		$this->load_controller_class('products');
-		$this->load_controller_class('coupons');
-		$this->load_controller_class('orders');
-		$this->load_controller_class('vendor-reviews');
-	}
+    /**
+     * Include REST API classes.
+     *
+     * @since 3.1
+     */
+    private function rest_api_includes() {
+        // REST API v1 controllers.
+        $this->load_controller_class('vendors');
+        $this->load_controller_class('products');
+        $this->load_controller_class('coupons');
+        $this->load_controller_class('orders');
+        $this->load_controller_class('vendor-reviews');
+    }
 
-	/**
-	 * Register REST API routes.
-	 *
-	 * @since 3.1
-	 */
-	public function register_rest_routes() {
-		// Register settings to the REST API.
-		$this->register_wp_admin_settings();
+    /**
+     * Register REST API routes.
+     *
+     * @since 3.1
+     */
+    public function register_rest_routes() {
+        // Register settings to the REST API.
+        $this->register_wp_admin_settings();
 
-		$this->rest_api_includes();
+        $this->rest_api_includes();
 
-		$controllers = array(
-			// v1 controllers.
-			'MVX_REST_API_Vendors_Controller',
-			'MVX_REST_API_Vendor_Reviews_Controller'
-		);
+        $controllers = array(
+            // v1 controllers.
+            'MVX_REST_API_Vendors_Controller',
+            'MVX_REST_API_Vendor_Reviews_Controller'
+        );
 
-		foreach ( $controllers as $controller ) {
-			$this->$controller = new $controller();
-			$this->$controller->register_routes();
-		}
-	}
+        foreach ( $controllers as $controller ) {
+            $this->$controller = new $controller();
+            $this->$controller->register_routes();
+        }
+    }
 
-	/**
-	 * Register WC settings from WP-API to the REST API.
-	 *
-	 * @since  3.0.0
-	 */
-	public function register_wp_admin_settings() {
-		$pages = WC_Admin_Settings::get_settings_pages();
-		foreach ( $pages as $page ) {
-			new WC_Register_WP_Admin_Settings( $page, 'page' );
-		}
+    /**
+     * Register WC settings from WP-API to the REST API.
+     *
+     * @since  3.0.0
+     */
+    public function register_wp_admin_settings() {
+        $pages = WC_Admin_Settings::get_settings_pages();
+        foreach ( $pages as $page ) {
+            new WC_Register_WP_Admin_Settings( $page, 'page' );
+        }
 
-		$emails = WC_Emails::instance();
-		foreach ( $emails->get_emails() as $email ) {
-			new WC_Register_WP_Admin_Settings( $email, 'email' );
-		}
-	}
-	
-	/**
-	 * Load class located under api folder
-	 *
-	 * @since  3.1
-	 */
-	function load_controller_class($class_name = '') {
+        $emails = WC_Emails::instance();
+        foreach ( $emails->get_emails() as $email ) {
+            new WC_Register_WP_Admin_Settings( $email, 'email' );
+        }
+    }
+    
+    /**
+     * Load class located under api folder
+     *
+     * @since  3.1
+     */
+    function load_controller_class($class_name = '') {
         global $MVX;
         if ('' != $class_name) {
             require_once($MVX->plugin_path . 'api/class-' . esc_attr($MVX->token) . '-rest-' . esc_attr($class_name) . '-controller.php');
@@ -550,8 +550,18 @@ class MVX_REST_API {
 
     public function mvx_delete_post_details($request) {
         $ids = $request && $request->get_param('ids') ? $request->get_param('ids') : 0;
-        wp_delete_post($ids);
-        return $this->mvx_display_announcement();
+        $title = $request && $request->get_param('title') ? $request->get_param('title') : 0;
+        if ($title == 'post_announcement') {
+            wp_delete_post($ids);
+            return $this->mvx_display_announcement();
+        } elseif ($title == 'post_knowladgebase') {
+            wp_delete_post($ids);
+            return $this->mvx_display_list_knowladgebase();
+        } elseif ($title == 'review') {
+            // delete review code
+            return $this->mvx_list_of_store_review();
+        }
+            
     }
 
     public function mvx_update_custom_post_status($request) {
@@ -607,12 +617,14 @@ class MVX_REST_API {
                     </span>';
 
                 $review_list[] = apply_filters('mvx_list_table_reviews_columns_data', array(
-                    'id'        => $mvx_vendor_review->comment_ID,
-                    'author'    => $mvx_vendor_review->comment_author,
-                    'user_id'   => $vendor->page_title,
-                    'time'      => human_time_diff(strtotime($mvx_vendor_review->comment_date)),
-                    'content'   => $mvx_vendor_review->comment_content,
-                    'review'    => $review
+                    'id'        =>  $mvx_vendor_review->comment_ID,
+                    'author'    =>  $mvx_vendor_review->comment_author,
+                    'user_id'   =>  $vendor->page_title,
+                    'time'      =>  human_time_diff(strtotime($mvx_vendor_review->comment_date)),
+                    'content'   =>  $mvx_vendor_review->comment_content,
+                    'review'    =>  $review,
+                    'link'      =>  admin_url('comment.php?action=editcomment&c='. $mvx_vendor_review->comment_ID .''),
+                    'type'      =>  'review'
                 ), $mvx_vendor_review);
             }
         }
@@ -783,6 +795,8 @@ class MVX_REST_API {
                 'id'            =>  $knowladgebasevalue->ID,
                 'title'         =>  '<a href="' . sprintf('?page=%s&name=%s&knowladgebaseID=%s', 'mvx#&submenu=work-board', 'knowladgebase', $knowladgebasevalue->ID) . '">#' . $knowladgebasevalue->post_title . '</a>',
                 'date'          =>  $knowladgebasevalue->post_modified,
+                'link'          =>  sprintf('?page=%s&name=%s&knowladgebaseID=%s', 'mvx#&submenu=work-board', 'knowladgebase', $knowladgebasevalue->ID),
+                'type'          =>  'post_knowladgebase',
             );
         }
         return rest_ensure_response($knowladgebase_list);
@@ -1714,11 +1728,13 @@ class MVX_REST_API {
         return $all_details;
     }
 
-    public function mvx_display_announcement() {
+    public function mvx_display_announcement($request) {
+        $status = $request && $request->get_param('status') ? $request->get_param('status') : '';
+        $status = $status == 'all' ? array('publish', 'auto-draft', 'pending') : $status;
         $announcement_list = $vedors_list_renew = array();
         $args = array(
             'post_type' => 'mvx_vendor_notice',
-            'post_status' => array('publish', 'auto-draft'),
+            'post_status' => $status ? $status : array('publish', 'auto-draft', 'pending'),
             'posts_per_page' => -1,
         );
         $announcement = get_posts($args);
@@ -1741,7 +1757,7 @@ class MVX_REST_API {
                 'date'          =>  human_time_diff(strtotime($announcementvalue->post_modified)),
                 'vendor'        =>  $vedors_list_renew ? implode(',', $vedors_list_renew) : '',
                 'link'          =>  sprintf('?page=%s&name=%s&AnnouncementID=%s', 'mvx#&submenu=work-board', 'announcement', $announcementvalue->ID),
-                'type'          =>  'post',
+                'type'          =>  'post_announcement',
             );
         }
         return rest_ensure_response($announcement_list);
