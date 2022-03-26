@@ -29,7 +29,7 @@ $_wp_editor_settings = apply_filters('mvx_vendor_policies_wp_editor_settings', $
 <div class="col-md-12">
     <form method="post" name="shop_settings_form" class="mvx_policy_form form-horizontal">
         <?php do_action('mvx_before_vendor_policy'); ?>
-        <?php if (apply_filters('mvx_vendor_can_overwrite_policies', true) && get_mvx_vendor_settings('is_policy_on', 'general') == 'Enable'): ?>
+        <?php if (apply_filters('mvx_vendor_can_overwrite_policies', true) && mvx_is_module_active('store-policy')): ?>
             <div class="panel panel-default pannel-outer-heading">
                 <div class="panel-heading d-flex">
                     <h3><?php _e('Policy Details', 'dc-woocommerce-multi-vendor'); ?></h3>

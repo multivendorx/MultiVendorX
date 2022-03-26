@@ -39,7 +39,7 @@ class MVX_Products_Edit_Product {
             do_action( 'after_mvx_edit_product_endpoint_load', $this->product_id, $this->product_object, $this->post_object );
         }
         // If vendor's have policy overwrite capability, add policy tab to product data tab panel
-        if ( get_mvx_vendor_settings( 'is_policy_on', 'general' ) == 'Enable' && apply_filters( 'mvx_vendor_can_overwrite_policies', true ) ) {
+        if ( mvx_is_module_active('store-policy') && apply_filters( 'mvx_vendor_can_overwrite_policies', true ) ) {
             add_filter( 'mvx_product_data_tabs', array( $this, 'add_policy_tab' ) );
             add_action( 'mvx_product_tabs_content', array( $this, 'policy_tab_content' ) );
         }

@@ -74,7 +74,7 @@ class MVX_Vendor_Hooks {
                 , 'submenu'     => array(
                     'storefront'      => array(
                         'label'       => __( 'Storefront', 'dc-woocommerce-multi-vendor' )
-                        , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_store_settings_endpoint', 'vendor', 'general', 'storefront' ) )
+                        , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_store_settings_endpoint', 'seller_dashbaord', 'storefront' ) )
                         , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_shop_front_capability', true )
                         , 'position'    => 10
                         , 'link_target' => '_self'
@@ -82,7 +82,7 @@ class MVX_Vendor_Hooks {
                     ),
                     'vendor-policies' => array(
                         'label'       => __( 'Policies', 'dc-woocommerce-multi-vendor' )
-                        , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_vendor_policies_endpoint', 'vendor', 'general', 'vendor-policies' ) )
+                        , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_vendor-policies_endpoint', 'seller_dashbaord', 'vendor-policies' ) )
                         , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_vendor_policies_capability', false )
                         , 'position'    => 20
                         , 'link_target' => '_self'
@@ -90,7 +90,7 @@ class MVX_Vendor_Hooks {
                     ),
                     'vendor-billing'  => array(
                         'label'       => __( 'Billing', 'dc-woocommerce-multi-vendor' )
-                        , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_vendor_billing_endpoint', 'vendor', 'general', 'vendor-billing' ) )
+                        , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_vendor-billing_endpoint', 'seller_dashbaord', 'vendor-billing' ) )
                         , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_vendor_billing_capability', true )
                         , 'position'    => 30
                         , 'link_target' => '_self'
@@ -98,7 +98,7 @@ class MVX_Vendor_Hooks {
                     ),
                     'vendor-shipping' => array(
                         'label'       => __( 'Shipping', 'dc-woocommerce-multi-vendor' )
-                        , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_vendor_shipping_endpoint', 'vendor', 'general', 'vendor-shipping' ) )
+                        , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_vendor-shipping_endpoint', 'seller_dashbaord', 'vendor-shipping' ) )
                         , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_vendor_shipping_capability', wc_shipping_enabled() )
                         , 'position'    => 40
                         , 'link_target' => '_self'
@@ -116,7 +116,7 @@ class MVX_Vendor_Hooks {
                 , 'submenu'     => array(
                     'products'    => array(
                         'label'       => __( 'All Products', 'dc-woocommerce-multi-vendor' )
-                        , 'url'         => apply_filters( 'mvx_vendor_products', mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_products_endpoint', 'vendor', 'general', 'products' ) ) )
+                        , 'url'         => apply_filters( 'mvx_vendor_products', mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_products_endpoint', 'seller_dashbaord', 'products' ) ) )
                         , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_products_capability', 'edit_products' )
                         , 'position'    => 10
                         , 'link_target' => '_self'
@@ -124,7 +124,7 @@ class MVX_Vendor_Hooks {
                     ),
                     'add-product' => array(
                         'label'       => __( 'Add Product', 'dc-woocommerce-multi-vendor' )
-                        , 'url'         => apply_filters( 'mvx_vendor_dashboard_add_product_url', mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_add_product_endpoint', 'vendor', 'general', 'add-product' ) ) )
+                        , 'url'         => apply_filters( 'mvx_vendor_dashboard_add_product_url', mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_add-product_endpoint', 'seller_dashbaord', 'add-product' ) ) )
                         , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_add_product_capability', 'edit_products' )
                         , 'position'    => 20
                         , 'link_target' => '_self'
@@ -142,7 +142,7 @@ class MVX_Vendor_Hooks {
                 , 'submenu'     => array(
                     'coupons'    => array(
                         'label'       => __( 'All Coupons', 'dc-woocommerce-multi-vendor' )
-                        , 'url'         => apply_filters( 'mvx_vendor_coupons', mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_coupons_endpoint', 'vendor', 'general', 'coupons' ) ) )
+                        , 'url'         => apply_filters( 'mvx_vendor_coupons', mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_coupons_endpoint', 'seller_dashbaord', 'coupons' ) ) )
                         , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_vendor_coupons_capability', 'edit_shop_coupons' )
                         , 'position'    => 10
                         , 'link_target' => '_self'
@@ -150,7 +150,7 @@ class MVX_Vendor_Hooks {
                     ),
                     'add-coupon' => array(
                         'label'       => __( 'Add Coupon', 'dc-woocommerce-multi-vendor' )
-                        , 'url'         => apply_filters( 'mvx_vendor_submit_coupon', mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_add_coupon_endpoint', 'vendor', 'general', 'add-coupon' ) ) )
+                        , 'url'         => apply_filters( 'mvx_vendor_submit_coupon', mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_add-coupon_endpoint', 'seller_dashbaord', 'add-coupon' ) ) )
                         , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_add_coupon_capability', 'edit_shop_coupons' )
                         , 'position'    => 20
                         , 'link_target' => '_self'
@@ -168,7 +168,7 @@ class MVX_Vendor_Hooks {
                 , 'submenu'     => array(
                     'vendor-report' => array(
                         'label'       => __( 'Overview', 'dc-woocommerce-multi-vendor' )
-                        , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_vendor_report_endpoint', 'vendor', 'general', 'vendor-report' ) )
+                        , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_vendor-report_endpoint', 'seller_dashbaord', 'vendor-report' ) )
                         , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_vendor_report_capability', true )
                         , 'position'    => 10
                         , 'link_target' => '_self'
@@ -176,7 +176,7 @@ class MVX_Vendor_Hooks {
                     ),
                     'banking-overview' => array(
                         'label'       => __( 'Banking Overview', 'dc-woocommerce-multi-vendor' )
-                        , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_vendor_banking_overview_endpoint', 'vendor', 'general', 'banking-overview' ) )
+                        , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_banking-overview_endpoint', 'seller_dashbaord', 'banking-overview' ) )
                         , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_vendor_banking_report_capability', true )
                         , 'position'    => 20
                         , 'link_target' => '_self'
@@ -188,7 +188,7 @@ class MVX_Vendor_Hooks {
             ),
             'vendor-orders'        => array(
                 'label'       => __( 'Orders', 'dc-woocommerce-multi-vendor' )
-                , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_vendor_orders_endpoint', 'vendor', 'general', 'vendor-orders' ) )
+                , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_vendor-orders_endpoint', 'seller_dashbaord', 'vendor-orders' ) )
                 , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_vendor_orders_capability', true )
                 , 'position'    => 50
                 , 'submenu'     => array()
@@ -203,7 +203,7 @@ class MVX_Vendor_Hooks {
                 , 'submenu'     => array(
                     'vendor-withdrawal'   => array(
                         'label'       => __( 'Withdrawal', 'dc-woocommerce-multi-vendor' )
-                        , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_vendor_withdrawal_endpoint', 'vendor', 'general', 'vendor-withdrawal' ) )
+                        , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_vendor-withdrawal_endpoint', 'seller_dashbaord', 'vendor-withdrawal' ) )
                         , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_vendor_withdrawal_capability', false )
                         , 'position'    => 10
                         , 'link_target' => '_self'
@@ -211,7 +211,7 @@ class MVX_Vendor_Hooks {
                     ),
                     'transaction-details' => array(
                         'label'       => __( 'History', 'dc-woocommerce-multi-vendor' )
-                        , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_transaction_details_endpoint', 'vendor', 'general', 'transaction-details' ) )
+                        , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_transaction-details_endpoint', 'seller_dashbaord', 'transaction-details' ) )
                         , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_transaction_details_capability', true )
                         , 'position'    => 20
                         , 'link_target' => '_self'
@@ -223,7 +223,7 @@ class MVX_Vendor_Hooks {
             ),
             'vendor-knowledgebase' => array(
                 'label'       => __( 'Knowledgebase', 'dc-woocommerce-multi-vendor' )
-                , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_vendor_knowledgebase_endpoint', 'vendor', 'general', 'vendor-knowledgebase' ) )
+                , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_vendor-knowledgebase_endpoint', 'seller_dashbaord', 'vendor-knowledgebase' ) )
                 , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_vendor_knowledgebase_capability', true )
                 , 'position'    => 70
                 , 'submenu'     => array()
@@ -232,7 +232,7 @@ class MVX_Vendor_Hooks {
             ),
             'vendor-tools'         => array(
                 'label'       => __( 'Tools', 'dc-woocommerce-multi-vendor' )
-                , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_vendor_tools_endpoint', 'vendor', 'general', 'vendor-tools' ) )
+                , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_vendor-tools_endpoint', 'seller_dashbaord', 'vendor-tools' ) )
                 , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_vendor_tools_capability', true )
                 , 'position'    => 80
                 , 'submenu'     => array()
@@ -849,7 +849,7 @@ class MVX_Vendor_Hooks {
      * @return Boolean
      */
     public function mvx_vendor_dashboard_menu_vendor_policies_capability( $cap ) {
-        if ( ('Enable' === get_mvx_vendor_settings( 'is_policy_on', 'general' ) && apply_filters( 'mvx_vendor_can_overwrite_policies', true )) || ('Enable' === get_mvx_vendor_settings( 'is_customer_support_details', 'general' ) && apply_filters( 'mvx_vendor_can_overwrite_customer_support', true )) ) {
+        if ( (mvx_is_module_active('store-policy') && apply_filters( 'mvx_vendor_can_overwrite_policies', true )) || ('Enable' === get_mvx_vendor_settings( 'is_customer_support_details', 'general' ) && apply_filters( 'mvx_vendor_can_overwrite_customer_support', true )) ) {
             $cap = true;
         }
         return $cap;

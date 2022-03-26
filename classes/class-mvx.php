@@ -118,6 +118,8 @@ final class MVX {
         }
         // Init Text Domain
         $this->load_plugin_textdomain();
+        // Init MVX API
+        $this->init_mvx_rest_api();
         // Init library
         $this->load_class('library');
         $this->library = new MVX_Library();
@@ -194,8 +196,6 @@ final class MVX {
         $this->init_vendor_dashboard();
         // Init vendor coupon
         $this->init_vendor_coupon();
-        // Init MVX API
-        $this->init_mvx_rest_api();
         // Init Ledger
         $this->init_ledger();
         // rewrite endpoint for followers details

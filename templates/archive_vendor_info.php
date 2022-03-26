@@ -67,7 +67,7 @@ if ( $template_class == 'template3') { ?>
                 <div class="mvx-banner-middle">
                     <div class="mvx-heading"><?php echo esc_html($vendor->page_title) ?></div>
                     <!-- Follow button will be added here -->
-                    <?php if (get_mvx_vendor_settings('store_follow_enabled', 'general') == 'Enable') { ?>
+                    <?php if (mvx_is_module_active('store-follow')) { ?>
                     <button type="button" class="mvx-butn <?php echo is_user_logged_in() ? 'mvx-stroke-butn' : ''; ?>" data-vendor_id=<?php echo esc_attr($vendor_id); ?> data-status=<?php echo esc_attr($follow_status_key); ?> ><span></span><?php echo is_user_logged_in() ? esc_attr($follow_status) : esc_html_e('You must logged in to follow', 'dc-woocommerce-multi-vendor'); ?></button>
                     <?php } ?>
                 </div>
@@ -103,7 +103,7 @@ if ( $template_class == 'template3') { ?>
 
             <div class="mvx_vendor_rating">
                 <?php
-                if (get_mvx_vendor_settings('is_sellerreview', 'general') == 'Enable') {
+                if (mvx_is_module_active('vendor-review')) {
                     if (mvx_is_store_page()) {
                         $vendor_term_id = get_user_meta( mvx_find_shop_page_vendor(), '_vendor_term_id', true );
                         $rating_val_array = mvx_get_vendor_review_info($vendor_term_id);
@@ -138,7 +138,7 @@ if ( $template_class == 'template3') { ?>
                 
                 <div class="mvx_vendor_rating">
                     <?php
-                    if (get_mvx_vendor_settings('is_sellerreview', 'general') == 'Enable') {
+                    if (mvx_is_module_active('vendor-review')) {
                         if (mvx_is_store_page()) {
                             $vendor_term_id = get_user_meta( mvx_find_shop_page_vendor(), '_vendor_term_id', true );
                             $rating_val_array = mvx_get_vendor_review_info($vendor_term_id);
@@ -183,7 +183,7 @@ if ( $template_class == 'template3') { ?>
                 </div>
                 <div class='mvx-butn-area'>
                     <!-- Follow button will be added here -->
-                    <?php if (get_mvx_vendor_settings('store_follow_enabled', 'general') == 'Enable') { ?>
+                    <?php if (mvx_is_module_active('store-follow')) { ?>
                     <button type="button" class="mvx-butn <?php echo is_user_logged_in() ? 'mvx-stroke-butn' : ''; ?>" data-vendor_id=<?php echo esc_attr($vendor_id); ?> data-status=<?php echo esc_attr($follow_status_key); ?> ><span></span><?php echo is_user_logged_in() ? esc_attr($follow_status) : esc_html_e('You must logged in to follow', 'dc-woocommerce-multi-vendor'); ?></button>
                     <?php } ?>
                     <?php do_action( 'mvx_additional_button_at_banner' ); ?>
@@ -232,7 +232,7 @@ if ( $template_class == 'template3') { ?>
                 
                 <div class="mvx_vendor_rating">
                     <?php
-                    if (get_mvx_vendor_settings('is_sellerreview', 'general') == 'Enable') {
+                    if (mvx_is_module_active('vendor-review')) {
                         if (mvx_is_store_page()) {
                             $vendor_term_id = get_user_meta( mvx_find_shop_page_vendor(), '_vendor_term_id', true );
                             $rating_val_array = mvx_get_vendor_review_info($vendor_term_id);
@@ -273,7 +273,7 @@ if ( $template_class == 'template3') { ?>
 
                 <div class='mvx-butn-area'>
                     <!-- Follow button will be added here -->
-                    <?php if (get_mvx_vendor_settings('store_follow_enabled', 'general') == 'Enable') { ?>
+                    <?php if (mvx_is_module_active('store-follow')) { ?>
                     <button type="button" class="mvx-butn <?php echo is_user_logged_in() ? 'mvx-stroke-butn' : ''; ?>" data-vendor_id=<?php echo esc_attr($vendor_id); ?> data-status=<?php echo esc_attr($follow_status_key); ?> ><span></span><?php echo is_user_logged_in() ? esc_attr($follow_status) : esc_html_e('You must logged in to follow', 'dc-woocommerce-multi-vendor'); ?></button>
                     <?php } ?>
                     <?php do_action( 'mvx_additional_button_at_banner' ); ?>

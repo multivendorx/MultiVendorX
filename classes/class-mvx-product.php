@@ -24,7 +24,7 @@ class MVX_Product {
             add_action( 'add_meta_boxes', array( $this, 'product_comment_note_metabox' ) );
         }
         add_action('save_post', array(&$this, 'process_vendor_data'));
-        if (get_mvx_vendor_settings('is_policy_on', 'general') == 'Enable') {
+        if (mvx_is_module_active('store-policy')) {
             if (current_user_can('manage_woocommerce') || (is_user_mvx_vendor(get_current_user_id()) && apply_filters('mvx_vendor_can_overwrite_policies', true))) {
                 add_action('woocommerce_product_write_panel_tabs', array(&$this, 'add_policies_tab'), 30);
                 add_action('woocommerce_product_data_panels', array(&$this, 'output_policies_tab'), 30);
@@ -1336,7 +1336,7 @@ class MVX_Product {
      */
     function add_report_abuse_link() {
         global $product;
-        if (apply_filters('mvx_show_report_abuse_link', true, $product)) {
+        if (apply_filters('mvx_show_report_abuse_link', true, $product) && mvx_is_module_active('report-abuse')) {
             $report_abuse_text = apply_filters('mvx_report_abuse_text', __('Report Abuse', 'dc-woocommerce-multi-vendor'), $product);
             $show_in_popup = apply_filters('mvx_show_report_abuse_form_popup', true, $product)
             ?>

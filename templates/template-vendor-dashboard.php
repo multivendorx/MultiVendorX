@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 global $MVX;
-$dashboard_scheme = 'mvx-color-scheme-'.get_mvx_vendor_settings('vendor_color_scheme_picker', 'vendor', 'dashboard', 'outer_space_blue');
+$dashboard_scheme = 'mvx-color-scheme-'.get_mvx_vendor_settings('vendor_color_scheme_picker', 'seller_dashbaord', 'outer_space_blue');
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
