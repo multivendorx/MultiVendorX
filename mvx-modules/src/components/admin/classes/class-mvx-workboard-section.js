@@ -60,8 +60,18 @@ class App extends Component {
       second_toggle: '',      
       current: {},
       bulkselectlist: [],
+
+
       display_announcement: [],
       display_pending_announcement: [],
+      display_published_announcement: [],
+      display_all_announcement: [],
+
+
+      display_all_knowladgebase: [],
+      display_publish_knowladgebase: [],
+      display_pending_knowladgebase: [],
+
       knowledge_data_fileds: [],
       edit_announcement_fileds: [],
       edit_knowledgebase_fileds: [],
@@ -353,6 +363,7 @@ class App extends Component {
 
   componentDidMount() {
 
+    /***********  Announcement  ******************/
     // all announcement
     axios.get(
     `${appLocalizer.apiUrl}/mvx_module/v1/display_announcement`
@@ -373,6 +384,30 @@ class App extends Component {
       });
     })
 
+    // published announcement
+    axios.get(
+    `${appLocalizer.apiUrl}/mvx_module/v1/display_announcement`, { params: { status: 'publish' } 
+    })
+    .then(response => {
+      this.setState({
+        display_published_announcement: response.data,
+      });
+    })
+
+    // all announcement count
+    axios.get(
+    `${appLocalizer.apiUrl}/mvx_module/v1/display_announcement`, { params: { status: 'all' } 
+    })
+    .then(response => {
+      this.setState({
+        display_all_announcement: response.data,
+      });
+    })
+    /***********  Announcement  ******************/
+
+    
+    /***********  Knowledgebase  **************/
+
     axios.get(
     `${appLocalizer.apiUrl}/mvx_module/v1/display_list_knowladgebase`
     )
@@ -381,6 +416,41 @@ class App extends Component {
         display_list_knowladgebase: response.data,
       });
     })
+
+
+    axios.get(
+    `${appLocalizer.apiUrl}/mvx_module/v1/display_list_knowladgebase`, { params: { status: 'all' } 
+    })
+    .then(response => {
+      this.setState({
+        display_all_knowladgebase: response.data,
+      });
+    })
+
+
+    axios.get(
+    `${appLocalizer.apiUrl}/mvx_module/v1/display_list_knowladgebase`, { params: { status: 'publish' } 
+    })
+    .then(response => {
+      this.setState({
+        display_publish_knowladgebase: response.data,
+      });
+    })
+
+    
+    axios.get(
+    `${appLocalizer.apiUrl}/mvx_module/v1/display_list_knowladgebase`, { params: { status: 'pending' } 
+    })
+    .then(response => {
+      this.setState({
+        display_pending_knowladgebase: response.data,
+      });
+    })
+    
+
+
+
+    /******** Knowledgebase end  ************/
 
 
     // pending details
@@ -1034,8 +1104,8 @@ Child({ name }) {
           <div>
             <div className="mvx-search-and-multistatus-wrap">
               <div className="mvx-multistatus-check">
-                <div className="mvx-multistatus-check-all" onClick={(e) => this.handle_post_retrive_status(e, 'all', 'announcement')}>All ({this.state.display_announcement.length})</div>
-                <div className="mvx-multistatus-check-approve" onClick={(e) => this.handle_post_retrive_status(e, 'publish', 'announcement')}>| Published (10)</div>
+                <div className="mvx-multistatus-check-all" onClick={(e) => this.handle_post_retrive_status(e, 'all', 'announcement')}>All ({this.state.display_all_announcement.length})</div>
+                <div className="mvx-multistatus-check-approve" onClick={(e) => this.handle_post_retrive_status(e, 'publish', 'announcement')}>| Published ({this.state.display_published_announcement.length})</div>
                 <div className="mvx-multistatus-check-pending status-active" onClick={(e) => this.handle_post_retrive_status(e, 'pending', 'announcement')}>| Pending ({this.state.display_pending_announcement.length})</div>
               </div>
 
@@ -1126,9 +1196,9 @@ Child({ name }) {
           <div>
             <div className="mvx-search-and-multistatus-wrap">
               <div className="mvx-multistatus-check">
-                <div className="mvx-multistatus-check-all">All (10)</div>
-                <div className="mvx-multistatus-check-approve" onClick={this.handle_post_retrive_status}>| Published (10)</div>
-                <div className="mvx-multistatus-check-pending status-active">| Pending (10)</div>
+                <div className="mvx-multistatus-check-all" onClick={(e) => this.handle_post_retrive_status(e, 'all', 'knowladgebase')}>All ({this.state.display_all_knowladgebase.length})</div>
+                <div className="mvx-multistatus-check-approve" onClick={(e) => this.handle_post_retrive_status(e, 'publish', 'knowladgebase')}>| Published ({this.state.display_publish_knowladgebase.length})</div>
+                <div className="mvx-multistatus-check-pending status-active" onClick={(e) => this.handle_post_retrive_status(e, 'pending', 'knowladgebase')}>| Pending ({this.state.display_pending_knowladgebase.length})</div>
               </div>
 
 

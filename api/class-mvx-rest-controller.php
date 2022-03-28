@@ -553,10 +553,10 @@ class MVX_REST_API {
         $title = $request && $request->get_param('title') ? $request->get_param('title') : 0;
         if ($title == 'post_announcement') {
             wp_delete_post($ids);
-            return $this->mvx_display_announcement();
+            return $this->mvx_display_announcement('');
         } elseif ($title == 'post_knowladgebase') {
             wp_delete_post($ids);
-            return $this->mvx_display_list_knowladgebase();
+            return $this->mvx_display_list_knowladgebase('');
         } elseif ($title == 'review') {
             // delete review code
             return $this->mvx_list_of_store_review();
@@ -579,7 +579,7 @@ class MVX_REST_API {
     public function mvx_search_announcement($request) {
         $ids = $request && $request->get_param('ids') ? ($request->get_param('ids')) : 0;
         $value = $request && $request->get_param('value') ? ($request->get_param('value')) : 0;
-        $all_announcement   =   $this->mvx_display_announcement();
+        $all_announcement   =   $this->mvx_display_announcement('');
         $search_announcement_renew = [];
         if ($all_announcement->data && !empty($all_announcement->data) && !empty($value)) {
             foreach ($all_announcement->data as $announce_key => $anounce_value) {
@@ -782,10 +782,12 @@ class MVX_REST_API {
         wp_insert_post( array( 'post_title' => $knowladgebase_title, 'post_type' => 'mvx_university', 'post_status' => 'publish', 'post_content' => $knowladgebase_content ) );
     }
     public function mvx_display_list_knowladgebase($request) {
+        $status = $request && $request->get_param('status') ? $request->get_param('status') : '';
+        $status = $status == 'all' ? array('publish', 'auto-draft', 'pending') : $status;
         $announcement_list = array();
         $args = array(
             'post_type' => 'mvx_university',
-            'post_status' => array('publish', 'auto-draft'),
+            'post_status' => $status ? $status : array('publish', 'auto-draft', 'pending'),
             'posts_per_page' => -1,
         );
         $knowladgebase = get_posts($args);
@@ -1746,7 +1748,9 @@ class MVX_REST_API {
             if ($vedors_list && is_array($vedors_list) && !empty($vedors_list)) {
                 foreach ($vedors_list as $key => $value) {
                     $vendor = get_mvx_vendor($value);
-                    $vedors_list_renew[] = $vendor->page_title;
+                    if ($vendor) {
+                        $vedors_list_renew[] = $vendor->page_title;
+                    }
                 }
             }
 

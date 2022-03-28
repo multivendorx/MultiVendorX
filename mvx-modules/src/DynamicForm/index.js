@@ -24,6 +24,9 @@ export default class DynamicForm extends React.Component {
     this.onnestedChange = this.onnestedChange.bind(this);
 
     this.onSelectDeselectChange = this.onSelectDeselectChange.bind(this);
+
+    this.onMultiChange = this.onMultiChange.bind(this);
+    
     
   }
 
@@ -112,6 +115,29 @@ export default class DynamicForm extends React.Component {
     // if(this.props.submitbutton && this.props.submitbutton == 'false') {
     //   this.onSubmit('');
     // }
+  }
+
+  onMultiChange(e, o, m, target, indexp) {
+    
+    var new_arraydata = this.state[target] ? this.state[target] : [];
+
+    m.options.map((om, index) => {
+
+      new_arraydata[index] = {key: om.key, value: o.key == om.key ? e.target.value : ( this.state[target][index] && this.state[target][index]['value'] ? this.state[target][index]['value'] : '') }; //o.key == om.key ? e.target.value : ( this.state[target][indexp] ? this.state[target][indexp] : '');
+
+    })
+
+    this.setState({
+      [target]: new_arraydata
+    });
+
+
+    if(this.props.submitbutton && this.props.submitbutton == 'false') {
+      setTimeout(() => {
+        this.onSubmit('');
+      }, 10)
+    }
+
   }
 
   removenestedchildOption(e, indexparent, index, m) {
@@ -538,6 +564,8 @@ export default class DynamicForm extends React.Component {
         return false;
       }
 
+      if (m.depend && !this.state[m.depend]) {return false;}
+
 
       let input = '';
 
@@ -575,6 +603,46 @@ export default class DynamicForm extends React.Component {
           </div>
       );
       }
+
+
+      if (type == "multi_number") {
+        input = (
+        <div className="mvx-settings-basic-input-class">
+
+        {
+
+        m.options.map((o, index) => {
+
+          return (
+            <div className="mvx-settings-basic-input-child-class">
+            <React.Fragment key={"cfr" + o.key}>
+              <div className="mvx-setting-form-input">
+                <div className="mvx-setting-form-input-label">{o.label}</div>
+                <input
+                  {...props}
+                  className={m.class}
+                  type={o.type}
+                  id={`mvx-setting-integer-input-${o.key}`}
+                  key={o.key}
+                  name={o.name}
+                  value={value[index] && value[index]['key'] == o.key ? value[index]['value'] : ''}
+                  onChange={e => {
+                    this.onMultiChange(e, o, m, target, index);
+                  }}
+                />
+              </div>
+            </React.Fragment>
+            
+            </div>
+
+          );
+        })
+      }
+        {m.desc ? <p className="mvx-settings-metabox-description" dangerouslySetInnerHTML={{ __html: m.desc }}></p> : ''}
+        </div>
+        )
+      }
+
 
       if (type == "label") {
         input = (
