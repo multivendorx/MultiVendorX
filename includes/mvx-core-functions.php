@@ -5609,6 +5609,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     ),
                     'database_value' => '',
                 ],
+                // default commissions
                 [
                     'key'       => 'default_commission',
                     'type'      => 'multi_number',
@@ -5628,31 +5629,71 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'database_value' => '',
                 ],
                 [
-                    'key'       => 'default_percentage',
-                    'type'      => 'number',
-                    'label'     => __( 'Commission Percentage', 'dc-woocommerce-multi-vendor' ),
-                    'desc' => __('This will be the default percentage paid to vendors if product and vendor specific commission is not set', 'dc-woocommerce-multi-vendor'),
+                    'key'       => 'default_commission',
+                    'type'      => 'multi_number',
+                    'depend'    => 'commission_type',
+                    'dependvalue'       =>  'percent',
+                    'label'     => __( 'Commission Value', 'dc-woocommerce-multi-vendor' ),
+                    'desc' => __('The commission amount added here will be applicable for all commissions. In case the your commission type is fixed the', 'dc-woocommerce-multi-vendor'),
+                    'options' => array(
+                        array(
+                            'name'  => 'default_commission',
+                            'key'   => 'percent_amount',
+                            'type'      => 'number',
+                            'label' => __('Percentage', 'dc-woocommerce-multi-vendor'),
+                            'value' => 'percent_amount'
+                        )
+                    ),
                     'database_value' => '',
                 ],
                 [
-                    'key'       => 'fixed_with_percentage',
-                    'type'      => 'number',
-                    'label'     => __( 'Fixed Amount', 'dc-woocommerce-multi-vendor' ),
-                    'desc' => __('Fixed (per transaction)', 'dc-woocommerce-multi-vendor'),
+                    'key'       => 'default_commission',
+                    'type'      => 'multi_number',
+                    'depend'    => 'commission_type',
+                    'dependvalue'       =>  'fixed_with_percentage',
+                    'label'     => __( 'Commission Value', 'dc-woocommerce-multi-vendor' ),
+                    'desc' => __('The commission amount added here will be applicable for all commissions. In case the your commission type is fixed the', 'dc-woocommerce-multi-vendor'),
+                    'options' => array(
+                        array(
+                            'name'  => 'default_commission',
+                            'key' => 'fixed_ammount',
+                            'type'      => 'number',
+                            'label' => __('Fixed', 'dc-woocommerce-multi-vendor'),
+                            'value' => 'fixed_ammount'
+                        ),
+                        array(
+                            'name'  => 'default_commission',
+                            'key'   => 'percent_amount',
+                            'type'      => 'number',
+                            'label' => __('Percentage', 'dc-woocommerce-multi-vendor'),
+                            'value' => 'percent_amount'
+                        )
+                    ),
                     'database_value' => '',
                 ],
                 [
-                    'key'       => 'fixed_with_percentage_qty',
-                    'type'      => 'number',
-                    'label'     => __( 'Fixed Amount', 'dc-woocommerce-multi-vendor' ),
-                    'desc' => __('Fixed (per unit)', 'dc-woocommerce-multi-vendor'),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'fixed_with_percentage_per_vendor',
-                    'type'      => 'number',
-                    'label'     => __( 'Fixed Amount', 'dc-woocommerce-multi-vendor' ),
-                    'desc' => __('Fixed (per vendor)', 'dc-woocommerce-multi-vendor'),
+                    'key'       => 'default_commission',
+                    'type'      => 'multi_number',
+                    'depend'    => 'commission_type',
+                    'dependvalue'       =>  'fixed_with_percentage_qty',
+                    'label'     => __( 'Commission Value', 'dc-woocommerce-multi-vendor' ),
+                    'desc' => __('The commission amount added here will be applicable for all commissions. In case the your commission type is fixed the', 'dc-woocommerce-multi-vendor'),
+                    'options' => array(
+                        array(
+                            'name'  => 'default_commission',
+                            'key' => 'fixed_ammount',
+                            'type'      => 'number',
+                            'label' => __('Fixed', 'dc-woocommerce-multi-vendor'),
+                            'value' => 'fixed_ammount'
+                        ),
+                        array(
+                            'name'  => 'default_commission',
+                            'key'   => 'percent_amount',
+                            'type'      => 'number',
+                            'label' => __('Percentage', 'dc-woocommerce-multi-vendor'),
+                            'value' => 'percent_amount'
+                        )
+                    ),
                     'database_value' => '',
                 ],
                 [
