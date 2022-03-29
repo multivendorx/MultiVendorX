@@ -41,7 +41,7 @@ $coupon_list_table_headers = apply_filters('mvx_datatable_coupon_list_table_head
             </tbody>
         </table>
         <div class="mvx-action-container">
-            <a href="<?php echo mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_add_coupon_endpoint', 'vendor', 'general', 'add-coupon'));?>" class="btn btn-default"><?php echo __('Add Coupon', 'dc-woocommerce-multi-vendor');?></a>
+            <a href="<?php echo mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_add_coupon_endpoint', 'seller_dashbaord', 'add-coupon'));?>" class="btn btn-default"><?php echo __('Add Coupon', 'dc-woocommerce-multi-vendor');?></a>
         </div>
     </div>
 </div>

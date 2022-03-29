@@ -1893,8 +1893,8 @@ class MVX_Ajax {
                         }
                     }
                     
-                    if ((current_vendor_can('edit_published_products') && get_mvx_vendor_settings('is_edit_delete_published_product', 'capabilities', 'product') == 'Enable') || in_array($product->get_status(), apply_filters('mvx_enable_edit_product_options_for_statuses', array('draft', 'pending')))) {
-                        $edit_product_link = esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_edit_product_endpoint', 'vendor', 'general', 'edit-product'), $product->get_id()));
+                    if ((current_vendor_can('edit_published_products') && get_mvx_vendor_settings('is_edit_delete_published_product', 'products_capability')) || in_array($product->get_status(), apply_filters('mvx_enable_edit_product_options_for_statuses', array('draft', 'pending')))) {
+                        $edit_product_link = esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_edit_product_endpoint', 'seller_dashbaord', 'edit-product'), $product->get_id()));
                     }
                     if(!current_vendor_can('edit_product') && in_array($product->get_status(), apply_filters('mvx_enable_edit_product_options_for_statuses', array('draft', 'pending')))) $edit_product_link = '';
                     $edit_product_link = apply_filters('mvx_vendor_product_list_product_edit_link', $edit_product_link, $product);
@@ -1943,8 +1943,8 @@ class MVX_Ajax {
                     $actions_col = array(
                         'view' => '<a href="' . esc_url($product->get_permalink()) . '" target="_blank" title="' . $view_title . '"><i class="mvx-font ico-eye-icon"></i></a>',
                         'edit' => '<a href="' . esc_url($edit_product_link) . '" title="' . __('Edit', 'dc-woocommerce-multi-vendor') . '"><i class="mvx-font ico-edit-pencil-icon"></i></a>',
-                        'restore' => '<a href="' . esc_url(wp_nonce_url(add_query_arg(array('product_id' => $product->get_id()), mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_products_endpoint', 'vendor', 'general', 'products'))), 'mvx_untrash_product')) . '" title="' . __('Restore from the Trash', 'dc-woocommerce-multi-vendor') . '"><i class="mvx-font ico-reply-icon"></i></a>',
-                        'trash' => '<a class="productDelete" href="' . esc_url(wp_nonce_url(add_query_arg(array('product_id' => $product->get_id()), mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_products_endpoint', 'vendor', 'general', 'products'))), 'mvx_trash_product')) . '" title="' . __('Move to the Trash', 'dc-woocommerce-multi-vendor') . '"><i class="mvx-font ico-delete-icon"></i></a>',
+                        'restore' => '<a href="' . esc_url(wp_nonce_url(add_query_arg(array('product_id' => $product->get_id()), mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_products_endpoint', 'seller_dashbaord', 'products'))), 'mvx_untrash_product')) . '" title="' . __('Restore from the Trash', 'dc-woocommerce-multi-vendor') . '"><i class="mvx-font ico-reply-icon"></i></a>',
+                        'trash' => '<a class="productDelete" href="' . esc_url(wp_nonce_url(add_query_arg(array('product_id' => $product->get_id()), mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_products_endpoint', 'seller_dashbaord', 'products'))), 'mvx_trash_product')) . '" title="' . __('Move to the Trash', 'dc-woocommerce-multi-vendor') . '"><i class="mvx-font ico-delete-icon"></i></a>',
                         'delete' => '<a class="productDelete" href="' . esc_url(wp_nonce_url(add_query_arg(array('product_id' => $product->get_id()), mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_products_endpoint', 'vendor', 'general', 'products'))), 'mvx_delete_product')) . '" onclick="' . $onclick . '" title="' . __('Delete Permanently', 'dc-woocommerce-multi-vendor') . '"><i class="mvx-font ico-delete-icon"></i></a>',
                         'dismiss' => $dismiss_reason_modal.'<a data-toggle="modal" data-target="#mvx-product-dismiss-reason-modal-'.$product->get_id().'" title="' . __('Click to view reason for dismiss', 'dc-woocommerce-multi-vendor') . '"><i class="mvx-font ico-reject-icon"></i></a>',
                     );
@@ -1961,7 +1961,7 @@ class MVX_Ajax {
                     if(!get_post_meta($product->get_id(), '_dismiss_to_do_list', true))
                         unset($actions_col['dismiss']);
 
-                    if (!current_vendor_can('edit_published_products') && get_mvx_vendor_settings('is_edit_delete_published_product', 'capabilities', 'product') != 'Enable' && !in_array($product->get_status(), apply_filters('mvx_enable_edit_product_options_for_statuses', array('draft', 'pending')))) { 
+                    if (!current_vendor_can('edit_published_products') && get_mvx_vendor_settings('is_edit_delete_published_product', 'products_capability') != true && !in_array($product->get_status(), apply_filters('mvx_enable_edit_product_options_for_statuses', array('draft', 'pending')))) { 
                         unset($actions_col['edit']);
                         if ($product->get_status() != 'trash')
                             unset($actions_col['delete']);

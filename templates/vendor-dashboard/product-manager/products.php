@@ -129,7 +129,7 @@ do_action('before_mvx_vendor_dashboard_product_list_table');
         </table>
         <div class="mvx-action-container">
             <?php do_action('before_mvx_vendor_dash_product_list_page_header_action_btn'); ?>
-            <a href="<?php echo apply_filters('mvx_vendor_dashboard_add_product_url', mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_add_product_endpoint', 'vendor', 'general', 'add-product')));?>" class="btn btn-default"><i class="mvx-font ico-add-booking"></i><?php echo __('Add Product', 'dc-woocommerce-multi-vendor');?></a>
+            <a href="<?php echo apply_filters('mvx_vendor_dashboard_add_product_url', mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_add_product_endpoint', 'seller_dashbaord', 'add-product')));?>" class="btn btn-default"><i class="mvx-font ico-add-booking"></i><?php echo __('Add Product', 'dc-woocommerce-multi-vendor');?></a>
             <?php do_action('after_mvx_vendor_dash_product_list_page_header_action_btn'); ?>
         </div>
         </form>

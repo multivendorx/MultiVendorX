@@ -14,7 +14,7 @@ if (!function_exists('get_mvx_vendor_settings')) {
             return get_mvx_global_settings($key, $default);
         }
         if (empty($key)) {
-            return get_option("wcmp_{$tab}_tab_settings", $default);
+            return get_option("mvx_{$tab}_tab_settings", $default);
         }
         if (!empty($key) && !empty($tab)) {
             $settings = get_option("mvx_{$tab}_tab_settings", $default);
@@ -333,36 +333,39 @@ if (!function_exists('mvx_vendor_dashboard_page_id')) {
      * @return int
      */
     function mvx_vendor_dashboard_page_id($language_code = '', $url = false) {
-        if (get_mvx_vendor_settings('mvx_vendor', 'vendor', 'general')) {
-            if ( defined( 'ICL_SITEPRESS_VERSION' ) && ! ICL_PLUGIN_INACTIVE && class_exists( 'SitePress' ) ) {
-                if( !$language_code ) {
-                    global $sitepress;
-                    $language_code = $sitepress->get_current_language();
-                }
-                if( $language_code ) {
-                    if( defined('DOING_AJAX') ) {
-                        do_action( 'wpml_switch_language', $language_code );
+        if (get_mvx_vendor_settings('vendor_dashboard_page', 'settings_general')) {
+            $mvx_dashboard_data = get_mvx_vendor_settings('vendor_dashboard_page', 'settings_general');
+            if (isset($mvx_dashboard_data['value']) && !empty($mvx_dashboard_data['value'])) {
+                if ( defined( 'ICL_SITEPRESS_VERSION' ) && ! ICL_PLUGIN_INACTIVE && class_exists( 'SitePress' ) ) {
+                    if( !$language_code ) {
+                        global $sitepress;
+                        $language_code = $sitepress->get_current_language();
                     }
-                    if ($url) {
-                        $mvx_page =  get_permalink(icl_object_id( get_mvx_vendor_settings('mvx_vendor', 'vendor', 'general'), 'page', true, $language_code ));
-                        $mvx_page = apply_filters( 'wpml_permalink', $mvx_page, $language_code );
+                    if( $language_code ) {
+                        if( defined('DOING_AJAX') ) {
+                            do_action( 'wpml_switch_language', $language_code );
+                        }
+                        if ($url) {
+                            $mvx_page =  get_permalink(icl_object_id( $mvx_dashboard_data['value'], 'page', true, $language_code ));
+                            $mvx_page = apply_filters( 'wpml_permalink', $mvx_page, $language_code );
+                        } else {
+                            $mvx_page =  icl_object_id( $mvx_dashboard_data['value'], 'page', true, $language_code );
+                            $mvx_page = apply_filters( 'wpml_permalink', $mvx_page, $language_code );
+                        }
+                        return $mvx_page;
                     } else {
-                        $mvx_page =  icl_object_id( get_mvx_vendor_settings('mvx_vendor', 'vendor', 'general'), 'page', true, $language_code );
-                        $mvx_page = apply_filters( 'wpml_permalink', $mvx_page, $language_code );
+                        if ($url) {
+                            return  get_permalink(icl_object_id( $mvx_dashboard_data['value'], 'page', true ));
+                        } else {
+                            return  icl_object_id( $mvx_dashboard_data['value'], 'page', true );
+                        }
                     }
-                    return $mvx_page;
                 } else {
                     if ($url) {
-                        return  get_permalink(icl_object_id( get_mvx_vendor_settings('mvx_vendor', 'vendor', 'general'), 'page', true ));
+                        return get_permalink( (int) $mvx_dashboard_data['value'] );
                     } else {
-                        return  icl_object_id( get_mvx_vendor_settings('mvx_vendor', 'vendor', 'general'), 'page', true );
+                        return (int) $mvx_dashboard_data['value'];
                     }
-                }
-            } else {
-                if ($url) {
-                    return get_permalink( (int) get_mvx_vendor_settings('mvx_vendor', 'vendor', 'general') );
-                } else {
-                    return (int) get_mvx_vendor_settings('mvx_vendor', 'vendor', 'general');
                 }
             }
         }
@@ -393,11 +396,14 @@ if (!function_exists('mvx_vendor_registration_page_id')) {
      * @return type
      */
     function mvx_vendor_registration_page_id() {
-        if (get_mvx_vendor_settings('vendor_registration', 'vendor', 'general')) {
-            if (function_exists('icl_object_id')) {
-                return icl_object_id((int) get_mvx_vendor_settings('vendor_registration', 'vendor', 'general'), 'page', false, ICL_LANGUAGE_CODE);
+        if (get_mvx_vendor_settings('registration_page', 'settings_general')) {
+            $mvx_registration_page_data = get_mvx_vendor_settings('registration_page', 'settings_general');
+            if (isset($mvx_registration_page_data['value']) && !empty($mvx_registration_page_data['value'])) {
+                if (function_exists('icl_object_id')) {
+                    return icl_object_id((int) $mvx_registration_page_data['value'], 'page', false, ICL_LANGUAGE_CODE);
+                }
+                return (int) $mvx_registration_page_data['value'];
             }
-            return (int) get_mvx_vendor_settings('vendor_registration', 'vendor', 'general');
         }
         return false;
     }
@@ -459,7 +465,7 @@ if (!function_exists('is_vendor_order_by_product_page')) {
      * @return boolean
      */
     function is_vendor_order_by_product_page() {
-        return is_mvx_endpoint_url(get_mvx_vendor_settings('mvx_vendor_orders_endpoint', 'vendor', 'general', 'vendor-orders'));
+        return is_mvx_endpoint_url(get_mvx_vendor_settings('mvx_vendor_orders_endpoint', 'seller_dashbaord', 'vendor-orders'));
     }
 
 }
@@ -814,7 +820,7 @@ if (!function_exists('mvx_seller_review_enable')) {
         $current_user = wp_get_current_user();
         if ($current_user->ID > 0) {
             if (mvx_is_module_active('vendor-review')) {
-                if (get_mvx_vendor_settings('is_sellerreview_varified', 'general') == 'Enable') {
+                if (get_mvx_vendor_settings('is_sellerreview_varified', 'review_management')) {
                     $is_enable = mvx_find_user_purchased_with_vendor($current_user->ID, $vendor_term_id);
                 } else {
                     $is_enable = true;
@@ -1034,7 +1040,7 @@ if (!function_exists('mvx_get_vendor_review_info')) {
             $rating = $product_rating = 0;
             $comments = get_comments($args);
             // If product review sync enabled
-            if (get_mvx_vendor_settings('product_review_sync', 'general') && get_mvx_vendor_settings('product_review_sync', 'general') == 'Enable') {
+            if (get_mvx_vendor_settings('product_review_sync', 'review_management')) {
                 $vendor = get_mvx_vendor_by_term( $vendor_term_id );
                 $args_default_for_product = apply_filters('mvx_vendors_product_review_info_args', array(
                     'status' => 'approve',
@@ -1050,7 +1056,7 @@ if (!function_exists('mvx_get_vendor_review_info')) {
             if ($comments && count($comments) > 0) {
                 foreach ($comments as $comment) {
                     $rating += floatval(get_comment_meta($comment->comment_ID, 'vendor_rating', true));
-		    if (get_mvx_vendor_settings('product_review_sync', 'general') && get_mvx_vendor_settings('product_review_sync', 'general') == 'Enable') {
+		    if (get_mvx_vendor_settings('product_review_sync', 'review_management')) {
                         $product_rating += floatval(get_comment_meta($comment->comment_ID, 'rating', true));
                     }
                 }
@@ -2080,29 +2086,29 @@ if (!function_exists('mvx_get_vendor_profile_completion')) {
             $progress_fields = array(
                 '_vendor_page_title' => array(
                     'label' => __('Store Name', 'dc-woocommerce-multi-vendor'),
-                    'link' => mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_store_settings_endpoint', 'vendor', 'general', 'storefront'))
+                    'link' => mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_store_settings_endpoint', 'seller_dashbaord', 'storefront'))
                 ),
                 '_vendor_image' => array(
                     'label' => __('Store Image', 'dc-woocommerce-multi-vendor'),
-                    'link' => mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_store_settings_endpoint', 'vendor', 'general', 'storefront'))
+                    'link' => mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_store_settings_endpoint', 'seller_dashbaord', 'storefront'))
                 ),
                 '_vendor_banner' => array(
                     'label' => __('Store Cover Image', 'dc-woocommerce-multi-vendor'),
-                    'link' => mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_store_settings_endpoint', 'vendor', 'general', 'storefront'))
+                    'link' => mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_store_settings_endpoint', 'seller_dashbaord', 'storefront'))
                 ),
                 '_vendor_payment_mode' => array(
                     'label' => __('Payment Method', 'dc-woocommerce-multi-vendor'),
-                    'link' => mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_billing_endpoint', 'vendor', 'general', 'vendor-billing'))
+                    'link' => mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_billing_endpoint', 'seller_dashbaord', 'vendor-billing'))
                 ),
                 '_vendor_added_product' => array(
                     'label' => __('Product', 'dc-woocommerce-multi-vendor'),
-                    'link' => mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_add_product_endpoint', 'vendor', 'general', 'add-product'))
+                    'link' => mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_add_product_endpoint', 'seller_dashbaord', 'add-product'))
                 ),
             );
             if (wc_shipping_enabled() && $vendor->is_shipping_enable()) {
                 $progress_fields['vendor_shipping_data'] = array(
                     'label' => __('Shipping Data', 'dc-woocommerce-multi-vendor'),
-                    'link' => mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_shipping_endpoint', 'vendor', 'general', 'vendor-shipping'))
+                    'link' => mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_shipping_endpoint', 'seller_dashbaord', 'vendor-shipping'))
                 );
             }
             $progress_fields = apply_filters('mvx_vendor_profile_completion_progress_fields', $progress_fields, $vendor->id);
