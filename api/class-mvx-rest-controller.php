@@ -4059,7 +4059,7 @@ class MVX_REST_API {
                         'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
-                        'id'           => 'single-product-multiple-vendor',
+                        'id'           => 'SPMV',
                         'name'         => __( 'Single Product Multiple Vendor', 'dc-woocommerce-multi-vendor' ),
                         'description'  => __( 'Lets multiple vendors sell the same products ', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
@@ -4548,7 +4548,7 @@ class MVX_REST_API {
                         $mvx_all_modules[$parent_module_key]['options'][$module_key]['is_active'] = $this->is_current_module_active($module_value['id']);
                         //$mvx_all_modules[$parent_module_key]['options'][$module_key]['thumbnail_dir'] = file_exists($thumbnail_path . '/'.$module_value['id'].'.png') ? $thumbnail_dir . '/'. $module_value['id'].'.png' : '';
 
-                        $mvx_all_modules[$parent_module_key]['options'][$module_key]['thumbnail_dir'] = 'icon-' . $module_value['id'];
+                        $mvx_all_modules[$parent_module_key]['options'][$module_key]['thumbnail_dir'] = 'module-' . $module_value['id'];
 
                         if (isset($mvx_all_modules[$parent_module_key]['options'][$module_key]['required_plugin_list']) && !empty($mvx_all_modules[$parent_module_key]['options'][$module_key]['required_plugin_list'])) {
 

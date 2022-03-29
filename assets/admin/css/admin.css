@@ -184,22 +184,21 @@ a:focus {
 
 /*********** Modules section *********************/
 
-
 @font-face {
-  font-family: 'mvx-modules';
-  src:  url('../fonts/modules/mvx-modules.eot?rnqwji');
-  src:  url('../fonts/modules/mvx-modules.eot?rnqwji#iefix') format('embedded-opentype'),
-    url('../fonts/modules/mvx-modules.ttf?rnqwji') format('truetype'),
-    url('../fonts/modules/mvx-modules.woff?rnqwji') format('woff'),
-    url('../fonts/modules/mvx-modules.svg?rnqwji#mvx-modules') format('svg');
+  font-family: 'mvx-module';
+  src:  url('../fonts/modules/mvx-module.eot?ayxl59');
+  src:  url('../fonts/modules/mvx-module.eot?ayxl59#iefix') format('embedded-opentype'),
+    url('../fonts/modules/mvx-module.ttf?ayxl59') format('truetype'),
+    url('../fonts/modules/mvx-module.woff?ayxl59') format('woff'),
+    url('../fonts/modules/mvx-module.svg?ayxl59#mvx-module') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 
-[class^="icon-"], [class*=" icon-"] {
+[class^="module-"], [class*=" module-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'mvx-modules' !important;
+  font-family: 'mvx-module' !important;
   speak: never;
   font-style: normal;
   font-weight: normal;
@@ -212,189 +211,188 @@ a:focus {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-accommodation:before {
+.module-accommodation:before {
   content: "\e900";
 }
-.icon-advance-custom-field:before {
+.module-advance-custom-field:before {
   content: "\e901";
 }
-.icon-announcement:before {
+.module-announcement:before {
   content: "\e902";
 }
-.icon-auction:before {
+.module-auction:before {
   content: "\e903";
 }
-.icon-bank-payment:before {
+.module-bank-payment:before {
   content: "\e904";
 }
-.icon-booking:before {
+.module-booking:before {
   content: "\e905";
 }
-.icon-buddypress:before {
+.module-buddypress:before {
   content: "\e906";
 }
-.icon-bundle:before {
+.module-bundle:before {
   content: "\e907";
 }
-.icon-business-hours:before {
+.module-business-hours:before {
   content: "\e908";
 }
-.icon-country-shipping:before {
+.module-country-shipping:before {
   content: "\e909";
 }
-.icon-customer-support:before {
+.module-customer-support:before {
   content: "\e90a";
 }
-.icon-distance--shipping:before {
+.module-distance-shipping:before {
   content: "\e90b";
 }
-.icon-elementor:before {
+.module-elementor:before {
   content: "\e90c";
 }
-.icon-external:before {
+.module-external:before {
   content: "\e90d";
 }
-.icon-follow-store .path1:before {
+.module-follow-store .path1:before {
   content: "\e90e";
   color: rgb(23, 23, 23);
 }
-.icon-follow-store .path2:before {
+.module-follow-store .path2:before {
   content: "\e90f";
   margin-left: -1em;
   color: rgb(23, 23, 23);
 }
-.icon-follow-store .path3:before {
+.module-follow-store .path3:before {
   content: "\e910";
   margin-left: -1em;
   color: rgb(24, 23, 24);
 }
-.icon-geo-my-wp:before {
+.module-geo-my-wp:before {
   content: "\e911";
 }
-.icon-grouped:before {
+.module-grouped:before {
   content: "\e912";
 }
-.icon-identity-verification:before {
+.module-identity-verification:before {
   content: "\e913";
 }
-.icon-import-export:before {
+.module-import-export:before {
   content: "\e914";
 }
-.icon-invoice:before {
+.module-invoice:before {
   content: "\e915";
 }
-.icon-knowladgebase:before {
+.module-knowladgebase:before {
   content: "\e916";
 }
-.icon-live-chat:before {
+.module-live-chat:before {
   content: "\e917";
 }
-.icon-mangopay:before {
+.module-mangopay:before {
   content: "\e918";
 }
-.icon-marketplace-membership:before {
+.module-marketplace-membership:before {
   content: "\e919";
 }
-.icon-marketplace-refund:before {
+.module-marketplace-refund:before {
   content: "\e91a";
 }
-.icon-messaging:before {
+.module-messaging:before {
   content: "\e91b";
 }
-.icon-paypal-marketplace:before {
+.module-paypal-marketplace:before {
   content: "\e91c";
 }
-.icon-paypal-masspay:before {
+.module-paypal-masspay:before {
   content: "\e91d";
 }
-.icon-paypal-payout:before {
+.module-paypal-payout:before {
   content: "\e91e";
 }
-.icon-per-product-shipping:before {
+.module-per-product-shipping:before {
   content: "\e91f";
 }
-.icon-product-addon:before {
+.module-product-addon:before {
   content: "\e920";
 }
-.icon-razorpay:before {
+.module-razorpay:before {
   content: "\e921";
 }
-.icon-rental:before {
+.module-rental:before {
   content: "\e922";
 }
-.icon-report-abuse:before {
+.module-report-abuse:before {
   content: "\e923";
 }
-.icon-return-and-warrenty:before {
+.module-return-and-warrenty:before {
   content: "\e924";
 }
-.icon-simple:before {
+.module-simple:before {
   content: "\e925";
 }
-.icon-s-p-multiple-vendor:before {
+.module-spmv:before {
   content: "\e926";
 }
-.icon-staff-manager:before {
+.module-staff-manager:before {
   content: "\e927";
 }
-.icon-store-analytics:before {
+.module-store-analytics:before {
   content: "\e928";
 }
-.icon-store-location:before {
+.module-store-location:before {
   content: "\e929";
 }
-.icon-store-policy:before {
+.module-store-policy:before {
   content: "\e92a";
 }
-.icon-store-review .path1:before {
+.module-store-review .path1:before {
   content: "\e92b";
   color: rgb(23, 23, 23);
 }
-.icon-store-review .path2:before {
+.module-store-review .path2:before {
   content: "\e92c";
   margin-left: -1em;
   color: rgb(24, 23, 24);
 }
-.icon-store-seo:before {
+.module-store-seo:before {
   content: "\e92d";
 }
-.icon-stripe-connect:before {
+.module-stripe-connect:before {
   content: "\e92e";
 }
-.icon-stripe-marketplace:before {
+.module-stripe-marketplace:before {
   content: "\e92f";
 }
-.icon-subscription:before {
+.module-subscription:before {
   content: "\e930";
 }
-.icon-toolset-types:before {
+.module-toolset-types:before {
   content: "\e931";
 }
-.icon-vacation:before {
+.module-vacation:before {
   content: "\e932";
 }
-.icon-variable:before {
+.module-variable:before {
   content: "\e933";
 }
-.icon-vendor-shipping:before {
+.module-vendor-shipping:before {
   content: "\e934";
 }
-.icon-weight-shipping:before {
+.module-weight-shipping:before {
   content: "\e935";
 }
-.icon-wholesale:before {
+.module-wholesale:before {
   content: "\e936";
 }
-.icon-wp-affiliate:before {
+.module-wp-affiliate:before {
   content: "\e937";
 }
-.icon-wpml:before {
+.module-wpml:before {
   content: "\e938";
 }
-.icon-zone-shipping:before {
+.module-zone-shipping:before {
   content: "\e939";
 }
-
 
 /*icon end*/
 
