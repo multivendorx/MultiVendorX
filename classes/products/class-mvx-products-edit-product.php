@@ -20,7 +20,7 @@ class MVX_Products_Edit_Product {
     public function __construct() {
         global $wp;
 
-        $this->product_id = $wp->query_vars[get_mvx_vendor_settings( 'mvx_edit_product_endpoint', 'vendor', 'general', 'edit-product' )];
+        $this->product_id = $wp->query_vars[get_mvx_vendor_settings( 'mvx_edit_product_endpoint', 'seller_dashbaord', 'edit-product' )];
         $this->product_object = new WC_Product();
 
         if ( $this->product_id && $this->product_capablity_check( 'edit', $this->product_id ) ) {

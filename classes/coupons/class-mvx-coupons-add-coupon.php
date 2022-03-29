@@ -19,7 +19,7 @@ class MVX_Coupons_Add_Coupon {
     public function __construct() { 
         global $wp;
 
-        $this->coupon_id = absint( $wp->query_vars[get_mvx_vendor_settings( 'mvx_add_coupon_endpoint', 'vendor', 'general', 'add-coupon' )] );
+        $this->coupon_id = absint( $wp->query_vars[get_mvx_vendor_settings( 'mvx_add_coupon_endpoint', 'seller_dashbaord', 'add-coupon' )] );
         $this->coupon_object = new WC_Coupon();
         if ( $this->coupon_id && $this->coupon_capablity_check( 'edit', $this->coupon_id ) ) {
             $this->post_object = get_post( $this->coupon_id );

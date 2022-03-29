@@ -13,7 +13,7 @@ $vendor = get_mvx_vendor($vendor_id);
 $vendor_hide_address = apply_filters('mvx_vendor_store_header_hide_store_address', get_user_meta($vendor_id, '_vendor_hide_address', true), $vendor->id);
 $vendor_hide_phone = apply_filters('mvx_vendor_store_header_hide_store_phone', get_user_meta($vendor_id, '_vendor_hide_phone', true), $vendor->id);
 $vendor_hide_email = apply_filters('mvx_vendor_store_header_hide_store_email', get_user_meta($vendor_id, '_vendor_hide_email', true), $vendor->id);
-$template_class = get_mvx_vendor_settings('mvx_vendor_shop_template', 'vendor', 'dashboard', 'template1');
+$template_class = get_mvx_vendor_settings('mvx_vendor_shop_template', 'store', 'template1');
 $template_class = apply_filters('can_vendor_edit_shop_template', false) && get_user_meta($vendor_id, '_shop_template', true) ? get_user_meta($vendor_id, '_shop_template', true) : $template_class;
 $vendor_hide_description = apply_filters('mvx_vendor_store_header_hide_description', get_user_meta($vendor_id, '_vendor_hide_description', true), $vendor->id);
 
