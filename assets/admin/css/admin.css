@@ -617,7 +617,7 @@ i.mvx-font.ico-store-icon {
   font-weight: 500;
 }
 
-.mvx-module-settings-box span.dashicons {
+.mvx-module-settings-box i.mvx-font {
   font-size: 1.4rem;
   line-height: 3rem;
   display: inline-block;
