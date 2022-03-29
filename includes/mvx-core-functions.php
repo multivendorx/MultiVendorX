@@ -4798,6 +4798,11 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'database_value' => array(),
                 ],
                 [
+                    'key'       => 'separator_content',
+                    'type'      => 'section',
+                    'label'     => "",
+                ],
+                [
                     'key'       =>  'vendor_list_page',
                     'type'      =>  'blocktext',
                     'label'     =>  __( 'no_label', 'dc-woocommerce-multi-vendor' ),
@@ -5785,22 +5790,86 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                         array(
                             'key'=> "percent",
                             'label'=> __('Percentage', 'dc-woocommerce-multi-vendor'),
-                            'value'=> __('percent', 'dc-woocommerce-multi-vendor'),
+                            'value'=> 'percent',
                         ),
                         array(
                             'key'=> "fixed",
                             'label'=> __('Fixed Amount', 'dc-woocommerce-multi-vendor'),
-                            'value'=> __('fixed', 'dc-woocommerce-multi-vendor'),
+                            'value'=> 'fixed',
                         ),
                         array(
                             'key'=> "fixed_with_percentage",
                             'label'=> __('%age + Fixed', 'dc-woocommerce-multi-vendor'),
-                            'value'=> __('fixed_with_percentage', 'dc-woocommerce-multi-vendor'),
+                            'value'=> 'fixed_with_percentage',
+                        )
+                    ),
+                    'database_value' => '',
+                ],
+
+                // gayeway charge value
+                [
+                    'key'       => 'default_gateway_charge_value',
+                    'type'      => 'multi_number',
+                    'depend'    => 'payment_gateway_charge_type',
+                    'dependvalue'       =>  'fixed',
+                    'label'     => __( 'Commission Value', 'dc-woocommerce-multi-vendor' ),
+                    'desc' => __('The commission amount added here will be applicable for all commissions. In case the your commission type is fixed the', 'dc-woocommerce-multi-vendor'),
+                    'options' => array(
+                        array(
+                            'name'  => 'default_gateway_charge_value',
+                            'key' => 'fixed_gayeway_amount',
+                            'type'      => 'number',
+                            'label' => __('Fixed', 'dc-woocommerce-multi-vendor'),
+                            'value' => 'fixed_gayeway_amount'
                         )
                     ),
                     'database_value' => '',
                 ],
                 [
+                    'key'       => 'default_gateway_charge_value',
+                    'type'      => 'multi_number',
+                    'depend'    => 'payment_gateway_charge_type',
+                    'dependvalue'       =>  'percent',
+                    'label'     => __( 'Commission Value', 'dc-woocommerce-multi-vendor' ),
+                    'desc' => __('The commission amount added here will be applicable for all commissions. In case the your commission type is fixed the', 'dc-woocommerce-multi-vendor'),
+                    'options' => array(
+                        array(
+                            'name'  => 'default_gateway_charge_value',
+                            'key' => 'percent_gayeway_amount',
+                            'type'      => 'number',
+                            'label' => __('Percent', 'dc-woocommerce-multi-vendor'),
+                            'value' => 'percent_gayeway_amount'
+                        )
+                    ),
+                    'database_value' => '',
+                ],
+                [
+                    'key'       => 'default_gateway_charge_value',
+                    'type'      => 'multi_number',
+                    'depend'    => 'payment_gateway_charge_type',
+                    'dependvalue'       =>  'fixed_with_percentage',
+                    'label'     => __( 'Commission Value', 'dc-woocommerce-multi-vendor' ),
+                    'desc' => __('The commission amount added here will be applicable for all commissions. In case the your commission type is fixed the', 'dc-woocommerce-multi-vendor'),
+                    'options' => array(
+                         array(
+                            'name'  => 'default_gateway_charge_value',
+                            'key' => 'fixed_gayeway_amount',
+                            'type'      => 'number',
+                            'label' => __('Fixed', 'dc-woocommerce-multi-vendor'),
+                            'value' => 'fixed_gayeway_amount'
+                        ),
+                        array(
+                            'name'  => 'default_gateway_charge_value',
+                            'key' => 'percent_gayeway_amount',
+                            'type'      => 'number',
+                            'label' => __('Percent', 'dc-woocommerce-multi-vendor'),
+                            'value' => 'percent_gayeway_amount'
+                        )
+                    ),
+                    'database_value' => '',
+                ],
+
+                /*[
                     'key'       => 'masspay_percentage_gateway_charge',
                     'type'      => 'number',
                     'label'     => __( '', 'dc-woocommerce-multi-vendor' ),
@@ -5857,7 +5926,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'label'     => __( '', 'dc-woocommerce-multi-vendor' ),
                     'placeholder' => __( 'In Fixed', 'dc-woocommerce-multi-vendor' ),
                     'database_value' => '',
-                ],
+                ],*/
             ],
             'dashbaord-management'   => [
                 /*[
@@ -6323,270 +6392,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'database_value' => '',
                 ],
             ],
-            'commission-configuration'  => [
-                [
-                    'key'       => 'revenue_sharing_mode',
-                    'type'      => 'toggle_rectangle',
-                    'class'     => 'mvx-toggle-radio-switcher',
-                    'label'     => __( 'Revenue Sharing Mode', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __( 'Revenue Sharing Mode dashboard pages', 'dc-woocommerce-multi-vendor' ),
-                    'options' => array(
-                        array(
-                            'name'  => 'revenue_sharing_mode',
-                            'key' => 'revenue_sharing_mode_admin',
-                            'label' => __('Admin fees', 'dc-woocommerce-multi-vendor'),
-                            'value' => 'revenue_sharing_mode_admin'
-                        ),
-                        array(
-                            'name'  => 'revenue_sharing_mode',
-                            'key'   => 'revenue_sharing_mode_vendor',
-                            'label' => __('Vendor commissions', 'dc-woocommerce-multi-vendor'),
-                            'value' => 'revenue_sharing_mode_vendor'
-                        )
-                    ),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'commission_type',
-                    'type'      => 'select',
-                    'label'     => __( 'Commission Type', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __( 'Choose your preferred commission type. It will affect all commission calculations.', 'dc-woocommerce-multi-vendor' ),
-                    'options' => array(
-                        array(
-                            'key'=> "choose_commission_type",
-                            'label'=> __('Choose Commission Type', 'dc-woocommerce-multi-vendor'),
-                            'value'=> __('choose_commission_type', 'dc-woocommerce-multi-vendor'),
-                        ),
-                        array(
-                            'key'=> "fixed",
-                            'label'=> __('Fixed Amount', 'dc-woocommerce-multi-vendor'),
-                            'value'=> __('fixed', 'dc-woocommerce-multi-vendor'),
-                        ),
-                        array(
-                            'key'=> "percent",
-                            'label'=> __('Percentage', 'dc-woocommerce-multi-vendor'),
-                            'value'=> __('percent', 'dc-woocommerce-multi-vendor'),
-                        ),
-                        array(
-                            'key'=> "fixed_with_percentage",
-                            'label'=> __('%age + Fixed (per transaction)', 'dc-woocommerce-multi-vendor'),
-                            'value'=> __('fixed_with_percentage', 'dc-woocommerce-multi-vendor'),
-                        ),
-                        array(
-                            'key'=> "fixed_with_percentage_qty",
-                            'label'=> __('%age + Fixed (per unit)', 'dc-woocommerce-multi-vendor'),
-                            'value'=> __('fixed_with_percentage_qty', 'dc-woocommerce-multi-vendor'),
-                        ),
-                        array(
-                            'key'=> "commission_by_product_price",
-                            'label'=> __('Commission By Product Price', 'dc-woocommerce-multi-vendor'),
-                            'value'=> __('commission_by_product_price', 'dc-woocommerce-multi-vendor'),
-                        ),
-                        array(
-                            'key'=> "commission_by_purchase_quantity",
-                            'label'=> __('Commission By Purchase Quantity', 'dc-woocommerce-multi-vendor'),
-                            'value'=> __('commission_by_purchase_quantity', 'dc-woocommerce-multi-vendor'),
-                        ),
-                        array(
-                            'key'=> "fixed_with_percentage_per_vendor",
-                            'label'=> __('%age + Fixed (per vendor)', 'dc-woocommerce-multi-vendor'),
-                            'value'=> __('fixed_with_percentage_per_vendor', 'dc-woocommerce-multi-vendor'),
-                        ),
-                    ),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'default_commission',
-                    'type'      => 'number',
-                    'label'     => __( 'Commission Value', 'dc-woocommerce-multi-vendor' ),
-                    'desc' => __('This will be the default commission(in percentage or fixed) paid to vendors if product and vendor-specific commission is not set.', 'dc-woocommerce-multi-vendor'),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'default_percentage',
-                    'type'      => 'number',
-                    'label'     => __( 'Commission Percentage', 'dc-woocommerce-multi-vendor' ),
-                    'desc' => __('This will be the default percentage paid to vendors if product and vendor specific commission is not set', 'dc-woocommerce-multi-vendor'),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'fixed_with_percentage',
-                    'type'      => 'number',
-                    'label'     => __( 'Fixed Amount', 'dc-woocommerce-multi-vendor' ),
-                    'desc' => __('Fixed (per transaction)', 'dc-woocommerce-multi-vendor'),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'fixed_with_percentage_qty',
-                    'type'      => 'number',
-                    'label'     => __( 'Fixed Amount', 'dc-woocommerce-multi-vendor' ),
-                    'desc' => __('Fixed (per unit)', 'dc-woocommerce-multi-vendor'),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'fixed_with_percentage_per_vendor',
-                    'type'      => 'number',
-                    'label'     => __( 'Fixed Amount', 'dc-woocommerce-multi-vendor' ),
-                    'desc' => __('Fixed (per vendor)', 'dc-woocommerce-multi-vendor'),
-                    'database_value' => '',
-                ],
-                [
-                    'key'    => 'payment_method_disbursement',
-                    'label'   => __( 'Commission Disbursement Method', 'dc-woocommerce-multi-vendor' ),
-                    'class'     => 'mvx-toggle-checkbox',
-                    'type'    => 'checkbox',
-                    'options' => array(
-                        array(
-                            'key'=> "paypal_masspay",
-                            'label'=> __('PayPal Masspay (Stop Waiting and Pay Vendors Immediately with PayPal Real-Time Split Payment using <a href="https://wc-marketplace.com/product/mvx-paypal-marketplace/">MVX PayPal Marketplace</a>. Please visit our site)', 'dc-woocommerce-multi-vendor'),
-                            'value'=> "paypal_masspay"
-                        ),
-                        array(
-                            'key'=> "paypal_payout",
-                            'label'=> __('Paypal Payout', 'dc-woocommerce-multi-vendor'),
-                            'value'=> "paypal_payout"
-                        ),
-                        array(
-                            'key'=> "stripe_masspay",
-                            'label'=> __('Stripe Connect', 'dc-woocommerce-multi-vendor'),
-                            'value'=> "stripe_masspay"
-                        ),
-                        array(
-                            'key'=> "direct_bank",
-                            'label'=> __('Direct Bank Transfer', 'dc-woocommerce-multi-vendor'),
-                            'value'=> "direct_bank"
-                        ),
-                        array(
-                            'key'=> "razorpay_block",
-                            'label'=> __('Razorpay', 'dc-woocommerce-multi-vendor'),
-                            'value'=> "razorpay_block"
-                        )
-                    ),
-                    'database_value' => array(),
-                ],
-
-                [
-                    'key'       => 'payment_gateway_charge',
-                    'label'     => __( 'Payment Gateway Charge', 'dc-woocommerce-multi-vendor' ),
-                    'class'     => 'mvx-toggle-checkbox',
-                    'type'      => 'checkbox',
-                    'options' => array(
-                        array(
-                            'key'=> "payment_gateway_charge",
-                            'label'=> __('If checked, you can set payment gateway charge to the vendor for commission disbursement.', 'dc-woocommerce-multi-vendor'),
-                            'value'=> "payment_gateway_charge"
-                        )
-                    ),
-                    'database_value' => array(),
-                ],
-                [
-                    'key'       => 'gateway_charges_cost_carrier',
-                    'type'      => 'select',
-                    'label'     => __( 'Who bear the gateway charges', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __('Choose your preferred gateway charges carrier.', 'dc-woocommerce-multi-vendor'),
-                    'options' => array(
-                        array(
-                            'key'=> "vendor",
-                            'label'=> __('Vendor', 'dc-woocommerce-multi-vendor'),
-                            'value'=> __('vendor', 'dc-woocommerce-multi-vendor'),
-                        ),
-                        array(
-                            'key'=> "admin",
-                            'label'=> __('Site owner', 'dc-woocommerce-multi-vendor'),
-                            'value'=> __('admin', 'dc-woocommerce-multi-vendor'),
-                        ),
-                        array(
-                            'key'=> "separate",
-                            'label'=> __('Separately', 'dc-woocommerce-multi-vendor'),
-                            'value'=> __('separate', 'dc-woocommerce-multi-vendor'),
-                        )
-                    ),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'payment_gateway_charge_type',
-                    'type'      => 'select',
-                    'label'     => __( 'Gateway Charge Type', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __('Choose your preferred gateway charge type.', 'dc-woocommerce-multi-vendor'),
-                    'options' => array(
-                        array(
-                            'key'=> "percent",
-                            'label'=> __('Percentage', 'dc-woocommerce-multi-vendor'),
-                            'value'=> __('percent', 'dc-woocommerce-multi-vendor'),
-                        ),
-                        array(
-                            'key'=> "fixed",
-                            'label'=> __('Fixed Amount', 'dc-woocommerce-multi-vendor'),
-                            'value'=> __('fixed', 'dc-woocommerce-multi-vendor'),
-                        ),
-                        array(
-                            'key'=> "fixed_with_percentage",
-                            'label'=> __('%age + Fixed', 'dc-woocommerce-multi-vendor'),
-                            'value'=> __('fixed_with_percentage', 'dc-woocommerce-multi-vendor'),
-                        )
-                    ),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'masspay_percentage_gateway_charge',
-                    'type'      => 'number',
-                    'label'     => __( '', 'dc-woocommerce-multi-vendor' ),
-                    'placeholder' => __( 'In Percentage', 'dc-woocommerce-multi-vendor' ),
-                    'desc'  => __('PayPal Masspay (Stop Waiting and Pay Vendors Immediately with PayPal Real-Time Split Payment using <a href="https://wc-marketplace.com/product/mvx-paypal-marketplace/">MVX PayPal Marketplace</a>. Please visit our site)', 'dc-woocommerce-multi-vendor'),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'masspay_fixed_gateway_charge',
-                    'type'      => 'number',
-                    'label'     => __( '', 'dc-woocommerce-multi-vendor' ),
-                    'placeholder' => __( 'In Fixed', 'dc-woocommerce-multi-vendor' ),
-                    'desc'  => __('PayPal Masspay (Stop Waiting and Pay Vendors Immediately with PayPal Real-Time Split Payment using <a href="https://wc-marketplace.com/product/mvx-paypal-marketplace/">MVX PayPal Marketplace</a>. Please visit our site)', 'dc-woocommerce-multi-vendor'),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'payout_percentage_gateway_charge',
-                    'type'      => 'number',
-                    'label'     => __( '', 'dc-woocommerce-multi-vendor' ),
-                    'placeholder' => __( 'In Percentage', 'dc-woocommerce-multi-vendor' ),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'payout_fixed_gateway_charge',
-                    'type'      => 'number',
-                    'label'     => __( '', 'dc-woocommerce-multi-vendor' ),
-                    'placeholder' => __( 'In Fixed', 'dc-woocommerce-multi-vendor' ),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'stripe_percentage_gateway_charge',
-                    'type'      => 'number',
-                    'label'     => __( '', 'dc-woocommerce-multi-vendor' ),
-                    'placeholder' => __( 'In Percentage', 'dc-woocommerce-multi-vendor' ),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'stripe_fixed_gateway_charge',
-                    'type'      => 'number',
-                    'label'     => __( '', 'dc-woocommerce-multi-vendor' ),
-                    'placeholder' => __( 'In Fixed', 'dc-woocommerce-multi-vendor' ),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'bank_percentage_gateway_charge',
-                    'type'      => 'number',
-                    'label'     => __( '', 'dc-woocommerce-multi-vendor' ),
-                    'placeholder' => __( 'In Percentage', 'dc-woocommerce-multi-vendor' ),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'bank_fixed_gateway_charge',
-                    'type'      => 'number',
-                    'label'     => __( '', 'dc-woocommerce-multi-vendor' ),
-                    'placeholder' => __( 'In Fixed', 'dc-woocommerce-multi-vendor' ),
-                    'database_value' => '',
-                ],
-            ],
-       
+            
             'review-management'   => [
                 [
                     'key'       =>  'vendor_rating_page',
@@ -7333,13 +7139,6 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'modulename'     =>  'settings-general'
             ),
             array(
-                'tablabel'      =>  __('Social', 'dc-woocommerce-multi-vendor'),
-                'apiurl'        =>  'mvx_module/v1/save_dashpages',
-                'description'   =>  __('Create a platform for seller-customer interaction', 'dc-woocommerce-multi-vendor'),
-                'icon'          =>  'icon-tab-social',
-                'modulename'    =>  'social'
-            ),
-            array(
                 'tablabel'      =>  __('Registration Form', 'dc-woocommerce-multi-vendor'),
                 'description'   =>  __('Customise personalised seller registration form for marketplace', 'dc-woocommerce-multi-vendor'),
                 'icon'          =>  'icon-tab-registration-form',
@@ -7414,6 +7213,13 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'description'   =>  __('Manage settings for product and store review', 'dc-woocommerce-multi-vendor'),
                 'icon'          =>  'icon-tab-reviews-and-rating',
                 'modulename'    =>  'review-management'
+            ),
+            array(
+                'tablabel'      =>  __('Social', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/save_dashpages',
+                'description'   =>  __('Create a platform for seller-customer interaction', 'dc-woocommerce-multi-vendor'),
+                'icon'          =>  'icon-tab-social',
+                'modulename'    =>  'social'
             ),
         );
 
