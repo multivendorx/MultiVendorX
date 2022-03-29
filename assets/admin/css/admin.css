@@ -159,6 +159,242 @@ a:focus {
 .icon-vendor-store:before {
   content: "\e928";
 }
+.icon-tab-vendor:before {
+  content: "\e929";
+}
+.icon-tab-overview:before {
+  content: "\e92a";
+}
+.icon-tab-product-02:before {
+  content: "\e92b";
+}
+.icon-tab-transaction-history:before {
+  content: "\e92c";
+}
+.icon-tab-paypal-payout:before {
+  content: "\e92d";
+}
+.icon-tab-paypal-masspay:before {
+  content: "\e92e";
+}
+.icon-tab-stripe-connect:before {
+  content: "\e92f";
+}
+
+
+/*********** Modules section *********************/
+
+
+@font-face {
+  font-family: 'mvx-modules';
+  src:  url('../fonts/modules/mvx-modules.eot?rnqwji');
+  src:  url('../fonts/modules/mvx-modules.eot?rnqwji#iefix') format('embedded-opentype'),
+    url('../fonts/modules/mvx-modules.ttf?rnqwji') format('truetype'),
+    url('../fonts/modules/mvx-modules.woff?rnqwji') format('woff'),
+    url('../fonts/modules/mvx-modules.svg?rnqwji#mvx-modules') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'mvx-modules' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-accommodation:before {
+  content: "\e900";
+}
+.icon-advance-custom-field:before {
+  content: "\e901";
+}
+.icon-announcement:before {
+  content: "\e902";
+}
+.icon-auction:before {
+  content: "\e903";
+}
+.icon-bank-payment:before {
+  content: "\e904";
+}
+.icon-booking:before {
+  content: "\e905";
+}
+.icon-buddypress:before {
+  content: "\e906";
+}
+.icon-bundle:before {
+  content: "\e907";
+}
+.icon-business-hours:before {
+  content: "\e908";
+}
+.icon-country-shipping:before {
+  content: "\e909";
+}
+.icon-customer-support:before {
+  content: "\e90a";
+}
+.icon-distance--shipping:before {
+  content: "\e90b";
+}
+.icon-elementor:before {
+  content: "\e90c";
+}
+.icon-external:before {
+  content: "\e90d";
+}
+.icon-follow-store .path1:before {
+  content: "\e90e";
+  color: rgb(23, 23, 23);
+}
+.icon-follow-store .path2:before {
+  content: "\e90f";
+  margin-left: -1em;
+  color: rgb(23, 23, 23);
+}
+.icon-follow-store .path3:before {
+  content: "\e910";
+  margin-left: -1em;
+  color: rgb(24, 23, 24);
+}
+.icon-geo-my-wp:before {
+  content: "\e911";
+}
+.icon-grouped:before {
+  content: "\e912";
+}
+.icon-identity-verification:before {
+  content: "\e913";
+}
+.icon-import-export:before {
+  content: "\e914";
+}
+.icon-invoice:before {
+  content: "\e915";
+}
+.icon-knowladgebase:before {
+  content: "\e916";
+}
+.icon-live-chat:before {
+  content: "\e917";
+}
+.icon-mangopay:before {
+  content: "\e918";
+}
+.icon-marketplace-membership:before {
+  content: "\e919";
+}
+.icon-marketplace-refund:before {
+  content: "\e91a";
+}
+.icon-messaging:before {
+  content: "\e91b";
+}
+.icon-paypal-marketplace:before {
+  content: "\e91c";
+}
+.icon-paypal-masspay:before {
+  content: "\e91d";
+}
+.icon-paypal-payout:before {
+  content: "\e91e";
+}
+.icon-per-product-shipping:before {
+  content: "\e91f";
+}
+.icon-product-addon:before {
+  content: "\e920";
+}
+.icon-razorpay:before {
+  content: "\e921";
+}
+.icon-rental:before {
+  content: "\e922";
+}
+.icon-report-abuse:before {
+  content: "\e923";
+}
+.icon-return-and-warrenty:before {
+  content: "\e924";
+}
+.icon-simple:before {
+  content: "\e925";
+}
+.icon-s-p-multiple-vendor:before {
+  content: "\e926";
+}
+.icon-staff-manager:before {
+  content: "\e927";
+}
+.icon-store-analytics:before {
+  content: "\e928";
+}
+.icon-store-location:before {
+  content: "\e929";
+}
+.icon-store-policy:before {
+  content: "\e92a";
+}
+.icon-store-review .path1:before {
+  content: "\e92b";
+  color: rgb(23, 23, 23);
+}
+.icon-store-review .path2:before {
+  content: "\e92c";
+  margin-left: -1em;
+  color: rgb(24, 23, 24);
+}
+.icon-store-seo:before {
+  content: "\e92d";
+}
+.icon-stripe-connect:before {
+  content: "\e92e";
+}
+.icon-stripe-marketplace:before {
+  content: "\e92f";
+}
+.icon-subscription:before {
+  content: "\e930";
+}
+.icon-toolset-types:before {
+  content: "\e931";
+}
+.icon-vacation:before {
+  content: "\e932";
+}
+.icon-variable:before {
+  content: "\e933";
+}
+.icon-vendor-shipping:before {
+  content: "\e934";
+}
+.icon-weight-shipping:before {
+  content: "\e935";
+}
+.icon-wholesale:before {
+  content: "\e936";
+}
+.icon-wp-affiliate:before {
+  content: "\e937";
+}
+.icon-wpml:before {
+  content: "\e938";
+}
+.icon-zone-shipping:before {
+  content: "\e939";
+}
+
 
 /*icon end*/
 

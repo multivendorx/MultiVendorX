@@ -198,7 +198,9 @@ class App extends Component {
                   {student1.options.map((student, index) => (
                     <div className="mvx-module-section-options-list">
                       <div className = {`mvx-module-settings-box ${student.is_active? 'active' : ''}`}>
-                          <span class="dashicons dashicons-cover-image"></span>                        
+
+                          <div className="mvx-module-icon"><i class={`mvx-font ${student.thumbnail_dir}`}></i></div>
+
                         <header>
                           <div className="mvx-module-list-label-plan-action-swap">
                             <div className="mvx-module-list-label-text">

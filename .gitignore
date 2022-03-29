@@ -3,3 +3,5 @@
 # Grunt
 /node_modules/
 none
+
+*/node_modules/*

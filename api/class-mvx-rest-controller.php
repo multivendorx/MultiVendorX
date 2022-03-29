@@ -3796,7 +3796,7 @@ class MVX_REST_API {
                 'label' =>  __('Payment', 'dc-woocommerce-multi-vendor'),
                 'options'       =>  [
                     [
-                        'id'           => 'bank-transfer',
+                        'id'           => 'bank-payment',
                         'name'         => __( 'Bank Transfer', 'dc-woocommerce-multi-vendor' ),
                         'description'  => __( "Manually transfer money directly to the vendor's bank account.", 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
@@ -3902,7 +3902,7 @@ class MVX_REST_API {
                         'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
-                        'id'           => 'zone-wise-shipping',
+                        'id'           => 'zone-shipping',
                         'name'         => __( 'Zone-Wise Shipping', 'dc-woocommerce-multi-vendor' ),
                         'description'  => __( 'Limit vendors to sell in selected zones', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
@@ -3919,7 +3919,7 @@ class MVX_REST_API {
                         'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
-                        'id'           => 'country-wise-shipping',
+                        'id'           => 'country-shipping',
                         'name'         => __( 'Country-Wise Shipping', 'dc-woocommerce-multi-vendor' ),
                         'description'  => __( 'Let vendors choose and manage shipping, to countries of their choice', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
@@ -3927,7 +3927,7 @@ class MVX_REST_API {
                         'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
-                        'id'           => 'weight-wise-shipping',
+                        'id'           => 'weight-shipping',
                         'name'         => __( 'Weight Wise Shipping (using Table Rate Shipping)', 'dc-woocommerce-multi-vendor' ),
                         'description'  => __( 'Vendors can create shipping rates based on price, weight and quantity', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
@@ -3960,7 +3960,7 @@ class MVX_REST_API {
                 'label' =>  __('Vendor Store Boosters', 'dc-woocommerce-multi-vendor'),
                 'options'       =>  [
                     [
-                        'id'           => 'vendor-verification',
+                        'id'           => 'identity-verification',
                         'name'         => __( 'Verifictaion', 'dc-woocommerce-multi-vendor' ),
                         'description'  => __( 'Verify vendors on the basis of Id documents, Address  and Social Media Account  ', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
@@ -3975,7 +3975,7 @@ class MVX_REST_API {
                         'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
-                        'id'           => 'vendor-vacation',
+                        'id'           => 'vacation',
                         'name'         => __( 'Vacation', 'dc-woocommerce-multi-vendor' ),
                         'description'  => __( 'On vacation mode, vendor can allow / disable sale & notify customer accordingly', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
@@ -4005,7 +4005,7 @@ class MVX_REST_API {
                         'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
-                        'id'           => 'vendor-staff',
+                        'id'           => 'staff-manager',
                         'name'         => __( 'Staff Manager', 'dc-woocommerce-multi-vendor' ),
                         'description'  => __( 'Lets vendors hire and manage staff to support store', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
@@ -4020,7 +4020,7 @@ class MVX_REST_API {
                         'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
-                        'id'           => 'store-follow',
+                        'id'           => 'follow-store',
                         'name'         => __( 'Follow Store', 'dc-woocommerce-multi-vendor' ),
                         'description'  => __( 'Permit customers to follow store, receive updates & lets vendors keep track of customers', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
@@ -4028,7 +4028,7 @@ class MVX_REST_API {
                         'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
-                        'id'           => 'vendor-review',
+                        'id'           => 'store-review',
                         'name'         => __( 'Store Review', 'dc-woocommerce-multi-vendor' ),
                         'description'  => __( 'Allows customers to rate and review stores and their purchased products', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
@@ -4051,7 +4051,7 @@ class MVX_REST_API {
                         'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
-                        'id'           => 'refund',
+                        'id'           => 'marketplace-refund',
                         'name'         => __( 'Marketplace Refund', 'dc-woocommerce-multi-vendor' ),
                         'description'  => __( 'Enable customer refund requests & Let vendors manage customer refund ', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
@@ -4067,7 +4067,7 @@ class MVX_REST_API {
                         'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
-                        'id'           => 'marketplace-analytics',
+                        'id'           => 'store-analytics',
                         'name'         => __( 'Store Analytics', 'dc-woocommerce-multi-vendor' ),
                         'description'  => __( 'Gives vendors detailed store report & connect to google analytics', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
@@ -4097,7 +4097,7 @@ class MVX_REST_API {
                         'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
-                        'id'           => 'invoice-management',
+                        'id'           => 'invoice',
                         'name'         => __( 'Invoice', 'dc-woocommerce-multi-vendor' ),
                         'description'  => __( 'Send invoice and packaging slips to vendor', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
@@ -4216,7 +4216,7 @@ class MVX_REST_API {
                         'parent_category' => __( 'Marketplace Products.', 'dc-woocommerce-multi-vendor' ),
                     ],
                     [
-                        'id'           => 'Variable',
+                        'id'           => 'variable',
                         'name'         => __( 'Variable', 'dc-woocommerce-multi-vendor' ),
                         'description'  => __( 'A product with variations, like different SKU, price, stock option, etc.', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
@@ -4231,7 +4231,7 @@ class MVX_REST_API {
                         'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
-                        'id'           => 'External',
+                        'id'           => 'external',
                         'name'         => __( 'External', 'dc-woocommerce-multi-vendor' ),
                         'description'  => __( 'Grants vendor the option to  list and describe on admin website but sold elsewhere', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
@@ -4321,7 +4321,7 @@ class MVX_REST_API {
                         'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
-                        'id'           => 'product-bundle',
+                        'id'           => 'bundle',
                         'name'         => __( 'Bundle', 'dc-woocommerce-multi-vendor' ),
                         'description'  => __( 'Offer personalized product bundles, bulk discount packages, and assembled products.', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
@@ -4437,7 +4437,7 @@ class MVX_REST_API {
                         'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
-                        'id'           => 'acf',
+                        'id'           => 'advance-custom-field',
                         'name'         => __( 'Advance Custom field', 'dc-woocommerce-multi-vendor' ),
                         'description'  => __( 'Allows for an on demand product field in Add Product section', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
@@ -4478,7 +4478,7 @@ class MVX_REST_API {
                         'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
-                        'id'           => 'toolset',
+                        'id'           => 'toolset-types',
                         'name'         => __( 'Toolset Types', 'dc-woocommerce-multi-vendor' ),
                         'description'  => __( "Allows admin to create custom fields, and taxonomy for vendor's product field", 'dc-woocommerce-multi-vendor' ),
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
@@ -4498,7 +4498,7 @@ class MVX_REST_API {
                         'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
-                        'id'           => 'affiliate',
+                        'id'           => 'wp-affiliate',
                         'name'         => __( 'WP Affiliate', 'dc-woocommerce-multi-vendor' ),
                         'description'  => __( 'Launch affiliate programme into your marketplace', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
@@ -4546,7 +4546,9 @@ class MVX_REST_API {
                 if (isset($parent_module_value['options']) && !empty($parent_module_value['options'])) {
                     foreach ($parent_module_value['options'] as $module_key => $module_value) {
                         $mvx_all_modules[$parent_module_key]['options'][$module_key]['is_active'] = $this->is_current_module_active($module_value['id']);
-                        $mvx_all_modules[$parent_module_key]['options'][$module_key]['thumbnail_dir'] = file_exists($thumbnail_path . '/'.$module_value['id'].'.png') ? $thumbnail_dir . '/'. $module_value['id'].'.png' : '';
+                        //$mvx_all_modules[$parent_module_key]['options'][$module_key]['thumbnail_dir'] = file_exists($thumbnail_path . '/'.$module_value['id'].'.png') ? $thumbnail_dir . '/'. $module_value['id'].'.png' : '';
+
+                        $mvx_all_modules[$parent_module_key]['options'][$module_key]['thumbnail_dir'] = 'icon-' . $module_value['id'];
 
                         if (isset($mvx_all_modules[$parent_module_key]['options'][$module_key]['required_plugin_list']) && !empty($mvx_all_modules[$parent_module_key]['options'][$module_key]['required_plugin_list'])) {
 
