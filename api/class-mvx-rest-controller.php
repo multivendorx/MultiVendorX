@@ -532,10 +532,17 @@ class MVX_REST_API {
         ] );
 
 
-        // store review
+        // search announcement
         register_rest_route( 'mvx_module/v1', '/search_announcement', [
             'methods' => WP_REST_Server::EDITABLE,
             'callback' => array( $this, 'mvx_search_announcement' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
+        // search knowledgebase
+        register_rest_route( 'mvx_module/v1', '/search_knowledgebase', [
+            'methods' => WP_REST_Server::EDITABLE,
+            'callback' => array( $this, 'mvx_search_knowledgebase' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
 
@@ -545,6 +552,30 @@ class MVX_REST_API {
             'callback' => array( $this, 'mvx_delete_post_details' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
+
+        // delete post
+        register_rest_route( 'mvx_module/v1', '/dismiss_requested_vendors_query', [
+            'methods' => WP_REST_Server::EDITABLE,
+            'callback' => array( $this, 'mvx_dismiss_requested_vendors_query' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
+    }
+
+    public function mvx_dismiss_requested_vendors_query($request) {
+        $product_id = $request && $request->get_param('product_id') ? $request->get_param('product_id') : 0;
+        $vendor_id = $request && $request->get_param('vendor_id') ? $request->get_param('vendor_id') : 0;
+
+        print_r($vendor_id);die;
+
+        /*$reason = '';
+        $vendor = get_wcmp_vendor($post->post_author);
+        $email_vendor = WC()->mailer()->emails['WC_Email_Vendor_Product_Rejected'];
+        $email_vendor->trigger($id, $post, $vendor, $reason);
+        update_post_meta($id, '_dismiss_to_do_list', 'true');
+        $comment_id = WCMp_Product::add_product_note($id, $reason, get_current_user_id());
+        update_post_meta($id, '_comment_dismiss', absint($comment_id));
+        add_comment_meta($comment_id, '_author_id', get_current_user_id());*/
 
     }
 
@@ -576,6 +607,7 @@ class MVX_REST_API {
         }
     }
 
+    // search announcement
     public function mvx_search_announcement($request) {
         $ids = $request && $request->get_param('ids') ? ($request->get_param('ids')) : 0;
         $value = $request && $request->get_param('value') ? ($request->get_param('value')) : 0;
@@ -591,8 +623,26 @@ class MVX_REST_API {
             return rest_ensure_response($all_announcement->data);
         }
         return rest_ensure_response($search_announcement_renew);
-        
     }
+    
+    // search knowledgebase
+    public function mvx_search_knowledgebase($request) {
+        $value = $request && $request->get_param('value') ? ($request->get_param('value')) : 0;
+
+        $all_knowledgebase   =   $this->mvx_display_list_knowladgebase('');
+        $search_knowledgebase_renew = [];
+        if ($all_knowledgebase->data && !empty($all_knowledgebase->data) && !empty($value)) {
+            foreach ($all_knowledgebase->data as $announce_key => $anounce_value) {
+                if (strpos($anounce_value['sample_title'], $value) !== false) {
+                    $search_knowledgebase_renew[]    =   $all_knowledgebase->data[$announce_key];
+                }
+            }
+        } else {
+            return rest_ensure_response($all_knowledgebase->data);
+        }
+        return rest_ensure_response($search_knowledgebase_renew);
+    }
+
 
     public function mvx_list_of_store_review() {
         $review_list = array();
@@ -651,7 +701,10 @@ class MVX_REST_API {
                 $pending_list[] = array(
                     'id'        =>  $get_pending_product->ID,
                     'vendor'    =>  $vendor_term->name,
+                    'vendor_id'    =>  $get_pending_product->post_author,
+                    'vendor_link'   =>  sprintf('?page=%s&ID=%s&name=vendor-personal', 'mvx#&submenu=vendor', $currentvendor->id),
                     'product'   =>  $get_pending_product->post_title,
+                    'product_url'   =>  '',
                 );
             }
         }
@@ -795,6 +848,7 @@ class MVX_REST_API {
         foreach ($knowladgebase as $knowladgebasekey => $knowladgebasevalue) {
             $knowladgebase_list[] = array(
                 'id'            =>  $knowladgebasevalue->ID,
+                'sample_title'  =>  $knowladgebasevalue->post_title,
                 'title'         =>  '<a href="' . sprintf('?page=%s&name=%s&knowladgebaseID=%s', 'mvx#&submenu=work-board', 'knowladgebase', $knowladgebasevalue->ID) . '">#' . $knowladgebasevalue->post_title . '</a>',
                 'date'          =>  $knowladgebasevalue->post_modified,
                 'link'          =>  sprintf('?page=%s&name=%s&knowladgebaseID=%s', 'mvx#&submenu=work-board', 'knowladgebase', $knowladgebasevalue->ID),

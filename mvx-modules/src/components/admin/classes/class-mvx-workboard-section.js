@@ -277,8 +277,34 @@ class App extends Component {
 
     this.handlePostDismiss = this.handlePostDismiss.bind(this);
 
+    // pending product todo action
+    this.handle_product_request_by_vendors = this.handle_product_request_by_vendors.bind(this);
+    
+
 
   }
+
+  handle_product_request_by_vendors(e, product_id, vendor_id, type) {
+    if (type == 'dismiss') {
+      axios({
+        method: 'post',
+        url: `${appLocalizer.apiUrl}/mvx_module/v1/dismiss_requested_vendors_query`,
+        data: {
+          product_id: product_id,
+          type: type,
+          vendor_id: vendor_id
+        }
+      })
+      .then( ( responce ) => {
+
+        /*this.setState({
+          list_of_pending_vendor_product: responce.data,
+        });  */
+
+      } );
+    }
+  }
+
 
   handlePostDismiss(e, title) {
 
@@ -329,14 +355,27 @@ class App extends Component {
 
   handle_post_retrive_status(e, status, type) {
 
-    axios.get(
-    `${appLocalizer.apiUrl}/mvx_module/v1/display_announcement`, { params: { status: status } 
-    })
-    .then(response => {
-      this.setState({
-        display_announcement: response.data,
-      });
-    })
+    if (type == 'announcement') {
+      axios.get(
+      `${appLocalizer.apiUrl}/mvx_module/v1/display_announcement`, { params: { status: status } 
+      })
+      .then(response => {
+        this.setState({
+          display_announcement: response.data,
+        });
+      })
+    } else if (type == 'knowladgebase') {
+
+      axios.get(
+      `${appLocalizer.apiUrl}/mvx_module/v1/display_list_knowladgebase`, { params: { status: status } 
+      })
+      .then(response => {
+        this.setState({
+          display_list_knowladgebase: response.data,
+        });
+      })
+
+    }
   
   }
 
@@ -358,6 +397,22 @@ class App extends Component {
         });
 
       } );
+    } else if (type == 'knowladgebase') {
+
+      axios({
+        method: 'post',
+        url: `${appLocalizer.apiUrl}/mvx_module/v1/search_knowledgebase`,
+        data: {
+          value: e.target.value
+        }
+      })
+      .then( ( responce ) => {
+        this.setState({
+          display_list_knowladgebase: responce.data,
+        });
+
+      } );
+
     }
   }
 
@@ -745,7 +800,7 @@ Child({ name }) {
 
 
 
-        {/* Pending Vendor approval */}
+        {/* Pending Vendor's product approval */}
         <div className="mvx-todo-status-check">
             <div className="mvx-text-with-line-wrapper">
                 <div className="mvx-report-text">Pending Product Approval</div>
@@ -774,36 +829,20 @@ Child({ name }) {
                       </div>
                       <div className="mvx-workboard-address-area">
                           <p className="mvx-todo-list-details-data-value">
-                          <div className="mvx-commission-label-class">Name:</div>
-                          <div className="mvx-commission-value-class"><a href="">{pending_data.product}</a></div>
+                          <div className="mvx-commission-label-class">Vendor Name:</div>
+                          <div className="mvx-commission-value-class"><a href={pending_data.vendor_link}>{pending_data.vendor}</a></div>
                           </p>
                           <p className="mvx-todo-list-details-data-value">
-                          <div className="mvx-commission-label-class">Address 1:</div>
-                          <div className="mvx-commission-value-class"><a href="">{pending_data.product}</a></div>
+                          <div className="mvx-commission-label-class">Product Name:</div>
+                          <div className="mvx-commission-value-class"><a href={pending_data.product_url}>{pending_data.product}</a></div>
                           </p>
-                          <p className="mvx-todo-list-details-data-value">
-                          <div className="mvx-commission-label-class">Address 2:</div>
-                          <div className="mvx-commission-value-class"><a href="">{pending_data.product}</a></div>
-                          </p>
-                          <p className="mvx-todo-list-details-data-value">
-                          <div className="mvx-commission-label-class">Town:</div>
-                          <div className="mvx-commission-value-class"><a href="">{pending_data.product}</a></div>
-                          </p>
-                          <p className="mvx-todo-list-details-data-value">
-                          <div className="mvx-commission-label-class">Country:</div>
-                          <div className="mvx-commission-value-class"><a href="">{pending_data.product}</a></div>
-                          </p>
-                          <p className="mvx-todo-list-details-data-value">
-                          <div className="mvx-commission-label-class">Zip:</div>
-                          <div className="mvx-commission-value-class"><a href="">{pending_data.product}</a></div>
-                          </p>
-
+                          
                       </div>
                       <div className="mvx-module-current-status wp-clearfix">
                           <div className="mvx-left-icons-wrap">
-                              <div className="mvx-left-icon"><i className="mvx-font icon-tab-SPMV"></i></div>
-                              <div className="mvx-left-icon"><i className="mvx-font icon-tab-SPMV"></i></div>
-                              <div className="mvx-left-icon"><i className="mvx-font icon-tab-SPMV"></i></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-tab-SPMV" onClick={(e) => this.handle_product_request_by_vendors(e, pending_data.id, pending_data.vendor, 'approve')}></i></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-tab-policy" onClick={(e) => this.handle_product_request_by_vendors(e, pending_data.id, pending_data.vendor, 'edit')}></i></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-tab-commissions" onClick={(e) => this.handle_product_request_by_vendors(e, pending_data.id, pending_data.vendor, 'dismiss')}></i></div>
                           </div>
                       </div>
                     </div>
@@ -813,7 +852,7 @@ Child({ name }) {
 
             </div>
           </div>
-        {/* Pending Vendor approval end */}
+        {/* Pending Vendor's product approval end */}
 
 
 
@@ -1204,7 +1243,7 @@ Child({ name }) {
 
               <div className="mvx-module-section-list-data"> 
                 <label><span class="dashicons dashicons-search"></span></label>
-                <input type="text" placeholder="Search Knowledgebase" name="search"/>
+                <input type="text" placeholder="Search Knowledgebase" onChange={(e) => this.handle_post_bulk_status(e, 'knowladgebase')}/>
               </div>
             </div>
 
