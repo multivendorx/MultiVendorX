@@ -508,7 +508,7 @@ Class MVX_Admin_Dashboard {
                 if ($vendor->clear_all_transients($vendor->id)) {
                     wc_add_notice(__('Vendor transients cleared!', 'dc-woocommerce-multi-vendor'), 'success');
                 }
-                wp_redirect(esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_tools_endpoint', 'vendor', 'general', 'vendor-tools'))));
+                wp_redirect(esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_tools_endpoint', 'seller_dashbaord', 'vendor-tools'))));
                 die();
             }
         }
@@ -1480,7 +1480,7 @@ Class MVX_Admin_Dashboard {
             ),
             'add-product' => array(
                 'label' => __('Add Product', 'dc-woocommerce-multi-vendor')
-                , 'url' => apply_filters('mvx_vendor_submit_product', esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_add_product_endpoint', 'vendor', 'general', 'add-product'))))
+                , 'url' => apply_filters('mvx_vendor_submit_product', esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_add_product_endpoint', 'seller_dashbaord', 'add-product'))))
                 , 'class' => ''
                 , 'capability' => apply_filters('mvx_vendor_dashboard_menu_add_product_capability', 'edit_products')
                 , 'position' => 20
@@ -1489,7 +1489,7 @@ Class MVX_Admin_Dashboard {
             ),
             'orders' => array(
                 'label' => __('Orders', 'dc-woocommerce-multi-vendor')
-                , 'url' => esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_orders_endpoint', 'vendor', 'general', 'vendor-orders')))
+                , 'url' => esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_orders_endpoint', 'seller_dashbaord', 'vendor-orders')))
                 , 'class' => ''
                 , 'capability' => true
                 , 'position' => 30
@@ -1498,7 +1498,7 @@ Class MVX_Admin_Dashboard {
             ),
             'announcement' => array(
                 'label' => __('Announcement', 'dc-woocommerce-multi-vendor')
-                , 'url' => esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_announcements_endpoint', 'vendor', 'general', 'vendor-announcements')))
+                , 'url' => esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_announcements_endpoint', 'seller_dashbaord', 'vendor-announcements')))
                 , 'class' => ''
                 , 'capability' => apply_filters('mvx_show_vendor_announcements', true)
                 , 'position' => 40
@@ -1517,7 +1517,7 @@ Class MVX_Admin_Dashboard {
         $panel_nav = array(
             'storefront' => array(
                 'label' => __('Storefront', 'dc-woocommerce-multi-vendor')
-                , 'url' => esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_store_settings_endpoint', 'vendor', 'general', 'storefront')))
+                , 'url' => esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_store_settings_endpoint', 'seller_dashbaord', 'storefront')))
                 , 'class' => ''
                 , 'capability' => true
                 , 'position' => 10
@@ -1526,7 +1526,7 @@ Class MVX_Admin_Dashboard {
             ),
             'profile' => array(
                 'label' => __('Profile management', 'dc-woocommerce-multi-vendor')
-                , 'url' => esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_profile_endpoint', 'vendor', 'general', 'profile')))
+                , 'url' => esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_profile_endpoint', 'seller_dashbaord', 'profile')))
                 , 'class' => ''
                 , 'capability' => true
                 , 'position' => 20

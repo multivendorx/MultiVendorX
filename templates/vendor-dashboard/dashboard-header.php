@@ -25,7 +25,7 @@ if ($vendor) {
 } else {
     $vendor_logo = get_avatar_url(get_current_vendor_id(), array('size' => 80));
 }
-$site_logo = get_mvx_vendor_settings('mvx_dashboard_site_logo', 'vendor', 'dashboard') ? get_mvx_vendor_settings('mvx_dashboard_site_logo', 'vendor', 'dashboard') : '';
+$site_logo = get_mvx_vendor_settings('mvx_new_dashboard_site_logo', 'seller_dashbaord') ? get_mvx_vendor_settings('mvx_new_dashboard_site_logo', 'seller_dashbaord') : '';
 ?>
 
 <!-- Top bar -->

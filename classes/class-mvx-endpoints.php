@@ -35,80 +35,80 @@ class MVX_Endpoints {
         $this->mvx_query_vars = apply_filters('mvx_endpoints_query_vars', array(
             'vendor-announcements' => array(
                 'label' => __('Vendor Announcements', 'dc-woocommerce-multi-vendor'),
-                'endpoint' => get_mvx_vendor_settings( 'mvx_vendor-announcements_endpoint', 'seller_dashbaord', 'vendor-announcements')
+                'endpoint' => get_mvx_vendor_settings('mvx_vendor_announcements_endpoint', 'seller_dashbaord', 'vendor-announcements')
             )
             , 'profile' => array(
                 'label' => __('Profile management', 'dc-woocommerce-multi-vendor'),
-                'endpoint' => get_mvx_vendor_settings( 'mvx_profile_endpoint', 'seller_dashbaord', 'profile'),
+                'endpoint' => get_mvx_vendor_settings('mvx_profile_endpoint', 'seller_dashbaord', 'profile'),
                 'icon' => 'mvx-font ico-user-icon'
             )
             , 'storefront' => array(
                 'label' => __('Storefront', 'dc-woocommerce-multi-vendor'),
-                'endpoint' => get_mvx_vendor_settings( 'mvx_store_settings_endpoint', 'seller_dashbaord', 'storefront' )
+                'endpoint' => get_mvx_vendor_settings('mvx_store_settings_endpoint', 'seller_dashbaord', 'storefront')
             )
             , 'vendor-billing' => array(
                 'label' => __('Vendor Billing', 'dc-woocommerce-multi-vendor'),
-                'endpoint' => get_mvx_vendor_settings( 'mvx_vendor-billing_endpoint', 'seller_dashbaord', 'vendor-billing')
+                'endpoint' => get_mvx_vendor_settings('mvx_vendor_billing_endpoint', 'seller_dashbaord', 'vendor-billing')
             )
             , 'vendor-policies' => array(
                 'label' => __('Vendor Policies', 'dc-woocommerce-multi-vendor'),
-                'endpoint' => get_mvx_vendor_settings( 'mvx_store_settings_endpoint', 'seller_dashbaord', 'vendor-policies')
+                'endpoint' => get_mvx_vendor_settings('mvx_vendor_policies_endpoint', 'seller_dashbaord', 'vendor-policies')
             )
             , 'vendor-shipping' => array(
                 'label' => __('Vendor Shipping', 'dc-woocommerce-multi-vendor'),
-                'endpoint' => get_mvx_vendor_settings( 'mvx_vendor-shipping_endpoint', 'seller_dashbaord', 'vendor-shipping')
+                'endpoint' => get_mvx_vendor_settings('mvx_vendor_shipping_endpoint', 'seller_dashbaord', 'vendor-shipping')
             )
             , 'vendor-report' => array(
                 'label' => __('Vendor Report', 'dc-woocommerce-multi-vendor'),
-                'endpoint' => get_mvx_vendor_settings( 'mvx_vendor-report_endpoint', 'seller_dashbaord', 'vendor-report')
+                'endpoint' => get_mvx_vendor_settings('mvx_vendor_report_endpoint', 'seller_dashbaord', 'vendor-report')
             )
             , 'banking-overview' => array(
                 'label' => __('Banking Overview', 'dc-woocommerce-multi-vendor'),
-                'endpoint' => get_mvx_vendor_settings( 'mvx_banking-overview_endpoint', 'seller_dashbaord', 'banking-overview')
+                'endpoint' => get_mvx_vendor_settings('mvx_banking_overview_endpoint', 'seller_dashbaord', 'banking-overview')
             )
             , 'add-product' => array(
                 'label' => __('Add Product', 'dc-woocommerce-multi-vendor'),
-                'endpoint' => get_mvx_vendor_settings( 'mvx_add-product_endpoint', 'seller_dashbaord', 'add-product')
+                'endpoint' => get_mvx_vendor_settings('mvx_add_product_endpoint', 'seller_dashbaord', 'add-product')
             )
             , 'edit-product' => array(
                 'label' => __('Edit Product', 'dc-woocommerce-multi-vendor'),
-                'endpoint' => get_mvx_vendor_settings( 'mvx_edit-product_endpoint', 'seller_dashbaord', 'edit-product')
+                'endpoint' => get_mvx_vendor_settings('mvx_edit_product_endpoint', 'seller_dashbaord', 'edit-product')
             )
             , 'products' => array(
                 'label' => __('Products', 'dc-woocommerce-multi-vendor'),
-                'endpoint' => get_mvx_vendor_settings( 'mvx_products_endpoint', 'seller_dashbaord', 'products')
+                'endpoint' => get_mvx_vendor_settings('mvx_products_endpoint', 'seller_dashbaord', 'products')
             )
             , 'add-coupon' => array(
                 'label' => __('Add Coupon', 'dc-woocommerce-multi-vendor'),
-                'endpoint' => get_mvx_vendor_settings( 'mvx_add-coupon_endpoint', 'seller_dashbaord', 'add-coupon')
+                'endpoint' => get_mvx_vendor_settings('mvx_add_coupon_endpoint', 'seller_dashbaord', 'add-coupon')
             )
             , 'coupons' => array(
                 'label' => __('Coupons', 'dc-woocommerce-multi-vendor'),
-                'endpoint' => get_mvx_vendor_settings( 'mvx_coupons_endpoint', 'seller_dashbaord', 'coupons')
+                'endpoint' => get_mvx_vendor_settings('mvx_coupons_endpoint', 'seller_dashbaord', 'coupons')
             )
             , 'vendor-orders' => array(
                 'label' => __('Vendor Orders', 'dc-woocommerce-multi-vendor'),
-                'endpoint' => get_mvx_vendor_settings( 'mvx_vendor-orders_endpoint', 'seller_dashbaord', 'vendor-orders')
+                'endpoint' => get_mvx_vendor_settings('mvx_vendor_orders_endpoint', 'seller_dashbaord', 'vendor-orders')
             )
             , 'vendor-withdrawal' => array(
                 'label' => __('Vendor Withdrawals', 'dc-woocommerce-multi-vendor'),
-                'endpoint' => get_mvx_vendor_settings( 'mvx_vendor-withdrawal_endpoint', 'seller_dashbaord', 'vendor-withdrawal')
+                'endpoint' => get_mvx_vendor_settings('mvx_vendor_withdrawal_endpoint', 'seller_dashbaord', 'vendor-withdrawal')
             )
             , 'transaction-details' => array(
                 'label' => __('Transaction Details', 'dc-woocommerce-multi-vendor'),
-                'endpoint' => get_mvx_vendor_settings( 'mvx_transaction-details_endpoint', 'seller_dashbaord', 'transaction-details')
+                'endpoint' => get_mvx_vendor_settings('mvx_transaction_details_endpoint', 'seller_dashbaord', 'transaction-details')
             )
             , 'vendor-knowledgebase' => array(
                 'label' => __('Vendor Knowledgebase', 'dc-woocommerce-multi-vendor'),
-                'endpoint' => get_mvx_vendor_settings( 'mvx_vendor-knowledgebase_endpoint', 'seller_dashbaord', 'vendor-knowledgebase')
+                'endpoint' => get_mvx_vendor_settings('mvx_vendor_knowledgebase_endpoint', 'seller_dashbaord', 'vendor-knowledgebase')
             )
             , 'vendor-tools' => array(
                 'label' => __('Vendor Tools', 'dc-woocommerce-multi-vendor'),
-                'endpoint' => get_mvx_vendor_settings( 'mvx_vendor-tools_endpoint', 'seller_dashbaord', 'vendor-tools')
+                'endpoint' => get_mvx_vendor_settings('mvx_vendor_tools_endpoint', 'seller_dashbaord', 'vendor-tools')
             )
             , 'products-qna' => array(
                 'label' => __('Vendor Products Q&As', 'dc-woocommerce-multi-vendor'),
-                'endpoint' => get_mvx_vendor_settings( 'mvx_products-qna_endpoint', 'seller_dashbaord', 'products-qna')
+                'endpoint' => get_mvx_vendor_settings('mvx_products_qna_endpoint', 'seller_dashbaord', 'products-qna')
             )
             , 'rejected-vendor-reapply' => array(
                 'label' => __('Resubmit Application', 'dc-woocommerce-multi-vendor'),
