@@ -4518,7 +4518,7 @@ class MVX_REST_API {
                         'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
-                        'id'           => 'product-addons',
+                        'id'           => 'product-addon',
                         'name'         => __( 'Product Addon', 'dc-woocommerce-multi-vendor' ),
                         'description'  => __( 'Offer add-ons like gift wrapping, special messages etc along with primary products', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
