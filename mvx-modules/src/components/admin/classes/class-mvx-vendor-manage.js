@@ -482,7 +482,7 @@ class App extends React.Component {
 
             <div className="mvx-table-text-and-add-wrap">
               <div className="mvx-datatable-text">Vendors</div>
-              <Link to={`?page=mvx#&submenu=vendor&name=add_new`}><span class="dashicons dashicons-plus"></span>Add Vendor</Link>
+              <Link to={`?page=mvx#&submenu=vendor&name=add_new`}><i className="mvx-font icon-add"></i>Add Vendor</Link>
             </div>
             
             <div className="mvx-search-and-multistatus-wrap">
@@ -496,7 +496,7 @@ class App extends React.Component {
 
 
               <div className="mvx-module-section-list-data"> 
-                <label><span class="dashicons dashicons-search"></span></label>
+                <label><i className="mvx-font icon-search"></i></label>
                 <input type="text" placeholder="Search Vendors" name="search"/>
               </div>
 

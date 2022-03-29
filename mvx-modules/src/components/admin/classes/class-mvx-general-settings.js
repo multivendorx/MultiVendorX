@@ -1088,7 +1088,7 @@ Child({ name }) {
                           <ul className="field-selectbox-options">
                           {registration_json_value.options.map((chekbox_option_key, checkbox_option_index) =>
                             <li>
-                              <a onClick={(e) => this.removeSelectboxOption(e, registration_json_index, checkbox_option_index)}><span className="dashicons dashicons-dismiss"></span></a>
+                              <a onClick={(e) => this.removeSelectboxOption(e, registration_json_index, checkbox_option_index)}><i className="mvx-font icon-close"></i></a>
                               Label
                               <input type="text" value={chekbox_option_key.label} onChange={e => {this.onlebelchange(e, registration_json_index, 'select_option', checkbox_option_index) }}/>
                               Value 
@@ -1115,9 +1115,9 @@ Child({ name }) {
 
                        {registration_json_value.hidden ? 
                           <div className="mvx-footer-icon-form">
-                              <span class="dashicons dashicons-admin-page" onClick={e => {this.OnDuplicateSelectChange(e, registration_json_index, 'duplicate') }}></span>
-                              <span class="dashicons dashicons-trash" onClick={(e) => this.handleRemoveClickNew(e, registration_json_index)}></span>
-                              <span class="dashicons dashicons-plus-alt" onClick={(e) => this.handleAddClickNew(e, registration_json_value.type)}></span>
+                              <i class="mvx-font icon-tab-general" onClick={e => {this.OnDuplicateSelectChange(e, registration_json_index, 'duplicate') }}></i>
+                              <i class="mvx-font icon-close" onClick={(e) => this.handleRemoveClickNew(e, registration_json_index)}></i>
+                              <i class="mvx-font icon-add" onClick={(e) => this.handleAddClickNew(e, registration_json_value.type)}></i>
                               <span>Require <input type="checkbox" checked={registration_json_value.required} onChange={e => {this.OnRegistrationSelectChange(e, registration_json_index, 'require') }}/></span>
                           </div>
                         : '' }

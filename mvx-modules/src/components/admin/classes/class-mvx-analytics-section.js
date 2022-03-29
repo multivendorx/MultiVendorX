@@ -532,8 +532,8 @@ Child({ name }) {
                   </div>
 
                   <div className="mvx-bar-and-line-wrap">
-                    <div><Link to={`?page=marketplace-analytics-settings&name=admin_overview&type=bar`}><span class="dashicons dashicons-chart-bar"></span></Link></div>
-                    <div><Link to={`?page=marketplace-analytics-settings&name=admin_overview&type=line`}><span class="dashicons dashicons-chart-line"></span></Link></div>
+                    <div><Link to={`?page=mvx#&submenu=analytics&name=admin-overview&type=bar`}><span class="dashicons dashicons-chart-bar"></span></Link></div>
+                    <div><Link to={`?page=mvx#&submenu=analytics&name=admin-overview&type=line`}><span class="dashicons dashicons-chart-line"></span></Link></div>
                   </div>
                 </div>
 
@@ -758,8 +758,8 @@ Child({ name }) {
                   </div>
 
                   <div className="mvx-bar-and-line-wrap">
-                    <div className="mvx-bar-chart"><Link to={`?page=marketplace-analytics-settings&name=vendor&type=bar`}><span class="dashicons dashicons-chart-bar"></span></Link></div>
-                    <div className="mvx-line-chart"><Link to={`?page=marketplace-analytics-settings&name=vendor&type=line`}><span class="dashicons dashicons-chart-line"></span></Link></div>
+                    <div className="mvx-bar-chart"><Link to={`?page=mvx#&submenu=analytics&name=vendor&type=bar`}><span class="dashicons dashicons-chart-bar"></span></Link></div>
+                    <div className="mvx-line-chart"><Link to={`?page=mvx#&submenu=analytics&name=vendor&type=line`}><span class="dashicons dashicons-chart-line"></span></Link></div>
                   </div>
                 </div>
 
@@ -841,7 +841,7 @@ Child({ name }) {
 
                   <div className="mvx-wrap-chart-header-content">
                     <div className="mvx-chart-data-text">Vendors</div>
-                    <CSVLink data={this.state.vendor_report_chart_data} headers={appLocalizer.report_vendor_header} filename={"Report_vendor.csv"} className="button-csv-primary"><span className="dashicons dashicons-download"></span>{appLocalizer.report_page_string.download_csv}</CSVLink> 
+                    <CSVLink data={this.state.vendor_report_chart_data} headers={appLocalizer.report_vendor_header} filename={"Report_vendor.csv"} className="button-csv-primary"><i className="mvx-font icon-download"></i>{appLocalizer.report_page_string.download_csv}</CSVLink> 
                   </div>
 
                   : '' }
@@ -919,8 +919,8 @@ Child({ name }) {
                   </div>
 
                   <div className="mvx-bar-and-line-wrap">
-                    <div className="mvx-bar-chart"><Link to={`?page=marketplace-analytics-settings&name=product&type=bar`}><span class="dashicons dashicons-chart-bar"></span></Link></div>
-                    <div className="mvx-line-chart"><Link to={`?page=marketplace-analytics-settings&name=product&type=line`}><span class="dashicons dashicons-chart-line"></span></Link></div>
+                    <div className="mvx-bar-chart"><Link to={`?page=mvx#&submenu=analytics&name=product&type=bar`}><span class="dashicons dashicons-chart-bar"></span></Link></div>
+                    <div className="mvx-line-chart"><Link to={`?page=mvx#&submenu=analytics&name=product&type=line`}><span class="dashicons dashicons-chart-line"></span></Link></div>
                   </div>
                 </div>
 
@@ -988,7 +988,7 @@ Child({ name }) {
 
                   <div className="mvx-wrap-chart-header-content">
                     <div className="mvx-chart-data-text">Products</div>
-                    <CSVLink data={this.state.product_report_chart_data} headers={appLocalizer.report_product_header} filename={"Report_product.csv"} className="button-csv-primary"><span className="dashicons dashicons-download"></span>{appLocalizer.report_page_string.download_csv}</CSVLink> 
+                    <CSVLink data={this.state.product_report_chart_data} headers={appLocalizer.report_product_header} filename={"Report_product.csv"} className="button-csv-primary"><i className="mvx-font icon-download"></i>{appLocalizer.report_page_string.download_csv}</CSVLink> 
                   </div>
                   : 
 

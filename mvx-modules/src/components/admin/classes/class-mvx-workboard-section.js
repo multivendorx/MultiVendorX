@@ -722,8 +722,8 @@ Child({ name }) {
 
         data_ann.cell ? data_ann.cell = (row) => <div className="mvx-vendor-action-icon">
 
-          <a href={row.link}><span class='dashicons dashicons-edit'></span></a>
-          <div onClick={() => this.handlePostDismiss(row.id, row.type)} id={row.id}><span class='dashicons dashicons-no'></span></div>
+          <a href={row.link}><i className="mvx-font icon-edit"></i></a>
+          <div onClick={() => this.handlePostDismiss(row.id, row.type)} id={row.id}><i className="mvx-font icon-no"></i></div>
 
         </div> : '';
 
@@ -750,8 +750,8 @@ Child({ name }) {
 
         data_anno_knowl.cell ? data_anno_knowl.cell = (row) => <div className="mvx-vendor-action-icon">
 
-          <a href={row.link}><span class='dashicons dashicons-edit'></span></a>
-          <div onClick={() => this.handlePostDismiss(row.id, row.type)} id={row.id}><span class='dashicons dashicons-no'></span></div>
+          <a href={row.link}><i className="mvx-font icon-edit"></i></a>
+          <div onClick={() => this.handlePostDismiss(row.id, row.type)} id={row.id}><i className="mvx-font icon-no"></i></div>
 
         </div> : '';
 
@@ -777,8 +777,8 @@ Child({ name }) {
 
         data_store_review_content.cell ? data_store_review_content.cell = (row) => <div className="mvx-vendor-action-icon">
 
-          <a href={row.link}><span class='dashicons dashicons-edit'></span></a>
-          <div onClick={() => this.handlePostDismiss(row.id, row.type)} id={row.id}><span class='dashicons dashicons-no'></span></div>
+          <a href={row.link}><i className="mvx-font icon-edit"></i></a>
+          <div onClick={() => this.handlePostDismiss(row.id, row.type)} id={row.id}><i className="mvx-font icon-no"></i></div>
 
         </div> : '';
 
@@ -840,9 +840,9 @@ Child({ name }) {
                       </div>
                       <div className="mvx-module-current-status wp-clearfix">
                           <div className="mvx-left-icons-wrap">
-                              <div className="mvx-left-icon"><i className="mvx-font icon-tab-SPMV" onClick={(e) => this.handle_product_request_by_vendors(e, pending_data.id, pending_data.vendor, 'approve')}></i></div>
-                              <div className="mvx-left-icon"><i className="mvx-font icon-tab-policy" onClick={(e) => this.handle_product_request_by_vendors(e, pending_data.id, pending_data.vendor, 'edit')}></i></div>
-                              <div className="mvx-left-icon"><i className="mvx-font icon-tab-commissions" onClick={(e) => this.handle_product_request_by_vendors(e, pending_data.id, pending_data.vendor, 'dismiss')}></i></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-edit" onClick={(e) => this.handle_product_request_by_vendors(e, pending_data.id, pending_data.vendor, 'approve')}></i></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-approve" onClick={(e) => this.handle_product_request_by_vendors(e, pending_data.id, pending_data.vendor, 'edit')}></i></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-close" onClick={(e) => this.handle_product_request_by_vendors(e, pending_data.id, pending_data.vendor, 'dismiss')}></i></div>
                           </div>
                       </div>
                     </div>
@@ -916,9 +916,9 @@ Child({ name }) {
                       </div>
                       <div className="mvx-module-current-status wp-clearfix">
                           <div className="mvx-left-icons-wrap">
-                              <div className="mvx-left-icon"><i className="mvx-font icon-tab-SPMV"></i></div>
-                              <div className="mvx-left-icon"><i className="mvx-font icon-tab-SPMV"></i></div>
-                              <div className="mvx-left-icon"><i className="mvx-font icon-tab-SPMV"></i></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-edit"></i></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-approve"></i></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-close"></i></div>
                           </div>
                       </div>
                     </div>
@@ -994,9 +994,9 @@ Child({ name }) {
                       </div>
                       <div className="mvx-module-current-status wp-clearfix">
                           <div className="mvx-left-icons-wrap">
-                              <div className="mvx-left-icon"><i className="mvx-font icon-tab-SPMV"></i></div>
-                              <div className="mvx-left-icon"><i className="mvx-font icon-tab-SPMV"></i></div>
-                              <div className="mvx-left-icon"><i className="mvx-font icon-tab-SPMV"></i></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-edit"></i></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-approve"></i></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-close"></i></div>
                           </div>
                       </div>
                     </div>
@@ -1069,9 +1069,9 @@ Child({ name }) {
                       </div>
                       <div className="mvx-module-current-status wp-clearfix">
                           <div className="mvx-left-icons-wrap">
-                              <div className="mvx-left-icon"><i className="mvx-font icon-tab-SPMV"></i></div>
-                              <div className="mvx-left-icon"><i className="mvx-font icon-tab-SPMV"></i></div>
-                              <div className="mvx-left-icon"><i className="mvx-font icon-tab-SPMV"></i></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-edit"></i></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-approve"></i></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-close"></i></div>
                           </div>
                       </div>
                     </div>
@@ -1102,7 +1102,7 @@ Child({ name }) {
       <div className="mvx-module-grid">
 
         <div className="mvx-table-text-and-add-wrap">
-          <Link to={`?page=mvx#&submenu=work-board&name=announcement&create=announcement`}><span class="dashicons dashicons-plus"></span>Add Announcement</Link>
+          <Link to={`?page=mvx#&submenu=work-board&name=announcement&create=announcement`}><i className="mvx-font icon-add"></i>Add Announcement</Link>
         </div>
 
 
@@ -1150,7 +1150,7 @@ Child({ name }) {
 
 
               <div className="mvx-module-section-list-data"> 
-                <label><span class="dashicons dashicons-search"></span></label>
+                <label><i className="mvx-font icon-search"></i></label>
                 <input type="text" placeholder="Search Announcement" onChange={(e) => this.handle_post_bulk_status(e, 'announcement')}/>
               </div>
 
@@ -1197,7 +1197,7 @@ Child({ name }) {
 
 
         <div className="mvx-table-text-and-add-wrap">
-          <Link to={`?page=mvx#&submenu=work-board&name=knowladgebase&create=knowladgebase`}><span class="dashicons dashicons-plus"></span>Add Knowladgebase</Link>
+          <Link to={`?page=mvx#&submenu=work-board&name=knowladgebase&create=knowladgebase`}><i className="mvx-font icon-add"></i>Add Knowladgebase</Link>
         </div>
 
         {get_current_name && get_current_name.get("create") == 'knowladgebase' ?
@@ -1242,7 +1242,7 @@ Child({ name }) {
 
 
               <div className="mvx-module-section-list-data"> 
-                <label><span class="dashicons dashicons-search"></span></label>
+                <label><i className="mvx-font icon-search"></i></label>
                 <input type="text" placeholder="Search Knowledgebase" onChange={(e) => this.handle_post_bulk_status(e, 'knowladgebase')}/>
               </div>
             </div>
@@ -1289,7 +1289,7 @@ Child({ name }) {
 
 
             <div className="mvx-module-section-list-data"> 
-              <label><span class="dashicons dashicons-search"></span></label>
+              <label><i className="mvx-font icon-search"></i></label>
               <input type="text" placeholder="Search Review" name="search"/>
             </div>
           </div>
@@ -1338,7 +1338,7 @@ Child({ name }) {
 
 
             <div className="mvx-module-section-list-data"> 
-              <label><span class="dashicons dashicons-search"></span></label>
+              <label><i className="mvx-font icon-search"></i></label>
               <input type="text" placeholder="Search Question" name="search"/>
             </div>
           </div>

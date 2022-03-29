@@ -2976,8 +2976,8 @@ class MVX_REST_API {
 
                 $action_display = "
                     <div class='mvx-vendor-action-icon'>
-                        <span class='dashicons dashicons-edit'></span>
-                        <span class='dashicons dashicons-no'></span>
+                        <i class='mvx-font icon-edit'></i>
+                        <i class='mvx-font icon-close'></i>
                     </div>
                 ";
 
@@ -3658,8 +3658,8 @@ class MVX_REST_API {
 
             $action_display = "
             <div class='mvx-vendor-action-icon'>
-                <span class='dashicons dashicons-edit'></span>
-                <span class='dashicons dashicons-no'></span>
+                <i class='mvx-font icon-edit'></i>
+                <i class='mvx-font icon-close'></i>
             </div>";
 
             $user_list[] = apply_filters('mvx_list_table_vendors_columns_data', array(
@@ -4059,7 +4059,7 @@ class MVX_REST_API {
                         'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
-                        'id'           => 'SPMV',
+                        'id'           => 'spmv',
                         'name'         => __( 'Single Product Multiple Vendor', 'dc-woocommerce-multi-vendor' ),
                         'description'  => __( 'Lets multiple vendors sell the same products ', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
@@ -4341,7 +4341,7 @@ class MVX_REST_API {
                         'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
-                        'id'           => 'simple-auction',
+                        'id'           => 'auction',
                         'name'         => __( 'Auction', 'dc-woocommerce-multi-vendor' ),
                         'description'  => __( 'Implement an auction system similar to eBay on your store', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
@@ -4361,7 +4361,7 @@ class MVX_REST_API {
                         'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
-                        'id'           => 'rental-pro',
+                        'id'           => 'rental',
                         'name'         => __( 'Rental', 'dc-woocommerce-multi-vendor' ),
                         'description'  => __( 'Perfect for those desiring to offer rental, booking, or real state agencies or services.', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',

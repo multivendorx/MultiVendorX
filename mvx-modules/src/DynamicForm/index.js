@@ -609,6 +609,7 @@ export default class DynamicForm extends React.Component {
         input = (
         <div className="mvx-settings-basic-input-class">
 
+        <div className="mvx-settings-basic-child-wrap">
         {
 
         m.options.map((o, index) => {
@@ -638,6 +639,7 @@ export default class DynamicForm extends React.Component {
           );
         })
       }
+      </div>
         {m.desc ? <p className="mvx-settings-metabox-description" dangerouslySetInnerHTML={{ __html: m.desc }}></p> : ''}
         </div>
         )
@@ -1307,6 +1309,62 @@ export default class DynamicForm extends React.Component {
         </div>
         )
       }
+
+
+
+      if (type == "checkbox_select") {
+        input = (
+        <div className="mvx-select-deselect-checkbox-content">
+
+        <div className="mvx-select-de-box-and-checkbox">
+          <div className="mvx-select-deselect-checkbox-content-trigger">{m.select_deselect ? <div className="mvx-select-deselect-trigger" onClick={e => { this.onSelectDeselectChange(e, m); }}>Select / Deselect All</div> : '' }</div>
+
+          <div className="mvx-select-deselect-checkbox-label-marge">
+          {
+
+          m.options.map(o => {
+            //let checked = o.value == value;
+            let checked = false;
+            if (value && value.length > 0) {
+              checked = value.indexOf(o.value) > -1 ? true : false;
+            }
+            return (
+              <div>
+              <React.Fragment key={"cfr" + o.key}>
+                
+                <div className="mvx-wrap-checkbox-and-label">
+                  <div className="mvx-normal-checkbox-content">
+                    <input
+                      {...props}
+                      className={m.class}
+                      type="checkbox"
+                      id={`mvx-normal-switch-${o.key}`}
+                      key={o.key}
+                      name={o.name}
+                      checked={checked}
+                      value={o.value}
+                      onChange={e => {
+                        this.onChange(e, m.key, "multiple");
+                      }}
+                    />
+                  </div>
+                  <div className="mvx-normal-checkbox-label"><p className="mvx-settings-metabox-description" dangerouslySetInnerHTML={{ __html: o.label }}></p></div>
+                </div>
+              </React.Fragment>
+              </div>
+            );
+          })
+        }
+        </div>
+      </div>
+
+        {m.desc ? <p className="mvx-settings-metabox-description" dangerouslySetInnerHTML={{ __html: m.desc }}></p> : ''}
+        </div>
+        )
+      }
+
+
+
       return (
         <div>
         {m.type == 'section' || m.label == 'no_label' ? input :
@@ -1331,7 +1389,7 @@ export default class DynamicForm extends React.Component {
     let prop_submitbutton = this.props.submitbutton && this.props.submitbutton == 'false' ? '' : 'true';
     return (
       <div className={this.props.className}>
-        {this.state.errordisplay ? <div className="mvx-notic-display-title"><span class="dashicons dashicons-saved"></span>{this.state.errordisplay}</div> : ''}
+        {this.state.errordisplay ? <div className="mvx-notic-display-title"><i className="mvx-font icon-approve"></i>{this.state.errordisplay}</div> : ''}
         {/*<div className="mvx-notic-display-title">Setting Saved</div>*/}
         <form
           className="dynamic-form"
@@ -1344,7 +1402,7 @@ export default class DynamicForm extends React.Component {
           <div className="form-actions">
             <button className="button-secondary" disabled={this.state.from_loading}  type="submit">{this.state.from_loading && (
               <i
-              className="dashicons dashicons-update"
+              className="mvx-font icon-approve"
               style={{ marginRight: "5px" }}
               />
               )}

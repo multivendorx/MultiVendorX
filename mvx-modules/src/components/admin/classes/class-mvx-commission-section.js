@@ -376,7 +376,7 @@ class App extends Component {
                   <div className="mvx-commission-status-wrap">
                     { /*<Select placeholder={appLocalizer.commission_page_string.show_commission_status} options={appLocalizer.commission_status_list_action} defaultValue={this.state.get_commission_id_status} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handleupdatecommission(e)} /> */}
                     <div className="woocommerce-order-data-meta order_number" dangerouslySetInnerHTML={{__html: this.state.commission_details.order_meta_details}} ></div>
-                    <span class='dashicons dashicons-edit'></span>
+                    <i className="mvx-font icon-edit"></i>
 
                   </div>
 
@@ -391,12 +391,16 @@ class App extends Component {
 
                   <p className="commission-details-data-value">
                       <div className="mvx-commission-label-class">{appLocalizer.commission_page_string.shipping}:</div>
-                      <div className="mvx-commission-value-class">{this.state.commission_details.shipping_amount != this.state.commission_details.commission_shipping_totals ? this.state.commission_details.commission_shipping_totals_output : this.state.commission_details.commission_shipping_totals}</div>
+                      <div className="mvx-commission-value-class">
+                        <p dangerouslySetInnerHTML={{__html: this.state.commission_details.shipping_amount != this.state.commission_details.commission_shipping_totals ? this.state.commission_details.commission_shipping_totals_output : this.state.commission_details.commission_shipping_totals}} ></p>
+                      </div>
                   </p>
 
                   <p className="commission-details-data-value">
                     <div className="mvx-commission-label-class">{appLocalizer.commission_page_string.tax}:</div>
-                    <div className="mvx-commission-value-class">{this.state.commission_details.tax_amount != this.state.commission_details.commission_tax_total ? this.state.commission_details.commission_tax_total_output : this.state.commission_details.commission_tax_total}</div>
+                    <div className="mvx-commission-value-class">
+                      <p dangerouslySetInnerHTML={{__html: this.state.commission_details.tax_amount != this.state.commission_details.commission_tax_total ? this.state.commission_details.commission_tax_total_output : this.state.commission_details.commission_tax_total}} ></p>
+                    </div>
                   </p>
                 </div>
               </div>
@@ -719,7 +723,7 @@ class App extends Component {
           <div className="mvx-sub-container">
             <div className="mvx-commission-table-text-and-add-wrap">
               <div className="mvx-datatable-text">Commission</div>
-              <CSVLink data={this.state.commissiondata} headers={appLocalizer.commission_header} filename={"Commissions.csv"} className="button-commission-secondary"><span class="dashicons dashicons-download"></span>Download CSV</CSVLink>
+              <CSVLink data={this.state.commissiondata} headers={appLocalizer.commission_header} filename={"Commissions.csv"} className="button-commission-secondary"><i className="mvx-font icon-download"></i>Download CSV</CSVLink>
             </div>
 
             <div className="mvx-search-and-multistatus-wrap">
@@ -730,7 +734,7 @@ class App extends Component {
               </div>
 
               <div className="mvx-module-search-commission-data"> 
-                <label><span class="dashicons dashicons-search"></span></label>
+                <label><i className="mvx-font icon-search"></i></label>
                 <input type="text" placeholder="Search Commissions" name="search"/>
               </div>
 

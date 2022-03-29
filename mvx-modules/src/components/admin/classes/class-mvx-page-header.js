@@ -25,10 +25,10 @@ class App extends Component {
         </div>
         <div className="mvx-module-nav-right-section">
           <div className="mvx-header-search-section"> 
-            <label><span class="dashicons dashicons-search"></span></label>
+            <label><i className='mvx-font icon-search'></i></label>
             <input type="text" placeholder="Search Modules" name="search"/>
           </div>
-          <a href={appLocalizer.knowledgebase} title={appLocalizer.knowledgebase_title} target="_blank" className="mvx-module-section-nav-child-data"><i className="dashicons dashicons-admin-users"></i></a>
+          <a href={appLocalizer.knowledgebase} title={appLocalizer.knowledgebase_title} target="_blank" className="mvx-module-section-nav-child-data"><i class='mvx-font icon-knowledge-topbar'></i></a>
         </div>
       </div>
     );

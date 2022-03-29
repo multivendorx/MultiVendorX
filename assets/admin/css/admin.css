@@ -253,19 +253,8 @@ a:focus {
 .module-external:before {
   content: "\e90d";
 }
-.module-follow-store .path1:before {
+.module-follow-store:before {
   content: "\e90e";
-  color: rgb(23, 23, 23);
-}
-.module-follow-store .path2:before {
-  content: "\e90f";
-  margin-left: -1em;
-  color: rgb(23, 23, 23);
-}
-.module-follow-store .path3:before {
-  content: "\e910";
-  margin-left: -1em;
-  color: rgb(24, 23, 24);
 }
 .module-geo-my-wp:before {
   content: "\e911";
@@ -345,14 +334,8 @@ a:focus {
 .module-store-policy:before {
   content: "\e92a";
 }
-.module-store-review .path1:before {
-  content: "\e92b";
-  color: rgb(23, 23, 23);
-}
-.module-store-review .path2:before {
-  content: "\e92c";
-  margin-left: -1em;
-  color: rgb(24, 23, 24);
+.module-store-review:before {
+  content: "\e90f";
 }
 .module-store-seo:before {
   content: "\e92d";
@@ -393,6 +376,7 @@ a:focus {
 .module-zone-shipping:before {
   content: "\e939";
 }
+
 
 /*icon end*/
 

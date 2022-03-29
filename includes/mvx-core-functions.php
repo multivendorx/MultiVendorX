@@ -5289,9 +5289,9 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 [
                     'key'    => 'product_types',
                     'label'   => __( 'Product Types', 'dc-woocommerce-multi-vendor' ),
-                    'class'     => 'mvx-toggle-checkbox',
-                    'parent_class'  => 'mvx-toggle-checkbox-header',
-                    'type'    => 'checkbox',
+                    'class'     => 'mvx-normal-checkbox',
+                    'parent_class'  => 'mvx-normal-checkbox-header',
+                    'type'    => 'checkbox_select',
                     'select_deselect'   =>  true,
                     'desc' => __('lets vendors transforms simple products into either nontangible virtual product or into a product that can be downloaded', 'dc-woocommerce-multi-vendor'),
                     'options' => array(
@@ -5328,7 +5328,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'class'     => 'mvx-toggle-checkbox',
                     'parent_class'  => 'mvx-toggle-checkbox-header',
                     'select_deselect'   =>  true,
-                    'type'    => 'checkbox',
+                    'type'    => 'checkbox_select',
                     'desc' => __('lets vendors transforms products into either non-tangible vitual products or product that can be downloaded', 'dc-woocommerce-multi-vendor'),
                     'options' => array(
                         array(
@@ -5348,7 +5348,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 ],
                 [
                     'key'       => 'products_fields',
-                    'type'      => 'checkbox',
+                    'type'      => 'checkbox_select',
                     'class'     => 'mvx-toggle-checkbox',
                     'parent_class'  => 'mvx-toggle-checkbox-header',
                     'select_deselect'   =>  true,
@@ -6781,7 +6781,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 [
                     'key'    => 'customer_refund_status',
                     'label'   => __( 'Available Status for Refund', 'dc-woocommerce-multi-vendor' ),
-                    'type'    => 'checkbox',
+                    'type'    => 'checkbox_select',
                     'select_deselect'   =>  true,
                     'desc'  =>  __("Customers would be able to avail refund only if their order is at the following stage/s", 'dc-woocommerce-multi-vendor'),
                     'class'     => 'mvx-toggle-checkbox',
@@ -7283,7 +7283,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'tablabel'      =>  __('Product', 'dc-woocommerce-multi-vendor'),
                 'description'   =>  __('View Porduct Sales', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
-                'icon'          =>  'icon-tab-icon-tab-product-02',
+                'icon'          =>  'icon-tab-products',
                 'modulename'     =>  'product'
             ),
             array(
