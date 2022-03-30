@@ -4735,7 +4735,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'type'      => 'toggle_rectangle',
                     'class'     => 'mvx-toggle-radio-switcher',
                     'label'     => __( 'Approve Vendor', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __( 'Lets you either check vendor information manually or sends vendors directly to the dashboard as soon as the registration is complete', 'dc-woocommerce-multi-vendor' ),
+                    'desc'      => __( 'Evaluate sellers before granting dashboard access or grant immediate dashboard access', 'dc-woocommerce-multi-vendor' ),
                     'options' => array(
                         array(
                             'name'  => 'approve_vendor',
@@ -4763,7 +4763,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'options' => array(
                         array(
                             'key'=> "vendors_backend_access",
-                            'label'=> __('Limit vendors from accessing their backened', 'dc-woocommerce-multi-vendor'),
+                            'label'=> __('Upgrade to MultiVendorX Pro to offer an all-purpose dashboard while eliminating the requirenment for Wordpress backend access.', 'dc-woocommerce-multi-vendor'),//neda
                             'value'=> "vendors_backend_access"
                         ),
                     ),
@@ -4797,7 +4797,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'options' => array(
                         array(
                             'key'=> "category_pyramid_guide",
-                            'label'=> __("CPG option helps vendor's to identify the correct categories for their products", 'dc-woocommerce-multi-vendor'),
+                            'label'=> __("CPG option helps vendor's to identify the correct categories for their products", 'dc-woocommerce-multi-vendor'),//neda
                             'value'=> "category_pyramid_guide"
                         ),
                     ),
@@ -4819,7 +4819,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'key'       => 'registration_page',
                     'type'      => 'select',
                     'label'     => __( 'Registration Page', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __( 'Select the page on which you have inserted [seller_registration] shortcode .', 'dc-woocommerce-multi-vendor' ),
+                    'desc'      => __( 'Select the page on which you have inserted <code>[vendor_registration]</code> shortcode .', 'dc-woocommerce-multi-vendor' ),
                     'options' => $pages_array,
                     'database_value' => '',
                 ],
@@ -4827,7 +4827,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'key'       => 'vendor_dashboard_page',
                     'type'      => 'select',
                     'label'     => __( 'Vendor Dashboard Page', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __( 'Select the page on which you have inserted [mvx_seller] shortcode .', 'dc-woocommerce-multi-vendor' ),
+                    'desc'      => __( 'Select the page on which you have inserted <code>[mvx_vendor]</code> shortcode .', 'dc-woocommerce-multi-vendor' ),
                     'options' => $pages_array,
                     'database_value' => '',
                 ],
@@ -4874,7 +4874,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                         ),
                         array(
                             'variable'=> "<code>mvx_best_selling_products</code>",
-                            'description'=> __('Offers you the option of viewing the best selling products of the vendor', 'dc-woocommerce-multi-vendor'),
+                            'description'=> __('Presents you the option of viewing the best selling products of the vendor', 'dc-woocommerce-multi-vendor'),
                         ),
                         array(
                             'variable'=> "<code>mvx_product_category</code>",
@@ -4898,7 +4898,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'options' => array(
                         array(
                             'key'=> "buddypress_enabled",
-                            'label'=> __('Allows sellers to sell products on their buddypress profile while connecting with their customers', 'dc-woocommerce-multi-vendor'),
+                            'label'=> __('Allows sellers to sell products on their BuddyPress profile while connecting with their customers', 'dc-woocommerce-multi-vendor'),//correct
                             'value'=> "buddypress_enabled"
                         )
                     ),
@@ -4914,14 +4914,14 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'type'    => 'file',
                     'width' =>  75,
                     'height'    => 75,
-                    'desc' => __('Upload Brand Image as Logo', 'dc-woocommerce-multi-vendor'),
+                    'desc' => __('Upload brand image as logo', 'dc-woocommerce-multi-vendor'),
                     'database_value' => array(),
                 ],
                 [
                     'key'       => 'vendor_color_scheme_picker',
                     'type'      => 'radio_color',
                     'label'     => __( 'Color Scheme', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __( 'Select your prefered colou scheme', 'dc-woocommerce-multi-vendor' ),
+                    'desc'      => __( 'Select your prefered seller dashboard colour scheme', 'dc-woocommerce-multi-vendor' ),
                     'options' => array(
                         array(
                             'name'  => 'vendor_color_scheme_picker',
@@ -5178,7 +5178,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'options' => array(
                         array(
                             'key'=> "enable_store_map_for_vendor",
-                            'label'=> __("Tap to dispay the location of  the vendors' shops", 'dc-woocommerce-multi-vendor'),
+                            'label'=> __("Tap to display the location of sellers' shops.", 'dc-woocommerce-multi-vendor'),
                             'value'=> "enable_store_map_for_vendor"
                         )
                     ),
@@ -5189,7 +5189,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'type'      => 'select',
                     'bydefault' =>  'google_map_set',
                     'label'     => __( 'Location Provider', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __( 'Select prefered location Provider', 'dc-woocommerce-multi-vendor' ),
+                    'desc'      => __( 'Select prefered location provider', 'dc-woocommerce-multi-vendor' ),
                     'options' => array(
                         array(
                             'key'=> "google_map_set",
@@ -5227,7 +5227,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'key'       => 'show_related_products',
                     'type'      => 'select',
                     'label'     => __( 'Related Product', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __( 'Tap to let  customers view other product related to the  product they are seeing', 'dc-woocommerce-multi-vendor' ),
+                    'desc'      => __( 'Let customers view products related to the product visible.', 'dc-woocommerce-multi-vendor' ),
                     'options' => array(
                         array(
                             'key'=> "all_related",
@@ -5237,7 +5237,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                         array(
                             'key'=> "vendors_related",
                             'selected'  => true,
-                            'label'=> __("Related Products from Vendor's Store", 'dc-woocommerce-multi-vendor'),
+                            'label'=> __("Related Products from Seller's Store", 'dc-woocommerce-multi-vendor'),
                             'value'=> __('vendors_related', 'dc-woocommerce-multi-vendor'),
                         ),
                         array(
@@ -5257,7 +5257,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'options' => array(
                         array(
                             'key'=> "is_enable_store_sidebar",
-                            'label'=> __('Tap to display sidebar section for vendor shop page. Select her to add vendor shop widget', 'dc-woocommerce-multi-vendor'),
+                            'label'=> __('Display sidebar section for vendor shop page. Select here to add vendor shop widget.', 'dc-woocommerce-multi-vendor'),
                             'value'=> "is_enable_store_sidebar"
                         ),
                     ),
@@ -5289,11 +5289,11 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 [
                     'key'    => 'product_types',
                     'label'   => __( 'Product Types', 'dc-woocommerce-multi-vendor' ),
-                    'class'     => 'mvx-normal-checkbox',
-                    'parent_class'  => 'mvx-normal-checkbox-header',
-                    'type'    => 'checkbox_select',
+                    'class'     => 'mvx-toggle-checkbox',
+                    'parent_class'  => 'mvx-toggle-checkbox-header',
+                    'type'    => 'checkbox',
                     'select_deselect'   =>  true,
-                    'desc' => __('lets vendors transforms simple products into either nontangible virtual product or into a product that can be downloaded', 'dc-woocommerce-multi-vendor'),
+                    'desc' => __('Choose your preferred product type. To learn more read about MultiVendorX Products', 'dc-woocommerce-multi-vendor'),
                     'options' => array(
                         array(
                             'key'=> "simple",
@@ -5328,8 +5328,8 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'class'     => 'mvx-toggle-checkbox',
                     'parent_class'  => 'mvx-toggle-checkbox-header',
                     'select_deselect'   =>  true,
-                    'type'    => 'checkbox_select',
-                    'desc' => __('lets vendors transforms products into either non-tangible vitual products or product that can be downloaded', 'dc-woocommerce-multi-vendor'),
+                    'type'    => 'checkbox',
+                    'desc' => __('Select if the product is non-tangible or downloadable.', 'dc-woocommerce-multi-vendor'),
                     'options' => array(
                         array(
                             'key'=> "virtual",
@@ -5348,7 +5348,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 ],
                 [
                     'key'       => 'products_fields',
-                    'type'      => 'checkbox_select',
+                    'type'      => 'checkbox',
                     'class'     => 'mvx-toggle-checkbox',
                     'parent_class'  => 'mvx-toggle-checkbox-header',
                     'select_deselect'   =>  true,
@@ -5357,7 +5357,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                         array(
                             'name'  => 'products_fields',
                             'key' => 'general',
-                            'label' => __('Generl', 'dc-woocommerce-multi-vendor'),
+                            'label' => __('General', 'dc-woocommerce-multi-vendor'),
                             'value' => 'general'
                         ),
                         array(
@@ -5415,7 +5415,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'options' => array(
                         array(
                             'key'=> "is_submit_product",
-                            'label'=> __('This option enables vendors to not only add new products but to also submit them for your approval', 'dc-woocommerce-multi-vendor'),
+                            'label'=> __('Enables sellers to add new products and submit them for admin approval', 'dc-woocommerce-multi-vendor'),
                             'value'=> "is_submit_product"
                         )
                     ),
@@ -5429,7 +5429,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'options' => array(
                         array(
                             'key'=> "is_published_product",
-                            'label'=> __('Vendors can publish their product on site without your approval', 'dc-woocommerce-multi-vendor'),
+                            'label'=> __('Lets sellers can publish products on the website without waiting for approval', 'dc-woocommerce-multi-vendor'),
                             'value'=> "is_published_product"
                         )
                     ),
@@ -5443,7 +5443,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'options' => array(
                         array(
                             'key'=> "is_edit_delete_published_product",
-                            'label'=> __('This option  lets the vendor correct a published product', 'dc-woocommerce-multi-vendor'),
+                            'label'=> __('Makes it possible for sellers to edit and delete a published product.', 'dc-woocommerce-multi-vendor'),
                             'value'=> "is_edit_delete_published_product"
                         )
                     ),
@@ -5457,7 +5457,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'options' => array(
                         array(
                             'key'=> "publish_and_submit_products",
-                            'label'=> __('Allowa vendors to  make their products live while submitting it to your for correction', 'dc-woocommerce-multi-vendor'),
+                            'label'=> __('Allows sellers to list their products while submitting them to your for revision', 'dc-woocommerce-multi-vendor'),
                             'value'=> "publish_and_submit_products"
                         )
                     ),
@@ -5471,7 +5471,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'options' => array(
                         array(
                             'key'=> "is_submit_coupon",
-                            'label'=> __('This option enables vendors to create their own coupons', 'dc-woocommerce-multi-vendor'),
+                            'label'=> __('Equips sellers with the ability to create their own coupons', 'dc-woocommerce-multi-vendor'),
                             'value'=> "is_submit_coupon"
                         )
                     ),
@@ -5485,7 +5485,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'options' => array(
                         array(
                             'key'=> "is_publish_coupon",
-                            'label'=> __('With this option vendors can make their coupons live on your site', 'dc-woocommerce-multi-vendor'),
+                            'label'=> __('Gives sellers the ability to publish coupons on your website', 'dc-woocommerce-multi-vendor'),
                             'value'=> "is_publish_coupon"
                         )
                     ),
@@ -5499,7 +5499,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'options' => array(
                         array(
                             'key'=> "is_edit_coupon",
-                            'label'=> __('Vendors can edit an re-use a published coupon', 'dc-woocommerce-multi-vendor'),
+                            'label'=> __('Sellers gain the option to edit, re-use or delete a published coupons', 'dc-woocommerce-multi-vendor'),
                             'value'=> "is_edit_coupon"
                         )
                     ),
@@ -5627,7 +5627,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'depend'    => 'commission_type',
                     'dependvalue'       =>  'fixed',
                     'label'     => __( 'Commission Value', 'dc-woocommerce-multi-vendor' ),
-                    'desc' => __('The commission amount added here will be applicable for all commissions. In case the your commission type is fixed the', 'dc-woocommerce-multi-vendor'),
+                    'desc' => __(' The is the default commission amount that will be applicable for all transactions.', 'dc-woocommerce-multi-vendor'),
                     'options' => array(
                         array(
                             'name'  => 'default_commission',
@@ -5645,7 +5645,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'depend'    => 'commission_type',
                     'dependvalue'       =>  'percent',
                     'label'     => __( 'Commission Value', 'dc-woocommerce-multi-vendor' ),
-                    'desc' => __('The commission amount added here will be applicable for all commissions. In case the your commission type is fixed the', 'dc-woocommerce-multi-vendor'),
+                    'desc' => __('The is the default commission amount that will be applicable for all transactions.', 'dc-woocommerce-multi-vendor'),
                     'options' => array(
                         array(
                             'name'  => 'default_commission',
@@ -5663,7 +5663,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'depend'    => 'commission_type',
                     'dependvalue'       =>  'fixed_with_percentage',
                     'label'     => __( 'Commission Value', 'dc-woocommerce-multi-vendor' ),
-                    'desc' => __('The commission amount added here will be applicable for all commissions. In case the your commission type is fixed the', 'dc-woocommerce-multi-vendor'),
+                    'desc' => __('The is the default commission amount that will be applicable for all transactions.', 'dc-woocommerce-multi-vendor'),
                     'options' => array(
                         array(
                             'name'  => 'default_commission',
@@ -5688,7 +5688,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'depend'    => 'commission_type',
                     'dependvalue'       =>  'fixed_with_percentage_qty',
                     'label'     => __( 'Commission Value', 'dc-woocommerce-multi-vendor' ),
-                    'desc' => __('The commission amount added here will be applicable for all commissions. In case the your commission type is fixed the', 'dc-woocommerce-multi-vendor'),
+                    'desc' => __('The is the default commission amount that will be applicable for all transactions.', 'dc-woocommerce-multi-vendor'),
                     'options' => array(
                         array(
                             'name'  => 'default_commission',
@@ -5710,14 +5710,14 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 [
                     'key'    => 'payment_method_disbursement',
                     'label'   => __( 'Commission Disbursement Method', 'dc-woocommerce-multi-vendor' ),
-                    'desc'  =>  __( "display only enabled payment gateways. To enable your choosen disbursement type click here (link module page)", 'dc-woocommerce-multi-vendor' ),
+                    'desc'  =>  __( "Display only enabled payment gateways. To enable your choosen disbursement type click here (link module page)", 'dc-woocommerce-multi-vendor' ),
                     'class'     => 'mvx-toggle-checkbox',
                     'type'    => 'checkbox',
                     'right_content' =>  true,
                     'options' => array(
                         array(
                             'key'=> "paypal_masspay",
-                            'label'=> __('PayPal Masspay (Stop Waiting and Pay Vendors Immediately with PayPal Real-Time Split Payment using <a href="https://wc-marketplace.com/product/mvx-paypal-marketplace/">MVX PayPal Marketplace</a>. Please visit our site)', 'dc-woocommerce-multi-vendor'),
+                            'label'=> __('PayPal Masspay ', 'dc-woocommerce-multi-vendor'),//(Stop Waiting and Pay Vendors Immediately with PayPal Real-Time Split Payment using <a href="https://wc-marketplace.com/product/mvx-paypal-marketplace/">MVX PayPal Marketplace</a>. Please visit our site)
                             'value'=> "paypal_masspay"
                         ),
                         array(
@@ -5751,7 +5751,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 [
                     'key'       => 'payment_gateway_charge',
                     'label'     => __( 'Payment Gateway Charge', 'dc-woocommerce-multi-vendor' ),
-                    'desc'  =>  __( "Add the charges inccured during online payment processing", 'dc-woocommerce-multi-vendor' ),
+                    'desc'  =>  __( "Add the payment gateway charges incurred while paying online.", 'dc-woocommerce-multi-vendor' ),
                     'class'     => 'mvx-toggle-checkbox',
                     'type'      => 'checkbox',
                     'options' => array(
@@ -6367,7 +6367,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'options' => array(
                         array(
                             'key'=> "is_singleproductmultiseller",
-                            'label'=> __('Let vendors search for product sold on your site and sell them from theirs', 'dc-woocommerce-multi-vendor'),
+                            'label'=> __('Let vendors search for products sold on your site and sell them from their store.', 'dc-woocommerce-multi-vendor'),
                             'value'=> "is_singleproductmultiseller"
                         )
                     ),
@@ -6376,8 +6376,8 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 [
                     'key'       => 'singleproductmultiseller_show_order',
                     'type'      => 'select',
-                    'label'     => __( 'Shop Page product display based on', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => stripslashes(__('Select which SMPV Product to Display In the Shop Page', 'dc-woocommerce-multi-vendor')),
+                    'label'     => __( 'Display Shop Page Product', 'dc-woocommerce-multi-vendor' ),
+                    'desc'      => stripslashes(__('Select the criteria on which the SPMV product is going to be based on.', 'dc-woocommerce-multi-vendor')),
                     'options' => array(
                         array(
                             'key'=> "min-price",
@@ -6415,7 +6415,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'options' => array(
                         array(
                             'key'=> "is_sellerreview",
-                            'label'=> __('This option lets buyers rate and review a vendor.', 'dc-woocommerce-multi-vendor'),
+                            'label'=> __('Any customer can rate and review a vendor.', 'dc-woocommerce-multi-vendor'),
                             'value'=> "is_sellerreview"
                         )
                     ),
@@ -6429,7 +6429,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'options' => array(
                         array(
                             'key'=> "is_sellerreview_varified",
-                            'label'=> __('Accept only verified buyer reviews, Other cant review vendors', 'dc-woocommerce-multi-vendor'),
+                            'label'=> __('Allows you to accept reviews only from buyers purchasing the product.', 'dc-woocommerce-multi-vendor'),
                             'value'=> "is_sellerreview_varified"
                         )
                     ),
@@ -6443,7 +6443,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'options' => array(
                         array(
                             'key'=> "product_review_sync",
-                            'label'=> __('Store Rating will be calcuated based on Store Rating + Product Rating', 'dc-woocommerce-multi-vendor'),
+                            'label'=> __('Store Rating will be calculated based on Store Rating + Product Rating', 'dc-woocommerce-multi-vendor'),
                             'value'=> "product_review_sync"
                         )
                     ),
@@ -6576,7 +6576,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'options' => array(
                         array(
                             'key'=> "give_tax",
-                            'label'=> __('Tap to let vendor collect & manage tax amount', 'dc-woocommerce-multi-vendor'),
+                            'label'=> __('Let vendor collect & manage tax amount', 'dc-woocommerce-multi-vendor'),
                             'value'=> "give_tax"
                         )
                     ),
@@ -6590,7 +6590,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'options' => array(
                         array(
                             'key'=> "give_shipping",
-                            'label'=> __('Tap to let vendors collect shipping charges', 'dc-woocommerce-multi-vendor'),
+                            'label'=> __('Allow sellers to collect & manage shipping charges', 'dc-woocommerce-multi-vendor'),
                             'value'=> "give_shipping"
                         )
                     ),
@@ -6604,7 +6604,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'options' => array(
                         array(
                             'key'=> "choose_payment_mode_automatic_disbursal",
-                            'label'=> __('Schedule when vendors would recive their commission', 'dc-woocommerce-multi-vendor'),
+                            'label'=> __('Schedule when vendors would receive their commission', 'dc-woocommerce-multi-vendor'),
                             'value'=> "choose_payment_mode_automatic_disbursal"
                         )
                     ),
@@ -6635,7 +6635,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'key'    => 'commission_threshold_time',
                     'label'   => __( 'Withdrawal Locking Period', 'dc-woocommerce-multi-vendor' ),
                     'type'    => 'number',
-                    'desc' => __('Refers to the minimum numbers of day required before a vendor can send withdrawal request', 'dc-woocommerce-multi-vendor'),
+                    'desc' => __('Refers to the minimum number of days required before a seller can send a withdrawal request', 'dc-woocommerce-multi-vendor'),
                     'placeholder'   => __('in days', 'dc-woocommerce-multi-vendor'),
                     'database_value' => '',
                 ],
@@ -6643,7 +6643,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'key'       => 'order_withdrawl_status',
                     'type'      => 'multi-select',
                     'label'     => __( 'Available Order Status for Withdrawal', 'dc-woocommerce-multi-vendor' ),
-                    'desc'        => __( 'Withdrawal Request would be available in case of these Order Statuses', 'dc-woocommerce-multi-vendor' ),
+                    'desc'        => __( 'Withdrawal request would be available in case of these order statuses', 'dc-woocommerce-multi-vendor' ),
                     'options' => array(
                         array(
                             'key'=> "on-hold",
@@ -6701,7 +6701,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'options' => array(
                         array(
                             'key'=> "disallow_vendor_order_status",
-                            'label'=> __('If enabled vendor can not chnage order status from frontend.', 'dc-woocommerce-multi-vendor'),
+                            'label'=> __('If enabled vendor can not change order status from frontend.', 'dc-woocommerce-multi-vendor'),
                             'value'=> "disallow_vendor_order_status"
                         )
                     ),
@@ -6781,9 +6781,9 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 [
                     'key'    => 'customer_refund_status',
                     'label'   => __( 'Available Status for Refund', 'dc-woocommerce-multi-vendor' ),
-                    'type'    => 'checkbox_select',
+                    'type'    => 'checkbox',
                     'select_deselect'   =>  true,
-                    'desc'  =>  __("Customers would be able to avail refund only if their order is at the following stage/s", 'dc-woocommerce-multi-vendor'),
+                    'desc'  =>  __("Customers would be able to avail a refund only if their order is at the following stage/s", 'dc-woocommerce-multi-vendor'),
                     'class'     => 'mvx-toggle-checkbox',
                     'options' => array(
                         array(
@@ -6823,7 +6823,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'key'       => 'refund_order_msg',
                     'type'      => 'textarea',
                     'label'     => __( 'Reasons For Refund', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __( 'Add reasons for refund. Use || to seperate reasons. Options will appear as a radion button to customers', 'dc-woocommerce-multi-vendor' ),
+                    'desc'      => __( 'Add reasons for a refund. Use || to separate each reason. Options will appear as a radion button to customers', 'dc-woocommerce-multi-vendor' ),
                     'database_value' => '',
                 ],
             ],
@@ -7112,7 +7112,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'icon'          =>  'ico-store-icon',
                 'modulename'       =>  'modules',
                 'tablabel'      =>  __('Modules', 'dc-woocommerce-multi-vendor'),
-                'description'   =>  __('Default description', 'dc-woocommerce-multi-vendor'),
+                'description'   =>  __('', 'dc-woocommerce-multi-vendor'),
             ],*/
             [
                 'icon'          =>  'ico-store-icon',
@@ -7151,10 +7151,10 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'modulename'    => 'registration'
             ),
             array(
-                'tablabel'      =>  __('Seller Dashbaord', 'dc-woocommerce-multi-vendor'),
+                'tablabel'      =>  __('Seller Dashboard', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'description'   =>  __("Manage the appearance of your seller's dashboard", 'dc-woocommerce-multi-vendor'),
-                'icon'          =>  'icon-tab-seller-dashbaord',
+                'icon'          =>  'icon-tab-seller-dashboard',
                 'modulename'    =>  'seller-dashbaord'
             ),
             array(
@@ -7181,7 +7181,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
             array(
                 'tablabel'      =>  __('SPMV(Single Product Multiple Vendor)', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
-                'description'   =>  __("Give sellers the option to add other seller's products into their store invendtory", 'dc-woocommerce-multi-vendor'),
+                'description'   =>  __("Give sellers the option to add other seller's products into their store inventory", 'dc-woocommerce-multi-vendor'),
                 'icon'          =>  'icon-tab-SPMV',
                 'modulename'    =>  'spmv-pages'
             ),
@@ -7234,7 +7234,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
             array(
                 'tablabel'      =>  __('PayPal Masspay', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
-                'description'   =>  __('PayPal Payout makes it easy for you to pay multiple sellers at the sametime', 'dc-woocommerce-multi-vendor'),
+                'description'   =>  __('PayPal MassPay lets you pay out a large number of affiliates very easily and quickly.', 'dc-woocommerce-multi-vendor'),
                 'icon'          =>  'icon-tab-paypal-masspay',
                 'modulename'     =>  'payment-masspay'
             ),
@@ -7267,28 +7267,28 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
         $analytics_page_endpoint = array(
             array(
                 'tablabel'      =>  __('Overview', 'dc-woocommerce-multi-vendor'),
-                'description'   =>  __('View the Overall Performance of The Site', 'dc-woocommerce-multi-vendor'),
+                'description'   =>  __('View the overall performance of the site', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'icon'          =>  'icon-tab-overview',
                 'modulename'     =>  'admin-overview'
             ),
             array(
                 'tablabel'      =>  __('Vendor', 'dc-woocommerce-multi-vendor'),
-                'description'   =>  __('Get Reports on Vendor Sales', 'dc-woocommerce-multi-vendor'),
+                'description'   =>  __('Get comprehensive reports on vendor sales and orders', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'icon'          =>  'icon-tab-vendor',
                 'modulename'     =>  'vendor'
             ),
             array(
                 'tablabel'      =>  __('Product', 'dc-woocommerce-multi-vendor'),
-                'description'   =>  __('View Porduct Sales', 'dc-woocommerce-multi-vendor'),
+                'description'   =>  __('View reports product sales and order', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
-                'icon'          =>  'icon-tab-products',
+                'icon'          =>  'icon-tab-icon-tab-product-02',
                 'modulename'     =>  'product'
             ),
             array(
                 'tablabel'      =>  __('Transaction History', 'dc-woocommerce-multi-vendor'),
-                'description'   =>  __('Get Detailed Reports On Vendor Commission', 'dc-woocommerce-multi-vendor'),
+                'description'   =>  __('Get detailed reports on vendor commission', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'icon'          =>  'icon-tab-transaction-history',
                 'modulename'     =>  'transaction-history'
