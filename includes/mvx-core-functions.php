@@ -5291,7 +5291,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'label'   => __( 'Product Types', 'dc-woocommerce-multi-vendor' ),
                     'class'     => 'mvx-toggle-checkbox',
                     'parent_class'  => 'mvx-toggle-checkbox-header',
-                    'type'    => 'checkbox',
+                    'type'    => 'checkbox_select',
                     'select_deselect'   =>  true,
                     'desc' => __('Choose your preferred product type. To learn more read about MultiVendorX Products', 'dc-woocommerce-multi-vendor'),
                     'options' => array(
@@ -5328,7 +5328,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'class'     => 'mvx-toggle-checkbox',
                     'parent_class'  => 'mvx-toggle-checkbox-header',
                     'select_deselect'   =>  true,
-                    'type'    => 'checkbox',
+                    'type'    => 'checkbox_select',
                     'desc' => __('Select if the product is non-tangible or downloadable.', 'dc-woocommerce-multi-vendor'),
                     'options' => array(
                         array(
@@ -5348,7 +5348,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 ],
                 [
                     'key'       => 'products_fields',
-                    'type'      => 'checkbox',
+                    'type'      => 'checkbox_select',
                     'class'     => 'mvx-toggle-checkbox',
                     'parent_class'  => 'mvx-toggle-checkbox-header',
                     'select_deselect'   =>  true,
@@ -6781,7 +6781,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 [
                     'key'    => 'customer_refund_status',
                     'label'   => __( 'Available Status for Refund', 'dc-woocommerce-multi-vendor' ),
-                    'type'    => 'checkbox',
+                    'type'    => 'checkbox_select',
                     'select_deselect'   =>  true,
                     'desc'  =>  __("Customers would be able to avail a refund only if their order is at the following stage/s", 'dc-woocommerce-multi-vendor'),
                     'class'     => 'mvx-toggle-checkbox',
@@ -7154,7 +7154,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'tablabel'      =>  __('Seller Dashboard', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'description'   =>  __("Manage the appearance of your seller's dashboard", 'dc-woocommerce-multi-vendor'),
-                'icon'          =>  'icon-tab-seller-dashboard',
+                'icon'          =>  'icon-tab-seller-dashbaord',
                 'modulename'    =>  'seller-dashbaord'
             ),
             array(
