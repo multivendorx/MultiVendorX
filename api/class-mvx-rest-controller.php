@@ -1213,12 +1213,12 @@ class MVX_REST_API {
             $shipping_options = apply_filters('mvx_vendor_shipping_option_to_vendor', array(
                 'distance_by_zone' => __('Shipping by Zone', 'dc-woocommerce-multi-vendor'),
             ) );
-            if (get_mvx_vendor_settings( 'enabled_distance_by_shipping_for_vendor', 'general' ) && 'Enable' === get_mvx_vendor_settings( 'enabled_distance_by_shipping_for_vendor', 'general' )) {
+            //if (get_mvx_vendor_settings( 'enabled_distance_by_shipping_for_vendor', 'general' ) && 'Enable' === get_mvx_vendor_settings( 'enabled_distance_by_shipping_for_vendor', 'general' )) {
                 $shipping_options['distance_by_shipping'] = __('Shipping by Distance', 'dc-woocommerce-multi-vendor');
-            }
-            if (get_mvx_vendor_settings( 'enabled_shipping_by_country_for_vendor', 'general' ) && 'Enable' === get_mvx_vendor_settings( 'enabled_shipping_by_country_for_vendor', 'general' )) {
+            //}
+            //if (get_mvx_vendor_settings( 'enabled_shipping_by_country_for_vendor', 'general' ) && 'Enable' === get_mvx_vendor_settings( 'enabled_shipping_by_country_for_vendor', 'general' )) {
                 $shipping_options['shipping_by_country'] = __('Shipping by Country', 'dc-woocommerce-multi-vendor');
-            }
+            //}
             foreach ($shipping_options as $shipping_key => $shipping_value) {
                 $shipping_options_list[] = array(
                     'value' => sanitize_text_field($shipping_key),
@@ -1229,7 +1229,7 @@ class MVX_REST_API {
             $vendor_default_shipping_options = array();
             foreach ($shipping_options_list as $key => $value) {
                 if ($value['value'] == $vendor_default_shipping_options_database_value) {
-                    $vendor_default_shipping_options[] = $shipping_options_list[$key];
+                    $vendor_default_shipping_options = $shipping_options_list[$key];
                 }
             }
 
@@ -3409,7 +3409,7 @@ class MVX_REST_API {
             $email->trigger( $user_id, $userdata['user_pass'], false);
             if (isset($fetch_data['vendor_profile_image']) && $fetch_data['vendor_profile_image'] != '') update_user_meta($user_id, "_vendor_profile_image", absint( $fetch_data['vendor_profile_image']));
             $message = __( 'Vendor successfully created!', 'dc-woocommerce-multi-vendor' );
-            $redirect_to = apply_filters('mvx_add_new_vendor_redirect_url', admin_url('admin.php?page=vendors&ID='.$user_id. '&name=vendor-personal'));
+            $redirect_to = apply_filters('mvx_add_new_vendor_redirect_url', admin_url('admin.php?page=mvx#&submenu=vendor&ID='.$user_id. '&name=vendor-personal'));
         }
 
         if ($redirect_to) {

@@ -7136,7 +7136,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
             ]
         ];
 
-                $general_settings_page_endpoint = array(
+        $general_settings_page_endpoint = array(
             array(
                 'tablabel'       =>  __('General', 'dc-woocommerce-multi-vendor'),
                 'apiurl'         =>  'mvx_module/v1/save_dashpages',

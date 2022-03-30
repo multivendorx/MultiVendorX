@@ -605,14 +605,14 @@ class App extends React.Component {
 
             this.setState({
               data_setting_fileds: response.data,
+              vendor_shipping_option_choice: response.data.vendor_default_shipping_options.value,
             });
-            
         }
       })
     }
 
 
-    if (new URLSearchParams(window.location.hash).get("name") == 'vendor_shipping') {
+    if (new URLSearchParams(window.location.hash).get("name") == 'vendor-shipping') {
       axios.get(
       `${appLocalizer.apiUrl}/mvx_module/v1/specific_vendor_shipping`, { params: { vendor_id: new URLSearchParams(window.location.hash).get("ID") } 
       })
@@ -657,7 +657,7 @@ class App extends React.Component {
         data.modulename == name.get("name") ?
 
 
-          name.get("name") == 'vendor_followers' ? 
+          name.get("name") == 'vendor-followers' ? 
 
           <DataTable
             columns={this.state.columns_followers}
@@ -668,7 +668,7 @@ class App extends React.Component {
 
           :
 
-            name.get("name") == 'vendor_shipping' ? 
+            name.get("name") == 'vendor-shipping' ? 
 
             name.get("zone_id") ? 
 
@@ -917,7 +917,8 @@ class App extends React.Component {
             :
 
             <div>
-            {console.log(this.state.data_setting_fileds.shipping_options ? this.state.data_setting_fileds.vendor_default_shipping_options : '')}
+
+              {console.log(this.state.vendor_shipping_option_choice)}
 
               { this.state.data_setting_fileds.shipping_options ?
                 
@@ -932,7 +933,7 @@ class App extends React.Component {
                     }} 
                   />
 
-                  {this.state.vendor_shipping_option_choice == 'distance_by_zone' || this.state.data_setting_fileds.vendor_default_shipping_options[0].value == 'distance_by_zone' ?
+                  {this.state.vendor_shipping_option_choice == 'distance_by_zone'?
                     <DataTable
                       columns={this.state.columns_zone_shipping}
                       data={this.state.data_zone_shipping}
@@ -947,24 +948,24 @@ class App extends React.Component {
                       key={`dynamic-form`}
                       className="class"
                       title="distance wise shipping"
-                      model= {appLocalizer.settings_fields['distance_shipping']}
+                      model= {this.state.data_setting_fileds['distance-shipping']}
                       method="post"
-                      modulename="distance_shipping"
+                      modulename="distance-shipping"
                       vendor_id={name.get("ID")}
                       url="mvx_module/v1/update_vendor"
                       submitbutton="false"
                     />
                   :
 
-                  this.state.vendor_shipping_option_choice == 'shipping_by_country' ? 
+                  this.state.vendor_shipping_option_choice == 'shipping_by_country'? 
 
                     <DynamicForm
                     key={`dynamic-form`}
                     className="class"
                     title="country wise shipping"
-                    model= {appLocalizer.settings_fields['country_shipping']}
+                    model= {this.state.data_setting_fileds['country-shipping']}
                     method="post"
-                    modulename="country_shipping"
+                    modulename="country-shipping"
                     vendor_id={name.get("ID")}
                     url="mvx_module/v1/update_vendor"
                     submitbutton="false"
@@ -1074,11 +1075,23 @@ class App extends React.Component {
       });
     })
 
-    if (new URLSearchParams(window.location.hash).get("ID") && new URLSearchParams(window.location.hash).get("name") == 'vendor_shipping' && this.state.data_setting_fileds && Object.keys(this.state.data_setting_fileds).length > 0 && this.state.data_setting_fileds.vendor_default_shipping_options[0]) {
-      this.setState({
-        vendor_shipping_option_choice: this.state.data_setting_fileds.vendor_default_shipping_options[0].value,
-      });
-    }
+
+
+    axios.get(
+    `${appLocalizer.apiUrl}/mvx_module/v1/list_of_all_tab_based_settings_field`, { params: { vendor_id: new URLSearchParams(window.location.hash).get("ID") } 
+    })
+    .then(response => {
+      
+      if (new URLSearchParams(window.location.hash).get("ID") && new URLSearchParams(window.location.hash).get("name") == 'vendor-shipping' && response.data && Object.keys(response.data).length > 0 && response.data.vendor_default_shipping_options) {
+        this.setState({
+          vendor_shipping_option_choice: response.data.vendor_default_shipping_options.value,
+        });
+      }
+
+    })
+
+
+    
     
 
   }
