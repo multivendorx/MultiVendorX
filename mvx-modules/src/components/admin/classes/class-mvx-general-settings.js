@@ -1115,9 +1115,9 @@ Child({ name }) {
 
                        {registration_json_value.hidden ? 
                           <div className="mvx-footer-icon-form">
-                              <i class="mvx-font icon-tab-general" onClick={e => {this.OnDuplicateSelectChange(e, registration_json_index, 'duplicate') }}></i>
-                              <i class="mvx-font icon-close" onClick={(e) => this.handleRemoveClickNew(e, registration_json_index)}></i>
-                              <i class="mvx-font icon-add" onClick={(e) => this.handleAddClickNew(e, registration_json_value.type)}></i>
+                              <i class="mvx-font icon-vendor-form-copyl" onClick={e => {this.OnDuplicateSelectChange(e, registration_json_index, 'duplicate') }}></i>
+                              <i class="mvx-font icon-vendor-form-delete" onClick={(e) => this.handleRemoveClickNew(e, registration_json_index)}></i>
+                              <i class="mvx-font icon-vendor-form-add" onClick={(e) => this.handleAddClickNew(e, registration_json_value.type)}></i>
                               <span>Require <input type="checkbox" checked={registration_json_value.required} onChange={e => {this.OnRegistrationSelectChange(e, registration_json_index, 'require') }}/></span>
                           </div>
                         : '' }

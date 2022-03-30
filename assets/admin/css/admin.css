@@ -180,6 +180,30 @@ a:focus {
 .icon-tab-stripe-connect:before {
   content: "\e92f";
 }
+.icon-chart-bar:before {
+  content: "\e930";
+}
+.icon-chart-line:before {
+  content: "\e931";
+}
+.icon-dismiss:before {
+  content: "\e932";
+}
+.icon-down-arrow-02:before {
+  content: "\e933";
+}
+.icon-information:before {
+  content: "\e934";
+}
+.icon-vendor-form-add:before {
+  content: "\e935";
+}
+.icon-vendor-form-copy:before {
+  content: "\e936";
+}
+.icon-vendor-form-delete:before {
+  content: "\e937";
+}
 
 
 /*********** Modules section *********************/

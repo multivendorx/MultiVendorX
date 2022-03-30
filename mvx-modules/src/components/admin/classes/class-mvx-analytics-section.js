@@ -532,8 +532,8 @@ Child({ name }) {
                   </div>
 
                   <div className="mvx-bar-and-line-wrap">
-                    <div><Link to={`?page=mvx#&submenu=analytics&name=admin-overview&type=bar`}><span class="dashicons dashicons-chart-bar"></span></Link></div>
-                    <div><Link to={`?page=mvx#&submenu=analytics&name=admin-overview&type=line`}><span class="dashicons dashicons-chart-line"></span></Link></div>
+                    <div><Link to={`?page=mvx#&submenu=analytics&name=admin-overview&type=bar`}><i className="mvx-font icon-chart-bar"></i></Link></div>
+                    <div><Link to={`?page=mvx#&submenu=analytics&name=admin-overview&type=line`}><i className="mvx-font icon-chart-line"></i></Link></div>
                   </div>
                 </div>
 
@@ -758,8 +758,8 @@ Child({ name }) {
                   </div>
 
                   <div className="mvx-bar-and-line-wrap">
-                    <div className="mvx-bar-chart"><Link to={`?page=mvx#&submenu=analytics&name=vendor&type=bar`}><span class="dashicons dashicons-chart-bar"></span></Link></div>
-                    <div className="mvx-line-chart"><Link to={`?page=mvx#&submenu=analytics&name=vendor&type=line`}><span class="dashicons dashicons-chart-line"></span></Link></div>
+                    <div className="mvx-bar-chart"><Link to={`?page=mvx#&submenu=analytics&name=vendor&type=bar`}><i className="mvx-font icon-chart-bar"></i></Link></div>
+                    <div className="mvx-line-chart"><Link to={`?page=mvx#&submenu=analytics&name=vendor&type=line`}><i className="mvx-font icon-chart-line"></i></Link></div>
                   </div>
                 </div>
 
@@ -919,8 +919,8 @@ Child({ name }) {
                   </div>
 
                   <div className="mvx-bar-and-line-wrap">
-                    <div className="mvx-bar-chart"><Link to={`?page=mvx#&submenu=analytics&name=product&type=bar`}><span class="dashicons dashicons-chart-bar"></span></Link></div>
-                    <div className="mvx-line-chart"><Link to={`?page=mvx#&submenu=analytics&name=product&type=line`}><span class="dashicons dashicons-chart-line"></span></Link></div>
+                    <div className="mvx-bar-chart"><Link to={`?page=mvx#&submenu=analytics&name=product&type=bar`}><i className="mvx-font icon-chart-bar"></i></Link></div>
+                    <div className="mvx-line-chart"><Link to={`?page=mvx#&submenu=analytics&name=product&type=line`}><i className="mvx-font icon-chart-line"></i></Link></div>
                   </div>
                 </div>
 
