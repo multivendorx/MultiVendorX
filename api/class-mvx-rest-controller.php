@@ -560,23 +560,105 @@ class MVX_REST_API {
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
 
+        // delete post
+        register_rest_route( 'mvx_module/v1', '/approve_product', [
+            'methods' => WP_REST_Server::EDITABLE,
+            'callback' => array( $this, 'mvx_approve_product' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
+        // approve vendor
+        register_rest_route( 'mvx_module/v1', '/approve_vendor', [
+            'methods' => WP_REST_Server::EDITABLE,
+            'callback' => array( $this, 'mvx_approve_vendor' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
+        // dismiss vendor
+        register_rest_route( 'mvx_module/v1', '/dismiss_vendor', [
+            'methods' => WP_REST_Server::EDITABLE,
+            'callback' => array( $this, 'mvx_dismiss_vendor' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
+        // dismiss and approve vendor coupon
+        register_rest_route( 'mvx_module/v1', '/dismiss_and_approve_vendor_coupon', [
+            'methods' => WP_REST_Server::EDITABLE,
+            'callback' => array( $this, 'mvx_dismiss_and_approve_vendor_coupon' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
+        // dismiss and approve questions
+        register_rest_route( 'mvx_module/v1', '/dismiss_and_approve_vendor_product_questions', [
+            'methods' => WP_REST_Server::EDITABLE,
+            'callback' => array( $this, 'mvx_dismiss_and_approve_vendor_product_questions' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
+    }
+
+    public function mvx_dismiss_and_approve_vendor_product_questions($request) {
+        
+    }
+
+    public function mvx_dismiss_and_approve_vendor_coupon($request) {
+        $coupon_id = $request && $request->get_param('coupon_id') ? $request->get_param('coupon_id') : 0;
+        $type = $request && $request->get_param('type') ? $request->get_param('type') : 0;
+        if ($type == "dismiss") {
+            update_post_meta($coupon_id, '_dismiss_to_do_list', 'true');
+        } else {
+            $post_update = array(
+                'ID'            => $coupon_id,
+                'post_status'   => 'publish',
+            );
+            wp_update_post( $post_update );
+        }
+        return $this->mvx_list_of_pending_vendor_coupon();
+    }
+
+    // approve pending user
+    public function mvx_approve_vendor($request) {
+        $vendor_id = $request && $request->get_param('vendor_id') ? $request->get_param('vendor_id') : 0;
+        if ($vendor_id) {
+            $user = new WP_User(absint($vendor_id));
+            $user->set_role('dc_vendor');
+            $user_dtl = get_userdata(absint($vendor_id));
+            $email = WC()->mailer()->emails['WC_Email_Approved_New_Vendor_Account'];
+            $email->trigger($vendor_id, $user_dtl->user_pass);
+        }
+        return $this->mvx_list_of_pending_vendor();
+    }
+    // dissmiss pending user
+    public function mvx_dismiss_vendor($request) {
+        $vendor_id = $request && $request->get_param('vendor_id') ? $request->get_param('vendor_id') : 0;
+        update_post_meta($id, '_dismiss_to_do_list', 'true');
+        return $this->mvx_list_of_pending_vendor();
     }
 
     public function mvx_dismiss_requested_vendors_query($request) {
         $product_id = $request && $request->get_param('product_id') ? $request->get_param('product_id') : 0;
         $vendor_id = $request && $request->get_param('vendor_id') ? $request->get_param('vendor_id') : 0;
-
-        print_r($vendor_id);die;
-
-        /*$reason = '';
-        $vendor = get_wcmp_vendor($post->post_author);
+        $post = get_post($product_id);
+        $reason = '';
+        $vendor = get_mvx_vendor($vendor_id);
         $email_vendor = WC()->mailer()->emails['WC_Email_Vendor_Product_Rejected'];
-        $email_vendor->trigger($id, $post, $vendor, $reason);
-        update_post_meta($id, '_dismiss_to_do_list', 'true');
-        $comment_id = WCMp_Product::add_product_note($id, $reason, get_current_user_id());
-        update_post_meta($id, '_comment_dismiss', absint($comment_id));
-        add_comment_meta($comment_id, '_author_id', get_current_user_id());*/
+        $email_vendor->trigger($product_id, $post, $vendor, $reason);
+        update_post_meta($product_id, '_dismiss_to_do_list', 'true');
+        $comment_id = MVX_Product::add_product_note($product_id, $reason, get_current_user_id());
+        update_post_meta($product_id, '_comment_dismiss', absint($comment_id));
+        add_comment_meta($comment_id, '_author_id', get_current_user_id());
 
+        return $this->mvx_list_of_pending_vendor_product();
+    }
+
+    public function mvx_approve_product($request) {
+        $product_id = $request && $request->get_param('product_id') ? $request->get_param('product_id') : 0;
+        $post_update = array(
+            'ID'            => $product_id,
+            'post_status'   => 'publish',
+        );
+        wp_update_post( $post_update );
+        return $this->mvx_list_of_pending_vendor_product();
     }
 
     public function mvx_delete_post_details($request) {
@@ -696,6 +778,10 @@ class MVX_REST_API {
 
         if (!empty($get_pending_products)) {
             foreach ($get_pending_products as $get_pending_product) {
+
+                $dismiss = get_post_meta($get_pending_product->ID, '_dismiss_to_do_list', true);
+                if ($dismiss) continue;
+
                 $currentvendor = get_mvx_vendor($get_pending_product->post_author);
                 $vendor_term = get_term($currentvendor->term_id);
                 $pending_list[] = array(
@@ -704,7 +790,7 @@ class MVX_REST_API {
                     'vendor_id'    =>  $get_pending_product->post_author,
                     'vendor_link'   =>  sprintf('?page=%s&ID=%s&name=vendor-personal', 'mvx#&submenu=vendor', $currentvendor->id),
                     'product'   =>  $get_pending_product->post_title,
-                    'product_url'   =>  '',
+                    'product_url'   =>  admin_url('post.php?post=' . $get_pending_product->ID . '&action=edit'),
                 );
             }
         }
@@ -719,6 +805,7 @@ class MVX_REST_API {
                 if ($dismiss)   continue;
                 $pending_list[] = array(
                     'id'        =>  $pending_vendor->ID,
+                    'vendor_link'   =>  sprintf('?page=%s&ID=%s&name=vendor-personal', 'mvx#&submenu=vendor', $pending_vendor->id),
                     'vendor'    =>  $pending_vendor->user_login,
                 );
             }
@@ -743,10 +830,12 @@ class MVX_REST_API {
                 $currentvendor = get_mvx_vendor($get_pending_coupon->post_author);
                 $vendor_term = get_term($currentvendor->term_id);
                 $pending_list[] = array(
-                    'id'        =>  $currentvendor->ID,
-                    'vendor'    =>  $vendor_term->name,
-                    'coupon'    =>  $get_pending_coupon->post_title,
-
+                    'id'            =>  $get_pending_coupon->ID,
+                    'vendor'        =>  $vendor_term->name,
+                    'vendor_id'    =>  $get_pending_coupon->post_author,
+                    'vendor_link'   =>  sprintf('?page=%s&ID=%s&name=vendor-personal', 'mvx#&submenu=vendor', $currentvendor->id),
+                    'coupon'        =>  $get_pending_coupon->post_title,
+                    'coupon_url'   =>  admin_url('post.php?post=' . $get_pending_coupon->ID . '&action=edit'),
                 );
             }
         }
@@ -813,13 +902,15 @@ class MVX_REST_API {
                 $get_pending_questions = $MVX->product_qna->get_Pending_Questions($get_vendor_product->ID);
                 if (!empty($get_pending_questions)) {
                     foreach ($get_pending_questions as $pending_question) {
-                        $question_by = get_userdata($pending_question->ques_by);
-                        $question_by = "<img src=' " . $MVX->plugin_url . 'assets/images/wp-avatar-frau.jpg' ."' class='avatar avatar-32 photo' height='32' width='32'>" .$question_by->data->display_name . "";
+                        $question_by_details = get_userdata($pending_question->ques_by);
+                        $question_by = "<img src=' " . $MVX->plugin_url . 'assets/images/wp-avatar-frau.jpg' ."' class='avatar avatar-32 photo' height='32' width='32'>" .$question_by_details->data->display_name . "";
                         $pending_list[] = array(
-                            //'id'        =>  $currentvendor->id,
+                            'id'        =>  $question_by_details,
                             'question_by'           =>  $question_by,
+                            'question_by_name'           =>  $question_by_details->data->display_name,
                             'product_name'          =>  get_the_title($pending_question->product_ID),
                             'question_details'      =>  $pending_question->ques_details,
+                            'product_url'   =>  admin_url('post.php?post=' . $pending_question->product_ID . '&action=edit'),
                         );
                     }   
                 }

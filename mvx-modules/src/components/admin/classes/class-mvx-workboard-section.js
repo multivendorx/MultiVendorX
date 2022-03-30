@@ -88,6 +88,8 @@ class App extends Component {
 
       columns_store_review: [],
 
+      pending_product_check: [],
+
       datassssssssssss: [
      {
        col1: 'Hello',
@@ -280,9 +282,83 @@ class App extends Component {
     // pending product todo action
     this.handle_product_request_by_vendors = this.handle_product_request_by_vendors.bind(this);
     
+    // trigger questions
+    this.handle_question_request_by_vendors = this.handle_question_request_by_vendors.bind(this);
 
+    // trigger counpon todo
+    this.handle_coupon_request_by_vendors = this.handle_coupon_request_by_vendors.bind(this);
+    
+    //trigger todo user
+    this.handle_user_request_by_vendors = this.handle_user_request_by_vendors.bind(this);
+
+    this.handle_todo_checkbox_chenage = this.handle_todo_checkbox_chenage.bind(this);
+    
+  }
+
+  handle_todo_checkbox_chenage(e, id) {
+    console.log(e.target.value);
+  }
+
+  handle_question_request_by_vendors(e, id, type) {
+    if (type == 'dismiss') {
+
+    } else if (type == 'approve') {
+
+    }
+  }
+
+  handle_coupon_request_by_vendors(e, id, type) {
+
+      axios({
+        method: 'post',
+        url: `${appLocalizer.apiUrl}/mvx_module/v1/dismiss_and_approve_vendor_coupon`,
+        data: {
+          coupon_id: id,
+          type: type
+        }
+      })
+      .then( ( responce ) => {
+        this.setState({
+          list_of_pending_vendor_coupon: responce.data,
+        });  
+      } );
 
   }
+
+  handle_user_request_by_vendors(e, id, type) {
+    if (type == 'dismiss') {
+
+      axios({
+        method: 'post',
+        url: `${appLocalizer.apiUrl}/mvx_module/v1/dismiss_vendor`,
+        data: {
+          vendor_id: id
+        }
+      })
+      .then( ( responce ) => {
+        this.setState({
+          list_of_pending_vendor: responce.data,
+        });  
+      } );
+
+    } else if (type == 'approve') {
+
+      axios({
+        method: 'post',
+        url: `${appLocalizer.apiUrl}/mvx_module/v1/approve_vendor`,
+        data: {
+          vendor_id: id
+        }
+      })
+      .then( ( responce ) => {
+        this.setState({
+          list_of_pending_vendor: responce.data,
+        });  
+      } );
+
+    }
+  }
+
 
   handle_product_request_by_vendors(e, product_id, vendor_id, type) {
     if (type == 'dismiss') {
@@ -297,11 +373,28 @@ class App extends Component {
       })
       .then( ( responce ) => {
 
-        /*this.setState({
+        this.setState({
           list_of_pending_vendor_product: responce.data,
-        });  */
+        });  
 
       } );
+    } else if (type == 'approve') {
+
+      axios({
+        method: 'post',
+        url: `${appLocalizer.apiUrl}/mvx_module/v1/approve_product`,
+        data: {
+          product_id: product_id,
+          type: type,
+          vendor_id: vendor_id
+        }
+      })
+      .then( ( responce ) => {
+        this.setState({
+          list_of_pending_vendor_product: responce.data,
+        });  
+      } );
+
     }
   }
 
@@ -816,7 +909,7 @@ Child({ name }) {
             <div className="mvx-workboard-card-wrapper">
                 
               {
-                this.state.list_of_pending_vendor_product.map((pending_data, pending_index) => (
+                this.state.list_of_pending_vendor_product.length > 0 ? this.state.list_of_pending_vendor_product.map((pending_data, pending_index) => (
 
                     <div className="mvx-workboard-card-wrapper-child">
                       <div className="mvx-workboard-card-wrapper-heading">Pending Vendor Product</div>
@@ -825,13 +918,14 @@ Child({ name }) {
                               <img alt="Multivendor X" src={appLocalizer.mvx_logo}/>
                               <div className="mvx-workboard-vendor-name">{pending_data.product}</div>
                           </div>
-                          <div className="mvx-workboard-select-icon"><input type="checkbox" className="mvx-workboard-checkbox"/></div>
+                          <div className="mvx-workboard-select-icon"><input type="checkbox" className="mvx-workboard-checkbox" checked={this.state.pending_product_check[pending_index]} onChange={(e) => this.handle_todo_checkbox_chenage(e, pending_data.id)} /></div>
                       </div>
                       <div className="mvx-workboard-address-area">
                           <p className="mvx-todo-list-details-data-value">
                           <div className="mvx-commission-label-class">Vendor Name:</div>
                           <div className="mvx-commission-value-class"><a href={pending_data.vendor_link}>{pending_data.vendor}</a></div>
                           </p>
+
                           <p className="mvx-todo-list-details-data-value">
                           <div className="mvx-commission-label-class">Product Name:</div>
                           <div className="mvx-commission-value-class"><a href={pending_data.product_url}>{pending_data.product}</a></div>
@@ -840,14 +934,15 @@ Child({ name }) {
                       </div>
                       <div className="mvx-module-current-status wp-clearfix">
                           <div className="mvx-left-icons-wrap">
-                              <div className="mvx-left-icon"><i className="mvx-font icon-edit" onClick={(e) => this.handle_product_request_by_vendors(e, pending_data.id, pending_data.vendor, 'approve')}></i></div>
-                              <div className="mvx-left-icon"><i className="mvx-font icon-approve" onClick={(e) => this.handle_product_request_by_vendors(e, pending_data.id, pending_data.vendor, 'edit')}></i></div>
-                              <div className="mvx-left-icon"><i className="mvx-font icon-close" onClick={(e) => this.handle_product_request_by_vendors(e, pending_data.id, pending_data.vendor, 'dismiss')}></i></div>
+                              <div className="mvx-left-icon"><a href={pending_data.product_url}><i className="mvx-font icon-edit"></i></a></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-approve" onClick={(e) => this.handle_product_request_by_vendors(e, pending_data.id, pending_data.vendor_id, 'approve')}></i></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-close" onClick={(e) => this.handle_product_request_by_vendors(e, pending_data.id, pending_data.vendor_id, 'dismiss')}></i></div>
                           </div>
                       </div>
                     </div>
                   )
                 )
+                 : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
               }
 
             </div>
@@ -876,7 +971,7 @@ Child({ name }) {
             <div className="mvx-workboard-card-wrapper">
                 
               {
-                this.state.list_of_pending_vendor.map((pending_data, pending_index) => (
+                this.state.list_of_pending_vendor.length > 0 ? this.state.list_of_pending_vendor.map((pending_data, pending_index) => (
 
                     <div className="mvx-workboard-card-wrapper-child">
                       <div className="mvx-workboard-card-wrapper-heading">Pending User</div>
@@ -889,41 +984,21 @@ Child({ name }) {
                       </div>
                       <div className="mvx-workboard-address-area">
                           <p className="mvx-todo-list-details-data-value">
-                          <div className="mvx-commission-label-class">Name:</div>
-                          <div className="mvx-commission-value-class"><a href="">{pending_data.vendor}</a></div>
+                          <div className="mvx-commission-label-class">Vendor Name:</div>
+                          <div className="mvx-commission-value-class"><a href={pending_data.vendor_link}>{pending_data.vendor}</a></div>
                           </p>
-                          <p className="mvx-todo-list-details-data-value">
-                          <div className="mvx-commission-label-class">Address 1:</div>
-                          <div className="mvx-commission-value-class"><a href="">{pending_data.vendor}</a></div>
-                          </p>
-                          <p className="mvx-todo-list-details-data-value">
-                          <div className="mvx-commission-label-class">Address 2:</div>
-                          <div className="mvx-commission-value-class"><a href="">{pending_data.vendor}</a></div>
-                          </p>
-                          <p className="mvx-todo-list-details-data-value">
-                          <div className="mvx-commission-label-class">Town:</div>
-                          <div className="mvx-commission-value-class"><a href="">{pending_data.vendor}</a></div>
-                          </p>
-                          <p className="mvx-todo-list-details-data-value">
-                          <div className="mvx-commission-label-class">Country:</div>
-                          <div className="mvx-commission-value-class"><a href="">{pending_data.vendor}</a></div>
-                          </p>
-                          <p className="mvx-todo-list-details-data-value">
-                          <div className="mvx-commission-label-class">Zip:</div>
-                          <div className="mvx-commission-value-class"><a href="">{pending_data.vendor}</a></div>
-                          </p>
-
                       </div>
                       <div className="mvx-module-current-status wp-clearfix">
                           <div className="mvx-left-icons-wrap">
-                              <div className="mvx-left-icon"><i className="mvx-font icon-edit"></i></div>
-                              <div className="mvx-left-icon"><i className="mvx-font icon-approve"></i></div>
-                              <div className="mvx-left-icon"><i className="mvx-font icon-close"></i></div>
+                              <div className="mvx-left-icon"><a href={pending_data.vendor_link}><i className="mvx-font icon-edit"></i></a></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-approve" onClick={(e) => this.handle_user_request_by_vendors(e, pending_data.id, 'approve')}></i></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-close" onClick={(e) => this.handle_user_request_by_vendors(e, pending_data.id, 'dismiss')}></i></div>
                           </div>
                       </div>
                     </div>
                   )
                 )
+                : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
               }
 
             </div>
@@ -936,9 +1011,7 @@ Child({ name }) {
 
 
 
-
-
-        {/* Pending Vendor approval */}
+        {/* Pending Vendor's coupon approval */}
         <div className="mvx-todo-status-check">
             <div className="mvx-text-with-line-wrapper">
                 <div className="mvx-report-text">Pending Coupon</div>
@@ -954,7 +1027,7 @@ Child({ name }) {
             <div className="mvx-workboard-card-wrapper">
                 
               {
-                this.state.list_of_pending_vendor_coupon.map((pending_data, pending_index) => (
+                this.state.list_of_pending_vendor_coupon.length > 0 ? this.state.list_of_pending_vendor_coupon.map((pending_data, pending_index) => (
 
                     <div className="mvx-workboard-card-wrapper-child">
                       <div className="mvx-workboard-card-wrapper-heading">Pending coupon</div>
@@ -967,46 +1040,30 @@ Child({ name }) {
                       </div>
                       <div className="mvx-workboard-address-area">
                           <p className="mvx-todo-list-details-data-value">
-                          <div className="mvx-commission-label-class">Name:</div>
-                          <div className="mvx-commission-value-class"><a href="">{pending_data.coupon}</a></div>
+                          <div className="mvx-commission-label-class">Vendor Name :</div>
+                          <div className="mvx-commission-value-class"><a href={pending_data.vendor_link}>{pending_data.vendor}</a></div>
                           </p>
                           <p className="mvx-todo-list-details-data-value">
-                          <div className="mvx-commission-label-class">Address 1:</div>
-                          <div className="mvx-commission-value-class"><a href="">{pending_data.coupon}</a></div>
+                          <div className="mvx-commission-label-class">Coupon Name :</div>
+                          <div className="mvx-commission-value-class"><a href={pending_data.coupon_url}>{pending_data.coupon}</a></div>
                           </p>
-                          <p className="mvx-todo-list-details-data-value">
-                          <div className="mvx-commission-label-class">Address 2:</div>
-                          <div className="mvx-commission-value-class"><a href="">{pending_data.coupon}</a></div>
-                          </p>
-                          <p className="mvx-todo-list-details-data-value">
-                          <div className="mvx-commission-label-class">Town:</div>
-                          <div className="mvx-commission-value-class"><a href="">{pending_data.coupon}</a></div>
-                          </p>
-                          <p className="mvx-todo-list-details-data-value">
-                          <div className="mvx-commission-label-class">Country:</div>
-                          <div className="mvx-commission-value-class"><a href="">{pending_data.coupon}</a></div>
-                          </p>
-                          <p className="mvx-todo-list-details-data-value">
-                          <div className="mvx-commission-label-class">Zip:</div>
-                          <div className="mvx-commission-value-class"><a href="">{pending_data.coupon}</a></div>
-                          </p>
-
                       </div>
                       <div className="mvx-module-current-status wp-clearfix">
                           <div className="mvx-left-icons-wrap">
-                              <div className="mvx-left-icon"><i className="mvx-font icon-edit"></i></div>
-                              <div className="mvx-left-icon"><i className="mvx-font icon-approve"></i></div>
-                              <div className="mvx-left-icon"><i className="mvx-font icon-close"></i></div>
+                              <div className="mvx-left-icon"><a href={pending_data.coupon_url}><i className="mvx-font icon-edit"></i></a></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-approve" onClick={(e) => this.handle_coupon_request_by_vendors(e, pending_data.id, 'approve')}></i></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-close" onClick={(e) => this.handle_coupon_request_by_vendors(e, pending_data.id, 'dismiss')}></i></div>
                           </div>
                       </div>
                     </div>
                   )
                 )
+                : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
               }
 
             </div>
           </div>
-        {/* Pending Vendor approval end */}
+        {/* Pending Vendor's coupon approval end */}
 
 
 
@@ -1029,7 +1086,7 @@ Child({ name }) {
             <div className="mvx-workboard-card-wrapper">
                 
               {
-                this.state.list_of_pending_transaction.map((pending_data, pending_index) => (
+                this.state.list_of_pending_transaction.length > 0 ? this.state.list_of_pending_transaction.map((pending_data, pending_index) => (
 
                     <div className="mvx-workboard-card-wrapper-child">
                       <div className="mvx-workboard-card-wrapper-heading">Pending coupon</div>
@@ -1045,27 +1102,7 @@ Child({ name }) {
                           <div className="mvx-commission-label-class">Name:</div>
                           <div className="mvx-commission-value-class"><a href="">{pending_data.coupon}</a></div>
                           </p>
-                          <p className="mvx-todo-list-details-data-value">
-                          <div className="mvx-commission-label-class">Address 1:</div>
-                          <div className="mvx-commission-value-class"><a href="">{pending_data.coupon}</a></div>
-                          </p>
-                          <p className="mvx-todo-list-details-data-value">
-                          <div className="mvx-commission-label-class">Address 2:</div>
-                          <div className="mvx-commission-value-class"><a href="">{pending_data.coupon}</a></div>
-                          </p>
-                          <p className="mvx-todo-list-details-data-value">
-                          <div className="mvx-commission-label-class">Town:</div>
-                          <div className="mvx-commission-value-class"><a href="">{pending_data.coupon}</a></div>
-                          </p>
-                          <p className="mvx-todo-list-details-data-value">
-                          <div className="mvx-commission-label-class">Country:</div>
-                          <div className="mvx-commission-value-class"><a href="">{pending_data.coupon}</a></div>
-                          </p>
-                          <p className="mvx-todo-list-details-data-value">
-                          <div className="mvx-commission-label-class">Zip:</div>
-                          <div className="mvx-commission-value-class"><a href="">{pending_data.coupon}</a></div>
-                          </p>
-
+                          
                       </div>
                       <div className="mvx-module-current-status wp-clearfix">
                           <div className="mvx-left-icons-wrap">
@@ -1077,6 +1114,7 @@ Child({ name }) {
                     </div>
                   )
                 )
+                : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
               }
 
             </div>
@@ -1088,6 +1126,67 @@ Child({ name }) {
 
 
 
+
+
+        {/* Pending question approval */}
+        <div className="mvx-todo-status-check">
+            <div className="mvx-text-with-line-wrapper">
+                <div className="mvx-report-text">Pending Question Approval</div>
+                <div className="mvx-report-text-fade-line"></div>
+                <div className="mvx-select-all-bulk-wrap">
+                  <div className="mvx-select-all-checkbox">
+                    <input type="checkbox" className="mvx-select-all" />
+                    <span className="mvx-select-all-text">Select All</span>
+                  </div>
+                  <Select placeholder="Bulk Action" options={this.state.details_vendor} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_work_board_chenage(e)} />
+                </div>
+            </div>
+            <div className="mvx-workboard-card-wrapper">
+                
+              {
+                this.state.list_of_pending_question.length > 0 ? this.state.list_of_pending_question.map((pending_data, pending_index) => (
+
+                    <div className="mvx-workboard-card-wrapper-child">
+                      <div className="mvx-workboard-card-wrapper-heading">Pending User</div>
+                      <div className="mvx-workboard-top-part">
+                          <div className="mvx-workboard-img-part">
+                              <div className="mvx-workboard-vendor-name"><p dangerouslySetInnerHTML={{ __html: pending_data.question_by }}></p></div>
+                          </div>
+                          <div className="mvx-workboard-select-icon"><input type="checkbox" className="mvx-workboard-checkbox"/></div>
+                      </div>
+                      <div className="mvx-workboard-address-area">
+                          <p className="mvx-todo-list-details-data-value">
+                            <div className="mvx-commission-label-class">Question by :</div>
+                            <div className="mvx-commission-value-class"><a href={pending_data.vendor_link}>{pending_data.question_by_name}</a></div>
+                          </p>
+
+                          <p className="mvx-todo-list-details-data-value">
+                            <div className="mvx-commission-label-class">Product Name :</div>
+                            <div className="mvx-commission-value-class"><a href={pending_data.product_url}>{pending_data.product_name}</a></div>
+                          </p>
+
+                          <p className="mvx-todo-list-details-data-value">
+                            <div className="mvx-commission-label-class">Question details :</div>
+                            <div className="mvx-commission-value-class"><a href={pending_data.product_url}>{pending_data.question_details}</a></div>
+                          </p>
+
+                      </div>
+                      <div className="mvx-module-current-status wp-clearfix">
+                          <div className="mvx-left-icons-wrap">
+                              <div className="mvx-left-icon"><a href={pending_data.product_url}><i className="mvx-font icon-edit"></i></a></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-approve" onClick={(e) => this.handle_question_request_by_vendors(e, pending_data.id, 'approve')}></i></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-close" onClick={(e) => this.handle_question_request_by_vendors(e, pending_data.id, 'dismiss')}></i></div>
+                          </div>
+                      </div>
+                    </div>
+                  )
+                )
+                : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
+              }
+
+            </div>
+          </div>
+        {/* Pending question approval end */}
 
 
 
