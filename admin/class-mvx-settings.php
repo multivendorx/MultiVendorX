@@ -110,6 +110,9 @@ class MVX_Settings {
 
             $submenu[ $slug ][] = [ __( 'Analytics', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=analytics&name=admin-overview' ];
             
+            $submenu[ $slug ][] = [ __( 'Status and Tools', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=status-tools&name=version-control' ];
+
+            $submenu[ $slug ][] = [ __( 'Help & Support', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'https://wc-marketplace.com/' ];
 
             add_submenu_page( null, __( 'Transaction Details', 'dc-woocommerce-multi-vendor' ), __( 'Transaction Details', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'mvx-transaction-details', array( $this, 'mvx_transaction_details' ) );
 

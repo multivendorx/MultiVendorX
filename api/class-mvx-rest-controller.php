@@ -595,6 +595,127 @@ class MVX_REST_API {
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
 
+        //pending products bulk approve or dismiss
+        register_rest_route( 'mvx_module/v1', '/bulk_todo_pending_product', [
+            'methods' => WP_REST_Server::EDITABLE,
+            'callback' => array( $this, 'mvx_bulk_todo_pending_product' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
+    }
+
+    public function mvx_bulk_todo_pending_product($request) {
+
+        $product_list = $request && $request->get_param('product_list') ? $request->get_param('product_list') : 0;
+        $value = $request && $request->get_param('value') ? $request->get_param('value') : 0;
+        $type = $request && $request->get_param('type') ? $request->get_param('type') : 0;
+
+        if ($type == "product_approval") {
+            $get_product_list = [];
+            if ($this->mvx_list_of_pending_vendor_product()->data) {
+                foreach ($this->mvx_list_of_pending_vendor_product()->data as $key => $value) {
+                    if ($product_list[$key]) {
+                        $get_product_list[] = $value['id'];
+                    }
+                }
+            }
+
+            if ($value == "approve") {
+                if ($get_product_list) {
+                    foreach ($get_product_list as $product_key => $product_id) {
+                        $post_update = array(
+                            'ID'            => $product_id,
+                            'post_status'   => 'publish',
+                        );
+                        wp_update_post( $post_update );
+                    }
+                }
+            } else {
+                if ($get_product_list) {
+                    foreach ($get_product_list as $product_key => $product_id) {
+                        $post = get_post($product_id);
+                        $reason = '';
+                        $vendor = get_mvx_product_vendors($product_id);
+                        $email_vendor = WC()->mailer()->emails['WC_Email_Vendor_Product_Rejected'];
+                        $email_vendor->trigger($product_id, $post, $vendor, $reason);
+                        update_post_meta($product_id, '_dismiss_to_do_list', 'true');
+                        $comment_id = MVX_Product::add_product_note($product_id, $reason, get_current_user_id());
+                        update_post_meta($product_id, '_comment_dismiss', absint($comment_id));
+                        add_comment_meta($comment_id, '_author_id', get_current_user_id());
+                    }
+                }
+            }
+            
+            return $this->mvx_list_of_pending_vendor_product();
+        } elseif ($type == "user_approval") {
+            $user_list = $request && $request->get_param('user_list') ? $request->get_param('user_list') : 0;
+
+            $get_users_list = [];
+            if ($this->mvx_list_of_pending_vendor()->data) {
+                foreach ($this->mvx_list_of_pending_vendor()->data as $key => $value) {
+                    if ($user_list[$key]) {
+                        $get_users_list[] = $value['id'];
+                    }
+                }
+            }
+
+            if ($value == "approve") {
+                if ($get_users_list) {
+                    foreach ($get_users_list as $vendor_key => $vendor_id) {
+                        $user = new WP_User(absint($vendor_id));
+                        $user->set_role('dc_vendor');
+                        $user_dtl = get_userdata(absint($vendor_id));
+                        $email = WC()->mailer()->emails['WC_Email_Approved_New_Vendor_Account'];
+                        $email->trigger($vendor_id, $user_dtl->user_pass);
+                    }
+                }
+            } else {
+                if ($get_users_list) {
+                    foreach ($get_users_list as $vendor_key => $vendor_id) {
+                        update_post_meta($vendor_id, '_dismiss_to_do_list', 'true');
+                    }
+                }
+            }
+            return $this->mvx_list_of_pending_vendor();
+            
+        } elseif ($type == "coupon_approval") {
+            $coupon_list = $request && $request->get_param('coupon_list') ? $request->get_param('coupon_list') : 0;
+            $get_coupon_list = [];
+            if ($this->mvx_list_of_pending_vendor_coupon()->data) {
+                foreach ($this->mvx_list_of_pending_vendor_coupon()->data as $key => $value) {
+                    if ($coupon_list[$key]) {
+                        $get_coupon_list[] = $value['id'];
+                    }
+                }
+            }
+
+            if ($value == "approve") {
+                if ($get_coupon_list) {
+                    foreach ($get_coupon_list as $coupon_key => $coupon_id) {
+                        $post_update = array(
+                            'ID'            => $coupon_id,
+                            'post_status'   => 'publish',
+                        );
+                        wp_update_post( $post_update );  
+                    }
+                }
+            } else {
+                if ($get_coupon_list) {
+                    foreach ($get_coupon_list as $coupon_key => $coupon_id) {
+                        update_post_meta($coupon_id, '_dismiss_to_do_list', 'true');
+                    }
+                }
+            }
+
+            return $this->mvx_list_of_pending_vendor_coupon();
+
+        } elseif ($type == "transaction_approval") {
+            $transaction_list = $request && $request->get_param('transaction_list') ? $request->get_param('transaction_list') : 0;
+
+        } elseif ($type == "question_approval") {
+            $product_list = $request && $request->get_param('product_list') ? $request->get_param('product_list') : 0;
+
+        }
     }
 
     public function mvx_dismiss_and_approve_vendor_product_questions($request) {
@@ -4241,8 +4362,8 @@ class MVX_REST_API {
                         'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
-                        'id'           => 'seller-subscription',
-                        'name'         => __( 'Makertplace  Membership', 'dc-woocommerce-multi-vendor' ),
+                        'id'           => 'marketplace-membership',
+                        'name'         => __( 'Makertplace Membership', 'dc-woocommerce-multi-vendor' ),
                         'description'  => __( 'Lets Admin create marketplace memberships levels and manage vendor-wise individual capablity  ', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
                         'required_plugin_list' => array(

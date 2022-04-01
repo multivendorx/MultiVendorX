@@ -375,16 +375,27 @@ class MVX_Admin {
         }
 
         $post_bulk_status = array(
-                array(
-                    'value' => 'pending',
-                    'label' => __('Pending', 'dc-woocommerce-multi-vendor')
-                ),
-                array(
-                    'value' => 'publish',
-                    'label' => __('Published', 'dc-woocommerce-multi-vendor')
-                ),
-            );
+            array(
+                'value' => 'pending',
+                'label' => __('Pending', 'dc-woocommerce-multi-vendor')
+            ),
+            array(
+                'value' => 'publish',
+                'label' => __('Published', 'dc-woocommerce-multi-vendor')
+            ),
+        );
 
+
+        $task_board_bulk_status = array(
+            array(
+                'value' => 'approve',
+                'label' => __('Approve', 'dc-woocommerce-multi-vendor')
+            ),
+            array(
+                'value' => 'dismiss',
+                'label' => __('Dismiss', 'dc-woocommerce-multi-vendor')
+            ),
+        );
 
 
         $columns_announcement = array(
@@ -527,6 +538,7 @@ class MVX_Admin {
             'report_vendor_header'          =>  $report_vendor_header,
             'report_page_string'            =>  $report_page_string,
             'post_bulk_status'              =>  $post_bulk_status,
+            'task_board_bulk_status'        =>  $task_board_bulk_status,
             'columns_announcement'          =>  $columns_announcement,
             'columns_knowledgebase'         =>  $columns_knowledgebase,
             'columns_store_review'          =>  $columns_store_review

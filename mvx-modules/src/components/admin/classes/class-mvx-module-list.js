@@ -33,7 +33,7 @@ import AdvanceSettings from './class-mvx-advance-section';
 import GESettings from './class-mvx-general-settings';
 import HeaderSection from './class-mvx-page-header';
 import Modules from './class-mvx-page-modules';
-
+import StatusTools from './class-mvx-status-tools';
 
 const override = css`
   display: block;
@@ -229,11 +229,15 @@ class App extends Component {
        return (
           <WorkBoard />
         );
+    } else if (new URLSearchParams(useLocation().hash).get("submenu") && new URLSearchParams(useLocation().hash).get("submenu") == 'status-tools') {
+       return (
+          <StatusTools />
+        );
     } else if (new URLSearchParams(useLocation().hash).get("submenu") && new URLSearchParams(useLocation().hash).get("submenu") == 'modules') {
        return (
           <Modules />
         );
-    }else {
+    } else {
       return (
 
         <div className="mvx-module-section-before-header">

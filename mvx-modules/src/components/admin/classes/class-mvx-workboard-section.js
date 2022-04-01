@@ -89,6 +89,16 @@ class App extends Component {
       columns_store_review: [],
 
       pending_product_check: [],
+      pending_user_check: [],
+      pending_coupon_check: [],
+      pending_transaction_check: [],
+      pending_question_check: [],
+
+      pending_parent_product_check: false,
+      pending_parent_user_check: false,
+      pending_parent_coupon_check: false,
+      pending_parent_transaction_check: false,
+      pending_parent_question_check: false,
 
       datassssssssssss: [
      {
@@ -291,13 +301,264 @@ class App extends Component {
     //trigger todo user
     this.handle_user_request_by_vendors = this.handle_user_request_by_vendors.bind(this);
 
+
+    // individual checkbox trigger
     this.handle_todo_checkbox_chenage = this.handle_todo_checkbox_chenage.bind(this);
+    this.handle_todo_user_chenage = this.handle_todo_user_chenage.bind(this);
+    this.handle_todo_coupon_chenage = this.handle_todo_coupon_chenage.bind(this);
+    this.handle_todo_transaction_chenage = this.handle_todo_transaction_chenage.bind(this);
+    this.handle_todo_question_checkbox_chenage = this.handle_todo_question_checkbox_chenage.bind(this);
+
     
+    
+    this.handle_task_board_bulk_chenage = this.handle_task_board_bulk_chenage.bind(this);
+    
+    this.handle_parent_todo_checkbox_chenage = this.handle_parent_todo_checkbox_chenage.bind(this);
+
+
+
+    this.handle_parent_user_todo_checkbox_chenage = this.handle_parent_user_todo_checkbox_chenage.bind(this);
+    this.handle_parent_coupon_todo_checkbox_chenage = this.handle_parent_coupon_todo_checkbox_chenage.bind(this);
+    this.handle_parent_transaction_todo_checkbox_chenage = this.handle_parent_transaction_todo_checkbox_chenage.bind(this);
+    this.handle_parent_question_todo_checkbox_chenage = this.handle_parent_question_todo_checkbox_chenage.bind(this);
+
   }
 
-  handle_todo_checkbox_chenage(e, id) {
-    console.log(e.target.value);
+  handle_task_board_bulk_chenage(e, type) {
+    if (type == 'product_approval') {
+      
+      axios({
+        method: 'post',
+        url: `${appLocalizer.apiUrl}/mvx_module/v1/bulk_todo_pending_product`,
+        data: {
+          product_list: this.state.pending_product_check,
+          value: e.value,
+          type: type
+        }
+      })
+      .then( ( responce ) => {
+        this.setState({
+          list_of_pending_vendor_product: responce.data,
+        });  
+      } );
+
+    } else if (type == 'user_approval') {
+
+      axios({
+        method: 'post',
+        url: `${appLocalizer.apiUrl}/mvx_module/v1/bulk_todo_pending_product`,
+        data: {
+          user_list: this.state.pending_user_check,
+          value: e.value,
+          type: type
+        }
+      })
+      .then( ( responce ) => {
+        this.setState({
+          list_of_pending_vendor_product: responce.data,
+        });  
+      } );
+
+    } else if (type == 'coupon_approval') {
+
+      axios({
+        method: 'post',
+        url: `${appLocalizer.apiUrl}/mvx_module/v1/bulk_todo_pending_product`,
+        data: {
+          coupon_list: this.state.pending_coupon_check,
+          value: e.value,
+          type: type
+        }
+      })
+      .then( ( responce ) => {
+        this.setState({
+          list_of_pending_vendor_product: responce.data,
+        });  
+      } );
+
+    } else if (type == 'transaction_approval') {
+
+      axios({
+        method: 'post',
+        url: `${appLocalizer.apiUrl}/mvx_module/v1/bulk_todo_pending_product`,
+        data: {
+          transaction_list: this.state.pending_transaction_check,
+          value: e.value,
+          type: type
+        }
+      })
+      .then( ( responce ) => {
+        this.setState({
+          list_of_pending_vendor_product: responce.data,
+        });  
+      } );
+
+    } else if (type == 'question_approval') {
+
+      axios({
+        method: 'post',
+        url: `${appLocalizer.apiUrl}/mvx_module/v1/bulk_todo_pending_product`,
+        data: {
+          product_list: this.state.pending_question_check,
+          value: e.value,type: type
+        }
+      })
+      .then( ( responce ) => {
+        this.setState({
+          list_of_pending_vendor_product: responce.data,
+        });  
+      } );
+
+    }
+
   }
+
+
+  /**************************  Parent checkbox trigger **************************************/
+  handle_parent_todo_checkbox_chenage(e) {
+    if (e.target.checked) {
+      this.setState({
+        pending_parent_product_check: true,
+        pending_product_check: new Array(this.state.pending_product_check.length).fill(true)
+      });
+    } else {
+      this.setState({
+        pending_parent_product_check: false,
+        pending_product_check: new Array(this.state.pending_product_check.length).fill(false)
+      });
+    }
+  }
+
+  handle_parent_user_todo_checkbox_chenage(e) {
+    if (e.target.checked) {
+      this.setState({
+        pending_parent_user_check: true,
+        pending_user_check: new Array(this.state.pending_user_check.length).fill(true)
+      });
+    } else {
+      this.setState({
+        pending_parent_user_check: false,
+        pending_user_check: new Array(this.state.pending_user_check.length).fill(false)
+      });
+    }
+  }
+
+  handle_parent_coupon_todo_checkbox_chenage(e) {
+    if (e.target.checked) {
+      this.setState({
+        pending_parent_coupon_check: true,
+        pending_coupon_check: new Array(this.state.pending_coupon_check.length).fill(true)
+      });
+    } else {
+      this.setState({
+        pending_parent_coupon_check: false,
+        pending_coupon_check: new Array(this.state.pending_coupon_check.length).fill(false)
+      });
+    }
+  }
+  
+  handle_parent_transaction_todo_checkbox_chenage(e) {
+    if (e.target.checked) {
+      this.setState({
+        pending_parent_transaction_check: true,
+        pending_transaction_check: new Array(this.state.pending_transaction_check.length).fill(true)
+      });
+    } else {
+      this.setState({
+        pending_parent_transaction_check: false,
+        pending_transaction_check: new Array(this.state.pending_transaction_check.length).fill(false)
+      });
+    }
+  }
+
+  handle_parent_question_todo_checkbox_chenage(e) {
+    if (e.target.checked) {
+      this.setState({
+        pending_parent_question_check: true,
+        pending_question_check: new Array(this.state.pending_question_check.length).fill(true)
+      });
+    } else {
+      this.setState({
+        pending_parent_question_check: false,
+        pending_question_check: new Array(this.state.pending_question_check.length).fill(false)
+      });
+    }
+  }
+  
+
+
+  /**************************  Parent checkbox trigger end **************************************/
+
+
+  // individual checkbox trigger
+  handle_todo_checkbox_chenage(e, id, position) {
+    
+    var updatedCheckedState = this.state.pending_product_check.map((item, index) =>
+      index === position ? !item : item
+    );
+
+    this.setState({
+      pending_product_check: updatedCheckedState,
+    });
+  }
+
+  handle_todo_user_chenage(e, id, position) {
+    
+    var updatedCheckedState = this.state.pending_user_check.map((item, index) =>
+      index === position ? !item : item
+    );
+
+    this.setState({
+      pending_user_check: updatedCheckedState,
+    });
+  }
+
+  handle_todo_coupon_chenage(e, id, position) {
+    
+    var updatedCheckedState = this.state.pending_coupon_check.map((item, index) =>
+      index === position ? !item : item
+    );
+
+    this.setState({
+      pending_coupon_check: updatedCheckedState,
+    });
+  }
+
+  handle_todo_transaction_chenage(e, id, position) {
+    
+    var updatedCheckedState = this.state.pending_transaction_check.map((item, index) =>
+      index === position ? !item : item
+    );
+
+    this.setState({
+      pending_transaction_check: updatedCheckedState,
+    });
+  }
+
+  handle_todo_question_checkbox_chenage(e, id, position) {
+    
+    var updatedCheckedState = this.state.pending_question_check.map((item, index) =>
+      index === position ? !item : item
+    );
+
+    this.setState({
+      pending_question_check: updatedCheckedState,
+    });
+  }
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
 
   handle_question_request_by_vendors(e, id, type) {
     if (type == 'dismiss') {
@@ -608,10 +869,13 @@ class App extends Component {
     `${appLocalizer.apiUrl}/mvx_module/v1/list_of_pending_question`
     )
     .then(response => {
+      var all_pending_data_checkbox = new Array(response.data.length).fill(false);
       this.setState({
         list_of_pending_question: response.data,
+        pending_question_check: all_pending_data_checkbox,
       });
     })
+
 
     axios.get(
     `${appLocalizer.apiUrl}/mvx_module/v1/list_of_pending_transaction`
@@ -619,8 +883,10 @@ class App extends Component {
     .then(response => {
       this.setState({
         list_of_pending_transaction: response.data,
+        pending_transaction_check: new Array(response.data.length).fill(false)
       });
     })
+
 
     axios.get(
     `${appLocalizer.apiUrl}/mvx_module/v1/list_of_pending_vendor_coupon`
@@ -628,15 +894,19 @@ class App extends Component {
     .then(response => {
       this.setState({
         list_of_pending_vendor_coupon: response.data,
+        pending_coupon_check: new Array(response.data.length).fill(false)
       });
     })
+
 
     axios.get(
     `${appLocalizer.apiUrl}/mvx_module/v1/list_of_pending_vendor`
     )
     .then(response => {
+      var all_pending_data_checkbox = new Array(response.data.length).fill(false);
       this.setState({
         list_of_pending_vendor: response.data,
+        pending_user_check: all_pending_data_checkbox,
       });
     })
 
@@ -644,10 +914,17 @@ class App extends Component {
     `${appLocalizer.apiUrl}/mvx_module/v1/list_of_pending_vendor_product`
     )
     .then(response => {
+      var all_pending_product_checkbox = new Array(response.data.length).fill(false);
+
       this.setState({
         list_of_pending_vendor_product: response.data,
+        pending_product_check: all_pending_product_checkbox
       });
     })
+
+
+
+
 
     // fetch review
     axios.get(
@@ -900,10 +1177,10 @@ Child({ name }) {
                 <div className="mvx-report-text-fade-line"></div>
                 <div className="mvx-select-all-bulk-wrap">
                   <div className="mvx-select-all-checkbox">
-                    <input type="checkbox" className="mvx-select-all" />
+                    <input type="checkbox" className="mvx-select-all" checked={this.state.pending_parent_product_check} onChange={(e) => this.handle_parent_todo_checkbox_chenage(e)}/>
                     <span className="mvx-select-all-text">Select All</span>
                   </div>
-                  <Select placeholder="Bulk Action" options={this.state.details_vendor} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_work_board_chenage(e)} />
+                  <Select placeholder="Bulk Action" options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'product_approval')} />
                 </div>
             </div>
             <div className="mvx-workboard-card-wrapper">
@@ -918,7 +1195,7 @@ Child({ name }) {
                               <img alt="Multivendor X" src={appLocalizer.mvx_logo}/>
                               <div className="mvx-workboard-vendor-name">{pending_data.product}</div>
                           </div>
-                          <div className="mvx-workboard-select-icon"><input type="checkbox" className="mvx-workboard-checkbox" checked={this.state.pending_product_check[pending_index]} onChange={(e) => this.handle_todo_checkbox_chenage(e, pending_data.id)} /></div>
+                          <div className="mvx-workboard-select-icon"><input type="checkbox" className="mvx-workboard-checkbox" checked={this.state.pending_product_check[pending_index]} onChange={(e) => this.handle_todo_checkbox_chenage(e, pending_data.id, pending_index)} /></div>
                       </div>
                       <div className="mvx-workboard-address-area">
                           <p className="mvx-todo-list-details-data-value">
@@ -962,10 +1239,10 @@ Child({ name }) {
                 <div className="mvx-report-text-fade-line"></div>
                 <div className="mvx-select-all-bulk-wrap">
                   <div className="mvx-select-all-checkbox">
-                    <input type="checkbox" className="mvx-select-all" />
+                    <input type="checkbox" className="mvx-select-all" checked={this.state.pending_parent_user_check} onChange={(e) => this.handle_parent_user_todo_checkbox_chenage(e)} />
                     <span className="mvx-select-all-text">Select All</span>
                   </div>
-                  <Select placeholder="Bulk Action" options={this.state.details_vendor} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_work_board_chenage(e)} />
+                  <Select placeholder="Bulk Action" options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'user_approval')} />
                 </div>
             </div>
             <div className="mvx-workboard-card-wrapper">
@@ -980,7 +1257,7 @@ Child({ name }) {
                               <img alt="Multivendor X" src={appLocalizer.mvx_logo}/>
                               <div className="mvx-workboard-vendor-name">{pending_data.vendor}</div>
                           </div>
-                          <div className="mvx-workboard-select-icon"><input type="checkbox" className="mvx-workboard-checkbox"/></div>
+                          <div className="mvx-workboard-select-icon"><input type="checkbox" className="mvx-workboard-checkbox" checked={this.state.pending_user_check[pending_index]} onChange={(e) => this.handle_todo_user_chenage(e, pending_data.id, pending_index)}/></div>
                       </div>
                       <div className="mvx-workboard-address-area">
                           <p className="mvx-todo-list-details-data-value">
@@ -1018,10 +1295,10 @@ Child({ name }) {
                 <div className="mvx-report-text-fade-line"></div>
                 <div className="mvx-select-all-bulk-wrap">
                   <div className="mvx-select-all-checkbox">
-                    <input type="checkbox" className="mvx-select-all" />
+                    <input type="checkbox" className="mvx-select-all" checked={this.state.pending_parent_coupon_check} onChange={(e) => this.handle_parent_coupon_todo_checkbox_chenage(e)}/>
                     <span className="mvx-select-all-text">Select All</span>
                   </div>
-                  <Select placeholder="Bulk Action" options={this.state.details_vendor} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_work_board_chenage(e)} />
+                  <Select placeholder="Bulk Action" options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'coupon_approval')} />
                 </div>
             </div>
             <div className="mvx-workboard-card-wrapper">
@@ -1036,7 +1313,7 @@ Child({ name }) {
                               <img alt="Multivendor X" src={appLocalizer.mvx_logo}/>
                               <div className="mvx-workboard-vendor-name">{pending_data.coupon}</div>
                           </div>
-                          <div className="mvx-workboard-select-icon"><input type="checkbox" className="mvx-workboard-checkbox"/></div>
+                          <div className="mvx-workboard-select-icon"><input type="checkbox" className="mvx-workboard-checkbox" checked={this.state.pending_coupon_check[pending_index]} onChange={(e) => this.handle_todo_coupon_chenage(e, pending_data.id, pending_index)}/></div>
                       </div>
                       <div className="mvx-workboard-address-area">
                           <p className="mvx-todo-list-details-data-value">
@@ -1077,10 +1354,10 @@ Child({ name }) {
                 <div className="mvx-report-text-fade-line"></div>
                 <div className="mvx-select-all-bulk-wrap">
                   <div className="mvx-select-all-checkbox">
-                    <input type="checkbox" className="mvx-select-all" />
+                    <input type="checkbox" className="mvx-select-all" checked={this.state.pending_parent_transaction_check} onChange={(e) => this.handle_parent_transaction_todo_checkbox_chenage(e)}/>
                     <span className="mvx-select-all-text">Select All</span>
                   </div>
-                  <Select placeholder="Bulk Action" options={this.state.details_vendor} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_work_board_chenage(e)} />
+                  <Select placeholder="Bulk Action" options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'transaction_approval')} />
                 </div>
             </div>
             <div className="mvx-workboard-card-wrapper">
@@ -1095,7 +1372,7 @@ Child({ name }) {
                               <img alt="Multivendor X" src={appLocalizer.mvx_logo}/>
                               <div className="mvx-workboard-vendor-name">{pending_data.coupon}</div>
                           </div>
-                          <div className="mvx-workboard-select-icon"><input type="checkbox" className="mvx-workboard-checkbox"/></div>
+                          <div className="mvx-workboard-select-icon"><input type="checkbox" className="mvx-workboard-checkbox" checked={this.state.pending_transaction_check[pending_index]} onChange={(e) => this.handle_todo_transaction_chenage(e, pending_data.id, pending_index)}/></div>
                       </div>
                       <div className="mvx-workboard-address-area">
                           <p className="mvx-todo-list-details-data-value">
@@ -1135,10 +1412,10 @@ Child({ name }) {
                 <div className="mvx-report-text-fade-line"></div>
                 <div className="mvx-select-all-bulk-wrap">
                   <div className="mvx-select-all-checkbox">
-                    <input type="checkbox" className="mvx-select-all" />
+                    <input type="checkbox" className="mvx-select-all" checked={this.state.pending_parent_question_check} onChange={(e) => this.handle_parent_question_todo_checkbox_chenage(e)} />
                     <span className="mvx-select-all-text">Select All</span>
                   </div>
-                  <Select placeholder="Bulk Action" options={this.state.details_vendor} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_work_board_chenage(e)} />
+                  <Select placeholder="Bulk Action" options={this.state.details_vendor} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'question_approval')} />
                 </div>
             </div>
             <div className="mvx-workboard-card-wrapper">
@@ -1152,7 +1429,7 @@ Child({ name }) {
                           <div className="mvx-workboard-img-part">
                               <div className="mvx-workboard-vendor-name"><p dangerouslySetInnerHTML={{ __html: pending_data.question_by }}></p></div>
                           </div>
-                          <div className="mvx-workboard-select-icon"><input type="checkbox" className="mvx-workboard-checkbox"/></div>
+                          <div className="mvx-workboard-select-icon"><input type="checkbox" className="mvx-workboard-checkbox" checked={this.state.pending_question_check[pending_index]} onChange={(e) => this.handle_todo_question_checkbox_chenage(e, pending_data.id, pending_index)}/></div>
                       </div>
                       <div className="mvx-workboard-address-area">
                           <p className="mvx-todo-list-details-data-value">
