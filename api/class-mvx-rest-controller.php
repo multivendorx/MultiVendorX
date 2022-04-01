@@ -4022,7 +4022,7 @@ class MVX_REST_API {
                         'plan'         => 'free',
                        
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=payment&name=payment-masspay'),
                     ],
                     [
                         'id'           => 'paypal-payout',
@@ -4030,7 +4030,7 @@ class MVX_REST_API {
                         'description'  => __( 'Send payments automatically to multiple vendors as per scheduled', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=payment&name=payment-payout'),
                     ],
                     [
                         'id'           => 'paypal-marketplace',
@@ -4053,7 +4053,7 @@ class MVX_REST_API {
                         'description'  => __( 'Connect to vendors stripe account and make hassle-free transfers as scheduled.', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=payment&name=payment-stripe-connect'),
                     ],
                     [
                         'id'           => 'stripe-marketplace',
