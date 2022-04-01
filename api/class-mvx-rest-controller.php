@@ -3901,7 +3901,7 @@ class MVX_REST_API {
                         'plan'         => 'free',
                        
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=payment&name=payment-masspay'),
                     ],
                     [
                         'id'           => 'paypal-payout',
