@@ -66,18 +66,15 @@ if (!function_exists('get_mvx_global_settings')) {
 
 if (!function_exists('update_mvx_vendor_settings')) {
 
-    function update_mvx_vendor_settings($name = '', $value = '', $tab = '', $subtab = '') {
-        if (empty($name) || empty($value)) {
+    function update_mvx_vendor_settings($key = '', $value = '', $tab = '') {
+        if (empty($key) || empty($value) || empty($tab)) {
             return;
         }
-        if (!empty($subtab)) {
-            $option_name = "mvx_{$tab}_{$subtab}_settings_name";
-            $settings = get_option("mvx_{$tab}_{$subtab}_settings_name");
-        } else {
-            $option_name = "mvx_{$tab}_settings_name";
-            $settings = get_option("mvx_{$tab}_settings_name");
+        if (!empty($tab)) {
+            $option_name = "mvx_{$tab}_tab_settings";
+            $settings = get_option("mvx_{$tab}_tab_settings");
         }
-        $settings[$name] = $value;
+        $settings[$key] = $value;
         update_option($option_name, $settings);
     }
 
