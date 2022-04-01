@@ -189,118 +189,119 @@ class MVX_Install {
         $max_index_length = 191;
         $create_tables_query = array();
         $create_tables_query[] = "CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "mvx_vendor_orders` (
-        `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-        `order_id` bigint(20) NOT NULL,
-        `commission_id` bigint(20) NOT NULL,
-                `commission_status` varchar(100) NOT NULL DEFAULT 'unpaid',
-                `commission_paid_date` timestamp NULL,
-        `vendor_id` bigint(20) NOT NULL,
-        `shipping_status` varchar(255) NOT NULL,
-        `order_item_id` bigint(20) NOT NULL,
-                `line_item_type` longtext NULL,
-        `product_id` bigint(20) NOT NULL,
-                `variation_id` bigint(20) NOT NULL DEFAULT 0,
-                `quantity` bigint(20) NOT NULL DEFAULT 1,
-        `commission_amount` varchar(255) NOT NULL,
-        `shipping` varchar(255) NOT NULL,
-        `tax` varchar(255) NOT NULL,
-                `shipping_tax_amount` varchar(255) NOT NULL DEFAULT 0,
-        `is_trashed` varchar(10) NOT NULL,              
-        `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,             
-        PRIMARY KEY (`ID`),
-        CONSTRAINT vendor_orders UNIQUE (order_id, vendor_id, commission_id, order_item_id)
+            `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+            `order_id` bigint(20) NOT NULL,
+            `commission_id` bigint(20) NOT NULL,
+            `commission_status` varchar(100) NOT NULL DEFAULT 'unpaid',
+            `commission_paid_date` timestamp NULL,
+            `vendor_id` bigint(20) NOT NULL,
+            `shipping_status` varchar(255) NOT NULL,
+            `order_item_id` bigint(20) NOT NULL,
+            `line_item_type` longtext NULL,
+            `product_id` bigint(20) NOT NULL,
+            `variation_id` bigint(20) NOT NULL DEFAULT 0,
+            `quantity` bigint(20) NOT NULL DEFAULT 1,
+            `commission_amount` varchar(255) NOT NULL,
+            `shipping` varchar(255) NOT NULL,
+            `tax` varchar(255) NOT NULL,
+            `shipping_tax_amount` varchar(255) NOT NULL DEFAULT 0,
+            `is_trashed` varchar(10) NOT NULL,
+            `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            PRIMARY KEY (`ID`),
+            CONSTRAINT vendor_orders UNIQUE (order_id, vendor_id, commission_id, order_item_id)
         ) $collate;";
 
         $create_tables_query[] = "CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "mvx_products_map` (
-        `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-        `product_map_id` BIGINT UNSIGNED NOT NULL DEFAULT 0,
-        `product_id` BIGINT UNSIGNED NOT NULL DEFAULT 0,                        
-        `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,         
-        PRIMARY KEY (`ID`)
+            `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+            `product_map_id` BIGINT UNSIGNED NOT NULL DEFAULT 0,
+            `product_id` BIGINT UNSIGNED NOT NULL DEFAULT 0,
+            `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            PRIMARY KEY (`ID`)
         ) $collate;";
         
         $create_tables_query[] = "CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "mvx_visitors_stats` (
-        `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-                `vendor_id` BIGINT UNSIGNED NOT NULL DEFAULT 0,
-                `user_id` BIGINT UNSIGNED NOT NULL DEFAULT 0,
-                `user_cookie` varchar(255) NOT NULL,
-                `session_id` varchar(191) NOT NULL,
-                `ip` varchar(60) NOT NULL,
-                `lat` varchar(60) NOT NULL,
-                `lon` varchar(60) NOT NULL,
-                `city` text NOT NULL,
-                `zip` varchar(20) NOT NULL,
-                `regionCode` text NOT NULL,
-                `region` text NOT NULL,
-                `countryCode` text NOT NULL,
-                `country` text NOT NULL,
-                `isp` text NOT NULL,
-                `timezone` varchar(255) NOT NULL,
-                `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,             
-                PRIMARY KEY (`ID`),
-                CONSTRAINT visitor UNIQUE (vendor_id, session_id),
-                KEY vendor_id (vendor_id),
-                KEY user_id (user_id),
-                KEY user_cookie (user_cookie($max_index_length)),
-                KEY session_id (session_id($max_index_length)),
-                KEY ip (ip)
+            `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+            `vendor_id` BIGINT UNSIGNED NOT NULL DEFAULT 0,
+            `user_id` BIGINT UNSIGNED NOT NULL DEFAULT 0,
+            `user_cookie` varchar(255) NOT NULL,
+            `session_id` varchar(191) NOT NULL,
+            `ip` varchar(60) NOT NULL,
+            `lat` varchar(60) NOT NULL,
+            `lon` varchar(60) NOT NULL,
+            `city` text NOT NULL,
+            `zip` varchar(20) NOT NULL,
+            `regionCode` text NOT NULL,
+            `region` text NOT NULL,
+            `countryCode` text NOT NULL,
+            `country` text NOT NULL,
+            `isp` text NOT NULL,
+            `timezone` varchar(255) NOT NULL,
+            `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            PRIMARY KEY (`ID`),
+            CONSTRAINT visitor UNIQUE (vendor_id, session_id),
+            KEY vendor_id (vendor_id),
+            KEY user_id (user_id),
+            KEY user_cookie (user_cookie($max_index_length)),
+            KEY session_id (session_id($max_index_length)),
+            KEY ip (ip)
         ) $collate;";
         
         $create_tables_query[] = "CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "mvx_cust_questions` (
-        `ques_ID` bigint(20) NOT NULL AUTO_INCREMENT,
-        `product_ID` BIGINT UNSIGNED NOT NULL DEFAULT '0',
-                `ques_details` text NOT NULL,
-        `ques_by` BIGINT UNSIGNED NOT NULL DEFAULT '0',
-        `ques_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                `ques_vote` longtext NULL,
-                `status` text NOT NULL,
-        PRIMARY KEY (`ques_ID`)
+            `ques_ID` bigint(20) NOT NULL AUTO_INCREMENT,
+            `product_ID` BIGINT UNSIGNED NOT NULL DEFAULT '0',
+            `ques_details` text NOT NULL,
+            `ques_by` BIGINT UNSIGNED NOT NULL DEFAULT '0',
+            `ques_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            `ques_vote` longtext NULL,
+            `status` text NOT NULL,
+            PRIMARY KEY (`ques_ID`)
         ) $collate;";
         
         $create_tables_query[] = "CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "mvx_cust_answers` (
-        `ans_ID` bigint(20) NOT NULL AUTO_INCREMENT,
-        `ques_ID` BIGINT UNSIGNED NOT NULL DEFAULT '0',
-                `ans_details` text NOT NULL,
-        `ans_by` BIGINT UNSIGNED NOT NULL DEFAULT '0',
-        `ans_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                `ans_vote` longtext NULL,
-        PRIMARY KEY (`ans_ID`),
-                CONSTRAINT ques_id UNIQUE (ques_ID)
+            `ans_ID` bigint(20) NOT NULL AUTO_INCREMENT,
+            `ques_ID` BIGINT UNSIGNED NOT NULL DEFAULT '0',
+            `ans_details` text NOT NULL,
+            `ans_by` BIGINT UNSIGNED NOT NULL DEFAULT '0',
+            `ans_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            `ans_vote` longtext NULL,
+            PRIMARY KEY (`ans_ID`),
+            CONSTRAINT ques_id UNIQUE (ques_ID)
         ) $collate;";
         
         $create_tables_query[] = "CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "mvx_shipping_zone_methods` (
-                `instance_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-                `method_id` varchar(255) NOT NULL DEFAULT '',
-                `zone_id` int(11) unsigned NOT NULL,
-                `vendor_id` int(11) NOT NULL,
-                `is_enabled` tinyint(1) NOT NULL DEFAULT '1',
-                `settings` longtext,
-                PRIMARY KEY (`instance_id`)
-                ) $collate;";                                               
-                                                                        
+            `instance_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+            `method_id` varchar(255) NOT NULL DEFAULT '',
+            `zone_id` int(11) unsigned NOT NULL,
+            `vendor_id` int(11) NOT NULL,
+            `is_enabled` tinyint(1) NOT NULL DEFAULT '1',
+            `settings` longtext,
+            PRIMARY KEY (`instance_id`)
+        ) $collate;";
+
         $create_tables_query[] = "CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "mvx_shipping_zone_locations` (
-                `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-                `vendor_id` int(11) DEFAULT NULL,
-                `zone_id` int(11) DEFAULT NULL,
-                `location_code` varchar(255) DEFAULT NULL,
-                `location_type` varchar(255) DEFAULT NULL,
-                PRIMARY KEY (`id`)
-                ) $collate;";
+            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+            `vendor_id` int(11) DEFAULT NULL,
+            `zone_id` int(11) DEFAULT NULL,
+            `location_code` varchar(255) DEFAULT NULL,
+            `location_type` varchar(255) DEFAULT NULL,
+            PRIMARY KEY (`id`)
+        ) $collate;";
+        
         $create_tables_query[] = "CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "mvx_vendor_ledger` (
-                `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                `vendor_id` int(11) NOT NULL,
-                `order_id` bigint(20) NOT NULL,
-                `ref_id` bigint(20) NOT NULL,
-                `ref_type` varchar(100) NOT NULL DEFAULT '',
-                `ref_info` varchar(255) NOT NULL DEFAULT '',
-                `ref_status` varchar(100) NOT NULL DEFAULT '',
-                `ref_updated` timestamp NULL,
-                `credit` varchar(100) NOT NULL,
-        `debit` varchar(100) NOT NULL,
-                `balance` varchar(255) NOT NULL DEFAULT 0,
-                `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, 
-                PRIMARY KEY (`id`)
-                ) $collate;";
+            `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+            `vendor_id` int(11) NOT NULL,
+            `order_id` bigint(20) NOT NULL,
+            `ref_id` bigint(20) NOT NULL,
+            `ref_type` varchar(100) NOT NULL DEFAULT '',
+            `ref_info` varchar(255) NOT NULL DEFAULT '',
+            `ref_status` varchar(100) NOT NULL DEFAULT '',
+            `ref_updated` timestamp NULL,
+            `credit` varchar(100) NOT NULL,
+            `debit` varchar(100) NOT NULL,
+            `balance` varchar(255) NOT NULL DEFAULT 0,
+            `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, 
+            PRIMARY KEY (`id`)
+        ) $collate;";
 
         foreach ($create_tables_query as $create_table_query) {
             $wpdb->query($create_table_query);
