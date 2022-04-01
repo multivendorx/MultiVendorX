@@ -2248,9 +2248,9 @@ Class MVX_Admin_Dashboard {
         global $MVX;
         $current_endpoint_key = $MVX->endpoints->get_current_endpoint();
         // retrive the actual endpoint name in case admn changes that from settings
-        $current_endpoint = get_mvx_vendor_settings( 'mvx_' . str_replace( '-', '_', $current_endpoint_key ) . '_endpoint', 'vendor', 'general', $current_endpoint_key );
+        $current_endpoint = get_mvx_vendor_settings( 'mvx_' . str_replace( '-', '_', $current_endpoint_key ) . '_endpoint', 'seller_dashbaord', $current_endpoint_key );
         // retrive add-coupon endpoint name in case admn changes that from settings
-        $add_coupon_endpoint = get_mvx_vendor_settings( 'mvx_add_coupon_endpoint', 'vendor', 'general', 'add-coupon' );
+        $add_coupon_endpoint = get_mvx_vendor_settings( 'mvx_add_coupon_endpoint', 'seller_dashbaord', 'add-coupon' );
         $can_publish = true;
         //Return if not add coupon endpoint
         if ( $current_endpoint !== $add_coupon_endpoint || ! isset( $_POST['mvx_afm_coupon_nonce'] ) ) {
@@ -2394,7 +2394,7 @@ Class MVX_Admin_Dashboard {
             }
             wc_add_notice( $status_msg, 'success' );
 
-            wp_redirect( apply_filters( 'mvx_vendor_save_coupon_redirect_url', mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_add_coupon_endpoint', 'vendor', 'general', 'add-coupon' ), $post_id ) ) );
+            wp_redirect( apply_filters( 'mvx_vendor_save_coupon_redirect_url', mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_add_coupon_endpoint', 'seller_dashbaord', 'add-coupon' ), $post_id ) ) );
             exit;
         } else {
             wc_add_notice( $post_id->get_error_message(), 'error' );

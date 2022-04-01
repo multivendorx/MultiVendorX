@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) {
  *
  * Plugin install script which adds default pages, taxonomies, and database tables to WordPress. Runs on activation and upgrade.
  *
- * @author 		Multivendor X
- * @package 	mvx/Admin/Install
+ * @author      Multivendor X
+ * @package     mvx/Admin/Install
  * @version    0.0.1
  */
 class MVX_Install {
@@ -34,12 +34,12 @@ class MVX_Install {
         $this->do_schedule_cron_events();
 
         // Enabled store sideber by default
-        if (!get_option('mvx_store_sideber_position_set')) {
-            if (!get_mvx_vendor_settings('is_enable_store_sidebar', 'general')) {
-                update_mvx_vendor_settings('is_enable_store_sidebar', 'Enable', 'general');
+        if (!get_mvx_vendor_settings('is_enable_store_sidebar', 'store')) {
+            if (!get_mvx_vendor_settings('is_enable_store_sidebar', 'store')) {
+                update_mvx_vendor_settings('store_sidebar_position', 'At Left', 'store');
             }
-            update_mvx_vendor_settings('store_sidebar_position', 'left', 'general');
-            update_option('mvx_store_sideber_position_set', 'at_left');
+            update_mvx_vendor_settings('is_enable_store_sidebar', array('is_enable_store_sidebar'), 'store');
+            update_mvx_vendor_settings('store_sidebar_position', 'At Left', 'store');
         }
     }
 
@@ -123,8 +123,8 @@ class MVX_Install {
         $this->mvx_product_vendor_plugin_create_page(esc_sql(_x('vendor-registration', 'page_slug', 'dc-woocommerce-multi-vendor')), 'mvx_product_vendor_registration_page_id', __('Vendor Registration', 'dc-woocommerce-multi-vendor'), '[vendor_registration]');
         $mvx_product_vendor_vendor_page_id = get_option('mvx_product_vendor_vendor_page_id');
         $mvx_product_vendor_registration_page_id = get_option('mvx_product_vendor_registration_page_id');
-        update_mvx_vendor_settings('mvx_vendor', $mvx_product_vendor_vendor_page_id, 'vendor', 'general');
-        update_mvx_vendor_settings('vendor_registration', $mvx_product_vendor_registration_page_id, 'vendor', 'general');
+        update_mvx_vendor_settings('vendor_dashboard_page', array ( 'value' => $mvx_product_vendor_vendor_page_id, 'label' => 'Vendor Dashboard', 'index' => 1 ), 'settings_general'); 
+        update_mvx_vendor_settings('registration_page',  array ( 'value' => $mvx_product_vendor_registration_page_id, 'label' => 'Vendor Registration', 'index' => 2 ) , 'settings_general');
     }
 
     /**
@@ -135,53 +135,44 @@ class MVX_Install {
      */
     function save_default_plugin_settings() {
 
-        $general_settings = get_option('mvx_general_settings_name');
+        $general_settings = get_option('mvx_settings_general_tab_settings');
         if (empty($general_settings)) {
             $general_settings = array(
-                'approve_vendor_manually' => 'Enable',
-                'is_vendor_shipping_on' => 'Enable',
-                'is_policy_on' => 'Enable'
+                'approve_vendor' => 'manually'
             );
-            update_option('mvx_general_settings_name', $general_settings);
+            update_option('mvx_settings_general_tab_settings', $general_settings);
         }
 
-        if (!get_mvx_vendor_settings('is_upload_files', 'capabilities', 'product')) {
-            update_mvx_vendor_settings('is_upload_files', 'Enable', 'capabilities', 'product');
+        if (!get_mvx_vendor_settings('is_upload_files', 'products_capability')) {
+            update_mvx_vendor_settings('is_upload_files', array('is_upload_files'), 'products_capability');
         }
-        if (!get_mvx_vendor_settings('is_submit_product', 'capabilities', 'product')) {
-            update_mvx_vendor_settings('is_submit_product', 'Enable', 'capabilities', 'product');
+        if (!get_mvx_vendor_settings('is_submit_product', 'products_capability')) {
+            update_mvx_vendor_settings('is_submit_product', array('is_submit_product'), 'products_capability');
         }
-        if (!get_mvx_vendor_settings('simple', 'capabilities', 'product')) {
-            update_mvx_vendor_settings('simple', 'Enable', 'capabilities', 'product');
+        if (!get_mvx_vendor_settings('product_types', 'products')) {
+            update_mvx_vendor_settings('product_types', array('simple', 'variable', 'grouped', 'external' ), 'products');
         }
-        if (!get_mvx_vendor_settings('variable', 'capabilities', 'product')) {
-            update_mvx_vendor_settings('variable', 'Enable', 'capabilities', 'product');
+        if (!get_mvx_vendor_settings('type_options', 'products')) {
+            update_mvx_vendor_settings('type_options', array('downloadable', 'virtual'), 'products');
         }
-        if (!get_mvx_vendor_settings('grouped', 'capabilities', 'product')) {
-            update_mvx_vendor_settings('grouped', 'Enable', 'capabilities', 'product');
-        }
-        if (!get_mvx_vendor_settings('virtual', 'capabilities', 'product')) {
-            update_mvx_vendor_settings('virtual', 'Enable', 'capabilities', 'product');
-        }
-        if (!get_mvx_vendor_settings('external', 'capabilities', 'product')) {
-            update_mvx_vendor_settings('external', 'Enable', 'capabilities', 'product');
-        }
-        if (!get_mvx_vendor_settings('downloadable', 'capabilities', 'product')) {
-            update_mvx_vendor_settings('downloadable', 'Enable', 'capabilities', 'product');
-        }
-        $payment_settings = get_option('mvx_payment_settings_name');
-        if (empty($payment_settings)) {
-            $payment_settings = array(
-                'commission_include_coupon' => 'Enable',
-                'give_tax' => 'Enable',
-                'give_shipping' => 'Enable',
-                'commission_type' => 'percent',
+
+        $disbursement_settings = get_option('mvx_disbursement_tab_settings');
+        if (empty($disbursement_settings)) {
+            $disbursement_settings = array(
+                'commission_include_coupon' => array('commission_include_coupon'),
+                'give_tax' => array('give_tax'),
+                'give_shipping' => array('give_shipping'), 
             );
-            update_option('mvx_payment_settings_name', $payment_settings);
+            update_option('mvx_disbursement_tab_settings', $disbursement_settings);
         }
-        
-        if (!get_mvx_vendor_settings('is_singleproductmultiseller', 'general')) {
-            update_mvx_vendor_settings('is_singleproductmultiseller', 'Enable', 'general');
+        $commission_settings = get_option('mvx_commissions_tab_settings');
+        if (empty($commission_settings)) {
+            $commission_settings = array(
+                'commission_type' => array( 'value' => 'percent',
+                                        'label' => 'Percentage',
+                                        'index' => 2
+                                    ));
+            update_option('mvx_commissions_tab_settings', $commission_settings);
         }
     }
 
@@ -198,38 +189,38 @@ class MVX_Install {
         $max_index_length = 191;
         $create_tables_query = array();
         $create_tables_query[] = "CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "mvx_vendor_orders` (
-		`ID` bigint(20) NOT NULL AUTO_INCREMENT,
-		`order_id` bigint(20) NOT NULL,
-		`commission_id` bigint(20) NOT NULL,
+        `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+        `order_id` bigint(20) NOT NULL,
+        `commission_id` bigint(20) NOT NULL,
                 `commission_status` varchar(100) NOT NULL DEFAULT 'unpaid',
                 `commission_paid_date` timestamp NULL,
-		`vendor_id` bigint(20) NOT NULL,
-		`shipping_status` varchar(255) NOT NULL,
-		`order_item_id` bigint(20) NOT NULL,
+        `vendor_id` bigint(20) NOT NULL,
+        `shipping_status` varchar(255) NOT NULL,
+        `order_item_id` bigint(20) NOT NULL,
                 `line_item_type` longtext NULL,
-		`product_id` bigint(20) NOT NULL,
+        `product_id` bigint(20) NOT NULL,
                 `variation_id` bigint(20) NOT NULL DEFAULT 0,
                 `quantity` bigint(20) NOT NULL DEFAULT 1,
-		`commission_amount` varchar(255) NOT NULL,
-		`shipping` varchar(255) NOT NULL,
-		`tax` varchar(255) NOT NULL,
+        `commission_amount` varchar(255) NOT NULL,
+        `shipping` varchar(255) NOT NULL,
+        `tax` varchar(255) NOT NULL,
                 `shipping_tax_amount` varchar(255) NOT NULL DEFAULT 0,
-		`is_trashed` varchar(10) NOT NULL,				
-		`created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,				
-		PRIMARY KEY (`ID`),
-		CONSTRAINT vendor_orders UNIQUE (order_id, vendor_id, commission_id, order_item_id)
-		) $collate;";
+        `is_trashed` varchar(10) NOT NULL,              
+        `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,             
+        PRIMARY KEY (`ID`),
+        CONSTRAINT vendor_orders UNIQUE (order_id, vendor_id, commission_id, order_item_id)
+        ) $collate;";
 
         $create_tables_query[] = "CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "mvx_products_map` (
-		`ID` bigint(20) NOT NULL AUTO_INCREMENT,
-		`product_map_id` BIGINT UNSIGNED NOT NULL DEFAULT 0,
-		`product_id` BIGINT UNSIGNED NOT NULL DEFAULT 0,						
-		`created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,			
-		PRIMARY KEY (`ID`)
-		) $collate;";
+        `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+        `product_map_id` BIGINT UNSIGNED NOT NULL DEFAULT 0,
+        `product_id` BIGINT UNSIGNED NOT NULL DEFAULT 0,                        
+        `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,         
+        PRIMARY KEY (`ID`)
+        ) $collate;";
         
         $create_tables_query[] = "CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "mvx_visitors_stats` (
-		`ID` bigint(20) NOT NULL AUTO_INCREMENT,
+        `ID` bigint(20) NOT NULL AUTO_INCREMENT,
                 `vendor_id` BIGINT UNSIGNED NOT NULL DEFAULT 0,
                 `user_id` BIGINT UNSIGNED NOT NULL DEFAULT 0,
                 `user_cookie` varchar(255) NOT NULL,
@@ -245,7 +236,7 @@ class MVX_Install {
                 `country` text NOT NULL,
                 `isp` text NOT NULL,
                 `timezone` varchar(255) NOT NULL,
-                `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,				
+                `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,             
                 PRIMARY KEY (`ID`),
                 CONSTRAINT visitor UNIQUE (vendor_id, session_id),
                 KEY vendor_id (vendor_id),
@@ -253,29 +244,29 @@ class MVX_Install {
                 KEY user_cookie (user_cookie($max_index_length)),
                 KEY session_id (session_id($max_index_length)),
                 KEY ip (ip)
-		) $collate;";
+        ) $collate;";
         
         $create_tables_query[] = "CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "mvx_cust_questions` (
-		`ques_ID` bigint(20) NOT NULL AUTO_INCREMENT,
-		`product_ID` BIGINT UNSIGNED NOT NULL DEFAULT '0',
+        `ques_ID` bigint(20) NOT NULL AUTO_INCREMENT,
+        `product_ID` BIGINT UNSIGNED NOT NULL DEFAULT '0',
                 `ques_details` text NOT NULL,
-		`ques_by` BIGINT UNSIGNED NOT NULL DEFAULT '0',
-		`ques_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        `ques_by` BIGINT UNSIGNED NOT NULL DEFAULT '0',
+        `ques_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 `ques_vote` longtext NULL,
                 `status` text NOT NULL,
-		PRIMARY KEY (`ques_ID`)
-		) $collate;";
+        PRIMARY KEY (`ques_ID`)
+        ) $collate;";
         
         $create_tables_query[] = "CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "mvx_cust_answers` (
-		`ans_ID` bigint(20) NOT NULL AUTO_INCREMENT,
-		`ques_ID` BIGINT UNSIGNED NOT NULL DEFAULT '0',
+        `ans_ID` bigint(20) NOT NULL AUTO_INCREMENT,
+        `ques_ID` BIGINT UNSIGNED NOT NULL DEFAULT '0',
                 `ans_details` text NOT NULL,
-		`ans_by` BIGINT UNSIGNED NOT NULL DEFAULT '0',
-		`ans_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        `ans_by` BIGINT UNSIGNED NOT NULL DEFAULT '0',
+        `ans_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 `ans_vote` longtext NULL,
-		PRIMARY KEY (`ans_ID`),
+        PRIMARY KEY (`ans_ID`),
                 CONSTRAINT ques_id UNIQUE (ques_ID)
-		) $collate;";
+        ) $collate;";
         
         $create_tables_query[] = "CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "mvx_shipping_zone_methods` (
                 `instance_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -285,8 +276,8 @@ class MVX_Install {
                 `is_enabled` tinyint(1) NOT NULL DEFAULT '1',
                 `settings` longtext,
                 PRIMARY KEY (`instance_id`)
-                ) $collate;";												
-																		
+                ) $collate;";                                               
+                                                                        
         $create_tables_query[] = "CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "mvx_shipping_zone_locations` (
                 `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
                 `vendor_id` int(11) DEFAULT NULL,
@@ -305,9 +296,9 @@ class MVX_Install {
                 `ref_status` varchar(100) NOT NULL DEFAULT '',
                 `ref_updated` timestamp NULL,
                 `credit` varchar(100) NOT NULL,
-		`debit` varchar(100) NOT NULL,
+        `debit` varchar(100) NOT NULL,
                 `balance` varchar(255) NOT NULL DEFAULT 0,
-                `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,	
+                `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, 
                 PRIMARY KEY (`id`)
                 ) $collate;";
 

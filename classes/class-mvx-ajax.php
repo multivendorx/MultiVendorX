@@ -308,7 +308,7 @@ class MVX_Ajax {
                     $mark_ship_title = __('Shipped', 'dc-woocommerce-multi-vendor');
                 }
                 $actions['view'] = array(
-                    'url' => esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_orders_endpoint', 'vendor', 'general', 'vendor-orders'), $order->get_id())),
+                    'url' => esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_orders_endpoint', 'seller_dashbaord', 'vendor-orders'), $order->get_id())),
                     'icon' => 'ico-eye-icon action-icon',
                     'title' => __('View', 'dc-woocommerce-multi-vendor'),
                 );
@@ -482,7 +482,7 @@ class MVX_Ajax {
         global $MVX;
         $product_id = isset($_POST['product_id']) ? absint($_POST['product_id']) : 0;
         $parent_post = get_post($product_id);
-        $redirect_url = isset($_POST['redirect_url']) ? esc_url($_POST['redirect_url']) : esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_edit_product_endpoint', 'vendor', 'general', 'edit-product')));
+        $redirect_url = isset($_POST['redirect_url']) ? esc_url($_POST['redirect_url']) : esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_edit_product_endpoint', 'seller_dashbaord', 'edit-product')));
         $product = wc_get_product($product_id);
         if (!function_exists('duplicate_post_plugin_activation')) {
             include_once( WC_ABSPATH . 'includes/admin/class-wc-admin-duplicate-product.php' );
@@ -2150,8 +2150,8 @@ class MVX_Ajax {
             if ($vendor_coupons) {
                 foreach ($vendor_coupons as $coupon_single) {
                     $edit_coupon_link = '';
-                    if (current_user_can('edit_published_shop_coupons') && get_mvx_vendor_settings('is_edit_delete_published_coupon', 'capabilities', 'product') == 'Enable') {
-                        $edit_coupon_link = esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_add_coupon_endpoint', 'vendor', 'general', 'add-coupon'), $coupon_single->ID));
+                    if (current_user_can('edit_published_shop_coupons') && get_mvx_vendor_settings('is_edit_delete_published_coupon', 'products_capability')) {
+                        $edit_coupon_link = esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_add_coupon_endpoint', 'seller_dashbaord', 'add-coupon'), $coupon_single->ID));
                     }
                     // Get actions
                     $onclick = "return confirm('" . __('Are you sure want to delete this coupon?', 'dc-woocommerce-multi-vendor') . "')";
@@ -2160,9 +2160,9 @@ class MVX_Ajax {
                     );
                     $actions_col = array(
                         'edit' => '<a href="' . esc_url($edit_coupon_link) . '" title="' . __('Edit', 'dc-woocommerce-multi-vendor') . '"><i class="mvx-font ico-edit-pencil-icon"></i></a>',
-                        'restore' => '<a href="' . esc_url(wp_nonce_url(add_query_arg(array('coupon_id' => $coupon_single->ID), mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_coupons_endpoint', 'vendor', 'general', 'coupons'))), 'mvx_untrash_coupon')) . '" title="' . __('Restore from the Trash', 'dc-woocommerce-multi-vendor') . '"><i class="mvx-font ico-reply-icon"></i></a>',
-                        'trash' => '<a class="couponDelete" href="' . esc_url(wp_nonce_url(add_query_arg(array('coupon_id' => $coupon_single->ID), mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_coupons_endpoint', 'vendor', 'general', 'coupons'))), 'mvx_trash_coupon')) . '" title="' . __('Move to the Trash', 'dc-woocommerce-multi-vendor') . '"><i class="mvx-font ico-delete-icon"></i></a>',
-                        'delete' => '<a class="couponDelete" href="' . esc_url(wp_nonce_url(add_query_arg(array('coupon_id' => $coupon_single->ID), mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_coupons_endpoint', 'vendor', 'general', 'coupons'))), 'mvx_delete_coupon')) . '" onclick="' . $onclick . '" title="' . __('Delete Permanently', 'dc-woocommerce-multi-vendor') . '"><i class="mvx-font ico-delete-icon"></i></a>',
+                        'restore' => '<a href="' . esc_url(wp_nonce_url(add_query_arg(array('coupon_id' => $coupon_single->ID), mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_coupons_endpoint', 'seller_dashbaord', 'coupons'))), 'mvx_untrash_coupon')) . '" title="' . __('Restore from the Trash', 'dc-woocommerce-multi-vendor') . '"><i class="mvx-font ico-reply-icon"></i></a>',
+                        'trash' => '<a class="couponDelete" href="' . esc_url(wp_nonce_url(add_query_arg(array('coupon_id' => $coupon_single->ID), mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_coupons_endpoint', 'seller_dashbaord', 'coupons'))), 'mvx_trash_coupon')) . '" title="' . __('Move to the Trash', 'dc-woocommerce-multi-vendor') . '"><i class="mvx-font ico-delete-icon"></i></a>',
+                        'delete' => '<a class="couponDelete" href="' . esc_url(wp_nonce_url(add_query_arg(array('coupon_id' => $coupon_single->ID), mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_coupons_endpoint', 'products_capability'))), 'mvx_delete_coupon')) . '" onclick="' . $onclick . '" title="' . __('Delete Permanently', 'dc-woocommerce-multi-vendor') . '"><i class="mvx-font ico-delete-icon"></i></a>',
                     );
                     if ($coupon_single->post_status == 'trash') {
                         unset($actions_col['edit']);
@@ -2171,7 +2171,7 @@ class MVX_Ajax {
                         unset($actions_col['restore']);
                         unset($actions_col['delete']);
                     }
-                    if (!current_user_can('edit_published_shop_coupons') || get_mvx_vendor_settings('is_edit_delete_published_coupon', 'capabilities', 'product') != 'Enable') {
+                    if (!current_user_can('edit_published_shop_coupons') || get_mvx_vendor_settings('is_edit_delete_published_coupon', 'products_capability')) {
                         unset($actions['edit']);
                         unset($actions['delete']);
                     }
@@ -2245,7 +2245,7 @@ class MVX_Ajax {
                     $row ['select_transaction'] = '<input name="transaction_ids[]" value="' . $transaction_id . '"  class="select_transaction" type="checkbox" >';
                     $row ['date'] = mvx_date($trans_post->post_date);
                     $row ['order_id'] = '#'. implode(', #', $order_id);
-                    $row ['transaction_id'] = '<a href="' . esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_transaction_details_endpoint', 'vendor', 'general', 'transaction-details'), $transaction_id)) . '">#' . $transaction_id . '</a>';
+                    $row ['transaction_id'] = '<a href="' . esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_transaction_details_endpoint', 'seller_dashbaord', 'transaction-details'), $transaction_id)) . '">#' . $transaction_id . '</a>';
                     $row ['commission_ids'] = '#' . implode(', #', $commission_details);
                     $row ['fees'] = isset($transfer_charge) ? wc_price($transfer_charge) : wc_price(0);
                     $row ['net_earning'] = wc_price($transaction_amt);
@@ -3037,7 +3037,7 @@ class MVX_Ajax {
                         }
                         $action_html = apply_filters('mvx_dashboard_pending_shipping_widget_data_actions', $action_html, $pending_order->get_id());
                         $row = array();
-                        $row ['order_id'] = '<a href="' . esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_orders_endpoint', 'vendor', 'general', 'vendor-orders'), $pending_order->get_id())) . '">#' . $pending_order->get_id() . '</a>';
+                        $row ['order_id'] = '<a href="' . esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_orders_endpoint', 'seller_dashbaord', 'vendor-orders'), $pending_order->get_id())) . '">#' . $pending_order->get_id() . '</a>';
                         $row ['products_name'] = implode(' , ', $product_name);
                         $row ['order_date'] = mvx_date($pending_order->get_date_created());
                         $row ['shipping_address'] = $pending_order->get_formatted_shipping_address();
@@ -3998,7 +3998,7 @@ class MVX_Ajax {
                 'taxonomy' => $taxonomy,
             );
             set_transient('classified_product_terms_vendor' . $user_id, $data, HOUR_IN_SECONDS);
-            $url = esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_edit_product_endpoint', 'vendor', 'general', 'edit-product')));
+            $url = esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_edit_product_endpoint', 'seller_dashbaord', 'edit-product')));
         }
         wp_send_json(array('url' => $url));
         die;
@@ -4452,7 +4452,7 @@ class MVX_Ajax {
                         $translation_edit_url = '';
                         if( $translated_id ) {
                             $translate_text = sprintf( __( 'Edit the %s translation', 'dc-woocommerce-multi-vendor' ), $language_data['display_name'] );
-                            $product_url = mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_edit_product_endpoint', 'vendor', 'general', 'edit-product'), $translated_id, '', $language_data['code']);
+                            $product_url = mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_edit_product_endpoint', 'seller_dashbaord', 'edit-product'), $translated_id, '', $language_data['code']);
                             $translation_edit_url = '<a href="' . $product_url . '" title="' . $translate_text . '"><img style="padding:1px;margin:2px;" border="0" src="' . ICL_PLUGIN_URL . '/res/img/edit_translation.png" alt="' . $translate_text . '" width="16" height="16" /></a>';
                         } else {
                             $translate_text = sprintf( __( 'Add translation to %s', 'dc-woocommerce-multi-vendor' ), $language_data['display_name'] );
@@ -4570,7 +4570,7 @@ class MVX_Ajax {
 
                         do_action( 'mvx_after_translated_new_product', $duplicate->get_id() );
 
-                        $product_url = esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_edit_product_endpoint', 'vendor', 'general', 'edit-product'), $duplicate->get_id()));
+                        $product_url = esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_edit_product_endpoint', 'seller_dashbaord', 'edit-product'), $duplicate->get_id()));
 
                         // Redirect to the edit screen for the new draft page
                         echo '{"status": true, "redirect": "' . $product_url . '", "id": "' . $duplicate->get_id() . '"}';
