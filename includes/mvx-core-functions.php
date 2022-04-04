@@ -6827,7 +6827,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
             'payment-stripe-connect' => [
                 [
                     'key'    => 'testmode',
-                    'label'   => __( 'Enable Test Mode', 'dc-woocommerce-multi-vendor' ),
+                    'label'   => __( 'Stripe Enable Test Mode', 'dc-woocommerce-multi-vendor' ),
                     'type'    => 'checkbox',
                     'class'     => 'mvx-toggle-checkbox',
                     'options' => array(
@@ -6850,37 +6850,37 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 [
                     'key'       => 'test_client_id',
                     'type'      => 'text',
-                    'label'     => __( 'Test Client ID', 'dc-woocommerce-multi-vendor' ),
+                    'label'     => __( 'Stripe Test Client ID', 'dc-woocommerce-multi-vendor' ),
                     'database_value' => '',
                 ],
                 [
                     'key'       => 'live_client_id',
                     'type'      => 'text',
-                    'label'     => __( 'Live Client ID', 'dc-woocommerce-multi-vendor' ),
+                    'label'     => __( 'Stripe Live Client ID', 'dc-woocommerce-multi-vendor' ),
                     'database_value' => '',
                 ],
                 [
                     'key'       => 'test_publishable_key',
                     'type'      => 'text',
-                    'label'     => __( 'Test Publishable key', 'dc-woocommerce-multi-vendor' ),
+                    'label'     => __( 'Stripe Test Publishable key', 'dc-woocommerce-multi-vendor' ),
                     'database_value' => '',
                 ],
                 [
                     'key'       => 'live_publishable_key',
                     'type'      => 'text',
-                    'label'     => __( 'Live Publishable key', 'dc-woocommerce-multi-vendor' ),
+                    'label'     => __( 'Stripe Live Publishable key', 'dc-woocommerce-multi-vendor' ),
                     'database_value' => '',
                 ],
                 [
                     'key'       => 'test_secret_key',
                     'type'      => 'text',
-                    'label'     => __( 'Test Secret key', 'dc-woocommerce-multi-vendor' ),
+                    'label'     => __( 'Stripe Test Secret key', 'dc-woocommerce-multi-vendor' ),
                     'database_value' => '',
                 ],
                 [
                     'key'       => 'live_secret_key',
                     'type'      => 'text',
-                    'label'     => __( 'Live Secret key', 'dc-woocommerce-multi-vendor' ),
+                    'label'     => __( 'Stripe Live Secret key', 'dc-woocommerce-multi-vendor' ),
                     'database_value' => '',
                 ],
 
@@ -6905,13 +6905,13 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 [
                     'key'       => 'client_id',
                     'type'      => 'text',
-                    'label'     => __( 'Client ID', 'dc-woocommerce-multi-vendor' ),
+                    'label'     => __( 'Paypal Client ID', 'dc-woocommerce-multi-vendor' ),
                     'database_value' => '',
                 ],
                 [
                     'key'       => 'client_secret',
                     'type'      => 'text',
-                    'label'     => __( 'Client Secret', 'dc-woocommerce-multi-vendor' ),
+                    'label'     => __( 'Paypal Client Secret', 'dc-woocommerce-multi-vendor' ),
                     'database_value' => '',
                 ],
                 [
@@ -6947,20 +6947,20 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 [
                     'key'       => 'api_username',
                     'type'      => 'text',
-                    'label'     => __( 'API Username', 'dc-woocommerce-multi-vendor' ),
+                    'label'     => __( 'Paypal API Username', 'dc-woocommerce-multi-vendor' ),
                     'hints'     => __( 'Number of Days for the refund period.', 'dc-woocommerce-multi-vendor' ),
                     'database_value' => '',
                 ],
                 [
                     'key'       => 'api_pass',
                     'type'      => 'text',
-                    'label'     => __( 'API Password', 'dc-woocommerce-multi-vendor' ),
+                    'label'     => __( 'Paypal API Password', 'dc-woocommerce-multi-vendor' ),
                     'database_value' => '',
                 ],
                 [
                     'key'       => 'api_signature',
                     'type'      => 'text',
-                    'label'     => __( 'API Signature', 'dc-woocommerce-multi-vendor' ),
+                    'label'     => __( 'Paypal API Signature', 'dc-woocommerce-multi-vendor' ),
                     'database_value' => '',
                 ],
                 [
