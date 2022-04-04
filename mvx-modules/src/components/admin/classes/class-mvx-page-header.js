@@ -53,8 +53,6 @@ class App extends Component {
             <label><i className='mvx-font icon-search'></i></label>
             <input type="text" placeholder="Search Modules" name="search" onChange={(e) => this.handleOnChange(e)}/>
 
-            {console.log(this.state.fetch_all_settings_for_searching)}
-
             { this.state.fetch_all_settings_for_searching.length > 0 ? 
 
               <div className="mvx-search-content">
