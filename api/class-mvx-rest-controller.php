@@ -602,6 +602,32 @@ class MVX_REST_API {
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
 
+        //pending products bulk approve or dismiss
+        register_rest_route( 'mvx_module/v1', '/fetch_all_settings_for_searching', [
+            'methods' => WP_REST_Server::READABLE,
+            'callback' => array( $this, 'mvx_fetch_all_settings_for_searching' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
+    }
+
+    public function mvx_fetch_all_settings_for_searching($request) {
+        $value = $request && $request->get_param('value') ? $request->get_param('value') : 0;
+        $list_of_titles = [];
+        $all_fields_data = mvx_admin_backend_settings_fields_details();
+        foreach ($all_fields_data as $key_fields => $value_fields) {
+            foreach ($value_fields as $key_list => $value_list) {
+                if (stripos($value_list['label'], $value) !== false) {
+                    $list_of_titles[] = array(
+                        'label' =>  $value_list['label'],
+                        'desc'  =>  $value_list['label'],
+                        'link'  =>  stripos($key_fields, 'payment-') !== false ? admin_url('admin.php?page=mvx#&submenu=payment&name='. $key_fields .'') : admin_url('admin.php?page=mvx#&submenu=settings&name='. $key_fields .'')
+                    );
+                }
+            }
+        }
+
+        return rest_ensure_response($list_of_titles);
     }
 
     public function mvx_bulk_todo_pending_product($request) {
