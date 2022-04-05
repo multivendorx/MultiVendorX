@@ -39,7 +39,7 @@ do_action('before_mvx_vendor_dashboard_product_list_table');
                             $count_pros = count( $vendor->get_products_ids( array( 'where' => "AND {$wpdb->prefix}posts.post_status = '$key' " ) ) );
                         }
                         if($count_pros){
-                            echo '<li><a href="' . add_query_arg(array('post_status' => sanitize_title($key)), mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_products_endpoint', 'vendor', 'general', 'products'))) . '" class="' . ( $current_status == $key ? 'current' : '' ) . '">' . $label .' ( <span id="count-'.$key.'" data-status="'.$key.'" data-count="'.$count_pros.'">'. $count_pros .'</span> ) </a></li>';
+                            echo '<li><a href="' . add_query_arg(array('post_status' => sanitize_title($key)), mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_products_endpoint', 'seller_dashbaord', 'products'))) . '" class="' . ( $current_status == $key ? 'current' : '' ) . '">' . $label .' ( <span id="count-'.$key.'" data-status="'.$key.'" data-count="'.$count_pros.'">'. $count_pros .'</span> ) </a></li>';
                         }
                     }
                     echo '</ul><br class="clear" />';

@@ -5,30 +5,29 @@ if (!defined('ABSPATH')) {
 }
 
 /**
- * @class 		MVX_Capabilities
- * @version		1.0.0
- * @package		MVX
- * @author 		Multivendor X
+ * @class       MVX_Capabilities
+ * @version     1.0.0
+ * @package     MVX
+ * @author      Multivendor X
  */
 class MVX_Capabilities {
 
     public $capability;
-    public $general_cap;
-    public $vendor_cap;
-    public $frontend_cap;
-    public $payment_cap;
+    public $payment_cap = array();
     public $mvx_capability = array();
 
     public function __construct() {
         $this->mvx_capability = array_merge(
                 $this->mvx_capability
-                , (array) get_option('mvx_general_settings_name', array())
-                , (array) get_option('mvx_capabilities_product_settings_name', array())
-                , (array) get_option('mvx_capabilities_order_settings_name', array())
-                , (array) get_option('mvx_capabilities_miscellaneous_settings_name', array())
+                , (array) get_option('mvx_settings_general_tab_settings', array())
+                , (array) get_option('mvx_products_tab_settings', array())
+                , (array) get_option('mvx_products_capability_tab_settings', array())
         );
-        $this->frontend_cap = get_option("mvx_frontend_settings_name");
-        $this->payment_cap = get_option("mvx_payment_settings_name");
+        $this->payment_cap = array_merge(
+                $this->payment_cap
+                , (array) get_option('mvx_commissions_tab_settings', array())
+                , (array) get_option('mvx_disbursement_tab_settings', array())
+        );
 
         add_filter('product_type_selector', array(&$this, 'mvx_product_type_selector'), 10, 1);
         add_filter('product_type_options', array(&$this, 'mvx_product_type_options'), 10);
@@ -161,7 +160,7 @@ class MVX_Capabilities {
      * @return array 
      */
     public function add_sold_by_text_cart($array, $cart_item) {
-        if ('Enable' === get_mvx_vendor_settings('sold_by_catalog', 'general') && apply_filters('mvx_sold_by_text_in_cart_checkout', true, $cart_item['product_id'])) {
+        if (get_mvx_vendor_settings('display_product_seller', 'settings_general') && apply_filters('mvx_sold_by_text_in_cart_checkout', true, $cart_item['product_id'])) {
             $sold_by_text = apply_filters('mvx_sold_by_text', __('Sold By', 'dc-woocommerce-multi-vendor'), $cart_item['product_id']);
             $vendor = get_mvx_product_vendors($cart_item['product_id']);
             if ($vendor) {
@@ -179,7 +178,7 @@ class MVX_Capabilities {
      */
     public function mvx_after_add_to_cart_form() {
         global $post;
-        if ('Enable' === get_mvx_vendor_settings('sold_by_catalog', 'general') && apply_filters('mvx_sold_by_text_after_products_shop_page', true, $post->ID)) {
+        if (get_mvx_vendor_settings('display_product_seller', 'settings_general') && apply_filters('mvx_sold_by_text_after_products_shop_page', true, $post->ID)) {
             $vendor = get_mvx_product_vendors($post->ID);
             if ($vendor) {
                 $sold_by_text = apply_filters('mvx_sold_by_text', __('Sold By', 'dc-woocommerce-multi-vendor'), $post->ID);
@@ -188,23 +187,6 @@ class MVX_Capabilities {
             }
         }
     }
-
-    /**
-     * Save sold by text in database
-     *
-     * @param item_id, cart_item
-     * @return void 
-     */
-//    public function order_item_meta_2($item_id, $item, $order_id) { 
-//        if ('Enable' === get_mvx_vendor_settings('sold_by_catalog', 'general') && apply_filters('sold_by_cart_and_checkout', true)) {
-//            $general_cap = apply_filters('mvx_sold_by_text', __('Sold By', 'dc-woocommerce-multi-vendor'));
-//            $vendor = get_mvx_product_vendors($item['product_id']);
-//            if ($vendor) {
-//                wc_add_order_item_meta($item_id, $general_cap, $vendor->page_title);
-//                wc_add_order_item_meta($item_id, '_vendor_id', $vendor->id);
-//            }
-//        }
-//    }
 
     public function update_mvx_vendor_role_capability() {
         global $wp_roles;
@@ -233,7 +215,7 @@ class MVX_Capabilities {
      */
     public function get_vendor_caps() {
         $caps = array();
-        $capability = get_option('mvx_capabilities_product_settings_name', array());
+        $capability = get_option('mvx_products_capability_tab_settings', array());
         if ($this->vendor_capabilities_settings('is_upload_files', $capability)) {
             $caps['upload_files'] = true;
         } else {
@@ -300,5 +282,4 @@ class MVX_Capabilities {
         $caps['edit_shop_orders'] = true;
         return apply_filters('mvx_vendor_capabilities', $caps);
     }
-
 }

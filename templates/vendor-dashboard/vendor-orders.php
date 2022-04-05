@@ -30,6 +30,7 @@ $orders_list_table_headers = apply_filters('mvx_datatable_order_list_table_heade
                 <input type="text" class="pro_search_key no_input form-control inline-input" id="pro_search_key" name="search_keyword" />
                 <button class="mvx_black_btn btn btn-secondary" type="button" id="pro_search_btn"><?php _e('Search', 'dc-woocommerce-multi-vendor'); ?></button>
             </div>
+            <br>
             <form name="mvx_vendor_dashboard_orders" method="POST" class="form-inline">
                 <div class="form-group">
                     <input type="date" name="mvx_start_date_order" class="pickdate gap1 mvx_start_date_order form-control" placeholder="<?php esc_attr_e('from', 'dc-woocommerce-multi-vendor'); ?>" value="<?php echo isset($_POST['mvx_start_date_order']) ? wc_clean($_POST['mvx_start_date_order']) : date('Y-m-01'); ?>" />

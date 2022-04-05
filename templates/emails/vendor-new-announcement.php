@@ -17,7 +17,7 @@ $text_align = is_rtl() ? 'right' : 'left';
 
 <p><?php printf(esc_html__('%s', 'dc-woocommerce-multi-vendor'),  $post_title); ?></p>
 
-<?php $announcement_link = esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_announcements_endpoint', 'vendor', 'general', 'vendor-announcements'))); ?>
+<?php $announcement_link = esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_announcements_endpoint', 'seller_dashbaord', 'vendor-announcements'))); ?>
 
 <p><?php printf(esc_html__('This is to inform you that we recently updated the article %s :', 'dc-woocommerce-multi-vendor'), $post_title); ?></p>
 

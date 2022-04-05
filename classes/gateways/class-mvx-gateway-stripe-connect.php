@@ -232,22 +232,22 @@ class MVX_Gateway_Stripe_Connect extends MVX_Payment_Gateway {
                             update_user_meta($user_id, 'stripe_publishable_key', $resp->stripe_publishable_key);
                             update_user_meta($user_id, 'stripe_user_id', $resp->stripe_user_id);
                             update_user_meta($user_id, '_vendor_payment_mode', 'stripe_masspay');
-                            wp_redirect(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_billing_endpoint', 'vendor', 'general', 'vendor-billing' )));
+                            wp_redirect(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_billing_endpoint', 'seller_dashbaord', 'vendor-billing' )));
                             exit();
                         }else{
                             update_user_meta($user_id, 'vendor_connected', 0);
-                            wp_redirect(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_billing_endpoint', 'vendor', 'general', 'vendor-billing' )));
+                            wp_redirect(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_billing_endpoint', 'seller_dashbaord', 'vendor-billing' )));
                             exit();
                         }
                     } catch (\Stripe\Error\OAuth\OAuthBase $e) {
                         doProductVendorLOG("Stripe authorize error: " . $e->getMessage());
                         doProductVendorLOG(json_encode($resp));
                         update_user_meta($user_id, 'vendor_connected', 0);
-                        wp_redirect(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_billing_endpoint', 'vendor', 'general', 'vendor-billing' )));
+                        wp_redirect(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_billing_endpoint', 'seller_dashbaord', 'vendor-billing' )));
                         exit();
                     }
                 } elseif (isset($_REQUEST['error'])) {
-                    wp_redirect(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_billing_endpoint', 'vendor', 'general', 'vendor-billing' )));
+                    wp_redirect(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_billing_endpoint', 'seller_dashbaord', 'vendor-billing' )));
                     exit();
                 }
             }
@@ -255,7 +255,7 @@ class MVX_Gateway_Stripe_Connect extends MVX_Payment_Gateway {
     }
 
     public function marketplace_stripe_return_business() {
-        wp_redirect(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_billing_endpoint', 'vendor', 'general', 'vendor-billing' )));
+        wp_redirect(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_billing_endpoint', 'seller_dashbaord', 'vendor-billing' )));
         exit();
     }   
 

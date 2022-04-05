@@ -122,7 +122,7 @@ class MVX_Admin {
                     array(
                         'id' => 'shop_settings',
                         'title' => __('Storefront', 'dc-woocommerce-multi-vendor'),
-                        'href' => mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_store_settings_endpoint', 'vendor', 'general', 'storefront')),
+                        'href' => mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_store_settings_endpoint', 'seller_dashbaord', 'storefront')),
                         'meta' => array(
                             'title' => __('Storefront', 'dc-woocommerce-multi-vendor'),
                             'target' => '_blank',
