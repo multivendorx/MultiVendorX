@@ -61,44 +61,9 @@ class App extends React.Component {
       vendor_shipping_option_choice: '',
       bulkselectlist: [],
       data_setting_fileds: [],
+
+      columns_vendor_list: [],
       
-      /*filteredItems: fakeUsers.filter(
-        item => item.name && item.name.toLowerCase().includes(filterText.toLowerCase()),
-        ),*/
-
-      columns_vendor: [
-        {
-            name: <div className="mvx-datatable-header-text">Name</div>,
-            selector: row => <div className="mvx-vendor-table-name" dangerouslySetInnerHTML={{__html: row.name}}></div>,
-            sortable: true,
-        },
-        {
-            name: <div className="mvx-datatable-header-text">Email</div>,
-            selector: row => <div className="mvx-vendor-table-email" dangerouslySetInnerHTML={{__html: row.email}}></div>,
-            sortable: true,
-        },
-        {
-            name: <div className="mvx-datatable-header-text">Registered</div>,
-            selector: row => <div dangerouslySetInnerHTML={{__html: row.registered}}></div>,
-            sortable: true,
-        },
-        {
-            name: <div className="mvx-datatable-header-text">Products</div>,
-            selector: row => <div dangerouslySetInnerHTML={{__html: row.products}}></div>,
-            sortable: true,
-        },
-        {
-            name: <div className="mvx-datatable-header-text">Status</div>,
-            selector: row => <div dangerouslySetInnerHTML={{__html: row.status}}></div>,
-            sortable: true,
-        },
-        {
-            name: <div className="mvx-datatable-header-text">Action</div>,
-            selector: row => <div dangerouslySetInnerHTML={{__html: row.action}}></div>,
-            sortable: true,
-        },
-      ],
-
       columns_followers: [
         {
             name: <div className="mvx-datatable-header-text">Customer Name</div>,
@@ -133,6 +98,9 @@ class App extends React.Component {
       data_zone_shipping: [],
 
       datavendor: [],
+      data_pending_vendor: [],
+      data_approve_vendor: [],
+      data_rejected_vendor: [],
       datafollowers: [],
 
       data_zone_in_shipping: [],
@@ -179,8 +147,58 @@ class App extends React.Component {
 
     this.handledeletevendor = this.handledeletevendor.bind(this);
 
+    this.handleVendorDismiss = this.handleVendorDismiss.bind(this);
     
+    this.handlevendoractionsearch = this.handlevendoractionsearch.bind(this);
 
+    this.different_vendor_status = this.different_vendor_status.bind(this);
+
+
+  }
+
+  different_vendor_status(e, type) {
+    
+  }
+
+  handlevendoractionsearch(e) {
+    if (e) {
+      if (e.value == 'delete') {
+          if(confirm("Confirm delete?") == true) {
+            axios({
+              method: 'post',
+              url: `${appLocalizer.apiUrl}/mvx_module/v1/vendor_delete`,
+              data: {
+                vendor_ids: this.state.bulkselectlist,
+              }
+            })
+            .then( ( response ) => {
+              this.setState({
+                datavendor: response.data,
+              });
+
+            } );
+          }
+      }
+    }
+  }
+
+  handleVendorDismiss(e) {
+      if(confirm("Confirm delete?") == true) {
+
+      axios({
+        method: 'post',
+        url: `${appLocalizer.apiUrl}/mvx_module/v1/vendor_delete`,
+        data: {
+          vendor_ids: e,
+        }
+      })
+      .then( ( response ) => {
+        this.setState({
+          datavendor: response.data,
+        });
+
+      } );
+    }
   }
 
   handledeletevendor(e) {
@@ -389,9 +407,9 @@ class App extends React.Component {
   }
 
   handlevendorsearch(e) {
-    if (e) {
+    if (e.target.value) {
       axios.get(
-      `${appLocalizer.apiUrl}/mvx_module/v1/search_specific_commission`, { params: { vendor_id: e.value } 
+      `${appLocalizer.apiUrl}/mvx_module/v1/specific_search_vendor`, { params: { vendor_id: e.target.value } 
       })
       .then(response => {
         this.setState({
@@ -400,7 +418,7 @@ class App extends React.Component {
       })
     } else {
       axios({
-        url: `${appLocalizer.apiUrl}/mvx_module/v1/all_commission`
+        url: `${appLocalizer.apiUrl}/mvx_module/v1/all_vendors`
       })
       .then(response => {
         this.setState({
@@ -436,6 +454,39 @@ class App extends React.Component {
       
     }
 */
+
+
+
+
+  
+    // Display table column and row slection
+    if (this.state.columns_vendor_list.length == 0 && new URLSearchParams(window.location.hash).get("submenu") == 'vendor') {
+      appLocalizer.columns_vendor.map((data_ann, index_ann) => {
+        var data_selector = '';
+        var set_for_dynamic_column = '';
+        data_selector = data_ann['selector_choice'];
+        data_ann.selector = row => <div dangerouslySetInnerHTML={{__html: row[data_selector]}}></div>;
+
+
+        data_ann.cell ? data_ann.cell = (row) => <div className="mvx-vendor-action-icon">
+
+          <a href={row.link}><i className="mvx-font icon-edit"></i></a>
+          <div onClick={() => this.handleVendorDismiss(row.ID)} id={row.ID}><i className="mvx-font icon-no"></i></div>
+
+        </div> : '';
+
+
+        this.state.columns_vendor_list[index_ann] = data_ann
+        set_for_dynamic_column = this.state.columns_vendor_list;
+            this.setState({
+              columns_vendor_list: set_for_dynamic_column,
+            });
+        }
+      )
+    }
+    // Display table column and row slection end
+
+
 
 
     let queryt = this.useQuery();
@@ -488,16 +539,17 @@ class App extends React.Component {
             <div className="mvx-search-and-multistatus-wrap">
 
               <div className="mvx-multistatus-check">
-                <div className="mvx-multistatus-check-all">All (10)</div>
-                <div className="mvx-multistatus-check-approve">| Approve (10)</div>
-                <div className="mvx-multistatus-check-pending status-active">| Pending (10)</div>
-                <div className="mvx-multistatus-check-rejected">| Rejected (10)</div>
+
+                <div className="mvx-multistatus-check-all" onClick={(e) => this.different_vendor_status(e, 'all')}>All ({this.state.datavendor.length})</div>
+                <div className="mvx-multistatus-check-approve" onClick={(e) => this.different_vendor_status(e, 'approve')}>| Approve ({this.state.data_approve_vendor.length})</div>
+                <div className="mvx-multistatus-check-pending status-active" onClick={(e) => this.different_vendor_status(e, 'pending')}>| Pending ({this.state.data_pending_vendor.length})</div>
+                <div className="mvx-multistatus-check-rejected" onClick={(e) => this.different_vendor_status(e, 'rejected')}>| Rejected ({this.state.data_rejected_vendor.length})</div>
               </div>
 
 
               <div className="mvx-module-section-list-data"> 
                 <label><i className="mvx-font icon-search"></i></label>
-                <input type="text" placeholder="Search Vendors" name="search"/>
+                <input type="text" placeholder="Search Vendors" name="search" onChange={this.handlevendorsearch}/>
               </div>
 
               { /*<Select placeholder="Search Vendors" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handlevendorsearch} /> */}
@@ -505,24 +557,26 @@ class App extends React.Component {
 
             <div className="mvx-wrap-bulk-all-date">
               <div className="mvx-wrap-bulk-action">
-                <Select placeholder="Bulk actions" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handlevendorsearch} />
+                <Select placeholder="Bulk actions" options={appLocalizer.vendor_list_page_bulk_list_options} isClearable={true} className="mvx-module-section-list-data" onChange={this.handlevendoractionsearch} />
                 { /*<button type="button" className="button-secondary" onClick={(e) => this.handledeletevendor(e)}>Apply</button> */ }
               </div>
 
               <div className="mvx-wrap-date-action">
-                <Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handlevendorsearch} />
+                { /*<Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handlevendorsearch} /> */ }
               </div>
             </div>
 
             { /*<button type="button" className="button-primary" onClick={(e) => this.handledeletevendor(e)}>Delete Vendor</button> */}
             <div className="mvx-backend-datatable-wrapper">
+              {this.state.columns_vendor_list && this.state.columns_vendor_list.length > 0 ?
               <DataTable
-                columns={this.state.columns_vendor}
+                columns={this.state.columns_vendor_list}
                 data={this.state.datavendor}
                 selectableRows
                 onSelectedRowsChange={this.handleChange}
                 pagination
               />
+              : ''}
             </div>
 
           </div>
@@ -1044,6 +1098,39 @@ class App extends React.Component {
         datavendor: response.data,
       });
     })
+
+
+    // approve vendor
+    axios.get(
+    `${appLocalizer.apiUrl}/mvx_module/v1/all_vendors`, { params: { role: 'dc_vendor' } 
+    })
+    .then(response => {
+      this.setState({
+        data_approve_vendor: response.data,
+      });
+    })
+
+    // pending vendor
+    axios.get(
+    `${appLocalizer.apiUrl}/mvx_module/v1/all_vendors`, { params: { role: 'dc_pending_vendor' } 
+    })
+    .then(response => {
+      this.setState({
+        data_pending_vendor: response.data,
+      });
+    })
+
+
+    // rejected vendor
+    axios.get(
+    `${appLocalizer.apiUrl}/mvx_module/v1/all_vendors`, { params: { role: 'dc_rejected_vendor' } 
+    })
+    .then(response => {
+      this.setState({
+        data_rejected_vendor: response.data,
+      });
+    })
+
 
     axios.get(
     `${appLocalizer.apiUrl}/mvx_module/v1/all_vendor_followers`, { params: { vendor_id: new URLSearchParams(window.location.hash).get("ID") } 

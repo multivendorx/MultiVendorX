@@ -51,7 +51,9 @@ class App extends Component {
         <div className="mvx-module-nav-right-section">
           <div className="mvx-header-search-section"> 
             <label><i className='mvx-font icon-search'></i></label>
-            <input type="text" placeholder="Search Modules" name="search" onChange={(e) => this.handleOnChange(e)}/>
+            <input type="text" placeholder="Search Options" name="search" onChange={(e) => this.handleOnChange(e)}/>
+
+            {console.log(this.state.fetch_all_settings_for_searching.length)}
 
             { this.state.fetch_all_settings_for_searching.length > 0 ? 
 
@@ -60,7 +62,7 @@ class App extends Component {
                   <div>
 
                     <a href={data.link}><div>{data.label}</div>
-                    <div>{data.desc}</div></a>
+                    <div><p dangerouslySetInnerHTML={{ __html: data.desc }}></p></div></a>
 
                     
                   </div>

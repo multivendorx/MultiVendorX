@@ -620,7 +620,7 @@ class MVX_REST_API {
                 if (stripos($value_list['label'], $value) !== false) {
                     $list_of_titles[] = array(
                         'label' =>  $value_list['label'],
-                        'desc'  =>  $value_list['label'],
+                        'desc'  =>  ($value_list['desc']) ? $value_list['desc'] : '',
                         'link'  =>  stripos($key_fields, 'payment-') !== false ? admin_url('admin.php?page=mvx#&submenu=payment&name='. $key_fields .'') : admin_url('admin.php?page=mvx#&submenu=settings&name='. $key_fields .'')
                     );
                 }
@@ -2995,14 +2995,16 @@ class MVX_REST_API {
 
     public function mvx_vendor_delete($request) {
         require_once(ABSPATH.'wp-admin/includes/user.php');
-        $vendor_ids = $request->get_param('vendor_ids') ? ($request->get_param('vendor_ids')) : array();
-        $all_details = array();
+        $vendor_ids = $request->get_param('vendor_ids') ? $request->get_param('vendor_ids') : '';
 
-        if ($vendor_ids) {
+        if ($vendor_ids && is_array($vendor_ids)) {
             foreach (wp_list_pluck($vendor_ids, "ID") as $key => $value) {
                 wp_delete_user($value);
             }
+        } elseif ($vendor_ids) {
+            wp_delete_user($vendor_ids);
         }
+        return $this->mvx_list_all_vendor('');
     }
 
     public function mvx_update_specific_vendor_shipping_option($request) {
@@ -3602,8 +3604,17 @@ class MVX_REST_API {
     }
 
     public function mvx_specific_search_vendor($request) {
-        $vendor_id = $request->get_param('vendor_id') ? absint($request->get_param('vendor_id')) : 0;
-        return $this->mvx_list_all_vendor($vendor_id);
+        $vendor_name = $request->get_param('vendor_id') ? $request->get_param('vendor_id') : 0;
+        $search_vendor = [];
+        $all_vendors = $this->mvx_list_all_vendor('');
+        if ($all_vendors) {
+            foreach ($all_vendors->data as $vendor_key => $vendor_value) {
+                if (strpos($vendor_value['sample_title'], $vendor_name) !== false) {
+                    $search_vendor[]    =   $all_vendors->data[$vendor_key];
+                }
+            }
+        }
+        return rest_ensure_response($search_vendor);
     }
 
     public function mvx_all_vendor_followers($request) {
@@ -3855,14 +3866,15 @@ class MVX_REST_API {
         print_r($uniquename);die;
     }
     
-    public function mvx_all_vendor_details() {
-        return $this->mvx_list_all_vendor('');
+    public function mvx_all_vendor_details($request) {
+        $role = $request && $request->get_param('role') ? $request->get_param('role') : 0;
+        return $this->mvx_list_all_vendor('', $role);
     }
 
-    public function mvx_list_all_vendor($specific_id = array()) {
+    public function mvx_list_all_vendor($specific_id = array(), $role = '') {
         global $MVX;
         $user_list = array();
-        $user_query = new WP_User_Query(array('role' => 'dc_vendor', 'orderby' => 'registered', 'order' => 'ASC', 'include' => $specific_id));
+        $user_query = new WP_User_Query(array('role__in' => $role ? array($role) : array('dc_vendor', 'dc_pending_vendor', 'dc_rejected_vendor'), 'orderby' => 'registered', 'order' => 'ASC', 'include' => $specific_id));
         $users = $user_query->get_results();
         foreach($users as $user) {
             $vendor = get_mvx_vendor($user->data->ID);
@@ -3901,15 +3913,17 @@ class MVX_REST_API {
             </div>";
 
             $user_list[] = apply_filters('mvx_list_table_vendors_columns_data', array(
-                'ID' => $user->data->ID,
-                'name' => $name_display,
-                'email' => $user->data->user_email,
-                'registered' => get_date_from_gmt( $user->data->user_registered ),
-                'products' => $product_count,
-                'status' => $status,
-                'permalink' => $vendor_permalink,
-                'username' => $user->data->user_login,
-                'action'    => $action_display 
+                'ID'            => $user->data->ID,
+                'name'          => $name_display,
+                'sample_title'  => $user->data->display_name,
+                'link'          => sprintf('?page=%s&ID=%s&name=vendor-personal', 'mvx#&submenu=vendor', $user->data->ID),
+                'email'         => $user->data->user_email,
+                'registered'    => get_date_from_gmt( $user->data->user_registered ),
+                'products'      => $product_count,
+                'status'        => $status,
+                'permalink'     => $vendor_permalink,
+                'username'      => $user->data->user_login,
+                'action'        => $action_display 
             ), $user);
         }
         return rest_ensure_response($user_list);

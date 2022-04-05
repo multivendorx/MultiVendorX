@@ -505,6 +505,63 @@ class MVX_Admin {
             )
         );
 
+        $columns_vendor = array(
+            array(
+                'name'      =>  __('Name', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "name",
+                
+            ),
+            array(
+                'name'      =>  __('Email', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "email",
+            ),
+            array(
+                'name'      =>  __('Registered', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "registered",
+            ),
+            array(
+                'name'      =>  __('Products', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "products",
+            ),
+            array(
+                'name'      =>  __('Status', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "status",
+            ),
+            array(
+                'name'      =>  __('Action', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'cell'  =>  'cell',
+                'ignoreRowClick'=> true,
+                'allowOverflow'=> true,
+                'button'=> true,
+            )
+        );
+
+
+        $vendor_list_page_bulk_list_options = array();
+        $vendor_bulk_list = array(
+            'delete' => __('Delete', 'dc-woocommerce-multi-vendor'),
+        );
+        if ($vendor_bulk_list) {
+            foreach($vendor_bulk_list as $bulk_key => $bulk_value) {
+                $vendor_list_page_bulk_list_options[] = array(
+                    'value' => $bulk_key,
+                    'label' => $bulk_value
+                );
+            }
+        }
+
         wp_localize_script( 'mvx-modules-build-frontend', 'appLocalizer', apply_filters('mvx_module_complete_settings', [
             'apiUrl' => home_url( '/wp-json' ),
             'nonce' => wp_create_nonce( 'wp_rest' ),
@@ -541,7 +598,9 @@ class MVX_Admin {
             'task_board_bulk_status'        =>  $task_board_bulk_status,
             'columns_announcement'          =>  $columns_announcement,
             'columns_knowledgebase'         =>  $columns_knowledgebase,
-            'columns_store_review'          =>  $columns_store_review
+            'columns_store_review'          =>  $columns_store_review,
+            'columns_vendor'                =>  $columns_vendor,
+            'vendor_list_page_bulk_list_options'    =>  $vendor_list_page_bulk_list_options
         ] ) );
 
         if ( in_array($screen->id, $page_details)) {
