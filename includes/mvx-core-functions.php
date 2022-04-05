@@ -4177,7 +4177,7 @@ if (!function_exists('mvx_get_product_link')) {
     function mvx_get_product_link( $product_id ) {
         $link = '';
         if ( current_user_can('edit_published_products') && get_mvx_vendor_settings('is_edit_delete_published_product', 'capabilities', 'product') == 'Enable' ) {
-            $link = esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_edit_product_endpoint', 'vendor', 'general', 'edit-product'), $product_id));
+            $link = esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_edit_product_endpoint', 'seller_dashbaord', 'edit-product'), $product_id));
         }
         return apply_filters('mvx_get_product_link', $link, $product_id);
     }
@@ -4772,7 +4772,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'class'     => 'mvx-toggle-checkbox',
                     'type'    => 'checkbox',
                     'props'     => array(
-                        'disabled'  => true
+                        //'disabled'  => true
                     ),
                     'options' => array(
                         array(

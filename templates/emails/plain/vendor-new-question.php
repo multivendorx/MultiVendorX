@@ -24,7 +24,7 @@ echo sprintf(  __( "Product name : %s",  'dc-woocommerce-multi-vendor' ), $produ
 echo '\n';
 echo sprintf(  __( "Query : %s",  'dc-woocommerce-multi-vendor' ), $question );
 echo '\n';
-$question_link = apply_filters( 'mvx_vendor_plain_question_redirect_link', esc_url( mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_products_qnas_endpoint', 'vendor', 'general', 'products-qna'))) ); 
+$question_link = apply_filters( 'mvx_vendor_plain_question_redirect_link', esc_url( mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_products_qnas_endpoint', 'seller_dashbaord', 'products-qna'))) ); 
 echo sprintf(  __( "You can approve or reject query from here : %s",  'dc-woocommerce-multi-vendor' ), $question_link );
 echo '\n\n';
 echo sprintf( __( 'Note: Quick replies help to maintain a friendly customer-buyer relationship', 'dc-woocommerce-multi-vendor'));

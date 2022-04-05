@@ -26,7 +26,7 @@ $title = esc_html__( 'Product', 'dc-woocommerce-multi-vendor' );
 		<?php printf( esc_html__( "Submitted by: %s",  'dc-woocommerce-multi-vendor' ), $vendor_name ); ?><br/>
 		<?php printf( esc_html__( "Rejection Note: %s",  'dc-woocommerce-multi-vendor' ), $reason ); ?><br/>
 		<?php 
-                $product_link = apply_filters( 'mvx_email_vendor_rejected_product_link', esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_edit_product_endpoint', 'vendor', 'general', 'edit-product'), $post_id)));
+                $product_link = apply_filters( 'mvx_email_vendor_rejected_product_link', esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_edit_product_endpoint', 'seller_dashbaord', 'edit-product'), $post_id)));
                 printf( esc_html__( "Edit %s: %s",  'dc-woocommerce-multi-vendor' ), $title, $product_link ); ?>
 		<br/>
 	</p>

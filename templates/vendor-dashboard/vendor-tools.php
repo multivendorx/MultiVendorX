@@ -25,7 +25,7 @@ do_action( 'before_mvx_vendor_tools_content' );
                     <p class="description"><?php _e( 'This tool will clear the dashboard widget transients cache.', 'dc-woocommerce-multi-vendor' ); ?></p>
                 </label>
                 <div class="col-md-3 col-sm-6">
-                    <a class="mvx_vendor_clear_transients btn btn-default" href="<?php echo esc_url( wp_nonce_url( add_query_arg( array( 'tools_action' => 'clear_all_transients' ), mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_clear_cache_endpoint', 'vendor', 'general', 'vendor-tools' ) ) ), 'mvx_clear_vendor_transients' ) ); ?>"><?php _e( 'Clear transients', 'dc-woocommerce-multi-vendor' ) ?></a>
+                    <a class="mvx_vendor_clear_transients btn btn-default" href="<?php echo esc_url( wp_nonce_url( add_query_arg( array( 'tools_action' => 'clear_all_transients' ), mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_clear_cache_endpoint', 'seller_dashbaord', 'vendor-tools' ) ) ), 'mvx_clear_vendor_transients' ) ); ?>"><?php _e( 'Clear transients', 'dc-woocommerce-multi-vendor' ) ?></a>
                 </div>
             </div>
             <?php do_action( 'mvx_vendor_dashboard_tools_item' ); ?>

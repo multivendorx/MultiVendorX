@@ -45,7 +45,7 @@ do_action('before_mvx_vendor_dashboard_products_qna_table');
             <tbody></tbody>
         </table>
         <div class="mvx-action-container">
-            <!--a href="<?php echo mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_add_coupon_endpoint', 'vendor', 'general', 'add-product'));?>" class="btn btn-default"><?php echo __('Add Product', 'dc-woocommerce-multi-vendor');?></a-->
+            <!--a href="<?php echo mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_add_coupon_endpoint', 'seller_dashbaord', 'add-product'));?>" class="btn btn-default"><?php echo __('Add Product', 'dc-woocommerce-multi-vendor');?></a-->
         </div>
     </div>
 </div>

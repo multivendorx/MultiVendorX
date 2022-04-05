@@ -22,7 +22,7 @@ global $MVX;
 		<?php printf( esc_html__( "Product title: %s",  'dc-woocommerce-multi-vendor' ), $product_name ); ?><br/>
 		<?php printf( esc_html__( "Submitted by: %s",  'dc-woocommerce-multi-vendor' ), 'Site Administrator' ); ?><br/>
 		<?php 
-                    $product_link = apply_filters( 'mvx_email_admin_new_product_link', esc_url( mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_edit_product_endpoint', 'vendor', 'general', 'edit-product' ), $post_id ) ) );
+                    $product_link = apply_filters( 'mvx_email_admin_new_product_link', esc_url( mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_edit_product_endpoint', 'seller_dashbaord', 'edit-product' ), $post_id ) ) );
 			if($submit_product) {
 				printf( esc_html__( "Edit product: %s",  'dc-woocommerce-multi-vendor' ), $product_link ); 
 			} else {
