@@ -1446,7 +1446,7 @@ class MVX_Product {
             ?>
             <div class="mvx_fpm_buttons">
                 <?php if (current_user_can('edit_published_products')) { ?>
-                    <a class="mvx_fpm_button" href="<?php echo esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_edit_product_endpoint', 'vendor', 'general', 'edit-product'), $pro_id)); ?>">
+                    <a class="mvx_fpm_button" href="<?php echo esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_edit_product_endpoint', 'seller_dashbaord', 'edit-product'), $pro_id)); ?>">
                         <img width="16" height="16" src="<?php echo $MVX->plugin_url; ?>/assets/images/edit.png" />
                     </a>
                 <?php } ?>
@@ -1474,7 +1474,7 @@ class MVX_Product {
     }
 
     function mvx_delete_product_action() {
-        $products_url = mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_products_endpoint', 'vendor', 'general', 'products'));
+        $products_url = mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_products_endpoint', 'seller_dashbaord', 'products'));
         $delete_product_redirect_url = apply_filters('mvx_vendor_redirect_after_delete_product_action', $products_url);
         $wpnonce = isset($_REQUEST['_wpnonce']) ? wc_clean($_REQUEST['_wpnonce']) : '';
         $product_id = isset($_REQUEST['product_id']) ? absint($_REQUEST['product_id']) : 0;
@@ -1910,7 +1910,7 @@ class MVX_Product {
     public function woocommerce_blocks_product_grid_item_html( $html, $data, $product ) {
         $vendor = get_mvx_product_vendors( $product->get_id() );
         if( !$vendor ) return $html;
-        if ( 'Enable' === get_mvx_vendor_settings('sold_by_catalog', 'general') && apply_filters( 'mvx_enable_sold_by_on_wc_blocks_product_grid', true, $product ) ) {
+        if ( get_mvx_vendor_settings('display_product_seller', 'settings_general') && apply_filters( 'mvx_enable_sold_by_on_wc_blocks_product_grid', true, $product ) ) {
             $sold_by_text = apply_filters( 'mvx_sold_by_text', __('Sold By', 'dc-woocommerce-multi-vendor'), $product->get_id() );
             $html = "<li class=\"wc-block-grid__product\">
                     <a href=\"{$data->permalink}\" class=\"wc-block-grid__product-link\">

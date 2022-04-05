@@ -1097,7 +1097,7 @@ class MVX_User {
      */
     public function media_handler_map_meta_cap( $caps, $cap, $user_id, $args ){
         // media upload caps added for vendor policies page
-        $is_policy_page = (isset($args[0]) && get_mvx_vendor_settings( 'mvx_vendor', 'vendor', 'general') == $args[0]) ? true : false;
+        $is_policy_page = (isset($args[0]) && get_mvx_vendor_settings( 'mvx_vendor', 'seller_dashbaord') == $args[0]) ? true : false;
         if ( 'edit_post' == $cap && is_user_mvx_vendor($user_id) && apply_filters('mvx_vendor_has_policy_media_handle_meta_cap', $is_policy_page) ) {
             return array('edit_post');
         }

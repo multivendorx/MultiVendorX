@@ -93,7 +93,7 @@ Class MVX_Admin_Dashboard {
                             if ($response) {
                                 if (isset($response['transaction_id'])) {
                                     do_action( 'mvx_after_vendor_withdrawal_transaction_success', $response['transaction_id'] );
-                                    $redirect_url = mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_transaction_details_endpoint', 'vendor', 'general', 'transaction-details'), $response['transaction_id']);
+                                    $redirect_url = mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_transaction_details_endpoint', 'seller_dashbaord', 'transaction-details'), $response['transaction_id']);
                                     $notice = $this->get_mvx_transaction_notice($response['transaction_id']);
                                     if (isset($notice['type'])) {
                                         wc_add_notice($notice['message'], $notice['type']);
@@ -464,7 +464,7 @@ Class MVX_Admin_Dashboard {
                 wp_update_comment(array('comment_ID' => $comment_id, 'comment_author' => $vendor->page_title, 'comment_author_email' => $vendor->user_data->user_email));
                 add_comment_meta($comment_id, '_vendor_id', $vendor->id);
                 wc_add_notice(__('Order note added', 'dc-woocommerce-multi-vendor'), 'success');
-                wp_redirect(esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_orders_endpoint', 'vendor', 'general', 'vendor-orders'), $order->get_id())));
+                wp_redirect(esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_orders_endpoint', 'seller_dashbaord', 'vendor-orders'), $order->get_id())));
                 die();
             }
 
@@ -484,7 +484,7 @@ Class MVX_Admin_Dashboard {
                 add_comment_meta($comment_id, '_author_id', $user_id);
                 if(is_user_mvx_vendor($user_id)) {
                     wc_add_notice(__('Product note added', 'dc-woocommerce-multi-vendor'), 'success');
-                    wp_redirect(esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_orders_endpoint', 'vendor', 'general', 'edit-product'), $product->get_id())));
+                    wp_redirect(esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_edit_product_endpoint', 'seller_dashbaord', 'edit-product'), $product->get_id())));
                 } else {
                     wp_safe_redirect(admin_url('post.php?post='.$product->get_id().'&action=edit'));
                 }
@@ -1564,7 +1564,7 @@ Class MVX_Admin_Dashboard {
         $this->mvx_add_dashboard_widget('mvx_vendor_stats_reports', '', array(&$this, 'mvx_vendor_stats_reports'), 'full');
         $trans_details_widget_args = array();
         if (apply_filters('mvx_vendor_dashboard_menu_vendor_withdrawal_capability', false)) {
-            $trans_details_widget_args['action'] = array('title' => __('Withdrawal', 'dc-woocommerce-multi-vendor'), 'link' => esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_withdrawal_endpoint', 'vendor', 'general', 'vendor-withdrawal'))));
+            $trans_details_widget_args['action'] = array('title' => __('Withdrawal', 'dc-woocommerce-multi-vendor'), 'link' => esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_withdrawal_endpoint', 'seller_dashbaord', 'vendor-withdrawal'))));
         }
         $this->mvx_add_dashboard_widget('mvx_vendor_transaction_details', __('Transaction Details', 'dc-woocommerce-multi-vendor'), array(&$this, 'mvx_vendor_transaction_details'), 'side', array(), $trans_details_widget_args);
         $visitor_map_filter_attr = apply_filters('mvx_vendor_visitors_map_filter_attr', array(
@@ -1586,7 +1586,7 @@ Class MVX_Admin_Dashboard {
             $this->mvx_add_dashboard_widget('mvx_vendor_pending_shipping', __('Pending Shipping', 'dc-woocommerce-multi-vendor'), array(&$this, 'mvx_vendor_pending_shipping'));
         endif;
         if (current_user_can('edit_products')) {
-            $this->mvx_add_dashboard_widget('mvx_vendor_product_stats', __('Product Stats', 'dc-woocommerce-multi-vendor'), array(&$this, 'mvx_vendor_product_stats'), 'side', '', array('action' => array('title' => __('Add Product', 'dc-woocommerce-multi-vendor'), 'link' => apply_filters( 'mvx_vendor_dashboard_add_product_url', mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_add_product_endpoint', 'vendor', 'general', 'add-product' ))))));
+            $this->mvx_add_dashboard_widget('mvx_vendor_product_stats', __('Product Stats', 'dc-woocommerce-multi-vendor'), array(&$this, 'mvx_vendor_product_stats'), 'side', '', array('action' => array('title' => __('Add Product', 'dc-woocommerce-multi-vendor'), 'link' => apply_filters( 'mvx_vendor_dashboard_add_product_url', mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_add_product_endpoint', 'seller_dashbaord', 'add-product' ))))));
             $this->mvx_add_dashboard_widget('mvx_vendor_product_sales_report', __('Product Sales Report', 'dc-woocommerce-multi-vendor'), array(&$this, 'mvx_vendor_product_sales_report'));
         }
         if (mvx_is_module_active('vendor-review')) {
@@ -1596,7 +1596,7 @@ Class MVX_Admin_Dashboard {
         if ( mvx_is_module_active('store-follow') ) {
             $this->mvx_add_dashboard_widget('mvx_vendor_follower', __('Followers', 'dc-woocommerce-multi-vendor'), array(&$this, 'mvx_vendor_followers'));
         }
-        $this->mvx_add_dashboard_widget('mvx_vendor_products_cust_qna', __('Customer Questions', 'dc-woocommerce-multi-vendor'), array(&$this, 'mvx_vendor_products_cust_qna'), 'side', '', array('action' => array('title' => __('Show All Q&As', 'dc-woocommerce-multi-vendor'), 'link' => esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_products_qnas_endpoint', 'vendor', 'general', 'products-qna'))))));
+        $this->mvx_add_dashboard_widget('mvx_vendor_products_cust_qna', __('Customer Questions', 'dc-woocommerce-multi-vendor'), array(&$this, 'mvx_vendor_products_cust_qna'), 'side', '', array('action' => array('title' => __('Show All Q&As', 'dc-woocommerce-multi-vendor'), 'link' => esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_products_qnas_endpoint', 'seller_dashbaord', 'products-qna'))))));
     }
 
     /**
@@ -1815,7 +1815,7 @@ Class MVX_Admin_Dashboard {
             $product_stats['pending_products_count'] = $pending_products_count;
             $product_stats['draft_products_count'] = $draft_products_count;
             $product_stats['trashed_products_count'] = $trashed_products_count;
-            $product_stats['product_page_url'] = mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_products_endpoint', 'vendor', 'general', 'products'));
+            $product_stats['product_page_url'] = mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_products_endpoint', 'seller_dashbaord', 'products'));
 
             $MVX->template->get_template('vendor-dashboard/dashboard-widgets/mvx_vendor_product_stats.php', $product_stats);
             
@@ -1977,9 +1977,9 @@ Class MVX_Admin_Dashboard {
         if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) { 
             $current_endpoint_key = $MVX->endpoints->get_current_endpoint();
             // retrive the actual endpoint name in case admn changes that from settings
-            $current_endpoint = get_mvx_vendor_settings( 'mvx_' . str_replace( '-', '_', $current_endpoint_key ) . '_endpoint', 'vendor', 'general', $current_endpoint_key );
+            $current_endpoint = get_mvx_vendor_settings( 'mvx_' . str_replace( '-', '_', $current_endpoint_key ) . '_endpoint', 'seller_dashbaord', $current_endpoint_key );
             // retrive edit-product endpoint name in case admn changes that from settings
-            $edit_product_endpoint = get_mvx_vendor_settings( 'mvx_edit_product_endpoint', 'vendor', 'general', 'edit-product' );
+            $edit_product_endpoint = get_mvx_vendor_settings( 'mvx_edit_product_endpoint', 'seller_dashbaord', 'edit-product' );
             //Return if not edit product endpoint
             if ( $current_endpoint !== $edit_product_endpoint || ! isset( $_POST['mvx_product_nonce'] ) ) {
                 return;
@@ -2234,7 +2234,7 @@ Class MVX_Admin_Dashboard {
                         break;
                 }
                 wc_add_notice( $status_msg, 'success' );
-                wp_redirect( apply_filters( 'mvx_vendor_save_product_redirect_url', mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_edit_product_endpoint', 'vendor', 'general', 'edit-product' ), $post_id ) ) );
+                wp_redirect( apply_filters( 'mvx_vendor_save_product_redirect_url', mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_edit_product_endpoint', 'seller_dashbaord', 'edit-product' ), $post_id ) ) );
                 exit;
             } else {
                 $error_msg = ( $post_id->get_error_code() === 'empty_content' ) ? __( 'Content, title, and excerpt are empty.', 'dc-woocommerce-multi-vendor' ) : $post_id->get_error_message();
@@ -2404,7 +2404,7 @@ Class MVX_Admin_Dashboard {
     
     public function mvx_vendor_dashboard_add_product_url( $url ) {
         if( !get_mvx_vendor_settings('is_singleproductmultiseller', 'general') == 'Enable' && get_mvx_vendor_settings('is_disable_marketplace_plisting', 'general') == 'Enable' ){
-            return esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_edit_product_endpoint', 'vendor', 'general', 'edit-product')));
+            return esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_edit_product_endpoint', 'seller_dashbaord', 'edit-product')));
         }
         return $url;
     }
@@ -2862,7 +2862,7 @@ Class MVX_Admin_Dashboard {
                 </div>
                 <div class="wc-wizard-next-step-action">
                     <p class="wc-setup-actions step">
-                        <a class="button button-primary button-large" href="<?php echo apply_filters( 'mvx_vendor_setup_wizard_ready_add_product_url', mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_add_product_endpoint', 'vendor', 'general', 'add-product' ) ) ); ?>">
+                        <a class="button button-primary button-large" href="<?php echo apply_filters( 'mvx_vendor_setup_wizard_ready_add_product_url', mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_add_product_endpoint', 'seller_dashbaord', 'add-product' ) ) ); ?>">
                             <?php esc_html_e( 'Create a product', 'dc-woocommerce-multi-vendor' ); ?>
                         </a>
                     </p>
@@ -2877,10 +2877,10 @@ Class MVX_Admin_Dashboard {
                         <a class="button button-large" href="<?php echo mvx_get_vendor_dashboard_endpoint_url( 'dashboard' ); ?>">
                             <?php esc_html_e( 'Visit Dashboard', 'dc-woocommerce-multi-vendor' ); ?>
                         </a>
-                        <a class="button button-large" href="<?php echo mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_vendor_billing_endpoint', 'vendor', 'general', 'vendor-billing' ) ); ?>">
+                        <a class="button button-large" href="<?php echo mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_vendor_billing_endpoint', 'seller_dashbaord', 'vendor-billing' ) ); ?>">
                             <?php esc_html_e( 'Payment Configure', 'dc-woocommerce-multi-vendor' ); ?>
                         </a>
-                        <a class="button button-large" href="<?php echo mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_store_settings_endpoint', 'vendor', 'general', 'storefront' ) ); ?>">
+                        <a class="button button-large" href="<?php echo mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_store_settings_endpoint', 'seller_dashbaord', 'storefront' ) ); ?>">
                             <?php esc_html_e( 'Store Customize', 'dc-woocommerce-multi-vendor' ); ?>
                         </a>
                     </p>
@@ -2893,7 +2893,7 @@ Class MVX_Admin_Dashboard {
     public function save_handler_vendor_orders( $postdata ) {
         global $wp;
         if( $postdata ) {
-            $vendor_order_id = $wp->query_vars[get_mvx_vendor_settings( 'mvx_vendor_orders_endpoint', 'vendor', 'general', 'vendor-orders' )];
+            $vendor_order_id = $wp->query_vars[get_mvx_vendor_settings( 'mvx_vendor_orders_endpoint', 'seller_dashbaord', 'vendor-orders' )];
             if( isset( $postdata['update_cust_refund_status'] ) && $vendor_order_id ) {
                 if( isset( $postdata['refund_order_customer'] ) && $postdata['refund_order_customer'] ) {
                     update_post_meta( $vendor_order_id, '_customer_refund_order', $postdata['refund_order_customer'] );

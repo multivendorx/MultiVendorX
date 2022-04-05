@@ -167,7 +167,7 @@ class MVX_Coupon {
 	 * @return void
 	*/	
         function mvx_delete_coupon_action(){
-            $coupons_url = mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_coupons_endpoint', 'vendor', 'general', 'coupons'));
+            $coupons_url = mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_coupons_endpoint', 'seller_dashbaord', 'coupons'));
             $delete_coupon_redirect_url = apply_filters('mvx_vendor_redirect_after_delete_coupon_action', $coupons_url);
             $wpnonce = isset( $_REQUEST['_wpnonce'] ) ? wc_clean($_REQUEST['_wpnonce']) : '';
             $coupon_id = isset( $_REQUEST['coupon_id'] ) ? absint($_REQUEST['coupon_id']) : 0;

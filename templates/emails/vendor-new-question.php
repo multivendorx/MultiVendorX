@@ -22,7 +22,7 @@ do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 	<?php printf( esc_html__( "Product Name : %s",  'dc-woocommerce-multi-vendor' ), $product_name ); ?><br>
 	<?php printf( esc_html__( "Query : %s",  'dc-woocommerce-multi-vendor' ), $question ); ?><br>
     <?php 
-    	$question_link = apply_filters( 'mvx_vendor_question_redirect_link', esc_url( mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_products_qnas_endpoint', 'vendor', 'general', 'products-qna'))) ); 
+    	$question_link = apply_filters( 'mvx_vendor_question_redirect_link', esc_url( mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_products_qnas_endpoint', 'seller_dashbaord', 'products-qna'))) ); 
         printf( esc_html__( "You can approve or reject query from here : %s",  'dc-woocommerce-multi-vendor' ), $question_link ); ?><br><br>
 
         <?php printf( esc_html__( 'Note: Quick replies help to maintain a friendly customer-buyer relationship', 'dc-woocommerce-multi-vendor' )); ?>
