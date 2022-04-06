@@ -5451,7 +5451,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 ],
                 [
                     'key'    => 'publish_and_submit_products',
-                    'label'   => __( 'Publish and Submit Products', 'dc-woocommerce-multi-vendor' ),
+                    'label'   => __( 'Publish and Submit Re-edited Products', 'dc-woocommerce-multi-vendor' ),
                     'class'     => 'mvx-toggle-checkbox',
                     'type'    => 'checkbox',
                     'options' => array(
