@@ -3963,8 +3963,9 @@ class MVX_REST_API {
 
             $vendor_profile_image = get_user_meta($user->data->ID, '_vendor_profile_image', true);
             if(isset($vendor_profile_image)) $image_info = wp_get_attachment_image_src( $vendor_profile_image , array(32, 32) );
-
-            $name_display = "<div class='mvx-vendor-icon-name'><img src='". $MVX->plugin_url.'assets/images/dclogo.png' ."' width='20' height='20' ></img><a href='". sprintf('?page=%s&ID=%s&name=vendor-personal', 'mvx#&submenu=vendor', $user->data->ID) ."'>" . $user->data->display_name . "</a>|   |<a href='".$vendor->permalink."'>Shop</a></div>";
+            $final_image = isset($image_info[0]) ? $image_info[0] : get_avatar_url($user->data->ID, array('size' => 32));
+            
+            $name_display = "<div class='mvx-vendor-icon-name'><img src='". $final_image ."' width='20' height='20' ></img><a href='". sprintf('?page=%s&ID=%s&name=vendor-personal', 'mvx#&submenu=vendor', $user->data->ID) ."'>" . $user->data->display_name . "</a>|   |<a href='".$vendor->permalink."'>Shop</a></div>";
 
             $action_display = "
             <div class='mvx-vendor-action-icon'>

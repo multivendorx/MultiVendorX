@@ -204,7 +204,78 @@ a:focus {
 .icon-vendor-form-delete:before {
   content: "\e937";
 }
-
+.icon-tab-version-control:before {
+  content: "\e938";
+}
+.icon-tab-system-status:before {
+  content: "\e939";
+}
+.icon-tab-database-tools:before {
+  content: "\e93a";
+}
+.icon-form-url:before {
+  content: "\e93b";
+}
+.icon-form-textbox:before {
+  content: "\e93c";
+}
+.icon-form-textarea:before {
+  content: "\e93d";
+}
+.icon-form-store-description:before {
+  content: "\e93e";
+}
+.icon-form-state:before {
+  content: "\e93f";
+}
+.icon-form-section:before {
+  content: "\e941";
+}
+.icon-form-recaptcha:before {
+  content: "\e942";
+}
+.icon-form-radio:before {
+  content: "\e943";
+}
+.icon-form-postcode:before {
+  content: "\e944";
+}
+.icon-form-phone:before {
+  content: "\e945";
+}
+.icon-form-paypal-email:before {
+  content: "\e946";
+}
+.icon-form-multi-select:before {
+  content: "\e947";
+}
+.icon-form-dropdown:before {
+  content: "\e948";
+}
+.icon-form-checkboxes:before {
+  content: "\e949";
+}
+.icon-form-city:before {
+  content: "\e94a";
+}
+.icon-form-country:before {
+  content: "\e94b";
+}
+.icon-form-attachment:before {
+  content: "\e94c";
+}
+.icon-form-address01:before {
+  content: "\e94d";
+}
+.icon-form-address02:before {
+  content: "\e94e";
+}
+.icon-form-email:before {
+  content: "\e94f";
+}
+.icon-eye-preview:before {
+  content: "\e950";
+}
 
 /*********** Modules section *********************/
 

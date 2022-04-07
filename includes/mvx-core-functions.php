@@ -7280,7 +7280,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'tablabel'      =>  __('Product', 'dc-woocommerce-multi-vendor'),
                 'description'   =>  __('View reports product sales and order', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
-                'icon'          =>  'icon-tab-icon-tab-product-02',
+                'icon'          =>  'icon-tab-products',
                 'modulename'     =>  'product'
             ),
             array(

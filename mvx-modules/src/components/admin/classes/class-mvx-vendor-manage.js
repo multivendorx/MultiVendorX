@@ -238,7 +238,46 @@ class App extends React.Component {
 
   different_vendor_status(e, type) {
     
+    if (type == 'approve') {
+      axios.get(
+      `${appLocalizer.apiUrl}/mvx_module/v1/all_vendors`, { params: { role: 'dc_vendor' } 
+      })
+      .then(response => {
+        this.setState({
+          datavendor: response.data,
+        });
+      })
+    } else if (type == 'pending') {
+      axios.get(
+      `${appLocalizer.apiUrl}/mvx_module/v1/all_vendors`, { params: { role: 'dc_pending_vendor' } 
+      })
+      .then(response => {
+        this.setState({
+          datavendor: response.data,
+        });
+      })
+    } else if (type == 'rejected') {
+      axios.get(
+      `${appLocalizer.apiUrl}/mvx_module/v1/all_vendors`, { params: { role: 'dc_rejected_vendor' } 
+      })
+      .then(response => {
+        this.setState({
+          datavendor: response.data,
+        });
+      })
+    } else if (type == 'all') {
+      axios.get(
+      `${appLocalizer.apiUrl}/mvx_module/v1/all_vendors`, { params: { role: '' } 
+      })
+      .then(response => {
+        this.setState({
+          datavendor: response.data,
+        });
+      })
+    }
+
   }
+
 
   handlevendoractionsearch(e) {
     if (e) {
@@ -560,7 +599,7 @@ class App extends React.Component {
 
 
         data_ann.last_action == 'eyeicon_trigger' ? data_ann.cell = (row) => <div className="mvx-vendor-action-icon">
-          <div onClick={() => this.handleEyeIcon(row.ID)} id={row.ID}><i className="mvx-font icon-no"></i></div>
+          <div onClick={() => this.handleEyeIcon(row.ID)} id={row.ID}><i className="mvx-font icon-eye-preview"></i></div>
         </div> : '';
 
 
