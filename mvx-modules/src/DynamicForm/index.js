@@ -232,9 +232,17 @@ export default class DynamicForm extends React.Component {
       self.setState({
         [target]: attachment.url
       });
+
+      if(self.props.submitbutton && self.props.submitbutton == 'false') {
+        setTimeout(() => {
+          self.onSubmit('');
+        }, 10)
+      }
+
     });
     // Finally, open the modal on click
     frame.open()
+
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {

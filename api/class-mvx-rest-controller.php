@@ -400,6 +400,12 @@ class MVX_REST_API {
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
 
+        register_rest_route( 'mvx_module/v1', '/commission_delete', [
+            'methods' => WP_REST_Server::EDITABLE,
+            'callback' => array( $this, 'mvx_commission_delete' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
         register_rest_route( 'mvx_module/v1', '/details_specific_commission', [
             'methods' => WP_REST_Server::READABLE,
             'callback' => array( $this, 'mvx_details_specific_commission' ),
@@ -571,6 +577,13 @@ class MVX_REST_API {
         register_rest_route( 'mvx_module/v1', '/approve_vendor', [
             'methods' => WP_REST_Server::EDITABLE,
             'callback' => array( $this, 'mvx_approve_vendor' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
+        // reject vendor
+        register_rest_route( 'mvx_module/v1', '/reject_vendor', [
+            'methods' => WP_REST_Server::EDITABLE,
+            'callback' => array( $this, 'mvx_reject_vendor' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
 
@@ -766,6 +779,7 @@ class MVX_REST_API {
     // approve pending user
     public function mvx_approve_vendor($request) {
         $vendor_id = $request && $request->get_param('vendor_id') ? $request->get_param('vendor_id') : 0;
+        $section = $request && $request->get_param('section') ? $request->get_param('section') : '';
         if ($vendor_id) {
             $user = new WP_User(absint($vendor_id));
             $user->set_role('dc_vendor');
@@ -773,8 +787,34 @@ class MVX_REST_API {
             $email = WC()->mailer()->emails['WC_Email_Approved_New_Vendor_Account'];
             $email->trigger($vendor_id, $user_dtl->user_pass);
         }
+
+        if ($section) {
+            return $this->mvx_list_all_vendor('');
+        }
+
         return $this->mvx_list_of_pending_vendor();
     }
+
+    public function mvx_reject_vendor($request) {
+        $vendor_id = $request && $request->get_param('vendor_id') ? $request->get_param('vendor_id') : 0;
+        $custom_note = $request && $request->get_param('custom_note') ? $request->get_param('custom_note') : '';
+        $note_by = get_current_user_id();
+        if ($vendor_id) {
+            $user = new WP_User(absint($vendor_id));
+            $user->set_role('dc_rejected_vendor');
+
+            if (isset($custom_note) && $custom_note != '') {
+                $mvx_vendor_rejection_notes = unserialize(get_user_meta($vendor_id, 'mvx_vendor_rejection_notes', true));
+                $mvx_vendor_rejection_notes[time()] = array(
+                    'note_by' => $note_by,
+                    'note' => $custom_note);
+                update_user_meta($vendor_id, 'mvx_vendor_rejection_notes', serialize($mvx_vendor_rejection_notes));
+            }
+        }
+
+        return $this->mvx_list_all_vendor('');
+    }
+
     // dissmiss pending user
     public function mvx_dismiss_vendor($request) {
         $vendor_id = $request && $request->get_param('vendor_id') ? $request->get_param('vendor_id') : 0;
@@ -3007,6 +3047,20 @@ class MVX_REST_API {
         return $this->mvx_list_all_vendor('');
     }
 
+    public function mvx_commission_delete($request) {
+        require_once(ABSPATH.'wp-admin/includes/user.php');
+        $commission_ids = $request->get_param('commission_ids') ? $request->get_param('commission_ids') : '';
+        print_r($commission_ids);die;
+        if ($commission_ids && is_array($commission_ids)) {
+            foreach (wp_list_pluck($commission_ids, "ID") as $key => $value) {
+                wp_delete_post($value);
+            }
+        } elseif ($commission_ids) {
+            wp_delete_post($commission_ids);
+        }
+        return $this->mvx_find_specific_commission();
+    }
+
     public function mvx_update_specific_vendor_shipping_option($request) {
         $value = $request->get_param('value') ? ($request->get_param('value')) : 0;
         $vendor_id = $request->get_param('vendor_id') ? ($request->get_param('vendor_id')) : 0;
@@ -3052,7 +3106,7 @@ class MVX_REST_API {
         if ($value == 'mark_paid') {
             $MVX->postcommission->mvx_mark_commission_paid($commission_list);
         } else if ($value == 'export') {
-            $commissions_data = array();
+            /*$commissions_data = array();
             $currency = get_woocommerce_currency();
             foreach ($commission_list as $commission) {
                 $commission_data = $MVX->postcommission->get_commission($commission);
@@ -3074,8 +3128,9 @@ class MVX_REST_API {
                     'Status'        =>  $commission_staus
                 ), $commission_data);
             }
-            return rest_ensure_response($commissions_data);
+            return rest_ensure_response($commissions_data);*/
         }
+        return $this->mvx_find_specific_commission();
     }
 
     public function mvx_show_vendor_name() {
@@ -3119,8 +3174,8 @@ class MVX_REST_API {
 
     public function mvx_search_specific_commission($request) {
         $commission_ids = array();
-        $commission_ids[] = $request->get_param('commission_ids') ? ($request->get_param('commission_ids')) : 0;
-        return $this->mvx_find_specific_commission($commission_ids);
+        $commission_ids[] = $request->get_param('commission_ids') ? ($request->get_param('commission_ids')) : array();
+        return $this->mvx_find_specific_commission($commission_ids, '', '');
     }
 
     public function mvx_all_commission_details($request) {
@@ -3134,8 +3189,12 @@ class MVX_REST_API {
             'post_status' => array('publish', 'private'),
             'posts_per_page' => -1,
             'fields' => 'ids',
-            'post__in' => $commission_ids
+            //'post__in' => $commission_ids
         );
+
+        if (!empty($commission_ids)) {
+            $args['post__in']   =  $commission_ids;
+        }
 
         if ($status) {
             $args['meta_query'] = array(
@@ -3230,6 +3289,7 @@ class MVX_REST_API {
                 $commission_list[] = array(
                     'id'            =>  $commission_value,
                     'title'         =>  '<a href="' . sprintf('?page=%s&CommissionID=%s', 'mvx#&submenu=commission', $commission_value) . '">#' . $commission_details->post_title . '</a>',
+                    'link'          =>  sprintf('?page=%s&CommissionID=%s', 'mvx#&submenu=commission', $commission_value),
                     'order_id'      =>  '<a href="' . esc_url($edit_url) . '">#' . $order_id . '</a>',
                     'product'       =>  $product_list,
                     'vendor'        =>  $vendor_list,
@@ -3917,6 +3977,7 @@ class MVX_REST_API {
                 'name'          => $name_display,
                 'sample_title'  => $user->data->display_name,
                 'link'          => sprintf('?page=%s&ID=%s&name=vendor-personal', 'mvx#&submenu=vendor', $user->data->ID),
+                'admin_link'    => admin_url('admin.php?page=mvx#&submenu=vendor&ID='. $user->data->ID .'&name=vendor-personal'),
                 'email'         => $user->data->user_email,
                 'registered'    => get_date_from_gmt( $user->data->user_registered ),
                 'products'      => $product_count,

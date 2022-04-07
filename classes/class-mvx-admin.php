@@ -514,6 +514,16 @@ class MVX_Admin {
                 
             ),
             array(
+                'name'      =>  __('', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'cell'  =>  'cell',
+                'ignoreRowClick'=> true,
+                'allowOverflow'=> true,
+                'button'=> true,
+                'last_action'   =>  'eyeicon_trigger'
+            ),
+            array(
                 'name'      =>  __('Email', 'dc-woocommerce-multi-vendor'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
@@ -536,6 +546,69 @@ class MVX_Admin {
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "status",
+            ),
+            array(
+                'name'      =>  __('Action', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'cell'  =>  'cell',
+                'ignoreRowClick'=> true,
+                'allowOverflow'=> true,
+                'button'=> true,
+                'last_action'   =>  'last_action_trigger'
+            )
+        );
+
+
+        $columns_commission = array(
+            array(
+                'name'      =>  __('Title', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "title",
+                
+            ),
+            array(
+                'name'      =>  __('Order ID', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "order_id",
+            ),
+            array(
+                'name'      =>  __('Product', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "product",
+            ),
+            array(
+                'name'      =>  __('Vendor', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "vendor",
+            ),
+            array(
+                'name'      =>  __('Amount', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "amount",
+            ),
+            array(
+                'name'      =>  __('Net Earning', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "net_earning",
+            ),
+            array(
+                'name'      =>  __('Status', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "status",
+            ),
+            array(
+                'name'      =>  __('Date', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "date",
             ),
             array(
                 'name'      =>  __('Action', 'dc-woocommerce-multi-vendor'),
@@ -600,7 +673,8 @@ class MVX_Admin {
             'columns_knowledgebase'         =>  $columns_knowledgebase,
             'columns_store_review'          =>  $columns_store_review,
             'columns_vendor'                =>  $columns_vendor,
-            'vendor_list_page_bulk_list_options'    =>  $vendor_list_page_bulk_list_options
+            'vendor_list_page_bulk_list_options'    =>  $vendor_list_page_bulk_list_options,
+            'columns_commission'                    =>  $columns_commission
         ] ) );
 
         if ( in_array($screen->id, $page_details)) {

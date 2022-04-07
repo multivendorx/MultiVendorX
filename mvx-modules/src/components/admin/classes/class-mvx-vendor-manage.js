@@ -39,18 +39,19 @@ class App extends React.Component {
       module_ids: [],
       open_model: false,
       open_child_model: [],
-      open_model_dynamic: [],
+      open_vendor_model_dynamic: [],
       isLoading: true,
       loading: false,
       module_tabs: [],
       tabIndex: 0,
       query: null,
-      firstname: true,
+      dialog_open: false,
       lastname: '',
       email: '',
       abcarray: [],
       first_toggle: '',
-      second_toggle: '',      
+      second_toggle: '',
+      handle_rejected_vendor_description: '',   
       current: {},
       filterText: '',
       resetPaginationToggle: false,
@@ -153,7 +154,86 @@ class App extends React.Component {
 
     this.different_vendor_status = this.different_vendor_status.bind(this);
 
+    this.handleEyeIcon = this.handleEyeIcon.bind(this);
 
+    this.handleClose_dynamic = this.handleClose_dynamic.bind(this);
+    
+
+    this.handle_rejected_vendor_description = this.handle_rejected_vendor_description.bind(this);
+    this.handle_Vendor_Approve = this.handle_Vendor_Approve.bind(this);
+    this.handle_Vendor_Reject = this.handle_Vendor_Reject.bind(this);
+    this.handle_Vendor_Edit = this.handle_Vendor_Edit.bind(this);
+ 
+  }
+
+
+  handle_rejected_vendor_description(e, vendorid) {
+    this.setState({
+      handle_rejected_vendor_description: e.target.value
+    });
+  }
+
+  handle_Vendor_Approve(e) {
+      axios({
+        method: 'post',
+        url: `${appLocalizer.apiUrl}/mvx_module/v1/approve_vendor`,
+        data: {
+          vendor_id: e,
+          section: 'vendor_list'
+        }
+      })
+      .then( ( response ) => {
+        this.handleClose_dynamic();        
+        this.setState({
+          datavendor: response.data,
+        });
+      } );
+  }
+
+  handle_Vendor_Reject(e) {
+      axios({
+        method: 'post',
+        url: `${appLocalizer.apiUrl}/mvx_module/v1/reject_vendor`,
+        data: {
+          vendor_id: e,
+          custom_note: this.state.handle_rejected_vendor_description
+        }
+      })
+      .then( ( response ) => {
+        this.handleClose_dynamic();
+        this.setState({
+          datavendor: response.data,
+        });
+      } );
+
+  }
+
+  handle_Vendor_Edit(e) {
+    window.location.href = e.admin_link;
+  }
+
+  handleClose_dynamic() {
+      var default_vendor_eye_popup = [];
+      this.state.open_vendor_model_dynamic.map((data_ann, index_ann) => {
+        default_vendor_eye_popup[data_ann.ID] = false;
+
+      })
+      this.setState({
+        open_vendor_model_dynamic: default_vendor_eye_popup
+      });
+  }
+
+  handleEyeIcon(e) {
+
+
+    var set_vendors_id_data = [];
+    set_vendors_id_data = this.state.open_vendor_model_dynamic;
+    set_vendors_id_data[e] = true;
+    this.setState({
+      open_vendor_model_dynamic: set_vendors_id_data,
+    });
+
+    
   }
 
   different_vendor_status(e, type) {
@@ -434,6 +514,8 @@ class App extends React.Component {
 
   QueryParamsDemo(e) {
 
+
+
 /*    if (new URLSearchParams(window.location.hash).get("ID")) {
 
     axios.get(
@@ -468,11 +550,17 @@ class App extends React.Component {
         data_ann.selector = row => <div dangerouslySetInnerHTML={{__html: row[data_selector]}}></div>;
 
 
-        data_ann.cell ? data_ann.cell = (row) => <div className="mvx-vendor-action-icon">
+        data_ann.last_action == 'last_action_trigger' ? data_ann.cell = (row) => <div className="mvx-vendor-action-icon">
 
           <a href={row.link}><i className="mvx-font icon-edit"></i></a>
           <div onClick={() => this.handleVendorDismiss(row.ID)} id={row.ID}><i className="mvx-font icon-no"></i></div>
 
+        </div> : '';
+
+
+
+        data_ann.last_action == 'eyeicon_trigger' ? data_ann.cell = (row) => <div className="mvx-vendor-action-icon">
+          <div onClick={() => this.handleEyeIcon(row.ID)} id={row.ID}><i className="mvx-font icon-no"></i></div>
         </div> : '';
 
 
@@ -577,6 +665,44 @@ class App extends React.Component {
                 pagination
               />
               : ''}
+
+              {this.state.datavendor.map((data8, index8) => (
+                <Dialog open={this.state.open_vendor_model_dynamic[data8.ID]} onClose={this.handleClose_dynamic} aria-labelledby="form-dialog-title">
+                <DialogTitle id="form-dialog-title">
+
+                  <div className="mvx-module-dialog-title">
+                    <div className="mvx-vendor-title" dangerouslySetInnerHTML={{__html: data8.name}}></div>
+                    <i className="mvx-font icon-no" onClick={this.handleClose_dynamic}></i>
+                  </div>
+
+                </DialogTitle>
+                  <DialogContent>
+                    <DialogContentText>
+                      <div className="mvx-module-dialog-content">
+                        
+                        <div className="mvx-email-content-and-value-wrap">
+                          <div className="mvx-content-email">Email :</div>
+                          <div className="mvx-content-email-value">{data8.email}</div>
+                        </div>
+
+                        <div className="mvx-vendor-textarea-content">
+                          <textarea placeholder="Describe yourself here..." onChange={(e) => this.handle_rejected_vendor_description(e, data8.ID)}></textarea>
+                        </div>
+
+                        <div className="mvx-vendor-multi-action-buttons">
+                          <Button classname="button button-primary button-large" onClick={() => this.handle_Vendor_Approve(data8.ID)} color="primary">Approve</Button>
+                          <Button classname="button button-primary button-large" onClick={() => this.handle_Vendor_Reject(data8.ID)} color="primary">Reject</Button>
+                          <Button classname="button button-primary button-large" onClick={() => this.handle_Vendor_Edit(data8)} color="primary">Edit Vendor</Button>
+                        </div>
+
+                      </div>
+                    </DialogContentText>
+                  </DialogContent>
+                <DialogActions>
+                </DialogActions>
+              </Dialog>
+              ))}
+
             </div>
 
           </div>
@@ -1094,8 +1220,17 @@ class App extends React.Component {
       url: `${appLocalizer.apiUrl}/mvx_module/v1/all_vendors`
     })
     .then(response => {
+
+      //open_vendor_model_dynamic
+
+      var default_vendor_eye_popup = [];
+      response.data.map((data_ann, index_ann) => {
+        default_vendor_eye_popup[data_ann.ID] = false;
+
+      })
       this.setState({
         datavendor: response.data,
+        open_vendor_model_dynamic: default_vendor_eye_popup
       });
     })
 

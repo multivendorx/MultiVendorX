@@ -41,7 +41,7 @@ class App extends Component {
       module_tabs: [],
       tabIndex: 0,
       query: null,
-      firstname: true,
+      commission_select_option_open: false,
       lastname: '',
       email: '',
       abcarray: [],
@@ -51,56 +51,11 @@ class App extends Component {
       commission_details: [],
       updated_commission_status: [],
       get_commission_id_status: [],
-      columns_commission: [
-        {
-            name: <div className="mvx-datatable-header-text">Title</div>,
-            selector: row => <div dangerouslySetInnerHTML={{__html: row.title}}></div>,
-            sortable: true,
-        },
-        {
-            name: <div className="mvx-datatable-header-text">Order ID</div>,
-            selector: row => <div dangerouslySetInnerHTML={{__html: row.order_id}}></div>,
-            sortable: true,
-        },
-        {
-            name: <div className="mvx-datatable-header-text">Product</div>,
-            selector: row => <div dangerouslySetInnerHTML={{__html: row.product}}></div>,
-            sortable: true,
-        },
-        {
-            name: <div className="mvx-datatable-header-text">Vendor</div>,
-            selector: row => <div dangerouslySetInnerHTML={{__html: row.vendor}}></div>,
-            sortable: true,
-        },
-        {
-            name: <div className="mvx-datatable-header-text">Amount</div>,
-            selector: row => <div dangerouslySetInnerHTML={{__html: row.amount}}></div>,
-            sortable: true,
-        },
-        {
-            name: <div className="mvx-datatable-header-text">Net Earning</div>,
-            selector: row => <div dangerouslySetInnerHTML={{__html: row.net_earning}}></div>,
-            sortable: true,
-        },
-        {
-            name: <div className="mvx-datatable-header-text">Status</div>,
-            selector: row => <div dangerouslySetInnerHTML={{__html: row.status}}></div>,
-            sortable: true,
-        },
-        {
-            name: <div className="mvx-datatable-header-text">Date</div>,
-            selector: row => <div dangerouslySetInnerHTML={{__html: row.date}}></div>,
-            sortable: true,
-        },
-        {
-            name: <div className="mvx-datatable-header-text">Action</div>,
-            selector: row => <div dangerouslySetInnerHTML={{__html: row.action}}></div>,
-            sortable: true,
-        },
-      ],
-      datacommission: [
+      columns_commission_list: [],
+      datacommission: [],
 
-      ],
+      data_paid_commission: [],
+      data_unpaid_commission: [],
 
       details_commission: [
 
@@ -127,15 +82,77 @@ class App extends Component {
 
     this.handleChange = this.handleChange.bind(this);
 
-    this.handlevendorsearch = this.handlevendorsearch.bind(this);
+    this.handlecommissionsearch = this.handlecommissionsearch.bind(this);
 
     this.handlecommissionwork = this.handlecommissionwork.bind(this);
     
     this.handleupdatecommission = this.handleupdatecommission.bind(this);
+
+    this.handleCommisssionDismiss = this.handleCommisssionDismiss.bind(this);
+     
+    this.handle_commission_live_search = this.handle_commission_live_search.bind(this);
+
+    this.handlecommission_paid = this.handlecommission_paid.bind(this);
     
+     
+  }
+
+  handlecommission_paid(e) {
+    this.setState({
+      commission_select_option_open: true,
+    });
+  }
+
+  handle_commission_live_search(e) {
+
+    if (e.target.value) {
+      axios.get(
+        `${appLocalizer.apiUrl}/mvx_module/v1/search_specific_commission`, { params: { commission_ids: e.target.value } 
+      })
+      .then(response => {
+        //console.log(response.data);
+        this.setState({
+          datacommission: response.data,
+        });
+      })
+    } else {
+      axios({
+        url: `${appLocalizer.apiUrl}/mvx_module/v1/all_commission`
+      })
+      .then(response => {
+        this.setState({
+          datacommission: response.data,
+        });
+      })
+    }
+
+  }
+
+  handleCommisssionDismiss(e) {
+    
+      if(confirm("Confirm delete?") == true) {
+        axios({
+          method: 'post',
+          url: `${appLocalizer.apiUrl}/mvx_module/v1/commission_delete`,
+          data: {
+            commission_ids: e,
+          }
+        })
+        .then( ( response ) => {
+          this.setState({
+            datacommission: response.data,
+          });
+
+        } );
+      }
+
   }
 
   handleupdatecommission(e) {
+    /*this.setState({
+      commission_select_option_open: false,
+    });*/
+
     axios({
       method: 'post',
       url: `${appLocalizer.apiUrl}/mvx_module/v1/update_commission_status`,
@@ -145,24 +162,62 @@ class App extends Component {
       }
     })
     .then( ( responce ) => {
-      console.log('success');
-      //location.reload();
+
+
+      var params = {
+        commission_id: new URLSearchParams(window.location.hash).get("CommissionID"),
+      };
+      axios.get(
+      `${appLocalizer.apiUrl}/mvx_module/v1/details_specific_commission`, { params }
+      )
+      .then(responsenew => {
+        this.setState({
+          commission_details: responsenew.data,
+        });
+      })
+
+
+
+      this.setState({
+        commission_select_option_open: false,
+      });
     } );
 
   }
 
   handlecommissionwork(e) {
-    axios({
-      method: 'post',
-      url: `${appLocalizer.apiUrl}/mvx_module/v1/update_commission_bulk`,
-      data: {
-        value: e.value,
-        commission_list: this.state.commisson_bulk_choose
+    if (e) {
+
+      if (this.state.commisson_bulk_choose.length > 0) {
+        axios({
+          method: 'post',
+          url: `${appLocalizer.apiUrl}/mvx_module/v1/update_commission_bulk`,
+          data: {
+            value: e.value,
+            commission_list: this.state.commisson_bulk_choose
+          }
+        })
+        .then( ( responce ) => {
+            this.setState({
+              datacommission: response.data,
+            });
+        } );
+      } else {
+        alert('Please select commission');
       }
-    })
-    .then( ( responce ) => {
-      console.log('success');
-    } );
+    } else {
+        axios({
+          url: `${appLocalizer.apiUrl}/mvx_module/v1/all_commission`
+        })
+        .then(response => {
+          this.setState({
+            datacommission: response.data,
+          });
+        })
+    }
+
+
+
   }
 
 
@@ -199,6 +254,25 @@ class App extends Component {
       });
     })
 
+    // paid status
+    axios.get(
+      `${appLocalizer.apiUrl}/mvx_module/v1/show_commission_from_status_list`, { params: { commission_status: 'paid' } 
+    })
+    .then(response => {
+      this.setState({
+        data_paid_commission: response.data,
+      });
+    })
+
+    // unpaid status
+    axios.get(
+      `${appLocalizer.apiUrl}/mvx_module/v1/show_commission_from_status_list`, { params: { commission_status: 'unpaid' } 
+    })
+    .then(response => {
+      this.setState({
+        data_unpaid_commission: response.data,
+      });
+    })
 
     axios({
       url: `${appLocalizer.apiUrl}/mvx_module/v1/commission_list_search`
@@ -253,6 +327,42 @@ class App extends Component {
     })
 
 
+
+
+
+
+
+
+
+
+    // Display table column and row slection
+    if (this.state.columns_commission_list.length == 0 && new URLSearchParams(window.location.hash).get("submenu") == 'commission') {
+      appLocalizer.columns_commission.map((data_ann, index_ann) => {
+        var data_selector = '';
+        var set_for_dynamic_column = '';
+        data_selector = data_ann['selector_choice'];
+        data_ann.selector = row => <div dangerouslySetInnerHTML={{__html: row[data_selector]}}></div>;
+
+
+        data_ann.cell ? data_ann.cell = (row) => <div className="mvx-vendor-action-icon">
+
+          <a href={row.link}><i className="mvx-font icon-edit"></i></a>
+          <div onClick={() => this.handleCommisssionDismiss(row.id)} id={row.id}><i className="mvx-font icon-no"></i></div>
+
+        </div> : '';
+
+
+        this.state.columns_commission_list[index_ann] = data_ann
+        set_for_dynamic_column = this.state.columns_commission_list;
+            this.setState({
+              columns_commission_list: set_for_dynamic_column,
+            });
+        }
+      )
+    }
+    // Display table column and row slection end
+
+
   }
 
   handleChange(e) {
@@ -281,21 +391,32 @@ class App extends Component {
 
   }
 
-  handlevendorsearch(e, status) {
+  handlecommissionsearch(e, status) {
 
     if (status == 'searchstatus') {
 
-        axios.get(
-          `${appLocalizer.apiUrl}/mvx_module/v1/show_commission_from_status_list`, { params: { commission_status: e.value } 
-        })
-        .then(response => {
-          this.setState({
-            datacommission: response.data,
-          });
-        })
+        if (e) {
+          axios.get(
+            `${appLocalizer.apiUrl}/mvx_module/v1/show_commission_from_status_list`, { params: { commission_status: e.value } 
+          })
+          .then(response => {
+            this.setState({
+              datacommission: response.data,
+            });
+          })
+        } else {
+          axios({
+            url: `${appLocalizer.apiUrl}/mvx_module/v1/all_commission`
+          })
+          .then(response => {
+            this.setState({
+              datacommission: response.data,
+            });
+          })
+        }
 
     } else if(status == 'showvendor') {
-
+      if (e) {
         axios.get(
           `${appLocalizer.apiUrl}/mvx_module/v1/show_vendor_name_from_list`, { params: { vendor_name: e.value } 
         })
@@ -304,10 +425,19 @@ class App extends Component {
             datacommission: response.data,
           });
         })
-
+      } else {
+        axios({
+          url: `${appLocalizer.apiUrl}/mvx_module/v1/all_commission`
+        })
+        .then(response => {
+          this.setState({
+            datacommission: response.data,
+          });
+        })
+      }
     } else {
 
-      if (e) {
+      /*if (e) {
         axios.get(
           `${appLocalizer.apiUrl}/mvx_module/v1/search_specific_commission`, { params: { commission_ids: e.value } 
         })
@@ -325,7 +455,7 @@ class App extends Component {
             datacommission: response.data,
           });
         })
-      }
+      }*/
 
     }
   }
@@ -374,9 +504,9 @@ class App extends Component {
                 <div className="mvx-commission-wrap-amount-shipping-tax">
 
                   <div className="mvx-commission-status-wrap">
-                    { /*<Select placeholder={appLocalizer.commission_page_string.show_commission_status} options={appLocalizer.commission_status_list_action} defaultValue={this.state.get_commission_id_status} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handleupdatecommission(e)} /> */}
-                    <div className="woocommerce-order-data-meta order_number" dangerouslySetInnerHTML={{__html: this.state.commission_details.order_meta_details}} ></div>
-                    <i className="mvx-font icon-edit"></i>
+                    { this.state.commission_select_option_open ? <div className="commission-status-hide-and-show-wrap"><p className="commission-status-text-check">Commission status: </p><Select placeholder="Status" options={appLocalizer.commission_status_list_action} defaultValue={this.state.get_commission_id_status} className="mvx-module-section-nav-child-data" onChange={(e) => this.handleupdatecommission(e)} /></div> : '' }
+                    { !this.state.commission_select_option_open ? <div className="woocommerce-order-data-meta order_number" dangerouslySetInnerHTML={{__html: this.state.commission_details.order_meta_details}} ></div> : '' }
+                    { !this.state.commission_select_option_open ? <i className="mvx-font icon-edit" onClick={(e) => this.handlecommission_paid(e)}></i> : '' }
 
                   </div>
 
@@ -729,41 +859,41 @@ class App extends Component {
             <div className="mvx-search-and-multistatus-wrap">
               <div className="mvx-multistatus-check">
                 <div className="mvx-multistatus-check-all">All ({this.state.datacommission.length})</div>
-                <div className="mvx-multistatus-check-paid status-active">| Paid (10)</div>
-                <div className="mvx-multistatus-check-paid">| Unpaid (10)</div>
+                <div className="mvx-multistatus-check-paid status-active">| Paid ({this.state.data_paid_commission.length})</div>
+                <div className="mvx-multistatus-check-paid">| Unpaid ({this.state.data_unpaid_commission.length})</div>
               </div>
 
               <div className="mvx-module-search-commission-data"> 
                 <label><i className="mvx-font icon-search"></i></label>
-                <input type="text" placeholder="Search Commissions" name="search"/>
+                <input type="text" placeholder="Search Commissions" name="search" onChange={this.handle_commission_live_search}/>
               </div>
-
-              { /*<Select placeholder={appLocalizer.commission_page_string.search_commission} options={this.state.details_commission} isClearable={true} className="mvx-module-search-commission-data" onChange={(e) => this.handlevendorsearch(e, 'searchvendor')} /> */}
             </div>
 
 
             <div className="mvx-wrap-bulk-all-date">
               <div className="mvx-wrap-bulk-action">
-                <Select placeholder="Bulk Action" options={this.state.show_commission_status} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e, 'searchstatus')} />
                 { /*<button type="button" className="button-secondary">Apply</button> */ }
               </div>
 
               <div className="mvx-wrap-bulk-action">
-                <Select placeholder="Bulk Action" options={this.state.show_commission_status} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e, 'searchstatus')} />
-                <Select placeholder={appLocalizer.commission_page_string.show_commission_status} options={this.state.show_commission_status} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e, 'searchstatus')} />
-                <Select placeholder={appLocalizer.commission_page_string.show_all_vendor} options={this.state.show_vendor_name} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e, 'showvendor')} />
+                <Select placeholder={appLocalizer.commission_page_string.show_commission_status} options={this.state.show_commission_status} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlecommissionsearch(e, 'searchstatus')} />
+                <Select placeholder={appLocalizer.commission_page_string.show_all_vendor} options={this.state.show_vendor_name} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlecommissionsearch(e, 'showvendor')} />
                 <Select placeholder={appLocalizer.commission_page_string.bulk_action} options={appLocalizer.commission_bulk_list_option} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlecommissionwork(e)} />
               </div>
             </div>
 
             <div className="mvx-backend-datatable-wrapper">
+
+              {this.state.columns_commission_list && this.state.columns_commission_list.length > 0 ?
               <DataTable
-                columns={this.state.columns_commission}
+                columns={this.state.columns_commission_list}
                 data={this.state.datacommission}
                 selectableRows
                 onSelectedRowsChange={this.handleChange}
                 pagination
               />
+              : ''}
+
             </div>
 
           </div>
