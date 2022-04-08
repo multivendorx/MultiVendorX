@@ -629,6 +629,65 @@ class MVX_REST_API {
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
 
+
+        //search question and aswear
+        register_rest_route( 'mvx_module/v1', '/search_question_ans', [
+            'methods' => WP_REST_Server::EDITABLE,
+            'callback' => array( $this, 'mvx_search_question_ans' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
+
+        //search question and aswear
+        register_rest_route( 'mvx_module/v1', '/delete_review', [
+            'methods' => WP_REST_Server::EDITABLE,
+            'callback' => array( $this, 'mvx_delete_review' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+    }
+
+    public function mvx_delete_review($request) {
+        $id = $request && $request->get_param('id') ? $request->get_param('id') : '';
+        wp_delete_comment($id);
+        return $this->mvx_list_of_store_review();
+    }
+
+    public function mvx_search_question_ans($request) {
+        $value = $request && $request->get_param('value') ? $request->get_param('value') : '';
+        global $MVX;
+        $vendor_ids = get_mvx_vendors(array(), 'ids');
+        $pending_list = [];
+        $args = array(
+            'posts_per_page' => -1,
+            'author__in' => $vendor_ids,
+            'post_type' => 'product',
+            'post_status' => 'publish',
+        );
+        $get_vendor_products = new WP_Query($args);
+        $get_vendor_products = $get_vendor_products->get_posts();
+        if (!empty($get_vendor_products) && apply_filters('admin_can_approve_qna_answer', true)) {
+            foreach ($get_vendor_products as $get_vendor_product) {
+                $get_pending_questions = $MVX->product_qna->get_Questions($get_vendor_product->ID);
+                if (!empty($get_pending_questions)) {
+                    foreach ($get_pending_questions as $pending_question) {
+                        $question_by_details = get_userdata($pending_question->ques_by);
+                        $question_by = "<img src=' " . $MVX->plugin_url . 'assets/images/wp-avatar-frau.jpg' ."' class='avatar avatar-32 photo' height='32' width='32'>" .$question_by_details->data->display_name . "";
+                        if (stripos($pending_question->ques_details, $value) !== false) {
+                            $pending_list[] = array(
+                                'id'                    =>  $pending_question->ques_ID,
+                                'question_by'           =>  $question_by,
+                                'question_product_id'   =>  $pending_question->product_ID,
+                                'question_by_name'      =>  $question_by_details->data->display_name,
+                                'product_name'          =>  get_the_title($pending_question->product_ID),
+                                'question_details'      =>  $pending_question->ques_details,
+                                'product_url'           =>  admin_url('post.php?post=' . $pending_question->product_ID . '&action=edit'),
+                            );
+                        }
+                    }   
+                }
+            }
+        }
+        return rest_ensure_response($pending_list);
     }
 
     public function mvx_fetch_all_settings_for_searching($request) {
@@ -760,7 +819,43 @@ class MVX_REST_API {
 
         } elseif ($type == "question_approval") {
             $product_list = $request && $request->get_param('product_list') ? $request->get_param('product_list') : 0;
+            $value = $request && $request->get_param('value') ? $request->get_param('value') : 0;
+            $type = $request && $request->get_param('type') ? $request->get_param('type') : 0;
 
+            $get_pending_questions_list = [];
+            if ($this->mvx_list_of_pending_question('')->data) {
+                foreach ($this->mvx_list_of_pending_question('')->data as $key => $value_p) {
+                    if ($product_list[$key]) {
+                        $get_pending_questions_list[] = array(
+                            'question_id'   => $value_p['id'],
+                            'product_id'    => $value_p['question_product_id']
+                        );
+                    }
+                }
+            }
+
+            if ($get_pending_questions_list) {
+                foreach ($get_pending_questions_list as $q_key => $q_value) {
+
+                    $product_id     = $q_value['product_id'] ? $q_value['product_id'] : 0;
+                    $question_id    = $q_value['question_id'] ? $q_value['question_id'] : 0;
+                    $data = array();
+                    if (!empty($product_id)) {
+                        $vendor = get_mvx_product_vendors(absint($product_id));
+                        if ($value == 'rejected') {
+                            $MVX->product_qna->deleteQuestion( $question_id );
+                            delete_transient('mvx_customer_qna_for_vendor_' . $vendor->id);
+                        } else {
+                            $data['status'] = $value;
+                            $MVX->product_qna->updateQuestion( $question_id, $data );
+                            $questions = $MVX->product_qna->get_Vendor_Questions($vendor);
+                            set_transient('mvx_customer_qna_for_vendor_' . $vendor->id, $questions);
+                        }
+                    }
+
+                }
+            }
+            return $this->mvx_list_of_pending_question();
         }
     }
 
@@ -972,7 +1067,6 @@ class MVX_REST_API {
 
         if (!empty($get_pending_products)) {
             foreach ($get_pending_products as $get_pending_product) {
-
                 $dismiss = get_post_meta($get_pending_product->ID, '_dismiss_to_do_list', true);
                 if ($dismiss) continue;
 
@@ -981,6 +1075,7 @@ class MVX_REST_API {
                 $pending_list[] = array(
                     'id'        =>  $get_pending_product->ID,
                     'vendor'    =>  $vendor_term->name,
+                    'product_src'   =>  wp_get_attachment_image_src( get_post_thumbnail_id( $get_pending_product->ID ), 'single-post-thumbnail' ),
                     'vendor_id'    =>  $get_pending_product->post_author,
                     'vendor_link'   =>  sprintf('?page=%s&ID=%s&name=vendor-personal', 'mvx#&submenu=vendor', $currentvendor->id),
                     'product'   =>  $get_pending_product->post_title,
@@ -999,6 +1094,7 @@ class MVX_REST_API {
                 if ($dismiss)   continue;
                 $pending_list[] = array(
                     'id'        =>  $pending_vendor->ID,
+                    'vendor_image_src'  =>  get_avatar($pending_vendor->ID, 50),
                     'vendor_link'   =>  sprintf('?page=%s&ID=%s&name=vendor-personal', 'mvx#&submenu=vendor', $pending_vendor->id),
                     'vendor'    =>  $pending_vendor->user_login,
                 );
@@ -1079,8 +1175,9 @@ class MVX_REST_API {
         return rest_ensure_response($pending_list);
     }
 
-    public function mvx_list_of_pending_question() {
+    public function mvx_list_of_pending_question($request) {
         global $MVX;
+        $status = $request && $request->get_param('status') ? ($request->get_param('status')) : '';
         $vendor_ids = get_mvx_vendors(array(), 'ids');
         $pending_list = [];
         $args = array(
@@ -1093,7 +1190,7 @@ class MVX_REST_API {
         $get_vendor_products = $get_vendor_products->get_posts();
         if (!empty($get_vendor_products) && apply_filters('admin_can_approve_qna_answer', true)) {
             foreach ($get_vendor_products as $get_vendor_product) {
-                $get_pending_questions = $MVX->product_qna->get_Pending_Questions($get_vendor_product->ID);
+                $get_pending_questions = $status && $status == 'publish' ? $MVX->product_qna->get_Questions($get_vendor_product->ID) : $MVX->product_qna->get_Pending_Questions($get_vendor_product->ID);
                 if (!empty($get_pending_questions)) {
                     foreach ($get_pending_questions as $pending_question) {
                         $question_by_details = get_userdata($pending_question->ques_by);
@@ -4001,6 +4098,8 @@ class MVX_REST_API {
                 <i class='mvx-font icon-edit'></i>
                 <i class='mvx-font icon-close'></i>
             </div>";
+
+            $product_count = sprintf('<a href="%1$s">' . $product_count . '</a>', admin_url('edit.php?post_type=product&dc_vendor_shop=' . $vendor->page_title));
 
             $user_list[] = apply_filters('mvx_list_table_vendors_columns_data', array(
                 'ID'            => $user->data->ID,

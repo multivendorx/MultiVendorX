@@ -93,6 +93,7 @@ class App extends Component {
       pending_coupon_check: [],
       pending_transaction_check: [],
       pending_question_check: [],
+      list_of_publish_question: [],
 
       pending_parent_product_check: false,
       pending_parent_user_check: false,
@@ -329,6 +330,48 @@ class App extends Component {
     this.handle_parent_transaction_todo_checkbox_chenage = this.handle_parent_transaction_todo_checkbox_chenage.bind(this);
     this.handle_parent_question_todo_checkbox_chenage = this.handle_parent_question_todo_checkbox_chenage.bind(this);
 
+
+    this.handle_question_search = this.handle_question_search.bind(this);
+    
+    this.handleReviewDismiss = this.handleReviewDismiss.bind(this);
+
+    //handle_review_bulk_status
+    
+  }
+
+  handleReviewDismiss(id) {
+    if ( confirm("Are you sure to delete?") ) {
+      axios({
+        method: 'post',
+        url: `${appLocalizer.apiUrl}/mvx_module/v1/delete_review`,
+        data: {
+          id: id,
+        }
+      })
+      .then( ( responce ) => {
+
+        this.setState({
+          list_of_store_review: responce.data,
+        });  
+
+      } );
+     }
+  }
+
+
+  handle_question_search(e) {
+    axios({
+        method: 'post',
+        url: `${appLocalizer.apiUrl}/mvx_module/v1/search_question_ans`,
+        data: {
+          value: e.target.value,
+        }
+      })
+      .then( ( responce ) => {
+        this.setState({
+          list_of_publish_question: responce.data,
+        });  
+      } );
   }
 
   handle_task_board_bulk_chenage(e, type) {
@@ -407,12 +450,13 @@ class App extends Component {
         url: `${appLocalizer.apiUrl}/mvx_module/v1/bulk_todo_pending_product`,
         data: {
           product_list: this.state.pending_question_check,
-          value: e.value,type: type
+          value: e.value,
+          type: type
         }
       })
       .then( ( responce ) => {
         this.setState({
-          list_of_pending_vendor_product: responce.data,
+          list_of_pending_question: responce.data,
         });  
       } );
 
@@ -879,8 +923,6 @@ class App extends Component {
 
 
     // pending details
-
-
     axios.get(
     `${appLocalizer.apiUrl}/mvx_module/v1/list_of_pending_question`
     )
@@ -890,6 +932,17 @@ class App extends Component {
         list_of_pending_question: response.data,
         pending_question_check: all_pending_data_checkbox,
         pending_question_loding_end: true
+      });
+    })
+
+
+    // publish details
+    axios.get(
+    `${appLocalizer.apiUrl}/mvx_module/v1/list_of_pending_question`, { params: { status: 'publish' } 
+    })
+    .then(response => {
+      this.setState({
+        list_of_publish_question: response.data,
       });
     })
 
@@ -1169,7 +1222,7 @@ Child({ name }) {
         data_store_review_content.cell ? data_store_review_content.cell = (row) => <div className="mvx-vendor-action-icon">
 
           <a href={row.link}><i className="mvx-font icon-edit"></i></a>
-          <div onClick={() => this.handlePostDismiss(row.id, row.type)} id={row.id}><i className="mvx-font icon-no"></i></div>
+          <div onClick={() => this.handleReviewDismiss(row.id)} id={row.id}><i className="mvx-font icon-no"></i></div>
 
         </div> : '';
 
@@ -1213,7 +1266,7 @@ Child({ name }) {
                       <div className="mvx-workboard-card-wrapper-heading">Pending Vendor Product</div>
                       <div className="mvx-workboard-top-part">
                           <div className="mvx-workboard-img-part">
-                              <img alt="Multivendor X" src={appLocalizer.mvx_logo}/>
+                              <img alt="Multivendor X" src={pending_data.product_src}/>
                               <div className="mvx-workboard-vendor-name">{pending_data.product}</div>
                           </div>
                           <div className="mvx-workboard-select-icon"><input type="checkbox" className="mvx-workboard-checkbox" checked={this.state.pending_product_check[pending_index]} onChange={(e) => this.handle_todo_checkbox_chenage(e, pending_data.id, pending_index)} /></div>
@@ -1240,7 +1293,7 @@ Child({ name }) {
                     </div>
                   )
                 )
-                 : this.state.pending_product_loding_end ? 'No Transaction Found' : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
+                 : this.state.pending_product_loding_end ? 'No Product Found' : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
               }
 
             </div>
@@ -1275,7 +1328,7 @@ Child({ name }) {
                       <div className="mvx-workboard-card-wrapper-heading">Pending User</div>
                       <div className="mvx-workboard-top-part">
                           <div className="mvx-workboard-img-part">
-                              <img alt="Multivendor X" src={appLocalizer.mvx_logo}/>
+                              <img alt="Multivendor X" src={pending_data.vendor_image_src}/>
                               <div className="mvx-workboard-vendor-name">{pending_data.vendor}</div>
                           </div>
                           <div className="mvx-workboard-select-icon"><input type="checkbox" className="mvx-workboard-checkbox" checked={this.state.pending_user_check[pending_index]} onChange={(e) => this.handle_todo_user_chenage(e, pending_data.id, pending_index)}/></div>
@@ -1296,7 +1349,7 @@ Child({ name }) {
                     </div>
                   )
                 )
-                : this.state.pending_user_loding_end ? 'No Transaction Found' : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
+                : this.state.pending_user_loding_end ? 'No Vendor Found' : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
               }
 
             </div>
@@ -1356,7 +1409,7 @@ Child({ name }) {
                     </div>
                   )
                 )
-                : this.state.pending_coupon_loding_end ? 'No Transaction Found' : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
+                : this.state.pending_coupon_loding_end ? 'No Coupon Found' : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
               }
 
             </div>
@@ -1436,7 +1489,7 @@ Child({ name }) {
                     <input type="checkbox" className="mvx-select-all" checked={this.state.pending_parent_question_check} onChange={(e) => this.handle_parent_question_todo_checkbox_chenage(e)} />
                     <span className="mvx-select-all-text">Select All</span>
                   </div>
-                  <Select placeholder="Bulk Action" options={this.state.details_vendor} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'question_approval')} />
+                  <Select placeholder="Bulk Action" options={appLocalizer.pending_question_bulk} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'question_approval')} />
                 </div>
             </div>
             <div className="mvx-workboard-card-wrapper">
@@ -1479,7 +1532,7 @@ Child({ name }) {
                     </div>
                   )
                 )
-                : this.state.pending_question_loding_end ? 'No Transaction Found' : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
+                : this.state.pending_question_loding_end ? 'No Question Found' : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
               }
 
             </div>
@@ -1679,9 +1732,9 @@ Child({ name }) {
         <div className="mvx-module-grid">
           <div className="mvx-search-and-multistatus-wrap">
             <div className="mvx-multistatus-check">
-              <div className="mvx-multistatus-check-all">All (10)</div>
-              <div className="mvx-multistatus-check-approve" onClick={this.handle_post_retrive_status}>| Approve (10)</div>
-              <div className="mvx-multistatus-check-pending status-active">| Pending (10)</div>
+              <div className="mvx-multistatus-check-all">All ({this.state.list_of_store_review.length})</div>
+              {/*<div className="mvx-multistatus-check-approve" onClick={this.handle_post_retrive_status}>| Approve (10)</div>
+              <div className="mvx-multistatus-check-pending status-active">| Pending (10)</div>*/}
             </div>
 
 
@@ -1694,12 +1747,12 @@ Child({ name }) {
 
           <div className="mvx-wrap-bulk-all-date">
             <div className="mvx-wrap-bulk-action">
-              <Select placeholder="Bulk actions" options={appLocalizer.post_bulk_status} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_post_bulk_status} />
+              <Select placeholder="Bulk actions" options={appLocalizer.store_review_bulk} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_review_bulk_status} />
             </div>
 
-            <div className="mvx-wrap-date-action">
+            {/*<div className="mvx-wrap-date-action">
               <Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_work_board_chenage} />
-            </div>
+            </div>*/}
           </div>
 
           <div className="mvx-backend-datatable-wrapper">
@@ -1728,20 +1781,20 @@ Child({ name }) {
 
           <div className="mvx-search-and-multistatus-wrap">
             <div className="mvx-multistatus-check">
-              <div className="mvx-multistatus-check-all">All (10)</div>
-              <div className="mvx-multistatus-check-approve" onClick={this.handle_post_retrive_status}>| Published (10)</div>
-              <div className="mvx-multistatus-check-pending status-active">| Pending (10)</div>
+              <div className="mvx-multistatus-check-all">All ({this.state.list_of_publish_question.length})</div>
+              {/*<div className="mvx-multistatus-check-approve" onClick={this.handle_post_retrive_status}>| Published ()</div>*/ }
+              <div className="mvx-multistatus-check-pending status-active">| Pending ({this.state.list_of_pending_question.length})</div>
             </div>
 
 
             <div className="mvx-module-section-list-data"> 
               <label><i className="mvx-font icon-search"></i></label>
-              <input type="text" placeholder="Search Question" name="search"/>
+              <input type="text" placeholder="Search Question" name="search" onChange={(e) => this.handle_question_search(e)}/>
             </div>
           </div>
 
 
-          <div className="mvx-wrap-bulk-all-date">
+          {/*<div className="mvx-wrap-bulk-all-date">
             <div className="mvx-wrap-bulk-action">
               <Select placeholder="Bulk actions" options={appLocalizer.post_bulk_status} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_post_bulk_status} />
             </div>
@@ -1749,13 +1802,13 @@ Child({ name }) {
             <div className="mvx-wrap-date-action">
               <Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_work_board_chenage} />
             </div>
-          </div>
+          </div>*/}
 
           <div className="mvx-backend-datatable-wrapper">
             {this.state.pending_questions ?
               <DataTable
                   columns={this.state.pending_questions}
-                  data={this.state.list_of_pending_question}
+                  data={this.state.list_of_publish_question}
                   selectableRows
                   pagination
                 />

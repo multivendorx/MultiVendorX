@@ -374,6 +374,24 @@ class MVX_Admin {
             );
         }
 
+        $pending_question_bulk = array(
+            array(
+                'value' => 'verified',
+                'label' => __('Verified', 'dc-woocommerce-multi-vendor')
+            ),
+            array(
+                'value' => 'rejected',
+                'label' => __('Rejected', 'dc-woocommerce-multi-vendor')
+            ),
+        );
+
+        $store_review_bulk = array(
+            array(
+                'value' => 'delete',
+                'label' => __('Delete', 'dc-woocommerce-multi-vendor')
+            )
+        );
+
         $post_bulk_status = array(
             array(
                 'value' => 'pending',
@@ -384,7 +402,6 @@ class MVX_Admin {
                 'label' => __('Published', 'dc-woocommerce-multi-vendor')
             ),
         );
-
 
         $task_board_bulk_status = array(
             array(
@@ -668,6 +685,8 @@ class MVX_Admin {
             'report_vendor_header'          =>  $report_vendor_header,
             'report_page_string'            =>  $report_page_string,
             'post_bulk_status'              =>  $post_bulk_status,
+            'pending_question_bulk'         =>  $pending_question_bulk,
+            'store_review_bulk'             =>  $store_review_bulk,
             'task_board_bulk_status'        =>  $task_board_bulk_status,
             'columns_announcement'          =>  $columns_announcement,
             'columns_knowledgebase'         =>  $columns_knowledgebase,
