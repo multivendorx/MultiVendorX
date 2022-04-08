@@ -530,6 +530,13 @@ class MVX_REST_API {
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
 
+        // approve pending Question
+        register_rest_route( 'mvx_module/v1', '/approve_dismiss_pending_question', [
+            'methods' => WP_REST_Server::EDITABLE,
+            'callback' => array( $this, 'mvx_approve_dismiss_pending_question' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );        
+
         // store review
         register_rest_route( 'mvx_module/v1', '/list_of_store_review', [
             'methods' => WP_REST_Server::READABLE,
@@ -1092,18 +1099,24 @@ class MVX_REST_API {
                         $question_by_details = get_userdata($pending_question->ques_by);
                         $question_by = "<img src=' " . $MVX->plugin_url . 'assets/images/wp-avatar-frau.jpg' ."' class='avatar avatar-32 photo' height='32' width='32'>" .$question_by_details->data->display_name . "";
                         $pending_list[] = array(
-                            'id'        =>  $question_by_details,
+                            'id'                    =>  $question_by_details->ques_ID,
                             'question_by'           =>  $question_by,
-                            'question_by_name'           =>  $question_by_details->data->display_name,
+                            'question_product_id'   =>  $question_by_details->product_ID
+                            'question_by_name'      =>  $question_by_details->data->display_name,
                             'product_name'          =>  get_the_title($pending_question->product_ID),
                             'question_details'      =>  $pending_question->ques_details,
-                            'product_url'   =>  admin_url('post.php?post=' . $pending_question->product_ID . '&action=edit'),
+                            'product_url'           =>  admin_url('post.php?post=' . $pending_question->product_ID . '&action=edit'),
                         );
                     }   
                 }
             }
         }
         return rest_ensure_response($pending_list);
+    }
+
+    public function mvx_approve_dismiss_pending_question($request) {
+        $knowladgebase_id = $request && $request->get_param('knowladgebase_id') ? ($request->get_param('knowladgebase_id')) : 0;
+        $knowladgebase_id = $request && $request->get_param('knowladgebase_id') ? ($request->get_param('knowladgebase_id')) : 0;
     }
 
     public function mvx_create_knowladgebase($request) {

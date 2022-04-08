@@ -53,9 +53,13 @@ class App extends Component {
       get_commission_id_status: [],
       columns_commission_list: [],
       datacommission: [],
+      mvx_all_commission_list: [],
 
       data_paid_commission: [],
       data_unpaid_commission: [],
+
+      data_refunded_commission: [],
+      data_partial_refunded_commission: [],
 
       details_commission: [
 
@@ -94,7 +98,48 @@ class App extends Component {
 
     this.handlecommission_paid = this.handlecommission_paid.bind(this);
     
-     
+    this.handle_commission_status_check = this.handle_commission_status_check.bind(this);
+    
+  }
+
+
+  handle_commission_status_check(e, type) {
+
+    if (type == 'paid') {
+      // paid status
+      axios.get(
+        `${appLocalizer.apiUrl}/mvx_module/v1/show_commission_from_status_list`, { params: { commission_status: 'paid' } 
+      })
+      .then(response => {
+        this.setState({
+          datacommission: response.data,
+        });
+      })
+    }
+
+    if (type == 'unpaid') {
+      // unpaid status
+      axios.get(
+        `${appLocalizer.apiUrl}/mvx_module/v1/show_commission_from_status_list`, { params: { commission_status: 'unpaid' } 
+      })
+      .then(response => {
+        this.setState({
+          datacommission: response.data,
+        });
+      })
+    }
+
+    if (type == 'all') {
+      axios({
+        url: `${appLocalizer.apiUrl}/mvx_module/v1/all_commission`
+      })
+      .then(response => {
+        this.setState({
+          datacommission: response.data,
+        });
+      })
+    }
+
   }
 
   handlecommission_paid(e) {
@@ -251,6 +296,7 @@ class App extends Component {
     .then(response => {
       this.setState({
         datacommission: response.data,
+        mvx_all_commission_list: response.data,
       });
     })
 
@@ -271,6 +317,26 @@ class App extends Component {
     .then(response => {
       this.setState({
         data_unpaid_commission: response.data,
+      });
+    })
+
+    // refunded status
+    axios.get(
+      `${appLocalizer.apiUrl}/mvx_module/v1/show_commission_from_status_list`, { params: { commission_status: 'refunded' } 
+    })
+    .then(response => {
+      this.setState({
+        data_refunded_commission: response.data,
+      });
+    })
+
+    // partial refunded status
+    axios.get(
+      `${appLocalizer.apiUrl}/mvx_module/v1/show_commission_from_status_list`, { params: { commission_status: 'partial_refunded' } 
+    })
+    .then(response => {
+      this.setState({
+        data_partial_refunded_commission: response.data,
       });
     })
 
@@ -858,9 +924,17 @@ class App extends Component {
 
             <div className="mvx-search-and-multistatus-wrap">
               <div className="mvx-multistatus-check">
-                <div className="mvx-multistatus-check-all">All ({this.state.datacommission.length})</div>
-                <div className="mvx-multistatus-check-paid status-active">| Paid ({this.state.data_paid_commission.length})</div>
-                <div className="mvx-multistatus-check-paid">| Unpaid ({this.state.data_unpaid_commission.length})</div>
+                <div className="mvx-multistatus-check-all" onClick={(e) => this.handle_commission_status_check(e, 'all')}>All ({this.state.mvx_all_commission_list.length})</div>
+                <div className="mvx-multistatus-check-paid status-active" onClick={(e) => this.handle_commission_status_check(e, 'paid')}>| Paid ({this.state.data_paid_commission.length})</div>
+                <div className="mvx-multistatus-check-unpaid" onClick={(e) => this.handle_commission_status_check(e, 'unpaid')}>| Unpaid ({this.state.data_unpaid_commission.length})</div>
+                
+
+
+
+                { /*<div className="mvx-multistatus-check-partial_refunded" onClick={(e) => this.handle_commission_status_check(e, 'partial_refunded')}>| Partial refunded ({this.state.data_refunded_commission.length})</div>
+                <div className="mvx-multistatus-check-refunded" onClick={(e) => this.handle_commission_status_check(e, 'refunded')}>| Refunded ({this.state.data_unpaid_commission.length})</div>*/ }
+
+                
               </div>
 
               <div className="mvx-module-search-commission-data"> 

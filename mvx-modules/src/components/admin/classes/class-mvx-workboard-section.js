@@ -560,9 +560,9 @@ class App extends Component {
 
 
 
-  handle_question_request_by_vendors(e, id, type) {
+  handle_question_request_by_vendors(e, question_id, product_id, type) {
     if (type == 'dismiss') {
-
+      
     } else if (type == 'approve') {
 
     }
@@ -1451,8 +1451,8 @@ Child({ name }) {
                       <div className="mvx-module-current-status wp-clearfix">
                           <div className="mvx-left-icons-wrap">
                               <div className="mvx-left-icon"><a href={pending_data.product_url}><i className="mvx-font icon-edit"></i></a></div>
-                              <div className="mvx-left-icon"><i className="mvx-font icon-approve" onClick={(e) => this.handle_question_request_by_vendors(e, pending_data.id, 'approve')}></i></div>
-                              <div className="mvx-left-icon"><i className="mvx-font icon-close" onClick={(e) => this.handle_question_request_by_vendors(e, pending_data.id, 'dismiss')}></i></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-approve" onClick={(e) => this.handle_question_request_by_vendors(e, pending_data.id, pending_data.question_product_id, 'approve')}></i></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-close" onClick={(e) => this.handle_question_request_by_vendors(e, pending_data.id, pending_data.question_product_id, 'dismiss')}></i></div>
                           </div>
                       </div>
                     </div>
