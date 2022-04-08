@@ -45,7 +45,7 @@ class MVX_Ajax {
         add_action('wp_ajax_mvx_dismiss_dashboard_announcements', array($this, 'mvx_dismiss_dashboard_message'));
         add_action('wp_ajax_nopriv_mvx_dismiss_dashboard_announcements', array($this, 'mvx_dismiss_dashboard_message'));
 
-        if (get_mvx_vendor_settings('is_singleproductmultiseller', 'general') == 'Enable') {
+        if (mvx_is_module_active('spmv') && get_mvx_vendor_settings('is_singleproductmultiseller', 'spmv_pages')) {
             // Product auto suggestion
             add_action('wp_ajax_mvx_auto_search_product', array($this, 'mvx_auto_suggesion_product'));
             add_action('wp_ajax_nopriv_mvx_auto_search_product', array($this, 'mvx_auto_suggesion_product'));
