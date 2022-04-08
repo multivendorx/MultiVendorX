@@ -66,7 +66,7 @@ class MVX_Product {
         add_filter('woocommerce_reviews_title',  array($this, 'review_title'), 10, 3);
         add_filter('woocommerce_product_tabs',  array($this, 'review_tab'));
 
-        if (get_mvx_vendor_settings('is_singleproductmultiseller', 'general') == 'Enable') {
+        if (mvx_is_module_active('spmv') && get_mvx_vendor_settings('is_singleproductmultiseller', 'spmv_pages')) {
             add_filter('woocommerce_duplicate_product_exclude_taxonomies', array($this, 'exclude_taxonomies_copy_to_draft'), 10, 1);
             add_filter('woocommerce_duplicate_product_exclude_meta', array($this, 'exclude_postmeta_copy_to_draft'), 10, 1);
             add_action('woocommerce_product_duplicate', array($this, 'mvx_product_duplicate_update_meta'), 10, 2);
@@ -116,7 +116,7 @@ class MVX_Product {
         // Hide products backend fields as per new product modifications
         add_action( 'add_meta_boxes', array( $this, 'remove_meta_boxes' ), 99 );
         // show default product categories
-        if( apply_filters( 'mvx_disable_product_default_categories_hierarchy', get_mvx_vendor_settings('is_disable_marketplace_plisting', 'general') != 'Enable' ) ) {
+        if( apply_filters( 'mvx_disable_product_default_categories_hierarchy', get_mvx_vendor_settings('category_pyramid_guide', 'settings_general') ==false ) ) {
             add_filter( 'mvx_vendor_product_list_row_product_categories', array($this, 'show_default_product_cats_in_vendor_list'), 10, 2);
             add_filter( 'woocommerce_admin_product_term_list', array($this, 'show_default_product_cats_in_wp_backend'), 99, 5);
             add_filter( 'term_links-product_cat', array($this, 'show_default_product_cats_product_single'), 99);
@@ -1797,7 +1797,7 @@ class MVX_Product {
         global $post;
         if( $post && $post->post_type != 'product' ) return;
         if( !is_user_mvx_vendor( get_current_user_id() ) ) return;
-        if( ( get_mvx_vendor_settings('is_disable_marketplace_plisting', 'general') == 'Enable' ) ) return;
+        if( get_mvx_vendor_settings('category_pyramid_guide', 'settings_general') ) return;
         
         if( isset( $_REQUEST['post'] ) && isset( $_REQUEST['action'] ) &&  $_REQUEST['action'] == 'edit' ){
             // product category

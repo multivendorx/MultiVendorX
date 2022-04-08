@@ -21,7 +21,7 @@ class MVX_Admin {
         add_action('admin_bar_menu', array(&$this, 'add_toolbar_items'), 100);
         add_action('admin_head', array(&$this, 'admin_header'));
         add_action('current_screen', array($this, 'conditonal_includes'));
-        if (get_mvx_vendor_settings('is_singleproductmultiseller', 'general') == 'Enable') {
+        if (mvx_is_module_active('spmv') && get_mvx_vendor_settings('is_singleproductmultiseller', 'spmv_pages')) {
             add_action('admin_enqueue_scripts', array($this, 'mvx_kill_auto_save'));
         }
         $this->load_class('settings');

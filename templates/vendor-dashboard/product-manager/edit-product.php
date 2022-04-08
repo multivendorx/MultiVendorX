@@ -282,7 +282,7 @@ global $MVX;
                 <?php } ?>
             </div>
             <div class="col-md-4">
-                <?php if( ( get_mvx_vendor_settings('is_disable_marketplace_plisting', 'general') == 'Enable' ) ) :
+                <?php if( get_mvx_vendor_settings('category_pyramid_guide', 'settings_general') ) :
                 $product_categories = mvx_get_product_terms_HTML( 'product_cat', $post->ID, apply_filters( 'mvx_vendor_can_add_product_category', false, get_current_user_id() ) ); ?>
                 <?php if ( $product_categories ) : ?>
                     <div class="panel panel-default pannel-outer-heading">

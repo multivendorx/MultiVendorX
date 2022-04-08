@@ -103,7 +103,7 @@ if ( $template_class == 'template3') { ?>
 
             <div class="mvx_vendor_rating">
                 <?php
-                if (mvx_is_module_active('vendor-review')) {
+                if (mvx_is_module_active('store-review') && get_mvx_vendor_settings('is_sellerreview', 'review_management')) {
                     if (mvx_is_store_page()) {
                         $vendor_term_id = get_user_meta( mvx_find_shop_page_vendor(), '_vendor_term_id', true );
                         $rating_val_array = mvx_get_vendor_review_info($vendor_term_id);
@@ -138,7 +138,7 @@ if ( $template_class == 'template3') { ?>
                 
                 <div class="mvx_vendor_rating">
                     <?php
-                    if (mvx_is_module_active('vendor-review')) {
+                    if (mvx_is_module_active('store-review') && get_mvx_vendor_settings('is_sellerreview', 'review_management')) {
                         if (mvx_is_store_page()) {
                             $vendor_term_id = get_user_meta( mvx_find_shop_page_vendor(), '_vendor_term_id', true );
                             $rating_val_array = mvx_get_vendor_review_info($vendor_term_id);
@@ -232,7 +232,7 @@ if ( $template_class == 'template3') { ?>
                 
                 <div class="mvx_vendor_rating">
                     <?php
-                    if (mvx_is_module_active('vendor-review')) {
+                    if (mvx_is_module_active('store-review') && get_mvx_vendor_settings('is_sellerreview', 'review_management')) {
                         if (mvx_is_store_page()) {
                             $vendor_term_id = get_user_meta( mvx_find_shop_page_vendor(), '_vendor_term_id', true );
                             $rating_val_array = mvx_get_vendor_review_info($vendor_term_id);

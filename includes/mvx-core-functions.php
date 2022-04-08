@@ -816,7 +816,7 @@ if (!function_exists('mvx_seller_review_enable')) {
         $is_enable = false;
         $current_user = wp_get_current_user();
         if ($current_user->ID > 0) {
-            if (mvx_is_module_active('vendor-review')) {
+            if (mvx_is_module_active('store-review') && get_mvx_vendor_settings('is_sellerreview', 'review_management')) {
                 if (get_mvx_vendor_settings('is_sellerreview_varified', 'review_management')) {
                     $is_enable = mvx_find_user_purchased_with_vendor($current_user->ID, $vendor_term_id);
                 } else {
@@ -1184,7 +1184,7 @@ if (!function_exists('do_mvx_data_migrate')) {
                     update_mvx_vendor_settings('is_singleproductmultiseller', 'Enable', 'general');
                 }
                 delete_mvx_vendor_settings('is_singleproductmultiseller', 'general', 'singleproductmultiseller');
-                if (mvx_is_module_active('vendor-review')) {
+                if (mvx_is_module_active('store-review') && get_mvx_vendor_settings('is_sellerreview', 'review_management')) {
                     update_mvx_vendor_settings('is_sellerreview', 'Enable', 'general');
                 }
                 delete_mvx_vendor_settings('is_sellerreview', 'general', 'sellerreview');
@@ -5448,7 +5448,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 ],
                 [
                     'key'    => 'publish_and_submit_products',
-                    'label'   => __( 'Publish and Submit Products', 'dc-woocommerce-multi-vendor' ),
+                    'label'   => __( 'Publish and Submit Re-edited Products', 'dc-woocommerce-multi-vendor' ),
                     'class'     => 'mvx-toggle-checkbox',
                     'type'    => 'checkbox',
                     'options' => array(

@@ -903,7 +903,7 @@ class MVX_Frontend {
             );
         }
 
-        if (mvx_is_module_active('vendor-review')) {
+        if (mvx_is_module_active('store-review') && get_mvx_vendor_settings('is_sellerreview', 'review_management')) {
             $tabs['reviews'] = array(
                 'id' => 'reviews',
                 'title' => __( 'Reviews', 'dc-woocommerce-multi-vendor' ),

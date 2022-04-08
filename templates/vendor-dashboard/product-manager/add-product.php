@@ -28,7 +28,7 @@ if (is_user_logged_in() && is_user_mvx_vendor($current_vendor_id) && !current_us
     <div class="select-product-cat-wrapper">
         <?php $is_new_listing = isset($_REQUEST['new_listing']) ? true : false;
         $is_cats_hier = isset($_REQUEST['cats_hier']) ? true : false;
-        if( ( $is_new_listing && $is_cats_hier ) || !get_mvx_vendor_settings('is_singleproductmultiseller', 'general') == 'Enable' ) {
+        if( ( $is_new_listing && $is_cats_hier ) || mvx_is_module_active('spmv') == false && get_mvx_vendor_settings('is_singleproductmultiseller', 'spmv_pages') == false ) {
         ?>
         <!-- New product list categories hierarchically -->
         <div class="select-cat-step-wrapper">
@@ -91,7 +91,7 @@ if (is_user_logged_in() && is_user_mvx_vendor($current_vendor_id) && !current_us
                             $category_url = mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_add_product_endpoint', 'seller_dashbaord', 'add-product' ) ) . '&new_listing=1&cats_hier=1';
                         }
 
-                        $url = ( get_mvx_vendor_settings('is_disable_marketplace_plisting', 'general') == 'Enable' ) ? esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_edit_product_endpoint', 'seller_dashbaord', 'edit-product'))) : $category_url; ?>
+                        $url = ( get_mvx_vendor_settings('category_pyramid_guide', 'settings_general') ) ? esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_edit_product_endpoint', 'seller_dashbaord', 'edit-product'))) : $category_url; ?>
                         <p><?php _e('Not in the catalog?', 'dc-woocommerce-multi-vendor'); ?> <a href="<?php echo $url; ?>" class="cat-step-btn"><?php _e('Create a new product', 'dc-woocommerce-multi-vendor'); ?> <i class="mvx-font ico-right-arrow-icon"></i></a></p>
                     </div>
                 </div>

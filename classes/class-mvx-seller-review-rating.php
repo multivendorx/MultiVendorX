@@ -12,7 +12,7 @@ class MVX_Seller_Review_Rating {
     public function __construct() {
         global $MVX;
         $rating_settings = get_option('mvx_general_sellerreview_settings_name');
-        if (mvx_is_module_active('vendor-review')) {
+        if (mvx_is_module_active('store-review') && get_mvx_vendor_settings('is_sellerreview', 'review_management')) {
             //add_action('woocommerce_after_main_content', array($this, 'mvx_seller_review_rating_form'), 5);
             if ( apply_filters( 'mvx_load_default_vendor_store', false ) ) {
                 add_action('woocommerce_after_shop_loop', array($this, 'mvx_seller_review_rating_form'), 30);
