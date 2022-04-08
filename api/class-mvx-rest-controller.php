@@ -1119,7 +1119,6 @@ class MVX_REST_API {
         $product_id = $request && $request->get_param('product_id') ? ($request->get_param('product_id')) : 0;
         $question_id = $request && $request->get_param('question_id') ? ($request->get_param('question_id')) : 0;
         $type = $request && $request->get_param('type') ? ($request->get_param('type')) : '';
-        print_r($product_id);die;
         $data = array();
         if (!empty($product_id)) {
             $vendor = get_mvx_product_vendors(absint($product_id));
