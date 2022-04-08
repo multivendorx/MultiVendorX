@@ -1102,7 +1102,6 @@ class MVX_REST_API {
                             'id'                    =>  $pending_question->ques_ID,
                             'question_by'           =>  $question_by,
                             'question_product_id'   =>  $pending_question->product_ID,
-                            'question_product_id'   =>  $question_by_details->product_ID,
                             'question_by_name'      =>  $question_by_details->data->display_name,
                             'product_name'          =>  get_the_title($pending_question->product_ID),
                             'question_details'      =>  $pending_question->ques_details,
