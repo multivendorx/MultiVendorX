@@ -1099,9 +1099,9 @@ class MVX_REST_API {
                         $question_by_details = get_userdata($pending_question->ques_by);
                         $question_by = "<img src=' " . $MVX->plugin_url . 'assets/images/wp-avatar-frau.jpg' ."' class='avatar avatar-32 photo' height='32' width='32'>" .$question_by_details->data->display_name . "";
                         $pending_list[] = array(
-                            'id'                    =>  $question_by_details->ques_ID,
+                            'id'                    =>  $pending_question->ques_ID,
                             'question_by'           =>  $question_by,
-                            'question_product_id'   =>  $question_by_details->product_ID
+                            'question_product_id'   =>  $pending_question->product_ID,
                             'question_by_name'      =>  $question_by_details->data->display_name,
                             'product_name'          =>  get_the_title($pending_question->product_ID),
                             'question_details'      =>  $pending_question->ques_details,
@@ -1115,8 +1115,25 @@ class MVX_REST_API {
     }
 
     public function mvx_approve_dismiss_pending_question($request) {
-        $knowladgebase_id = $request && $request->get_param('knowladgebase_id') ? ($request->get_param('knowladgebase_id')) : 0;
-        $knowladgebase_id = $request && $request->get_param('knowladgebase_id') ? ($request->get_param('knowladgebase_id')) : 0;
+        global $MVX;
+        $product_id = $request && $request->get_param('product_id') ? ($request->get_param('product_id')) : 0;
+        $question_id = $request && $request->get_param('question_id') ? ($request->get_param('question_id')) : 0;
+        $type = $request && $request->get_param('type') ? ($request->get_param('type')) : '';
+        print_r($product_id);die;
+        $data = array();
+        if (!empty($product_id)) {
+            $vendor = get_mvx_product_vendors(absint($product_id));
+            if ($type == 'rejected') {
+                $MVX->product_qna->deleteQuestion( $question_id );
+                delete_transient('mvx_customer_qna_for_vendor_' . $vendor->id);
+            } else {
+                $data['status'] = $type;
+                $MVX->product_qna->updateQuestion( $question_id, $data );
+                $questions = $MVX->product_qna->get_Vendor_Questions($vendor);
+                set_transient('mvx_customer_qna_for_vendor_' . $vendor->id, $questions);
+            }
+        }
+        return $this->mvx_list_of_pending_question();
     }
 
     public function mvx_create_knowladgebase($request) {
@@ -2814,7 +2831,7 @@ class MVX_REST_API {
         $status_html = '';
         if($status == 'paid') {
             $status_html .= '<p class="commission-status-paid">'.MVX_Commission::get_status($commission_id).'</p>';
-        }else{
+        } else {
             $status_html .= '<p class="commission-status-unpaid">'.MVX_Commission::get_status($commission_id).'</p>';
         }
 

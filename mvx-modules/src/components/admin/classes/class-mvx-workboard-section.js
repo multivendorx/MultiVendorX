@@ -100,6 +100,13 @@ class App extends Component {
       pending_parent_transaction_check: false,
       pending_parent_question_check: false,
 
+
+      pending_transaction_loding_end: false,
+      pending_product_loding_end: false,
+      pending_user_loding_end: false,
+      pending_coupon_loding_end: false,
+      pending_question_loding_end: false,
+
       datassssssssssss: [
      {
        col1: 'Hello',
@@ -561,11 +568,20 @@ class App extends Component {
 
 
   handle_question_request_by_vendors(e, question_id, product_id, type) {
-    if (type == 'dismiss') {
-      
-    } else if (type == 'approve') {
-
-    }
+    axios({
+        method: 'post',
+        url: `${appLocalizer.apiUrl}/mvx_module/v1/approve_dismiss_pending_question`,
+        data: {
+          question_id: question_id,
+          product_id: product_id,
+          type: type
+        }
+      })
+      .then( ( responce ) => {
+        this.setState({
+          list_of_pending_question: responce.data,
+        });  
+      } );
   }
 
   handle_coupon_request_by_vendors(e, id, type) {
@@ -873,6 +889,7 @@ class App extends Component {
       this.setState({
         list_of_pending_question: response.data,
         pending_question_check: all_pending_data_checkbox,
+        pending_question_loding_end: true
       });
     })
 
@@ -883,6 +900,7 @@ class App extends Component {
     .then(response => {
       this.setState({
         list_of_pending_transaction: response.data,
+        pending_transaction_loding_end: true,
         pending_transaction_check: new Array(response.data.length).fill(false)
       });
     })
@@ -894,6 +912,7 @@ class App extends Component {
     .then(response => {
       this.setState({
         list_of_pending_vendor_coupon: response.data,
+        pending_coupon_loding_end: true,
         pending_coupon_check: new Array(response.data.length).fill(false)
       });
     })
@@ -906,6 +925,7 @@ class App extends Component {
       var all_pending_data_checkbox = new Array(response.data.length).fill(false);
       this.setState({
         list_of_pending_vendor: response.data,
+        pending_user_loding_end: true,
         pending_user_check: all_pending_data_checkbox,
       });
     })
@@ -918,6 +938,7 @@ class App extends Component {
 
       this.setState({
         list_of_pending_vendor_product: response.data,
+        pending_product_loding_end: true,
         pending_product_check: all_pending_product_checkbox
       });
     })
@@ -1219,7 +1240,7 @@ Child({ name }) {
                     </div>
                   )
                 )
-                 : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
+                 : this.state.pending_product_loding_end ? 'No Transaction Found' : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
               }
 
             </div>
@@ -1275,7 +1296,7 @@ Child({ name }) {
                     </div>
                   )
                 )
-                : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
+                : this.state.pending_user_loding_end ? 'No Transaction Found' : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
               }
 
             </div>
@@ -1310,7 +1331,7 @@ Child({ name }) {
                       <div className="mvx-workboard-card-wrapper-heading">Pending coupon</div>
                       <div className="mvx-workboard-top-part">
                           <div className="mvx-workboard-img-part">
-                              <img alt="Multivendor X" src={appLocalizer.mvx_logo}/>
+                              {/*<img alt="Multivendor X" src={appLocalizer.mvx_logo}/>*/}
                               <div className="mvx-workboard-vendor-name">{pending_data.coupon}</div>
                           </div>
                           <div className="mvx-workboard-select-icon"><input type="checkbox" className="mvx-workboard-checkbox" checked={this.state.pending_coupon_check[pending_index]} onChange={(e) => this.handle_todo_coupon_chenage(e, pending_data.id, pending_index)}/></div>
@@ -1335,7 +1356,7 @@ Child({ name }) {
                     </div>
                   )
                 )
-                : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
+                : this.state.pending_coupon_loding_end ? 'No Transaction Found' : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
               }
 
             </div>
@@ -1391,7 +1412,7 @@ Child({ name }) {
                     </div>
                   )
                 )
-                : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
+                : this.state.pending_transaction_loding_end ? 'No Transaction Found' : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
               }
 
             </div>
@@ -1451,14 +1472,14 @@ Child({ name }) {
                       <div className="mvx-module-current-status wp-clearfix">
                           <div className="mvx-left-icons-wrap">
                               <div className="mvx-left-icon"><a href={pending_data.product_url}><i className="mvx-font icon-edit"></i></a></div>
-                              <div className="mvx-left-icon"><i className="mvx-font icon-approve" onClick={(e) => this.handle_question_request_by_vendors(e, pending_data.id, pending_data.question_product_id, 'approve')}></i></div>
-                              <div className="mvx-left-icon"><i className="mvx-font icon-close" onClick={(e) => this.handle_question_request_by_vendors(e, pending_data.id, pending_data.question_product_id, 'dismiss')}></i></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-approve" onClick={(e) => this.handle_question_request_by_vendors(e, pending_data.id, pending_data.question_product_id, 'verified')}></i></div>
+                              <div className="mvx-left-icon"><i className="mvx-font icon-close" onClick={(e) => this.handle_question_request_by_vendors(e, pending_data.id, pending_data.question_product_id, 'rejected')}></i></div>
                           </div>
                       </div>
                     </div>
                   )
                 )
-                : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
+                : this.state.pending_question_loding_end ? 'No Transaction Found' : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
               }
 
             </div>
