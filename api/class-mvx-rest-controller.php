@@ -1101,11 +1101,8 @@ class MVX_REST_API {
                         $pending_list[] = array(
                             'id'                    =>  $pending_question->ques_ID,
                             'question_by'           =>  $question_by,
-<<<<<<< HEAD
                             'question_product_id'   =>  $pending_question->product_ID,
-=======
                             'question_product_id'   =>  $question_by_details->product_ID,
->>>>>>> 8b19da4ac071a75534799c2556d66f6bfbbf9e51
                             'question_by_name'      =>  $question_by_details->data->display_name,
                             'product_name'          =>  get_the_title($pending_question->product_ID),
                             'question_details'      =>  $pending_question->ques_details,
