@@ -1589,7 +1589,7 @@ Class MVX_Admin_Dashboard {
             $this->mvx_add_dashboard_widget('mvx_vendor_product_stats', __('Product Stats', 'dc-woocommerce-multi-vendor'), array(&$this, 'mvx_vendor_product_stats'), 'side', '', array('action' => array('title' => __('Add Product', 'dc-woocommerce-multi-vendor'), 'link' => apply_filters( 'mvx_vendor_dashboard_add_product_url', mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_add_product_endpoint', 'seller_dashbaord', 'add-product' ))))));
             $this->mvx_add_dashboard_widget('mvx_vendor_product_sales_report', __('Product Sales Report', 'dc-woocommerce-multi-vendor'), array(&$this, 'mvx_vendor_product_sales_report'));
         }
-        if (mvx_is_module_active('vendor-review')) {
+        if (mvx_is_module_active('store-review') && get_mvx_vendor_settings('is_sellerreview', 'review_management')) {
             $this->mvx_add_dashboard_widget('mvx_customer_reviews', __('Reviews', 'dc-woocommerce-multi-vendor'), array(&$this, 'mvx_customer_review'));
         }
         // Vendor followeres list
@@ -2094,7 +2094,7 @@ Class MVX_Admin_Dashboard {
                 $catagories = isset( $_POST['tax_input']['product_cat'] ) ? array_filter( array_map( 'intval', (array) $_POST['tax_input']['product_cat'] ) ) : array();
                 wp_set_object_terms( $post_id, $catagories, 'product_cat' );
                 // if product has different multi level categories hierarchy, save the default
-                if( isset( $_POST['_default_cat_hierarchy_term_id'] ) && in_array( $_POST['_default_cat_hierarchy_term_id'], $catagories ) && get_mvx_vendor_settings('is_disable_marketplace_plisting', 'general') != 'Enable' ){
+                if( isset( $_POST['_default_cat_hierarchy_term_id'] ) && in_array( $_POST['_default_cat_hierarchy_term_id'], $catagories ) && get_mvx_vendor_settings('category_pyramid_guide', 'settings_general') == false ){
                     update_post_meta( $post_id, '_default_cat_hierarchy_term_id', absint( $_POST['_default_cat_hierarchy_term_id'] ) );
                 }else{
                     delete_post_meta( $post_id, '_default_cat_hierarchy_term_id' );
@@ -2403,7 +2403,7 @@ Class MVX_Admin_Dashboard {
     }
     
     public function mvx_vendor_dashboard_add_product_url( $url ) {
-        if( !get_mvx_vendor_settings('is_singleproductmultiseller', 'general') == 'Enable' && get_mvx_vendor_settings('is_disable_marketplace_plisting', 'general') == 'Enable' ){
+        if( mvx_is_module_active('spmv') == false && get_mvx_vendor_settings('is_singleproductmultiseller', 'spmv_pages') == false && get_mvx_vendor_settings('category_pyramid_guide', 'settings_general') ){
             return esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_edit_product_endpoint', 'seller_dashbaord', 'edit-product')));
         }
         return $url;

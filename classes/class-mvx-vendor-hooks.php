@@ -462,7 +462,7 @@ class MVX_Vendor_Hooks {
 
         $suffix = defined( 'MVX_SCRIPT_DEBUG' ) && MVX_SCRIPT_DEBUG ? '' : '.min';
 
-        if ( get_mvx_vendor_settings( 'is_singleproductmultiseller', 'general' ) == 'Enable' ) {
+        if ( mvx_is_module_active('spmv') && get_mvx_vendor_settings('is_singleproductmultiseller', 'spmv_pages') ) {
             wp_enqueue_script( 'mvx_admin_product_auto_search_js', $MVX->plugin_url . 'assets/admin/js/admin-product-auto-search' . $suffix . '.js', array( 'jquery' ), $MVX->version, true );
             wp_localize_script( 'mvx_admin_product_auto_search_js', 'mvx_admin_product_auto_search_js_params', array(
                 'ajax_url'              => admin_url( 'admin-ajax.php' ),
