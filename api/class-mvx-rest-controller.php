@@ -637,18 +637,106 @@ class MVX_REST_API {
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
 
-
         //search question and aswear
         register_rest_route( 'mvx_module/v1', '/delete_review', [
             'methods' => WP_REST_Server::EDITABLE,
             'callback' => array( $this, 'mvx_delete_review' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
+
+        //search question and aswear
+        register_rest_route( 'mvx_module/v1', '/search_review', [
+            'methods' => WP_REST_Server::EDITABLE,
+            'callback' => array( $this, 'mvx_search_review' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+    
+        //search question and aswear
+        register_rest_route( 'mvx_module/v1', '/tools_funtion', [
+            'methods' => WP_REST_Server::EDITABLE,
+            'callback' => array( $this, 'mvx_tools_funtion' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+    }
+
+    public function mvx_tools_funtion($request) {
+        global $wpdb;
+        $all_details = [];
+        $type = $request && $request->get_param('type') ? $request->get_param('type') : '';
+        
+        if ($type == 'transients') {
+            $vendors = get_mvx_vendors();
+            foreach ( $vendors as $vendor ) {
+                if( $vendor ) $vendor->clear_all_transients($vendor->id);
+            }
+        } else if ($type == 'visitor') {
+            $delete = $wpdb->query("TRUNCATE {$wpdb->prefix}wcmp_visitors_stats");
+            if ( $delete ){
+                $message = __( 'WCMp visitors stats successfully deleted', 'dc-woocommerce-multi-vendor' );
+            } else {
+                $ran     = false;
+                $message = __( 'There was an error calling this tool. There is no callback present.', 'dc-woocommerce-multi-vendor' );
+            }
+        } else if ($type == 'migrate_order') {
+            delete_option('wcmp_orders_table_migrated');
+            wp_schedule_event( time(), 'hourly', 'wcmp_orders_migration' );
+            $message = __( 'Force order migration started.', 'dc-woocommerce-multi-vendor' );
+        } else if ($type == 'migrate') {
+            $all_details['redirect_link'] = admin_url('index.php?page=wcmp-migrator');
+            return $all_details;
+        }
+    }
+
+    public function mvx_search_review($request) {
+        $value = $request && $request->get_param('value') ? $request->get_param('value') : '';
+        
+        $review_list = array();
+        $mvx_vendor_reviews = array();
+        $args_default = array(
+                'status' => 'approve',
+                'type' => 'mvx_vendor_rating',
+                'count' => false,
+                'posts_per_page' => -1,
+                'offset' => 0,
+            );
+        $mvx_vendor_reviews = get_comments($args_default);
+        if ($mvx_vendor_reviews) {
+            foreach ($mvx_vendor_reviews as $mvx_vendor_review) {
+                $comment_vendor_id = get_comment_meta($mvx_vendor_review->comment_ID, 'vendor_rating_id', true);
+                $vendor = get_mvx_vendor($comment_vendor_id);
+                $vendor_term_id = get_user_meta($comment_vendor_id, '_vendor_term_id', true);
+                $rating_val_array = mvx_get_vendor_review_info($vendor_term_id);
+                $rating = round($rating_val_array['avg_rating'], 1);
+                $review = '<span itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating" class="star-rating" title='. sprintf(__('Rated %s out of 5', 'dc-woocommerce-multi-vendor'), $rating). '>
+                        <span style="width: ' . ( round($rating_val_array['avg_rating']) / 5 ) * 100 .'%"><strong itemprop="ratingValue">'. ($rating). '</strong> '. ('out of 5').'</span>
+                    </span>';
+                if (stripos($mvx_vendor_review->comment_content, $value) !== false) {     
+                    $review_list[] = apply_filters('mvx_list_table_reviews_columns_data', array(
+                        'id'        =>  $mvx_vendor_review->comment_ID,
+                        'author'    =>  $mvx_vendor_review->comment_author,
+                        'user_id'   =>  $vendor->page_title,
+                        'time'      =>  human_time_diff(strtotime($mvx_vendor_review->comment_date)),
+                        'content'   =>  $mvx_vendor_review->comment_content,
+                        'review'    =>  $review,
+                        'link'      =>  admin_url('comment.php?action=editcomment&c='. $mvx_vendor_review->comment_ID .''),
+                        'type'      =>  'review'
+                    ), $mvx_vendor_review);
+                }
+            }
+        }
+
+        return rest_ensure_response($review_list);
     }
 
     public function mvx_delete_review($request) {
         $id = $request && $request->get_param('id') ? $request->get_param('id') : '';
-        wp_delete_comment($id);
+        if (is_array($id)) {
+            foreach ($id as $key => $value) {
+                wp_delete_comment($value);
+            }
+        } else {
+            wp_delete_comment($id);
+        }
         return $this->mvx_list_of_store_review();
     }
 

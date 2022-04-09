@@ -60,7 +60,7 @@ class App extends Component {
       second_toggle: '',      
       current: {},
       bulkselectlist: [],
-
+      bulkselectreviewlist: [],
 
       display_announcement: [],
       display_pending_announcement: [],
@@ -335,7 +335,55 @@ class App extends Component {
     
     this.handleReviewDismiss = this.handleReviewDismiss.bind(this);
 
-    //handle_review_bulk_status
+    this.handle_review_bulk_status = this.handle_review_bulk_status.bind(this);
+   
+    this.handleselectreviews = this.handleselectreviews.bind(this);
+
+    this.handle_search_vendor_review = this.handle_search_vendor_review.bind(this);
+    
+  }
+
+  handle_search_vendor_review(e) {
+      axios({
+        method: 'post',
+        url: `${appLocalizer.apiUrl}/mvx_module/v1/search_review`,
+        data: {
+          value: e.target.value,
+        }
+      })
+      .then( ( responce ) => {
+
+        this.setState({
+          list_of_store_review: responce.data,
+        });  
+
+      } );
+  }
+
+  handle_review_bulk_status(e) {
+    if ( confirm("Are you sure to delete?") ) {
+      axios({
+        method: 'post',
+        url: `${appLocalizer.apiUrl}/mvx_module/v1/delete_review`,
+        data: {
+          id: this.state.bulkselectreviewlist,
+        }
+      })
+      .then( ( responce ) => {
+
+        this.setState({
+          list_of_store_review: responce.data,
+        });  
+
+      } );
+     }
+
+  }
+
+  handleselectreviews(e) {
+    this.setState({
+      bulkselectreviewlist: e.selectedRows,
+    })
     
   }
 
@@ -1740,7 +1788,7 @@ Child({ name }) {
 
             <div className="mvx-module-section-list-data"> 
               <label><i className="mvx-font icon-search"></i></label>
-              <input type="text" placeholder="Search Review" name="search"/>
+              <input type="text" placeholder="Search Review" name="search" onChange={(e) => this.handle_search_vendor_review(e)} />
             </div>
           </div>
 
@@ -1761,6 +1809,7 @@ Child({ name }) {
               columns={this.state.columns_store_review}
               data={this.state.list_of_store_review}
               selectableRows
+              onSelectedRowsChange={this.handleselectreviews}
               pagination
             />
             : '' }

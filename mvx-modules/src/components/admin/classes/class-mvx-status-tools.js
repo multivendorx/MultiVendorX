@@ -55,8 +55,29 @@ class App extends Component {
 
     this.Child = this.Child.bind(this);
 
+    this.handle_tools_triggers = this.handle_tools_triggers.bind(this);
 
     
+  }
+
+  handle_tools_triggers(e, type) {
+    axios({
+      method: 'post',
+      url: `${appLocalizer.apiUrl}/mvx_module/v1/tools_funtion`,
+      data: {
+        type: type,
+      }
+    })
+    .then( ( responce ) => {
+      /*this.setState({
+        list_of_store_review: responce.data,
+      }); */ 
+      
+      if (responce.data.redirect_link) {
+        window.location.href = responce.data.redirect_link;
+      }
+
+    } );
   }
 
   componentDidMount() {
@@ -175,7 +196,55 @@ Child({ name }) {
 
             name == appLocalizer.mvx_all_backend_tab_list['status-tools'][1]['modulename'] ?
 
-            <div className="mvx-status-tools-content">
+            <div className="mvx-status-database-tools-content">
+              
+              <div className="mvx-vendor-transients">
+                <div className="mvx-vendor-transients-header">
+                  WCMp vendors transients
+                </div>
+                <div className="mvx-vendor-transients-description">
+                  This tool will clear all WCMp vendors transients cache.
+                </div>
+                <div className="mvx-vendor-transients-button">
+                  <button type="button" className="button-secondary" onClick={(e) => this.handle_tools_triggers(e, 'transients')}>Clear transients</button>
+                </div>
+              </div>
+
+              <div className="mvx-vendor-transients">
+                <div className="mvx-vendor-transients-header">
+                  Reset visitors stats table
+                </div>
+                <div className="mvx-vendor-transients-description">
+                  This tool will clear ALL the table data of WCMp visitors stats.
+                </div>
+                <div className="mvx-vendor-transients-button">
+                  <button type="button" className="button-secondary" onClick={(e) => this.handle_tools_triggers(e, 'visitor')}>Reset Database</button>
+                </div>
+              </div>
+
+              <div className="mvx-vendor-transients">
+                <div className="mvx-vendor-transients-header">
+                  Force WCMp order migrate
+                </div>
+                <div className="mvx-vendor-transients-description">
+                  This will regenerate all vendors older orders to individual orders
+                </div>
+                <div className="mvx-vendor-transients-button">
+                  <button type="button" className="button-secondary" onClick={(e) => this.handle_tools_triggers(e, 'migrate_order')}>Order Migrate</button>
+                </div>
+              </div>
+
+              <div className="mvx-vendor-transients">
+                <div className="mvx-vendor-transients-header">
+                  Multivendor Migration
+                </div>
+                <div className="mvx-vendor-transients-description">
+                  This will migrate older marketplace details
+                </div>
+                <div className="mvx-vendor-transients-button">
+                  <button type="button" className="button-secondary" onClick={(e) => this.handle_tools_triggers(e, 'migrate')}>Multivendor migrate</button>
+                </div>
+              </div>
 
             </div>
 
