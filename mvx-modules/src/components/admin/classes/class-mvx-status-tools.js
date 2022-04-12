@@ -4,6 +4,7 @@ import axios from 'axios';
 import Select from 'react-select';
 import RingLoader from "react-spinners/RingLoader";
 import { css } from "@emotion/react";
+import PuffLoader from "react-spinners/PuffLoader";
 
 import { ReactSortable } from "react-sortablejs";
 
@@ -38,6 +39,12 @@ import {
 } from 'recharts';
 
 import { CSVLink } from "react-csv";
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: green;
+`;
 
 class App extends Component {
   constructor(props) {
@@ -311,18 +318,17 @@ Child({ name }) {
                 <span className="success hidden" aria-hidden="true">Copied!</span>
               </div>
             </div>
-            : '' }
+            : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} /> }
 
               { Object.entries(this.state.list_of_system_info).length > 0 ?
-              Object.entries(this.state.list_of_system_info).map((list_data, index_data) => (
-
-                <div id="health-check-debug" className="health-check-accordion">
+                Object.entries(this.state.list_of_system_info).map((list_data, index_data) => (
+                  <div id="health-check-debug" className="health-check-accordion">
                     <h3 className="health-check-accordion-heading">
                       <button aria-expanded={this.state.store_index_data.length > 0 && this.state.store_index_data[index_data] == 'false' ? "false" : "true" } className="health-check-accordion-trigger" aria-controls={`health-check-accordion-block-${list_data[0]}`} type="button" onClick={(e) => this.open_closed_system_info(e, list_data[0], index_data)}>
                         <span className="title">
                         
                           {list_data[1].label}
-                          {list_data[1]['show_count'] ? list_data[1]['fields'].length : ''}
+                            {list_data[1].show_count ?  <span>({ Object.entries(list_data[1]['fields']).length  })</span> : ''}
 
                         </span>
                         <span className="icon" />
@@ -345,19 +351,33 @@ Child({ name }) {
                       }
                       </tbody>
                     </table>
-
                     </div>
-
                   </div>
-                  )
-                  )
-                  : ''
-                  }
+                )) : ''
+              }
 
 
 
 
 
+              <header>
+                <h3>Error Log</h3>
+              </header>
+
+              <p className="description">
+                If you have enabled, errors will be stored in a log file. Here you can find the last 100 lines in reversed order so that you or the Rank Math support team can view it easily. The file cannot be edited here
+              </p>
+
+              <div className="site-health-copy-buttons">
+                <div className="copy-button-wrapper">
+                  <button type="button" className="button copy-button" data-clipboard-text={appLocalizer.errors_log}>
+                    Copy Log to Clipboard
+                  </button>
+                  <span className="success hidden" aria-hidden="true">Copied!</span>
+                </div>
+              </div>
+
+              <textarea name="name" rows="16" cols="80" className="code large-text rank-math-code-box" disabled="disabled" id="rank-math-status-error-log">{appLocalizer.errors_log}</textarea>
 
 
             </div>

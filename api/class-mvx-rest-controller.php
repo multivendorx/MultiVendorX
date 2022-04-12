@@ -682,13 +682,12 @@ class MVX_REST_API {
         }
 
         $is_module_active = get_option('mvx_all_active_module_list', true);
-        /*$list_modules = [];
+        $list_modules = [];
         if ($is_module_active) {
             foreach ($is_module_active as $key => $value) {
-                $list_modules = 
+                $list_modules[] = $this->mvx_find_module_name_by_id($value);
             }
         }
-        print_r($is_module_active);die;*/
 
         $mvx = [
             'label'  => esc_html__( 'MultiVendorX', 'rank-math' ),
@@ -703,7 +702,7 @@ class MVX_REST_API {
                 ],
                 'active_modules'   => [
                     'label' => esc_html__( 'Active modules', 'rank-math' ),
-                    'value' => implode(" ,", $is_module_active),
+                    'value' => implode(", ", $list_modules),
                 ]
             ],
         ];
@@ -732,6 +731,17 @@ class MVX_REST_API {
         $core_data = [ 'mvx' => $mvx_data ] + $core_data;
         
         return rest_ensure_response($core_data);
+    }
+
+    public function mvx_find_module_name_by_id($module_id = '') {
+        $add_modules_details = $this->mvx_list_all_modules();
+        foreach ($add_modules_details as $key_parent => $value_parent) {
+            foreach ($value_parent['options'] as $key_child => $value_child) {
+                if ($value_child['id'] == $module_id) {
+                    return $value_child['name'];
+                }
+            }
+        }
     }
 
     public function mvx_system_info_copy_data() {

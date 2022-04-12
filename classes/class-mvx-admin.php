@@ -655,6 +655,7 @@ class MVX_Admin {
             }
         }
 
+
         wp_localize_script( 'mvx-modules-build-frontend', 'appLocalizer', apply_filters('mvx_module_complete_settings', [
             'apiUrl' => home_url( '/wp-json' ),
             'nonce' => wp_create_nonce( 'wp_rest' ),
@@ -696,7 +697,8 @@ class MVX_Admin {
             'columns_store_review'          =>  $columns_store_review,
             'columns_vendor'                =>  $columns_vendor,
             'vendor_list_page_bulk_list_options'    =>  $vendor_list_page_bulk_list_options,
-            'columns_commission'                    =>  $columns_commission
+            'columns_commission'                    =>  $columns_commission,
+            'errors_log'                            =>  $this->get_error_log_rows(100),
         ] ) );
 
         if ( in_array($screen->id, $page_details)) {
@@ -763,6 +765,32 @@ class MVX_Admin {
             }";
             wp_add_inline_style( 'woocommerce_admin_styles', $custom_css );
         }        
+    }
+
+    public function get_error_log_rows( $limit = -1 ) {
+
+
+        $wp_filesystem  = $this->get_filesystem();
+        $log_path = ini_get( 'error_log' );
+
+        $contents = $wp_filesystem->get_contents_array( $log_path );
+
+        if ( -1 === $limit ) {
+            return join( '', $contents );
+        }
+
+        return join( '', array_slice( $contents, -$limit ) );
+    }
+
+    public function get_filesystem() {
+        global $wp_filesystem;
+
+        if ( empty( $wp_filesystem ) ) {
+            require_once ABSPATH . '/wp-admin/includes/file.php';
+            WP_Filesystem();
+        }
+
+        return $wp_filesystem;
     }
 
     function mvx_kill_auto_save() {
