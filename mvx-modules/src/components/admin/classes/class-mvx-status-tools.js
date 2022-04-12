@@ -43,7 +43,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      
+      list_of_system_info: [],
+      list_of_system_info_copy_data: '',
+      store_index_data: [],
     };
 
     this.query = null;
@@ -57,7 +59,19 @@ class App extends Component {
 
     this.handle_tools_triggers = this.handle_tools_triggers.bind(this);
 
+    this.open_closed_system_info = this.open_closed_system_info.bind(this);
     
+  }
+
+  open_closed_system_info(e, index, parent_index) {
+
+    var set_index_data = this.state.store_index_data;
+
+    set_index_data[parent_index] = set_index_data[parent_index] == 'false' ? 'true' : 'false';
+
+    this.setState({
+      store_index_data: set_index_data
+    });
   }
 
   handle_tools_triggers(e, type) {
@@ -81,7 +95,36 @@ class App extends Component {
   }
 
   componentDidMount() {
+    axios.get(
+    `${appLocalizer.apiUrl}/mvx_module/v1/fetch_system_info`
+    )
+    .then(response => {
 
+      var store_index_data = [];
+      if (response.data) {
+        Object.entries(response.data).map((list_data, index_data) => 
+          store_index_data[index_data] = 'false'
+        )
+      }
+
+        this.setState({
+          list_of_system_info: response.data,
+          store_index_data: store_index_data
+        });
+
+
+
+      
+    })
+
+    axios.get(
+    `${appLocalizer.apiUrl}/mvx_module/v1/system_info_copy_data`
+    )
+    .then(responsecopy => {
+      this.setState({
+        list_of_system_info_copy_data: responsecopy.data,
+      });
+    })
   }
 
   useQuery() {
@@ -253,6 +296,69 @@ Child({ name }) {
             name == appLocalizer.mvx_all_backend_tab_list['status-tools'][2]['modulename'] ?
             
             <div className="mvx-status-tools-content">
+
+
+            <header>
+              <h3>System Info</h3>
+            </header>
+
+            {this.state.list_of_system_info_copy_data ? 
+            <div className="site-health-copy-buttons">
+              <div className="copy-button-wrapper">
+                <button type="button" className="button copy-button" data-clipboard-text={this.state.list_of_system_info_copy_data}>
+                  Copy System Info to Clipboard
+                </button>
+                <span className="success hidden" aria-hidden="true">Copied!</span>
+              </div>
+            </div>
+            : '' }
+
+              { Object.entries(this.state.list_of_system_info).length > 0 ?
+              Object.entries(this.state.list_of_system_info).map((list_data, index_data) => (
+
+                <div id="health-check-debug" className="health-check-accordion">
+                    <h3 className="health-check-accordion-heading">
+                      <button aria-expanded={this.state.store_index_data.length > 0 && this.state.store_index_data[index_data] == 'false' ? "false" : "true" } className="health-check-accordion-trigger" aria-controls={`health-check-accordion-block-${list_data[0]}`} type="button" onClick={(e) => this.open_closed_system_info(e, list_data[0], index_data)}>
+                        <span className="title">
+                        
+                          {list_data[1].label}
+                          {list_data[1]['show_count'] ? list_data[1]['fields'].length : ''}
+
+                        </span>
+                        <span className="icon" />
+                      </button>
+                    </h3>
+
+                    <div id={`health-check-accordion-block-${list_data[0]}`} className="health-check-accordion-panel" hidden={this.state.store_index_data.length > 0 && this.state.store_index_data[index_data] == 'false' ? "hidden" : '' }>
+                      
+                    {list_data[1]['description'] ? list_data[1]['description'] : ''}
+
+                    <table className="widefat striped health-check-table" role="presentation">
+                      <tbody>
+                      {
+                        Object.entries(list_data[1]['fields']).map((list_data1, index_data1) => (
+                            <tr>
+                              <td>{list_data1[1]['label']}</td><td>{list_data1[1]['value']}</td>
+                            </tr>
+                        ))
+                        
+                      }
+                      </tbody>
+                    </table>
+
+                    </div>
+
+                  </div>
+                  )
+                  )
+                  : ''
+                  }
+
+
+
+
+
+
 
             </div>
 

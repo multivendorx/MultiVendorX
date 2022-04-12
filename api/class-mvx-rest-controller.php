@@ -657,6 +657,87 @@ class MVX_REST_API {
             'callback' => array( $this, 'mvx_tools_funtion' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
+
+        // fetch system info
+        register_rest_route( 'mvx_module/v1', '/fetch_system_info', [
+            'methods' => WP_REST_Server::READABLE,
+            'callback' => array( $this, 'mvx_fetch_system_info' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
+        register_rest_route( 'mvx_module/v1', '/system_info_copy_data', [
+            'methods' => WP_REST_Server::READABLE,
+            'callback' => array( $this, 'mvx_system_info_copy_data' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+    }
+
+
+    public function mvx_fetch_system_info() {
+        global $MVX;
+        require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+        // Core debug data.
+        if ( ! class_exists( 'WP_Debug_Data' ) ) {
+            require_once ABSPATH . 'wp-admin/includes/class-wp-debug-data.php';
+        }
+
+        $is_module_active = get_option('mvx_all_active_module_list', true);
+        /*$list_modules = [];
+        if ($is_module_active) {
+            foreach ($is_module_active as $key => $value) {
+                $list_modules = 
+            }
+        }
+        print_r($is_module_active);die;*/
+
+        $mvx = [
+            'label'  => esc_html__( 'MultiVendorX', 'rank-math' ),
+            'fields' => [
+                'version'          => [
+                    'label' => esc_html__( 'Version', 'rank-math' ),
+                    'value' => $MVX->version,
+                ],
+                'plugin_plan'      => [
+                    'label' => esc_html__( 'Plugin subscription plan', 'rank-math' ),
+                    'value' => apply_filters('mvx_current_subscription_plan', __('Free', 'dc-woocommerce-multi-vendor') ),
+                ],
+                'active_modules'   => [
+                    'label' => esc_html__( 'Active modules', 'rank-math' ),
+                    'value' => implode(" ,", $is_module_active),
+                ]
+            ],
+        ];
+        $mvx_data = apply_filters( 'mvx/status/mvx_info', $mvx );
+
+        $core_data     = \WP_Debug_Data::debug_data();
+        // Keep only relevant data.
+        $core_data = array_intersect_key(
+            $core_data,
+            array_flip(
+                [
+                    'wp-core',
+                    'wp-dropins',
+                    'wp-active-theme',
+                    'wp-parent-theme',
+                    'wp-mu-plugins',
+                    'wp-plugins-active',
+                    'wp-server',
+                    'wp-database',
+                    'wp-constants',
+                    'wp-filesystem',
+                ]
+            )
+        );
+
+        $core_data = [ 'mvx' => $mvx_data ] + $core_data;
+        
+        return rest_ensure_response($core_data);
+    }
+
+    public function mvx_system_info_copy_data() {
+        $system_info = $this->mvx_fetch_system_info();
+        $system_info = \WP_Debug_Data::format( $system_info->data, 'debug' );
+        return $system_info;
     }
 
     public function mvx_tools_funtion($request) {
@@ -670,19 +751,18 @@ class MVX_REST_API {
                 if( $vendor ) $vendor->clear_all_transients($vendor->id);
             }
         } else if ($type == 'visitor') {
-            $delete = $wpdb->query("TRUNCATE {$wpdb->prefix}wcmp_visitors_stats");
+            $delete = $wpdb->query("TRUNCATE {$wpdb->prefix}mvx_visitors_stats");
             if ( $delete ){
-                $message = __( 'WCMp visitors stats successfully deleted', 'dc-woocommerce-multi-vendor' );
+                $message = __( 'MVX visitors stats successfully deleted', 'dc-woocommerce-multi-vendor' );
             } else {
                 $ran     = false;
                 $message = __( 'There was an error calling this tool. There is no callback present.', 'dc-woocommerce-multi-vendor' );
             }
         } else if ($type == 'migrate_order') {
-            delete_option('wcmp_orders_table_migrated');
-            wp_schedule_event( time(), 'hourly', 'wcmp_orders_migration' );
-            $message = __( 'Force order migration started.', 'dc-woocommerce-multi-vendor' );
+            delete_option('mvx_orders_table_migrated');
+            wp_schedule_event( time(), 'hourly', 'mvx_orders_migration' );
         } else if ($type == 'migrate') {
-            $all_details['redirect_link'] = admin_url('index.php?page=wcmp-migrator');
+            $all_details['redirect_link'] = admin_url('index.php?page=mvx-migrator');
             return $all_details;
         }
     }

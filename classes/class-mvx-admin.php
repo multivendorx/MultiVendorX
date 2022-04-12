@@ -226,6 +226,9 @@ class MVX_Admin {
         wp_enqueue_script( 'mce-view' );
         $MVX->library->load_upload_lib();
 
+        wp_enqueue_style( 'site-health' );
+        wp_enqueue_script( 'site-health' );
+
         // get all settings fileds
         $settings_fields = mvx_admin_backend_settings_fields_details();
 
