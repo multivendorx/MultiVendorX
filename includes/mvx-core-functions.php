@@ -7393,25 +7393,26 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
             array(
                 'tablabel'      =>  __('Version Control', 'dc-woocommerce-multi-vendor'),
                 'description'   =>  __('View the overall performance of the site', 'dc-woocommerce-multi-vendor'),
-                'icon'          =>  'icon-tab-overview',
+                'icon'          =>  'icon-tab-version-control',
                 'modulename'     =>  'version-control'
             ),
             array(
                 'tablabel'      =>  __('Database Tools', 'dc-woocommerce-multi-vendor'),
                 'description'   =>  __('Get comprehensive reports on vendor sales and orders', 'dc-woocommerce-multi-vendor'),
-                'icon'          =>  'icon-tab-vendor',
+                'icon'          =>  'icon-tab-database-tools',
                 'modulename'     =>  'database-tools'
             ),
             array(
                 'tablabel'      =>  __('System Status', 'dc-woocommerce-multi-vendor'),
                 'description'   =>  __('View reports product sales and order', 'dc-woocommerce-multi-vendor'),
-                'icon'          =>  'icon-tab-icon-tab-product-02',
+                'icon'          =>  'icon-tab-system-status',
                 'modulename'     =>  'system-status'
             ),
             array(
                 'tablabel'      =>  __('Migration', 'dc-woocommerce-multi-vendor'),
+                'link'          =>  admin_url( 'index.php?page=mvx-migrator' ),
                 'description'   =>  __('Get detailed reports on vendor commission', 'dc-woocommerce-multi-vendor'),
-                'icon'          =>  'icon-tab-transaction-history',
+                'icon'          =>  'icon-tab-migration',
                 'modulename'     =>  'transaction-history'
             )
         );

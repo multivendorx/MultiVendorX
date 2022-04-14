@@ -319,7 +319,7 @@ export default class DynamicForm extends React.Component {
       
       if(m['type'] == 'wpeditor') {
         // add wp editor from textarea
-        wp.editor.initialize(m['key'], {
+        /*wp.editor.initialize(m['key'], {
           mediaButtons: true,
           tinymce: {
             wpautop  : true,
@@ -366,7 +366,7 @@ export default class DynamicForm extends React.Component {
 
           },
           quicktags: true
-        });
+        });*/
       }
 
      /* var parent_nested_array = new Array({});
@@ -402,13 +402,12 @@ export default class DynamicForm extends React.Component {
 
 
 
-    /*this.props.model.map(m => {
+    this.props.model.map(m => {
       
 
       
       if(m['type'] == 'wpeditor') {
 
-        console.log('componentDidUpdate');
         // add wp editor from textarea
         wp.editor.initialize(m['key'], {
           mediaButtons: true,
@@ -460,7 +459,7 @@ export default class DynamicForm extends React.Component {
         });
       }
 
-    });*/
+    });
   }
 
   onChange = (e, key, type = "single", from_type = '', array_values = []) => {
@@ -1024,7 +1023,8 @@ export default class DynamicForm extends React.Component {
           onChange={e => {
             this.onChange(e, target);
           }}
-        />
+        >
+        </textarea>
         {m.desc ? <p className="mvx-settings-metabox-description" dangerouslySetInnerHTML={{ __html: m.desc }}></p> : ''}
         </div>
       );

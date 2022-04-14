@@ -172,7 +172,11 @@ class App extends Component {
             <div className="dashboard-tab-area">
               <ul className="mvx-dashboard-tabs-list">
                 {appLocalizer.mvx_all_backend_tab_list['status-tools'].map((data, index) => (
-                  <Link to={`?page=mvx#&submenu=status-tools&name=${data.modulename}`} ><li className={queryt.get("name") == data.modulename ? 'activedashboardtabs' : ''}>{data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}{data.tablabel}</li></Link>                ))}
+
+
+                data.link ? <a href={data.link}><li className={queryt.get("name") == data.modulename ? 'activedashboardtabs' : ''}>{data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}{data.tablabel}</li></a> : <Link to={`?page=mvx#&submenu=status-tools&name=${data.modulename}`} ><li className={queryt.get("name") == data.modulename ? 'activedashboardtabs' : ''}>{data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}{data.tablabel}</li></Link>                
+
+                ))}
               </ul>
               <div className="dashboard-tabcontentclass">
                 <this.Child name={queryt.get("name")} />
@@ -384,13 +388,6 @@ Child({ name }) {
 
             :
 
-            name == appLocalizer.mvx_all_backend_tab_list['status-tools'][3]['modulename'] ?
-              <div className="mvx-status-tools-content">
-
-                
-
-              </div>
-            :
             ''
       }
       </div>
