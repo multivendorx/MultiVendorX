@@ -670,8 +670,80 @@ class MVX_REST_API {
             'callback' => array( $this, 'mvx_system_info_copy_data' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
+
+
+        register_rest_route( 'mvx_module/v1', '/report_abuse_details', [
+            'methods' => WP_REST_Server::READABLE,
+            'callback' => array( $this, 'mvx_report_abuse_details' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
+        register_rest_route( 'mvx_module/v1', '/report_abuse_delete', [
+            'methods' => WP_REST_Server::EDITABLE,
+            'callback' => array( $this, 'mvx_report_abuse_delete' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
     }
 
+    public function mvx_report_abuse_delete($request) {
+        $reason = $request && $request->get_param('reason') ? $request->get_param('reason') : '';
+        $product = $request && $request->get_param('product') ? $request->get_param('product') : '';
+        $vendor_details = $request && $request->get_param('vendor') ? $request->get_param('vendor') : '';
+
+        $user_query = new WP_User_Query(array('role' => 'dc_vendor', 'orderby' => 'registered', 'order' => 'ASC'));
+        $users = $user_query->get_results();
+        $user_list = [];
+        if ($users) {
+            foreach($users as $user) {
+                $vendor = get_mvx_vendor($user->data->ID);
+                $report_abuse_data = get_user_meta($vendor->id, 'report_abuse_data', true) ? get_user_meta($vendor->id, 'report_abuse_data', true) : array();
+                if ($report_abuse_data) {
+                    foreach ($report_abuse_data as $key => $value) {
+
+                        if ($reason == $value['msg'] && $product == get_the_title($value['product_id']) && $vendor_details == $vendor->page_title) {
+                            unset($report_abuse_data[$key]);
+                            update_user_meta($vendor->id, 'report_abuse_data', $report_abuse_data);
+                        }
+                    }
+                }
+            }
+        }
+        return $this->mvx_report_abuse_details('');
+    }
+
+    public function mvx_report_abuse_details($request) {
+        $vendor_id = $request && $request->get_param('vendor_id') ? $request->get_param('vendor_id') : '';
+        $product_id = $request && $request->get_param('product_id') ? $request->get_param('product_id') : '';
+
+        $user_query = new WP_User_Query(array('role' => 'dc_vendor', 'orderby' => 'registered', 'order' => 'ASC'));
+        $users = $user_query->get_results();
+        $user_list = [];
+        if ($users) {
+            foreach($users as $user) {
+                $vendor = get_mvx_vendor($user->data->ID);
+                if ($vendor_id && $vendor_id != $user->data->ID) {
+                    continue;
+                }
+                $report_abuse_data = get_user_meta($vendor->id, 'report_abuse_data', true) ? get_user_meta($vendor->id, 'report_abuse_data', true) : array();
+                if ($report_abuse_data) {
+                    foreach ($report_abuse_data as $key => $value) {
+
+                        if ($product_id && $product_id != $value['product_id']) {
+                            continue;
+                        }
+                        $user_list[] = array(
+                            'reason'            => $value['msg'],
+                            'product'           => get_the_title($value['product_id']),
+                            'vendor'            => $vendor->page_title,
+                            'reported_by'       => $value['name'] .  '( ' . $value['email'] . ')',
+                        );
+                    }
+                }
+            }
+        }
+
+        return rest_ensure_response($user_list);
+    }
 
     public function mvx_fetch_system_info() {
         global $MVX;

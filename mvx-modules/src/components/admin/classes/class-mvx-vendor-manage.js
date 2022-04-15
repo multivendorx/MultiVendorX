@@ -62,6 +62,7 @@ class App extends React.Component {
       vendor_shipping_option_choice: '',
       bulkselectlist: [],
       data_setting_fileds: [],
+      mvx_store_endpoint: '',
 
       columns_vendor_list: [],
       
@@ -820,13 +821,13 @@ class App extends React.Component {
       `${appLocalizer.apiUrl}/mvx_module/v1/list_of_all_tab_based_settings_field`, { params: { vendor_id: new URLSearchParams(window.location.hash).get("ID") } 
       })
       .then(response => {
-        if (response.data && this.state.data_setting_fileds.length == 0) {
-
+        if (response.data  ) {
             this.setState({
               data_setting_fileds: response.data,
               vendor_shipping_option_choice: response.data.vendor_default_shipping_options.value,
             });
         }
+
       })
     }
 
@@ -1212,7 +1213,6 @@ class App extends React.Component {
               vendor_id={name.get("ID")}
               modulename={data.modulename}
               url={data.apiurl}
-              submitbutton="false"
               />
 
               : '' }

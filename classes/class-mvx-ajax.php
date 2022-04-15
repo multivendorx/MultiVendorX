@@ -1571,6 +1571,14 @@ class MVX_Ajax {
 
         if ($check) {
             $vendor = get_mvx_product_vendors($product_id);
+            $previous_report_abuse_data = get_user_meta($vendor->id, 'report_abuse_data', true) ? get_user_meta($vendor->id, 'report_abuse_data', true) : array();
+            $previous_report_abuse_data[] = array(
+                'name'          =>  $name,
+                'msg'           =>  $user_message,
+                'product_id'    =>  $product_id,
+                'email'         =>  $from_email,
+            );
+            update_user_meta($vendor->id, 'report_abuse_data', $previous_report_abuse_data);
             $mail = WC()->mailer()->emails['WC_Email_Send_Report_Abuse'];
             $result = $mail->trigger( $vendor, wc_clean($_POST) );
         }

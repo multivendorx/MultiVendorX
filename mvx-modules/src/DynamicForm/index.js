@@ -320,10 +320,12 @@ export default class DynamicForm extends React.Component {
       if(m['type'] == 'wpeditor') {
 
 
-      setInterval(() => {
+
+      /*setInterval(() => {
         this.onSubmit('');
       }, 5000)
-
+      */
+      
         // add wp editor from textarea
         /*wp.editor.initialize(m['key'], {
           mediaButtons: true,
@@ -410,8 +412,6 @@ export default class DynamicForm extends React.Component {
 
     this.props.model.map(m => {
       
-      console.log('dddddddddddd');
-
       if(m['type'] == 'wpeditor') {
         // add wp editor from textarea
         if (this.state.store_data_array.length == 0) {

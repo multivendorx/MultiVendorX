@@ -57,10 +57,13 @@ class App extends Component {
       email: '',
       abcarray: [],
       first_toggle: '',
-      second_toggle: '',      
+      second_toggle: '',
+      product_list_option: '',
       current: {},
       bulkselectlist: [],
       bulkselectreviewlist: [],
+      bulkselectabuselist: [],
+      show_vendor_name: '',
 
       display_announcement: [],
       display_pending_announcement: [],
@@ -81,12 +84,17 @@ class App extends Component {
       list_of_pending_vendor_coupon: [],
       list_of_pending_transaction: [],
       list_of_pending_question: [],
+      
+
       list_of_store_review: [],
+      list_of_report_abuse: [],
+
       columns_announcement_new: [],
 
       columns_knowledgebase_new: [],
 
       columns_store_review: [],
+      columns_report_abuse: [],
 
       pending_product_check: [],
       pending_user_check: [],
@@ -340,7 +348,83 @@ class App extends Component {
     this.handleselectreviews = this.handleselectreviews.bind(this);
 
     this.handle_search_vendor_review = this.handle_search_vendor_review.bind(this);
+   
+    this.handleselectabuse = this.handleselectabuse.bind(this);
+
+    this.handle_vendor_search_abuse = this.handle_vendor_search_abuse.bind(this);
+    this.handle_product_search_abuse = this.handle_product_search_abuse.bind(this);
     
+    this.handleAbuseDismiss = this.handleAbuseDismiss.bind(this);
+
+  }
+
+  handleAbuseDismiss(reason, product, vendor) {
+    if ( confirm("Are you sure to delete?") ) {
+      axios({
+        method: 'post',
+        url: `${appLocalizer.apiUrl}/mvx_module/v1/report_abuse_delete`,
+        data: {
+          reason: reason,
+          product: product,
+          vendor: vendor,
+        }
+      })
+      .then( ( responce ) => {
+        this.setState({
+          list_of_report_abuse: response.data,
+        });  
+      } );
+    }
+  }
+
+  handle_vendor_search_abuse(e) {
+    if (e) {
+      axios.get(
+      `${appLocalizer.apiUrl}/mvx_module/v1/report_abuse_details`, { params: { vendor_id: e.value } 
+      })
+      .then(response => {
+        this.setState({
+          list_of_report_abuse: response.data,
+        });
+      })
+    } else {
+      axios.get(
+      `${appLocalizer.apiUrl}/mvx_module/v1/report_abuse_details`
+      )
+      .then(response => {
+        this.setState({
+          list_of_report_abuse: response.data,
+        });
+      })
+    }
+  }
+
+  handle_product_search_abuse(e) {
+    if (e) {
+      axios.get(
+      `${appLocalizer.apiUrl}/mvx_module/v1/report_abuse_details`, { params: { product_id: e.value } 
+      })
+      .then(response => {
+        this.setState({
+          list_of_report_abuse: response.data,
+        });
+      })
+    } else {
+      axios.get(
+      `${appLocalizer.apiUrl}/mvx_module/v1/report_abuse_details`
+      )
+      .then(response => {
+        this.setState({
+          list_of_report_abuse: response.data,
+        });
+      })
+    }
+  }
+
+  handleselectabuse(e) {
+    this.setState({
+      bulkselectabuselist: e.selectedRows,
+    })
   }
 
   handle_search_vendor_review(e) {
@@ -352,11 +436,9 @@ class App extends Component {
         }
       })
       .then( ( responce ) => {
-
         this.setState({
           list_of_store_review: responce.data,
         });  
-
       } );
   }
 
@@ -1059,10 +1141,36 @@ class App extends Component {
     })
 
 
+    // fetch review
+    axios.get(
+    `${appLocalizer.apiUrl}/mvx_module/v1/report_abuse_details`
+    )
+    .then(response => {
+      this.setState({
+        list_of_report_abuse: response.data,
+      });
+    })
 
     
-    
+    // get vendor name on select
+    axios({
+      url: `${appLocalizer.apiUrl}/mvx_module/v1/show_vendor_name`
+    })
+    .then(response => {
+      this.setState({
+        show_vendor_name: response.data,
+      });
+    })
 
+    // product list
+    axios({
+      url: `${appLocalizer.apiUrl}/mvx_module/v1/product_list_option`
+    })
+    .then(response => {
+      this.setState({
+        product_list_option: response.data,
+      });
+    })
 
 
   }
@@ -1278,6 +1386,29 @@ Child({ name }) {
         set_for_dynamic_column_store_review = this.state.columns_store_review;
             this.setState({
               columns_store_review: set_for_dynamic_column_store_review,
+            });
+        }
+      )
+    }
+
+
+    // Display table column and row slection
+    if (this.state.columns_report_abuse.length == 0 && new URLSearchParams(window.location.hash).get("name") == 'report-abuse') {
+      appLocalizer.columns_report_abuse.map((data_store_report_abuse_content, index_store_abuse) => {
+        var data_report_abuse_selector = '';
+        var set_for_dynamic_column_store_review = '';
+        data_report_abuse_selector = data_store_report_abuse_content['selector_choice'];
+        data_store_report_abuse_content.selector = row => <div dangerouslySetInnerHTML={{__html: row[data_report_abuse_selector]}}></div>;
+
+
+        data_store_report_abuse_content.cell ? data_store_report_abuse_content.cell = (row) => <div className="mvx-vendor-action-icon">
+          <div onClick={() => this.handleAbuseDismiss(row.reason, row.product, row.vendor)} id={row.reason}><i className="mvx-font icon-no"></i></div>
+        </div> : '';
+
+        this.state.columns_report_abuse[index_store_abuse] = data_store_report_abuse_content
+        set_for_dynamic_column_store_review = this.state.columns_report_abuse;
+            this.setState({
+              columns_report_abuse: set_for_dynamic_column_store_review,
             });
         }
       )
@@ -1820,7 +1951,34 @@ Child({ name }) {
 
       name == appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'][4]['modulename'] ?
 
-      'report_abuse'
+      <div className="mvx-module-grid">
+        
+        <div className="mvx-wrap-bulk-all-date">
+          {/*<div className="mvx-wrap-bulk-action">
+            <Select placeholder="Bulk actions" options={appLocalizer.store_review_bulk} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_review_bulk_status} />
+          </div>*/}
+
+          <div className="mvx-wrap-bulk-action">
+            <Select placeholder="Filter by vendor" options={this.state.show_vendor_name} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_vendor_search_abuse} />
+          </div>
+
+          <div className="mvx-wrap-bulk-action">
+            <Select placeholder="Filter by product" options={this.state.product_list_option} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_product_search_abuse} />
+          </div>
+        </div>
+
+        <div className="mvx-backend-datatable-wrapper">
+          {this.state.columns_report_abuse && this.state.columns_report_abuse.length > 0 ?
+          <DataTable
+            columns={this.state.columns_report_abuse}
+            data={this.state.list_of_report_abuse}
+            selectableRows
+            onSelectedRowsChange={this.handleselectabuse}
+            pagination
+          />
+          : '' }
+        </div>
+      </div>
 
       :
 

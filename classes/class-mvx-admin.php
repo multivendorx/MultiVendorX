@@ -642,6 +642,44 @@ class MVX_Admin {
         );
 
 
+        $columns_report_abuse = array(
+            array(
+                'name'      =>  __('Reason', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "reason",
+                
+            ),
+            array(
+                'name'      =>  __('Product', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "product",
+            ),
+            array(
+                'name'      =>  __('Vendor', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "vendor",
+            ),
+            array(
+                'name'      =>  __('Reported by', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "reported_by",
+            ),
+            array(
+                'name'      =>  __('Action', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'cell'  =>  'cell',
+                'ignoreRowClick'=> true,
+                'allowOverflow'=> true,
+                'button'=> true,
+            )
+        );
+
+
         $vendor_list_page_bulk_list_options = array();
         $vendor_bulk_list = array(
             'delete' => __('Delete', 'dc-woocommerce-multi-vendor'),
@@ -698,6 +736,7 @@ class MVX_Admin {
             'columns_vendor'                =>  $columns_vendor,
             'vendor_list_page_bulk_list_options'    =>  $vendor_list_page_bulk_list_options,
             'columns_commission'                    =>  $columns_commission,
+            'columns_report_abuse'                  =>  $columns_report_abuse,
             'errors_log'                            =>  $this->get_error_log_rows(100),
         ] ) );
 
