@@ -224,7 +224,7 @@ class App extends Component {
                           )}
                         </ul>
                         <div className="mvx-module-current-status wp-clearfix">
-                          {student.is_active ? <a href={student.mod_link} className="module-settings button button-secondary mvx-module-url-button">{appLocalizer.settings_text}</a> : '' }
+                          {student.is_active && student.mod_link ? <a href={student.mod_link} className="module-settings button button-secondary mvx-module-url-button">{appLocalizer.settings_text}</a> : '' }
                           <a href={student.doc_link} className="button button-secondary mvx-module-url-button">{appLocalizer.documentation_text}</a>
                           <div class="mvx-toggle-checkbox-content">
                             <input type="checkbox" className="mvx-toggle-checkbox" id={`mvx-toggle-switch-${student.id}`} name="modules[]" value={student.id} checked={student.is_active ? true : false} onChange={(e) => this.handleOnChange(e, index, student.plan, student.is_required_plugin_active, student.doc_id, this.state.items, index1, index, student.id)}/>

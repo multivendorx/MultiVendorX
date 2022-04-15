@@ -10,8 +10,8 @@ export default class DynamicForm extends React.Component {
     this.state = { 
        from_loading: false,
        statedrop: [],
-       errordisplay: ''
-       
+       errordisplay: '',
+       store_data_array: []
      };
 
     this.runUploader = this.runUploader.bind(this);
@@ -318,6 +318,12 @@ export default class DynamicForm extends React.Component {
 
       
       if(m['type'] == 'wpeditor') {
+
+
+      setInterval(() => {
+        this.onSubmit('');
+      }, 5000)
+
         // add wp editor from textarea
         /*wp.editor.initialize(m['key'], {
           mediaButtons: true,
@@ -404,62 +410,68 @@ export default class DynamicForm extends React.Component {
 
     this.props.model.map(m => {
       
+      console.log('dddddddddddd');
 
-      
       if(m['type'] == 'wpeditor') {
-
         // add wp editor from textarea
-        wp.editor.initialize(m['key'], {
-          mediaButtons: true,
-          tinymce: {
-            wpautop  : true,
-            theme    : 'modern',
-            skin     : 'lightgray',
-            language : 'en',
-            formats  : {
-              alignleft  : [
-              { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li', styles: { textAlign: 'left' } },
-              { selector: 'img,table,dl.wp-caption', classes: 'alignleft' }
-              ],
-              aligncenter: [
-              { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li', styles: { textAlign: 'center' } },
-              { selector: 'img,table,dl.wp-caption', classes: 'aligncenter' }
-              ],
-              alignright : [
-              { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li', styles: { textAlign: 'right' } },
-              { selector: 'img,table,dl.wp-caption', classes: 'alignright' }
-              ],
-              strikethrough: { inline: 'del' }
-            },
-            relative_urls       : true,
-            remove_script_host  : true,
-            convert_urls        : true,
-            browser_spellcheck  : true,
-            fix_list_elements   : true,
-            entities            : '38,amp,60,lt,62,gt',
-            entity_encoding     : 'raw',
-            keep_styles         : true,
-            paste_webkit_styles : 'font-weight font-style color',
-            preview_styles      : 'font-family font-size font-weight font-style text-decoration text-transform',
-            tabfocus_elements   : ':prev,:next',
-            plugins    : 'charmap,hr,media,paste,tabfocus,textcolor,fullscreen,wordpress,wpeditimage,wpgallery,wplink,wpdialogs,wpview',
-            resize     : 'vertical',
-            menubar    : true,
-            indent     : true,
-            toolbar1   : 'bold,italic,strikethrough,bullist,numlist,blockquote,hr,alignleft,aligncenter,alignright,link,unlink,wp_more,spellchecker,fullscreen,wp_adv',
-            toolbar2   : 'formatselect,underline,alignjustify,forecolor,pastetext,removeformat,charmap,outdent,indent,undo,redo,wp_help',
-            toolbar3   : '',
-            toolbar4   : '',
-            body_class : 'id post-type-post post-status-publish post-format-standard',
-            wpeditimage_disable_captions: true,
-            wpeditimage_html5_captions  : true
+        if (this.state.store_data_array.length == 0) {
+          wp.editor.initialize(m['key'], {
+            mediaButtons: true,
+            tinymce: {
+              wpautop  : true,
+              theme    : 'modern',
+              skin     : 'lightgray',
+              language : 'en',
+              formats  : {
+                alignleft  : [
+                { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li', styles: { textAlign: 'left' } },
+                { selector: 'img,table,dl.wp-caption', classes: 'alignleft' }
+                ],
+                aligncenter: [
+                { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li', styles: { textAlign: 'center' } },
+                { selector: 'img,table,dl.wp-caption', classes: 'aligncenter' }
+                ],
+                alignright : [
+                { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li', styles: { textAlign: 'right' } },
+                { selector: 'img,table,dl.wp-caption', classes: 'alignright' }
+                ],
+                strikethrough: { inline: 'del' }
+              },
+              relative_urls       : true,
+              remove_script_host  : true,
+              convert_urls        : true,
+              browser_spellcheck  : true,
+              fix_list_elements   : true,
+              entities            : '38,amp,60,lt,62,gt',
+              entity_encoding     : 'raw',
+              keep_styles         : true,
+              paste_webkit_styles : 'font-weight font-style color',
+              preview_styles      : 'font-family font-size font-weight font-style text-decoration text-transform',
+              tabfocus_elements   : ':prev,:next',
+              plugins    : 'charmap,hr,media,paste,tabfocus,textcolor,fullscreen,wordpress,wpeditimage,wpgallery,wplink,wpdialogs,wpview',
+              resize     : 'vertical',
+              menubar    : true,
+              indent     : true,
+              toolbar1   : 'bold,italic,strikethrough,bullist,numlist,blockquote,hr,alignleft,aligncenter,alignright,link,unlink,wp_more,spellchecker,fullscreen,wp_adv',
+              toolbar2   : 'formatselect,underline,alignjustify,forecolor,pastetext,removeformat,charmap,outdent,indent,undo,redo,wp_help',
+              toolbar3   : '',
+              toolbar4   : '',
+              body_class : 'id post-type-post post-status-publish post-format-standard',
+              wpeditimage_disable_captions: true,
+              wpeditimage_html5_captions  : true
 
-          },
-          quicktags: true
-        });
+            },
+            quicktags: true
+          });
+
+          this.setState({
+            store_data_array: ['abc']
+          });
+        }
       }
 
     });
+
   }
 
   onChange = (e, key, type = "single", from_type = '', array_values = []) => {
@@ -1028,6 +1040,7 @@ export default class DynamicForm extends React.Component {
         {m.desc ? <p className="mvx-settings-metabox-description" dangerouslySetInnerHTML={{ __html: m.desc }}></p> : ''}
         </div>
       );
+
       }
 
 
