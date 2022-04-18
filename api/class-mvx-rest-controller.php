@@ -695,6 +695,9 @@ class MVX_REST_API {
         // get all settings fileds
         $settings_fields = mvx_admin_backend_settings_fields_details();
 
+        // get all tab settings fileds
+        $mvx_all_backend_tab_list = mvx_admin_backend_tab_settings();
+
         if (!empty($settings_fields)) {
             foreach ($settings_fields as $settings_key => $settings_value) {
                 foreach ($settings_value as $inter_key => $inter_value) {
@@ -4471,12 +4474,34 @@ class MVX_REST_API {
     }
 
     public function wcp_get_module_lists($request) {
-        $module_id = $request->get_param( 'module_id' );
+        $module_id = $request->get_param( 'module_id' ) ? $request->get_param( 'module_id' ) : '';
         $all_module_lists = $this->mvx_list_all_modules();
 
         if ($module_id && $module_id == 'all') {
             $response = $all_module_lists ? array_values($all_module_lists) : false;
         } else {
+            $ttttttttttttttt = [];
+            $ttjtjtjtjtjtj = [];
+            foreach ($all_module_lists as $key_parent => $value_parent) {
+                foreach ($value_parent['options'] as $key_child => $value_child) {
+                    if (stripos($value_child['name'], $module_id) !== false) {
+                        $ttttttttttttttt[] = array('id' => $value_child['id'], 'label' => $value_parent['label'], 'parent_key' => $key_parent, 'child_option_key' => $key_child);
+                    }
+                }
+            }
+
+            
+
+            foreach ($ttttttttttttttt as $key1 => $value1) {
+            
+                $ttjtjtjtjtjtj[] = array(
+                    'label' => $value1['label'],
+                    'options' => $all_module_lists[$value1['parent_key']]['options'][$value1['child_option_key']]
+                );
+            }
+
+                print_r($ttjtjtjtjtjtj);
+die;
             $response[] = $all_module_lists[$module_id];
         }
         return rest_ensure_response( $response );
@@ -4511,7 +4536,7 @@ class MVX_REST_API {
         $thumbnail_dir = $MVX->plugin_url.'assets/images/modules';
         $thumbnail_path = $MVX->plugin_path.'assets/images/modules';
         require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
-        $mvx_pro_is_active = is_plugin_active('mvx-pro/mvx-pro.php') ? true :false;
+        $mvx_pro_is_active = is_plugin_active('mvx-pro/mvx-pro.php') ? true : false;
             $mvx_all_modules   =   [
             [
                 'label' =>  __('Payment', 'dc-woocommerce-multi-vendor'),
@@ -4620,7 +4645,7 @@ class MVX_REST_API {
                         'description'  => __( 'Enable sellers to control their shipping', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=wc-settings&tab=shipping'),
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'zone-shipping',
@@ -4628,6 +4653,7 @@ class MVX_REST_API {
                         'description'  => __( 'Limit vendors to sell in selected zones', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                         'parent_category' => __( 'Shipping.', 'dc-woocommerce-multi-vendor' ),
                     ],
                     [
@@ -4636,6 +4662,7 @@ class MVX_REST_API {
                         'description'  => __( 'Calculate Rates based on distance between the vendor store and drop location', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'country-shipping',
@@ -4643,6 +4670,7 @@ class MVX_REST_API {
                         'description'  => __( 'Let vendors choose and manage shipping, to countries of their choice', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'weight-shipping',
@@ -4650,6 +4678,7 @@ class MVX_REST_API {
                         'description'  => __( 'Vendors can create shipping rates based on price, weight and quantity', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'per-product-shipping',
@@ -4669,6 +4698,7 @@ class MVX_REST_API {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                 ]
             ],
@@ -4718,6 +4748,7 @@ class MVX_REST_API {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'staff-manager',
@@ -4732,6 +4763,7 @@ class MVX_REST_API {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'follow-store',
@@ -4739,13 +4771,15 @@ class MVX_REST_API {
                         'description'  => __( 'Permit customers to follow store, receive updates & lets vendors keep track of customers', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                    ],
                     [
                         'id'           => 'store-review',
                         'name'         => __( 'Store Review', 'dc-woocommerce-multi-vendor' ),
                         'description'  => __( 'Allows customers to rate and review stores and their purchased products', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('zadmin.php?page=mvx#&submenu=settings&name=review-management'),
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'import-export',
@@ -4760,6 +4794,7 @@ class MVX_REST_API {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'marketplace-refund',
@@ -4767,7 +4802,7 @@ class MVX_REST_API {
                         'description'  => __( 'Enable customer refund requests & Let vendors manage customer refund ', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=refund-management'),
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'spmv',
@@ -4775,7 +4810,7 @@ class MVX_REST_API {
                         'description'  => __( 'Lets multiple vendors sell the same products ', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=spmv-pages'),
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'store-analytics',
@@ -4790,6 +4825,7 @@ class MVX_REST_API {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'store-seo',
@@ -4804,6 +4840,7 @@ class MVX_REST_API {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'invoice',
@@ -4841,6 +4878,7 @@ class MVX_REST_API {
                         'description'  => __( 'Lets customers report false products', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'live-chat',
@@ -4878,7 +4916,7 @@ class MVX_REST_API {
                         'description'  => __( "If enabled customers can view a vendor's store location", 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=store'),
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'store-policy',
@@ -4886,7 +4924,7 @@ class MVX_REST_API {
                         'description'  => __( 'Offers vendors the option to set individual store specific policies', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=policy'),
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                 ]
             ],
@@ -4899,7 +4937,7 @@ class MVX_REST_API {
                         'description'  => __( 'lets admin make important annoucements to vendors', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=work-board&name=announcement'),
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'knowladgebase',
@@ -4907,7 +4945,7 @@ class MVX_REST_API {
                         'description'  => __( 'Admin can share tutorials and othe vendor-specific information with vendors', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=work-board&name=knowladgebase'),
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                 ]
             ],
@@ -4920,7 +4958,7 @@ class MVX_REST_API {
                         'description'  => __( 'Covers the vast majority of any tangible products you may sell or ship i.e books', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=products'),
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                         'parent_category' => __( 'Marketplace Products.', 'dc-woocommerce-multi-vendor' ),
                     ],
                     [
@@ -4936,7 +4974,7 @@ class MVX_REST_API {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=products'),
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'external',
@@ -4951,7 +4989,7 @@ class MVX_REST_API {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=products'),
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'grouped',
@@ -4966,7 +5004,7 @@ class MVX_REST_API {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=products'),
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'booking',
@@ -4986,7 +5024,7 @@ class MVX_REST_API {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=products'),
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'subscription',
@@ -5006,7 +5044,7 @@ class MVX_REST_API {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=products'),
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'accommodation',
@@ -5026,7 +5064,7 @@ class MVX_REST_API {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=products'),
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'bundle',
@@ -5046,7 +5084,7 @@ class MVX_REST_API {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=products'),
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'auction',
@@ -5086,7 +5124,7 @@ class MVX_REST_API {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=products'),
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                 ]
             ],
@@ -5111,6 +5149,7 @@ class MVX_REST_API {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                         'parent_category' => __( 'Third Party Compartibility', 'dc-woocommerce-multi-vendor' ),
                     ],
                     [
@@ -5141,6 +5180,7 @@ class MVX_REST_API {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'advance-custom-field',
@@ -5160,6 +5200,7 @@ class MVX_REST_API {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                         'category'  => 'store boosters',
                     ],
                     [
@@ -5180,6 +5221,7 @@ class MVX_REST_API {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'toolset-types',
@@ -5199,6 +5241,7 @@ class MVX_REST_API {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'wp-affiliate',
@@ -5238,6 +5281,7 @@ class MVX_REST_API {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                 ]
             ],

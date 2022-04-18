@@ -775,17 +775,7 @@ class App extends Component {
       });
     })*/
 
-
-    axios({
-      url: `${appLocalizer.apiUrl}/mvx_module/v1/fetch_all_modules_data`
-    })
-    .then(response => {
-
-      setState({
-        list_of_module_data: response.data
-      });
-
-    });
+    
 
 
     axios({
@@ -915,7 +905,16 @@ class App extends Component {
 
 Child({ name }) {
 
+  axios({
+      url: `${appLocalizer.apiUrl}/mvx_module/v1/fetch_all_modules_data`
+    })
+    .then(response => {
 
+      this.setState({
+        list_of_module_data: response.data
+      });
+
+    });
  
   return (
     <div>
@@ -1173,17 +1172,19 @@ Child({ name }) {
             :
           
             <div>
+            {Object.keys(this.state.list_of_module_data).length > 0 ?
               <DynamicForm
               key={`dynamic-form-${data.modulename}`}
               className={data.classname}
               title={data.tablabel}
               defaultValues={this.state.current}
-              model= {appLocalizer.settings_fields[data.modulename]}
+              model= {this.state.list_of_module_data[data.modulename]}
               method="post"
               modulename={data.modulename}
               url={data.apiurl}
               submitbutton="false"
               />
+              : 'Please wait few seconds'}
             </div>
             
         : ''

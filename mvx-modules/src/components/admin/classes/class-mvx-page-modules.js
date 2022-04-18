@@ -64,7 +64,22 @@ class App extends Component {
 
     this.useQuery = this.useQuery.bind(this);
 
+    this.handleModuleSearch = this.handleModuleSearch.bind(this);
+    
+  }
 
+  handleModuleSearch(e) {
+    //console.log(e.target.value);
+
+    axios({
+      url: `${appLocalizer.apiUrl}/mvx_module/v1/module_lists?module_id=${e.target.value}`
+    })
+    .then(response => {
+      /*this.setState({
+        items: response.data,
+        isLoaded: false
+      });*/
+    })
   }
 
   setTabIndex(e) {
@@ -177,6 +192,9 @@ class App extends Component {
                 <div className="mvx-tab-name-display">Module</div>
                 <p>Module description</p>
               </div>
+
+
+              <input type="text" onChange={(e) => this.handleModuleSearch(e)} />
 
 
           <div className="mvx-module-section-ui module-listing dashboard-wrapper">
