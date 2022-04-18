@@ -79,7 +79,7 @@ global $MVX;
                 <?php do_action( 'mvx_afm_product_options_pricing', $post->ID, $product_object, $post ); ?> 
             </div>
         <?php endif; ?>
-        <?php if ( $MVX->vendor_caps->vendor_can( 'downloadable' ) ) : ?>
+        <?php if ( mvx_is_product_type_avaliable( 'downloadable' ) ) : ?>
             <div class="form-group-row show_if_downloadable"> 
                 <div class="form-group">
                     <label class="control-label col-sm-3 col-md-3"><?php esc_html_e( 'Downloadable files', 'dc-woocommerce-multi-vendor' ); ?></label>
