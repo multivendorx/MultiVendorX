@@ -384,9 +384,10 @@ class MVX_Products_Edit_Product {
     
     public function mvx_set_product_type_options( $option ) {
         global $MVX;
-        foreach ( $option as $key => $val ) {
-            if ( ! $MVX->vendor_caps->vendor_can( $key ) ) {
-                unset( $option[$key] );
+        $product_type_option = get_mvx_global_settings('type_options');
+        foreach ($option as $key => $val) {
+            if (!in_array($key, $product_type_option)) {
+                unset($option[$key]);
             }
         }
         return $option;

@@ -4413,9 +4413,9 @@ class MVX_REST_API {
             wp_set_current_user( $user );
             wp_set_auth_cookie( $user, true );
 
-            $is_approve_manually = $MVX->vendor_caps->vendor_general_settings('approve_vendor_manually');
+            $is_approve_manually = get_mvx_global_settings('approve_vendor');
             if (!is_user_mvx_vendor($user)) {
-                if ($is_approve_manually) {
+                if ($is_approve_manually == 'manually') {
                     $userdeta = new WP_User(absint($user));
                     $userdeta->set_role('dc_pending_vendor');
                 } else {
@@ -4512,7 +4512,7 @@ class MVX_REST_API {
         $thumbnail_path = $MVX->plugin_path.'assets/images/modules';
         require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
         $mvx_pro_is_active = is_plugin_active('mvx-pro/mvx-pro.php') ? true :false;
-            $mvx_all_modules   =   [
+        $mvx_all_modules   =   [
             [
                 'label' =>  __('Payment', 'dc-woocommerce-multi-vendor'),
                 'options'       =>  [
@@ -4739,6 +4739,7 @@ class MVX_REST_API {
                         'description'  => __( 'Permit customers to follow store, receive updates & lets vendors keep track of customers', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                    ],
                     [
                         'id'           => 'store-review',
                         'name'         => __( 'Store Review', 'dc-woocommerce-multi-vendor' ),

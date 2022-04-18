@@ -186,6 +186,27 @@ if (!function_exists('get_mvx_vendors')) {
 
 }
 
+if (!function_exists('mvx_is_product_type_avaliable')) {
+
+    /**
+     * Check product type is avaliable
+     * @return bool
+     */
+    function mvx_is_product_type_avaliable($type = '') {
+        if ($type && !empty($type)) {
+            $product_types = get_mvx_global_settings('product_types');
+            $type_option = get_mvx_global_settings('type_options');
+            $mvx_product_types = array_merge($product_types, $type_option);
+            if (is_array($mvx_product_types) && in_array($type, $mvx_product_types)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
+    }
+}
+
 if (!function_exists('get_mvx_vendor')) {
 
     /**
@@ -3123,19 +3144,19 @@ if (!function_exists('mvx_get_available_product_types')) {
         $available_product_types = array();
         $terms = get_terms('product_type');
         foreach ($terms as $term) {
-            if ($term->name == 'simple' && $MVX->vendor_caps->vendor_can('simple')) {
+            if ($term->name == 'simple' && mvx_is_product_type_avaliable('simple')) {
                 $available_product_types['simple'] = __('Simple product', 'dc-woocommerce-multi-vendor');
-                if ($MVX->vendor_caps->vendor_can('virtual')) {
+                if (mvx_is_product_type_avaliable('virtual')) {
                     $available_product_types['virtual'] = __('Virtual product', 'dc-woocommerce-multi-vendor');
                 }
-                if ($MVX->vendor_caps->vendor_can('downloadable')) {
+                if (mvx_is_product_type_avaliable('downloadable')) {
                     $available_product_types['downloadable'] = __('Downloadable product', 'dc-woocommerce-multi-vendor');
                 }
-            } elseif ($term->name == 'variable' && $MVX->vendor_caps->vendor_can('variable')) {
+            } elseif ($term->name == 'variable' && mvx_is_product_type_avaliable('variable')) {
                 $available_product_types['variable'] = __('Variable product', 'dc-woocommerce-multi-vendor');
-            } elseif ($term->name == 'grouped' && $MVX->vendor_caps->vendor_can('grouped')) {
+            } elseif ($term->name == 'grouped' && mvx_is_product_type_avaliable('grouped')) {
                 $available_product_types['grouped'] = __('Grouped product', 'dc-woocommerce-multi-vendor');
-            } elseif ($term->name == 'external' && $MVX->vendor_caps->vendor_can('external')) {
+            } elseif ($term->name == 'external' && mvx_is_product_type_avaliable('external')) {
                 $available_product_types['external'] = __('External/Affiliate product', 'dc-woocommerce-multi-vendor');
             } else {
                 

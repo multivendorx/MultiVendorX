@@ -736,9 +736,9 @@ class MVX_User {
      */
     public function vendor_registration($user_id) {
         global $MVX;
-        $is_approve_manually = $MVX->vendor_caps->vendor_general_settings('approve_vendor_manually');
+        $is_approve_manually = get_mvx_global_settings('approve_vendor');
         if (isset($_POST['pending_vendor']) && ($_POST['pending_vendor'] == 'true') && !is_user_mvx_vendor($user_id)) {
-            if ($is_approve_manually) {
+            if ($is_approve_manually == 'manually') {
                 $user = new WP_User(absint($user_id));
                 $user->set_role('dc_pending_vendor');
             } else {
