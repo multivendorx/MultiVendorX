@@ -54,6 +54,7 @@ class App extends Component {
       mvx_registration_fileds_list: [],
       current: {},
       registration_title_hidden: false,
+      list_of_module_data: []
     };
 
     this.query = null;
@@ -773,6 +774,18 @@ class App extends Component {
         abcarray: response.data ? response.data : []
       });
     })*/
+
+
+    axios({
+      url: `${appLocalizer.apiUrl}/mvx_module/v1/fetch_all_modules_data`
+    })
+    .then(response => {
+
+      setState({
+        list_of_module_data: response.data
+      });
+
+    });
 
 
     axios({

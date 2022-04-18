@@ -683,6 +683,35 @@ class MVX_REST_API {
             'callback' => array( $this, 'mvx_report_abuse_delete' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
+
+        register_rest_route( 'mvx_module/v1', '/fetch_all_modules_data', [
+            'methods' => WP_REST_Server::READABLE,
+            'callback' => array( $this, 'mvx_fetch_all_modules_data' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+    }
+
+    public function mvx_fetch_all_modules_data() {
+        // get all settings fileds
+        $settings_fields = mvx_admin_backend_settings_fields_details();
+
+        if (!empty($settings_fields)) {
+            foreach ($settings_fields as $settings_key => $settings_value) {
+                foreach ($settings_value as $inter_key => $inter_value) {
+                    $change_settings_key    =   str_replace("-", "_", $settings_key);
+                    $option_name = 'mvx_'.$change_settings_key.'_tab_settings';
+                    $database_value = get_option($option_name) ? get_option($option_name) : array();
+                    if (!empty($database_value)) {
+                        if (isset($inter_value['key']) && array_key_exists($inter_value['key'], $database_value)) {
+                            if (empty($settings_fields[$settings_key][$inter_key]['database_value'])) {
+                               $settings_fields[$settings_key][$inter_key]['database_value'] = $database_value[$inter_value['key']];
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return rest_ensure_response($settings_fields);
     }
 
     public function mvx_report_abuse_delete($request) {

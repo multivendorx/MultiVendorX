@@ -4953,7 +4953,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 ],
                 [
                     'key'       => 'setup_wizard_introduction',
-                    'type'      => 'wpeditor',
+                    'type'      => 'textarea',
                     'class'     =>  'mvx-setting-wpeditor-class',
                     'label'     => __( 'Vendor Setup wizard Introduction Message', 'dc-woocommerce-multi-vendor' ),
                     'desc'      => __( "Type an message to introduce your vendor's to their dashboard", 'dc-woocommerce-multi-vendor' ),
