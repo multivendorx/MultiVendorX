@@ -578,7 +578,7 @@ class MVX_Ajax {
             $html .= "<ul>";
             foreach ($product_objects as $product_object) {
                 if ($product_object) {
-                    if (is_user_mvx_vendor($user) && $MVX->vendor_caps->vendor_can($product_object->get_type())) {
+                    if (is_user_mvx_vendor($user) && mvx_is_product_type_avaliable($product_object->get_type())) {
                         if ($is_admin == 'false') {
                             $html .= "<li><a data-product_id='{$product_object->get_id()}' href='javascript:void(0)'>" . rawurldecode($product_object->get_formatted_name()) . "</a></li>";
                         } else {
@@ -3953,7 +3953,7 @@ class MVX_Ajax {
                 foreach ($product_objects as $product_object) {
                     if ($product_object) {
                         $gtin_code = get_post_meta($product_object->get_id(), '_mvx_gtin_code', true);
-                        if (is_user_mvx_vendor($user_id) && $MVX->vendor_caps->vendor_can($product_object->get_type())) {
+                        if (is_user_mvx_vendor($user_id) && mvx_is_product_type_avaliable($product_object->get_type())) {
                             // product cat
                             $product_cats = '';
                             $termlist = array();

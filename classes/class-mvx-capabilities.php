@@ -20,7 +20,6 @@ class MVX_Capabilities {
         $this->mvx_capability = array_merge(
                 $this->mvx_capability
                 , (array) get_option('mvx_settings_general_tab_settings', array())
-                , (array) get_option('mvx_products_tab_settings', array())
                 , (array) get_option('mvx_products_capability_tab_settings', array())
         );
         $this->payment_cap = array_merge(
@@ -50,25 +49,14 @@ class MVX_Capabilities {
      * @return boolean 
      */
     public function vendor_can($cap) {
-        if (is_array($this->mvx_capability) && array_key_exists($cap, $this->mvx_capability)) {
-            return true;
-        } else {
-            return false;
+        if (is_array($this->mvx_capability) && !empty($cap)) {
+            if (get_mvx_global_settings($cap)) {
+                return true;
+            } else {
+                return false;
+            }
         }
-    }
-
-    /**
-     * Vendor Capability from General Settings 
-     *
-     * @param capability
-     * @return boolean 
-     */
-    public function vendor_general_settings($cap) {
-        if (is_array($this->mvx_capability) && array_key_exists($cap, $this->mvx_capability)) {
-            return true;
-        } else {
-            return false;
-        }
+        return false;
     }
 
     /**
@@ -111,7 +99,7 @@ class MVX_Capabilities {
         if( !is_user_mvx_vendor($user) ) return $product_types;
         if ($product_types) {
             foreach ($product_types as $product_type => $value) {
-                $vendor_can = $this->vendor_can($product_type);
+                $vendor_can = mvx_is_product_type_avaliable($product_type);
                 if (!$vendor_can) {
                     unset($product_types[$product_type]);
                 }
@@ -130,7 +118,7 @@ class MVX_Capabilities {
         $user = wp_get_current_user();
         if (is_user_mvx_vendor($user) && $product_type_options) {
             foreach ($product_type_options as $product_type_option => $value) {
-                $vendor_can = $this->vendor_can($product_type_option);
+                $vendor_can = mvx_is_product_type_avaliable($product_type_option);
                 if (!$vendor_can) {
                     unset($product_type_options[$product_type_option]);
                 }
