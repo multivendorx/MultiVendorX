@@ -4536,13 +4536,10 @@ die;
         $thumbnail_dir = $MVX->plugin_url.'assets/images/modules';
         $thumbnail_path = $MVX->plugin_path.'assets/images/modules';
         require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
-<<<<<<< HEAD
         $mvx_pro_is_active = is_plugin_active('mvx-pro/mvx-pro.php') ? true : false;
-            $mvx_all_modules   =   [
-=======
+            
         $mvx_pro_is_active = is_plugin_active('mvx-pro/mvx-pro.php') ? true :false;
         $mvx_all_modules   =   [
->>>>>>> 3ebe8baef95bb2d882ca0ce75ec50d6a0c8cee10
             [
                 'label' =>  __('Payment', 'dc-woocommerce-multi-vendor'),
                 'options'       =>  [
@@ -4776,10 +4773,7 @@ die;
                         'description'  => __( 'Permit customers to follow store, receive updates & lets vendors keep track of customers', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-<<<<<<< HEAD
                         'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
-=======
->>>>>>> 3ebe8baef95bb2d882ca0ce75ec50d6a0c8cee10
                     ],
                     [
                         'id'           => 'store-review',
