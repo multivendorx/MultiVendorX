@@ -850,7 +850,7 @@ class MVX_Frontend {
         if ( ! empty( $store_tabs ) ) : ?>
 
         <div class='mvx-main-section'>
-            <?php if (get_mvx_vendor_settings('store_sidebar_position', 'general') == 'left') do_action( 'mvx_store_widget_contents' ); ?>
+            <?php if (get_mvx_vendor_settings('store_sidebar_position', 'store') == 'At Left') do_action( 'mvx_store_widget_contents' ); ?>
             <div class="column-class mvx-middle-sec ">
                 <div class="mvx-tab-header">
                     <?php foreach( $store_tabs as $key => $tab ) { 
@@ -877,7 +877,7 @@ class MVX_Frontend {
                 </div>
             </div>
         <?php endif; ?>
-        <?php if (get_mvx_vendor_settings('store_sidebar_position', 'general') == 'right') do_action( 'mvx_store_widget_contents' ); ?>
+        <?php if (get_mvx_vendor_settings('store_sidebar_position', 'store') == 'At Right') do_action( 'mvx_store_widget_contents' ); ?>
         </div>
         <?php
     }
@@ -986,17 +986,16 @@ class MVX_Frontend {
 
     // Sideber as per admin choice
     public function mvx_store_widget_contents() {
-
-        if (get_mvx_vendor_settings('store_sidebar_position', 'general') == 'left') { 
+        if (get_mvx_vendor_settings('store_sidebar_position', 'store') == 'At Left') { 
             $widget_class = 'mvx-leftwidget-sec';
-        } elseif (get_mvx_vendor_settings('store_sidebar_position', 'general') == 'right') {
+        } elseif (get_mvx_vendor_settings('store_sidebar_position', 'store') == 'At Right') {
             $widget_class = 'mvx-rightwidget-sec';
         } else {
             $widget_class = '';
         }
-        if ($widget_class != '' && is_active_sidebar('sidebar-mvx-store') && get_mvx_vendor_settings('is_enable_store_sidebar', 'general') == 'Enable') {
+        if ($widget_class != '' && is_active_sidebar('sidebar-mvx-store') && get_mvx_vendor_settings('is_enable_store_sidebar', 'store')) {
             ?>
-            <div class="column-class <?php //echo $widget_class ?>" >
+            <div class="column-class" >
                 <?php dynamic_sidebar( 'sidebar-mvx-store' ); ?>
             </div> 
             <?php

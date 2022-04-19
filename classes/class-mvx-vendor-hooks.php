@@ -38,6 +38,7 @@ class MVX_Vendor_Hooks {
         add_filter( 'mvx_vendor_dashboard_menu_vendor_policies_capability', array( &$this, 'mvx_vendor_dashboard_menu_vendor_policies_capability' ) );
         add_filter( 'mvx_vendor_dashboard_menu_vendor_withdrawal_capability', array( &$this, 'mvx_vendor_dashboard_menu_vendor_withdrawal_capability' ) );
         add_filter( 'mvx_vendor_dashboard_menu_vendor_shipping_capability', array( &$this, 'mvx_vendor_dashboard_menu_vendor_shipping_capability' ) );
+        add_filter('mvx_vendor_dashboard_menu_vendor_knowledgebase_capability', array( &$this, 'mvx_vendor_dashboard_menu_vendor_knowledgebase_capability' ) );
         add_action( 'before_mvx_vendor_dashboard_content', array( &$this, 'before_mvx_vendor_dashboard_content' ) );
         add_action( 'wp', array( &$this, 'mvx_add_theme_support' ), 15 );
         
@@ -330,16 +331,18 @@ class MVX_Vendor_Hooks {
      */
     public function mvx_vendor_dashboard_vendor_announcements_endpoint() {
         global $MVX;
-        $frontend_style_path = $MVX->plugin_url . 'assets/frontend/css/';
-        $frontend_style_path = str_replace( array( 'http:', 'https:' ), '', $frontend_style_path );
-        $frontend_script_path = $MVX->plugin_url . 'assets/frontend/js/';
-        $frontend_script_path = str_replace( array( 'http:', 'https:' ), '', $frontend_script_path );
-        $suffix = defined( 'MVX_SCRIPT_DEBUG' ) && MVX_SCRIPT_DEBUG ? '' : '.min';
-        wp_enqueue_script( 'jquery-ui-accordion' );
-        wp_enqueue_script( 'mvx_new_vandor_announcements_js', $frontend_script_path . 'mvx_vendor_announcements' . $suffix . '.js', array( 'jquery' ), $MVX->version, true );
-        $MVX->localize_script( 'mvx_new_vandor_announcements_js' );
-        $vendor = get_mvx_vendor( get_current_vendor_id() );
-        $MVX->template->get_template( 'vendor-dashboard/vendor-announcements.php', array( 'vendor_announcements' => $vendor->get_announcements() ) );
+        if (mvx_is_module_active('announcement')) {
+            $frontend_style_path = $MVX->plugin_url . 'assets/frontend/css/';
+            $frontend_style_path = str_replace( array( 'http:', 'https:' ), '', $frontend_style_path );
+            $frontend_script_path = $MVX->plugin_url . 'assets/frontend/js/';
+            $frontend_script_path = str_replace( array( 'http:', 'https:' ), '', $frontend_script_path );
+            $suffix = defined( 'MVX_SCRIPT_DEBUG' ) && MVX_SCRIPT_DEBUG ? '' : '.min';
+            wp_enqueue_script( 'jquery-ui-accordion' );
+            wp_enqueue_script( 'mvx_new_vandor_announcements_js', $frontend_script_path . 'mvx_vendor_announcements' . $suffix . '.js', array( 'jquery' ), $MVX->version, true );
+            $MVX->localize_script( 'mvx_new_vandor_announcements_js' );
+            $vendor = get_mvx_vendor( get_current_vendor_id() );
+            $MVX->template->get_template( 'vendor-dashboard/vendor-announcements.php', array( 'vendor_announcements' => $vendor->get_announcements() ) );
+        }
     }
 
     /**
@@ -758,9 +761,11 @@ class MVX_Vendor_Hooks {
      */
     public function mvx_vendor_dashboard_vendor_knowledgebase_endpoint() {
         global $MVX;
-        wp_enqueue_style( 'jquery-ui-style' );
-        wp_enqueue_script( 'jquery-ui-accordion' );
-        $MVX->template->get_template( 'vendor-dashboard/vendor-university.php' );
+        if (mvx_is_module_active('knowladgebase')) {
+            wp_enqueue_style( 'jquery-ui-style' );
+            wp_enqueue_script( 'jquery-ui-accordion' );
+            $MVX->template->get_template( 'vendor-dashboard/vendor-university.php' );
+        }   
     }
 
     /**
@@ -869,6 +874,10 @@ class MVX_Vendor_Hooks {
         } else {
             return false;
         }
+    }
+
+    public function mvx_vendor_dashboard_menu_vendor_knowledgebase_capability( $cap ) {
+        return mvx_is_module_active('knowladgebase');
     }
 
     /**
