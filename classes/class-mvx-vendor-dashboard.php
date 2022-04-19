@@ -40,6 +40,8 @@ Class MVX_Admin_Dashboard {
         
         add_filter( 'mvx_vendor_dashboard_add_product_url', array( &$this, 'mvx_vendor_dashboard_add_product_url' ), 10 );
         add_filter( 'mvx_vendor_submit_product', array( &$this, 'mvx_vendor_dashboard_add_product_url' ), 10 );
+
+        add_filter( 'mvx_show_vendor_announcements', array( &$this, 'mvx_show_vendor_announcements' ), 10 );
         // send email to folloed customer
         add_action( 'save_post', array( &$this, 'notify_followed_customers' ), 99, 2 );
         // Multi split payment hook call
@@ -1824,6 +1826,10 @@ Class MVX_Admin_Dashboard {
         public function mvx_vendor_product_sales_report() {
             global $MVX;
             $MVX->template->get_template('vendor-dashboard/dashboard-widgets/mvx_vendor_product_sales_report.php');
+        }
+        
+        public function mvx_show_vendor_announcements( $cap ) {
+            return mvx_is_module_active('announcement');
         }
 
         function mvx_vendor_transaction_details() {

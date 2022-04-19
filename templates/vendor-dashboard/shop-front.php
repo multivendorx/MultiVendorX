@@ -253,155 +253,151 @@ $_wp_editor_settings = apply_filters('mvx_vendor_storefront_wp_editor_settings',
                         <label class="control-label col-sm-3 col-md-3"><?php _e('Store Location', 'dc-woocommerce-multi-vendor'); ?></label>
                         <div class="col-md-6 col-sm-9">  
                             <?php
-                            $api_key = get_mvx_vendor_settings('google_api_key');
-                            if (mvx_mapbox_api_enabled()) {
-                                $MVX->library->load_mapbox_api();
-                                $map_style = apply_filters( 'mvx_dashboard_location_widget_map_style', 'mapbox://styles/mapbox/streets-v11');
-                                ?>
-                                <div class="vendor_store_map" id="vendor_store_map" style="width: 100%; height: 300px;"></div>
-                                <div class="form_area">
-                                    <?php
-                                    $store_location = get_user_meta($vendor->id, '_store_location', true) ? get_user_meta($vendor->id, '_store_location', true) : '';
-                                    $store_lat = get_user_meta($vendor->id, '_store_lat', true) ? get_user_meta($vendor->id, '_store_lat', true) : 0;
-                                    $store_lng = get_user_meta($vendor->id, '_store_lng', true) ? get_user_meta($vendor->id, '_store_lng', true) : 0;
-                                    ?>
-                                    <input type="hidden" name="_store_location" id="store_location" value="<?php echo $store_location; ?>">
-                                    <input type="hidden" name="_store_lat" id="store_lat" value="<?php echo $store_lat; ?>">
-                                    <input type="hidden" name="_store_lng" id="store_lng" value="<?php echo $store_lng; ?>">
-                                </div>
-                                <script>
-                                    mapboxgl.accessToken = '<?php echo mvx_mapbox_api_enabled(); ?>';
-                                    var map = new mapboxgl.Map({
-                                        container: 'vendor_store_map', // container id
-                                        style: '<?php echo $map_style ?>',
-                                        center: [<?php echo $store_lat ?>, <?php echo $store_lng ?>],
-                                        zoom: 5
-                                    });
-
-                                    var marker1 = new mapboxgl.Marker()
-                                        .setLngLat([<?php echo $store_lat ?>, <?php echo $store_lng ?>])
-                                    .addTo(map);
-                                    var geocoder = new MapboxGeocoder({
-                                        accessToken: mapboxgl.accessToken,
-                                        marker: {
-                                            color: 'red'
-                                        },
-                                        mapboxgl: mapboxgl
-                                    });
-                                    map.on('load', function() {
-                                        geocoder.on('result', function(ev) {
-                                            document.getElementById("store_location").value = ev.result.place_name;
-                                            document.getElementById("store_lat").value = ev.result.center[0];
-                                            document.getElementById("store_lng").value = ev.result.center[1];
-                                        });
-                                    });
-                                    map.addControl(geocoder);
-                                    map.addControl(new mapboxgl.NavigationControl());
-                                </script>
-                                <?php
-                            } elseif (!empty($api_key)) {
-                                ?>
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <input type="text" id="searchStoreAddress" class="store-map-address form-control" placeholder="<?php _e('Enter store location', 'dc-woocommerce-multi-vendor'); ?>">
+                            if (mvx_is_module_active('store-location') && get_mvx_vendor_settings('enable_store_map_for_vendor', 'store')) {
+                                if (mvx_mapbox_api_enabled()) {
+                                    $MVX->library->load_mapbox_api();
+                                    $map_style = apply_filters( 'mvx_dashboard_location_widget_map_style', 'mapbox://styles/mapbox/streets-v11'); ?>
+                                    <div class="vendor_store_map" id="vendor_store_map" style="width: 100%; height: 300px;"></div>
+                                    <div class="form_area">
+                                        <?php
+                                        $store_location = get_user_meta($vendor->id, '_store_location', true) ? get_user_meta($vendor->id, '_store_location', true) : '';
+                                        $store_lat = get_user_meta($vendor->id, '_store_lat', true) ? get_user_meta($vendor->id, '_store_lat', true) : 0;
+                                        $store_lng = get_user_meta($vendor->id, '_store_lng', true) ? get_user_meta($vendor->id, '_store_lng', true) : 0;
+                                        ?>
+                                        <input type="hidden" name="_store_location" id="store_location" value="<?php echo $store_location; ?>">
+                                        <input type="hidden" name="_store_lat" id="store_lat" value="<?php echo $store_lat; ?>">
+                                        <input type="hidden" name="_store_lng" id="store_lng" value="<?php echo $store_lng; ?>">
                                     </div>
-                                </div>
-                                <div class="vendor_store_map" id="vendor_store_map" style="width: 100%; height: 300px;"></div>
-                                <div class="form_area">
-                                    <?php
-                                    $store_location = get_user_meta($vendor->id, '_store_location', true) ? get_user_meta($vendor->id, '_store_location', true) : '';
-                                    $store_lat = get_user_meta($vendor->id, '_store_lat', true) ? get_user_meta($vendor->id, '_store_lat', true) : 0;
-                                    $store_lng = get_user_meta($vendor->id, '_store_lng', true) ? get_user_meta($vendor->id, '_store_lng', true) : 0;
-                                    ?>
-                                    <input type="hidden" name="_store_location" id="store_location" value="<?php echo $store_location; ?>">
-                                    <input type="hidden" name="store_address_components" id="store_address_components" value="">
-                                    <input type="hidden" name="_store_lat" id="store_lat" value="<?php echo $store_lat; ?>">
-                                    <input type="hidden" name="_store_lng" id="store_lng" value="<?php echo $store_lng; ?>">
-                                </div>
-                                <?php
-                                wp_add_inline_script('mvx-gmaps-api', '(function ($) {
-                                    function initialize() {
-                                        var latlng = new google.maps.LatLng(' . $store_lat . ',' . $store_lng . ');
-                                        var map = new google.maps.Map(document.getElementById("vendor_store_map"), {
-                                            center: latlng,
-                                            blur : true,
-                                            zoom: 15
-                                        });
-                                        var marker = new google.maps.Marker({
-                                            map: map,
-                                            position: latlng,
-                                            draggable: true,
-                                            anchorPoint: new google.maps.Point(0, -29)
+                                    <script>
+                                        mapboxgl.accessToken = '<?php echo mvx_mapbox_api_enabled(); ?>';
+                                        var map = new mapboxgl.Map({
+                                            container: 'vendor_store_map', // container id
+                                            style: '<?php echo $map_style ?>',
+                                            center: [<?php echo $store_lat ?>, <?php echo $store_lng ?>],
+                                            zoom: 5
                                         });
 
-                                        var input = document.getElementById("searchStoreAddress");
-                                        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-                                        var geocoder = new google.maps.Geocoder();
-                                        var autocomplete = new google.maps.places.Autocomplete(input);
-                                        autocomplete.bindTo("bounds", map);
-                                        var infowindow = new google.maps.InfoWindow();   
-
-                                        autocomplete.addListener("place_changed", function() {
-                                            infowindow.close();
-                                            marker.setVisible(false);
-                                            var place = autocomplete.getPlace();
-                                            if (!place.geometry) {
-                                                window.alert("Autocomplete returned place contains no geometry");
-                                                return;
-                                            }
-
-                                            // If the place has a geometry, then present it on a map.
-                                            if (place.geometry.viewport) {
-                                                map.fitBounds(place.geometry.viewport);
-                                            } else {
-                                                map.setCenter(place.geometry.location);
-                                                map.setZoom(17);
-                                            }
-
-                                            marker.setPosition(place.geometry.location);
-                                            marker.setVisible(true);
-                                            
-                                            bindDataToForm(place.formatted_address,place.geometry.location.lat(),place.geometry.location.lng(),place.address_components);
-                                            infowindow.setContent(place.formatted_address);
-                                            infowindow.open(map, marker);
-                                            showTooltip(infowindow,marker,place.formatted_address);
-
+                                        var marker1 = new mapboxgl.Marker()
+                                            .setLngLat([<?php echo $store_lat ?>, <?php echo $store_lng ?>])
+                                        .addTo(map);
+                                        var geocoder = new MapboxGeocoder({
+                                            accessToken: mapboxgl.accessToken,
+                                            marker: {
+                                                color: 'red'
+                                            },
+                                            mapboxgl: mapboxgl
                                         });
-                                        google.maps.event.addListener(marker, "dragend", function() {
-                                            geocoder.geocode({"latLng": marker.getPosition()}, function(results, status) {
-                                                if (status == google.maps.GeocoderStatus.OK) {
-                                                    if (results[0]) {    
-                                                        bindDataToForm(results[0].formatted_address,marker.getPosition().lat(),marker.getPosition().lng(), results[0].address_components);
-                                                        infowindow.setContent(results[0].formatted_address);
-                                                        infowindow.open(map, marker);
-                                                        showTooltip(infowindow,marker,results[0].formatted_address);
-                                                        document.getElementById("searchStoreAddress");
-                                                    }
-                                                }
+                                        map.on('load', function() {
+                                            geocoder.on('result', function(ev) {
+                                                document.getElementById("store_location").value = ev.result.place_name;
+                                                document.getElementById("store_lat").value = ev.result.center[0];
+                                                document.getElementById("store_lng").value = ev.result.center[1];
                                             });
                                         });
-                                    }
+                                        map.addControl(geocoder);
+                                        map.addControl(new mapboxgl.NavigationControl());
+                                    </script>
+                                    <?php
+                                } elseif (mvx_google_api_enabled()) { ?>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <input type="text" id="searchStoreAddress" class="store-map-address form-control" placeholder="<?php _e('Enter store location', 'dc-woocommerce-multi-vendor'); ?>">
+                                        </div>
+                                    </div>
+                                    <div class="vendor_store_map" id="vendor_store_map" style="width: 100%; height: 300px;"></div>
+                                    <div class="form_area">
+                                        <?php
+                                        $store_location = get_user_meta($vendor->id, '_store_location', true) ? get_user_meta($vendor->id, '_store_location', true) : '';
+                                        $store_lat = get_user_meta($vendor->id, '_store_lat', true) ? get_user_meta($vendor->id, '_store_lat', true) : 0;
+                                        $store_lng = get_user_meta($vendor->id, '_store_lng', true) ? get_user_meta($vendor->id, '_store_lng', true) : 0;
+                                        ?>
+                                        <input type="hidden" name="_store_location" id="store_location" value="<?php echo $store_location; ?>">
+                                        <input type="hidden" name="store_address_components" id="store_address_components" value="">
+                                        <input type="hidden" name="_store_lat" id="store_lat" value="<?php echo $store_lat; ?>">
+                                        <input type="hidden" name="_store_lng" id="store_lng" value="<?php echo $store_lng; ?>">
+                                    </div>
+                                    <?php
+                                    wp_add_inline_script('mvx-gmaps-api', '(function ($) {
+                                        function initialize() {
+                                            var latlng = new google.maps.LatLng(' . $store_lat . ',' . $store_lng . ');
+                                            var map = new google.maps.Map(document.getElementById("vendor_store_map"), {
+                                                center: latlng,
+                                                blur : true,
+                                                zoom: 15
+                                            });
+                                            var marker = new google.maps.Marker({
+                                                map: map,
+                                                position: latlng,
+                                                draggable: true,
+                                                anchorPoint: new google.maps.Point(0, -29)
+                                            });
 
-                                    function bindDataToForm(address,lat,lng,address_components){
-                                        document.getElementById("store_location").value = address;
-                                        document.getElementById("store_address_components").value = JSON.stringify(address_components);
-                                        document.getElementById("store_lat").value = lat;
-                                        document.getElementById("store_lng").value = lng;
-                                    }
-                                    function showTooltip(infowindow,marker,address){
-                                       google.maps.event.addListener(marker, "click", function() { 
-                                            infowindow.setContent(address);
-                                            infowindow.open(map, marker);
-                                        });
-                                    }
-                                    google.maps.event.addDomListener(window, "load", initialize);
-                              })(jQuery);');
-                                ?>
-                            <?php
+                                            var input = document.getElementById("searchStoreAddress");
+                                            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+                                            var geocoder = new google.maps.Geocoder();
+                                            var autocomplete = new google.maps.places.Autocomplete(input);
+                                            autocomplete.bindTo("bounds", map);
+                                            var infowindow = new google.maps.InfoWindow();   
+
+                                            autocomplete.addListener("place_changed", function() {
+                                                infowindow.close();
+                                                marker.setVisible(false);
+                                                var place = autocomplete.getPlace();
+                                                if (!place.geometry) {
+                                                    window.alert("Autocomplete returned place contains no geometry");
+                                                    return;
+                                                }
+
+                                                // If the place has a geometry, then present it on a map.
+                                                if (place.geometry.viewport) {
+                                                    map.fitBounds(place.geometry.viewport);
+                                                } else {
+                                                    map.setCenter(place.geometry.location);
+                                                    map.setZoom(17);
+                                                }
+
+                                                marker.setPosition(place.geometry.location);
+                                                marker.setVisible(true);
+                                                
+                                                bindDataToForm(place.formatted_address,place.geometry.location.lat(),place.geometry.location.lng(),place.address_components);
+                                                infowindow.setContent(place.formatted_address);
+                                                infowindow.open(map, marker);
+                                                showTooltip(infowindow,marker,place.formatted_address);
+
+                                            });
+                                            google.maps.event.addListener(marker, "dragend", function() {
+                                                geocoder.geocode({"latLng": marker.getPosition()}, function(results, status) {
+                                                    if (status == google.maps.GeocoderStatus.OK) {
+                                                        if (results[0]) {    
+                                                            bindDataToForm(results[0].formatted_address,marker.getPosition().lat(),marker.getPosition().lng(), results[0].address_components);
+                                                            infowindow.setContent(results[0].formatted_address);
+                                                            infowindow.open(map, marker);
+                                                            showTooltip(infowindow,marker,results[0].formatted_address);
+                                                            document.getElementById("searchStoreAddress");
+                                                        }
+                                                    }
+                                                });
+                                            });
+                                        }
+
+                                        function bindDataToForm(address,lat,lng,address_components){
+                                            document.getElementById("store_location").value = address;
+                                            document.getElementById("store_address_components").value = JSON.stringify(address_components);
+                                            document.getElementById("store_lat").value = lat;
+                                            document.getElementById("store_lng").value = lng;
+                                        }
+                                        function showTooltip(infowindow,marker,address){
+                                           google.maps.event.addListener(marker, "click", function() { 
+                                                infowindow.setContent(address);
+                                                infowindow.open(map, marker);
+                                            });
+                                        }
+                                        google.maps.event.addDomListener(window, "load", initialize);
+                                  })(jQuery);');
+                                }
                             } else {
                                 echo trim(__('Please contact your administrator to enable Google map feature.', 'dc-woocommerce-multi-vendor'));
-                            }
-                            ?>
+                            }?>
                         </div>
                     </div>
                     <!-- from group end -->
