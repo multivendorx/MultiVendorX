@@ -47,6 +47,7 @@ class App extends Component {
       module_tabs: [],
       tabIndex: 0,
       query: null,
+      total_number_of_module: 0,
     };
     this.query = null;
     // when click on checkbox
@@ -66,20 +67,59 @@ class App extends Component {
 
     this.handleModuleSearch = this.handleModuleSearch.bind(this);
     
+    this.handleModuleSearchByCategory = this.handleModuleSearchByCategory.bind(this);
+    
+    this.mvx_search_different_module_status = this.mvx_search_different_module_status.bind(this);
+    
+  }
+
+  mvx_search_different_module_status(e, status) {
+    // multiple module status
+    axios.get(
+    `${appLocalizer.apiUrl}/mvx_module/v1/get_as_per_module_status`, { params: { module_status: status } 
+    })
+    .then(response => {
+      this.setState({
+        items: response.data,
+      });
+    })
+
   }
 
   handleModuleSearch(e) {
-    //console.log(e.target.value);
-
     axios({
       url: `${appLocalizer.apiUrl}/mvx_module/v1/module_lists?module_id=${e.target.value}`
     })
     .then(response => {
-      /*this.setState({
+      this.setState({
         items: response.data,
         isLoaded: false
-      });*/
+      });
     })
+  }
+
+  handleModuleSearchByCategory(e) {
+    if (e) {
+      axios.get(
+      `${appLocalizer.apiUrl}/mvx_module/v1/search_module_lists`, { params: { category: e.label } 
+      })
+      .then(response => {
+        this.setState({
+          items: response.data,
+        });
+      })
+    } else {
+      Promise.all([
+        fetch(`${appLocalizer.apiUrl}/mvx_module/v1/module_lists?module_id=all`).then(res => res.json()),
+      ]).then(([product, settings, module_ids, module_tabs]) => {
+        this.setState({
+          isLoaded: false,
+          items: product,
+        });
+      }).catch((error) => {
+        console.log(error);
+      });
+    }
   }
 
   setTabIndex(e) {
@@ -159,6 +199,18 @@ class App extends Component {
       }).catch((error) => {
         console.log(error);
       });
+
+
+      // fetch total number of modules 
+      axios.get(
+      `${appLocalizer.apiUrl}/mvx_module/v1/modules_count`
+      )
+      .then(response => {
+        this.setState({
+          total_number_of_module: response.data,
+        });
+      })
+
   }
 
   useQuery() {
@@ -194,7 +246,14 @@ class App extends Component {
               </div>
 
 
-              <input type="text" onChange={(e) => this.handleModuleSearch(e)} />
+              <div>Total Modules : {this.state.total_number_of_module}</div>
+
+              <Button onClick={(e) => this.mvx_search_different_module_status(e, 'active')}>Active</Button>
+              <Button onClick={(e) => this.mvx_search_different_module_status(e, 'inactive')}>Inactive</Button>
+
+              <input type="text" onChange={(e) => this.handleModuleSearch(e)} placeholder="Search modules" />
+
+              <Select placeholder="Search by Category" options={appLocalizer.select_module_category_option} isClearable={true} className="mvx-module-section-list-data" onChange={(e) => this.handleModuleSearchByCategory(e)}/>
 
 
           <div className="mvx-module-section-ui module-listing dashboard-wrapper">

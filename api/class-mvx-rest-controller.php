@@ -689,6 +689,97 @@ class MVX_REST_API {
             'callback' => array( $this, 'mvx_fetch_all_modules_data' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
+    
+        register_rest_route( 'mvx_module/v1', '/search_module_lists', [
+            'methods' => WP_REST_Server::READABLE,
+            'callback' => array( $this, 'mvx_search_module_lists' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
+        register_rest_route( 'mvx_module/v1', '/modules_count', [
+            'methods' => WP_REST_Server::READABLE,
+            'callback' => array( $this, 'mvx_modules_count' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
+        register_rest_route( 'mvx_module/v1', '/get_as_per_module_status', [
+            'methods' => WP_REST_Server::READABLE,
+            'callback' => array( $this, 'mvx_get_as_per_module_status' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+    }
+
+    public function mvx_get_as_per_module_status($request) {
+        $module_status = $request && $request->get_param('module_status') ? $request->get_param('module_status') : '';
+        $active_modules = get_option('mvx_all_active_module_list', true);
+
+        
+        $all_module_lists = $this->mvx_list_all_modules();
+        $get_searchable_data = $set_2nd_search_item_data = $set_3rd_search_item_data = [];
+        foreach ($all_module_lists as $key_parent => $value_parent) {
+            foreach ($value_parent['options'] as $key_child => $value_child) {
+
+                if ($module_status == 'active') {
+                    if (in_array($value_child['id'], $active_modules)) {
+                        $get_searchable_data[] = array('id' => $value_child['id'], 'label' => $value_parent['label'], 'parent_key' => $key_parent, 'child_option_key' => $key_child);
+                    }
+                } else {
+                    if (!in_array($value_child['id'], $active_modules)) {
+                        $get_searchable_data[] = array('id' => $value_child['id'], 'label' => $value_parent['label'], 'parent_key' => $key_parent, 'child_option_key' => $key_child);
+                    }
+                }
+            }
+        }
+
+        foreach ($get_searchable_data as $key1 => $value1) {
+            $list_include = wp_list_pluck($set_2nd_search_item_data, 'label');
+            if (in_array($value1['label'], $list_include)) {
+                $fdsgdsgsdgsd[] = $all_module_lists[$value1['parent_key']]['options'][$value1['child_option_key']];
+            } else {
+                $fdsgdsgsdgsd = array($all_module_lists[$value1['parent_key']]['options'][$value1['child_option_key']]);
+            }
+            $set_2nd_search_item_data[] = array(
+                'label' => $value1['label'],
+                'options' => $fdsgdsgsdgsd
+            );
+        }
+
+        foreach ($set_2nd_search_item_data as $keyi => $valuei) {
+            $cut_arrays = array_slice($set_2nd_search_item_data, $keyi + 1);
+            $listing_search_valus = wp_list_pluck($cut_arrays, 'label');
+            if (in_array($valuei['label'], $listing_search_valus)) {
+                $set_3rd_search_item_data[] = $keyi;
+            }
+        }
+
+        foreach ($set_3rd_search_item_data as $key => $value) {
+            unset($set_2nd_search_item_data[$value]);
+        }
+
+        $response = array_values($set_2nd_search_item_data);
+        return rest_ensure_response( $response );
+    }
+
+    public function mvx_modules_count() {
+        $add_modules_details = $this->mvx_list_all_modules();
+        $total_number_of_modules = [];
+        foreach ($add_modules_details as $key_parent => $value_parent) {
+            $total_number_of_modules[] = count($value_parent['options']);
+        }
+        return rest_ensure_response(array_sum($total_number_of_modules));
+    }
+
+    public function mvx_search_module_lists($request) {
+        $category = $request && $request->get_param('category') ? $request->get_param('category') : '';
+        $new_array_data = [];
+        $modules_details = $this->mvx_list_all_modules();
+        foreach ($modules_details as $key => $value) {
+            if ($value['label'] == $category) {
+                $new_array_data[] = $modules_details[$key];
+            }
+        }
+        $response = array_values($new_array_data);
+        return rest_ensure_response( $response );
     }
 
     public function mvx_fetch_all_modules_data() {
@@ -4480,29 +4571,41 @@ class MVX_REST_API {
         if ($module_id && $module_id == 'all') {
             $response = $all_module_lists ? array_values($all_module_lists) : false;
         } else {
-            $ttttttttttttttt = [];
-            $ttjtjtjtjtjtj = [];
+            $get_searchable_data = $set_2nd_search_item_data = $set_3rd_search_item_data = [];
             foreach ($all_module_lists as $key_parent => $value_parent) {
                 foreach ($value_parent['options'] as $key_child => $value_child) {
                     if (stripos($value_child['name'], $module_id) !== false) {
-                        $ttttttttttttttt[] = array('id' => $value_child['id'], 'label' => $value_parent['label'], 'parent_key' => $key_parent, 'child_option_key' => $key_child);
+                        $get_searchable_data[] = array('id' => $value_child['id'], 'label' => $value_parent['label'], 'parent_key' => $key_parent, 'child_option_key' => $key_child);
                     }
                 }
             }
 
-            
-
-            foreach ($ttttttttttttttt as $key1 => $value1) {
-            
-                $ttjtjtjtjtjtj[] = array(
+            foreach ($get_searchable_data as $key1 => $value1) {
+                $list_include = wp_list_pluck($set_2nd_search_item_data, 'label');
+                if (in_array($value1['label'], $list_include)) {
+                    $fdsgdsgsdgsd[] = $all_module_lists[$value1['parent_key']]['options'][$value1['child_option_key']];
+                } else {
+                    $fdsgdsgsdgsd = array($all_module_lists[$value1['parent_key']]['options'][$value1['child_option_key']]);
+                }
+                $set_2nd_search_item_data[] = array(
                     'label' => $value1['label'],
-                    'options' => $all_module_lists[$value1['parent_key']]['options'][$value1['child_option_key']]
+                    'options' => $fdsgdsgsdgsd
                 );
             }
 
-                print_r($ttjtjtjtjtjtj);
-die;
-            $response[] = $all_module_lists[$module_id];
+            foreach ($set_2nd_search_item_data as $keyi => $valuei) {
+                $cut_arrays = array_slice($set_2nd_search_item_data, $keyi + 1);
+                $listing_search_valus = wp_list_pluck($cut_arrays, 'label');
+                if (in_array($valuei['label'], $listing_search_valus)) {
+                    $set_3rd_search_item_data[] = $keyi;
+                }
+            }
+
+            foreach ($set_3rd_search_item_data as $key => $value) {
+                unset($set_2nd_search_item_data[$value]);
+            }
+
+            $response = array_values($set_2nd_search_item_data);
         }
         return rest_ensure_response( $response );
     }

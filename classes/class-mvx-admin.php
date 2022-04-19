@@ -680,6 +680,34 @@ class MVX_Admin {
         );
 
 
+        $select_module_category_option = array(
+            array(
+                'value' => 'payment',
+                'label' => __('Payment', 'dc-woocommerce-multi-vendor')
+            ),
+            array(
+                'value' => 'shipping',
+                'label' => __('Shipping', 'dc-woocommerce-multi-vendor')
+            ),
+            array(
+                'value' => 'vendor_store_boosters',
+                'label' => __('Vendor Store Boosters', 'dc-woocommerce-multi-vendor')
+            ),
+            array(
+                'value' => 'notifictaion',
+                'label' => __('Notifictaion', 'dc-woocommerce-multi-vendor')
+            ),
+            array(
+                'value' => 'marketplace_products',
+                'label' => __('Marketplace Products', 'dc-woocommerce-multi-vendor')
+            ),
+            array(
+                'value' => 'third_party_compartibility',
+                'label' => __('Third Party Compartibility', 'dc-woocommerce-multi-vendor')
+            )
+        );
+
+
         $vendor_list_page_bulk_list_options = array();
         $vendor_bulk_list = array(
             'delete' => __('Delete', 'dc-woocommerce-multi-vendor'),
@@ -737,6 +765,7 @@ class MVX_Admin {
             'vendor_list_page_bulk_list_options'    =>  $vendor_list_page_bulk_list_options,
             'columns_commission'                    =>  $columns_commission,
             'columns_report_abuse'                  =>  $columns_report_abuse,
+            'select_module_category_option'         =>  $select_module_category_option,
             'errors_log'                            =>  $this->get_error_log_rows(100),
         ] ) );
 
