@@ -99,6 +99,24 @@ if (!function_exists('delete_mvx_vendor_settings')) {
 
 }
 
+if (!function_exists('mvx_get_settings_value')) {
+
+    /**
+     * get settings value by key
+     * @return string
+     */
+    function mvx_get_settings_value($key = array(), $default = 'false') {
+        if (empty($key)) {
+            return $default;
+        }
+        if (is_array($key) && isset($key['value'])) {
+            return $key['value'];
+        }
+        return $default;
+    }
+
+}
+
 if (!function_exists('is_user_mvx_pending_vendor')) {
 
     /**
@@ -4479,10 +4497,25 @@ if (!function_exists('mvx_get_attachment_url')) {
 
 if (!function_exists('mvx_mapbox_api_enabled')) {
     function mvx_mapbox_api_enabled() {
-        $get_choose_map = get_mvx_vendor_settings('choose_map_api') ? get_mvx_vendor_settings('choose_map_api') : '';
-        $mapbox_api_key = get_mvx_vendor_settings('mapbox_api_key') ? get_mvx_vendor_settings('mapbox_api_key') : '';
-        $mapbox_enabled = !empty($mapbox_api_key) && !empty($get_choose_map) && $get_choose_map == 'mapbox_api_set' ? $mapbox_api_key : false;
-        return $mapbox_enabled;
+        if (mvx_is_module_active('store-location') && get_mvx_vendor_settings('enable_store_map_for_vendor', 'store')) {
+            $get_choose_map = get_mvx_vendor_settings('choose_map_api') ? mvx_get_settings_value(get_mvx_vendor_settings('choose_map_api')) : '';
+            $mapbox_api_key = get_mvx_vendor_settings('mapbox_api_key') ? get_mvx_vendor_settings('mapbox_api_key') : '';
+            $mapbox_enabled = !empty($mapbox_api_key) && !empty($get_choose_map) && $get_choose_map == 'mapbox_api_set' ? $mapbox_api_key : false;
+            return $mapbox_enabled;
+        }
+        return false;
+    }
+}
+
+if (!function_exists('mvx_google_api_enabled')) {
+    function mvx_google_api_enabled() {
+        if (mvx_is_module_active('store-location') && get_mvx_vendor_settings('enable_store_map_for_vendor', 'store')) {
+            $get_choose_map = get_mvx_vendor_settings('choose_map_api') ? mvx_get_settings_value(get_mvx_vendor_settings('choose_map_api')) : '';
+            $gmap_api_key = get_mvx_vendor_settings('google_api_key') ? get_mvx_vendor_settings('google_api_key') : '';
+            $gmap_enabled = !empty($gmap_api_key) && !empty($get_choose_map) && $get_choose_map == 'google_map_set' ? $gmap_api_key : false;
+            return $gmap_enabled;
+        }
+        return false;
     }
 }
 
@@ -4586,13 +4619,14 @@ if (!function_exists('mvx_vendor_distance_by_shipping_settings')) {
 if (!function_exists('mvx_vendor_different_type_shipping_options')) {
     function mvx_vendor_different_type_shipping_options( $vendor_id = 0) {
         $vendor_shipping_options = get_user_meta($vendor_id, 'vendor_shipping_options', true) ? get_user_meta($vendor_id, 'vendor_shipping_options', true) : '';
-        $shipping_options = apply_filters('mvx_vendor_shipping_option_to_vendor', array(
-            'distance_by_zone' => __('Shipping by Zone', 'dc-woocommerce-multi-vendor'),
-        ) );
-        if (get_mvx_vendor_settings( 'enabled_distance_by_shipping_for_vendor', 'general' ) && 'Enable' === get_mvx_vendor_settings( 'enabled_distance_by_shipping_for_vendor', 'general' )) {
+        $shipping_options = apply_filters('mvx_vendor_shipping_option_to_vendor', array());
+        if (mvx_is_module_active('zone-shipping')) {
+            $shipping_options['distance_by_zone'] = __('Shipping by Zone', 'dc-woocommerce-multi-vendor');
+        }
+        if (mvx_is_module_active('distance-shipping')) {
             $shipping_options['distance_by_shipping'] = __('Shipping by Distance', 'dc-woocommerce-multi-vendor');
         }
-        if (get_mvx_vendor_settings( 'enabled_shipping_by_country_for_vendor', 'general' ) && 'Enable' === get_mvx_vendor_settings( 'enabled_shipping_by_country_for_vendor', 'general' )) {
+        if (mvx_is_module_active('country-shipping')) {
             $shipping_options['shipping_by_country'] = __('Shipping by Country', 'dc-woocommerce-multi-vendor');
         }
         ?>

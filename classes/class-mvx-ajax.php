@@ -2158,7 +2158,7 @@ class MVX_Ajax {
             if ($vendor_coupons) {
                 foreach ($vendor_coupons as $coupon_single) {
                     $edit_coupon_link = '';
-                    if (current_user_can('edit_published_shop_coupons') && get_mvx_vendor_settings('is_edit_delete_published_coupon', 'products_capability')) {
+                    if (current_user_can('edit_published_shop_coupons') && get_mvx_vendor_settings('is_edit_coupon', 'products_capability')) {
                         $edit_coupon_link = esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_add_coupon_endpoint', 'seller_dashbaord', 'add-coupon'), $coupon_single->ID));
                     }
                     // Get actions
@@ -2179,7 +2179,7 @@ class MVX_Ajax {
                         unset($actions_col['restore']);
                         unset($actions_col['delete']);
                     }
-                    if (!current_user_can('edit_published_shop_coupons') || get_mvx_vendor_settings('is_edit_delete_published_coupon', 'products_capability')) {
+                    if (!current_user_can('edit_published_shop_coupons') || get_mvx_vendor_settings('is_edit_coupon', 'products_capability')) {
                         unset($actions['edit']);
                         unset($actions['delete']);
                     }
