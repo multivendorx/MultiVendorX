@@ -6559,7 +6559,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
             'policy'  => [
                 [
                     'key'       => 'store-policy',
-                    'type'      => 'wpeditor',
+                    'type'      => 'textarea',
                     'class'     =>  'mvx-setting-wpeditor-class',
                     'desc'      => __('Site will reflect admin created policy. However vendors can edit and override store policies', 'dc-woocommerce-multi-vendor'),
                     'label'     => __( 'Store Policy', 'dc-woocommerce-multi-vendor' ),
@@ -6567,7 +6567,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 ],
                 [
                     'key'       => 'shipping_policy',
-                    'type'      => 'wpeditor',
+                    'type'      => 'textarea',
                     'class'     =>  'mvx-setting-wpeditor-class',
                     'desc'      => __('Site will reflect admin created policy. However vendors can edit and override store policies', 'dc-woocommerce-multi-vendor'),
                     'label'     => __( 'Shipping Policy', 'dc-woocommerce-multi-vendor' ),
@@ -6575,7 +6575,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 ],
                 [
                     'key'       => 'refund_policy',
-                    'type'      => 'wpeditor',
+                    'type'      => 'textarea',
                     'class'     =>  'mvx-setting-wpeditor-class',
                     'desc'      => __('Site will reflect admin created policy. However vendors can edit and override store policies', 'dc-woocommerce-multi-vendor'),
                     'label'     => __( 'Refund Policy', 'dc-woocommerce-multi-vendor' ),
@@ -6583,7 +6583,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 ],
                 [
                     'key'       => 'cancellation_policy',
-                    'type'      => 'wpeditor',
+                    'type'      => 'textarea',
                     'class'     =>  'mvx-setting-wpeditor-class',
                     'desc'      => __('Site will reflect admin created policy. However vendors can edit and override store policies', 'dc-woocommerce-multi-vendor'),
                     'label'     => __( 'Cancellation / Return / Exchange Policy', 'dc-woocommerce-multi-vendor' ),

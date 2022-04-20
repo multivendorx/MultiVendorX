@@ -4,7 +4,7 @@ import axios from 'axios';
 import Select from 'react-select';
 import RingLoader from "react-spinners/RingLoader";
 import { css } from "@emotion/react";
-
+import PuffLoader from "react-spinners/PuffLoader";
 import { ReactSortable } from "react-sortablejs";
 
 import {
@@ -1184,7 +1184,7 @@ Child({ name }) {
               url={data.apiurl}
               submitbutton="false"
               />
-              : 'Please wait few seconds'}
+              : <PuffLoader css={override} color={"#cd0000"} size={200} loading={true} />}
             </div>
             
         : ''

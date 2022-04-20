@@ -713,8 +713,9 @@ class MVX_REST_API {
         $module_status = $request && $request->get_param('module_status') ? $request->get_param('module_status') : '';
         $active_modules = get_option('mvx_all_active_module_list', true);
 
-        
         $all_module_lists = $this->mvx_list_all_modules();
+        if ($module_status == 'all') return rest_ensure_response(array_values($all_module_lists));
+
         $get_searchable_data = $set_2nd_search_item_data = $set_3rd_search_item_data = [];
         foreach ($all_module_lists as $key_parent => $value_parent) {
             foreach ($value_parent['options'] as $key_child => $value_child) {
@@ -757,6 +758,7 @@ class MVX_REST_API {
         }
 
         $response = array_values($set_2nd_search_item_data);
+        
         return rest_ensure_response( $response );
     }
 
@@ -1924,6 +1926,7 @@ class MVX_REST_API {
 
 
             $vendor_phone = get_user_meta( $user->data->ID, '_vendor_phone', true ) ? get_user_meta( $user->data->ID, '_vendor_phone', true ) : '';
+            $vendor_description = get_user_meta( $user->data->ID, '_vendor_description', true ) ? get_user_meta( $user->data->ID, '_vendor_description', true ) : '';
             $vendor_address_1 = get_user_meta( $user->data->ID, '_vendor_address_1', true ) ? get_user_meta( $user->data->ID, '_vendor_address_1', true ) : '';
             $vendor_address_2 = get_user_meta( $user->data->ID, '_vendor_address_2', true ) ? get_user_meta( $user->data->ID, '_vendor_address_2', true ) : '';
             $vendor_city = get_user_meta( $user->data->ID, '_vendor_city', true ) ? get_user_meta( $user->data->ID, '_vendor_city', true ) : '';
@@ -2115,7 +2118,7 @@ class MVX_REST_API {
             ],
             [
                 'label' => __('Store Description', 'dc-woocommerce-multi-vendor'),
-                'type' => 'wpeditor', 
+                'type' => 'textarea', 
                 'key' => 'vendor_description', 
                 'database_value' => isset($vendor_description) ? $vendor_description : ''
             ],
@@ -2319,19 +2322,19 @@ class MVX_REST_API {
         $settings_fields_data['vendor-policy'] =   [
             [
                 'label' => __('Shipping Policy', 'dc-woocommerce-multi-vendor'), 
-                'type' => 'wpeditor', 
+                'type' => 'textarea', 
                 'key' => 'vendor_shipping_policy', 
                 'database_value' => isset($_vendor_shipping_policy) ? $_vendor_shipping_policy : ''
             ],
             [
                 'label' => __('Refund Policy', 'dc-woocommerce-multi-vendor'), 
-                'type' => 'wpeditor', 
+                'type' => 'textarea', 
                 'key' => 'vendor_refund_policy', 
                 'database_value' => isset($_vendor_refund_policy) ? $_vendor_refund_policy : ''
             ],
             [
                 'label' => __('Cancellation/Return/Exchange Policy', 'dc-woocommerce-multi-vendor'),
-                 'type' => 'wpeditor', 
+                 'type' => 'textarea', 
                  'key' => 'vendor_cancellation_policy', 
                  'database_value' => isset($_vendor_cancellation_policy) ? $_vendor_cancellation_policy : ''
              ],
