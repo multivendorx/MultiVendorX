@@ -245,8 +245,10 @@ class App extends Component {
                 <p>Module description</p>
               </div>
 
-
-              <div>Total Modules : {this.state.total_number_of_module}</div>
+              <div className="mvx-total-module-name-and-count" onClick={(e) => this.mvx_search_different_module_status(e, 'all')}>
+                <div className="mvx-total-modules-name">Total Modules :</div>
+                <div className="mvx-total-modules-count">{this.state.total_number_of_module}</div>
+              </div>
 
               <Button onClick={(e) => this.mvx_search_different_module_status(e, 'active')}>Active</Button>
               <Button onClick={(e) => this.mvx_search_different_module_status(e, 'inactive')}>Inactive</Button>

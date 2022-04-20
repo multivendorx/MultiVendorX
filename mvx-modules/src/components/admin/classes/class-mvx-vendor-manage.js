@@ -1213,6 +1213,7 @@ class App extends React.Component {
               vendor_id={name.get("ID")}
               modulename={data.modulename}
               url={data.apiurl}
+              submitbutton="false"
               />
 
               : '' }
