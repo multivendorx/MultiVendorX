@@ -11,6 +11,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      allow_search_box_open: true,
       fetch_all_settings_for_searching: []
     };
     
@@ -19,21 +20,16 @@ class App extends Component {
   }
 
   handleOnChange(event) {
-    if (event.target.value) {
-      axios.get(
-      `${appLocalizer.apiUrl}/mvx_module/v1/fetch_all_settings_for_searching`, { params: { value: event.target.value } 
-      })
-      .then(response => {
+    axios.get(
+    `${appLocalizer.apiUrl}/mvx_module/v1/fetch_all_settings_for_searching`, { params: { value: event.target.value } 
+    })
+    .then(response => {
 
-        this.setState({
-          fetch_all_settings_for_searching: response.data,
-        });
-      })
-    } else {
       this.setState({
-        fetch_all_settings_for_searching: [],
+        fetch_all_settings_for_searching: response.data,
+        allow_search_box_open: true,
       });
-    }
+    })
 
   }
 

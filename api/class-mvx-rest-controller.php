@@ -1067,20 +1067,77 @@ class MVX_REST_API {
 
     public function mvx_fetch_all_settings_for_searching($request) {
         $value = $request && $request->get_param('value') ? $request->get_param('value') : 0;
-        $list_of_titles = [];
+        $list_of_titles = $mvx_parent_tabs_datas = [];
         $all_fields_data = mvx_admin_backend_settings_fields_details();
-        foreach ($all_fields_data as $key_fields => $value_fields) {
-            foreach ($value_fields as $key_list => $value_list) {
-                if (stripos($value_list['label'], $value) !== false) {
-                    $list_of_titles[] = array(
-                        'label' =>  $value_list['label'],
-                        'desc'  =>  ($value_list['desc']) ? $value_list['desc'] : '',
-                        'link'  =>  stripos($key_fields, 'payment-') !== false ? admin_url('admin.php?page=mvx#&submenu=payment&name='. $key_fields .'') : admin_url('admin.php?page=mvx#&submenu=settings&name='. $key_fields .'')
-                    );
-                }
+
+        $all_tab_fileds = mvx_admin_backend_tab_settings();
+        foreach ($all_tab_fileds as $key_fields_parent => $value_fields_parent) {
+            foreach ($value_fields_parent as $key_list_parent => $value_list_parent) {
+                $all_fields_data['others_fileds'][] = array(
+                    'label' =>  $value_list_parent['tablabel'],
+                    'desc'  =>  ($value_list_parent['description']) ? $value_list_parent['description'] : '',
+                    'link'  =>  admin_url('admin.php?page=mvx#&submenu='. $value_list_parent['submenu'] .'&name='. $value_list_parent['modulename'] .'')
+                );
             }
         }
 
+
+        $all_fields_data['others_fileds_section1'] = array(
+            array(
+                'label' =>  __('Dashboard', 'dc-woocommerce-multi-vendor'),
+                'desc'  =>  __('Dashboard Submenu page', 'dc-woocommerce-multi-vendor'),
+                'link'  =>  admin_url('admin.php?page=mvx#&submenu=dashboard&name=help')
+            ),
+            array(
+                'label' =>  __('Work Board', 'dc-woocommerce-multi-vendor'),
+                'desc'  =>  __('Work Board Submenu page', 'dc-woocommerce-multi-vendor'),
+                'link'  =>  admin_url('admin.php?page=mvx#&submenu=work-board&name=activity-reminder')
+            ),
+            array(
+                'label' =>  __('Modules', 'dc-woocommerce-multi-vendor'),
+                'desc'  =>  __('Modules Submenu page', 'dc-woocommerce-multi-vendor'),
+                'link'  =>  admin_url('admin.php?page=mvx#&submenu=modules')
+            ),
+            array(
+                'label' =>  __('Vendors', 'dc-woocommerce-multi-vendor'),
+                'desc'  =>  __('Vendors Submenu page', 'dc-woocommerce-multi-vendor'),
+                'link'  =>  admin_url('admin.php?page=mvx#&submenu=vendor')
+            ),
+            array(
+                'label' =>  __('Payments', 'dc-woocommerce-multi-vendor'),
+                'desc'  =>  __('Payments Submenu page', 'dc-woocommerce-multi-vendor'),
+                'link'  =>  admin_url('admin.php?page=mvx#&submenu=payment&name=payment-masspay')
+            ),
+            array(
+                'label' =>  __('Settings', 'dc-woocommerce-multi-vendor'),
+                'desc'  =>  __('Settings Submenu page', 'dc-woocommerce-multi-vendor'),
+                'link'  =>  admin_url('admin.php?page=mvx#&submenu=settings&name=settings-general')
+            ),
+            array(
+                'label' =>  __('Analytics', 'dc-woocommerce-multi-vendor'),
+                'desc'  =>  __('Analytics Submenu page', 'dc-woocommerce-multi-vendor'),
+                'link'  =>  admin_url('admin.php?page=mvx#&submenu=analytics&name=admin-overview')
+            ),
+            array(
+                'label' =>  __('Status and Tools', 'dc-woocommerce-multi-vendor'),
+                'desc'  =>  __('Status and Tools Submenu page', 'dc-woocommerce-multi-vendor'),
+                'link'  =>  admin_url('admin.php?page=mvx#&submenu=status-tools&name=version-control')
+            )
+        );
+
+        if ($value) {
+            foreach ($all_fields_data as $key_fields => $value_fields) {
+                foreach ($value_fields as $key_list => $value_list) {
+                    if (stripos($value_list['label'], $value) !== false) {
+                        $list_of_titles[] = array(
+                            'label' =>  $value_list['label'],
+                            'desc'  =>  ($value_list['desc']) ? $value_list['desc'] : '',
+                            'link'  =>  $value_list['link'] ? $value_list['link'] : (stripos($key_fields, 'payment-') !== false ? admin_url('admin.php?page=mvx#&submenu=payment&name='. $key_fields .'') : admin_url('admin.php?page=mvx#&submenu=settings&name='. $key_fields .''))
+                        );
+                    }
+                }
+            }
+        }
         return rest_ensure_response($list_of_titles);
     }
 
@@ -4127,7 +4184,7 @@ class MVX_REST_API {
                 $vendor_shipping_methods_titles = implode('', $vendor_shipping_methods_titles);
 
                 $user_list[] = apply_filters('mvx_list_table_vendors_columns_data', array(
-                        'zone_name' => "<a href='". sprintf('?page=%s&ID=%s&name=%s&zone_id=%s', 'mvx#&submenu=vendor', $vendor_id, 'vendor_shipping', $vendor_shipping_zones['zone_id']) ."'>". $vendor_shipping_zones['zone_name'] ."</a>",
+                        'zone_name' => "<a href='". sprintf('?page=%s&ID=%s&name=%s&zone_id=%s', 'mvx#&submenu=vendor', $vendor_id, 'vendor-shipping', $vendor_shipping_zones['zone_id']) ."'>". $vendor_shipping_zones['zone_name'] ."</a>",
                         'region' => $vendor_shipping_zones['formatted_zone_location'],
                         'shipping_method' => $vendor_shipping_methods_titles,
                     ));
@@ -4418,7 +4475,9 @@ class MVX_REST_API {
 
         do_action('mvx_vendor_details_update', $model, $vendor);
 
-
+        $all_details['error'] = 'Settings saving ...';
+        return $all_details; 
+        die;
     }
 
     public function mvx_vendor_details($request) {

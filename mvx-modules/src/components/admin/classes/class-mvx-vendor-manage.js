@@ -869,6 +869,8 @@ class App extends React.Component {
     
   return (
     <div>
+    
+
     {appLocalizer.mvx_all_backend_tab_list['marketplace-vendors'].map((data, index) => (
       <div>
         
@@ -894,10 +896,11 @@ class App extends React.Component {
 
 
 
-
+            
 
 
             <div>
+    
 
 
             
@@ -1138,7 +1141,6 @@ class App extends React.Component {
 
             <div>
 
-              {console.log(this.state.vendor_shipping_option_choice)}
 
               { this.state.data_setting_fileds.shipping_options ?
                 

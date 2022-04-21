@@ -4,7 +4,7 @@ import axios from 'axios';
 import Select from 'react-select';
 import RingLoader from "react-spinners/RingLoader";
 import { css } from "@emotion/react";
-
+import PuffLoader from "react-spinners/PuffLoader";
 import { ReactSortable } from "react-sortablejs";
 
 import {
@@ -21,6 +21,12 @@ import DynamicForm from "../../../DynamicForm";
 
 import HeaderSection from './class-mvx-page-header';
 
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
 
 class App extends Component {
   constructor(props) {
@@ -45,6 +51,7 @@ class App extends Component {
       first_toggle: '',
       second_toggle: '',      
       current: {},
+      list_of_module_data: [],
     };
 
     this.query = null;
@@ -87,26 +94,33 @@ class App extends Component {
 
       <div className="container">
       <div className="mvx-child-container">
+        
+        
         <div className="mvx-sub-container">
+          
+          {appLocalizer.mvx_all_backend_tab_list['marketplace-payments'].length > 0 ?
+          
+          <div className="mvx-sub-child-container">
+            <div className="general-tab-header-area">
+              <div className="mvx-tab-name-display">{tab_name_display}</div>
+              <p>{tab_description_display}</p>
+            </div>
 
-          <div className="general-tab-header-area">
-          <div className="mvx-tab-name-display">{tab_name_display}</div>
-          <p>{tab_description_display}</p>
+            <div className="general-tab-area">
+              <ul className="mvx-general-tabs-list">
+              {appLocalizer.mvx_all_backend_tab_list['marketplace-payments'].length > 0 ? appLocalizer.mvx_all_backend_tab_list['marketplace-payments'].map((data, index) => (
+                  <Link to={`?page=mvx#&submenu=payment&name=${data.modulename}`} ><li className={queryt.get("name") == data.modulename ? 'activegeneraltabs' : ''}>{data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}{data.tablabel}</li></Link>
+              )) : ''}
+              </ul>
+              <div className="tabcontentclass">
+                <this.Child name={queryt.get("name")} />
+              </div>
+            </div>
           </div>
-          <div className="general-tab-area">
+          : 'No Payment method found'}
 
-            <ul className="mvx-general-tabs-list">
-            {appLocalizer.mvx_all_backend_tab_list['marketplace-payments'].map((data, index) => (
-                <Link to={`?page=mvx#&submenu=payment&name=${data.modulename}`} ><li className={queryt.get("name") == data.modulename ? 'activegeneraltabs' : ''}>{data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}{data.tablabel}</li></Link>
-            ))}
-            </ul>
-
-          <div className="tabcontentclass">
-            <this.Child name={queryt.get("name")} />
-          </div>
-
-          </div>
-          </div>
+        </div>
+        
 
         <div className="mvx-adv-image-display">
           <a href="https://www.qries.com/" target="__blank">
@@ -123,9 +137,21 @@ class App extends Component {
   }
 
 Child({ name }) {
+
+  axios({
+    url: `${appLocalizer.apiUrl}/mvx_module/v1/fetch_all_modules_data`
+  })
+  .then(response => {
+
+    this.setState({
+      list_of_module_data: response.data
+    });
+
+  });
+
   return (
     <div>
-    {appLocalizer.mvx_all_backend_tab_list['marketplace-payments'].map((data, index) => (
+    {appLocalizer.mvx_all_backend_tab_list['marketplace-payments'].length > 0 ? appLocalizer.mvx_all_backend_tab_list['marketplace-payments'].map((data, index) => (
       <div>
 
       {
@@ -134,23 +160,25 @@ Child({ name }) {
         data.modulename == name ?
           
             <div>
+            {Object.keys(this.state.list_of_module_data).length > 0 ?
               <DynamicForm
               key={`dynamic-form-${data.modulename}`}
               className={data.classname}
               title={data.tablabel}
               defaultValues={this.state.current}
-              model= {appLocalizer.settings_fields[data.modulename]}
+              model= {this.state.list_of_module_data[data.modulename]}
               method="post"
               modulename={data.modulename}
               url={data.apiurl}
               submitbutton="false"
               />
+              : <PuffLoader css={override} color={"#cd0000"} size={200} loading={true} /> }
             </div>
             
         : ''
       }
       </div>
-    ))}
+    )) : ''}
     </div>
   );
 }

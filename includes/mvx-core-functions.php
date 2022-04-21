@@ -5302,15 +5302,15 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'database_value' => '',
                 ],
                 [
-                    'key'    => 'is_enable_store_sidebar',
+                    'key'    => 'is_enable_store_sidebar_position',
                     'label'   => __( 'Store Sidebar', 'dc-woocommerce-multi-vendor' ),
                     'class'     => 'mvx-toggle-checkbox',
                     'type'    => 'checkbox',
                     'options' => array(
                         array(
-                            'key'=> "is_enable_store_sidebar",
+                            'key'=> "is_enable_store_sidebar_position",
                             'label'=> __('Display sidebar section for vendor shop page. Select here to add vendor shop widget.', 'dc-woocommerce-multi-vendor'),
-                            'value'=> "is_enable_store_sidebar"
+                            'value'=> "is_enable_store_sidebar_position"
                         ),
                     ),
                     'database_value' => array(),
@@ -6123,7 +6123,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'database_value' => '',
                 ],
             ],
-            'store-management'   => [
+            /*'store-management'   => [
                 [
                     'key'    => 'is_enable_store_sidebar',
                     'label'   => __( 'Enable Store Sidebar', 'dc-woocommerce-multi-vendor' ),
@@ -6241,7 +6241,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     ),
                     'database_value' => array(),
                 ],
-            ],
+            ],*/
             'product-settings'  => [
                 [
                     'key'       => 'type_options',
@@ -7194,12 +7194,14 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'apiurl'         =>  'mvx_module/v1/save_dashpages',
                 'description'    =>  __('Configure the basic setting of the marketplace.', 'dc-woocommerce-multi-vendor'),
                 'icon'           =>  'icon-tab-general',
+                'submenu'       =>  'settings',
                 'modulename'     =>  'settings-general'
             ),
             array(
                 'tablabel'      =>  __('Registration Form', 'dc-woocommerce-multi-vendor'),
                 'description'   =>  __('Customise personalised seller registration form for marketplace', 'dc-woocommerce-multi-vendor'),
                 'icon'          =>  'icon-tab-registration-form',
+                'submenu'       =>  'settings',
                 'modulename'    => 'registration'
             ),
             array(
@@ -7207,6 +7209,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'description'   =>  __("Manage the appearance of your seller's dashboard", 'dc-woocommerce-multi-vendor'),
                 'icon'          =>  'icon-tab-seller-dashbaord',
+                'submenu'       =>  'settings',
                 'modulename'    =>  'seller-dashbaord'
             ),
             array(
@@ -7214,6 +7217,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'description'   =>  __("Manage setting related to the sellers shop", 'dc-woocommerce-multi-vendor'),
                 'icon'          =>  'icon-tab-store',
+                'submenu'       =>  'settings',
                 'modulename'    =>  'store'
             ),
             array(
@@ -7221,6 +7225,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'description'   =>  __("Select the type of product that best suits your marketplace", 'dc-woocommerce-multi-vendor'),
                 'icon'          =>  'icon-tab-products',
+                'submenu'       =>  'settings',
                 'modulename'    =>  'products'
             ),
             array(
@@ -7228,6 +7233,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'description'   =>  __("Manage product-related capabilities that you want sellers to have.", 'dc-woocommerce-multi-vendor'),
                 'icon'          =>  'icon-tab-products-capability',
+                'submenu'       =>  'settings',
                 'modulename'    =>  'products-capability'
             ),
             array(
@@ -7235,6 +7241,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'description'   =>  __("Give sellers the option to add other seller's products into their store inventory", 'dc-woocommerce-multi-vendor'),
                 'icon'          =>  'icon-tab-SPMV',
+                'submenu'       =>  'settings',
                 'modulename'    =>  'spmv-pages'
             ),
             array(
@@ -7242,6 +7249,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'description'   =>  __("Configure commission settings to customise your commission plan", 'dc-woocommerce-multi-vendor'),
                 'icon'          =>  'icon-tab-commissions',
+                'submenu'       =>  'settings',
                 'modulename'    =>  'commissions'
             ),
             array(
@@ -7249,6 +7257,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'description'   =>  __('Manage payment and disbursement setting of your site', 'dc-woocommerce-multi-vendor'),
                 'icon'          =>  'icon-tab-disbursement',
+                'submenu'       =>  'settings',
                 'modulename'    =>  'disbursement'
             ),
             array(
@@ -7256,6 +7265,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'description'   =>  __('Add policies that are applicable to your site', 'dc-woocommerce-multi-vendor'),
                 'icon'          =>  'icon-tab-policy',
+                'submenu'       =>  'settings',
                 'modulename'    =>  'policy'
             ),
             array(
@@ -7263,6 +7273,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'description'   =>  __('Set conditions for refund requests', 'dc-woocommerce-multi-vendor'),
                 'icon'          =>  'icon-tab-refunds',
+                'submenu'       =>  'settings',
                 'modulename'    =>  'refund-management'
             ),
             array(
@@ -7270,6 +7281,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'description'   =>  __('Manage settings for product and store review', 'dc-woocommerce-multi-vendor'),
                 'icon'          =>  'icon-tab-reviews-and-rating',
+                'submenu'       =>  'settings',
                 'modulename'    =>  'review-management'
             ),
             array(
@@ -7277,6 +7289,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'description'   =>  __('Create a platform for seller-customer interaction', 'dc-woocommerce-multi-vendor'),
                 'icon'          =>  'icon-tab-social',
+                'submenu'       =>  'settings',
                 'modulename'    =>  'social'
             ),
         );
@@ -7288,6 +7301,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'description'   =>  __('PayPal MassPay lets you pay out a large number of affiliates very easily and quickly.', 'dc-woocommerce-multi-vendor'),
                 'icon'          =>  'icon-tab-paypal-masspay',
+                'submenu'       =>  'payment',
                 'modulename'     =>  'payment-masspay'
             ),
             array(
@@ -7295,6 +7309,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'description'   =>  __('PayPal Payout makes it easy for you to pay multiple sellers at the sametime', 'dc-woocommerce-multi-vendor'),
                 'icon'          =>  'icon-tab-paypal-payout',
+                'submenu'       =>  'payment',
                 'modulename'     =>  'payment-payout'
             ),
             array(
@@ -7302,6 +7317,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'description'   =>  __('Connect to vendors stripe account and make hassle-free transfers as scheduled', 'dc-woocommerce-multi-vendor'),
                 'icon'          =>  'icon-tab-stripe-connect',
+                'submenu'       =>  'payment',
                 'modulename'     =>  'payment-stripe-connect'
             )
         );
@@ -7322,6 +7338,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'description'   =>  __('View the overall performance of the site', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'icon'          =>  'icon-tab-overview',
+                'submenu'       =>  'analytics',
                 'modulename'     =>  'admin-overview'
             ),
             array(
@@ -7329,6 +7346,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'description'   =>  __('Get comprehensive reports on vendor sales and orders', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'icon'          =>  'icon-tab-vendor',
+                'submenu'       =>  'analytics',
                 'modulename'     =>  'vendor'
             ),
             array(
@@ -7336,6 +7354,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'description'   =>  __('View reports product sales and order', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'icon'          =>  'icon-tab-products',
+                'submenu'       =>  'analytics',
                 'modulename'     =>  'product'
             ),
             array(
@@ -7343,6 +7362,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'description'   =>  __('Get detailed reports on vendor commission', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'icon'          =>  'icon-tab-transaction-history',
+                'submenu'       =>  'analytics',
                 'modulename'     =>  'transaction-history'
             )
         );
@@ -7352,48 +7372,56 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'tablabel'      =>  __('Personal', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/update_vendor',
                 'icon'          =>  'icon-vendor-personal',
+                'submenu'       =>  'vendor',
                 'modulename'     =>  'vendor-personal'
             ),
             array(
                 'tablabel'      =>  __('Store', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/update_vendor',
                 'icon'          =>  'icon-vendor-store',
+                'submenu'       =>  'vendor',
                 'modulename'     =>  'vendor-store'
             ),
             array(
                 'tablabel'      =>  __('Social', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/update_vendor',
                 'icon'          =>  'icon-vendor-social',
+                'submenu'       =>  'vendor',
                 'modulename'     =>  'vendor-social'
             ),
             array(
                 'tablabel'      =>  __('Payment', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/update_vendor',
                 'icon'          =>  'icon-vendor-payment',
+                'submenu'       =>  'vendor',
                 'modulename'     =>  'vendor-payments'
             ),
             array(
                 'tablabel'      =>  __('Vendor Application', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/update_vendor',
                 'icon'          =>  'icon-vendor-application',
+                'submenu'       =>  'vendor',
                 'modulename'     =>  'vendor-application'
             ),
             array(
                 'tablabel'      =>  __('Vendor Shipping', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/update_vendor',
                 'icon'          =>  'icon-vendor-shipping',
+                'submenu'       =>  'vendor',
                 'modulename'     =>  'vendor-shipping'
             ),
             array(
                 'tablabel'      =>  __('Vendor Followers', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/update_vendor',
                 'icon'          =>  'icon-vendor-follower',
+                'submenu'       =>  'vendor',
                 'modulename'     =>  'vendor-followers'
             ),
             array(
                 'tablabel'      =>  __('Vendor Policy', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/update_vendor',
                 'icon'          =>  'icon-vendor-policy',
+                'submenu'       =>  'vendor',
                 'modulename'     =>  'vendor-policy'
             ),
 
@@ -7405,6 +7433,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'description'   =>  __('Keeps track of all important marketplace chores', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/update_vendor',
                 'icon'          =>  'icon-tab-activity-reminder',
+                'submenu'       =>  'work-board',
                 'modulename'     =>  'activity-reminder'
             ),
             array(
@@ -7412,6 +7441,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'description'   =>  __('Broadcast important messages, news and announcements to single or multiple sellers.Read more to learn about this feature.', 'dc-woocommerce-multi-vendor'),//neda
                 'apiurl'        =>  'mvx_module/v1/update_vendor',
                 'icon'          =>  'icon-tab-announcement',
+                'submenu'       =>  'work-board',
                 'modulename'     =>  'announcement'
             ),
             array(
@@ -7419,6 +7449,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'description'   =>  __('"Share tutorials, best practices, "how-to" guides or whatever you feel is appropriate with your vendors. Read More ', 'dc-woocommerce-multi-vendor'),//neda
                 'apiurl'        =>  'mvx_module/v1/update_vendor',
                 'icon'          =>  'icon-tab-knowladgebase',
+                'submenu'       =>  'work-board',
                 'modulename'     =>  'knowladgebase'
             ),
             array(
@@ -7426,6 +7457,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                'description'   =>  __('View feeckback received from cutomers. ', 'dc-woocommerce-multi-vendor'),//neda
                  'apiurl'        =>  'mvx_module/v1/update_vendor',
                 'icon'          =>  'icon-tab-store-review',
+                'submenu'       =>  'work-board',
                 'modulename'     =>  'store-review'
             ),
             array(
@@ -7433,6 +7465,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                'description'   =>  __('Keep track of complaints and reports filed by customers.  ', 'dc-woocommerce-multi-vendor'),//neda
                  'apiurl'        =>  'mvx_module/v1/update_vendor',
                 'icon'          =>  'icon-tab-report-abuse',
+                'submenu'       =>  'work-board',
                 'modulename'     =>  'report-abuse'
             ),
             array(
@@ -7440,6 +7473,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'description'   =>  __('View and publish questions sent to sellers by their customers.', 'dc-woocommerce-multi-vendor'),//neda
                 'apiurl'        =>  'mvx_module/v1/update_vendor',
                 'icon'          =>  'icon-tab-question-and-answer',
+                'submenu'       =>  'work-board',
                 'modulename'     =>  'question-ans'
             )
         );
@@ -7449,18 +7483,21 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'tablabel'      =>  __('Version Control', 'dc-woocommerce-multi-vendor'),
                 'description'   =>  __('View the overall performance of the site', 'dc-woocommerce-multi-vendor'),
                 'icon'          =>  'icon-tab-version-control',
+                'submenu'       =>  'status-tools',
                 'modulename'     =>  'version-control'
             ),
             array(
                 'tablabel'      =>  __('Database Tools', 'dc-woocommerce-multi-vendor'),
                 'description'   =>  __('Get comprehensive reports on vendor sales and orders', 'dc-woocommerce-multi-vendor'),
                 'icon'          =>  'icon-tab-database-tools',
+                'submenu'       =>  'status-tools',
                 'modulename'     =>  'database-tools'
             ),
             array(
                 'tablabel'      =>  __('System Status', 'dc-woocommerce-multi-vendor'),
                 'description'   =>  __('View reports product sales and order', 'dc-woocommerce-multi-vendor'),
                 'icon'          =>  'icon-tab-system-status',
+                'submenu'       =>  'status-tools',
                 'modulename'     =>  'system-status'
             ),
             array(
@@ -7468,6 +7505,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'link'          =>  admin_url( 'index.php?page=mvx-migrator' ),
                 'description'   =>  __('Get detailed reports on vendor commission', 'dc-woocommerce-multi-vendor'),
                 'icon'          =>  'icon-tab-migration',
+                'submenu'       =>  'status-tools',
                 'modulename'     =>  'transaction-history'
             )
         );
