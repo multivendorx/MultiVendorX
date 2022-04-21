@@ -1576,26 +1576,27 @@ class MVX_Product {
         $commission_percentage = get_term_meta($term->term_id, 'commission_percentage', true);
         $fixed_with_percentage = get_term_meta($term->term_id, 'fixed_with_percentage', true);
         $fixed_with_percentage_qty = get_term_meta($term->term_id, 'fixed_with_percentage_qty', true);
+        $commission_type_value = get_mvx_vendor_settings('commission_type', 'commissions') ? get_mvx_vendor_settings('commission_type', 'commissions')['value'] : '';
         ?>
-        <?php if ('fixed' === get_mvx_vendor_settings('commission_type', 'payment', '', 'fixed') || 'percent' === get_mvx_vendor_settings('commission_type', 'payment', '', 'fixed')): ?>
+        <?php if ('fixed' === $commission_type_value || 'percent' === $commission_type_value): ?>
             <tr class="form-field">
                 <th scope="row" valign="top"><label for="commision"><?php _e('Commission', 'dc-woocommerce-multi-vendor'); ?></label></th>
                 <td><input type="text" class="short" style="" name="commision" id="commision" value="<?php echo $commision; ?>" placeholder=""></td>
             </tr>
         <?php endif; ?>
-        <?php if ('fixed_with_percentage' === get_mvx_vendor_settings('commission_type', 'payment', '', 'fixed') || 'fixed_with_percentage_qty' === get_mvx_vendor_settings('commission_type', 'payment', '', 'fixed')): ?>
+        <?php if ('fixed_with_percentage' === $commission_type_value || 'fixed_with_percentage_qty' === $commission_type_value): ?>
             <tr class="form-field">
                 <th scope="row" valign="top"><label for="commission_percentage"><?php _e('Commission Percentage', 'dc-woocommerce-multi-vendor'); ?></label></th>
                 <td><input type="number" class="short" style="" name="commission_percentage" id="commission_percentage" value="<?php echo $commission_percentage; ?>" placeholder=""></td>
             </tr>
         <?php endif; ?>
-        <?php if ('fixed_with_percentage' === get_mvx_vendor_settings('commission_type', 'payment', '', 'fixed')): ?>
+        <?php if ('fixed_with_percentage' === $commission_type_value): ?>
             <tr class="form-field">
                 <th scope="row" valign="top"><label for="fixed_with_percentage"><?php _e('Commission Fixed per transaction', 'dc-woocommerce-multi-vendor'); ?></label></th>
                 <td><input type="number" class="short" style="" name="fixed_with_percentage" id="fixed_with_percentage" value="<?php echo $fixed_with_percentage; ?>" placeholder=""></td>
             </tr>
         <?php endif; ?>
-        <?php if ('fixed_with_percentage_qty' === get_mvx_vendor_settings('commission_type', 'payment', '', 'fixed')): ?>
+        <?php if ('fixed_with_percentage_qty' === $commission_type_value): ?>
             <tr class="form-field">
                 <th scope="row" valign="top"><label for="fixed_with_percentage_qty"><?php _e('Commission Fixed per unit', 'dc-woocommerce-multi-vendor'); ?></label></th>
                 <td><input type="number" class="short" style="" name="fixed_with_percentage_qty" id="fixed_with_percentage_qty" value="<?php echo $fixed_with_percentage_qty; ?>" placeholder=""></td>

@@ -847,7 +847,7 @@ class MVX_Admin {
             return join( '', $contents );
         }
 
-        return join( '', array_slice( $contents, -$limit ) );
+        return is_array($contents) ? join( '', array_slice( $contents, -$limit ) ) : '';
     }
 
     public function get_filesystem() {
