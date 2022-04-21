@@ -7404,13 +7404,6 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'modulename'     =>  'vendor-application'
             ),
             array(
-                'tablabel'      =>  __('Vendor Shipping', 'dc-woocommerce-multi-vendor'),
-                'apiurl'        =>  'mvx_module/v1/update_vendor',
-                'icon'          =>  'icon-vendor-shipping',
-                'submenu'       =>  'vendor',
-                'modulename'     =>  'vendor-shipping'
-            ),
-            array(
                 'tablabel'      =>  __('Vendor Followers', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/update_vendor',
                 'icon'          =>  'icon-vendor-follower',
@@ -7426,6 +7419,16 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
             ),
 
         );
+
+        if (mvx_is_module_active('vendor-shipping')) {
+            $marketplace_vendors[] = array(
+                'tablabel'      =>  __('Vendor Shipping', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/update_vendor',
+                'icon'          =>  'icon-vendor-shipping',
+                'submenu'       =>  'vendor',
+                'modulename'     =>  'vendor-shipping'
+            );
+        }
 
         $marketplace_workboard = array(
             array(
