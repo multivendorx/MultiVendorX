@@ -4704,420 +4704,10 @@ class MVX_REST_API {
         $mvx_pro_is_active = is_plugin_active('mvx-pro/mvx-pro.php') ? true : false;
             
         $mvx_pro_is_active = is_plugin_active('mvx-pro/mvx-pro.php') ? true :false;
+        
         $mvx_all_modules   =   [
             [
-                'label' =>  __('Payment', 'dc-woocommerce-multi-vendor'),
-                'options'       =>  [
-                    [
-                        'id'           => 'bank-payment',
-                        'name'         => __( 'Bank Transfer', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( "Manually transfer money directly to the vendor's bank account.", 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => 'free',
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
-                    ],
-                    [
-                        'id'           => 'paypal-masspay',
-                        'name'         => __( 'PayPal Masspay', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( 'Schedule payment to multiple vendors at the same time.', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => 'free',
-                       
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=payment&name=payment-masspay'),
-                    ],
-                    [
-                        'id'           => 'paypal-payout',
-                        'name'         => __( 'PayPal Payout', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( 'Send payments automatically to multiple vendors as per scheduled', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => 'free',
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=payment&name=payment-payout'),
-                    ],
-                    [
-                        'id'           => 'paypal-marketplace',
-                        'name'         => __( 'PayPal Marketplace (Real time Split)', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( 'Using  split payment pay vendors instantly after a completed order ', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
-                        'required_plugin_list' => array(
-                            array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
-                                'is_active' => $mvx_pro_is_active,
-                            ),
-                        ),
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
-                    ],
-                    [
-                        'id'           => 'stripe-connect',
-                        'name'         => __( 'Stripe Connect', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( 'Connect to vendors stripe account and make hassle-free transfers as scheduled.', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => 'free',
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=payment&name=payment-stripe-connect'),
-                    ],
-                    [
-                        'id'           => 'stripe-marketplace',
-                        'name'         => __( 'Stripe Marketplace (Real time Split)', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( 'Real-Time Split payments pays vendor directly after a completed order', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
-                        'required_plugin_list' => array(
-                            array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
-                                'is_active' => $mvx_pro_is_active,
-                            ),
-                        ),
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
-                    ],
-                    [
-                        'id'           => 'mangopay',
-                        'name'         => __( 'Mangopay', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( 'Gives the benefit of both realtime split transfer and scheduled distribution', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
-                        'required_plugin_list' => array(
-                            array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
-                                'is_active' => $mvx_pro_is_active,
-                            ),
-                        ),
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
-                    ],
-                    [
-                        'id'           => 'razorpay',
-                        'name'         => __( 'Razorpay', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( 'For clients looking to pay multiple Indian vendors instantly', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => 'free',
-                        'required_plugin_list' => array(
-                            array(
-                                'plugin_name'   => __('MVX Razorpay Split Payment', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wordpress.org/plugins/mvx-razorpay-split-payment/',
-                                'is_active' => is_plugin_active('mvx-razorpay-split-payment/mvx-razorpay-checkout-gateway.php') ? true :false,
-                            )
-                        ),
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
-                    ]
-                ]
-            ],
-            [
-                'label' =>  __('Shipping', 'dc-woocommerce-multi-vendor'),
-                'options'       =>  [
-                    [
-                        'id'           => 'vendor-shipping',
-                        'name'         => __( 'Vendor Shipping', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( 'Enable sellers to control their shipping', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => 'free',
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
-                    ],
-                    [
-                        'id'           => 'zone-shipping',
-                        'name'         => __( 'Zone-Wise Shipping', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( 'Limit vendors to sell in selected zones', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => 'free',
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
-                        'parent_category' => __( 'Shipping.', 'dc-woocommerce-multi-vendor' ),
-                    ],
-                    [
-                        'id'           => 'distance-shipping',
-                        'name'         => __( 'Distance Shipping', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( 'Calculate Rates based on distance between the vendor store and drop location', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => 'free',
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
-                    ],
-                    [
-                        'id'           => 'country-shipping',
-                        'name'         => __( 'Country-Wise Shipping', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( 'Let vendors choose and manage shipping, to countries of their choice', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => 'free',
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
-                    ],
-                    [
-                        'id'           => 'weight-shipping',
-                        'name'         => __( 'Weight Wise Shipping (using Table Rate Shipping)', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( 'Vendors can create shipping rates based on price, weight and quantity', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => 'free',
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
-                    ],
-                    [
-                        'id'           => 'per-product-shipping',
-                        'name'         => __( 'Per Product Shipping', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( 'let vendors add shipping cost to specific products', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
-                        'required_plugin_list' => array(
-                            array(
-                                'plugin_name'   => __('Per Product Shipping', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://woocommerce.com/products/per-product-shipping/',
-                                'is_active' => is_plugin_active('woocommerce-shipping-per-product/woocommerce-shipping-per-product.php') ?true : false,
-                            ),
-                            array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
-                                'is_active'     => $mvx_pro_is_active,
-                            ),
-                        ),
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
-                    ],
-                ]
-            ],
-            [
-                'label' =>  __('Vendor Store Boosters', 'dc-woocommerce-multi-vendor'),
-                'options'       =>  [
-                    [
-                        'id'           => 'identity-verification',
-                        'name'         => __( 'Verifictaion', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( 'Verify vendors on the basis of Id documents, Address  and Social Media Account  ', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
-                        'required_plugin_list' => array(
-                            array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
-                                'is_active'     => $mvx_pro_is_active,
-                            ),
-                        ),
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
-                    ],
-                    [
-                        'id'           => 'vacation',
-                        'name'         => __( 'Vacation', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( 'On vacation mode, vendor can allow / disable sale & notify customer accordingly', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
-                        'required_plugin_list' => array(
-                            array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
-                                'is_active'     => $mvx_pro_is_active,
-                            ),
-                        ),
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
-                    ],
-                    [
-                        'id'           => 'business-hours',
-                        'name'         => __( 'Business Hours', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( 'Gives vendors the option to set and manage business timings', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
-                        'required_plugin_list' => array(
-                            array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
-                                'is_active'     => $mvx_pro_is_active,
-                            ),
-                        ),
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
-                    ],
-                    [
-                        'id'           => 'staff-manager',
-                        'name'         => __( 'Staff Manager', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( 'Lets vendors hire and manage staff to support store', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
-                        'required_plugin_list' => array(
-                            array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
-                                'is_active'     => $mvx_pro_is_active,
-                            ),
-                        ),
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
-                    ],
-                    [
-                        'id'           => 'follow-store',
-                        'name'         => __( 'Follow Store', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( 'Permit customers to follow store, receive updates & lets vendors keep track of customers', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => 'free',
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
-                    ],
-                    [
-                        'id'           => 'store-review',
-                        'name'         => __( 'Store Review', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( 'Allows customers to rate and review stores and their purchased products', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => 'free',
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
-                    ],
-                    [
-                        'id'           => 'import-export',
-                        'name'         => __( 'Product Import/Export  ', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( 'Helps vendors seamlessly import or export product data using CSV etc', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
-                        'required_plugin_list' => array(
-                            array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
-                                'is_active'     => $mvx_pro_is_active,
-                            ),
-                        ),
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
-                    ],
-                    [
-                        'id'           => 'marketplace-refund',
-                        'name'         => __( 'Marketplace Refund', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( 'Enable customer refund requests & Let vendors manage customer refund ', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => 'free',
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
-                    ],
-                    [
-                        'id'           => 'spmv',
-                        'name'         => __( 'Single Product Multiple Vendor', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( 'Lets multiple vendors sell the same products ', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => 'free',
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
-                    ],
-                    [
-                        'id'           => 'store-analytics',
-                        'name'         => __( 'Store Analytics', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( 'Gives vendors detailed store report & connect to google analytics', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => 'free',
-                        'required_plugin_list' => array(
-                            array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
-                                'is_active'     => $mvx_pro_is_active,
-                            ),
-                        ),
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
-                    ],
-                    [
-                        'id'           => 'store-seo',
-                        'name'         => __( 'Store SEO  ', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( 'Lets vendors manage their store SEOs using Rank Math and Yoast SEO', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => 'free',
-                        'required_plugin_list' => array(
-                            array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
-                                'is_active'     => $mvx_pro_is_active,
-                            ),
-                        ),
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
-                    ],
-                    [
-                        'id'           => 'invoice',
-                        'name'         => __( 'Invoice', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( 'Send invoice and packaging slips to vendor', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
-                        'required_plugin_list' => array(
-                            array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
-                                'is_active'     => $mvx_pro_is_active,
-                            ),
-                        ),
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
-                    ],
-                    [
-                        'id'           => 'wholesale',
-                        'name'         => __( 'Wholesale', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( 'Set wholesale price and quantity for customers ', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
-                        'required_plugin_list' => array(
-                            array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
-                                'is_active'     => $mvx_pro_is_active,
-                            ),
-                        ),
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
-                    ],
-                    [
-                        'id'           => 'report-abuse',
-                        'name'         => __( 'Report Abuse', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( 'Lets customers report false products', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => 'free',
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
-                    ],
-                    [
-                        'id'           => 'live-chat',
-                        'name'         => __( 'Live Chat', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( 'Allows real-time messaging between vendors and customers', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
-                        'required_plugin_list' => array(
-                            array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
-                                'is_active'     => $mvx_pro_is_active,
-                            ),
-                        ),
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
-                    ],
-                    [
-                        'id'           => 'marketplace-membership',
-                        'name'         => __( 'Makertplace Membership', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( 'Lets Admin create marketplace memberships levels and manage vendor-wise individual capablity  ', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
-                        'required_plugin_list' => array(
-                            array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
-                                'is_active'     => $mvx_pro_is_active,
-                            ),
-                        ),
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
-                    ],
-                    [
-                        'id'           => 'store-location',
-                        'name'         => __( 'Store Location', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( "If enabled customers can view a vendor's store location", 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => 'free',
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
-                    ],
-                    [
-                        'id'           => 'store-policy',
-                        'name'         => __( 'Store Policy', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( 'Offers vendors the option to set individual store specific policies', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => 'free',
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
-                    ],
-                ]
-            ],
-            [
-                'label' =>  __('Notifictaion', 'dc-woocommerce-multi-vendor'),
-                'options'       =>  [
-                    [
-                        'id'           => 'announcement',
-                        'name'         => __( 'Announcement', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( 'lets admin make important annoucements to vendors', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => 'free',
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
-                    ],
-                    [
-                        'id'           => 'knowladgebase',
-                        'name'         => __( 'Knowladgebase', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( 'Admin can share tutorials and othe vendor-specific information with vendors', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => 'free',
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
-                    ],
-                ]
-            ],
-            [
-                'label' =>  __('Marketplace Products', 'dc-woocommerce-multi-vendor'),
+                'label' =>  __('Marketplace Types', 'dc-woocommerce-multi-vendor'),
                 'options'       =>  [
                     [
                         'id'           => 'simple',
@@ -5126,7 +4716,7 @@ class MVX_REST_API {
                         'plan'         => 'free',
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
                         'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
-                        'parent_category' => __( 'Marketplace Products.', 'dc-woocommerce-multi-vendor' ),
+                        'parent_category' => __( 'Marketplace Types.', 'dc-woocommerce-multi-vendor' ),
                     ],
                     [
                         'id'           => 'variable',
@@ -5296,6 +4886,452 @@ class MVX_REST_API {
                 ]
             ],
             [
+                'label' =>  __('Seller management ', 'dc-woocommerce-multi-vendor'),
+                'options'       =>  [
+                    [
+                        'id'           => 'identity-verification',
+                        'name'         => __( 'Seller Identity Verification', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( 'Verify vendors on the basis of Id documents, Address  and Social Media Account  ', 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
+                        'required_plugin_list' => array(
+                            array(
+                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'is_active'     => $mvx_pro_is_active,
+                            ),
+                        ),
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                    ],
+                ]
+            ],
+            [
+                'label' =>  __('Product management ', 'dc-woocommerce-multi-vendor'),
+                'options'       =>  [
+                    [
+                        'id'           => 'spmv',
+                        'name'         => __( 'Single Product Multiple Vendor', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( 'Lets multiple vendors sell the same products ', 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => 'free',
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                    ],
+                    [
+                        'id'           => 'import-export',
+                        'name'         => __( 'Import Export  ', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( 'Helps vendors seamlessly import or export product data using CSV etc', 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
+                        'required_plugin_list' => array(
+                            array(
+                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'is_active'     => $mvx_pro_is_active,
+                            ),
+                        ),
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                    ],
+                    [
+                        'id'           => 'inventory',
+                        'name'         => __( 'Store Inventory', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( '', 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => 'free',
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                    ],
+                ]
+            ],
+            [
+                'label' =>  __('Payment', 'dc-woocommerce-multi-vendor'),
+                'options'       =>  [
+                    [
+                        'id'           => 'bank-payment',
+                        'name'         => __( 'Bank Transfer', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( "Manually transfer money directly to the vendor's bank account.", 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => 'free',
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                    ],
+                    [
+                        'id'           => 'paypal-masspay',
+                        'name'         => __( 'PayPal Masspay', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( 'Schedule payment to multiple vendors at the same time.', 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => 'free',
+                       
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=payment&name=payment-masspay'),
+                    ],
+                    [
+                        'id'           => 'paypal-payout',
+                        'name'         => __( 'PayPal Payout', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( 'Send payments automatically to multiple vendors as per scheduled', 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => 'free',
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=payment&name=payment-payout'),
+                    ],
+                    [
+                        'id'           => 'paypal-marketplace',
+                        'name'         => __( 'PayPal Marketplace (Real time Split)', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( 'Using  split payment pay vendors instantly after a completed order ', 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
+                        'required_plugin_list' => array(
+                            array(
+                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'is_active' => $mvx_pro_is_active,
+                            ),
+                        ),
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                    ],
+                    [
+                        'id'           => 'stripe-connect',
+                        'name'         => __( 'Stripe Connect', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( 'Connect to vendors stripe account and make hassle-free transfers as scheduled.', 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => 'free',
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=payment&name=payment-stripe-connect'),
+                    ],
+                    [
+                        'id'           => 'stripe-marketplace',
+                        'name'         => __( 'Stripe Marketplace (Real time Split)', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( 'Real-Time Split payments pays vendor directly after a completed order', 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
+                        'required_plugin_list' => array(
+                            array(
+                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'is_active' => $mvx_pro_is_active,
+                            ),
+                        ),
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                    ],
+                    [
+                        'id'           => 'mangopay',
+                        'name'         => __( 'Mangopay', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( 'Gives the benefit of both realtime split transfer and scheduled distribution', 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
+                        'required_plugin_list' => array(
+                            array(
+                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'is_active' => $mvx_pro_is_active,
+                            ),
+                        ),
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                    ],
+                    [
+                        'id'           => 'razorpay',
+                        'name'         => __( 'Razorpay', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( 'For clients looking to pay multiple Indian vendors instantly', 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => 'free',
+                        'required_plugin_list' => array(
+                            array(
+                                'plugin_name'   => __('MVX Razorpay Split Payment', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://wordpress.org/plugins/mvx-razorpay-split-payment/',
+                                'is_active' => is_plugin_active('mvx-razorpay-split-payment/mvx-razorpay-checkout-gateway.php') ? true :false,
+                            )
+                        ),
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                    ]
+                ]
+            ],
+            [
+                'label' =>  __('Shipping', 'dc-woocommerce-multi-vendor'),
+                'options'       =>  [
+                    [
+                        'id'           => 'vendor-shipping',
+                        'name'         => __( 'Vendor Shipping', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( 'Enable sellers to control their shipping', 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => 'free',
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                    ],
+                    [
+                        'id'           => 'zone-shipping',
+                        'name'         => __( 'Zone-Wise Shipping', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( 'Limit vendors to sell in selected zones', 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => 'free',
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                        'parent_category' => __( 'Shipping.', 'dc-woocommerce-multi-vendor' ),
+                    ],
+                    [
+                        'id'           => 'distance-shipping',
+                        'name'         => __( 'Distance Shipping', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( 'Calculate Rates based on distance between the vendor store and drop location', 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => 'free',
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                    ],
+                    [
+                        'id'           => 'country-shipping',
+                        'name'         => __( 'Country-Wise Shipping', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( 'Let vendors choose and manage shipping, to countries of their choice', 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => 'free',
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                    ],
+                    [
+                        'id'           => 'weight-shipping',
+                        'name'         => __( 'Weight Wise Shipping (using Table Rate Shipping)', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( 'Vendors can create shipping rates based on price, weight and quantity', 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => 'free',
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                    ],
+                    [
+                        'id'           => 'per-product-shipping',
+                        'name'         => __( 'Per Product Shipping', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( 'let vendors add shipping cost to specific products', 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
+                        'required_plugin_list' => array(
+                            array(
+                                'plugin_name'   => __('Per Product Shipping', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://woocommerce.com/products/per-product-shipping/',
+                                'is_active' => is_plugin_active('woocommerce-shipping-per-product/woocommerce-shipping-per-product.php') ?true : false,
+                            ),
+                            array(
+                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'is_active'     => $mvx_pro_is_active,
+                            ),
+                        ),
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                    ],
+                ]
+            ],
+            [
+                'label' =>  __('Order Managemnet', 'dc-woocommerce-multi-vendor'),
+                'options'       =>  [
+                    [
+                        'id'           => 'invoice',
+                        'name'         => __( 'Invoice & Packing slip', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( 'Send invoice and packaging slips to vendor', 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
+                        'required_plugin_list' => array(
+                            array(
+                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'is_active'     => $mvx_pro_is_active,
+                            ),
+                        ),
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                    ],
+                    [
+                        'id'           => 'marketplace-refund',
+                        'name'         => __( 'Marketplace Refund', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( 'Enable customer refund requests & Let vendors manage customer refund ', 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => 'free',
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                    ],
+                ]
+            ],
+            [
+                'label' =>  __('Store Managemnet', 'dc-woocommerce-multi-vendor'),
+                'options'       =>  [
+                    [
+                        'id'           => 'store-location',
+                        'name'         => __( 'Store Location', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( "If enabled customers can view a vendor's store location", 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => 'free',
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                    ],
+                    [
+                        'id'           => 'store-policy',
+                        'name'         => __( 'Store Policy', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( 'Offers vendors the option to set individual store specific policies', 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => 'free',
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                    ],
+                    [
+                        'id'           => 'follow-store',
+                        'name'         => __( 'Follow Store', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( 'Permit customers to follow store, receive updates & lets vendors keep track of customers', 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => 'free',
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                    ],
+                    [
+                        'id'           => 'store-review',
+                        'name'         => __( 'Store Review', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( 'Allows customers to rate and review stores and their purchased products', 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => 'free',
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                    ],
+                    [
+                        'id'           => 'business-hours',
+                        'name'         => __( 'Business Hours', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( 'Gives vendors the option to set and manage business timings', 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
+                        'required_plugin_list' => array(
+                            array(
+                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'is_active'     => $mvx_pro_is_active,
+                            ),
+                        ),
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                    ],
+                ]
+            ],
+            [
+                'label' =>  __('Store Component', 'dc-woocommerce-multi-vendor'),
+                'options'       =>  [
+                    [
+                        'id'           => 'vacation',
+                        'name'         => __( 'Vacation', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( 'On vacation mode, vendor can allow / disable sale & notify customer accordingly', 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
+                        'required_plugin_list' => array(
+                            array(
+                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'is_active'     => $mvx_pro_is_active,
+                            ),
+                        ),
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                    ],
+                    [
+                        'id'           => 'staff-manager',
+                        'name'         => __( 'Staff Manager', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( 'Lets vendors hire and manage staff to support store', 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
+                        'required_plugin_list' => array(
+                            array(
+                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'is_active'     => $mvx_pro_is_active,
+                            ),
+                        ),
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                    ],
+                    [
+                        'id'           => 'wholesale',
+                        'name'         => __( 'Wholesale', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( 'Set wholesale price and quantity for customers ', 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
+                        'required_plugin_list' => array(
+                            array(
+                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'is_active'     => $mvx_pro_is_active,
+                            ),
+                        ),
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                    ],
+                    [
+                        'id'           => 'live-chat',
+                        'name'         => __( 'Live Chat', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( 'Allows real-time messaging between vendors and customers', 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
+                        'required_plugin_list' => array(
+                            array(
+                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'is_active'     => $mvx_pro_is_active,
+                            ),
+                        ),
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                    ],
+                ]
+            ],
+            [
+                'label' =>  __('Analytics', 'dc-woocommerce-multi-vendor'),
+                'options'       =>  [
+                    [
+                        'id'           => 'store-analytics',
+                        'name'         => __( 'Store Analytics', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( 'Gives vendors detailed store report & connect to google analytics', 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => 'free',
+                        'required_plugin_list' => array(
+                            array(
+                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'is_active'     => $mvx_pro_is_active,
+                            ),
+                        ),
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                    ],
+                    [
+                        'id'           => 'store-seo',
+                        'name'         => __( 'Store SEO  ', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( 'Lets vendors manage their store SEOs using Rank Math and Yoast SEO', 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => 'free',
+                        'required_plugin_list' => array(
+                            array(
+                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'is_active'     => $mvx_pro_is_active,
+                            ),
+                        ),
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                    ],
+                ]
+            ],
+            [
+                'label' =>  __('Marketplace Membership', 'dc-woocommerce-multi-vendor'),
+                'options'       =>  [
+                    [
+                        'id'           => 'marketplace-membership',
+                        'name'         => __( 'Makertplace Membership', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( 'Lets Admin create marketplace memberships levels and manage vendor-wise individual capablity  ', 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
+                        'required_plugin_list' => array(
+                            array(
+                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'is_active'     => $mvx_pro_is_active,
+                            ),
+                        ),
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                    ],
+                ]
+            ],
+            [
+                'label' =>  __('Notifictaion', 'dc-woocommerce-multi-vendor'),
+                'options'       =>  [
+                    [
+                        'id'           => 'announcement',
+                        'name'         => __( 'Announcement', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( 'lets admin make important annoucements to vendors', 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => 'free',
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                    ],
+                    [
+                        'id'           => 'report-abuse',
+                        'name'         => __( 'Report Abuse', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( 'Lets customers report false products', 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => 'free',
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                    ],
+                    [
+                        'id'           => 'knowladgebase',
+                        'name'         => __( 'Knowladgebase', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( 'Admin can share tutorials and othe vendor-specific information with vendors', 'dc-woocommerce-multi-vendor' ),
+                        'plan'         => 'free',
+                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                    ],
+                ]
+            ],
+            [
                 'label' =>  __('Third Party Compartibility', 'dc-woocommerce-multi-vendor'),
                 'options'       =>  [
                     [
@@ -5347,7 +5383,6 @@ class MVX_REST_API {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'advance-custom-field',
@@ -5448,12 +5483,11 @@ class MVX_REST_API {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                 ]
             ],
         ];
-        
+
         if ($mvx_all_modules) {
             foreach ($mvx_all_modules as $parent_module_key => $parent_module_value) {
                 if (isset($parent_module_value['options']) && !empty($parent_module_value['options'])) {
