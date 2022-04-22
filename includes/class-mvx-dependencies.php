@@ -138,4 +138,13 @@ class WC_Dependencies_Product_Vendor {
         return $dependencies;
     }
 
+    /**
+     * Check Elementor Pro exist
+     * @return Boolean
+     */
+    public static function elementor_pro_active_check() {
+        if (!self::$active_plugins)
+            self::init();
+        return in_array('elementor-pro/elementor-pro.php', self::$active_plugins) || array_key_exists('elementor-pro/elementor-pro.php', self::$active_plugins);
+    }
 }

@@ -200,7 +200,7 @@ class MVX_Elementor_StoreTabs extends MVX_Elementor_StoreInfo {
      *
      * @return void
      */
-    protected function _content_template() {
+    protected function content_template() {
         ?>
         <#
             view.addRenderAttribute( 'icon_list', 'class', 'elementor-icon-list-items' );

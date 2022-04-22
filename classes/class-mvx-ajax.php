@@ -139,7 +139,7 @@ class MVX_Ajax {
         // ledger book
         add_action('wp_ajax_mvx_vendor_banking_ledger_list', array($this, 'mvx_vendor_banking_ledger_list'));
 
-        if ( defined( 'ICL_SITEPRESS_VERSION' ) && ! ICL_PLUGIN_INACTIVE && class_exists( 'SitePress' ) ) {
+        if ( defined( 'ICL_SITEPRESS_VERSION' ) && ! ICL_PLUGIN_INACTIVE && class_exists( 'SitePress' ) && mvx_is_module_active('wpml') ) {
             add_action( 'wp_ajax_mvx_product_translations', array( &$this, 'wpml_mvx_product_translations' ) );
             add_action( 'wp_ajax_mvx_product_new_translation', array( &$this, 'wpml_mvx_product_new_translation' ) );
         }

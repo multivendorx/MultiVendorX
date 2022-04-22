@@ -9,7 +9,7 @@ class MVX_Elementor_Module extends MVX_Elementor_ModuleBase {
 
         add_action( 'elementor/documents/register', [ $this, 'register_documents' ] );
         add_action( 'elementor/dynamic_tags/register_tags', [ $this, 'register_tags' ] );
-        add_action( 'elementor/controls/controls_registered', [ $this, 'register_controls' ] );
+        add_action( 'elementor/controls/register', [ $this, 'register_controls' ] );
         add_action( 'elementor/editor/footer', [ $this, 'add_editor_templates' ], 9 );
         add_action( 'elementor/theme/register_conditions', [ $this, 'register_conditions' ] );
         add_filter( 'mvx_store_locate_template', [ $this, 'locate_template_for_store_page' ], 999, 4 );
@@ -107,19 +107,18 @@ class MVX_Elementor_Module extends MVX_Elementor_ModuleBase {
      *
      * @return void
      */
-    public function register_controls() {
-    	global $mvx_elementor;
-		$controls = [
-				'MVX_Elementor_SortableList',
-				'MVX_Elementor_DynamicHidden',
-		];
+    public function register_controls($controls_manager) {
+        global $mvx_elementor;    
+        $controls = [
+            'SortableList',
+            'DynamicHidden',
+        ];
 
-		$controls_manager = $mvx_elementor->mvx_elementor()->controls_manager;
+        foreach ( $controls as $control ) {
+          $control_class = "MVX_Elementor_{$control}";
+          $controls_manager->register( new $control_class() );
+        }
 
-		foreach ( $controls as $control ) {
-			$control_class = "{$control}";
-			$controls_manager->register_control( $control_class::CONTROL_TYPE, new $control_class() );
-		}
     }
 
     /**

@@ -7403,21 +7403,6 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'submenu'       =>  'vendor',
                 'modulename'     =>  'vendor-application'
             ),
-            array(
-                'tablabel'      =>  __('Vendor Followers', 'dc-woocommerce-multi-vendor'),
-                'apiurl'        =>  'mvx_module/v1/update_vendor',
-                'icon'          =>  'icon-vendor-follower',
-                'submenu'       =>  'vendor',
-                'modulename'     =>  'vendor-followers'
-            ),
-            array(
-                'tablabel'      =>  __('Vendor Policy', 'dc-woocommerce-multi-vendor'),
-                'apiurl'        =>  'mvx_module/v1/update_vendor',
-                'icon'          =>  'icon-vendor-policy',
-                'submenu'       =>  'vendor',
-                'modulename'     =>  'vendor-policy'
-            ),
-
         );
 
         if (mvx_is_module_active('vendor-shipping')) {
@@ -7427,6 +7412,26 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'icon'          =>  'icon-vendor-shipping',
                 'submenu'       =>  'vendor',
                 'modulename'     =>  'vendor-shipping'
+            );
+        }
+
+        if (mvx_is_module_active('follow-store')) {
+            $marketplace_vendors[] = array(
+                'tablabel'      =>  __('Vendor Followers', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/update_vendor',
+                'icon'          =>  'icon-vendor-follower',
+                'submenu'       =>  'vendor',
+                'modulename'     =>  'vendor-followers'
+            );
+        }
+
+        if (mvx_is_module_active('store-policy')) {
+            $marketplace_vendors[] = array(
+                'tablabel'      =>  __('Vendor Policy', 'dc-woocommerce-multi-vendor'),
+                'apiurl'        =>  'mvx_module/v1/update_vendor',
+                'icon'          =>  'icon-vendor-policy',
+                'submenu'       =>  'vendor',
+                'modulename'     =>  'vendor-policy'
             );
         }
 
@@ -7540,5 +7545,16 @@ if (!function_exists('mvx_is_module_active')) {
             return false;
         }
         return $MVX->vendor_rest_api->is_current_module_active($module_name);   
+    }
+}
+
+if (!function_exists('mvx_string_wpml')) {
+    function mvx_string_wpml($input) {
+        do_action( 'wpml_register_single_string', 'MVX', $input, $input );
+        if (function_exists('icl_t')) {
+            return icl_t('MVX', '' . $input . '', '' . $input . '');
+        } else {
+            return $input;
+        }
     }
 }

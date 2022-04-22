@@ -8,7 +8,7 @@ abstract class MVX_Elementor_ModuleBase {
 	 * @return void
 	 */
 	public function init() {
-		add_action( 'elementor/widgets/widgets_registered', [ $this, 'init_widgets' ] );
+		add_action( 'elementor/widgets/register', [ $this, 'init_widgets' ] );
 	}
 
 	/**
@@ -34,7 +34,10 @@ abstract class MVX_Elementor_ModuleBase {
 	 */
 	public function init_widgets() {
 		global $mvx_elementor;
-		$widget_manager = $mvx_elementor->mvx_elementor()->widgets_manager;
+
+		if ( version_compare( '3.5.0', ELEMENTOR_VERSION, '<' ) ) {
+			$widget_manager = $mvx_elementor->mvx_elementor()->widgets_manager;
+		}
 
 		foreach ( $this->get_widgets() as $widget ) {
 			$this->load_class( $widget );
@@ -42,7 +45,7 @@ abstract class MVX_Elementor_ModuleBase {
 			$class_name = "MVX_Elementor_{$widget}";
 
 			if ( class_exists( $class_name ) ) {
-				$widget_manager->register_widget_type( new $class_name() );
+				$widget_manager->register( new $class_name() );
 			}
 		}
 	}

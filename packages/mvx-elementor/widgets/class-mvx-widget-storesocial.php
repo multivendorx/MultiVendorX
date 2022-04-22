@@ -163,8 +163,8 @@ class MVX_Elementor_StoreSocial extends Widget_Social_Icons {
      *
      * @return void
      */
-    protected function _content_template() {
-        parent::_content_template();
+    protected function content_template() {
+        parent::content_template();
     }
 
     /**

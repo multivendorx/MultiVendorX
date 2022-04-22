@@ -55,41 +55,45 @@ class MVX_BuddyPress {
 	 * @return void
 	 */
 	public function on_plugins_loaded() {
-		 /***************** Create a endpoint "Shop page" in buddypress if display member is vendor  *********************/
-        add_action( 'bp_setup_nav', array( $this, 'bp_nav_added_vendor_shop' ), 305 );
+		$is_module_active = get_option('mvx_all_active_module_list', true);
+        $is_active = $is_module_active && is_array($is_module_active) && in_array('buddypress', $is_module_active) ? true : false;
+        if ($is_active) {
+			/***************** Create a endpoint "Shop page" in buddypress if display member is vendor  *********************/
+	        add_action( 'bp_setup_nav', array( $this, 'bp_nav_added_vendor_shop' ), 305 );
 
-        add_filter( 'bp_core_fetch_avatar_no_grav', array( $this, 'fetch_avatar_no_grav' ) );
+	        add_filter( 'bp_core_fetch_avatar_no_grav', array( $this, 'fetch_avatar_no_grav' ) );
 
-        add_filter( 'bp_core_avatar_default', array( $this, 'set_avatar_default'  ) , 10 , 2 );
-		/*************************  Default Avatar cover image  ***********************************/
-        add_filter( 'bp_before_xprofile_cover_image_settings_parse_args', array( $this, 'bpcp_profile_cover_default_from_vendor'), 10, 1 );
+	        add_filter( 'bp_core_avatar_default', array( $this, 'set_avatar_default'  ) , 10 , 2 );
+			/*************************  Default Avatar cover image  ***********************************/
+	        add_filter( 'bp_before_xprofile_cover_image_settings_parse_args', array( $this, 'bpcp_profile_cover_default_from_vendor'), 10, 1 );
 
-        /***************** Update from vendor profile to buddypress profile ****************************/
-        add_action( 'before_mvx_vendor_dashboard',array($this, 'save_vendor_dashboard_data_change') , 99 );
+	        /***************** Update from vendor profile to buddypress profile ****************************/
+	        add_action( 'before_mvx_vendor_dashboard',array($this, 'save_vendor_dashboard_data_change') , 99 );
 
-        /********************** If members delete there image in buddypress,vendor dashboard image also removed if sync done before **************************/
-        add_action( 'bp_core_delete_existing_avatar', array( $this, 'delete_avatar_existing_image' ) );
+	        /********************** If members delete there image in buddypress,vendor dashboard image also removed if sync done before **************************/
+	        add_action( 'bp_core_delete_existing_avatar', array( $this, 'delete_avatar_existing_image' ) );
 
-        /********************** If members delete there Cover in buddypress,vendor dashboard Cover image also removed if sync done before **************************/
-        add_action( "xprofile_cover_image_deleted", array( $this, 'cover_image_deleted_from_buddypress' ) );
+	        /********************** If members delete there Cover in buddypress,vendor dashboard Cover image also removed if sync done before **************************/
+	        add_action( "xprofile_cover_image_deleted", array( $this, 'cover_image_deleted_from_buddypress' ) );
 
-        /***********************  Display name as per vendor store name  *******************************/
-        add_filter( 'bp_get_displayed_user_mentionname', array( $this, 'mvx_vendor_user_store_name' ) );
+	        /***********************  Display name as per vendor store name  *******************************/
+	        add_filter( 'bp_get_displayed_user_mentionname', array( $this, 'mvx_vendor_user_store_name' ) );
 
-        /************************ BuddyPress setting at Storefont  ****************************************/
-        add_action('mvx_after_shop_front', array( $this, 'buddypress_compatibility_at_storefont') );
+	        /************************ BuddyPress setting at Storefont  ****************************************/
+	        add_action('mvx_after_shop_front', array( $this, 'buddypress_compatibility_at_storefont') );
 
-        /******************** (MVX->settings->capabilities) Give setting on admin end for capabilities to vendor *************************/
-        add_filter( "settings_capabilities_product_tab_options", array( $this, 'mvx_buddypress_capability_to_vendor' ) );
+	        /******************** (MVX->settings->capabilities) Give setting on admin end for capabilities to vendor *************************/
+	        add_filter( "settings_capabilities_product_tab_options", array( $this, 'mvx_buddypress_capability_to_vendor' ) );
 
-        /**********************************  Save affiliate for admin capability section **************************************/
-        add_filter( "settings_capabilities_product_tab_new_input", array( $this, 'save_mvx_buddypress_capability_to_vendor' ), 99 , 2 );
+	        /**********************************  Save affiliate for admin capability section **************************************/
+	        add_filter( "settings_capabilities_product_tab_new_input", array( $this, 'save_mvx_buddypress_capability_to_vendor' ), 99 , 2 );
 
-        add_filter( 'mvx_vendor_fields', array( $this, 'mvx_save_storefont_data' ), 99, 2 );
-        add_action( 'mvx_vendor_add_extra_social_link', array( $this, 'mvx_add_storefont_buddypress_link' ) );
-        add_action( 'mvx_vendor_store_header_social_link', array( $this, 'mvx_vendor_store_header_bp_link' ) );
-        // Buddypress social link at admin end
-        add_filter("settings_vendors_social_tab_options", array( $this, "mvx_buddypress_tab_admin" ), 10 , 2);
+	        add_filter( 'mvx_vendor_fields', array( $this, 'mvx_save_storefont_data' ), 99, 2 );
+	        add_action( 'mvx_vendor_add_extra_social_link', array( $this, 'mvx_add_storefont_buddypress_link' ) );
+	        add_action( 'mvx_vendor_store_header_social_link', array( $this, 'mvx_vendor_store_header_bp_link' ) );
+	        // Buddypress social link at admin end
+	        add_filter("settings_vendors_social_tab_options", array( $this, "mvx_buddypress_tab_admin" ), 10 , 2);
+	    }
 	}
         
 	/***************** Create a endpoint "Shop page" in buddypress if display member is vendor  *********************/

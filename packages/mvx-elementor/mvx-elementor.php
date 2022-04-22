@@ -50,7 +50,7 @@ class MVX_Elementor {
 	 * @return boolean
 	 */
 	public function has_dependencies() {
-		return class_exists( 'MVX' );
+		return class_exists( 'MVX' ) && WC_Dependencies_Product_Vendor::elementor_pro_active_check();
 	}
         
 	/**
@@ -59,11 +59,14 @@ class MVX_Elementor {
 	 * @return void
 	 */
 	public function on_plugins_loaded() {
+		$is_module_active = get_option('mvx_all_active_module_list', true);
+        $is_active = $is_module_active && is_array($is_module_active) && in_array('elementor', $is_module_active) ? true : false;
+        if ($is_active) {
+			$mvx_elementor = new MVX_Elementor( __FILE__ );
+			$GLOBALS['mvx_elementor'] = $mvx_elementor;
 
-		$mvx_elementor = new MVX_Elementor( __FILE__ );
-		$GLOBALS['mvx_elementor'] = $mvx_elementor;
-
-		add_action( 'elementor_pro/init', array( $this, 'mvx_elementor_init' ) );
+			add_action( 'elementor/init', array( &$this, 'mvx_elementor_init' ) );
+		}
 	}
 
 	public function load_class($class_name = '') {
@@ -75,19 +78,19 @@ class MVX_Elementor {
 
 	public function mvx_elementor_init() {
 		global $MVX;
+		require_once $MVX->plugin_path . 'packages/mvx-elementor/includes/Traits/mvx-elementor-position-controls.php';
 
 		require_once $MVX->plugin_path . 'packages/mvx-elementor/includes/Abstracts/ModuleBase.php';
 		require_once $MVX->plugin_path . 'packages/mvx-elementor/includes/Abstracts/DataTagBase.php';
 		require_once $MVX->plugin_path . 'packages/mvx-elementor/includes/Abstracts/TagBase.php';
 		
+		// store page include
 		require_once $MVX->plugin_path . 'packages/mvx-elementor/includes/Conditions/Store.php';
 		require_once $MVX->plugin_path . 'packages/mvx-elementor/includes/Documents/StorePage.php';
 		
 		require_once $MVX->plugin_path . 'packages/mvx-elementor/includes/Controls/DynamicHidden.php';
 		require_once $MVX->plugin_path . 'packages/mvx-elementor/includes/Controls/SortableList.php';
 		
-		require_once $MVX->plugin_path . 'packages/mvx-elementor/includes/Traits/mvx-elementor-position-controls.php';
-
 		add_action( 'elementor/elements/categories_registered', [ &$this, 'mvx_categories' ] );
 
 		// Templates
@@ -163,7 +166,7 @@ class MVX_Elementor {
 		$elements_manager->add_category(
 			'mvx-store-elements-single',
 			[
-				'title' => __( 'Multivendor X', 'dc-woocommerce-multi-vendor' ),
+				'title' => __( 'WC Marketplace', 'dc-woocommerce-multi-vendor' ),
 				'icon' => 'fa fa-plug',
 			]
 		);

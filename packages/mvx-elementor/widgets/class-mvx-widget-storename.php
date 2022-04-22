@@ -131,7 +131,7 @@ class MVX_Elementor_StoreName extends Widget_Heading {
      *
      * @return void
      */
-    protected function _content_template() {
+    protected function content_template() {
         ?>
             <#
                 settings.link = {url: ''};
@@ -140,7 +140,7 @@ class MVX_Elementor_StoreName extends Widget_Heading {
             #>
         <?php
 
-        parent::_content_template();
+        parent::content_template();
     }
 
     /**

@@ -75,7 +75,7 @@ class StorePage extends Single {
 	protected static function get_editor_panel_categories() {
 		$categories = [
 				'mvx-store-elements-single' => [
-						'title'  => __( 'Multivendor X', 'dc-woocommerce-multi-vendor' ),
+						'title'  => __( 'WC Marketplace', 'dc-woocommerce-multi-vendor' ),
 						'active' => true,
 				],
 		];

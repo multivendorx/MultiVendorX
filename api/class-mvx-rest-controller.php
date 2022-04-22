@@ -2047,15 +2047,17 @@ class MVX_REST_API {
             // Shipping options
             
             $vendor_default_shipping_options_database_value = get_user_meta($vendor_id, 'vendor_shipping_options', true) ? get_user_meta($vendor_id, 'vendor_shipping_options', true) : '';
-            $shipping_options = apply_filters('mvx_vendor_shipping_option_to_vendor', array(
-                'distance_by_zone' => __('Shipping by Zone', 'dc-woocommerce-multi-vendor'),
-            ) );
-            //if (get_mvx_vendor_settings( 'enabled_distance_by_shipping_for_vendor', 'general' ) && 'Enable' === get_mvx_vendor_settings( 'enabled_distance_by_shipping_for_vendor', 'general' )) {
+            $shipping_options = [];
+            
+            if (mvx_is_module_active('zone-shipping')) {
+                $shipping_options['distance_by_zone'] = __('Shipping by Zone', 'dc-woocommerce-multi-vendor');
+            }
+            if (mvx_is_module_active('distance-shipping')) {
                 $shipping_options['distance_by_shipping'] = __('Shipping by Distance', 'dc-woocommerce-multi-vendor');
-            //}
-            //if (get_mvx_vendor_settings( 'enabled_shipping_by_country_for_vendor', 'general' ) && 'Enable' === get_mvx_vendor_settings( 'enabled_shipping_by_country_for_vendor', 'general' )) {
+            }
+            if (mvx_is_module_active('country-shipping')) {
                 $shipping_options['shipping_by_country'] = __('Shipping by Country', 'dc-woocommerce-multi-vendor');
-            //}
+            }
             foreach ($shipping_options as $shipping_key => $shipping_value) {
                 $shipping_options_list[] = array(
                     'value' => sanitize_text_field($shipping_key),
@@ -4616,7 +4618,7 @@ class MVX_REST_API {
         $get_managements_data = $req->get_param( 'model' );
         $optionname = 'mvx_'.$modulename.'_tab_settings';
 
-        update_option($optionname, $get_managements_data);
+        mvx_update_option($optionname, $get_managements_data);
         $all_details['error'] = 'Settings Saved';
         return $all_details; 
         die;
@@ -4692,7 +4694,7 @@ class MVX_REST_API {
         } elseif ($module_id && in_array($module_id, $active_module_list) && !$is_checked) {
             unset($active_module_list[array_search($module_id, $active_module_list)]);
         }
-        update_option( 'mvx_all_active_module_list', $active_module_list );
+        mvx_update_option( 'mvx_all_active_module_list', $active_module_list );
         return rest_ensure_response( 'success' );
     }
 
@@ -4725,8 +4727,8 @@ class MVX_REST_API {
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
                         'required_plugin_list' => array(
                             array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'plugin_name'   => __('MultivendorX Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://multivendorx.com/',
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
@@ -4740,8 +4742,8 @@ class MVX_REST_API {
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
                         'required_plugin_list' => array(
                             array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'plugin_name'   => __('MultivendorX Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://multivendorx.com/',
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
@@ -4755,8 +4757,8 @@ class MVX_REST_API {
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
                         'required_plugin_list' => array(
                             array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'plugin_name'   => __('MultivendorX Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://multivendorx.com/',
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
@@ -4775,8 +4777,8 @@ class MVX_REST_API {
                                 'is_active' => is_plugin_active('woocommerce-bookings/woocommerce-bookings.php') ? true :false,
                             ),
                             array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'plugin_name'   => __('MultivendorX Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://multivendorx.com/',
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
@@ -4795,8 +4797,8 @@ class MVX_REST_API {
                                 'is_active' => is_plugin_active('woocommerce-subscriptions/woocommerce-subscriptions.php') ? true : false,
                             ),
                             array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'plugin_name'   => __('MultivendorX Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://multivendorx.com/',
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
@@ -4815,8 +4817,8 @@ class MVX_REST_API {
                                 'is_active' => is_plugin_active('woocommerce-bookings/woocommerce-bookings.php') && is_plugin_active('woocommerce-accommodation-bookings/woocommerce-accommodation-bookings.php') ? true : false,
                             ),
                             array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'plugin_name'   => __('MultivendorX Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://multivendorx.com/',
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
@@ -4835,8 +4837,8 @@ class MVX_REST_API {
                                 'is_active' => is_plugin_active('woocommerce-product-bundles/woocommerce-product-bundles.php') ? true : false,
                             ),
                             array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'plugin_name'   => __('MultivendorX Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://multivendorx.com/',
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
@@ -4855,8 +4857,8 @@ class MVX_REST_API {
                                 'is_active' => is_plugin_active('woocommerce-simple-auctions/woocommerce-simple-auctions.php') ? true : false,
                             ),
                             array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'plugin_name'   => __('MultivendorX Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://multivendorx.com/',
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
@@ -4875,8 +4877,8 @@ class MVX_REST_API {
                                 'is_active' => is_plugin_active('woocommerce-rental-and-booking/redq-rental-and-bookings.php') ? true : false,
                             ),
                             array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'plugin_name'   => __('MultivendorX Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://multivendorx.com/',
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
@@ -4895,8 +4897,8 @@ class MVX_REST_API {
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
                         'required_plugin_list' => array(
                             array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'plugin_name'   => __('MultivendorX Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://multivendorx.com/',
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
@@ -4923,8 +4925,8 @@ class MVX_REST_API {
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
                         'required_plugin_list' => array(
                             array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'plugin_name'   => __('MultivendorX Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://multivendorx.com/',
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
@@ -4976,8 +4978,8 @@ class MVX_REST_API {
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
                         'required_plugin_list' => array(
                             array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'plugin_name'   => __('MultivendorX Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://multivendorx.com/',
                                 'is_active' => $mvx_pro_is_active,
                             ),
                         ),
@@ -4999,8 +5001,8 @@ class MVX_REST_API {
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
                         'required_plugin_list' => array(
                             array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'plugin_name'   => __('MultivendorX Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://multivendorx.com/',
                                 'is_active' => $mvx_pro_is_active,
                             ),
                         ),
@@ -5014,8 +5016,8 @@ class MVX_REST_API {
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
                         'required_plugin_list' => array(
                             array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'plugin_name'   => __('MultivendorX Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://multivendorx.com/',
                                 'is_active' => $mvx_pro_is_active,
                             ),
                         ),
@@ -5095,8 +5097,8 @@ class MVX_REST_API {
                                 'is_active' => is_plugin_active('woocommerce-shipping-per-product/woocommerce-shipping-per-product.php') ?true : false,
                             ),
                             array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'plugin_name'   => __('MultivendorX Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://multivendorx.com/',
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
@@ -5115,8 +5117,8 @@ class MVX_REST_API {
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
                         'required_plugin_list' => array(
                             array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'plugin_name'   => __('MultivendorX Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://multivendorx.com/',
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
@@ -5175,8 +5177,8 @@ class MVX_REST_API {
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
                         'required_plugin_list' => array(
                             array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'plugin_name'   => __('MultivendorX Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://multivendorx.com/',
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
@@ -5195,8 +5197,8 @@ class MVX_REST_API {
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
                         'required_plugin_list' => array(
                             array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'plugin_name'   => __('MultivendorX Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://multivendorx.com/',
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
@@ -5210,8 +5212,8 @@ class MVX_REST_API {
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
                         'required_plugin_list' => array(
                             array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'plugin_name'   => __('MultivendorX Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://multivendorx.com/',
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
@@ -5225,8 +5227,8 @@ class MVX_REST_API {
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
                         'required_plugin_list' => array(
                             array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'plugin_name'   => __('MultivendorX Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://multivendorx.com/',
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
@@ -5240,8 +5242,8 @@ class MVX_REST_API {
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
                         'required_plugin_list' => array(
                             array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'plugin_name'   => __('MultivendorX Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://multivendorx.com/',
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
@@ -5257,11 +5259,11 @@ class MVX_REST_API {
                         'id'           => 'store-analytics',
                         'name'         => __( 'Store Analytics', 'dc-woocommerce-multi-vendor' ),
                         'description'  => __( 'Gives vendors detailed store report & connect to google analytics', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => 'free',
+                        'plan'         => 'pro',
                         'required_plugin_list' => array(
                             array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'plugin_name'   => __('MultivendorX Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://multivendorx.com/',
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
@@ -5272,11 +5274,11 @@ class MVX_REST_API {
                         'id'           => 'store-seo',
                         'name'         => __( 'Store SEO  ', 'dc-woocommerce-multi-vendor' ),
                         'description'  => __( 'Lets vendors manage their store SEOs using Rank Math and Yoast SEO', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => 'free',
+                        'plan'         => 'pro',
                         'required_plugin_list' => array(
                             array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'plugin_name'   => __('MultivendorX Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://multivendorx.com/',
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
@@ -5295,8 +5297,8 @@ class MVX_REST_API {
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
                         'required_plugin_list' => array(
                             array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'plugin_name'   => __('MultivendorX Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://multivendorx.com/',
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
@@ -5396,8 +5398,8 @@ class MVX_REST_API {
                                 'is_active' => class_exists('ACF') ? true : false,
                             ),
                             array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'plugin_name'   => __('MultivendorX Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://multivendorx.com/',
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
@@ -5417,8 +5419,8 @@ class MVX_REST_API {
                                 'is_active' => is_plugin_active('geo-my-wp/geo-my-wp.php') ? true :false,
                             ),
                             array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'plugin_name'   => __('MultivendorX Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://multivendorx.com/',
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
@@ -5437,8 +5439,8 @@ class MVX_REST_API {
                                 'is_active' => is_plugin_active('types/wpcf.php') ? true :false,
                             ),
                             array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'plugin_name'   => __('MultivendorX Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://multivendorx.com/',
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
@@ -5457,8 +5459,8 @@ class MVX_REST_API {
                                 'is_active' => is_plugin_active('affiliate-wp/affiliate-wp.php') ? true :false,
                             ),
                             array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'plugin_name'   => __('MultivendorX Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://multivendorx.com/',
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
@@ -5477,8 +5479,8 @@ class MVX_REST_API {
                                 'is_active' => is_plugin_active('woocommerce-product-addons/woocommerce-product-addons.php') ? true :false,
                             ),
                             array(
-                                'plugin_name'   => __('WC Marketplace Pro', 'dc-woocommerce-multi-vendor'),
-                                'plugin_link'   => 'https://wc-marketplace.com/addons/',
+                                'plugin_name'   => __('MultivendorX Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://multivendorx.com/',
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),

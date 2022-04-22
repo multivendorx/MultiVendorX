@@ -49,7 +49,7 @@ class MVX_Frontend {
 
         add_filter('woocommerce_get_zone_criteria', array(&$this, 'mvx_shipping_zone_same_region_criteria'), 10, 3);
         // WPML work
-        if ( defined( 'ICL_SITEPRESS_VERSION' ) && ! ICL_PLUGIN_INACTIVE && class_exists( 'SitePress' ) ) {
+        if ( defined( 'ICL_SITEPRESS_VERSION' ) && ! ICL_PLUGIN_INACTIVE && class_exists( 'SitePress' ) && mvx_is_module_active('wpml') ) {
             add_filter( 'icl_ls_languages', array( &$this, 'mvx_store_page_wpml_language_switcher' ), 999 );
             add_action( 'mvx_product_manager_right_panel_after', array( &$this, 'wpml_mvx_product_manager_translations' ), 200 );
             add_action( 'mvx_dashboard_header_right_vendor_dropdown', array( &$this, 'wpml_language_switcher_option_on_dropdown' ) );

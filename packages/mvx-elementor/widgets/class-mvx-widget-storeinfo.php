@@ -229,7 +229,7 @@ class MVX_Elementor_StoreInfo extends Widget_Icon_List {
      *
      * @return void
      */
-    protected function _content_template() {
+    protected function content_template() {
         ?>
         <#
             view.addRenderAttribute( 'icon_list', 'class', 'elementor-icon-list-items' );
