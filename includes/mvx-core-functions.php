@@ -7293,7 +7293,22 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'modulename'    =>  'social'
             ),
         );
+        
+        if (!mvx_is_module_active('spmv')) {
+           unset($general_settings_page_endpoint[6]);
+        }
 
+        if (!mvx_is_module_active('store-review')) {
+           unset($general_settings_page_endpoint[11]);
+        }
+
+        if (!mvx_is_module_active('store-policy')) {
+           unset($general_settings_page_endpoint[9]);
+        }
+
+        if (!mvx_is_module_active('marketplace-refund')) {
+           unset($general_settings_page_endpoint[10]);
+        }
 
         $payment_page_endpoint = array(
             array(
@@ -7524,7 +7539,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
             'marketplace-analytics'             => $analytics_page_endpoint,
             'status-tools'                      => $status_tools,
             'marketplace-payments'              => $payment_page_endpoint,
-            'marketplace-general-settings'      => $general_settings_page_endpoint,
+            'marketplace-general-settings'      => array_values($general_settings_page_endpoint),
             'marketplace-vendors'               => $marketplace_vendors,
             'marketplace-workboard'             => $marketplace_workboard
         );

@@ -144,6 +144,30 @@ class App extends Component {
   }
 
   componentDidMount() {
+    var $ = jQuery;
+    var cs = 1;
+    var cm = 4;
+    jQuery(document).on("click",".p-prev",function(event) {
+      event.preventDefault();
+      if(cs > 1){
+        $('.pro-slider').hide();
+        cs--;
+        //alert(cs);
+        $('.pro-slider:nth-child('+cs+')').show();
+        $('.border-block span').html(cs+' of 4');
+      }
+    });
+    $(document).on("click",".p-next",function(event) {
+      event.preventDefault();
+      //alert(cs);
+      if(cs < cm){
+        $('.pro-slider').hide();
+        cs++;
+        //alert(cs);
+        $('.pro-slider:nth-child('+cs+')').show();
+        $('.border-block span').html(cs+' of 4');
+      }
+    });
       this.setState({isLoaded: true})
       // fetch all modules, checkbox values, select list values
       Promise.all([
@@ -169,6 +193,10 @@ class App extends Component {
     let menuRoot = $('#toplevel_page_' + 'mvx');
     let currentUrl = window.location.href;
     let currentPath = currentUrl.substr( currentUrl.indexOf('admin.php') );
+
+    ///////
+    
+    ///////
 
     menuRoot.on('click', 'a', function() {
         var self = $(this);
@@ -247,18 +275,502 @@ class App extends Component {
           
             <div className="mvx-child-container">
               
-              <div className="mvx-sub-container">
+              <div className="mvx-sub-container w-100">
 
               
-                  <div className="dashboard-tab-area">
-                    <ul className="mvx-dashboard-tabs-list">
-                      {appLocalizer.mvx_all_backend_tab_list['dashboard-page'].map((data, index) => (
-                          <li className={queryt.get("name") == data.modulename ? 'activedashboardtabs' : ''} ><i class="mvx-font ico-store-icon"></i>{data.link ? <a href={data.link}>{data.tablabel}</a> : <Link to={`?page=mvx#&submenu=dashboard&name=${data.modulename}`}>{data.tablabel}</Link>}</li>
-                      ))}
-                    </ul>
-                    <div className="dashboard-tabcontentclass">
-                      <this.Child name={queryt.get("name")} />
+                  <div className="dashboard-tab-area no-link-under">
+
+                  
+                    <div className="mv-off-white-box mv-justify-content-between mv-align-items-center mb-90">
+                      
+                      <div className="minw-70-per">
+                      
+  <div className="pro-slider">
+    <div className="pro-icon mr-25">
+      <span>Pro</span>
+    </div>
+    <div className="pro-txt">
+      <h2>Activate MultiVendorX Pro License</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor.
+      </p>
+      <a href="#" className="btn red-btn">
+        Active License
+      </a>
+    </div>
+  </div>
+  <div className="pro-slider">
+    <div className="pro-icon mr-25">
+      <span>Pro</span>
+    </div>
+    <div className="pro-txt">
+      <h2>02 Activate MultiVendorX Pro License</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor.
+      </p>
+      <a href="#" className="btn red-btn">
+        Active License
+      </a>
+    </div>
+  </div>
+  <div className="pro-slider">
+    <div className="pro-icon mr-25">
+      <span>Pro</span>
+    </div>
+    <div className="pro-txt">
+      <h2>03 Activate MultiVendorX Pro License</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor.
+      </p>
+      <a href="#" className="btn red-btn">
+        Active License
+      </a>
+    </div>
+  </div>
+  <div className="pro-slider">
+    <div className="pro-icon mr-25">
+      <span>Pro</span>
+    </div>
+    <div className="pro-txt">
+      <h2>04 Activate MultiVendorX Pro License</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor.
+      </p>
+      <a href="#" className="btn red-btn">
+        Active License
+      </a>
+    </div>
+  </div>
+</div>
+
+                      <div>
+                        <div className="border-block">
+                          <a href="#" className="p-prev">&lt;</a>
+                          <span>1 of 4</span>
+                          <a href="#" className="p-next">&gt;</a>
+                        </div>
+                      </div>
                     </div>
+                    <div className="mv-box-row mb-90">
+                      <div className="nv-col nv-col-45">
+                        <div className="mv-off-white-box">
+                          <h3 className="block-title w-100">This is what you get</h3>
+                          <div className="responsive-table w-100">
+                            <ul className="table-ul">
+                              <li className="mv-align-items-center">
+                                <div className="li-txt">
+                                  <span>
+                                    <i className="mvx-font icon-tab-products" />
+                                  </span>{" "}
+                                  Set up marketing tools
+                                </div>
+                                <div className="li-action">
+                                  <a href="#" className="btn color-btn w-100">
+                                    <i className="mvx-font icon-yes" />
+                                  </a>
+                                </div>
+                              </li>
+                              <li className="mv-align-items-center">
+                                <div className="li-txt">
+                                  <span>
+                                    <i className="mvx-font icon-tab-products" />
+                                  </span>{" "}
+                                  Set up marketing tools
+                                </div>
+                                <div className="li-action">
+                                  <a href="#" className="btn color-btn w-100">
+                                    <i className="mvx-font icon-yes" />
+                                  </a>
+                                </div>
+                              </li>
+                              <li className="mv-align-items-center">
+                                <div className="li-txt">
+                                  <span>
+                                    <i className="mvx-font icon-tab-products" />
+                                  </span>{" "}
+                                  Set up marketing tools
+                                </div>
+                                <div className="li-action">
+                                  <a href="#" className="btn color-btn w-100">
+                                    <i className="mvx-font icon-yes" />
+                                  </a>
+                                </div>
+                              </li>
+                              <li className="mv-align-items-center">
+                                <div className="li-txt">
+                                  <span>
+                                    <i className="mvx-font icon-tab-products" />
+                                  </span>{" "}
+                                  Set up marketing tools
+                                </div>
+                                <div className="li-action">
+                                  <a href="#" className="btn color-btn w-100">
+                                    <i className="mvx-font icon-yes" />
+                                  </a>
+                                </div>
+                              </li>
+                              <li className="mv-align-items-center border-box">
+                                <div className="li-txt">
+                                  <span>
+                                    <i className="mvx-font icon-tab-products" />
+                                  </span>{" "}
+                                  Set up marketing tools
+                                </div>
+                                <div className="li-action">
+                                  <a href="#" className="btn border-btn w-100">
+                                    Setup
+                                  </a>
+                                </div>
+                              </li>
+                              <li className="mv-align-items-center">
+                                <div className="li-txt">
+                                  <span>
+                                    <i className="mvx-font icon-tab-products" />
+                                  </span>{" "}
+                                  Set up marketing tools
+                                </div>
+                                <div className="li-action">
+                                  <a href="#" className="btn color-btn w-100">
+                                    <i className="mvx-font icon-yes" />
+                                  </a>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="nv-col nv-col-55">
+                        <div className="mv-box-row mv-box-row-sm">
+                          <div className="nv-col nv-col-50">
+                            <div className="mv-off-white-box">
+                              <div className="call-block text-center">
+                                <figure>
+                                  <i className="mvx-font icon-vendor-application" />
+                                </figure>
+                                <figcaption>
+                                  <h2>Documentation Forum</h2>
+                                  <p>
+                                    Further Clarification Visit Our <br />
+                                    Document Forum
+                                  </p>
+                                  <a href="#">
+                                    Visit Documentation Forum{" "}
+                                    <span className="mvx-font icon-down-arrow" />
+                                  </a>
+                                </figcaption>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="nv-col nv-col-50">
+                            <div className="mv-off-white-box">
+                              <div className="call-block text-center">
+                                <figure>
+                                  <i className="mvx-font icon-vendor-application" />
+                                </figure>
+                                <figcaption>
+                                  <h2>Support Forum</h2>
+                                  <p>
+                                    Further Clarification Visit Our <br />
+                                    Document Forum
+                                  </p>
+                                  <a href="#">
+                                    Join Support Forum{" "}
+                                    <span className="mvx-font icon-down-arrow" />
+                                  </a>
+                                </figcaption>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="nv-col nv-col-100 mt-10">
+                            <div className="mv-off-white-box">
+                              <h3 className="block-title w-100">Quick Link</h3>
+                              <div className="w-100 minh-130">
+                                <ul className="row-link">
+                                  <li>
+                                    <a href="#">
+                                      <figure>
+                                        <i className="mvx-font icon-vendor-personal" />
+                                      </figure>
+                                      Add Vendor
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                      <figure>
+                                        <i className="mvx-font icon-vendor-application" />
+                                      </figure>
+                                      Commission
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                      <figure>
+                                        <i className="mvx-font icon-vendor-application" />
+                                      </figure>
+                                      Add Product
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                      <figure>
+                                        <i className="mvx-font icon-vendor-application" />
+                                      </figure>
+                                      Payment
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#" className="border-box">
+                                      <figure>
+                                        <i className="mvx-font icon-vendor-application" />
+                                      </figure>
+                                      Add New
+                                    </a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="mv-box-row mb-90 switch-section">
+                      <div className="nv-col-100 text-center">
+                        <div className="w-100 mb-45">
+                          <div className="pro-icon float-none gra-por">
+                            <span>Pro</span>
+                          </div>
+                        </div>
+                        <h2>Get more by Switching to Pro</h2>
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                          tempor incididunt.
+                        </p>
+                        <a href="#" className="btn red-btn">
+                          Upgrade to Pro
+                        </a>
+                      </div>
+                    </div>
+                    <div className="mv-box-row mb-90 compare-section text-center">
+                      <div className="nv-col-100 text-center">
+                        <div className="w-100 mb-45">
+                          <h2>Here Is What You Get In Pro Compared to Free</h2>
+                          <div className="compare-table-holder">
+                            <ul>
+                              <li>
+                                <ul>
+                                  <li />
+                                  <li>Support</li>
+                                  <li>2 Premium Modules</li>
+                                  <li>Store Widgets</li>
+                                  <li>Premium</li>
+                                  <li>Modules</li>
+                                  <li>Support</li>
+                                  <li>
+                                    <a href="#">
+                                      <span>
+                                        <i className="mvx-font icon-down-arrow-02" />
+                                      </span>{" "}
+                                      Show More
+                                    </a>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li>
+                                <ul>
+                                  <li>Free</li>
+                                  <li>Ticket Based Support</li>
+                                  <li>
+                                    <i className="mvx-font icon-no red" />
+                                  </li>
+                                  <li>
+                                    <i className="mvx-font icon-no red" />
+                                  </li>
+                                  <li>Five Venders</li>
+                                  <li>
+                                    <i className="mvx-font icon-yes blue" />
+                                  </li>
+                                  <li>
+                                    <i className="mvx-font icon-no red" />
+                                  </li>
+                                  <li />
+                                </ul>
+                              </li>
+                              <li>
+                                <span className="recommend-tag">Recommend</span>
+                                <ul>
+                                  <li>Pro</li>
+                                  <li>Ticket Based Support</li>
+                                  <li>
+                                    <i className="mvx-font icon-no red" />
+                                  </li>
+                                  <li>
+                                    <i className="mvx-font icon-no red" />
+                                  </li>
+                                  <li>Five Venders</li>
+                                  <li>
+                                    <i className="mvx-font icon-yes blue" />
+                                  </li>
+                                  <li>
+                                    <i className="mvx-font icon-no red" />
+                                  </li>
+                                  <li />
+                                </ul>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="mv-box-row mb-90 money-section text-center">
+                      <div className="nv-col-100 text-center">
+                        <div className="w-100 mb-45">
+                          <h2>
+                            <span className="gra-txt">30 Days</span> Money-Back Guarantee
+                          </h2>
+                          <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                            eiusmod tempor incididunt.
+                          </p>
+                          <div className="money-table-holder">
+                            <ul>
+                              <li>
+                                <ul>
+                                  <li>Yearly</li>
+                                  <li>
+                                    <div className="m-price">
+                                      $399 <sub>/ $599</sub>
+                                    </div>
+                                  </li>
+                                  <li>
+                                    <a href="#" className="btn border-btn w-100">
+                                      Buy Now
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <span className="mvx-font icon-form-radio" /> 10 Sites
+                                  </li>
+                                  <li>
+                                    <span className="mvx-font icon-form-radio" /> 50+ Modules
+                                  </li>
+                                  <li>
+                                    <span className="mvx-font icon-form-radio" /> Unlimited
+                                    Support{" "}
+                                  </li>
+                                  <li>
+                                    <span className="mvx-font icon-form-radio" /> Lifetime Updates
+                                  </li>
+                                  <li>
+                                    <a href="#" className="show-link">
+                                      <span>
+                                        <i className="mvx-font icon-down-arrow-02" />
+                                      </span>{" "}
+                                      Show More
+                                    </a>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li>
+                                <span className="recommend-tag saver">Super saver</span>
+                                <ul>
+                                  <li>Lifetime</li>
+                                  <li>
+                                    <div className="m-price">
+                                      $499 <sub>/ $599</sub>
+                                    </div>
+                                  </li>
+                                  <li>
+                                    <a href="#" className="btn red-btn w-100">
+                                      Buy Now
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <span className="mvx-font icon-form-radio" /> 10 Sites
+                                  </li>
+                                  <li>
+                                    <span className="mvx-font icon-form-radio" /> 50+ Modules
+                                  </li>
+                                  <li>
+                                    <span className="mvx-font icon-form-radio" /> Unlimited
+                                    Support{" "}
+                                  </li>
+                                  <li>
+                                    <span className="mvx-font icon-form-radio" /> Lifetime Updates
+                                  </li>
+                                  <li>
+                                    <a href="#" className="show-link">
+                                      <span>
+                                        <i className="mvx-font icon-down-arrow-02" />
+                                      </span>{" "}
+                                      Show More
+                                    </a>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li>
+                                <ul>
+                                  <li>Monthly</li>
+                                  <li>
+                                    <div className="m-price">
+                                      $299 <sub>/ $599</sub>
+                                    </div>
+                                  </li>
+                                  <li>
+                                    <a href="#" className="btn border-btn w-100">
+                                      Buy Now
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <span className="mvx-font icon-form-radio" /> 10 Sites
+                                  </li>
+                                  <li>
+                                    <span className="mvx-font icon-form-radio" /> 50+ Modules
+                                  </li>
+                                  <li>
+                                    <span className="mvx-font icon-form-radio" /> Unlimited
+                                    Support{" "}
+                                  </li>
+                                  <li>
+                                    <span className="mvx-font icon-form-radio" /> Lifetime Updates
+                                  </li>
+                                  <li>
+                                    <a href="#" className="show-link">
+                                      <span>
+                                        <i className="mvx-font icon-down-arrow-02" />
+                                      </span>{" "}
+                                      Show More
+                                    </a>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="mv-box-row mb-90 switch-section">
+                      <div className="nv-col-100 text-center">
+                        <div className="w-100 mb-45">
+                          <div className="pro-icon float-none gra-por">
+                            <span>Pro</span>
+                          </div>
+                        </div>
+                        <h2>Get to Go?</h2>
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                          tempor incididunt.
+                        </p>
+                        <a href="#" className="btn red-btn">
+                          Upgrade to Pro
+                        </a>
+                      </div>
+                    </div>
+
+
+                    
                   </div>
 
                   <Dialog open={this.state.open_model} onClose={this.handleClose} aria-labelledby="form-dialog-title">
@@ -276,11 +788,7 @@ class App extends Component {
                   </Dialog>
               </div>  
 
-              <div className="mvx-adv-image-display">
-                <a href="https://www.qries.com/" target="__blank">
-                  <img alt="Multivendor X" src={appLocalizer.multivendor_logo}/>
-                </a>
-              </div>
+              
 
             </div>
 

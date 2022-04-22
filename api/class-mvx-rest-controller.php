@@ -2237,6 +2237,12 @@ class MVX_REST_API {
                 ),
                 'database_value' => isset($tzstring) ? $tzstring : '', 
             ],
+            /*[
+                'label' => __('Vendor Map', 'dc-woocommerce-multi-vendor'),
+                'type' => 'map', 
+                'key' => 'vendor_store_map',
+                'database_value' => '', 
+            ],*/
         ];
 
 

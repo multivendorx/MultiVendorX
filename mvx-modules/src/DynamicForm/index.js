@@ -623,6 +623,17 @@ export default class DynamicForm extends React.Component {
       );
       }
 
+      if (type == "map") {
+         input = (
+          <div className="mvx-settings-basic-input-class">
+            <input type="text" id="searchStoreAddress" className="regular-text" placeholder="Enter store location"/>
+            <div id="store-maps" className="store-maps" className="mvx-gmap" style={{width: '100%', height: '300px'}}></div>
+            {m.desc ? <p className="mvx-settings-metabox-description" dangerouslySetInnerHTML={{ __html: m.desc }}></p> : ''}
+          </div>
+      );
+      }
+
+
 
       if (type == "multi_number") {
         input = (

@@ -180,6 +180,10 @@ class MVX_Products_Edit_Product {
             ),
             ) );
 
+        if (!mvx_is_module_active('inventory')) {
+            unset($tabs['inventory']);
+        }
+
         // Sort tabs based on priority.
         uasort( $tabs, array( __CLASS__, 'product_data_tabs_sort' ) );
         return $tabs;
