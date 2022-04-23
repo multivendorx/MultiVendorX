@@ -3,8 +3,8 @@
  * Setup Wizard Class
  * 
  * @since 2.7.7
- * @package Multivendor X
- * @author Multivendor X
+ * @package MultivendorX
+ * @author MultivendorX
  */
 if (!defined('ABSPATH')) {
     exit;
@@ -145,7 +145,7 @@ class MVX_Admin_Setup_Wizard {
             <head>
                 <meta name="viewport" content="width=device-width" />
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <title><?php esc_html_e('Multivendor X &rsaquo; Setup Wizard', 'dc-woocommerce-multi-vendor'); ?></title>
+                <title><?php esc_html_e('MultivendorX &rsaquo; Setup Wizard', 'dc-woocommerce-multi-vendor'); ?></title>
                 <?php do_action('admin_print_styles'); ?>
         <?php do_action('admin_head'); ?>
                 <style type="text/css">
@@ -202,9 +202,9 @@ class MVX_Admin_Setup_Wizard {
                 </style>
             </head>
             <body class="mvx-setup wp-core-ui">
-                <h1 id="mvx-logo"><a href="http://wc-marketplace.com/"><img src="<?php echo trailingslashit(plugins_url('dc-woocommerce-multi-vendor')); ?>assets/images/wc-marketplace.png" alt="Multivendor X" /></a></h1>
+                <h1 id="mvx-logo"><a href="https://multivendorx.com/"><img src="<?php echo trailingslashit(plugins_url('dc-woocommerce-multi-vendor')); ?>assets/images/widget-multivendorX.png" alt="MultivendorX" /></a></h1>
                 <div class="mvx-install-woocommerce">
-                    <p><?php esc_html_e('Multivendor X requires WooCommerce plugin to be active!', 'dc-woocommerce-multi-vendor'); ?></p>
+                    <p><?php esc_html_e('MultivendorX requires WooCommerce plugin to be active!', 'dc-woocommerce-multi-vendor'); ?></p>
                     <form method="post" action="" name="mvx_install_woocommerce">
                         <?php submit_button(__('Install WooCommerce', 'dc-woocommerce-multi-vendor'), 'primary', 'mvx_install_woocommerce'); ?>
         <?php wp_nonce_field('mvx-install-woocommerce'); ?>
@@ -376,7 +376,7 @@ class MVX_Admin_Setup_Wizard {
             <head>
                 <meta name="viewport" content="width=device-width" />
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <title><?php esc_html_e('Multivendor X &rsaquo; Setup Wizard', 'dc-woocommerce-multi-vendor'); ?></title>
+                <title><?php esc_html_e('MultivendorX &rsaquo; Setup Wizard', 'dc-woocommerce-multi-vendor'); ?></title>
                 <?php wp_print_scripts('wc-setup'); ?>
                 <?php wp_print_scripts('mvx-setup'); ?>
                 <?php do_action('admin_print_styles'); ?>
@@ -387,7 +387,7 @@ class MVX_Admin_Setup_Wizard {
                 </style>
             </head>
             <body class="wc-setup wp-core-ui">
-                <h1 id="wc-logo"><a href="http://wc-marketplace.com/"><img src="<?php echo esc_url($MVX->plugin_url); ?>assets/images/wc-marketplace.png" alt="Multivendor X" /></a></h1>
+                <h1 id="wc-logo"><a href="https://multivendorx.com/"><img src="<?php echo esc_url($MVX->plugin_url); ?>assets/images/widget-multivendorX.png" alt="MultivendorX" /></a></h1>
                 <?php
             }
 
@@ -426,8 +426,8 @@ class MVX_Admin_Setup_Wizard {
      */
     public function mvx_setup_introduction() {
         ?>
-        <h1><?php esc_html_e('Welcome to the Multivendor X family!', 'dc-woocommerce-multi-vendor'); ?></h1>
-        <p><?php esc_html_e('Thank you for choosing Multivendor X! This quick setup wizard will help you configure the basic settings and you will have your marketplace ready in no time. <strong>It’s completely optional and shouldn’t take longer than five minutes.</strong>', 'dc-woocommerce-multi-vendor'); ?></p>
+        <h1><?php esc_html_e('Welcome to the MultivendorX family!', 'dc-woocommerce-multi-vendor'); ?></h1>
+        <p><?php echo wp_kses_post('Thank you for choosing MultivendorX! This quick setup wizard will help you configure the basic settings and you will have your marketplace ready in no time. <strong>It’s completely optional and shouldn’t take longer than five minutes.</strong>', 'dc-woocommerce-multi-vendor'); ?></p>
         <p><?php esc_html_e("If you don't want to go through the wizard right now, you can skip and return to the WordPress dashboard. Come back anytime if you change your mind!", 'dc-woocommerce-multi-vendor'); ?></p>
         <p class="wc-setup-actions step">
             <a href="<?php echo esc_url($this->get_next_step_link()); ?>" class="button-primary button button-large button-next"><?php esc_html_e("Let's go!", 'dc-woocommerce-multi-vendor'); ?></a>

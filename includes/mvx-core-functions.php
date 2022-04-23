@@ -7185,7 +7185,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'tablabel'      =>  __('Migration', 'dc-woocommerce-multi-vendor'),
                 'link'          =>  admin_url('index.php?page=mvx-migrator'),
                 'description'   =>  __('Default description', 'dc-woocommerce-multi-vendor'),
-            ]
+            ],
         ];
 
         $general_settings_page_endpoint = array(
@@ -7515,13 +7515,13 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
         }
 
         $status_tools = array(
-            array(
+            /*array(
                 'tablabel'      =>  __('Version Control', 'dc-woocommerce-multi-vendor'),
                 'description'   =>  __('View the overall performance of the site', 'dc-woocommerce-multi-vendor'),
                 'icon'          =>  'icon-tab-version-control',
                 'submenu'       =>  'status-tools',
                 'modulename'     =>  'version-control'
-            ),
+            ),*/
             array(
                 'tablabel'      =>  __('Database Tools', 'dc-woocommerce-multi-vendor'),
                 'description'   =>  __('Get comprehensive reports on vendor sales and orders', 'dc-woocommerce-multi-vendor'),
@@ -7543,7 +7543,14 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'icon'          =>  'icon-tab-migration',
                 'submenu'       =>  'status-tools',
                 'modulename'     =>  'transaction-history'
-            )
+            ),
+            array(
+                'icon'          =>  'icon-tab-setup-widget',
+                'modulename'       =>  'setup-widget',
+                'tablabel'      =>  __('Setup Widget', 'dc-woocommerce-multi-vendor'),
+                'link'          =>  admin_url( 'index.php?page=mvx-setup' ),
+                'description'   =>  __('Default description', 'dc-woocommerce-multi-vendor'),
+            ),
         );
 
         $mvx_all_backend_tab_list = array(

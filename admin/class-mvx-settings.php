@@ -88,7 +88,7 @@ class MVX_Settings {
 
         if ( current_user_can( 'manage_woocommerce' ) ) {
 
-            $submenu[ $slug ][] = [ __( 'Dashboard', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=dashboard&name=help' ];
+            $submenu[ $slug ][] = [ __( 'Dashboard', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=dashboard' ];
 
 
             $submenu[ $slug ][] = [ __( 'Work Board', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=work-board&name=activity-reminder' ];
@@ -110,9 +110,9 @@ class MVX_Settings {
 
             $submenu[ $slug ][] = [ __( 'Analytics', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=analytics&name=admin-overview' ];
             
-            $submenu[ $slug ][] = [ __( 'Status and Tools', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=status-tools&name=version-control' ];
+            $submenu[ $slug ][] = [ __( 'Status and Tools', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=status-tools&name=database-tools' ];
 
-            $submenu[ $slug ][] = [ __( 'Help & Support', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'https://wc-marketplace.com/' ];
+            $submenu[ $slug ][] = [ __( 'Help & Support', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'https://multivendorx.com/' ];
 
             add_submenu_page( null, __( 'Transaction Details', 'dc-woocommerce-multi-vendor' ), __( 'Transaction Details', 'dc-woocommerce-multi-vendor' ), 'manage_woocommerce', 'mvx-transaction-details', array( $this, 'mvx_transaction_details' ) );
 

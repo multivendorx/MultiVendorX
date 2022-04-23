@@ -1417,7 +1417,7 @@ Child({ name }) {
   return (
     <div>
     {
-      name == appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'][0]['modulename'] ?
+      name == 'activity-reminder' ?
 
       <div className="mvx-module-grid">
 
@@ -1727,7 +1727,7 @@ Child({ name }) {
 
       :
 
-      name == appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'][1]['modulename'] ?
+      name == 'announcement' ?
       <div className="mvx-module-grid">
 
         <div className="mvx-table-text-and-add-wrap">
@@ -1820,7 +1820,7 @@ Child({ name }) {
 
       :
 
-      name == appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'][2]['modulename'] ?
+      name == 'knowladgebase' ?
 
       <div className="mvx-module-grid">
 
@@ -1906,7 +1906,7 @@ Child({ name }) {
 
       :
 
-      name == appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'][3]['modulename'] ?
+      name == 'store-review' ?
 
         <div className="mvx-module-grid">
           <div className="mvx-search-and-multistatus-wrap">
@@ -1949,7 +1949,7 @@ Child({ name }) {
 
       :
 
-      name == appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'][4]['modulename'] ?
+      name == 'report-abuse' ?
 
       <div className="mvx-module-grid">
         
@@ -1982,7 +1982,7 @@ Child({ name }) {
 
       :
 
-      name == appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'][5]['modulename'] ?
+      name == 'question-ans' ?
 
         <div className="mvx-module-grid">
 

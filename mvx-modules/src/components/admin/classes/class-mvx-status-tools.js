@@ -217,7 +217,7 @@ Child({ name }) {
       {
         name = !name ? appLocalizer.mvx_all_backend_tab_list['status-tools'][0]['modulename'] : name,
 
-        name == appLocalizer.mvx_all_backend_tab_list['status-tools'][0]['modulename'] ?
+        name == 'version-control' ?
           
             <div className="mvx-status-tools-content">
 
@@ -248,7 +248,7 @@ Child({ name }) {
 
             :
 
-            name == appLocalizer.mvx_all_backend_tab_list['status-tools'][1]['modulename'] ?
+            name == appLocalizer.mvx_all_backend_tab_list['status-tools'][0]['modulename'] ?
 
             <div className="mvx-status-database-tools-content">
               
@@ -304,7 +304,7 @@ Child({ name }) {
 
             :
 
-            name == appLocalizer.mvx_all_backend_tab_list['status-tools'][2]['modulename'] ?
+            name == appLocalizer.mvx_all_backend_tab_list['status-tools'][1]['modulename'] ?
             
             <div className="mvx-status-tools-content">
 
