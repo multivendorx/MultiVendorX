@@ -1933,20 +1933,18 @@ class MVX_REST_API {
                 }
             }
 
-
             // set option vendor payment method
-            $payment_admin_settings = get_option('mvx_commission-configuration_tab_settings');
             $payment_mode = array('payment_mode' => __('Payment Mode', 'dc-woocommerce-multi-vendor'));
-            if ($payment_admin_settings && isset($payment_admin_settings['payment_method_disbursement']) && !empty($payment_admin_settings['payment_method_disbursement']) && in_array('paypal_masspay', $payment_admin_settings['payment_method_disbursement'])) {
+            if (mvx_is_module_active('paypal-masspay')) {
                 $payment_mode['paypal_masspay'] = __('PayPal Masspay', 'dc-woocommerce-multi-vendor');
             }
-            if ($payment_admin_settings && isset($payment_admin_settings['payment_method_disbursement']) && !empty($payment_admin_settings['payment_method_disbursement']) && in_array('paypal_payout', $payment_admin_settings['payment_method_disbursement'])) {
+            if (mvx_is_module_active('paypal-payout')) {
                 $payment_mode['paypal_payout'] = __('PayPal Payout', 'dc-woocommerce-multi-vendor');
             }
-            if ($payment_admin_settings && isset($payment_admin_settings['payment_method_disbursement']) && !empty($payment_admin_settings['payment_method_disbursement']) && in_array('stripe_masspay', $payment_admin_settings['payment_method_disbursement'])) {
+            if (mvx_is_module_active('stripe-connect')) {
                 $payment_mode['stripe_masspay'] = __('Stripe Connect', 'dc-woocommerce-multi-vendor');
             }
-            if ($payment_admin_settings && isset($payment_admin_settings['payment_method_disbursement']) && !empty($payment_admin_settings['payment_method_disbursement']) && in_array('direct_bank', $payment_admin_settings['payment_method_disbursement'])) {
+            if (mvx_is_module_active('bank-payment')) {
                 $payment_mode['direct_bank'] = __('Direct Bank', 'dc-woocommerce-multi-vendor');
             }
             $vendor_payment_mode_select = apply_filters('mvx_vendor_payment_mode', $payment_mode);

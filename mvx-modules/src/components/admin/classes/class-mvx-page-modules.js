@@ -242,7 +242,7 @@ class App extends Component {
               
               <div className="mvx-upper-tab-header-area">
                 <div className="mvx-tab-name-display">Module</div>
-                <p>Module description</p>
+                <p>Customize your marketplace site by enabling the module that you prefer.</p>
               </div>
 
               <div className="mvx-total-module-name-and-count" onClick={(e) => this.mvx_search_different_module_status(e, 'all')}>

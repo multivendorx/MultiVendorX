@@ -101,6 +101,7 @@ class App extends React.Component {
 
       datavendor: [],
       data_pending_vendor: [],
+      data_all_vendor: [],
       data_approve_vendor: [],
       data_rejected_vendor: [],
       datafollowers: [],
@@ -668,7 +669,7 @@ class App extends React.Component {
 
               <div className="mvx-multistatus-check">
 
-                <div className="mvx-multistatus-check-all" onClick={(e) => this.different_vendor_status(e, 'all')}>All ({this.state.datavendor.length})</div>
+                <div className="mvx-multistatus-check-all" onClick={(e) => this.different_vendor_status(e, 'all')}>All ({this.state.data_all_vendor.length})</div>
                 <div className="mvx-multistatus-check-approve" onClick={(e) => this.different_vendor_status(e, 'approve')}>| Approve ({this.state.data_approve_vendor.length})</div>
                 <div className="mvx-multistatus-check-pending status-active" onClick={(e) => this.different_vendor_status(e, 'pending')}>| Pending ({this.state.data_pending_vendor.length})</div>
                 <div className="mvx-multistatus-check-rejected" onClick={(e) => this.different_vendor_status(e, 'rejected')}>| Rejected ({this.state.data_rejected_vendor.length})</div>
@@ -1272,6 +1273,7 @@ class App extends React.Component {
       })
       this.setState({
         datavendor: response.data,
+        data_all_vendor: response.data,
         open_vendor_model_dynamic: default_vendor_eye_popup
       });
     })

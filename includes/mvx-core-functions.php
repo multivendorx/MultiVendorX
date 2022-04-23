@@ -7501,6 +7501,19 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
             )
         );
 
+        if (!mvx_is_module_active('announcement')) {
+            unset($marketplace_workboard[1]);
+        }
+        if (!mvx_is_module_active('report-abuse')) {
+            unset($marketplace_workboard[4]);
+        }
+        if (!mvx_is_module_active('knowladgebase')) {
+            unset($marketplace_workboard[2]);
+        }
+        if (!mvx_is_module_active('store-review')) {
+            unset($marketplace_workboard[3]);
+        }
+
         $status_tools = array(
             array(
                 'tablabel'      =>  __('Version Control', 'dc-woocommerce-multi-vendor'),
@@ -7541,7 +7554,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
             'marketplace-payments'              => $payment_page_endpoint,
             'marketplace-general-settings'      => array_values($general_settings_page_endpoint),
             'marketplace-vendors'               => $marketplace_vendors,
-            'marketplace-workboard'             => $marketplace_workboard
+            'marketplace-workboard'             => array_values($marketplace_workboard)
         );
         return $mvx_all_backend_tab_list;
     }
