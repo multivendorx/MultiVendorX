@@ -4938,9 +4938,9 @@ class MVX_REST_API {
                         'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
-                        'id'           => 'inventory',
+                        'id'           => 'store-inventory',
                         'name'         => __( 'Store Inventory', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( '', 'dc-woocommerce-multi-vendor' ),
+                        'description'  => __( 'Present vendors with the choice to handle normal product quantities, set low inventory and no inventory alarms and manage a subscriber list for the unavailable products.', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
                         'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
