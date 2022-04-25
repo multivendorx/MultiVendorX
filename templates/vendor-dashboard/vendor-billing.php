@@ -15,23 +15,11 @@ global $MVX;
 $user_id = get_current_user_id();
 $payment_admin_settings = get_option('mvx_payment_settings_name');
 $payment_mode = array('' => __('Payment Mode', 'dc-woocommerce-multi-vendor'));
-if (isset($payment_admin_settings['payment_method_paypal_masspay']) && $payment_admin_settings['payment_method_paypal_masspay'] = 'Enable') {
-    $payment_mode['paypal_masspay'] = __('PayPal Masspay', 'dc-woocommerce-multi-vendor');
-}
-if (isset($payment_admin_settings['payment_method_paypal_payout']) && $payment_admin_settings['payment_method_paypal_payout'] = 'Enable') {
-    $payment_mode['paypal_payout'] = __('PayPal Payout', 'dc-woocommerce-multi-vendor');
-}
-if (isset($payment_admin_settings['payment_method_stripe_masspay']) && $payment_admin_settings['payment_method_stripe_masspay'] = 'Enable') {
-    $payment_mode['stripe_masspay'] = __('Stripe Connect', 'dc-woocommerce-multi-vendor');
-}
-if (isset($payment_admin_settings['payment_method_direct_bank']) && $payment_admin_settings['payment_method_direct_bank'] = 'Enable') {
-    $payment_mode['direct_bank'] = __('Direct Bank', 'dc-woocommerce-multi-vendor');
-}
 $is_multi_option_enabled = $MVX->vendor_dashboard->is_multi_option_split_enabled();
 if ($is_multi_option_enabled) {
-	$payment_mode['all_above_split_payment'] = __('All above payment mode', 'dc-woocommerce-multi-vendor');
+    $payment_mode['all_above_split_payment'] = __('All above payment mode', 'dc-woocommerce-multi-vendor');
 }
-$vendor_payment_mode_select = apply_filters('mvx_vendor_payment_mode', $payment_mode);
+$vendor_payment_mode_select = apply_filters('mvx_vendor_payment_mode', array_merge($payment_mode, get_mvx_available_payment_gateways()));
 $multi_split_payment_options = $MVX->vendor_dashboard->is_multi_option_split_enabled(true);
 ?>
 <div class="col-md-12">

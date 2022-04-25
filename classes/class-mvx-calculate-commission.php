@@ -502,9 +502,9 @@ class MVX_Calculate_Commission {
             }
         }
 
-        if (isset($MVX->vendor_caps->payment_cap['commission_include_coupon'])) {
+        if (get_mvx_global_settings('commission_include_coupon')) {
             $line_total = $order->get_item_total($item, false, false) * $item['qty'];
-            if (isset($MVX->vendor_caps->payment_cap['admin_coupon_excluded']) && !$order_counpon_author_is_vendor) {
+            if (get_mvx_global_settings('admin_coupon_excluded') && !$order_counpon_author_is_vendor) {
                 $line_total = $order->get_item_subtotal($item, false, false) * $item['qty'];
             }
         } else {
@@ -525,21 +525,22 @@ class MVX_Calculate_Commission {
                 $commission = $this->get_commission_amount($product_id, $vendor->term_id, $variation_id, $item_id, $order);
                 $commission = apply_filters('mvx_get_commission_amount', $commission, $product_id, $vendor->term_id, $variation_id, $item_id, $order);
                 if (!empty($commission)) {
-                    if ($MVX->vendor_caps->payment_cap['commission_type'] == 'fixed_with_percentage') {
+                    $commission_type = mvx_get_settings_value($MVX->vendor_caps->payment_cap['commission_type']);
+                    if ($commission_type == 'fixed_with_percentage') {
                         $amount = (float) $line_total * ( (float) $commission['commission_val'] / 100 ) + (float) $commission['commission_fixed'];
-                    } else if ($MVX->vendor_caps->payment_cap['commission_type'] == 'fixed_with_percentage_qty') {
+                    } else if ($commission_type == 'fixed_with_percentage_qty') {
                         $amount = (float) $line_total * ( (float) $commission['commission_val'] / 100 ) + ((float) $commission['commission_fixed'] * $item['qty']);
-                    } else if ($MVX->vendor_caps->payment_cap['commission_type'] == 'percent') {
+                    } else if ($commission_type == 'percent') {
                         $amount = (float) $line_total * ( (float) $commission['commission_val'] / 100 );
-                    } else if ($MVX->vendor_caps->payment_cap['commission_type'] == 'fixed') {
+                    } else if ($commission_type == 'fixed') {
                         $amount = (float) $commission['commission_val'] * $item['qty'];
-                    } elseif ($MVX->vendor_caps->payment_cap['commission_type'] == 'commission_by_product_price') {
+                    } elseif ($commission_type == 'commission_by_product_price') {
                         $amount = $this->mvx_get_commission_as_per_product_price($product_id, $line_total, $item['qty'], $commission_rule);
-                    } elseif ($MVX->vendor_caps->payment_cap['commission_type'] == 'commission_by_purchase_quantity') {
+                    } elseif ($commission_type == 'commission_by_purchase_quantity') {
                         $amount = $this->mvx_get_commission_rule_by_quantity_rule($product_id, $line_total, $item['qty'], $commission_rule);
                     }
                     if (isset($MVX->vendor_caps->payment_cap['revenue_sharing_mode'])) {
-                        if ($MVX->vendor_caps->payment_cap['revenue_sharing_mode'] == 'admin') {
+                        if ($MVX->vendor_caps->payment_cap['revenue_sharing_mode'] == 'revenue_sharing_mode_admin') {
                             $amount = (float) $line_total - (float) $amount;
                             if ($amount < 0) {
                                 $amount = 0;
@@ -658,8 +659,8 @@ class MVX_Calculate_Commission {
                 $vendor = get_mvx_product_vendors($product_id);
             }
             if ($vendor->term_id == $vendor_id) {
-
-                if ($MVX->vendor_caps->payment_cap['commission_type'] == 'fixed_with_percentage') {
+                $commission_type = mvx_get_settings_value($MVX->vendor_caps->payment_cap['commission_type']);
+                if ($commission_type == 'fixed_with_percentage') {
 
                     if ($variation_id > 0) {
                         $data['commission_val'] = get_post_meta($variation_id, '_product_vendors_commission_percentage', true);
@@ -686,13 +687,14 @@ class MVX_Calculate_Commission {
                         if ($vendor_commission_percentage > 0) {
                             return array('commission_val' => $vendor_commission_percentage, 'commission_fixed' => $vendor_commission_fixed_with_percentage); // Use vendor user commission percentage 
                         } else {
-                            if (isset($MVX->vendor_caps->payment_cap['default_percentage'])) {
-                                return array('commission_val' => $MVX->vendor_caps->payment_cap['default_percentage'], 'commission_fixed' => $MVX->vendor_caps->payment_cap['fixed_with_percentage']);
+                            $default_commission = mvx_get_default_commission_amount();
+                            if (!empty($default_commission)) {
+                                return array('commission_val' => $default_commission['percent_amount'], 'commission_fixed' => $default_commission['fixed_ammount']);
                             } else
                                 return false;
                         }
                     }
-                } else if ($MVX->vendor_caps->payment_cap['commission_type'] == 'fixed_with_percentage_qty') {
+                } else if ($commission_type == 'fixed_with_percentage_qty') {
 
                     if ($variation_id > 0) {
                         $data['commission_val'] = get_post_meta($variation_id, '_product_vendors_commission_percentage', true);
@@ -719,8 +721,9 @@ class MVX_Calculate_Commission {
                         if ($vendor_commission_percentage > 0) {
                             return array('commission_val' => $vendor_commission_percentage, 'commission_fixed' => $vendor_commission_fixed_with_percentage); // Use vendor user commission percentage 
                         } else {
-                            if (isset($MVX->vendor_caps->payment_cap['default_percentage'])) {
-                                return array('commission_val' => $MVX->vendor_caps->payment_cap['default_percentage'], 'commission_fixed' => $MVX->vendor_caps->payment_cap['fixed_with_percentage_qty']);
+                            $default_commission = mvx_get_default_commission_amount();
+                            if (!empty($default_commission)) {
+                                return array('commission_val' => $default_commission['percent_amount'], 'commission_fixed' => $default_commission['fixed_ammount']);
                             } else
                                 return false;
                         }
@@ -744,7 +747,8 @@ class MVX_Calculate_Commission {
                         if ($vendor_commission) {
                             return array('commission_val' => $vendor_commission); // Use vendor user commission percentage 
                         } else {
-                            return isset($MVX->vendor_caps->payment_cap['default_commission']) ? array('commission_val' => $MVX->vendor_caps->payment_cap['default_commission']) : false; // Use default commission
+                            $default_commission = mvx_get_default_commission_amount();
+                            return isset($default_commission['default_commission']) ? array('commission_val' => $default_commission['default_commission']) : false; // Use default commission
                         }
                     }
                 }
@@ -788,11 +792,12 @@ class MVX_Calculate_Commission {
         global $MVX;
         $terms_commission_values = array();
         foreach ( $terms as $term ) {
-            if ( $MVX->vendor_caps->payment_cap['commission_type'] == 'fixed_with_percentage' ) {
+            $commission_type = mvx_get_settings_value($MVX->vendor_caps->payment_cap['commission_type']);
+            if ($commission_type == 'fixed_with_percentage' ) {
                 $commission_percentage = get_term_meta( $term->term_id, 'commission_percentage', true ) ? get_term_meta( $term->term_id, 'commission_percentage', true ) : 0;
                 $fixed_with_percentage = get_term_meta( $term->term_id, 'fixed_with_percentage', true ) ? get_term_meta( $term->term_id, 'fixed_with_percentage', true ) : 0;
                 $terms_commission_values[$term->term_id] = $commission_percentage + $fixed_with_percentage;
-            } else if ($MVX->vendor_caps->payment_cap['commission_type'] == 'fixed_with_percentage_qty') {
+            } else if ($commission_type == 'fixed_with_percentage_qty') {
                 $commission_percentage = get_term_meta( $term->term_id, 'commission_percentage', true ) ? get_term_meta( $term->term_id, 'commission_percentage', true ) : 0;
                 $fixed_with_percentage_qty = get_term_meta( $term->term_id, 'fixed_with_percentage_qty', true ) ? get_term_meta( $term->term_id, 'fixed_with_percentage_qty', true ) : 0;
                 $terms_commission_values[$term->term_id] = $commission_percentage + $fixed_with_percentage_qty;

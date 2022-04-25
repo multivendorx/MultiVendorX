@@ -116,7 +116,7 @@ class MVX_Product {
         // Hide products backend fields as per new product modifications
         add_action( 'add_meta_boxes', array( $this, 'remove_meta_boxes' ), 99 );
         // show default product categories
-        if( apply_filters( 'mvx_disable_product_default_categories_hierarchy', get_mvx_vendor_settings('category_pyramid_guide', 'settings_general') ==false ) ) {
+        if( apply_filters( 'mvx_disable_product_default_categories_hierarchy', get_mvx_vendor_settings('category_pyramid_guide', 'settings_general') ) ) {
             add_filter( 'mvx_vendor_product_list_row_product_categories', array($this, 'show_default_product_cats_in_vendor_list'), 10, 2);
             add_filter( 'woocommerce_admin_product_term_list', array($this, 'show_default_product_cats_in_wp_backend'), 99, 5);
             add_filter( 'term_links-product_cat', array($this, 'show_default_product_cats_product_single'), 99);
@@ -1798,7 +1798,7 @@ class MVX_Product {
         global $post;
         if( $post && $post->post_type != 'product' ) return;
         if( !is_user_mvx_vendor( get_current_user_id() ) ) return;
-        if( get_mvx_vendor_settings('category_pyramid_guide', 'settings_general') ) return;
+       if( get_mvx_vendor_settings('category_pyramid_guide', 'settings_general') == false ) return;
         
         if( isset( $_REQUEST['post'] ) && isset( $_REQUEST['action'] ) &&  $_REQUEST['action'] == 'edit' ){
             // product category

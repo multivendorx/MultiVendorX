@@ -204,6 +204,32 @@ if (!function_exists('get_mvx_vendors')) {
 
 }
 
+if (!function_exists('mvx_get_default_commission_amount')) {
+    function mvx_get_default_commission_amount() {
+        global $MVX;
+        $commission_amount = array();
+        $commission_type = mvx_get_settings_value($MVX->vendor_caps->payment_cap['commission_type']);
+        $default_commission_settings = get_mvx_global_settings('default_commission');
+        if (is_array($default_commission_settings)) {
+            switch ($commission_type) {
+                case "fixed":
+                case "percent":
+                    $commission_amount = array('default_commission' => $default_commission_settings[0]['value'] );
+                break;
+                case "fixed_with_percentage":
+                case "fixed_with_percentage_qty":
+                    foreach ($default_commission_settings as $value) {
+                        $commission_amount[$value['key']] = $value['value'];
+                    }
+                break;
+                default:
+                $commission_amount = array();
+            }
+        }
+        return $commission_amount;
+    }
+}
+
 if (!function_exists('mvx_is_product_type_avaliable')) {
 
     /**
@@ -4251,13 +4277,20 @@ if (!function_exists('get_mvx_available_payment_gateways')) {
      */
     function get_mvx_available_payment_gateways() {
         $available_gateways = array();
-        $payment_admin_settings = get_option('mvx_payment_settings_name');
-        $default_gateways = get_mvx_default_payment_gateways();
-        foreach ($default_gateways as $key => $lable) {
-            $gateway_settings_key = 'payment_method_' . $key;
-            if (isset($payment_admin_settings[$gateway_settings_key]) && $payment_admin_settings[$gateway_settings_key] = 'Enable') {
-                $available_gateways[$key] = $lable;
-            }
+        if (mvx_is_module_active('paypal-masspay')) {
+            $available_gateways['paypal_masspay'] = __('PayPal Masspay', 'dc-woocommerce-multi-vendor');
+        }
+        
+        if (mvx_is_module_active('paypal-payout')) {
+            $available_gateways['paypal_payout'] = __('PayPal Payout', 'dc-woocommerce-multi-vendor');
+        }
+       
+        if (mvx_is_module_active('stripe-connect')) {
+            $available_gateways['stripe_masspay'] = __('Stripe Connect', 'dc-woocommerce-multi-vendor');
+        }
+        
+        if (mvx_is_module_active('bank-payment')) {
+            $available_gateways['direct_bank'] = __('Direct Bank', 'dc-woocommerce-multi-vendor');
         }
         return apply_filters( 'mvx_available_payment_gateways', $available_gateways );
     }
