@@ -66,8 +66,7 @@ class MVX_Capabilities {
      * @return boolean 
      */
     public function vendor_capabilities_settings($cap, $default = array()) {
-        $this->mvx_capability = !empty($default) ? $default : $this->mvx_capability;
-        if (is_array($this->mvx_capability) && array_key_exists($cap, $this->mvx_capability)) {
+        if (!empty($cap) && get_mvx_global_settings($cap)) {
             return true;
         } else {
             return false;
@@ -81,7 +80,7 @@ class MVX_Capabilities {
      * @return boolean 
      */
     public function vendor_payment_settings($cap) {
-        if (is_array($this->payment_cap) && array_key_exists($cap, $this->payment_cap)) {
+        if (!empty($cap) && get_mvx_global_settings($cap)) {
             return true;
         } else {
             return false;

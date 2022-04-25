@@ -2100,7 +2100,7 @@ Class MVX_Admin_Dashboard {
                 $catagories = isset( $_POST['tax_input']['product_cat'] ) ? array_filter( array_map( 'intval', (array) $_POST['tax_input']['product_cat'] ) ) : array();
                 wp_set_object_terms( $post_id, $catagories, 'product_cat' );
                 // if product has different multi level categories hierarchy, save the default
-                if( isset( $_POST['_default_cat_hierarchy_term_id'] ) && in_array( $_POST['_default_cat_hierarchy_term_id'], $catagories ) && get_mvx_vendor_settings('category_pyramid_guide', 'settings_general') == false ){
+                if( isset( $_POST['_default_cat_hierarchy_term_id'] ) && in_array( $_POST['_default_cat_hierarchy_term_id'], $catagories ) && get_mvx_vendor_settings('category_pyramid_guide', 'settings_general') ){
                     update_post_meta( $post_id, '_default_cat_hierarchy_term_id', absint( $_POST['_default_cat_hierarchy_term_id'] ) );
                 }else{
                     delete_post_meta( $post_id, '_default_cat_hierarchy_term_id' );
@@ -2409,7 +2409,7 @@ Class MVX_Admin_Dashboard {
     }
     
     public function mvx_vendor_dashboard_add_product_url( $url ) {
-        if( mvx_is_module_active('spmv') == false && get_mvx_vendor_settings('is_singleproductmultiseller', 'spmv_pages') == false && get_mvx_vendor_settings('category_pyramid_guide', 'settings_general') ){
+        if( (mvx_is_module_active('spmv') == false || get_mvx_vendor_settings('is_singleproductmultiseller', 'spmv_pages') == false) && get_mvx_vendor_settings('category_pyramid_guide', 'settings_general') == false ){
             return esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_edit_product_endpoint', 'seller_dashbaord', 'edit-product')));
         }
         return $url;

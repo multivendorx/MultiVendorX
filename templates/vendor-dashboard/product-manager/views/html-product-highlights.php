@@ -15,7 +15,7 @@ global $MVX;
 <div class="cat-step3">
     <div class="panel-heading">
         <h1>
-            <?php if( mvx_is_module_active('spmv') == false && get_mvx_vendor_settings('is_singleproductmultiseller', 'spmv_pages') == false && get_mvx_vendor_settings('category_pyramid_guide', 'settings_general') == false ) : ?>
+            <?php if( mvx_is_module_active('spmv') && get_mvx_vendor_settings('is_singleproductmultiseller', 'spmv_pages') && get_mvx_vendor_settings('category_pyramid_guide', 'settings_general') ) : ?>
             <span class="primary-color"><span><?php esc_html_e( 'Step 2 of', 'dc-woocommerce-multi-vendor' );?></span> <?php esc_html_e( '2:', 'dc-woocommerce-multi-vendor' );?></span> 
             <?php endif; ?>
             <?php esc_html_e( 'Add Product Details', 'dc-woocommerce-multi-vendor' );?>
@@ -62,7 +62,7 @@ global $MVX;
                         $flag++;
                     }
                     // give option to set default terms hierarchy
-                    if( $nos_hierarchy > 1 && ( get_mvx_vendor_settings('category_pyramid_guide', 'settings_general') == false ) ){ ?>
+                    if( $nos_hierarchy > 1 && ( get_mvx_vendor_settings('category_pyramid_guide', 'settings_general') ) ){ ?>
                     <p class="pull-right multiple-cat-hierarchy"><?php esc_html_e( 'Select a different category :', 'dc-woocommerce-multi-vendor' );?>
                         <strong id="multiple-cat-hierarchy-lbl" class="primary-color">
                             <button type="button" class="multi-cat-choose-dflt-btn editabble-button" data-toggle="collapse" data-target="#multi_cat_hierarchy_visiblity"><u><?php esc_html_e( 'Choose default', 'dc-woocommerce-multi-vendor' );?></u> <i class="mvx-font ico-downarrow-2-icon"></i></button>
@@ -100,7 +100,7 @@ global $MVX;
                         </div>
                     </div>
                     <?php }
-                    if( get_mvx_vendor_settings('category_pyramid_guide', 'settings_general') == false ) :
+                    if( get_mvx_vendor_settings('category_pyramid_guide', 'settings_general') ) :
                     // save terms for post save handler 
                     if( $terms ){
                         foreach ( $terms as $term_id ) {
