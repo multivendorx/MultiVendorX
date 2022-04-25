@@ -23,8 +23,8 @@ $is_enable = mvx_seller_review_enable($vendor_term_id);
 $current_user = wp_get_current_user();
 $reviews_lists = $vendor->get_reviews_and_rating(0);
 // Multi review
-$mvx_review_options = get_option( 'mvx_review_settings_option', array() );
-$mvx_review_categories = isset( $mvx_review_options['review_categories'] ) && isset(wp_list_pluck($mvx_review_options['review_categories'], 'category')[0]) && !empty(wp_list_pluck($mvx_review_options['review_categories'], 'category')[0]) ? $mvx_review_options['review_categories'] : array();
+$review_options_data = get_option('mvx_review_management_tab_settings');
+$mvx_review_categories = isset($review_options_data['mvx_review_categories']) && !empty(wp_list_pluck($review_options_data['mvx_review_categories'], 'category')) ? wp_list_pluck($review_options_data['mvx_review_categories'], 'category') : array();
 $is_start_with_full_rating = apply_filters('mvx_is_start_with_full_rating', false);
 ?>
 <div class="wocommerce" >
@@ -66,7 +66,7 @@ $is_start_with_full_rating = apply_filters('mvx_is_start_with_full_rating', fals
                                                     <option value="2"><?php esc_html_e('Not that bad', 'dc-woocommerce-multi-vendor'); ?></option>
                                                     <option value="1"><?php esc_html_e('Very Poor', 'dc-woocommerce-multi-vendor'); ?></option>
                                                 </select>
-                                                <span><span class="rating_text <?php echo $mvx_review_category['category'] ?>"><?php if( $is_start_with_full_rating ) { echo '5'; } else { echo '0'; } ?></span>.0 <?php esc_html_e( $mvx_review_category['category'], 'wc-multivendor-marketplace' ); ?></span>
+                                                <span><span class="rating_text <?php echo $mvx_review_category ?>"><?php if( $is_start_with_full_rating ) { echo '5'; } else { echo '0'; } ?></span>.0 <?php esc_html_e( $mvx_review_category, 'wc-multivendor-marketplace' ); ?></span>
                                                 <input type="hidden" class="rating_value" name="mvx_store_review_category[<?php echo $mvx_review_cat_key; ?>]" value="<?php if( $is_start_with_full_rating ) { echo '5'; } else { echo '0'; } ?>" />
                                             </div>
                                             <?php } ?>
