@@ -54,7 +54,8 @@ class App extends Component {
       mvx_registration_fileds_list: [],
       current: {},
       registration_title_hidden: false,
-      list_of_module_data: []
+      list_of_module_data: [],
+      set_tab_name: ''
     };
 
     this.query = null;
@@ -905,16 +906,17 @@ class App extends Component {
 
 Child({ name }) {
 
-  axios({
+  if (name != this.state.set_tab_name) {
+    axios({
       url: `${appLocalizer.apiUrl}/mvx_module/v1/fetch_all_modules_data`
     })
     .then(response => {
-
       this.setState({
-        list_of_module_data: response.data
+        list_of_module_data: response.data,
+        set_tab_name: name
       });
-
     });
+  }
  
   return (
     <div>

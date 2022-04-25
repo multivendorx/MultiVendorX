@@ -145,6 +145,12 @@ export default class DynamicForm extends React.Component {
     this.setState({
       [m['database_value']]: m['database_value']
     });
+
+    if(this.props.submitbutton && this.props.submitbutton == 'false') {
+      setTimeout(() => {
+        this.onSubmit('');
+      }, 10)
+    }
   }
 
   handlenestedchildAddClick(e, m, indexop) {
@@ -169,6 +175,12 @@ export default class DynamicForm extends React.Component {
     this.setState({
       [m['database_value']]: m['database_value']
     });
+
+    if(this.props.submitbutton && this.props.submitbutton == 'false') {
+      setTimeout(() => {
+        this.onSubmit('');
+      }, 10)
+    }
   }
 
   removenestedField(e, index, m) {
@@ -176,6 +188,12 @@ export default class DynamicForm extends React.Component {
     this.setState({
       [m['database_value']]: m['database_value']
     });
+
+    if(this.props.submitbutton && this.props.submitbutton == 'false') {
+      setTimeout(() => {
+        this.onSubmit('');
+      }, 10)
+    }
   }
 
   handlenestedAddClick(event, m) {
@@ -210,6 +228,12 @@ export default class DynamicForm extends React.Component {
 
     //this.state.nestedarray
     //console.log(this.state.nestedarray.options.length);
+
+    if(this.props.submitbutton && this.props.submitbutton == 'false') {
+      setTimeout(() => {
+        this.onSubmit('');
+      }, 10)
+    }
   }
 
   runUploader(event, target, index) {

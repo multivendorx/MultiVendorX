@@ -4780,6 +4780,9 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
             )
         );
 
+        $review_options_data = get_option('mvx_review_management_tab_settings');
+        $mvx_review_categories = $review_options_data ? $review_options_data['mvx_review_categories'] : $default_nested_data;
+
         $settings_fields = [
             'settings-general'  =>  [
                 [
@@ -6518,7 +6521,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     ),
                     'child_options' => array(
                     ),
-                    'database_value' => $default_nested_data,
+                    'database_value' => $mvx_review_categories,
                 ],
             ],
             'report-settings'   => [
