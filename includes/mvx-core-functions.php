@@ -7159,6 +7159,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
 
 if (!function_exists('mvx_admin_backend_tab_settings')) {
     function mvx_admin_backend_tab_settings() {
+        global $MVX;
         $dashboard_page_endpoint = [
             /*[
                 'icon'          =>  'ico-store-icon',
@@ -7553,11 +7554,15 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
             ),
         );
 
+        if (!$MVX->multivendor_migration->mvx_is_marketplace()) {
+            unset( $status_tools[2] );
+        }
+
         $mvx_all_backend_tab_list = array(
             'dashboard-page'                    => $dashboard_page_endpoint,
             'marketplace-advance-settings'      => $advance_page_endpoint,
             'marketplace-analytics'             => $analytics_page_endpoint,
-            'status-tools'                      => $status_tools,
+            'status-tools'                      => array_values($status_tools),
             'marketplace-payments'              => $payment_page_endpoint,
             'marketplace-general-settings'      => array_values($general_settings_page_endpoint),
             'marketplace-vendors'               => $marketplace_vendors,
