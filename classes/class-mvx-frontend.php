@@ -77,12 +77,11 @@ class MVX_Frontend {
             add_filter( 'woocommerce_account_menu_items',array($this, 'mvx_customer_followers_vendor'), 99 );
             add_action( 'woocommerce_account_followers_endpoint', array($this, 'mvx_customer_followers_vendor_callback' ));
         }
-        if (get_mvx_vendor_settings( 'is_checkout_delivery_location_on', 'general' ) && 'Enable' === get_mvx_vendor_settings( 'is_checkout_delivery_location_on', 'general' )) {
-            add_filter( 'woocommerce_checkout_fields', array( &$this, 'mvx_checkout_user_location_fields' ), 50 );
-            add_action( 'woocommerce_after_checkout_billing_form', array( &$this, 'mvx_checkout_user_location_map' ), 50 );
-            add_action( 'woocommerce_checkout_update_order_review', array( &$this, 'mvx_checkout_user_location_session_set' ), 50 );
-            add_action( 'woocommerce_checkout_update_order_meta', array( &$this, 'mvx_checkout_user_location_save' ), 50 );
-        }
+        //is checkout delivery location on
+        add_filter( 'woocommerce_checkout_fields', array( &$this, 'mvx_checkout_user_location_fields' ), 50 );
+        add_action( 'woocommerce_after_checkout_billing_form', array( &$this, 'mvx_checkout_user_location_map' ), 50 );
+        add_action( 'woocommerce_checkout_update_order_review', array( &$this, 'mvx_checkout_user_location_session_set' ), 50 );
+        add_action( 'woocommerce_checkout_update_order_meta', array( &$this, 'mvx_checkout_user_location_save' ), 50 );
     }
 
     /**

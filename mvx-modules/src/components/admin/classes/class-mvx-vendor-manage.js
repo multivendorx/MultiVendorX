@@ -63,7 +63,7 @@ class App extends React.Component {
       bulkselectlist: [],
       data_setting_fileds: [],
       mvx_store_endpoint: '',
-
+      set_tab_name: '',
       columns_vendor_list: [],
       
       columns_followers: [
@@ -817,7 +817,8 @@ class App extends React.Component {
       this.state.data_zone_in_shipping = [];
     }
 
-    if (new URLSearchParams(window.location.hash).get("ID")) {
+
+    if (new URLSearchParams(window.location.hash).get("ID") && name.get("name") != this.state.set_tab_name ) {
       axios.get(
       `${appLocalizer.apiUrl}/mvx_module/v1/list_of_all_tab_based_settings_field`, { params: { vendor_id: new URLSearchParams(window.location.hash).get("ID") } 
       })
@@ -826,6 +827,7 @@ class App extends React.Component {
             this.setState({
               data_setting_fileds: response.data,
               vendor_shipping_option_choice: response.data.vendor_default_shipping_options.value,
+              set_tab_name: name.get("name")
             });
         }
 

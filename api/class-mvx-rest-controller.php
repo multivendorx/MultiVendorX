@@ -2107,7 +2107,7 @@ class MVX_REST_API {
                 'props'     => array(
                     'required'  => true
                 ),
-                'database_value' => '',
+                'database_value' => 'password',
             ],
             [
                 'key'       => 'first_name',

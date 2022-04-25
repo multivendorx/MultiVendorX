@@ -217,7 +217,7 @@ class MVX_Shipping_By_Distance extends WC_Shipping_Method {
   */
   public static function is_shipping_enabled_for_seller( $vendor_id = 0 ) {
     $vendor_shipping_options = get_user_meta($vendor_id, 'vendor_shipping_options', true) ? get_user_meta($vendor_id, 'vendor_shipping_options', true) : '';
-    if ( get_mvx_vendor_settings( 'enabled_distance_by_shipping_for_vendor', 'general' ) && 'Enable' === get_mvx_vendor_settings( 'enabled_distance_by_shipping_for_vendor', 'general' ) && $vendor_shipping_options && $vendor_shipping_options == 'distance_by_shipping') {
+    if ( mvx_is_module_active('distance-shipping') && $vendor_shipping_options && $vendor_shipping_options == 'distance_by_shipping') {
       return true;
     }
     return false;
@@ -282,7 +282,7 @@ class MVX_Shipping_By_Distance extends WC_Shipping_Method {
 
     foreach ( $mvx_shipping_by_distance_rates as $each_distance_rule ) {
       $rule_distance = $each_distance_rule['mvx_distance_unit'];
-      $rule = $each_distance_rule['mvx_distance_rule'];
+      $rule = isset($each_distance_rule['mvx_distance_rule']) ? $each_distance_rule['mvx_distance_rule']['value'] : '';
       $rule_price = isset( $each_distance_rule['mvx_distance_price'] ) ? $each_distance_rule['mvx_distance_price'] : 0;
 
       if( ( $rule == 'up_to' ) && ( (float)$total_distance <= (float)$rule_distance ) && ( !$matched_rule_distance || ( (float)$rule_distance <= (float)$matched_rule_distance ) ) ) {

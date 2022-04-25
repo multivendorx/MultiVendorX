@@ -205,7 +205,7 @@ class MVX_Shipping_By_Country extends WC_Shipping_Method {
   */
   public static function is_shipping_enabled_for_seller( $vendor_id ) {
     $vendor_shipping_options = get_user_meta($vendor_id, 'vendor_shipping_options', true) ? get_user_meta($vendor_id, 'vendor_shipping_options', true) : '';
-    if ( get_mvx_vendor_settings( 'enabled_shipping_by_country_for_vendor', 'general' ) && 'Enable' === get_mvx_vendor_settings( 'enabled_shipping_by_country_for_vendor', 'general' ) && $vendor_shipping_options && $vendor_shipping_options == 'shipping_by_country') {
+    if ( mvx_is_module_active('country-shipping') && $vendor_shipping_options && $vendor_shipping_options == 'shipping_by_country') {
       return true;
     }
     return false;
