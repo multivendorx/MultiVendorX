@@ -1837,11 +1837,10 @@ class MVX_REST_API {
         $country_list = [];
         foreach ($countries as $countries_key => $countries_value) {
             $country_list[] = array(
-                'lebel' => $countries_key,
-                'value' => $countries_value
+                'label' => $countries_value,
+                'value' => $countries_key
             );
         }
-
         // Find MVX created pages
         $pages = get_pages();
         $woocommerce_pages = array(wc_get_page_id('shop'), wc_get_page_id('cart'), wc_get_page_id('checkout'), wc_get_page_id('myaccount'));
@@ -1868,13 +1867,13 @@ class MVX_REST_API {
 
         $woo_countries = new WC_Countries();
         $countries = $woo_countries->get_allowed_countries();
-        $country_list = [];
+        /*$country_list = [];
         foreach ($countries as $countries_key => $countries_value) {
             $country_list[] = array(
                 'label' => $countries_value,
                 'value' => $countries_key
             );
-        }
+        }*/
 
 
 

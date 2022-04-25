@@ -1186,7 +1186,7 @@ export default class DynamicForm extends React.Component {
                   {
                     op.type == 'country' ? 
                     op.options.map((selectdata, index) => {
-                      parentseectoption[index] = {value:selectdata.value, label:selectdata.value, index:index, key:selectdata.lebel };
+                      parentseectoption[index] = {value:selectdata.value, label:selectdata.label, index:index, key:selectdata.value };
                     }) : ''
                   ,
                     op.type == 'country' ?
