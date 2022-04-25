@@ -502,9 +502,9 @@ class MVX_Calculate_Commission {
             }
         }
 
-        if (get_mvx_global_settings('commission_include_coupon')) {
+        if ($MVX->vendor_caps->vendor_payment_settings('commission_include_coupon')) {
             $line_total = $order->get_item_total($item, false, false) * $item['qty'];
-            if (get_mvx_global_settings('admin_coupon_excluded') && !$order_counpon_author_is_vendor) {
+            if ($MVX->vendor_caps->vendor_payment_settings('admin_coupon_excluded') && !$order_counpon_author_is_vendor) {
                 $line_total = $order->get_item_subtotal($item, false, false) * $item['qty'];
             }
         } else {
