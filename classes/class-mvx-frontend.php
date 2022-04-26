@@ -849,7 +849,7 @@ class MVX_Frontend {
         if ( ! empty( $store_tabs ) ) : ?>
 
         <div class='mvx-main-section'>
-            <?php if (get_mvx_vendor_settings('store_sidebar_position', 'store') == 'At Left') do_action( 'mvx_store_widget_contents' ); ?>
+            <?php if (get_mvx_vendor_settings('mvx_store_sidebar_position', 'store') == 'At Left') do_action( 'mvx_store_widget_contents' ); ?>
             <div class="column-class mvx-middle-sec ">
                 <div class="mvx-tab-header">
                     <?php foreach( $store_tabs as $key => $tab ) { 
@@ -876,7 +876,7 @@ class MVX_Frontend {
                 </div>
             </div>
         <?php endif; ?>
-        <?php if (get_mvx_vendor_settings('store_sidebar_position', 'store') == 'At Right') do_action( 'mvx_store_widget_contents' ); ?>
+        <?php if (get_mvx_vendor_settings('mvx_store_sidebar_position', 'store') == 'At Right') do_action( 'mvx_store_widget_contents' ); ?>
         </div>
         <?php
     }
@@ -985,9 +985,9 @@ class MVX_Frontend {
 
     // Sideber as per admin choice
     public function mvx_store_widget_contents() {
-        if (get_mvx_vendor_settings('store_sidebar_position', 'store') == 'At Left') { 
+        if (get_mvx_vendor_settings('mvx_store_sidebar_position', 'store') == 'At Left') { 
             $widget_class = 'mvx-leftwidget-sec';
-        } elseif (get_mvx_vendor_settings('store_sidebar_position', 'store') == 'At Right') {
+        } elseif (get_mvx_vendor_settings('mvx_store_sidebar_position', 'store') == 'At Right') {
             $widget_class = 'mvx-rightwidget-sec';
         } else {
             $widget_class = '';

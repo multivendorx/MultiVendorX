@@ -5352,19 +5352,19 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'database_value' => array(),
                 ],
                 [
-                    'key'       => 'store_sidebar_position',
+                    'key'       => 'mvx_store_sidebar_position',
                     'type'      => 'toggle_rectangle',
                     'label'     => __( 'Store Sidebar Position', 'dc-woocommerce-multi-vendor' ),
                     'desc'      => __( 'Decide where your want your store sidebar to be displayed', 'dc-woocommerce-multi-vendor' ),
                     'options' => array(
                         array(
-                            'name'  =>  'store_sidebar_position',
+                            'name'  =>  'mvx_store_sidebar_position',
                             'key'=> "left",
                             'label'=> __('At Left', 'dc-woocommerce-multi-vendor'),
                             'value'=> __('At Left', 'dc-woocommerce-multi-vendor'),
                         ),
                         array(
-                            'name'  =>  'store_sidebar_position',
+                            'name'  =>  'mvx_store_sidebar_position',
                             'key'=> "right",
                             'label'=> __('At Right', 'dc-woocommerce-multi-vendor'),
                             'value'=> __('At Right', 'dc-woocommerce-multi-vendor'),
