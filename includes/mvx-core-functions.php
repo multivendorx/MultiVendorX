@@ -6875,24 +6875,24 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'class'     => 'mvx-toggle-checkbox',
                     'options' => array(
                         array(
-                            'key'=> "refund_method_pending",
+                            'key'=> "pending",
                             'label'=> __('Pending', 'dc-woocommerce-multi-vendor'),
-                            'value'=> "refund_method_pending"
+                            'value'=> "pending"
                         ),
                         array(
-                            'key'=> "refund_method_on-hold",
+                            'key'=> "on-hold",
                             'label'=> __('On hold', 'dc-woocommerce-multi-vendor'),
-                            'value'=> "refund_method_on-hold"
+                            'value'=> "on-hold"
                         ),
                         array(
-                            'key'=> "refund_method_processing",
+                            'key'=> "processing",
                             'label'=> __('Processing', 'dc-woocommerce-multi-vendor'),
-                            'value'=> "refund_method_processing"
+                            'value'=> "processing"
                         ),
                         array(
-                            'key'=> "refund_method_completed",
+                            'key'=> "completed",
                             'label'=> __('Completed', 'dc-woocommerce-multi-vendor'),
-                            'value'=> "refund_method_completed"
+                            'value'=> "completed"
                         ),
                     ),
                     'database_value' => array(),

@@ -1432,9 +1432,10 @@ class MVX_Order {
         global $MVX;
         if( !is_wc_endpoint_url( 'view-order' ) ) return;
         if( !mvx_get_order( $order->get_id() ) ) return;
+        if( !mvx_is_module_active( 'marketplace-refund' ) ) return;
         $refund_settings = get_option( 'mvx_payment_refund_payment_settings_name', true );
         if ( isset( $refund_settings['disable_refund_customer_end'] ) && $refund_settings['disable_refund_customer_end'] == 'Enable' ) return;
-        $refund_reason_options = ( isset( $refund_settings['refund_order_msg'] ) && $refund_settings['refund_order_msg'] ) ? explode( "||", $refund_settings['refund_order_msg'] ) : array();
+        $refund_reason_options = get_mvx_global_settings('refund_order_msg') ? explode( "||", get_mvx_global_settings('refund_order_msg') ) : array();
         $refund_button_text = apply_filters( 'mvx_customer_my_account_refund_request_button_text', __( 'Request a refund', 'dc-woocommerce-multi-vendor' ), $order );
         // Print refund messages, if any
         if( mvx_get_customer_refund_order_msg( $order, $refund_settings ) ) {

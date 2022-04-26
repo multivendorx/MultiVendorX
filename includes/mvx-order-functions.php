@@ -237,7 +237,7 @@ function mvx_get_customer_refund_order_msg( $order, $settings = array() ) {
         'order_refund_request_accepted' => __( '*** Your Request is Accepted *** ', 'dc-woocommerce-multi-vendor' ),
     ), $order, $settings );
     $cust_refund_status = get_post_meta( $order->get_id(), '_customer_refund_order', true ) ? get_post_meta( $order->get_id(), '_customer_refund_order', true ) : '';
-    $refund_days_limit = isset( $settings['refund_days'] ) ? absint( $settings['refund_days'] ) : apply_filters( 'mvx_customer_refund_order_default_days_limit', 10, $order );
+    $refund_days_limit = get_mvx_global_settings('refund_days') ? absint( get_mvx_global_settings('refund_days') ) : apply_filters( 'mvx_customer_refund_order_default_days_limit', 10, $order );
     $order_date = $order->get_date_created()->format('Y-m-d');
     $order_place_days = time() - strtotime( $order_date );
     $message = array();
@@ -246,9 +246,7 @@ function mvx_get_customer_refund_order_msg( $order, $settings = array() ) {
         $message['type'] = 'info';
         $message['msg'] = isset( $default_msg['order_refund_period_overed'] ) ? $default_msg['order_refund_period_overed'] : __( 'Your Refund Period is over. Please contact with your seller for further information', 'dc-woocommerce-multi-vendor' );
     }
-
-    $settings = $settings && is_array($settings) ? $settings : array();
-    if( !in_array( $order->get_status() , $settings ) ) {
+    if( is_array(get_mvx_global_settings('customer_refund_status')) && !in_array( $order->get_status() , get_mvx_global_settings('customer_refund_status') ) ) {
         $message['type'] = 'info';
         $message['msg'] = isset( $default_msg['order_status_not_allowed'] ) ? $default_msg['order_status_not_allowed'] : __( 'Your Refund is not allowed for this order status', 'dc-woocommerce-multi-vendor' );
     }
