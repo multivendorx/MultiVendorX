@@ -54,7 +54,7 @@ if (!function_exists('get_mvx_global_settings')) {
             $options = array_merge($options, get_option($option_name, array()));
         }
         if (empty($key)) {
-            return $options;
+            return $default;
         }
         if (!isset($options[$key]) || empty($options[$key])) {
             return $default;
@@ -238,8 +238,8 @@ if (!function_exists('mvx_is_product_type_avaliable')) {
      */
     function mvx_is_product_type_avaliable($type = '') {
         if ($type && !empty($type)) {
-            $product_types = get_mvx_global_settings('product_types');
-            $type_option = get_mvx_global_settings('type_options');
+            $product_types = is_array(mvx_active_product_types()) ? mvx_active_product_types() : array();
+            $type_option = is_array(get_mvx_global_settings('type_options')) ? get_mvx_global_settings('type_options') : array();
             $mvx_product_types = array_merge($product_types, $type_option);
             if (is_array($mvx_product_types) && in_array($type, $mvx_product_types)) {
                 return true;
@@ -5374,7 +5374,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 ],
             ],
             'products'  =>  [
-                [
+                /*[
                     'key'    => 'product_types',
                     'label'   => __( 'Product Types', 'dc-woocommerce-multi-vendor' ),
                     'class'     => 'mvx-toggle-checkbox',
@@ -5409,7 +5409,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                         )
                     ),
                     'database_value' => array(),
-                ],
+                ],*/
                 [
                     'key'    => 'type_options',
                     'label'   => __( 'Type options', 'dc-woocommerce-multi-vendor' ),
@@ -7632,5 +7632,15 @@ if (!function_exists('mvx_string_wpml')) {
         } else {
             return $input;
         }
+    }
+}
+
+if (!function_exists('mvx_active_product_types')) {
+    function mvx_active_product_types() {
+        $active_product_types = array();
+        if (mvx_is_module_active('simple')) {
+            array_push($active_product_types, 'simple');
+        }
+        return apply_filters('mvx_active_product_types', $active_product_types);
     }
 }
