@@ -661,7 +661,13 @@ class App extends React.Component {
 
             <div className="mvx-table-text-and-add-wrap">
               <div className="mvx-datatable-text">Vendors</div>
-              <Link to={`?page=mvx#&submenu=vendor&name=add_new`}><i className="mvx-font icon-add"></i>Add Vendor</Link>
+              <Link to={`?page=mvx#&submenu=vendor&name=add_new`} className="btn default-btn mr-12"><i className="mvx-font icon-add"></i>Add Vendor</Link>
+
+              <Link to={`?page=mvx#&submenu=vendor&name=add_new`} className="btn border-btn mr-2">Import</Link>
+              <Link to={`?page=mvx#&submenu=vendor&name=add_new`} className="btn border-btn">Export</Link>
+              <div className="pull-right">
+              <Link to={`?page=mvx#&submenu=vendor&name=add_new`} className="btn default-btn"><i className="mvx-font icon-download"></i> Download CSV</Link>
+              </div>
             </div>
             
             <div className="mvx-search-and-multistatus-wrap">
@@ -673,6 +679,7 @@ class App extends React.Component {
                 <div className="mvx-multistatus-check-pending status-active" onClick={(e) => this.different_vendor_status(e, 'pending')}>| Pending ({this.state.data_pending_vendor.length})</div>
                 <div className="mvx-multistatus-check-rejected" onClick={(e) => this.different_vendor_status(e, 'rejected')}>| Rejected ({this.state.data_rejected_vendor.length})</div>
               </div>
+             
 
 
               <div className="mvx-module-section-list-data"> 
@@ -682,20 +689,26 @@ class App extends React.Component {
 
               { /*<Select placeholder="Search Vendors" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handlevendorsearch} /> */}
             </div>
+            
 
-            <div className="mvx-wrap-bulk-all-date">
-              <div className="mvx-wrap-bulk-action">
+            <div className="mvx-wrap-bulk-all-date mt-10">
+              <div className="mvx-wrap-bulk-action mr-2">
                 <Select placeholder="Bulk actions" options={appLocalizer.vendor_list_page_bulk_list_options} isClearable={true} className="mvx-module-section-list-data" onChange={this.handlevendoractionsearch} />
                 { /*<button type="button" className="button-secondary" onClick={(e) => this.handledeletevendor(e)}>Apply</button> */ }
               </div>
-
-              <div className="mvx-wrap-date-action">
-                { /*<Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handlevendorsearch} /> */ }
+              <div className="mr-2">
+                <Link className="btn border-btn">Apply</Link>
+              </div>
+              <div className="mvx-wrap-date-action mr-2">
+                <Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handlevendorsearch} />
+              </div>
+              <div className="mr-2">
+                <Link className="btn border-btn"><i class="mvx-font icon-tab-setup-widget ma-0"></i></Link>
               </div>
             </div>
 
             { /*<button type="button" className="button-primary" onClick={(e) => this.handledeletevendor(e)}>Delete Vendor</button> */}
-            <div className="mvx-backend-datatable-wrapper">
+            <div className="mvx-backend-datatable-wrapper vendor-table-wapper">
               {this.state.columns_vendor_list && this.state.columns_vendor_list.length > 0 ?
               <DataTable
                 columns={this.state.columns_vendor_list}

@@ -1115,7 +1115,8 @@ span.mvx-module-section-pro-badge {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 1.5rem 0;
+  padding: 0;
+  margin-bottom: 15px;
 }
 
 .form-group p.mvx-settings-metabox-description {
@@ -1806,7 +1807,7 @@ input[type=checkbox]:checked::before {
   padding-left: 0.5rem;
 }
 
-.mvx-table-text-and-add-wrap a, .mvx-table-text-and-add-wrap .button-secondary, a.button-commission-secondary {
+.mvx-table-text-and-add-wrap .button-secondary, a.button-commission-secondary {
   color: #f9f8fb;
   background: #3f1473;
   padding: 0.35rem 0.8rem;
@@ -1814,7 +1815,7 @@ input[type=checkbox]:checked::before {
   border: 0;
 }
 
-.mvx-table-text-and-add-wrap a:focus, .mvx-table-text-and-add-wrap a:hover, .mvx-table-text-and-add-wrap .button-secondary:focus, .mvx-table-text-and-add-wrap .button-secondary:hover, a.button-commission-secondary:focus, a.button-commission-secondary:hover {
+.mvx-table-text-and-add-wrap .button-secondary:focus, .mvx-table-text-and-add-wrap .button-secondary:hover, a.button-commission-secondary:focus, a.button-commission-secondary:hover {
   color: #f9f8fb;
   text-decoration: none;
 }
@@ -2646,6 +2647,8 @@ body {
 }
 /*# sourceMappingURL=style.css.map */
 
+
+
 /*swarup strat*/
 .no-link-under a:active, 
 .no-link-under a:focus, 
@@ -3293,4 +3296,142 @@ overflow: hidden;
 }
 .pro-slider:nth-child(1){
   display: block;
+}
+
+.mvx-vendor-action-icon{
+  white-space: nowrap;
+  display: flex;
+}
+.mvx-vendor-action-icon > *:not(:first-child){
+  margin-left: 10px;
+}
+.mvx-vendor-icon-name img {
+  margin: 0 8px 0 0;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: block;
+  float: left;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #DDD;
+  object-fit: contain;
+}
+.mvx-vendor-icon-name a{
+  margin-top: 6px;
+  display: inline-block;
+}
+.pull-right{
+  float: right;
+  margin-left: auto;
+}
+.mr-12{
+  margin-right: 12px;
+}
+.mr-2{
+  margin-right: 2px;
+}
+.default-btn {
+  color: #f9f8fb;
+  background: #3f1473;
+  border-color: #3f1473;
+}
+/* .btn > i{
+  margin-right: 8px;
+} */
+.btn:hover, .btn:focus{
+  text-decoration: none !important;
+  color: inherit !important;
+}
+.css-1pahdxg-control:hover {
+  border: none;
+}
+.css-1s2u09g-control {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+.mt-25{
+  margin-top: 25px;
+}
+.mt-10{
+  margin-top: 10px;
+}
+.mvx-module-section-list-data input[type="text"] {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  border-color: #ece8f1;
+  background-color: #ece8f1;
+}
+.mvx-wrap-bulk-all-date.mt-10  .css-1s2u09g-control{
+  margin: 0px !important;
+}
+.rdt_Pagination select{
+  border: #481f79 1px solid !important;
+  border-radius: 6px !important;
+  padding: 0 30px 0 15px !important;
+}
+.rdt_Pagination .fQmYxz svg{
+  top: 4px !important;
+}
+.rdt_Pagination .gPLhoV {
+  border-radius: 50%;
+  height: 32px;
+  width: 40px;
+  padding: 0px 8px;
+  color: #181718 !important;
+  fill: #181718 !important;
+  background-color: transparent;
+
+  border: #481f79 1px solid !important;
+  border-radius: 6px !important;
+  line-height: 44px;
+  margin: 0 2px;
+}
+.rdt_Pagination .fXzwgx{
+  color: #181718;
+  font-size: 16px;
+  font-weight: 500;
+}
+/* .rdt_Pagination .gPLhoV path:nth-child(1){
+  stroke: #181718;
+} */
+.css-1s2u09g-control{
+  margin: 0px !important;
+}
+.form-group .mvx-settings-input-content input.mvx-setting-form-input, .form-group .mvx-settings-input-content textarea.mvx-setting-form-input {
+  height: 42px;
+  border-color: hsl(0, 0%, 80%);
+}
+.form-group .mvx-settings-input-content .mvxsetting-from-textarea textarea{
+  border-color: hsl(0, 0%, 80%);
+}
+.form-group label.mvx-settings-form-label p {
+  word-break: break-all;
+}
+.vendor-table-wapper .rdt_TableHead .rdt_TableCol:nth-child(4),
+.vendor-table-wapper .rdt_TableHead .rdt_TableCol:nth-child(5),
+.vendor-table-wapper .rdt_TableHead .rdt_TableCol:nth-child(6),
+.vendor-table-wapper .rdt_TableHead .rdt_TableCol:nth-child(7),
+
+.vendor-table-wapper .rdt_TableBody .rdt_TableCell:nth-child(4),
+.vendor-table-wapper .rdt_TableBody .rdt_TableCell:nth-child(5),
+.vendor-table-wapper .rdt_TableBody .rdt_TableCell:nth-child(6),
+.vendor-table-wapper .rdt_TableBody .rdt_TableCell:nth-child(7) {
+  -webkit-box-pack: start;
+  -ms-flex-pack: inherit;
+  justify-content: flex-start;
+  padding-left: 5px;
+  padding-right: 5px;
+  box-sizing: border-box;
+}
+.ma-0{
+  margin: 0px !important;
+}
+.btn > i.icon-download,
+.btn > i.icon-add{
+  margin-right: 8px;
+}
+input[type=checkbox]{
+  border-radius: 0px;
+  border-color: #471e79;
 }
