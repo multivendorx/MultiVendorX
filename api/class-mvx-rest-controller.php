@@ -4328,8 +4328,25 @@ class MVX_REST_API {
         
         // shipping by country
 
-        if (isset($model['mvx_country_shipping_rates']) && !empty($model['mvx_country_shipping_rates'])) {
-            mvx_update_user_meta($user_id, '_mvx_country_shipping_rates', $model['mvx_country_shipping_rates']);
+        if (isset($model['mvx_country_shipping_rates']) && !empty($model['mvx_country_shipping_rates'])) {            
+            $mvx_country_rates = $mvx_state_rates = array();
+            foreach( $model['mvx_country_shipping_rates'] as $mvx_shipping_rates ) {
+                if( $mvx_shipping_rates['mvx_country_to']['value'] ) {
+                    if( $mvx_shipping_rates['nested_datas'] && !empty( $mvx_shipping_rates['nested_datas'] ) ) {
+                        foreach( $mvx_shipping_rates['nested_datas'] as $nested_datas ) {
+
+                            if( $nested_datas['mvx_state_to'] ) {
+                                $mvx_state_rates[$mvx_shipping_rates['mvx_country_to']['value']][$nested_datas['mvx_state_to']['value']] = $nested_datas['mvx_state_to_price'];
+                            }
+
+                        }
+                    }
+                    $mvx_country_rates[$mvx_shipping_rates['mvx_country_to']['value']] = $mvx_shipping_rates['mvx_country_to_price'];
+                }
+            }
+            mvx_update_user_meta( $user_id, '_mvx_country_rates', $mvx_country_rates );
+            mvx_update_user_meta( $user_id, '_mvx_state_rates', $mvx_state_rates );
+            mvx_update_user_meta( $user_id, '_mvx_country_shipping_rates', $model['mvx_country_shipping_rates'] );
         }
 
         if (isset($model['mvx_shipping_type_price']) && !empty($model['mvx_shipping_type_price'])) {

@@ -79,7 +79,7 @@ export default class DynamicForm extends React.Component {
         
         itemsnested[index][filedsdetails.key] = selectarray[e.index];
         var statefromcountrycode = JSON.parse(appLocalizer.countries.replace( /&quot;/g, '"' ))[e.key];
-       
+        
         for (const keysssssss in statefromcountrycode) {
           country_list_array.push({label:keysssssss, value:statefromcountrycode[keysssssss]});
         }
@@ -1269,7 +1269,7 @@ export default class DynamicForm extends React.Component {
                         {
                           opnjj.type == 'state' ? 
                           opnjj.options.map((okkkk, index) => {
-                            statedata[index] = {value:okkkk.value, label:okkkk.value, index:index };
+                            statedata[index] = {value:okkkk.label, label:okkkk.value, index:index };
                           }) : ''
                         ,
                           opnjj.type == 'state' ?
