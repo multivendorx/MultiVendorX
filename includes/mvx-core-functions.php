@@ -239,7 +239,7 @@ if (!function_exists('mvx_is_product_type_avaliable')) {
     function mvx_is_product_type_avaliable($type = '') {
         if ($type && !empty($type)) {
             $product_types = is_array(mvx_active_product_types()) ? mvx_active_product_types() : array();
-            $type_option = is_array(get_mvx_global_settings('type_options')) ? get_mvx_global_settings('type_options') : array();
+            $type_option = get_mvx_global_settings('type_options', array());
             $mvx_product_types = array_merge($product_types, $type_option);
             if (is_array($mvx_product_types) && in_array($type, $mvx_product_types)) {
                 return true;
