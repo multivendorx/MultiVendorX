@@ -19,6 +19,14 @@
 defined( 'ABSPATH' ) || exit;
 
 global $MVX;
+$get_product_data_tabs = $self->get_product_data_tabs();
+$product_fields_data = get_mvx_global_settings('products_fields') ? get_mvx_global_settings('products_fields') : array();
+foreach ($get_product_data_tabs as $key_tabs => $value_tabs) {
+    if ($key_tabs == 'shipping' || $key_tabs == 'variations') continue;
+    if (!in_array($key_tabs, $product_fields_data)) {
+        unset($get_product_data_tabs[$key_tabs]);
+    }
+}
 ?> 
 <div class="col-md-12 add-product-wrapper">
     <?php do_action( 'before_mvx_add_product_form' ); ?>
@@ -191,7 +199,7 @@ global $MVX;
                         <div>
                             <div class="tab-nav-direction-wrapper"></div>
                             <ul class="nav nav-tabs" role="tablist" id="product_data_tabs">
-                                <?php foreach ( $self->get_product_data_tabs() as $key => $tab ) : ?>
+                                <?php foreach ( $get_product_data_tabs as $key => $tab ) : ?>
                                     <?php if ( apply_filters( 'mvx_afm_product_data_tabs_filter', ( ! isset( $tab['p_type'] ) || array_key_exists( $tab['p_type'], mvx_get_product_types() ) && mvx_is_product_type_avaliable( $tab['p_type'] ) ), $key, $tab ) ) : ?>
                                         <li role="presentation" class="nav-item <?php echo esc_attr( $key ); ?>_options <?php echo esc_attr( $key ); ?>_tab <?php echo esc_attr( isset( $tab['class'] ) ? implode( ' ', (array) $tab['class'] ) : ''  ); ?>">
                                             <a class="nav-link" href="#<?php echo esc_attr( $tab['target'] ); ?>" aria-controls="<?php echo $tab['target']; ?>" role="tab" data-toggle="tab"><span><?php echo esc_html( $tab['label'] ); ?></span></a>

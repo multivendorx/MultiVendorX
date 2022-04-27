@@ -340,7 +340,7 @@ class App extends Component {
                     <DialogContent>
                       <DialogContentText>
                       <div className="mvx-module-dialog-content">
-                        To use this paid module, Please visit <a href="https://wc-marketplace.com/addons/">WC Marketplace</a> Site.
+                        To use this paid module, Please visit <a href="https://multivendorx.com/">MultivendorX</a> Site.
                       </div>
                       </DialogContentText>
                     </DialogContent>

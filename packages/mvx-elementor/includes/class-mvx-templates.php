@@ -81,7 +81,7 @@ class MVX_Elementor_Templates {
 						'title'             => "Store Page Layout",
 						'thumbnail'         => $MVX->plugin_url . 'packages/mvx-elementor/assets/images/store-header-9000001.png',
 						'tmpl_created'      => "1486569564",
-						'author'            => "WC Marketplace",
+						'author'            => "MultivendorX",
 						'tags'              => '',
 						'is_pro'            => false,
 						'popularity_index'  => 1,

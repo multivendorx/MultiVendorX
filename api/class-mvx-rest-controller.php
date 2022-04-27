@@ -4955,7 +4955,14 @@ class MVX_REST_API {
                         'id'           => 'store-inventory',
                         'name'         => __( 'Store Inventory', 'dc-woocommerce-multi-vendor' ),
                         'description'  => __( 'Present vendors with the choice to handle normal product quantities, set low inventory and no inventory alarms and manage a subscriber list for the unavailable products.', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => 'free',
+                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
+                        'required_plugin_list' => array(
+                            array(
+                                'plugin_name'   => __('MultivendorX Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://multivendorx.com/',
+                                'is_active'     => $mvx_pro_is_active,
+                            ),
+                        ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
                         'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],

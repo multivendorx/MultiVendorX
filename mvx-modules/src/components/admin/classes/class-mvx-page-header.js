@@ -38,7 +38,7 @@ class App extends Component {
       <div className="mvx-module-section-nav">
         <div className="mvx-module-nav-left-section">
           <div className="mvx-module-section-nav-child-data">
-            <img src={appLocalizer.mvx_logo} alt="WC Marketplace" className="mvx-section-img-fluid"/>
+            <img src={appLocalizer.mvx_logo} alt="MultivendorX" className="mvx-section-img-fluid"/>
           </div>
           <div className="mvx-module-section-nav-child-data">
             {appLocalizer.marketplace_text}

@@ -3871,9 +3871,9 @@ if ( ! function_exists( 'mvx_get_post_permalink' ) ) {
 if ( ! function_exists( 'mvx_default_product_types' ) ) {
 
     function mvx_default_product_types() {
-        return array(
+        return mvx_is_module_active('simple') ? array(
             'simple'   => __( 'Simple product', 'dc-woocommerce-multi-vendor' ),
-        );
+        ) : array();
     }
 
 }
@@ -5468,9 +5468,9 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                         ),
                         array(
                             'name'  => 'products_fields',
-                            'key'   => 'advance',
+                            'key'   => 'advanced',
                             'label' => __('Advance', 'dc-woocommerce-multi-vendor'),
-                            'value' => 'advance'
+                            'value' => 'advanced'
                         ),
                         array(
                             'name'  => 'products_fields',
