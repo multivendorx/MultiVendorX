@@ -5106,7 +5106,19 @@ class MVX_REST_API {
                         'id'           => 'weight-shipping',
                         'name'         => __( 'Weight Wise Shipping (using Table Rate Shipping)', 'dc-woocommerce-multi-vendor' ),
                         'description'  => __( 'Vendors can create shipping rates based on price, weight and quantity', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => 'free',
+                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
+                        'required_plugin_list' => array(
+                            array(
+                                'plugin_name'   => __('Table Rate Shipping', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://woocommerce.com/products/table-rate-shipping/',
+                                'is_active' => is_plugin_active('woocommerce-table-rate-shipping/woocommerce-table-rate-shipping.php') ?true : false,
+                            ),
+                            array(
+                                'plugin_name'   => __('MultivendorX Pro', 'dc-woocommerce-multi-vendor'),
+                                'plugin_link'   => 'https://multivendorx.com/',
+                                'is_active'     => $mvx_pro_is_active,
+                            ),
+                        ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
                         'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],

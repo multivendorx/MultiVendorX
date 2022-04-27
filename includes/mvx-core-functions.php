@@ -6022,8 +6022,8 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'database_value' => '',
                 ],*/
             ],
-            'dashbaord-management'   => [
-                /*[
+            /*'dashbaord-management'   => [
+                [
                     'key'    => 'is_backend_diabled',
                     'label'   => __( 'Disallow Vendors wp-admin Access', 'dc-woocommerce-multi-vendor' ),
                     'class'     => 'mvx-toggle-checkbox',
@@ -6040,7 +6040,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                         ),
                     ),
                     'database_value' => array(),
-                ],*/
+                ],
                 [
                     'key'    => 'mvx_new_dashboard_site_logo',
                     'label'   => __( 'Dashbaord Brand Logo', 'dc-woocommerce-multi-vendor' ),
@@ -6139,7 +6139,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'desc'      => __( 'Will be applicable on vendor frontend', 'dc-woocommerce-multi-vendor' ),
                     'database_value' => '',
                 ],
-            ],
+            ],*/
             'dashbaord-pages'   => [
                
                 [
