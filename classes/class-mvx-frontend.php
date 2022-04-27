@@ -224,7 +224,7 @@ class MVX_Frontend {
      */
     function mvx_vendor_register_form_callback() {
         global $MVX;
-        $mvx_vendor_registration_form_data = mvx_get_option('mvx_vendor_registration_form_data');
+        $mvx_vendor_registration_form_data = mvx_get_option('mvx_new_vendor_registration_form_data');
         $MVX->template->get_template('vendor_registration_form.php', array('mvx_vendor_registration_form_data' => $mvx_vendor_registration_form_data));
     }
 
