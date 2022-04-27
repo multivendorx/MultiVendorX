@@ -3507,19 +3507,22 @@ class MVX_REST_API {
 
 
         $tax_data   =   '';
-        $get_total_tax_refunded_by_rate_id = $order->get_total_tax_refunded_by_rate_id($tax->rate_id);
         if (wc_tax_enabled()) {
             foreach ($order->get_tax_totals() as $code => $tax) {
-                $tax_data   =   array(
-                    'tax_label' =>  esc_html($tax->label),
-                    'get_total_tax_refunded_by_rate_id' =>  $get_total_tax_refunded_by_rate_id,
-                    'greater_zero'  =>  '<del>' . strip_tags($tax->formatted_amount) . '</del> <ins>' . wc_price(WC_Tax::round($tax->amount, wc_get_price_decimals()) - WC_Tax::round($get_total_tax_refunded_by_rate_id, wc_get_price_decimals()), array('currency' => $order->get_currency())) . '</ins>',
-                    'else_output'   =>  wp_kses_post($tax->formatted_amount)
-                );
+                $get_total_tax_refunded_by_rate_id = $order->get_total_tax_refunded_by_rate_id($tax->rate_id);
+                if ($get_total_tax_refunded_by_rate_id > 0) {
+                    $tax_data   =   array(
+                        'tax_label' =>  esc_html($tax->label),
+                        'get_total_tax_refunded_by_rate_id' =>  $get_total_tax_refunded_by_rate_id,
+                        'greater_zero'  =>  '<del>' . strip_tags($tax->formatted_amount) . '</del> <ins>' . wc_price(WC_Tax::round($tax->amount, wc_get_price_decimals()) - WC_Tax::round($get_total_tax_refunded_by_rate_id, wc_get_price_decimals()), array('currency' => $order->get_currency())) . '</ins>',
+                        'else_output'   =>  wp_kses_post($tax->formatted_amount)
+                    );
+                }
             }
         }
 
         $commission_total = get_post_meta( $commission_id, '_commission_total', true );
+        $order_id = get_post_meta( $commission_id, '_commission_order_id', true );
         $is_migration_order = get_post_meta($order_id, '_order_migration', true); // backward compatibility
         $notes = $MVX->postcommission->get_commission_notes($commission_id);
         $notes_data = '';
@@ -3802,7 +3805,7 @@ class MVX_REST_API {
                 $vendor_user_id = get_post_meta($commission_value, '_commission_vendor', true);
                 if ( $vendor_order ) {
                     $vendor = $vendor_order->get_vendor();
-                    $vendor_list = '<a href="' . esc_url($vendor->permalink) . '">' . $vendor->page_title . '</a>';
+                    $vendor_list = $vendor ? '<a href="' . esc_url($vendor->permalink) . '">' . $vendor->page_title . '</a>' : '';
                 } else { // BW compatibilities
                     if ($vendor_user_id) {
                         if ($vendor) {

@@ -4816,6 +4816,38 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
         $review_options_data = get_option('mvx_review_management_tab_settings');
         $mvx_review_categories = $review_options_data ? $review_options_data['mvx_review_categories'] : $default_nested_data;
 
+        $disbursement_settings_methods = [];
+        if (mvx_is_module_active('paypal-masspay')) {
+            $disbursement_settings_methods[] = array(
+                'key'=> "paypal_masspay",
+                'label'=> __('PayPal Masspay ', 'dc-woocommerce-multi-vendor'),//(Stop Waiting and Pay Vendors Immediately with PayPal Real-Time Split Payment using <a href="https://wc-marketplace.com/product/mvx-paypal-marketplace/">MVX PayPal Marketplace</a>. Please visit our site)
+                'value'=> "paypal_masspay"
+            );
+        }
+        if (mvx_is_module_active('paypal-payout')) {
+            $disbursement_settings_methods[] = array(
+                'key'=> "paypal_payout",
+                'label'=> __('Paypal Payout', 'dc-woocommerce-multi-vendor'),
+                'value'=> "paypal_payout"
+            );
+        }
+        if (mvx_is_module_active('stripe-connect')) {
+            $disbursement_settings_methods[] = array(
+                'key'=> "stripe_masspay",
+                'label'=> __('Stripe Connect', 'dc-woocommerce-multi-vendor'),
+                'value'=> "stripe_masspay"
+            );
+        }
+        if (mvx_is_module_active('bank-payment')) {
+            $disbursement_settings_methods[] = array(
+                'key'=> "direct_bank",
+                'label'=> __('Direct Bank Transfer', 'dc-woocommerce-multi-vendor'),
+                'value'=> "direct_bank"
+            );
+        }
+
+        //print_r(get_mvx_global_settings('payment_method_disbursement'));die;
+
         $settings_fields = [
             'settings-general'  =>  [
                 [
@@ -5798,37 +5830,11 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 [
                     'key'    => 'payment_method_disbursement',
                     'label'   => __( 'Commission Disbursement Method', 'dc-woocommerce-multi-vendor' ),
-                    'desc'  =>  __( "Display only enabled payment gateways. To enable your choosen disbursement type click here (link module page)", 'dc-woocommerce-multi-vendor' ),
+                    'desc'  =>  __( "Display only enabled payment gateways. To enable your choosen disbursement type <a href='". admin_url( '?page=mvx#&submenu=modules' ) ."'>MVX Modules</a>", 'dc-woocommerce-multi-vendor' ),
                     'class'     => 'mvx-toggle-checkbox',
                     'type'    => 'checkbox',
                     'right_content' =>  true,
-                    'options' => array(
-                        array(
-                            'key'=> "paypal_masspay",
-                            'label'=> __('PayPal Masspay ', 'dc-woocommerce-multi-vendor'),//(Stop Waiting and Pay Vendors Immediately with PayPal Real-Time Split Payment using <a href="https://wc-marketplace.com/product/mvx-paypal-marketplace/">MVX PayPal Marketplace</a>. Please visit our site)
-                            'value'=> "paypal_masspay"
-                        ),
-                        array(
-                            'key'=> "paypal_payout",
-                            'label'=> __('Paypal Payout', 'dc-woocommerce-multi-vendor'),
-                            'value'=> "paypal_payout"
-                        ),
-                        array(
-                            'key'=> "stripe_masspay",
-                            'label'=> __('Stripe Connect', 'dc-woocommerce-multi-vendor'),
-                            'value'=> "stripe_masspay"
-                        ),
-                        array(
-                            'key'=> "direct_bank",
-                            'label'=> __('Direct Bank Transfer', 'dc-woocommerce-multi-vendor'),
-                            'value'=> "direct_bank"
-                        ),
-                        array(
-                            'key'=> "razorpay_block",
-                            'label'=> __('Razorpay', 'dc-woocommerce-multi-vendor'),
-                            'value'=> "razorpay_block"
-                        )
-                    ),
+                    'options' => $disbursement_settings_methods,
                     'database_value' => array(),
                 ],
                 [

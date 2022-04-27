@@ -15,7 +15,8 @@ class MVX_Gateway_Bank_Transfer extends MVX_Payment_Gateway {
         $this->id = 'direct_bank';
         $this->gateway_title = __('Bank transfer', 'dc-woocommerce-multi-vendor');
         $this->payment_gateway = $this->id;
-        $this->enabled = get_mvx_vendor_settings('payment_method_direct_bank', 'payment');
+        $disbursement_payment_method = get_mvx_global_settings('payment_method_disbursement') ? get_mvx_global_settings('payment_method_disbursement') : array();
+        $this->enabled = in_array('direct_bank', $disbursement_payment_method) ? 'Enable' : '';
     }
     
     public function gateway_logo() { global $MVX; return $MVX->plugin_url . 'assets/images/'.$this->id.'.png'; }
@@ -41,9 +42,10 @@ class MVX_Gateway_Bank_Transfer extends MVX_Payment_Gateway {
             $this->message[] = array('message' => __('Invalid payment method', 'dc-woocommerce-multi-vendor'), 'type' => 'error');
             return false;
         }
+
         if ($this->transaction_mode != 'admin') {
             /* handel thesold time */
-            $threshold_time = isset($MVX->vendor_caps->payment_cap['commission_threshold_time']) && !empty($MVX->vendor_caps->payment_cap['commission_threshold_time']) ? $MVX->vendor_caps->payment_cap['commission_threshold_time'] : 0;
+            $threshold_time = get_mvx_global_settings('commission_threshold_time') ? get_mvx_global_settings('commission_threshold_time') : 0;
             if ($threshold_time > 0) {
                 foreach ($this->commissions as $index => $commission) {
                     if (intval((date('U') - get_the_date('U', $commission)) / (3600 * 24)) < $threshold_time) {
@@ -52,7 +54,7 @@ class MVX_Gateway_Bank_Transfer extends MVX_Payment_Gateway {
                 }
             }
             /* handel thesold amount */
-            $thesold_amount = isset($MVX->vendor_caps->payment_cap['commission_threshold']) && !empty($MVX->vendor_caps->payment_cap['commission_threshold']) ? $MVX->vendor_caps->payment_cap['commission_threshold'] : 0;
+            $thesold_amount = get_mvx_global_settings('commission_threshold') ? get_mvx_global_settings('commission_threshold') : 0;
             if ($this->get_transaction_total() > $thesold_amount) {
                 return true;
             } else {
