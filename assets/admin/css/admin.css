@@ -1978,10 +1978,18 @@ th.mvx-settings-th-wrap {
 
 .css-1s2u09g-control,
 .mvx-module-section-list-data.css-b62m3t-container .css-1s2u09g-control, .css-1pahdxg-control {
-  margin: 0.8rem 0.4rem 0 0;
+  margin: 0;
   min-height: 0;
+  outline: none !important;
+  box-shadow: none !important;
+  border: hsl(0, 0%, 70%) 1px solid !important;
+  min-height: 42px !important;
+  padding: 0 !important;
 }
-
+.css-1hb7zxy-IndicatorsContainer{
+  width: 30px !important;
+  padding: 0px !important;
+}
 .css-1s2u09g-control input[type=text],
 .mvx-module-section-list-data.css-b62m3t-container .css-1s2u09g-control input[type=text], .css-1pahdxg-control input[type=text] {
   min-height: 0;
@@ -1996,7 +2004,7 @@ th.mvx-settings-th-wrap {
 
 .css-tlfecz-indicatorContainer {
   color: #3f1473;
-  padding: 0.3rem !important;
+  /* padding: 0.3rem !important; */
 }
 
 /*commission page*/
@@ -2168,7 +2176,6 @@ table.woocommerce_order_items {
   min-width: 0%;
   padding: 0.2rem;
 }
-
 .sc-dlVxhl.hkMDrI .sc-fKVqWL.XlRpR {
   display: block;
 }
