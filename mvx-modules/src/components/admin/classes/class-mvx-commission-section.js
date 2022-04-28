@@ -880,12 +880,16 @@ class App extends Component {
                   {/* Commission vendor details end*/}
 
                   {/* Commission notes start*/}
+
                   <div className="mvx-notes-details-wrap">
                     <div className="mvx-commission-notes-details-class">{appLocalizer.commission_page_string.commission_notes}</div>
-                      <div className="mvx_commision_note_clm">
-                        <p dangerouslySetInnerHTML={{__html: this.state.commission_details.notes_data ? this.state.commission_details.notes_data.comment_content : ''}}></p>
-                        <small dangerouslySetInnerHTML={{__html: this.state.commission_details.notes_data ? this.state.commission_details.notes_data.comment_date : ''}}></small>
-                      </div>
+
+                      {this.state.commission_details.notes_data && this.state.commission_details.notes_data.length > 0 ? this.state.commission_details.notes_data.map((data_com, index_com) => 
+                        <div className="mvx_commision_note_clm">
+                          <p dangerouslySetInnerHTML={{__html: data_com.comment_content }}></p>
+                          <small dangerouslySetInnerHTML={{__html: data_com.comment_date }}></small>
+                        </div>
+                      ) : ''}
                     </div>
                   </div>
                   {/* Commission notes end*/}

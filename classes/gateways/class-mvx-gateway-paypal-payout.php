@@ -24,15 +24,16 @@ class MVX_Gateway_Paypal_Payout extends MVX_Payment_Gateway {
         $this->id = 'paypal_payout';
         $this->gateway_title = __('Paypal payout', 'dc-woocommerce-multi-vendor');
         $this->payment_gateway = $this->id;
-        $this->enabled = get_mvx_vendor_settings('payment_method_paypal_payout', 'payment');
-        $this->client_id = get_mvx_vendor_settings('client_id', 'payment', 'paypal_payout');
-        $this->client_secret = get_mvx_vendor_settings('client_secret', 'payment', 'paypal_payout');
-        if (get_mvx_vendor_settings('is_asynchronousmode', 'payment', 'paypal_payout') == 'Enable') {
+        $disbursement_payment_method = get_mvx_global_settings('payment_method_disbursement') ? get_mvx_global_settings('payment_method_disbursement') : array();
+        $this->enabled = in_array('paypal_payout', $disbursement_payment_method) ? 'Enable' : '';
+        $this->client_id = get_mvx_global_settings('client_id');
+        $this->client_secret = get_mvx_global_settings('client_secret');
+        if (get_mvx_global_settings('is_asynchronousmode')) {
             $this->payout_mode = 'false';
         }
         $this->api_endpoint = 'https://api.paypal.com/v1/payments/payouts?sync_mode='.$this->payout_mode;
         $this->token_endpoint = 'https://api.paypal.com/v1/oauth2/token';
-        if (get_mvx_vendor_settings('is_testmode', 'payment', 'paypal_payout') == 'Enable') {
+        if (get_mvx_global_settings('is_testmode')) {
             $this->test_mode = true;
             $this->api_endpoint = 'https://api.sandbox.paypal.com/v1/payments/payouts?sync_mode='.$this->payout_mode;
             $this->token_endpoint = 'https://api.sandbox.paypal.com/v1/oauth2/token';
@@ -77,7 +78,7 @@ class MVX_Gateway_Paypal_Payout extends MVX_Payment_Gateway {
         }
         if ($this->transaction_mode != 'admin') {
             /* handel thesold time */
-            $threshold_time = isset($MVX->vendor_caps->payment_cap['commission_threshold_time']) && !empty($MVX->vendor_caps->payment_cap['commission_threshold_time']) ? $MVX->vendor_caps->payment_cap['commission_threshold_time'] : 0;
+            $threshold_time = get_mvx_global_settings('commission_threshold_time') ? get_mvx_global_settings('commission_threshold_time') : 0;
             if ($threshold_time > 0) {
                 foreach ($this->commissions as $index => $commission) {
                     if (intval((date('U') - get_the_date('U', $commission)) / (3600 * 24)) < $threshold_time) {
@@ -86,7 +87,7 @@ class MVX_Gateway_Paypal_Payout extends MVX_Payment_Gateway {
                 }
             }
             /* handel thesold amount */
-            $thesold_amount = isset($MVX->vendor_caps->payment_cap['commission_threshold']) && !empty($MVX->vendor_caps->payment_cap['commission_threshold']) ? $MVX->vendor_caps->payment_cap['commission_threshold'] : 0;
+            $thesold_amount = get_mvx_global_settings('commission_threshold') ? get_mvx_global_settings('commission_threshold') : 0;
             if ($this->get_transaction_total() > $thesold_amount) {
                 return true;
             } else {

@@ -3525,10 +3525,10 @@ class MVX_REST_API {
         $order_id = get_post_meta( $commission_id, '_commission_order_id', true );
         $is_migration_order = get_post_meta($order_id, '_order_migration', true); // backward compatibility
         $notes = $MVX->postcommission->get_commission_notes($commission_id);
-        $notes_data = '';
+        $notes_data = [];
         if ($notes) {
             foreach ($notes as $note) {
-                $notes_data = array(
+                $notes_data[] = array(
                     'comment_content'   =>  $note->comment_content,
                     'comment_date'   =>  $note->comment_date,
                 );

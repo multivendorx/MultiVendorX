@@ -27,7 +27,8 @@ class MVX_Gateway_Stripe_Connect extends MVX_Payment_Gateway {
         $this->id = 'stripe_masspay';
         $this->gateway_title = __('Stripe connect', 'dc-woocommerce-multi-vendor');
         $this->payment_gateway = $this->id;
-        $this->enabled = get_mvx_vendor_settings('payment_method_stripe_masspay', 'payment');
+        $disbursement_payment_method = get_mvx_global_settings('payment_method_disbursement') ? get_mvx_global_settings('payment_method_disbursement') : array();
+        $this->enabled = in_array('stripe_masspay', $disbursement_payment_method) ? 'Enable' : '';
         // Disconnect Vendor stripe account
         add_action('before_mvx_vendor_dashboard', array($this, 'disconnect_stripe_account'));
         // Stripe authorization
@@ -45,8 +46,8 @@ class MVX_Gateway_Stripe_Connect extends MVX_Payment_Gateway {
         $this->transaction_mode = $transaction_mode;
         $this->is_connected = get_user_meta($this->vendor->id, 'vendor_connected', true);
         $this->stripe_user_id = get_user_meta($this->vendor->id, 'stripe_user_id', true);
-        $this->is_testmode = get_mvx_vendor_settings('testmode', 'payment', 'stripe_gateway') === "Enable" ? true : false;
-        $this->secret_key = $this->is_testmode ? get_mvx_vendor_settings('test_secret_key', 'payment', 'stripe_gateway') : get_mvx_vendor_settings('live_secret_key', 'payment', 'stripe_gateway');
+        $this->is_testmode = get_mvx_vendor_settings('testmode') ? true : false;
+        $this->secret_key = $this->is_testmode ? get_mvx_vendor_settings('test_secret_key') : get_mvx_vendor_settings('live_secret_key');
         
         if ($this->validate_request()) {
             $transfer_obj = $this->process_stripe_payment($transfer_args);
@@ -77,7 +78,7 @@ class MVX_Gateway_Stripe_Connect extends MVX_Payment_Gateway {
         }
         if ($this->transaction_mode != 'admin') {
             /* handel thesold time */
-            $threshold_time = isset($MVX->vendor_caps->payment_cap['commission_threshold_time']) && !empty($MVX->vendor_caps->payment_cap['commission_threshold_time']) ? $MVX->vendor_caps->payment_cap['commission_threshold_time'] : 0;
+            $threshold_time = get_mvx_global_settings('commission_threshold_time') ? get_mvx_global_settings('commission_threshold_time') : 0;
             if ($threshold_time > 0) {
                 foreach ($this->commissions as $index => $commission) {
                     if (intval((date('U') - get_the_date('U', $commission)) / (3600 * 24)) < $threshold_time) {
@@ -86,7 +87,7 @@ class MVX_Gateway_Stripe_Connect extends MVX_Payment_Gateway {
                 }
             }
             /* handel thesold amount */
-            $thesold_amount = isset($MVX->vendor_caps->payment_cap['commission_threshold']) && !empty($MVX->vendor_caps->payment_cap['commission_threshold']) ? $MVX->vendor_caps->payment_cap['commission_threshold'] : 0;
+            $thesold_amount = get_mvx_global_settings('commission_threshold') ? get_mvx_global_settings('commission_threshold') : 0;
             if ($this->get_transaction_total() > $thesold_amount) {
                 return true;
             } else {
@@ -160,16 +161,19 @@ class MVX_Gateway_Stripe_Connect extends MVX_Payment_Gateway {
             $user = wp_get_current_user();
             $user_id = $user->ID;
             $vendor = get_mvx_vendor($user_id);
-            $stripe_settings = get_mvx_vendor_settings( 'payment_method_stripe_masspay', 'payment' );
+
+            $disbursement_payment_method = get_mvx_global_settings('payment_method_disbursement') ? get_mvx_global_settings('payment_method_disbursement') : array();
+            $stripe_settings = in_array('stripe_masspay', $disbursement_payment_method) ? 'Enable' : '';
+
             $stripe_user_id = get_user_meta($user_id, 'stripe_user_id', true);
             
             if (isset($stripe_settings) && $stripe_settings != 'Enable' && empty($stripe_user_id)) {
                 return;
             }
   
-            $testmode = get_mvx_vendor_settings('testmode', 'payment', 'stripe_gateway') === "Enable" ? true : false;
-            $client_id = $testmode ? get_mvx_vendor_settings('test_client_id', 'payment', 'stripe_gateway') : get_mvx_vendor_settings('live_client_id', 'payment', 'stripe_gateway');
-            $secret_key = $testmode ? get_mvx_vendor_settings('test_secret_key', 'payment', 'stripe_gateway') : get_mvx_vendor_settings('live_secret_key', 'payment', 'stripe_gateway');
+            $testmode = get_mvx_vendor_settings('testmode') ? true : false;
+            $client_id = $testmode ? get_mvx_vendor_settings('test_client_id') : get_mvx_vendor_settings('live_client_id');
+            $secret_key = $testmode ? get_mvx_vendor_settings('test_secret_key') : get_mvx_vendor_settings('live_secret_key');
             $token_request_body = array(
                 'client_id' => $client_id,
                 'stripe_user_id' => $stripe_user_id
@@ -199,12 +203,13 @@ class MVX_Gateway_Stripe_Connect extends MVX_Payment_Gateway {
     }
     
     public function marketplace_stripe_authorize(){
-        $stripe_settings = get_mvx_vendor_settings( 'payment_method_stripe_masspay', 'payment' );
+        $disbursement_payment_method = get_mvx_global_settings('payment_method_disbursement') ? get_mvx_global_settings('payment_method_disbursement') : array();
+        $stripe_settings = in_array('stripe_masspay', $disbursement_payment_method) ? 'Enable' : '';
         if (isset($stripe_settings) && $stripe_settings == 'Enable') {
 
-            $testmode = get_mvx_vendor_settings('testmode', 'payment', 'stripe_gateway') === "Enable" ? true : false;
-            $client_id = $testmode ? get_mvx_vendor_settings('test_client_id', 'payment', 'stripe_gateway') : get_mvx_vendor_settings('live_client_id', 'payment', 'stripe_gateway');
-            $secret_key = $testmode ? get_mvx_vendor_settings('test_secret_key', 'payment', 'stripe_gateway') : get_mvx_vendor_settings('live_secret_key', 'payment', 'stripe_gateway');
+            $testmode = get_mvx_vendor_settings('testmode') ? true : false;
+            $client_id = $testmode ? get_mvx_vendor_settings('test_client_id') : get_mvx_vendor_settings('live_client_id');
+            $secret_key = $testmode ? get_mvx_vendor_settings('test_secret_key') : get_mvx_vendor_settings('live_secret_key');
             if (isset($client_id) && isset($secret_key)) {
                 if (isset($_REQUEST['code'])) {
                     $code = wc_clean($_REQUEST['code']);
@@ -212,7 +217,7 @@ class MVX_Gateway_Stripe_Connect extends MVX_Payment_Gateway {
                         if (isset($_REQUEST['state'])) {
                             $user_id = wc_clean($_REQUEST['state']);
                         }
-                    }else{
+                    } else {
                         $user_id = get_current_user_id();
                     }
                     $token_request_body = array(
@@ -234,7 +239,7 @@ class MVX_Gateway_Stripe_Connect extends MVX_Payment_Gateway {
                             update_user_meta($user_id, '_vendor_payment_mode', 'stripe_masspay');
                             wp_redirect(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_billing_endpoint', 'seller_dashbaord', 'vendor-billing' )));
                             exit();
-                        }else{
+                        } else {
                             update_user_meta($user_id, 'vendor_connected', 0);
                             wp_redirect(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_billing_endpoint', 'seller_dashbaord', 'vendor-billing' )));
                             exit();

@@ -1230,6 +1230,7 @@ class MVX_Commission {
     }
 
     public static function add_commission_note($commission_id, $note, $vendor_id = 0) {
+
         if (!$commission_id) {
             return 0;
         }
@@ -1251,6 +1252,7 @@ class MVX_Commission {
             'comment_approved' => 1,
                 ), $commission_id, $vendor_id);
         $comment_id = wp_insert_comment($commentdata);
+        print_r($vendor_id);die;
         if ($vendor_id) {
             add_comment_meta($comment_id, '_vendor_id', $vendor_id);
 

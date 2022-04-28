@@ -21,12 +21,13 @@ class MVX_Gateway_Paypal_Masspay extends MVX_Payment_Gateway {
         $this->id = 'paypal_masspay';
         $this->gateway_title = __('Paypal masspay', 'dc-woocommerce-multi-vendor');
         $this->payment_gateway = $this->id;
-        $this->enabled = get_mvx_vendor_settings('payment_method_paypal_masspay', 'payment');
-        $this->api_username = get_mvx_vendor_settings('api_username', 'payment', 'paypal_masspay');
-        $this->api_password = get_mvx_vendor_settings('api_pass', 'payment', 'paypal_masspay');
-        $this->api_signature = get_mvx_vendor_settings('api_signature', 'payment', 'paypal_masspay');
+        $disbursement_payment_method = get_mvx_global_settings('payment_method_disbursement') ? get_mvx_global_settings('payment_method_disbursement') : array();
+        $this->enabled = in_array('paypal_masspay', $disbursement_payment_method) ? 'Enable' : '';
+        $this->api_username = get_mvx_global_settings('api_username');
+        $this->api_password = get_mvx_global_settings('api_pass');
+        $this->api_signature = get_mvx_global_settings('api_signature');
         $this->api_endpoint = 'https://api-3t.paypal.com/nvp';
-        if (get_mvx_vendor_settings('is_testmode', 'payment', 'paypal_masspay') == 'Enable') {
+        if (get_mvx_global_settings('is_testmode')) {
             $this->test_mode = true;
             $this->api_endpoint = 'https://api-3t.sandbox.paypal.com/nvp';
         }
@@ -69,7 +70,7 @@ class MVX_Gateway_Paypal_Masspay extends MVX_Payment_Gateway {
         }
         if ($this->transaction_mode != 'admin') {
             /* handel thesold time */
-            $threshold_time = isset($MVX->vendor_caps->payment_cap['commission_threshold_time']) && !empty($MVX->vendor_caps->payment_cap['commission_threshold_time']) ? $MVX->vendor_caps->payment_cap['commission_threshold_time'] : 0;
+            $threshold_time = get_mvx_global_settings('commission_threshold_time') ? get_mvx_global_settings('commission_threshold_time') : 0;
             if ($threshold_time > 0) {
                 foreach ($this->commissions as $index => $commission) {
                     if (intval((date('U') - get_the_date('U', $commission)) / (3600 * 24)) < $threshold_time) {
@@ -78,7 +79,7 @@ class MVX_Gateway_Paypal_Masspay extends MVX_Payment_Gateway {
                 }
             }
             /* handel thesold amount */
-            $thesold_amount = isset($MVX->vendor_caps->payment_cap['commission_threshold']) && !empty($MVX->vendor_caps->payment_cap['commission_threshold']) ? $MVX->vendor_caps->payment_cap['commission_threshold'] : 0;
+            $thesold_amount = get_mvx_global_settings('commission_threshold') ? get_mvx_global_settings('commission_threshold') : 0;
             if ($this->get_transaction_total() > $thesold_amount) {
                 return true;
             } else {
