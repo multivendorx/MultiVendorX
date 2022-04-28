@@ -67,9 +67,9 @@ abstract class MVX_Payment_Gateway {
         global $MVX;
         $transfer_charge = 0;
         if ($this->transaction_mode == 'manual') {
-            $no_of_orders = isset($MVX->vendor_caps->payment_cap['no_of_orders']) && $MVX->vendor_caps->payment_cap['no_of_orders'] ? $MVX->vendor_caps->payment_cap['no_of_orders'] : 0;
+            $no_of_orders = get_mvx_global_settings('no_of_orders') ? get_mvx_global_settings('no_of_orders') : 0;
             if (count($MVX->transaction->get_transactions($this->vendor->term_id)) > $no_of_orders) {
-                $transfer_charge = (float) get_mvx_vendor_settings('commission_transfer', 'payment', '', 0);
+                $transfer_charge = (float) get_mvx_global_settings('commission_transfer');
             }
         }
         return apply_filters('mvx_commission_transfer_charge_amount', $transfer_charge, $this->get_transaction_total(), $this->vendor, $this->commissions, $this->payment_gateway);
@@ -77,12 +77,12 @@ abstract class MVX_Payment_Gateway {
 
     public function gateway_charge() {
         $gateway_charge = $admin_gateway_charge = $global_charges = 0;
-        $is_enable_gateway_charge = get_mvx_vendor_settings('payment_gateway_charge', 'payment');
+        $is_enable_gateway_charge = get_mvx_global_settings('payment_gateway_charge');
         $order_totals = $this->vendor_wise_order_total();
         if ($is_enable_gateway_charge == 'Enable') {
-            $payment_gateway_charge_type = get_mvx_vendor_settings('payment_gateway_charge_type', 'payment', '', 'percent');
+            $payment_gateway_charge_type = get_mvx_global_settings('payment_gateway_charge_type') ? get_mvx_global_settings('payment_gateway_charge_type')['value'] : '';
             $gateway_charge_amount = floatval(get_mvx_vendor_settings("gateway_charge_{$this->payment_gateway}", "payment"));
-            $carrier = get_mvx_vendor_settings('gateway_charges_cost_carrier', 'payment', '', 'vendor');
+            $carrier = get_mvx_global_settings('gateway_charges_cost_carrier') ? get_mvx_global_settings('gateway_charges_cost_carrier')['value'] : '';
             if ($gateway_charge_amount) {
                 foreach ($order_totals as $order_id => $details) {
                     $order = wc_get_order($order_id);

@@ -662,7 +662,7 @@ class App extends React.Component {
 
             <div className="mvx-table-text-and-add-wrap">
               <div className="mvx-datatable-text">Vendors</div>
-              <Link to={`?page=mvx#&submenu=vendor&name=add_new`}><i className="mvx-font icon-add"></i>Add Vendor</Link>
+              <Link to={`?page=mvx#&submenu=vendor&name=add_new`} className="btn default-btn mr-12"><i className="mvx-font icon-add"></i>Add Vendor</Link>
             </div>
             
             <div className="mvx-search-and-multistatus-wrap">
@@ -684,8 +684,8 @@ class App extends React.Component {
               { /*<Select placeholder="Search Vendors" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handlevendorsearch} /> */}
             </div>
 
-            <div className="mvx-wrap-bulk-all-date">
-              <div className="mvx-wrap-bulk-action">
+            <div className="mvx-wrap-bulk-all-date mt-10">
+              <div className="mvx-wrap-bulk-action mr-2">
                 <Select placeholder="Bulk actions" options={appLocalizer.vendor_list_page_bulk_list_options} isClearable={true} className="mvx-module-section-list-data" onChange={this.handlevendoractionsearch} />
                 { /*<button type="button" className="button-secondary" onClick={(e) => this.handledeletevendor(e)}>Apply</button> */ }
               </div>
@@ -696,7 +696,7 @@ class App extends React.Component {
             </div>
 
             { /*<button type="button" className="button-primary" onClick={(e) => this.handledeletevendor(e)}>Delete Vendor</button> */}
-            <div className="mvx-backend-datatable-wrapper">
+            <div className="mvx-backend-datatable-wrapper vendor-table-wapper">
               {this.state.columns_vendor_list && this.state.columns_vendor_list.length > 0 ?
               <DataTable
                 columns={this.state.columns_vendor_list}

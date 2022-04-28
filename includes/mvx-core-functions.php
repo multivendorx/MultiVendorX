@@ -4846,8 +4846,6 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
             );
         }
 
-        //print_r(get_mvx_global_settings('payment_method_disbursement'));die;
-
         $settings_fields = [
             'settings-general'  =>  [
                 [
@@ -5307,6 +5305,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 [
                     'key'       => 'choose_map_api',
                     'type'      => 'select',
+                    'depend_checkbox'    => 'enable_store_map_for_vendor',
                     'bydefault' =>  'google_map_set',
                     'label'     => __( 'Location Provider', 'dc-woocommerce-multi-vendor' ),
                     'desc'      => __( 'Select prefered location provider', 'dc-woocommerce-multi-vendor' ),
@@ -5328,6 +5327,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 [
                     'key'       => 'google_api_key',
                     'type'      => 'text',
+                    'depend_checkbox'    => 'enable_store_map_for_vendor',
                     'depend'    => 'choose_map_api',
                     'dependvalue'       =>  'google_map_set',
                     'label'     => __( 'Google Map API key', 'dc-woocommerce-multi-vendor' ),
@@ -5337,6 +5337,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 [
                     'key'       => 'mapbox_api_key',
                     'type'      => 'text',
+                    'depend_checkbox'    => 'enable_store_map_for_vendor',
                     'depend'    => 'choose_map_api',
                     'dependvalue'       =>  'mapbox_api_set',
                     'label'     => __( 'Mapbox access token', 'dc-woocommerce-multi-vendor' ),
@@ -5386,6 +5387,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 [
                     'key'       => 'mvx_store_sidebar_position',
                     'type'      => 'toggle_rectangle',
+                    'depend_checkbox'    => 'is_enable_store_sidebar_position',
                     'label'     => __( 'Store Sidebar Position', 'dc-woocommerce-multi-vendor' ),
                     'desc'      => __( 'Decide where your want your store sidebar to be displayed', 'dc-woocommerce-multi-vendor' ),
                     'options' => array(
@@ -5859,6 +5861,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 ],
                 [
                     'key'       => 'gateway_charges_cost_carrier',
+                    'depend_checkbox'   =>  'payment_gateway_charge',
                     'type'      => 'select',
                     'label'     => __( 'Who bear the gateway charges', 'dc-woocommerce-multi-vendor' ),
                     'desc'      => __('You can decide who will bear the gateways charges incase of using any automatic payment', 'dc-woocommerce-multi-vendor'),
@@ -5884,6 +5887,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 [
                     'key'       => 'payment_gateway_charge_type',
                     'type'      => 'select',
+                    'depend_checkbox'   =>  'payment_gateway_charge',
                     'label'     => __( 'Gateway Charge Type', 'dc-woocommerce-multi-vendor' ),
                     'desc'      => __('Choose your preferred gateway charge type.', 'dc-woocommerce-multi-vendor'),
                     'options' => array(
@@ -5910,6 +5914,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 [
                     'key'       => 'default_gateway_charge_value',
                     'type'      => 'multi_number',
+                    'depend_checkbox'   =>  'payment_gateway_charge',
                     'depend'    => 'payment_gateway_charge_type',
                     'dependvalue'       =>  'fixed',
                     'label'     => __( 'Commission Value', 'dc-woocommerce-multi-vendor' ),
@@ -5928,6 +5933,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 [
                     'key'       => 'default_gateway_charge_value',
                     'type'      => 'multi_number',
+                    'depend_checkbox'   =>  'payment_gateway_charge',
                     'depend'    => 'payment_gateway_charge_type',
                     'dependvalue'       =>  'percent',
                     'label'     => __( 'Commission Value', 'dc-woocommerce-multi-vendor' ),
@@ -5946,9 +5952,10 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 [
                     'key'       => 'default_gateway_charge_value',
                     'type'      => 'multi_number',
+                    'depend_checkbox'   =>  'payment_gateway_charge',
                     'depend'    => 'payment_gateway_charge_type',
                     'dependvalue'       =>  'fixed_with_percentage',
-                    'label'     => __( 'Commission Value', 'dc-woocommerce-multi-vendor' ),
+                    'label'     => __( 'Gateway Value', 'dc-woocommerce-multi-vendor' ),
                     'desc' => __('The commission amount added here will be applicable for all commissions. In case the your commission type is fixed the', 'dc-woocommerce-multi-vendor'),
                     'options' => array(
                          array(
@@ -5964,7 +5971,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                             'type'      => 'number',
                             'label' => __('Percent', 'dc-woocommerce-multi-vendor'),
                             'value' => 'percent_gayeway_amount'
-                        )
+                        ),
                     ),
                     'database_value' => '',
                 ],
@@ -6731,6 +6738,20 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'type'    => 'number',
                     'desc' => __('Refers to the minimum number of days required before a seller can send a withdrawal request', 'dc-woocommerce-multi-vendor'),
                     'placeholder'   => __('in days', 'dc-woocommerce-multi-vendor'),
+                    'database_value' => '',
+                ],
+                [
+                    'key'    => 'commission_transfer',
+                    'label'   => __( 'Withdrawal Charges', 'dc-woocommerce-multi-vendor' ),
+                    'type'    => 'number',
+                    'desc' => __('Vendors will be charged this amount per withdrawal after the quota of free withdrawals is over.', 'dc-woocommerce-multi-vendor'),
+                    'database_value' => '',
+                ],
+                [
+                    'key'    => 'no_of_orders',
+                    'label'   => __( 'Number of Free Withdrawals', 'dc-woocommerce-multi-vendor' ),
+                    'type'    => 'number',
+                    'desc' => __('Number of free withdrawal requests.', 'dc-woocommerce-multi-vendor'),
                     'database_value' => '',
                 ],
                 [

@@ -606,6 +606,9 @@ export default class DynamicForm extends React.Component {
       if(m.depend && this.state[m.depend] && this.state[m.depend].value != m.dependvalue) {
         return false;
       }
+      if (m.depend_checkbox && this.state[m.depend_checkbox] && this.state[m.depend_checkbox].length == 0) {
+        return false;
+      }
 
       if (m.depend && !this.state[m.depend]) {return false;}
 

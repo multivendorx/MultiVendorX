@@ -992,7 +992,7 @@ class MVX_Frontend {
         } else {
             $widget_class = '';
         }
-        if ($widget_class != '' && is_active_sidebar('sidebar-mvx-store') && get_mvx_vendor_settings('is_enable_store_sidebar', 'store')) {
+        if ($widget_class != '' && is_active_sidebar('sidebar-mvx-store') && get_mvx_vendor_settings('is_enable_store_sidebar_position', 'store')) {
             ?>
             <div class="column-class" >
                 <?php dynamic_sidebar( 'sidebar-mvx-store' ); ?>
