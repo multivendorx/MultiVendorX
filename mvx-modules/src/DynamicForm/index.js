@@ -76,14 +76,12 @@ export default class DynamicForm extends React.Component {
       } else if(filedsdetails.type == 'select') {
         itemsnested[index][filedsdetails.key] = selectarray[e.index];
       } else if (filedsdetails.type == 'country') {
-        
         itemsnested[index][filedsdetails.key] = selectarray[e.index];
-        var statefromcountrycode = JSON.parse(appLocalizer.countries.replace( /&quot;/g, '"' ))[e.key];
+        var statefromcountrycode = JSON.parse(appLocalizer.countries.replace( /&quot;/g, '"' ))[e.value];
         
         for (const keysssssss in statefromcountrycode) {
           country_list_array.push({label:keysssssss, value:statefromcountrycode[keysssssss]});
         }
-
         m['child_options'][0]['options'] = country_list_array;
 
       } else {
@@ -1132,7 +1130,8 @@ export default class DynamicForm extends React.Component {
         let ggg;
         input = (
           <div className="mvx-multi-nested-class">
-              {m.database_value.map((o, indexop) => 
+              {console.log(m.database_value)}
+              {m.database_value ? m.database_value.map((o, indexop) => 
                 <div className="mvx-boarder-parent">
                 {m.parent_options.map(op =>
                   <div className="mvx-boarder-parent-loop">
@@ -1314,7 +1313,7 @@ export default class DynamicForm extends React.Component {
                   </div>
 
                 </div>
-              )}
+              ) : ''}
           {m.desc ? <p className="mvx-settings-metabox-description" dangerouslySetInnerHTML={{ __html: m.desc }}></p> : ''}
           </div>
         );

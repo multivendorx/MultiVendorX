@@ -4604,12 +4604,19 @@ if (!function_exists('mvx_vendor_distance_by_shipping_settings')) {
             "mvx_byd_default_cost" => array('label' => __('Default Cost', 'dc-woocommerce-multi-vendor'), 'name' => 'mvx_shipping_by_distance[_default_cost]', 'placeholder' => '0.00', 'type' => 'text', 'class' => 'col-md-6 col-sm-9', 'label_class' => 'mvx_title mvx_ele mvx_store_shipping_distance_fields', 'value' => isset($mvx_shipping_by_distance['_default_cost']) ? $mvx_shipping_by_distance['_default_cost'] : '' ),
 
             "mvx_byd_max_distance" => array('label' => __('Max Distance (km)', 'dc-woocommerce-multi-vendor'), 'name' => 'mvx_shipping_by_distance[_max_distance]', 'placeholder' => __('No Limit', 'dc-woocommerce-multi-vendor'), 'type' => 'text', 'class' => 'col-md-6 col-sm-9', 'label_class' => 'mvx_title mvx_ele mvx_store_shipping_distance_fields', 'value' => isset($mvx_shipping_by_distance['_max_distance']) ? $mvx_shipping_by_distance['_max_distance'] : '' ),
-            "mvx_byd_enable_local_pickup" => array('label' => __('Enable Local Pickup', 'dc-woocommerce-multi-vendor'), 'name' => 'mvx_shipping_by_distance[_enable_local_pickup]', 'type' => 'checkbox', 'class' => 'mvx-checkbox mvx_ele mvx_store_shipping_distance_fields', 'label_class' => 'mvx_title checkbox_title checkbox-title mvx_ele mvx_store_shipping_distance_fields', 'value' => 'yes', 'dfvalue' => isset($mvx_shipping_by_distance['_enable_local_pickup']) ? 'yes' : '' ),
+            //"mvx_byd_enable_local_pickup" => array('label' => __('Enable Local Pickup', 'dc-woocommerce-multi-vendor'), 'name' => 'mvx_shipping_by_distance[_enable_local_pickup]', 'type' => 'checkbox', 'class' => 'mvx-checkbox mvx_ele mvx_store_shipping_distance_fields', 'label_class' => 'mvx_title checkbox_title checkbox-title mvx_ele mvx_store_shipping_distance_fields', 'value' => 'yes', 'dfvalue' => isset($mvx_shipping_by_distance['_enable_local_pickup']) ? 'yes' : '' ),
 
             "mvx_byd_local_pickup_cost" => array('label' => __('Local Pickup Cost', 'dc-woocommerce-multi-vendor'), 'name' => 'mvx_shipping_by_distance[_local_pickup_cost]', 'placeholder' => '0.00', 'type' => 'text', 'class' => 'col-md-6 col-sm-9', 'label_class' => 'mvx_title mvx_ele mvx_store_shipping_distance_fields', 'value' => isset($mvx_shipping_by_distance['_local_pickup_cost']) ? $mvx_shipping_by_distance['_local_pickup_cost'] : '' ),
         ) ) );
 
         $mvx_shipping_by_distance_rates = get_user_meta( $vendor_id, '_mvx_shipping_by_distance_rates', true ) ? get_user_meta( $vendor_id, '_mvx_shipping_by_distance_rates', true ) : array();
+        // display as per backend configuration
+        foreach ($mvx_shipping_by_distance_rates as $key_distance => $value_distance) {
+            if (isset($value_distance['mvx_distance_rule']['value'])) {
+                $mvx_shipping_by_distance_rates[$key_distance]['mvx_distance_rule'] = $value_distance['mvx_distance_rule']['value'];
+            }
+        }
+
         $MVX->mvx_wp_fields->dc_generate_form_field(
             apply_filters( 'mvx_settings_fields_shipping_rates_by_distance', array( 
                     "mvx_shipping_by_distance_rates" => array(
@@ -4685,7 +4692,7 @@ if (!function_exists('mvx_vendor_shipping_by_country_settings')) {
                 "mvx_additional_product" => array('label' => __('Per Product Additional Price', 'dc-woocommerce-multi-vendor'), 'name' => 'mvx_shipping_by_country[_mvx_additional_product]', 'placeholder' => '0.00', 'type' => 'text', 'class' => 'col-md-6 col-sm-9', 'label_class' => 'mvx_title mvx_ele', 'value' => isset($mvx_shipping_by_country['_mvx_additional_product']) ? $mvx_shipping_by_country['_mvx_additional_product'] : '', 'hints' => __('If a customer buys more than one type product from your store, first product of the every second type will be charged with this price', 'dc-woocommerce-multi-vendor') ),
                 "mvx_additional_qty" => array('label' => __('Per Qty Additional Price', 'dc-woocommerce-multi-vendor'), 'name' => 'mvx_shipping_by_country[_mvx_additional_qty]', 'placeholder' => '0.00', 'type' => 'text', 'class' => 'col-md-6 col-sm-9', 'label_class' => 'mvx_title mvx_ele', 'value' => isset($mvx_shipping_by_country['_mvx_additional_qty']) ? $mvx_shipping_by_country['_mvx_additional_qty'] : '', 'hints' => __('Every second product of same type will be charged with this price', 'dc-woocommerce-multi-vendor') ),
                 "mvx_byc_free_shipping_amount" => array('label' => __('Free Shipping Minimum Order Amount', 'dc-woocommerce-multi-vendor'), 'name' => 'mvx_shipping_by_country[_free_shipping_amount]', 'placeholder' => __( 'NO Free Shipping', 'dc-woocommerce-multi-vendor'), 'type' => 'text', 'class' => 'col-md-6 col-sm-9', 'label_class' => 'mvx_title mvx_ele', 'value' => isset($mvx_shipping_by_country['_free_shipping_amount']) ? $mvx_shipping_by_country['_free_shipping_amount'] : '', 'hints' => __('Free shipping will be available if order amount more than this. Leave empty to disable Free Shipping.', 'dc-woocommerce-multi-vendor') ),
-                "mvx_byc_enable_local_pickup" => array('label' => __('Enable Local Pickup', 'dc-woocommerce-multi-vendor'), 'name' => 'mvx_shipping_by_country[_enable_local_pickup]', 'type' => 'checkbox', 'class' => 'mvx-checkbox mvx_ele', 'label_class' => 'mvx_title checkbox_title checkbox-title mvx_ele', 'value' => 'yes', 'dfvalue' => isset($mvx_shipping_by_country['_enable_local_pickup']) ? 'yes' : '' ),
+                //"mvx_byc_enable_local_pickup" => array('label' => __('Enable Local Pickup', 'dc-woocommerce-multi-vendor'), 'name' => 'mvx_shipping_by_country[_enable_local_pickup]', 'type' => 'checkbox', 'class' => 'mvx-checkbox mvx_ele', 'label_class' => 'mvx_title checkbox_title checkbox-title mvx_ele', 'value' => 'yes', 'dfvalue' => isset($mvx_shipping_by_country['_enable_local_pickup']) ? 'yes' : '' ),
                 "mvx_byc_local_pickup_cost" => array('label' => __('Local Pickup Cost', 'dc-woocommerce-multi-vendor'), 'name' => 'mvx_shipping_by_country[_local_pickup_cost]', 'placeholder' => '0.00', 'type' => 'text', 'class' => 'col-md-6 col-sm-9', 'label_class' => 'mvx_title mvx_ele', 'value' => isset($mvx_shipping_by_country['_local_pickup_cost']) ? $mvx_shipping_by_country['_local_pickup_cost'] : '' ),
             ) )
         );
@@ -4816,13 +4823,31 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
         $review_options_data = get_option('mvx_review_management_tab_settings');
         $mvx_review_categories = $review_options_data ? $review_options_data['mvx_review_categories'] : $default_nested_data;
 
-        $disbursement_settings_methods = [];
+        $disbursement_settings_methods = $gateway_charge_fixed_value = $gateway_charge_percent_value = $gateway_charge_fixed_percent_value = [];
         if (mvx_is_module_active('paypal-masspay')) {
             $disbursement_settings_methods[] = array(
                 'key'=> "paypal_masspay",
                 'label'=> __('PayPal Masspay ', 'dc-woocommerce-multi-vendor'),//(Stop Waiting and Pay Vendors Immediately with PayPal Real-Time Split Payment using <a href="https://wc-marketplace.com/product/mvx-paypal-marketplace/">MVX PayPal Marketplace</a>. Please visit our site)
                 'value'=> "paypal_masspay"
             );
+
+            $gateway_charge_fixed_value[] = array(
+                'name'  => 'default_gateway_charge_value',
+                'key' => 'fixed_gayeway_amount_paypal_masspay',
+                'type'      => 'number',
+                'label' => __('Fixed paypal masspay amount', 'dc-woocommerce-multi-vendor'),
+                'value' => 'fixed_gayeway_amount_paypal_masspay'
+            );
+
+            $gateway_charge_percent_value[] = array(
+                'name'  => 'default_gateway_charge_value',
+                'key' => 'percent_gayeway_amount_paypal_masspay',
+                'type'      => 'number',
+                'label' => __('percent paypal masspay amount', 'dc-woocommerce-multi-vendor'),
+                'value' => 'percent_gayeway_amount_paypal_masspay'
+            );
+
+            $gateway_charge_fixed_percent_value[] = array_merge($gateway_charge_fixed_value, $gateway_charge_percent_value);
         }
         if (mvx_is_module_active('paypal-payout')) {
             $disbursement_settings_methods[] = array(
@@ -4830,6 +4855,23 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 'label'=> __('Paypal Payout', 'dc-woocommerce-multi-vendor'),
                 'value'=> "paypal_payout"
             );
+
+            $gateway_charge_fixed_value[] = array(
+                'name'  => 'default_gateway_charge_value',
+                'key' => 'fixed_gayeway_amount_paypal_payout',
+                'type'      => 'number',
+                'label' => __('Fixed paypal payout amount', 'dc-woocommerce-multi-vendor'),
+                'value' => 'fixed_gayeway_amount_paypal_payout'
+            );
+
+            $gateway_charge_percent_value[] = array(
+                'name'  => 'default_gateway_charge_value',
+                'key' => 'percent_gayeway_amount_paypal_payout',
+                'type'      => 'number',
+                'label' => __('Percent paypal payout amount', 'dc-woocommerce-multi-vendor'),
+                'value' => 'percent_gayeway_amount_paypal_payout'
+            );
+            $gateway_charge_fixed_percent_value[] = array_merge($gateway_charge_fixed_value, $gateway_charge_percent_value);
         }
         if (mvx_is_module_active('stripe-connect')) {
             $disbursement_settings_methods[] = array(
@@ -4837,6 +4879,23 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 'label'=> __('Stripe Connect', 'dc-woocommerce-multi-vendor'),
                 'value'=> "stripe_masspay"
             );
+
+            $gateway_charge_fixed_value[] = array(
+                'name'  => 'default_gateway_charge_value',
+                'key' => 'fixed_gayeway_amount_paypal_stripe',
+                'type'      => 'number',
+                'label' => __('Fixed stripe amount', 'dc-woocommerce-multi-vendor'),
+                'value' => 'fixed_gayeway_amount_paypal_stripe'
+            );
+
+            $gateway_charge_percent_value[] = array(
+                'name'  => 'default_gateway_charge_value',
+                'key' => 'percent_gayeway_amount_paypal_stripe',
+                'type'      => 'number',
+                'label' => __('Percent stripe amount', 'dc-woocommerce-multi-vendor'),
+                'value' => 'percent_gayeway_amount_paypal_stripe'
+            );
+            $gateway_charge_fixed_percent_value[] = array_merge($gateway_charge_fixed_value, $gateway_charge_percent_value);
         }
         if (mvx_is_module_active('bank-payment')) {
             $disbursement_settings_methods[] = array(
@@ -4844,6 +4903,23 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 'label'=> __('Direct Bank Transfer', 'dc-woocommerce-multi-vendor'),
                 'value'=> "direct_bank"
             );
+
+            $gateway_charge_fixed_value[] = array(
+                'name'  => 'default_gateway_charge_value',
+                'key' => 'fixed_gayeway_amount_paypal_direct_bank',
+                'type'      => 'number',
+                'label' => __('Fixed bank amount', 'dc-woocommerce-multi-vendor'),
+                'value' => 'fixed_gayeway_amount_paypal_direct_bank'
+            );
+
+            $gateway_charge_percent_value[] = array(
+                'name'  => 'default_gateway_charge_value',
+                'key' => 'percent_gayeway_amount_paypal_direct_bank',
+                'type'      => 'number',
+                'label' => __('Percent bank amount', 'dc-woocommerce-multi-vendor'),
+                'value' => 'percent_gayeway_amount_paypal_direct_bank'
+            );
+            $gateway_charge_fixed_percent_value[] = array_merge($gateway_charge_fixed_value, $gateway_charge_percent_value);
         }
 
         $settings_fields = [
@@ -5917,17 +5993,9 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'depend_checkbox'   =>  'payment_gateway_charge',
                     'depend'    => 'payment_gateway_charge_type',
                     'dependvalue'       =>  'fixed',
-                    'label'     => __( 'Commission Value', 'dc-woocommerce-multi-vendor' ),
+                    'label'     => __( 'Gateway Value', 'dc-woocommerce-multi-vendor' ),
                     'desc' => __('The commission amount added here will be applicable for all commissions. In case the your commission type is fixed the', 'dc-woocommerce-multi-vendor'),
-                    'options' => array(
-                        array(
-                            'name'  => 'default_gateway_charge_value',
-                            'key' => 'fixed_gayeway_amount',
-                            'type'      => 'number',
-                            'label' => __('Fixed', 'dc-woocommerce-multi-vendor'),
-                            'value' => 'fixed_gayeway_amount'
-                        )
-                    ),
+                    'options' => $gateway_charge_fixed_value,
                     'database_value' => '',
                 ],
                 [
@@ -5936,17 +6004,9 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'depend_checkbox'   =>  'payment_gateway_charge',
                     'depend'    => 'payment_gateway_charge_type',
                     'dependvalue'       =>  'percent',
-                    'label'     => __( 'Commission Value', 'dc-woocommerce-multi-vendor' ),
+                    'label'     => __( 'Gateway Value', 'dc-woocommerce-multi-vendor' ),
                     'desc' => __('The commission amount added here will be applicable for all commissions. In case the your commission type is fixed the', 'dc-woocommerce-multi-vendor'),
-                    'options' => array(
-                        array(
-                            'name'  => 'default_gateway_charge_value',
-                            'key' => 'percent_gayeway_amount',
-                            'type'      => 'number',
-                            'label' => __('Percent', 'dc-woocommerce-multi-vendor'),
-                            'value' => 'percent_gayeway_amount'
-                        )
-                    ),
+                    'options' => $gateway_charge_percent_value,
                     'database_value' => '',
                 ],
                 [
@@ -5957,22 +6017,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'dependvalue'       =>  'fixed_with_percentage',
                     'label'     => __( 'Gateway Value', 'dc-woocommerce-multi-vendor' ),
                     'desc' => __('The commission amount added here will be applicable for all commissions. In case the your commission type is fixed the', 'dc-woocommerce-multi-vendor'),
-                    'options' => array(
-                         array(
-                            'name'  => 'default_gateway_charge_value',
-                            'key' => 'fixed_gayeway_amount',
-                            'type'      => 'number',
-                            'label' => __('Fixed', 'dc-woocommerce-multi-vendor'),
-                            'value' => 'fixed_gayeway_amount'
-                        ),
-                        array(
-                            'name'  => 'default_gateway_charge_value',
-                            'key' => 'percent_gayeway_amount',
-                            'type'      => 'number',
-                            'label' => __('Percent', 'dc-woocommerce-multi-vendor'),
-                            'value' => 'percent_gayeway_amount'
-                        ),
-                    ),
+                    'options' => end($gateway_charge_fixed_percent_value),
                     'database_value' => '',
                 ],
 

@@ -2417,7 +2417,7 @@ class MVX_REST_API {
                 'key' => 'mvx_byd_max_distance', 
                 'database_value' => isset($mvx_shipping_by_distance['_max_distance']) ? $mvx_shipping_by_distance['_max_distance'] : ''
             ],
-            [
+            /*[
                 'label' => __('Enable Local Pickup', 'dc-woocommerce-multi-vendor'), 
                 'type' => 'checkbox', 
                 'key' => 'mvx_byd_enable_local_pickup',
@@ -2429,7 +2429,7 @@ class MVX_REST_API {
                     ),
                 ),
                 'database_value' => isset($mvx_shipping_by_distance['_enable_local_pickup']) ? $mvx_shipping_by_distance['_enable_local_pickup'] : ''
-            ],
+            ],*/
             [
                 'label' => __('Local Pickup Cost', 'dc-woocommerce-multi-vendor'), 
                 'type' => 'text', 
@@ -2523,7 +2523,7 @@ class MVX_REST_API {
                     'hints' => __('Free shipping will be available if order amount more than this. Leave empty to disable Free Shipping.', 'dc-woocommerce-multi-vendor') 
                 ],
 
-                [
+                /*[
                     'label' => __('Enable Local Pickup', 'dc-woocommerce-multi-vendor'), 
                     'type' => 'checkbox', 
                     'class' => 'mvx-checkbox mvx_ele', 
@@ -2536,7 +2536,7 @@ class MVX_REST_API {
                         ),
                     ),
                     'database_value' => isset($mvx_shipping_by_country['_enable_local_pickup']) ? $mvx_shipping_by_country['_enable_local_pickup'] : '' 
-                ],
+                ],*/
 
                 [
                     'label' => __('Local Pickup Cost', 'dc-woocommerce-multi-vendor'), 

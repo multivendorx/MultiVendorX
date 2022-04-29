@@ -159,9 +159,9 @@ class MVX_Shipping_By_Country extends WC_Shipping_Method {
        
        // Local Pickup Method Check
        $mvx_shipping_by_country = get_user_meta( $vendor_id, '_mvx_shipping_by_country', true );
-       $enable_local_pickup = isset($mvx_shipping_by_country['_enable_local_pickup']) ? 'yes' : '';
+       //$enable_local_pickup = isset($mvx_shipping_by_country['_enable_local_pickup']) ? 'yes' : '';
        $local_pickup_cost = isset($mvx_shipping_by_country['_local_pickup_cost']) ? $mvx_shipping_by_country['_local_pickup_cost'] : '';
-       if( $enable_local_pickup ) {
+       if( $local_pickup_cost ) {
          $address = '';
           $address .= $vendor->address_1 . ' ';
           $address .= $vendor->address_2;

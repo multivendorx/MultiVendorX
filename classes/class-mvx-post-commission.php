@@ -1252,7 +1252,6 @@ class MVX_Commission {
             'comment_approved' => 1,
                 ), $commission_id, $vendor_id);
         $comment_id = wp_insert_comment($commentdata);
-        print_r($vendor_id);die;
         if ($vendor_id) {
             add_comment_meta($comment_id, '_vendor_id', $vendor_id);
 

@@ -1326,14 +1326,49 @@ Class MVX_Admin_Dashboard {
             }
             mvx_update_user_meta( $vendor_user_id, '_mvx_country_rates', $mvx_country_rates );
             mvx_update_user_meta( $vendor_user_id, '_mvx_state_rates', $mvx_state_rates );
+
+            $woo_countries = new WC_Countries();
+            $countries = $woo_countries->get_allowed_countries();
+            $mvx_shipping_rates = $state_options = $mvx_shipping_state_rates = $state_options = array();
+            if ( $mvx_country_rates ) {
+                foreach ( $mvx_country_rates as $country => $country_rate ) {
+                    if ( !empty( $mvx_state_rates ) && isset( $mvx_state_rates[$country] ) ) {
+                        foreach ( $mvx_state_rates[$country] as $state => $state_rate ) {
+                            $mvx_shipping_state_rates[] = array( 
+                                'mvx_state_to' => array('value' => $state, 'label' => $woo_countries->get_states($country)[$state], 'index' => $this->mvx_find_index_by_country_code($woo_countries->get_states($country), $state)),
+                                'mvx_state_to_price' => $state_rate, 
+                            );
+                        }
+                    }
+                    $mvx_shipping_rates[] = array( 
+                        'mvx_country_to' => array('value' => $country, 'label' => $countries[$country], 'index' => $this->mvx_find_index_by_country_code($countries, $country), 'key' => $country), 
+                        'mvx_country_to_price' => $country_rate, 
+                        'nested_datas' => $mvx_shipping_state_rates 
+                    );
+                }   
+            }
+            mvx_update_user_meta( $vendor_user_id, '_mvx_country_shipping_rates', array_values($mvx_shipping_rates) );
         }
 
         // Distance by shipping
         $mvx_shipping_by_distance_rates = isset($_POST['mvx_shipping_by_distance_rates']) ?  array_filter( array_map( 'wc_clean', $_POST['mvx_shipping_by_distance_rates'] ) ) : '';
-        update_user_meta($vendor_user_id, '_mvx_shipping_by_distance_rates', $mvx_shipping_by_distance_rates);
+
+        // set for backend setting compatibility
+        $select_data = array(
+            'up_to' =>  array('label'=> __('Distance up to', 'dc-woocommerce-multi-vendor'), 'index'    =>  0  ),
+            'more_than' =>  array('label'=> __('Distance more than', 'dc-woocommerce-multi-vendor'), 'index'    =>  1  )
+        );
+        foreach ($mvx_shipping_by_distance_rates as $key_distance => $value_distance) {
+            if (isset($value_distance['mvx_distance_rule']['value'])) continue;
+            if (isset($value_distance['mvx_distance_rule'])) {
+                $mvx_shipping_by_distance_rates[$key_distance]['mvx_distance_rule'] = array('label' =>  $select_data[$value_distance['mvx_distance_rule']]['label'], 'value' => $value_distance['mvx_distance_rule'], 'index'   => $select_data[$value_distance['mvx_distance_rule']]['index'] );
+            }
+        }
+
+        update_user_meta($vendor_user_id, '_mvx_shipping_by_distance_rates', array_values($mvx_shipping_by_distance_rates));
 
         $mvx_shipping_by_distance = isset($_POST['mvx_shipping_by_distance']) ? array_filter( array_map( 'wc_clean', $_POST['mvx_shipping_by_distance'] ) ) : '';
-        update_user_meta($vendor_user_id, '_mvx_shipping_by_distance', $mvx_shipping_by_distance);
+        update_user_meta($vendor_user_id, '_mvx_shipping_by_distance', array_values($mvx_shipping_by_distance));
 
         $vendor_shipping_options = isset($_POST['shippping-options']) ? wc_clean($_POST['shippping-options']) : '';
         update_user_meta($vendor_user_id, 'vendor_shipping_options', $vendor_shipping_options);
@@ -1385,6 +1420,14 @@ Class MVX_Admin_Dashboard {
         // clear shipping transient
         WC_Cache_Helper::get_transient_version('shipping', true);
 
+    }
+
+    public function mvx_find_index_by_country_code( $lists, $code = '') {
+        foreach (array_keys($lists) as $key => $value) {
+            if ($value == $code) {
+                return $key;
+            }
+        }
     }
 
     /**
