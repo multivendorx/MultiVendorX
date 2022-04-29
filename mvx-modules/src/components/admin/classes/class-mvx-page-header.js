@@ -45,9 +45,9 @@ class App extends Component {
           </div>
         </div>
         <div className="mvx-module-nav-right-section">
-          <div className="mvx-header-search-section"> 
+          <div className="mvx-header-search-section mr-24"> 
             <label><i className='mvx-font icon-search'></i></label>
-            <input type="text" placeholder="Search Options" name="search" onChange={(e) => this.handleOnChange(e)}/>
+            <input type="text" placeholder="Search Modules" name="search" onChange={(e) => this.handleOnChange(e)}/>
 
             { this.state.fetch_all_settings_for_searching.length > 0 ? 
 
@@ -65,7 +65,7 @@ class App extends Component {
 
               : '' }
           </div>
-          <a href={appLocalizer.knowledgebase} title={appLocalizer.knowledgebase_title} target="_blank" className="mvx-module-section-nav-child-data"><i class='mvx-font icon-knowledge-topbar'></i></a>
+          <a href={appLocalizer.knowledgebase} title={appLocalizer.knowledgebase_title} target="_blank" className="mvx-module-section-nav-child-data nav-child-right"><i class='mvx-font icon-knowledge-topbar'></i></a>
         </div>
       </div>
     );
