@@ -2142,7 +2142,7 @@ class MVX_REST_API {
                 'key'       => 'display_name',
                 'type'      => 'select',
                 'label'     => __( 'Display name', 'dc-woocommerce-multi-vendor' ),
-                'desc'      => __( 'If you are not sure where to add widget, just go to admin <a href=".admin_url("widgets.php")." terget="_blank">widget</a> section and add your preferred widgets to <b>vendor store sidebar</b>.', 'dc-woocommerce-multi-vendor' ),
+                'desc'      => __( '', 'dc-woocommerce-multi-vendor' ),
                 'options' => $display_name_option,
                 'restricted_page'   => '?page=vendors&name=add_new',
                 'database_value' => isset($showdisplayname) ? $showdisplayname : '',

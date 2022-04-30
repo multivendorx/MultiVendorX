@@ -5465,6 +5465,14 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'database_value' => array(),
                 ],
                 [
+                    'key'       =>  'vendor_widget_show_page',
+                    'type'      =>  'blocktext',
+                    'depend_checkbox'    => 'is_enable_store_sidebar_position',
+                    'label'     =>  __( 'no_label', 'dc-woocommerce-multi-vendor' ),
+                    'blocktext'      =>  __( "If you are not sure where to add widget, just go to admin <a href=".admin_url("widgets.php")." terget='_blank'>widget</a> section and add your preferred widgets to <b>vendor store sidebar</b>.", 'dc-woocommerce-multi-vendor' ),
+                    'database_value' => '',
+                ],
+                [
                     'key'       => 'mvx_store_sidebar_position',
                     'type'      => 'toggle_rectangle',
                     'depend_checkbox'    => 'is_enable_store_sidebar_position',
