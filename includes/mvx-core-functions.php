@@ -4823,6 +4823,10 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
         $review_options_data = get_option('mvx_review_management_tab_settings');
         $mvx_review_categories = $review_options_data ? $review_options_data['mvx_review_categories'] : $default_nested_data;
 
+        $commission_options_data = get_option('mvx_commissions_tab_settings');
+        $mvx_product_commission_variations = $commission_options_data ? $commission_options_data['vendor_commission_by_products'] : $default_nested_data;
+        $mvx_quantity_commission_variations = $commission_options_data ? $commission_options_data['vendor_commission_by_quantity'] : $default_nested_data;
+
         $disbursement_settings_methods = $gateway_charge_fixed_value = $gateway_charge_percent_value = $gateway_charge_fixed_percent_value = [];
         if (mvx_is_module_active('paypal-masspay')) {
             $disbursement_settings_methods[] = array(
@@ -5817,6 +5821,181 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                         ),
                     ),
                     'database_value' => '',
+                ],
+                // purchase quantity
+
+                [
+                    'key'       => 'vendor_commission_by_quantity',
+                    'type'      => 'nested',
+                    'depend'    => 'commission_type',
+                    'dependvalue'       =>  'commission_by_purchase_quantity',
+                    'label'     => __( 'Commission By Purchase Quantity', 'dc-woocommerce-multi-vendor' ),
+                    'desc'      => __( 'Commission rules depending upon purchased product quantity. e.g 80&#37; commission when purchase quantity 2, 80&#37; commission when purchase quantity > 2 and so on. You may define any number of such rules. Please be sure, do not set conflicting rules.', 'dc-woocommerce-multi-vendor' ),
+                    'parent_options' => array(
+                        array(
+                            'key'=>'quantity',
+                            'type'=> "number",
+                            'class' => "nested-parent-class",
+                            'name' => "nested-parent-name",
+                            'label'=> __('Purchase Quantity', 'dc-woocommerce-multi-vendor'),
+                            'value'=> "quantity"
+                        ),
+                        array(
+                            'key'   =>'rule',
+                            'label' => __('Rule', 'dc-woocommerce-multi-vendor'), 
+                            'type'  => 'select',
+                            'options'     => array(
+                                array(
+                                    'name'  => 'rule',
+                                    'key'   => 'upto',
+                                    'type'  => 'number',
+                                    'label' => __('Up to', 'dc-woocommerce-multi-vendor'),
+                                    'value' => 'upto'
+                                ),
+                                array(
+                                    'name'  => 'rule',
+                                    'key'   => 'greater',
+                                    'type'  => 'number',
+                                    'label' => __('More than', 'dc-woocommerce-multi-vendor'),
+                                    'value' => 'greater'
+                                )
+                            )
+                        ),
+                        array(
+                            'key'   => 'type',
+                            'label' => __('Commission Type', 'dc-woocommerce-multi-vendor'), 
+                            'type'  => 'select2nd', 
+                            'options' => array(
+                                array(
+                                    'name'  => 'type',
+                                    'key'   => 'percent',
+                                    'type'  => 'number',
+                                    'label' => __('Percent', 'dc-woocommerce-multi-vendor'),
+                                    'value' => 'percent'
+                                ),
+                                array(
+                                    'name'  => 'type',
+                                    'key'   => 'fixed',
+                                    'type'  => 'number',
+                                    'label' => __('Fixed', 'dc-woocommerce-multi-vendor'),
+                                    'value' => 'fixed'
+                                ),
+                                array(
+                                    'name'  => 'type',
+                                    'key'   => 'percent_fixed',
+                                    'type'  => 'number',
+                                    'label' => __('Percent + Fixed', 'dc-woocommerce-multi-vendor'),
+                                    'value' => 'percent_fixed'
+                                )
+                            ) 
+                        ),
+                        array(
+                            'key'=>'commission',
+                            'type'=> "number",
+                            'class' => "nested-parent-class",
+                            'name' => "nested-parent-name",
+                            'label'=> __('Commission Percent(%)', 'dc-woocommerce-multi-vendor'),
+                            'value'=> "commission"
+                        ),
+                        array(
+                            'key'=>'commission_fixed',
+                            'type'=> "number",
+                            'class' => "nested-parent-class",
+                            'name' => "nested-parent-name",
+                            'label' => __('Commission Fixed', 'dc-woocommerce-multi-vendor') . '(' . get_woocommerce_currency_symbol() . ')',
+                            'value'=> "commission_fixed"
+                        )
+                    ),
+                    'child_options' => array(
+                    ),
+                    'database_value' => $mvx_quantity_commission_variations,
+                ],
+
+                [
+                    'key'       => 'vendor_commission_by_products',
+                    'type'      => 'nested',
+                    'depend'    => 'commission_type',
+                    'dependvalue'       =>  'commission_by_product_price',
+                    'label'     => __( 'Commission By Product Price', 'dc-woocommerce-multi-vendor' ),
+                    'desc'      => sprintf( __( 'Commission rules depending upon product price. e.g 80&#37; commission when product cost < %s1000, %s100 fixed commission when product cost > %s1000 and so on. You may define any number of such rules. Please be sure, <b> do not set conflicting rules.</b>', 'dc-woocommerce-multi-vendor' ), get_woocommerce_currency_symbol(), get_woocommerce_currency_symbol(), get_woocommerce_currency_symbol() ),
+                    'parent_options' => array(
+                        array(
+                            'key'=>'cost',
+                            'type'=> "number",
+                            'class' => "nested-parent-class",
+                            'name' => "nested-parent-name",
+                            'label'=> __('Product cost', 'dc-woocommerce-multi-vendor'),
+                            'value'=> "cost"
+                        ),
+                        array(
+                            'key'   =>'rule',
+                            'label' => __('Rule', 'dc-woocommerce-multi-vendor'), 
+                            'type'  => 'select',
+                            'options'     => array(
+                                array(
+                                    'name'  => 'rule',
+                                    'key'   => 'upto',
+                                    'type'  => 'number',
+                                    'label' => __('Up to', 'dc-woocommerce-multi-vendor'),
+                                    'value' => 'upto'
+                                ),
+                                array(
+                                    'name'  => 'rule',
+                                    'key'   => 'greater',
+                                    'type'  => 'number',
+                                    'label' => __('More than', 'dc-woocommerce-multi-vendor'),
+                                    'value' => 'greater'
+                                )
+                            )
+                        ),
+                        array(
+                            'key'   => 'type',
+                            'label' => __('Commission Type', 'dc-woocommerce-multi-vendor'), 
+                            'type'  => 'select2nd', 
+                            'options' => array(
+                                array(
+                                    'name'  => 'type',
+                                    'key'   => 'percent',
+                                    'type'  => 'number',
+                                    'label' => __('Percent', 'dc-woocommerce-multi-vendor'),
+                                    'value' => 'percent'
+                                ),
+                                array(
+                                    'name'  => 'type',
+                                    'key'   => 'fixed',
+                                    'type'  => 'number',
+                                    'label' => __('Fixed', 'dc-woocommerce-multi-vendor'),
+                                    'value' => 'fixed'
+                                ),
+                                array(
+                                    'name'  => 'type',
+                                    'key'   => 'percent_fixed',
+                                    'type'  => 'number',
+                                    'label' => __('Percent + Fixed', 'dc-woocommerce-multi-vendor'),
+                                    'value' => 'percent_fixed'
+                                )
+                            ) 
+                        ),
+                        array(
+                            'key'=>'commission',
+                            'type'=> "number",
+                            'class' => "nested-parent-class",
+                            'name' => "nested-parent-name",
+                            'label'=> __('Commission Percent(%)', 'dc-woocommerce-multi-vendor'),
+                            'value'=> "commission"
+                        ),
+                        array(
+                            'key'=>'commission_fixed',
+                            'type'=> "number",
+                            'class' => "nested-parent-class",
+                            'name' => "nested-parent-name",
+                            'label' => __('Commission Fixed', 'dc-woocommerce-multi-vendor') . '(' . get_woocommerce_currency_symbol() . ')',
+                            'value'=> "commission_fixed"
+                        )
+                    ),
+                    'child_options' => array(
+                    ),
+                    'database_value' => $mvx_product_commission_variations,
                 ],
                 // default commissions
                 [

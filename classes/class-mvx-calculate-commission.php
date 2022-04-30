@@ -565,23 +565,23 @@ class MVX_Calculate_Commission {
     }
 
     public function mvx_get_commission_as_per_product_price( $product_id = 0, $line_total = 0, $item_quantity = 0, $commission_rule = array() ) {
-        $mvx_variation_commission_options = get_option( 'mvx_variation_commission_options', array() );
+        $mvx_variation_commission_options = get_option( 'mvx_commissions_tab_settings', array() );
         $vendor_commission_by_products = is_array($mvx_variation_commission_options) && isset( $mvx_variation_commission_options['vendor_commission_by_products'] ) ? $mvx_variation_commission_options['vendor_commission_by_products'] : array();
         $amount = 0;
         $matched_rule_price = 0;
         if (!empty($vendor_commission_by_products)) {
             foreach( $vendor_commission_by_products as $vendor_commission_product_rule ) {
                 $rule_price = $vendor_commission_product_rule['cost'];
-                $rule = $vendor_commission_product_rule['rule'];
+                $rule = isset($vendor_commission_product_rule['rule']) ? $vendor_commission_product_rule['rule']['value'] : '';
                 
                 if( ( $rule == 'upto' ) && ( (float) $line_total <= (float)$rule_price ) && ( !$matched_rule_price || ( (float)$rule_price <= (float)$matched_rule_price ) ) ) {
                     $matched_rule_price         = $rule_price;
-                    $commission_rule['mode']    = $vendor_commission_product_rule['type'];
+                    $commission_rule['mode']    = isset($vendor_commission_product_rule['type']) ? $vendor_commission_product_rule['type']['value'] : '';
                     $commission_rule['commission_val'] = $vendor_commission_product_rule['commission'];
                     $commission_rule['commission_fixed']   = isset( $vendor_commission_product_rule['commission_fixed'] ) ? $vendor_commission_product_rule['commission_fixed'] : $vendor_commission_product_rule['commission'];
                 } elseif( ( $rule == 'greater' ) && ( (float) $line_total > (float)$rule_price ) && ( !$matched_rule_price || ( (float)$rule_price >= (float)$matched_rule_price ) ) ) {
                     $matched_rule_price         = $rule_price;
-                    $commission_rule['mode']    = $vendor_commission_product_rule['type'];
+                    $commission_rule['mode']    = isset($vendor_commission_product_rule['type']) ? $vendor_commission_product_rule['type']['value'] : '';
                     $commission_rule['commission_val'] = $vendor_commission_product_rule['commission'];
                     $commission_rule['commission_fixed']   = isset( $vendor_commission_product_rule['commission_fixed'] ) ? $vendor_commission_product_rule['commission_fixed'] : $vendor_commission_product_rule['commission'];
                 }
@@ -614,16 +614,16 @@ class MVX_Calculate_Commission {
         $matched_rule_quantity = $amount = 0;
         foreach( $vendor_commission_quantity_rules as $vendor_commission_quantity_rule ) {
             $rule_quantity = $vendor_commission_quantity_rule['quantity'];
-            $rule = $vendor_commission_quantity_rule['rule'];
+            $rule = isset($vendor_commission_quantity_rule['rule']) ? $vendor_commission_quantity_rule['rule']['value'] : '';
 
             if( ( $rule == 'upto' ) && ( (float) $item_quantity <= (float)$rule_quantity ) && ( !$matched_rule_quantity || ( (float)$rule_quantity <= (float)$matched_rule_quantity ) ) ) {
                 $matched_rule_quantity      = $rule_quantity;
-                $commission_rule['mode']    = $vendor_commission_quantity_rule['type'];
+                $commission_rule['mode']    = isset($vendor_commission_quantity_rule['type']) ? $vendor_commission_quantity_rule['type']['value'] : '';
                 $commission_rule['commission_val'] = $vendor_commission_quantity_rule['commission'];
                 $commission_rule['commission_fixed']   = isset( $vendor_commission_quantity_rule['commission_fixed'] ) ? $vendor_commission_quantity_rule['commission_fixed'] : 0;
             } elseif( ( $rule == 'greater' ) && ( (float) $item_quantity > (float)$rule_quantity ) && ( !$matched_rule_quantity || ( (float)$rule_quantity >= (float)$matched_rule_quantity ) ) ) {
                 $matched_rule_quantity      = $rule_quantity;
-                $commission_rule['mode']    = $vendor_commission_quantity_rule['type'];
+                $commission_rule['mode']    = isset($vendor_commission_quantity_rule['type']) ? $vendor_commission_quantity_rule['type']['value'] : '';
                 $commission_rule['commission_val'] = $vendor_commission_quantity_rule['commission'];
                 $commission_rule['commission_fixed']   = isset( $vendor_commission_quantity_rule['commission_fixed'] ) ? $vendor_commission_quantity_rule['commission_fixed'] : 0;
             }

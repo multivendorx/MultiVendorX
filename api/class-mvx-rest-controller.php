@@ -4640,7 +4640,6 @@ class MVX_REST_API {
         $modulename = str_replace("-", "_", $modulename);
         $get_managements_data = $req->get_param( 'model' );
         $optionname = 'mvx_'.$modulename.'_tab_settings';
-
         mvx_update_option($optionname, $get_managements_data);
         $all_details['error'] = 'Settings Saved';
         return $all_details; 

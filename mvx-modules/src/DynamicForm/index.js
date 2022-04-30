@@ -75,6 +75,8 @@ export default class DynamicForm extends React.Component {
         itemsnested[index][filedsdetails.key] = e.target.checked;
       } else if(filedsdetails.type == 'select') {
         itemsnested[index][filedsdetails.key] = selectarray[e.index];
+      } else if(filedsdetails.type == 'select2nd') {
+        itemsnested[index][filedsdetails.key] = selectarray[e.index];
       } else if (filedsdetails.type == 'country') {
         itemsnested[index][filedsdetails.key] = selectarray[e.index];
         var statefromcountrycode = JSON.parse(appLocalizer.countries.replace( /&quot;/g, '"' ))[e.value];
@@ -1126,11 +1128,11 @@ export default class DynamicForm extends React.Component {
       if (type == "nested") {
         var carsnew = [];
         var parentseectoption = [];
+        var parentseectoption2 = [];
         var statedata = [];
         let ggg;
         input = (
           <div className="mvx-multi-nested-class">
-              {console.log(m.database_value)}
               {m.database_value ? m.database_value.map((o, indexop) => 
                 <div className="mvx-boarder-parent">
                 {m.parent_options.map(op =>
@@ -1141,6 +1143,18 @@ export default class DynamicForm extends React.Component {
                   </label>
 
                   {op.type == 'text' ? 
+                    <input
+                    {...props}
+                    className="mvx-setting-form-input"
+                    type={op.type}
+                    value={o[op.key]}
+                    onChange={e => {
+                      this.onnestedChange(e, target, indexop, op, '', '', '', m);
+                    }}
+                    />
+                  : '' }
+
+                  {op.type == 'number' ? 
                     <input
                     {...props}
                     className="mvx-setting-form-input"
@@ -1178,6 +1192,26 @@ export default class DynamicForm extends React.Component {
                     options={parentseectoption}
                     onChange={e => {
                       this.onnestedChange(e, target, indexop, op, '', '', parentseectoption, m);
+                    }}
+                    >
+                    </Select>
+                    : ''
+                  }
+
+
+
+                  {
+                    op.type == 'select2nd' ? 
+                    op.options.map((selectdata, index) => {
+                      parentseectoption2[index] = {value:selectdata.value, label:selectdata.label, index:index };
+                    }) : ''
+                  ,
+                    op.type == 'select2nd' ?
+                    <Select className="mvx-setting-form-input"
+                    value={o[op.key]}
+                    options={parentseectoption2}
+                    onChange={e => {
+                      this.onnestedChange(e, target, indexop, op, '', '', parentseectoption2, m);
                     }}
                     >
                     </Select>
@@ -1308,7 +1342,7 @@ export default class DynamicForm extends React.Component {
                   </div>
 
                   <div className="horizontal-class">
-                    <p onClick={(e) => this.removenestedField(e, indexop, m)} className="button-controls button-secondary">-</p>
+                    {m.database_value.length > 1 ? <p onClick={(e) => this.removenestedField(e, indexop, m)} className="button-controls button-secondary">-</p> : ''}
                     {m.database_value.length -1 == indexop ? <p className="button-controls"><a onClick={(e) => this.handlenestedAddClick(e, m)} className="button-primary">+</a></p> : ''}
                   </div>
 
