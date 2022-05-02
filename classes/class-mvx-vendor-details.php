@@ -55,7 +55,7 @@ class MVX_Vendor {
             $args_default = wp_parse_args($args, $args_default);
             $args = apply_filters('mvx_vendor_review_rating_args_to_fetch', $args_default, $this);
             // If product sync enabled
-            if (get_mvx_vendor_settings('product_review_sync', 'general') && get_mvx_vendor_settings('product_review_sync', 'general') == 'Enable') {
+            if (get_mvx_vendor_settings('product_review_sync', 'review_management')) {
                 $vendor = get_mvx_vendor($vendor_id);
                 $args_default_for_product = apply_filters('mvx_vendors_product_review_args_array', array(
                     'status' => 'approve',
@@ -91,7 +91,7 @@ class MVX_Vendor {
                 'author__not_in' => array($this->id)
             );
             $args = apply_filters('mvx_vendor_review_rating_args_to_fetch', $args_default, $this);
-            if (get_mvx_vendor_settings('product_review_sync', 'general') && get_mvx_vendor_settings('product_review_sync', 'general') == 'Enable') {
+            if (get_mvx_vendor_settings('product_review_sync', 'review_management')) {
                 $vendor = get_mvx_vendor($vendor_id);
                 $args_default_for_product = apply_filters('mvx_vendors_product_review_args_count_array', array(
                     'status' => 'approve',

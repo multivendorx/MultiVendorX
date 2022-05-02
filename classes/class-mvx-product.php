@@ -1413,7 +1413,7 @@ class MVX_Product {
         // new
         if (get_transient('mvx_spmv_exclude_products_data')) {
             $spmv_excludes = get_transient('mvx_spmv_exclude_products_data');
-            $excluded_order = (get_mvx_vendor_settings('singleproductmultiseller_show_order', 'general')) ? get_mvx_vendor_settings('singleproductmultiseller_show_order', 'general') : 'min-price';
+            $excluded_order = mvx_get_settings_value(get_mvx_vendor_settings('singleproductmultiseller_show_order', 'spmv_pages'), 'min-price');
             $post__not_in = ( isset( $spmv_excludes[$excluded_order] ) ) ? $spmv_excludes[$excluded_order] : array();
             $q->set('post__not_in', $post__not_in );
         }
