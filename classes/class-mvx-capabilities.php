@@ -66,11 +66,14 @@ class MVX_Capabilities {
      * @return boolean 
      */
     public function vendor_capabilities_settings($cap, $default = array()) {
-        $this->mvx_capability = !empty($default) ? $default : $this->mvx_capability;
-        if (is_array($this->mvx_capability) && array_key_exists($cap, $this->mvx_capability)) {
-            return true;
-        } else {
-            return false;
+        if (empty($cap)) {
+            return $default;
+        }
+        if (is_array($this->mvx_capability) && !empty($this->mvx_capability)) {
+           if (!isset($this->mvx_capability[$cap]) || empty($this->mvx_capability[$cap])) {
+                return $default;
+            }
+            return $this->mvx_capability[$cap]; 
         }
     }
 

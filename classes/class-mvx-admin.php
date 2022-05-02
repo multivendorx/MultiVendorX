@@ -582,10 +582,10 @@ class MVX_Admin {
 
         $columns_commission = array(
             array(
-                'name'      =>  __('Title', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Commission ID', 'dc-woocommerce-multi-vendor'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
-                'selector_choice'  => "title",
+                'selector_choice'  => "commission_id",
                 
             ),
             array(
