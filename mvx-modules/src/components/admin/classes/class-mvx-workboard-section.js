@@ -1731,7 +1731,7 @@ Child({ name }) {
       <div className="mvx-module-grid">
 
         <div className="mvx-table-text-and-add-wrap">
-          <Link to={`?page=mvx#&submenu=work-board&name=announcement&create=announcement`}><i className="mvx-font icon-add"></i>Add Announcement</Link>
+          <Link to={`?page=mvx#&submenu=work-board&name=announcement&create=announcement`} className="btn default-btn mr-12"><i className="mvx-font icon-add"></i>Add Announcement</Link>
         </div>
 
 
@@ -1826,7 +1826,7 @@ Child({ name }) {
 
 
         <div className="mvx-table-text-and-add-wrap">
-          <Link to={`?page=mvx#&submenu=work-board&name=knowladgebase&create=knowladgebase`}><i className="mvx-font icon-add"></i>Add Knowladgebase</Link>
+          <Link to={`?page=mvx#&submenu=work-board&name=knowladgebase&create=knowladgebase`} className="btn default-btn mr-12"><i className="mvx-font icon-add"></i>Add Knowladgebase</Link>
         </div>
 
         {get_current_name && get_current_name.get("create") == 'knowladgebase' ?
