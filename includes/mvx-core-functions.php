@@ -4824,8 +4824,8 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
         $mvx_review_categories = $review_options_data ? $review_options_data['mvx_review_categories'] : $default_nested_data;
 
         $commission_options_data = get_option('mvx_commissions_tab_settings');
-        $mvx_product_commission_variations = $commission_options_data ? $commission_options_data['vendor_commission_by_products'] : $default_nested_data;
-        $mvx_quantity_commission_variations = $commission_options_data ? $commission_options_data['vendor_commission_by_quantity'] : $default_nested_data;
+        $mvx_product_commission_variations = isset($commission_options_data['vendor_commission_by_products']) ? $commission_options_data['vendor_commission_by_products'] : $default_nested_data;
+        $mvx_quantity_commission_variations = isset($commission_options_data['vendor_commission_by_quantity']) ? $commission_options_data['vendor_commission_by_quantity'] : $default_nested_data;
 
         $disbursement_settings_methods = $gateway_charge_fixed_value = $gateway_charge_percent_value = $gateway_charge_fixed_percent_value = [];
         if (mvx_is_module_active('paypal-masspay')) {

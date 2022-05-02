@@ -161,6 +161,7 @@ class MVX_Commission {
     public static function calculate_commission( $commission_id, $order, $recalculate = false ) {
         global $MVX;
         if ($commission_id && $order) {
+            $commission_type = mvx_get_settings_value($MVX->vendor_caps->payment_cap['commission_type']);
             $vendor_id = get_post_meta($order->get_id(), '_vendor_id', true);
              // line item commission
              $commission_amount = $shipping_amount = $tax_amount = $shipping_tax_amount = 0;
@@ -173,7 +174,7 @@ class MVX_Commission {
                     $variation_id = isset($item['variation_id']) && !empty($item['variation_id']) ? $item['variation_id'] : 0;
                     $item_commission = $MVX->commission->get_item_commission($item['product_id'], $variation_id, $item, $parent_order_id, $item_id);
                     $commission_values = $MVX->commission->get_commission_amount($item['product_id'], $has_vendor->term_id, $variation_id, $item_id, $parent_order);
-                    $commission_rate = array('mode' => $MVX->vendor_caps->payment_cap['revenue_sharing_mode'], 'type' => $MVX->vendor_caps->payment_cap['commission_type']);
+                    $commission_rate = array('mode' => $MVX->vendor_caps->payment_cap['revenue_sharing_mode'], 'type' => $commission_type);
                     $commission_rate['commission_val'] = isset($commission_values['commission_val']) ? $commission_values['commission_val'] : 0;
                     $commission_rate['commission_fixed'] = isset($commission_values['commission_fixed']) ? $commission_values['commission_fixed'] : 0;
                     
@@ -204,7 +205,7 @@ class MVX_Commission {
             }
 
             // fixed + percentage per vendor's order
-            if ($MVX->vendor_caps->payment_cap['commission_type'] == 'fixed_with_percentage_per_vendor') {
+            if ($commission_type == 'fixed_with_percentage_per_vendor') {
                 $commission_amount = (float) $order->get_total() * ( (float) $MVX->vendor_caps->payment_cap['default_percentage'] / 100 ) + (float) $MVX->vendor_caps->payment_cap['fixed_with_percentage_per_vendor'];
             }
             
