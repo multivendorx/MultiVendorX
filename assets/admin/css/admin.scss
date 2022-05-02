@@ -4107,13 +4107,15 @@ input[type=checkbox]:checked:before {
     width: 22px;
     height: 22px;
     border-radius: 0px;
-    line-height: 20px;
+    line-height: 20px !important;
+    margin: 0px !important;
 }
 input[type=radio]:checked:before {
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    line-height: 20px;
+    line-height: 20px !important;
+    margin: 0px !important;
 }
 .text-bold{
     font-weight: 700;
