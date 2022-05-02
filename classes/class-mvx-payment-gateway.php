@@ -81,7 +81,7 @@ abstract class MVX_Payment_Gateway {
         $order_totals = $this->vendor_wise_order_total();
         if ($is_enable_gateway_charge == 'Enable') {
             $payment_gateway_charge_type = get_mvx_global_settings('payment_gateway_charge_type') ? get_mvx_global_settings('payment_gateway_charge_type')['value'] : '';
-            $gateway_charge_amount = floatval(get_mvx_vendor_settings("gateway_charge_{$this->payment_gateway}", "payment"));
+            $gateway_charge_amount = floatval(get_mvx_global_settings("percent_gayeway_amount_{$this->payment_gateway}"));
             $carrier = get_mvx_global_settings('gateway_charges_cost_carrier') ? get_mvx_global_settings('gateway_charges_cost_carrier')['value'] : '';
             if ($gateway_charge_amount) {
                 foreach ($order_totals as $order_id => $details) {
@@ -99,7 +99,7 @@ abstract class MVX_Payment_Gateway {
                         $parcentize_charges = ($order_total * $gateway_charge_amount) / 100;
                         $order_gateway_charge = ($vendor_ratio) ? $vendor_ratio * $parcentize_charges : $parcentize_charges;
                     }else if ('fixed_with_percentage' === $payment_gateway_charge_type) {
-                        $gateway_fixed_charge_amount = floatval(get_mvx_vendor_settings("gateway_charge_fixed_with_{$this->payment_gateway}", "payment"));
+                        $gateway_fixed_charge_amount = floatval(get_mvx_global_settings("fixed_gayeway_amount_{$this->payment_gateway}"));
                         $parcentize_charges = (($order_total * $gateway_charge_amount) / 100 );
                         $fixed_charges = floatval($gateway_fixed_charge_amount) / count($details['order_marchants']);
                         $order_gateway_charge = ($vendor_ratio) ? ($vendor_ratio * $parcentize_charges) + $fixed_charges : ($parcentize_charges + $fixed_charges);
@@ -115,7 +115,7 @@ abstract class MVX_Payment_Gateway {
                     if ('percent' === $payment_gateway_charge_type) {
                         $gateway_charge = ($this->get_transaction_total() * $gateway_charge_amount) / 100;
                     }else if ('fixed_with_percentage' === $payment_gateway_charge_type) {
-                        $gateway_fixed_charge_amount = floatval(get_mvx_vendor_settings("gateway_charge_fixed_with_{$this->payment_gateway}", "payment"));
+                        $gateway_fixed_charge_amount = floatval(get_mvx_global_settings("fixed_gayeway_amount_{$this->payment_gateway}"));
                         $gateway_charge = (($this->get_transaction_total() * $gateway_charge_amount) / 100 ) + floatval($gateway_fixed_charge_amount);
                     }else{
                         $gateway_charge = floatval($gateway_charge_amount);

@@ -4886,18 +4886,18 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
 
             $gateway_charge_fixed_value[] = array(
                 'name'  => 'default_gateway_charge_value',
-                'key' => 'fixed_gayeway_amount_paypal_stripe',
+                'key' => 'fixed_gayeway_amount_stripe_masspay',
                 'type'      => 'number',
                 'label' => __('Fixed stripe amount', 'dc-woocommerce-multi-vendor'),
-                'value' => 'fixed_gayeway_amount_paypal_stripe'
+                'value' => 'fixed_gayeway_amount_stripe_masspay'
             );
 
             $gateway_charge_percent_value[] = array(
                 'name'  => 'default_gateway_charge_value',
-                'key' => 'percent_gayeway_amount_paypal_stripe',
+                'key' => 'percent_gayeway_amount_stripe_masspay',
                 'type'      => 'number',
                 'label' => __('Percent stripe amount', 'dc-woocommerce-multi-vendor'),
-                'value' => 'percent_gayeway_amount_paypal_stripe'
+                'value' => 'percent_gayeway_amount_stripe_masspay'
             );
             $gateway_charge_fixed_percent_value[] = array_merge($gateway_charge_fixed_value, $gateway_charge_percent_value);
         }
@@ -4910,18 +4910,18 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
 
             $gateway_charge_fixed_value[] = array(
                 'name'  => 'default_gateway_charge_value',
-                'key' => 'fixed_gayeway_amount_paypal_direct_bank',
+                'key' => 'fixed_gayeway_amount_direct_bank',
                 'type'      => 'number',
                 'label' => __('Fixed bank amount', 'dc-woocommerce-multi-vendor'),
-                'value' => 'fixed_gayeway_amount_paypal_direct_bank'
+                'value' => 'fixed_gayeway_amount_direct_bank'
             );
 
             $gateway_charge_percent_value[] = array(
                 'name'  => 'default_gateway_charge_value',
-                'key' => 'percent_gayeway_amount_paypal_direct_bank',
+                'key' => 'percent_gayeway_amount_direct_bank',
                 'type'      => 'number',
                 'label' => __('Percent bank amount', 'dc-woocommerce-multi-vendor'),
-                'value' => 'percent_gayeway_amount_paypal_direct_bank'
+                'value' => 'percent_gayeway_amount_direct_bank'
             );
             $gateway_charge_fixed_percent_value[] = array_merge($gateway_charge_fixed_value, $gateway_charge_percent_value);
         }
