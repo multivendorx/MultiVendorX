@@ -1086,7 +1086,7 @@ class MVX_REST_API {
             array(
                 'label' =>  __('Dashboard', 'dc-woocommerce-multi-vendor'),
                 'desc'  =>  __('Dashboard Submenu page', 'dc-woocommerce-multi-vendor'),
-                'link'  =>  admin_url('admin.php?page=mvx#&submenu=dashboard&name=help')
+                'link'  =>  admin_url('admin.php?page=mvx#&submenu=dashboard')
             ),
             array(
                 'label' =>  __('Work Board', 'dc-woocommerce-multi-vendor'),

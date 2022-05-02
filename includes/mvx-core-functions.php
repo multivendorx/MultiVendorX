@@ -541,7 +541,7 @@ if (!function_exists('MVX_action_links')) {
      */
     function MVX_action_links($links) {
         $plugin_links = array(
-            '<a href="' . admin_url('admin.php?page=mvx#&submenu=dashboard&name=help') . '">' . __('Settings', 'dc-woocommerce-multi-vendor') . '</a>');
+            '<a href="' . admin_url('admin.php?page=mvx#&submenu=dashboard') . '">' . __('Settings', 'dc-woocommerce-multi-vendor') . '</a>');
         return array_merge($plugin_links, $links);
     }
 
