@@ -3978,8 +3978,10 @@ body {
   margin: 0px !important;
 }
 
-.form-group .mvx-settings-input-content input.mvx-setting-form-input:not([type="number"]),
-.form-group .mvx-settings-input-content textarea.mvx-setting-form-input:not([type="number"]) {
+.form-group .mvx-settings-input-content input.mvx-setting-form-input[type="radio"],
+.form-group .mvx-settings-input-content textarea.mvx-setting-form-input[type="radio"],
+.form-group .mvx-settings-input-content input.mvx-setting-form-input[type="checkbox"],
+.form-group .mvx-settings-input-content textarea.mvx-setting-form-input[type="checkbox"] {
   height: 22px;
   width: 22px !important;
   border-color: #cccccc;

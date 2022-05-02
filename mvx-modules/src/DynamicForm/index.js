@@ -667,7 +667,14 @@ export default class DynamicForm extends React.Component {
       }
 
 
-      
+      if (type == "button") {
+          input = (
+            <div className="mvx-settings-basic-input-class">
+              <input type="button" value="Active" onClick={() => this.handle_Vendor_active_suspend()}/>
+              {m.desc ? <p className="mvx-settings-metabox-description" dangerouslySetInnerHTML={{ __html: m.desc }}></p> : ''}
+            </div>
+          );
+      }
 
 
       if (type == "multi_number") {

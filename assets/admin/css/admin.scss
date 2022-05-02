@@ -3981,8 +3981,10 @@ body {
 .form-group {
     .mvx-settings-input-content {
 
-        input.mvx-setting-form-input:not([type="number"]),
-        textarea.mvx-setting-form-input:not([type="number"]) {
+        input.mvx-setting-form-input[type="radio"],
+        textarea.mvx-setting-form-input[type="radio"],
+        input.mvx-setting-form-input[type="checkbox"],
+        textarea.mvx-setting-form-input[type="checkbox"] {
             height: 22px;
             width: 22px !important;
             border-color: hsl(0, 0%, 80%);
