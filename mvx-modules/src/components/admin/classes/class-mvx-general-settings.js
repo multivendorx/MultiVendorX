@@ -935,8 +935,16 @@ Child({ name }) {
             { this.state.mvx_registration_fileds_list.length > 0 ?
               <div className={`mvx-top-part-from ${this.state.mvx_registration_fileds_list && this.state.mvx_registration_fileds_list.length > 0 && this.state.mvx_registration_fileds_list[0].hidden ? 'mvx-form-left-line-active' : ''}`} onClick={(e) => this.handleActiveClick(e, '', 'parent')}>
                   <div className="content">
-                   <div className="mvx-untitle-content"><input type="text" placeholder="Untitled form" value={this.state.mvx_registration_fileds_list[0].label} onChange={e => {this.OnRegistrationSelectChange(e, '', 'parent_label') }}/></div>
-                   <div className="mvx-from-description"><input type="text" placeholder="From Description" value={this.state.mvx_registration_fileds_list[0].description} onChange={e => {this.OnRegistrationSelectChange(e, '', 'parent_description') }} /></div>
+                    <div className='form-group'>
+                      <div className="mvx-untitle-content w-50">
+                        <label className='form-title w-100'>Form Title</label>
+                        <input className='default-input' type="text" placeholder="Untitled form" value={this.state.mvx_registration_fileds_list[0].label} onChange={e => {this.OnRegistrationSelectChange(e, '', 'parent_label') }}/>
+                      </div>
+                      <div className="mvx-from-description w-50">
+                        <label className='form-title w-100'>Form Description</label>
+                        <input className='default-input' type="text" placeholder="From Description" value={this.state.mvx_registration_fileds_list[0].description} onChange={e => {this.OnRegistrationSelectChange(e, '', 'parent_description') }} />
+                      </div>
+                    </div>
                   </div>
               </div>
               : '' }
@@ -953,13 +961,18 @@ Child({ name }) {
 
               <div className= {`mvx-option-part ${registration_json_value.hidden ? 'mvx-form-left-line-active' : ''}`} onClick={(e) => this.handleActiveClick(e, registration_json_index, 'sub')}>
                 <div className="content">
-                    <div className="question-input">
-                        <div className="question-input-items first-question"><input type="text" placeholder="Untitled Question" value={registration_json_value.label}
-                                        onChange={e => {this.OnRegistrationSelectChange(e, registration_json_index, 'label') }}/></div>
+                  <div className='form-group-loop'>
+                    <div className="question-input form-group">
+                      
+                        <div className="question-input-items first-question w-50">
+                        <label className='form-title w-100'>Question</label>
+                          <input type="text" className='default-input' placeholder="Untitled Question" value={registration_json_value.label} onChange={e => {this.OnRegistrationSelectChange(e, registration_json_index, 'label') }}/>
+                        </div>
                           
                          {registration_json_value.hidden ? 
-                          <div className="question-input-items ">
-                            <select className="mvx-registration-select-choice" value={registration_json_value.type}
+                          <div className="question-input-items w-50">
+                            <label className='form-title w-100'>Question Type</label>
+                            <select className="mvx-registration-select-choice default-select" value={registration_json_value.type}
                                         onChange={e => {this.OnRegistrationSelectChange(e, registration_json_index, 'select_drop') }}>
                               <option value="textbox">Textbox</option>
                               <option value="email">Email</option>
@@ -988,7 +1001,7 @@ Child({ name }) {
                         : '' }
 
                     </div>
-
+                  </div>
 
                     {registration_json_value.hidden ? 
                     <div className="next_option_part">
@@ -1022,19 +1035,20 @@ Child({ name }) {
 
                       {
                         registration_json_value.type == 'attachment' ?
-                          <div>
-                            <div className="mvx-vendor-form-input-field-container">
+                          <div className='row'>
+                            <div className="mvx-vendor-form-input-field-container col-50">
+                            <label>File Type</label>
                               <input type="checkbox" className="mvx-vendor-form-input-field" checked={registration_json_value.muliple} onChange={e => {this.onlebelchange(e, registration_json_index, 'muliple') }} />
-                              <label>Multiple</label>
+                              <label className='auto-width'>Multiple</label>
                             </div>
 
-                            <div className="mvx-vendor-form-input-field-container">
+                            <div className="mvx-vendor-form-input-field-container col-50">
                               <label>Maximum file size</label>
                               <input type="text" className="mvx-vendor-form-input-field" value={registration_json_value.fileSize} onChange={e => {this.onlebelchange(e, registration_json_index, 'fileSize') }} />
                             </div>
 
-                            <div className="mvx-vendor-form-input-field-container">
-                              <label>Acceptable file types</label>
+                            <div className="mvx-vendor-form-input-field-container col-50">
+                              <label className='auto-width'>Acceptable file types</label>
                               {registration_json_value.fileType.map((xnew, inew) => 
                                   <div>
                                     <input type="checkbox" checked={xnew.selected} onChange={e => {this.onlebelchange(e, registration_json_index, 'selected', inew) }} />
@@ -1050,42 +1064,44 @@ Child({ name }) {
 
                       {
                         registration_json_value.type == 'recapta' ?
-                          <div>
-                            <div className="mvx-vendor-form-input-field-container" value={registration_json_value.recaptchatype}
+                          <div className='row'>
+                            <div className="mvx-vendor-form-input-field-container col-100" value={registration_json_value.recaptchatype}
                                 onChange={e => {this.onlebelchange(e, registration_json_index, 'recaptchatype') }}>
-                              <label>reCAPTCHA Type</label>
-                              <select className="mvx-vendor-form-input-field">
-                                <option value="v3">reCAPTCHA v3</option>
-                                <option value="v2">reCAPTCHA v2</option>
-                              </select>
+                              <div className='w-50 pr-15'>
+                                <label className='form-title w-100'>reCAPTCHA Type</label>
+                                <select className="mvx-vendor-form-input-field default-select">
+                                  <option value="v3">reCAPTCHA v3</option>
+                                  <option value="v2">reCAPTCHA v2</option>
+                                </select>
+                              </div>
                             </div>
 
 
 
                             {registration_json_value.recaptchatype === 'v3' ?
-                              <div class="mvx-vendor-form-input-field-container">
-                                <label>Site key</label>
+                              <div class="mvx-vendor-form-input-field-container col-50">
+                                <label className='form-title w-100'>Site key</label>
                                 <input type="text" class="mvx-vendor-form-input-field" value={registration_json_value.sitekey} onChange={e => {this.onlebelchange(e, registration_json_index, 'sitekey') }} />
                               </div>
                             : '' }
 
 
                             {registration_json_value.recaptchatype === 'v3' ?
-                              <div class="mvx-vendor-form-input-field-container">
-                                <label>Secret key</label>
+                              <div class="mvx-vendor-form-input-field-container col-50">
+                                <label className='form-title w-100'>Secret key</label>
                                 <input type="text" ng-model="field.secretkey" class="mvx-vendor-form-input-field" value={registration_json_value.secretkey} onChange={e => {this.onlebelchange(e, registration_json_index, 'secretkey') }} />
                               </div>
                             : '' }
 
                             {registration_json_value.recaptchatype === 'v2' ?
-                              <div class="mvx-vendor-form-input-field-container">
-                                <label>Recaptcha Script</label>
-                                <textarea cols="20" rows="3" class="mvx-vendor-form-input-field" value={registration_json_value.script} onChange={e => {this.onlebelchange(e, registration_json_index, 'script') }}></textarea>
+                              <div class="mvx-vendor-form-input-field-container col-100">
+                                <label className='form-title w-100'>Recaptcha Script</label>
+                                <textarea cols="20" rows="3" class="mvx-vendor-form-input-field default-textarea" value={registration_json_value.script} onChange={e => {this.onlebelchange(e, registration_json_index, 'script') }}></textarea>
                               </div>
                             : '' }
 
 
-                            <div class="mvx-vendor-form-input-field-container">
+                            <div class="mvx-vendor-form-input-field-container col-100">
                               <p>To get <b>reCAPTCHA</b> script, register your site with google account <a href="https://www.google.com/recaptcha" target="_blank">Register</a></p>
                             </div>
 
@@ -1098,21 +1114,31 @@ Child({ name }) {
                       
                       {registration_json_value.type == 'checkboxes' || registration_json_value.type == 'multi-select' || registration_json_value.type == 'radio' || registration_json_value.type == 'dropdown' ? 
                         <div className="mvx-vendor-form-input-field-container">
-                          <a className="button-secondary" onClick={(e) => this.addSelectBoxOption(e, registration_json_index)}>Add New</a>
-                          <ul className="field-selectbox-options">
+                          <a className="btn red-btn" onClick={(e) => this.addSelectBoxOption(e, registration_json_index)}>Add New</a>
+                          <ul className="field-selectbox-options mt-15">
                           {registration_json_value.options.map((chekbox_option_key, checkbox_option_index) =>
                             <li>
-                              <a onClick={(e) => this.removeSelectboxOption(e, registration_json_index, checkbox_option_index)}><i className="mvx-font icon-close"></i></a>
-                              Label
-                              <input type="text" value={chekbox_option_key.label} onChange={e => {this.onlebelchange(e, registration_json_index, 'select_option', checkbox_option_index) }}/>
-                              Value 
-                              <input type="text" value={chekbox_option_key.value} onChange={e => {this.onlebelchange(e, registration_json_index, 'select_option1', checkbox_option_index) }} />
-                              Selected
-                              {registration_json_value.type === 'radio' || registration_json_value.type === 'dropdown' ?
-                              <input type="radio" value="1"  name={`option-${registration_json_value.id}`} checked={chekbox_option_key.selected} onChange={e => {this.onlebelchange(e, registration_json_index, 'selected_radio_box', option) }} />
-                              :
-                              <input type="checkbox" value="true" checked={chekbox_option_key.selected} onChange={e => {this.onlebelchange(e, registration_json_index, 'selected_box', checkbox_option_index) }} />
-                              }
+                              <div className='f-row-50'>
+                                <label class="form-title w-100">Label</label>
+                                <input type="text" value={chekbox_option_key.label} onChange={e => {this.onlebelchange(e, registration_json_index, 'select_option', checkbox_option_index) }}/>
+                              </div>
+                              <div className='f-row-50'>
+                                <label class="form-title w-100">Value</label>
+                                <input type="text" value={chekbox_option_key.value} onChange={e => {this.onlebelchange(e, registration_json_index, 'select_option1', checkbox_option_index) }} />
+                              </div>
+                              <div className='f-row-100'>
+                                <div className='del-btn'>
+                                  <a onClick={(e) => this.removeSelectboxOption(e, registration_json_index, checkbox_option_index)}><i className="mvx-font icon-close"></i></a>
+                                </div>
+                                <div className='float-right'>
+                                Selected
+                                {registration_json_value.type === 'radio' || registration_json_value.type === 'dropdown' ?
+                                <input type="radio" value="1"  name={`option-${registration_json_value.id}`} checked={chekbox_option_key.selected} onChange={e => {this.onlebelchange(e, registration_json_index, 'selected_radio_box', option) }} />
+                                :
+                                <input type="checkbox" value="true" checked={chekbox_option_key.selected} onChange={e => {this.onlebelchange(e, registration_json_index, 'selected_box', checkbox_option_index) }} />
+                                }
+                                </div>
+                              </div>
                             </li>
                           )}
                           </ul>
@@ -1125,11 +1151,11 @@ Child({ name }) {
 
                        </div>
                        : '' }
-
+                    
 
                        {registration_json_value.hidden ? 
                           <div className="mvx-footer-icon-form">
-                              <i class="mvx-font icon-vendor-form-copyl" onClick={e => {this.OnDuplicateSelectChange(e, registration_json_index, 'duplicate') }}></i>
+                              <i class="mvx-font icon-vendor-form-copy" onClick={e => {this.OnDuplicateSelectChange(e, registration_json_index, 'duplicate') }}></i>
                               <i class="mvx-font icon-vendor-form-delete" onClick={(e) => this.handleRemoveClickNew(e, registration_json_index)}></i>
                               <i class="mvx-font icon-vendor-form-add" onClick={(e) => this.handleAddClickNew(e, registration_json_value.type)}></i>
                               <span>Require <input type="checkbox" checked={registration_json_value.required} onChange={e => {this.OnRegistrationSelectChange(e, registration_json_index, 'require') }}/></span>
