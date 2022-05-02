@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import axios from 'axios';
 import Select from 'react-select';
 import RingLoader from "react-spinners/RingLoader";
+import PuffLoader from "react-spinners/PuffLoader";
 import { css } from "@emotion/react";
 
 import { ReactSortable } from "react-sortablejs";
@@ -25,6 +26,12 @@ import { CSVLink } from "react-csv";
 
 import HeaderSection from './class-mvx-page-header';
 
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: green;
+`;
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -42,6 +49,7 @@ class App extends Component {
       tabIndex: 0,
       query: null,
       commission_select_option_open: false,
+      commission_loading: false,
       lastname: '',
       email: '',
       abcarray: [],
@@ -297,6 +305,7 @@ class App extends Component {
       this.setState({
         datacommission: response.data,
         mvx_all_commission_list: response.data,
+        commission_loading: true
       });
     })
 
@@ -962,7 +971,7 @@ class App extends Component {
 
             <div className="mvx-backend-datatable-wrapper">
 
-              {this.state.columns_commission_list && this.state.columns_commission_list.length > 0 ?
+              {this.state.columns_commission_list && this.state.columns_commission_list.length > 0 && this.state.commission_loading ?
               <DataTable
                 columns={this.state.columns_commission_list}
                 data={this.state.datacommission}
@@ -970,7 +979,7 @@ class App extends Component {
                 onSelectedRowsChange={this.handleChange}
                 pagination
               />
-              : ''}
+              : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />}
 
             </div>
 

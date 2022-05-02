@@ -3,6 +3,8 @@ import { render } from 'react-dom';
 import axios from 'axios';
 import Select from 'react-select';
 import DataTable from 'react-data-table-component';
+import PuffLoader from "react-spinners/PuffLoader";
+import { css } from "@emotion/react";
 
 import FilterComponent from 'react-data-table-component';
 
@@ -27,6 +29,12 @@ import Button from '@material-ui/core/Button';
 import DynamicForm from "../../../DynamicForm";
 
 import HeaderSection from './class-mvx-page-header';
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: green;
+`;
 
 class App extends React.Component {
   constructor(props) {
@@ -65,7 +73,8 @@ class App extends React.Component {
       mvx_store_endpoint: '',
       set_tab_name: '',
       columns_vendor_list: [],
-      
+      vendor_loading: false,
+
       columns_followers: [
         {
             name: <div className="mvx-datatable-header-text">Customer Name</div>,
@@ -665,47 +674,50 @@ class App extends React.Component {
               <Link to={`?page=mvx#&submenu=vendor&name=add_new`} className="btn default-btn mr-12"><i className="mvx-font icon-add"></i>Add Vendor</Link>
             </div>
             
-            <div className="mvx-search-and-multistatus-wrap">
+            {this.state.vendor_loading ?
+              <div className="mvx-search-and-multistatus-wrap">
+                <div className="mvx-multistatus-check">
+                  <div className="mvx-multistatus-check-all" onClick={(e) => this.different_vendor_status(e, 'all')}>All ({this.state.data_all_vendor.length})</div>
+                  <div className="mvx-multistatus-check-approve" onClick={(e) => this.different_vendor_status(e, 'approve')}>| Approve ({this.state.data_approve_vendor.length})</div>
+                  <div className="mvx-multistatus-check-pending status-active" onClick={(e) => this.different_vendor_status(e, 'pending')}>| Pending ({this.state.data_pending_vendor.length})</div>
+                  <div className="mvx-multistatus-check-rejected" onClick={(e) => this.different_vendor_status(e, 'rejected')}>| Rejected ({this.state.data_rejected_vendor.length})</div>
+                </div>
 
-              <div className="mvx-multistatus-check">
+                <div className="mvx-module-section-list-data"> 
+                  <label><i className="mvx-font icon-search"></i></label>
+                  <input type="text" placeholder="Search Vendors" name="search" onChange={this.handlevendorsearch}/>
+                </div>
 
-                <div className="mvx-multistatus-check-all" onClick={(e) => this.different_vendor_status(e, 'all')}>All ({this.state.data_all_vendor.length})</div>
-                <div className="mvx-multistatus-check-approve" onClick={(e) => this.different_vendor_status(e, 'approve')}>| Approve ({this.state.data_approve_vendor.length})</div>
-                <div className="mvx-multistatus-check-pending status-active" onClick={(e) => this.different_vendor_status(e, 'pending')}>| Pending ({this.state.data_pending_vendor.length})</div>
-                <div className="mvx-multistatus-check-rejected" onClick={(e) => this.different_vendor_status(e, 'rejected')}>| Rejected ({this.state.data_rejected_vendor.length})</div>
+                { /*<Select placeholder="Search Vendors" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handlevendorsearch} /> */}
               </div>
+            : '' }
 
 
-              <div className="mvx-module-section-list-data"> 
-                <label><i className="mvx-font icon-search"></i></label>
-                <input type="text" placeholder="Search Vendors" name="search" onChange={this.handlevendorsearch}/>
+            {this.state.vendor_loading ?
+              <div className="mvx-wrap-bulk-all-date mt-10">
+                <div className="mvx-wrap-bulk-action mr-2">
+                  <Select placeholder="Bulk actions" options={appLocalizer.vendor_list_page_bulk_list_options} isClearable={true} className="mvx-module-section-list-data" onChange={this.handlevendoractionsearch} />
+                  { /*<button type="button" className="button-secondary" onClick={(e) => this.handledeletevendor(e)}>Apply</button> */ }
+                </div>
+
+                <div className="mvx-wrap-date-action">
+                  { /*<Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handlevendorsearch} /> */ }
+                </div>
               </div>
+            : '' }
 
-              { /*<Select placeholder="Search Vendors" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handlevendorsearch} /> */}
-            </div>
-
-            <div className="mvx-wrap-bulk-all-date mt-10">
-              <div className="mvx-wrap-bulk-action mr-2">
-                <Select placeholder="Bulk actions" options={appLocalizer.vendor_list_page_bulk_list_options} isClearable={true} className="mvx-module-section-list-data" onChange={this.handlevendoractionsearch} />
-                { /*<button type="button" className="button-secondary" onClick={(e) => this.handledeletevendor(e)}>Apply</button> */ }
-              </div>
-
-              <div className="mvx-wrap-date-action">
-                { /*<Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handlevendorsearch} /> */ }
-              </div>
-            </div>
 
             { /*<button type="button" className="button-primary" onClick={(e) => this.handledeletevendor(e)}>Delete Vendor</button> */}
             <div className="mvx-backend-datatable-wrapper vendor-table-wapper">
-              {this.state.columns_vendor_list && this.state.columns_vendor_list.length > 0 ?
-              <DataTable
-                columns={this.state.columns_vendor_list}
-                data={this.state.datavendor}
-                selectableRows
-                onSelectedRowsChange={this.handleChange}
-                pagination
-              />
-              : ''}
+              {this.state.columns_vendor_list && this.state.columns_vendor_list.length > 0 && this.state.vendor_loading ?
+                <DataTable
+                  columns={this.state.columns_vendor_list}
+                  data={this.state.datavendor}
+                  selectableRows
+                  onSelectedRowsChange={this.handleChange}
+                  pagination
+                />
+              : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />}
 
               {this.state.datavendor.map((data8, index8) => (
                 <Dialog open={this.state.open_vendor_model_dynamic[data8.ID]} onClose={this.handleClose_dynamic} aria-labelledby="form-dialog-title">
@@ -1276,7 +1288,8 @@ class App extends React.Component {
       this.setState({
         datavendor: response.data,
         data_all_vendor: response.data,
-        open_vendor_model_dynamic: default_vendor_eye_popup
+        open_vendor_model_dynamic: default_vendor_eye_popup,
+        vendor_loading: true
       });
     })
 

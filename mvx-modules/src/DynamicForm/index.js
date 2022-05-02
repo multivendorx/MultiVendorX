@@ -141,10 +141,12 @@ export default class DynamicForm extends React.Component {
   }
 
   removenestedchildOption(e, indexparent, index, m) {
-    m['database_value'][indexparent].nested_datas.splice(index, 1);
-    this.setState({
+    let itemsnested = m['database_value'];
+    itemsnested[indexparent].nested_datas.splice(index, 1);
+    /*this.setState({
       [m['database_value']]: m['database_value']
-    });
+    });*/
+    this.state[m.key] = itemsnested;
 
     if(this.props.submitbutton && this.props.submitbutton == 'false') {
       setTimeout(() => {
@@ -184,10 +186,13 @@ export default class DynamicForm extends React.Component {
   }
 
   removenestedField(e, index, m) {
-    m['database_value'].splice(index, 1);
-    this.setState({
+    let itemsnested = m['database_value'];
+    itemsnested.splice(index, 1);
+    /*this.setState({
       [m['database_value']]: m['database_value']
-    });
+    });*/
+
+    this.state[m.key] = itemsnested;
 
     if(this.props.submitbutton && this.props.submitbutton == 'false') {
       setTimeout(() => {
@@ -299,11 +304,12 @@ export default class DynamicForm extends React.Component {
     }
 
     this.setState({ from_loading: true });
-    this.props.model.map(key => {
+    /*this.props.model.map(key => {
       if (key['type'] == 'wpeditor') {
         this.state[key['key']] = wp.editor.getContent(key['key']);
       }
-    });
+    });*/
+    console.log(this.state);
     axios({
       method: this.props.method,
       url: appLocalizer.apiUrl + '/' + this.props.url,
