@@ -3862,7 +3862,7 @@ class MVX_REST_API {
 
                 $commission_list[] = array(
                     'id'            =>  $commission_value,
-                    'title'         =>  '<a href="' . sprintf('?page=%s&CommissionID=%s', 'mvx#&submenu=commission', $commission_value) . '">#' . $commission_details->post_title . '</a>',
+                    'commission_id'         =>  '<a href="' . sprintf('?page=%s&CommissionID=%s', 'mvx#&submenu=commission', $commission_value) . '">#' . $commission_value . '</a>',
                     'link'          =>  sprintf('?page=%s&CommissionID=%s', 'mvx#&submenu=commission', $commission_value),
                     'order_id'      =>  '<a href="' . esc_url($edit_url) . '">#' . $order_id . '</a>',
                     'product'       =>  $product_list,
