@@ -667,6 +667,8 @@ export default class DynamicForm extends React.Component {
       }
 
 
+      
+
 
       if (type == "multi_number") {
         input = (
@@ -1415,7 +1417,7 @@ export default class DynamicForm extends React.Component {
         <div className="mvx-select-deselect-checkbox-content">
 
         <div className="mvx-select-de-box-and-checkbox">
-          <div className="mvx-select-deselect-checkbox-content-trigger">{m.select_deselect ? <div className="mvx-select-deselect-trigger" onClick={e => { this.onSelectDeselectChange(e, m); }}>Select / Deselect All</div> : '' }</div>
+          <div className="mvx-select-deselect-checkbox-content-trigger ">{m.select_deselect ? <div className="mvx-select-deselect-trigger text-bold mb-15" onClick={e => { this.onSelectDeselectChange(e, m); }}>Select / Deselect All</div> : '' }</div>
 
           <div className="mvx-select-deselect-checkbox-label-marge">
           {
@@ -1430,7 +1432,7 @@ export default class DynamicForm extends React.Component {
               <div>
               <React.Fragment key={"cfr" + o.key}>
                 
-                <div className="mvx-wrap-checkbox-and-label">
+                <div className="mvx-wrap-checkbox-and-label d-flex">
                   <div className="mvx-normal-checkbox-content">
                     <input
                       {...props}
@@ -1446,7 +1448,7 @@ export default class DynamicForm extends React.Component {
                       }}
                     />
                   </div>
-                  <div className="mvx-normal-checkbox-label"><p className="mvx-settings-metabox-description" dangerouslySetInnerHTML={{ __html: o.label }}></p></div>
+                  <div className="mvx-normal-checkbox-label"><p className="mvx-settings-metabox-description pt-0" dangerouslySetInnerHTML={{ __html: o.label }}></p></div>
                 </div>
               </React.Fragment>
               </div>

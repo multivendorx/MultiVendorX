@@ -2155,6 +2155,13 @@ class MVX_REST_API {
                 'height'    => 75,
                 'database_value' => array(),
             ],
+            [
+                'key'       => 'vendor_active_suspend_button',
+                'label'     => 'no_label',
+                'type'      => 'button',
+                'api_link'  => 'mvx_module/v1/active_suspend_vendor',
+                'database_value' => array(),
+            ],
             
         ];
 
