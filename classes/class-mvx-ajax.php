@@ -1969,7 +1969,7 @@ class MVX_Ajax {
                     if(!get_post_meta($product->get_id(), '_dismiss_to_do_list', true))
                         unset($actions_col['dismiss']);
 
-                    if (!current_vendor_can('edit_published_products') && get_mvx_vendor_settings('is_edit_delete_published_product', 'products_capability') != true && !in_array($product->get_status(), apply_filters('mvx_enable_edit_product_options_for_statuses', array('draft', 'pending')))) { 
+                    if (!current_vendor_can('edit_published_products') && !get_mvx_global_settings('is_edit_delete_published_product') && !in_array($product->get_status(), apply_filters('mvx_enable_edit_product_options_for_statuses', array('draft', 'pending')))) { 
                         unset($actions_col['edit']);
                         if ($product->get_status() != 'trash')
                             unset($actions_col['delete']);

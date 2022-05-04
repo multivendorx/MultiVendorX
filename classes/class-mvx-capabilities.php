@@ -37,8 +37,8 @@ class MVX_Capabilities {
         add_action('woocommerce_after_shop_loop_item', array($this, 'mvx_after_add_to_cart_form'), 6);
         /* for single product */
         add_action('woocommerce_product_meta_start', array($this, 'mvx_after_add_to_cart_form'), 25);
-        add_action('update_option_mvx_capabilities_product_settings_name', array(&$this, 'update_mvx_vendor_role_capability'), 10);
-        add_action('mvx_before_capabilities_product_settings_field_save', array(&$this, 'update_mvx_vendor_role_capability'), 10);
+        //add_action('update_option_mvx_capabilities_product_settings_name', array(&$this, 'update_mvx_vendor_role_capability'), 10);
+        //add_action('mvx_before_capabilities_product_settings_field_save', array(&$this, 'update_mvx_vendor_role_capability'), 10);
         if (defined('MVX_FORCE_VENDOR_CAPS') && MVX_FORCE_VENDOR_CAPS) $this->update_mvx_vendor_role_capability();
     }
 
@@ -194,7 +194,7 @@ class MVX_Capabilities {
             $wp_roles = new WP_Roles();
         }
 
-        $capabilities = $this->get_vendor_caps();
+        $capabilities = $this->get_mvx_vendor_caps();
         foreach ($capabilities as $cap => $is_enable) {
             $wp_roles->add_cap('dc_vendor', $cap, $is_enable);
         }
@@ -259,6 +259,75 @@ class MVX_Capabilities {
                 $caps['publish_shop_coupons'] = false;
             }
             if ($this->vendor_capabilities_settings('is_edit_coupon', $capability)) {
+                $caps['edit_published_shop_coupons'] = true;
+                $caps['delete_published_shop_coupons'] = true;
+            } else {
+                $caps['edit_published_shop_coupons'] = false;
+                $caps['delete_published_shop_coupons'] = false;
+            }
+        } else {
+            $caps['edit_shop_coupon'] = false;
+            $caps['edit_shop_coupons'] = false;
+            $caps['delete_shop_coupon'] = false;
+            $caps['delete_shop_coupons'] = false;
+            $caps['publish_shop_coupons'] = false;
+            $caps['edit_published_shop_coupons'] = false;
+            $caps['delete_published_shop_coupons'] = false;
+        }
+        $caps['edit_shop_orders'] = true;
+        return apply_filters('mvx_vendor_capabilities', $caps);
+    }
+
+    public function get_mvx_vendor_caps() {
+        $caps = array();
+        if (get_mvx_global_settings('is_upload_files')) {
+            $caps['upload_files'] = true;
+        } else {
+            $caps['upload_files'] = false;
+        }
+        if (get_mvx_global_settings('is_submit_product')) {
+            $caps['delete_product'] = true;
+            $caps['delete_products'] = true;
+            $caps['edit_products'] = true;
+            if(!apply_filters('is_mvx_vendor_edit_non_published_product', false)){
+                $caps['edit_product'] = false;
+            }else{
+                $caps['edit_product'] = true;
+            }
+            if (get_mvx_global_settings('is_published_product')) {
+                $caps['publish_products'] = true;
+            } else {
+                $caps['publish_products'] = false;
+            }
+            if (get_mvx_global_settings('is_edit_delete_published_product')) {
+                $caps['edit_published_products'] = true;
+                $caps['edit_product'] = true;
+                $caps['delete_published_products'] = true;
+            } else {
+                $caps['edit_published_products'] = false;
+                $caps['delete_published_products'] = false;
+            }
+        } else {
+            $caps['edit_product'] = false;
+            $caps['delete_product'] = false;
+            $caps['edit_products'] = false;
+            $caps['delete_products'] = false;
+            $caps['publish_products'] = false;
+            $caps['edit_published_products'] = false;
+            $caps['delete_published_products'] = false;
+        }
+
+        if (get_mvx_global_settings('is_submit_coupon')) {
+            $caps['edit_shop_coupon'] = true;
+            $caps['edit_shop_coupons'] = true;
+            $caps['delete_shop_coupon'] = true;
+            $caps['delete_shop_coupons'] = true;
+            if (get_mvx_global_settings('is_published_coupon')) {
+                $caps['publish_shop_coupons'] = true;
+            } else {
+                $caps['publish_shop_coupons'] = false;
+            }
+            if (get_mvx_global_settings('is_edit_coupon')) {
                 $caps['edit_published_shop_coupons'] = true;
                 $caps['delete_published_shop_coupons'] = true;
             } else {

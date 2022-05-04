@@ -4241,7 +4241,7 @@ if (!function_exists('mvx_get_product_link')) {
      */
     function mvx_get_product_link( $product_id ) {
         $link = '';
-        if ( current_user_can('edit_published_products') && get_mvx_vendor_settings('is_edit_delete_published_product', 'capabilities', 'product') == 'Enable' ) {
+        if ( current_user_can('edit_published_products') && get_mvx_global_settings('is_edit_delete_published_product') ) {
             $link = esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_edit_product_endpoint', 'seller_dashbaord', 'edit-product'), $product_id));
         }
         return apply_filters('mvx_get_product_link', $link, $product_id);
@@ -6605,92 +6605,6 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 ],
             ],
             
-            'product-capability'    => [
-                [
-                    'key'    => 'is_submit_product',
-                    'label'   => __( 'Submit Products', 'dc-woocommerce-multi-vendor' ),
-                    'class'     => 'mvx-toggle-checkbox',
-                    'type'    => 'checkbox',
-                    'options' => array(
-                        array(
-                            'key'=> "is_submit_product",
-                            'label'=> __('Allow vendors to submit products for approval/publishing.', 'dc-woocommerce-multi-vendor'),
-                            'value'=> "is_submit_product"
-                        )
-                    ),
-                    'database_value' => array(),
-                ],
-                [
-                    'key'    => 'is_published_product',
-                    'label'   => __( 'Publish Products', 'dc-woocommerce-multi-vendor' ),
-                    'class'     => 'mvx-toggle-checkbox',
-                    'type'    => 'checkbox',
-                    'options' => array(
-                        array(
-                            'key'=> "is_published_product",
-                            'label'=> __('If checked, products uploaded by vendors will be directly published without admin approval.', 'dc-woocommerce-multi-vendor'),
-                            'value'=> "is_published_product"
-                        )
-                    ),
-                    'database_value' => array(),
-                ],
-                [
-                    'key'    => 'is_edit_delete_published_product',
-                    'label'   => __( 'Edit Published Products', 'dc-woocommerce-multi-vendor' ),
-                    'class'     => 'mvx-toggle-checkbox',
-                    'type'    => 'checkbox',
-                    'options' => array(
-                        array(
-                            'key'=> "is_edit_delete_published_product",
-                            'label'=> __('Allow vendors to edit published products.', 'dc-woocommerce-multi-vendor'),
-                            'value'=> "is_edit_delete_published_product"
-                        )
-                    ),
-                    'database_value' => array(),
-                ],
-                [
-                    'key'    => 'publish_and_submit_products',
-                    'label'   => __( 'Publish and Submit Products', 'dc-woocommerce-multi-vendor' ),
-                    'class'     => 'mvx-toggle-checkbox',
-                    'type'    => 'checkbox',
-                    'options' => array(
-                        array(
-                            'key'=> "publish_and_submit_products",
-                            'label'=> __('Publish and Submit Products.', 'dc-woocommerce-multi-vendor'),
-                            'value'=> "publish_and_submit_products"
-                        )
-                    ),
-                    'database_value' => array(),
-                ],
-                [
-                    'key'    => 'is_submit_coupon',
-                    'label'   => __( 'Submit Coupons', 'dc-woocommerce-multi-vendor' ),
-                    'class'     => 'mvx-toggle-checkbox',
-                    'type'    => 'checkbox',
-                    'options' => array(
-                        array(
-                            'key'=> "is_submit_coupon",
-                            'label'=> __('Allow vendors to create coupons.', 'dc-woocommerce-multi-vendor'),
-                            'value'=> "is_submit_coupon"
-                        )
-                    ),
-                    'database_value' => array(),
-                ],
-                [
-                    'key'    => 'is_upload_files',
-                    'label'   => __( 'Upload Media Files', 'dc-woocommerce-multi-vendor' ),
-                    'class'     => 'mvx-toggle-checkbox',
-                    'type'    => 'checkbox',
-                    'options' => array(
-                        array(
-                            'key'=> "is_upload_files",
-                            'label'=> __('Allow vendors to upload media files.', 'dc-woocommerce-multi-vendor'),
-                            'value'=> "is_upload_files"
-                        )
-                    ),
-                    'database_value' => array(),
-                ],
-            ],
             'spmv-pages'    => [
                 [
                     'key'    => 'is_singleproductmultiseller',

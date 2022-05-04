@@ -4672,14 +4672,18 @@ class MVX_REST_API {
     }
 
     public function mvx_save_dashpages($req) {
+        global $MVX;
         $all_details = array();
         $modulename = $req->get_param('modulename');
         $modulename = str_replace("-", "_", $modulename);
         $get_managements_data = $req->get_param( 'model' );
         $optionname = 'mvx_'.$modulename.'_tab_settings';
         mvx_update_option($optionname, $get_managements_data);
+        if ($modulename == 'products_capability') {
+            $MVX->vendor_caps->update_mvx_vendor_role_capability();
+        }
         $all_details['error'] = 'Settings Saved';
-        return $all_details; 
+        return $all_details;
         die;
     }
 
