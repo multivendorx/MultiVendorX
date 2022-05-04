@@ -27,7 +27,21 @@ export default class DynamicForm extends React.Component {
 
     this.onMultiChange = this.onMultiChange.bind(this);
     
-    
+    this.handle_Vendor_active_suspend = this.handle_Vendor_active_suspend.bind(this);
+  }
+
+  handle_Vendor_active_suspend(e, api, status, vendor_id) {
+    axios({
+      method: 'post',
+      url: `${appLocalizer.apiUrl}/mvx_module/v1/active_suspend_vendor`,
+      data: {
+        status: status,
+        vendor_id: vendor_id
+      }
+    })
+    .then( ( res ) => {
+      location.reload();
+    } );
   }
 
   onSelectDeselectChange(e, m) {
@@ -670,7 +684,7 @@ export default class DynamicForm extends React.Component {
       if (type == "button") {
           input = (
             <div className="mvx-settings-basic-input-class">
-              <input type="button" value="Active" onClick={() => this.handle_Vendor_active_suspend()}/>
+              <input type="button" value={m.vendor_status_label} onClick={(e) => this.handle_Vendor_active_suspend(e, m.api_link, m.vendor_status, m.vendor_id)} />
               {m.desc ? <p className="mvx-settings-metabox-description" dangerouslySetInnerHTML={{ __html: m.desc }}></p> : ''}
             </div>
           );

@@ -707,6 +707,31 @@ class MVX_REST_API {
             'callback' => array( $this, 'mvx_get_as_per_module_status' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
+
+        register_rest_route( 'mvx_module/v1', '/active_suspend_vendor', [
+            'methods' => WP_REST_Server::EDITABLE,
+            'callback' => array( $this, 'mvx_active_suspend_vendor' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+    }
+
+    public function mvx_active_suspend_vendor($request) {
+        $status = $request && $request->get_param('status') ? $request->get_param('status') : '';
+        $user_id = $request && $request->get_param('vendor_id') ? $request->get_param('vendor_id') : '';
+        $user = new WP_User(absint($user_id));
+        if ($status == 'activate') {
+            if (is_user_mvx_vendor($user)) {
+                delete_user_meta($user_id, '_vendor_turn_off');
+            }
+        } else {
+            if (is_user_mvx_vendor($user)) {
+                update_user_meta($user_id, '_vendor_turn_off', 'Enable');
+                if ( apply_filters( 'mvx_suspend_vendor_email_sent' , true ) ) {
+                    $email_vendor_suspend = WC()->mailer()->emails['WC_Email_Suspend_Vendor_Account'];
+                    $email_vendor_suspend->trigger($user_id);
+                }
+            }
+        }
     }
 
     public function mvx_get_as_per_module_status($request) {
@@ -2087,6 +2112,8 @@ class MVX_REST_API {
         $settings_fields_data['vendor_default_shipping_options']   = $vendor_default_shipping_options;
         $settings_fields_data['shipping_options']  = $shipping_options_list;
 
+        $is_block = get_user_meta($vendor_id, '_vendor_turn_off', true);
+
         $settings_fields_data['vendor-personal'] =   [
             [
                 'key'       => 'user_login',
@@ -2160,6 +2187,9 @@ class MVX_REST_API {
                 'label'     => 'no_label',
                 'type'      => 'button',
                 'api_link'  => 'mvx_module/v1/active_suspend_vendor',
+                'vendor_status' => $is_block ? 'activate' : 'suspend',
+                'vendor_status_label' => $is_block ? __('Activate', 'dc-woocommerce-multi-vendor') : __('Suspend', 'dc-woocommerce-multi-vendor'),
+                'vendor_id' => $vendor_id,
                 'database_value' => array(),
             ],
             
