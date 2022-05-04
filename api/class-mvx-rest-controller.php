@@ -3811,17 +3811,18 @@ class MVX_REST_API {
         }
 
         if ($vendor_name) {
+            $vendor = get_mvx_vendor($vendor_name);
             $args['meta_query'] = array(
                 array(
                     'key' => '_commission_vendor',
-                    'value' => wc_clean($vendor_name),
+                    'value' => absint($vendor->term_id),
                     'compare' => '='
                 )
             );
 
         }
-        $commissions = new WP_Query( $args );
 
+        $commissions = new WP_Query( $args );
         if ($commissions->get_posts() && !empty($commissions->get_posts())) {
             foreach ($commissions->get_posts() as $commission_key => $commission_value) {
 
