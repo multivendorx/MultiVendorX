@@ -1053,7 +1053,6 @@ input[name="search"] {
 .call-block {
 	width: 100%;
 	display: block;
-	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	padding: 30px;
 	padding-bottom: 0px;
@@ -1146,7 +1145,6 @@ input[name="search"] {
 			text-align: center;
 			color: #181718;
 			font-size: 14px;
-			-webkit-box-sizing: border-box;
 			box-sizing: border-box;
 			padding: 17px 15px;
 			border: #FFF 1px solid;
@@ -1176,7 +1174,6 @@ input[name="search"] {
 	}
 }
 .border-box {
-	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	border: #65438f 1px solid !important;
 }
@@ -1225,7 +1222,6 @@ input[name="search"] {
 .compare-table-holder {
 	width: 100%;
 	height: auto;
-	display: inline-block;
 	max-width: 975px;
 	width: 100%;
 	height: auto;
@@ -1243,7 +1239,6 @@ input[name="search"] {
 			display: block;
 			float: left;
 			width: 33%;
-			-webkit-box-sizing: border-box;
 			box-sizing: border-box;
 			background-color: #fbfafc;
 			position: relative;
@@ -1384,7 +1379,6 @@ input[name="search"] {
 			display: block;
 			float: left;
 			width: 33.3333%;
-			-webkit-box-sizing: border-box;
 			box-sizing: border-box;
 			background-color: #fbfafc;
 			position: relative;
@@ -1416,7 +1410,6 @@ input[name="search"] {
 				border-left: none;
 			}
 			>ul {
-				-webkit-box-sizing: border-box;
 				box-sizing: border-box;
 				padding: 30px;
 				>li {
@@ -1424,7 +1417,6 @@ input[name="search"] {
 					color: #5e5d60;
 					font-weight: 400;
 					min-height: 50px;
-					-webkit-box-sizing: border-box;
 					box-sizing: border-box;
 					padding-top: 15px;
 					padding-bottom: 15px;
@@ -1841,7 +1833,6 @@ ul.mvx-dashboard-tabs-list {
 	flex: 1 1 auto;
 }
 input[type="checkbox"] {
-	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	padding: 0px;
 	width: 18px;
@@ -1862,14 +1853,12 @@ input[type="checkbox"] {
 	-webkit-appearance: none;
 	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.10);
 	transition: .05s border-color ease-in-out;
-	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	padding: 0px;
 	width: 22px;
 	height: 22px;
 }
 input[type="radio"] {
-	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	padding: 0px;
 	width: 18px;
@@ -2415,7 +2404,6 @@ p.vendor-status.approved-vendor {
 				justify-content: flex-start;
 				padding-left: 5px;
 				padding-right: 5px;
-				-webkit-box-sizing: border-box;
 				box-sizing: border-box;
 			}
 			&:nth-child(5) {
@@ -2424,7 +2412,6 @@ p.vendor-status.approved-vendor {
 				justify-content: flex-start;
 				padding-left: 5px;
 				padding-right: 5px;
-				-webkit-box-sizing: border-box;
 				box-sizing: border-box;
 			}
 			&:nth-child(6) {
@@ -2433,7 +2420,6 @@ p.vendor-status.approved-vendor {
 				justify-content: flex-start;
 				padding-left: 5px;
 				padding-right: 5px;
-				-webkit-box-sizing: border-box;
 				box-sizing: border-box;
 			}
 			&:nth-child(7) {
@@ -2442,7 +2428,6 @@ p.vendor-status.approved-vendor {
 				justify-content: flex-start;
 				padding-left: 5px;
 				padding-right: 5px;
-				-webkit-box-sizing: border-box;
 				box-sizing: border-box;
 			}
 		}
@@ -2455,7 +2440,6 @@ p.vendor-status.approved-vendor {
 				justify-content: flex-start;
 				padding-left: 5px;
 				padding-right: 5px;
-				-webkit-box-sizing: border-box;
 				box-sizing: border-box;
 			}
 			&:nth-child(5) {
@@ -2464,7 +2448,6 @@ p.vendor-status.approved-vendor {
 				justify-content: flex-start;
 				padding-left: 5px;
 				padding-right: 5px;
-				-webkit-box-sizing: border-box;
 				box-sizing: border-box;
 			}
 			&:nth-child(6) {
@@ -2473,7 +2456,6 @@ p.vendor-status.approved-vendor {
 				justify-content: flex-start;
 				padding-left: 5px;
 				padding-right: 5px;
-				-webkit-box-sizing: border-box;
 				box-sizing: border-box;
 			}
 			&:nth-child(7) {
@@ -2482,7 +2464,6 @@ p.vendor-status.approved-vendor {
 				justify-content: flex-start;
 				padding-left: 5px;
 				padding-right: 5px;
-				-webkit-box-sizing: border-box;
 				box-sizing: border-box;
 			}
 		}
@@ -2589,9 +2570,6 @@ p.vendor-status.approved-vendor {
 		}
 	}
 	>div {
-		-webkit-box-sizing: border-box;
-		box-sizing: border-box;
-		-webkit-box-sizing: border-box;
 		box-sizing: border-box;
 		&:nth-child(2) {
 			padding-left: 15px;
@@ -2720,7 +2698,6 @@ p.vendor-status.approved-vendor {
 						width: 24px;
 						height: 24px;
 						display: inline-block;
-						-webkit-box-sizing: border-box;
 						box-sizing: border-box;
 						background-color: #65438f;
 						border-radius: 4px;
@@ -2751,7 +2728,6 @@ p.vendor-status.approved-vendor {
 			height: 24px;
 			display: inline-block;
 			margin-right: 8px;
-			-webkit-box-sizing: border-box;
 			box-sizing: border-box;
 			background-color: #65438f;
 			border-radius: 4px;

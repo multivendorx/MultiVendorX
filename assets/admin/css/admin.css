@@ -1145,7 +1145,7 @@ input[name="search"] {
   width: 100%;
   display: block;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+          box-sizing: border-box;
   padding: 30px;
   padding-bottom: 0px;
 }
@@ -1254,7 +1254,7 @@ input[name="search"] {
   color: #181718;
   font-size: 14px;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+          box-sizing: border-box;
   padding: 17px 15px;
   border: #FFF 1px solid;
   text-decoration: none;
@@ -1286,7 +1286,7 @@ input[name="search"] {
 
 .border-box {
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+          box-sizing: border-box;
   border: #65438f 1px solid !important;
 }
 
@@ -1338,7 +1338,6 @@ input[name="search"] {
 .compare-table-holder {
   width: 100%;
   height: auto;
-  display: inline-block;
   max-width: 975px;
   width: 100%;
   height: auto;
@@ -1362,7 +1361,7 @@ input[name="search"] {
   float: left;
   width: 33%;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+          box-sizing: border-box;
   background-color: #fbfafc;
   position: relative;
 }
@@ -1519,7 +1518,7 @@ input[name="search"] {
   float: left;
   width: 33.3333%;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+          box-sizing: border-box;
   background-color: #fbfafc;
   position: relative;
   text-align: center;
@@ -1556,7 +1555,7 @@ input[name="search"] {
 
 .money-table-holder > ul > li > ul {
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+          box-sizing: border-box;
   padding: 30px;
 }
 
@@ -1566,7 +1565,7 @@ input[name="search"] {
   font-weight: 400;
   min-height: 50px;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+          box-sizing: border-box;
   padding-top: 15px;
   padding-bottom: 15px;
   text-align: left;
@@ -2019,7 +2018,7 @@ ul.mvx-dashboard-tabs-list li.activedashboardtabs {
 
 input[type="checkbox"] {
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+          box-sizing: border-box;
   padding: 0px;
   width: 18px;
   height: 18px;
@@ -2041,7 +2040,6 @@ input[type="checkbox"] {
           box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
   -webkit-transition: .05s border-color ease-in-out;
   transition: .05s border-color ease-in-out;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   padding: 0px;
   width: 22px;
@@ -2050,7 +2048,7 @@ input[type="checkbox"] {
 
 input[type="radio"] {
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+          box-sizing: border-box;
   padding: 0px;
   width: 18px;
   height: 18px;
@@ -2633,7 +2631,7 @@ p.vendor-status.approved-vendor {
   padding-left: 5px;
   padding-right: 5px;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .vendor-table-wapper .rdt_TableHead .rdt_TableCol:nth-child(5) {
@@ -2643,7 +2641,7 @@ p.vendor-status.approved-vendor {
   padding-left: 5px;
   padding-right: 5px;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .vendor-table-wapper .rdt_TableHead .rdt_TableCol:nth-child(6) {
@@ -2653,7 +2651,7 @@ p.vendor-status.approved-vendor {
   padding-left: 5px;
   padding-right: 5px;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .vendor-table-wapper .rdt_TableHead .rdt_TableCol:nth-child(7) {
@@ -2663,7 +2661,7 @@ p.vendor-status.approved-vendor {
   padding-left: 5px;
   padding-right: 5px;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .vendor-table-wapper .rdt_TableBody .rdt_TableCell:nth-child(4) {
@@ -2673,7 +2671,7 @@ p.vendor-status.approved-vendor {
   padding-left: 5px;
   padding-right: 5px;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .vendor-table-wapper .rdt_TableBody .rdt_TableCell:nth-child(5) {
@@ -2683,7 +2681,7 @@ p.vendor-status.approved-vendor {
   padding-left: 5px;
   padding-right: 5px;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .vendor-table-wapper .rdt_TableBody .rdt_TableCell:nth-child(6) {
@@ -2693,7 +2691,7 @@ p.vendor-status.approved-vendor {
   padding-left: 5px;
   padding-right: 5px;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .vendor-table-wapper .rdt_TableBody .rdt_TableCell:nth-child(7) {
@@ -2703,7 +2701,7 @@ p.vendor-status.approved-vendor {
   padding-left: 5px;
   padding-right: 5px;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .general-tab-area {
@@ -2822,9 +2820,7 @@ p.vendor-status.approved-vendor {
 
 .form-group > div {
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .form-group > div:nth-child(2) {
@@ -2967,7 +2963,7 @@ p.vendor-status.approved-vendor {
   height: 24px;
   display: inline-block;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+          box-sizing: border-box;
   background-color: #65438f;
   border-radius: 4px;
   color: #FFF;
@@ -2998,7 +2994,7 @@ p.vendor-status.approved-vendor {
   display: inline-block;
   margin-right: 8px;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+          box-sizing: border-box;
   background-color: #65438f;
   border-radius: 4px;
   color: #FFF;
