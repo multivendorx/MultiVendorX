@@ -12,23 +12,14 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/sortablejs": "^1.10.7",
-    "@wordpress/babel-preset-default": "^6.3.4",
-    "@wordpress/scripts": "^18.1.0",
-    "css-loader": "^6.6.0"
+    "@wordpress/scripts": "^18.1.0"
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
     "@material-ui/core": "^4.12.3",
-    "@mui/material": "^5.2.8",
-    "@tinymce/tinymce-react": "^4.0.0",
-    "@wordpress/components": "^19.0.0",
     "axios": "^0.23.0",
-    "chart.js": "^3.7.0",
     "react": "^17.0.2",
-    "react-autosave": "^0.3.1",
-    "react-chartjs-2": "^4.0.1",
     "react-csv": "^2.2.2",
     "react-data-table-component": "^7.4.6",
     "react-dom": "^17.0.2",

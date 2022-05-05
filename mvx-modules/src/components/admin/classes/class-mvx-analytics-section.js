@@ -3,7 +3,6 @@ import { render } from 'react-dom';
 import axios from 'axios';
 import Select from 'react-select';
 import RingLoader from "react-spinners/RingLoader";
-import { css } from "@emotion/react";
 
 import {
   BrowserRouter as Router,
