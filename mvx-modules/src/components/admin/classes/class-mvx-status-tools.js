@@ -6,8 +6,6 @@ import RingLoader from "react-spinners/RingLoader";
 import { css } from "@emotion/react";
 import PuffLoader from "react-spinners/PuffLoader";
 
-import { ReactSortable } from "react-sortablejs";
-
 import {
   BrowserRouter as Router,
   Link,
@@ -18,8 +16,6 @@ import {
 } from "react-router-dom";
 
 import DynamicForm from "../../../DynamicForm";
-
-import { DateRangePicker } from 'rsuite';
 
 import DataTable from 'react-data-table-component';
 

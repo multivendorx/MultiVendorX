@@ -5,8 +5,6 @@ import Select from 'react-select';
 import RingLoader from "react-spinners/RingLoader";
 import { css } from "@emotion/react";
 
-import { ReactSortable } from "react-sortablejs";
-
 import {
   BrowserRouter as Router,
   Link,

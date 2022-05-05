@@ -6,8 +6,6 @@ import RingLoader from "react-spinners/RingLoader";
 import PuffLoader from "react-spinners/PuffLoader";
 import { css } from "@emotion/react";
 
-import { ReactSortable } from "react-sortablejs";
-
 import DataTable from 'react-data-table-component';
 
 import {

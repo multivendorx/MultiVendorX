@@ -5,13 +5,7 @@ import Select from 'react-select';
 import PuffLoader from "react-spinners/PuffLoader";
 import { css } from "@emotion/react";
 
-import { ReactSortable } from "react-sortablejs";
-
-
 //import DynamicDataTable from "@langleyfoxall/react-dynamic-data-table";
-
-import styled from 'styled-components'
-import { useTable, usePagination, useRowSelect } from 'react-table'
 
 import {
   BrowserRouter as Router,

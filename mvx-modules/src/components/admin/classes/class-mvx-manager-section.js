@@ -4,13 +4,7 @@ import axios from 'axios';
 import Select from 'react-select';
 import RingLoader from "react-spinners/RingLoader";
 import { css } from "@emotion/react";
-import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
-
-import { RoutedTabs, NavTab } from "react-router-tabs";
-
 import { useState, useEffect } from 'react';
-
-import { ReactSortable } from "react-sortablejs";
 
 import {
   BrowserRouter as Router,
