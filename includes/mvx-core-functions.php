@@ -64,6 +64,40 @@ if (!function_exists('get_mvx_global_settings')) {
 
 }
 
+if (!function_exists('get_mvx_older_global_settings')) {
+
+    function get_mvx_older_global_settings($name = '', $default = false) {
+        $options = array();
+        $all_options = apply_filters('wcmp_all_admin_options', array(
+            'wcmp_general_settings_name',
+            'wcmp_product_settings_name',
+            'wcmp_capabilities_settings_name',
+            'wcmp_payment_settings_name',
+            'wcmp_general_policies_settings_name',
+            'wcmp_general_customer_support_details_settings_name',
+            'wcmp_vendor_general_settings_name',
+            'wcmp_capabilities_product_settings_name',
+            'wcmp_capabilities_order_settings_name',
+            'wcmp_capabilities_miscellaneous_settings_name',
+            'wcmp_payment_paypal_payout_settings_name',
+            'wcmp_payment_paypal_masspay_settings_name',
+            'wcmp_vendor_dashboard_settings_name'
+                )
+        );
+        foreach ($all_options as $option_name) {
+            $options = array_merge($options, get_option($option_name, array()));
+        }
+        if (empty($name)) {
+            return $options;
+        }
+        if (!isset($options[$name]) || empty($options[$name])) {
+            return $default;
+        }
+        return $options[$name];
+    }
+
+}
+
 if (!function_exists('update_mvx_vendor_settings')) {
 
     function update_mvx_vendor_settings($key = '', $value = '', $tab = '') {
