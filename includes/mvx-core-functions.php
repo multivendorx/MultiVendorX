@@ -5722,29 +5722,29 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'database_value' => array(),
                 ],
                 [
-                    'key'    => 'is_publish_coupon',
+                    'key'    => 'is_published_coupon',
                     'label'   => __( 'Publish Coupons', 'dc-woocommerce-multi-vendor' ),
                     'class'     => 'mvx-toggle-checkbox',
                     'type'    => 'checkbox',
                     'options' => array(
                         array(
-                            'key'=> "is_publish_coupon",
+                            'key'=> "is_published_coupon",
                             'label'=> __('Gives sellers the ability to publish coupons on your website', 'dc-woocommerce-multi-vendor'),
-                            'value'=> "is_publish_coupon"
+                            'value'=> "is_published_coupon"
                         )
                     ),
                     'database_value' => array(),
                 ],
                 [
-                    'key'    => 'is_edit_coupon',
+                    'key'    => 'is_edit_delete_published_coupon',
                     'label'   => __( 'Edit Coupons', 'dc-woocommerce-multi-vendor' ),
                     'class'     => 'mvx-toggle-checkbox',
                     'type'    => 'checkbox',
                     'options' => array(
                         array(
-                            'key'=> "is_edit_coupon",
+                            'key'=> "is_edit_delete_published_coupon",
                             'label'=> __('Sellers gain the option to edit, re-use or delete a published coupons', 'dc-woocommerce-multi-vendor'),
-                            'value'=> "is_edit_coupon"
+                            'value'=> "is_edit_delete_published_coupon"
                         )
                     ),
                     'database_value' => array(),
@@ -6301,124 +6301,6 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'database_value' => '',
                 ],*/
             ],
-            /*'dashbaord-management'   => [
-                [
-                    'key'    => 'is_backend_diabled',
-                    'label'   => __( 'Disallow Vendors wp-admin Access', 'dc-woocommerce-multi-vendor' ),
-                    'class'     => 'mvx-toggle-checkbox',
-                    'type'    => 'checkbox',
-                    'hints' => __('If unchecked vendor will have access to backend', 'dc-woocommerce-multi-vendor'),
-                    'props'     => array(
-                        'disabled'  => true
-                    ),
-                    'options' => array(
-                        array(
-                            'key'=> "reactjs",
-                            'label'=> __('Get <a href="//wc-marketplace.com/product/mvx-frontend-manager/">Advanced Frontend Manager</a> to offer a single dashboard for all vendor purpose and eliminate their backend access requirement <code>example.com/category/my-category/</code>.', 'dc-woocommerce-multi-vendor'),
-                            'value'=> "reactjs"
-                        ),
-                    ),
-                    'database_value' => array(),
-                ],
-                [
-                    'key'    => 'mvx_new_dashboard_site_logo',
-                    'label'   => __( 'Dashbaord Brand Logo', 'dc-woocommerce-multi-vendor' ),
-                    'type'    => 'file',
-                    'width' =>  75,
-                    'height'    => 75,
-                    'desc' => __('Used as site logo on vendor dashboard pages', 'dc-woocommerce-multi-vendor'),
-                    'database_value' => array(),
-                ],
-                [
-                    'key'       => 'vendor_color_scheme_picker',
-                    'type'      => 'radio_color',
-                    'label'     => __( 'Dashboard Color Scheme', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __( 'Used as site logo on vendor dashboard pages', 'dc-woocommerce-multi-vendor' ),
-                    'options' => array(
-                        array(
-                            'name'  => 'vendor_color_scheme_picker',
-                            'key' => 'outer_space_blue',
-                            'label' => __('Outer Space', 'dc-woocommerce-multi-vendor'),
-                            'color' => array('#202528', '#333b3d','#3f85b9', '#316fa8'),
-                            'value' => 'outer_space_blue'
-                        ),
-                        array(
-                            'name'  => 'vendor_color_scheme_picker',
-                            'key'   => 'green_lagoon',
-                            'label' => __('Green Lagoon', 'dc-woocommerce-multi-vendor'),
-                            'color' => array('#171717', '#212121', '#009788','#00796a'),
-                            'value' => 'green_lagoon'
-                        ),
-                        array(
-                            'name'  => 'vendor_color_scheme_picker',
-                            'key'   => 'old_west',
-                            'label' => __('Old West', 'dc-woocommerce-multi-vendor'),
-                            'color' => array('#46403c', '#59524c', '#c7a589', '#ad8162'),
-                            'value' => 'old_west'
-                        ),
-                        array(
-                            'name'  => 'vendor_color_scheme_picker',
-                            'key'   => 'wild_watermelon',
-                            'label' => __('Wild Watermelon', 'dc-woocommerce-multi-vendor'),
-                            'color' => array('#181617', '#353130', '#fd5668', '#fb3f4e'),
-                            'value' => 'wild_watermelon'
-                        ),
-                    ),
-                    'database_value' => '',
-                ],
-
-                [
-                    'key'       => 'mvx_vendor_shop_template',
-                    'type'      => 'radio_select',
-                    'label'     => __( 'Vendor Shop Template', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __( 'Used as site logo on vendor dashboard pages', 'dc-woocommerce-multi-vendor' ),
-                    'options' => array(
-                        array(
-                            'name'  => 'mvx_vendor_shop_template',
-                            'key' => 'template1',
-                            'label' => __('Outer Space', 'dc-woocommerce-multi-vendor'),
-                            'color' => $MVX->plugin_url.'assets/images/template1.png',
-                            'width' => 50,
-                            'height'=> 60,
-                            'value' => 'template1'
-                        ),
-                        array(
-                            'name'  => 'mvx_vendor_shop_template',
-                            'key'   => 'template2',
-                            'label' => __('Green Lagoon', 'dc-woocommerce-multi-vendor'),
-                            'color' => $MVX->plugin_url.'assets/images/template2.png',
-                            'width' => 50,
-                            'height'=> 60,
-                            'value' => 'template2'
-                        ),
-                        array(
-                            'name'  => 'mvx_vendor_shop_template',
-                            'key'   => 'template3',
-                            'label' => __('Old West', 'dc-woocommerce-multi-vendor'),
-                            'color' => $MVX->plugin_url.'assets/images/template3.png',
-                            'width' => 50,
-                            'height'=> 60,
-                            'value' => 'template3'
-                        ),
-                    ),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'setup_wizard_introduction',
-                    'type'      => 'wpeditor',
-                    'class'     =>  'mvx-setting-wpeditor-class',
-                    'label'     => __( 'Introduction step', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __( 'Add some introduction or welcome speech to your vendor. This section display in vendor store setup wizard introduction step.', 'dc-woocommerce-multi-vendor' ),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'mvx_vendor_dashboard_custom_css',
-                    'type'      => 'textarea',
-                    'label'     => __( 'Custom CSS', 'dc-woocommerce-multi-vendor' ),
-                    'desc'      => __( 'Will be applicable on vendor frontend', 'dc-woocommerce-multi-vendor' ),
-                    'database_value' => '',
-                ],
-            ],*/
             'dashbaord-pages'   => [
                
                 [

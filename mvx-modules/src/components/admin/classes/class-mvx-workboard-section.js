@@ -11,7 +11,9 @@ import { ReactSortable } from "react-sortablejs";
 //import DynamicDataTable from "@langleyfoxall/react-dynamic-data-table";
 
 import styled from 'styled-components'
+
 import { useTable, usePagination, useRowSelect } from 'react-table'
+
 
 import {
   BrowserRouter as Router,

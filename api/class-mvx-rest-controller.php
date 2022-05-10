@@ -3739,6 +3739,7 @@ class MVX_REST_API {
 
     public function mvx_show_vendor_name() {
         //$option_lists[] = array('value' => 'all', 'label' => __('Show All Commission', 'dc-woocommerce-multi-vendor'));
+        $option_lists = [];
         $vendors = get_mvx_vendors();
         if ($vendors) {
             foreach($vendors as $vendor_key => $vendor_value) {
