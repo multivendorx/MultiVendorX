@@ -668,6 +668,10 @@ input[name="search"] {
   margin-right: 1.5rem !important;
 }
 
+.pa-15 {
+  padding: 0.9375rem !important;
+}
+
 .pa-32 {
   padding: 2rem !important;
 }
@@ -1937,7 +1941,7 @@ ul.mvx-dashboard-tabs-list a {
   border: 0.06rem solid #d4d1d9;
   margin: -0.06rem 0 0 -1.5625rem;
   background-color: #f7f6f9;
-  padding: 1rem 1rem 0 1.25rem;
+  padding: 1rem 1rem 1rem 1.25rem;
   position: relative;
 }
 
@@ -2059,7 +2063,7 @@ ul.mvx-dashboard-tabs-list a {
   top: 0;
   left: 0;
   bottom: 0;
-  right: 0rem;
+  right: 0;
   color: white;
   text-align: center;
 }
@@ -2080,6 +2084,21 @@ ul.mvx-dashboard-tabs-list a {
   -webkit-box-pack: justify !important;
   -ms-flex-pack: justify !important;
   justify-content: space-between !important;
+}
+
+.mvx-left-icon {
+  width: 2.1875rem;
+  height: 2.1875rem;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 0.25rem;
+  background-color: #f4f1f7;
+  text-align: center;
+  line-height: 2.1875rem;
+  color: #502b80;
+  display: block;
+  margin-right: 0.25rem;
+  float: left;
 }
 
 .link-icon {

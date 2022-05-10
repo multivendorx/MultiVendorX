@@ -871,10 +871,11 @@ class App extends Component {
 
         <HeaderSection />
 
-      <div className="container">
-      <div className="mvx-child-container">
-        <div className="mvx-sub-container">
-          <div className="general-tab-header-area">
+      <div className="mvx-container">
+      <div className="ptb-2r mvx-row">
+        <div className="mvx-col-75">
+          
+          <div className="mv-off-white-box pa-15 mb-90 text-center">
             <div className="mvx-tab-name-display">{tab_name_display}</div>
             <p>{tab_description_display}</p>
           </div>
@@ -891,7 +892,7 @@ class App extends Component {
           </div>
         </div>  
 
-        <div className="mvx-adv-image-display">
+        <div className="mvx-col-25 mvx-adv-image-display">
           <a href="https://www.qries.com/" target="__blank">
             <img alt="Multivendor X" src={appLocalizer.multivendor_logo}/>
           </a>
@@ -935,12 +936,12 @@ Child({ name }) {
             { this.state.mvx_registration_fileds_list.length > 0 ?
               <div className={`mvx-top-part-from ${this.state.mvx_registration_fileds_list && this.state.mvx_registration_fileds_list.length > 0 && this.state.mvx_registration_fileds_list[0].hidden ? 'mvx-form-left-line-active' : ''}`} onClick={(e) => this.handleActiveClick(e, '', 'parent')}>
                   <div className="content">
-                    <div className='form-group'>
-                      <div className="mvx-untitle-content w-50">
+                    <div className='form-group-new w-100'>
+                      <div className="mvx-untitle-content w-100 mb-15">
                         <label className='form-title w-100'>Form Title</label>
                         <input className='default-input' type="text" placeholder="Untitled form" value={this.state.mvx_registration_fileds_list[0].label} onChange={e => {this.OnRegistrationSelectChange(e, '', 'parent_label') }}/>
                       </div>
-                      <div className="mvx-from-description w-50">
+                      <div className="mvx-from-description w-100">
                         <label className='form-title w-100'>Form Description</label>
                         <input className='default-input' type="text" placeholder="From Description" value={this.state.mvx_registration_fileds_list[0].description} onChange={e => {this.OnRegistrationSelectChange(e, '', 'parent_description') }} />
                       </div>
