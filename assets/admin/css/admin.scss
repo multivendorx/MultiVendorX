@@ -120,6 +120,7 @@ a:focus {
 .icon-tab-products:before {
     content: "\e914";
 }
+
 .icon-tab-products-capability:before {
     content: "\e915";
 }
@@ -1892,7 +1893,7 @@ ul.mvx-dashboard-tabs-list {
 	box-sizing: border-box;
 	padding: 0.625rem 0.9375rem;
 	width: 100%;
-	display: flex !important;
+	display: flex;
 	-webkit-box-pack: justify !important;
 	-ms-flex-pack: justify !important;
 	justify-content: space-between !important;

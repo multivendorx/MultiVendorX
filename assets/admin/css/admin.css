@@ -2078,9 +2078,9 @@ ul.mvx-dashboard-tabs-list a {
           box-sizing: border-box;
   padding: 0.625rem 0.9375rem;
   width: 100%;
-  display: -webkit-box !important;
-  display: -ms-flexbox !important;
-  display: flex !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-pack: justify !important;
   -ms-flex-pack: justify !important;
   justify-content: space-between !important;
