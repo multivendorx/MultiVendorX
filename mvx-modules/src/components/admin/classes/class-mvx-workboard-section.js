@@ -5,7 +5,12 @@ import Select from 'react-select';
 import PuffLoader from "react-spinners/PuffLoader";
 import { css } from "@emotion/react";
 
+import { ReactSortable } from "react-sortablejs";
+
+
 //import DynamicDataTable from "@langleyfoxall/react-dynamic-data-table";
+
+import styled from 'styled-components'
 
 import {
   BrowserRouter as Router,
@@ -1207,12 +1212,12 @@ class App extends Component {
 
         <HeaderSection />
 
-      <div className="container">
-        <div className="mvx-child-container">
-              <div className="mvx-sub-container">
+      <div className="mvx-container">
+        <div className="ptb-2r mvx-row">
+              <div className="mvx-col-100">
                 
 
-                <div className="mvx-upper-tab-header-area">
+                <div className="mv-off-white-box pa-15 mb-90 text-center">
                   <div className="mvx-tab-name-display">{tab_name_display}</div>
                   <p>{tab_description_display}</p>
                 </div>
@@ -1221,7 +1226,13 @@ class App extends Component {
                 <div className="dashboard-tab-area">
                   <ul className="mvx-dashboard-tabs-list">
                     {appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'].map((data, index) => (
-                        <Link to={`?page=mvx#&submenu=work-board&name=${data.modulename}`} ><li className={query_name.get("name") == data.modulename ? 'activedashboardtabs' : ''}>{data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}{data.tablabel}</li></Link>
+                        
+                        <li className={query_name.get("name") == data.modulename ? 'activedashboardtabs' : ''}>
+                          <Link to={`?page=mvx#&submenu=work-board&name=${data.modulename}`} >
+                            {data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}{data.tablabel}
+                          </Link>
+                        </li>
+                          
                     ))}
                   </ul>
                     <this.Child name={query_name.get("name")} />
@@ -1231,11 +1242,11 @@ class App extends Component {
 
               </div>
 
-        <div className="mvx-adv-image-display">
+        {/* <div className="mvx-adv-image-display">
           <a href="https://www.qries.com/" target="__blank">
             <img alt="Multivendor X" src={appLocalizer.multivendor_logo}/>
           </a>
-        </div>
+        </div> */}
 
         </div>
 
@@ -1417,56 +1428,75 @@ Child({ name }) {
 
 
 
-        {/* Pending Vendor's product approval */}
+        {/* Pending Vendor's product approval work done */}
         <div className="mvx-todo-status-check">
+            
             <div className="mvx-text-with-line-wrapper">
-                <div className="mvx-report-text">Pending Product Approval</div>
-                <div className="mvx-report-text-fade-line"></div>
-                <div className="mvx-select-all-bulk-wrap">
-                  <div className="mvx-select-all-checkbox">
-                    <input type="checkbox" className="mvx-select-all" checked={this.state.pending_parent_product_check} onChange={(e) => this.handle_parent_todo_checkbox_chenage(e)}/>
-                    <span className="mvx-select-all-text">Select All</span>
-                  </div>
-                  <Select placeholder="Bulk Action" options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'product_approval')} />
+              <div className="mvx-report-text">
+                <span>Pending Product Approval</span>
+              </div>
+              <div className="mvx-select-all-bulk-wrap">
+                <div className="mvx-select-all-checkbox">
+                  <input type="checkbox" className="mvx-select-all" checked={this.state.pending_parent_product_check} onChange={(e) => this.handle_parent_todo_checkbox_chenage(e)} />
+                  <span className="mvx-select-all-text">Select All</span>
                 </div>
+                <Select placeholder="Bulk Action" options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'product_approval')} />
+              </div>
             </div>
-            <div className="mvx-workboard-card-wrapper">
+
+            <div className="mvx-row">
                 
               {
                 this.state.list_of_pending_vendor_product.length > 0 ? this.state.list_of_pending_vendor_product.map((pending_data, pending_index) => (
 
-                    <div className="mvx-workboard-card-wrapper-child">
-                      <div className="mvx-workboard-card-wrapper-heading">Pending Vendor Product</div>
-                      <div className="mvx-workboard-top-part">
-                          <div className="mvx-workboard-img-part">
-                              <img alt="Multivendor X" src={pending_data.product_src}/>
-                              <div className="mvx-workboard-vendor-name">{pending_data.product}</div>
+                    <div className='mvx-col-33'>
+                      <div className='mv-off-white-box'>
+                        <div className='mv-white-box-header'>
+                        Pending Vendor Product
+                          <div className='pull-right'>
+                          <input type="checkbox" className="mvx-workboard-checkbox" checked={this.state.pending_product_check[pending_index]} onChange={(e) => this.handle_todo_checkbox_chenage(e, pending_data.id, pending_index)} />
                           </div>
-                          <div className="mvx-workboard-select-icon"><input type="checkbox" className="mvx-workboard-checkbox" checked={this.state.pending_product_check[pending_index]} onChange={(e) => this.handle_todo_checkbox_chenage(e, pending_data.id, pending_index)} /></div>
-                      </div>
-                      <div className="mvx-workboard-address-area">
-                          <p className="mvx-todo-list-details-data-value">
-                          <div className="mvx-commission-label-class">Vendor Name:</div>
-                          <div className="mvx-commission-value-class"><a href={pending_data.vendor_link}>{pending_data.vendor}</a></div>
-                          </p>
+                        </div>
+                        <div className='mv-white-box-body'>
+                          <div className='mvx-row mvx-align-items-center'>
+                            <div className='mvx-col-25'>
+                              <div class="mvx-img-box">
+                                <div class="mvx-img-content">
+                                <img alt="Multivendor X" src={pending_data.product_src}/>
+                                </div>
+                              </div>
+                            </div>
+                            <div className='mvx-col-75 pl-0'>
+                              <span className='blue-txt'>{pending_data.product}</span>
+                            </div>
+                          </div>
+                          <div className='mvx-row mvx-align-items-center name-txt'>
+                            <div className='mvx-col-33'>Vendor Name:</div>
+                            <div className='mvx-col-67'><a href={pending_data.vendor_link}>{pending_data.vendor}</a></div>
+                          </div>
+                          <div className='mvx-row mvx-align-items-center name-txt'>
+                            <div className='mvx-col-33'>Product Name:</div>
+                            <div className='mvx-col-67'><a href={pending_data.product_url}>{pending_data.product}</a></div>
+                          </div>
+                        </div>
+                        <div className='mv-white-box-footer'>
+                          <div className='pull-left'>
 
-                          <p className="mvx-todo-list-details-data-value">
-                          <div className="mvx-commission-label-class">Product Name:</div>
-                          <div className="mvx-commission-value-class"><a href={pending_data.product_url}>{pending_data.product}</a></div>
-                          </p>
-                          
-                      </div>
-                      <div className="mvx-module-current-status wp-clearfix">
-                          <div className="mvx-left-icons-wrap">
-                              <div className="mvx-left-icon"><a href={pending_data.product_url}><i className="mvx-font icon-edit"></i></a></div>
-                              <div className="mvx-left-icon"><i className="mvx-font icon-approve" onClick={(e) => this.handle_product_request_by_vendors(e, pending_data.id, pending_data.vendor_id, 'approve')}></i></div>
-                              <div className="mvx-left-icon"><i className="mvx-font icon-close" onClick={(e) => this.handle_product_request_by_vendors(e, pending_data.id, pending_data.vendor_id, 'dismiss')}></i></div>
+                              <a href={pending_data.coupon_url} className='link-icon'><i className="mvx-font icon-edit"></i></a>
+                              
+                              <a href={pending_data.product_url} className="link-icon"><i className="mvx-font icon-edit"></i></a>
+                              <div className="link-icon"><i className="mvx-font icon-approve" onClick={(e) => this.handle_product_request_by_vendors(e, pending_data.id, pending_data.vendor_id, 'approve')}></i></div>
+                              <div className="link-icon"><i className="mvx-font icon-close" onClick={(e) => this.handle_product_request_by_vendors(e, pending_data.id, pending_data.vendor_id, 'dismiss')}></i></div>
+
                           </div>
+                          
+                        </div>
                       </div>
                     </div>
+
                   )
                 )
-                 : this.state.pending_product_loding_end ? 'No Product Found' : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
+                 : this.state.pending_product_loding_end ? <div className='mvx-col-100 mb-30'>No Product Found</div> : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
               }
 
             </div>
@@ -1479,50 +1509,72 @@ Child({ name }) {
 
 
 
-        {/* Pending Vendor approval */}
+        {/* Pending Vendor approval work done */}
         <div className="mvx-todo-status-check">
+            
             <div className="mvx-text-with-line-wrapper">
-                <div className="mvx-report-text">Pending Vendor Approval</div>
-                <div className="mvx-report-text-fade-line"></div>
-                <div className="mvx-select-all-bulk-wrap">
-                  <div className="mvx-select-all-checkbox">
-                    <input type="checkbox" className="mvx-select-all" checked={this.state.pending_parent_user_check} onChange={(e) => this.handle_parent_user_todo_checkbox_chenage(e)} />
-                    <span className="mvx-select-all-text">Select All</span>
-                  </div>
-                  <Select placeholder="Bulk Action" options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'user_approval')} />
+              <div className="mvx-report-text">
+                <span>Pending Product Approval</span>
+              </div>
+              <div className="mvx-select-all-bulk-wrap">
+                <div className="mvx-select-all-checkbox">
+                  <input type="checkbox" className="mvx-select-all" checked={this.state.pending_parent_product_check} onChange={(e) => this.handle_parent_todo_checkbox_chenage(e)} />
+                  <span className="mvx-select-all-text">Select All</span>
                 </div>
+                <Select placeholder="Bulk Action" options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'product_approval')} />
+              </div>
             </div>
-            <div className="mvx-workboard-card-wrapper">
+
+            
+            <div className="mvx-row">
                 
               {
                 this.state.list_of_pending_vendor.length > 0 ? this.state.list_of_pending_vendor.map((pending_data, pending_index) => (
 
-                    <div className="mvx-workboard-card-wrapper-child">
-                      <div className="mvx-workboard-card-wrapper-heading">Pending User</div>
-                      <div className="mvx-workboard-top-part">
-                          <div className="mvx-workboard-img-part">
-                              <img alt="Multivendor X" src={pending_data.vendor_image_src}/>
-                              <div className="mvx-workboard-vendor-name">{pending_data.vendor}</div>
+                    <div className='mvx-col-33'>
+                      <div className='mv-off-white-box'>
+                        <div className='mv-white-box-header'>
+                        Pending User
+                          <div className='pull-right'>
+                          <input type="checkbox" className="mvx-workboard-checkbox" checked={this.state.pending_user_check[pending_index]} onChange={(e) => this.handle_todo_user_chenage(e, pending_data.id, pending_index)}/>
                           </div>
-                          <div className="mvx-workboard-select-icon"><input type="checkbox" className="mvx-workboard-checkbox" checked={this.state.pending_user_check[pending_index]} onChange={(e) => this.handle_todo_user_chenage(e, pending_data.id, pending_index)}/></div>
-                      </div>
-                      <div className="mvx-workboard-address-area">
-                          <p className="mvx-todo-list-details-data-value">
-                          <div className="mvx-commission-label-class">Vendor Name:</div>
-                          <div className="mvx-commission-value-class"><a href={pending_data.vendor_link}>{pending_data.vendor}</a></div>
-                          </p>
-                      </div>
-                      <div className="mvx-module-current-status wp-clearfix">
-                          <div className="mvx-left-icons-wrap">
-                              <div className="mvx-left-icon"><a href={pending_data.vendor_link}><i className="mvx-font icon-edit"></i></a></div>
-                              <div className="mvx-left-icon"><i className="mvx-font icon-approve" onClick={(e) => this.handle_user_request_by_vendors(e, pending_data.id, 'approve')}></i></div>
+                        </div>
+                        <div className='mv-white-box-body'>
+                          <div className='mvx-row mvx-align-items-center'>
+                            <div className='mvx-col-25'>
+                              <div class="mvx-img-box">
+                                <div class="mvx-img-content">
+                                <img alt="Multivendor X" src={pending_data.vendor_image_src}/>
+                                </div>
+                              </div>
+                            </div>
+                            <div className='mvx-col-75 pl-0'>
+                              <span className='blue-txt'>{pending_data.vendor}</span>
+                            </div>
+                          </div>
+                          <div className='mvx-row mvx-align-items-center name-txt'>
+                            <div className='mvx-col-33'>Vendor Name:</div>
+                            <div className='mvx-col-67'><a href={pending_data.vendor_link}>{pending_data.vendor}</a></div>
+                          </div>
+                          
+                          
+                        </div>
+                        <div className='mv-white-box-footer'>
+                          <div className='pull-left'>
+                            <a href={pending_data.vendor_link} className='link-icon'><i className="mvx-font icon-edit"></i></a>
+                              <div className='link-icon'><i className="mvx-font icon-approve" onClick={(e) => this.handle_user_request_by_vendors(e, pending_data.id, 'approve')}></i></div>
                               <div className="mvx-left-icon"><i className="mvx-font icon-close" onClick={(e) => this.handle_user_request_by_vendors(e, pending_data.id, 'dismiss')}></i></div>
+
+                  
                           </div>
+                          
+                        </div>
                       </div>
                     </div>
+
                   )
                 )
-                : this.state.pending_user_loding_end ? 'No Vendor Found' : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
+                : this.state.pending_user_loding_end ? <div className='mvx-col-100 mb-30'>No Vendor Found</div> : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
               }
 
             </div>
@@ -1535,54 +1587,77 @@ Child({ name }) {
 
 
 
-        {/* Pending Vendor's coupon approval */}
+        {/* Pending Vendor's coupon approval work done */}
         <div className="mvx-todo-status-check">
+
             <div className="mvx-text-with-line-wrapper">
-                <div className="mvx-report-text">Pending Coupon</div>
-                <div className="mvx-report-text-fade-line"></div>
-                <div className="mvx-select-all-bulk-wrap">
-                  <div className="mvx-select-all-checkbox">
-                    <input type="checkbox" className="mvx-select-all" checked={this.state.pending_parent_coupon_check} onChange={(e) => this.handle_parent_coupon_todo_checkbox_chenage(e)}/>
-                    <span className="mvx-select-all-text">Select All</span>
-                  </div>
-                  <Select placeholder="Bulk Action" options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'coupon_approval')} />
+              <div className="mvx-report-text">
+                <span>Pending Coupon</span>
+              </div>
+              <div className="mvx-select-all-bulk-wrap">
+                <div className="mvx-select-all-checkbox">
+                  <input type="checkbox" className="mvx-select-all" checked={this.state.pending_parent_product_check} onChange={(e) => this.handle_parent_todo_checkbox_chenage(e)} />
+                  <span className="mvx-select-all-text">Select All</span>
                 </div>
+                <Select placeholder="Bulk Action" options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'product_approval')} />
+              </div>
             </div>
-            <div className="mvx-workboard-card-wrapper">
+
+
+            
+            <div className="mvx-row">
                 
               {
                 this.state.list_of_pending_vendor_coupon.length > 0 ? this.state.list_of_pending_vendor_coupon.map((pending_data, pending_index) => (
 
-                    <div className="mvx-workboard-card-wrapper-child">
-                      <div className="mvx-workboard-card-wrapper-heading">Pending coupon</div>
-                      <div className="mvx-workboard-top-part">
-                          <div className="mvx-workboard-img-part">
-                              {/*<img alt="Multivendor X" src={appLocalizer.mvx_logo}/>*/}
-                              <div className="mvx-workboard-vendor-name">{pending_data.coupon}</div>
+                    <div className='mvx-col-33'>
+                            <div className='mv-off-white-box'>
+                              <div className='mv-white-box-header'>
+                              Pending coupon
+                                <div className='pull-right'>
+                                <input type="checkbox" className="mvx-workboard-checkbox" checked={this.state.pending_coupon_check[pending_index]} onChange={(e) => this.handle_todo_coupon_chenage(e, pending_data.id, pending_index)}/>
+                                </div>
+                              </div>
+                              <div className='mv-white-box-body'>
+                                <div className='mvx-row mvx-align-items-center'>
+                                  <div className='mvx-col-25'>
+                                    <div class="mvx-img-box">
+                                      <div class="mvx-img-content">
+                                      <img alt="Multivendor X" src={pending_data.vendor_image_src}/>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div className='mvx-col-75 pl-0'>
+                                    <span className='blue-txt'>{pending_data.coupon}</span>
+                                  </div>
+                                </div>
+                                <div className='mvx-row mvx-align-items-center name-txt'>
+                                  <div className='mvx-col-33'>Vendor Name:</div>
+                                  <div className='mvx-col-67'><a href={pending_data.vendor_link}>{pending_data.vendor}</a></div>
+                                </div>
+                                <div className='mvx-row mvx-align-items-center name-txt'>
+                                  <div className='mvx-col-33'>Coupon Name:</div>
+                                  <div className='mvx-col-67'><a href={pending_data.coupon_url}>{pending_data.coupon}</a></div>
+                                </div>
+                                
+                              </div>
+                              <div className='mv-white-box-footer'>
+                                <div className='pull-left'>
+
+                                    <a href={pending_data.coupon_url} className='link-icon'><i className="mvx-font icon-edit"></i></a>
+                                    <div className="mvx-left-icon"><i className="mvx-font icon-approve" onClick={(e) => this.handle_coupon_request_by_vendors(e, pending_data.id, 'approve')}></i></div>
+                                    <div className="mvx-left-icon"><i className="mvx-font icon-close" onClick={(e) => this.handle_coupon_request_by_vendors(e, pending_data.id, 'dismiss')}></i></div>
+                                </div>
+                                
+                              </div>
+                            </div>
                           </div>
-                          <div className="mvx-workboard-select-icon"><input type="checkbox" className="mvx-workboard-checkbox" checked={this.state.pending_coupon_check[pending_index]} onChange={(e) => this.handle_todo_coupon_chenage(e, pending_data.id, pending_index)}/></div>
-                      </div>
-                      <div className="mvx-workboard-address-area">
-                          <p className="mvx-todo-list-details-data-value">
-                          <div className="mvx-commission-label-class">Vendor Name :</div>
-                          <div className="mvx-commission-value-class"><a href={pending_data.vendor_link}>{pending_data.vendor}</a></div>
-                          </p>
-                          <p className="mvx-todo-list-details-data-value">
-                          <div className="mvx-commission-label-class">Coupon Name :</div>
-                          <div className="mvx-commission-value-class"><a href={pending_data.coupon_url}>{pending_data.coupon}</a></div>
-                          </p>
-                      </div>
-                      <div className="mvx-module-current-status wp-clearfix">
-                          <div className="mvx-left-icons-wrap">
-                              <div className="mvx-left-icon"><a href={pending_data.coupon_url}><i className="mvx-font icon-edit"></i></a></div>
-                              <div className="mvx-left-icon"><i className="mvx-font icon-approve" onClick={(e) => this.handle_coupon_request_by_vendors(e, pending_data.id, 'approve')}></i></div>
-                              <div className="mvx-left-icon"><i className="mvx-font icon-close" onClick={(e) => this.handle_coupon_request_by_vendors(e, pending_data.id, 'dismiss')}></i></div>
-                          </div>
-                      </div>
-                    </div>
+
+
+
                   )
                 )
-                : this.state.pending_coupon_loding_end ? 'No Coupon Found' : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
+                : this.state.pending_coupon_loding_end ? <div className='mvx-col-100 mb-30'>No Coupon Found</div> : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
               }
 
             </div>
@@ -1594,51 +1669,74 @@ Child({ name }) {
 
 
 
-        {/* Pending tranasction approval */}
+        {/* Pending tranasction approval work done */}
         <div className="mvx-todo-status-check">
+            
             <div className="mvx-text-with-line-wrapper">
-                <div className="mvx-report-text">Pending Transaction</div>
-                <div className="mvx-report-text-fade-line"></div>
-                <div className="mvx-select-all-bulk-wrap">
-                  <div className="mvx-select-all-checkbox">
-                    <input type="checkbox" className="mvx-select-all" checked={this.state.pending_parent_transaction_check} onChange={(e) => this.handle_parent_transaction_todo_checkbox_chenage(e)}/>
-                    <span className="mvx-select-all-text">Select All</span>
-                  </div>
-                  <Select placeholder="Bulk Action" options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'transaction_approval')} />
+              <div className="mvx-report-text">
+                <span>Pending Transaction</span>
+              </div>
+              <div className="mvx-select-all-bulk-wrap">
+                <div className="mvx-select-all-checkbox">
+                  <input type="checkbox" className="mvx-select-all" checked={this.state.pending_parent_product_check} onChange={(e) => this.handle_parent_todo_checkbox_chenage(e)} />
+                  <span className="mvx-select-all-text">Select All</span>
                 </div>
+                <Select placeholder="Bulk Action" options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'product_approval')} />
+              </div>
             </div>
-            <div className="mvx-workboard-card-wrapper">
+
+            
+            <div className="mvx-row">
                 
               {
                 this.state.list_of_pending_transaction.length > 0 ? this.state.list_of_pending_transaction.map((pending_data, pending_index) => (
 
-                    <div className="mvx-workboard-card-wrapper-child">
-                      <div className="mvx-workboard-card-wrapper-heading">Pending coupon</div>
-                      <div className="mvx-workboard-top-part">
-                          <div className="mvx-workboard-img-part">
-                              <img alt="Multivendor X" src={appLocalizer.mvx_logo}/>
-                              <div className="mvx-workboard-vendor-name">{pending_data.coupon}</div>
+                    <div className='mvx-col-33'>
+                      <div className='mv-off-white-box'>
+                        <div className='mv-white-box-header'>
+                        Pending coupon
+                          <div className='pull-right'>
+                          <input type="checkbox" className="mvx-workboard-checkbox" checked={this.state.pending_transaction_check[pending_index]} onChange={(e) => this.handle_todo_transaction_chenage(e, pending_data.id, pending_index)}/>
                           </div>
-                          <div className="mvx-workboard-select-icon"><input type="checkbox" className="mvx-workboard-checkbox" checked={this.state.pending_transaction_check[pending_index]} onChange={(e) => this.handle_todo_transaction_chenage(e, pending_data.id, pending_index)}/></div>
-                      </div>
-                      <div className="mvx-workboard-address-area">
-                          <p className="mvx-todo-list-details-data-value">
-                          <div className="mvx-commission-label-class">Name:</div>
-                          <div className="mvx-commission-value-class"><a href="">{pending_data.coupon}</a></div>
-                          </p>
+                        </div>
+                        <div className='mv-white-box-body'>
+                          <div className='mvx-row mvx-align-items-center'>
+                            <div className='mvx-col-25'>
+                              <div class="mvx-img-box">
+                                <div class="mvx-img-content">
+                                <img alt="Multivendor X" src={appLocalizer.mvx_logo}/>
+                                </div>
+                              </div>
+                            </div>
+                            <div className='mvx-col-75 pl-0'>
+                              <span className='blue-txt'>{pending_data.coupon}</span>
+                            </div>
+                          </div>
+                          <div className='mvx-row mvx-align-items-center name-txt'>
+                            <div className='mvx-col-33'>Name:</div>
+                            <div className='mvx-col-67'><a href="">{pending_data.coupon}</a></div>
+                          </div>
                           
-                      </div>
-                      <div className="mvx-module-current-status wp-clearfix">
-                          <div className="mvx-left-icons-wrap">
+                          
+                        </div>
+                        <div className='mv-white-box-footer'>
+                          <div className='pull-left'>
+
                               <div className="mvx-left-icon"><i className="mvx-font icon-edit"></i></div>
                               <div className="mvx-left-icon"><i className="mvx-font icon-approve"></i></div>
                               <div className="mvx-left-icon"><i className="mvx-font icon-close"></i></div>
                           </div>
+                          
+                        </div>
                       </div>
                     </div>
+
+
+
+
                   )
                 )
-                : this.state.pending_transaction_loding_end ? 'No Transaction Found' : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
+                : this.state.pending_transaction_loding_end ? <div className='mvx-col-100 mb-30'>No Transaction Found</div> : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
               }
 
             </div>
@@ -1652,60 +1750,84 @@ Child({ name }) {
 
 
 
-        {/* Pending question approval */}
+        {/* Pending question approval work done */}
         <div className="mvx-todo-status-check">
+
             <div className="mvx-text-with-line-wrapper">
-                <div className="mvx-report-text">Pending Question Approval</div>
-                <div className="mvx-report-text-fade-line"></div>
-                <div className="mvx-select-all-bulk-wrap">
-                  <div className="mvx-select-all-checkbox">
-                    <input type="checkbox" className="mvx-select-all" checked={this.state.pending_parent_question_check} onChange={(e) => this.handle_parent_question_todo_checkbox_chenage(e)} />
-                    <span className="mvx-select-all-text">Select All</span>
-                  </div>
-                  <Select placeholder="Bulk Action" options={appLocalizer.pending_question_bulk} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'question_approval')} />
+              <div className="mvx-report-text">
+                <span>Pending Question Approval</span>
+              </div>
+              <div className="mvx-select-all-bulk-wrap">
+                <div className="mvx-select-all-checkbox">
+                  <input type="checkbox" className="mvx-select-all" checked={this.state.pending_parent_product_check} onChange={(e) => this.handle_parent_todo_checkbox_chenage(e)} />
+                  <span className="mvx-select-all-text">Select All</span>
                 </div>
+                <Select placeholder="Bulk Action" options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'product_approval')} />
+              </div>
             </div>
-            <div className="mvx-workboard-card-wrapper">
+
+
+            
+            <div className="mvx-row">
                 
               {
                 this.state.list_of_pending_question.length > 0 ? this.state.list_of_pending_question.map((pending_data, pending_index) => (
 
-                    <div className="mvx-workboard-card-wrapper-child">
-                      <div className="mvx-workboard-card-wrapper-heading">Pending User</div>
-                      <div className="mvx-workboard-top-part">
-                          <div className="mvx-workboard-img-part">
-                              <div className="mvx-workboard-vendor-name"><p dangerouslySetInnerHTML={{ __html: pending_data.question_by }}></p></div>
+                    <div className='mvx-col-33'>
+                      <div className='mv-off-white-box'>
+                        <div className='mv-white-box-header'>
+                        Pending User
+                          <div className='pull-right'>
+                          <input type="checkbox" className="mvx-workboard-checkbox" checked={this.state.pending_question_check[pending_index]} onChange={(e) => this.handle_todo_question_checkbox_chenage(e, pending_data.id, pending_index)}/>
                           </div>
-                          <div className="mvx-workboard-select-icon"><input type="checkbox" className="mvx-workboard-checkbox" checked={this.state.pending_question_check[pending_index]} onChange={(e) => this.handle_todo_question_checkbox_chenage(e, pending_data.id, pending_index)}/></div>
-                      </div>
-                      <div className="mvx-workboard-address-area">
-                          <p className="mvx-todo-list-details-data-value">
-                            <div className="mvx-commission-label-class">Question by :</div>
-                            <div className="mvx-commission-value-class"><a href={pending_data.vendor_link}>{pending_data.question_by_name}</a></div>
-                          </p>
+                        </div>
+                        <div className='mv-white-box-body'>
+                          <div className='mvx-row mvx-align-items-center'>
+                            <div className='mvx-col-25'>
+                              <div class="mvx-img-box">
+                                <div class="mvx-img-content">
+                                <img alt="Multivendor X" src={pending_data.vendor_image_src}/>
+                                </div>
+                              </div>
+                            </div>
+                            <div className='mvx-col-75 pl-0'>
+                              <span className='blue-txt'><p dangerouslySetInnerHTML={{ __html: pending_data.question_by }}></p></span>
+                            </div>
+                          </div>
+                          <div className='mvx-row mvx-align-items-center name-txt'>
+                            <div className='mvx-col-33'>Question by:</div>
+                            <div className='mvx-col-67'><a href={pending_data.vendor_link}>{pending_data.question_by_name}</a></div>
+                          </div>
+                          <div className='mvx-row mvx-align-items-center name-txt'>
+                            <div className='mvx-col-33'>Product Name:</div>
+                            <div className='mvx-col-67'><a href={pending_data.coupon_url}>{pending_data.coupon}</a></div>
+                          </div>
 
-                          <p className="mvx-todo-list-details-data-value">
-                            <div className="mvx-commission-label-class">Product Name :</div>
-                            <div className="mvx-commission-value-class"><a href={pending_data.product_url}>{pending_data.product_name}</a></div>
-                          </p>
+                          <div className='mvx-row mvx-align-items-center name-txt'>
+                            <div className='mvx-col-33'>Question details:</div>
+                            <div className='mvx-col-67'><a href={pending_data.product_url}>{pending_data.question_details}</a></div>
+                          </div>
+                          
+                        </div>
+                        <div className='mv-white-box-footer'>
+                          <div className='pull-left'>
 
-                          <p className="mvx-todo-list-details-data-value">
-                            <div className="mvx-commission-label-class">Question details :</div>
-                            <div className="mvx-commission-value-class"><a href={pending_data.product_url}>{pending_data.question_details}</a></div>
-                          </p>
-
-                      </div>
-                      <div className="mvx-module-current-status wp-clearfix">
-                          <div className="mvx-left-icons-wrap">
-                              <div className="mvx-left-icon"><a href={pending_data.product_url}><i className="mvx-font icon-edit"></i></a></div>
+                            <a href={pending_data.product_url} className='link-icon'><i className="mvx-font icon-edit"></i></a>
                               <div className="mvx-left-icon"><i className="mvx-font icon-approve" onClick={(e) => this.handle_question_request_by_vendors(e, pending_data.id, pending_data.question_product_id, 'verified')}></i></div>
                               <div className="mvx-left-icon"><i className="mvx-font icon-close" onClick={(e) => this.handle_question_request_by_vendors(e, pending_data.id, pending_data.question_product_id, 'rejected')}></i></div>
+
+
+                              
                           </div>
+                          
+                        </div>
                       </div>
                     </div>
+
+
                   )
                 )
-                : this.state.pending_question_loding_end ? 'No Question Found' : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
+                : this.state.pending_question_loding_end ? <div className='mvx-col-100 mb-30'>No Question Found</div> : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
               }
 
             </div>
@@ -1725,7 +1847,7 @@ Child({ name }) {
       <div className="mvx-module-grid">
 
         <div className="mvx-table-text-and-add-wrap">
-          <Link to={`?page=mvx#&submenu=work-board&name=announcement&create=announcement`} className="btn default-btn mr-12"><i className="mvx-font icon-add"></i>Add Announcement</Link>
+          <Link to={`?page=mvx#&submenu=work-board&name=announcement&create=announcement`}><i className="mvx-font icon-add"></i>Add Announcement</Link>
         </div>
 
 
@@ -1764,6 +1886,10 @@ Child({ name }) {
 
 
           <div>
+
+            
+
+            
             <div className="mvx-search-and-multistatus-wrap">
               <div className="mvx-multistatus-check">
                 <div className="mvx-multistatus-check-all" onClick={(e) => this.handle_post_retrive_status(e, 'all', 'announcement')}>All ({this.state.display_all_announcement.length})</div>
@@ -1820,7 +1946,7 @@ Child({ name }) {
 
 
         <div className="mvx-table-text-and-add-wrap">
-          <Link to={`?page=mvx#&submenu=work-board&name=knowladgebase&create=knowladgebase`} className="btn default-btn mr-12"><i className="mvx-font icon-add"></i>Add Knowladgebase</Link>
+          <Link to={`?page=mvx#&submenu=work-board&name=knowladgebase&create=knowladgebase`}><i className="mvx-font icon-add"></i>Add Knowladgebase</Link>
         </div>
 
         {get_current_name && get_current_name.get("create") == 'knowladgebase' ?
@@ -1980,19 +2106,28 @@ Child({ name }) {
 
         <div className="mvx-module-grid">
 
-          <div className="mvx-search-and-multistatus-wrap">
-            <div className="mvx-multistatus-check">
-              <div className="mvx-multistatus-check-all">All ({this.state.list_of_publish_question.length})</div>
-              {/*<div className="mvx-multistatus-check-approve" onClick={this.handle_post_retrive_status}>| Published ()</div>*/ }
-              <div className="mvx-multistatus-check-pending status-active">| Pending ({this.state.list_of_pending_question.length})</div>
+<div class="mvx-row mvx-align-items-center mvx-justify-content-between mb-15">
+              <div class="mvx-col-55">
+                  <ul class="mvx-ul-auto mvx-row">
+                    <li class="mvx-col-auto">
+                        <div class="mvx-multistatus-check-all">All ({this.state.list_of_publish_question.length})</div>
+                    </li>
+                    
+                    <li class="mvx-col-auto mvx-divider"></li>
+                    <li class="mvx-col-auto">
+                        <div class="mvx-multistatus-check-pending status-active">Pending ({this.state.list_of_pending_question.length})</div>
+                    </li>
+                    
+                  </ul>
+              </div>
+              <div class="mvx-col-auto">
+                  <div class="mvx-search-holder">
+                  <input type="text" placeholder="Search Question" name="search" onChange={(e) => this.handle_question_search(e)}/>
+                  </div>
+              </div>
             </div>
 
-
-            <div className="mvx-module-section-list-data"> 
-              <label><i className="mvx-font icon-search"></i></label>
-              <input type="text" placeholder="Search Question" name="search" onChange={(e) => this.handle_question_search(e)}/>
-            </div>
-          </div>
+         
 
 
           {/*<div className="mvx-wrap-bulk-all-date">
