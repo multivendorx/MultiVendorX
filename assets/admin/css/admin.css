@@ -814,6 +814,13 @@ div#wpcontent {
   max-width: 33.3333%;
 }
 
+.mvx-row > .mvx-col-40 {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 40%;
+  flex: 0 0 40%;
+  max-width: 40%;
+}
+
 .mvx-row > .mvx-col-45 {
   -webkit-box-flex: 0;
   -ms-flex: 0 0 45%;
@@ -833,6 +840,13 @@ div#wpcontent {
   -ms-flex: 0 0 55%;
   flex: 0 0 55%;
   max-width: 55%;
+}
+
+.mvx-row > .mvx-col-60 {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 60%;
+  flex: 0 0 60%;
+  max-width: 60%;
 }
 
 .mvx-row > .mvx-col-67 {
