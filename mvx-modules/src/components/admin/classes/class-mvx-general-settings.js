@@ -875,7 +875,7 @@ class App extends Component {
       <div className="ptb-2r mvx-row">
         <div className="mvx-col-75">
           
-          <div className="mv-off-white-box pa-15 mb-90 text-center">
+          <div className="mv-off-white-box pa-15 text-center">
             <div className="mvx-tab-name-display">{tab_name_display}</div>
             <p>{tab_description_display}</p>
           </div>
@@ -883,7 +883,11 @@ class App extends Component {
           <div className="general-tab-area">
             <ul className="mvx-general-tabs-list">
             {appLocalizer.mvx_all_backend_tab_list['marketplace-general-settings'].map((data, index) => (
-                <Link to={`?page=mvx#&submenu=settings&name=${data.modulename}`} className={queryt.get("name") == data.modulename ? data.activeclass : ''}><li className={queryt.get("name") == data.modulename ? 'activegeneraltabs' : ''} >{data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}{data.tablabel}</li></Link>
+              <li className={queryt.get("name") == data.modulename ? 'activegeneraltabs' : ''} >
+                <Link to={`?page=mvx#&submenu=settings&name=${data.modulename}`} className={queryt.get("name") == data.modulename ? data.activeclass : ''}>
+                    {data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}{data.tablabel}
+                </Link>
+              </li>
             ))}
             </ul>
             <div className="tabcontentclass">
