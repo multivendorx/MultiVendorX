@@ -12,8 +12,8 @@ import { ReactSortable } from "react-sortablejs";
 
 import styled from 'styled-components'
 
-import { useTable, usePagination, useRowSelect } from 'react-table'
 
+import { useTable, usePagination, useRowSelect } from 'react-table'
 
 import {
   BrowserRouter as Router,
