@@ -7020,7 +7020,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'database_value' => array(),
                 ],
                 [
-                    'key'       => 'test_client_id',
+                    'key'       => 'test_client_id_block',
                     'type'      => 'blocktext',
                     'label'     => __( 'Config redirect URI', 'dc-woocommerce-multi-vendor' ),
                     'valuename' => '<code>' . admin_url('admin-ajax.php') . "?action=marketplace_stripe_authorize". '</code>',

@@ -35,8 +35,9 @@ class App extends Component {
 
   QueryParamsDemo() {
     return (
-      <div className="mvx-module-section-nav">
-        <div className="mvx-module-nav-left-section">
+      <div className='mvx-bd-wapper'>
+      <div className="mvx-module-top-header mvx-row mvx-justify-content-between mvx-align-items-center">
+        <div className="mvx-module-nav-left-section mvx-col-auto">
           <div className="mvx-module-section-nav-child-data">
             <img src={appLocalizer.mvx_logo} alt="MultivendorX" className="mvx-section-img-fluid"/>
           </div>
@@ -44,7 +45,7 @@ class App extends Component {
             {appLocalizer.marketplace_text}
           </div>
         </div>
-        <div className="mvx-module-nav-right-section">
+        <div className="mvx-module-nav-right-section mvx-col-auto">
           <div className="mvx-header-search-section mr-24"> 
             <label><i className='mvx-font icon-search'></i></label>
             <input type="text" placeholder="Search Modules" name="search" onChange={(e) => this.handleOnChange(e)}/>
@@ -67,6 +68,7 @@ class App extends Component {
           </div>
           <a href={appLocalizer.knowledgebase} title={appLocalizer.knowledgebase_title} target="_blank" className="mvx-module-section-nav-child-data nav-child-right"><i class='mvx-font icon-knowledge-topbar'></i></a>
         </div>
+      </div>
       </div>
     );
   }

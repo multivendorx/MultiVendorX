@@ -12,7 +12,6 @@ import { ReactSortable } from "react-sortablejs";
 
 import styled from 'styled-components'
 
-
 import {
   BrowserRouter as Router,
   Link,
@@ -1792,21 +1791,21 @@ Child({ name }) {
                               </div>
                             </div>
                             <div className='mvx-col-75 pl-0'>
-                              <span className='blue-txt'><p dangerouslySetInnerHTML={{ __html: pending_data.question_by }}></p></span>
+                              <span className='blue-txt'>{pending_data.question_by_name}</span>
                             </div>
                           </div>
                           <div className='mvx-row mvx-align-items-center name-txt'>
-                            <div className='mvx-col-33'>Question by:</div>
-                            <div className='mvx-col-67'><a href={pending_data.vendor_link}>{pending_data.question_by_name}</a></div>
+                            <div className='mvx-col-40'>Question by:</div>
+                            <div className='mvx-col-60'><a href={pending_data.vendor_link}>{pending_data.question_by_name}</a></div>
                           </div>
                           <div className='mvx-row mvx-align-items-center name-txt'>
-                            <div className='mvx-col-33'>Product Name:</div>
-                            <div className='mvx-col-67'><a href={pending_data.coupon_url}>{pending_data.coupon}</a></div>
+                            <div className='mvx-col-40'>Product Name:</div>
+                            <div className='mvx-col-66'><a href={pending_data.coupon_url}>{pending_data.coupon}</a></div>
                           </div>
 
                           <div className='mvx-row mvx-align-items-center name-txt'>
-                            <div className='mvx-col-33'>Question details:</div>
-                            <div className='mvx-col-67'><a href={pending_data.product_url}>{pending_data.question_details}</a></div>
+                            <div className='mvx-col-40'>Question details:</div>
+                            <div className='mvx-col-60'><a href={pending_data.product_url}>{pending_data.question_details}</a></div>
                           </div>
                           
                         </div>
