@@ -100,7 +100,7 @@ class App extends Component {
           {appLocalizer.mvx_all_backend_tab_list['marketplace-payments'].length > 0 ?
           
           <div className="mvx-sub-child-container">
-            <div className="general-tab-header-area">
+            <div className="mv-off-white-box pa-15 mb-90 text-center">
               <div className="mvx-tab-name-display">{tab_name_display}</div>
               <p>{tab_description_display}</p>
             </div>
@@ -108,7 +108,7 @@ class App extends Component {
             <div className="general-tab-area">
               <ul className="mvx-general-tabs-list">
               {appLocalizer.mvx_all_backend_tab_list['marketplace-payments'].length > 0 ? appLocalizer.mvx_all_backend_tab_list['marketplace-payments'].map((data, index) => (
-                  <Link to={`?page=mvx#&submenu=payment&name=${data.modulename}`} ><li className={queryt.get("name") == data.modulename ? 'activegeneraltabs' : ''}>{data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}{data.tablabel}</li></Link>
+                  <li className={queryt.get("name") == data.modulename ? 'activegeneraltabs' : ''}><Link to={`?page=mvx#&submenu=payment&name=${data.modulename}`} >{data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}{data.tablabel}</Link></li>
               )) : ''}
               </ul>
               <div className="tabcontentclass">

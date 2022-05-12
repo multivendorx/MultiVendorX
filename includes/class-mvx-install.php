@@ -401,5 +401,8 @@ class MVX_Install {
         if (apply_filters('mvx_do_schedule_cron_mvx_spmv_excluded_products_map', true) && !wp_next_scheduled('mvx_spmv_excluded_products_map')) {
             wp_schedule_event(time(), 'every_5minute', 'mvx_spmv_excluded_products_map');
         }
+        if (apply_filters('mvx_do_schedule_cron_mvx_older_settings_migrated_migration', true) && !wp_next_scheduled('mvx_older_settings_migrated_migration')) {
+            wp_schedule_event(time(), 'every_5minute', 'mvx_older_settings_migrated_migration');
+        }
     }
 }
