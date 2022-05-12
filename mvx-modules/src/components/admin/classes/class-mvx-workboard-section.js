@@ -1791,7 +1791,7 @@ Child({ name }) {
                               </div>
                             </div>
                             <div className='mvx-col-75 pl-0'>
-                              <span className='blue-txt'>{pending_data.question_by_name}</span>
+                              <p dangerouslySetInnerHTML={{ __html: pending_data.question_by }}></p>
                             </div>
                           </div>
                           <div className='mvx-row mvx-align-items-center name-txt'>
