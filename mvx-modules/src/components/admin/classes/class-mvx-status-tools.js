@@ -159,7 +159,7 @@ class App extends Component {
           <div className="mvx-sub-container">
             
 
-            <div className="mvx-upper-tab-header-area">
+            <div className="mv-off-white-box pa-15 mb-90 text-center">
               <div className="mvx-tab-name-display">{tab_name_display}</div>
               <p>{tab_description_display}</p>
             </div>
@@ -170,12 +170,14 @@ class App extends Component {
                 {appLocalizer.mvx_all_backend_tab_list['status-tools'].map((data, index) => (
 
 
-                data.link ? <a href={data.link}><li className={queryt.get("name") == data.modulename ? 'activedashboardtabs' : ''}>{data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}{data.tablabel}</li></a> : <Link to={`?page=mvx#&submenu=status-tools&name=${data.modulename}`} ><li className={queryt.get("name") == data.modulename ? 'activedashboardtabs' : ''}>{data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}{data.tablabel}</li></Link>                
+                data.link ? <li className={queryt.get("name") == data.modulename ? 'activedashboardtabs' : ''}><a href={data.link}>{data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}{data.tablabel}</a></li> : <li className={queryt.get("name") == data.modulename ? 'activedashboardtabs' : ''}><Link to={`?page=mvx#&submenu=status-tools&name=${data.modulename}`} >{data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}{data.tablabel}</Link></li>                
 
                 ))}
               </ul>
-              <div className="dashboard-tabcontentclass">
+              <div className="dashboard-tabcontentclass pa-10 pt-0">
+                <div className='mvx-module-grid'>
                 <this.Child name={queryt.get("name")} />
+                </div>
               </div>
             </div>
 
