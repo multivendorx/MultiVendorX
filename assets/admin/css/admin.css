@@ -698,7 +698,7 @@ input[name="search"] {
 }
 
 .mb-25 {
-  margin-bottom: 25px !important;
+  margin-bottom: 1.5625rem !important;
 }
 
 .mb-30 {
@@ -714,15 +714,15 @@ input[name="search"] {
 }
 
 .pa-10 {
-  padding: 10px !important;
+  padding: 0.625rem !important;
 }
 
 .pt-0 {
-  padding: 0px !important;
+  padding: 0rem !important;
 }
 
 .pa-25 {
-  padding: 25px !important;
+  padding: 1.5625rem !important;
 }
 
 .w-100 {
@@ -790,8 +790,8 @@ div#wpcontent {
       flex-wrap: wrap;
   margin-right: -0.9375rem;
   margin-left: -0.9375rem;
-  margin-right: -3px;
-  margin-left: -3px;
+  margin-right: -0.1875rem;
+  margin-left: -0.1875rem;
 }
 
 .mvx-content-two-graph-wrap > .mvx-header-and-graph-wrap {
@@ -810,14 +810,14 @@ div#wpcontent {
   -ms-flex: 0 0 50%;
   flex: 0 0 50%;
   max-width: 50%;
-  padding-right: 3px;
-  padding-left: 3px;
+  padding-right: 0.1875rem;
+  padding-left: 0.1875rem;
 }
 
 .mvx-content-two-graph-wrap > .mvx-header-and-graph-wrap .mvx-chart-graph-visible {
   background: #fdfdfe;
-  padding: 15px;
-  border-radius: 4px;
+  padding: 0.9375rem;
+  border-radius: 0.25rem;
   border: 0.1rem solid #ece8f1;
 }
 
@@ -829,10 +829,10 @@ div#wpcontent {
       flex-wrap: wrap;
   margin-right: -0.9375rem;
   margin-left: -0.9375rem;
-  margin-left: 0px;
-  margin-right: 0px;
+  margin-left: 0rem;
+  margin-right: 0rem;
   background-color: #FFF;
-  border: #d4d1d9 1px solid;
+  border: #d4d1d9 0.0625rem solid;
 }
 
 .mvx-wrapper-performance-content > .mvx-performance-wrapper-content {
@@ -851,8 +851,8 @@ div#wpcontent {
   -ms-flex: 0 0 16.6666%;
   flex: 0 0 16.6666%;
   max-width: 16.6666%;
-  padding: 25px 15px;
-  border-right: #d4d1d9 1px solid;
+  padding: 1.5625rem 0.9375rem;
+  border-right: #d4d1d9 0.0625rem solid;
   min-height: -webkit-fit-content;
   min-height: -moz-fit-content;
   min-height: fit-content;
@@ -863,7 +863,7 @@ div#wpcontent {
 }
 
 .mvx-wrapper-performance-content > .mvx-performance-wrapper-content > div:not(.mvx-wrap-price-and-percent) {
-  margin-bottom: 15px;
+  margin-bottom: 0.9375rem;
 }
 
 .mvx-wrapper-performance-content > .mvx-performance-wrapper-content .mvx-wrap-price-and-percent {
@@ -877,7 +877,7 @@ div#wpcontent {
 
 .mvx-wrapper-performance-content > .mvx-performance-wrapper-content .mvx-wrap-price-and-percent .mvx-percent-show {
   padding: 0.3125rem;
-  border-radius: 4px;
+  border-radius: 0.25rem;
   height: -webkit-min-content;
   height: -moz-min-content;
   height: min-content;
@@ -2310,7 +2310,7 @@ ul.mvx-dashboard-tabs-list a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-bottom: 15px;
+  margin-bottom: 0.9375rem;
 }
 
 .form-group label.mvx-settings-form-label {
@@ -2328,7 +2328,7 @@ ul.mvx-dashboard-tabs-list a {
 
 .form-group .mvx-settings-input-content {
   width: 70%;
-  padding-left: 15px;
+  padding-left: 0.9375rem;
   display: block;
   float: left;
 }
@@ -2469,17 +2469,17 @@ ul.mvx-dashboard-tabs-list a {
 .mvx-date-range {
   color: #181718;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 0.875rem;
   display: inline-block;
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
 }
 
 .mvx-wrapper-date-picker .rs-picker-default .rs-picker-toggle {
   position: relative;
-  padding-right: 32px;
-  border: 1px solid #d4d1d9;
-  width: 265px;
-  border-radius: 4px;
+  padding-right: 2rem;
+  border: 0.0625rem solid #d4d1d9;
+  width: 16.5625rem;
+  border-radius: 0.25rem;
 }
 
 .mvx-wrapper-date-picker .rs-picker-default .rs-picker-toggle input {
@@ -2488,7 +2488,7 @@ ul.mvx-dashboard-tabs-list a {
   border-radius: 0;
   padding: 0;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 0.875rem;
   text-transform: uppercase;
 }
 
@@ -2498,7 +2498,7 @@ ul.mvx-dashboard-tabs-list a {
 
 .mvx-wrapper-date-picker .rs-picker-daterange .rs-picker-toggle.rs-btn .rs-picker-toggle-caret {
   margin: 0;
-  width: 20px;
+  width: 1.25rem;
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
@@ -2507,17 +2507,17 @@ ul.mvx-dashboard-tabs-list a {
 .mvx-report-start-content {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 0.9375rem;
+  padding-right: 0.9375rem;
 }
 
 .chart-line.mvx-text-with-line-wrapper .mvx-report-text {
-  width: calc(100% - 75px);
-  margin-right: 15px;
+  width: calc(100% - 4.6875rem);
+  margin-right: 0.9375rem;
 }
 
 .chart-line.mvx-text-with-line-wrapper .mvx-select-all-bulk-wrap {
-  width: 60px;
+  width: 3.75rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2536,48 +2536,48 @@ ul.mvx-dashboard-tabs-list a {
 }
 
 .mvx-charts-graph-content {
-  margin-bottom: 35px;
+  margin-bottom: 2.1875rem;
 }
 
 .mvx-report-performance-content {
-  margin-bottom: 35px;
+  margin-bottom: 2.1875rem;
 }
 
 .mvx-chart-graph-visible {
   background: #fdfdfe;
-  padding: 15px;
-  border-radius: 4px;
+  padding: 0.9375rem;
+  border-radius: 0.25rem;
   border: 0.1rem solid #ece8f1;
-  margin-bottom: 5px;
+  margin-bottom: 0.3125rem;
   color: #181718;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 600;
 }
 
 .sc-iwjdpV {
   background: #fdfdfe;
-  padding: 15px;
-  border-radius: 4px;
+  padding: 0.9375rem;
+  border-radius: 0.25rem;
   border: 0.1rem solid #ece8f1;
-  margin-bottom: 5px;
+  margin-bottom: 0.3125rem;
   color: #181718;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 600;
 }
 
 .mvx-commission-order-details-text {
   background: #fdfdfe;
-  padding: 15px;
-  border-radius: 4px;
+  padding: 0.9375rem;
+  border-radius: 0.25rem;
   border: 0.1rem solid #ece8f1;
-  margin-bottom: 5px;
+  margin-bottom: 0.3125rem;
   color: #181718;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 600;
 }
 
 .mvx-report-leaderboard-content .mvx-analytic-details-wrap {
-  margin-bottom: 25px;
+  margin-bottom: 1.5625rem;
 }
 
 .justify-between {
@@ -2597,12 +2597,12 @@ ul.mvx-dashboard-tabs-list a {
 }
 
 .svg-line.mvx-text-with-line-wrapper .mvx-report-text {
-  width: calc(100% - 135px);
-  margin-right: 15px;
+  width: calc(100% - 8.4375rem);
+  margin-right: 0.9375rem;
 }
 
 .svg-line.mvx-text-with-line-wrapper .mvx-select-all-bulk-wrap {
-  width: 120px;
+  width: 7.5rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2614,7 +2614,7 @@ ul.mvx-dashboard-tabs-list a {
 }
 
 .svg-line.mvx-text-with-line-wrapper .mvx-select-all-bulk-wrap a {
-  line-height: 40px;
+  line-height: 2.5rem;
   color: #000;
 }
 /*# sourceMappingURL=admin.css.map */
