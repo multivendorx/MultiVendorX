@@ -1589,7 +1589,7 @@ class MVX_Ajax {
      * Set a flag while dismiss MVX service notice
      */
     public function dismiss_mvx_servive_notice() {
-        $updated = update_option('_is_dismiss_mvx340_notice', true);
+        $updated = update_option('_is_dismiss_mvx40_notice', true);
         echo $updated;
         die();
     }
