@@ -953,6 +953,23 @@ class MVX_Cron_Job {
                 mvx_update_option('mvx_refund_management_tab_settings', $refund_data);
             }
 
+            if (get_mvx_older_global_settings('refund_method_pending')) {
+                $refund_data['customer_refund_status'] = array('pending');
+                mvx_update_option('mvx_refund_management_tab_settings', $refund_data);
+            }
+            if (get_mvx_older_global_settings('refund_method_on-hold')) {
+                $refund_data['customer_refund_status'] = array('on-hold');
+                mvx_update_option('mvx_refund_management_tab_settings', $refund_data);
+            }
+            if (get_mvx_older_global_settings('refund_method_processing')) {
+                $refund_data['customer_refund_status'] = array('processing');
+                mvx_update_option('mvx_refund_management_tab_settings', $refund_data);
+            }
+            if (get_mvx_older_global_settings('refund_method_completed')) {
+                $refund_data['customer_refund_status'] = array('completed');
+                mvx_update_option('mvx_refund_management_tab_settings', $refund_data);
+            }
+
             // policy
             if (get_mvx_older_global_settings('shipping_policy')) {
                 $policy_data['shipping_policy'] = get_mvx_older_global_settings('shipping_policy');

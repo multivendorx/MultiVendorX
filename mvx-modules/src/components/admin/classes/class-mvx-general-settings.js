@@ -970,13 +970,13 @@ Child({ name }) {
                     <div className="question-input form-group">
                       
                         <div className="question-input-items first-question w-50">
-                        <label className='form-title w-100'>Question</label>
+                        <label className='form-title w-100'>Field Name</label>
                           <input type="text" className='default-input' placeholder="Untitled Question" value={registration_json_value.label} onChange={e => {this.OnRegistrationSelectChange(e, registration_json_index, 'label') }}/>
                         </div>
                           
                          {registration_json_value.hidden ? 
                           <div className="question-input-items w-50">
-                            <label className='form-title w-100'>Question Type</label>
+                            <label className='form-title w-100'>Form</label>
                             <select className="mvx-registration-select-choice default-select" value={registration_json_value.type}
                                         onChange={e => {this.OnRegistrationSelectChange(e, registration_json_index, 'select_drop') }}>
                               <option value="textbox">Textbox</option>
