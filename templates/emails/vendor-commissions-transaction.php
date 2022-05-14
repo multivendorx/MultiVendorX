@@ -16,7 +16,7 @@ global $MVX;
 
 
 do_action( 'woocommerce_email_header', $email_heading, $email ); 
-$amount = get_post_meta($transaction_id, 'amount', true) - get_post_meta($transaction_id, 'transfer_charge', true) - get_post_meta($transaction_id, 'gateway_charge', true);
+$amount = floatval(get_post_meta($transaction_id, 'amount', true)) - floatval(get_post_meta($transaction_id, 'transfer_charge', true)) - floatval(get_post_meta($transaction_id, 'gateway_charge', true));
 $transaction_mode = get_post_meta($transaction_id, 'transaction_mode', true);
 if($transaction_mode == 'paypal_masspay') {
 ?><p><?php printf(__( 'Hello,<br>You have successfully completed a withdrawal of %s on %s through PayPal. The order details are as follows:', 'dc-woocommerce-multi-vendor' ),  wc_price($amount),  get_post_meta($transaction_id, 'paid_date', true)); ?></p>

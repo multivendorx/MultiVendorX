@@ -33,7 +33,7 @@ extract( $instance );
         echo '<input type="hidden" name="recaptcha_type" value="'.esc_attr($recaptcha_type).'" />';
         if( $recaptcha_type == 'v2' ) { ?>
             <script src="<?php echo esc_url('https://www.google.com/recaptcha/api.js'); ?>"></script>
-            <?php echo esc_html($recaptcha_v2_scripts); ?>
+            <?php echo wp_kses_post($recaptcha_v2_scripts); ?>
         <?php }else{ ?>
             <script src="<?php echo esc_url('https://www.google.com/recaptcha/api.js?render='.$recaptcha_v3_sitekey); ?>"></script>
             <script>
