@@ -6956,8 +6956,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'database_value' => array(),
                 ],*/
                 [
-                    'key'    => '
-                    ',
+                    'key'    => 'customer_refund_status',
                     'label'   => __( 'Available Status for Refund', 'dc-woocommerce-multi-vendor' ),
                     'type'    => 'checkbox_select',
                     'select_deselect'   =>  true,
