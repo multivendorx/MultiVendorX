@@ -3938,7 +3938,7 @@ class MVX_Ajax {
                 }
 
                 if ($include) {
-                 $ids = array_slice(array_intersect($ids, $include), 0, apply_filters('mvx_spmv_list_product_search_number', 10));
+                    $ids = array_slice(array_intersect($ids, $include), 0, apply_filters('mvx_spmv_list_product_search_number', 10));
                 } else {
                     $ids = array();
                 }
