@@ -165,8 +165,8 @@ if (!empty($mvx_vendor_registration_form_data) && is_array($mvx_vendor_registrat
                 break;
             case 'recaptcha':
                 $recaptcha_type = $value['recaptchatype'];
-                $sitekey = $value['sitekey'];
-                $secretkey = $value['secretkey'];
+                $sitekey = isset($value['sitekey']) ? $value['sitekey'] : '' ;
+                $secretkey = isset($value['secretkey']) ? $value['secretkey'] : '' ;
                 $script_url = ($recaptcha_type == 'v3') ? 'https://www.google.com/recaptcha/api.js?render='.$sitekey : 'https://www.google.com/recaptcha/api.js';
                 ?>
                 <script src="<?php echo $script_url; ?>"></script>
