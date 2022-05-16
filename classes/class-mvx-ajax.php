@@ -338,7 +338,7 @@ class MVX_Ajax {
                     } else if ($key == 'mark_ship') {
                         $action_html .= '<i title="' . $mark_ship_title . '" class="mvx-font ' . $action['icon'] . '"></i> ';
                     } else {
-                        $action_html .= '<a href="' . $action['url'] . '" target="'. $action['target'] .'" title="' . $action['title'] . '"><i class="mvx-font ' . $action['icon'] . '"></i></a> ';
+                        $action_html .= '<a href="' . $action['url'] . '" target="'. isset($action['target']) ? $action['target'] : '' .'" title="' . $action['title'] . '"><i class="mvx-font ' . $action['icon'] . '"></i></a> ';
                     }
                 }
                 $data[] = apply_filters('mvx_datatable_order_list_row_data', array(
@@ -1932,21 +1932,25 @@ class MVX_Ajax {
                     $dismiss_comment_id = get_post_meta($product->get_id(), '_comment_dismiss', true);
                     $dismiss_comment = get_comment($dismiss_comment_id);
 
-                    $dismiss_reason_modal = '<div class="modal fade" id="mvx-product-dismiss-reason-modal-'.$product->get_id().'" role="dialog">
-                        <div class="modal-dialog">
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">'.__('Rejection Note', 'dc-woocommerce-multi-vendor').'</h4>
-                                </div>
-                                <div class="mvx-product-dismiss-modal modal-body order-notes">     
-                                    <p class="order-note"><span>'.wptexturize( wp_kses_post( $dismiss_comment->comment_content ) ).'</span></p>
-                                    <p>'. $dismiss_comment->comment_author .' - '. date_i18n(wc_date_format() . ' ' . wc_time_format(), strtotime($dismiss_comment->comment_date) ) .'</p>
+                    $dismiss_reason_modal = '';
+                    if ($dismiss_comment) {
+                        $dismiss_reason_modal = '<div class="modal fade" id="mvx-product-dismiss-reason-modal-'.$product->get_id().'" role="dialog">
+                            <div class="modal-dialog">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">'.__('Rejection Note', 'dc-woocommerce-multi-vendor').'</h4>
+                                    </div>
+                                    <div class="mvx-product-dismiss-modal modal-body order-notes">     
+                                        <p class="order-note"><span>'.wptexturize( wp_kses_post( $dismiss_comment->comment_content ) ).'</span></p>
+                                        <p>'. $dismiss_comment->comment_author .' - '. date_i18n(wc_date_format() . ' ' . wc_time_format(), strtotime($dismiss_comment->comment_date) ) .'</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                     </div>';
+                    </div>';
+                    }
 
                     $actions_col = array(
                         'view' => '<a href="' . esc_url($product->get_permalink()) . '" target="_blank" title="' . $view_title . '"><i class="mvx-font ico-eye-icon"></i></a>',
@@ -3934,7 +3938,7 @@ class MVX_Ajax {
                 }
 
                 if ($include) {
-                    $ids = array_slice(array_intersect($ids, $include), 0, 10);
+                    $ids = array_slice(array_intersect($ids, $include), 0, apply_filters('mvx_spmv_list_product_search_number', 10));
                 } else {
                     $ids = array();
                 }

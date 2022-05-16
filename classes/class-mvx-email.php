@@ -91,21 +91,23 @@ class MVX_Email {
      */
     public function mvx_settings_email($settings) {
     	global $MVX;
-        $mvx_footer_settings = array(
-	        array(
-	            'title'       => __( 'MVX Footer text', 'dc-woocommerce-multi-vendor' ),
-	            'desc'        => __( 'The text to appear in the footer of MVX emails.', 'dc-woocommerce-multi-vendor' ),
-	            'id'          => 'mvx_email_footer_text',
-	            'css'         => 'width:300px; height: 75px;',
-	            'placeholder' => __( 'N/A', 'dc-woocommerce-multi-vendor' ),
-	            'type'        => 'textarea',
-	            /* translators: %s: site name */
-	            'default'     => sprintf( __( '%s - Powered by Multivendor X', 'dc-woocommerce-multi-vendor' ), get_bloginfo( 'name', 'display' ) ),
-	            'autoload'    => false,
-	            'desc_tip'    => true,
-	        )
-        );
-        array_splice($settings, 11, 0, $mvx_footer_settings);
+        if (!isset($_GET['section'])) {
+	        $mvx_footer_settings = array(
+		        array(
+		            'title'       => __( 'MVX Footer text', 'dc-woocommerce-multi-vendor' ),
+		            'desc'        => __( 'The text to appear in the footer of MVX emails.', 'dc-woocommerce-multi-vendor' ),
+		            'id'          => 'mvx_email_footer_text',
+		            'css'         => 'width:300px; height: 75px;',
+		            'placeholder' => __( 'N/A', 'dc-woocommerce-multi-vendor' ),
+		            'type'        => 'textarea',
+		            /* translators: %s: site name */
+		            'default'     => sprintf( __( '%s - Powered by Multivendor X', 'dc-woocommerce-multi-vendor' ), get_bloginfo( 'name', 'display' ) ),
+		            'autoload'    => false,
+		            'desc_tip'    => true,
+		        )
+	        );
+	        array_splice($settings, 11, 0, $mvx_footer_settings);
+	    }
         return $settings;
     }
 
