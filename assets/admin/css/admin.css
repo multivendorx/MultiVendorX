@@ -2617,4 +2617,107 @@ ul.mvx-dashboard-tabs-list a {
   line-height: 2.5rem;
   color: #000;
 }
+
+.mvx-module-list-container .mvx-module-section-options-list {
+  text-align: center;
+  margin: 0 0.5375rem 0.5375rem 0;
+  border: 0.1rem solid #d4d1d9;
+  background-color: #fdfdfe;
+  padding: 2rem 1rem 3.8rem;
+  border-radius: 0.253rem;
+  position: relative;
+  width: 32%;
+}
+
+.mvx-module-list-container .mvx-module-settings-box i.mvx-font {
+  font-size: 1.4rem;
+  line-height: 3rem;
+  display: inline-block;
+  border-radius: 0.2rem;
+  background-image: linear-gradient(158deg, #391268, #9e3568, #c5444c);
+  color: #f9f8fb;
+  height: 3rem;
+  width: 3rem;
+}
+
+.mvx-module-list-container .mvx-module-list-label-text {
+  font-size: 1.125rem;
+  color: #181718;
+  margin: 1.5rem 0 0.75rem;
+  font-weight: 500;
+}
+
+.mvx-module-list-container .mvx-module-settings-box header p {
+  padding: 0 0.8rem 1.2rem;
+  color: #5e5d60;
+}
+
+.mvx-module-list-container .mvx-module-settings-box .mvx-module-require-name {
+  font-size: 14px;
+  font-weight: 500;
+  border-top: 0.1rem solid #ece8f1;
+  padding: 0.3rem 0;
+  color: #181718;
+  text-align: left;
+}
+
+.mvx-module-list-container .mvx-module-settings-box ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.mvx-module-list-container .mvx-module-settings-box ul li .inactive-plugin-class {
+  margin: 0.2rem 0.3rem 0 0;
+  height: 18px;
+  width: 18px;
+  line-height: 13px;
+  border-radius: 50%;
+  background-color: #fff0f1;
+  color: #db4b54;
+}
+
+.mvx-module-list-container .mvx-module-settings-box ul li a {
+  color: #3f1473;
+}
+
+.mvx-module-list-container .mvx-module-section-options-list .mvx-module-current-status.wp-clearfix {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  clear: both;
+  width: 100%;
+  padding: 1rem 1.25rem;
+  background: #f8f9fa;
+  border-radius: 0 0 0.09rem 0.09rem;
+}
+
+.mvx-module-list-container .mvx-module-current-status a.mvx-module-url-button {
+  background: #f6f7f7;
+  vertical-align: top;
+  margin: 0 0.5rem 0 0;
+  padding: 0 1rem;
+  color: #181718;
+  border-color: #d4d1d9;
+}
+
+.mvx-module-list-container .mvx-module-current-status .mvx-toggle-checkbox-content {
+  margin-left: auto;
+}
+
+.mvx-module-list-container .mvx-module-option-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
 /*# sourceMappingURL=admin.css.map */
