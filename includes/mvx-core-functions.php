@@ -430,7 +430,7 @@ if (!function_exists('mvx_vendor_dashboard_page_id')) {
      */
     function mvx_vendor_dashboard_page_id($language_code = '', $url = false) {
         if (get_mvx_vendor_settings('vendor_dashboard_page', 'settings_general')) {
-            $mvx_dashboard_data = get_mvx_vendor_settings('vendor_dashboard_page', 'settings_general');
+            $mvx_dashboard_data = get_mvx_vendor_settings('vendor_dashboard_page', 'settings_general')[0];
             if (isset($mvx_dashboard_data['value']) && !empty($mvx_dashboard_data['value'])) {
                 if ( defined( 'ICL_SITEPRESS_VERSION' ) && ! ICL_PLUGIN_INACTIVE && class_exists( 'SitePress' ) ) {
                     if( !$language_code ) {
@@ -493,7 +493,7 @@ if (!function_exists('mvx_vendor_registration_page_id')) {
      */
     function mvx_vendor_registration_page_id() {
         if (get_mvx_vendor_settings('registration_page', 'settings_general')) {
-            $mvx_registration_page_data = get_mvx_vendor_settings('registration_page', 'settings_general');
+            $mvx_registration_page_data = get_mvx_vendor_settings('registration_page', 'settings_general')[0];
             if (isset($mvx_registration_page_data['value']) && !empty($mvx_registration_page_data['value'])) {
                 if (function_exists('icl_object_id')) {
                     return icl_object_id((int) $mvx_registration_page_data['value'], 'page', false, ICL_LANGUAGE_CODE);
