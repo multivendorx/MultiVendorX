@@ -528,6 +528,7 @@ class MVX_Cron_Job {
             }
 
             $get_managements_data = $seller_dashboard = $store_data = $products_data = $products_capabily_data = $spmv_data = $commission_data = $disbursement_data = $policy_data = $refund_data = $review_data = $social_data = $payemnts_masspay_data = $payemnts_payout_data = $payemnts_stripe_data = [];
+            $get_managements_data = get_option('mvx_settings_general_tab_settings', array());
             if (get_mvx_older_global_settings('approve_vendor_manually') && get_mvx_older_global_settings('approve_vendor_manually') == 'Enable') {
                 $get_managements_data['approve_vendor'] = 'manually';
                 mvx_update_option('mvx_settings_general_tab_settings', $get_managements_data);
@@ -546,7 +547,7 @@ class MVX_Cron_Job {
                 if($pages) {
                     foreach ($pages as $page) {
                         if ($page->ID == get_mvx_older_global_settings('vendor_registration')) {
-                            $pages_array[] = array(
+                            $pages_array = array(
                                 'value'=> $page->ID,
                                 'label'=> $page->post_title,
                                 'key'=> $page->ID,
@@ -563,7 +564,7 @@ class MVX_Cron_Job {
                 if($pages) {
                     foreach ($pages as $page) {
                         if ($page->ID == get_mvx_older_global_settings('wcmp_vendor')) {
-                            $pages_dashboard_array[] = array(
+                            $pages_dashboard_array = array(
                                 'value'=> $page->ID,
                                 'label'=> $page->post_title,
                                 'key'=> $page->ID,
