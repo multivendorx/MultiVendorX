@@ -547,7 +547,7 @@ class MVX_Cron_Job {
                 if($pages) {
                     foreach ($pages as $page) {
                         if ($page->ID == get_mvx_older_global_settings('vendor_registration')) {
-                            $pages_array[] = array(
+                            $pages_array = array(
                                 'value'=> $page->ID,
                                 'label'=> $page->post_title,
                                 'key'=> $page->ID,
@@ -564,7 +564,7 @@ class MVX_Cron_Job {
                 if($pages) {
                     foreach ($pages as $page) {
                         if ($page->ID == get_mvx_older_global_settings('wcmp_vendor')) {
-                            $pages_dashboard_array[] = array(
+                            $pages_dashboard_array = array(
                                 'value'=> $page->ID,
                                 'label'=> $page->post_title,
                                 'key'=> $page->ID,
