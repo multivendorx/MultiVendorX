@@ -7277,7 +7277,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
             'question-ans'  =>  [],
         ];
 
-        return $settings_fields;
+        return apply_filters('mvx_settings_fields_details', $settings_fields);
     }
 }
 
@@ -7683,7 +7683,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
             unset( $status_tools[2] );
         }
 
-        $mvx_all_backend_tab_list = array(
+        $mvx_all_backend_tab_list = apply_filters('mvx_multi_tab_array_list', array(
             'dashboard-page'                    => $dashboard_page_endpoint,
             'marketplace-advance-settings'      => $advance_page_endpoint,
             'marketplace-analytics'             => $analytics_page_endpoint,
@@ -7692,7 +7692,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
             'marketplace-general-settings'      => array_values($general_settings_page_endpoint),
             'marketplace-vendors'               => $marketplace_vendors,
             'marketplace-workboard'             => array_values($marketplace_workboard)
-        );
+        ));
         return $mvx_all_backend_tab_list;
     }
 }
