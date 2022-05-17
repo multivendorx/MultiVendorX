@@ -2637,6 +2637,25 @@ ul.mvx-dashboard-tabs-list a {
   width: calc(33.3333% - 0.5375rem);
 }
 
+.mvx-module-list-container .mvx-module-section-options-list .mvx-module-current-status.wp-clearfix {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  clear: both;
+  width: 100%;
+  padding: 1rem 1.25rem;
+  background: #f8f9fa;
+  border-radius: 0 0 0.09rem 0.09rem;
+}
+
 .mvx-module-list-container .mvx-module-settings-box i.mvx-font {
   font-size: 1.4rem;
   line-height: 3rem;
@@ -2646,13 +2665,6 @@ ul.mvx-dashboard-tabs-list a {
   color: #f9f8fb;
   height: 3rem;
   width: 3rem;
-}
-
-.mvx-module-list-container .mvx-module-list-label-text {
-  font-size: 1.125rem;
-  color: #181718;
-  margin: 1.5rem 0 0.75rem;
-  font-weight: 500;
 }
 
 .mvx-module-list-container .mvx-module-settings-box header p {
@@ -2689,23 +2701,11 @@ ul.mvx-dashboard-tabs-list a {
   color: #3f1473;
 }
 
-.mvx-module-list-container .mvx-module-section-options-list .mvx-module-current-status.wp-clearfix {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  clear: both;
-  width: 100%;
-  padding: 1rem 1.25rem;
-  background: #f8f9fa;
-  border-radius: 0 0 0.09rem 0.09rem;
+.mvx-module-list-container .mvx-module-list-label-text {
+  font-size: 1.125rem;
+  color: #181718;
+  margin: 1.5rem 0 0.75rem;
+  font-weight: 500;
 }
 
 .mvx-module-list-container .mvx-module-current-status a.mvx-module-url-button {
