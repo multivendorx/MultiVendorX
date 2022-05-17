@@ -21,6 +21,7 @@ if (!class_exists('WC_Email_Admin_Added_New_Product_to_Vendor')) :
         var $user_login;
         var $user_email;
         var $user_pass;
+        var $is_first_time = '';
 
         /**
          * Constructor
@@ -56,13 +57,14 @@ if (!class_exists('WC_Email_Admin_Added_New_Product_to_Vendor')) :
          *
          * @param unknown $order_id
          */
-        function trigger($post_id, $post, $vendor) {
+        function trigger($post_id, $post, $vendor, $is_first_time) {
             global $MVX;
 
             if (!$this->is_enabled())
                 return;
             
             $this->object = $post;
+            $this->is_first_time = $is_first_time;
             $this->find[] = '{product_name}';
             $this->product_name = $post->post_title;
             $this->replace[] = $this->product_name;
@@ -95,7 +97,11 @@ if (!class_exists('WC_Email_Admin_Added_New_Product_to_Vendor')) :
          * @return string
          */
         public function get_default_subject() {
-            return apply_filters('mvx_admin_added_new_product_to_vendor_email_subject', __('[{blogname}] Admin has assigned new product to You- {product_name}', 'dc-woocommerce-multi-vendor'), $this->object);
+            if ($this->is_first_time) {
+                return apply_filters('wcmp_admin_added_new_product_to_vendor_email_subject', __('[{blogname}] Admin has assigned new product to You- {product_name}', 'dc-woocommerce-multi-vendor'), $this->object);
+            } else {
+                return apply_filters('wcmp_admin_published_product_to_vendor_email_subject', __('[{blogname}] Admin has published your product with - {product_name}', 'dc-woocommerce-multi-vendor'), $this->object);
+            }
         }
 
         /**

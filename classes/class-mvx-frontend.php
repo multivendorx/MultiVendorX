@@ -265,7 +265,7 @@ class MVX_Frontend {
             echo '<div style="clear:both">';
             if (apply_filters('can_vendor_add_message_on_email_and_thankyou_page', true)) {
                 $MVX->template->get_template('vendor_message_to_buyer.php', array('vendor_array' => $vendor_array, 'capability_settings' => $customer_support_details_settings, 'customer_support_details_settings' => $customer_support_details_settings));
-            } elseif (get_mvx_vendor_settings('is_customer_support_details', 'general') == 'Enable') {
+            } elseif (get_mvx_vendor_settings('is_customer_support_details', 'settings_general')) {
                 $MVX->template->get_template('customer_support_details_to_buyer.php', array('vendor_array' => $vendor_array, 'capability_settings' => $customer_support_details_settings, 'customer_support_details_settings' => $customer_support_details_settings));
             }
             echo "</div>";

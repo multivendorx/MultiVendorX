@@ -2263,10 +2263,6 @@ Class MVX_Admin_Dashboard {
                     $errors = array_merge( $errors, $error );
                 }
 
-                // Notify Admin on New Product Creation
-                if ( ( ! $_POST['is_update'] || $_POST['original_post_status'] == 'draft' ) && $status != 'draft' ) {
-                    $MVX->product->on_all_status_transitions( $status, '', get_post( $post_id ) );
-                }
 
                 do_action( 'mvx_process_product_meta_' . $product_type, $post_id, $_POST );
 
@@ -2595,6 +2591,7 @@ Class MVX_Admin_Dashboard {
                 </title>
                 <?php wp_print_scripts('wc-setup'); ?>
                 <?php wp_print_scripts('mvx-setup'); ?>
+                <?php wp_print_styles('wc-setup'); ?>
                 <?php do_action('admin_print_styles'); ?>
                 <?php do_action('mvx_vendor_head'); ?>
                 <style type="text/css">
@@ -2606,7 +2603,7 @@ Class MVX_Admin_Dashboard {
             <body class="mvx-vendor-wizard wc-setup wp-core-ui">
                 <h1 id="wc-logo">
                     <a href="<?php echo apply_filters( 'mvx_vendor_setup_wizard_site_logo_link', site_url(), get_current_user_id() ); ?>">
-                        <?php $site_logo = get_mvx_vendor_settings('mvx_dashboard_site_logo', 'vendor', 'dashboard') ? get_mvx_vendor_settings('mvx_dashboard_site_logo', 'vendor', 'dashboard') : '';
+                        <?php $site_logo = get_mvx_vendor_settings('mvx_new_dashboard_site_logo', 'seller_dashbaord') ? get_mvx_vendor_settings('mvx_new_dashboard_site_logo', 'seller_dashbaord') : '';
                         if ($site_logo) { ?>
                         <?php echo apply_filters('mvx_vendor_setup_wizard_logo_customization', '<img src="'. get_url_from_upload_field_value($site_logo) .'" alt="'. get_bloginfo() .'">', $site_logo); ?>
                         <?php } else {

@@ -266,7 +266,7 @@ if ( ! function_exists( 'mvx_vendor_lists_vendor_top_products' ) ) {
 			if( !$top_products ) return false;
 			set_transient( 'mvx_vendorlist_top_products_' . $vendor->id, $top_products );
 		}
-		$top3_products = get_transient( 'mvx_vendorlist_top_products_' . $vendor->id );
+		$top3_products = apply_filters('mvx_vendor_top_product_list_suffle', true) ? $vendor->get_top_rated_products( array( 'posts_per_page' => 3 ) ) : get_transient( 'mvx_vendorlist_top_products_' . $vendor->id );
 		if( !$top3_products ) return false;
 		$html = '<div class="mvx-headline">
                 <div class="mvx-topProduct">' .__( 'Top Products' , 'dc-woocommerce-multi-vendor' ) . '</div>
