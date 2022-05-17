@@ -1109,7 +1109,7 @@ div#wpcontent {
 }
 .btn {
 	width: auto;
-	display: inline-block;
+	display: inline-flex;
 	padding: 0.3125rem 0.9375rem;
 	text-align: center;
 	border-radius: 0.25rem;
@@ -1118,6 +1118,8 @@ div#wpcontent {
 	font-weight: 400;
 	text-decoration: none;
 	border: #fff 0.0625rem solid;
+	align-items: center;
+	column-gap: 10px;
 }
 .red-btn {
 	color: #fff;
@@ -1130,9 +1132,9 @@ div#wpcontent {
 	border-color: #65438f;
 }
 .default-btn {
-	color: #f9f8fb;
-	background: #3f1473;
-	border-color: #3f1473;
+	color: #f9f8fb !important;
+	background: #3f1473 !important;
+	border-color: #3f1473 !important;
 }
 .border-btn {
 	color: #65438f;
@@ -1690,8 +1692,9 @@ div#wpcontent {
 		transform: translateY(-50%);
 	}
 	input {
-		border-color: #ece8f1;
-		background-color: #ece8f1;
+		border-color: #8c8f94;
+		background-color: #FFF;
+		padding-left: 2.125rem !important;
 	}
 }
 input[type="checkbox"] {
@@ -2359,13 +2362,13 @@ ul.mvx-dashboard-tabs-list {
 // added 15.05
 .mvx-module-list-container .mvx-module-section-options-list {
     text-align: center;
-    margin: 0 0.5375rem 0.5375rem 0;
+    margin: 0.26875rem;
     border: 0.1rem solid #d4d1d9;
     background-color: #fdfdfe;
     padding: 2rem 1rem 3.8rem;
     border-radius: 0.253rem;
     position: relative;
-    width: 32%;
+    width: calc(33.3333% - 0.5375rem);
 }
 .mvx-module-list-container .mvx-module-settings-box i.mvx-font {
     font-size: 1.4rem;
@@ -2439,4 +2442,15 @@ ul.mvx-dashboard-tabs-list {
 .mvx-module-list-container .mvx-module-option-row {
     display: flex;
     flex-wrap: wrap;
+}
+.mvx-d-flex{
+	display: flex;
+	align-items: center;
+	column-gap: 15px;
+}
+.mvx-d-flex .mvx-total-module-name-and-count{
+	display: inline-flex;
+}
+.mvx-search-holder.lh-46 input{
+	height: 46px !important;
 }
