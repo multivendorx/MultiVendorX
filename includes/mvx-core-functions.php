@@ -5139,6 +5139,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
             ],
             'registration'  =>  [
             ],
+            
             'seller-dashbaord'  =>  [
                 [
                     'key'    => 'mvx_new_dashboard_site_logo',

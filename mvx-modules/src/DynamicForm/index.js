@@ -621,10 +621,19 @@ export default class DynamicForm extends React.Component {
 
       // If no array key found
       if (!m.key) {return false;}
+      //console.log(this.state['chat_provider']);
 
-      if(m.depend && this.state[m.depend] && this.state[m.depend].value != m.dependvalue) {
+      // for select selection
+      if(m.depend && this.state[m.depend] && this.state[m.depend].value && this.state[m.depend].value != m.dependvalue) {
         return false;
       }
+
+      // for radio button selection
+      if(m.depend && this.state[m.depend] && !this.state[m.depend].value && this.state[m.depend] != m.dependvalue) {
+        return false;
+      }
+
+      // for checkbox selection
       if (m.depend_checkbox && this.state[m.depend_checkbox] && this.state[m.depend_checkbox].length == 0) {
         return false;
       }
@@ -658,6 +667,27 @@ export default class DynamicForm extends React.Component {
               key={key}
               id={m.id}
               placeholder={placeholder}
+              name={name}
+              value={value}
+              onChange={e => {
+                this.onChange(e, target);
+              }}
+            />
+            {m.desc ? <p className="mvx-settings-metabox-description" dangerouslySetInnerHTML={{ __html: m.desc }}></p> : ''}
+          </div>
+      );
+      }
+
+      if (type == "color" ) {
+         input = (
+          <div className="mvx-settings-color-picker-parent-class">
+            <label for="favcolor">Select your favorite color:</label>
+            <input
+              {...props}
+              className="mvx-setting-color-picker"
+              type={type}
+              key={key}
+              id={m.id}
               name={name}
               value={value}
               onChange={e => {
