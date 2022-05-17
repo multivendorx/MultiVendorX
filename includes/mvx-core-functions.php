@@ -5036,6 +5036,22 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'database_value' => array(),
                 ],
                 [
+                    'key'    => 'is_customer_support_details',
+                    'label'   => __( "Customer Support", 'dc-woocommerce-multi-vendor' ),
+                    'class'     => 'mvx-toggle-checkbox',
+                    'type'    => 'checkbox',
+                    'props'     => array(
+                    ),
+                    'options' => array(
+                        array(
+                            'key'=> "is_customer_support_details",
+                            'label'=> __("Show support channel details in \"Thank You\" page and new order email", 'dc-woocommerce-multi-vendor'),
+                            'value'=> "is_customer_support_details"
+                        ),
+                    ),
+                    'database_value' => array(),
+                ],
+                [
                     'key'       => 'separator_content',
                     'type'      => 'section',
                     'label'     => "",
@@ -5073,47 +5089,47 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     ),
                     'options' => array(
                         array(
-                            'variable'=> "<code>mvx_vendor</code>",
+                            'variable'=> "<code>[mvx_vendor]</code>",
                             'description'=> __('Enables you to create a seller dashboard ', 'dc-woocommerce-multi-vendor'),
                         ),
                         array(
-                            'variable'=> "<code>vendor_registration</code>",
+                            'variable'=> "<code>[vendor_registration]</code>",
                             'description'=> __('Creates a page where the vendor registration form is available', 'dc-woocommerce-multi-vendor'),
                         ),
                         array(
-                            'variable'=> "<code>vendor_coupons</code>",
+                            'variable'=> "<code>[vendor_coupons]</code>",
                             'description'=> __('Lets you view  a brief summary of the coupons created by the seller and number of times it has been used by the customers', 'dc-woocommerce-multi-vendor'),
                         ),
                         array(
-                            'variable'=> "<code>mvx_recent_products</code>",
+                            'variable'=> "<code>[mvx_recent_products]</code>",
                             'description'=> __('Allows you to glance at the recent products added by seller', 'dc-woocommerce-multi-vendor'),
                         ),
                         array(
-                            'variable'=> "<code>mvx_products</code>",
+                            'variable'=> "<code>[mvx_products]</code>",
                             'description'=> __('Displays the products added by seller', 'dc-woocommerce-multi-vendor'),
                         ),
                         array(
-                            'variable'=> "<code>mvx_featured_products</code>",
+                            'variable'=> "<code>[mvx_featured_products]</code>",
                             'description'=> __('Exhibits featured products added by the seller', 'dc-woocommerce-multi-vendor'),
                         ),
                         array(
-                            'variable'=> "<code>mvx_sale_products</code>",
+                            'variable'=> "<code>[mvx_sale_products]</code>",
                             'description'=> __('Allows you to see the products put on sale by a seller', 'dc-woocommerce-multi-vendor'),
                         ),
                         array(
-                            'variable'=> "<code>mvx_top_rated_products</code>",
+                            'variable'=> "<code>[mvx_top_rated_products]</code>",
                             'description'=> __('Displays the top rated products of the seller', 'dc-woocommerce-multi-vendor'),
                         ),
                         array(
-                            'variable'=> "<code>mvx_best_selling_products</code>",
+                            'variable'=> "<code>[mvx_best_selling_products]</code>",
                             'description'=> __('Presents you the option of viewing the best selling products of the vendor', 'dc-woocommerce-multi-vendor'),
                         ),
                         array(
-                            'variable'=> "<code>mvx_product_category</code>",
+                            'variable'=> "<code>[mvx_product_category]</code>",
                             'description'=> __('Lets you see the product categories used by the vendor', 'dc-woocommerce-multi-vendor'),
                         ),
                         array(
-                            'variable'=> "<code>mvx_vendorslist</code>",
+                            'variable'=> "<code>[mvx_vendorslist]</code>",
                             'description'=> __('Shows customers a list of available seller.', 'dc-woocommerce-multi-vendor'),
                         ),
                     ),
@@ -5139,6 +5155,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
             ],
             'registration'  =>  [
             ],
+            
             'seller-dashbaord'  =>  [
                 [
                     'key'    => 'mvx_new_dashboard_site_logo',
@@ -6133,7 +6150,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'class'     => 'mvx-toggle-checkbox',
                     'type'    => 'checkbox',
                     'right_content' =>  true,
-                    'options' => $disbursement_settings_methods,
+                    'options' => apply_filters('mvx_payment_method_disbursement_options', $disbursement_settings_methods),
                     'database_value' => array(),
                 ],
                 [

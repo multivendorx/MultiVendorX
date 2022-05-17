@@ -854,7 +854,7 @@ class MVX_Vendor_Hooks {
      * @return Boolean
      */
     public function mvx_vendor_dashboard_menu_vendor_policies_capability( $cap ) {
-        if ( (mvx_is_module_active('store-policy') && apply_filters( 'mvx_vendor_can_overwrite_policies', true )) || ('Enable' === get_mvx_vendor_settings( 'is_customer_support_details', 'general' ) && apply_filters( 'mvx_vendor_can_overwrite_customer_support', true )) ) {
+        if ( (mvx_is_module_active('store-policy') && apply_filters( 'mvx_vendor_can_overwrite_policies', true )) || (get_mvx_vendor_settings('is_customer_support_details', 'settings_general') ) ) {
             $cap = true;
         }
         return $cap;
