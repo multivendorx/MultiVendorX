@@ -6133,7 +6133,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'class'     => 'mvx-toggle-checkbox',
                     'type'    => 'checkbox',
                     'right_content' =>  true,
-                    'options' => $disbursement_settings_methods,
+                    'options' => apply_filters('mvx_payment_method_disbursement_options', $disbursement_settings_methods),
                     'database_value' => array(),
                 ],
                 [
