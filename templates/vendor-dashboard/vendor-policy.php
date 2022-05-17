@@ -59,7 +59,7 @@ $_wp_editor_settings = apply_filters('mvx_vendor_policies_wp_editor_settings', $
                 </div>
             </div>
         <?php endif; ?>
-        <?php if (apply_filters('mvx_vendor_can_overwrite_customer_support', true) && get_mvx_vendor_settings('is_customer_support_details', 'general') == 'Enable') { ?>
+        <?php if (get_mvx_vendor_settings('is_customer_support_details', 'settings_general')) { ?>
             <div class="panel panel-default pannel-outer-heading">
                 <div class="panel-heading d-flex">
                     <h3><?php _e('Customer Support Details', 'dc-woocommerce-multi-vendor'); ?></h3>

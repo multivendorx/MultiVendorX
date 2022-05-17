@@ -35,9 +35,9 @@ class MVX_Product {
         add_action('woocommerce_ajax_save_product_variations', array($this, 'save_variation_commission'));
         add_action('woocommerce_product_after_variable_attributes', array(&$this, 'add_variation_settings'), 10, 3);
         add_filter('pre_get_posts', array(&$this, 'convert_business_id_to_taxonomy_term_in_query'));
-        if (is_admin()) {
-            add_action('transition_post_status', array(&$this, 'on_all_status_transitions'), 10, 3);
-        }
+
+        add_action('transition_post_status', array(&$this, 'on_all_status_transitions'), 10, 3);
+
         add_action('woocommerce_product_meta_start', array(&$this, 'add_report_abuse_link'), 30);
         //if ($MVX->vendor_caps->vendor_frontend_settings('enable_vendor_tab')) {
         add_filter('woocommerce_product_tabs', array(&$this, 'product_vendor_tab'));
@@ -682,10 +682,11 @@ class MVX_Product {
         if (current_user_can('administrator') && $new_status != $old_status && $post->post_status == 'publish') {
             if (isset($_POST['choose_vendor']) && !empty($_POST['choose_vendor'])) {
                 $term = get_term($_POST['choose_vendor'], $MVX->taxonomy->taxonomy_name);
+                $is_first_time = isset($_POST['auto_draft']) ? $_POST['auto_draft'] : '';
                 if ($term) {
                     $vendor = get_mvx_vendor_by_term($term->term_id);
                     $email_admin = WC()->mailer()->emails['WC_Email_Admin_Added_New_Product_to_Vendor'];
-                    $email_admin->trigger($post->post_id, $post, $vendor);
+                    $email_admin->trigger($post->post_id, $post, $vendor, $is_first_time);
                 }
             }
         }

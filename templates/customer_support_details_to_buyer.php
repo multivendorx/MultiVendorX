@@ -15,7 +15,7 @@ global $MVX;
 <table style="width:100%; color: #737373; border: 1px solid #e4e4e4; background:none;" border="0" cellpadding="8" cellspacing="0">
 	<tbody>
 		<?php $cc = 0;
-		if( apply_filters('mvx_vendor_can_overwrite_customer_support', true) ) {
+		if( get_mvx_vendor_settings('is_customer_support_details', 'settings_general') ) {
 			foreach ( $vendor_array as $vendor_id => $products) { 
                             if(is_user_mvx_vendor($vendor_id)){
 				$vendor_meta = get_user_meta( $vendor_id );

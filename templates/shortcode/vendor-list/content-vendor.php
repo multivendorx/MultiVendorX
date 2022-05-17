@@ -37,7 +37,7 @@ $vendor_phone = $vendor->phone ? $vendor->phone : __('No number yet', 'dc-woocom
                     </div>
                     <div class="dashicons dashicons-location">
                         <div class="on-hover-cls">
-                        <p><?php echo $vendor->get_formatted_address() ? substr($vendor->get_formatted_address(), 0, 10) : __('No Address found', 'dc-woocommerce-multi-vendor'); ?></p>
+                         <p><?php echo $vendor->get_formatted_address() ? $vendor->get_formatted_address() : __('No Address found', 'dc-woocommerce-multi-vendor'); ?></p>
                         </div>
                     </div>
                 </div>
@@ -64,10 +64,10 @@ $vendor_phone = $vendor->phone ? $vendor->phone : __('No number yet', 'dc-woocom
             <div class="add-call-block">
                 <div class="mvx-detail-block"></div>
                 <div class="mvx-detail-block"></div>
-                <?php if ($vendor->address_2) : ?>
+                <?php if ($vendor->country) : ?>
                     <div class="mvx-detail-block">
                         <i class="mvx-font ico-location-icon2" aria-hidden="true"></i>
-                        <span class="descrptn_txt"><?php echo esc_html(substr($vendor->address_2, 0, 10) . '...'); ?></span>
+                        <span class="descrptn_txt"><?php echo esc_html($vendor->country) . ', ' . esc_html($vendor->city); ?></span>
                     </div>
                 <?php endif; ?>
             </div>
