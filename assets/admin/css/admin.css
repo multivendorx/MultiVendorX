@@ -1192,7 +1192,9 @@ div#wpcontent {
 
 .btn {
   width: auto;
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   padding: 0.3125rem 0.9375rem;
   text-align: center;
   border-radius: 0.25rem;
@@ -1201,6 +1203,11 @@ div#wpcontent {
   font-weight: 400;
   text-decoration: none;
   border: #fff 0.0625rem solid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-column-gap: 10px;
+          column-gap: 10px;
 }
 
 .red-btn {
@@ -1216,9 +1223,9 @@ div#wpcontent {
 }
 
 .default-btn {
-  color: #f9f8fb;
-  background: #3f1473;
-  border-color: #3f1473;
+  color: #f9f8fb !important;
+  background: #3f1473 !important;
+  border-color: #3f1473 !important;
 }
 
 .border-btn {
@@ -1869,8 +1876,9 @@ div#wpcontent {
 }
 
 .mvx-search-holder input {
-  border-color: #ece8f1;
-  background-color: #ece8f1;
+  border-color: #8c8f94;
+  background-color: #FFF;
+  padding-left: 2.125rem !important;
 }
 
 input[type="checkbox"] {
@@ -2620,13 +2628,32 @@ ul.mvx-dashboard-tabs-list a {
 
 .mvx-module-list-container .mvx-module-section-options-list {
   text-align: center;
-  margin: 0 0.5375rem 0.5375rem 0;
+  margin: 0.26875rem;
   border: 0.1rem solid #d4d1d9;
   background-color: #fdfdfe;
   padding: 2rem 1rem 3.8rem;
   border-radius: 0.253rem;
   position: relative;
-  width: 32%;
+  width: calc(33.3333% - 0.5375rem);
+}
+
+.mvx-module-list-container .mvx-module-section-options-list .mvx-module-current-status.wp-clearfix {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  clear: both;
+  width: 100%;
+  padding: 1rem 1.25rem;
+  background: #f8f9fa;
+  border-radius: 0 0 0.09rem 0.09rem;
 }
 
 .mvx-module-list-container .mvx-module-settings-box i.mvx-font {
@@ -2638,13 +2665,6 @@ ul.mvx-dashboard-tabs-list a {
   color: #f9f8fb;
   height: 3rem;
   width: 3rem;
-}
-
-.mvx-module-list-container .mvx-module-list-label-text {
-  font-size: 1.125rem;
-  color: #181718;
-  margin: 1.5rem 0 0.75rem;
-  font-weight: 500;
 }
 
 .mvx-module-list-container .mvx-module-settings-box header p {
@@ -2681,23 +2701,11 @@ ul.mvx-dashboard-tabs-list a {
   color: #3f1473;
 }
 
-.mvx-module-list-container .mvx-module-section-options-list .mvx-module-current-status.wp-clearfix {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  clear: both;
-  width: 100%;
-  padding: 1rem 1.25rem;
-  background: #f8f9fa;
-  border-radius: 0 0 0.09rem 0.09rem;
+.mvx-module-list-container .mvx-module-list-label-text {
+  font-size: 1.125rem;
+  color: #181718;
+  margin: 1.5rem 0 0.75rem;
+  font-weight: 500;
 }
 
 .mvx-module-list-container .mvx-module-current-status a.mvx-module-url-button {
@@ -2719,5 +2727,26 @@ ul.mvx-dashboard-tabs-list a {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+}
+
+.mvx-d-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-column-gap: 15px;
+          column-gap: 15px;
+}
+
+.mvx-d-flex .mvx-total-module-name-and-count {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.mvx-search-holder.lh-46 input {
+  height: 46px !important;
 }
 /*# sourceMappingURL=admin.css.map */
