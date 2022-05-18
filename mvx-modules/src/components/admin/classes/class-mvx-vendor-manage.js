@@ -72,6 +72,7 @@ class App extends React.Component {
       data_setting_fileds: [],
       mvx_store_endpoint: '',
       set_tab_name: '',
+      set_tab_name_id: '',
       columns_vendor_list: [],
       vendor_loading: false,
 
@@ -648,18 +649,32 @@ class App extends React.Component {
     }
     return (
       <div>
-
         <HeaderSection />
-
-
         <div className="mvx-container">
-
           <div className="ptb-2r mvx-row">
+               
+              {queryt.get("name") == 'add_new' ?
+                <div className="general-tab-area">
+                  <div className="tabcontentclass tabcontentclass-child">
+                    <this.Childparent name={queryt.get("name")} />
+                  </div>
+                </div>
+              : '' }
+
+              {!queryt.get("ID") ?
+              queryt.get("name") == "add_new" ? '' :
+
             <div className="mvx-col-75">
+              
+              
+
               <div className="mvx-page-title">
                 Vendors
                 <Link to={`?page=mvx#&submenu=vendor&name=add_new`} className="btn default-btn ml-12"><i className="mvx-font icon-add mr-7"></i>Add Vendor</Link>
               </div>
+
+
+
               <div className="mvx-row mvx-align-items-center mvx-justify-content-between mb-15">
                 <div className="mvx-col-55">
                   <ul className='mvx-ul-auto mvx-row'>
@@ -686,13 +701,16 @@ class App extends React.Component {
                   </div>
                 </div>
               </div>
+
+
               <div className="mvx-row mb-15">
                 <div className="mvx-col-25">
                   <Select placeholder="Bulk actions" options={appLocalizer.vendor_list_page_bulk_list_options} isClearable={true} className="mvx-module-section-list-data" onChange={this.handlevendoractionsearch} />
                 </div>
               </div>
-              <div className='responsive-table'>
 
+
+              <div className='responsive-table'>
                 <div className="mvx-backend-datatable-wrapper vendor-table-wapper default-table">
                   {this.state.columns_vendor_list && this.state.columns_vendor_list.length > 0 && this.state.vendor_loading ?
                     <DataTable
@@ -702,7 +720,8 @@ class App extends React.Component {
                       onSelectedRowsChange={this.handleChange}
                       pagination
                     />
-                    : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />}
+                    : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
+                  }
 
                   {this.state.datavendor.map((data8, index8) => (
                     <Dialog open={this.state.open_vendor_model_dynamic[data8.ID]} onClose={this.handleClose_dynamic} aria-labelledby="form-dialog-title">
@@ -740,19 +759,40 @@ class App extends React.Component {
                       </DialogActions>
                     </Dialog>
                   ))}
+                </div>
+              </div>
 
+
+            </div>
+
+            : 
+              <div>
+                <div className="general-tab-header-area">
+                  <div className="mvx-tab-name-display">{tab_name_display}</div>
+                  <p>{tab_description_display}</p>
                 </div>
 
+                <div className="general-tab-area">
+                  <ul className="mvx-general-tabs-list">
+                  {appLocalizer.mvx_all_backend_tab_list['marketplace-vendors'].map((data, index) => (
+                      <Link to={`?page=mvx#&submenu=vendor&ID=${queryt.get("ID")}&name=${data.modulename}`} ><li className={queryt.get("name") == data.modulename ? 'activegeneraltabs' : ''}>{data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}{data.tablabel}</li></Link>
+                  ))}
+                  </ul>
+
+                  <div className="tabcontentclass">
+                    <this.Child name={queryt} />
+                  </div>
+                </div>
               </div>
-            </div>
+            }
 
             <div className="mvx-col-25 mvx-adv-image-display">
               <a href="https://www.qries.com/" target="__blank">
                 <img alt="Multivendor X" src={appLocalizer.multivendor_logo} />
               </a>
             </div>
-          </div>
 
+          </div>
         </div>
       </div>
     );
@@ -791,6 +831,24 @@ class App extends React.Component {
     }
 
 
+    if (new URLSearchParams(window.location.hash).get("ID") && name.get("ID") != this.state.set_tab_name_id) {
+      axios.get(
+        `${appLocalizer.apiUrl}/mvx_module/v1/list_of_all_tab_based_settings_field`, {
+        params: { vendor_id: new URLSearchParams(window.location.hash).get("ID") }
+      })
+        .then(response => {
+          if (response.data) {
+            this.setState({
+              data_setting_fileds: response.data,
+              vendor_shipping_option_choice: response.data.vendor_default_shipping_options.value,
+              set_tab_name_id: name.get("ID")
+            });
+          }
+
+        })
+    }
+
+
     if (new URLSearchParams(window.location.hash).get("ID") && name.get("name") != this.state.set_tab_name) {
       axios.get(
         `${appLocalizer.apiUrl}/mvx_module/v1/list_of_all_tab_based_settings_field`, {
@@ -807,6 +865,10 @@ class App extends React.Component {
 
         })
     }
+
+
+
+
 
 
     if (new URLSearchParams(window.location.hash).get("name") == 'vendor-shipping') {
