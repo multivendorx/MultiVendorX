@@ -1776,7 +1776,7 @@ Child({ name }) {
                     <div className='mvx-col-33'>
                       <div className='mv-off-white-box'>
                         <div className='mv-white-box-header'>
-                        Pending User
+                        Pending Question
                           <div className='pull-right'>
                           <input type="checkbox" className="mvx-workboard-checkbox" checked={this.state.pending_question_check[pending_index]} onChange={(e) => this.handle_todo_question_checkbox_chenage(e, pending_data.id, pending_index)}/>
                           </div>
@@ -1800,7 +1800,7 @@ Child({ name }) {
                           </div>
                           <div className='mvx-row mvx-align-items-center name-txt'>
                             <div className='mvx-col-40'>Product Name:</div>
-                            <div className='mvx-col-66'><a href={pending_data.coupon_url}>{pending_data.coupon}</a></div>
+                            <div className='mvx-col-60'><a href={pending_data.product_url}>{pending_data.product_name}</a></div>
                           </div>
 
                           <div className='mvx-row mvx-align-items-center name-txt'>
