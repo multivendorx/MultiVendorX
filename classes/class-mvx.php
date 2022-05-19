@@ -49,6 +49,7 @@ final class MVX {
     public $shipping_gateway;
     public $ledger;
     public $vendor_rest_api;
+    public $deprecated_hook_handlers = array();
 
     /**
      * Class construct
@@ -198,6 +199,12 @@ final class MVX {
         $this->init_vendor_coupon();
         // Init Ledger
         $this->init_ledger();
+        
+        include_once $this->plugin_path . '/includes/class-mvx-deprecated-action-hooks.php';
+        include_once $this->plugin_path . '/includes/class-mvx-deprecated-filter-hooks.php';
+        $this->deprecated_hook_handlers['actions'] = new MVX_Deprecated_Action_Hooks();
+        $this->deprecated_hook_handlers['filters'] = new MVX_Deprecated_Filter_Hooks();
+
         // rewrite endpoint for followers details
         add_rewrite_endpoint( 'followers', EP_ALL );
 
@@ -241,6 +248,8 @@ final class MVX {
         include_once ( $this->plugin_path . "/includes/mvx-hooks-functions.php" );
         // Query classes
         include_once ( $this->plugin_path . '/classes/query/class-mvx-vendor-query.php' );
+
+        
     }
 
     /**
