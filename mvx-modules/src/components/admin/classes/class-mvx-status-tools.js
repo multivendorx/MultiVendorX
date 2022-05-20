@@ -251,50 +251,55 @@ Child({ name }) {
             <div className="mvx-status-database-tools-content">
               
               <div className="mvx-vendor-transients">
-                <div className="mvx-vendor-transients-header">
-                  WCMp vendors transients
-                </div>
+
+              <div class="mvx-text-with-line-wrapper">
+                <div class="mvx-report-text w-100 mr-0"><span> WCMp vendors transients</span></div>
+              </div>
+
                 <div className="mvx-vendor-transients-description">
                   This tool will clear all WCMp vendors transients cache.
                 </div>
                 <div className="mvx-vendor-transients-button">
-                  <button type="button" className="button-secondary" onClick={(e) => this.handle_tools_triggers(e, 'transients')}>Clear transients</button>
+                  <button type="button" className="btn border-btn" onClick={(e) => this.handle_tools_triggers(e, 'transients')}>Clear transients</button>
                 </div>
               </div>
 
               <div className="mvx-vendor-transients">
-                <div className="mvx-vendor-transients-header">
-                  Reset visitors stats table
+                <div class="mvx-text-with-line-wrapper">
+                  <div class="mvx-report-text w-100 mr-0"><span>Reset visitors stats table</span></div>
                 </div>
+                
                 <div className="mvx-vendor-transients-description">
                   This tool will clear ALL the table data of WCMp visitors stats.
                 </div>
                 <div className="mvx-vendor-transients-button">
-                  <button type="button" className="button-secondary" onClick={(e) => this.handle_tools_triggers(e, 'visitor')}>Reset Database</button>
+                  <button type="button" className="btn border-btn" onClick={(e) => this.handle_tools_triggers(e, 'visitor')}>Reset Database</button>
                 </div>
               </div>
 
               <div className="mvx-vendor-transients">
-                <div className="mvx-vendor-transients-header">
-                  Force WCMp order migrate
+                <div class="mvx-text-with-line-wrapper">
+                  <div class="mvx-report-text w-100 mr-0"><span>Force WCMp order migrate</span></div>
                 </div>
+                
                 <div className="mvx-vendor-transients-description">
                   This will regenerate all vendors older orders to individual orders
                 </div>
                 <div className="mvx-vendor-transients-button">
-                  <button type="button" className="button-secondary" onClick={(e) => this.handle_tools_triggers(e, 'migrate_order')}>Order Migrate</button>
+                  <button type="button" className="btn border-btn" onClick={(e) => this.handle_tools_triggers(e, 'migrate_order')}>Order Migrate</button>
                 </div>
               </div>
 
               <div className="mvx-vendor-transients">
-                <div className="mvx-vendor-transients-header">
-                  Multivendor Migration
+                <div class="mvx-text-with-line-wrapper">
+                  <div class="mvx-report-text w-100 mr-0"><span> Multivendor Migration</span></div>
                 </div>
+                
                 <div className="mvx-vendor-transients-description">
                   This will migrate older marketplace details
                 </div>
                 <div className="mvx-vendor-transients-button">
-                  <button type="button" className="button-secondary" onClick={(e) => this.handle_tools_triggers(e, 'migrate')}>Multivendor migrate</button>
+                  <button type="button" className="btn border-btn" onClick={(e) => this.handle_tools_triggers(e, 'migrate')}>Multivendor migrate</button>
                 </div>
               </div>
 
@@ -314,7 +319,7 @@ Child({ name }) {
             {this.state.list_of_system_info_copy_data ? 
             <div className="site-health-copy-buttons">
               <div className="copy-button-wrapper">
-                <button type="button" className="button copy-button" data-clipboard-text={this.state.list_of_system_info_copy_data}>
+                <button type="button" className="btn border-btn copy-button" data-clipboard-text={this.state.list_of_system_info_copy_data}>
                   Copy System Info to Clipboard
                 </button>
                 <span className="success hidden" aria-hidden="true">Copied!</span>
@@ -324,7 +329,7 @@ Child({ name }) {
 
               { Object.entries(this.state.list_of_system_info).length > 0 ?
                 Object.entries(this.state.list_of_system_info).map((list_data, index_data) => (
-                  <div id="health-check-debug" className="health-check-accordion">
+                  <div id="health-check-debug" className="health-check-accordion mb-24">
                     <h3 className="health-check-accordion-heading">
                       <button aria-expanded={this.state.store_index_data.length > 0 && this.state.store_index_data[index_data] == 'false' ? "false" : "true" } className="health-check-accordion-trigger" aria-controls={`health-check-accordion-block-${list_data[0]}`} type="button" onClick={(e) => this.open_closed_system_info(e, list_data[0], index_data)}>
                         <span className="title">
@@ -362,7 +367,7 @@ Child({ name }) {
 
 
 
-              <header>
+              <header className='mt-24'>
                 <h3>Error Log</h3>
               </header>
 
@@ -372,7 +377,7 @@ Child({ name }) {
 
               <div className="site-health-copy-buttons">
                 <div className="copy-button-wrapper">
-                  <button type="button" className="button copy-button" data-clipboard-text={appLocalizer.errors_log}>
+                  <button type="button" className="btn border-btn copy-button" data-clipboard-text={appLocalizer.errors_log}>
                     Copy Log to Clipboard
                   </button>
                   <span className="success hidden" aria-hidden="true">Copied!</span>

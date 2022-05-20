@@ -670,7 +670,7 @@ class App extends React.Component {
 
               <div className="mvx-page-title">
                 Vendors
-                <Link to={`?page=mvx#&submenu=vendor&name=add_new`} className="btn default-btn ml-12"><i className="mvx-font icon-add mr-7"></i>Add Vendor</Link>
+                <Link to={`?page=mvx#&submenu=vendor&name=add_new`} className="btn default-btn ml-12"><i className="mvx-font icon-add"></i>Add Vendor</Link>
               </div>
 
 
@@ -747,9 +747,9 @@ class App extends React.Component {
                             </div>
 
                             <div className="mvx-vendor-multi-action-buttons">
-                              <Button classname="button button-primary button-large" onClick={() => this.handle_Vendor_Approve(data8.ID)} color="primary">Approve</Button>
-                              <Button classname="button button-primary button-large" onClick={() => this.handle_Vendor_Reject(data8.ID)} color="primary">Reject</Button>
-                              <Button classname="button button-primary button-large" onClick={() => this.handle_Vendor_Edit(data8)} color="primary">Edit Vendor</Button>
+                              <Button className="btn purple-btn button-large" onClick={() => this.handle_Vendor_Approve(data8.ID)} color="primary">Approve</Button>
+                              <Button className="btn red-btn button-large" onClick={() => this.handle_Vendor_Reject(data8.ID)} color="primary">Reject</Button>
+                              <Button className="btn border-btn button-large" onClick={() => this.handle_Vendor_Edit(data8)} color="primary">Edit Vendor</Button>
                             </div>
 
                           </div>
@@ -766,8 +766,8 @@ class App extends React.Component {
             </div>
 
             : 
-              <div>
-                <div className="general-tab-header-area">
+              <div className='mvx-col-75'>
+                <div className="mv-offactive-white-box pa-15 text-center border-b-0">
                   <div className="mvx-tab-name-display">{tab_name_display}</div>
                   <p>{tab_description_display}</p>
                 </div>
@@ -775,7 +775,9 @@ class App extends React.Component {
                 <div className="general-tab-area">
                   <ul className="mvx-general-tabs-list">
                   {appLocalizer.mvx_all_backend_tab_list['marketplace-vendors'].map((data, index) => (
-                      <Link to={`?page=mvx#&submenu=vendor&ID=${queryt.get("ID")}&name=${data.modulename}`} ><li className={queryt.get("name") == data.modulename ? 'activegeneraltabs' : ''}>{data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}{data.tablabel}</li></Link>
+                      <li className={queryt.get("name") == data.modulename ? 'activegeneraltabs' : ''}>
+                        <Link to={`?page=mvx#&submenu=vendor&ID=${queryt.get("ID")}&name=${data.modulename}`} >{data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}{data.tablabel}</Link>
+                      </li>
                   ))}
                   </ul>
 

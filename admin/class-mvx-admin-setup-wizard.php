@@ -430,8 +430,8 @@ class MVX_Admin_Setup_Wizard {
         <p><?php echo wp_kses_post('Thank you for choosing MultivendorX! This quick setup wizard will help you configure the basic settings and you will have your marketplace ready in no time. <strong>It’s completely optional and shouldn’t take longer than five minutes.</strong>', 'dc-woocommerce-multi-vendor'); ?></p>
         <p><?php esc_html_e("If you don't want to go through the wizard right now, you can skip and return to the WordPress dashboard. Come back anytime if you change your mind!", 'dc-woocommerce-multi-vendor'); ?></p>
         <p class="wc-setup-actions step">
-            <a href="<?php echo esc_url($this->get_next_step_link()); ?>" class="button-primary button button-large button-next"><?php esc_html_e("Let's go!", 'dc-woocommerce-multi-vendor'); ?></a>
-            <a href="<?php echo esc_url(admin_url()); ?>" class="button button-large"><?php esc_html_e('Not right now', 'dc-woocommerce-multi-vendor'); ?></a>
+            <a href="<?php echo esc_url($this->get_next_step_link()); ?>" class="btn red-btn button button-large button-next" style="background-color: #e35047; border-color: #e35047; color: #FFF;"><?php esc_html_e("Let's go!", 'dc-woocommerce-multi-vendor'); ?></a>
+            <a href="<?php echo esc_url(admin_url()); ?>" class="button button-large" style="background-color: transparent; color:#65438f;border-color: #65438f;"><?php esc_html_e('Not right now', 'dc-woocommerce-multi-vendor'); ?></a>
         </p>
         <?php
     }
