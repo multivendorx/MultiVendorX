@@ -243,6 +243,11 @@ class App extends Component {
     if (e) {
 
       if (this.state.commisson_bulk_choose.length > 0) {
+
+        this.setState({
+          commission_loading: false
+        });
+
         axios({
           method: 'post',
           url: `${appLocalizer.apiUrl}/mvx_module/v1/update_commission_bulk`,
@@ -253,7 +258,8 @@ class App extends Component {
         })
           .then((responce) => {
             this.setState({
-              datacommission: response.data,
+              datacommission: responce.data,
+              commission_loading: true
             });
           });
       } else {

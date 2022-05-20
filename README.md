@@ -86,7 +86,7 @@ Competition requires competent products which is why we bring to you a list of *
 - **Marketplace like Flipkart**
 
 
-Note: WC marketplace does not set an e-commerce platform, but it converts an e-commerce platform into a marketplace. 
+Note: MultivendorX does not set an e-commerce platform, but it converts an e-commerce platform into a marketplace. 
 
 ### MVX List of Free and Advanced Features 
 **Hassle-free Migration Support (New)**
