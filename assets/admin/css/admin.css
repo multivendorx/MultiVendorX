@@ -2876,26 +2876,21 @@ ul.mvx-dashboard-tabs-list a {
   border: 0.0625rem solid #d4d1d9;
 }
 
-.mvx-form-vendor-register .mvx-option-part.mvx-form-left-line-active {
-  background-color: #dbc3f9;
-}
-
-.mvx-form-vendor-register label,
-.form-title {
-  margin: 0 0 0.3125rem 0 !important;
-  color: #000;
-  font-weight: 600;
-  width: 100%;
-  display: inline-block;
-}
-
 .mvx-form-vendor-register .mvx-option-part .question-input {
   -webkit-column-gap: 1.25rem;
           column-gap: 1.25rem;
 }
 
-.w-50 {
-  width: 50% !important;
+.mvx-form-vendor-register .mvx-option-part.mvx-form-left-line-active {
+  background-color: #dbc3f9;
+}
+
+.mvx-form-vendor-register label {
+  margin: 0 0 0.3125rem 0 !important;
+  color: #000;
+  font-weight: 600;
+  width: 100%;
+  display: inline-block;
 }
 
 .mvx-form-vendor-register select {
@@ -3004,6 +2999,18 @@ ul.mvx-dashboard-tabs-list a {
   max-width: 50%;
 }
 
+.form-title {
+  margin: 0 0 0.3125rem 0 !important;
+  color: #000;
+  font-weight: 600;
+  width: 100%;
+  display: inline-block;
+}
+
+.w-50 {
+  width: 50% !important;
+}
+
 a.del-btn {
   width: 1.5rem;
   height: 1.5rem;
@@ -3051,7 +3058,11 @@ a.del-btn {
   border-color: #65438f !important;
 }
 
-.red-btn:focus,
+.red-btn:focus {
+  color: #FFF !important;
+  text-decoration: none !important;
+}
+
 .red-btn:hover {
   color: #FFF !important;
   text-decoration: none !important;
@@ -3066,7 +3077,55 @@ a.del-btn {
   background-size: 260px auto;
 }
 
-.css-1pahdxg-control,
+.css-1pahdxg-control {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: white !important;
+  border: #cccccc 1px solid !important;
+  border-radius: 4px !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  min-height: 32px !important;
+  outline: 0 !important;
+  position: relative;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  min-height: 32px !important;
+  height: 32px !important;
+}
+
+.css-1pahdxg-control .css-319lph-ValueContainer {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+.css-1pahdxg-control .css-14dclt2-Input .css-1s2u09g-control .css-319lph-ValueContainer {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+.css-1pahdxg-control .css-tlfecz-indicatorContainer {
+  padding: 5px;
+}
+
+.css-1pahdxg-control input {
+  height: 28px !important;
+  min-height: 28px !important;
+}
+
 .css-1s2u09g-control {
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -3089,17 +3148,10 @@ a.del-btn {
           box-sizing: border-box;
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
-}
-
-.css-1pahdxg-control,
-.css-1s2u09g-control {
   min-height: 32px !important;
   height: 32px !important;
 }
 
-.css-1pahdxg-control .css-319lph-ValueContainer,
-.css-1pahdxg-control .css-14dclt2-Input
-.css-1s2u09g-control .css-319lph-ValueContainer,
 .css-1s2u09g-control .css-14dclt2-Input {
   padding-top: 0px !important;
   padding-bottom: 0px !important;
@@ -3107,7 +3159,6 @@ a.del-btn {
   margin-bottom: 0px !important;
 }
 
-.css-1pahdxg-control .css-tlfecz-indicatorContainer,
 .css-1s2u09g-control .css-tlfecz-indicatorContainer {
   padding: 5px;
 }
@@ -3117,7 +3168,21 @@ a.del-btn {
   padding-bottom: 0px !important;
 }
 
-.css-1pahdxg-control input,
+.css-14dclt2-Input {
+  margin: 0 !important;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  height: 30px !important;
+  overflow: hidden;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  display: -ms-inline-grid;
+  display: inline-grid;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
 .css-14dclt2-Input input {
   height: 28px !important;
   min-height: 28px !important;
@@ -3150,9 +3215,7 @@ a.del-btn {
   padding-bottom: 2px !important;
 }
 
-.form-group,
-.mb-24,
-.field-selectbox-options.mb-15 > li {
+.form-group {
   margin-bottom: 24px !important;
 }
 
@@ -3195,8 +3258,7 @@ a.del-btn {
   transition: all 0.3s;
 }
 
-.form-group .mvx-settings-input-content .mvx-form-group-radio-color .mvx-settings-radio-color:hover,
-.form-group .mvx-settings-input-content .mvx-form-group-radio-color .mvx-settings-radio-color.radio-color-active {
+.form-group .mvx-settings-input-content .mvx-form-group-radio-color .mvx-settings-radio-color:hover {
   border-color: #65438f;
 }
 
@@ -3214,10 +3276,8 @@ a.del-btn {
   width: 25%;
 }
 
-textarea {
-  padding-top: 10px !important;
-  padding-bottom: 10px !important;
-  height: 64px !important;
+.form-group .mvx-settings-input-content .mvx-form-group-radio-color .mvx-settings-radio-color.radio-color-active {
+  border-color: #65438f;
 }
 
 .form-group .mvx-settings-input-content .mvx-radioselect-class {
@@ -3235,6 +3295,14 @@ textarea {
   display: none;
 }
 
+.form-group .mvx-settings-input-content .mvx-radioselect-class .mvx-setting-form-input:checked + label.mvx-radio-select-under-label-class::before {
+  background-color: #3f1473;
+  color: #f8f9fb;
+  content: "\f15e";
+  padding: 0.125rem 0.25rem 0.25rem 0.5rem;
+  font-family: 'dashicons';
+}
+
 .form-group .mvx-settings-input-content .mvx-radioselect-class label.mvx-radio-select-under-label-class::before {
   position: absolute;
   height: 1.06rem;
@@ -3243,14 +3311,6 @@ textarea {
   right: 0.5rem;
   border-radius: 0.25rem;
   z-index: 1;
-}
-
-.form-group .mvx-settings-input-content .mvx-radioselect-class .mvx-setting-form-input:checked + label.mvx-radio-select-under-label-class::before {
-  background-color: #3f1473;
-  color: #f8f9fb;
-  content: "\f15e";
-  padding: 0.125rem 0.25rem 0.25rem 0.5rem;
-  font-family: 'dashicons';
 }
 
 .form-group .mvx-settings-input-content .mvx-radioselect-class label.mvx-radio-select-under-label-class .mvx-radioselect-overlay-text {
@@ -3279,6 +3339,20 @@ textarea {
   opacity: 1;
   -webkit-transition: .5s all ease-in-out;
   transition: .5s all ease-in-out;
+}
+
+.mb-24 {
+  margin-bottom: 24px !important;
+}
+
+.field-selectbox-options.mb-15 > li {
+  margin-bottom: 24px !important;
+}
+
+textarea {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  height: 64px !important;
 }
 
 .mr-6 {
@@ -3325,8 +3399,7 @@ textarea {
   row-gap: 10px;
 }
 
-.health-check-accordion-trigger:focus,
-.privacy-settings-accordion-trigger:focus {
+.health-check-accordion-trigger:focus {
   color: #1d2327;
   border: none;
   -webkit-box-shadow: none;
@@ -3337,19 +3410,15 @@ textarea {
   border-color: #65438f !important;
 }
 
-.css-14dclt2-Input {
-  margin: 0 !important;
-  padding-top: 0px !important;
-  padding-bottom: 0px !important;
-  height: 30px !important;
-  overflow: hidden;
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 auto;
-          flex: 1 1 auto;
-  display: -ms-inline-grid;
-  display: inline-grid;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+.privacy-settings-accordion-trigger:focus {
+  color: #1d2327;
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  outline-offset: 0;
+  outline: none !important;
+  background-color: inherit !important;
+  border-color: #65438f !important;
 }
 
 .mvx-status-database-tools-content .mvx-vendor-transients {
@@ -3363,7 +3432,39 @@ textarea {
   margin-bottom: 15px;
 }
 
-.mvx-module-dialog-content .mvx-email-content-and-value-wrap,
+.mvx-module-dialog-content .mvx-email-content-and-value-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-column-gap: 10px;
+          column-gap: 10px;
+  margin-bottom: 24px;
+}
+
+.mvx-module-dialog-content .mvx-vendor-multi-action-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-column-gap: 8px;
+          column-gap: 8px;
+  margin-top: 24px;
+}
+
+.mvx-module-dialog-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .mvx-module-dialog-title .mvx-vendor-title .mvx-vendor-icon-name {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3383,31 +3484,6 @@ textarea {
   white-space: inherit;
   overflow: visible;
   text-overflow: inherit;
-}
-
-.mvx-module-dialog-title {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.mvx-module-dialog-content .mvx-email-content-and-value-wrap {
-  margin-bottom: 24px;
-}
-
-.mvx-module-dialog-content .mvx-vendor-multi-action-buttons {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-column-gap: 8px;
-          column-gap: 8px;
-  margin-top: 24px;
 }
 
 .mv-offactive-white-box {
