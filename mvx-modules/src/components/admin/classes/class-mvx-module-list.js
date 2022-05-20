@@ -545,7 +545,7 @@ class App extends Component {
                                   </a>
                                 </li>
                                 <li>
-                                  <a href="#" className="border-box">
+                                  <a href="#">
                                     <figure>
                                       <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyVpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDYuMC1jMDAyIDc5LjE2NDQ2MCwgMjAyMC8wNS8xMi0xNjowNDoxNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDIxLjIgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OTFFMzVDQTRCQjE1MTFFQ0I3QkI4MjI5RkQ5MzZDQkQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OTFFMzVDQTVCQjE1MTFFQ0I3QkI4MjI5RkQ5MzZDQkQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5MUUzNUNBMkJCMTUxMUVDQjdCQjgyMjlGRDkzNkNCRCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5MUUzNUNBM0JCMTUxMUVDQjdCQjgyMjlGRDkzNkNCRCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PmenBSIAAAGwSURBVHjajJRNKERRFMfnjbewM2lKFiNZMbtZ+FjM1s5HJmWrSVmTjyzsmMUQdiRmYWExyYIkWZCVInbYjTJSGg2ZJBH/k/8rXfe+d2/9Om/OPfc/555z3nNChpXLHoppAVNggO48yIDr9ESn9lzYR0wOXoF2MEna6Msw5t9yDQn2MLMhsO5lA5ElmLT4wCnYUQ86muzEVwK7YFC9GjPLgV4Qxf530JUjoBZkdXWib44xEZsaVtM+h8zrRYn1FXyljfsIxpVYX8EKOAFrqJerqbH4VhlTCWwKD0VhHsAlSIEitxrAFkiAetSzZDs2EjgOFsGdZn+UMcFziOwa+Ua0gg/O2gWoYmZdYIFdnjYKcr6GwQq44Vtxrs4Z4qTuzeBJl6HzR2yM8yX/OqsKGWotWccQe6t2OUExqc2MjRhXEhQo/CvIK+yDI2mC6StiWI46LVLDDlAnWdqIMZskRfro7oa/DPsogiPgjHNns2LgWPFt0xbkuv1g0/aqbECYpOiu4e8myXBPOouU32E/A/SkWQcQLfL6ZfrfvEa6/LxvgGXLK8sbNM/ne87sl7f5I8AAgZOIFhqgvjgAAAAASUVORK5CYII=' />
                                     </figure>
@@ -567,7 +567,7 @@ class App extends Component {
                 <div className='mvx-container'>
                   <div className='mvx-row'>
                     <div className='mvx-col-100 text-center'>
-                      <div class="w-100 mb-45"><div class="mv-dashboard-top-icon float-none gra-por wh-96"><span>Pro</span></div></div>
+                      <div class="w-100 mb-45"><div class="mv-dashboard-top-icon float-none gra-por wh-96 box-shadow"><span>Pro</span></div></div>
                       <h2>Get more by Switching to Pro</h2>
                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
                       <a href="#" class="btn red-btn">Upgrade to Pro</a>
@@ -675,7 +675,7 @@ class App extends Component {
                                   </div>
                                 </li>
                                 <li>
-                                  <a href="#" className="btn border-btn w-100">
+                                  <a href="#" className="btn border-btn w-100 no-background">
                                     Buy Now
                                   </a>
                                 </li>
@@ -748,7 +748,7 @@ class App extends Component {
                                   </div>
                                 </li>
                                 <li>
-                                  <a href="#" className="btn border-btn w-100">
+                                  <a href="#" className="btn border-btn w-100 no-background">
                                     Buy Now
                                   </a>
                                 </li>
@@ -783,12 +783,12 @@ class App extends Component {
                 </div>
               </div>
 
-              <div class="mvx-dash-section switch-section  mb-90">
+              <div class="mvx-dash-section switch-section white-bg mb-90">
                 <div class="mvx-container">
                     <div class="mvx-row">
                       <div class="mvx-col-100 text-center">
                           <div class="w-100 mb-45">
-                            <div class="mv-dashboard-top-icon float-none gra-por wh-96"><span>Pro</span></div>
+                            <div class="mv-dashboard-top-icon float-none gra-por wh-96 box-shadow"><span>Pro</span></div>
                           </div>
                           <h2>Get to Go?</h2>
                           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
@@ -864,7 +864,7 @@ class App extends Component {
                                 student.required_plugin_list &&
                                 student.required_plugin_list.map((company, index_req) =>
                                   <li>
-                                    {company.is_active ? <div className="mvx-module-active-plugin-class"><img src={appLocalizer.right_logo} width="10" height="10" alt="Active" /></div> : <div className="inactive-plugin-class"><img src={appLocalizer.cross_logo} width="10" height="10" alt="Inactive" /></div>}
+                                    {company.is_active ? <div className="mvx-module-active-plugin-class"><img src={appLocalizer.right_logo} width="10" height="10" alt="Active" /></div> : <div className="inactive-plugin-class"><span class="mvx-font icon-no"></span></div>}
                                     <a href={company.plugin_link} className="mvx-third-party-plugin-link-class">{company.plugin_name}</a>
                                   </li>
                                 )}
