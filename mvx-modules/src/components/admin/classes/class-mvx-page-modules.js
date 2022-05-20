@@ -249,21 +249,36 @@ class App extends Component {
 
             <div className='mvx-row mb-25 mvx-justify-content-between mvx-align-items-center'>
               <div className='mvx-col-auto'>
-                <div className='mvx-d-flex'>
-                  <div className="mvx-total-module-name-and-count" onClick={(e) => this.mvx_search_different_module_status(e, 'all')}>
-                    <div className="mvx-total-modules-name">Total Modules :</div>
-                    <div className="mvx-total-modules-count">{this.state.total_number_of_module}</div>
-                  </div>
-                  <Button className='btn default-btn' onClick={(e) => this.mvx_search_different_module_status(e, 'active')}>Active</Button>
-                  <Button className='btn default-btn' onClick={(e) => this.mvx_search_different_module_status(e, 'inactive')}>Inactive</Button>
-                </div>
+                <ul className='mvx-ul-auto mvx-row'>
+                  <li className='mvx-col-auto'>
+                    <div className="mvx-total-module-name-and-count mvx-d-inline-flex" onClick={(e) => this.mvx_search_different_module_status(e, 'all')}>
+                      <div className="mvx-total-modules-name">Total Modules :</div>
+                      <div className="mvx-total-modules-count">{this.state.total_number_of_module}</div>
+                    </div>
+                  </li>
+                  <li class="mvx-col-auto mvx-divider"></li>
+                  <li className='mvx-col-auto'>
+                    <Button className='default-text pa-0' onClick={(e) => this.mvx_search_different_module_status(e, 'active')}>Active</Button>
+                  </li>
+                  <li class="mvx-col-auto mvx-divider pa-0"></li>
+                  <li className='mvx-col-auto'>
+                    <Button className='default-text' onClick={(e) => this.mvx_search_different_module_status(e, 'inactive')}>Inactive</Button>
+                  </li>
+                </ul>
+
               </div>
               <div className='mvx-col-auto'>
-                <div className='mvx-d-flex'>
-                  <div className='mvx-search-holder lh-46'><input type="text" onChange={(e) => this.handleModuleSearch(e)} placeholder="Search modules" /></div>
-                  <div>
-                    <Select placeholder="Search by Category" options={appLocalizer.select_module_category_option} isClearable={true} className="mvx-module-section-list-data" onChange={(e) => this.handleModuleSearchByCategory(e)} />
-                  </div>
+
+                <div className='mvx-search-holder'><input type="text" onChange={(e) => this.handleModuleSearch(e)} placeholder="Search modules" /></div>
+
+
+              </div>
+            </div>
+
+            <div className='mvx-wrap-bulk-all-date mb-25'>
+              <div className='mvx-wrap-bulk-action mvx-row mvx-row-sm-8'>
+                <div className='mvx-col-auto'>
+                  <Select placeholder="Search by Category" options={appLocalizer.select_module_category_option} isClearable={true} className="mvx-module-section-list-data" onChange={(e) => this.handleModuleSearchByCategory(e)} />
                 </div>
               </div>
             </div>
@@ -306,7 +321,7 @@ class App extends Component {
                                   student.required_plugin_list &&
                                   student.required_plugin_list.map((company, index_req) =>
                                     <li>
-                                      {company.is_active ? <div className="mvx-module-active-plugin-class"><img src={appLocalizer.right_logo} width="10" height="10" alt="Active" /></div> : <div className="inactive-plugin-class"><img src={appLocalizer.cross_logo} width="10" height="10" alt="Inactive" /></div>}
+                                      {company.is_active ? <div className="mvx-module-active-plugin-class"><img src={appLocalizer.right_logo} width="10" height="10" alt="Active" /></div> : <div className="inactive-plugin-class"><span class="mvx-font icon-no"></span></div>}
                                       <a href={company.plugin_link} className="mvx-third-party-plugin-link-class">{company.plugin_name}</a>
                                     </li>
                                   )}

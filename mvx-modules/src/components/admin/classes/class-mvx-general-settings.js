@@ -18,13 +18,26 @@ import {
 
 
 import DynamicForm from "../../../DynamicForm";
-      
+
 const override = css`
   display: block;
   margin: 0 auto;
   border-color: red;
 `;
-
+const customSingleValue = ({ data }) => (
+  <div className="input-select">
+      <div className="input-select__single-value">
+          { data.icon && <span dangerouslySetInnerHTML={{ __html: data.icon }} /> }
+          <span>{ data.label }</span>
+      </div>
+  </div>
+);
+const statusOptions = [
+  { value: "todo", label: "ssss", icon: '<i class="mvx-font icon-vendor-form-add"></i>' },
+  { value: "in_progress", label: "W toku", icon: '<i class="mvx-font icon-vendor-form-copy"></i>' },
+  { value: "done", label: "Zalatwione", icon: '<i class="mvx-font icon-vendor-form-copy"></i>' },
+  { value: "rejected", label: "Odrzucone", icon: '<i class="mvx-font icon-vendor-form-copy"></i>' },
+];
 import HeaderSection from './class-mvx-page-header';
 
 
@@ -58,6 +71,7 @@ class App extends Component {
       set_tab_name: ''
     };
 
+    
     this.query = null;
     // when click on checkbox
     this.handleSubmitl = this.handleSubmitl.bind(this);
@@ -78,12 +92,12 @@ class App extends Component {
     this.handleActiveClick = this.handleActiveClick.bind(this);
     // select from dropdown
     this.OnRegistrationSelectChange = this.OnRegistrationSelectChange.bind(this);
-    
-    
+
+
     this.onlebelchange = this.onlebelchange.bind(this);
 
     this.removeFormField = this.removeFormField.bind(this);
-    
+
     this.addSelectBoxOption = this.addSelectBoxOption.bind(this);
 
     this.removeSelectboxOption = this.removeSelectboxOption.bind(this);
@@ -101,11 +115,11 @@ class App extends Component {
 
     // duplicate content
     this.OnDuplicateSelectChange = this.OnDuplicateSelectChange.bind(this);
-    
+
     // sortable change
     this.handleResortClick = this.handleResortClick.bind(this);
 
-    
+
   }
 
   togglePostbox(e) {
@@ -150,10 +164,10 @@ class App extends Component {
         form_data: JSON.stringify(this.state.abcarray),
       }
     })
-    .then( ( res ) => {
-      console.log('success');
-      this.setState({ loading: false });
-    } );
+      .then((res) => {
+        console.log('success');
+        this.setState({ loading: false });
+      });
   }
 
 
@@ -166,9 +180,9 @@ class App extends Component {
         form_data: JSON.stringify(this.state.mvx_registration_fileds_list),
       }
     })
-    .then( ( res ) => {
-      console.log('success');
-    } );
+      .then((res) => {
+        console.log('success');
+      });
   }
 
 
@@ -181,7 +195,7 @@ class App extends Component {
 
 
     var count = this.state.mvx_registration_fileds_list[index].options.length + 1;
-    this.state.mvx_registration_fileds_list[index].options.push({value: 'option' + count, label: 'Option ' + count, selected: false});
+    this.state.mvx_registration_fileds_list[index].options.push({ value: 'option' + count, label: 'Option ' + count, selected: false });
     this.setState({
       mvx_registration_fileds_list: this.state.mvx_registration_fileds_list
     });
@@ -207,7 +221,7 @@ class App extends Component {
   }
 
   onlebelchange(e, index, label, childindex) {
-    
+
     /*var save_value;
     if (label == 'required' || label == 'muliple' || label == 'selected') {
       save_value = e.target.checked;
@@ -261,7 +275,7 @@ class App extends Component {
     } else if (label == 'selected_radio_box') {
       items[index]['options'][childindex]['selected'] = save_value;
       items[index]['options'].map((number, indexs) => {
-        if(childindex !== indexs) {
+        if (childindex !== indexs) {
           items[index]['options'][indexs]['selected'] = false;
         }
       });
@@ -293,22 +307,22 @@ class App extends Component {
     var jsonLength = formJson.length;
 
     formJson.push({
-        id: jsonLength,
-        type: 'textbox',
-        label: '',
-        hidden: false,
-        placeholder: '',
-        required: false,
-        cssClass: '',
-        tip_description: '',
-        options: [],
-        fileSize: '',
-        fileType: [],
-        muliple: false,
-        recaptchatype: 'v3',
-        sitekey: '',
-        secretkey: '',
-        script: ''
+      id: jsonLength,
+      type: 'textbox',
+      label: '',
+      hidden: false,
+      placeholder: '',
+      required: false,
+      cssClass: '',
+      tip_description: '',
+      options: [],
+      fileSize: '',
+      fileType: [],
+      muliple: false,
+      recaptchatype: 'v3',
+      sitekey: '',
+      secretkey: '',
+      script: ''
     });
 
     this.setState({
@@ -340,7 +354,7 @@ class App extends Component {
     }, 10)
   }
 
-  handleRemoveClickNew(e , index) {
+  handleRemoveClickNew(e, index) {
     this.state.mvx_registration_fileds_list.splice(index, 1);
     this.setState({
       mvx_registration_fileds_list: this.state.mvx_registration_fileds_list
@@ -359,24 +373,24 @@ class App extends Component {
 
 
       new_items.map((data_active, index_active) => {
-          if (index == 0) {} else {
-            new_items[index_active].hidden = false;
-          }
+        if (index == 0) { } else {
+          new_items[index_active].hidden = false;
         }
+      }
       )
 
     } else if (label == 'sub') {
       new_items.map((data_active, index_active) => {
-          if (index == 0) {} else {
-            if (index_active == index) {
-              new_items[index].hidden = true;
-            } else {
-              new_items[index_active].hidden = false;
-            }
+        if (index == 0) { } else {
+          if (index_active == index) {
+            new_items[index].hidden = true;
+          } else {
+            new_items[index_active].hidden = false;
           }
         }
+      }
       )
-    } else if (label == 'sortable') {}
+    } else if (label == 'sortable') { }
 
     //registration_title_hidden
 
@@ -400,36 +414,36 @@ class App extends Component {
       if (new_items[index].options.length == 0) {
         if (e.target.value == 'checkboxes' || e.target.value == 'multi-select' || e.target.value == 'radio' || e.target.value == 'dropdown') {
           var count = new_items[index].options.length + 1;
-          new_items[index].options.push({value: 'option' + count, label: 'Option ' + count, selected: false});
+          new_items[index].options.push({ value: 'option' + count, label: 'Option ' + count, selected: false });
         } else if (e.target.value == 'attachment') {
 
-          new_items[index].fileType.push( 
-                {
-                    value : 'application/pdf',
-                    label : 'PDF',
-                    selected : false
-                },
-                {
-                    value : 'image/jpeg',
-                    label : 'JPEG',
-                    selected : false
-                },
-                {
-                    value : 'image/png',
-                    label : 'PNG',
-                    selected : false
-                },
-                {
-                    value : 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-                    label : 'DOC',
-                    selected : false
-                },
-                {
-                    value : 'application/vnd.ms-excel',
-                    label : 'xls',
-                    selected : false
-                }
-              );
+          new_items[index].fileType.push(
+            {
+              value: 'application/pdf',
+              label: 'PDF',
+              selected: false
+            },
+            {
+              value: 'image/jpeg',
+              label: 'JPEG',
+              selected: false
+            },
+            {
+              value: 'image/png',
+              label: 'PNG',
+              selected: false
+            },
+            {
+              value: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+              label: 'DOC',
+              selected: false
+            },
+            {
+              value: 'application/vnd.ms-excel',
+              label: 'xls',
+              selected: false
+            }
+          );
         }
       }
 
@@ -488,257 +502,257 @@ class App extends Component {
 
     switch (type) {
 
-          case 'textbox' :
-                formJson.push({
-                    id: jsonLength,
-                    type: type,
-                    label: label,
-                    hidden: false,
-                    placeholder: '',
-                    required: false,
-                    cssClass: '',
-                    tip_description: ''
-                });
-                break;
+      case 'textbox':
+        formJson.push({
+          id: jsonLength,
+          type: type,
+          label: label,
+          hidden: false,
+          placeholder: '',
+          required: false,
+          cssClass: '',
+          tip_description: ''
+        });
+        break;
 
-          case 'selectbox':
-                formJson.push({
-                    id: jsonLength,
-                    type: type,
-                    selecttype: 'radio',
-                    label: label,
-                    hidden: false,
-                    required: false,
-                    options: [
-                        {
-                            value: 'option1',
-                            label: 'Option 1',
-                            selected: false
-                        },
-                        {
-                            value: 'option2',
-                            label: 'Option 2',
-                            selected: true
-                        },
-                        {
-                            value: 'option3',
-                            label: 'Option 3',
-                            selected: false
-                        }
-                    ],
-                    cssClass: ''
-                });
-                break;
-            case 'email':
-                formJson.push({
-                    id: jsonLength,
-                    type: type,
-                    label: label,
-                    hidden: false,
-                    placeholder: '',
-                    required: false,
-//                    emailValidation: false,
-                    cssClass: ''
-                });
-                break;
-            case 'textarea':
-                formJson.push({
-                    id: jsonLength,
-                    type: type,
-                    label: label,
-                    hidden: false,
-                    placeholder: '',
-                    defaultValue: '',
-                    limit : '',
-                    required: false,
-                    cssClass: '',
-                    tip_description: ''
-                });
-                break;
-            case 'checkbox':
-                formJson.push({
-                    id: jsonLength,
-                    type: type,
-                    label: label,
-                    hidden: false,
-                    defaultValue: 'unchecked',
-                    required: false,
-                    cssClass: ''
-                });
-                break;
-            case 'recaptcha':
-                formJson.push({
-                    id: jsonLength,
-                    type: type,
-                    label: label,
-                    recaptchatype: 'v3',
-                    hidden: false,
-                    script: '',
-                });
-                break;
-            case 'file':
-                formJson.push({
-                    id: jsonLength,
-                    type: type,
-                    label: label,
-                    hidden: false,
-                    fileSize: '',
-                    fileType: [
-                        {
-                            value : 'application/pdf',
-                            label : 'PDF',
-                            selected : false
-                        },
-                        {
-                            value : 'image/jpeg',
-                            label : 'JPEG',
-                            selected : false
-                        },
-                        {
-                            value : 'image/png',
-                            label : 'PNG',
-                            selected : false
-                        },
-                        {
-                            value : 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-                            label : 'DOC',
-                            selected : false
-                        },
-                        {
-                            value : 'application/vnd.ms-excel',
-                            label : 'xls',
-                            selected : false
-                        }
-                    ],
-                    required: false,
-                    muliple: false,
-                    cssClass: ''
-                });
-                break;
-            case 'separator':
-                formJson.push({
-                    id: jsonLength,
-                    type: type,
-                    label: label,
-                    hidden: false,
-                    cssClass: ''
-                });
-                break;
-            case 'vendor_description':
-                formJson.push({
-                    id: jsonLength,
-                    type: type,
-                    label: label,
-                    hidden: false,
-                    placeholder: '',
-                    defaultValue: '',
-                    limit : '',
-                    required: false,
-                    cssClass: ''
-                });
-                break;
-            case 'vendor_address_1':
-                formJson.push({
-                    id: jsonLength,
-                    type: type,
-                    label: label,
-                    hidden: false,
-                    placeholder: '',
-                    required: false,
-                    cssClass: ''
-                });
-                break;
-            case 'vendor_address_2':
-                formJson.push({
-                    id: jsonLength,
-                    type: type,
-                    label: label,
-                    hidden: false,
-                    placeholder: '',
-                    required: false,
-                    cssClass: ''
-                });
-                break;
-            case 'vendor_phone':
-                formJson.push({
-                    id: jsonLength,
-                    type: type,
-                    label: label,
-                    hidden: false,
-                    placeholder: '',
-                    required: false,
-                    cssClass: ''
-                });
-                break;
-            case 'vendor_country':
-                formJson.push({
-                    id: jsonLength,
-                    type: type,
-                    label: label,
-                    hidden: false,
-                    placeholder: '',
-                    required: false,
-                    cssClass: ''
-                });
-                break;
-            case 'vendor_state':
-                // add dependancies with vendor country
-                if (jQuery.inArray('vendor_country', jQuery.map(formJson, function(v) { return v.type; })) > -1) {
-                    formJson.push({
-                        id: jsonLength,
-                        type: type,
-                        label: label,
-                        hidden: false,
-                        placeholder: '',
-                        required: false,
-                        cssClass: ''
-                    });
-                } else { alert('vendor_registration_param.lang.need_country_dependancy');}
-                break;
-            case 'vendor_city':
-                formJson.push({
-                    id: jsonLength,
-                    type: type,
-                    label: label,
-                    hidden: false,
-                    placeholder: '',
-                    required: false,
-                    cssClass: ''
-                });
-                break;
-            case 'vendor_postcode':
-                formJson.push({
-                    id: jsonLength,
-                    type: type,
-                    label: label,
-                    hidden: false,
-                    placeholder: '',
-                    required: false,
-                    cssClass: ''
-                });
-                break;
-            case 'vendor_paypal_email':
-                formJson.push({
-                    id: jsonLength,
-                    type: type,
-                    label: label,
-                    hidden: false,
-                    placeholder: '',
-                    required: false,
-                    cssClass: ''
-                });
-                break;
-            default :
-                formJson.push({
-                    id: jsonLength,
-                    type: type,
-                    label: label,
-                    hidden: false,
-                    placeholder: '',
-                    required: false,
-                    cssClass: ''
-                });
-                break;
+      case 'selectbox':
+        formJson.push({
+          id: jsonLength,
+          type: type,
+          selecttype: 'radio',
+          label: label,
+          hidden: false,
+          required: false,
+          options: [
+            {
+              value: 'option1',
+              label: 'Option 1',
+              selected: false
+            },
+            {
+              value: 'option2',
+              label: 'Option 2',
+              selected: true
+            },
+            {
+              value: 'option3',
+              label: 'Option 3',
+              selected: false
+            }
+          ],
+          cssClass: ''
+        });
+        break;
+      case 'email':
+        formJson.push({
+          id: jsonLength,
+          type: type,
+          label: label,
+          hidden: false,
+          placeholder: '',
+          required: false,
+          //                    emailValidation: false,
+          cssClass: ''
+        });
+        break;
+      case 'textarea':
+        formJson.push({
+          id: jsonLength,
+          type: type,
+          label: label,
+          hidden: false,
+          placeholder: '',
+          defaultValue: '',
+          limit: '',
+          required: false,
+          cssClass: '',
+          tip_description: ''
+        });
+        break;
+      case 'checkbox':
+        formJson.push({
+          id: jsonLength,
+          type: type,
+          label: label,
+          hidden: false,
+          defaultValue: 'unchecked',
+          required: false,
+          cssClass: ''
+        });
+        break;
+      case 'recaptcha':
+        formJson.push({
+          id: jsonLength,
+          type: type,
+          label: label,
+          recaptchatype: 'v3',
+          hidden: false,
+          script: '',
+        });
+        break;
+      case 'file':
+        formJson.push({
+          id: jsonLength,
+          type: type,
+          label: label,
+          hidden: false,
+          fileSize: '',
+          fileType: [
+            {
+              value: 'application/pdf',
+              label: 'PDF',
+              selected: false
+            },
+            {
+              value: 'image/jpeg',
+              label: 'JPEG',
+              selected: false
+            },
+            {
+              value: 'image/png',
+              label: 'PNG',
+              selected: false
+            },
+            {
+              value: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+              label: 'DOC',
+              selected: false
+            },
+            {
+              value: 'application/vnd.ms-excel',
+              label: 'xls',
+              selected: false
+            }
+          ],
+          required: false,
+          muliple: false,
+          cssClass: ''
+        });
+        break;
+      case 'separator':
+        formJson.push({
+          id: jsonLength,
+          type: type,
+          label: label,
+          hidden: false,
+          cssClass: ''
+        });
+        break;
+      case 'vendor_description':
+        formJson.push({
+          id: jsonLength,
+          type: type,
+          label: label,
+          hidden: false,
+          placeholder: '',
+          defaultValue: '',
+          limit: '',
+          required: false,
+          cssClass: ''
+        });
+        break;
+      case 'vendor_address_1':
+        formJson.push({
+          id: jsonLength,
+          type: type,
+          label: label,
+          hidden: false,
+          placeholder: '',
+          required: false,
+          cssClass: ''
+        });
+        break;
+      case 'vendor_address_2':
+        formJson.push({
+          id: jsonLength,
+          type: type,
+          label: label,
+          hidden: false,
+          placeholder: '',
+          required: false,
+          cssClass: ''
+        });
+        break;
+      case 'vendor_phone':
+        formJson.push({
+          id: jsonLength,
+          type: type,
+          label: label,
+          hidden: false,
+          placeholder: '',
+          required: false,
+          cssClass: ''
+        });
+        break;
+      case 'vendor_country':
+        formJson.push({
+          id: jsonLength,
+          type: type,
+          label: label,
+          hidden: false,
+          placeholder: '',
+          required: false,
+          cssClass: ''
+        });
+        break;
+      case 'vendor_state':
+        // add dependancies with vendor country
+        if (jQuery.inArray('vendor_country', jQuery.map(formJson, function (v) { return v.type; })) > -1) {
+          formJson.push({
+            id: jsonLength,
+            type: type,
+            label: label,
+            hidden: false,
+            placeholder: '',
+            required: false,
+            cssClass: ''
+          });
+        } else { alert('vendor_registration_param.lang.need_country_dependancy'); }
+        break;
+      case 'vendor_city':
+        formJson.push({
+          id: jsonLength,
+          type: type,
+          label: label,
+          hidden: false,
+          placeholder: '',
+          required: false,
+          cssClass: ''
+        });
+        break;
+      case 'vendor_postcode':
+        formJson.push({
+          id: jsonLength,
+          type: type,
+          label: label,
+          hidden: false,
+          placeholder: '',
+          required: false,
+          cssClass: ''
+        });
+        break;
+      case 'vendor_paypal_email':
+        formJson.push({
+          id: jsonLength,
+          type: type,
+          label: label,
+          hidden: false,
+          placeholder: '',
+          required: false,
+          cssClass: ''
+        });
+        break;
+      default:
+        formJson.push({
+          id: jsonLength,
+          type: type,
+          label: label,
+          hidden: false,
+          placeholder: '',
+          required: false,
+          cssClass: ''
+        });
+        break;
     }
 
     this.setState({
@@ -760,13 +774,13 @@ class App extends Component {
         email: this.state.email
       }
     })
-    .then( ( res ) => {
-      console.log('success');
-    } );
+      .then((res) => {
+        console.log('success');
+      });
   }
 
   componentDidMount() {
-    
+
     /*axios({
       url: `${appLocalizer.apiUrl}/mvx_module/v1/get_registration`
     })
@@ -776,66 +790,66 @@ class App extends Component {
       });
     })*/
 
-    
+
 
 
     axios({
       url: `${appLocalizer.apiUrl}/mvx_module/v1/get_registration`
     })
-    .then(response => {
+      .then(response => {
 
-    var formJson4 = this.state.mvx_registration_fileds_list;
+        var formJson4 = this.state.mvx_registration_fileds_list;
 
-    if (response.data.length > 0) {
-      formJson4 = response.data;
-    } else {
+        if (response.data.length > 0) {
+          formJson4 = response.data;
+        } else {
 
-      // new registration from
-      
-      formJson4.push({
-          id: 'parent_title',
-          type: 'p_title',
-          label: '',
-          hidden: false,
-          label_placeholder: '',
-          description: '',
-          description_placeholder: '',
-      });
+          // new registration from
 
-      formJson4.push({
-        id: formJson4.length,
-        type: 'textbox',
-        label: '',
-        hidden: false,
-        placeholder: '',
-        required: false,
-        cssClass: '',
-        tip_description: '',
-        options: [],
-        fileSize: '',
-        fileType: [],
-        muliple: false,
-        recaptchatype: 'v3',
-        sitekey: '',
-        secretkey: '',
-        script: ''
-      });
-    }
+          formJson4.push({
+            id: 'parent_title',
+            type: 'p_title',
+            label: '',
+            hidden: false,
+            label_placeholder: '',
+            description: '',
+            description_placeholder: '',
+          });
 
-    this.setState({
-      mvx_registration_fileds_list: formJson4
-    });
+          formJson4.push({
+            id: formJson4.length,
+            type: 'textbox',
+            label: '',
+            hidden: false,
+            placeholder: '',
+            required: false,
+            cssClass: '',
+            tip_description: '',
+            options: [],
+            fileSize: '',
+            fileType: [],
+            muliple: false,
+            recaptchatype: 'v3',
+            sitekey: '',
+            secretkey: '',
+            script: ''
+          });
+        }
 
-
-      /*this.setState({
-        mvx_registration_fileds_list: response.data ? response.data : []
-      });*/
-    })
+        this.setState({
+          mvx_registration_fileds_list: formJson4
+        });
 
 
+        /*this.setState({
+          mvx_registration_fileds_list: response.data ? response.data : []
+        });*/
+      })
 
 
-      
+
+
+
 
   }
 
@@ -849,20 +863,20 @@ class App extends Component {
 
 
 
-    
 
-    if(!queryt.get("name")) {
+
+    if (!queryt.get("name")) {
       //window.location.href = window.location.href+'&name=settings-general';
     }
 
     var tab_name_display = '';
     var tab_description_display = '';
     appLocalizer.mvx_all_backend_tab_list['marketplace-general-settings'].map((data, index) => {
-        if(queryt.get("name") == data.modulename) {
-          tab_name_display = data.tablabel;
-          tab_description_display = data.description;
-        }
+      if (queryt.get("name") == data.modulename) {
+        tab_name_display = data.tablabel;
+        tab_description_display = data.description;
       }
+    }
     )
 
     return (
@@ -871,363 +885,373 @@ class App extends Component {
 
         <HeaderSection />
 
-      <div className="mvx-container">
-      <div className="ptb-2r mvx-row">
-        <div className="mvx-col-75">
-          
-          <div className="mv-off-white-box pa-15 text-center">
-            <div className="mvx-tab-name-display">{tab_name_display}</div>
-            <p>{tab_description_display}</p>
-          </div>
+        <div className="mvx-container">
+          <div className="ptb-2r mvx-row">
+            <div className="mvx-col-75">
 
-          <div className="general-tab-area">
-            <ul className="mvx-general-tabs-list">
-            {appLocalizer.mvx_all_backend_tab_list['marketplace-general-settings'].map((data, index) => (
-              <li className={queryt.get("name") == data.modulename ? 'activegeneraltabs' : ''} >
-                <Link to={`?page=mvx#&submenu=settings&name=${data.modulename}`} className={queryt.get("name") == data.modulename ? data.activeclass : ''}>
-                    {data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}{data.tablabel}
-                </Link>
-              </li>
-            ))}
-            </ul>
-            <div className="tabcontentclass">
-              <this.Child name={queryt.get("name")} />
+              <div className="mv-off-white-box pa-15 text-center">
+                <div className="mvx-tab-name-display">{tab_name_display}</div>
+                <p>{tab_description_display}</p>
+              </div>
+
+              <div className="general-tab-area">
+                <ul className="mvx-general-tabs-list">
+                  {appLocalizer.mvx_all_backend_tab_list['marketplace-general-settings'].map((data, index) => (
+                    <li className={queryt.get("name") == data.modulename ? 'activegeneraltabs' : ''} >
+                      <Link to={`?page=mvx#&submenu=settings&name=${data.modulename}`} className={queryt.get("name") == data.modulename ? data.activeclass : ''}>
+                        {data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}{data.tablabel}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+                <div className="tabcontentclass">
+                  <this.Child name={queryt.get("name")} />
+                </div>
+              </div>
             </div>
+
+            <div className="mvx-col-25 mvx-adv-image-display">
+              <a href="https://www.qries.com/" target="__blank">
+                <img alt="Multivendor X" src={appLocalizer.multivendor_logo} />
+              </a>
+            </div>
+
           </div>
-        </div>  
-
-        <div className="mvx-col-25 mvx-adv-image-display">
-          <a href="https://www.qries.com/" target="__blank">
-            <img alt="Multivendor X" src={appLocalizer.multivendor_logo}/>
-          </a>
         </div>
-
-        </div>
-      </div>
 
       </div>
     );
   }
 
-Child({ name }) {
+  Child({ name }) {
 
-  if (name != this.state.set_tab_name) {
-    axios({
-      url: `${appLocalizer.apiUrl}/mvx_module/v1/fetch_all_modules_data`
-    })
-    .then(response => {
-      this.setState({
-        list_of_module_data: response.data,
-        set_tab_name: name
-      });
-    });
-  }
- 
-  return (
-    <div>
-    {appLocalizer.mvx_all_backend_tab_list['marketplace-general-settings'].map((data, index) => (
+    if (name != this.state.set_tab_name) {
+      axios({
+        url: `${appLocalizer.apiUrl}/mvx_module/v1/fetch_all_modules_data`
+      })
+        .then(response => {
+          this.setState({
+            list_of_module_data: response.data,
+            set_tab_name: name
+          });
+        });
+    }
+
+    return (
       <div>
+        {appLocalizer.mvx_all_backend_tab_list['marketplace-general-settings'].map((data, index) => (
+          <div>
 
-      {
-        /*name = !name ? 'registration' : name,*/
+            {
+              /*name = !name ? 'registration' : name,*/
 
-        data.modulename == name ?
-          data.modulename == 'registration' ?
+              data.modulename == name ?
+                data.modulename == 'registration' ?
 
-            <div className="mvx-form-vendor-register">
-
-
-            { this.state.mvx_registration_fileds_list.length > 0 ?
-              <div className={`mvx-top-part-from ${this.state.mvx_registration_fileds_list && this.state.mvx_registration_fileds_list.length > 0 && this.state.mvx_registration_fileds_list[0].hidden ? 'mvx-form-left-line-active' : ''}`} onClick={(e) => this.handleActiveClick(e, '', 'parent')}>
-                  <div className="content">
-                    <div className='form-group-new w-100'>
-                      <div className="mvx-untitle-content w-100 mb-15">
-                        <label className='form-title w-100'>Form Title</label>
-                        <input className='default-input' type="text" placeholder="Untitled form" value={this.state.mvx_registration_fileds_list[0].label} onChange={e => {this.OnRegistrationSelectChange(e, '', 'parent_label') }}/>
-                      </div>
-                      <div className="mvx-from-description w-100">
-                        <label className='form-title w-100'>Form Description</label>
-                        <input className='default-input' type="text" placeholder="From Description" value={this.state.mvx_registration_fileds_list[0].description} onChange={e => {this.OnRegistrationSelectChange(e, '', 'parent_description') }} />
-                      </div>
-                    </div>
-                  </div>
-              </div>
-              : '' }
+                  <div className="mvx-form-vendor-register">
 
 
-            <ul className="meta-box-sortables">
-            <ReactSortable list={this.state.mvx_registration_fileds_list} setList={(newState) => this.handleResortClick(newState)}>
-
-            {this.state.mvx_registration_fileds_list.map((registration_json_value, registration_json_index) => (
-              <li>
-
-              {
-              registration_json_value.id == 'parent_title' ? '' :
-
-              <div className= {`mvx-option-part ${registration_json_value.hidden ? 'mvx-form-left-line-active' : ''}`} onClick={(e) => this.handleActiveClick(e, registration_json_index, 'sub')}>
-                <div className="content">
-                  <div className='form-group-loop'>
-                    <div className="question-input form-group">
-                      
-                        <div className="question-input-items first-question w-50">
-                        <label className='form-title w-100'>Field Name</label>
-                          <input type="text" className='default-input' placeholder="Untitled Question" value={registration_json_value.label} onChange={e => {this.OnRegistrationSelectChange(e, registration_json_index, 'label') }}/>
-                        </div>
-                          
-                         {registration_json_value.hidden ? 
-                          <div className="question-input-items w-50">
-                            <label className='form-title w-100'>Form</label>
-                            <select className="mvx-registration-select-choice default-select" value={registration_json_value.type}
-                                        onChange={e => {this.OnRegistrationSelectChange(e, registration_json_index, 'select_drop') }}>
-                              <option value="textbox">Textbox</option>
-                              <option value="email">Email</option>
-                              <option value="url">Url</option>
-                              <option value="textarea">Textarea</option>
-                              <option value="checkboxes">Checkboxes</option>
-                              <option value="multi-select">Multi select</option>
-                              <option value="radio">Radio</option>
-                              <option value="dropdown">Dropdown</option>
-                              <option value="recapta">Recapta</option>
-                              <option value="attachment">Attachment</option>
-                              <option value="section">Section</option>
-
-
-                              <option value="vendor_description">Store Description</option>
-                              <option value="vendor_address_1">Address 1</option>
-                              <option value="vendor_address_2">Address 2</option>
-                              <option value="vendor_phone">Phone</option>
-                              <option value="vendor_country">Country</option>
-                              <option value="vendor_state">State</option>
-                              <option value="vendor_city">City</option>
-                              <option value="vendor_postcode">Postcode</option>
-                              <option value="vendor_paypal_email">PayPal Email</option>
-                            </select>
-                        </div>
-                        : '' }
-
-                    </div>
-                  </div>
-
-                    {registration_json_value.hidden ? 
-                    <div className="next_option_part">
-
-                      {
-                        registration_json_value.type == 'textbox' || registration_json_value.type == 'email' || registration_json_value.type == 'url' || registration_json_value.type == 'textarea' || registration_json_value.type == 'vendor_description' || registration_json_value.type == 'vendor_address_1' || registration_json_value.type == 'vendor_address_2' || registration_json_value.type == 'vendor_phone' || registration_json_value.type == 'vendor_country' || registration_json_value.type == 'vendor_state' || registration_json_value.type == 'vendor_city' || registration_json_value.type == 'vendor_postcode' || registration_json_value.type == 'vendor_paypal_email' ?
-                          <div className="mvx-basic-description">
-                            <div className="mvx-vendor-form-input-field-container">
-                              <label>Placeholder</label>
-                              <input type="text" className="mvx-vendor-form-input-field" value={registration_json_value.placeholder} onChange={e => {this.onlebelchange(e, registration_json_index, 'placeholder') }} />
+                    {this.state.mvx_registration_fileds_list.length > 0 ?
+                      <div className={`mvx-top-part-from ${this.state.mvx_registration_fileds_list && this.state.mvx_registration_fileds_list.length > 0 && this.state.mvx_registration_fileds_list[0].hidden ? 'mvx-form-left-line-active' : ''}`} onClick={(e) => this.handleActiveClick(e, '', 'parent')}>
+                        <div className="content">
+                          <div className='form-group-new w-100'>
+                            <div className="mvx-untitle-content w-100 mb-24">
+                              <label className='form-title w-100'>Form Title</label>
+                              <input className='default-input' type="text" placeholder="Untitled form" value={this.state.mvx_registration_fileds_list[0].label} onChange={e => { this.OnRegistrationSelectChange(e, '', 'parent_label') }} />
                             </div>
-
-                            <div className="mvx-vendor-form-input-field-container">
-                              <label>Tooltip description</label>
-                              <input type="text" className="mvx-vendor-form-input-field" value={registration_json_value.tip_description} onChange={e => {this.onlebelchange(e, registration_json_index, 'tip_description') }} />
+                            <div className="mvx-from-description w-100">
+                              <label className='form-title w-100'>Form Description</label>
+                              <input className='default-input' type="text" placeholder="From Description" value={this.state.mvx_registration_fileds_list[0].description} onChange={e => { this.OnRegistrationSelectChange(e, '', 'parent_description') }} />
                             </div>
                           </div>
-                        : ''
-                      }
+                        </div>
+                      </div>
+                      : ''}
 
 
-                      {
-                        registration_json_value.type == 'textarea' ?
-                          <div className="mvx-vendor-form-input-field-container">
-                            <label>Characters Limit</label>
-                            <input type="number" className="mvx-vendor-form-input-field" value={registration_json_value.limit} onChange={e => {this.onlebelchange(e, registration_json_index, 'limit') }} />
-                          </div>
-                        : ''
-                      }
+                    <ul className="meta-box-sortables">
+                      <ReactSortable list={this.state.mvx_registration_fileds_list} setList={(newState) => this.handleResortClick(newState)}>
+
+                        {this.state.mvx_registration_fileds_list.map((registration_json_value, registration_json_index) => (
+                          <li>
+
+                            {
+                              registration_json_value.id == 'parent_title' ? '' :
+
+                                <div className={`mvx-option-part ${registration_json_value.hidden ? 'mvx-form-left-line-active' : ''}`} onClick={(e) => this.handleActiveClick(e, registration_json_index, 'sub')}>
+                                  <div className="content">
+                                    <div className='form-group-loop'>
+                                      <div className="question-input form-group">
+
+                                        <div className="question-input-items first-question w-50">
+                                          <label className='form-title w-100'>Question</label>
+                                          <input type="text" className='default-input' placeholder="Untitled Question" value={registration_json_value.label} onChange={e => { this.OnRegistrationSelectChange(e, registration_json_index, 'label') }} />
+                                        </div>
+
+                                        {registration_json_value.hidden ?
+                                          <div className="question-input-items w-50">
+
+                                            {/* <Select
+                                                defaultValue={ statusOptions [0] }
+                                                options={ statusOptions }
+                                                //styles={ selectCustomStyles }
+                                                //onChange={e => { this.OnRegistrationSelectChange(e, registration_json_index, 'select_drop') }}
+                                                components={ {SingleValue: customSingleValue } }
+                                            /> */}
+                                            <label className='form-title w-100'>Question Type</label>
+                                            <select className="mvx-registration-select-choice default-select" value={registration_json_value.type}
+                                              onChange={e => { this.OnRegistrationSelectChange(e, registration_json_index, 'select_drop') }}>
+                                              <option value="textbox" data-icon="glyphicon-music">Textbox</option>
+                                              <option value="email">Email</option>
+                                              <option value="url">Url</option>
+                                              <option value="textarea">Textarea</option>
+                                              <option value="checkboxes">Checkboxes</option>
+                                              <option value="multi-select">Multi select</option>
+                                              <option value="radio">Radio</option>
+                                              <option value="dropdown">Dropdown</option>
+                                              <option value="recapta">Recapta</option>
+                                              <option value="attachment">Attachment</option>
+                                              <option value="section">Section</option>
 
 
-                      {
-                        registration_json_value.type == 'attachment' ?
-                          <div className='row'>
-                            <div className="mvx-vendor-form-input-field-container col-50">
-                            <label>File Type</label>
-                              <input type="checkbox" className="mvx-vendor-form-input-field" checked={registration_json_value.muliple} onChange={e => {this.onlebelchange(e, registration_json_index, 'muliple') }} />
-                              <label className='auto-width'>Multiple</label>
-                            </div>
+                                              <option value="vendor_description">Store Description</option>
+                                              <option value="vendor_address_1">Address 1</option>
+                                              <option value="vendor_address_2">Address 2</option>
+                                              <option value="vendor_phone">Phone</option>
+                                              <option value="vendor_country">Country</option>
+                                              <option value="vendor_state">State</option>
+                                              <option value="vendor_city">City</option>
+                                              <option value="vendor_postcode">Postcode</option>
+                                              <option value="vendor_paypal_email">PayPal Email</option>
+                                            </select>
+                                          </div>
+                                          : ''}
 
-                            <div className="mvx-vendor-form-input-field-container col-50">
-                              <label>Maximum file size</label>
-                              <input type="text" className="mvx-vendor-form-input-field" value={registration_json_value.fileSize} onChange={e => {this.onlebelchange(e, registration_json_index, 'fileSize') }} />
-                            </div>
+                                      </div>
+                                    </div>
 
-                            <div className="mvx-vendor-form-input-field-container col-50">
-                              <label className='auto-width'>Acceptable file types</label>
-                              {registration_json_value.fileType.map((xnew, inew) => 
-                                  <div>
-                                    <input type="checkbox" checked={xnew.selected} onChange={e => {this.onlebelchange(e, registration_json_index, 'selected', inew) }} />
-                                    <label>{xnew.label}</label>
+                                    {registration_json_value.hidden ?
+                                      <div className="next_option_part">
+
+                                        {
+                                          registration_json_value.type == 'textbox' || registration_json_value.type == 'email' || registration_json_value.type == 'url' || registration_json_value.type == 'textarea' || registration_json_value.type == 'vendor_description' || registration_json_value.type == 'vendor_address_1' || registration_json_value.type == 'vendor_address_2' || registration_json_value.type == 'vendor_phone' || registration_json_value.type == 'vendor_country' || registration_json_value.type == 'vendor_state' || registration_json_value.type == 'vendor_city' || registration_json_value.type == 'vendor_postcode' || registration_json_value.type == 'vendor_paypal_email' ?
+                                            <div className="mvx-basic-description">
+                                              <div className="mvx-vendor-form-input-field-container">
+                                                <label>Placeholder</label>
+                                                <input type="text" className="mvx-vendor-form-input-field" value={registration_json_value.placeholder} onChange={e => { this.onlebelchange(e, registration_json_index, 'placeholder') }} />
+                                              </div>
+
+                                              <div className="mvx-vendor-form-input-field-container">
+                                                <label>Tooltip description</label>
+                                                <input type="text" className="mvx-vendor-form-input-field" value={registration_json_value.tip_description} onChange={e => { this.onlebelchange(e, registration_json_index, 'tip_description') }} />
+                                              </div>
+                                            </div>
+                                            : ''
+                                        }
+
+
+                                        {
+                                          registration_json_value.type == 'textarea' ?
+                                            <div className="mvx-vendor-form-input-field-container">
+                                              <div className='w-50'>
+                                                <label>Characters Limit</label>
+                                                <input type="number" className="mvx-vendor-form-input-field" value={registration_json_value.limit} onChange={e => { this.onlebelchange(e, registration_json_index, 'limit') }} />
+                                              </div>
+                                            </div>
+                                            : ''
+                                        }
+
+
+                                        {
+                                          registration_json_value.type == 'attachment' ?
+                                            <div className='row'>
+                                              <div className="mvx-vendor-form-input-field-container col-50">
+                                                <label>File Type</label>
+                                                <input type="checkbox" className="mvx-vendor-form-input-field" checked={registration_json_value.muliple} onChange={e => { this.onlebelchange(e, registration_json_index, 'muliple') }} />
+                                                <label className='auto-width'>Multiple</label>
+                                              </div>
+
+                                              <div className="mvx-vendor-form-input-field-container col-50">
+                                                <label>Maximum file size</label>
+                                                <input type="text" className="mvx-vendor-form-input-field" value={registration_json_value.fileSize} onChange={e => { this.onlebelchange(e, registration_json_index, 'fileSize') }} />
+                                              </div>
+
+                                              <div className="mvx-vendor-form-input-field-container col-50">
+                                                <label className='auto-width'>Acceptable file types</label>
+                                                {registration_json_value.fileType.map((xnew, inew) =>
+                                                  <div>
+                                                    <input type="checkbox" checked={xnew.selected} onChange={e => { this.onlebelchange(e, registration_json_index, 'selected', inew) }} />
+                                                    <label>{xnew.label}</label>
+                                                  </div>
+                                                )}
+                                              </div>
+                                            </div>
+                                            : ''
+                                        }
+
+
+
+                                        {
+                                          registration_json_value.type == 'recapta' ?
+                                            <div className='row'>
+                                              <div className="mvx-vendor-form-input-field-container col-100" value={registration_json_value.recaptchatype}
+                                                onChange={e => { this.onlebelchange(e, registration_json_index, 'recaptchatype') }}>
+                                                <div className='w-50 pr-15'>
+                                                  <label className='form-title w-100'>reCAPTCHA Type</label>
+                                                  <select className="mvx-vendor-form-input-field default-select">
+                                                    <option value="v3">reCAPTCHA v3</option>
+                                                    <option value="v2">reCAPTCHA v2</option>
+                                                  </select>
+                                                </div>
+                                              </div>
+
+
+
+                                              {registration_json_value.recaptchatype === 'v3' ?
+                                                <div class="mvx-vendor-form-input-field-container col-50">
+                                                  <label className='form-title w-100'>Site key</label>
+                                                  <input type="text" class="mvx-vendor-form-input-field" value={registration_json_value.sitekey} onChange={e => { this.onlebelchange(e, registration_json_index, 'sitekey') }} />
+                                                </div>
+                                                : ''}
+
+
+                                              {registration_json_value.recaptchatype === 'v3' ?
+                                                <div class="mvx-vendor-form-input-field-container col-50">
+                                                  <label className='form-title w-100'>Secret key</label>
+                                                  <input type="text" ng-model="field.secretkey" class="mvx-vendor-form-input-field" value={registration_json_value.secretkey} onChange={e => { this.onlebelchange(e, registration_json_index, 'secretkey') }} />
+                                                </div>
+                                                : ''}
+
+                                              {registration_json_value.recaptchatype === 'v2' ?
+                                                <div class="mvx-vendor-form-input-field-container col-100">
+                                                  <label className='form-title w-100'>Recaptcha Script</label>
+                                                  <textarea cols="20" rows="3" class="mvx-vendor-form-input-field default-textarea" value={registration_json_value.script} onChange={e => { this.onlebelchange(e, registration_json_index, 'script') }}></textarea>
+                                                </div>
+                                                : ''}
+
+
+                                              <div class="mvx-vendor-form-input-field-container col-100">
+                                                <p>To get <b>reCAPTCHA</b> script, register your site with google account <a href="https://www.google.com/recaptcha" target="_blank">Register</a></p>
+                                              </div>
+
+                                            </div>
+
+                                            : ''
+                                        }
+
+
+
+                                        {registration_json_value.type == 'checkboxes' || registration_json_value.type == 'multi-select' || registration_json_value.type == 'radio' || registration_json_value.type == 'dropdown' ?
+                                          <div className="mvx-vendor-form-input-field-container">
+
+                                            <ul className="field-selectbox-options mb-24">
+                                              {registration_json_value.options.map((chekbox_option_key, checkbox_option_index) =>
+                                                <li>
+                                                  <div className='f-row-8'>
+                                                    <div className='mt-35'>
+                                                      {registration_json_value.type === 'radio' || registration_json_value.type === 'dropdown' ?
+                                                        <input type="radio" value="1" name={`option-${registration_json_value.id}`} checked={chekbox_option_key.selected} onChange={e => { this.onlebelchange(e, registration_json_index, 'selected_radio_box', option) }} />
+                                                        :
+                                                        <input type="checkbox" value="true" checked={chekbox_option_key.selected} onChange={e => { this.onlebelchange(e, registration_json_index, 'selected_box', checkbox_option_index) }} />
+                                                      }
+                                                    </div>
+                                                  </div>
+                                                  <div className='f-row-42'>
+                                                    <label class="form-title w-100">Label</label>
+                                                    <input type="text" value={chekbox_option_key.label} onChange={e => { this.onlebelchange(e, registration_json_index, 'select_option', checkbox_option_index) }} />
+                                                  </div>
+                                                  <div className='f-row-42'>
+                                                    <label class="form-title w-100">Value</label>
+                                                    <input type="text" value={chekbox_option_key.value} onChange={e => { this.onlebelchange(e, registration_json_index, 'select_option1', checkbox_option_index) }} />
+                                                  </div>
+                                                  <div className='f-row-8'>
+                                                    <a className='del-btn mt-35' onClick={(e) => this.removeSelectboxOption(e, registration_json_index, checkbox_option_index)}><i className="mvx-font icon-close"></i></a>
+                                                  </div>
+                                                </li>
+                                              )}
+                                            </ul>
+                                            <a className="btn purple-btn" onClick={(e) => this.addSelectBoxOption(e, registration_json_index)}>Add New</a>
+                                          </div>
+                                          : ''}
+
+                                        {/*<p className="add-option"><sapn><i className="far fa-circle"></i> <input type="text" placeholder="option 1"/></sapn></p>
+
+                      <p className="add-option"><sapn><i className="far fa-circle"></i> <input type="text" placeholder="Add option  or add others"/></sapn></p>*/}
+
+                                      </div>
+                                      : ''}
+
+
+                                    {registration_json_value.hidden ?
+                                      <div className="mvx-footer-icon-form">
+                                        <i class="mvx-font icon-vendor-form-copy" onClick={e => { this.OnDuplicateSelectChange(e, registration_json_index, 'duplicate') }}></i>
+                                        <i class="mvx-font icon-vendor-form-delete" onClick={(e) => this.handleRemoveClickNew(e, registration_json_index)}></i>
+                                        <i class="mvx-font icon-vendor-form-add" onClick={(e) => this.handleAddClickNew(e, registration_json_value.type)}></i>
+                                        <span className='mvx-perple-txt'>Require <input type="checkbox" checked={registration_json_value.required} onChange={e => { this.OnRegistrationSelectChange(e, registration_json_index, 'require') }} /></span>
+                                      </div>
+                                      : ''}
                                   </div>
-                                )}
-                            </div>
-                          </div>
-                        : ''
-                      }
 
 
-
-                      {
-                        registration_json_value.type == 'recapta' ?
-                          <div className='row'>
-                            <div className="mvx-vendor-form-input-field-container col-100" value={registration_json_value.recaptchatype}
-                                onChange={e => {this.onlebelchange(e, registration_json_index, 'recaptchatype') }}>
-                              <div className='w-50 pr-15'>
-                                <label className='form-title w-100'>reCAPTCHA Type</label>
-                                <select className="mvx-vendor-form-input-field default-select">
-                                  <option value="v3">reCAPTCHA v3</option>
-                                  <option value="v2">reCAPTCHA v2</option>
-                                </select>
-                              </div>
-                            </div>
-
-
-
-                            {registration_json_value.recaptchatype === 'v3' ?
-                              <div class="mvx-vendor-form-input-field-container col-50">
-                                <label className='form-title w-100'>Site key</label>
-                                <input type="text" class="mvx-vendor-form-input-field" value={registration_json_value.sitekey} onChange={e => {this.onlebelchange(e, registration_json_index, 'sitekey') }} />
-                              </div>
-                            : '' }
-
-
-                            {registration_json_value.recaptchatype === 'v3' ?
-                              <div class="mvx-vendor-form-input-field-container col-50">
-                                <label className='form-title w-100'>Secret key</label>
-                                <input type="text" ng-model="field.secretkey" class="mvx-vendor-form-input-field" value={registration_json_value.secretkey} onChange={e => {this.onlebelchange(e, registration_json_index, 'secretkey') }} />
-                              </div>
-                            : '' }
-
-                            {registration_json_value.recaptchatype === 'v2' ?
-                              <div class="mvx-vendor-form-input-field-container col-100">
-                                <label className='form-title w-100'>Recaptcha Script</label>
-                                <textarea cols="20" rows="3" class="mvx-vendor-form-input-field default-textarea" value={registration_json_value.script} onChange={e => {this.onlebelchange(e, registration_json_index, 'script') }}></textarea>
-                              </div>
-                            : '' }
-
-
-                            <div class="mvx-vendor-form-input-field-container col-100">
-                              <p>To get <b>reCAPTCHA</b> script, register your site with google account <a href="https://www.google.com/recaptcha" target="_blank">Register</a></p>
-                            </div>
-
-                          </div>
-
-                        : ''
-                      }
-
-                      
-                      
-                      {registration_json_value.type == 'checkboxes' || registration_json_value.type == 'multi-select' || registration_json_value.type == 'radio' || registration_json_value.type == 'dropdown' ? 
-                        <div className="mvx-vendor-form-input-field-container">
-                          <a className="btn red-btn" onClick={(e) => this.addSelectBoxOption(e, registration_json_index)}>Add New</a>
-                          <ul className="field-selectbox-options mt-15">
-                          {registration_json_value.options.map((chekbox_option_key, checkbox_option_index) =>
-                            <li>
-                              <div className='f-row-50'>
-                                <label class="form-title w-100">Label</label>
-                                <input type="text" value={chekbox_option_key.label} onChange={e => {this.onlebelchange(e, registration_json_index, 'select_option', checkbox_option_index) }}/>
-                              </div>
-                              <div className='f-row-50'>
-                                <label class="form-title w-100">Value</label>
-                                <input type="text" value={chekbox_option_key.value} onChange={e => {this.onlebelchange(e, registration_json_index, 'select_option1', checkbox_option_index) }} />
-                              </div>
-                              <div className='f-row-100'>
-                                <div className='del-btn'>
-                                  <a onClick={(e) => this.removeSelectboxOption(e, registration_json_index, checkbox_option_index)}><i className="mvx-font icon-close"></i></a>
                                 </div>
-                                <div className='float-right'>
-                                Selected
-                                {registration_json_value.type === 'radio' || registration_json_value.type === 'dropdown' ?
-                                <input type="radio" value="1"  name={`option-${registration_json_value.id}`} checked={chekbox_option_key.selected} onChange={e => {this.onlebelchange(e, registration_json_index, 'selected_radio_box', option) }} />
-                                :
-                                <input type="checkbox" value="true" checked={chekbox_option_key.selected} onChange={e => {this.onlebelchange(e, registration_json_index, 'selected_box', checkbox_option_index) }} />
-                                }
-                                </div>
-                              </div>
-                            </li>
-                          )}
-                          </ul>
-                        </div>
-                      : '' }
+                            }
+                          </li>
+                        )
 
-                        {/*<p className="add-option"><sapn><i className="far fa-circle"></i> <input type="text" placeholder="option 1"/></sapn></p>
-
-                        <p className="add-option"><sapn><i className="far fa-circle"></i> <input type="text" placeholder="Add option  or add others"/></sapn></p>*/}
-
-                       </div>
-                       : '' }
-                    
-
-                       {registration_json_value.hidden ? 
-                          <div className="mvx-footer-icon-form">
-                              <i class="mvx-font icon-vendor-form-copy" onClick={e => {this.OnDuplicateSelectChange(e, registration_json_index, 'duplicate') }}></i>
-                              <i class="mvx-font icon-vendor-form-delete" onClick={(e) => this.handleRemoveClickNew(e, registration_json_index)}></i>
-                              <i class="mvx-font icon-vendor-form-add" onClick={(e) => this.handleAddClickNew(e, registration_json_value.type)}></i>
-                              <span>Require <input type="checkbox" checked={registration_json_value.required} onChange={e => {this.OnRegistrationSelectChange(e, registration_json_index, 'require') }}/></span>
-                          </div>
-                        : '' }
-                </div>
+                        )}
+                      </ReactSortable>
+                    </ul>
 
 
-              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  </div>
+                  :
+
+                  <div>
+                    {Object.keys(this.state.list_of_module_data).length > 0 ?
+                      <DynamicForm
+                        key={`dynamic-form-${data.modulename}`}
+                        className={data.classname}
+                        title={data.tablabel}
+                        defaultValues={this.state.current}
+                        model={this.state.list_of_module_data[data.modulename]}
+                        method="post"
+                        modulename={data.modulename}
+                        url={data.apiurl}
+                        submitbutton="false"
+                      />
+                      : <PuffLoader css={override} color={"#cd0000"} size={200} loading={true} />}
+                  </div>
+
+                : ''
+
             }
-            </li>
-            )
-
-            )}
-            </ReactSortable>
-            </ul>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          
-            </div>
-            :
-          
-            <div>
-            {Object.keys(this.state.list_of_module_data).length > 0 ?
-              <DynamicForm
-              key={`dynamic-form-${data.modulename}`}
-              className={data.classname}
-              title={data.tablabel}
-              defaultValues={this.state.current}
-              model= {this.state.list_of_module_data[data.modulename]}
-              method="post"
-              modulename={data.modulename}
-              url={data.apiurl}
-              submitbutton="false"
-              />
-              : <PuffLoader css={override} color={"#cd0000"} size={200} loading={true} />}
-            </div>
-            
-        : ''
-
-      }
+          </div>
+        ))}
       </div>
-    ))}
-    </div>
-  );
-}
+    );
+  }
 
 
   onEdit = id => {
@@ -1250,9 +1274,9 @@ Child({ name }) {
   render() {
     return (
       <div>
-          <Router>
-            <this.QueryParamsDemo />
-          </Router>
+        <Router>
+          <this.QueryParamsDemo />
+        </Router>
       </div>
     );
   }
