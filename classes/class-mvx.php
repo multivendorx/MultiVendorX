@@ -50,6 +50,7 @@ final class MVX {
     public $ledger;
     public $vendor_rest_api;
     public $deprecated_hook_handlers = array();
+    public $deprecated_funtions;
 
     /**
      * Class construct
@@ -202,9 +203,9 @@ final class MVX {
         
         include_once $this->plugin_path . '/includes/class-mvx-deprecated-action-hooks.php';
         include_once $this->plugin_path . '/includes/class-mvx-deprecated-filter-hooks.php';
+        include_once $this->plugin_path . '/includes/mvx-deprecated-funtions.php';
         $this->deprecated_hook_handlers['actions'] = new MVX_Deprecated_Action_Hooks();
         $this->deprecated_hook_handlers['filters'] = new MVX_Deprecated_Filter_Hooks();
-
         // rewrite endpoint for followers details
         add_rewrite_endpoint( 'followers', EP_ALL );
 
