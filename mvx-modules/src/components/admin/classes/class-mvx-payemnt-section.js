@@ -65,7 +65,7 @@ class App extends Component {
 
   }
 
-  componentDidMount() {}
+  componentDidMount() { }
 
   useQuery() {
     return new URLSearchParams(useLocation().hash);
@@ -73,17 +73,17 @@ class App extends Component {
 
   QueryParamsDemo() {
     let queryt = this.useQuery();
-    if(!queryt.get("name")) {
+    if (!queryt.get("name")) {
       //window.location.href = window.location.href+'&name=paypal_masspay';
     }
     var tab_name_display = '';
     var tab_description_display = '';
     appLocalizer.mvx_all_backend_tab_list['marketplace-payments'].map((data, index) => {
-        if(queryt.get("name") == data.modulename) {
-          tab_name_display = data.tablabel;
-          tab_description_display = data.description;
-        }
+      if (queryt.get("name") == data.modulename) {
+        tab_name_display = data.tablabel;
+        tab_description_display = data.description;
       }
+    }
     )
 
     return (
@@ -91,103 +91,104 @@ class App extends Component {
 
         <HeaderSection />
 
-      <div className="container">
-      <div className="mvx-child-container">
+        <div className="mvx-container">
+
+          <div className="ptb-2r mvx-row">
 
 
-        <div className="mvx-sub-container">
+            <div className="mvx-col-75">
 
-          {appLocalizer.mvx_all_backend_tab_list['marketplace-payments'].length > 0 ?
+              {appLocalizer.mvx_all_backend_tab_list['marketplace-payments'].length > 0 ?
 
-          <div className="mvx-sub-child-container">
-            <div className="mv-offactive-white-box pa-15 mb-90 text-center">
-              <div className="mvx-tab-name-display">{tab_name_display}</div>
-              <p>{tab_description_display}</p>
+                <div className="mvx-sub-child-container">
+                  <div className="mv-offactive-white-box pa-15 mb-90 text-center">
+                    <div className="mvx-tab-name-display">{tab_name_display}</div>
+                    <p>{tab_description_display}</p>
+                  </div>
+
+                  <div className="general-tab-area">
+                    <ul className="mvx-general-tabs-list">
+                      {appLocalizer.mvx_all_backend_tab_list['marketplace-payments'].length > 0 ? appLocalizer.mvx_all_backend_tab_list['marketplace-payments'].map((data, index) => (
+                        <li className={queryt.get("name") == data.modulename ? 'activegeneraltabs' : ''}><Link to={`?page=mvx#&submenu=payment&name=${data.modulename}`} >{data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}{data.tablabel}</Link></li>
+                      )) : ''}
+                    </ul>
+                    <div className="tabcontentclass">
+                      <this.Child name={queryt.get("name")} />
+                    </div>
+                  </div>
+                </div>
+                : 'No Payment method found'}
+
             </div>
 
-            <div className="general-tab-area">
-              <ul className="mvx-general-tabs-list">
-              {appLocalizer.mvx_all_backend_tab_list['marketplace-payments'].length > 0 ? appLocalizer.mvx_all_backend_tab_list['marketplace-payments'].map((data, index) => (
-                  <li className={queryt.get("name") == data.modulename ? 'activegeneraltabs' : ''}><Link to={`?page=mvx#&submenu=payment&name=${data.modulename}`} >{data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}{data.tablabel}</Link></li>
-              )) : ''}
-              </ul>
-              <div className="tabcontentclass">
-                <this.Child name={queryt.get("name")} />
-              </div>
+
+            <div className="mvx-col-25 mvx-adv-image-display">
+              <a href="https://www.qries.com/" target="__blank">
+                <img alt="Multivendor X" src={appLocalizer.multivendor_logo} />
+              </a>
             </div>
+
           </div>
-          : 'No Payment method found'}
 
         </div>
-
-
-        <div className="mvx-adv-image-display">
-          <a href="https://www.qries.com/" target="__blank">
-            <img alt="Multivendor X" src={appLocalizer.multivendor_logo}/>
-          </a>
-        </div>
-
-        </div>
-
-      </div>
 
       </div>
     );
   }
 
-Child({ name }) {
+  Child({ name }) {
 
-  axios({
-    url: `${appLocalizer.apiUrl}/mvx_module/v1/fetch_all_modules_data`
-  })
-  .then(response => {
+    axios({
+      url: `${appLocalizer.apiUrl}/mvx_module/v1/fetch_all_modules_data`
+    })
+      .then(response => {
 
-    this.setState({
-      list_of_module_data: response.data
-    });
+        this.setState({
+          list_of_module_data: response.data
+        });
 
-  });
+      });
 
-  return (
-    <div>
-    {appLocalizer.mvx_all_backend_tab_list['marketplace-payments'].length > 0 ? appLocalizer.mvx_all_backend_tab_list['marketplace-payments'].map((data, index) => (
+    return (
       <div>
+        {appLocalizer.mvx_all_backend_tab_list['marketplace-payments'].length > 0 ? appLocalizer.mvx_all_backend_tab_list['marketplace-payments'].map((data, index) => (
+          <div>
 
-      {
-        name = !name ? 'paypal_masspay' : name,
+            {
+              name = !name ? 'paypal_masspay' : name,
 
-        data.modulename == name ?
+              data.modulename == name ?
 
-            <div>
-            {Object.keys(this.state.list_of_module_data).length > 0 ?
-              <DynamicForm
-              key={`dynamic-form-${data.modulename}`}
-              className={data.classname}
-              title={data.tablabel}
-              defaultValues={this.state.current}
-              model= {this.state.list_of_module_data[data.modulename]}
-              method="post"
-              modulename={data.modulename}
-              url={data.apiurl}
-              submitbutton="false"
-              />
-              : <PuffLoader css={override} color={"#cd0000"} size={200} loading={true} /> }
-            </div>
+                <div>
+                  {Object.keys(this.state.list_of_module_data).length > 0 ?
+                    <DynamicForm
+                      key={`dynamic-form-${data.modulename}`}
+                      className={data.classname}
+                      title={data.tablabel}
+                      defaultValues={this.state.current}
+                      model={this.state.list_of_module_data[data.modulename]}
+                      method="post"
+                      modulename={data.modulename}
+                      url={data.apiurl}
+                      submitbutton="false"
+                    />
+                    : <PuffLoader css={override} color={"#cd0000"} size={200} loading={true} />}
+                </div>
 
-        : ''
-      }
+                : ''
+            }
+          </div>
+        )) : ''}
       </div>
-    )) : ''}
-    </div>
-  );
-}
+    );
+  }
 
   render() {
     return (
       <div>
-          <Router>
-            <this.QueryParamsDemo />
-          </Router>
+        <Router>
+          <this.QueryParamsDemo />
+        </Router>
       </div>
     );
   }

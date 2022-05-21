@@ -607,6 +607,8 @@ a:focus {
 
 /*icon end*/
 .mvx-child-container {
+  padding: 2rem 15px;
+  background-color: #f2eff5;
   text-decoration: none;
 }
 
@@ -648,7 +650,7 @@ li {
   padding: 0rem 0.9375rem;
   color: #8e8b91;
   font-size: 0.875rem;
-  height: 2rem;
+  height: 40px;
 }
 
 textarea,
@@ -661,7 +663,7 @@ input,
   padding: 0rem 0.9375rem;
   color: #8e8b91;
   font-size: 0.875rem;
-  height: 2rem !important;
+  height: 40px !important;
   border: #d4d1d9 0.0625rem solid !important;
 }
 
@@ -782,6 +784,7 @@ div#wpcontent {
   overflow: visible;
 }
 
+.container,
 .mvx-container {
   width: 100%;
   padding-right: 2.1875rem;
@@ -1173,11 +1176,6 @@ div#wpcontent {
   margin: 0rem;
 }
 
-.mvx-child-container {
-  padding: 2rem 1rem;
-  background-color: #f2eff5;
-}
-
 .mv-dashboard-top-heading {
   text-align: center;
   font-size: 1.5rem;
@@ -1251,7 +1249,7 @@ div#wpcontent {
   display: -webkit-inline-box !important;
   display: -ms-inline-flexbox !important;
   display: inline-flex !important;
-  height: 32px !important;
+  height: 40px !important;
   text-align: center !important;
   border-radius: 0.25rem !important;
   font-size: 0.875rem !important;
@@ -1422,6 +1420,10 @@ div#wpcontent {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   border: #65438f 0.0625rem solid !important;
+}
+
+.hover-border-box .btn {
+  height: 32px !important;
 }
 
 .doc_forum_bg {
@@ -2268,7 +2270,7 @@ ul.mvx-dashboard-tabs-list a {
 
 .mvx-text-with-line-wrapper .mvx-select-all-bulk-wrap .mvx-select-all-checkbox {
   width: 9.375rem;
-  height: 2rem;
+  height: 40px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 0.1875rem 0.75rem;
@@ -2428,6 +2430,7 @@ ul.mvx-dashboard-tabs-list a {
   background-color: #fdfdfe;
   position: relative;
   color: #3f1473;
+  margin-right: -1px;
 }
 
 .general-tab-area .tabcontentclass {
@@ -3137,15 +3140,14 @@ a.del-btn {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  min-height: 2rem !important;
+  min-height: 40px !important;
   outline: 0 !important;
   position: relative;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
-  min-height: 2rem !important;
-  height: 2rem !important;
+  height: 40px !important;
 }
 
 .css-1pahdxg-control .css-319lph-ValueContainer {
@@ -3190,15 +3192,14 @@ a.del-btn {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  min-height: 2rem !important;
+  min-height: 40px !important;
   outline: 0 !important;
   position: relative;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
-  min-height: 2rem !important;
-  height: 2rem !important;
+  height: 40px !important;
 }
 
 .css-1s2u09g-control .css-14dclt2-Input {
@@ -3702,5 +3703,9 @@ p.vendor-status.approved-vendor, p.commission-status-paid {
   padding-left: 0.9375rem;
   display: block;
   float: right;
+}
+
+.mvx-settings-table-wrap th {
+  text-align: left;
 }
 /*# sourceMappingURL=admin.css.map */

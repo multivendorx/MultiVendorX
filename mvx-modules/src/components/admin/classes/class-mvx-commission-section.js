@@ -938,11 +938,11 @@ class App extends Component {
 
           :
 
-          <div className="container">
+          <div className="mvx-container">
 
-            <div className="mvx-child-container">
+            <div className="ptb-2r mvx-row">
 
-              <div className="mvx-sub-container">
+              <div className="mvx-col-75">
                 <div className="mvx-page-title">
                   Commission
                   <div className='pull-right'><CSVLink data={this.state.commissiondata} headers={appLocalizer.commission_header} filename={"Commissions.csv"} className="button-commission-secondary btn default-btn"><i className="mvx-font icon-download"></i>Download CSV</CSVLink></div>
@@ -1003,7 +1003,7 @@ class App extends Component {
 
               </div>
 
-              <div className="mvx-adv-image-display">
+              <div className="mvx-col-25 mvx-adv-image-display">
                 <a href="https://www.qries.com/" target="__blank">
                   <img alt="Multivendor X" src={appLocalizer.multivendor_logo} />
                 </a>

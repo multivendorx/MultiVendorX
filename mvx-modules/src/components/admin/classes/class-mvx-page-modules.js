@@ -203,7 +203,7 @@ class App extends Component {
     });
 
 
-    // fetch total number of modules 
+    // fetch total number of modules
     axios.get(
       `${appLocalizer.apiUrl}/mvx_module/v1/modules_count`
     )
@@ -237,9 +237,9 @@ class App extends Component {
         <HeaderSection />
 
 
-        <div className="mvx-child-container">
-
-          <div className="mvx-sub-container">
+        <div className="mvx-container">
+          <div className='ptb-2r mvx-row'>
+          <div className="mvx-col-75">
 
 
             <div className="mv-off-white-box pa-15 mb-90 text-center">
@@ -374,10 +374,11 @@ class App extends Component {
             </Dialog>
           </div>
 
-          <div className="mvx-adv-image-display">
+          <div className="mvx-col-25 mvx-adv-image-display">
             <a href="https://www.qries.com/" target="__blank">
               <img alt="Multivendor X" src={appLocalizer.multivendor_logo} />
             </a>
+          </div>
           </div>
 
         </div>

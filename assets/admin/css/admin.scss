@@ -613,7 +613,8 @@ a:focus {
 
 /*icon end*/
 .mvx-child-container {
-
+	padding: 2rem 15px;
+	background-color: #f2eff5;
 	text-decoration: none;
 
 	a {
@@ -658,7 +659,7 @@ li {
 	padding: 0rem 0.9375rem;
 	color: #8e8b91;
 	font-size: 0.875rem;
-	height: 2rem;
+	height: 40px;
 }
 
 textarea,
@@ -671,7 +672,7 @@ input,
 	padding: 0rem 0.9375rem;
 	color: #8e8b91;
 	font-size: 0.875rem;
-	height: 2rem !important;
+	height: 40px !important;
 	border: #d4d1d9 0.0625rem solid !important;
 }
 
@@ -792,7 +793,7 @@ div#wpcontent {
 	width: 100%;
 	overflow: visible;
 }
-
+.container,
 .mvx-container {
 	width: 100%;
 	padding-right: 2.1875rem;
@@ -1170,10 +1171,6 @@ div#wpcontent {
 	}
 }
 
-.mvx-child-container {
-	padding: 2rem 1rem;
-	background-color: #f2eff5;
-}
 
 .mv-dashboard-top-heading {
 	text-align: center;
@@ -1243,7 +1240,7 @@ div#wpcontent {
 .btn {
 	width: auto !important;
 	display: inline-flex !important;
-	height: 32px !important;
+	height: 40px !important;
 	text-align: center !important;
 	border-radius: 0.25rem !important;
 	font-size: 0.875rem !important;
@@ -1393,6 +1390,9 @@ div#wpcontent {
 	&:hover {
 		box-sizing: border-box;
 		border: #65438f 0.0625rem solid !important;
+	}
+	.btn{
+		height: 32px !important;
 	}
 }
 
@@ -2244,7 +2244,7 @@ ul.mvx-dashboard-tabs-list {
 
 		.mvx-select-all-checkbox {
 			width: 9.375rem;
-			height: 2rem;
+			height: 40px;
 			box-sizing: border-box;
 			padding: 0.1875rem 0.75rem;
 			border: #d4d1d9 0.0625rem solid;
@@ -2385,6 +2385,7 @@ ul.mvx-dashboard-tabs-list {
 			background-color: #fdfdfe;
 			position: relative;
 			color: #3f1473;
+			margin-right: -1px;
 		}
 	}
 
@@ -3089,13 +3090,12 @@ a.del-btn {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
-	min-height: 2rem !important;
+	min-height: 40px !important;
 	outline: 0 !important;
 	position: relative;
 	box-sizing: border-box;
 	box-shadow: none !important;
-	min-height: 2rem !important;
-	height: 2rem !important;
+	height: 40px !important;
 
 	.css-319lph-ValueContainer {
 		padding-top: 0rem !important;
@@ -3135,13 +3135,12 @@ a.del-btn {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
-	min-height: 2rem !important;
+	min-height: 40px !important;
 	outline: 0 !important;
 	position: relative;
 	box-sizing: border-box;
 	box-shadow: none !important;
-	min-height: 2rem !important;
-	height: 2rem !important;
+	height: 40px !important;
 
 	.css-14dclt2-Input {
 		padding-top: 0rem !important;
@@ -3581,4 +3580,7 @@ p.vendor-status.approved-vendor, p.commission-status-paid {
     display: block;
     float: right;
 
+}
+.mvx-settings-table-wrap th{
+	text-align: left;
 }
