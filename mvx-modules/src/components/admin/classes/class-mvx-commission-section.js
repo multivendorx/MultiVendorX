@@ -527,7 +527,7 @@ class App extends Component {
 
       /*if (e) {
         axios.get(
-          `${appLocalizer.apiUrl}/mvx_module/v1/search_specific_commission`, { params: { commission_ids: e.value } 
+          `${appLocalizer.apiUrl}/mvx_module/v1/search_specific_commission`, { params: { commission_ids: e.value }
         })
         .then(response => {
           this.setState({
@@ -987,8 +987,8 @@ class App extends Component {
                   </div>
                 </div>
 
-                <div className="mvx-backend-datatable-wrapper">
-
+                <div className="responsive-table">
+                  <div className='mvx-backend-datatable-wrapper commission-table-wapper default-table'>
                   {this.state.columns_commission_list && this.state.columns_commission_list.length > 0 && this.state.commission_loading ?
                     <DataTable
                       columns={this.state.columns_commission_list}
@@ -998,7 +998,7 @@ class App extends Component {
                       pagination
                     />
                     : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />}
-
+                  </div>
                 </div>
 
               </div>

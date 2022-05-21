@@ -975,7 +975,7 @@ export default class DynamicForm extends React.Component {
                 <div className="mvx-merge-radio-color-input-label">
                   <input
                     {...props}
-                    className="mvx-setting-form-input"
+                    className="mvx-setting-form-input mr-6"
                     type="radio"
                     key={o.key}
                     name={o.name}

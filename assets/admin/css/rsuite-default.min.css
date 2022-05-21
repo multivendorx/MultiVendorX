@@ -1171,21 +1171,23 @@ html {
 }
 
 a {
-    color: #1675e0;
+    /* color: #1675e0; */
+    color: inherit;
     text-decoration: none;
 }
 a:focus,
 a:hover {
-    color: #0a5dc2;
+    /* color: #0a5dc2; */
+    color: inherit;
 }
 a:active,
 a:focus,
 a:hover {
     text-decoration: underline;
 }
-a:active {
+/* a:active {
     color: #004299;
-}
+} */
 a:focus {
     outline: 0;
 }

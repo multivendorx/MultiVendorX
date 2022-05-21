@@ -1943,19 +1943,19 @@ class App extends Component {
 
 
 
-
-                      <div className="mvx-backend-datatable-wrapper">
-                        {this.state.columns_announcement_new && this.state.columns_announcement_new.length > 0 ?
-                          <DataTable
-                            columns={this.state.columns_announcement_new}
-                            data={this.state.display_announcement}
-                            selectableRows
-                            onSelectedRowsChange={this.onSelectedRowsChange}
-                            pagination
-                          />
-                          : ''}
+                      <div className='responsive-table'>
+                        <div className="mvx-backend-datatable-wrapper workboard-table-wapper default-table">
+                          {this.state.columns_announcement_new && this.state.columns_announcement_new.length > 0 ?
+                            <DataTable
+                              columns={this.state.columns_announcement_new}
+                              data={this.state.display_announcement}
+                              selectableRows
+                              onSelectedRowsChange={this.onSelectedRowsChange}
+                              pagination
+                            />
+                            : ''}
+                        </div>
                       </div>
-
 
 
 
@@ -2045,16 +2045,18 @@ class App extends Component {
                         </div>
 
 
-                        <div className="mvx-backend-datatable-wrapper">
-                          {this.state.columns_knowledgebase_new && this.state.columns_knowledgebase_new.length > 0 ?
-                            <DataTable
-                              columns={this.state.columns_knowledgebase_new}
-                              data={this.state.display_list_knowladgebase}
-                              selectableRows
-                              onSelectedRowsChange={this.onSelectedRowsChange}
-                              pagination
-                            />
-                            : ''}
+                        <div className='responsive-table'>
+                          <div className="mvx-backend-datatable-wrapper workboard-table-wapper default-table">
+                            {this.state.columns_knowledgebase_new && this.state.columns_knowledgebase_new.length > 0 ?
+                              <DataTable
+                                columns={this.state.columns_knowledgebase_new}
+                                data={this.state.display_list_knowladgebase}
+                                selectableRows
+                                onSelectedRowsChange={this.onSelectedRowsChange}
+                                pagination
+                              />
+                              : ''}
+                          </div>
                         </div>
                       </div>
 
@@ -2102,16 +2104,18 @@ class App extends Component {
             </div>*/}
                     </div>
 
-                    <div className="mvx-backend-datatable-wrapper">
-                      {this.state.columns_store_review && this.state.columns_store_review.length > 0 ?
-                        <DataTable
-                          columns={this.state.columns_store_review}
-                          data={this.state.list_of_store_review}
-                          selectableRows
-                          onSelectedRowsChange={this.handleselectreviews}
-                          pagination
-                        />
-                        : ''}
+                    <div className='responsive-table'>
+                      <div className="mvx-backend-datatable-wrapper workboard-table-wapper default-table">
+                        {this.state.columns_store_review && this.state.columns_store_review.length > 0 ?
+                          <DataTable
+                            columns={this.state.columns_store_review}
+                            data={this.state.list_of_store_review}
+                            selectableRows
+                            onSelectedRowsChange={this.handleselectreviews}
+                            pagination
+                          />
+                          : ''}
+                      </div>
                     </div>
                   </div>
 
@@ -2135,16 +2139,18 @@ class App extends Component {
                         </div>
                       </div>
 
-                      <div className="mvx-backend-datatable-wrapper">
-                        {this.state.columns_report_abuse && this.state.columns_report_abuse.length > 0 ?
-                          <DataTable
-                            columns={this.state.columns_report_abuse}
-                            data={this.state.list_of_report_abuse}
-                            selectableRows
-                            onSelectedRowsChange={this.handleselectabuse}
-                            pagination
-                          />
-                          : ''}
+                      <div className='responsive-table'>
+                        <div className="mvx-backend-datatable-wrapper workboard-table-wapper default-table">
+                          {this.state.columns_report_abuse && this.state.columns_report_abuse.length > 0 ?
+                            <DataTable
+                              columns={this.state.columns_report_abuse}
+                              data={this.state.list_of_report_abuse}
+                              selectableRows
+                              onSelectedRowsChange={this.handleselectabuse}
+                              pagination
+                            />
+                            : ''}
+                        </div>
                       </div>
                     </div>
 
@@ -2188,15 +2194,17 @@ class App extends Component {
             </div>
           </div>*/}
 
-                        <div className="mvx-backend-datatable-wrapper">
-                          {this.state.pending_questions ?
-                            <DataTable
-                              columns={this.state.pending_questions}
-                              data={this.state.list_of_publish_question}
-                              selectableRows
-                              pagination
-                            />
-                            : ''}
+                        <div className='responsive-table'>
+                          <div className="mvx-backend-datatable-wrapper workboard-table-wapper default-table">
+                            {this.state.pending_questions ?
+                              <DataTable
+                                columns={this.state.pending_questions}
+                                data={this.state.list_of_publish_question}
+                                selectableRows
+                                pagination
+                              />
+                              : ''}
+                          </div>
                         </div>
                       </div>
 
