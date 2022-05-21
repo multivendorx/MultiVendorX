@@ -3094,7 +3094,7 @@ a.del-btn {
 	}
 
 	.css-tlfecz-indicatorContainer {
-		padding: 0.3125rem;
+		padding: 0.3125rem !important;
 	}
 
 	input {
@@ -3102,7 +3102,9 @@ a.del-btn {
 		min-height: 1.75rem !important;
 	}
 }
-
+.css-1gtu0rj-indicatorContainer{
+	padding: 0.3125rem !important;
+}
 .css-1s2u09g-control {
 	align-items: center;
 	background-color: hsl(0, 0%, 100%) !important;

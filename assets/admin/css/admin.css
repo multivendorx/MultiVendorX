@@ -3121,12 +3121,16 @@ a.del-btn {
 }
 
 .css-1pahdxg-control .css-tlfecz-indicatorContainer {
-  padding: 0.3125rem;
+  padding: 0.3125rem !important;
 }
 
 .css-1pahdxg-control input {
   height: 1.75rem !important;
   min-height: 1.75rem !important;
+}
+
+.css-1gtu0rj-indicatorContainer {
+  padding: 0.3125rem !important;
 }
 
 .css-1s2u09g-control {
