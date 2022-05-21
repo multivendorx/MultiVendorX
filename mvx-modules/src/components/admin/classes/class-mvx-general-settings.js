@@ -71,7 +71,7 @@ class App extends Component {
       set_tab_name: ''
     };
 
-    
+
     this.query = null;
     // when click on checkbox
     this.handleSubmitl = this.handleSubmitl.bind(this);
@@ -889,7 +889,7 @@ class App extends Component {
           <div className="ptb-2r mvx-row">
             <div className="mvx-col-75">
 
-              <div className="mv-off-white-box pa-15 text-center">
+              <div className="mv-offactive-white-box pa-15 text-center">
                 <div className="mvx-tab-name-display">{tab_name_display}</div>
                 <p>{tab_description_display}</p>
               </div>

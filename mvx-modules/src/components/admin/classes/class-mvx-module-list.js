@@ -783,16 +783,18 @@ class App extends Component {
                 </div>
               </div>
 
-              <div class="mvx-dash-section switch-section white-bg mb-90">
+              <div class="mvx-dash-section switch-section mb-90">
                 <div class="mvx-container">
                     <div class="mvx-row">
                       <div class="mvx-col-100 text-center">
+                          <div className='switch-white-bg'>
                           <div class="w-100 mb-45">
                             <div class="mv-dashboard-top-icon float-none gra-por wh-96 box-shadow"><span>Pro</span></div>
                           </div>
                           <h2>Get to Go?</h2>
                           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
                           <a href="#" class="btn red-btn">Upgrade to Pro</a>
+                          </div>
                       </div>
                     </div>
                 </div>

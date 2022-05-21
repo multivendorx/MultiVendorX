@@ -573,23 +573,23 @@ class App extends React.Component {
 
 
     /*    if (new URLSearchParams(window.location.hash).get("ID")) {
-    
+
         axios.get(
-        `${appLocalizer.apiUrl}/mvx_module/v1/list_of_all_tab_based_settings_field`, { params: { vendor_id: new URLSearchParams(window.location.hash).get("ID") } 
+        `${appLocalizer.apiUrl}/mvx_module/v1/list_of_all_tab_based_settings_field`, { params: { vendor_id: new URLSearchParams(window.location.hash).get("ID") }
         })
         .then(response => {
           if (response.data) {
             this.setState({
               data_setting_fileds: response.data,
             });
-    
-    
-    
+
+
+
           }
-    
+
         })
-    
-          
+
+
         }
     */
 
@@ -652,12 +652,14 @@ class App extends React.Component {
         <HeaderSection />
         <div className="mvx-container">
           <div className="ptb-2r mvx-row">
-               
+
               {queryt.get("name") == 'add_new' ?
+              <div className='mvx-col-75'>
                 <div className="general-tab-area">
-                  <div className="tabcontentclass tabcontentclass-child">
+                  <div className="tabcontentclass tabcontentclass-child w-100">
                     <this.Childparent name={queryt.get("name")} />
                   </div>
+                </div>
                 </div>
               : '' }
 
@@ -665,8 +667,8 @@ class App extends React.Component {
               queryt.get("name") == "add_new" ? '' :
 
             <div className="mvx-col-75">
-              
-              
+
+
 
               <div className="mvx-page-title">
                 Vendors
@@ -765,7 +767,7 @@ class App extends React.Component {
 
             </div>
 
-            : 
+            :
               <div className='mvx-col-75'>
                 <div className="mv-offactive-white-box pa-15 text-center border-b-0">
                   <div className="mvx-tab-name-display">{tab_name_display}</div>

@@ -48,7 +48,7 @@ class App extends Component {
       email: '',
       abcarray: [],
       first_toggle: '',
-      second_toggle: '',      
+      second_toggle: '',
       current: {},
       list_of_module_data: [],
     };
@@ -93,14 +93,14 @@ class App extends Component {
 
       <div className="container">
       <div className="mvx-child-container">
-        
-        
+
+
         <div className="mvx-sub-container">
-          
+
           {appLocalizer.mvx_all_backend_tab_list['marketplace-payments'].length > 0 ?
-          
+
           <div className="mvx-sub-child-container">
-            <div className="mv-off-white-box pa-15 mb-90 text-center">
+            <div className="mv-offactive-white-box pa-15 mb-90 text-center">
               <div className="mvx-tab-name-display">{tab_name_display}</div>
               <p>{tab_description_display}</p>
             </div>
@@ -119,7 +119,7 @@ class App extends Component {
           : 'No Payment method found'}
 
         </div>
-        
+
 
         <div className="mvx-adv-image-display">
           <a href="https://www.qries.com/" target="__blank">
@@ -157,7 +157,7 @@ Child({ name }) {
         name = !name ? 'paypal_masspay' : name,
 
         data.modulename == name ?
-          
+
             <div>
             {Object.keys(this.state.list_of_module_data).length > 0 ?
               <DynamicForm
@@ -173,7 +173,7 @@ Child({ name }) {
               />
               : <PuffLoader css={override} color={"#cd0000"} size={200} loading={true} /> }
             </div>
-            
+
         : ''
       }
       </div>
