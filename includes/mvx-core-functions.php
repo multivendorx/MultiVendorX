@@ -8017,7 +8017,6 @@ if (!function_exists('mvx_list_all_modules')) {
                         'description'  => __( "Manually transfer money directly to the vendor's bank account.", 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'paypal-masspay',
@@ -8110,20 +8109,12 @@ if (!function_exists('mvx_list_all_modules')) {
                 'label' =>  __('Shipping', 'dc-woocommerce-multi-vendor'),
                 'options'       =>  [
                     [
-                        'id'           => 'vendor-shipping',
-                        'name'         => __( 'Vendor Shipping', 'dc-woocommerce-multi-vendor' ),
-                        'description'  => __( 'Enable sellers to control their shipping', 'dc-woocommerce-multi-vendor' ),
-                        'plan'         => 'free',
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
-                    ],
-                    [
                         'id'           => 'zone-shipping',
                         'name'         => __( 'Zone-Wise Shipping', 'dc-woocommerce-multi-vendor' ),
                         'description'  => __( 'Limit vendors to sell in selected zones', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                        'mod_link'     => admin_url('admin.php?page=wc-settings&tab=shipping'),
                         'parent_category' => __( 'Shipping.', 'dc-woocommerce-multi-vendor' ),
                     ],
                     [
@@ -8132,7 +8123,6 @@ if (!function_exists('mvx_list_all_modules')) {
                         'description'  => __( 'Calculate Rates based on distance between the vendor store and drop location', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'country-shipping',
@@ -8140,7 +8130,6 @@ if (!function_exists('mvx_list_all_modules')) {
                         'description'  => __( 'Let vendors choose and manage shipping, to countries of their choice', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'weight-shipping',
@@ -8160,7 +8149,7 @@ if (!function_exists('mvx_list_all_modules')) {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                        'mod_link'     => admin_url('admin.php?page=wc-settings&tab=shipping'),
                     ],
                     [
                         'id'           => 'per-product-shipping',
@@ -8180,7 +8169,7 @@ if (!function_exists('mvx_list_all_modules')) {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                        'mod_link'     => admin_url('admin.php?page=wc-settings&tab=shipping'),
                     ],
                 ]
             ],
@@ -8200,7 +8189,6 @@ if (!function_exists('mvx_list_all_modules')) {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'marketplace-refund',
@@ -8208,7 +8196,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'description'  => __( 'Enable customer refund requests & Let vendors manage customer refund ', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=refund-management'),
                     ],
                 ]
             ],
@@ -8221,7 +8209,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'description'  => __( "If enabled customers can view a vendor's store location", 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=store'),
                     ],
                     [
                         'id'           => 'store-policy',
@@ -8229,7 +8217,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'description'  => __( 'Offers vendors the option to set individual store specific policies', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=policy'),
                     ],
                     [
                         'id'           => 'follow-store',
@@ -8237,7 +8225,6 @@ if (!function_exists('mvx_list_all_modules')) {
                         'description'  => __( 'Permit customers to follow store, receive updates & lets vendors keep track of customers', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'store-review',
@@ -8245,7 +8232,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'description'  => __( 'Allows customers to rate and review stores and their purchased products', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                        'mod_link'     => admin_url('aadmin.php?page=mvx#&submenu=settings&name=review-management'),
                     ],
                     [
                         'id'           => 'business-hours',
