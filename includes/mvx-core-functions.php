@@ -8232,7 +8232,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'description'  => __( 'Allows customers to rate and review stores and their purchased products', 'dc-woocommerce-multi-vendor' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('aadmin.php?page=mvx#&submenu=settings&name=review-management'),
+                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=review-management'),
                     ],
                     [
                         'id'           => 'business-hours',
