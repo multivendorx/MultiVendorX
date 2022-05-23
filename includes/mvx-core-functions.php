@@ -6146,7 +6146,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 [
                     'key'    => 'payment_method_disbursement',
                     'label'   => __( 'Commission Disbursement Method', 'dc-woocommerce-multi-vendor' ),
-                    'desc'  =>  __( "Display only enabled payment gateways. To enable your choosen disbursement type <a href='". admin_url( '?page=mvx#&submenu=modules' ) ."'>MVX Modules</a>", 'dc-woocommerce-multi-vendor' ),
+                    'desc'  =>  __( "Kindly activate your preferred payment method in the <a href='". admin_url( '?page=mvx#&submenu=modules' ) ."'>Module section</a>. Your selected payment method would be automatically displayed here.", 'dc-woocommerce-multi-vendor' ),
                     'class'     => 'mvx-toggle-checkbox',
                     'type'    => 'checkbox',
                     'right_content' =>  true,
