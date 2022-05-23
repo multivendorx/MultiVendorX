@@ -22,6 +22,8 @@ import DataTable from 'react-data-table-component';
 
 import HeaderSection from './class-mvx-page-header';
 
+import BannerSection from './class-mvx-page-banner';
+
 import {
     LineChart,
     ResponsiveContainer,
@@ -392,14 +394,11 @@ class App extends Component {
   }
 
   QueryParamsDemo() {
-    let queryt = this.useQuery();
-    if(!queryt.get("name")) {
-      //window.location.href = window.location.href+'&name=admin_overview';
-    }
-    var tab_name_display = '';
-    var tab_description_display = '';
+    let user_query_details = this.useQuery();
+    var tab_name_display, tab_description_display;
+    tab_name_display = tab_description_display = 100;
     appLocalizer.mvx_all_backend_tab_list['marketplace-analytics'].map((data, index) => {
-        if(queryt.get("name") == data.modulename) {
+        if(user_query_details.get("name") == data.modulename) {
           tab_name_display = data.tablabel;
           tab_description_display = data.description;
         }
@@ -407,74 +406,38 @@ class App extends Component {
     )
 
     return (
-      <div>
-
-
+      <div className="mvx-parent-container">
         <HeaderSection />
-
         <div className="container">
-
           <div className="mvx-child-container">
-
-          <div className="mvx-sub-container">
-            
-
-            {/* <div className="mvx-upper-tab-header-area">
-              <div className="mvx-tab-name-display">{tab_name_display}</div>
-              <p>{tab_description_display}</p>
-            </div> */}
-
-
-            <div className="dashboard-tab-area">
-              <ul className="mvx-dashboard-tabs-list">
-                {appLocalizer.mvx_all_backend_tab_list['marketplace-analytics'].map((data, index) => (
-                  
-                    <li className={queryt.get("name") == data.modulename ? 'activedashboardtabs' : ''}>
+            <div className="mvx-sub-container">
+              <div className="dashboard-tab-area">
+                <ul className="mvx-dashboard-tabs-list">
+                  {appLocalizer.mvx_all_backend_tab_list['marketplace-analytics'].map((data, index) => (
+                    <li className={user_query_details.get("name") == data.modulename ? 'activedashboardtabs' : ''}>
                       <Link to={`?page=mvx#&submenu=analytics&name=${data.modulename}`} >
                       {data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}{data.tablabel}
                       </Link>   
-                      </li>
-                                   
-                      ))}
-              </ul>
-              <div className="dashboard-tabcontentclass">
-                <div className='mvx-module-grid'>
-                <this.Child name={queryt.get("name")} />
+                    </li>
+                  ))}
+                </ul>
+                <div className="dashboard-tabcontentclass">
+                  <div className='mvx-module-grid'>
+                    <this.Child name={user_query_details.get("name")} />
+                  </div>
                 </div>
               </div>
             </div>
-
-
-
-            </div>
-
-
-
-
-
-            <div className="mvx-adv-image-display">
-              <a href="https://www.qries.com/" target="__blank">
-                <img alt="Multivendor X" src={appLocalizer.multivendor_logo}/>
-              </a>
-            </div>
-
+            <BannerSection />
           </div>
-
-          
-
-          </div>
-
+        </div>
       </div>
     );
   }
 
 Child({ name }) {
   return (
-    <div>
-
-      <div>
-
-      
+    <div className="mvx-analytics-wrapper">
 
       {
         name = !name ? appLocalizer.mvx_all_backend_tab_list['marketplace-analytics'][0]['modulename'] : name,
@@ -482,7 +445,6 @@ Child({ name }) {
         name == appLocalizer.mvx_all_backend_tab_list['marketplace-analytics'][0]['modulename'] ?
           
             <div className="mvx-report-start-content">
-
               <div className="mvx-wrapper-date-picker pull-right mb-30">
                 <div className="mvx-date-range">Date range:</div>
                 <div className="mvx-report-datepicker"><DateRangePicker onChange={(e) => this.handleupdatereport(e)} /></div>
@@ -490,72 +452,51 @@ Child({ name }) {
 
               <div className="mvx-report-performance-content w-100">
                 {this.state.report_overview_data.admin_overview ? 
-                  
-                  
                   <div class="mvx-text-with-line-wrapper">
-                  <div class="mvx-report-text w-100 mr-0"><span>{appLocalizer.report_page_string.performance}</span></div>
-              </div>
-
-                   : ''}
+                    <div class="mvx-report-text">
+                      <span>{appLocalizer.report_page_string.performance}</span>
+                    </div>
+                  </div>
+                : ''}
 
                 <div className="mvx-wrapper-performance-content">
                 {
-                 this.state.report_overview_data.admin_overview ? Object.entries(this.state.report_overview_data.admin_overview).map((data, index) => (
-
+                this.state.report_overview_data.admin_overview ? Object.entries(this.state.report_overview_data.admin_overview).map((data, index) => (
                   data[0] && data[0] != "sales_data_chart" ?
-
                     <div className="mvx-performance-wrapper-content">
-                      <div>{data[1].label}</div>
+                      <div className="mvx-labels">{data[1].label}</div>
                       <div className="mvx-wrap-price-and-percent">
                         <div className="mvx-price-display" dangerouslySetInnerHTML={{__html: data[1].value}}>
                         </div>
                         <div className="mvx-percent-show">0%</div>
                       </div>
                     </div>
-
-                    : ''
-
-                    ))
-
-
-
-                 : ''
+                  : ''
+                ))
+                
+                : ''
                 }
                 </div>
-
               </div>
 
+
               {this.state.report_overview_data.admin_overview && this.state.report_overview_data.admin_overview.sales_data_chart ?
-
-
-
               <div className="mvx-charts-graph-content">
-
                 <div className="mvx-chart-text-and-bar-line-wrap">
-
-                  
-
                   <div class="mvx-text-with-line-wrapper chart-line">
                     <div class="mvx-report-text"><span>{appLocalizer.report_page_string.charts}</span></div>
                     <div className='mvx-select-all-bulk-wrap'>
-                      <div><Link to={`?page=mvx#&submenu=analytics&name=admin-overview&type=bar`}><i className="mvx-font icon-chart-bar"></i></Link></div>
-                      <div><Link to={`?page=mvx#&submenu=analytics&name=admin-overview&type=line`}><i className="mvx-font icon-chart-line"></i></Link></div>
+                      <div className="mvx-analytics-overview-link"><Link to={`?page=mvx#&submenu=analytics&name=admin-overview&type=bar`}><i className="mvx-font icon-chart-bar"></i></Link></div>
+                      <div className="mvx-analytics-overview-link"><Link to={`?page=mvx#&submenu=analytics&name=admin-overview&type=line`}><i className="mvx-font icon-chart-line"></i></Link></div>
                     </div>
                   </div>
-
-                  <div className="mvx-bar-and-line-wrap hide">
-                    
-                  </div>
+                  <div className="mvx-bar-and-line-wrap hide"></div>
                 </div>
-
 
                 <div className="mvx-content-two-graph-wrap">
                   <div className="mvx-header-and-graph-wrap">
-
                     <div className="mvx-commission-order-details-text">First header</div>
-
                     <div className="mvx-chart-graph-visible">
-
                         {!this.useQuery().get('type') || this.useQuery().get('type') == 'line' ?
                           <ResponsiveContainer aspect={3}>
                             <LineChart
@@ -599,81 +540,70 @@ Child({ name }) {
                             </BarChart>
                           </ResponsiveContainer>
                         }
-
 
                     { /*<div className="mvx-pro-image-display"><img src="https://wc-marketplace.com//wp-content//uploads//2021//06//722x415-paypal-300x172.jpg"/></div> */}
                   </div>
-
                 </div>
 
-
-                  <div className="mvx-header-and-graph-wrap">
-                    <div className="mvx-commission-order-details-text">second header</div>
+                <div className="mvx-header-and-graph-wrap">
+                  <div className="mvx-commission-order-details-text">second header</div>
                     <div className="mvx-chart-graph-visible">
+                      {!this.useQuery().get('type') || this.useQuery().get('type') == 'line' ?
+                        <ResponsiveContainer aspect={3}>
+                          <LineChart
+                            width={500}
+                            height={300}
+                            data={this.state.report_overview_data.admin_overview.sales_data_chart}
+                            margin={{
+                              top: 100,
+                              right: 30,
+                              left: 20,
+                              bottom: 5,
+                            }}
+                            >
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis tickFormatter={this.state.formatter} />
+                            <Tooltip />
+                            <Legend />
+                            <Line type="monotone" dataKey="Net Sales" stroke="red" activeDot={{ r: 8 }} />
+                          </LineChart>
+                        </ResponsiveContainer>
+                        :
+                        <ResponsiveContainer aspect={3}>
+                          <BarChart
+                            width={500}
+                            height={300}
+                            data={this.state.report_overview_data.admin_overview.sales_data_chart}
+                            margin={{
+                              top: 5,
+                              right: 30,
+                              left: 20,
+                              bottom: 5,
+                            }}
+                            >
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="Date" />
+                            <YAxis tickFormatter={this.state.formatter} />
+                            <Tooltip />
+                            <Legend />
+                            <Bar dataKey="Net Sales" fill="red"  />
+                          </BarChart>
+                        </ResponsiveContainer>
+                      }
 
-                        {!this.useQuery().get('type') || this.useQuery().get('type') == 'line' ?
-                          <ResponsiveContainer aspect={3}>
-                            <LineChart
-                              width={500}
-                              height={300}
-                              data={this.state.report_overview_data.admin_overview.sales_data_chart}
-                              margin={{
-                                top: 100,
-                                right: 30,
-                                left: 20,
-                                bottom: 5,
-                              }}
-                              >
-                              <CartesianGrid strokeDasharray="3 3" />
-                              <XAxis dataKey="name" />
-                              <YAxis tickFormatter={this.state.formatter} />
-                              <Tooltip />
-                              <Legend />
-                              <Line type="monotone" dataKey="Net Sales" stroke="red" activeDot={{ r: 8 }} />
-                            </LineChart>
-                          </ResponsiveContainer>
-                          :
-                          <ResponsiveContainer aspect={3}>
-                            <BarChart
-                              width={500}
-                              height={300}
-                              data={this.state.report_overview_data.admin_overview.sales_data_chart}
-                              margin={{
-                                top: 5,
-                                right: 30,
-                                left: 20,
-                                bottom: 5,
-                              }}
-                              >
-                              <CartesianGrid strokeDasharray="3 3" />
-                              <XAxis dataKey="Date" />
-                              <YAxis tickFormatter={this.state.formatter} />
-                              <Tooltip />
-                              <Legend />
-                              <Bar dataKey="Net Sales" fill="red"  />
-                            </BarChart>
-                          </ResponsiveContainer>
-                        }
-
-
-
-
-
-
-                  { /*<div className="mvx-pro-image-display"><img src="https://wc-marketplace.com//wp-content//uploads//2021//06//722x415-paypal-300x172.jpg"/></div> */}
+                    { /*<div className="mvx-pro-image-display"><img src="https://wc-marketplace.com//wp-content//uploads//2021//06//722x415-paypal-300x172.jpg"/></div> */}
+                  </div>
                 </div>
               </div>
+            </div>
 
-              </div>
-
-              </div>
             : '' }
 
             <div className="mvx-report-leaderboard-content">
-
               <div class="mvx-text-with-line-wrapper">
-                    <div class="mvx-report-text w-100 mr-0"><span>{appLocalizer.report_page_string.leaderboards}</span></div>
-                </div>
+                <div class="mvx-report-text w-100 mr-0"><span>{appLocalizer.report_page_string.leaderboards}</span></div>
+              </div>
 
               <div className="mvx-analytic-details-wrap">
                 <div className="mvx-commission-order-details-text">Vendor Details</div>
@@ -685,9 +615,7 @@ Child({ name }) {
                     pagination
                   />
                 </div>
-
               </div>
-
 
               <div className="mvx-analytic-details-wrap">
                 <div className="mvx-commission-order-details-text">Commission Details</div>
@@ -702,7 +630,7 @@ Child({ name }) {
               </div>
 
             </div>
-            </div>
+          </div>
 
             :
 
@@ -710,204 +638,167 @@ Child({ name }) {
 
             <div className="mvx-report-start-content">
 
-
               <div className="mvx-date-and-show-wrapper justify-between mb-25">
                 <div className="mvx-wrapper-date-picker">
                   <div className="mvx-date-range">Date range:</div>
                   <div className="mvx-report-datepicker"><DateRangePicker onChange={(e) => this.handleupdatereport(e)} /></div>
                 </div>
-              
                 <div className="mvx-vendor-wrapper-show-specific">
                   <div className="mvx-date-range">Show:</div>
                   <Select placeholder={appLocalizer.report_page_string.choose_vendor} options={this.state.details_vendor} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e)} />
                 </div>
               </div>
 
-
               <div className="mvx-report-performance-content">
-                
-
                 <div class="mvx-text-with-line-wrapper">
-                    <div class="mvx-report-text w-100 mr-0"><span>{appLocalizer.report_page_string.performance}</span></div>
+                  <div class="mvx-report-text w-100 mr-0"><span>{appLocalizer.report_page_string.performance}</span></div>
                 </div>
 
                 <div className="mvx-wrapper-performance-content col-type-3">
                 {
-                   this.state.report_overview_data.admin_overview ? Object.entries(this.state.report_overview_data.vendor).map((data, index) => (
-
-                   data[0] && data[0] != "sales_data_chart"  ?
-
-                    data[0] != "vendor_report_datatable" ? 
-
-                     <div className="mvx-performance-wrapper-content">
-                        <div>{data[1].label}</div>
-                          <div className="mvx-wrap-price-and-percent">
-                            <div className="mvx-price-display" dangerouslySetInnerHTML={{__html: data[1].value}}>
+                  this.state.report_overview_data.admin_overview ? Object.entries(this.state.report_overview_data.vendor).map((data, index) => (
+                    data[0] && data[0] != "sales_data_chart"  ?
+                      data[0] != "vendor_report_datatable" ? 
+                       <div className="mvx-performance-wrapper-content">
+                          <div>{data[1].label}</div>
+                            <div className="mvx-wrap-price-and-percent">
+                              <div className="mvx-price-display" dangerouslySetInnerHTML={{__html: data[1].value}}>
+                              </div>
+                              <div className="mvx-percent-show">0%</div>
                             </div>
-                            <div className="mvx-percent-show">0%</div>
-                          </div>
-                      </div>
+                        </div>
                       : ''
-
-                      : ''
-                      ))
-                   : ''
+                    : ''
+                  ))
+                : ''
                 }
-                </div>
               </div>
-
+            </div>
 
             {this.state.report_overview_data.vendor && this.state.report_overview_data.vendor.sales_data_chart ?
-
               <div className="mvx-charts-graph-content">
-
                 <div className="mvx-chart-text-and-bar-line-wrap">
-
-                  
                   <div class="mvx-text-with-line-wrapper chart-line">
                     <div class="mvx-report-text"><span>{appLocalizer.report_page_string.charts}</span></div>
                     <div className='mvx-select-all-bulk-wrap'>
                     <div className="mvx-bar-chart"><Link to={`?page=mvx#&submenu=analytics&name=vendor&type=bar`}><i className="mvx-font icon-chart-bar"></i></Link></div>
                     <div className="mvx-line-chart"><Link to={`?page=mvx#&submenu=analytics&name=vendor&type=line`}><i className="mvx-font icon-chart-line"></i></Link></div>
-                    </div>
+                  </div>
                 </div>
-
-                  
-                </div>
-
-
-              <div className="mvx-chart-graph-visible">
-
-                              {!this.useQuery().get('type') || this.useQuery().get('type') == 'line' ?
-                              <ResponsiveContainer width="100%" height="100%" aspect={3}>
-                                <LineChart
-                                  width={500}
-                                  height={300}
-                                  data={this.state.report_overview_data.vendor.sales_data_chart}
-                                  margin={{
-                                    top: 100,
-                                    right: 30,
-                                    left: 20,
-                                    bottom: 5,
-                                  }}
-                                  >
-                                  <CartesianGrid strokeDasharray="3 3" />
-                                  <XAxis dataKey="Date" />
-                                  <YAxis tickFormatter={this.state.formatter} />
-                                  <Tooltip />
-                                  <Legend />
-                                  <Line dataKey="Net Sales" stroke="red" activeDot={{ r: 8 }} />
-
-                                  <Line dataKey="Order Count"
-                                        stroke="black" activeDot={{ r: 8 }} />
-                                    
-                                  <Line dataKey="Item Sold"
-                                        stroke="green" activeDot={{ r: 8 }} />
-
-                                </LineChart>
-                              </ResponsiveContainer>
-
-                              :
-
-                              <ResponsiveContainer width="100%" height="100%" aspect={3}>
-                                <BarChart
-                                  width={500}
-                                  height={300}
-                                  data={this.state.report_overview_data.vendor.sales_data_chart}
-                                  margin={{
-                                    top: 5,
-                                    right: 30,
-                                    left: 20,
-                                    bottom: 5,
-                                  }}
-                                  >
-                                  <CartesianGrid strokeDasharray="3 3" />
-                                  <XAxis dataKey="Date" />
-                                  <YAxis tickFormatter={this.state.formatter} />
-                                  <Tooltip />
-                                  <Legend />
-                                  <Bar dataKey="Net Sales" fill="red"  />
-
-                                  <Bar dataKey="Order Count"
-                                  fill="black"  />
-
-                                  <Bar dataKey="Item Sold"
-                                  fill="green"  />
-
-                                </BarChart>
-                              </ResponsiveContainer>
-                              }
-
-
-
-                             
               </div>
 
+              <div className="mvx-chart-graph-visible">
+                {!this.useQuery().get('type') || this.useQuery().get('type') == 'line' ?
+                <ResponsiveContainer width="100%" height="100%" aspect={3}>
+                  <LineChart
+                    width={500}
+                    height={300}
+                    data={this.state.report_overview_data.vendor.sales_data_chart}
+                    margin={{
+                      top: 100,
+                      right: 30,
+                      left: 20,
+                      bottom: 5,
+                    }}
+                    >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="Date" />
+                    <YAxis tickFormatter={this.state.formatter} />
+                    <Tooltip />
+                    <Legend />
+                    <Line dataKey="Net Sales" stroke="red" activeDot={{ r: 8 }} />
+
+                    <Line dataKey="Order Count"
+                          stroke="black" activeDot={{ r: 8 }} />
+                      
+                    <Line dataKey="Item Sold"
+                          stroke="green" activeDot={{ r: 8 }} />
+
+                  </LineChart>
+                </ResponsiveContainer>
+
+                :
+
+                <ResponsiveContainer width="100%" height="100%" aspect={3}>
+                  <BarChart
+                    width={500}
+                    height={300}
+                    data={this.state.report_overview_data.vendor.sales_data_chart}
+                    margin={{
+                      top: 5,
+                      right: 30,
+                      left: 20,
+                      bottom: 5,
+                    }}
+                    >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="Date" />
+                    <YAxis tickFormatter={this.state.formatter} />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="Net Sales" fill="red"  />
+
+                    <Bar dataKey="Order Count"
+                    fill="black"  />
+
+                    <Bar dataKey="Item Sold"
+                    fill="green"  />
+
+                  </BarChart>
+                </ResponsiveContainer>
+                }
+              </div>
             </div>
 
             : '' }
 
-              <div className="mvx-report-csv-and-chart">
-
-                { this.state.report_overview_data.vendor && this.state.report_overview_data.vendor.vendor_report_datatable ? 
-
-                  <div className="mvx-text-with-line-wrapper svg-line">
-                    <div className="mvx-report-text"><span>Vendor</span></div>
-                    <div class="mvx-select-all-bulk-wrap">
-                      <CSVLink data={this.state.vendor_report_chart_data} headers={appLocalizer.report_vendor_header} filename={"Report_vendor.csv"} className="button-csv-primary"><i className="mvx-font icon-download"></i>{appLocalizer.report_page_string.download_csv}</CSVLink> 
-                    </div>
+            <div className="mvx-report-csv-and-chart">
+              {this.state.report_overview_data.vendor && this.state.report_overview_data.vendor.vendor_report_datatable ? 
+                <div className="mvx-text-with-line-wrapper svg-line">
+                  <div className="mvx-report-text"><span>Vendor</span></div>
+                  <div class="mvx-select-all-bulk-wrap">
+                    <CSVLink data={this.state.vendor_report_chart_data} headers={appLocalizer.report_vendor_header} filename={"Report_vendor.csv"} className="button-csv-primary"><i className="mvx-font icon-download"></i>{appLocalizer.report_page_string.download_csv}</CSVLink> 
                   </div>
-                  
-                  
-
-                  
-
-                  : '' }
-
-                  <div className="mvx-backend-datatable-wrapper default-table">
-                    <DataTable
-                      columns={this.state.columns_vendor}
-                      data={this.state.report_overview_data.vendor ? this.state.report_overview_data.vendor.vendor_report_datatable : this.state.dataproductchart}
-                      selectableRows
-                      onSelectedRowsChange={this.handleChangevendor_char_list}
-                      pagination
-                    />
-                  </div>
-
+                </div>
+              : '' }
+              <div className="mvx-backend-datatable-wrapper default-table">
+                <DataTable
+                  columns={this.state.columns_vendor}
+                  data={this.state.report_overview_data.vendor ? this.state.report_overview_data.vendor.vendor_report_datatable : this.state.dataproductchart}
+                  selectableRows
+                  onSelectedRowsChange={this.handleChangevendor_char_list}
+                  pagination
+                />
               </div>
-
             </div>
+          </div>
 
-            :
+          :
 
             name == appLocalizer.mvx_all_backend_tab_list['marketplace-analytics'][2]['modulename'] ?
             
-            <div className="mvx-report-start-content">
+              <div className="mvx-report-start-content">
 
-
-              <div className="mvx-date-and-show-wrapper justify-between mb-25">
-                <div className="mvx-wrapper-date-picker">
-                  <div className="mvx-date-range">Date range:</div>
-                  <div className="mvx-report-datepicker"><DateRangePicker onChange={(e) => this.handleupdatereport(e)} /></div>
-                </div>
-              
-                <div className="mvx-product-wrapper-show-specific">
-                  <div className="mvx-date-range">Show:</div>
-                <Select placeholder={appLocalizer.report_page_string.choose_product} options={this.state.details_product} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handleproductsearch(e)} />
-                </div>
-              </div>
-
-
-              <div className="mvx-report-performance-content">
-
+                <div className="mvx-date-and-show-wrapper justify-between mb-25">
+                  <div className="mvx-wrapper-date-picker">
+                    <div className="mvx-date-range">Date range:</div>
+                    <div className="mvx-report-datepicker"><DateRangePicker onChange={(e) => this.handleupdatereport(e)} /></div>
+                  </div>
                 
-                <div class="mvx-text-with-line-wrapper">
-                    <div class="mvx-report-text w-100 mr-0"><span>{appLocalizer.report_page_string.performance}</span></div>
+                  <div className="mvx-product-wrapper-show-specific">
+                    <div className="mvx-date-range">Show:</div>
+                    <Select placeholder={appLocalizer.report_page_string.choose_product} options={this.state.details_product} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handleproductsearch(e)} />
+                  </div>
                 </div>
 
-                <div className="mvx-wrapper-performance-content col-type-3">
-                {
-                   this.state.report_overview_data.admin_overview ? Object.entries(this.state.report_overview_data.product).map((data, index) => (
+                <div className="mvx-report-performance-content">
+                  <div class="mvx-text-with-line-wrapper">
+                    <div class="mvx-report-text w-100 mr-0"><span>{appLocalizer.report_page_string.performance}</span></div>
+                  </div>
+
+                  <div className="mvx-wrapper-performance-content col-type-3">
+                  {
+                  this.state.report_overview_data.admin_overview ? Object.entries(this.state.report_overview_data.product).map((data, index) => (
                     data && data[1].label ? 
                       <div className="mvx-performance-wrapper-content">
                         <div>{data[1].label}</div>
@@ -918,39 +809,26 @@ Child({ name }) {
                           </div>
                       </div>
                     : '' 
-                      ))
-                   : ''
-                }
+                  ))
+                  : ''
+                  }
                 </div>
               </div>
 
-
-
-            {this.state.report_overview_data.product && this.state.report_overview_data.product.sales_data_chart ?
-
-            <div className="mvx-charts-graph-content">
-
-
+              
+              {this.state.report_overview_data.product && this.state.report_overview_data.product.sales_data_chart ?
+              <div className="mvx-charts-graph-content">
                 <div className="mvx-chart-text-and-bar-line-wrap">
-                  
-                  
-                  
-
-                <div class="mvx-text-with-line-wrapper chart-line">
+                  <div class="mvx-text-with-line-wrapper chart-line">
                     <div class="mvx-report-text"><span>{appLocalizer.report_page_string.charts}</span></div>
                     <div class="mvx-select-all-bulk-wrap">
                     <div className="mvx-bar-chart"><Link to={`?page=mvx#&submenu=analytics&name=product&type=bar`}><i className="mvx-font icon-chart-bar"></i></Link></div>
                     <div className="mvx-line-chart"><Link to={`?page=mvx#&submenu=analytics&name=product&type=line`}><i className="mvx-font icon-chart-line"></i></Link></div>
                     </div>
                   </div>
-
-                  
                 </div>
 
-
-
-              <div className="mvx-chart-graph-visible">
-
+                <div className="mvx-chart-graph-visible">
                 {!this.useQuery().get('type') || this.useQuery().get('type') == 'line' ?
                   <ResponsiveContainer aspect={3}>
                     <LineChart
@@ -1000,27 +878,22 @@ Child({ name }) {
                       <Bar dataKey="Item Sold" fill="green"  />
                     </BarChart>
                   </ResponsiveContainer>
-                 }
-              </div>
-
-            </div> 
-            : '' }
+                }
+                </div>
+              </div> 
+              : '' }
 
               <div className="mvx-report-csv-and-chart">
-                { this.state.report_overview_data.product && this.state.report_overview_data.product.product_report_datatable ? 
-
-                  
+                {this.state.report_overview_data.product && this.state.report_overview_data.product.product_report_datatable ? 
                   <div class="mvx-text-with-line-wrapper svg-line">
-                      <div class="mvx-report-text"><span>Products</span></div>
-                      <div class="mvx-select-all-bulk-wrap">
+                    <div class="mvx-report-text">
+                      <span>Products</span>
+                    </div>
+                    <div class="mvx-select-all-bulk-wrap">
                       <CSVLink data={this.state.product_report_chart_data} headers={appLocalizer.report_product_header} filename={"Report_product.csv"} className="button-csv-primary"><i className="mvx-font icon-download"></i>{appLocalizer.report_page_string.download_csv}</CSVLink> 
-                      </div>
+                    </div>
                   </div>
-                  : 
-
-                  '' }
-                
-
+                : '' }
                 <div className="mvx-backend-datatable-wrapper default-table">
                   <DataTable
                     columns={this.state.columns_product}
@@ -1030,15 +903,15 @@ Child({ name }) {
                     pagination
                   />
                 </div>
-
               </div>
             </div>
 
             :
 
+
+
             name == appLocalizer.mvx_all_backend_tab_list['marketplace-analytics'][3]['modulename'] ?
               <div className="mvx-report-start-content">
-
                 <div className="mvx-date-and-show-wrapper justify-between mb-25">
                   <div className="mvx-wrapper-date-picker">
                     <div className="mvx-date-range">Date range:</div>
@@ -1059,12 +932,9 @@ Child({ name }) {
                     pagination
                   />
                 </div>
-
               </div>
-            :
-            ''
+            : ''
       }
-      </div>
     </div>
   );
 }

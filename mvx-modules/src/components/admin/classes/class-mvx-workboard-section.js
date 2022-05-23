@@ -115,52 +115,7 @@ class App extends Component {
       pending_coupon_loding_end: false,
       pending_question_loding_end: false,
 
-      datassssssssssss: [
-        {
-          col1: 'Hello',
-          col2: 'World',
-        },
-        {
-          col1: 'react-table',
-          col2: 'rocks',
-        },
-        {
-          col1: 'whatever',
-          col2: 'you want',
-        },
-      ],
 
-      columnssssssssssssssssss: [
-        {
-          Header: 'Column 1',
-          accessor: 'col1', // accessor is the "key" in the data
-        },
-        {
-          Header: 'Column 2',
-          accessor: 'col2',
-        },
-      ],
-
-
-
-
-      columns_announcement: [
-        {
-          name: <div className="mvx-datatable-header-text">Title</div>,
-          selector: row => <div dangerouslySetInnerHTML={{ __html: row.title }}></div>,
-          sortable: true,
-        },
-        {
-          name: <div className="mvx-datatable-header-text">Vendors</div>,
-          selector: row => <div dangerouslySetInnerHTML={{ __html: row.vendor }}></div>,
-          sortable: true,
-        },
-        {
-          name: <div className="mvx-datatable-header-text">Date</div>,
-          selector: row => <div dangerouslySetInnerHTML={{ __html: row.date }}></div>,
-          sortable: true,
-        },
-      ],
       columns_knowladgebase: [
         {
           name: <div className="mvx-datatable-header-text">Title</div>,

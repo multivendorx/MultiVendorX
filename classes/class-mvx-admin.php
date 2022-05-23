@@ -762,6 +762,7 @@ class MVX_Admin {
             'multivendor_logo' => $MVX->plugin_url.'assets/images/multivendorX.png',
             'knowledgebase' => 'https://wc-marketplace.com/knowledgebase/',
             'knowledgebase_title' => __('MVX knowledge Base', 'dc-woocommerce-multi-vendor'),
+            'search_module' =>  __('Search Modules', 'dc-woocommerce-multi-vendor'),
             'marketplace_text' => __('MultiVendorX', 'dc-woocommerce-multi-vendor'),
             'search_module_placeholder' => __('Search Modules', 'dc-woocommerce-multi-vendor'),
             'pro_text' => __('PRO', 'dc-woocommerce-multi-vendor'),

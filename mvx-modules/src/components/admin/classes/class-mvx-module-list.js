@@ -25,10 +25,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import VendorManage from './class-mvx-vendor-manage';
 import WorkBoard from './class-mvx-workboard-section';
 import PaymentSettings from './class-mvx-payemnt-section';
-import VendorManager from './class-mvx-manager-section';
 import CommissionSettings from './class-mvx-commission-section';
 import AnalyticsSettings from './class-mvx-analytics-section';
-import AdvanceSettings from './class-mvx-advance-section';
 import GESettings from './class-mvx-general-settings';
 import HeaderSection from './class-mvx-page-header';
 import Modules from './class-mvx-page-modules';
@@ -74,13 +72,9 @@ class App extends Component {
 
     this.useQuery = this.useQuery.bind(this);
 
-    this.Child = this.Child.bind(this);
-
   }
 
   setTabIndex(e) {
-    console.log(e);
-
     this.setState({
       tabIndex: e
     });
@@ -243,10 +237,6 @@ class App extends Component {
     } else if (new URLSearchParams(useLocation().hash).get("submenu") && new URLSearchParams(useLocation().hash).get("submenu") == 'payment') {
       return (
         <PaymentSettings />
-      );
-    } else if (new URLSearchParams(useLocation().hash).get("submenu") && new URLSearchParams(useLocation().hash).get("submenu") == 'advance') {
-      return (
-        <AdvanceSettings />
       );
     } else if (new URLSearchParams(useLocation().hash).get("submenu") && new URLSearchParams(useLocation().hash).get("submenu") == 'analytics') {
       return (
@@ -567,10 +557,10 @@ class App extends Component {
                 <div className='mvx-container'>
                   <div className='mvx-row'>
                     <div className='mvx-col-100 text-center'>
-                      <div class="w-100 mb-45"><div class="mv-dashboard-top-icon float-none gra-por wh-96 box-shadow"><span>Pro</span></div></div>
+                      <div className="w-100 mb-45"><div className="mv-dashboard-top-icon float-none gra-por wh-96 box-shadow"><span>Pro</span></div></div>
                       <h2>Get more by Switching to Pro</h2>
                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
-                      <a href="#" class="btn red-btn">Upgrade to Pro</a>
+                      <a href="#" className="btn red-btn">Upgrade to Pro</a>
                     </div>
                   </div>
                 </div>
@@ -783,16 +773,16 @@ class App extends Component {
                 </div>
               </div>
 
-              <div class="mvx-dash-section switch-section white-bg mb-90">
-                <div class="mvx-container">
-                    <div class="mvx-row">
-                      <div class="mvx-col-100 text-center">
-                          <div class="w-100 mb-45">
-                            <div class="mv-dashboard-top-icon float-none gra-por wh-96 box-shadow"><span>Pro</span></div>
+              <div className="mvx-dash-section switch-section white-bg mb-90">
+                <div className="mvx-container">
+                    <div className="mvx-row">
+                      <div className="mvx-col-100 text-center">
+                          <div className="w-100 mb-45">
+                            <div className="mv-dashboard-top-icon float-none gra-por wh-96 box-shadow"><span>Pro</span></div>
                           </div>
                           <h2>Get to Go?</h2>
                           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
-                          <a href="#" class="btn red-btn">Upgrade to Pro</a>
+                          <a href="#" className="btn red-btn">Upgrade to Pro</a>
                       </div>
                     </div>
                 </div>
@@ -821,166 +811,6 @@ class App extends Component {
         </div>
       );
     }
-  }
-
-  Child({ name }) {
-    const loader_text_display = this.state.isLoaded ? "loading_ongoing" : '';
-
-    if (this.state.isLoaded) {
-      return (<PuffLoader css={override} color={"#cd0000"} size={200} loading={this.state.loading} />);
-    }
-    return (
-      <div>
-        {!name || name == 'modules' ?
-
-          <div className="mvx-module-section-ui module-listing dashboard-wrapper">
-            <div className="mvx-module-grid">
-
-              {this.state.items.map((student1, index1) => (
-
-                <div className="mvx-module-list-start">
-                  <div className="mvx-module-list-container">
-                    <div className="mvx-module-category-label">{student1.label}</div>
-                    <div className="mvx-module-option-row">
-
-                      {student1.options.map((student, index) => (
-                        <div className="mvx-module-section-options-list">
-                          <div className={`mvx-module-settings-box ${student.is_active ? 'active' : ''}`}>
-                            <span class="dashicons dashicons-cover-image"></span>
-                            <header>
-                              <div className="mvx-module-list-label-plan-action-swap">
-                                <div className="mvx-module-list-label-text">
-                                  {student.name}
-                                  {student.plan == 'pro' ? <span className="mvx-module-section-pro-badge">{appLocalizer.pro_text}</span> : ''}
-                                </div>
-                              </div>
-                              <p>
-                                {student.description}
-                              </p>
-                            </header>
-                            {student.required_plugin_list ? <div className="mvx-module-require-name">Requires:</div> : ''}
-                            <ul>
-                              {
-                                student.required_plugin_list &&
-                                student.required_plugin_list.map((company, index_req) =>
-                                  <li>
-                                    {company.is_active ? <div className="mvx-module-active-plugin-class"><img src={appLocalizer.right_logo} width="10" height="10" alt="Active" /></div> : <div className="inactive-plugin-class"><span class="mvx-font icon-no"></span></div>}
-                                    <a href={company.plugin_link} className="mvx-third-party-plugin-link-class">{company.plugin_name}</a>
-                                  </li>
-                                )}
-                            </ul>
-                            <div className="mvx-module-current-status wp-clearfix">
-                              {student.is_active ? <a href={student.mod_link} className="module-settings button button-secondary mvx-module-url-button">{appLocalizer.settings_text}</a> : ''}
-                              <a href={student.doc_link} className="button button-secondary mvx-module-url-button">{appLocalizer.documentation_text}</a>
-                              <div class="mvx-toggle-checkbox-content">
-                                <input type="checkbox" className="mvx-toggle-checkbox" id={`mvx-toggle-switch-${student.id}`} name="modules[]" value={student.id} checked={student.is_active ? true : false} onChange={(e) => this.handleOnChange(e, index, student.plan, student.is_required_plugin_active, student.doc_id, this.state.items, index1, index, student.id)} />
-                                <label for={`mvx-toggle-switch-${student.id}`}></label>
-                              </div>
-                            </div>
-                            <Dialog open={this.state.open_model_dynamic[index]} onClose={this.handleClose_dynamic} aria-labelledby="form-dialog-title">
-                              <DialogTitle id="form-dialog-title"><div className="mvx-module-dialog-title">Warning !!</div></DialogTitle>
-                              <DialogContent>
-                                <DialogContentText>
-                                  <div className="mvx-module-dialog-content">
-                                    Please active required first to use {student.name} module.
-                                  </div>
-                                </DialogContentText>
-                              </DialogContent>
-                              <DialogActions>
-                                <Button onClick={this.handleClose_dynamic} color="primary">Cancel</Button>
-                              </DialogActions>
-                            </Dialog>
-                          </div>
-                        </div>
-
-                      ))
-                      }
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          : name == 'help'
-
-            ?
-
-            <div className="mvx-module-grid mvx-module-help-grid">
-              <div className="mvx-module-settings-box">
-                <header>
-                  <h3>Next steps</h3>
-                </header>
-                <div className="mvx-module-settings-box-content">
-                  <ul className="mvx-module-section-list-icon">
-                    <li>
-                      <a href="https://wc-marketplace.com/addons/" target="_blank">
-                        <i className="dashicons dashicons-star-filled"></i>
-                        <div className="mvx-module-help-content">
-                          <strong>Upgrade to Pro</strong>
-                          <p>Advanced Schema, Analytics and much more...</p>
-                        </div>
-                      </a>
-                    </li>
-
-                    <li>
-                      <a href={appLocalizer.multivendor_migration_link} target="_blank">
-                        <i className="dashicons dashicons-star-filled"></i>
-                        <div className="mvx-module-help-content">
-                          <strong>Migration</strong>
-                          <p>How to Migrate Data from Your Previous Multivendor Plugin</p>
-                        </div>
-                      </a>
-                    </li>
-
-                  </ul>
-                </div>
-              </div>
-
-              <div className="mvx-module-settings-box">
-                <header>
-                  <h3>Product Support</h3>
-                </header>
-
-                <div className="mvx-module-settings-box-content">
-                  <ul className="mvx-module-section-list-icon">
-
-                    <li>
-                      <a href="https://wc-marketplace.com/knowledgebase/" target="_blank">
-                        <i className="dashicons dashicons-star-filled"></i>
-                        <div className="mvx-module-help-content">
-                          <strong>Online Documentation</strong>
-                          <p>Understand all the capabilities of MVX</p>
-                        </div>
-                      </a>
-                    </li>
-
-                    <li>
-                      <a href="https://wc-marketplace.com/support-forum/" target="_blank">
-                        <i className="dashicons dashicons-star-filled"></i>
-                        <div className="mvx-module-help-content">
-                          <strong>Support Forum</strong>
-                          <p>Direct help from our qualified support team</p>
-                        </div>
-                      </a>
-                    </li>
-
-                  </ul>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-            :
-
-            (<h3>There is nothing</h3>)
-
-        }
-      </div>
-    );
   }
 
   render() {

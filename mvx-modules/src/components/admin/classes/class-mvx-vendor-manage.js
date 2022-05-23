@@ -30,6 +30,8 @@ import DynamicForm from "../../../DynamicForm";
 
 import HeaderSection from './class-mvx-page-header';
 
+import BannerSection from './class-mvx-page-banner';
+
 const override = css`
   display: block;
   margin: 0 auto;
@@ -638,42 +640,33 @@ class App extends React.Component {
     var tab_description_display = '';
     appLocalizer.mvx_all_backend_tab_list['marketplace-vendors'].map((data, index) => {
       if (queryt.get("name") == data.modulename) {
-        tab_name_display = data.tablabel;
-        tab_description_display = data.description;
+          tab_name_display = data.tablabel;
+          tab_description_display = data.description;
+        }
       }
-    }
     )
 
-    if (queryt.get("ID")) {
-      //window.location.href = window.location.href+'&name=vendor_personal';
-    }
     return (
-      <div>
+      <div className="mvx-admin-vendor-submenu-header">
         <HeaderSection />
         <div className="mvx-container">
-          <div className="ptb-2r mvx-row">
-               
-              {queryt.get("name") == 'add_new' ?
-                <div className="general-tab-area">
-                  <div className="tabcontentclass tabcontentclass-child">
-                    <this.Childparent name={queryt.get("name")} />
-                  </div>
+          <div className="mvx-start-child-container">
+            {queryt.get("name") == 'add_new' ?
+              <div className="general-tab-area">
+                <div className="tabcontentclass tabcontentclass-child">
+                  <this.Childparent name={queryt.get("name")} />
                 </div>
-              : '' }
-
-              {!queryt.get("ID") ?
-              queryt.get("name") == "add_new" ? '' :
-
-            <div className="mvx-col-75">
+              </div>
+            : '' }
               
-              
+            {!queryt.get("ID") ?
+            queryt.get("name") == "add_new" ? '' :
 
+            <div className="mvx-child-container-wrap">
               <div className="mvx-page-title">
                 Vendors
                 <Link to={`?page=mvx#&submenu=vendor&name=add_new`} className="btn default-btn ml-12"><i className="mvx-font icon-add"></i>Add Vendor</Link>
               </div>
-
-
 
               <div className="mvx-row mvx-align-items-center mvx-justify-content-between mb-15">
                 <div className="mvx-col-55">
@@ -788,11 +781,7 @@ class App extends React.Component {
               </div>
             }
 
-            <div className="mvx-col-25 mvx-adv-image-display">
-              <a href="https://www.qries.com/" target="__blank">
-                <img alt="Multivendor X" src={appLocalizer.multivendor_logo} />
-              </a>
-            </div>
+            <BannerSection />
 
           </div>
         </div>

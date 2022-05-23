@@ -22,7 +22,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import HeaderSection from './class-mvx-page-header';
-
+import BannerSection from './class-mvx-page-banner';
 
 const override = css`
   display: block;
@@ -374,11 +374,7 @@ class App extends Component {
             </Dialog>
           </div>
 
-          <div className="mvx-adv-image-display">
-            <a href="https://www.qries.com/" target="__blank">
-              <img alt="Multivendor X" src={appLocalizer.multivendor_logo} />
-            </a>
-          </div>
+          <BannerSection />
 
         </div>
 

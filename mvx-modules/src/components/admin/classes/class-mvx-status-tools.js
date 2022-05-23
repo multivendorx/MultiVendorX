@@ -21,6 +21,7 @@ import DataTable from 'react-data-table-component';
 
 
 import HeaderSection from './class-mvx-page-header';
+import BannerSection from './class-mvx-page-banner';
 
 import {
     LineChart,
@@ -189,11 +190,7 @@ class App extends Component {
 
 
 
-            <div className="mvx-adv-image-display">
-              <a href="https://www.qries.com/" target="__blank">
-                <img alt="Multivendor X" src={appLocalizer.multivendor_logo}/>
-              </a>
-            </div>
+            <BannerSection />
 
           </div>
 

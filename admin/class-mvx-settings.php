@@ -121,7 +121,7 @@ class MVX_Settings {
     }
 
     public function mvx_modules_callback() {
-        echo '<div id="mvx-modules-admin-dashboard-display"></div>';
+        echo '<div id="mvx-admin-dashboard"></div>';
     }
 
     public function mvx_transaction_details() {

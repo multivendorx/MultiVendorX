@@ -23,6 +23,7 @@ import DynamicForm from "../../../DynamicForm";
 import { CSVLink } from "react-csv";
 
 import HeaderSection from './class-mvx-page-header';
+import BannerSection from './class-mvx-page-banner';
 
 const override = css`
   display: block;
@@ -1003,11 +1004,7 @@ class App extends Component {
 
               </div>
 
-              <div className="mvx-adv-image-display">
-                <a href="https://www.qries.com/" target="__blank">
-                  <img alt="Multivendor X" src={appLocalizer.multivendor_logo} />
-                </a>
-              </div>
+              <BannerSection />
 
             </div>
 

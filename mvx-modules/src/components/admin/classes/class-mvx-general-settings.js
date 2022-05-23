@@ -24,22 +24,9 @@ const override = css`
   margin: 0 auto;
   border-color: red;
 `;
-const customSingleValue = ({ data }) => (
-  <div className="input-select">
-      <div className="input-select__single-value">
-          { data.icon && <span dangerouslySetInnerHTML={{ __html: data.icon }} /> }
-          <span>{ data.label }</span>
-      </div>
-  </div>
-);
-const statusOptions = [
-  { value: "todo", label: "ssss", icon: '<i class="mvx-font icon-vendor-form-add"></i>' },
-  { value: "in_progress", label: "W toku", icon: '<i class="mvx-font icon-vendor-form-copy"></i>' },
-  { value: "done", label: "Zalatwione", icon: '<i class="mvx-font icon-vendor-form-copy"></i>' },
-  { value: "rejected", label: "Odrzucone", icon: '<i class="mvx-font icon-vendor-form-copy"></i>' },
-];
-import HeaderSection from './class-mvx-page-header';
 
+import HeaderSection from './class-mvx-page-header';
+import BannerSection from './class-mvx-page-banner';
 
 class App extends Component {
   constructor(props) {
@@ -910,11 +897,7 @@ class App extends Component {
               </div>
             </div>
 
-            <div className="mvx-col-25 mvx-adv-image-display">
-              <a href="https://www.qries.com/" target="__blank">
-                <img alt="Multivendor X" src={appLocalizer.multivendor_logo} />
-              </a>
-            </div>
+            <BannerSection />
 
           </div>
         </div>
@@ -990,14 +973,6 @@ class App extends Component {
 
                                         {registration_json_value.hidden ?
                                           <div className="question-input-items w-50">
-
-                                            {/* <Select
-                                                defaultValue={ statusOptions [0] }
-                                                options={ statusOptions }
-                                                //styles={ selectCustomStyles }
-                                                //onChange={e => { this.OnRegistrationSelectChange(e, registration_json_index, 'select_drop') }}
-                                                components={ {SingleValue: customSingleValue } }
-                                            /> */}
                                             <label className='form-title w-100'>Question Type</label>
                                             <select className="mvx-registration-select-choice default-select" value={registration_json_value.type}
                                               onChange={e => { this.OnRegistrationSelectChange(e, registration_json_index, 'select_drop') }}>
