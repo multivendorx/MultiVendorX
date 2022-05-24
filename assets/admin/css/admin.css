@@ -707,7 +707,7 @@ a:focus {
 }
 
 .mvx-header-wapper .mvx-header-nav-left-section .mvx-logo-title {
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 500;
   padding-left: 6px;
 }
@@ -774,11 +774,10 @@ a:focus {
   color: #181718;
   display: block;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 0.875rem;
 }
 
 .container .mvx-child-container .mvx-sub-container .dashboard-tab-area .mvx-dashboard-tabs-list li a i {
-  color: #9e8abb;
   padding-right: 8px;
 }
 
@@ -822,6 +821,7 @@ a:focus {
   width: 280px;
   height: 50px;
   background-color: #fdfdfe;
+  margin-left: auto;
   padding: 10px 16px;
   border-radius: 4px;
   border: 1px solid #d4d1d9;
@@ -859,21 +859,19 @@ a:focus {
 .container .mvx-child-container .mvx-sub-container .dashboard-tab-area .dashboard-tabcontentclass .mvx-report-datepicker .rs-picker-toggle-wrapper svg {
   margin-top: 0px;
   color: #9e8abb;
-  font-size: 18px;
+  font-size: 1.125rem;
 }
 
 .container .mvx-child-container .mvx-sub-container .dashboard-tab-area .dashboard-tabcontentclass .mvx-wrapper-date-picker {
-  padding-top: 34px;
+  padding: 34px 0;
 }
 
 .container .mvx-child-container .mvx-sub-container .dashboard-tab-area .dashboard-tabcontentclass .mvx-date-range {
-  font-size: 20px;
+  font-size: 0.875rem;
   padding-bottom: 10px;
   color: #181718;
-}
-
-.container .mvx-child-container .mvx-sub-container .dashboard-tab-area .dashboard-tabcontentclass .mvx-report-performance-content {
-  padding-top: 156px;
+  width: 280px;
+  margin-left: auto;
 }
 
 .container .mvx-child-container .mvx-sub-container .dashboard-tab-area .dashboard-tabcontentclass .mvx-report-performance-content .mvx-wrapper-performance-content {
@@ -887,7 +885,7 @@ a:focus {
 }
 
 .container .mvx-child-container .mvx-sub-container .dashboard-tab-area .dashboard-tabcontentclass .mvx-report-performance-content .mvx-wrapper-performance-content .mvx-performance-wrapper-content {
-  width: 148px;
+  width: 100%;
   height: 114px;
   border-right: 1px solid #d4d1d9;
   padding: 12px;
@@ -904,13 +902,13 @@ a:focus {
 }
 
 .container .mvx-child-container .mvx-sub-container .dashboard-tab-area .dashboard-tabcontentclass .mvx-report-performance-content .mvx-wrapper-performance-content .mvx-performance-wrapper-content .mvx-labels {
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #181718;
 }
 
 .container .mvx-child-container .mvx-sub-container .dashboard-tab-area .dashboard-tabcontentclass .mvx-report-performance-content .mvx-wrapper-performance-content .mvx-performance-wrapper-content .mvx-price-display {
   padding-top: 48px;
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 
 .container .mvx-text-with-line-wrapper {
@@ -926,11 +924,11 @@ a:focus {
 .container .mvx-text-with-line-wrapper::after {
   content: "";
   position: absolute;
-  width: 80%;
+  width: 85%;
   height: 1px;
   background-color: #d4d1d9;
   top: 16px;
-  left: 140px;
+  left: 133px;
 }
 
 .container .mvx-report-text {
@@ -944,11 +942,103 @@ a:focus {
 }
 
 .container .mvx-report-text h4 {
-  font-size: 20px;
+  font-size: 1.25rem;
   color: #181718;
 }
 
-.container .mvx-dot {
+.container .mvx-charts-graph-content .mvx-text-with-line-wrapper::after {
+  width: 86%;
+  left: 76px;
+}
+
+.container .mvx-content-two-graph-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .mvx-content-two-graph-wrap .mvx-header-and-graph-wrap {
+  width: 100%;
+}
+
+.container .mvx-content-two-graph-wrap .mvx-header-and-graph-wrap .mvx-commission-order-details-text {
+  height: 50px;
+  background-color: #fdfdfe;
+  border-radius: 4px;
+  padding: 0px 24px;
+  line-height: 49px;
+}
+
+.container .mvx-content-two-graph-wrap .mvx-header-and-graph-wrap:first-child {
+  margin-right: 8px;
+}
+
+.container .mvx-date-and-show-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .mvx-date-and-show-wrapper .mvx-vendor-wrapper-show-specific {
   margin-left: auto;
+}
+
+.container .mvx-date-and-show-wrapper .mvx-vendor-wrapper-show-specific .css-1s2u09g-control {
+  width: 280px;
+  height: 50px;
+  background-color: #fdfdfe;
+  margin-left: auto;
+}
+
+.container .mvx-chart-graph-visible {
+  background-color: #fdfdfe;
+  margin-top: 8px;
+  border-radius: 4px;
+  padding: 20px 0;
+}
+
+.container .mvx-text-with-line-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+}
+
+.container .mvx-text-with-line-wrapper .mvx-select-all-bulk-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: auto;
+}
+
+.container .mvx-text-with-line-wrapper .mvx-select-all-bulk-wrap a {
+  color: #5e5d60;
+  display: block;
+  padding-left: 8px;
+  text-decoration: none;
+}
+
+.container .mvx-report-csv-and-chart {
+  padding-top: 34px;
+}
+
+.container .mvx-report-csv-and-chart .mvx-text-with-line-wrapper::after {
+  width: 75%;
+  left: 96px;
+}
+
+.container .mvx-report-csv-and-chart .mvx-select-all-bulk-wrap a {
+  margin-top: 4px;
 }
 /*# sourceMappingURL=admin.css.map */

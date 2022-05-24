@@ -445,7 +445,7 @@ Child({ name }) {
         name == appLocalizer.mvx_all_backend_tab_list['marketplace-analytics'][0]['modulename'] ?
           
             <div className="mvx-report-start-content">
-              <div className="mvx-wrapper-date-picker pull-right mb-30">
+              <div className="mvx-wrapper-date-picker mb-30">
                 <div className="mvx-date-range">Date range:</div>
                 <div className="mvx-report-datepicker"><DateRangePicker onChange={(e) => this.handleupdatereport(e)} /></div>
               </div>
@@ -454,7 +454,7 @@ Child({ name }) {
                 {this.state.report_overview_data.admin_overview ? 
                   <div class="mvx-text-with-line-wrapper">
                     <div class="mvx-report-text">
-                      <span>{appLocalizer.report_page_string.performance}</span>
+                      <h4>{appLocalizer.report_page_string.performance}</h4>
                     </div>
                   </div>
                 : ''}
@@ -484,7 +484,7 @@ Child({ name }) {
               <div className="mvx-charts-graph-content">
                 <div className="mvx-chart-text-and-bar-line-wrap">
                   <div class="mvx-text-with-line-wrapper chart-line">
-                    <div class="mvx-report-text"><span>{appLocalizer.report_page_string.charts}</span></div>
+                    <div class="mvx-report-text"><h4>{appLocalizer.report_page_string.charts}</h4></div>
                     <div className='mvx-select-all-bulk-wrap'>
                       <div className="mvx-analytics-overview-link"><Link to={`?page=mvx#&submenu=analytics&name=admin-overview&type=bar`}><i className="mvx-font icon-chart-bar"></i></Link></div>
                       <div className="mvx-analytics-overview-link"><Link to={`?page=mvx#&submenu=analytics&name=admin-overview&type=line`}><i className="mvx-font icon-chart-line"></i></Link></div>
@@ -507,7 +507,7 @@ Child({ name }) {
                                 top: 100,
                                 right: 30,
                                 left: 20,
-                                bottom: 5,
+                                bottom: -8,
                               }}
                               >
                               <CartesianGrid strokeDasharray="3 3" />
@@ -528,7 +528,7 @@ Child({ name }) {
                                 top: 5,
                                 right: 30,
                                 left: 20,
-                                bottom: 5,
+                                bottom: -8,
                               }}
                               >
                               <CartesianGrid strokeDasharray="3 3" />
@@ -546,7 +546,7 @@ Child({ name }) {
                 </div>
 
                 <div className="mvx-header-and-graph-wrap">
-                  <div className="mvx-commission-order-details-text">second header</div>
+                  <div className="mvx-commission-order-details-text">Second header</div>
                     <div className="mvx-chart-graph-visible">
                       {!this.useQuery().get('type') || this.useQuery().get('type') == 'line' ?
                         <ResponsiveContainer aspect={3}>
@@ -558,7 +558,7 @@ Child({ name }) {
                               top: 100,
                               right: 30,
                               left: 20,
-                              bottom: 5,
+                              bottom: -8,
                             }}
                             >
                             <CartesianGrid strokeDasharray="3 3" />
@@ -579,7 +579,7 @@ Child({ name }) {
                               top: 5,
                               right: 30,
                               left: 20,
-                              bottom: 5,
+                              bottom: -8,
                             }}
                             >
                             <CartesianGrid strokeDasharray="3 3" />
@@ -602,7 +602,7 @@ Child({ name }) {
 
             <div className="mvx-report-leaderboard-content">
               <div class="mvx-text-with-line-wrapper">
-                <div class="mvx-report-text w-100 mr-0"><span>{appLocalizer.report_page_string.leaderboards}</span></div>
+                <div class="mvx-report-text w-100 mr-0"><h4>{appLocalizer.report_page_string.leaderboards}</h4></div>
               </div>
 
               <div className="mvx-analytic-details-wrap">
@@ -651,7 +651,7 @@ Child({ name }) {
 
               <div className="mvx-report-performance-content">
                 <div class="mvx-text-with-line-wrapper">
-                  <div class="mvx-report-text w-100 mr-0"><span>{appLocalizer.report_page_string.performance}</span></div>
+                  <div class="mvx-report-text w-100 mr-0"><h4>{appLocalizer.report_page_string.performance}</h4></div>
                 </div>
 
                 <div className="mvx-wrapper-performance-content col-type-3">
@@ -679,7 +679,7 @@ Child({ name }) {
               <div className="mvx-charts-graph-content">
                 <div className="mvx-chart-text-and-bar-line-wrap">
                   <div class="mvx-text-with-line-wrapper chart-line">
-                    <div class="mvx-report-text"><span>{appLocalizer.report_page_string.charts}</span></div>
+                    <div class="mvx-report-text"><h4>{appLocalizer.report_page_string.charts}</h4></div>
                     <div className='mvx-select-all-bulk-wrap'>
                     <div className="mvx-bar-chart"><Link to={`?page=mvx#&submenu=analytics&name=vendor&type=bar`}><i className="mvx-font icon-chart-bar"></i></Link></div>
                     <div className="mvx-line-chart"><Link to={`?page=mvx#&submenu=analytics&name=vendor&type=line`}><i className="mvx-font icon-chart-line"></i></Link></div>
@@ -755,7 +755,7 @@ Child({ name }) {
             <div className="mvx-report-csv-and-chart">
               {this.state.report_overview_data.vendor && this.state.report_overview_data.vendor.vendor_report_datatable ? 
                 <div className="mvx-text-with-line-wrapper svg-line">
-                  <div className="mvx-report-text"><span>Vendor</span></div>
+                  <div className="mvx-report-text"><h4>Vendor</h4></div>
                   <div class="mvx-select-all-bulk-wrap">
                     <CSVLink data={this.state.vendor_report_chart_data} headers={appLocalizer.report_vendor_header} filename={"Report_vendor.csv"} className="button-csv-primary"><i className="mvx-font icon-download"></i>{appLocalizer.report_page_string.download_csv}</CSVLink> 
                   </div>
@@ -785,7 +785,7 @@ Child({ name }) {
                     <div className="mvx-report-datepicker"><DateRangePicker onChange={(e) => this.handleupdatereport(e)} /></div>
                   </div>
                 
-                  <div className="mvx-product-wrapper-show-specific">
+                  <div className="mvx-product-wrapper-show-specific mvx-vendor-wrapper-show-specific">
                     <div className="mvx-date-range">Show:</div>
                     <Select placeholder={appLocalizer.report_page_string.choose_product} options={this.state.details_product} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handleproductsearch(e)} />
                   </div>
@@ -793,7 +793,7 @@ Child({ name }) {
 
                 <div className="mvx-report-performance-content">
                   <div class="mvx-text-with-line-wrapper">
-                    <div class="mvx-report-text w-100 mr-0"><span>{appLocalizer.report_page_string.performance}</span></div>
+                    <div class="mvx-report-text w-100 mr-0"><h4>{appLocalizer.report_page_string.performance}</h4></div>
                   </div>
 
                   <div className="mvx-wrapper-performance-content col-type-3">
@@ -820,7 +820,7 @@ Child({ name }) {
               <div className="mvx-charts-graph-content">
                 <div className="mvx-chart-text-and-bar-line-wrap">
                   <div class="mvx-text-with-line-wrapper chart-line">
-                    <div class="mvx-report-text"><span>{appLocalizer.report_page_string.charts}</span></div>
+                    <div class="mvx-report-text"><h4>{appLocalizer.report_page_string.charts}</h4></div>
                     <div class="mvx-select-all-bulk-wrap">
                     <div className="mvx-bar-chart"><Link to={`?page=mvx#&submenu=analytics&name=product&type=bar`}><i className="mvx-font icon-chart-bar"></i></Link></div>
                     <div className="mvx-line-chart"><Link to={`?page=mvx#&submenu=analytics&name=product&type=line`}><i className="mvx-font icon-chart-line"></i></Link></div>
@@ -887,7 +887,7 @@ Child({ name }) {
                 {this.state.report_overview_data.product && this.state.report_overview_data.product.product_report_datatable ? 
                   <div class="mvx-text-with-line-wrapper svg-line">
                     <div class="mvx-report-text">
-                      <span>Products</span>
+                      <h4>Products</h4>
                     </div>
                     <div class="mvx-select-all-bulk-wrap">
                       <CSVLink data={this.state.product_report_chart_data} headers={appLocalizer.report_product_header} filename={"Report_product.csv"} className="button-csv-primary"><i className="mvx-font icon-download"></i>{appLocalizer.report_page_string.download_csv}</CSVLink> 
@@ -918,7 +918,7 @@ Child({ name }) {
                     <div className="mvx-report-datepicker"><DateRangePicker onChange={(e) => this.handleupdatereport(e)} /></div>
                   </div>
                 
-                  <div className="mvx-transaction-wrapper-show-specific">
+                  <div className="mvx-transaction-wrapper-show-specific mvx-vendor-wrapper-show-specific">
                     <div className="mvx-date-range">{appLocalizer.report_page_string.vendor_select}</div>
                     <Select placeholder={appLocalizer.report_page_string.choose_vendor} options={this.state.details_vendor} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e)} />
                   </div>

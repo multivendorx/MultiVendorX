@@ -668,7 +668,7 @@ $border-radius :  4px;
     color: #181718;
     display: block;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 0.875rem;
 }
 @mixin iconcolor {
     color: #9e8abb;
@@ -677,6 +677,7 @@ $border-radius :  4px;
     width: 280px;
     height: 50px;
     background-color: #fdfdfe;
+	margin-left: auto;
 }
  
 #wpcontent {
@@ -735,7 +736,7 @@ $border-radius :  4px;
             padding: 10px 0;
         }
         & .mvx-logo-title {
-            font-size: 24px;
+            font-size: 1.5rem;
             font-weight: 500;
             padding-left: 6px;
             
@@ -778,7 +779,6 @@ $border-radius :  4px;
                         & a {
                             @include anchortag;
                                 & i{
-                                @include iconcolor;
                                 padding-right: 8px;
                                 }
                         }
@@ -834,28 +834,29 @@ $border-radius :  4px;
                             & svg {
                                 margin-top: 0px;
                                 @include iconcolor;
-                                font-size: 18px;
+                                font-size: 1.125rem;
                             }
                         }
                         
                     }
                     & .mvx-wrapper-date-picker {
-                        padding-top: 34px;
+                        padding: 34px 0;
                     }
                     & .mvx-date-range {
-                        font-size: 20px;
+                        font-size: 0.875rem;
                         padding-bottom: 10px;
                         color: $title-color;
+						width: 280px;
+						margin-left: auto;
                     }
                     & .mvx-report-performance-content {
-                        padding-top: 156px;
                         
                         
                         & .mvx-wrapper-performance-content {
                             @include flexprops(center);
                             border: $border;
                             & .mvx-performance-wrapper-content {
-                                width: 148px;
+                                width: 100%;
                                 height: 114px;
                                 border-right: $border;
                                 padding: 12px;
@@ -869,12 +870,12 @@ $border-radius :  4px;
                                     border-radius: $border-radius;
                                 }
                                 & .mvx-labels {
-                                    font-size: 12px;
+                                    font-size: 0.75rem;
                                     color: $title-color;
                                 }
                                 & .mvx-price-display {
                                     padding-top: 48px;
-                                    font-size: 20px;
+                                    font-size: 1.25rem;
                                 }
                             }
                         }
@@ -894,21 +895,85 @@ $border-radius :  4px;
     .mvx-text-with-line-wrapper::after {
         content: "";
         position: absolute;
-        width: 80%;
+        width: 85%;
         height: 1px;
         background-color: #d4d1d9;
         top: 16px;
-        left: 140px;
+        left: 133px;
     }
     & .mvx-report-text {
         @include flexprops(center);
         margin-bottom: 30px;
         & h4 {
-            font-size: 20px;
+            font-size: 1.25rem;
             color: $title-color;
         }
     }
-    & .mvx-dot {
-        margin-left: auto;
-    }
+	.mvx-charts-graph-content {
+
+		.mvx-text-with-line-wrapper::after {
+			width: 86%;
+			left: 76px;
+		}
+		
+	}
+	.mvx-content-two-graph-wrap {
+		@include flexprops(center);
+		& .mvx-header-and-graph-wrap {
+			width: 100%;
+			& .mvx-commission-order-details-text {
+				height: 50px;
+				background-color: #fdfdfe;
+				border-radius: $border-radius;
+				padding: 0px 24px;
+				line-height: 49px;
+			}
+			
+		}
+		& .mvx-header-and-graph-wrap:first-child {
+			margin-right: 8px;
+		}
+	}
+	.mvx-date-and-show-wrapper {
+		@include flexprops(center);
+		& .mvx-vendor-wrapper-show-specific {
+			margin-left: auto;
+			& .css-1s2u09g-control {
+				@include datepicker;
+			}
+		}
+	}
+	& .mvx-chart-graph-visible {
+		background-color: #fdfdfe;
+		margin-top: 8px;
+		border-radius: $border-radius;
+		padding: 20px 0;
+	}
+	.mvx-text-with-line-wrapper {
+		@include flexprops(start);
+		& .mvx-select-all-bulk-wrap {
+			@include flexprops(center);
+			margin-left: auto;
+			& a {
+				color: #5e5d60;
+				display: block;
+				padding-left: 8px;
+				text-decoration: none;
+			}
+		}
+	}
+	.mvx-report-csv-and-chart {
+		padding-top: 34px;
+		.mvx-text-with-line-wrapper::after {
+			width: 75%;
+			left: 96px;
+		}
+		& .mvx-select-all-bulk-wrap {
+			& a {
+				margin-top: 4px;
+			}
+		}
+		
+	}
+
 }
