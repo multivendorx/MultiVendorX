@@ -1161,7 +1161,7 @@ class App extends React.Component {
                             </DialogContentText>
                           </DialogContent>
                           <DialogActions>
-                            <Button onClick={this.handleClose} color="primary">Cancel</Button>
+                            <Button onClick={this.handleClose} color="primary">Add shipping method</Button>
                           </DialogActions>
                         </Dialog>
 

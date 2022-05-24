@@ -458,7 +458,7 @@ class MVX_Admin_Setup_Wizard {
                 <tr>
                     <th scope="row"><label for="is_single_product_multiple_vendor"><?php esc_html_e('Single Product Multiple Vendors', 'dc-woocommerce-multi-vendor'); ?></label></th>
                     <td>
-                        <?php $is_single_product_multiple_vendor = isset(get_option('mvx_general_settings_name')['is_singleproductmultiseller']) ? get_option('mvx_general_settings_name')['is_singleproductmultiseller'] : ''; ?>
+                        <?php $is_single_product_multiple_vendor = get_mvx_global_settings('is_singleproductmultiseller') ? 'Enable' : ''; ?>
                         <input type="checkbox" <?php checked($is_single_product_multiple_vendor, 'Enable'); ?> id="is_single_product_multiple_vendor" name="is_single_product_multiple_vendor" class="input-checkbox" value="Enable" />
                     </td>
                 </tr>
@@ -476,7 +476,7 @@ class MVX_Admin_Setup_Wizard {
      * commission setup content
      */
     public function mvx_setup_commission() {
-        $payment_settings = get_option('mvx_payment_settings_name');
+        $payment_settings = get_option('mvx_commissions_tab_settings');
         ?>
         <h1><?php esc_html_e('Commission Setup', 'dc-woocommerce-multi-vendor'); ?></h1>
         <form method="post">
@@ -485,10 +485,10 @@ class MVX_Admin_Setup_Wizard {
                     <th scope="row"><label for="revenue_sharing_mode"><?php esc_html_e('Revenue Sharing Mode', 'dc-woocommerce-multi-vendor'); ?></label></th>
                     <td>
                         <?php
-                        $revenue_sharing_mode = isset($payment_settings['revenue_sharing_mode']) ? $payment_settings['revenue_sharing_mode'] : 'vendor';
+                        $revenue_sharing_mode = isset($payment_settings['revenue_sharing_mode']) ? $payment_settings['revenue_sharing_mode'] : 'revenue_sharing_mode_vendor';
                         ?>
-                        <label><input type="radio" <?php checked($revenue_sharing_mode, 'admin'); ?> id="revenue_sharing_mode" name="revenue_sharing_mode" class="input-radio" value="admin" /> <?php esc_html_e('Admin fees', 'dc-woocommerce-multi-vendor'); ?></label><br/>
-                        <label><input type="radio" <?php checked($revenue_sharing_mode, 'vendor'); ?> id="revenue_sharing_mode" name="revenue_sharing_mode" class="input-radio" value="vendor" /> <?php esc_html_e('Vendor Commissions', 'dc-woocommerce-multi-vendor'); ?></label>
+                        <label><input type="radio" <?php checked($revenue_sharing_mode, 'revenue_sharing_mode_admin'); ?> id="revenue_sharing_mode" name="revenue_sharing_mode" class="input-radio" value="revenue_sharing_mode_admin" /> <?php esc_html_e('Admin fees', 'dc-woocommerce-multi-vendor'); ?></label><br/>
+                        <label><input type="radio" <?php checked($revenue_sharing_mode, 'revenue_sharing_mode_vendor'); ?> id="revenue_sharing_mode" name="revenue_sharing_mode" class="input-radio" value="revenue_sharing_mode_vendor" /> <?php esc_html_e('Vendor Commissions', 'dc-woocommerce-multi-vendor'); ?></label>
                     </td>
                 </tr>
 
@@ -496,7 +496,7 @@ class MVX_Admin_Setup_Wizard {
                     <th scope="row"><label for="commission_type"><?php esc_html_e('Commission Type', 'dc-woocommerce-multi-vendor'); ?></label></th>
                     <td>
                         <?php
-                        $commission_type = isset($payment_settings['commission_type']) ? $payment_settings['commission_type'] : 'percent';
+                        $commission_type = isset($payment_settings['commission_type']['value']) ? $payment_settings['commission_type']['value'] : 'percent';
                         ?>
                         <select id="commission_type" name="commission_type" class="wc-enhanced-select">
                             <option value="fixed" data-fields="#tr_default_commission" <?php selected($commission_type, 'fixed'); ?>><?php esc_html_e('Fixed Amount', 'dc-woocommerce-multi-vendor'); ?></option>
@@ -510,7 +510,7 @@ class MVX_Admin_Setup_Wizard {
                     <th scope="row"><label for="default_commission"><?php esc_html_e('Commission value', 'dc-woocommerce-multi-vendor'); ?></label></th>
                     <td>
                         <?php
-                        $default_commission = isset($payment_settings['default_commission']) ? $payment_settings['default_commission'] : '';
+                        $default_commission = isset($payment_settings['default_commission'][0]['value']) ? $payment_settings['default_commission'][0]['value'] : '';
                         ?>
                         <input type="text" id="default_commission" name="default_commission" placeholder="" value="<?php echo esc_attr($default_commission); ?>" />
                     </td>
@@ -520,7 +520,7 @@ class MVX_Admin_Setup_Wizard {
                     <th scope="row"><label for="default_percentage"><?php esc_html_e('Commission Percentage', 'dc-woocommerce-multi-vendor'); ?></label></th>
                     <td>
                         <?php
-                        $default_percentage = isset($payment_settings['default_percentage']) ? $payment_settings['default_percentage'] : '';
+                        $default_percentage = isset($payment_settings['default_commission'][0]['value']) ? $payment_settings['default_commission'][0]['value'] : '';
                         ?>
                         <input type="text" id="default_percentage" name="default_percentage" placeholder="" value="<?php echo esc_attr($default_percentage); ?>" />
                     </td>
@@ -530,7 +530,7 @@ class MVX_Admin_Setup_Wizard {
                     <th scope="row"><label for="fixed_with_percentage"><?php esc_html_e('Fixed Amount', 'dc-woocommerce-multi-vendor'); ?></label></th>
                     <td>
                         <?php
-                        $fixed_with_percentage = isset($payment_settings['fixed_with_percentage']) ? $payment_settings['fixed_with_percentage'] : '';
+                        $fixed_with_percentage = isset($payment_settings['fixed_with_percentage'][0]['value']) ? $payment_settings['fixed_with_percentage'][0]['value'] : '';
                         ?>
                         <input type="text" id="fixed_with_percentage" name="fixed_with_percentage" placeholder="" value="<?php echo esc_attr($fixed_with_percentage); ?>" />
                     </td>
@@ -540,7 +540,7 @@ class MVX_Admin_Setup_Wizard {
                     <th scope="row"><label for="fixed_with_percentage_qty"><?php esc_html_e('Fixed Amount', 'dc-woocommerce-multi-vendor'); ?></label></th>
                     <td>
                         <?php
-                        $fixed_with_percentage_qty = isset($payment_settings['fixed_with_percentage_qty']) ? $payment_settings['fixed_with_percentage_qty'] : '';
+                        $fixed_with_percentage_qty = isset($payment_settings['fixed_with_percentage_qty'][0]['value']) ? $payment_settings['fixed_with_percentage_qty'][0]['value'] : '';
                         ?>
                         <input type="text" id="fixed_with_percentage_qty" name="fixed_with_percentage_qty" placeholder="" value="<?php echo esc_attr($fixed_with_percentage_qty); ?>" />
                     </td>
@@ -560,13 +560,13 @@ class MVX_Admin_Setup_Wizard {
      * payment setup content
      */
     public function mvx_setup_payments() {
-        $payment_settings = get_option('mvx_payment_settings_name');
+        $payment_settings = get_option('mvx_commissions_tab_settings');
+        $disbursement_settings = get_option('mvx_disbursement_tab_settings');
         $gateways = $this->get_payment_methods();
         ?>
         <h1><?php esc_html_e('Payments', 'dc-woocommerce-multi-vendor'); ?></h1>
         <form method="post" class="wc-wizard-payment-gateway-form">
             <p><?php esc_html_e('Allowed Payment Methods', 'dc-woocommerce-multi-vendor'); ?></p>
-
             <ul class="wc-wizard-services wc-wizard-payment-gateways">
                         <?php foreach ($gateways as $gateway_id => $gateway): ?>
                     <li class="wc-wizard-service-item wc-wizard-gateway <?php echo esc_attr($gateway['class']); ?>">
@@ -581,7 +581,7 @@ class MVX_Admin_Setup_Wizard {
                         <div class="wc-wizard-service-enable">
                             <span class="wc-wizard-service-toggle disabled">
                                 <?php
-                                $is_enable_gateway = isset($payment_settings['payment_method_' . $gateway_id]) ? $payment_settings['payment_method_' . $gateway_id] : '';
+                                $is_enable_gateway = in_array($gateway_id, $payment_settings['payment_method_disbursement']) ? 'Enable' : '';
                                 ?>
                                 <input type="checkbox" <?php checked($is_enable_gateway, 'Enable') ?> name="payment_method_<?php echo esc_attr($gateway_id); ?>" class="input-checkbox" value="Enable" />
                             </span>
@@ -594,7 +594,7 @@ class MVX_Admin_Setup_Wizard {
                     <th scope="row"><label for="mvx_disbursal_mode_admin"><?php esc_html_e('Disbursal Schedule', 'dc-woocommerce-multi-vendor'); ?></label></th>
                     <td>
                         <?php
-                        $mvx_disbursal_mode_admin = isset($payment_settings['mvx_disbursal_mode_admin']) ? $payment_settings['mvx_disbursal_mode_admin'] : '';
+                        $mvx_disbursal_mode_admin = isset($disbursement_settings['choose_payment_mode_automatic_disbursal']) ? 'Enable' : '';
                         ?>
                         <input type="checkbox" data-field="#tr_payment_schedule" <?php checked($mvx_disbursal_mode_admin, 'Enable'); ?> id="mvx_disbursal_mode_admin" name="mvx_disbursal_mode_admin" class="input-checkbox" value="Enable" />
                         <p class="description"><?php esc_html_e('If checked, automatically vendors commission will disburse.', 'dc-woocommerce-multi-vendor') ?></p>
@@ -603,7 +603,7 @@ class MVX_Admin_Setup_Wizard {
                 <tr id="tr_payment_schedule">
                     <th scope="row"><label for="payment_schedule"><?php esc_html_e('Set Schedule', 'dc-woocommerce-multi-vendor'); ?></label></th>
                     <?php
-                    $payment_schedule = isset($payment_settings['payment_schedule']) ? $payment_settings['payment_schedule'] : 'monthly';
+                    $payment_schedule = isset($disbursement_settings['payment_schedule']) ? $disbursement_settings['payment_schedule'] : 'monthly';
                     ?>
                     <td>
                         <label><input type="radio" <?php checked($payment_schedule, 'weekly'); ?> id="payment_schedule" name="payment_schedule" class="input-radio" value="weekly" /> <?php esc_html_e('Weekly', 'dc-woocommerce-multi-vendor'); ?></label><br/>
@@ -617,7 +617,7 @@ class MVX_Admin_Setup_Wizard {
                     <th scope="row"><label for="mvx_disbursal_mode_vendor"><?php esc_html_e('Withdrawal Request', 'dc-woocommerce-multi-vendor'); ?></label></th>
                     <td>
                         <?php
-                        $mvx_disbursal_mode_vendor = isset($payment_settings['mvx_disbursal_mode_vendor']) ? $payment_settings['mvx_disbursal_mode_vendor'] : '';
+                        $mvx_disbursal_mode_vendor = $disbursement_settings['withdrawal_request'] ? 'Enable' : '';
                         ?>
                         <input type="checkbox" <?php checked($mvx_disbursal_mode_vendor, 'Enable'); ?> id="mvx_disbursal_mode_vendor" name="mvx_disbursal_mode_vendor" class="input-checkbox" value="Enable" />
                         <p class="description"><?php esc_html_e('Vendors can request for commission withdrawal.', 'dc-woocommerce-multi-vendor') ?></p>
@@ -637,13 +637,13 @@ class MVX_Admin_Setup_Wizard {
      * capability setup content
      */
     public function mvx_setup_capability() {
-        $capabilities_settings = get_option('mvx_capabilities_product_settings_name');
+        $capabilities_settings = get_option('mvx_products_capability_tab_settings');
         ?>
         <h1><?php esc_html_e('Capability', 'dc-woocommerce-multi-vendor'); ?></h1>
         <form method="post">
             <table class="form-table">
                 <?php
-                $is_submit_product = isset($capabilities_settings['is_submit_product']) ? $capabilities_settings['is_submit_product'] : '';
+                $is_submit_product = isset($capabilities_settings['is_submit_product']) ? 'Enable' : '';
                 ?>
                 <tr>
                     <th scope="row"><label for="is_submit_product"><?php esc_html_e('Submit Products', 'dc-woocommerce-multi-vendor'); ?></label></th>
@@ -653,7 +653,7 @@ class MVX_Admin_Setup_Wizard {
                     </td>
                 </tr>
                 <?php
-                $is_published_product = isset($capabilities_settings['is_published_product']) ? $capabilities_settings['is_published_product'] : '';
+                $is_published_product = isset($capabilities_settings['is_published_product']) ? 'Enable' : '';
                 ?>
                 <tr>
                     <th scope="row"><label for="is_published_product"><?php esc_html_e('Publish Products', 'dc-woocommerce-multi-vendor'); ?></label></th>
@@ -663,7 +663,7 @@ class MVX_Admin_Setup_Wizard {
                     </td>
                 </tr>
                 <?php
-                $is_edit_delete_published_product = isset($capabilities_settings['is_edit_delete_published_product']) ? $capabilities_settings['is_edit_delete_published_product'] : '';
+                $is_edit_delete_published_product = isset($capabilities_settings['is_edit_delete_published_product']) ? 'Enable' : '';
                 ?>
                 <tr>
                     <th scope="row"><label for="is_edit_delete_published_product"><?php esc_html_e('Edit Publish Products', 'dc-woocommerce-multi-vendor'); ?></label></th>
@@ -673,7 +673,7 @@ class MVX_Admin_Setup_Wizard {
                     </td>
                 </tr>
                 <?php
-                $is_submit_coupon = isset($capabilities_settings['is_submit_coupon']) ? $capabilities_settings['is_submit_coupon'] : '';
+                $is_submit_coupon = isset($capabilities_settings['is_submit_coupon']) ? 'Enable' : '';
                 ?>
                 <tr>
                     <th scope="row"><label for="is_submit_coupon"><?php esc_html_e('Submit Coupons', 'dc-woocommerce-multi-vendor'); ?></label></th>
@@ -683,7 +683,7 @@ class MVX_Admin_Setup_Wizard {
                     </td>
                 </tr>
                 <?php
-                $is_published_coupon = isset($capabilities_settings['is_published_coupon']) ? $capabilities_settings['is_published_coupon'] : '';
+                $is_published_coupon = isset($capabilities_settings['is_published_coupon']) ? 'Enable' : '';
                 ?>
                 <tr>
                     <th scope="row"><label for="is_published_coupon"><?php esc_html_e('Publish Coupons', 'dc-woocommerce-multi-vendor'); ?></label></th>
@@ -693,7 +693,7 @@ class MVX_Admin_Setup_Wizard {
                     </td>
                 </tr>
                 <?php
-                $is_edit_delete_published_coupon = isset($capabilities_settings['is_edit_delete_published_coupon']) ? $capabilities_settings['is_edit_delete_published_coupon'] : '';
+                $is_edit_delete_published_coupon = isset($capabilities_settings['is_edit_delete_published_coupon']) ? 'Enable' : '';
                 ?>
                 <tr>
                     <th scope="row"><label for="is_edit_delete_published_coupon"><?php esc_html_e('Edit Publish Coupons', 'dc-woocommerce-multi-vendor'); ?></label></th>
@@ -703,7 +703,7 @@ class MVX_Admin_Setup_Wizard {
                     </td>
                 </tr>
                 <?php
-                $is_upload_files = isset($capabilities_settings['is_upload_files']) ? $capabilities_settings['is_upload_files'] : '';
+                $is_upload_files = isset($capabilities_settings['is_upload_files']) ? 'Enable' : '';
                 ?>
                 <tr>
                     <th scope="row"><label for="is_upload_files"><?php esc_html_e('Upload Media Files', 'dc-woocommerce-multi-vendor'); ?></label></th>
@@ -758,15 +758,15 @@ class MVX_Admin_Setup_Wizard {
      */
     public function mvx_setup_store_save() {
         check_admin_referer('mvx-setup');
-        $general_settings = get_option('mvx_general_settings_name');
+        $general_settings = get_option('mvx_spmv_pages_tab_settings');
         $vendor_permalink = filter_input(INPUT_POST, 'vendor_store_url');
         $is_single_product_multiple_vendor = filter_input(INPUT_POST, 'is_single_product_multiple_vendor');
         if ($is_single_product_multiple_vendor) {
-            $general_settings['is_singleproductmultiseller'] = $is_single_product_multiple_vendor;
+            $general_settings['is_singleproductmultiseller'] = array('is_singleproductmultiseller');
         } else if (isset($general_settings['is_singleproductmultiseller'])) {
             unset($general_settings['is_singleproductmultiseller']);
         }
-        update_option('mvx_general_settings_name', $general_settings);
+        mvx_update_option('mvx_spmv_pages_tab_settings', $general_settings);
         if ($vendor_permalink) {
             $permalinks = get_option('dc_vendors_permalinks', array());
             $permalinks['vendor_shop_base'] = untrailingslashit($vendor_permalink);
@@ -782,7 +782,7 @@ class MVX_Admin_Setup_Wizard {
      */
     public function mvx_setup_commission_save() {
         check_admin_referer('mvx-setup');
-        $payment_settings = get_option('mvx_payment_settings_name');
+        $payment_settings = get_option('mvx_commissions_tab_settings');
         $revenue_sharing_mode = filter_input(INPUT_POST, 'revenue_sharing_mode');
         $commission_type = filter_input(INPUT_POST, 'commission_type');
         $default_commission = filter_input(INPUT_POST, 'default_commission');
@@ -797,17 +797,33 @@ class MVX_Admin_Setup_Wizard {
         }
         if ($default_commission) {
             $payment_settings['default_commission'] = $default_commission;
+            $payment_settings['default_commission'] = array(
+                'key' => 'fixed_ammount',
+                'value' => $default_commission
+            );
         }
         if ($default_percentage) {
             $payment_settings['default_percentage'] = $default_percentage;
+            $payment_settings['default_commission'] = array(
+                'key' => 'percent_amount',
+                'value' => $default_percentage
+            );
         }
         if ($fixed_with_percentage) {
             $payment_settings['fixed_with_percentage'] = $fixed_with_percentage;
+            $payment_settings['default_commission'] = array(
+                'key' => 'percent_amount',
+                'value' => $fixed_with_percentage
+            );
         }
         if ($fixed_with_percentage_qty) {
             $payment_settings['fixed_with_percentage_qty'] = $fixed_with_percentage_qty;
+            $payment_settings['default_commission'] = array(
+                'key' => 'fixed_ammount',
+                'value' => $fixed_with_percentage_qty
+            );
         }
-        update_option('mvx_payment_settings_name', $payment_settings);
+        update_option('mvx_commissions_tab_settings', $payment_settings);
         wp_redirect(esc_url_raw($this->get_next_step_link()));
         exit;
     }
@@ -818,14 +834,16 @@ class MVX_Admin_Setup_Wizard {
     public function mvx_setup_payments_save() {
         check_admin_referer('mvx-setup');
         $gateways = $this->get_payment_methods();
-        $payment_settings = get_option('mvx_payment_settings_name');
+        $payment_settings = get_option('mvx_commissions_tab_settings');
+        $disbursement_settings = get_option('mvx_disbursement_tab_settings');
         $mvx_disbursal_mode_admin = filter_input(INPUT_POST, 'mvx_disbursal_mode_admin');
         $mvx_disbursal_mode_vendor = filter_input(INPUT_POST, 'mvx_disbursal_mode_vendor');
+        
         if ($mvx_disbursal_mode_admin) {
-            $payment_settings['mvx_disbursal_mode_admin'] = $mvx_disbursal_mode_admin;
+            $disbursement_settings['choose_payment_mode_automatic_disbursal'] = array('choose_payment_mode_automatic_disbursal');
             $payment_schedule = filter_input(INPUT_POST, 'payment_schedule');
             if ($payment_schedule) {
-                $payment_settings['payment_schedule'] = $payment_schedule;
+                $disbursement_settings['payment_schedule'] = $payment_schedule;
                 $schedule = wp_get_schedule('masspay_cron_start');
                 if ($schedule != $payment_schedule) {
                     if (wp_next_scheduled('masspay_cron_start')) {
@@ -835,8 +853,8 @@ class MVX_Admin_Setup_Wizard {
                     wp_schedule_event(time(), $payment_schedule, 'masspay_cron_start');
                 }
             }
-        } else if (isset($payment_settings['mvx_disbursal_mode_admin'])) {
-            unset($payment_settings['mvx_disbursal_mode_admin']);
+        } else if (isset($disbursement_settings['choose_payment_mode_automatic_disbursal'])) {
+            unset($disbursement_settings['choose_payment_mode_automatic_disbursal']);
             if (wp_next_scheduled('masspay_cron_start')) {
                 $timestamp = wp_next_scheduled('masspay_cron_start');
                 wp_unschedule_event($timestamp, 'masspay_cron_start');
@@ -844,15 +862,15 @@ class MVX_Admin_Setup_Wizard {
         }
 
         if ($mvx_disbursal_mode_vendor) {
-            $payment_settings['mvx_disbursal_mode_vendor'] = $mvx_disbursal_mode_vendor;
-        } else if (isset($payment_settings['mvx_disbursal_mode_vendor'])) {
-            unset($payment_settings['mvx_disbursal_mode_vendor']);
+            $disbursement_settings['withdrawal_request'] = array('withdrawal_request');
+        } else if (isset($disbursement_settings['withdrawal_request'])) {
+            unset($disbursement_settings['withdrawal_request']);
         }
 
         foreach ($gateways as $gateway_id => $gateway) {
             $is_enable_gateway = filter_input(INPUT_POST, 'payment_method_' . $gateway_id);
             if ($is_enable_gateway) {
-                $payment_settings['payment_method_' . $gateway_id] = $is_enable_gateway;
+                $payment_settings['payment_method_disbursement'][$gateway_id] = str_replace('payment_method_', '', $is_enable_gateway);
                 if (!empty($gateway['repo-slug'])) {
                     wp_schedule_single_event(time() + 10, 'woocommerce_plugin_background_installer', array($gateway_id, $gateway));
                 }
@@ -860,7 +878,8 @@ class MVX_Admin_Setup_Wizard {
                 unset($payment_settings['payment_method_' . $gateway_id]);
             }
         }
-        update_option('mvx_payment_settings_name', $payment_settings);
+        update_option('mvx_commissions_tab_settings', $payment_settings);
+        update_option('mvx_disbursement_tab_settings', $disbursement_settings);
         wp_redirect(esc_url_raw($this->get_next_step_link()));
         exit;
     }
@@ -872,7 +891,7 @@ class MVX_Admin_Setup_Wizard {
     public function mvx_setup_capability_save() {
         global $MVX;
         check_admin_referer('mvx-setup');
-        $capability_settings = get_option('mvx_capabilities_product_settings_name');
+        $capability_settings = get_option('mvx_products_capability_tab_settings');
 
         $is_submit_product = filter_input(INPUT_POST, 'is_submit_product');
         $is_published_product = filter_input(INPUT_POST, 'is_published_product');
@@ -883,41 +902,41 @@ class MVX_Admin_Setup_Wizard {
         $is_upload_files = filter_input(INPUT_POST, 'is_upload_files');
 
         if ($is_submit_product) {
-            $capability_settings['is_submit_product'] = $is_submit_product;
+            $capability_settings['is_submit_product'] = array('is_submit_product');
         } else if (isset($capability_settings['is_submit_product'])) {
             unset($capability_settings['is_submit_product']);
         }
         if ($is_published_product) {
-            $capability_settings['is_published_product'] = $is_published_product;
+            $capability_settings['is_published_product'] = array('is_published_product');
         } else if (isset($capability_settings['is_published_product'])) {
             unset($capability_settings['is_published_product']);
         }
         if ($is_edit_delete_published_product) {
-            $capability_settings['is_edit_delete_published_product'] = $is_edit_delete_published_product;
+            $capability_settings['is_edit_delete_published_product'] = array('is_edit_delete_published_product');
         } else if (isset($capability_settings['is_edit_delete_published_product'])) {
             unset($capability_settings['is_edit_delete_published_product']);
         }
         if ($is_submit_coupon) {
-            $capability_settings['is_submit_coupon'] = $is_submit_coupon;
+            $capability_settings['is_submit_coupon'] = array('is_submit_coupon');
         } else if (isset($capability_settings['is_submit_coupon'])) {
             unset($capability_settings['is_submit_coupon']);
         }
         if ($is_published_coupon) {
-            $capability_settings['is_published_coupon'] = $is_published_coupon;
+            $capability_settings['is_published_coupon'] = array('is_published_coupon');
         } else if (isset($capability_settings['is_published_coupon'])) {
             unset($capability_settings['is_published_coupon']);
         }
         if ($is_edit_delete_published_coupon) {
-            $capability_settings['is_edit_delete_published_coupon'] = $is_edit_delete_published_coupon;
+            $capability_settings['is_edit_delete_published_coupon'] = array('is_edit_delete_published_coupon');
         } else if (isset($capability_settings['is_edit_delete_published_coupon'])) {
             unset($capability_settings['is_edit_delete_published_coupon']);
         }
         if ($is_upload_files) {
-            $capability_settings['is_upload_files'] = $is_upload_files;
+            $capability_settings['is_upload_files'] = array('is_upload_files');
         } else if (isset($capability_settings['is_upload_files'])) {
             unset($capability_settings['is_upload_files']);
         }
-        update_option('mvx_capabilities_product_settings_name', $capability_settings);
+        update_option('mvx_products_capability_tab_settings', $capability_settings);
         $MVX->vendor_caps->update_mvx_vendor_role_capability();
         wp_redirect(esc_url_raw($this->get_next_step_link()));
         exit;

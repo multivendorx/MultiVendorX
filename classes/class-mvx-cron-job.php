@@ -68,8 +68,7 @@ class MVX_Cron_Job {
      */
     function do_mass_payment() {
         global $MVX;
-        $payment_admin_settings = get_option('mvx_payment_settings_name');
-        if (!isset($payment_admin_settings['mvx_disbursal_mode_admin'])) {
+        if (!get_mvx_global_settings('choose_payment_mode_automatic_disbursal')) {
             return;
         }
         $commission_to_pay = array();
@@ -278,7 +277,7 @@ class MVX_Cron_Job {
      */
     public function vendor_custom_date_order_stats_report() {
         global $MVX;
-        $custom_date_order_stat_report_mail = get_mvx_vendor_settings( 'custom_date_order_stat_report_mail', 'general' ) ? get_mvx_vendor_settings( 'custom_date_order_stat_report_mail', 'general' ) : 0;
+        $custom_date_order_stat_report_mail = get_mvx_global_settings( 'custom_date_order_stat_report_mail' ) ? get_mvx_global_settings( 'custom_date_order_stat_report_mail' ) : 0;
         $vendors = get_mvx_vendors();
         if ($vendors && $custom_date_order_stat_report_mail && apply_filters('mvx_enabled_vendor_custom_date_report_mail', true)) {
             $strtotime = strtotime('-'. $custom_date_order_stat_report_mail .' days');

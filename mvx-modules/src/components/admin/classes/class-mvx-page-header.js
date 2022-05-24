@@ -40,9 +40,9 @@ class App extends Component {
 
           <div className="mvx-header-nav-left-section">
             <div className="mvx-header-section-nav-child-data">
-              <img src={appLocalizer.mvx_logo} className="mvx-section-img-fluid" />
+              <img src={appLocalizer.mvx_logo} className="mvx-section-img-fluid mvx-logo-img" />
             </div>
-            <div className="mvx-header-section-nav-child-data">
+            <div className="mvx-header-section-nav-child-data mvx-logo-title">
               {appLocalizer.marketplace_text}
             </div>
           </div>

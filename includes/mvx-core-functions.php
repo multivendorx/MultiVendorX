@@ -6791,6 +6791,45 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'database_value' => array(),
                 ],
                 [
+                    'key'       => 'payment_schedule',
+                    'type'      => 'radio',
+                    'depend_checkbox'    => 'choose_payment_mode_automatic_disbursal',
+                    'label'     => __( 'Set Schedule', 'mvx-live-chat' ),
+                    'options' => array(
+                        array(
+                            'name'  => 'payment_schedule',
+                            'key' => 'weekly',
+                            'label' => __('Weekly', 'mvx-live-chat'),
+                            'value' => 'weekly'
+                        ),
+                        array(
+                            'name'  => 'payment_schedule',
+                            'key' => 'daily',
+                            'label' => __('Daily', 'mvx-live-chat'),
+                            'value' => 'daily'
+                        ),
+                        array(
+                            'name'  => 'payment_schedule',
+                            'key' => 'monthly',
+                            'label' => __('Monthly', 'mvx-live-chat'),
+                            'value' => 'monthly'
+                        ),
+                        array(
+                            'name'  => 'payment_schedule',
+                            'key' => 'fortnightly',
+                            'label' => __('Fortnightly', 'mvx-live-chat'),
+                            'value' => 'fortnightly'
+                        ),
+                        array(
+                            'name'  => 'payment_schedule',
+                            'key' => 'hourly',
+                            'label' => __('Hourly', 'mvx-live-chat'),
+                            'value' => 'hourly'
+                        )
+                    ),
+                    'database_value' => '',
+                ],
+                [
                     'key'    => 'commission_threshold',
                     'label'   => __( 'Disbursement Threshold', 'dc-woocommerce-multi-vendor' ),
                     'type'    => 'number',
