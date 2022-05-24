@@ -454,7 +454,10 @@ Child({ name }) {
                 {this.state.report_overview_data.admin_overview ? 
                   <div class="mvx-text-with-line-wrapper">
                     <div class="mvx-report-text">
-                      <span>{appLocalizer.report_page_string.performance}</span>
+                      <h4>{appLocalizer.report_page_string.performance}</h4>
+                      <div className='mvx-dot'>
+                        <i className='mvx-font icon-tab-transaction-history'></i>
+                      </div>
                     </div>
                   </div>
                 : ''}
@@ -484,7 +487,12 @@ Child({ name }) {
               <div className="mvx-charts-graph-content">
                 <div className="mvx-chart-text-and-bar-line-wrap">
                   <div class="mvx-text-with-line-wrapper chart-line">
-                    <div class="mvx-report-text"><span>{appLocalizer.report_page_string.charts}</span></div>
+                    <div class="mvx-report-text">
+                      <h4>{appLocalizer.report_page_string.charts}</h4>
+                      <div className='mvx-dot'>
+                        <i className='mvx-font icon-tab-transaction-history'></i>
+                      </div>
+                    </div>
                     <div className='mvx-select-all-bulk-wrap'>
                       <div className="mvx-analytics-overview-link"><Link to={`?page=mvx#&submenu=analytics&name=admin-overview&type=bar`}><i className="mvx-font icon-chart-bar"></i></Link></div>
                       <div className="mvx-analytics-overview-link"><Link to={`?page=mvx#&submenu=analytics&name=admin-overview&type=line`}><i className="mvx-font icon-chart-line"></i></Link></div>
@@ -494,6 +502,8 @@ Child({ name }) {
                 </div>
 
                 <div className="mvx-content-two-graph-wrap">
+
+                  
                   <div className="mvx-header-and-graph-wrap">
                     <div className="mvx-commission-order-details-text">First header</div>
                     <div className="mvx-chart-graph-visible">
@@ -518,8 +528,7 @@ Child({ name }) {
                               <Line type="monotone" dataKey="Net Sales" stroke="red" activeDot={{ r: 8 }} />
                             </LineChart>
                           </ResponsiveContainer>
-                          : ''
-                          }
+                          : 
                           <ResponsiveContainer aspect={3}>
                             <BarChart
                               width={500}
@@ -540,14 +549,13 @@ Child({ name }) {
                               <Bar dataKey="Net Sales" fill="red"  />
                             </BarChart>
                           </ResponsiveContainer>
-                        : 
-                        '' 
                         }
 
                     { /*<div className="mvx-pro-image-display"><img src="https://wc-marketplace.com//wp-content//uploads//2021//06//722x415-paypal-300x172.jpg"/></div> */}
                   </div>
                 </div>
-
+                : '' }
+                
                 <div className="mvx-header-and-graph-wrap">
                   <div className="mvx-commission-order-details-text">second header</div>
                     <div className="mvx-chart-graph-visible">
@@ -598,6 +606,8 @@ Child({ name }) {
                     { /*<div className="mvx-pro-image-display"><img src="https://wc-marketplace.com//wp-content//uploads//2021//06//722x415-paypal-300x172.jpg"/></div> */}
                   </div>
                 </div>
+
+
               </div>
             </div>
 
@@ -944,11 +954,9 @@ Child({ name }) {
 
   render() {
     return (
-      <div>
           <Router>
             <this.QueryParamsDemo />
           </Router>
-      </div>
     );
   }
 }

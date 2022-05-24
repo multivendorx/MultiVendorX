@@ -1388,7 +1388,7 @@ class App extends Component {
     }
 
     return (
-      <div>
+      <div className='mvx-workboard-wrapper'>
         {
           name == 'activity-reminder' ?
 
@@ -2166,11 +2166,9 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <Router>
+      <Router>
           <this.QueryParamsDemo />
-        </Router>
-      </div>
+      </Router>
     );
   }
 }

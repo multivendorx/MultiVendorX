@@ -868,7 +868,7 @@ class App extends Component {
 
     return (
 
-      <div>
+      <div className='mvx-settings-wrapper'>
 
         <HeaderSection />
 

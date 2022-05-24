@@ -552,7 +552,7 @@ class App extends Component {
   render() {
     //console.log(this.state.commission_details);
     return (
-      <div>
+      <div className='mvx-commission-wrapper'>
 
         <HeaderSection />
 
