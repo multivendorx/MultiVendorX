@@ -625,290 +625,290 @@ $paragraph-color : #5e5d60;
 $border-radius :  4px;
 
 @mixin flexprops($align) {
-	display: flex;
+    display: flex;
     align-items: $align;
 }
 @mixin border {
-	border: 1px solid #d4d1d9;
+    border: 1px solid #d4d1d9;
 }
 @mixin padding {
-	padding: 10px 0;
+    padding: 10px 0;
 }
 @mixin padding-left {
-	padding-left: 20px;
+    padding-left: 20px;
 }
 @mixin placeholder {
-	padding-left: 24px;
-	color: #8e8b91;
+    padding-left: 24px;
+    color: #8e8b91;
 }
 @mixin input {
-	height: 40px;
-	width: 166px;
-	padding: 0 16px;
+    height: 40px;
+    width: 166px;
+    padding: 0 16px;
 }
 @mixin inputfocus {
-	@include border;
-	box-shadow: none;
+    @include border;
+    box-shadow: none;
 }
 @mixin  activedashboardtabs {
-	display: inline-block;
-	padding-right: 15px;
+    display: inline-block;
+    padding-right: 15px;
 }
 @mixin tabs {
-	display: inline-block;
-	width: auto;
-	height: 48px;
-	background: #fdfdfe;
-	text-align: center;
-	line-height: 48px;
-	padding: 0 24px;
-	border: $border;
+    display: inline-block;
+    width: auto;
+    height: 48px;
+    background: #fdfdfe;
+    text-align: center;
+    line-height: 48px;
+    padding: 0 24px;
+    border: $border;
 }
 @mixin anchortag {
-	color: #181718;
-	display: block;
-	text-decoration: none;
-	font-size: 20px;
+    color: #181718;
+    display: block;
+    text-decoration: none;
+    font-size: 20px;
 }
 @mixin iconcolor {
-	color: #9e8abb;
+    color: #9e8abb;
 }
 @mixin datepicker {
-	width: 280px;
-	height: 50px;
-	background-color: #fdfdfe;
+    width: 280px;
+    height: 50px;
+    background-color: #fdfdfe;
 }
  
 #wpcontent {
-	margin-left: 140px !important;
+    margin-left: 140px !important;
 }
 
 .mvx-header-wapper {
     @include flexprops(center);
-	padding: 8px 14px;
-	@include border;
-	height: 60px;
-	position: relative;
+    padding: 8px 14px;
+    @include border;
+    height: 60px;
+    position: relative;
 
-	& .mvx-header-nav-right-section {
-		margin-left: auto;
-		@include flexprops(center);	
-		.mvx-header-search-section {
-			position: relative;
+    & .mvx-header-nav-right-section {
+        margin-left: auto;
+        @include flexprops(center); 
+        .mvx-header-search-section {
+            position: relative;
 
-			& label {
-				position: absolute;
-				top: 11px;
-    			left: 18px;
-				& i {
-					color: #8e8b91;
-				}
-			}
-			& input {
-				@include input;
-				@include border;
-				&::placeholder {
-					@include placeholder;
-				}
-			}
-			& input:focus {
-				@include inputfocus;
-			}
-		}
-		& .nav-child-right {
-			display: block;
-			width: 40px;
-			height: 40px;
-			text-align: center;
-			line-height: 36px;
-			background-color: #f8ebf1;
-			border-radius: $border-radius;
-			margin-left: 24px;
-		}
-	}
-	& .mvx-header-nav-left-section {
-		@include flexprops(center);
+            & label {
+                position: absolute;
+                top: 11px;
+                left: 18px;
+                & i {
+                    color: #8e8b91;
+                }
+            }
+            & input {
+                @include input;
+                @include border;
+                &::placeholder {
+                    @include placeholder;
+                }
+            }
+            & input:focus {
+                @include inputfocus;
+            }
+        }
+        & .nav-child-right {
+            display: block;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 36px;
+            background-color: #f8ebf1;
+            border-radius: $border-radius;
+            margin-left: 24px;
+        }
+    }
+    & .mvx-header-nav-left-section {
+        @include flexprops(center);
 
-		& .mvx-logo-img {
-			width: 60%;
-			margin-right: 14px;
-			padding: 10px 0;
-		}
-		& .mvx-logo-title {
-			font-size: 24px;
-			font-weight: 500;
-			padding-left: 6px;
-			
-		}
-		& .mvx-header-section-nav-child-data {
-			
-			&::after {
-				position: absolute;
-				content: "";
-				width: 1px;
-				height: 100%;
-				background-color: #d4d1d9;
-				top: 0;
-				left: 59px;
-			}
-		}
-	}
+        & .mvx-logo-img {
+            width: 60%;
+            margin-right: 14px;
+            padding: 10px 0;
+        }
+        & .mvx-logo-title {
+            font-size: 24px;
+            font-weight: 500;
+            padding-left: 6px;
+            
+        }
+        & .mvx-header-section-nav-child-data {
+            
+            &::after {
+                position: absolute;
+                content: "";
+                width: 1px;
+                height: 100%;
+                background-color: #d4d1d9;
+                top: 0;
+                left: 59px;
+            }
+        }
+    }
 }
 .container {
-	background-color: $base-color;
-	& .mvx-child-container {
-		@include flexprops(start);
-		& .mvx-sub-container {
-			padding-top: 78px;
-			margin-right: 24px;
+    background-color: $base-color;
+    & .mvx-child-container {
+        @include flexprops(start);
+        & .mvx-sub-container {
+            padding-top: 78px;
+            margin-right: 24px;
 
-			& .dashboard-tab-area {
-				width: 936px;
-				@include border;
-				border-radius: $border-radius;
-				
+            & .dashboard-tab-area {
+                width: 936px;
+                @include border;
+                border-radius: $border-radius;
+                
 
-				& .mvx-dashboard-tabs-list {
-					@include flexprops(center);
-					margin-top: -48px;
-					@include padding-left;
-					& li {
-					@include activedashboardtabs;
-					@include tabs;
-						& a {
-							@include anchortag;
-								& i{
-								@include iconcolor;
-								padding-right: 8px;
-								}
-						}
-					}
-					& li:nth-child(1){
-						border-radius: 4px 0 0 0;
-					}
-					& li:nth-child(2){
-						border-right: 0;
-					}
-					& li:nth-child(1){
-						border-right: 0;
-					}
-					& li:nth-child(3){
-						border-right: 0;
-					}
-					& li:nth-child(4){
-						border-radius: 0 4px 0 0;
-					}
-					& .activedashboardtabs {
-						border-bottom: 0;
-						background-color: #f7f6f9;
-					}
-				}
-				& .dashboard-tabcontentclass {
-					background: #f7f6f9;
-					margin-top: -16px;
-					@include padding-left;
-					padding-right: 24px;
-					& .mvx-charts-graph-content {
-						padding-top: 34px;
-					}
-					& .mvx-report-datepicker {
-						@include datepicker;
-						padding: 10px 16px;
-						border-radius: $border-radius;
-						@include border;
-						& .rs-picker-toggle-wrapper {
-							& .rs-btn {
-								border: none;
-								background: transparent;
-								padding: 0;
-							}
-							& input {
-								background-color: transparent;
-								border: none;
-								width: 246px;
-								line-height: 32px;
-							}
-							& input::placeholder {
-								text-transform: uppercase;
-							}
-							& svg {
-								margin-top: 0px;
-								@include iconcolor;
-								font-size: 18px;
-							}
-						}
-						
-					}
-					& .mvx-wrapper-date-picker {
-						padding-top: 34px;
-					}
-					& .mvx-date-range {
-						font-size: 20px;
-						padding-bottom: 10px;
-						color: $title-color;
-					}
-					& .mvx-report-performance-content {
-						padding-top: 156px;
-						
-						
-						& .mvx-wrapper-performance-content {
-							@include flexprops(center);
-							border: $border;
-							& .mvx-performance-wrapper-content {
-								width: 148px;
-								height: 114px;
-								border-right: $border;
-								padding: 12px;
-								position: relative;
-								& .mvx-percent-show {
-									position: absolute;
-									right: 22px;
-									bottom: 40px;
-									background-color: #f0f0f0;
-									padding: 6px;
-									border-radius: $border-radius;
-								}
-								& .mvx-labels {
-									font-size: 12px;
-									color: $title-color;
-								}
-								& .mvx-price-display {
-									padding-top: 48px;
-									font-size: 20px;
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-	.mvx-text-with-line-wrapper {
-		position: relative	
-	}
-	& .mvx-adv-image-display {
-		margin-left: auto;
-		margin-right: 24px;
-		margin-top: 34px;
-	}
-	.mvx-text-with-line-wrapper::after {
-		content: "";
-		position: absolute;
-		width: 80%;
-		height: 1px;
-		background-color: #d4d1d9;
-		top: 16px;
-		left: 140px;
-	}
-	& .mvx-report-text {
-		@include flexprops(center);
-		margin-bottom: 30px;
-		& h4 {
-			font-size: 20px;
-			color: $title-color;
-		}
-	}
-	& .mvx-dot {
-		margin-left: auto;
-	}
+                & .mvx-dashboard-tabs-list {
+                    @include flexprops(center);
+                    margin-top: -48px;
+                    @include padding-left;
+                    & li {
+                    @include activedashboardtabs;
+                    @include tabs;
+                        & a {
+                            @include anchortag;
+                                & i{
+                                @include iconcolor;
+                                padding-right: 8px;
+                                }
+                        }
+                    }
+                    & li:nth-child(1){
+                        border-radius: 4px 0 0 0;
+                    }
+                    & li:nth-child(2){
+                        border-right: 0;
+                    }
+                    & li:nth-child(1){
+                        border-right: 0;
+                    }
+                    & li:nth-child(3){
+                        border-right: 0;
+                    }
+                    & li:nth-child(4){
+                        border-radius: 0 4px 0 0;
+                    }
+                    & .activedashboardtabs {
+                        border-bottom: 0;
+                        background-color: #f7f6f9;
+                    }
+                }
+                & .dashboard-tabcontentclass {
+                    background: #f7f6f9;
+                    margin-top: -16px;
+                    @include padding-left;
+                    padding-right: 24px;
+                    & .mvx-charts-graph-content {
+                        padding-top: 34px;
+                    }
+                    & .mvx-report-datepicker {
+                        @include datepicker;
+                        padding: 10px 16px;
+                        border-radius: $border-radius;
+                        @include border;
+                        & .rs-picker-toggle-wrapper {
+                            & .rs-btn {
+                                border: none;
+                                background: transparent;
+                                padding: 0;
+                            }
+                            & input {
+                                background-color: transparent;
+                                border: none;
+                                width: 246px;
+                                line-height: 32px;
+                            }
+                            & input::placeholder {
+                                text-transform: uppercase;
+                            }
+                            & svg {
+                                margin-top: 0px;
+                                @include iconcolor;
+                                font-size: 18px;
+                            }
+                        }
+                        
+                    }
+                    & .mvx-wrapper-date-picker {
+                        padding-top: 34px;
+                    }
+                    & .mvx-date-range {
+                        font-size: 20px;
+                        padding-bottom: 10px;
+                        color: $title-color;
+                    }
+                    & .mvx-report-performance-content {
+                        padding-top: 156px;
+                        
+                        
+                        & .mvx-wrapper-performance-content {
+                            @include flexprops(center);
+                            border: $border;
+                            & .mvx-performance-wrapper-content {
+                                width: 148px;
+                                height: 114px;
+                                border-right: $border;
+                                padding: 12px;
+                                position: relative;
+                                & .mvx-percent-show {
+                                    position: absolute;
+                                    right: 22px;
+                                    bottom: 40px;
+                                    background-color: #f0f0f0;
+                                    padding: 6px;
+                                    border-radius: $border-radius;
+                                }
+                                & .mvx-labels {
+                                    font-size: 12px;
+                                    color: $title-color;
+                                }
+                                & .mvx-price-display {
+                                    padding-top: 48px;
+                                    font-size: 20px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .mvx-text-with-line-wrapper {
+        position: relative  
+    }
+    & .mvx-adv-image-display {
+        margin-left: auto;
+        margin-right: 24px;
+        margin-top: 34px;
+    }
+    .mvx-text-with-line-wrapper::after {
+        content: "";
+        position: absolute;
+        width: 80%;
+        height: 1px;
+        background-color: #d4d1d9;
+        top: 16px;
+        left: 140px;
+    }
+    & .mvx-report-text {
+        @include flexprops(center);
+        margin-bottom: 30px;
+        & h4 {
+            font-size: 20px;
+            color: $title-color;
+        }
+    }
+    & .mvx-dot {
+        margin-left: auto;
+    }
 }
