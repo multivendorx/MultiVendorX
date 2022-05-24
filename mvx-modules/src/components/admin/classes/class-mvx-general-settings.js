@@ -921,9 +921,9 @@ class App extends Component {
     }
 
     return (
-      <div>
+      <div className="mvx-general-settings-wrapper">
         {appLocalizer.mvx_all_backend_tab_list['marketplace-general-settings'].map((data, index) => (
-          <div>
+          <div className="mvx-general-settings-child-wrapper">
 
             {
               /*name = !name ? 'registration' : name,*/
@@ -1248,11 +1248,9 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <Router>
-          <this.QueryParamsDemo />
-        </Router>
-      </div>
+      <Router>
+        <this.QueryParamsDemo />
+      </Router>
     );
   }
 }

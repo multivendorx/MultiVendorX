@@ -87,7 +87,7 @@ class App extends Component {
     )
 
     return (
-      <div>
+      <div className="mvx-payment-wrapper">
 
         <HeaderSection />
 
@@ -145,9 +145,9 @@ Child({ name }) {
   });
 
   return (
-    <div>
+    <div className="mvx-payments-tab-wrapper">
     {appLocalizer.mvx_all_backend_tab_list['marketplace-payments'].length > 0 ? appLocalizer.mvx_all_backend_tab_list['marketplace-payments'].map((data, index) => (
-      <div>
+      <div className="mvx-payments-tab-child-wrapper">
 
       {
         name = !name ? 'paypal_masspay' : name,
@@ -180,11 +180,9 @@ Child({ name }) {
 
   render() {
     return (
-      <div>
-          <Router>
-            <this.QueryParamsDemo />
-          </Router>
-      </div>
+      <Router>
+        <this.QueryParamsDemo />
+      </Router>
     );
   }
 }

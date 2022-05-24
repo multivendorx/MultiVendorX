@@ -1174,7 +1174,7 @@ class App extends Component {
     }
     )
     return (
-      <div>
+      <div className="mvx-workboard-wrapper">
 
         <HeaderSection />
 
@@ -1388,7 +1388,7 @@ class App extends Component {
     }
 
     return (
-      <div className='mvx-workboard-wrapper'>
+      <div className='mvx-workboard-tab-wrapper'>
         {
           name == 'activity-reminder' ?
 

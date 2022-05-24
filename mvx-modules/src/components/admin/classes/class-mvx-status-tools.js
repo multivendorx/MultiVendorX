@@ -396,11 +396,9 @@ Child({ name }) {
 
   render() {
     return (
-      <div>
-          <Router>
-            <this.QueryParamsDemo />
-          </Router>
-      </div>
+      <Router>
+        <this.QueryParamsDemo />
+      </Router>
     );
   }
 }
