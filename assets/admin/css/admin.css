@@ -606,6 +606,10 @@ a:focus {
 }
 
 /*icon end*/
+#mvx-admin-dashboard {
+  padding: 15px !important;
+}
+
 #wpcontent {
   margin-left: 140px !important;
 }
