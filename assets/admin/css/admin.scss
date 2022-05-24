@@ -616,3 +616,49 @@ a:focus {
 }
 
 /*icon end*/
+
+$base-color : #f2eff5;
+$boder-color : #d4d1d9;
+$border-left : 1px solid #d4d1d9;
+
+@mixin flexprops {
+	display: flex;
+    align-items: center;
+}
+@mixin border {
+	border: 1px solid #d4d1d9;
+}
+@mixin padding {
+	padding: 10px 0;
+}
+
+// #mvx-admin-dashboard {
+//     padding: 15px !important;
+// }
+#wpcontent {
+    margin-left: 140px !important;
+}
+.mvx-header-wapper {
+    @include flexprops;
+	padding: 0px 15px;
+	@include border;
+
+	& .mvx-header-nav-right-section {
+		margin-left: auto;
+		@include flexprops;	
+	}
+	& .mvx-header-nav-left-section {
+		@include flexprops;
+
+		& .mvx-logo-img {
+			width: 44px;
+			margin-right: 20px;
+			border-right: $border-left;
+			padding-right: 15px;
+		}
+		& .mvx-logo-title {
+			font-size: 18px;
+			font-weight: 500;
+		}
+	}
+}

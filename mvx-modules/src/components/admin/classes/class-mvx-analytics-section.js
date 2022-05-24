@@ -518,7 +518,8 @@ Child({ name }) {
                               <Line type="monotone" dataKey="Net Sales" stroke="red" activeDot={{ r: 8 }} />
                             </LineChart>
                           </ResponsiveContainer>
-                          :
+                          : ''
+                          }
                           <ResponsiveContainer aspect={3}>
                             <BarChart
                               width={500}
@@ -539,6 +540,8 @@ Child({ name }) {
                               <Bar dataKey="Net Sales" fill="red"  />
                             </BarChart>
                           </ResponsiveContainer>
+                        : 
+                        '' 
                         }
 
                     { /*<div className="mvx-pro-image-display"><img src="https://wc-marketplace.com//wp-content//uploads//2021//06//722x415-paypal-300x172.jpg"/></div> */}
