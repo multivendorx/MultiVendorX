@@ -41,7 +41,7 @@ export default class TabSection extends React.Component {
     <HeaderSection />
     <div className="mvx-tab-wrapper">
       {this.props.tab_description && this.props.tab_description == 'no' ? '' : TabUI}
-      <ul className={`mvx-current-tab-lists ${horizontally ? 'mvx-horizont-tabs' : ''}`}>
+      <ul className={`mvx-current-tab-lists ${horizontally ? 'mvx-horizontal-tabs' : ''}`}>
       {model.map((m, index) => {
         return (
           <li className={query_name == m.modulename ? 'active-current-tab' : ''} >
