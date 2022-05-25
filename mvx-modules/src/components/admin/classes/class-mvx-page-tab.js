@@ -39,25 +39,27 @@ export default class TabSection extends React.Component {
     let TabUIContent =
     <div className={`mvx-general-wrapper mvx-${query_name}`}> 
     <HeaderSection />
-    <div className="mvx-tab-wrapper">
-      {this.props.tab_description && this.props.tab_description == 'no' ? '' : TabUI}
-      <ul className={`mvx-current-tab-lists ${horizontally ? 'mvx-horizontal-tabs' : ''}`}>
-      {model.map((m, index) => {
-        return (
-          <li className={query_name == m.modulename ? 'active-current-tab' : ''} >
-            <Link to={`?page=mvx#&submenu=${m.submenu}&name=${m.modulename}`}>
-              {m.icon ? <i class={`mvx-font ${m.icon}`}></i> : ''}
-              {m.tablabel}
-            </Link>
-          </li>
-        );
-      })}
-      </ul>
-      <div className="mvx-tab-content">
-        <funtion_name.Child name={query_name} />
+    <div className="mvx-container">
+        <div className="mvx-middle-container-wrapper">
+          {this.props.tab_description && this.props.tab_description == 'no' ? '' : TabUI}
+          <ul className={`mvx-current-tab-lists ${horizontally ? 'mvx-horizontal-tabs' : ''}`}>
+          {model.map((m, index) => {
+            return (
+              <li className={query_name == m.modulename ? 'active-current-tab' : ''} >
+                <Link to={`?page=mvx#&submenu=${m.submenu}&name=${m.modulename}`}>
+                  {m.icon ? <i class={`mvx-font ${m.icon}`}></i> : ''}
+                  {m.tablabel}
+                </Link>
+              </li>
+            );
+          })}
+          </ul>
+          <div className="mvx-tab-content">
+            <funtion_name.Child name={query_name} />
+          </div>
+        </div>
+        {no_banner ? '' : <BannerSection />}
       </div>
-    </div>
-    {no_banner ? '' : <BannerSection />}
     </div>
     ;
     return TabUIContent;

@@ -125,8 +125,6 @@ class App extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
 
-    this.subHeaderComponentMemo = this.subHeaderComponentMemo.bind(this);
-
     this.QueryParamsDemo = this.QueryParamsDemo.bind(this);
 
     this.useQuery = this.useQuery.bind(this);
@@ -573,32 +571,6 @@ class App extends React.Component {
   QueryParamsDemo(e) {
 
 
-
-    /*    if (new URLSearchParams(window.location.hash).get("ID")) {
-    
-        axios.get(
-        `${appLocalizer.apiUrl}/mvx_module/v1/list_of_all_tab_based_settings_field`, { params: { vendor_id: new URLSearchParams(window.location.hash).get("ID") } 
-        })
-        .then(response => {
-          if (response.data) {
-            this.setState({
-              data_setting_fileds: response.data,
-            });
-    
-    
-    
-          }
-    
-        })
-    
-          
-        }
-    */
-
-
-
-
-
     // Display table column and row slection
     if (this.state.columns_vendor_list.length == 0 && new URLSearchParams(window.location.hash).get("submenu") == 'vendor') {
       appLocalizer.columns_vendor.map((data_ann, index_ann) => {
@@ -635,11 +607,11 @@ class App extends React.Component {
 
 
 
-    let queryt = this.useQuery();
+    let user_query = this.useQuery();
     var tab_name_display = '';
     var tab_description_display = '';
     appLocalizer.mvx_all_backend_tab_list['marketplace-vendors'].map((data, index) => {
-      if (queryt.get("name") == data.modulename) {
+      if (user_query.get("name") == data.modulename) {
           tab_name_display = data.tablabel;
           tab_description_display = data.description;
         }
@@ -647,145 +619,234 @@ class App extends React.Component {
     )
 
     return (
-      <div className="mvx-admin-vendor-submenu-header">
+      <div className="mvx-general-wrapper mvx-vendor">
         <HeaderSection />
         <div className="mvx-container">
-          <div className="mvx-start-child-container">
-            {queryt.get("name") == 'add_new' ?
-              <div className="general-tab-area">
-                <div className="tabcontentclass tabcontentclass-child">
-                  <this.Childparent name={queryt.get("name")} />
-                </div>
+          {user_query.get("name") == "add_new" ? (
+            <div className="general-tab-area">
+              <div className="tabcontentclass tabcontentclass-child">
+                <this.Childparent name={user_query.get("name")} />
               </div>
-            : '' }
-              
-            {!queryt.get("ID") ?
-            queryt.get("name") == "add_new" ? '' :
-
-            <div className="mvx-child-container-wrap">
-              <div className="mvx-page-title">
-                Vendors
-                <Link to={`?page=mvx#&submenu=vendor&name=add_new`} className="btn default-btn ml-12"><i className="mvx-font icon-add"></i>Add Vendor</Link>
-              </div>
-
-              <div className="mvx-row mvx-align-items-center mvx-justify-content-between mb-15">
-                <div className="mvx-col-55">
-                  <ul className='mvx-ul-auto mvx-row'>
-                    <li className="mvx-col-auto">
-                      <div className="mvx-multistatus-check-all" onClick={(e) => this.different_vendor_status(e, 'all')}>All ({this.state.data_all_vendor.length})</div>
-                    </li>
-                    <li className="mvx-col-auto mvx-divider"></li>
-                    <li className="mvx-col-auto">
-                      <div className="mvx-multistatus-check-approve" onClick={(e) => this.different_vendor_status(e, 'approve')}>Approve ({this.state.data_approve_vendor.length})</div>
-                    </li>
-                    <li className="mvx-col-auto mvx-divider"></li>
-                    <li className="mvx-col-auto">
-                      <div className="mvx-multistatus-check-pending status-active" onClick={(e) => this.different_vendor_status(e, 'pending')}>Pending ({this.state.data_pending_vendor.length})</div>
-                    </li>
-                    <li className="mvx-col-auto mvx-divider"></li>
-                    <li className="mvx-col-auto">
-                      <div className="mvx-multistatus-check-rejected" onClick={(e) => this.different_vendor_status(e, 'rejected')}>Rejected ({this.state.data_rejected_vendor.length})</div>
-                    </li>
-                  </ul>
-                </div>
-                <div className="mvx-col-auto">
-                  <div className='mvx-search-holder'>
-                    <input type="text" placeholder="Search Vendors" name="search" onChange={this.handlevendorsearch} />
-                  </div>
-                </div>
-              </div>
-
-
-              <div className="mvx-row mb-15">
-                <div className="mvx-col-25">
-                  <Select placeholder="Bulk actions" options={appLocalizer.vendor_list_page_bulk_list_options} isClearable={true} className="mvx-module-section-list-data" onChange={this.handlevendoractionsearch} />
-                </div>
-              </div>
-
-
-              <div className='responsive-table'>
-                <div className="mvx-backend-datatable-wrapper vendor-table-wapper default-table">
-                  {this.state.columns_vendor_list && this.state.columns_vendor_list.length > 0 && this.state.vendor_loading ?
-                    <DataTable
-                      columns={this.state.columns_vendor_list}
-                      data={this.state.datavendor}
-                      selectableRows
-                      onSelectedRowsChange={this.handleChange}
-                      pagination
-                    />
-                    : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
-                  }
-
-                  {this.state.datavendor.map((data8, index8) => (
-                    <Dialog open={this.state.open_vendor_model_dynamic[data8.ID]} onClose={this.handleClose_dynamic} aria-labelledby="form-dialog-title">
-                      <DialogTitle id="form-dialog-title">
-
-                        <div className="mvx-module-dialog-title">
-                          <div className="mvx-vendor-title" dangerouslySetInnerHTML={{ __html: data8.name }}></div>
-                          <i className="mvx-font icon-no" onClick={this.handleClose_dynamic}></i>
-                        </div>
-
-                      </DialogTitle>
-                      <DialogContent>
-                        <DialogContentText>
-                          <div className="mvx-module-dialog-content">
-
-                            <div className="mvx-email-content-and-value-wrap">
-                              <div className="mvx-content-email">Email :</div>
-                              <div className="mvx-content-email-value">{data8.email}</div>
-                            </div>
-
-                            <div className="mvx-vendor-textarea-content">
-                              <textarea placeholder="Describe yourself here..." onChange={(e) => this.handle_rejected_vendor_description(e, data8.ID)}></textarea>
-                            </div>
-
-                            <div className="mvx-vendor-multi-action-buttons">
-                              <Button className="btn purple-btn button-large" onClick={() => this.handle_Vendor_Approve(data8.ID)} color="primary">Approve</Button>
-                              <Button className="btn red-btn button-large" onClick={() => this.handle_Vendor_Reject(data8.ID)} color="primary">Reject</Button>
-                              <Button className="btn border-btn button-large" onClick={() => this.handle_Vendor_Edit(data8)} color="primary">Edit Vendor</Button>
-                            </div>
-
-                          </div>
-                        </DialogContentText>
-                      </DialogContent>
-                      <DialogActions>
-                      </DialogActions>
-                    </Dialog>
-                  ))}
-                </div>
-              </div>
-
-
             </div>
+          ) : (
+            ""
+          )}
 
-            : 
-              <div className='mvx-col-75'>
-                <div className="mv-offactive-white-box pa-15 text-center border-b-0">
-                  <div className="mvx-tab-name-display">{tab_name_display}</div>
-                  <p>{tab_description_display}</p>
+          {!user_query.get("ID") ? (
+            user_query.get("name") == "add_new" ? (
+              ""
+            ) : (
+              <div className="mvx-middle-container-wrapper">
+                <div className="mvx-page-title">
+                  Vendors
+                  <Link
+                    to={`?page=mvx#&submenu=vendor&name=add_new`}
+                    className="btn default-btn ml-12"
+                  >
+                    <i className="mvx-font icon-add"></i>Add Vendor
+                  </Link>
                 </div>
 
-                <div className="general-tab-area">
-                  <ul className="mvx-general-tabs-list">
-                  {appLocalizer.mvx_all_backend_tab_list['marketplace-vendors'].map((data, index) => (
-                      <li className={queryt.get("name") == data.modulename ? 'activegeneraltabs' : ''}>
-                        <Link to={`?page=mvx#&submenu=vendor&ID=${queryt.get("ID")}&name=${data.modulename}`} >{data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}{data.tablabel}</Link>
+                <div className="mvx-row mvx-align-items-center mvx-justify-content-between mb-15">
+                  <div className="mvx-col-55">
+                    <ul className="mvx-ul-auto mvx-row">
+                      <li className="mvx-col-auto">
+                        <div
+                          className="mvx-multistatus-check-all"
+                          onClick={(e) => this.different_vendor_status(e, "all")}
+                        >
+                          All ({this.state.data_all_vendor.length})
+                        </div>
                       </li>
-                  ))}
-                  </ul>
+                      <li className="mvx-col-auto mvx-divider"></li>
+                      <li className="mvx-col-auto">
+                        <div
+                          className="mvx-multistatus-check-approve"
+                          onClick={(e) => this.different_vendor_status(e, "approve")}
+                        >
+                          Approve ({this.state.data_approve_vendor.length})
+                        </div>
+                      </li>
+                      <li className="mvx-col-auto mvx-divider"></li>
+                      <li className="mvx-col-auto">
+                        <div
+                          className="mvx-multistatus-check-pending status-active"
+                          onClick={(e) => this.different_vendor_status(e, "pending")}
+                        >
+                          Pending ({this.state.data_pending_vendor.length})
+                        </div>
+                      </li>
+                      <li className="mvx-col-auto mvx-divider"></li>
+                      <li className="mvx-col-auto">
+                        <div
+                          className="mvx-multistatus-check-rejected"
+                          onClick={(e) => this.different_vendor_status(e, "rejected")}
+                        >
+                          Rejected ({this.state.data_rejected_vendor.length})
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="mvx-col-auto">
+                    <div className="mvx-search-holder">
+                      <input
+                        type="text"
+                        placeholder="Search Vendors"
+                        name="search"
+                        onChange={this.handlevendorsearch}
+                      />
+                    </div>
+                  </div>
+                </div>
 
-                  <div className="tabcontentclass">
-                    <this.Child name={queryt} />
+                <div className="mvx-row mb-15">
+                  <div className="mvx-col-25">
+                    <Select
+                      placeholder="Bulk actions"
+                      options={appLocalizer.vendor_list_page_bulk_list_options}
+                      isClearable={true}
+                      className="mvx-module-section-list-data"
+                      onChange={this.handlevendoractionsearch}
+                    />
+                  </div>
+                </div>
+
+                <div className="responsive-table">
+                  <div className="mvx-backend-datatable-wrapper vendor-table-wapper default-table">
+                    {this.state.columns_vendor_list &&
+                    this.state.columns_vendor_list.length > 0 &&
+                    this.state.vendor_loading ? (
+                      <DataTable
+                        columns={this.state.columns_vendor_list}
+                        data={this.state.datavendor}
+                        selectableRows
+                        onSelectedRowsChange={this.handleChange}
+                        pagination
+                      />
+                    ) : (
+                      <PuffLoader
+                        css={override}
+                        color={"#cd0000"}
+                        size={100}
+                        loading={true}
+                      />
+                    )}
+
+                    {this.state.datavendor.map((data8, index8) => (
+                      <Dialog
+                        open={this.state.open_vendor_model_dynamic[data8.ID]}
+                        onClose={this.handleClose_dynamic}
+                        aria-labelledby="form-dialog-title"
+                      >
+                        <DialogTitle id="form-dialog-title">
+                          <div className="mvx-module-dialog-title">
+                            <div
+                              className="mvx-vendor-title"
+                              dangerouslySetInnerHTML={{ __html: data8.name }}
+                            ></div>
+                            <i
+                              className="mvx-font icon-no"
+                              onClick={this.handleClose_dynamic}
+                            ></i>
+                          </div>
+                        </DialogTitle>
+                        <DialogContent>
+                          <DialogContentText>
+                            <div className="mvx-module-dialog-content">
+                              <div className="mvx-email-content-and-value-wrap">
+                                <div className="mvx-content-email">Email :</div>
+                                <div className="mvx-content-email-value">
+                                  {data8.email}
+                                </div>
+                              </div>
+
+                              <div className="mvx-vendor-textarea-content">
+                                <textarea
+                                  placeholder="Describe yourself here..."
+                                  onChange={(e) =>
+                                    this.handle_rejected_vendor_description(
+                                      e,
+                                      data8.ID
+                                    )
+                                  }
+                                ></textarea>
+                              </div>
+
+                              <div className="mvx-vendor-multi-action-buttons">
+                                <Button
+                                  className="btn purple-btn button-large"
+                                  onClick={() => this.handle_Vendor_Approve(data8.ID)}
+                                  color="primary"
+                                >
+                                  Approve
+                                </Button>
+                                <Button
+                                  className="btn red-btn button-large"
+                                  onClick={() => this.handle_Vendor_Reject(data8.ID)}
+                                  color="primary"
+                                >
+                                  Reject
+                                </Button>
+                                <Button
+                                  className="btn border-btn button-large"
+                                  onClick={() => this.handle_Vendor_Edit(data8)}
+                                  color="primary"
+                                >
+                                  Edit Vendor
+                                </Button>
+                              </div>
+                            </div>
+                          </DialogContentText>
+                        </DialogContent>
+                        <DialogActions></DialogActions>
+                      </Dialog>
+                    ))}
                   </div>
                 </div>
               </div>
-            }
+            )
+          ) : (
+            <div className="mvx-col-75">
+              <div className="mv-offactive-white-box pa-15 text-center border-b-0">
+                <div className="mvx-tab-name-display">{tab_name_display}</div>
+                <p>{tab_description_display}</p>
+              </div>
 
-            <BannerSection />
+              <div className="general-tab-area">
+                <ul className="mvx-general-tabs-list">
+                  {appLocalizer.mvx_all_backend_tab_list["marketplace-vendors"].map(
+                    (data, index) => (
+                      <li
+                        className={
+                          user_query.get("name") == data.modulename
+                            ? "activegeneraltabs"
+                            : ""
+                        }
+                      >
+                        <Link
+                          to={`?page=mvx#&submenu=vendor&ID=${user_query.get(
+                            "ID"
+                          )}&name=${data.modulename}`}
+                        >
+                          {data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ""}
+                          {data.tablabel}
+                        </Link>
+                      </li>
+                    )
+                  )}
+                </ul>
 
-          </div>
+                <div className="tabcontentclass">
+                  <this.Child name={user_query} />
+                </div>
+              </div>
+            </div>
+          )}
+
+          <BannerSection />
         </div>
       </div>
+
     );
   }
 
@@ -821,7 +882,6 @@ class App extends React.Component {
       this.state.data_zone_in_shipping = [];
     }
 
-
     if (new URLSearchParams(window.location.hash).get("ID") && name.get("ID") != this.state.set_tab_name_id) {
       axios.get(
         `${appLocalizer.apiUrl}/mvx_module/v1/list_of_all_tab_based_settings_field`, {
@@ -838,7 +898,6 @@ class App extends React.Component {
 
         })
     }
-
 
     if (new URLSearchParams(window.location.hash).get("ID") && name.get("name") != this.state.set_tab_name) {
       axios.get(
@@ -858,10 +917,6 @@ class App extends React.Component {
     }
 
 
-
-
-
-
     if (new URLSearchParams(window.location.hash).get("name") == 'vendor-shipping') {
       axios.get(
         `${appLocalizer.apiUrl}/mvx_module/v1/specific_vendor_shipping`, {
@@ -875,7 +930,6 @@ class App extends React.Component {
           }
         })
     }
-
 
     if (new URLSearchParams(window.location.hash).get("zone_id")) {
       var params = {
@@ -900,363 +954,544 @@ class App extends React.Component {
 
     return (
       <div>
-
-
-        {appLocalizer.mvx_all_backend_tab_list['marketplace-vendors'].map((data, index) => (
-          <div>
-
-            {
-
-              data.modulename == name.get("name") ?
-
-
-                name.get("name") == 'vendor-followers' ?
-
+        {appLocalizer.mvx_all_backend_tab_list["marketplace-vendors"].map(
+          (data, index) => (
+            <div>
+              {data.modulename == name.get("name") ? (
+                name.get("name") == "vendor-followers" ? (
                   <DataTable
                     columns={this.state.columns_followers}
                     data={this.state.datafollowers}
                     selectableRows
                     pagination
                   />
+                ) : name.get("name") == "vendor-shipping" ? (
+                  name.get("zone_id") ? (
+                    <div>
+                      <table className="form-table wcmp-shipping-zone-settings wc-shipping-zone-settings">
+                        <tbody>
+                          <tr>
+                            <th scope="row" className="titledesc">
+                              <label>Zone Name</label>
+                            </th>
+                            <td className="forminp">
+                              {this.state.data_zone_in_shipping.zones
+                                ? this.state.data_zone_in_shipping.zones.data
+                                    .zone_name
+                                : ""}
+                            </td>
+                          </tr>
 
-                  :
+                          <tr>
+                            <th scope="row" className="titledesc">
+                              <label htmlFor>Zone region</label>
+                            </th>
+                            <td className="forminp">
+                              {this.state.data_zone_in_shipping.zones
+                                ? this.state.data_zone_in_shipping.zones
+                                    .formatted_zone_location
+                                : ""}
+                            </td>
+                          </tr>
 
-                  name.get("name") == 'vendor-shipping' ?
+                          <tr></tr>
 
-                    name.get("zone_id") ?
+                          <tr className="hide_if_zone_not_limited">
+                            <th scope="row" className="titledesc">
+                              <label htmlFor>Select specific states</label>
+                            </th>
+                            <td className="forminp">
+                              <Select
+                                value={
+                                  this.state.data_zone_in_shipping
+                                    .get_database_state_name
+                                    ? this.state.data_zone_in_shipping
+                                        .get_database_state_name
+                                    : ""
+                                }
+                                isMulti
+                                options={
+                                  this.state.data_zone_in_shipping.state_select
+                                }
+                                onChange={(e) =>
+                                  this.update_post_code(
+                                    e,
+                                    name.get("zone_id"),
+                                    name.get("ID"),
+                                    "select_state"
+                                  )
+                                }
+                              ></Select>
+                            </td>
+                          </tr>
 
+                          <tr className="hide_if_zone_not_limited">
+                            <th className="titledesc">
+                              <label htmlFor>Set your postcode</label>
+                            </th>
+                            <td className="mvx-settings-basic-input-class">
+                              <input
+                                id="select_zone_postcodes"
+                                className="mvx-setting-form-input"
+                                type="text"
+                                defaultValue={
+                                  this.state.data_zone_in_shipping.postcodes
+                                }
+                                placeholder="Postcodes need to be comma separated"
+                                onChange={(e) =>
+                                  this.update_post_code(
+                                    e,
+                                    name.get("zone_id"),
+                                    name.get("ID"),
+                                    "postcode"
+                                  )
+                                }
+                              />
+                            </td>
+                          </tr>
 
+                          <tr>
+                            <th className="titledesc">
+                              <label>Shipping methods</label>
+                            </th>
+                            <td className>
+                              <table className="wcmp-shipping-zone-methods wc-shipping-zone-methods widefat">
+                                <thead>
+                                  <tr>
+                                    <th className="wcmp-title wc-shipping-zone-method-title">
+                                      Title
+                                    </th>
+                                    <th className="wcmp-enabled wc-shipping-zone-method-enabled">
+                                      Enabled
+                                    </th>
+                                    <th className="wcmp-description wc-shipping-zone-method-description">
+                                      Description
+                                    </th>
+                                    <th className="wcmp-action">Action</th>
+                                  </tr>
+                                </thead>
 
+                                <tfoot>
+                                  <tr>
+                                    <td>
+                                      <Button
+                                        onClick={(e) =>
+                                          this.handleaddshipping_method(e)
+                                        }
+                                        className="button wcmp-shipping-zone-show-method wc-shipping-zone-add-method"
+                                      >
+                                        Add shipping method
+                                      </Button>
+                                    </td>
+                                  </tr>
+                                </tfoot>
 
+                                <tbody>
+                                  {this.state.data_zone_in_shipping
+                                    .vendor_shipping_methods ? (
+                                    Object.entries(
+                                      this.state.data_zone_in_shipping
+                                        .vendor_shipping_methods
+                                    ).map((data, index) => (
+                                      <tr className="wcmp-shipping-zone-method">
+                                        <td>{data[1].title}</td>
+                                        <td className="wcmp-shipping-zone-method-enabled wc-shipping-zone-method-enabled">
+                                          <span>
+                                            <input
+                                              className="inputcheckbox"
+                                              defaultChecked={
+                                                data[1].enabled &&
+                                                data[1].enabled == "yes"
+                                                  ? true
+                                                  : false
+                                              }
+                                              type="checkbox"
+                                              name="method_status"
+                                              onChange={(e) =>
+                                                this.toggle_shipping_method(
+                                                  e,
+                                                  data[1].instance_id,
+                                                  name.get("zone_id"),
+                                                  name.get("ID")
+                                                )
+                                              }
+                                            />
+                                          </span>
+                                        </td>
 
+                                        <td>{data[1].settings.description}</td>
 
-                      <div>
+                                        <td>
+                                          <div className="mvx-actions">
+                                            <span className="edit">
+                                              <Button
+                                                onClick={(e) =>
+                                                  this.handle_different_shipping_add(
+                                                    e,
+                                                    data[1],
+                                                    index
+                                                  )
+                                                }
+                                                className="button wcmp-shipping-zone-show-method wc-shipping-zone-add-method"
+                                              >
+                                                EDIT
+                                              </Button>
+                                            </span>
+                                            <span className="delete">
+                                              <Button
+                                                onClick={(e) =>
+                                                  this.handle_different_shipping_delete(
+                                                    e,
+                                                    name.get("zone_id"),
+                                                    data[1].instance_id,
+                                                    name.get("ID")
+                                                  )
+                                                }
+                                                className="button wcmp-shipping-zone-show-method wc-shipping-zone-add-method"
+                                              >
+                                                DELETE
+                                              </Button>
+                                            </span>
+                                          </div>
+                                        </td>
 
+                                        <Dialog
+                                          open={this.state.open_child_model[index]}
+                                          onClose={this.handlechildClose}
+                                          aria-labelledby="form-dialog-title"
+                                        >
+                                          <DialogTitle id="form-dialog-title">
+                                            <div className="wcmp-module-dialog-title">
+                                              Differnet method
+                                            </div>
+                                          </DialogTitle>
+                                          <DialogContent>
+                                            <DialogContentText>
+                                              {data[1].id &&
+                                              data[1].id == "flat_rate" ? (
+                                                <div className="mvx-vendor-shipping-method-details">
+                                                  <label className="control-label col-sm-3 col-md-3">
+                                                    Method Title
+                                                  </label>
+                                                  <input
+                                                    type="text"
+                                                    defaultValue={data[1].title}
+                                                    onChange={(e) =>
+                                                      this.handleOnChange(
+                                                        e,
+                                                        data[1],
+                                                        name.get("zone_id"),
+                                                        name.get("ID"),
+                                                        "title"
+                                                      )
+                                                    }
+                                                  />
 
+                                                  <label className="control-label col-sm-3 col-md-3">
+                                                    Cost
+                                                  </label>
+                                                  <input
+                                                    id="method_cost_fr"
+                                                    className="form-control"
+                                                    type="number"
+                                                    defaultValue={
+                                                      data[1].settings.cost
+                                                    }
+                                                    placeholder="0.00"
+                                                    onChange={(e) =>
+                                                      this.handleOnChange(
+                                                        e,
+                                                        data[1],
+                                                        name.get("zone_id"),
+                                                        name.get("ID"),
+                                                        "cost"
+                                                      )
+                                                    }
+                                                  />
 
+                                                  <select
+                                                    defaultValue={
+                                                      data[1].settings.tax_status
+                                                    }
+                                                    onChange={(e) =>
+                                                      this.handleOnChange(
+                                                        e,
+                                                        data[1],
+                                                        name.get("zone_id"),
+                                                        name.get("ID"),
+                                                        "tax"
+                                                      )
+                                                    }
+                                                  >
+                                                    <option value="none">None</option>
+                                                    <option value="taxable">
+                                                      Taxable
+                                                    </option>
+                                                  </select>
+                                                </div>
+                                              ) : data[1].id == "local_pickup" ? (
+                                                <div>
+                                                  <label className="control-label col-sm-3 col-md-3">
+                                                    Method Title
+                                                  </label>
+                                                  <input
+                                                    type="text"
+                                                    defaultValue={data[1].title}
+                                                    onChange={(e) =>
+                                                      this.handleOnChange(
+                                                        e,
+                                                        data[1],
+                                                        name.get("zone_id"),
+                                                        name.get("ID"),
+                                                        "title"
+                                                      )
+                                                    }
+                                                  />
 
+                                                  <label className="control-label col-sm-3 col-md-3">
+                                                    Cost
+                                                  </label>
+                                                  <input
+                                                    id="method_cost_fr"
+                                                    className="form-control"
+                                                    type="number"
+                                                    defaultValue={
+                                                      data[1].settings.cost
+                                                    }
+                                                    placeholder="0.00"
+                                                    onChange={(e) =>
+                                                      this.handleOnChange(
+                                                        e,
+                                                        data[1],
+                                                        name.get("zone_id"),
+                                                        name.get("ID"),
+                                                        "cost"
+                                                      )
+                                                    }
+                                                  />
 
+                                                  <select
+                                                    defaultValue={
+                                                      data[1].settings.tax_status
+                                                    }
+                                                    onChange={(e) =>
+                                                      this.handleOnChange(
+                                                        e,
+                                                        data[1],
+                                                        name.get("zone_id"),
+                                                        name.get("ID"),
+                                                        "tax"
+                                                      )
+                                                    }
+                                                  >
+                                                    <option value="none">None</option>
+                                                    <option value="taxable">
+                                                      Taxable
+                                                    </option>
+                                                  </select>
+                                                </div>
+                                              ) : data[1].id == "free_shipping" ? (
+                                                <div>
+                                                  <label className="control-label col-sm-3 col-md-3">
+                                                    Method Title
+                                                  </label>
+                                                  <input
+                                                    type="text"
+                                                    defaultValue={data[1].title}
+                                                    onChange={(e) =>
+                                                      this.handleOnChange(
+                                                        e,
+                                                        data[1],
+                                                        name.get("zone_id"),
+                                                        name.get("ID"),
+                                                        "title"
+                                                      )
+                                                    }
+                                                  />
 
-
-                        <table className="form-table wcmp-shipping-zone-settings wc-shipping-zone-settings">
-                          <tbody>
-                            <tr>
-                              <th scope="row" className="titledesc">
-                                <label>
-                                  Zone Name
-                                </label>
-                              </th>
-                              <td className="forminp">{this.state.data_zone_in_shipping.zones ? this.state.data_zone_in_shipping.zones.data.zone_name : ''}</td>
-                            </tr>
-
-                            <tr>
-                              <th scope="row" className="titledesc">
-                                <label htmlFor>
-                                  Zone region
-                                </label>
-                              </th>
-                              <td className="forminp">{this.state.data_zone_in_shipping.zones ? this.state.data_zone_in_shipping.zones.formatted_zone_location : ''}</td>
-                            </tr>
-
-                            <tr>
-
-                            </tr>
-
-                            <tr className="hide_if_zone_not_limited">
-                              <th scope="row" className="titledesc">
-                                <label htmlFor>
-                                  Select specific states
-                                </label>
-                              </th>
-                              <td className="forminp">
-                                <Select
-                                  value={this.state.data_zone_in_shipping.get_database_state_name ? this.state.data_zone_in_shipping.get_database_state_name : ''}
-                                  isMulti
-                                  options={this.state.data_zone_in_shipping.state_select}
-                                  onChange={(e) => this.update_post_code(e, name.get("zone_id"), name.get("ID"), 'select_state')}
-                                >
-                                </Select>
-                              </td>
-                            </tr>
-
-                            <tr className="hide_if_zone_not_limited">
-                              <th className="titledesc">
-                                <label htmlFor>
-                                  Set your postcode
-                                </label>
-                              </th>
-                              <td className="mvx-settings-basic-input-class">
-                                <input id="select_zone_postcodes" className="mvx-setting-form-input" type="text" defaultValue={this.state.data_zone_in_shipping.postcodes} placeholder="Postcodes need to be comma separated" onChange={(e) => this.update_post_code(e, name.get("zone_id"), name.get("ID"), 'postcode')} />
-                              </td>
-                            </tr>
-
-                            <tr>
-                              <th className="titledesc">
-                                <label>
-                                  Shipping methods
-                                </label>
-                              </th>
-                              <td className>
-                                <table className="wcmp-shipping-zone-methods wc-shipping-zone-methods widefat">
-                                  <thead>
+                                                  <label className="control-label col-sm-3 col-md-3">
+                                                    Cost
+                                                  </label>
+                                                  <input
+                                                    id="method_cost_fr"
+                                                    className="form-control"
+                                                    type="number"
+                                                    defaultValue={
+                                                      data[1].settings.min_amount
+                                                    }
+                                                    placeholder="0.00"
+                                                    onChange={(e) =>
+                                                      this.handleOnChange(
+                                                        e,
+                                                        data[1],
+                                                        name.get("zone_id"),
+                                                        name.get("ID"),
+                                                        "min_cost"
+                                                      )
+                                                    }
+                                                  />
+                                                </div>
+                                              ) : (
+                                                ""
+                                              )}
+                                            </DialogContentText>
+                                          </DialogContent>
+                                          <DialogActions>
+                                            <Button
+                                              onClick={this.handlechildClose}
+                                              color="primary"
+                                            >
+                                              Cancel
+                                            </Button>
+                                          </DialogActions>
+                                        </Dialog>
+                                      </tr>
+                                    ))
+                                  ) : (
                                     <tr>
-                                      <th className="wcmp-title wc-shipping-zone-method-title">Title</th>
-                                      <th className="wcmp-enabled wc-shipping-zone-method-enabled">Enabled</th>
-                                      <th className="wcmp-description wc-shipping-zone-method-description">Description</th>
-                                      <th className="wcmp-action">Action</th>
-                                    </tr>
-                                  </thead>
-
-                                  <tfoot>
-                                    <tr>
-                                      <td>
-                                        <Button onClick={(e) => this.handleaddshipping_method(e)} className="button wcmp-shipping-zone-show-method wc-shipping-zone-add-method">Add shipping method</Button>
+                                      <td colspan="4">
+                                        You can add multiple shipping methods within
+                                        this zone. Only customers within the zone will
+                                        see them
                                       </td>
                                     </tr>
-                                  </tfoot>
+                                  )}
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
 
-                                  <tbody>
-
-
-                                    {this.state.data_zone_in_shipping.vendor_shipping_methods ?
-
-                                      Object.entries(this.state.data_zone_in_shipping.vendor_shipping_methods).map((data, index) => (
-
-                                        <tr className="wcmp-shipping-zone-method">
-                                          <td>
-                                            {data[1].title}
-                                          </td>
-                                          <td className="wcmp-shipping-zone-method-enabled wc-shipping-zone-method-enabled">
-                                            <span>
-                                              <input className="inputcheckbox" defaultChecked={data[1].enabled && data[1].enabled == 'yes' ? true : false} type="checkbox" name="method_status" onChange={(e) => this.toggle_shipping_method(e, data[1].instance_id, name.get("zone_id"), name.get("ID"))} />
-                                            </span>
-                                          </td>
-
-                                          <td>
-                                            {data[1].settings.description}
-                                          </td>
-
-                                          <td>
-                                            <div className="mvx-actions">
-                                              <span className="edit"><Button onClick={(e) => this.handle_different_shipping_add(e, data[1], index)} className="button wcmp-shipping-zone-show-method wc-shipping-zone-add-method">EDIT</Button>
-                                              </span>
-                                              <span className="delete"><Button onClick={(e) => this.handle_different_shipping_delete(e, name.get("zone_id"), data[1].instance_id, name.get("ID"))} className="button wcmp-shipping-zone-show-method wc-shipping-zone-add-method">DELETE</Button></span>
-                                            </div>
-                                          </td>
-
-
-
-
-                                          <Dialog open={this.state.open_child_model[index]} onClose={this.handlechildClose} aria-labelledby="form-dialog-title">
-                                            <DialogTitle id="form-dialog-title"><div className="wcmp-module-dialog-title">Differnet method</div></DialogTitle>
-                                            <DialogContent>
-                                              <DialogContentText>
-
-                                                {data[1].id && data[1].id == 'flat_rate' ?
-
-                                                  <div className="mvx-vendor-shipping-method-details">
-                                                    <label className="control-label col-sm-3 col-md-3">Method Title</label>
-                                                    <input type="text" defaultValue={data[1].title} onChange={(e) => this.handleOnChange(e, data[1], name.get("zone_id"), name.get("ID"), 'title')} />
-
-                                                    <label className="control-label col-sm-3 col-md-3">Cost</label>
-                                                    <input id="method_cost_fr" className="form-control" type="number" defaultValue={data[1].settings.cost} placeholder="0.00" onChange={(e) => this.handleOnChange(e, data[1], name.get("zone_id"), name.get("ID"), 'cost')} />
-
-                                                    <select defaultValue={data[1].settings.tax_status} onChange={(e) => this.handleOnChange(e, data[1], name.get("zone_id"), name.get("ID"), 'tax')}>
-                                                      <option value="none">None</option>
-                                                      <option value="taxable">Taxable</option>
-                                                    </select>
-                                                  </div>
-
-                                                  :
-
-                                                  data[1].id == 'local_pickup' ?
-
-                                                    <div>
-                                                      <label className="control-label col-sm-3 col-md-3">Method Title</label>
-                                                      <input type="text" defaultValue={data[1].title} onChange={(e) => this.handleOnChange(e, data[1], name.get("zone_id"), name.get("ID"), 'title')} />
-
-                                                      <label className="control-label col-sm-3 col-md-3">Cost</label>
-                                                      <input id="method_cost_fr" className="form-control" type="number" defaultValue={data[1].settings.cost} placeholder="0.00" onChange={(e) => this.handleOnChange(e, data[1], name.get("zone_id"), name.get("ID"), 'cost')} />
-
-                                                      <select defaultValue={data[1].settings.tax_status} onChange={(e) => this.handleOnChange(e, data[1], name.get("zone_id"), name.get("ID"), 'tax')}>
-                                                        <option value="none">None</option>
-                                                        <option value="taxable">Taxable</option>
-                                                      </select>
-                                                    </div>
-
-
-                                                    :
-
-                                                    data[1].id == 'free_shipping' ?
-
-                                                      <div>
-                                                        <label className="control-label col-sm-3 col-md-3">Method Title</label>
-                                                        <input type="text" defaultValue={data[1].title} onChange={(e) => this.handleOnChange(e, data[1], name.get("zone_id"), name.get("ID"), 'title')} />
-
-                                                        <label className="control-label col-sm-3 col-md-3">Cost</label>
-                                                        <input id="method_cost_fr" className="form-control" type="number" defaultValue={data[1].settings.min_amount} placeholder="0.00" onChange={(e) => this.handleOnChange(e, data[1], name.get("zone_id"), name.get("ID"), 'min_cost')} />
-
-                                                      </div>
-
-                                                      :
-
-                                                      ''
-
-                                                }
-
-                                              </DialogContentText>
-                                            </DialogContent>
-                                            <DialogActions>
-                                              <Button onClick={this.handlechildClose} color="primary">Cancel</Button>
-                                            </DialogActions>
-                                          </Dialog>
-
-
-
-                                        </tr>
-
-
-
-
-
-
-
-                                      ))
-
-
-                                      :
-
-
-                                      <tr>
-                                        <td colspan="4">You can add multiple shipping methods within this zone. Only customers within the zone will see them</td>
-                                      </tr>
-
-                                    }
-
-
-                                  </tbody>
-                                </table>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-
-
-                        <Dialog open={this.state.open_model} onClose={this.handleClose} aria-labelledby="form-dialog-title">
-                          <DialogTitle id="form-dialog-title"><div className="wcmp-module-dialog-title">Add shipping method</div></DialogTitle>
-                          <DialogContent>
-                            <DialogContentText>
-
-                              <p>Choose the shipping method you wish to add. Only shipping methods which support zones are listed</p>
-
-                              <Select
-                                className="shipping_method"
-                                options={this.state.add_shipping_options_data}
-                                onChange={e => {
-                                  this.onChangeshipping(e, name.get("zone_id"), name.get("ID"));
-                                }}
-                              >
-                              </Select>
-                              <div className="wc-shipping-zone-method-description">Lets you charge a rate for shipping.</div>
-                            </DialogContentText>
-                          </DialogContent>
-                          <DialogActions>
-                            <Button onClick={this.handleClose} color="primary">Add shipping method</Button>
-                          </DialogActions>
-                        </Dialog>
-
-
-                      </div>
-
-                      :
-
-                      <div>
-
-
-                        {this.state.data_setting_fileds.shipping_options ?
-
-                          <div>
+                      <Dialog
+                        open={this.state.open_model}
+                        onClose={this.handleClose}
+                        aria-labelledby="form-dialog-title"
+                      >
+                        <DialogTitle id="form-dialog-title">
+                          <div className="wcmp-module-dialog-title">
+                            Add shipping method
+                          </div>
+                        </DialogTitle>
+                        <DialogContent>
+                          <DialogContentText>
+                            <p>
+                              Choose the shipping method you wish to add. Only
+                              shipping methods which support zones are listed
+                            </p>
 
                             <Select
-                              className="shipping_choice"
-                              options={this.state.data_setting_fileds.shipping_options}
-                              defaultValue={this.state.data_setting_fileds.vendor_default_shipping_options}
-                              onChange={e => {
-                                this.onChangeshippingoption(e, name.get("ID"));
+                              className="shipping_method"
+                              options={this.state.add_shipping_options_data}
+                              onChange={(e) => {
+                                this.onChangeshipping(
+                                  e,
+                                  name.get("zone_id"),
+                                  name.get("ID")
+                                );
                               }}
-                            />
-
-                            {this.state.vendor_shipping_option_choice == 'distance_by_zone' ?
-                              <DataTable
-                                columns={this.state.columns_zone_shipping}
-                                data={this.state.data_zone_shipping}
-                                selectableRows
-                                pagination
-                              />
-                              :
-
-                              this.state.vendor_shipping_option_choice == 'distance_by_shipping' ?
-
-                                <DynamicForm
-                                  key={`dynamic-form`}
-                                  className="class"
-                                  title="distance wise shipping"
-                                  model={this.state.data_setting_fileds['distance-shipping']}
-                                  method="post"
-                                  modulename="distance-shipping"
-                                  vendor_id={name.get("ID")}
-                                  url="mvx_module/v1/update_vendor"
-                                  submitbutton="false"
-                                />
-                                :
-
-                                this.state.vendor_shipping_option_choice == 'shipping_by_country' ?
-
-                                  <DynamicForm
-                                    key={`dynamic-form`}
-                                    className="class"
-                                    title="country wise shipping"
-                                    model={this.state.data_setting_fileds['country-shipping']}
-                                    method="post"
-                                    modulename="country-shipping"
-                                    vendor_id={name.get("ID")}
-                                    url="mvx_module/v1/update_vendor"
-                                    submitbutton="false"
-                                  />
-
-                                  : ''}
-
-                          </div>
-
-                          : ''}
-
-                      </div>
-
-                    :
-                    <div>
-
-                      {this.state.data_setting_fileds && Object.keys(this.state.data_setting_fileds).length > 0 ?
-
-                        <DynamicForm
-                          key={`dynamic-form-${data.modulename}`}
-                          className={data.classname}
-                          title={data.tablabel}
-                          model={this.state.data_setting_fileds[data.modulename]}
-                          method="post"
-                          vendor_id={name.get("ID")}
-                          modulename={data.modulename}
-                          url={data.apiurl}
-                          submitbutton="false"
-                        />
-
-                        : ''}
-
+                            ></Select>
+                            <div className="wc-shipping-zone-method-description">
+                              Lets you charge a rate for shipping.
+                            </div>
+                          </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                          <Button onClick={this.handleClose} color="primary">
+                            Add shipping method
+                          </Button>
+                        </DialogActions>
+                      </Dialog>
                     </div>
+                  ) : (
+                    <div>
+                      {this.state.data_setting_fileds.shipping_options ? (
+                        <div>
+                          <Select
+                            className="shipping_choice"
+                            options={this.state.data_setting_fileds.shipping_options}
+                            defaultValue={
+                              this.state.data_setting_fileds
+                                .vendor_default_shipping_options
+                            }
+                            onChange={(e) => {
+                              this.onChangeshippingoption(e, name.get("ID"));
+                            }}
+                          />
 
-                : ''
-            }
-          </div>
-        ))}
+                          {this.state.vendor_shipping_option_choice ==
+                          "distance_by_zone" ? (
+                            <DataTable
+                              columns={this.state.columns_zone_shipping}
+                              data={this.state.data_zone_shipping}
+                              selectableRows
+                              pagination
+                            />
+                          ) : this.state.vendor_shipping_option_choice ==
+                            "distance_by_shipping" ? (
+                            <DynamicForm
+                              key={`dynamic-form`}
+                              className="class"
+                              title="distance wise shipping"
+                              model={
+                                this.state.data_setting_fileds["distance-shipping"]
+                              }
+                              method="post"
+                              modulename="distance-shipping"
+                              vendor_id={name.get("ID")}
+                              url="mvx_module/v1/update_vendor"
+                              submitbutton="false"
+                            />
+                          ) : this.state.vendor_shipping_option_choice ==
+                            "shipping_by_country" ? (
+                            <DynamicForm
+                              key={`dynamic-form`}
+                              className="class"
+                              title="country wise shipping"
+                              model={
+                                this.state.data_setting_fileds["country-shipping"]
+                              }
+                              method="post"
+                              modulename="country-shipping"
+                              vendor_id={name.get("ID")}
+                              url="mvx_module/v1/update_vendor"
+                              submitbutton="false"
+                            />
+                          ) : (
+                            ""
+                          )}
+                        </div>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                  )
+                ) : (
+                  <div>
+                    {this.state.data_setting_fileds &&
+                    Object.keys(this.state.data_setting_fileds).length > 0 ? (
+                      <DynamicForm
+                        key={`dynamic-form-${data.modulename}`}
+                        className={data.classname}
+                        title={data.tablabel}
+                        model={this.state.data_setting_fileds[data.modulename]}
+                        method="post"
+                        vendor_id={name.get("ID")}
+                        modulename={data.modulename}
+                        url={data.apiurl}
+                        submitbutton="false"
+                      />
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                )
+              ) : (
+                ""
+              )}
+            </div>
+          )
+        )}
       </div>
     );
   }
@@ -1268,140 +1503,104 @@ class App extends React.Component {
     });
   }
 
-  subHeaderComponentMemo(e) {
-    React.useMemo(() => {
-
-
-      return (
-        <FilterComponent filterText={this.state.filterText} />
-      );
-    }, [this.state.filterText, this.state.resetPaginationToggle]);
-  }
-
-  componentDidUpdate(prevProps) {
-
-
-
-  }
 
   componentDidMount() {
-
-
-
 
     axios({
       url: `${appLocalizer.apiUrl}/mvx_module/v1/all_vendors`
     })
-      .then(response => {
+    .then(response => {
+      //open_vendor_model_dynamic
+      var default_vendor_eye_popup = [];
+      response.data.map((data_ann, index_ann) => {
+        default_vendor_eye_popup[data_ann.ID] = false;
 
-        //open_vendor_model_dynamic
-
-        var default_vendor_eye_popup = [];
-        response.data.map((data_ann, index_ann) => {
-          default_vendor_eye_popup[data_ann.ID] = false;
-
-        })
-        this.setState({
-          datavendor: response.data,
-          data_all_vendor: response.data,
-          open_vendor_model_dynamic: default_vendor_eye_popup,
-          vendor_loading: true
-        });
       })
-
+      this.setState({
+        datavendor: response.data,
+        data_all_vendor: response.data,
+        open_vendor_model_dynamic: default_vendor_eye_popup,
+        vendor_loading: true
+      });
+    })
 
     // approve vendor
     axios.get(
       `${appLocalizer.apiUrl}/mvx_module/v1/all_vendors`, {
-      params: { role: 'dc_vendor' }
-    })
-      .then(response => {
-        this.setState({
-          data_approve_vendor: response.data,
-        });
+        params: { role: 'dc_vendor' }
       })
+    .then(response => {
+      this.setState({
+        data_approve_vendor: response.data,
+      });
+    })
 
     // pending vendor
     axios.get(
       `${appLocalizer.apiUrl}/mvx_module/v1/all_vendors`, {
-      params: { role: 'dc_pending_vendor' }
-    })
-      .then(response => {
-        this.setState({
-          data_pending_vendor: response.data,
-        });
+        params: { role: 'dc_pending_vendor' }
       })
-
+    .then(response => {
+      this.setState({
+        data_pending_vendor: response.data,
+      });
+    })
 
     // rejected vendor
     axios.get(
       `${appLocalizer.apiUrl}/mvx_module/v1/all_vendors`, {
-      params: { role: 'dc_rejected_vendor' }
-    })
-      .then(response => {
-        this.setState({
-          data_rejected_vendor: response.data,
-        });
+        params: { role: 'dc_rejected_vendor' }
       })
-
+    .then(response => {
+      this.setState({
+        data_rejected_vendor: response.data,
+      });
+    })
 
     axios.get(
       `${appLocalizer.apiUrl}/mvx_module/v1/all_vendor_followers`, {
-      params: { vendor_id: new URLSearchParams(window.location.hash).get("ID") }
-    })
-      .then(response => {
-        this.setState({
-          datafollowers: response.data,
-        });
+        params: { vendor_id: new URLSearchParams(window.location.hash).get("ID") }
       })
-
+    .then(response => {
+      this.setState({
+        datafollowers: response.data,
+      });
+    })
 
     axios({
       url: `${appLocalizer.apiUrl}/mvx_module/v1/vendor_list_search`
     })
-      .then(response => {
-        this.setState({
-          details_vendor: response.data,
-        });
-      })
-
-
+    .then(response => {
+      this.setState({
+        details_vendor: response.data,
+      });
+    })
 
     axios({
       url: `${appLocalizer.apiUrl}/mvx_module/v1/add_shipping_option`
     })
-      .then(response => {
-        this.setState({
-          add_shipping_options_data: response.data,
-        });
-      })
-
-
+    .then(response => {
+      this.setState({
+        add_shipping_options_data: response.data,
+      });
+    })
 
     axios.get(
-      `${appLocalizer.apiUrl}/mvx_module/v1/list_of_all_tab_based_settings_field`, {
+    `${appLocalizer.apiUrl}/mvx_module/v1/list_of_all_tab_based_settings_field`, {
       params: { vendor_id: new URLSearchParams(window.location.hash).get("ID") }
     })
-      .then(response => {
-
-        if (new URLSearchParams(window.location.hash).get("ID") && new URLSearchParams(window.location.hash).get("name") == 'vendor-shipping' && response.data && Object.keys(response.data).length > 0 && response.data.vendor_default_shipping_options) {
-          this.setState({
-            vendor_shipping_option_choice: response.data.vendor_default_shipping_options.value,
-          });
-        }
-
-      })
-
-
-
-
+    .then(response => {
+      if (new URLSearchParams(window.location.hash).get("ID") && new URLSearchParams(window.location.hash).get("name") == 'vendor-shipping' && response.data && Object.keys(response.data).length > 0 && response.data.vendor_default_shipping_options) {
+        this.setState({
+          vendor_shipping_option_choice: response.data.vendor_default_shipping_options.value,
+        });
+      }
+    })
 
   }
 
-
   render() {
     return (
-
       <Router>
         <this.QueryParamsDemo />
       </Router>
