@@ -220,166 +220,276 @@ class App extends Component {
   }
 
   QueryParamsDemo() {
-
-
-
-    const loader_text_display = this.state.isLoaded ? "loading_ongoing" : '';
-    let queryt = this.useQuery();
-
-    /*if (this.state.isLoaded) {
-      return ( <PuffLoader css={override} color={"#cd0000"} size={500} loading={this.state.isLoaded} />);
-    }*/
-
     return (
-
-      <div className="mvx-module-section-before-header">
-
+      <div className="mvx-general-wrapper mvx-modules">
         <HeaderSection />
-
-
-        <div className="mvx-child-container">
-
-          <div className="mvx-sub-container">
-
-
+        <div className="mvx-container">
+          <div className="mvx-middle-container-wrapper">
             <div className="mv-off-white-box pa-15 mb-90 text-center">
               <div className="mvx-tab-name-display">Module</div>
-              <p>Customize your marketplace site by enabling the module that you prefer.</p>
+              <p>
+                Customize your marketplace site by enabling the module that you
+                prefer.
+              </p>
             </div>
 
-            <div className='mvx-row mb-25 mvx-justify-content-between mvx-align-items-center'>
-              <div className='mvx-col-auto'>
-                <ul className='mvx-ul-auto mvx-row'>
-                  <li className='mvx-col-auto'>
-                    <div className="mvx-total-module-name-and-count mvx-d-inline-flex" onClick={(e) => this.mvx_search_different_module_status(e, 'all')}>
+            <div className="mvx-row mb-25 mvx-justify-content-between mvx-align-items-center">
+              <div className="mvx-col-auto">
+                <ul className="mvx-ul-auto mvx-row">
+                  <li className="mvx-col-auto">
+                    <div
+                      className="mvx-total-module-name-and-count mvx-d-inline-flex"
+                      onClick={(e) =>
+                        this.mvx_search_different_module_status(e, "all")
+                      }
+                    >
                       <div className="mvx-total-modules-name">Total Modules :</div>
-                      <div className="mvx-total-modules-count">{this.state.total_number_of_module}</div>
+                      <div className="mvx-total-modules-count">
+                        {this.state.total_number_of_module}
+                      </div>
                     </div>
                   </li>
-                  <li class="mvx-col-auto mvx-divider"></li>
-                  <li className='mvx-col-auto'>
-                    <Button className='default-text pa-0' onClick={(e) => this.mvx_search_different_module_status(e, 'active')}>Active</Button>
+                  <li className="mvx-col-auto mvx-divider"></li>
+                  <li className="mvx-col-auto">
+                    <Button
+                      className="default-text pa-0"
+                      onClick={(e) =>
+                        this.mvx_search_different_module_status(e, "active")
+                      }
+                    >
+                      Active
+                    </Button>
                   </li>
-                  <li class="mvx-col-auto mvx-divider pa-0"></li>
-                  <li className='mvx-col-auto'>
-                    <Button className='default-text' onClick={(e) => this.mvx_search_different_module_status(e, 'inactive')}>Inactive</Button>
+                  <li className="mvx-col-auto mvx-divider pa-0"></li>
+                  <li className="mvx-col-auto">
+                    <Button
+                      className="default-text"
+                      onClick={(e) =>
+                        this.mvx_search_different_module_status(e, "inactive")
+                      }
+                    >
+                      Inactive
+                    </Button>
                   </li>
                 </ul>
-
               </div>
-              <div className='mvx-col-auto'>
-
-                <div className='mvx-search-holder'><input type="text" onChange={(e) => this.handleModuleSearch(e)} placeholder="Search modules" /></div>
-
-
-              </div>
-            </div>
-
-            <div className='mvx-wrap-bulk-all-date mb-25'>
-              <div className='mvx-wrap-bulk-action mvx-row mvx-row-sm-8'>
-                <div className='mvx-col-auto'>
-                  <Select placeholder="Search by Category" options={appLocalizer.select_module_category_option} isClearable={true} className="mvx-module-section-list-data" onChange={(e) => this.handleModuleSearchByCategory(e)} />
+              <div className="mvx-col-auto">
+                <div className="mvx-search-holder">
+                  <input
+                    type="text"
+                    onChange={(e) => this.handleModuleSearch(e)}
+                    placeholder="Search modules"
+                  />
                 </div>
               </div>
             </div>
 
-
-            <div className="mvx-module-section-ui module-listing dashboard-wrapper">
-              <div>
-
-                {this.state.items.length == 0 ? <PuffLoader css={override} color={"#cd0000"} size={200} loading={true} /> : this.state.items.map((student1, index1) => (
-
-                  <div className="mvx-module-list-start mb-25">
-                    <div className="mvx-module-list-container">
-
-                      <div class="mvx-text-with-line-wrapper">
-                        <div class="mvx-report-text w-100 mr-0"><span>{student1.label}</span></div>
-                      </div>
-
-                      <div className="mvx-module-option-row">
-
-                        {student1.options.map((student, index) => (
-                          <div className="mvx-module-section-options-list">
-                            <div className={`mvx-module-settings-box ${student.is_active ? 'active' : ''}`}>
-
-                              <div className="mvx-module-icon"><i class={`mvx-font ${student.thumbnail_dir}`}></i></div>
-
-                              <header>
-                                <div className="mvx-module-list-label-plan-action-swap">
-                                  <div className="mvx-module-list-label-text">
-                                    {student.name}
-                                    {student.plan == 'pro' ? <span className="mvx-module-section-pro-badge">{appLocalizer.pro_text}</span> : ''}
-                                  </div>
-                                </div>
-                                <p>
-                                  {student.description}
-                                </p>
-                              </header>
-                              {student.required_plugin_list ? <div className="mvx-module-require-name">Requires:</div> : ''}
-                              <ul>
-                                {
-                                  student.required_plugin_list &&
-                                  student.required_plugin_list.map((company, index_req) =>
-                                    <li>
-                                      {company.is_active ? <div className="mvx-module-active-plugin-class"><img src={appLocalizer.right_logo} width="10" height="10" alt="Active" /></div> : <div className="inactive-plugin-class"><span class="mvx-font icon-no"></span></div>}
-                                      <a href={company.plugin_link} className="mvx-third-party-plugin-link-class">{company.plugin_name}</a>
-                                    </li>
-                                  )}
-                              </ul>
-                              <div className="mvx-module-current-status wp-clearfix">
-                                {student.is_active && student.mod_link ? <a href={student.mod_link} className="module-settings button button-secondary mvx-module-url-button">{appLocalizer.settings_text}</a> : ''}
-                                <a href={student.doc_link} className="button button-secondary mvx-module-url-button">{appLocalizer.documentation_text}</a>
-                                <div class="mvx-toggle-checkbox-content">
-                                  <input type="checkbox" className="mvx-toggle-checkbox" id={`mvx-toggle-switch-${student.id}`} name="modules[]" value={student.id} checked={student.is_active ? true : false} onChange={(e) => this.handleOnChange(e, index, student.plan, student.is_required_plugin_active, student.doc_id, this.state.items, index1, index, student.id)} />
-                                  <label for={`mvx-toggle-switch-${student.id}`}></label>
-                                </div>
-                              </div>
-                              <Dialog open={this.state.open_model_dynamic[index]} onClose={this.handleClose_dynamic} aria-labelledby="form-dialog-title">
-                                <DialogTitle id="form-dialog-title"><div className="mvx-module-dialog-title">Warning !!</div></DialogTitle>
-                                <DialogContent>
-                                  <DialogContentText>
-                                    <div className="mvx-module-dialog-content">
-                                      Please active required first to use {student.name} module.
-                                    </div>
-                                  </DialogContentText>
-                                </DialogContent>
-                                <DialogActions>
-                                  <Button onClick={this.handleClose_dynamic} color="primary">Cancel</Button>
-                                </DialogActions>
-                              </Dialog>
-                            </div>
-                          </div>
-
-                        ))
-                        }
-                      </div>
-                    </div>
-                  </div>
-                ))}
+            <div className="mvx-wrap-bulk-all-date mb-25">
+              <div className="mvx-wrap-bulk-action mvx-row mvx-row-sm-8">
+                <div className="mvx-col-auto">
+                  <Select
+                    placeholder="Search by Category"
+                    options={appLocalizer.select_module_category_option}
+                    isClearable={true}
+                    className="mvx-module-section-list-data"
+                    onChange={(e) => this.handleModuleSearchByCategory(e)}
+                  />
+                </div>
               </div>
             </div>
 
-            <Dialog open={this.state.open_model} onClose={this.handleClose} aria-labelledby="form-dialog-title">
-              <DialogTitle id="form-dialog-title"><div className="mvx-module-dialog-title">Upgrade To Pro</div></DialogTitle>
+            <div className="mvx-module-section-ui module-listing dashboard-wrapper">
+              <div>
+                {this.state.items.length == 0 ? (
+                  <PuffLoader
+                    css={override}
+                    color={"#cd0000"}
+                    size={200}
+                    loading={true}
+                  />
+                ) : (
+                  this.state.items.map((student1, index1) => (
+                    <div className="mvx-module-list-start mb-25">
+                      <div className="mvx-module-list-container">
+                        <div className="mvx-text-with-line-wrapper">
+                          <div className="mvx-report-text w-100 mr-0">
+                            <span>{student1.label}</span>
+                          </div>
+                        </div>
+
+                        <div className="mvx-module-option-row">
+                          {student1.options.map((student, index) => (
+                            <div className="mvx-module-section-options-list">
+                              <div
+                                className={`mvx-module-settings-box ${
+                                  student.is_active ? "active" : ""
+                                }`}
+                              >
+                                <div className="mvx-module-icon">
+                                  <i className={`mvx-font ${student.thumbnail_dir}`}></i>
+                                </div>
+
+                                <header>
+                                  <div className="mvx-module-list-label-plan-action-swap">
+                                    <div className="mvx-module-list-label-text">
+                                      {student.name}
+                                      {student.plan == "pro" ? (
+                                        <span className="mvx-module-section-pro-badge">
+                                          {appLocalizer.pro_text}
+                                        </span>
+                                      ) : (
+                                        ""
+                                      )}
+                                    </div>
+                                  </div>
+                                  <p>{student.description}</p>
+                                </header>
+                                {student.required_plugin_list ? (
+                                  <div className="mvx-module-require-name">
+                                    Requires:
+                                  </div>
+                                ) : (
+                                  ""
+                                )}
+                                <ul>
+                                  {student.required_plugin_list &&
+                                    student.required_plugin_list.map(
+                                      (company, index_req) => (
+                                        <li>
+                                          {company.is_active ? (
+                                            <div className="mvx-module-active-plugin-class">
+                                              <img
+                                                src={appLocalizer.right_logo}
+                                                width="10"
+                                                height="10"
+                                                alt="Active"
+                                              />
+                                            </div>
+                                          ) : (
+                                            <div className="inactive-plugin-class">
+                                              <span className="mvx-font icon-no"></span>
+                                            </div>
+                                          )}
+                                          <a
+                                            href={company.plugin_link}
+                                            className="mvx-third-party-plugin-link-class"
+                                          >
+                                            {company.plugin_name}
+                                          </a>
+                                        </li>
+                                      )
+                                    )}
+                                </ul>
+                                <div className="mvx-module-current-status wp-clearfix">
+                                  {student.is_active && student.mod_link ? (
+                                    <a
+                                      href={student.mod_link}
+                                      className="module-settings button button-secondary mvx-module-url-button"
+                                    >
+                                      {appLocalizer.settings_text}
+                                    </a>
+                                  ) : (
+                                    ""
+                                  )}
+                                  <a
+                                    href={student.doc_link}
+                                    className="button button-secondary mvx-module-url-button"
+                                  >
+                                    {appLocalizer.documentation_text}
+                                  </a>
+                                  <div className="mvx-toggle-checkbox-content">
+                                    <input
+                                      type="checkbox"
+                                      className="mvx-toggle-checkbox"
+                                      id={`mvx-toggle-switch-${student.id}`}
+                                      name="modules[]"
+                                      value={student.id}
+                                      checked={student.is_active ? true : false}
+                                      onChange={(e) =>
+                                        this.handleOnChange(
+                                          e,
+                                          index,
+                                          student.plan,
+                                          student.is_required_plugin_active,
+                                          student.doc_id,
+                                          this.state.items,
+                                          index1,
+                                          index,
+                                          student.id
+                                        )
+                                      }
+                                    />
+                                    <label
+                                      for={`mvx-toggle-switch-${student.id}`}
+                                    ></label>
+                                  </div>
+                                </div>
+                                <Dialog
+                                  open={this.state.open_model_dynamic[index]}
+                                  onClose={this.handleClose_dynamic}
+                                  aria-labelledby="form-dialog-title"
+                                >
+                                  <DialogTitle id="form-dialog-title">
+                                    <div className="mvx-module-dialog-title">
+                                      Warning !!
+                                    </div>
+                                  </DialogTitle>
+                                  <DialogContent>
+                                    <DialogContentText>
+                                      <div className="mvx-module-dialog-content">
+                                        Please active required first to use{" "}
+                                        {student.name} module.
+                                      </div>
+                                    </DialogContentText>
+                                  </DialogContent>
+                                  <DialogActions>
+                                    <Button
+                                      onClick={this.handleClose_dynamic}
+                                      color="primary"
+                                    >
+                                      Cancel
+                                    </Button>
+                                  </DialogActions>
+                                </Dialog>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                )}
+              </div>
+            </div>
+
+            <Dialog
+              open={this.state.open_model}
+              onClose={this.handleClose}
+              aria-labelledby="form-dialog-title"
+            >
+              <DialogTitle id="form-dialog-title">
+                <div className="mvx-module-dialog-title">Upgrade To Pro</div>
+              </DialogTitle>
               <DialogContent>
                 <DialogContentText>
                   <div className="mvx-module-dialog-content">
-                    To use this paid module, Please visit <a href="https://multivendorx.com/">MultivendorX</a> Site.
+                    To use this paid module, Please visit{" "}
+                    <a href="https://multivendorx.com/">MultivendorX</a> Site.
                   </div>
                 </DialogContentText>
               </DialogContent>
               <DialogActions>
-                <Button onClick={this.handleClose} color="primary">Cancel</Button>
+                <Button onClick={this.handleClose} color="primary">
+                  Cancel
+                </Button>
               </DialogActions>
             </Dialog>
           </div>
 
           <BannerSection />
-
         </div>
-
-
       </div>
+
     );
   }
 

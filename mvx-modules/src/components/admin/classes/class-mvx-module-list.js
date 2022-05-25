@@ -257,7 +257,7 @@ class App extends Component {
     } else {
       return (
 
-        <div className="mvx-module-section-before-header">
+        <div className="mvx-general-wrapper mvx-dashboard">
 
           <HeaderSection />
 
