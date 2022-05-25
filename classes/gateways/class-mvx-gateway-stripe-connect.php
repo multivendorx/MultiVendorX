@@ -27,8 +27,7 @@ class MVX_Gateway_Stripe_Connect extends MVX_Payment_Gateway {
         $this->id = 'stripe_masspay';
         $this->gateway_title = __('Stripe connect', 'dc-woocommerce-multi-vendor');
         $this->payment_gateway = $this->id;
-        $disbursement_payment_method = get_mvx_global_settings('payment_method_disbursement') ? get_mvx_global_settings('payment_method_disbursement') : array();
-        $this->enabled = in_array('stripe_masspay', $disbursement_payment_method) ? 'Enable' : '';
+        $this->enabled = mvx_is_module_active('stripe-connect') ? 'Enable' : '';
         // Disconnect Vendor stripe account
         add_action('before_mvx_vendor_dashboard', array($this, 'disconnect_stripe_account'));
         // Stripe authorization

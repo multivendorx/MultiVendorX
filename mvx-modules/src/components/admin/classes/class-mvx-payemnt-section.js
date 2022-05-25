@@ -18,8 +18,6 @@ import {
 
 import DynamicForm from "../../../DynamicForm";
 
-import HeaderSection from './class-mvx-page-header';
-import BannerSection from './class-mvx-page-banner';
 import TabSection from './class-mvx-page-tab';
 
 const override = css`

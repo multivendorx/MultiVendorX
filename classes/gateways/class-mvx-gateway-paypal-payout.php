@@ -24,8 +24,7 @@ class MVX_Gateway_Paypal_Payout extends MVX_Payment_Gateway {
         $this->id = 'paypal_payout';
         $this->gateway_title = __('Paypal payout', 'dc-woocommerce-multi-vendor');
         $this->payment_gateway = $this->id;
-        $disbursement_payment_method = get_mvx_global_settings('payment_method_disbursement') ? get_mvx_global_settings('payment_method_disbursement') : array();
-        $this->enabled = in_array('paypal_payout', $disbursement_payment_method) ? 'Enable' : '';
+        $this->enabled = mvx_is_module_active('paypal-payout') ? 'Enable' : '';
         $this->client_id = get_mvx_global_settings('client_id');
         $this->client_secret = get_mvx_global_settings('client_secret');
         if (get_mvx_global_settings('is_asynchronousmode')) {

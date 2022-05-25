@@ -16,7 +16,7 @@ class MVX_Gateway_Bank_Transfer extends MVX_Payment_Gateway {
         $this->gateway_title = __('Bank transfer', 'dc-woocommerce-multi-vendor');
         $this->payment_gateway = $this->id;
         $disbursement_payment_method = get_mvx_global_settings('payment_method_disbursement') ? get_mvx_global_settings('payment_method_disbursement') : array();
-        $this->enabled = in_array('direct_bank', $disbursement_payment_method) ? 'Enable' : '';
+        $this->enabled = mvx_is_module_active('bank-payment') ? 'Enable' : '';
     }
     
     public function gateway_logo() { global $MVX; return $MVX->plugin_url . 'assets/images/'.$this->id.'.png'; }

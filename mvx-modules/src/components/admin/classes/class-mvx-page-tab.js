@@ -20,14 +20,18 @@ export default class TabSection extends React.Component {
 
   renderTab = () => {
     let model = this.props.model;
-    let query_name = this.props.query_name;
+    
     let funtion_name = this.props.funtion_name;
     let horizontally = this.props.horizontally;
     let no_banner = this.props.no_banner;
-    
+    let no_header = this.props.no_header;
+    let query_name = this.props.query_name;
+
+    let query_name_modified = this.props.vendor ? query_name.get("name") : query_name;
+
     let TabUI = model.map((m, index) => {
       return (
-        query_name == m.modulename ?
+        query_name_modified == m.modulename ?
           <div className="mvx-tab-description-start">
             <div className="mvx-tab-name">{m.tablabel}</div>
             <p>{m.description}</p>
@@ -37,16 +41,16 @@ export default class TabSection extends React.Component {
     });
 
     let TabUIContent =
-    <div className={`mvx-general-wrapper mvx-${query_name}`}> 
-    <HeaderSection />
+    <div className={`mvx-general-wrapper mvx-${query_name_modified}`}> 
+    {no_header ? '' : <HeaderSection />}
     <div className="mvx-container">
         <div className="mvx-middle-container-wrapper">
           {this.props.tab_description && this.props.tab_description == 'no' ? '' : TabUI}
           <ul className={`mvx-current-tab-lists ${horizontally ? 'mvx-horizontal-tabs' : ''}`}>
           {model.map((m, index) => {
             return (
-              <li className={query_name == m.modulename ? 'active-current-tab' : ''} >
-                <Link to={`?page=mvx#&submenu=${m.submenu}&name=${m.modulename}`}>
+              <li className={query_name_modified == m.modulename ? 'active-current-tab' : ''} >
+                <Link to={this.props.vendor ? `?page=mvx#&submenu=${m.submenu}&ID=${query_name.get("ID")}&name=${m.modulename}` : `?page=mvx#&submenu=${m.submenu}&name=${m.modulename}`}>
                   {m.icon ? <i class={`mvx-font ${m.icon}`}></i> : ''}
                   {m.tablabel}
                 </Link>
@@ -55,7 +59,7 @@ export default class TabSection extends React.Component {
           })}
           </ul>
           <div className="mvx-tab-content">
-            <funtion_name.Child name={query_name} />
+            {this.props.default_vendor_funtion ? <funtion_name.Childparent name={query_name} /> : <funtion_name.Child name={query_name} /> }
           </div>
         </div>
         {no_banner ? '' : <BannerSection />}

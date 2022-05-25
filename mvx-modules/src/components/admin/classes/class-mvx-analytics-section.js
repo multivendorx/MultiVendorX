@@ -108,8 +108,8 @@ class App extends Component {
       ],
       columns_commission: [
         {
-            name: <div className="mvx-datatable-header-text">Title</div>,
-            selector: row => <div dangerouslySetInnerHTML={{__html: row.title}}></div>,
+            name: <div className="mvx-datatable-header-text">Commission ID</div>,
+            selector: row => <div dangerouslySetInnerHTML={{__html: row.commission_id}}></div>,
             sortable: true,
         },
         {

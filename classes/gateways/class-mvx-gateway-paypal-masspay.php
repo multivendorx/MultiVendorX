@@ -22,7 +22,7 @@ class MVX_Gateway_Paypal_Masspay extends MVX_Payment_Gateway {
         $this->gateway_title = __('Paypal masspay', 'dc-woocommerce-multi-vendor');
         $this->payment_gateway = $this->id;
         $disbursement_payment_method = get_mvx_global_settings('payment_method_disbursement') ? get_mvx_global_settings('payment_method_disbursement') : array();
-        $this->enabled = in_array('paypal_masspay', $disbursement_payment_method) ? 'Enable' : '';
+        $this->enabled = mvx_is_module_active('paypal-masspay') ? 'Enable' : '';
         $this->api_username = get_mvx_global_settings('api_username');
         $this->api_password = get_mvx_global_settings('api_pass');
         $this->api_signature = get_mvx_global_settings('api_signature');

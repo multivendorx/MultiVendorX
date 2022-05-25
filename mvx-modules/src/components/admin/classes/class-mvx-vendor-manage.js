@@ -31,7 +31,7 @@ import DynamicForm from "../../../DynamicForm";
 import HeaderSection from './class-mvx-page-header';
 
 import BannerSection from './class-mvx-page-banner';
-
+import TabSection from './class-mvx-page-tab';
 const override = css`
   display: block;
   margin: 0 auto;
@@ -623,11 +623,17 @@ class App extends React.Component {
         <HeaderSection />
         <div className="mvx-container">
           {user_query.get("name") == "add_new" ? (
-            <div className="general-tab-area">
-              <div className="tabcontentclass tabcontentclass-child">
-                <this.Childparent name={user_query.get("name")} />
-              </div>
-            </div>
+            
+
+
+            <TabSection
+              model={appLocalizer.settings_fields['vendor_add_personal']}
+              query_name={user_query.get("name")}
+              funtion_name={this}
+              default_vendor_funtion
+            />
+
+
           ) : (
             ""
           )}
@@ -806,41 +812,16 @@ class App extends React.Component {
               </div>
             )
           ) : (
-            <div className="mvx-col-75">
-              <div className="mv-offactive-white-box pa-15 text-center border-b-0">
-                <div className="mvx-tab-name-display">{tab_name_display}</div>
-                <p>{tab_description_display}</p>
-              </div>
 
-              <div className="general-tab-area">
-                <ul className="mvx-general-tabs-list">
-                  {appLocalizer.mvx_all_backend_tab_list["marketplace-vendors"].map(
-                    (data, index) => (
-                      <li
-                        className={
-                          user_query.get("name") == data.modulename
-                            ? "activegeneraltabs"
-                            : ""
-                        }
-                      >
-                        <Link
-                          to={`?page=mvx#&submenu=vendor&ID=${user_query.get(
-                            "ID"
-                          )}&name=${data.modulename}`}
-                        >
-                          {data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ""}
-                          {data.tablabel}
-                        </Link>
-                      </li>
-                    )
-                  )}
-                </ul>
-
-                <div className="tabcontentclass">
-                  <this.Child name={user_query} />
-                </div>
-              </div>
-            </div>
+            <TabSection
+              model={appLocalizer.mvx_all_backend_tab_list['marketplace-vendors']}
+              query_name={user_query}
+              funtion_name={this}
+              no_banner
+              no_header
+              vendor
+            />
+            
           )}
 
           <BannerSection />
