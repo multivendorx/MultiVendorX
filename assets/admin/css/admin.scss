@@ -679,6 +679,23 @@ $border-radius :  4px;
     background-color: #fdfdfe;
 	margin-left: auto;
 }
+@mixin boxcss {
+	display: flex;
+	margin: 0 5px;
+	flex-wrap: wrap;
+	& .mvx-module-section-options-list {
+		width: 100%;
+		flex: 1 0 calc(33.33% - 10px);
+		background: #fdfdfe;
+		padding: 16px;
+		margin: 8px 8px 0px 0;
+		text-align: center;
+		height: 354px;
+		border: $border;
+		border-radius: $border-radius;
+	}
+	
+}
  
 #wpcontent {
     margin-left: 140px !important;
@@ -694,28 +711,28 @@ $border-radius :  4px;
     & .mvx-header-nav-right-section {
         margin-left: auto;
         @include flexprops(center); 
-        .mvx-header-search-section {
-            position: relative;
+        // .mvx-header-search-section {
+        //     position: relative;
 
-            & label {
-                position: absolute;
-                top: 11px;
-                left: 18px;
-                & i {
-                    color: #8e8b91;
-                }
-            }
-            & input {
-                @include input;
-                @include border;
-                &::placeholder {
-                    @include placeholder;
-                }
-            }
-            & input:focus {
-                @include inputfocus;
-            }
-        }
+        //     & label {
+        //         position: absolute;
+        //         top: 11px;
+        //         left: 18px;
+        //         & i {
+        //             color: #8e8b91;
+        //         }
+        //     }
+        //     & input {
+        //         @include input;
+        //         @include border;
+        //         &::placeholder {
+        //             @include placeholder;
+        //         }
+        //     }
+        //     & input:focus {
+        //         @include inputfocus;
+        //     }
+        // }
         & .nav-child-right {
             display: block;
             width: 40px;
@@ -755,16 +772,13 @@ $border-radius :  4px;
         }
     }
 }
-.container {
-    background-color: $base-color;
-    & .mvx-child-container {
-        @include flexprops(start);
+
+.mvx-child-container {
+
         & .mvx-sub-container {
-            padding-top: 78px;
-            margin-right: 24px;
 
             & .dashboard-tab-area {
-                width: 936px;
+                width: 946px;
                 @include border;
                 border-radius: $border-radius;
                 
@@ -882,8 +896,6 @@ $border-radius :  4px;
                     }
                 }
             }
-        }
-    }
     .mvx-text-with-line-wrapper {
         position: relative  
     }
@@ -938,9 +950,6 @@ $border-radius :  4px;
 		@include flexprops(center);
 		& .mvx-vendor-wrapper-show-specific {
 			margin-left: auto;
-			& .css-1s2u09g-control {
-				@include datepicker;
-			}
 		}
 	}
 	& .mvx-chart-graph-visible {
@@ -976,4 +985,100 @@ $border-radius :  4px;
 		
 	}
 
+	}
+}
+
+.mvx-child-container {
+	@include flexprops(start);
+	background: $base-color;
+	& .mvx-sub-container {
+		padding: 78px 0 0 0;
+		margin-right: 24px;
+	}
+}
+.mvx-module-section-before-header {
+	& .mvx-sub-container {
+		width: 946px;
+		padding: 0 0 0 20px;
+	}
+	
+    
+}
+
+
+.mvx-adv-image-display {
+	margin: 34px 0 0 auto;
+    padding-right: 14px;
+	& a {
+		display: block;
+	}
+}
+.mv-off-white-box {
+    text-align: center;
+    background: #fdfdfe;
+    border-radius: 4px;
+    padding: 20px 30px;
+	& .mvx-tab-name-display {
+		font-size: 20px;
+		font-weight: 500;
+		padding: 0 0 10px 0;
+		color: $title-color;
+	}
+	& p {
+		color: $paragraph-color;
+	}
+}
+.mvx-total-module-with-search  {
+	@include flexprops(center);
+	padding: 34px 0;
+	
+}
+.mvx-totalmodules-active-inactive {
+	@include flexprops(center);
+	margin-bottom: 0;
+	& li {
+		margin-bottom: 0;
+	}
+}
+.mvx-total-module-name-and-count {
+	@include flexprops(center);
+}
+.mvx-totalmodules-right-sec {
+	margin-left: auto;
+}
+.mvx-header-search-section {
+	position: relative;
+
+	& label {
+		position: absolute;
+		top: 11px;
+		left: 18px;
+		& i {
+			color: #8e8b91;
+		}
+	}
+	& input {
+		@include input;
+		@include border;
+		&::placeholder {
+			@include placeholder;
+		}
+	}
+	& input:focus {
+		@include inputfocus;
+	}
+}
+.css-1s2u09g-control {
+	@include datepicker;
+}
+.mvx-module-section-list-data {
+	.css-1s2u09g-control {
+		margin-left: 0;
+	}
+}
+.css-1pahdxg-control {
+	width: 280px;
+}
+.mvx-module-option-row {
+	@include boxcss;
 }

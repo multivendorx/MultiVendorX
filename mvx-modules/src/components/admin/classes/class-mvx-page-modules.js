@@ -247,9 +247,9 @@ class App extends Component {
               <p>Customize your marketplace site by enabling the module that you prefer.</p>
             </div>
 
-            <div className='mvx-row mb-25 mvx-justify-content-between mvx-align-items-center'>
-              <div className='mvx-col-auto'>
-                <ul className='mvx-ul-auto mvx-row'>
+            <div className='mvx-row mb-25 mvx-justify-content-between mvx-align-items-center mvx-total-module-with-search'>
+              <div className='mvx-col-auto mvx-totalmodules-left-sec'>
+                <ul className='mvx-ul-auto mvx-row mvx-totalmodules-active-inactive'>
                   <li className='mvx-col-auto'>
                     <div className="mvx-total-module-name-and-count mvx-d-inline-flex" onClick={(e) => this.mvx_search_different_module_status(e, 'all')}>
                       <div className="mvx-total-modules-name">Total Modules :</div>
@@ -267,9 +267,9 @@ class App extends Component {
                 </ul>
 
               </div>
-              <div className='mvx-col-auto'>
+              <div className='mvx-col-auto mvx-totalmodules-right-sec'>
 
-                <div className='mvx-search-holder'><input type="text" onChange={(e) => this.handleModuleSearch(e)} placeholder="Search modules" /></div>
+                <div className='mvx-search-holder mvx-header-search-section'><input type="text" onChange={(e) => this.handleModuleSearch(e)} placeholder="Search modules" /></div>
 
 
               </div>
@@ -293,7 +293,7 @@ class App extends Component {
                     <div className="mvx-module-list-container">
 
                       <div class="mvx-text-with-line-wrapper">
-                        <div class="mvx-report-text w-100 mr-0"><span>{student1.label}</span></div>
+                        <div class="mvx-report-text w-100 mr-0"><h4>{student1.label}</h4></div>
                       </div>
 
                       <div className="mvx-module-option-row">
