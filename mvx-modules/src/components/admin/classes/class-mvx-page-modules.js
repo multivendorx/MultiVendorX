@@ -234,9 +234,9 @@ class App extends Component {
             </div>
 
             <div className="mvx-row mb-25 mvx-justify-content-between mvx-align-items-center">
-              <div className="mvx-col-auto">
+              <div className="mvx-col-auto mvx-module-left-sec">
                 <ul className="mvx-ul-auto mvx-row">
-                  <li className="mvx-col-auto">
+                  <li className="mvx-col-auto mvx-totalmodule-text">
                     <div
                       className="mvx-total-module-name-and-count mvx-d-inline-flex"
                       onClick={(e) =>
@@ -273,7 +273,7 @@ class App extends Component {
                   </li>
                 </ul>
               </div>
-              <div className="mvx-col-auto">
+              <div className="mvx-col-auto mvx-module-right-sec">
                 <div className="mvx-search-holder">
                   <input
                     type="text"
@@ -286,7 +286,7 @@ class App extends Component {
 
             <div className="mvx-wrap-bulk-all-date mb-25">
               <div className="mvx-wrap-bulk-action mvx-row mvx-row-sm-8">
-                <div className="mvx-col-auto">
+                <div className="mvx-col-auto mvx-search-category">
                   <Select
                     placeholder="Search by Category"
                     options={appLocalizer.select_module_category_option}
