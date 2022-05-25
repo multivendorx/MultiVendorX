@@ -1137,5 +1137,54 @@ a:focus {
   height: 354px;
   border: 1px solid #d4d1d9;
   border-radius: 4px;
+  position: relative;
+}
+
+.mvx-module-settings-box .mvx-module-icon {
+  width: 56px;
+  height: 56px;
+  margin: auto;
+  line-height: 66px;
+  background: #3f1473;
+  background: linear-gradient(27deg, #3f1473 0%, #af3b74 50%, #db4b54 100%);
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.mvx-module-settings-box .mvx-module-icon i {
+  font-size: 24px;
+  color: #fdfdfe;
+}
+
+.mvx-module-settings-box .mvx-module-list-label-text {
+  color: #181718;
+  font-size: 1rem;
+  padding-bottom: 16px;
+}
+
+.mvx-module-settings-box .mvx-module-require-name {
+  margin-top: 20px;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.mvx-module-current-status {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background: #faf8fb;
+  padding: 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.mvx-module-current-status .mvx-toggle-checkbox-content {
+  margin-left: auto;
 }
 /*# sourceMappingURL=admin.css.map */
