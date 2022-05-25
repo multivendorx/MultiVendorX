@@ -22,7 +22,7 @@ import DataTable from 'react-data-table-component';
 
 import HeaderSection from './class-mvx-page-header';
 import BannerSection from './class-mvx-page-banner';
-
+import TabSection from './class-mvx-page-tab';
 import {
     LineChart,
     ResponsiveContainer,
@@ -136,69 +136,15 @@ class App extends Component {
   }
 
   QueryParamsDemo() {
-    let queryt = this.useQuery();
-
-    var tab_name_display = '';
-    var tab_description_display = '';
-    appLocalizer.mvx_all_backend_tab_list['status-tools'].map((data, index) => {
-        if(queryt.get("name") == data.modulename) {
-          tab_name_display = data.tablabel;
-          tab_description_display = data.description;
-        }
-      }
-    )
-
+    let use_query = this.useQuery();
     return (
-      <div className='mvx-status-tools-wrapper'>
-
-        <HeaderSection />
-
-        <div className="container">
-
-          <div className="mvx-child-container">
-
-          <div className="mvx-sub-container">
-            
-
-            <div className="mv-off-white-box pa-15 mb-90 text-center">
-              <div className="mvx-tab-name-display">{tab_name_display}</div>
-              <p>{tab_description_display}</p>
-            </div>
-
-
-            <div className="dashboard-tab-area">
-              <ul className="mvx-dashboard-tabs-list">
-                {appLocalizer.mvx_all_backend_tab_list['status-tools'].map((data, index) => (
-
-
-                data.link ? <li className={queryt.get("name") == data.modulename ? 'activedashboardtabs' : ''}><a href={data.link}>{data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}{data.tablabel}</a></li> : <li className={queryt.get("name") == data.modulename ? 'activedashboardtabs' : ''}><Link to={`?page=mvx#&submenu=status-tools&name=${data.modulename}`} >{data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}{data.tablabel}</Link></li>                
-
-                ))}
-              </ul>
-              <div className="dashboard-tabcontentclass pa-10 pt-0">
-                <div className='mvx-module-grid'>
-                <this.Child name={queryt.get("name")} />
-                </div>
-              </div>
-            </div>
-
-
-
-            </div>
-
-
-
-
-
-            <BannerSection />
-
-          </div>
-
-          
-
-          </div>
-
-      </div>
+      <TabSection
+        model={appLocalizer.mvx_all_backend_tab_list['status-tools']}
+        query_name={use_query.get("name")}
+        funtion_name={this}
+        tab_description="no"
+        horizontally
+      />
     );
   }
 

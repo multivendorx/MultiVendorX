@@ -23,7 +23,7 @@ import DataTable from 'react-data-table-component';
 import HeaderSection from './class-mvx-page-header';
 
 import BannerSection from './class-mvx-page-banner';
-
+import TabSection from './class-mvx-page-tab';
 import {
     LineChart,
     ResponsiveContainer,
@@ -394,44 +394,15 @@ class App extends Component {
   }
 
   QueryParamsDemo() {
-    let user_query_details = this.useQuery();
-    var tab_name_display, tab_description_display;
-    tab_name_display = tab_description_display = 100;
-    appLocalizer.mvx_all_backend_tab_list['marketplace-analytics'].map((data, index) => {
-        if(user_query_details.get("name") == data.modulename) {
-          tab_name_display = data.tablabel;
-          tab_description_display = data.description;
-        }
-      }
-    )
-
+    let use_query = this.useQuery();
     return (
-      <div className="mvx-parent-container">
-        <HeaderSection />
-        <div className="container">
-          <div className="mvx-child-container">
-            <div className="mvx-sub-container">
-              <div className="dashboard-tab-area">
-                <ul className="mvx-dashboard-tabs-list">
-                  {appLocalizer.mvx_all_backend_tab_list['marketplace-analytics'].map((data, index) => (
-                    <li className={user_query_details.get("name") == data.modulename ? 'activedashboardtabs' : ''}>
-                      <Link to={`?page=mvx#&submenu=analytics&name=${data.modulename}`} >
-                      {data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}{data.tablabel}
-                      </Link>   
-                    </li>
-                  ))}
-                </ul>
-                <div className="dashboard-tabcontentclass">
-                  <div className='mvx-module-grid'>
-                    <this.Child name={user_query_details.get("name")} />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <BannerSection />
-          </div>
-        </div>
-      </div>
+      <TabSection
+        model={appLocalizer.mvx_all_backend_tab_list['marketplace-analytics']}
+        query_name={use_query.get("name")}
+        funtion_name={this}
+        tab_description="no"
+        horizontally
+      />
     );
   }
 

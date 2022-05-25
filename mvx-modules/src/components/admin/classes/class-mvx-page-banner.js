@@ -15,7 +15,7 @@ class App extends Component {
 
   QueryParamsDemo() {
     return (
-      <div className="mvx-adv-image-display">
+      <div className="mvx-sidebar">
         <a href="https://www.qries.com/" target="__blank">
           <img alt="Multivendor X" src={appLocalizer.multivendor_logo} />
         </a>

@@ -28,6 +28,8 @@ const override = css`
 import HeaderSection from './class-mvx-page-header';
 import BannerSection from './class-mvx-page-banner';
 
+import TabSection from './class-mvx-page-tab';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -845,64 +847,13 @@ class App extends Component {
   }
 
   QueryParamsDemo() {
-    let queryt = this.useQuery();
-
-
-
-
-
-
-    if (!queryt.get("name")) {
-      //window.location.href = window.location.href+'&name=settings-general';
-    }
-
-    var tab_name_display = '';
-    var tab_description_display = '';
-    appLocalizer.mvx_all_backend_tab_list['marketplace-general-settings'].map((data, index) => {
-      if (queryt.get("name") == data.modulename) {
-        tab_name_display = data.tablabel;
-        tab_description_display = data.description;
-      }
-    }
-    )
-
+    let use_query = this.useQuery();
     return (
-
-      <div className='mvx-settings-wrapper'>
-
-        <HeaderSection />
-
-        <div className="mvx-container">
-          <div className="ptb-2r mvx-row">
-            <div className="mvx-col-75">
-
-              <div className="mv-off-white-box pa-15 text-center">
-                <div className="mvx-tab-name-display">{tab_name_display}</div>
-                <p>{tab_description_display}</p>
-              </div>
-
-              <div className="general-tab-area">
-                <ul className="mvx-general-tabs-list">
-                  {appLocalizer.mvx_all_backend_tab_list['marketplace-general-settings'].map((data, index) => (
-                    <li className={queryt.get("name") == data.modulename ? 'activegeneraltabs' : ''} >
-                      <Link to={`?page=mvx#&submenu=settings&name=${data.modulename}`} className={queryt.get("name") == data.modulename ? data.activeclass : ''}>
-                        {data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}{data.tablabel}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-                <div className="tabcontentclass">
-                  <this.Child name={queryt.get("name")} />
-                </div>
-              </div>
-            </div>
-
-            <BannerSection />
-
-          </div>
-        </div>
-
-      </div>
+      <TabSection
+        model={appLocalizer.mvx_all_backend_tab_list['marketplace-general-settings']}
+        query_name={use_query.get("name")}
+        funtion_name={this}
+      />
     );
   }
 

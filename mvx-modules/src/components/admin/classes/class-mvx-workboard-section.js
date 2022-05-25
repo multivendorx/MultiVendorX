@@ -26,7 +26,7 @@ import DynamicForm from "../../../DynamicForm";
 import DataTable from 'react-data-table-component';
 
 import HeaderSection from './class-mvx-page-header';
-
+import TabSection from './class-mvx-page-tab';
 
 const override = css`
   display: block;
@@ -1160,65 +1160,15 @@ class App extends Component {
     // update announcement table end
 
 
-    let query_name = this.useQuery();
-    if (!query_name.get("name")) {
-      //window.location.href = window.location.href+'&name=activity_reminder';
-    }
-    var tab_name_display = '';
-    var tab_description_display = '';
-    appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'].map((data, index) => {
-      if (query_name.get("name") == data.modulename) {
-        tab_name_display = data.tablabel;
-        tab_description_display = data.description;
-      }
-    }
-    )
+    let use_query = this.useQuery();
     return (
-      <div className="mvx-workboard-wrapper">
-
-        <HeaderSection />
-
-        <div className="mvx-container">
-          <div className="ptb-2r mvx-row">
-            <div className="mvx-col-100">
-
-
-              <div className="mv-off-white-box pa-15 mb-90 text-center">
-                <div className="mvx-tab-name-display">{tab_name_display}</div>
-                <p>{tab_description_display}</p>
-              </div>
-
-
-              <div className="dashboard-tab-area">
-                <ul className="mvx-dashboard-tabs-list">
-                  {appLocalizer.mvx_all_backend_tab_list['marketplace-workboard'].map((data, index) => (
-
-                    <li className={query_name.get("name") == data.modulename ? 'activedashboardtabs' : ''}>
-                      <Link to={`?page=mvx#&submenu=work-board&name=${data.modulename}`} >
-                        {data.icon ? <i class={`mvx-font ${data.icon}`}></i> : ''}{data.tablabel}
-                      </Link>
-                    </li>
-
-                  ))}
-                </ul>
-                <this.Child name={query_name.get("name")} />
-              </div>
-
-
-
-            </div>
-
-            {/* <div className="mvx-adv-image-display">
-          <a href="https://www.qries.com/" target="__blank">
-            <img alt="Multivendor X" src={appLocalizer.multivendor_logo}/>
-          </a>
-        </div> */}
-
-          </div>
-
-        </div>
-
-      </div>
+      <TabSection
+        model={appLocalizer.mvx_all_backend_tab_list['marketplace-workboard']}
+        query_name={use_query.get("name")}
+        funtion_name={this}
+        horizontally
+        no_banner
+      />
     );
   }
 

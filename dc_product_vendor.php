@@ -101,3 +101,8 @@ function mvx_namespace_approve( $value ) {
 	
 	return $return;
 }
+/*add_action('init', function() {
+    $order = wc_get_order( 506 );
+    $order_status  = $order->get_status();
+    print_r($order_status);die;
+});*/
