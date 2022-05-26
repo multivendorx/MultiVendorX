@@ -800,6 +800,86 @@ $fill-color : #fdfdfe;
         border-left: 0;
     }
 }
+@mixin registration-sec {
+    & .mvx-form-vendor-register {
+        & .mvx-top-part-from {
+            background: #fdfdfe;
+            padding: 16px;
+            margin-top: 22px;
+            border-radius: $border-radius;
+            & .form-group-new {
+                & .w-100 {
+                    display: flex;
+                    flex-direction: column;
+                    margin-bottom: 10px;
+                }
+                & input {
+                    border: $border;
+                    height: 40px;
+                }
+                & input:focus {
+                    box-shadow: none;
+                }
+            }
+        }
+        & .meta-box-sortables {
+            & li {
+                border: none;
+                background: transparent;
+                padding: 0;
+                width: 100%;
+            }
+        }
+    }
+    & .mvx-option-part {
+        background: #fdfdfe;
+        padding: 16px;
+        margin-top: 22px;
+        border-radius: $border-radius;
+        & .form-group {
+            justify-content: center;
+        }
+    }
+    & .mvx-tab-content {
+        height: 750px;
+    }
+    & .question-input-items {
+        flex-direction: column;
+        @include flexprops(center);
+        margin-right: 10px;
+        & input {
+            border: $border;
+            height: 40px;
+        }
+        & input:focus {
+            box-shadow: none;
+        }
+        & select {
+            border: $border;
+            height: 40px;
+        }
+        & select:focus {
+            box-shadow: none;
+        }
+    }
+    .mvx-basic-description {
+        @include flexprops(center);
+        justify-content: center;
+        .mvx-vendor-form-input-field-container {
+            @include flexprops(center);
+            flex-direction: column;
+            margin-right: 10px;
+            & input {
+                border: $border;
+                height: 40px;
+            }
+            & input:focus {
+                box-shadow: none;
+            }
+        }
+    }
+}
+
 
 
 #wpcontent {
@@ -999,6 +1079,11 @@ $fill-color : #fdfdfe;
                 }
             }
         }
+    }
+}
+.mvx-transaction-history {
+    & .mvx-tab-content {
+        height: 700px;
     }
 }
 .mvx-text-with-line-wrapper {
@@ -1349,5 +1434,13 @@ margin-left: auto;
                 }
             }
         }
+    }
+}
+.mvx-registration {
+    @include registration-sec;
+}
+.mvx-store {
+    & .mvx-section-img-fluid {
+        width: 100%;
     }
 }
