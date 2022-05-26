@@ -1384,7 +1384,7 @@ a:focus {
 }
 
 /** Start Settings Page Css **/
-.mvx-settings-general .mvx-current-tab-lists {
+.mvx-vertical-tabs .mvx-current-tab-lists {
   float: left;
   background-color: #f1f1f1;
   width: 20%;
@@ -1392,7 +1392,7 @@ a:focus {
   margin-left: 20px;
 }
 
-.mvx-settings-general .mvx-current-tab-lists li {
+.mvx-vertical-tabs .mvx-current-tab-lists li {
   height: auto;
   line-height: 48px;
   padding: 16px 24px;
@@ -1407,7 +1407,7 @@ a:focus {
   border-bottom: 0;
 }
 
-.mvx-settings-general .mvx-current-tab-lists li a {
+.mvx-vertical-tabs .mvx-current-tab-lists li a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1418,19 +1418,19 @@ a:focus {
   line-height: 20px;
 }
 
-.mvx-settings-general .mvx-current-tab-lists li:last-child {
+.mvx-vertical-tabs .mvx-current-tab-lists li:last-child {
   border-bottom: 1px solid #d4d1d9;
 }
 
-.mvx-settings-general .mvx-current-tab-lists li:nth-child(4) {
+.mvx-vertical-tabs .mvx-current-tab-lists li:nth-child(4) {
   border-radius: 0;
 }
 
-.mvx-settings-general .mvx-current-tab-lists .active-current-tab {
+.mvx-vertical-tabs .mvx-current-tab-lists .active-current-tab {
   border-right: 1px solid #f7f6f9;
 }
 
-.mvx-settings-general .mvx-tab-content {
+.mvx-vertical-tabs .mvx-tab-content {
   padding-right: 24px;
   border: 1px solid #d4d1d9;
   float: left;
