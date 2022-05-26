@@ -678,6 +678,81 @@ $fill-color : #fdfdfe;
 @mixin iconcolor {
     color: #9e8abb;
 }
+@mixin boxcss {
+    display: flex;
+    flex-wrap: wrap;
+    & .mvx-module-section-options-list {
+        width: 100%;
+        flex: 1 0 calc(33.33% - 10px);
+        background: #fdfdfe;
+        padding: 16px;
+        margin: 8px 8px 0px 0;
+        text-align: center;
+        height: 354px;
+        border: $border;
+        border-radius: $border-radius;
+        position: relative;
+    }
+    
+}
+@mixin moduleicon {
+    width: 56px;
+    height: 56px;
+    margin: auto;
+    line-height: 66px;
+    background: rgb(63,20,115);
+    background: linear-gradient(27deg, rgba(63,20,115,1) 0%, rgba(175,59,116,1) 50%, rgba(219,75,84,1) 100%);
+    border-radius: $border-radius;
+    margin-bottom: 16px;
+    & i {
+        font-size: 24px;
+        color: #fdfdfe;
+    }
+}
+@mixin toggle-btn {
+    input[type=checkbox]{
+        height: 0;
+        width: 0;
+        visibility: hidden;
+    }
+    
+    label {
+        cursor: pointer;
+        text-indent: -9999px;
+        width: 40px;
+        height: 20px;
+        border: 1px solid #d4d1d9;
+        display: block;
+        border-radius: 100px;
+        position: relative;
+    }
+    
+    label:after {
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 5px;
+        width: 14px;
+        height: 14px;
+        background: #3f1473;
+        border-radius: 90px;
+        transition: 0.3s;
+    }
+    
+    input:checked + label {
+        background: #3f1473;
+    }
+    
+    input:checked + label:after {
+        left: calc(100% - 5px);
+        transform: translateX(-100%);
+        background-color: #fdfdfe;
+    }
+    
+    label:active:after {
+        width: 20px;
+    }
+}
 
 
 #wpcontent {

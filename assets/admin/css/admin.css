@@ -1142,4 +1142,207 @@ a:focus {
 .mvx-search-category {
   margin-left: 0;
 }
+
+.mvx-module-option-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.mvx-module-option-row .mvx-module-section-options-list {
+  width: 100%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 calc(33.33% - 10px);
+          flex: 1 0 calc(33.33% - 10px);
+  background: #fdfdfe;
+  padding: 16px;
+  margin: 8px 8px 0px 0;
+  text-align: center;
+  height: 354px;
+  border: 1px solid #d4d1d9;
+  border-radius: 4px;
+  position: relative;
+}
+
+.mvx-module-settings-box .mvx-module-icon {
+  width: 56px;
+  height: 56px;
+  margin: auto;
+  line-height: 66px;
+  background: #3f1473;
+  background: linear-gradient(27deg, #3f1473 0%, #af3b74 50%, #db4b54 100%);
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.mvx-module-settings-box .mvx-module-icon i {
+  font-size: 24px;
+  color: #fdfdfe;
+}
+
+.mvx-module-settings-box .mvx-module-list-label-text {
+  color: #181718;
+  font-size: 1rem;
+  padding-bottom: 1rem;
+}
+
+.mvx-module-settings-box .mvx-module-list-label-text .mvx-module-section-pro-badge {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: #3f1473;
+  color: #fdfdfe;
+  padding: 4px 6px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  width: 50px;
+  text-align: center;
+}
+
+.mvx-module-settings-box .mvx-module-require-name {
+  margin-top: 1.25rem;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.mvx-module-settings-box ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: none;
+  padding: 0;
+  margin-bottom: -15px;
+}
+
+.mvx-module-settings-box ul li .inactive-plugin-class {
+  background-color: #f00;
+  border-radius: 50px;
+  width: 1.25rem;
+  height: 1.25rem;
+  line-height: 1rem;
+  margin-right: 0.625rem;
+}
+
+.mvx-module-settings-box ul li .inactive-plugin-class .icon-no {
+  font-size: 0.5rem;
+  color: #fdfdfe;
+}
+
+.mvx-module-current-status {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background: #faf8fb;
+  padding: 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.mvx-module-current-status .mvx-module-url-button {
+  margin-right: 10px;
+}
+
+.mvx-module-current-status .mvx-toggle-checkbox-content {
+  margin-left: auto;
+}
+
+.mvx-module-current-status .mvx-toggle-checkbox-content input[type=checkbox] {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.mvx-module-current-status .mvx-toggle-checkbox-content label {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 40px;
+  height: 20px;
+  border: 1px solid #d4d1d9;
+  display: block;
+  border-radius: 100px;
+  position: relative;
+}
+
+.mvx-module-current-status .mvx-toggle-checkbox-content label:after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 5px;
+  width: 14px;
+  height: 14px;
+  background: #3f1473;
+  border-radius: 90px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.mvx-module-current-status .mvx-toggle-checkbox-content input:checked + label {
+  background: #3f1473;
+}
+
+.mvx-module-current-status .mvx-toggle-checkbox-content input:checked + label:after {
+  left: calc(100% - 5px);
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+  background-color: #fdfdfe;
+}
+
+.mvx-module-current-status .mvx-toggle-checkbox-content label:active:after {
+  width: 20px;
+}
+
+/** Start Commision Page Css **/
+.mvx-commission .mvx-page-title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #181718;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.mvx-commission .mvx-page-title .pull-right {
+  float: none;
+  margin-left: auto;
+}
+
+.mvx-commission .mvx-page-title .pull-right .button-commission-secondary {
+  font-size: 0.875rem;
+  color: #fdfdfe;
+  background: #3f1473;
+  width: 140px;
+  height: 28px;
+  display: block;
+  text-align: center;
+  font-weight: 400;
+  line-height: 28px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.mvx-commission .mvx-page-title .pull-right .button-commission-secondary i {
+  margin-right: 10px;
+}
+
+.mvx-commission .mvx-middle-container-wrapper {
+  padding-left: 20px;
+}
+
+.mvx-commission .mvx-wrap-bulk-action .mvx-col-auto {
+  margin: 0 10px 0 0;
+}
 /*# sourceMappingURL=admin.css.map */
