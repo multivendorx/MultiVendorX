@@ -701,7 +701,7 @@ $fill-color : #fdfdfe;
     margin: auto;
     line-height: 66px;
     background: rgb(63,20,115);
-    background: linear-gradient(27deg, rgba(63,20,115,1) 0%, rgba(175,59,116,1) 50%, rgba(219,75,84,1) 100%);
+    background: linear-gradient(138deg, rgba(63,20,115,1) 0%, rgba(175,59,116,1) 50%, rgba(219,75,84,1) 100%);
     border-radius: $border-radius;
     margin-bottom: 16px;
     & i {
@@ -751,6 +751,40 @@ $fill-color : #fdfdfe;
     
     label:active:after {
         width: 20px;
+    }
+}
+@mixin tabvertical {
+    & .mvx-current-tab-lists {
+        float: left;
+        background-color: #f1f1f1;
+        width: 20%;
+        height: auto;
+        margin-left: 20px;
+        & li {
+            height: auto;
+            line-height: 48px;
+            padding: 0 24px;
+            border: 1px solid #d4d1d9;
+            display: block;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 4px 0 0 4px;
+        }
+        & .active-current-tab {
+            border-right: 1px solid #f7f6f9;
+        }
+    }
+    & .mvx-tab-content {
+        padding-right: 24px;
+        border: 1px solid #d4d1d9;
+        float: left;
+        width: 77.8%;
+        height: 866px;
+        margin-top: 0;
+        border-radius: 0px 4px 4px 0px;
+        border-left: 0;
     }
 }
 
@@ -1258,4 +1292,11 @@ margin-left: auto;
             margin: 0 10px 0 0;
         }
     }
+}
+
+
+/** Start Settings Page Css **/
+
+.mvx-settings-general {
+    @include tabvertical;
 }

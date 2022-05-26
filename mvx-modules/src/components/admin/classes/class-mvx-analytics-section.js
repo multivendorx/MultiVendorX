@@ -416,7 +416,7 @@ Child({ name }) {
         name == appLocalizer.mvx_all_backend_tab_list['marketplace-analytics'][0]['modulename'] ?
           
             <div className="mvx-report-start-content">
-              <div className="mvx-wrapper-date-picker pull-right mb-30">
+              <div className="mvx-wrapper-date-picker mb-30">
                 <div className="mvx-date-range">Date range:</div>
                 <div className="mvx-report-datepicker"><DateRangePicker onChange={(e) => this.handleupdatereport(e)} /></div>
               </div>

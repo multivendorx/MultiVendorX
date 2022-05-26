@@ -1186,7 +1186,7 @@ a:focus {
   margin: auto;
   line-height: 66px;
   background: #3f1473;
-  background: linear-gradient(27deg, #3f1473 0%, #af3b74 50%, #db4b54 100%);
+  background: linear-gradient(138deg, #3f1473 0%, #af3b74 50%, #db4b54 100%);
   border-radius: 4px;
   margin-bottom: 16px;
 }
@@ -1361,5 +1361,43 @@ a:focus {
 
 .mvx-commission .mvx-wrap-bulk-action .mvx-col-auto {
   margin: 0 10px 0 0;
+}
+
+/** Start Settings Page Css **/
+.mvx-settings-general .mvx-current-tab-lists {
+  float: left;
+  background-color: #f1f1f1;
+  width: 20%;
+  height: auto;
+  margin-left: 20px;
+}
+
+.mvx-settings-general .mvx-current-tab-lists li {
+  height: auto;
+  line-height: 48px;
+  padding: 0 24px;
+  border: 1px solid #d4d1d9;
+  display: block;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  border-radius: 4px 0 0 4px;
+}
+
+.mvx-settings-general .mvx-current-tab-lists .active-current-tab {
+  border-right: 1px solid #f7f6f9;
+}
+
+.mvx-settings-general .mvx-tab-content {
+  padding-right: 24px;
+  border: 1px solid #d4d1d9;
+  float: left;
+  width: 77.8%;
+  height: 866px;
+  margin-top: 0;
+  border-radius: 0px 4px 4px 0px;
+  border-left: 0;
 }
 /*# sourceMappingURL=admin.css.map */
