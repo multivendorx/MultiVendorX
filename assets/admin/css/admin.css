@@ -738,7 +738,7 @@ a:focus {
 }
 
 .mvx-container .mvx-middle-container-wrapper {
-  padding: 78px 0 0 0;
+  padding: 34px 0 0 0;
   width: 946px;
   margin-right: 24px;
 }
@@ -1463,5 +1463,10 @@ a:focus {
 
 .mvx-general-settings-wrapper .mvx-general-settings-child-wrapper .form-group .mvx-settings-input-content {
   width: 100%;
+}
+
+.mvx-general-settings-wrapper .mvx-general-settings-child-wrapper .form-group .mvx-settings-input-content .mvx-toggle-checkbox-content {
+  margin-top: -14px;
+  margin-bottom: 10px;
 }
 /*# sourceMappingURL=admin.css.map */
