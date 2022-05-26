@@ -763,14 +763,27 @@ $fill-color : #fdfdfe;
         & li {
             height: auto;
             line-height: 48px;
-            padding: 0 24px;
+            padding: 16px 24px;
             border: 1px solid #d4d1d9;
             display: block;
             width: 100%;
             text-align: left;
             cursor: pointer;
             transition: 0.3s;
-            border-radius: 4px 0 0 4px;
+            margin-bottom: 0;
+            border-bottom: 0;
+            & a {
+                display: flex;
+                align-items: center;
+                font-size: 14px;
+                line-height: 20px;
+            }
+        }
+        & li:last-child {
+            border-bottom: $border;
+        }
+        & li:nth-child(4) {
+            border-radius: 0;
         }
         & .active-current-tab {
             border-right: 1px solid #f7f6f9;
@@ -781,7 +794,7 @@ $fill-color : #fdfdfe;
         border: 1px solid #d4d1d9;
         float: left;
         width: 77.8%;
-        height: 866px;
+        height: auto;
         margin-top: 0;
         border-radius: 0px 4px 4px 0px;
         border-left: 0;
@@ -1062,7 +1075,22 @@ $fill-color : #fdfdfe;
         margin-right: 8px;
     }
 }
-
+.mvx-search-holder {
+    width: 174px;
+    height: 40px;
+    background: #fdfdfe;
+    border: 1px solid #d4d1d9;
+    border-radius: 4px;
+    padding: 0px 1rem;
+    line-height: 40px;
+    & input[type="text"] {
+        padding: 0;
+        border: none;
+    }
+    & input[type="text"]:focus {
+        box-shadow: none;
+    }
+}
 
 /** Start Work Board Sec **/
 .mvx-tab-description-start {
@@ -1250,10 +1278,10 @@ margin-left: auto;
     & .mvx-module-url-button {
         margin-right: 10px;
     }
-    & .mvx-toggle-checkbox-content {
-        margin-left: auto;
-        @include toggle-btn;
-    }
+}
+.mvx-toggle-checkbox-content {
+    margin-left: auto;
+    @include toggle-btn;
 }
 /** Start Commision Page Css **/
 
@@ -1299,4 +1327,23 @@ margin-left: auto;
 
 .mvx-settings-general {
     @include tabvertical;
+}
+.mvx-general-settings-wrapper {
+    & .mvx-general-settings-child-wrapper {
+        & .form-group {
+            @include flexprops(start);
+            margin: 34px 0;
+            & .mvx-settings-form-label {
+                margin-right: 20px;
+                & p {
+                    font-size: 1rem;
+                    color: $title-color;
+                    width: 200px;
+                }
+            }
+            & .mvx-settings-input-content {
+                width: 100%;
+            }
+        }
+    }
 }

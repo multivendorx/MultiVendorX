@@ -1024,6 +1024,26 @@ a:focus {
   margin-right: 8px;
 }
 
+.mvx-search-holder {
+  width: 174px;
+  height: 40px;
+  background: #fdfdfe;
+  border: 1px solid #d4d1d9;
+  border-radius: 4px;
+  padding: 0px 1rem;
+  line-height: 40px;
+}
+
+.mvx-search-holder input[type="text"] {
+  padding: 0;
+  border: none;
+}
+
+.mvx-search-holder input[type="text"]:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
 /** Start Work Board Sec **/
 .mvx-tab-description-start {
   text-align: center;
@@ -1270,17 +1290,17 @@ a:focus {
   margin-right: 10px;
 }
 
-.mvx-module-current-status .mvx-toggle-checkbox-content {
+.mvx-toggle-checkbox-content {
   margin-left: auto;
 }
 
-.mvx-module-current-status .mvx-toggle-checkbox-content input[type=checkbox] {
+.mvx-toggle-checkbox-content input[type=checkbox] {
   height: 0;
   width: 0;
   visibility: hidden;
 }
 
-.mvx-module-current-status .mvx-toggle-checkbox-content label {
+.mvx-toggle-checkbox-content label {
   cursor: pointer;
   text-indent: -9999px;
   width: 40px;
@@ -1291,7 +1311,7 @@ a:focus {
   position: relative;
 }
 
-.mvx-module-current-status .mvx-toggle-checkbox-content label:after {
+.mvx-toggle-checkbox-content label:after {
   content: '';
   position: absolute;
   top: 2px;
@@ -1304,18 +1324,18 @@ a:focus {
   transition: 0.3s;
 }
 
-.mvx-module-current-status .mvx-toggle-checkbox-content input:checked + label {
+.mvx-toggle-checkbox-content input:checked + label {
   background: #3f1473;
 }
 
-.mvx-module-current-status .mvx-toggle-checkbox-content input:checked + label:after {
+.mvx-toggle-checkbox-content input:checked + label:after {
   left: calc(100% - 5px);
   -webkit-transform: translateX(-100%);
           transform: translateX(-100%);
   background-color: #fdfdfe;
 }
 
-.mvx-module-current-status .mvx-toggle-checkbox-content label:active:after {
+.mvx-toggle-checkbox-content label:active:after {
   width: 20px;
 }
 
@@ -1375,7 +1395,7 @@ a:focus {
 .mvx-settings-general .mvx-current-tab-lists li {
   height: auto;
   line-height: 48px;
-  padding: 0 24px;
+  padding: 16px 24px;
   border: 1px solid #d4d1d9;
   display: block;
   width: 100%;
@@ -1383,7 +1403,27 @@ a:focus {
   cursor: pointer;
   -webkit-transition: 0.3s;
   transition: 0.3s;
-  border-radius: 4px 0 0 4px;
+  margin-bottom: 0;
+  border-bottom: 0;
+}
+
+.mvx-settings-general .mvx-current-tab-lists li a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.mvx-settings-general .mvx-current-tab-lists li:last-child {
+  border-bottom: 1px solid #d4d1d9;
+}
+
+.mvx-settings-general .mvx-current-tab-lists li:nth-child(4) {
+  border-radius: 0;
 }
 
 .mvx-settings-general .mvx-current-tab-lists .active-current-tab {
@@ -1395,9 +1435,33 @@ a:focus {
   border: 1px solid #d4d1d9;
   float: left;
   width: 77.8%;
-  height: 866px;
+  height: auto;
   margin-top: 0;
   border-radius: 0px 4px 4px 0px;
   border-left: 0;
+}
+
+.mvx-general-settings-wrapper .mvx-general-settings-child-wrapper .form-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  margin: 34px 0;
+}
+
+.mvx-general-settings-wrapper .mvx-general-settings-child-wrapper .form-group .mvx-settings-form-label {
+  margin-right: 20px;
+}
+
+.mvx-general-settings-wrapper .mvx-general-settings-child-wrapper .form-group .mvx-settings-form-label p {
+  font-size: 1rem;
+  color: #181718;
+  width: 200px;
+}
+
+.mvx-general-settings-wrapper .mvx-general-settings-child-wrapper .form-group .mvx-settings-input-content {
+  width: 100%;
 }
 /*# sourceMappingURL=admin.css.map */

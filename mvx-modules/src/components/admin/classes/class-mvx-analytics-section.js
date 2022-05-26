@@ -756,7 +756,7 @@ Child({ name }) {
                     <div className="mvx-report-datepicker"><DateRangePicker onChange={(e) => this.handleupdatereport(e)} /></div>
                   </div>
                 
-                  <div className="mvx-product-wrapper-show-specific">
+                  <div className="mvx-product-wrapper-show-specific mvx-vendor-wrapper-show-specific">
                     <div className="mvx-date-range">Show:</div>
                     <Select placeholder={appLocalizer.report_page_string.choose_product} options={this.state.details_product} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handleproductsearch(e)} />
                   </div>
@@ -889,7 +889,7 @@ Child({ name }) {
                     <div className="mvx-report-datepicker"><DateRangePicker onChange={(e) => this.handleupdatereport(e)} /></div>
                   </div>
                 
-                  <div className="mvx-transaction-wrapper-show-specific">
+                  <div className="mvx-transaction-wrapper-show-specific mvx-vendor-wrapper-show-specific">
                     <div className="mvx-date-range">{appLocalizer.report_page_string.vendor_select}</div>
                     <Select placeholder={appLocalizer.report_page_string.choose_vendor} options={this.state.details_vendor} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e)} />
                   </div>
