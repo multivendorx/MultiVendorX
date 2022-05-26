@@ -678,6 +678,208 @@ $fill-color : #fdfdfe;
 @mixin iconcolor {
     color: #9e8abb;
 }
+@mixin boxcss {
+    display: flex;
+    flex-wrap: wrap;
+    & .mvx-module-section-options-list {
+        width: 100%;
+        flex: 1 0 calc(33.33% - 10px);
+        background: #fdfdfe;
+        padding: 16px;
+        margin: 8px 8px 0px 0;
+        text-align: center;
+        height: 354px;
+        border: $border;
+        border-radius: $border-radius;
+        position: relative;
+    }
+    
+}
+@mixin moduleicon {
+    width: 56px;
+    height: 56px;
+    margin: auto;
+    line-height: 66px;
+    background: rgb(63,20,115);
+    background: linear-gradient(138deg, rgba(63,20,115,1) 0%, rgba(175,59,116,1) 50%, rgba(219,75,84,1) 100%);
+    border-radius: $border-radius;
+    margin-bottom: 16px;
+    & i {
+        font-size: 24px;
+        color: #fdfdfe;
+    }
+}
+@mixin toggle-btn {
+    input[type=checkbox]{
+        height: 0;
+        width: 0;
+        visibility: hidden;
+    }
+    
+    label {
+        cursor: pointer;
+        text-indent: -9999px;
+        width: 40px;
+        height: 20px;
+        border: 1px solid #d4d1d9;
+        display: block;
+        border-radius: 100px;
+        position: relative;
+    }
+    
+    label:after {
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 5px;
+        width: 14px;
+        height: 14px;
+        background: #3f1473;
+        border-radius: 90px;
+        transition: 0.3s;
+    }
+    
+    input:checked + label {
+        background: #3f1473;
+    }
+    
+    input:checked + label:after {
+        left: calc(100% - 5px);
+        transform: translateX(-100%);
+        background-color: #fdfdfe;
+    }
+    
+    label:active:after {
+        width: 20px;
+    }
+}
+@mixin tabvertical {
+    & .mvx-current-tab-lists {
+        float: left;
+        background-color: #f1f1f1;
+        width: 20%;
+        height: auto;
+        margin-left: 20px;
+        & li {
+            height: auto;
+            line-height: 48px;
+            padding: 16px 24px;
+            border: 1px solid #d4d1d9;
+            display: block;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-bottom: 0;
+            border-bottom: 0;
+            & a {
+                display: flex;
+                align-items: center;
+                font-size: 14px;
+                line-height: 20px;
+            }
+        }
+        & li:last-child {
+            border-bottom: $border;
+        }
+        & li:nth-child(4) {
+            border-radius: 0;
+        }
+        & .active-current-tab {
+            border-right: 1px solid #f7f6f9;
+        }
+    }
+    & .mvx-tab-content {
+        padding-right: 24px;
+        border: 1px solid #d4d1d9;
+        float: left;
+        width: 77.8%;
+        height: auto;
+        margin-top: 0;
+        border-radius: 0px 4px 4px 0px;
+        border-left: 0;
+    }
+}
+@mixin registration-sec {
+    & .mvx-form-vendor-register {
+        & .mvx-top-part-from {
+            background: #fdfdfe;
+            padding: 16px;
+            margin-top: 22px;
+            border-radius: $border-radius;
+            & .form-group-new {
+                & .w-100 {
+                    display: flex;
+                    flex-direction: column;
+                    margin-bottom: 10px;
+                }
+                & input {
+                    border: $border;
+                    height: 40px;
+                }
+                & input:focus {
+                    box-shadow: none;
+                }
+            }
+        }
+        & .meta-box-sortables {
+            & li {
+                border: none;
+                background: transparent;
+                padding: 0;
+                width: 100%;
+            }
+        }
+    }
+    & .mvx-option-part {
+        background: #fdfdfe;
+        padding: 16px;
+        margin-top: 22px;
+        border-radius: $border-radius;
+        & .form-group {
+            justify-content: center;
+        }
+    }
+    & .mvx-tab-content {
+        height: 750px;
+    }
+    & .question-input-items {
+        flex-direction: column;
+        @include flexprops(center);
+        margin-right: 10px;
+        & input {
+            border: $border;
+            height: 40px;
+        }
+        & input:focus {
+            box-shadow: none;
+        }
+        & select {
+            border: $border;
+            height: 40px;
+        }
+        & select:focus {
+            box-shadow: none;
+        }
+    }
+    .mvx-basic-description {
+        @include flexprops(center);
+        justify-content: center;
+        .mvx-vendor-form-input-field-container {
+            @include flexprops(center);
+            flex-direction: column;
+            margin-right: 10px;
+            & input {
+                border: $border;
+                height: 40px;
+            }
+            & input:focus {
+                box-shadow: none;
+            }
+        }
+    }
+}
+
 
 
 #wpcontent {
@@ -762,7 +964,7 @@ $fill-color : #fdfdfe;
         padding-top: 34px;
     }
     & .mvx-middle-container-wrapper {
-        padding: 78px 0 0 0;
+        padding: 34px 0 0 0;
         width: 946px;
         margin-right: 24px;
     }
@@ -879,6 +1081,11 @@ $fill-color : #fdfdfe;
         }
     }
 }
+.mvx-transaction-history {
+    & .mvx-tab-content {
+        height: 700px;
+    }
+}
 .mvx-text-with-line-wrapper {
     position: relative ;
     @include flexprops(start);
@@ -953,7 +1160,22 @@ $fill-color : #fdfdfe;
         margin-right: 8px;
     }
 }
-
+.mvx-search-holder {
+    width: 174px;
+    height: 40px;
+    background: #fdfdfe;
+    border: 1px solid #d4d1d9;
+    border-radius: 4px;
+    padding: 0px 1rem;
+    line-height: 40px;
+    & input[type="text"] {
+        padding: 0;
+        border: none;
+    }
+    & input[type="text"]:focus {
+        box-shadow: none;
+    }
+}
 
 /** Start Work Board Sec **/
 .mvx-tab-description-start {
@@ -1034,8 +1256,20 @@ margin-left: auto;
 
 /** Start Module Sec **/
 .mvx-modules {
-    & .mvx-middle-container-wrapper {
-        padding-left: 20px;
+	& .mvx-middle-container-wrapper {
+		padding-left: 20px;
+	}
+    & .mvx-text-with-line-wrapper::after {
+		content: "";
+        position: absolute;
+        width: 81%;
+        height: 0.0625rem;
+        background-color: #d4d1d9;
+        top: 3rem;
+        left: 10.8125rem;
+	}
+    & .mvx-report-text {
+        margin-top: 34px;
     }
 }
 .mv-off-white-box {
@@ -1063,4 +1297,150 @@ margin-left: auto;
 }
 .mvx-search-category {
     margin-left: 0;
+}
+.mvx-module-option-row {
+    @include boxcss;
+}
+.mvx-module-settings-box {
+    & .mvx-module-icon {
+        @include moduleicon;
+    }
+    & .mvx-module-list-label-text {
+        color: $title-color;
+        font-size: 1rem;
+        padding-bottom: 1rem;
+        & .mvx-module-section-pro-badge {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            background: #3f1473;
+            color: #fdfdfe;
+            padding: 4px 6px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            width: 50px;
+            text-align: center;
+        }
+    }
+    & .mvx-module-require-name {
+        text-align: left;
+        font-size: 1rem;
+        font-weight: 600;
+        margin: 1.25rem 0 1.25rem 0;
+    }
+    & ul {
+        & li {
+            @include flexprops(center);
+            border: none;
+            padding: 0;
+            height: auto;
+            line-height: 1.2rem;
+            text-align: left;
+            & .inactive-plugin-class {
+                background-color: #f00;
+                border-radius: 50px;
+                width: 1.25rem;
+                height: 1.25rem;
+                line-height: 1rem;
+                margin-right: 0.625rem;
+                text-align: center;
+                & .icon-no {
+                    font-size: 0.5rem;
+                    color: #fdfdfe;
+                }
+            }
+        }
+    }
+}
+.mvx-module-current-status {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background: #faf8fb;
+    padding: 16px;
+    @include flexprops(center);
+    & .mvx-module-url-button {
+        margin-right: 10px;
+    }
+}
+.mvx-toggle-checkbox-content {
+    margin-left: auto;
+    @include toggle-btn;
+}
+/** Start Commision Page Css **/
+
+.mvx-commission {
+    & .mvx-page-title {
+        font-size: 1.25rem;
+        font-weight: 500;
+        color: $title-color;
+        @include flexprops(center);
+        & .pull-right {
+            float: none;
+            margin-left: auto;
+            & .button-commission-secondary {
+                font-size: 0.875rem;
+                color: #fdfdfe;
+                background: #3f1473;
+                width: 140px;
+                height: 28px;
+                display: block;
+                text-align: center;
+                font-weight: 400;
+                line-height: 28px;
+                border-radius: $border-radius;
+                text-decoration: none;
+                & i {
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+    & .mvx-middle-container-wrapper {
+        padding-left: 20px;
+    }
+    & .mvx-wrap-bulk-action {
+        & .mvx-col-auto {
+            margin: 0 10px 0 0;
+        }
+    }
+}
+
+
+/** Start Settings Page Css **/
+
+.mvx-vertical-tabs {
+    @include tabvertical;
+}
+.mvx-general-settings-wrapper {
+    & .mvx-general-settings-child-wrapper {
+        & .form-group {
+            @include flexprops(start);
+            margin: 34px 0;
+            & .mvx-settings-form-label {
+                margin-right: 20px;
+                & p {
+                    font-size: 1rem;
+                    color: $title-color;
+                    width: 200px;
+                }
+            }
+            & .mvx-settings-input-content {
+                width: 100%;
+                & .mvx-toggle-checkbox-content {
+                    margin-top: -14px;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+}
+.mvx-registration {
+    @include registration-sec;
+}
+.mvx-store {
+    & .mvx-section-img-fluid {
+        width: 100%;
+    }
 }
