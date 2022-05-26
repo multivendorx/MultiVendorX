@@ -1109,8 +1109,20 @@ margin-left: auto;
 
 /** Start Module Sec **/
 .mvx-modules {
-    & .mvx-middle-container-wrapper {
-        padding-left: 20px;
+	& .mvx-middle-container-wrapper {
+		padding-left: 20px;
+	}
+    & .mvx-text-with-line-wrapper::after {
+		content: "";
+        position: absolute;
+        width: 81%;
+        height: 0.0625rem;
+        background-color: #d4d1d9;
+        top: 3rem;
+        left: 10.8125rem;
+	}
+    & .mvx-report-text {
+        margin-top: 34px;
     }
 }
 .mv-off-white-box {
