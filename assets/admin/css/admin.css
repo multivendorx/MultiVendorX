@@ -1216,10 +1216,10 @@ a:focus {
 }
 
 .mvx-module-settings-box .mvx-module-require-name {
-  margin-top: 1.25rem;
   text-align: left;
   font-size: 1rem;
   font-weight: 600;
+  margin: 1.25rem 0 1.25rem 0;
 }
 
 .mvx-module-settings-box ul li {
@@ -1231,7 +1231,9 @@ a:focus {
           align-items: center;
   border: none;
   padding: 0;
-  margin-bottom: -15px;
+  height: auto;
+  line-height: 1.2rem;
+  text-align: left;
 }
 
 .mvx-module-settings-box ul li .inactive-plugin-class {
@@ -1241,6 +1243,7 @@ a:focus {
   height: 1.25rem;
   line-height: 1rem;
   margin-right: 0.625rem;
+  text-align: center;
 }
 
 .mvx-module-settings-box ul li .inactive-plugin-class .icon-no {
