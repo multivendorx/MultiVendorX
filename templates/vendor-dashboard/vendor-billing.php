@@ -13,7 +13,6 @@ if (!defined('ABSPATH')) {
 }
 global $MVX;
 $user_id = get_current_user_id();
-$payment_admin_settings = get_option('mvx_payment_settings_name');
 $payment_mode = array('' => __('Payment Mode', 'dc-woocommerce-multi-vendor'));
 $is_multi_option_enabled = $MVX->vendor_dashboard->is_multi_option_split_enabled();
 if ($is_multi_option_enabled) {
@@ -102,13 +101,13 @@ $multi_split_payment_options = $MVX->vendor_dashboard->is_multi_option_split_ena
                 </div>
                 <?php 
                 echo '<div class="payment-gateway payment-gateway-stripe_masspay">';
-                if (isset($payment_admin_settings['payment_method_stripe_masspay']) && $payment_admin_settings['payment_method_stripe_masspay'] = 'Enable') {
-                	$account_type = apply_filters('mvx_vendor_stripe_connect_account_type', 'standard', $payment_admin_settings, $user_id);
+                if (mvx_is_module_active('stripe-connect')) {
+                	$account_type = apply_filters('mvx_vendor_stripe_connect_account_type', 'standard', '', $user_id);
                     
                 	if( $account_type == 'standard' || $account_type == 'express' ) {
-						$testmode = get_mvx_vendor_settings('testmode', 'payment', 'stripe_gateway') === "Enable" ? true : false;
-						$client_id = $testmode ? get_mvx_vendor_settings('test_client_id', 'payment', 'stripe_gateway') : get_mvx_vendor_settings('live_client_id', 'payment', 'stripe_gateway');
-						$secret_key = $testmode ? get_mvx_vendor_settings('test_secret_key', 'payment', 'stripe_gateway') : get_mvx_vendor_settings('live_secret_key', 'payment', 'stripe_gateway');
+						$testmode = get_mvx_vendor_settings('testmode', 'payment-stripe-connect') ? true : false;
+						$client_id = $testmode ? get_mvx_vendor_settings('test_client_id', 'payment-stripe-connect') : get_mvx_vendor_settings('live_client_id', 'payment-stripe-connect');
+						$secret_key = $testmode ? get_mvx_vendor_settings('test_secret_key', 'payment-stripe-connect') : get_mvx_vendor_settings('live_secret_key', 'payment', 'stripe_gateway');
 						if (isset($client_id) && isset($secret_key)) {
 							if (isset($_GET['code'])) {
 								$code = wc_clean($_GET['code']);
@@ -209,7 +208,7 @@ $multi_split_payment_options = $MVX->vendor_dashboard->is_multi_option_split_ena
 							}
 						}
 					} else {
-						do_action('mvx_vendor_stripe_connect_account_fields', $payment_admin_settings, $user_id, $account_type);
+						do_action('mvx_vendor_stripe_connect_account_fields', $user_id, $account_type);
 					}
                 }
                 echo '</div>';

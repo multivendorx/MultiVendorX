@@ -5780,34 +5780,6 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     ),
                     'database_value' => array(),
                 ],
-                [
-                    'key'    => 'import_product',
-                    'label'   => __( 'Import Product', 'dc-woocommerce-multi-vendor' ),
-                    'class'     => 'mvx-toggle-checkbox',
-                    'type'    => 'checkbox',
-                    'options' => array(
-                        array(
-                            'key'=> "import_product",
-                            'label'=> __('Import product data from your computer', 'dc-woocommerce-multi-vendor'),
-                            'value'=> "import_product"
-                        )
-                    ),
-                    'database_value' => array(),
-                ],
-                [
-                    'key'    => 'export_product',
-                    'label'   => __( 'Export Product', 'dc-woocommerce-multi-vendor' ),
-                    'class'     => 'mvx-toggle-checkbox',
-                    'type'    => 'checkbox',
-                    'options' => array(
-                        array(
-                            'key'=> "export_product",
-                            'label'=> __('Export product data to your computer', 'dc-woocommerce-multi-vendor'),
-                            'value'=> "export_product"
-                        )
-                    ),
-                    'database_value' => array(),
-                ],
             ],
             'commissions'   =>  [
                 [
@@ -6146,11 +6118,11 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 [
                     'key'    => 'payment_method_disbursement',
                     'label'   => __( 'Commission Disbursement Method', 'dc-woocommerce-multi-vendor' ),
-                    'desc'  =>  __( "Kindly activate your preferred payment method in the <a href='". admin_url( '?page=mvx#&submenu=modules' ) ."'>Module section</a>. Your selected payment method would be automatically displayed here.", 'dc-woocommerce-multi-vendor' ),
+                    'desc'  =>  __( "Kindly activate your preferred payment method in the <a href='". admin_url( '?page=mvx#&submenu=modules' ) ."'>Module section</a>", 'dc-woocommerce-multi-vendor' ),
                     'class'     => 'mvx-toggle-checkbox',
                     'type'    => 'checkbox',
                     'right_content' =>  true,
-                    'options' => apply_filters('mvx_payment_method_disbursement_options', $disbursement_settings_methods),
+                    'options' => apply_filters('mvx_payment_method_disbursement_options', array()),
                     'database_value' => array(),
                 ],
                 [
@@ -7086,36 +7058,42 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 [
                     'key'       => 'test_client_id',
                     'type'      => 'text',
+                    'depend_checkbox'    => 'testmode',
                     'label'     => __( 'Stripe Test Client ID', 'dc-woocommerce-multi-vendor' ),
                     'database_value' => '',
                 ],
                 [
                     'key'       => 'live_client_id',
                     'type'      => 'text',
+                    'not_depend_checkbox'    => 'testmode', // not_depend_checkbox parameter works when testmode this key checkbox is disabled
                     'label'     => __( 'Stripe Live Client ID', 'dc-woocommerce-multi-vendor' ),
                     'database_value' => '',
                 ],
                 [
                     'key'       => 'test_publishable_key',
                     'type'      => 'text',
+                    'depend_checkbox'    => 'testmode', // depend_checkbox parameter works when testmode this key checkbox is enabled
                     'label'     => __( 'Stripe Test Publishable key', 'dc-woocommerce-multi-vendor' ),
                     'database_value' => '',
                 ],
                 [
                     'key'       => 'live_publishable_key',
                     'type'      => 'text',
+                    'not_depend_checkbox'    => 'testmode',
                     'label'     => __( 'Stripe Live Publishable key', 'dc-woocommerce-multi-vendor' ),
                     'database_value' => '',
                 ],
                 [
                     'key'       => 'test_secret_key',
                     'type'      => 'text',
+                    'depend_checkbox'    => 'testmode',
                     'label'     => __( 'Stripe Test Secret key', 'dc-woocommerce-multi-vendor' ),
                     'database_value' => '',
                 ],
                 [
                     'key'       => 'live_secret_key',
                     'type'      => 'text',
+                    'not_depend_checkbox'    => 'testmode',
                     'label'     => __( 'Stripe Live Secret key', 'dc-woocommerce-multi-vendor' ),
                     'database_value' => '',
                 ],
@@ -7602,7 +7580,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
             ),
         );
 
-        if (mvx_is_module_active('vendor-shipping')) {
+        if (is_mvx_shipping_module_active()) {
             $marketplace_vendors[] = array(
                 'tablabel'      =>  __('Vendor Shipping', 'dc-woocommerce-multi-vendor'),
                 'apiurl'        =>  'mvx_module/v1/update_vendor',
@@ -8624,5 +8602,14 @@ if (!function_exists('is_current_module_active')) {
         $is_module_active = get_option('mvx_all_active_module_list', true);
         $is_active = $is_module_active && is_array($is_module_active) && in_array($module_name, $is_module_active) ? true : false;
         return $is_active;
+    }
+}
+
+if (!function_exists('is_mvx_shipping_module_active')) {
+    function is_mvx_shipping_module_active() {
+        if (mvx_is_module_active('zone-shipping') || mvx_is_module_active('distance-shipping') || mvx_is_module_active('country-shipping')) {
+            return true;
+        }
+        return false;
     }
 }

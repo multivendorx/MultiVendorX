@@ -201,6 +201,16 @@ class App extends Component {
           sortable: true,
         },
         {
+          name: <div className="mvx-datatable-header-text">Date</div>,
+          selector: row => <div dangerouslySetInnerHTML={{ __html: row.question_date }}></div>,
+          sortable: true,
+        },
+        {
+          name: <div className="mvx-datatable-header-text">Status</div>,
+          selector: row => <div dangerouslySetInnerHTML={{ __html: row.question_status }}></div>,
+          sortable: true,
+        },
+        {
           name: <div className="mvx-datatable-header-text">Question details</div>,
           selector: row => <div dangerouslySetInnerHTML={{ __html: row.question_details }}></div>,
           sortable: true,
@@ -2084,14 +2094,14 @@ class App extends Component {
 
 
                         {/*<div className="mvx-wrap-bulk-all-date">
-            <div className="mvx-wrap-bulk-action">
-              <Select placeholder="Bulk actions" options={appLocalizer.post_bulk_status} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_post_bulk_status} />
-            </div>
+                          <div className="mvx-wrap-bulk-action">
+                            <Select placeholder="Bulk actions" options={appLocalizer.post_bulk_status} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_post_bulk_status} />
+                          </div>
 
-            <div className="mvx-wrap-date-action">
-              <Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_work_board_chenage} />
-            </div>
-          </div>*/}
+                          <div className="mvx-wrap-date-action">
+                            <Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_work_board_chenage} />
+                          </div>
+                        </div>*/}
 
                         <div className="mvx-backend-datatable-wrapper">
                           {this.state.pending_questions ?

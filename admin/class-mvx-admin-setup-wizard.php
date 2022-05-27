@@ -581,7 +581,7 @@ class MVX_Admin_Setup_Wizard {
                         <div class="wc-wizard-service-enable">
                             <span class="wc-wizard-service-toggle disabled">
                                 <?php
-                                $is_enable_gateway = in_array($gateway_id, $payment_settings['payment_method_disbursement']) ? 'Enable' : '';
+                                $is_enable_gateway = mvx_is_module_active($gateway_id) ? 'Enable' : '';
                                 ?>
                                 <input type="checkbox" <?php checked($is_enable_gateway, 'Enable') ?> name="payment_method_<?php echo esc_attr($gateway_id); ?>" class="input-checkbox" value="Enable" />
                             </span>
@@ -834,7 +834,8 @@ class MVX_Admin_Setup_Wizard {
     public function mvx_setup_payments_save() {
         check_admin_referer('mvx-setup');
         $gateways = $this->get_payment_methods();
-        $payment_settings = get_option('mvx_commissions_tab_settings');
+        //$payment_settings = get_option('mvx_commissions_tab_settings');
+        $active_module_list = get_option('mvx_all_active_module_list') ? get_option('mvx_all_active_module_list') : array();
         $disbursement_settings = get_option('mvx_disbursement_tab_settings');
         $mvx_disbursal_mode_admin = filter_input(INPUT_POST, 'mvx_disbursal_mode_admin');
         $mvx_disbursal_mode_vendor = filter_input(INPUT_POST, 'mvx_disbursal_mode_vendor');
@@ -870,15 +871,17 @@ class MVX_Admin_Setup_Wizard {
         foreach ($gateways as $gateway_id => $gateway) {
             $is_enable_gateway = filter_input(INPUT_POST, 'payment_method_' . $gateway_id);
             if ($is_enable_gateway) {
-                $payment_settings['payment_method_disbursement'][$gateway_id] = str_replace('payment_method_', '', $is_enable_gateway);
+                //$payment_settings['payment_method_disbursement'][$gateway_id] = str_replace('payment_method_', '', $is_enable_gateway);
+                array_push($active_module_list, $gateway_id);
                 if (!empty($gateway['repo-slug'])) {
                     wp_schedule_single_event(time() + 10, 'woocommerce_plugin_background_installer', array($gateway_id, $gateway));
                 }
-            } else if (isset($payment_settings['payment_method_' . $gateway_id])) {
-                unset($payment_settings['payment_method_' . $gateway_id]);
+            } else if (mvx_is_module_active($gateway_id)) {
+                unset($active_module_list[$gateway_id]);
             }
         }
-        update_option('mvx_commissions_tab_settings', $payment_settings);
+        //update_option('mvx_commissions_tab_settings', $payment_settings);
+        mvx_update_option( 'mvx_all_active_module_list', $active_module_list );
         update_option('mvx_disbursement_tab_settings', $disbursement_settings);
         wp_redirect(esc_url_raw($this->get_next_step_link()));
         exit;

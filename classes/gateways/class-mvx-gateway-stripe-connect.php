@@ -161,8 +161,7 @@ class MVX_Gateway_Stripe_Connect extends MVX_Payment_Gateway {
             $user_id = $user->ID;
             $vendor = get_mvx_vendor($user_id);
 
-            $disbursement_payment_method = get_mvx_global_settings('payment_method_disbursement') ? get_mvx_global_settings('payment_method_disbursement') : array();
-            $stripe_settings = in_array('stripe_masspay', $disbursement_payment_method) ? 'Enable' : '';
+            $stripe_settings = mvx_is_module_active('stripe-connect') ? 'Enable' : '';
 
             $stripe_user_id = get_user_meta($user_id, 'stripe_user_id', true);
             
@@ -202,8 +201,7 @@ class MVX_Gateway_Stripe_Connect extends MVX_Payment_Gateway {
     }
     
     public function marketplace_stripe_authorize(){
-        $disbursement_payment_method = get_mvx_global_settings('payment_method_disbursement') ? get_mvx_global_settings('payment_method_disbursement') : array();
-        $stripe_settings = in_array('stripe_masspay', $disbursement_payment_method) ? 'Enable' : '';
+        $stripe_settings = mvx_is_module_active('stripe-connect') ? 'Enable' : '';
         if (isset($stripe_settings) && $stripe_settings == 'Enable') {
 
             $testmode = get_mvx_vendor_settings('testmode') ? true : false;
