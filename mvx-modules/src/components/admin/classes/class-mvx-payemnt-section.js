@@ -104,8 +104,7 @@ Child({ name }) {
 
         data.modulename == name ?
           
-            <div>
-            {Object.keys(this.state.list_of_module_data).length > 0 ?
+            Object.keys(this.state.list_of_module_data).length > 0 ?
               <DynamicForm
               key={`dynamic-form-${data.modulename}`}
               className={data.classname}
@@ -117,8 +116,8 @@ Child({ name }) {
               url={data.apiurl}
               submitbutton="false"
               />
-              : <PuffLoader css={override} color={"#cd0000"} size={200} loading={true} /> }
-            </div>
+              : 
+            <PuffLoader css={override} color={"#cd0000"} size={200} loading={true} />
             
         : ''
       }
