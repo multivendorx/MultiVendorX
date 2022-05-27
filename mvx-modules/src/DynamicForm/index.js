@@ -717,7 +717,7 @@ export default class DynamicForm extends React.Component {
 
       if (type == "button") {
         input = (
-          <div className="form-group">
+          <div className="mvx-form-button-group">
             <label className="mvx-settings-form-label"></label>
             <div className="mvx-settings-input-content">
               <div className="mvx-settings-basic-input-class">
@@ -773,7 +773,7 @@ export default class DynamicForm extends React.Component {
 
       if (type == "label") {
         input = (
-          <div>
+          <div className="mvx-form-group-only-label">
             <label dangerouslySetInnerHTML={{ __html: m.valuename }}></label>
             <p className="mvx-settings-metabox-description" dangerouslySetInnerHTML={{ __html: m.desc }}></p>
           </div>
@@ -782,8 +782,7 @@ export default class DynamicForm extends React.Component {
 
       if (type == "section") {
         input = (
-          <div className="mvx-setting-section-divider">&nbsp;
-          </div>
+          <div className="mvx-setting-section-divider">&nbsp;</div>
         );
       }
 
@@ -818,7 +817,6 @@ export default class DynamicForm extends React.Component {
               {inputlabels}
             </tr>
             {input}
-
           </table>
         </div>;
       }
@@ -943,8 +941,6 @@ export default class DynamicForm extends React.Component {
           return (
             <React.Fragment key={"fr" + o.key}>
               <div className={`mvx-radioselect-class ${checked ? 'radio-select-active' : ''}`}>
-
-
                 <input
                   {...props}
                   className="mvx-setting-form-input"
@@ -959,8 +955,6 @@ export default class DynamicForm extends React.Component {
                   }}
                 />
                 <label className="mvx-radio-select-under-label-class" for={`mvx-radio-select-under-${o.key}`}>{o.label}<img src={o.color} alt={o.label} className="mvx-section-img-fluid" /><div className="mvx-radioselect-overlay-text">Select your Store</div></label>
-
-
               </div>
             </React.Fragment>
           );
@@ -1032,7 +1026,7 @@ export default class DynamicForm extends React.Component {
           options_data[index] = { value: o.value, label: o.label, index: index };
         });
         input = (
-          <div>
+          <div className="mvx-form-select-field-wrapper">
             <Select className={key}
               value={value ? value : ''}
               options={options_data}
@@ -1070,10 +1064,10 @@ export default class DynamicForm extends React.Component {
 
       if (type == "textarea") {
         input = (
-          <div className="mvxsetting-from-textarea">
+          <div className="mvx-setting-from-textarea">
             <textarea
               {...props}
-              className={m.class ? m.class : 'form-input'}
+              className={m.class ? m.class : 'mvx-form-input'}
               key={key}
               maxlength={limit}
               placeholder={placeholder}
@@ -1526,19 +1520,15 @@ export default class DynamicForm extends React.Component {
 
 
       return (
-        <div>
-          {m.type == 'section' || m.label == 'no_label' ? input :
-            <div key={"g" + key} className="form-group">
-              <label className="mvx-settings-form-label" key={"l" + key} htmlFor={key}>
-                <p dangerouslySetInnerHTML={{ __html: m.label }}></p>
-              </label>
-
-              <div className="mvx-settings-input-content">
-                {input}
-              </div>
+          m.type == 'section' || m.label == 'no_label' ? input :
+          <div key={"g" + key} className="mvx-form-group">
+            <label className="mvx-settings-form-label" key={"l" + key} htmlFor={key}>
+              <p dangerouslySetInnerHTML={{ __html: m.label }}></p>
+            </label>
+            <div className="mvx-settings-input-content">
+              {input}
             </div>
-          }
-        </div>
+          </div>
       );
     });
     return formUI;
@@ -1548,18 +1538,18 @@ export default class DynamicForm extends React.Component {
     let title = this.props.title || "Dynamic Form";
     let prop_submitbutton = this.props.submitbutton && this.props.submitbutton == 'false' ? '' : 'true';
     return (
-      <div className={this.props.className}>
+      <div className="mvx-dynamic-fields-wrapper">
         {this.state.errordisplay ? <div className="mvx-notic-display-title"><i className="mvx-font icon-yes mr-6"></i>{this.state.errordisplay}</div> : ''}
         {/*<div className="mvx-notic-display-title">Setting Saved</div>*/}
         <form
-          className="dynamic-form"
+          className="mvx-dynamic-form"
           onSubmit={e => {
             this.onSubmit(e);
           }}
         >
           {this.renderForm()}
           {prop_submitbutton ?
-            <div className="form-actions">
+            <div className="mvx-form-actions">
               <button className="button-secondary" disabled={this.state.from_loading} type="submit">{this.state.from_loading && (
                 <i
                   className="mvx-font icon-approve"
