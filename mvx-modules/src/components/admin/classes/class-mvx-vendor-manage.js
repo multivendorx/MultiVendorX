@@ -631,6 +631,9 @@ class App extends React.Component {
               query_name={user_query.get("name")}
               funtion_name={this}
               default_vendor_funtion
+              no_banner
+              no_header
+              no_tabs
             />
 
 

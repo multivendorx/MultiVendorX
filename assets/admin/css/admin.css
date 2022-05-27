@@ -1314,7 +1314,14 @@ a:focus {
 }
 
 .mvx-module-option-row .mvx-module-section-options-list {
+<<<<<<< HEAD
   width: 32.33%;
+=======
+  width: 100%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 calc(33.33% - 10px);
+          flex: 1 0 calc(33.33% - 10px);
+>>>>>>> upstream/main
   background: #fdfdfe;
   padding: 16px;
   margin: 8px 8px 0px 0;
@@ -1720,6 +1727,9 @@ a:focus {
 .mvx-store .mvx-section-img-fluid {
   width: 100%;
 }
+<<<<<<< HEAD
 
 /** Listing Css **/
+=======
+>>>>>>> upstream/main
 /*# sourceMappingURL=admin.css.map */
