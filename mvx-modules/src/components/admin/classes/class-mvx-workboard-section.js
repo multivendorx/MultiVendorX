@@ -91,7 +91,7 @@ class App extends Component {
       columns_announcement_new: [],
 
       columns_knowledgebase_new: [],
-
+      columns_questions_new: [],
       columns_store_review: [],
       columns_report_abuse: [],
 
@@ -116,56 +116,6 @@ class App extends Component {
       pending_question_loding_end: false,
 
 
-      columns_knowladgebase: [
-        {
-          name: <div className="mvx-datatable-header-text">Title</div>,
-          selector: row => <div dangerouslySetInnerHTML={{ __html: row.title }}></div>,
-          sortable: true,
-        },
-        {
-          name: <div className="mvx-datatable-header-text">Date</div>,
-          selector: row => <div dangerouslySetInnerHTML={{ __html: row.date }}></div>,
-          sortable: true,
-        },
-      ],
-
-
-
-
-      pending_product: [
-        {
-          name: <div className="mvx-datatable-header-text">Vendor Name</div>,
-          selector: row => <div dangerouslySetInnerHTML={{ __html: row.vendor }}></div>,
-          sortable: true,
-        },
-        {
-          name: <div className="mvx-datatable-header-text">Product Name</div>,
-          selector: row => <div dangerouslySetInnerHTML={{ __html: row.product }}></div>,
-          sortable: true,
-        },
-      ],
-
-      pending_vendor: [
-        {
-          name: <div className="mvx-datatable-header-text">Edit</div>,
-          selector: row => <div dangerouslySetInnerHTML={{ __html: row.vendor }}></div>,
-          sortable: true,
-        }
-      ],
-
-      pending_coupon: [
-        {
-          name: <div className="mvx-datatable-header-text">Vendor Name</div>,
-          selector: row => <div dangerouslySetInnerHTML={{ __html: row.vendor }}></div>,
-          sortable: true,
-        },
-        {
-          name: <div className="mvx-datatable-header-text">Coupon Name</div>,
-          selector: row => <div dangerouslySetInnerHTML={{ __html: row.coupon }}></div>,
-          sortable: true,
-        },
-      ],
-
       pending_tranaction: [
         {
           name: <div className="mvx-datatable-header-text">Vendor Name</div>,
@@ -188,64 +138,6 @@ class App extends Component {
           sortable: true,
         },
       ],
-
-      pending_questions: [
-        {
-          name: <div className="mvx-datatable-header-text">Question by</div>,
-          selector: row => <div dangerouslySetInnerHTML={{ __html: row.question_by }}></div>,
-          sortable: true,
-        },
-        {
-          name: <div className="mvx-datatable-header-text">Product Name</div>,
-          selector: row => <div dangerouslySetInnerHTML={{ __html: row.product_name }}></div>,
-          sortable: true,
-        },
-        {
-          name: <div className="mvx-datatable-header-text">Date</div>,
-          selector: row => <div dangerouslySetInnerHTML={{ __html: row.question_date }}></div>,
-          sortable: true,
-        },
-        {
-          name: <div className="mvx-datatable-header-text">Status</div>,
-          selector: row => <div dangerouslySetInnerHTML={{ __html: row.question_status }}></div>,
-          sortable: true,
-        },
-        {
-          name: <div className="mvx-datatable-header-text">Question details</div>,
-          selector: row => <div dangerouslySetInnerHTML={{ __html: row.question_details }}></div>,
-          sortable: true,
-        },
-      ],
-
-      store_review: [
-        {
-          name: <div className="mvx-datatable-header-text">Customer</div>,
-          selector: row => <div dangerouslySetInnerHTML={{ __html: row.author }}></div>,
-          sortable: true,
-        },
-        {
-          name: <div className="mvx-datatable-header-text">Vendor</div>,
-          selector: row => <div dangerouslySetInnerHTML={{ __html: row.user_id }}></div>,
-          sortable: true,
-        },
-        {
-          name: <div className="mvx-datatable-header-text">Content</div>,
-          selector: row => <div dangerouslySetInnerHTML={{ __html: row.content }}></div>,
-          sortable: true,
-        },
-        {
-          name: <div className="mvx-datatable-header-text">Time</div>,
-          selector: row => <div dangerouslySetInnerHTML={{ __html: row.time }}></div>,
-          sortable: true,
-        },
-        {
-          name: <div className="mvx-datatable-header-text">review</div>,
-          selector: row => <div dangerouslySetInnerHTML={{ __html: row.review }}></div>,
-          sortable: true,
-        },
-      ],
-
-
 
     };
 
@@ -1272,6 +1164,33 @@ class App extends Component {
     // Display table column and row slection end
 
 
+    // Display table column and row slection for questions
+    if (this.state.columns_questions_new.length == 0 && new URLSearchParams(window.location.hash).get("name") == 'question-ans') {
+      appLocalizer.columns_questions.map((data_ques, index_ques) => {
+        var data_selector_question = '';
+        var set_for_dynamic_column_question = '';
+        data_selector_question = data_ques['selector_choice'];
+        data_ques.selector = row => <div dangerouslySetInnerHTML={{ __html: row[data_selector_question] }}></div>;
+
+
+        data_ques.cell ? data_ques.cell = (row) => <div className="mvx-vendor-action-icon">
+
+          <a href={row.link}><i className="mvx-font icon-edit"></i></a>
+          <div onClick={() => this.handlePostDismiss(row.id, row.type)} id={row.id}><i className="mvx-font icon-no"></i></div>
+
+        </div> : '';
+
+
+        this.state.columns_questions_new[index_ques] = data_ques
+        set_for_dynamic_column_question = this.state.columns_questions_new;
+        this.setState({
+          columns_questions_new: set_for_dynamic_column_question,
+        });
+      }
+      )
+    }
+    // Display table column and row slection for questions
+
     // Display table column and row slection
     if (this.state.columns_knowledgebase_new.length == 0 && new URLSearchParams(window.location.hash).get("name") == 'knowladgebase') {
       appLocalizer.columns_knowledgebase.map((data_anno_knowl, index_knowledge) => {
@@ -2104,9 +2023,9 @@ class App extends Component {
                         </div>*/}
 
                         <div className="mvx-backend-datatable-wrapper">
-                          {this.state.pending_questions ?
+                          {this.state.columns_questions_new && this.state.columns_questions_new.length > 0 ?
                             <DataTable
-                              columns={this.state.pending_questions}
+                              columns={this.state.columns_questions_new}
                               data={this.state.list_of_publish_question}
                               selectableRows
                               pagination
