@@ -682,13 +682,8 @@ $fill-color : #fdfdfe;
     display: flex;
     flex-wrap: wrap;
     & .mvx-module-section-options-list {
-<<<<<<< HEAD
         width: 32.33%;
         // flex: 1 0 calc(33.33% - 10px);
-=======
-        width: 100%;
-        flex: 1 0 calc(33.33% - 10px);
->>>>>>> upstream/main
         background: #fdfdfe;
         padding: 16px;
         margin: 8px 8px 0px 0;
@@ -884,7 +879,6 @@ $fill-color : #fdfdfe;
         }
     }
 }
-<<<<<<< HEAD
 @mixin add-announcement-btn {
         background: #3f1473;
         width: 16%;
@@ -901,8 +895,6 @@ $fill-color : #fdfdfe;
             }
         }
 }
-=======
->>>>>>> upstream/main
 
 
 
@@ -1554,11 +1546,8 @@ margin-left: auto;
     & .mvx-section-img-fluid {
         width: 100%;
     }
-<<<<<<< HEAD
 }
 /** Listing Css **/
 .mvx-backend-datatable-wrapper {
     
-=======
->>>>>>> upstream/main
 }
