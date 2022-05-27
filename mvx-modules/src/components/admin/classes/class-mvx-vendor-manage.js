@@ -658,7 +658,7 @@ class App extends React.Component {
                   </div>
                 </div>
 
-                <div className="mvx-row mvx-align-items-center mvx-justify-content-between mb-15">
+                <div className="mvx-row mvx-align-items-center mvx-justify-content-between mb-15 mvx-approved-pending-reject">
                   <div className="mvx-col-55">
                     <ul className="mvx-ul-auto mvx-row">
                       <li className="mvx-col-auto">
