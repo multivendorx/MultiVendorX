@@ -1774,7 +1774,7 @@ class App extends Component {
             name == 'announcement' ?
               <div className="mvx-module-grid">
 
-                <div className="mvx-table-text-and-add-wrap">
+                <div className="mvx-table-text-and-add-wrap mvx-addbtn">
                   <Link to={`?page=mvx#&submenu=work-board&name=announcement&create=announcement`}><i className="mvx-font icon-add"></i>Add Announcement</Link>
                 </div>
 
@@ -1886,7 +1886,7 @@ class App extends Component {
                 <div className="mvx-module-grid">
 
 
-                  <div className="mvx-table-text-and-add-wrap">
+                  <div className="mvx-table-text-and-add-wrap mvx-addbtn">
                     <Link to={`?page=mvx#&submenu=work-board&name=knowladgebase&create=knowladgebase`}><i className="mvx-font icon-add"></i>Add Knowladgebase</Link>
                   </div>
 

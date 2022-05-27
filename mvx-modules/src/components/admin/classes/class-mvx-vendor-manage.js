@@ -648,12 +648,14 @@ class App extends React.Component {
               <div className="mvx-middle-container-wrapper">
                 <div className="mvx-page-title">
                   <p>Vendors</p>
-                  <Link
-                    to={`?page=mvx#&submenu=vendor&name=add_new`}
-                    className="btn default-btn ml-12"
-                  >
-                    <i className="mvx-font icon-add"></i>Add Vendor
-                  </Link>
+                  <div className="mvx-addbtn">
+                    <Link
+                      to={`?page=mvx#&submenu=vendor&name=add_new`}
+                      className="btn default-btn ml-12"
+                    >
+                      <i className="mvx-font icon-add"></i>Add Vendor
+                    </Link>
+                  </div>
                 </div>
 
                 <div className="mvx-row mvx-align-items-center mvx-justify-content-between mb-15">

@@ -1350,7 +1350,7 @@ margin-left: auto;
         }
     }
 }
-.mvx-table-text-and-add-wrap {
+.mvx-addbtn {
     @include add-announcement-btn;
 }
 .mvx-backend-datatable-wrapper {
@@ -1606,6 +1606,7 @@ margin-left: auto;
                 background: transparent;
                 min-height: 40px;
                 border-bottom: 0;
+                position: relative;
                 & .rdt_TableCell {
                     & .mvx-vendor-action-icon {
                         @include flexprops(center);
@@ -1624,6 +1625,18 @@ margin-left: auto;
                         margin-right: 10px;
                     }
                 }
+                & .mvx-hover-btn {
+                    position: absolute;
+                    top: 12px;
+                    left: 134px;
+                    display: none;
+                }
+                & .mvx-vendor-icon-name:hover .mvx-hover-btn {
+                    position: absolute;
+                    top: 12px;
+                    left: 134px;
+                    display: block;
+                }
             }
         }
         & input[type="checkbox"] {
@@ -1641,22 +1654,9 @@ margin-left: auto;
         & p {
             font-size: 1.125rem;
             color: $title-color;
-
+            margin-right: 10px;
         }
-        & a {
-            background: #3f1473;
-            width: 16%;
-            height: 40px;
-            margin: 34px 0;
-            text-align: center;
-            line-height: 40px;
-            border-radius: 4px;
-            padding: 0 16px;
-            display: block;
-            font-size: 0.875rem;
-            color: $fill-color;
-            text-decoration: none;
-        }
+        
     }
     & .mvx-middle-container-wrapper {
         padding-top: 0;

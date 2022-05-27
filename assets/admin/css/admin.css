@@ -1228,7 +1228,7 @@ a:focus {
   margin-right: 10px;
 }
 
-.mvx-table-text-and-add-wrap {
+.mvx-addbtn {
   background: #3f1473;
   width: 16%;
   height: 40px;
@@ -1239,11 +1239,11 @@ a:focus {
   padding: 0 16px;
 }
 
-.mvx-table-text-and-add-wrap a {
+.mvx-addbtn a {
   color: #fdfdfe;
 }
 
-.mvx-table-text-and-add-wrap a i {
+.mvx-addbtn a i {
   padding-right: 10px;
 }
 
@@ -1790,6 +1790,7 @@ a:focus {
   background: transparent;
   min-height: 40px;
   border-bottom: 0;
+  position: relative;
 }
 
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon {
@@ -1815,6 +1816,20 @@ a:focus {
   margin-right: 10px;
 }
 
+.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .mvx-hover-btn {
+  position: absolute;
+  top: 12px;
+  left: 134px;
+  display: none;
+}
+
+.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .mvx-vendor-icon-name:hover .mvx-hover-btn {
+  position: absolute;
+  top: 12px;
+  left: 134px;
+  display: block;
+}
+
 .mvx-backend-datatable-wrapper .rdt_Table input[type="checkbox"] {
   border: 1px solid #3f1473;
 }
@@ -1836,21 +1851,7 @@ a:focus {
 .mvx-vendor .mvx-page-title p {
   font-size: 1.125rem;
   color: #181718;
-}
-
-.mvx-vendor .mvx-page-title a {
-  background: #3f1473;
-  width: 16%;
-  height: 40px;
-  margin: 34px 0;
-  text-align: center;
-  line-height: 40px;
-  border-radius: 4px;
-  padding: 0 16px;
-  display: block;
-  font-size: 0.875rem;
-  color: #fdfdfe;
-  text-decoration: none;
+  margin-right: 10px;
 }
 
 .mvx-vendor .mvx-middle-container-wrapper {
