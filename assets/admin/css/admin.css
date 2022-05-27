@@ -729,6 +729,7 @@ a:focus {
       -ms-flex-align: start;
           align-items: start;
   background-color: #f2eff5;
+  padding-bottom: 34px;
 }
 
 .mvx-container .mvx-sidebar {
@@ -1127,6 +1128,129 @@ a:focus {
   padding: 0 10px 0 0;
 }
 
+.mvx-announcement .mvx-middle-container-wrapper {
+  width: 100%;
+}
+
+.mvx-knowladgebase .mvx-middle-container-wrapper {
+  width: 100%;
+}
+
+.mvx-store-review .mvx-col-auto {
+  border: none;
+  background: transparent;
+}
+
+.mvx-store-review .mvx-middle-container-wrapper {
+  width: 100%;
+}
+
+.mvx-report-abuse .mvx-middle-container-wrapper {
+  width: 100%;
+}
+
+.mvx-workboard-tab-wrapper {
+  padding-top: 34px;
+}
+
+.mvx-workboard-tab-wrapper .mvx-wrap-bulk-all-date .mvx-wrap-bulk-action {
+  margin-bottom: 10px;
+}
+
+.mvx-workboard-tab-wrapper .mvx-wrap-bulk-all-date .mvx-wrap-bulk-action input:focus {
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.mvx-workboard-tab-wrapper .mvx-wrap-bulk-all-date .mvx-col-auto {
+  margin-left: 0;
+  margin-right: 10px;
+}
+
+.mvx-workboard-tab-wrapper .mv-off-white-box {
+  width: 350px;
+  height: 250px;
+  position: relative;
+  padding: 16px;
+  border: 1px solid #d4d1d9;
+  border-radius: 4px;
+}
+
+.mvx-workboard-tab-wrapper .mv-off-white-box .mv-white-box-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  top: 0px;
+  background: #d4d1d9;
+  left: 0;
+  width: 100%;
+  padding: 16px;
+}
+
+.mvx-workboard-tab-wrapper .mv-off-white-box .mv-white-box-header .pull-right {
+  margin-left: auto;
+}
+
+.mvx-workboard-tab-wrapper .mv-off-white-box .mv-white-box-body {
+  margin-top: 50px;
+}
+
+.mvx-workboard-tab-wrapper .mv-off-white-box .mv-white-box-body .mvx-row {
+  padding-bottom: 10px;
+}
+
+.mv-white-box-footer {
+  position: absolute;
+  bottom: 0;
+  padding: 16px;
+  left: 0;
+  width: 100%;
+  border-top: 1px solid #d4d1d9;
+}
+
+.mv-white-box-footer .pull-left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.mv-white-box-footer .pull-left .link-icon {
+  display: block;
+  color: #3f1473;
+  margin-right: 10px;
+}
+
+.mvx-table-text-and-add-wrap {
+  background: #3f1473;
+  width: 16%;
+  height: 40px;
+  margin: 34px 0;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 4px;
+  padding: 0 16px;
+}
+
+.mvx-table-text-and-add-wrap a {
+  color: #fdfdfe;
+}
+
+.mvx-table-text-and-add-wrap a i {
+  padding-right: 10px;
+}
+
+.mvx-backend-datatable-wrapper {
+  padding: 34px 0;
+}
+
 /** Start Module Sec **/
 .mvx-modules .mvx-middle-container-wrapper {
   padding-left: 20px;
@@ -1190,10 +1314,7 @@ a:focus {
 }
 
 .mvx-module-option-row .mvx-module-section-options-list {
-  width: 100%;
-  -webkit-box-flex: 1;
-      -ms-flex: 1 0 calc(33.33% - 10px);
-          flex: 1 0 calc(33.33% - 10px);
+  width: 32.33%;
   background: #fdfdfe;
   padding: 16px;
   margin: 8px 8px 0px 0;
@@ -1599,4 +1720,6 @@ a:focus {
 .mvx-store .mvx-section-img-fluid {
   width: 100%;
 }
+
+/** Listing Css **/
 /*# sourceMappingURL=admin.css.map */

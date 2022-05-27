@@ -682,8 +682,8 @@ $fill-color : #fdfdfe;
     display: flex;
     flex-wrap: wrap;
     & .mvx-module-section-options-list {
-        width: 100%;
-        flex: 1 0 calc(33.33% - 10px);
+        width: 32.33%;
+        // flex: 1 0 calc(33.33% - 10px);
         background: #fdfdfe;
         padding: 16px;
         margin: 8px 8px 0px 0;
@@ -879,6 +879,22 @@ $fill-color : #fdfdfe;
         }
     }
 }
+@mixin add-announcement-btn {
+        background: #3f1473;
+        width: 16%;
+        height: 40px;
+        margin: 34px 0;
+        text-align: center;
+        line-height: 40px;
+        border-radius: $border-radius;
+        padding: 0 16px;
+        & a {
+            color: #fdfdfe;
+            & i {
+                padding-right: 10px;
+            }
+        }
+}
 
 
 
@@ -958,6 +974,7 @@ $fill-color : #fdfdfe;
 .mvx-container {
     @include flexprops(start);
     background-color: $base-color;
+    padding-bottom: 34px;
     & .mvx-sidebar {
         margin-left: auto;
         padding-right: 14px;
@@ -1212,7 +1229,6 @@ $fill-color : #fdfdfe;
         width: 100%;
     }
 }
-
 .mvx-select-all-checkbox {
     width: 7.5rem;
     height: 2.75rem;
@@ -1228,7 +1244,6 @@ $fill-color : #fdfdfe;
         padding: 20px 0;
     }
 }
-
 .mvx-row {
     @include flexprops(center);
     & .mvx-col-55 {
@@ -1252,6 +1267,94 @@ margin-left: auto;
         padding: 0 10px 0 0;
 
     }
+}
+.mvx-announcement {
+    & .mvx-middle-container-wrapper {
+        width: 100%;
+    }
+}
+.mvx-knowladgebase {
+    & .mvx-middle-container-wrapper {
+        width: 100%;
+    }
+}
+.mvx-store-review {
+    & .mvx-col-auto {
+        border: none;
+        background: transparent;
+    }
+    & .mvx-middle-container-wrapper {
+        width: 100%;
+    }
+}
+.mvx-report-abuse {
+    & .mvx-middle-container-wrapper {
+        width: 100%;
+    }
+}
+.mvx-workboard-tab-wrapper {
+    padding-top: 34px;
+    & .mvx-wrap-bulk-all-date {
+        & .mvx-wrap-bulk-action {
+            margin-bottom: 10px;
+            & input:focus {
+                border: none;
+                box-shadow: none;
+            }
+        }
+        & .mvx-col-auto {
+            margin-left: 0;
+            margin-right: 10px;
+        }
+    }
+    & .mv-off-white-box {
+        width: 350px;
+        height: 250px;
+        position: relative;
+        padding: 16px;
+        border: $border;
+        border-radius: $border-radius;
+        & .mv-white-box-header {
+            @include flexprops(center);
+            position: absolute;
+            top: 0px;
+            background: #d4d1d9;
+            left: 0;
+            width: 100%;
+            padding: 16px;
+            & .pull-right {
+                margin-left: auto;
+            }
+        }
+        & .mv-white-box-body {
+            margin-top: 50px;
+            & .mvx-row {
+                padding-bottom: 10px;
+            }
+        }
+    }
+}
+.mv-white-box-footer {
+    position: absolute;
+    bottom: 0;
+    padding: 16px;
+    left: 0;
+    width: 100%;
+    border-top: $border;
+    & .pull-left {
+        @include flexprops(center);
+        & .link-icon {
+            display: block;
+            color: #3f1473;
+            margin-right: 10px;
+        }
+    }
+}
+.mvx-table-text-and-add-wrap {
+    @include add-announcement-btn;
+}
+.mvx-backend-datatable-wrapper {
+    padding: 34px 0;
 }
 
 /** Start Module Sec **/
@@ -1444,3 +1547,5 @@ margin-left: auto;
         width: 100%;
     }
 }
+/** Listing Css **/
+
