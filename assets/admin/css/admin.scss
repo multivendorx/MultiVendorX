@@ -930,7 +930,7 @@ $fill-color : #fdfdfe;
             padding: 10px 0;
         }
         & .mvx-logo-title {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 500;
             padding-left: 6px;
             
@@ -1120,7 +1120,7 @@ $fill-color : #fdfdfe;
     @include flexprops(center);
     margin-bottom: 30px;
     & span {
-        font-size: 1.25rem;
+        font-size: 1.125rem;
         color: $title-color;
     }
 }
@@ -1547,7 +1547,118 @@ margin-left: auto;
         width: 100%;
     }
 }
+.mvx-commission-order-details-text {
+    font-size: 1rem;
+    color: $title-color;
+}
 /** Listing Css **/
 .mvx-backend-datatable-wrapper {
-    
+    & .rdt_Pagination{
+        background: transparent;
+        border: none;
+        & .fQmYxz {
+            border: 1px solid #d4d1d9;
+            border-radius: 4px;
+            margin-left: 10px;
+            & .fWWeYy {
+                background-color: transparent;
+            }
+            & svg {
+                top: 3px;
+                right: 1px;
+                color: $title-color;
+            }
+        }
+        & .kNbUsB {
+            & .gPLhoV {
+            border: 1px solid #d4d1d9;
+            border-radius: 4px;
+            margin-left: 10px;
+            height: 34px;
+            padding: 4px 0 0 0;
+            & svg {
+                width: 20px;
+            }
+            }
+        }
+    }
+    & .rdt_Table {
+        background: transparent;
+        & .rdt_TableHead {
+            border: $border;
+            margin-bottom: 10px;
+            border-radius: $border-radius;
+            background: #fdfdfe;
+            height: 40px;
+            & .rdt_TableHeadRow {
+                background: transparent;
+                min-height: 40px;
+                border-bottom: 0;
+            }
+        }
+        & .rdt_TableBody {
+            border: $border;
+            margin-bottom: 10px;
+            border-radius: $border-radius;
+            background: #fdfdfe;
+            height: 40px;
+            & .rdt_TableRow {
+                background: transparent;
+                min-height: 40px;
+                border-bottom: 0;
+                & .rdt_TableCell {
+                    & .mvx-vendor-action-icon {
+                        @include flexprops(center);
+                        & a {
+                            display: block;
+                            margin-right: 10px;
+                        }
+                        & i {
+                            color: #3f1473;
+                        }
+                    }
+                }
+                & .fvAeSn {
+                    & img {
+                        border-radius: $border-radius;
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+        & input[type="checkbox"] {
+            border: 1px solid #3f1473;
+        }
+    }
+}
+/** Vendor Page Css **/
+.mvx-vendor {
+    & .mvx-middle-container-wrapper {
+        padding-left: 20px;
+    }
+    & .mvx-page-title {
+        @include flexprops(center);
+        & p {
+            font-size: 1.125rem;
+            color: $title-color;
+
+        }
+        & a {
+            background: #3f1473;
+            width: 16%;
+            height: 40px;
+            margin: 34px 0;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 4px;
+            padding: 0 16px;
+            display: block;
+            font-size: 0.875rem;
+            color: $fill-color;
+            text-decoration: none;
+        }
+    }
+    & .mvx-middle-container-wrapper {
+        padding-top: 0;
+    }
 }

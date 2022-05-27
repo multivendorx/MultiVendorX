@@ -659,7 +659,7 @@ a:focus {
 }
 
 .mvx-header-wapper .mvx-header-nav-left-section .mvx-logo-title {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 500;
   padding-left: 6px;
 }
@@ -952,7 +952,7 @@ a:focus {
 }
 
 .mvx-report-text span {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   color: #181718;
 }
 
@@ -1721,5 +1721,139 @@ a:focus {
   width: 100%;
 }
 
+.mvx-commission-order-details-text {
+  font-size: 1rem;
+  color: #181718;
+}
+
 /** Listing Css **/
+.mvx-backend-datatable-wrapper .rdt_Pagination {
+  background: transparent;
+  border: none;
+}
+
+.mvx-backend-datatable-wrapper .rdt_Pagination .fQmYxz {
+  border: 1px solid #d4d1d9;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+
+.mvx-backend-datatable-wrapper .rdt_Pagination .fQmYxz .fWWeYy {
+  background-color: transparent;
+}
+
+.mvx-backend-datatable-wrapper .rdt_Pagination .fQmYxz svg {
+  top: 3px;
+  right: 1px;
+  color: #181718;
+}
+
+.mvx-backend-datatable-wrapper .rdt_Pagination .kNbUsB .gPLhoV {
+  border: 1px solid #d4d1d9;
+  border-radius: 4px;
+  margin-left: 10px;
+  height: 34px;
+  padding: 4px 0 0 0;
+}
+
+.mvx-backend-datatable-wrapper .rdt_Pagination .kNbUsB .gPLhoV svg {
+  width: 20px;
+}
+
+.mvx-backend-datatable-wrapper .rdt_Table {
+  background: transparent;
+}
+
+.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableHead {
+  border: 1px solid #d4d1d9;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  background: #fdfdfe;
+  height: 40px;
+}
+
+.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableHead .rdt_TableHeadRow {
+  background: transparent;
+  min-height: 40px;
+  border-bottom: 0;
+}
+
+.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody {
+  border: 1px solid #d4d1d9;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  background: #fdfdfe;
+  height: 40px;
+}
+
+.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow {
+  background: transparent;
+  min-height: 40px;
+  border-bottom: 0;
+}
+
+.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon a {
+  display: block;
+  margin-right: 10px;
+}
+
+.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon i {
+  color: #3f1473;
+}
+
+.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .fvAeSn img {
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.mvx-backend-datatable-wrapper .rdt_Table input[type="checkbox"] {
+  border: 1px solid #3f1473;
+}
+
+/** Vendor Page Css **/
+.mvx-vendor .mvx-middle-container-wrapper {
+  padding-left: 20px;
+}
+
+.mvx-vendor .mvx-page-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.mvx-vendor .mvx-page-title p {
+  font-size: 1.125rem;
+  color: #181718;
+}
+
+.mvx-vendor .mvx-page-title a {
+  background: #3f1473;
+  width: 16%;
+  height: 40px;
+  margin: 34px 0;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 4px;
+  padding: 0 16px;
+  display: block;
+  font-size: 0.875rem;
+  color: #fdfdfe;
+  text-decoration: none;
+}
+
+.mvx-vendor .mvx-middle-container-wrapper {
+  padding-top: 0;
+}
 /*# sourceMappingURL=admin.css.map */
