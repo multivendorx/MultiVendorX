@@ -861,7 +861,7 @@ class MVX_Vendor_Hooks {
     }
 
     public function mvx_vendor_dashboard_menu_vendor_withdrawal_capability( $cap ) {
-        if ( get_mvx_vendor_settings( 'mvx_disbursal_mode_vendor', 'payment' ) ) {
+        if ( get_mvx_vendor_settings( 'withdrawal_request', 'disbursement' ) ) {
             $cap = true;
         }
         return $cap;

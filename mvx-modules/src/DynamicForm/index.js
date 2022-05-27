@@ -638,6 +638,11 @@ export default class DynamicForm extends React.Component {
         return false;
       }
 
+      // for checkbox selection
+      if (m.not_depend_checkbox && this.state[m.not_depend_checkbox] && this.state[m.not_depend_checkbox].length > 0) {
+        return false;
+      }
+
       if (m.depend && !this.state[m.depend]) { return false; }
 
 

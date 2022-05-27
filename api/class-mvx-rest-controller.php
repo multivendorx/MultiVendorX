@@ -1659,6 +1659,8 @@ class MVX_REST_API {
                             'question_by_name'      =>  $question_by_details->data->display_name,
                             'product_name'          =>  get_the_title($pending_question->product_ID),
                             'question_details'      =>  $pending_question->ques_details,
+                            'question_date'         =>  human_time_diff(strtotime($pending_question->ques_created)),
+                            'question_status'       =>  $pending_question->status,
                             'product_url'           =>  admin_url('post.php?post=' . $pending_question->product_ID . '&action=edit'),
                         );
                     }   
