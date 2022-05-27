@@ -1566,7 +1566,7 @@ a:focus {
   border-left: 0;
 }
 
-.mvx-general-settings-wrapper .mvx-general-settings-child-wrapper .form-group {
+.mvx-general-settings-wrapper .mvx-general-settings-child-wrapper .mvx-form-group {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1576,33 +1576,33 @@ a:focus {
   margin: 34px 0;
 }
 
-.mvx-general-settings-wrapper .mvx-general-settings-child-wrapper .form-group .mvx-settings-form-label {
+.mvx-general-settings-wrapper .mvx-general-settings-child-wrapper .mvx-form-group .mvx-settings-form-label {
   margin-right: 20px;
 }
 
-.mvx-general-settings-wrapper .mvx-general-settings-child-wrapper .form-group .mvx-settings-form-label p {
+.mvx-general-settings-wrapper .mvx-general-settings-child-wrapper .mvx-form-group .mvx-settings-form-label p {
   font-size: 1rem;
   color: #181718;
   width: 200px;
 }
 
-.mvx-general-settings-wrapper .mvx-general-settings-child-wrapper .form-group .mvx-settings-input-content {
+.mvx-general-settings-wrapper .mvx-general-settings-child-wrapper .mvx-form-group .mvx-settings-input-content {
   width: 100%;
 }
 
-.mvx-general-settings-wrapper .mvx-general-settings-child-wrapper .form-group .mvx-settings-input-content .mvx-toggle-checkbox-content {
+.mvx-general-settings-wrapper .mvx-general-settings-child-wrapper .mvx-form-group .mvx-settings-input-content .mvx-toggle-checkbox-content {
   margin-top: -14px;
   margin-bottom: 10px;
 }
 
-.mvx-registration .mvx-form-vendor-register .mvx-top-part-from {
+.mvx-registration .mvx-form-vendor-register .mvx-top-part-registartion-from {
   background: #fdfdfe;
   padding: 16px;
   margin-top: 22px;
   border-radius: 4px;
 }
 
-.mvx-registration .mvx-form-vendor-register .mvx-top-part-from .form-group-new .w-100 {
+.mvx-registration .mvx-form-vendor-register .mvx-top-part-registartion-from .mvx-form-group-new .w-100 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1613,12 +1613,12 @@ a:focus {
   margin-bottom: 10px;
 }
 
-.mvx-registration .mvx-form-vendor-register .mvx-top-part-from .form-group-new input {
+.mvx-registration .mvx-form-vendor-register .mvx-top-part-registartion-from .mvx-form-group-new input {
   border: 1px solid #d4d1d9;
   height: 40px;
 }
 
-.mvx-registration .mvx-form-vendor-register .mvx-top-part-from .form-group-new input:focus {
+.mvx-registration .mvx-form-vendor-register .mvx-top-part-registartion-from .mvx-form-group-new input:focus {
   -webkit-box-shadow: none;
           box-shadow: none;
 }
@@ -1637,7 +1637,7 @@ a:focus {
   border-radius: 4px;
 }
 
-.mvx-registration .mvx-option-part .form-group {
+.mvx-registration .mvx-option-part .mvx-form-group {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
