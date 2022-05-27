@@ -480,8 +480,50 @@ class MVX_Admin {
                 'ignoreRowClick'=> true,
                 'allowOverflow'=> true,
                 'button'=> true,
+            )
+        );
 
-
+        $columns_questions = array(
+            array(
+                'name'      =>  __('Question by', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "question_by",
+                
+            ),
+            array(
+                'name'      =>  __('Product Name', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "product_name",
+                
+            ),
+            array(
+                'name'      =>  __('Date', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "question_date",
+            ),
+            array(
+                'name'      =>  __('Status', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "question_status",
+            ),
+            array(
+                'name'      =>  __('Question details', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "question_details",
+            ),
+            array(
+                'name'      =>  __('Action', 'dc-woocommerce-multi-vendor'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'cell'  =>  'cell',
+                'ignoreRowClick'=> true,
+                'allowOverflow'=> true,
+                'button'=> true,
             )
         );
 
@@ -793,6 +835,7 @@ class MVX_Admin {
             'store_review_bulk'             =>  $store_review_bulk,
             'task_board_bulk_status'        =>  $task_board_bulk_status,
             'columns_announcement'          =>  $columns_announcement,
+            'columns_questions'             =>  $columns_questions,
             'columns_knowledgebase'         =>  $columns_knowledgebase,
             'columns_store_review'          =>  $columns_store_review,
             'columns_vendor'                =>  $columns_vendor,
