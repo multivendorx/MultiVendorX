@@ -1598,6 +1598,31 @@ margin-left: auto;
 .mvx-settings-metabox-description {
   margin-top: 10px;
 }
+.mvx-settings-mvx-form-group-radio {
+& .mvx-toggle-rectangle-merge {
+    & li {
+        border: $border;
+        width: 30%;
+        background-color: #3f1473;
+        padding: 0 16px;
+        margin-right: 10px;
+        color: $fill-color;
+        border-radius: $border-radius;
+    }
+    & li:last-child {
+        border: $border;
+        width: 30%;
+        background-color: $fill-color;
+        padding: 0 16px;
+        margin-right: 10px;
+        color: $title-color;
+        border-radius: $border-radius;
+    }
+}
+}
+.mvx-settings-metabox-description {
+margin-top: 10px;
+}
 /** Listing Css **/
 .mvx-backend-datatable-wrapper {
     & .rdt_Pagination{
@@ -1737,6 +1762,11 @@ margin-left: auto;
         padding: 32px 0 24px 20px;
     }
 }
+.mvx-vendor-page-container {
+  & .mvx-middle-container-wrapper {
+      padding: 32px 0 24px 20px;
+  }
+}
 
 /** Pop Up **/
 .MuiDialog-paperScrollPaper {
@@ -1807,6 +1837,7 @@ margin-left: auto;
     }
 }
 .mvx-add_new {
+<<<<<<< HEAD
     width: 100%;
     margin-top: 32px;
     background-color: #f7f6f9;
@@ -1848,6 +1879,49 @@ margin-left: auto;
             }
         }
     }
+=======
+  width: 100%;
+  margin-top: 32px;
+  background-color: #f7f6f9;
+  border-left: $border;
+  & .mvx-tab-content {
+      width: 100%;
+      padding: 32px 0;
+      background-color: transparent;
+      & .mvx-form-group {
+          @include flexprops(center);
+          margin-bottom: 10px;
+          & .mvx-settings-form-label {
+              width: 150px;
+          }
+          & .mvx-settings-input-content {
+              & .mvx-settings-basic-input-class{
+                  @include flexprops(center);
+                  & input {
+                      width: 300px;
+                      border: $border;
+                      border-radius: $border;
+                      height: 50px;
+                  }
+                  & .mvx-settings-metabox-description {
+                      padding-left: 8px;
+                  }
+              }
+          }
+  
+      }
+      & .mvx-form-actions {
+          & button {
+              background-color: #3f1473;
+              height: 40px;
+              width: 80px;
+              color: $fill-color;
+              margin-top: 10px;
+              border: none;
+          }
+      }
+  }
+>>>>>>> upstream/main
 }
 .mvx-payments-tab-wrapper {
     .mvx-dynamic-form {

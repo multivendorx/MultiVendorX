@@ -980,11 +980,11 @@ class MVX_REST_API {
         if ($type == 'transients') {
             $vendors = get_mvx_vendors();
             foreach ( $vendors as $vendor ) {
-                if( $vendor ) $vendor->clear_all_transients($vendor->id);
+                if ( $vendor ) $vendor->clear_all_transients($vendor->id);
             }
         } else if ($type == 'visitor') {
             $delete = $wpdb->query("TRUNCATE {$wpdb->prefix}mvx_visitors_stats");
-            if ( $delete ){
+            if ( $delete ) {
                 $message = __( 'MVX visitors stats successfully deleted', 'dc-woocommerce-multi-vendor' );
             } else {
                 $ran     = false;
@@ -1511,6 +1511,7 @@ class MVX_REST_API {
     }
 
     public function mvx_list_of_pending_vendor_product() {
+        global $MVX;
         $pending_list = [];
         $vendor_ids = get_mvx_vendors(array(), 'ids');
         $args = array(
@@ -1529,10 +1530,11 @@ class MVX_REST_API {
 
                 $currentvendor = get_mvx_vendor($get_pending_product->post_author);
                 $vendor_term = get_term($currentvendor->term_id);
+                $question_by = "<img src=' " . $MVX->plugin_url . 'assets/images/wp-avatar-frau.jpg' ."' class='avatar avatar-32 photo' height='32' width='32'>" .$get_pending_product->post_title . "";
                 $pending_list[] = array(
                     'id'        =>  $get_pending_product->ID,
                     'vendor'    =>  $vendor_term->name,
-                    'product_src'   =>  wp_get_attachment_image_src( get_post_thumbnail_id( $get_pending_product->ID ), 'single-post-thumbnail' ),
+                    'product_src'   =>  $question_by, //wp_get_attachment_image_src( get_post_thumbnail_id( $get_pending_product->ID ), 'single-post-thumbnail' ),
                     'vendor_id'    =>  $get_pending_product->post_author,
                     'vendor_link'   =>  sprintf('?page=%s&ID=%s&name=vendor-personal', 'mvx#&submenu=vendor', $currentvendor->id),
                     'product'   =>  $get_pending_product->post_title,
@@ -1543,6 +1545,7 @@ class MVX_REST_API {
         return rest_ensure_response($pending_list);
     }
     public function mvx_list_of_pending_vendor() {
+        global $MVX;
         $pending_list = [];
         $get_pending_vendors = get_users('role=dc_pending_vendor');
         if (!empty($get_pending_vendors)) {
@@ -1553,7 +1556,8 @@ class MVX_REST_API {
                     'id'        =>  $pending_vendor->ID,
                     'vendor_image_src'  =>  get_avatar($pending_vendor->ID, 50),
                     'vendor_link'   =>  sprintf('?page=%s&ID=%s&name=vendor-personal', 'mvx#&submenu=vendor', $pending_vendor->id),
-                    'vendor'    =>  $pending_vendor->user_login,
+                    'vendor'    =>  $question_by = "<img src=' " . $MVX->plugin_url . 'assets/images/wp-avatar-frau.jpg' ."' class='avatar avatar-32 photo' height='32' width='32'>" .$pending_vendor->user_login . "",
+                    'vendor_name'    =>  $pending_vendor->user_login,
                 );
             }
         }
@@ -1632,7 +1636,7 @@ class MVX_REST_API {
         return rest_ensure_response($pending_list);
     }
 
-    public function mvx_list_of_pending_question($request) {
+    public function mvx_list_of_pending_question($request, $extra_status = '') {
         global $MVX;
         $status = $request && $request->get_param('status') ? ($request->get_param('status')) : '';
         $vendor_ids = get_mvx_vendors(array(), 'ids');
@@ -1647,7 +1651,7 @@ class MVX_REST_API {
         $get_vendor_products = $get_vendor_products->get_posts();
         if (!empty($get_vendor_products) && apply_filters('admin_can_approve_qna_answer', true)) {
             foreach ($get_vendor_products as $get_vendor_product) {
-                $get_pending_questions = $status && $status == 'publish' ? $MVX->product_qna->get_Questions($get_vendor_product->ID) : $MVX->product_qna->get_Pending_Questions($get_vendor_product->ID);
+                $get_pending_questions = $status && $status == 'publish' ? $MVX->product_qna->get_Questions($get_vendor_product->ID) : ( $extra_status == 'all' ? $MVX->product_qna->get_Questions($get_vendor_product->ID) : $MVX->product_qna->get_Pending_Questions($get_vendor_product->ID) );
                 if (!empty($get_pending_questions)) {
                     foreach ($get_pending_questions as $pending_question) {
                         $question_by_details = get_userdata($pending_question->ques_by);
@@ -1670,6 +1674,29 @@ class MVX_REST_API {
         return rest_ensure_response($pending_list);
     }
 
+/*    public function mvx_question_verification_approval() {
+        global $MVX;
+        $question_id = $request && $request->get_param('question_id') ? absint($request->get_param('question_id')) : '';
+        $data_action = $request && $request->get_param('data_action') ? $request->get_param('data_action') : '';
+        $product = $request && $request->get_param('product') ? $request->get_param('product') : '';
+
+        $data = array();
+        if (!empty($question_id)) {
+            if (!empty($data_action)) {
+                $vendor = get_mvx_product_vendors(absint($product));
+                if ($data_action == 'rejected') {
+                    $MVX->product_qna->deleteQuestion( $question_id );
+                    delete_transient('mvx_customer_qna_for_vendor_' . $vendor->id);
+                } else {
+                    $data['status'] = $data_action;
+                    $MVX->product_qna->updateQuestion( $question_id, $data );
+                    $questions = $MVX->product_qna->get_Vendor_Questions($vendor);
+                    set_transient('mvx_customer_qna_for_vendor_' . $vendor->id, $questions);
+                }
+            }
+        }
+    }*/
+
     public function mvx_approve_dismiss_pending_question($request) {
         global $MVX;
         $product_id = $request && $request->get_param('product_id') ? ($request->get_param('product_id')) : 0;
@@ -1688,7 +1715,7 @@ class MVX_REST_API {
                 set_transient('mvx_customer_qna_for_vendor_' . $vendor->id, $questions);
             }
         }
-        return $this->mvx_list_of_pending_question();
+        return $this->mvx_list_of_pending_question('', 'all');
     }
 
     public function mvx_create_knowladgebase($request) {
@@ -1872,7 +1899,7 @@ class MVX_REST_API {
         $pages = get_pages();
         $woocommerce_pages = array(wc_get_page_id('shop'), wc_get_page_id('cart'), wc_get_page_id('checkout'), wc_get_page_id('myaccount'));
         $pages_array = array();
-        if($pages){
+        if ($pages) {
             foreach ($pages as $page) {
                 if (!in_array($page->ID, $woocommerce_pages)) {
                     $pages_array[] = array(
@@ -1911,12 +1938,12 @@ class MVX_REST_API {
         $mvx_shipping_by_distance = $mvx_shipping_by_country = $vendor_default_shipping_options = '';
         $display_name_option = $shipping_options_list = $showdisplayname = $showpayment_method = array();
 
-        if(isset($vendor_id) && absint($vendor_id) > 0) {
+        if (isset($vendor_id) && absint($vendor_id) > 0) {
             $user = get_user_by("ID", $vendor_id);
                         
             // display name for vendor start
 
-            if(isset($user->display_name)) {
+            if (isset($user->display_name)) {
                 if ($user->user_login) {
                     $display_name_option[] = array(
                         'value'=> $user->user_login,
@@ -2757,10 +2784,10 @@ class MVX_REST_API {
                     $ref_type = isset($ref_types[$ledger->ref_type]) ? $ref_types[$ledger->ref_type] : ucfirst( $ledger->ref_type );
                     $type = '<mark class="type ' . $ledger->ref_type . '"><span>' . $ref_type . '</span></mark>';
                     $status = $ledger->ref_status;
-                    if($ref_type == 'Commission') {
+                    if ($ref_type == 'Commission') {
                         $link = admin_url('post.php?post=' . $ledger->order_id . '&action=edit');
                         $ref_link = '<a href="'.esc_url($link).'">#'.$ledger->order_id.'</a>';
-                    } elseif($ref_type == 'Refund' && $ref_type == 'Withdrawal') {
+                    } elseif ($ref_type == 'Refund' && $ref_type == 'Withdrawal') {
                         $com_id = get_post_meta( $ledger->order_id, '_commission_id', true );
                         $link = admin_url('post.php?post=' . $com_id . '&action=edit');
                         $ref_link = '<a href="'.esc_url($link).'">#'.$com_id.'</a>';
@@ -2816,10 +2843,10 @@ class MVX_REST_API {
                 
                 $overview_sales += $order->get_subtotal();
                 $mvx_suborders = get_mvx_suborders($order_obj->ID);
-                if(!empty($mvx_suborders)) {
+                if (!empty($mvx_suborders)) {
                     foreach ($mvx_suborders as $suborder) {
                         $vendor_order = mvx_get_order($suborder->get_id());
-                        if( $vendor_order ) {
+                        if ( $vendor_order ) {
                             $gross_sales += $suborder->get_total( 'edit' );
                             $vendor_earning += $vendor_order->get_commission_total('edit');
                         }
@@ -2963,7 +2990,7 @@ class MVX_REST_API {
                         );*/
 
                         $vendor_order = mvx_get_order($order->get_id());
-                        if( $vendor_order ) {
+                        if ( $vendor_order ) {
                             $line_items = $order->get_items( 'line_item' );
                             
                             foreach ($line_items as $item_id => $item) {
@@ -2991,7 +3018,7 @@ class MVX_REST_API {
                                 $meta_data = $item->get_meta_data();
                                 // get item commission
                                 foreach ( $meta_data as $meta ) {
-                                    if($meta->key == '_vendor_item_commission') {
+                                    if ($meta->key == '_vendor_item_commission') {
                                         $vendor_total[$item->get_product_id()] = isset( $vendor_total[$item->get_product_id()] ) ? $vendor_total[$item->get_product_id()] + floatval($meta->value) : floatval($meta->value);
                                         $total_sales[$item->get_product_id()]['vendor_earning'] = $vendor_total[$item->get_product_id()];
                                     }
@@ -3030,7 +3057,7 @@ class MVX_REST_API {
                     //$admin_earning_width = ( $sales_report['admin_earning'] > 0 ) ? ( $sales_report['admin_earning'] / round($sales_report['total_sales']) ) * 100 : 0;
                     //$vendor_earning_width = ( $sales_report['vendor_earning'] > 0 ) ? ( $sales_report['vendor_earning'] / round($sales_report['total_sales']) ) * 100 : 0;
                     $product = wc_get_product($product_id);
-                    if( $product ) {
+                    if ( $product ) {
 
                         $product_item_sold_chart[] = array(
                             'name'  =>  date_format($date,"d M"),
@@ -3341,7 +3368,7 @@ class MVX_REST_API {
         global $MVX;
         $value = $request->get_param('value') ? ($request->get_param('value')) : 0;
         $commission_id = $request->get_param('commission_id') ? absint($request->get_param('commission_id')) : 0;
-        if( $value == 'paid' ) {
+        if ( $value == 'paid' ) {
             $MVX->postcommission->mvx_mark_commission_paid( array( $commission_id ) ) ;
         } else {
             update_post_meta($commission_id, '_paid_status', wc_clean(wp_unslash($value)));
@@ -3402,7 +3429,7 @@ class MVX_REST_API {
         /* translators: %s: Commission status */
         $status = MVX_Commission::get_status($commission_id, 'edit');
         $status_html = '';
-        if($status == 'paid') {
+        if ($status == 'paid') {
             $status_html .= '<p class="commission-status-paid">'.MVX_Commission::get_status($commission_id).'</p>';
         } else {
             $status_html .= '<p class="commission-status-unpaid">'.MVX_Commission::get_status($commission_id).'</p>';
@@ -4375,11 +4402,11 @@ class MVX_REST_API {
         if (isset($model['mvx_country_shipping_rates']) && !empty($model['mvx_country_shipping_rates'])) {            
             $mvx_country_rates = $mvx_state_rates = array();
             foreach( $model['mvx_country_shipping_rates'] as $mvx_shipping_rates ) {
-                if( $mvx_shipping_rates['mvx_country_to']['value'] ) {
-                    if( $mvx_shipping_rates['nested_datas'] && !empty( $mvx_shipping_rates['nested_datas'] ) ) {
+                if ( $mvx_shipping_rates['mvx_country_to']['value'] ) {
+                    if ( $mvx_shipping_rates['nested_datas'] && !empty( $mvx_shipping_rates['nested_datas'] ) ) {
                         foreach( $mvx_shipping_rates['nested_datas'] as $nested_datas ) {
 
-                            if( $nested_datas['mvx_state_to'] ) {
+                            if ( $nested_datas['mvx_state_to'] ) {
                                 $mvx_state_rates[$mvx_shipping_rates['mvx_country_to']['value']][$nested_datas['mvx_state_to']['value']] = $nested_datas['mvx_state_to_price'];
                             }
 
@@ -4589,7 +4616,7 @@ class MVX_REST_API {
             }
 
             $vendor_profile_image = get_user_meta($user->data->ID, '_vendor_profile_image', true);
-            if(isset($vendor_profile_image)) $image_info = wp_get_attachment_image_src( $vendor_profile_image , array(32, 32) );
+            if (isset($vendor_profile_image)) $image_info = wp_get_attachment_image_src( $vendor_profile_image , array(32, 32) );
             $final_image = isset($image_info[0]) ? $image_info[0] : get_avatar_url($user->data->ID, array('size' => 32));
             
             $name_display = "<div class='mvx-vendor-icon-name'><img src='". $final_image ."' width='20' height='20' ></img><a href='". sprintf('?page=%s&ID=%s&name=vendor-personal', 'mvx#&submenu=vendor', $user->data->ID) ."'>" . $user->data->display_name . "</a><a class='mvx-hover-btn' href='".$vendor->permalink."'>Shop</a></div>";

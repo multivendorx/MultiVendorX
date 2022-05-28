@@ -1306,15 +1306,8 @@ class App extends Component {
                           </div>
                           <div className='mv-white-box-body'>
                             <div className='mvx-row mvx-align-items-center'>
-                              <div className='mvx-col-25'>
-                                <div class="mvx-img-box">
-                                  <div class="mvx-img-content">
-                                    <img alt="Multivendor X" src={pending_data.product_src} />
-                                  </div>
-                                </div>
-                              </div>
                               <div className='mvx-col-75 pl-0'>
-                                <span className='blue-txt'>{pending_data.product}</span>
+                                <p dangerouslySetInnerHTML={{ __html: pending_data.product_src }}></p>
                               </div>
                             </div>
                             <div className='mvx-row mvx-align-items-center name-txt'>
@@ -1328,13 +1321,20 @@ class App extends Component {
                           </div>
                           <div className='mv-white-box-footer'>
                             <div className='pull-left'>
+<<<<<<< HEAD
 
                               <a href={pending_data.coupon_url} className='link-icon'><i className="mvx-font icon-tick"></i></a>
 
+=======
+                              <a href={pending_data.coupon_url} className='link-icon'><i className="mvx-font icon-tick"></i></a>
+>>>>>>> upstream/main
                               <a href={pending_data.product_url} className="link-icon"><i className="mvx-font icon-edit"></i></a>
                               <div className="link-icon"><i className="mvx-font icon-approve" onClick={(e) => this.handle_product_request_by_vendors(e, pending_data.id, pending_data.vendor_id, 'approve')}></i></div>
                               <div className="link-icon"><i className="mvx-font icon-close" onClick={(e) => this.handle_product_request_by_vendors(e, pending_data.id, pending_data.vendor_id, 'dismiss')}></i></div>
+                            </div>
 
+                            <div className="pull-right">
+                              <div className='link-icon'><i className="mvx-font icon-download"></i></div>
                             </div>
 
                           </div>
@@ -1361,7 +1361,7 @@ class App extends Component {
 
                 <div className="mvx-text-with-line-wrapper">
                   <div className="mvx-report-text">
-                    <span>Pending Product Approval</span>
+                    <span>Pending Vendor Approval</span>
                   </div>
                   <div className="mvx-select-all-bulk-wrap">
                     <div className="mvx-select-all-checkbox">
@@ -1388,20 +1388,13 @@ class App extends Component {
                           </div>
                           <div className='mv-white-box-body'>
                             <div className='mvx-row mvx-align-items-center'>
-                              <div className='mvx-col-25'>
-                                <div class="mvx-img-box">
-                                  <div class="mvx-img-content">
-                                    <img alt="Multivendor X" src={pending_data.vendor_image_src} />
-                                  </div>
-                                </div>
-                              </div>
                               <div className='mvx-col-75 pl-0'>
-                                <span className='blue-txt'>{pending_data.vendor}</span>
+                                <p dangerouslySetInnerHTML={{ __html: pending_data.vendor }}></p>
                               </div>
                             </div>
                             <div className='mvx-row mvx-align-items-center name-txt'>
                               <div className='mvx-col-33'>Vendor Name:</div>
-                              <div className='mvx-col-67'><a href={pending_data.vendor_link}>{pending_data.vendor}</a></div>
+                              <div className='mvx-col-67'><a href={pending_data.vendor_link}>{pending_data.vendor_name}</a></div>
                             </div>
 
 
@@ -1411,8 +1404,14 @@ class App extends Component {
                               <a href={pending_data.vendor_link} className='link-icon'><i className="mvx-font icon-edit"></i></a>
                               <div className='link-icon'><i className="mvx-font icon-approve" onClick={(e) => this.handle_user_request_by_vendors(e, pending_data.id, 'approve')}></i></div>
                               <div className="mvx-left-icon link-icon"><i className="mvx-font icon-close" onClick={(e) => this.handle_user_request_by_vendors(e, pending_data.id, 'dismiss')}></i></div>
+<<<<<<< HEAD
 
+=======
+                            </div>
+>>>>>>> upstream/main
 
+                            <div className="pull-right">
+                              <div className='link-icon'><i className="mvx-font icon-download"></i></div>
                             </div>
 
                           </div>
@@ -1467,13 +1466,6 @@ class App extends Component {
                           </div>
                           <div className='mv-white-box-body'>
                             <div className='mvx-row mvx-align-items-center'>
-                              <div className='mvx-col-25'>
-                                <div class="mvx-img-box">
-                                  <div class="mvx-img-content">
-                                    <img alt="Multivendor X" src={pending_data.vendor_image_src} />
-                                  </div>
-                                </div>
-                              </div>
                               <div className='mvx-col-75 pl-0'>
                                 <span className='blue-txt'>{pending_data.coupon}</span>
                               </div>
@@ -1494,8 +1486,13 @@ class App extends Component {
                               <a href={pending_data.coupon_url} className='link-icon'><i className="mvx-font icon-edit"></i></a>
                               <div className="mvx-left-icon link-icon"><i className="mvx-font icon-approve" onClick={(e) => this.handle_coupon_request_by_vendors(e, pending_data.id, 'approve')}></i></div>
                               <div className="mvx-left-icon link-icon"><i className="mvx-font icon-close" onClick={(e) => this.handle_coupon_request_by_vendors(e, pending_data.id, 'dismiss')}></i></div>
+<<<<<<< HEAD
+=======
                             </div>
-
+                            <div className="pull-right">
+                              <div className='link-icon'><i className="mvx-font icon-download"></i></div>
+>>>>>>> upstream/main
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -1548,13 +1545,6 @@ class App extends Component {
                           </div>
                           <div className='mv-white-box-body'>
                             <div className='mvx-row mvx-align-items-center'>
-                              <div className='mvx-col-25'>
-                                <div class="mvx-img-box">
-                                  <div class="mvx-img-content">
-                                    <img alt="Multivendor X" src={appLocalizer.mvx_logo} />
-                                  </div>
-                                </div>
-                              </div>
                               <div className='mvx-col-75 pl-0'>
                                 <span className='blue-txt'>{pending_data.coupon}</span>
                               </div>
@@ -1574,6 +1564,9 @@ class App extends Component {
                               <div className="mvx-left-icon link-icon"><i className="mvx-font icon-close"></i></div>
                             </div>
 
+                            <div className="pull-right">
+                              <div className='link-icon'><i className="mvx-font icon-download"></i></div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -1623,20 +1616,13 @@ class App extends Component {
                       <div className='mvx-col-33'>
                         <div className='mv-off-white-box'>
                           <div className='mv-white-box-header'>
-                            Pending User
+                            Pending Question
                             <div className='pull-right'>
                               <input type="checkbox" className="mvx-workboard-checkbox" checked={this.state.pending_question_check[pending_index]} onChange={(e) => this.handle_todo_question_checkbox_chenage(e, pending_data.id, pending_index)} />
                             </div>
                           </div>
                           <div className='mv-white-box-body'>
                             <div className='mvx-row mvx-align-items-center'>
-                              <div className='mvx-col-25'>
-                                <div class="mvx-img-box">
-                                  <div class="mvx-img-content">
-                                    <img alt="Multivendor X" src={pending_data.vendor_image_src} />
-                                  </div>
-                                </div>
-                              </div>
                               <div className='mvx-col-75 pl-0'>
                                 <p dangerouslySetInnerHTML={{ __html: pending_data.question_by }}></p>
                               </div>
@@ -1647,7 +1633,7 @@ class App extends Component {
                             </div>
                             <div className='mvx-row mvx-align-items-center name-txt'>
                               <div className='mvx-col-40'>Product Name:</div>
-                              <div className='mvx-col-66'><a href={pending_data.coupon_url}>{pending_data.coupon}</a></div>
+                              <div className='mvx-col-66'><a href={pending_data.product_url}>{pending_data.product_name}</a></div>
                             </div>
 
                             <div className='mvx-row mvx-align-items-center name-txt'>
@@ -1658,13 +1644,18 @@ class App extends Component {
                           </div>
                           <div className='mv-white-box-footer'>
                             <div className='pull-left'>
-
                               <a href={pending_data.product_url} className='link-icon'><i className="mvx-font icon-edit"></i></a>
                               <div className="mvx-left-icon link-icon"><i className="mvx-font icon-approve" onClick={(e) => this.handle_question_request_by_vendors(e, pending_data.id, pending_data.question_product_id, 'verified')}></i></div>
                               <div className="mvx-left-icon link-icon"><i className="mvx-font icon-close" onClick={(e) => this.handle_question_request_by_vendors(e, pending_data.id, pending_data.question_product_id, 'rejected')}></i></div>
+<<<<<<< HEAD
 
 
+=======
+                            </div>
+>>>>>>> upstream/main
 
+                            <div className="pull-right">
+                              <div className='link-icon'><i className="mvx-font icon-download"></i></div>
                             </div>
 
                           </div>
