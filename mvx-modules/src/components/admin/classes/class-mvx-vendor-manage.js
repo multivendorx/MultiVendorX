@@ -621,7 +621,7 @@ class App extends React.Component {
     return (
       <div className="mvx-general-wrapper mvx-vendor">
         <HeaderSection />
-        <div className="mvx-container">
+        <div className="mvx-container mvx-vendor-page-container">
           {user_query.get("name") == "add_new" ? (
             
 

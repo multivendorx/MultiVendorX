@@ -50,6 +50,17 @@ export default class TabSection extends React.Component {
             <ul className={`mvx-current-tab-lists ${horizontally ? 'mvx-horizontal-tabs' : ''}`}>
             {model.map((m, index) => {
               return (
+
+                m.link ? 
+
+                <li className={query_name_modified == m.modulename ? 'active-current-tab' : ''}>
+                    <a href={m.link}>{m.icon ? <i class={`mvx-font ${m.icon}`}></i> : ''}
+                      {m.tablabel}
+                    </a>
+                </li> 
+
+                :
+
                 <li className={query_name_modified == m.modulename ? 'active-current-tab' : ''} >
                   <Link to={this.props.vendor ? `?page=mvx#&submenu=${m.submenu}&ID=${query_name.get("ID")}&name=${m.modulename}` : `?page=mvx#&submenu=${m.submenu}&name=${m.modulename}`}>
                     {m.icon ? <i class={`mvx-font ${m.icon}`}></i> : ''}
