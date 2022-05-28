@@ -686,12 +686,15 @@ $fill-color : #fdfdfe;
       // flex: 1 0 calc(33.33% - 10px);
       background: #fdfdfe;
       padding: 16px;
-      margin: 8px 8px 0px 0;
+      margin: 12px 12px 0px 0;
       text-align: center;
       height: 354px;
       border: $border;
       border-radius: $border-radius;
       position: relative;
+  }
+  & .mvx-module-section-options-list:nth-child(3) {
+      margin-right: 0;
   }
   
 }
@@ -883,7 +886,6 @@ $fill-color : #fdfdfe;
       background: #3f1473;
       width: 16%;
       height: 40px;
-      margin: 34px 0;
       text-align: center;
       line-height: 40px;
       border-radius: $border-radius;
@@ -895,7 +897,6 @@ $fill-color : #fdfdfe;
           }
       }
 }
-
 
 
 #wpcontent {
@@ -974,7 +975,7 @@ $fill-color : #fdfdfe;
 .mvx-container {
   @include flexprops(start);
   background-color: $base-color;
-  padding-bottom: 34px;
+  padding: 0 0 32px 0;
   & .mvx-sidebar {
       margin-left: auto;
       padding-right: 14px;
@@ -1198,10 +1199,10 @@ $fill-color : #fdfdfe;
 .mvx-tab-description-start {
   text-align: center;
   background: #fdfdfe;
-  border-radius: 4px;
+  border-radius: 4px 4px 0 0;
   padding: 20px;
   margin-left: 20px;
-  margin-bottom: 34px;
+  border: $border;
 }
 .mvx-tab-name {
   font-size: 1.25rem;
@@ -1251,10 +1252,7 @@ $fill-color : #fdfdfe;
           & li {
               background-color: transparent;
               border: none;
-              padding: 0;
-          }
-          & li:first-child {
-              padding-right: 10px;
+              padding: 0 10px 0 10px;
           }
       }
   }
@@ -1293,7 +1291,7 @@ margin-left: auto;
   }
 }
 .mvx-workboard-tab-wrapper {
-  padding-top: 34px;
+  padding-top: 32px;
   & .mvx-wrap-bulk-all-date {
       & .mvx-wrap-bulk-action {
           margin-bottom: 10px;
@@ -1312,8 +1310,6 @@ margin-left: auto;
       height: 250px;
       position: relative;
       padding: 16px;
-      border: $border;
-      border-radius: $border-radius;
       & .mv-white-box-header {
           @include flexprops(center);
           position: absolute;
@@ -1378,8 +1374,9 @@ margin-left: auto;
 .mv-off-white-box {
   text-align: center;
   background: #fdfdfe;
-  border-radius: 4px;
+  border-radius: $border-radius;
   padding: 20px 30px;
+  border: $border;
   & .mvx-tab-name-display {
       font-size: 20px;
       font-weight: 500;
@@ -1551,6 +1548,31 @@ margin-left: auto;
   font-size: 1rem;
   color: $title-color;
 }
+.mvx-settings-mvx-form-group-radio {
+  & .mvx-toggle-rectangle-merge {
+      & li {
+          border: $border;
+          width: 30%;
+          background-color: #3f1473;
+          padding: 0 16px;
+          margin-right: 10px;
+          color: $fill-color;
+          border-radius: $border-radius;
+      }
+      & li:last-child {
+          border: $border;
+          width: 30%;
+          background-color: $fill-color;
+          padding: 0 16px;
+          margin-right: 10px;
+          color: $title-color;
+          border-radius: $border-radius;
+      }
+  }
+}
+.mvx-settings-metabox-description {
+  margin-top: 10px;
+}
 /** Listing Css **/
 .mvx-backend-datatable-wrapper {
   & .rdt_Pagination{
@@ -1585,28 +1607,23 @@ margin-left: auto;
   & .rdt_Table {
       background: transparent;
       & .rdt_TableHead {
-          border: $border;
-          margin-bottom: 10px;
-          border-radius: $border-radius;
-          background: #fdfdfe;
-          height: 40px;
           & .rdt_TableHeadRow {
-              background: transparent;
-              min-height: 40px;
-              border-bottom: 0;
+              background: #fdfdfe;
+              min-height: 50px;
+              border: $border;
+              margin-bottom: 4px;
+              border-radius: $border-radius;
           }
       }
       & .rdt_TableBody {
-          border: $border;
-          margin-bottom: 10px;
-          border-radius: $border-radius;
-          background: #fdfdfe;
-          height: 40px;
           & .rdt_TableRow {
-              background: transparent;
-              min-height: 40px;
-              border-bottom: 0;
+              background: #fdfdfe;
+              min-height: 50px;
               position: relative;
+              border: $border;
+              width: 100%;
+              border-radius: $border-radius;
+              margin-bottom: 2px;
               & .rdt_TableCell {
                   & .mvx-vendor-action-icon {
                       @include flexprops(center);
@@ -1631,10 +1648,10 @@ margin-left: auto;
                   left: 134px;
                   display: none;
               }
-              & .mvx-vendor-icon-name:hover .mvx-hover-btn {
+              & .fvAeSn:hover .mvx-hover-btn {
                   position: absolute;
-                  top: 12px;
-                  left: 134px;
+                  top: 30px;
+                  left: 54px;
                   display: block;
               }
           }
@@ -1644,10 +1661,42 @@ margin-left: auto;
       }
   }
 }
+.mvx-approved-pending-reject {
+  padding: 34px 0;
+  & .mvx-col-55 {
+      & .mvx-ul-auto {
+          margin: 0;
+          & li {
+              height: 30px;
+          }
+      }
+  }
+}
+.mvx-workboard-tab-wrapper {
+  .mvx-search-and-multistatus-wrap {
+      padding: 32px 0;
+      & .mvx-col-55 {
+          & .mvx-ul-auto {
+              margin: 0;
+              & li {
+                  height: 30px;
+                  line-height: 36px
+              }
+          }
+      }
+  }
+}
+.mvx-store-review {
+  .mvx-search-and-multistatus-wrap {
+      padding: 0;
+  }
+}
+
+
 /** Vendor Page Css **/
 .mvx-vendor {
   & .mvx-middle-container-wrapper {
-      padding-left: 20px;
+      // padding-left: 20px;
   }
   & .mvx-page-title {
       @include flexprops(center);
@@ -1656,9 +1705,187 @@ margin-left: auto;
           color: $title-color;
           margin-right: 10px;
       }
-      
   }
-  & .mvx-middle-container-wrapper {
-      padding-top: 0;
+}
+
+/** Pop Up **/
+.MuiDialog-paperScrollPaper {
+  & .MuiDialogTitle-root {
+      position: relative;
+      & i {
+          position: absolute;
+          top: 16px;
+          right: 24px;
+          font-size: 16px;
+      }
+      & .mvx-vendor-icon-name {
+          & img {
+              border-radius: 20px;
+              width: 30px;
+              height: 30px;
+              margin-right: 10px;
+          }
+          & a {
+              color: $title-color;
+              font-size: 1rem;
+              text-decoration: none;
+          }
+      }
+  }
+  & .MuiDialogContent-root {
+      & .mvx-module-dialog-content {
+          & .mvx-email-content-and-value-wrap{
+              @include flexprops(center);
+              font-size: 0.875rem;
+              & .mvx-content-email {
+                  padding-right: 8px;
+              }
+          }
+          & .mvx-vendor-textarea-content {
+              & textarea {
+                  width: 100%;
+                  border: $border;
+                  margin: 10px 0;
+              }
+              & textarea::placeholder {
+                  font-size: 0.875rem;
+              }
+          }
+          & .mvx-vendor-multi-action-buttons {
+              & .MuiButton-textPrimary {
+                  height: 40px;
+                  border: $border;
+                  border-radius: $border-radius;
+                  margin-right: 10px;
+                  color: $paragraph-color;
+              }
+              & .MuiButton-textPrimary:last-child {
+                  margin-right: 0px;
+              }
+              & .purple-btn {
+                  background-color: #3f1473;
+                  border: none;
+                  color: $fill-color;
+              }
+              & .red-btn {
+                  background-color: #f00;
+                  border: none;
+                  color: $fill-color;
+              }
+          }
+      }
+  }
+}
+.mvx-add_new {
+  width: 100%;
+  margin-top: 32px;
+  background-color: #f7f6f9;
+  & .mvx-tab-content {
+      width: 100%;
+      padding: 32px 0;
+      background-color: transparent;
+      & .mvx-form-group {
+          @include flexprops(center);
+          margin-bottom: 10px;
+          & .mvx-settings-form-label {
+              width: 150px;
+          }
+          & .mvx-settings-input-content {
+              & .mvx-settings-basic-input-class{
+                  @include flexprops(center);
+                  & input {
+                      width: 300px;
+                      border: $border;
+                      border-radius: $border;
+                      height: 50px;
+                  }
+                  & .mvx-settings-metabox-description {
+                      padding-left: 8px;
+                  }
+              }
+          }
+  
+      }
+      & .mvx-form-actions {
+          & button {
+              background-color: #3f1473;
+              height: 40px;
+              width: 80px;
+              color: $fill-color;
+              margin-top: 10px;
+              border: none;
+          }
+      }
+  }
+}
+.mvx-payments-tab-wrapper {
+  .mvx-dynamic-form {
+      & .mvx-form-group {
+          margin-bottom: 10px;
+          & label p{
+              margin-bottom: 8px;
+          }
+          & input {
+              width: 100%;
+              border: $border;
+              border-radius: $border-radius;
+              height: 50px;
+          }
+      }
+      & .mvx-form-group:first-child {
+          margin-top: 10px;
+      }
+  }
+}
+.mvx-status-database-tools-content {
+  margin-top: 24px;
+  & .mvx-vendor-transients {
+      margin-bottom: 24px;
+      & .mvx-text-with-line-wrapper::after {
+          width: 74%;
+          left: 230px;
+      }
+      & .mvx-vendor-transients-button button {
+          background-color: transparent;
+          border: $border;
+          border-radius: $border-radius;
+          margin-top: 16px;
+          height: 40px;
+          padding: 0 16px;
+      }
+  }
+}
+.mvx-system-status {
+  & .mvx-tab-content {
+      padding-top: 32px;
+      & .site-health-copy-buttons {
+          margin: 0;
+          & .copy-button-wrapper {
+              margin: 0;
+              & button{
+                  background-color: transparent;
+                  border: $border;
+                  border-radius: $border-radius;
+                  margin: 16px 0;
+                  height: 40px;
+                  padding: 0 16px;
+              }
+  
+          }
+      }
+      & .health-check-accordion {
+          border: none;
+          & button {
+              border: $border;
+              border-radius: $border-radius;
+              margin-bottom: 4px;
+          }
+      }
+      & .code {
+          margin-bottom: 16px;
+      }
+      & header.mt-24 {
+          margin-top: 16px;
+      }
   }
 }
