@@ -453,7 +453,7 @@ class App extends Component {
 
   {new URLSearchParams(window.location.hash).get("CommissionID") ? (
     this.state.commission_details ? (
-        <div className="mvx-container">
+        <div className="mvx-container mvx-edit-commission-container">
           <div className="mvx-middle-container-wrapper">
             <div className="woocommerce-order-data">
               <div className="mvx-datatable-text">Edit Commission</div>

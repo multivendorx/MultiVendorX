@@ -2166,4 +2166,79 @@ a:focus {
 .mvx-system-status .mvx-tab-content header.mt-24 {
   margin-top: 16px;
 }
+
+.mvx-commission .mvx-edit-commission-container .mvx-adv-image-display {
+  margin-top: 32px;
+}
+
+.mvx-commission .mvx-edit-commission-container .woocommerce-order-data .mvx-datatable-text {
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #181718;
+  font-size: 1rem;
+}
+
+.mvx-commission .mvx-edit-commission-container .mvx-commission-order-details-text {
+  border: 1px solid #d4d1d9;
+  border-radius: 4px;
+  height: 50px;
+  background-color: #fdfdfe;
+  padding: 0 24px;
+  line-height: 50px;
+  margin: 24px 0;
+}
+
+.mvx-commission .mvx-edit-commission-container .mvx-commission-wrap-vendor-order-status {
+  padding: 8px 0;
+}
+
+.mvx-commission .mvx-edit-commission-container .mvx-commission-wrap-vendor-order-status .commission-details-data-value {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.mvx-commission .mvx-edit-commission-container .mvx-commission-wrap-amount-shipping-tax .woocommerce-order-data-meta {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.mvx-commission .mvx-edit-commission-container .mvx-commission-wrap-amount-shipping-tax .woocommerce-order-data-meta .commission-status-text-check {
+  width: 140px;
+}
+
+.mvx-commission .mvx-edit-commission-container .mvx-commission-wrap-amount-shipping-tax .woocommerce-order-data-meta .commission-status-unpaid {
+  margin: 0;
+}
+
+.mvx-commission .mvx-edit-commission-container .mvx-commission-wrap-amount-shipping-tax .mvx-commission-amount {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.mvx-commission .mvx-edit-commission-container .mvx-commission-wrap-amount-shipping-tax .commission-details-data-value {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.mvx-commission .mvx-edit-commission-container .mvx-commission-label-class {
+  padding-right: 10px;
+  color: #181718;
+  width: 140px;
+}
 /*# sourceMappingURL=admin.css.map */

@@ -1950,3 +1950,55 @@ margin-top: 10px;
         }
     }
 }
+.mvx-commission {
+    .mvx-edit-commission-container {
+        & .mvx-adv-image-display {
+            margin-top: 32px;
+        }
+        & .woocommerce-order-data {
+            & .mvx-datatable-text {
+                margin-bottom: 8px;
+                font-weight: 500;
+                color: $title-color;
+                font-size: 1rem;
+            }
+        }
+        & .mvx-commission-order-details-text {
+            border: $border;
+            border-radius: $border-radius;
+            height: 50px;
+            background-color: $fill-color;
+            padding: 0 24px;
+            line-height: 50px;
+            margin: 24px 0;
+        }
+        & .mvx-commission-wrap-vendor-order-status {
+            padding: 8px 0  ;
+            & .commission-details-data-value {
+                @include flexprops(center);
+            }
+        }
+        & .mvx-commission-wrap-amount-shipping-tax {
+            & .woocommerce-order-data-meta {
+                @include flexprops(center);
+                & .commission-status-text-check {
+                    width: 140px;
+                }
+                & .commission-status-unpaid {
+                    margin: 0;
+                }
+            }
+            & .mvx-commission-amount {
+                @include flexprops(center);
+            }
+            & .commission-details-data-value {
+                @include flexprops(center);
+            }
+        }
+        & .mvx-commission-label-class {
+            padding-right: 10px;
+            color: $title-color;
+            width: 140px;
+        }
+    }
+}
