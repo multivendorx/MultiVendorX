@@ -1772,6 +1772,30 @@ a:focus {
   margin-top: 10px;
 }
 
+.mvx-settings-mvx-form-group-radio .mvx-toggle-rectangle-merge li {
+  border: 1px solid #d4d1d9;
+  width: 30%;
+  background-color: #3f1473;
+  padding: 0 16px;
+  margin-right: 10px;
+  color: #fdfdfe;
+  border-radius: 4px;
+}
+
+.mvx-settings-mvx-form-group-radio .mvx-toggle-rectangle-merge li:last-child {
+  border: 1px solid #d4d1d9;
+  width: 30%;
+  background-color: #fdfdfe;
+  padding: 0 16px;
+  margin-right: 10px;
+  color: #181718;
+  border-radius: 4px;
+}
+
+.mvx-settings-metabox-description {
+  margin-top: 10px;
+}
+
 /** Listing Css **/
 .mvx-backend-datatable-wrapper .rdt_Pagination {
   background: transparent;
@@ -1912,6 +1936,10 @@ a:focus {
   font-size: 1.125rem;
   color: #181718;
   margin-right: 10px;
+}
+
+.mvx-vendor-page-container .mvx-middle-container-wrapper {
+  padding: 32px 0 24px 20px;
 }
 
 .mvx-vendor-page-container .mvx-middle-container-wrapper {

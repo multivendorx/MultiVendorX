@@ -1837,7 +1837,6 @@ margin-top: 10px;
     }
 }
 .mvx-add_new {
-<<<<<<< HEAD
     width: 100%;
     margin-top: 32px;
     background-color: #f7f6f9;
@@ -1879,49 +1878,6 @@ margin-top: 10px;
             }
         }
     }
-=======
-  width: 100%;
-  margin-top: 32px;
-  background-color: #f7f6f9;
-  border-left: $border;
-  & .mvx-tab-content {
-      width: 100%;
-      padding: 32px 0;
-      background-color: transparent;
-      & .mvx-form-group {
-          @include flexprops(center);
-          margin-bottom: 10px;
-          & .mvx-settings-form-label {
-              width: 150px;
-          }
-          & .mvx-settings-input-content {
-              & .mvx-settings-basic-input-class{
-                  @include flexprops(center);
-                  & input {
-                      width: 300px;
-                      border: $border;
-                      border-radius: $border;
-                      height: 50px;
-                  }
-                  & .mvx-settings-metabox-description {
-                      padding-left: 8px;
-                  }
-              }
-          }
-  
-      }
-      & .mvx-form-actions {
-          & button {
-              background-color: #3f1473;
-              height: 40px;
-              width: 80px;
-              color: $fill-color;
-              margin-top: 10px;
-              border: none;
-          }
-      }
-  }
->>>>>>> upstream/main
 }
 .mvx-payments-tab-wrapper {
     .mvx-dynamic-form {
