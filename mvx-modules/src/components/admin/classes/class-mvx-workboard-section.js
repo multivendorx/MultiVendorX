@@ -1329,7 +1329,7 @@ class App extends Component {
                           <div className='mv-white-box-footer'>
                             <div className='pull-left'>
 
-                              <a href={pending_data.coupon_url} className='link-icon'><i className="mvx-font icon-edit"></i></a>
+                              <a href={pending_data.coupon_url} className='link-icon'><i className="mvx-font icon-tick"></i></a>
 
                               <a href={pending_data.product_url} className="link-icon"><i className="mvx-font icon-edit"></i></a>
                               <div className="link-icon"><i className="mvx-font icon-approve" onClick={(e) => this.handle_product_request_by_vendors(e, pending_data.id, pending_data.vendor_id, 'approve')}></i></div>
@@ -1410,7 +1410,7 @@ class App extends Component {
                             <div className='pull-left'>
                               <a href={pending_data.vendor_link} className='link-icon'><i className="mvx-font icon-edit"></i></a>
                               <div className='link-icon'><i className="mvx-font icon-approve" onClick={(e) => this.handle_user_request_by_vendors(e, pending_data.id, 'approve')}></i></div>
-                              <div className="mvx-left-icon"><i className="mvx-font icon-close" onClick={(e) => this.handle_user_request_by_vendors(e, pending_data.id, 'dismiss')}></i></div>
+                              <div className="mvx-left-icon link-icon"><i className="mvx-font icon-close" onClick={(e) => this.handle_user_request_by_vendors(e, pending_data.id, 'dismiss')}></i></div>
 
 
                             </div>
@@ -1492,8 +1492,8 @@ class App extends Component {
                             <div className='pull-left'>
 
                               <a href={pending_data.coupon_url} className='link-icon'><i className="mvx-font icon-edit"></i></a>
-                              <div className="mvx-left-icon"><i className="mvx-font icon-approve" onClick={(e) => this.handle_coupon_request_by_vendors(e, pending_data.id, 'approve')}></i></div>
-                              <div className="mvx-left-icon"><i className="mvx-font icon-close" onClick={(e) => this.handle_coupon_request_by_vendors(e, pending_data.id, 'dismiss')}></i></div>
+                              <div className="mvx-left-icon link-icon"><i className="mvx-font icon-approve" onClick={(e) => this.handle_coupon_request_by_vendors(e, pending_data.id, 'approve')}></i></div>
+                              <div className="mvx-left-icon link-icon"><i className="mvx-font icon-close" onClick={(e) => this.handle_coupon_request_by_vendors(e, pending_data.id, 'dismiss')}></i></div>
                             </div>
 
                           </div>
@@ -1569,9 +1569,9 @@ class App extends Component {
                           <div className='mv-white-box-footer'>
                             <div className='pull-left'>
 
-                              <div className="mvx-left-icon"><i className="mvx-font icon-edit"></i></div>
-                              <div className="mvx-left-icon"><i className="mvx-font icon-approve"></i></div>
-                              <div className="mvx-left-icon"><i className="mvx-font icon-close"></i></div>
+                              <div className="mvx-left-icon link-icon"><i className="mvx-font icon-edit"></i></div>
+                              <div className="mvx-left-icon link-icon"><i className="mvx-font icon-approve"></i></div>
+                              <div className="mvx-left-icon link-icon"><i className="mvx-font icon-close"></i></div>
                             </div>
 
                           </div>
@@ -1660,8 +1660,8 @@ class App extends Component {
                             <div className='pull-left'>
 
                               <a href={pending_data.product_url} className='link-icon'><i className="mvx-font icon-edit"></i></a>
-                              <div className="mvx-left-icon"><i className="mvx-font icon-approve" onClick={(e) => this.handle_question_request_by_vendors(e, pending_data.id, pending_data.question_product_id, 'verified')}></i></div>
-                              <div className="mvx-left-icon"><i className="mvx-font icon-close" onClick={(e) => this.handle_question_request_by_vendors(e, pending_data.id, pending_data.question_product_id, 'rejected')}></i></div>
+                              <div className="mvx-left-icon link-icon"><i className="mvx-font icon-approve" onClick={(e) => this.handle_question_request_by_vendors(e, pending_data.id, pending_data.question_product_id, 'verified')}></i></div>
+                              <div className="mvx-left-icon link-icon"><i className="mvx-font icon-close" onClick={(e) => this.handle_question_request_by_vendors(e, pending_data.id, pending_data.question_product_id, 'rejected')}></i></div>
 
 
 
