@@ -1355,7 +1355,7 @@ class App extends Component {
 
                 <div className="mvx-text-with-line-wrapper">
                   <div className="mvx-report-text">
-                    <span>Pending Product Approval</span>
+                    <span>Pending Vendor Approval</span>
                   </div>
                   <div className="mvx-select-all-bulk-wrap">
                     <div className="mvx-select-all-checkbox">
