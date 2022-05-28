@@ -676,12 +676,19 @@ a:focus {
 
 .mvx-header-search-section {
   position: relative;
+  height: 40px;
+  width: 210px;
+  padding: 0 16px;
+  border: 1px solid #d4d1d9;
+  border-radius: 4px;
+  background-color: #fdfdfe;
 }
 
 .mvx-header-search-section label {
   position: absolute;
   top: 11px;
   left: 18px;
+  border: none;
 }
 
 .mvx-header-search-section label i {
@@ -689,34 +696,29 @@ a:focus {
 }
 
 .mvx-header-search-section input {
-  height: 40px;
-  width: 166px;
-  padding: 0 16px;
-  border: 1px solid #d4d1d9;
+  height: 34px;
+  margin: 2px 0 2px 22px;
+  width: 170px;
+  border: none;
 }
 
 .mvx-header-search-section input::-webkit-input-placeholder {
-  padding-left: 24px;
   color: #8e8b91;
 }
 
 .mvx-header-search-section input:-ms-input-placeholder {
-  padding-left: 24px;
   color: #8e8b91;
 }
 
 .mvx-header-search-section input::-ms-input-placeholder {
-  padding-left: 24px;
   color: #8e8b91;
 }
 
 .mvx-header-search-section input::placeholder {
-  padding-left: 24px;
   color: #8e8b91;
 }
 
 .mvx-header-search-section input:focus {
-  border: 1px solid #d4d1d9;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
@@ -1055,7 +1057,7 @@ a:focus {
   background: #fdfdfe;
   border-radius: 4px 4px 0 0;
   padding: 20px;
-  margin-left: 20px;
+  margin: 0 0 32px 20px;
   border: 1px solid #d4d1d9;
 }
 
@@ -1114,11 +1116,11 @@ a:focus {
   padding: 0 10px 0 10px;
 }
 
-.mvx-col-auto {
+.mvx-searchbar-sec {
   margin-left: auto;
 }
 
-.mvx-col-auto li {
+.mvx-searchbar-sec li {
   background-color: transparent;
   border: none;
   padding: 0 10px 0 0;
@@ -1169,6 +1171,7 @@ a:focus {
   height: 250px;
   position: relative;
   padding: 16px;
+  margin-right: 10px;
 }
 
 .mvx-workboard-tab-wrapper .mv-off-white-box .mv-white-box-header {
@@ -1198,6 +1201,11 @@ a:focus {
   padding-bottom: 10px;
 }
 
+.mvx-workboard-tab-wrapper .mv-off-white-box .mv-white-box-body img {
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
 .mv-white-box-footer {
   position: absolute;
   bottom: 0;
@@ -1207,7 +1215,7 @@ a:focus {
   border-top: 1px solid #d4d1d9;
 }
 
-.mv-white-box-footer .pull-left {
+.mv-white-box-footer .pull-left, .mv-white-box-footer .pull-right {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1216,7 +1224,7 @@ a:focus {
           align-items: center;
 }
 
-.mv-white-box-footer .pull-left .link-icon {
+.mv-white-box-footer .pull-left .link-icon, .mv-white-box-footer .pull-right .link-icon {
   display: block;
   color: #3f1473;
   margin-right: 10px;
@@ -1242,6 +1250,19 @@ a:focus {
 
 .mvx-backend-datatable-wrapper {
   padding: 34px 0;
+}
+
+.mvx-report-abuse .mvx-wrap-bulk-all-date {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.mvx-report-abuse .mvx-wrap-bulk-all-date .mvx-wrap-bulk-action:first-child {
+  margin-right: 10px;
 }
 
 /** Start Module Sec **/
@@ -1310,7 +1331,7 @@ a:focus {
 .mvx-module-option-row .mvx-module-section-options-list {
   width: 32.33%;
   background: #fdfdfe;
-  padding: 16px;
+  padding: 24px;
   margin: 12px 12px 0px 0;
   text-align: center;
   height: 354px;
@@ -1347,8 +1368,8 @@ a:focus {
 
 .mvx-module-settings-box .mvx-module-list-label-text .mvx-module-section-pro-badge {
   position: absolute;
-  top: 1.25rem;
-  right: 1.25rem;
+  top: 24px;
+  right: 24px;
   background: #3f1473;
   color: #fdfdfe;
   padding: 4px 6px;
@@ -1411,6 +1432,15 @@ a:focus {
 
 .mvx-module-current-status .mvx-module-url-button {
   margin-right: 10px;
+  border: 1px solid #d4d1d9;
+  background: transparent;
+  color: #5e5d60;
+}
+
+.mvx-module-current-status .mvx-module-url-button:hover {
+  margin-right: 10px;
+  border: 1px solid #3f1473;
+  color: #fdfdfe;
 }
 
 .mvx-toggle-checkbox-content {
@@ -2201,6 +2231,10 @@ a:focus {
           align-items: center;
 }
 
+.mvx-commission .mvx-edit-commission-container .mvx-commission-wrap-amount-shipping-tax {
+  margin-left: auto;
+}
+
 .mvx-commission .mvx-edit-commission-container .mvx-commission-wrap-amount-shipping-tax .woocommerce-order-data-meta {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2216,6 +2250,12 @@ a:focus {
 
 .mvx-commission .mvx-edit-commission-container .mvx-commission-wrap-amount-shipping-tax .woocommerce-order-data-meta .commission-status-unpaid {
   margin: 0;
+  background-color: #ffc2c2;
+  padding: 0 16px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 4px;
+  margin-right: 8px;
 }
 
 .mvx-commission .mvx-edit-commission-container .mvx-commission-wrap-amount-shipping-tax .mvx-commission-amount {
@@ -2236,9 +2276,50 @@ a:focus {
           align-items: center;
 }
 
-.mvx-commission .mvx-edit-commission-container .mvx-commission-label-class {
+.mvx-commission .mvx-edit-commission-container .mvx-vendor-details-wrap .mvx-commission-vendor-details-class {
+  font-size: 1rem;
+  color: #181718;
+  margin: 16px 0;
+}
+
+.mvx-commission .mvx-edit-commission-container .mvx-child-vendor-details .mvx-commission-label-class {
   padding-right: 10px;
   color: #181718;
-  width: 140px;
+  width: 100%;
+  height: 100%;
+}
+
+.mvx-commission .mvx-edit-commission-container .mvx-child-vendor-details .mvx-commission-label-class img {
+  width: 100%;
+  height: 100%;
+}
+
+.mvx-commission .mvx-edit-commission-container .mvx-edit-commission-status-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.mvx-commission .mvx-edit-commission-container .mvx-edit-commission-status-wrapper .mvx-commission-status-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-bottom: 10px;
+}
+
+.mvx-commission .mvx-edit-commission-container .mvx-commission-details-section {
+  background-color: #fdfdfe;
+  padding: 24px;
+  border-radius: 4px;
+}
+
+.mvx-commission .mvx-edit-commission-container .mvx-commission-value-class a {
+  color: #3f1473;
 }
 /*# sourceMappingURL=admin.css.map */

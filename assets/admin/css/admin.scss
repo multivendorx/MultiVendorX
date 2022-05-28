@@ -635,11 +635,12 @@ $fill-color : #fdfdfe;
 }
 @mixin input {
     height: 40px;
-    width: 166px;
+    width: 210px;
     padding: 0 16px;
+    border: $border;
+    border-radius: $border-radius;
 }
 @mixin placeholder {
-    padding-left: 24px;
     color: #8e8b91;
 }
 @mixin inputfocus {
@@ -685,7 +686,7 @@ $fill-color : #fdfdfe;
         width: 32.33%;
         // flex: 1 0 calc(33.33% - 10px);
         background: #fdfdfe;
-        padding: 16px;
+        padding: 24px;
         margin: 12px 12px 0px 0;
         text-align: center;
         height: 354px;
@@ -952,24 +953,29 @@ $fill-color : #fdfdfe;
 }
 .mvx-header-search-section {
     position: relative;
+    @include input;
+    background-color: $fill-color;
 
     & label {
         position: absolute;
         top: 11px;
         left: 18px;
+        border: none;
         & i {
             color: #8e8b91;
         }
     }
     & input {
-        @include input;
-        @include border;
+        height: 34px;
+        margin: 2px 0 2px 22px;
+        width: 170px;
+        border: none;
         &::placeholder {
             @include placeholder;
         }
     }
     & input:focus {
-        @include inputfocus;
+        box-shadow: none;
     }
 }
 .mvx-container {
@@ -1201,7 +1207,7 @@ $fill-color : #fdfdfe;
     background: #fdfdfe;
     border-radius: 4px 4px 0 0;
     padding: 20px;
-    margin-left: 20px;
+    margin: 0 0 32px 20px;
     border: $border;
 }
 .mvx-tab-name {
@@ -1257,7 +1263,7 @@ $fill-color : #fdfdfe;
         }
     }
 }
-.mvx-col-auto {
+.mvx-searchbar-sec {
 margin-left: auto;
     & li {
         background-color: transparent;
@@ -1310,6 +1316,7 @@ margin-left: auto;
         height: 250px;
         position: relative;
         padding: 16px;
+        margin-right: 10px;
         & .mv-white-box-header {
             @include flexprops(center);
             position: absolute;
@@ -1327,6 +1334,10 @@ margin-left: auto;
             & .mvx-row {
                 padding-bottom: 10px;
             }
+            & img {
+                border-radius: $border-radius;
+                margin-right: 10px;
+            }
         }
     }
 }
@@ -1337,7 +1348,7 @@ margin-left: auto;
     left: 0;
     width: 100%;
     border-top: $border;
-    & .pull-left {
+    & .pull-left, .pull-right {
         @include flexprops(center);
         & .link-icon {
             display: block;
@@ -1352,7 +1363,14 @@ margin-left: auto;
 .mvx-backend-datatable-wrapper {
     padding: 34px 0;
 }
-
+.mvx-report-abuse {
+    & .mvx-wrap-bulk-all-date {
+        @include flexprops(center);
+        & .mvx-wrap-bulk-action:first-child {
+            margin-right: 10px;
+        }
+    }
+}
 /** Start Module Sec **/
 .mvx-modules {
 	& .mvx-middle-container-wrapper {
@@ -1411,8 +1429,8 @@ margin-left: auto;
         padding-bottom: 1rem;
         & .mvx-module-section-pro-badge {
             position: absolute;
-            top: 1.25rem;
-            right: 1.25rem;
+            top: 24px;
+            right: 24px;
             background: #3f1473;
             color: #fdfdfe;
             padding: 4px 6px;
@@ -1462,6 +1480,14 @@ margin-left: auto;
     @include flexprops(center);
     & .mvx-module-url-button {
         margin-right: 10px;
+        border: $border;
+        background: transparent;
+        color: $paragraph-color;
+    }
+    & .mvx-module-url-button:hover {
+        margin-right: 10px;
+        border: 1px solid #3f1473;
+        color: $fill-color;
     }
 }
 .mvx-toggle-checkbox-content {
@@ -1979,6 +2005,7 @@ margin-top: 10px;
             }
         }
         & .mvx-commission-wrap-amount-shipping-tax {
+            margin-left: auto;
             & .woocommerce-order-data-meta {
                 @include flexprops(center);
                 & .commission-status-text-check {
@@ -1986,6 +2013,12 @@ margin-top: 10px;
                 }
                 & .commission-status-unpaid {
                     margin: 0;
+                    background-color: #ffc2c2;
+                    padding: 0 16px;
+                    height: 32px;
+                    line-height: 32px;
+                    border-radius: $border-radius;
+                    margin-right: 8px;
                 }
             }
             & .mvx-commission-amount {
@@ -1995,10 +2028,44 @@ margin-top: 10px;
                 @include flexprops(center);
             }
         }
-        & .mvx-commission-label-class {
-            padding-right: 10px;
-            color: $title-color;
-            width: 140px;
+        & .mvx-vendor-details-wrap {
+            & .mvx-commission-vendor-details-class {
+                font-size: 1rem;
+                color: $title-color;
+                margin: 16px 0;
+            }
         }
+        & .mvx-child-vendor-details {
+            & .mvx-commission-label-class {
+                padding-right: 10px;
+                color: $title-color;
+                width: 100%;
+                height: 100%;
+                & img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+        & .mvx-edit-commission-status-wrapper {
+            @include flexprops(center);
+            & .mvx-commission-status-wrap {
+                @include flexprops(center);
+                padding-bottom: 10px;
+            }
+        }
+        & .mvx-commission-details-section {
+            background-color: $fill-color;
+            padding: 24px;
+            border-radius: $border-radius;
+        }
+        & .mvx-commission-value-class {
+            & a {
+                color: #3f1473;
+            }
+        }
+        // & .mvx-order-details-vendor-details-wrap {
+        //     @include flexprops(center);
+        // }
     }
 }

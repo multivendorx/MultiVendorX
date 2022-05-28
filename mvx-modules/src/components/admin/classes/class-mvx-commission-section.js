@@ -471,6 +471,7 @@ class App extends Component {
                     : ""}
                 </div>
 
+                <div className='mvx-edit-commission-status-wrapper'>
                 <div className="mvx-commission-wrap-vendor-order-status">
                   <p
                     className="commission-details-data-value"
@@ -600,6 +601,7 @@ class App extends Component {
                       ></p>
                     </div>
                   </p>
+                </div>
                 </div>
               </div>
               {/* Commission Details End */}
@@ -1203,10 +1205,10 @@ class App extends Component {
             </div>
           </div>
 
-          <div className="mvx-row mvx-align-items-center mvx-justify-content-between mb-15">
-            <div className="mvx-col-55">
-              <ul className="mvx-ul-auto mvx-row">
-                <li class="mvx-col-auto">
+          <div className="mvx-search-and-multistatus-wrap mvx-row mvx-align-items-center mvx-justify-content-between mb-15">
+            <div className="mvx-multistatus-sec">
+              <ul className="mvx-multistatus-ul mvx-row">
+                <li class="mvx-multistatus-item">
                   <div
                     className="mvx-multistatus-check-all"
                     onClick={(e) =>
@@ -1216,8 +1218,8 @@ class App extends Component {
                     All ({this.state.mvx_all_commission_list.length})
                   </div>
                 </li>
-                <li class="mvx-col-auto mvx-divider"></li>
-                <li class="mvx-col-auto">
+                <li class="mvx-multistatus-item mvx-divider"></li>
+                <li class="mvx-multistatus-item">
                   <div
                     className="mvx-multistatus-check-paid status-active"
                     onClick={(e) =>
@@ -1227,8 +1229,8 @@ class App extends Component {
                     Paid ({this.state.data_paid_commission.length})
                   </div>
                 </li>
-                <li class="mvx-col-auto mvx-divider"></li>
-                <li class="mvx-col-auto">
+                <li class="mvx-multistatus-item mvx-divider"></li>
+                <li class="mvx-multistatus-item">
                   <div
                     className="mvx-multistatus-check-unpaid"
                     onClick={(e) =>
@@ -1240,14 +1242,10 @@ class App extends Component {
                 </li>
               </ul>
             </div>
-            <div className="mvx-col-auto">
-              <div className="mvx-search-holder">
-                <input
-                  type="text"
-                  placeholder="Search Commissions"
-                  name="search"
-                  onChange={this.handle_commission_live_search}
-                />
+            <div className="mvx-searchbar-sec">
+              <div className='mvx-header-search-section'>
+                <label><i className='mvx-font icon-search'></i></label>
+                <input type="text" placeholder="Search Commissions" name="search" onChange={this.handle_commission_live_search}/>
               </div>
             </div>
           </div>

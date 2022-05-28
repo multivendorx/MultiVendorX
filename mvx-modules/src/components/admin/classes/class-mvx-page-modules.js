@@ -233,10 +233,10 @@ class App extends Component {
               </p>
             </div>
 
-            <div className="mvx-row mb-25 mvx-justify-content-between mvx-align-items-center">
-              <div className="mvx-col-auto mvx-module-left-sec">
-                <ul className="mvx-ul-auto mvx-row">
-                  <li className="mvx-col-auto mvx-totalmodule-text">
+            <div className="mvx-search-and-multistatus-wrap mvx-row mb-25 mvx-justify-content-between mvx-align-items-center">
+              <div className="mvx-multistatus-sec mvx-module-left-sec">
+                <ul className="mvx-multistatus-ul mvx-row">
+                  <li className="mvx-multistatus-item mvx-totalmodule-text">
                     <div
                       className="mvx-total-module-name-and-count mvx-d-inline-flex"
                       onClick={(e) =>
@@ -249,8 +249,8 @@ class App extends Component {
                       </div>
                     </div>
                   </li>
-                  <li className="mvx-col-auto mvx-divider"></li>
-                  <li className="mvx-col-auto">
+                  <li className="mvx-multistatus-item mvx-divider"></li>
+                  <li className="mvx-multistatus-item">
                     <Button
                       className="default-text pa-0"
                       onClick={(e) =>
@@ -260,8 +260,8 @@ class App extends Component {
                       Active
                     </Button>
                   </li>
-                  <li className="mvx-col-auto mvx-divider pa-0"></li>
-                  <li className="mvx-col-auto">
+                  <li className="mvx-multistatus-item mvx-divider pa-0"></li>
+                  <li className="mvx-multistatus-item">
                     <Button
                       className="default-text"
                       onClick={(e) =>
@@ -273,8 +273,9 @@ class App extends Component {
                   </li>
                 </ul>
               </div>
-              <div className="mvx-col-auto mvx-module-right-sec">
-                <div className="mvx-search-holder">
+              <div className="mvx-searchbar-sec mvx-module-right-sec">
+                <div className='mvx-header-search-section'>
+                  <label><i className='mvx-font icon-search'></i></label>
                   <input
                     type="text"
                     onChange={(e) => this.handleModuleSearch(e)}

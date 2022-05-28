@@ -658,10 +658,10 @@ class App extends React.Component {
                   </div>
                 </div>
 
-                <div className="mvx-row mvx-align-items-center mvx-justify-content-between mb-15 mvx-approved-pending-reject">
-                  <div className="mvx-col-55">
-                    <ul className="mvx-ul-auto mvx-row">
-                      <li className="mvx-col-auto">
+                <div className="mvx-search-and-multistatus-wrap mvx-row mvx-align-items-center mvx-justify-content-between mb-15 mvx-approved-pending-reject">
+                  <div className="mvx-multistatus-sec">
+                    <ul className="mvx-multistatus-ul mvx-row">
+                      <li className="mvx-multistatus-item">
                         <div
                           className="mvx-multistatus-check-all"
                           onClick={(e) => this.different_vendor_status(e, "all")}
@@ -669,8 +669,8 @@ class App extends React.Component {
                           All ({this.state.data_all_vendor.length})
                         </div>
                       </li>
-                      <li className="mvx-col-auto mvx-divider"></li>
-                      <li className="mvx-col-auto">
+                      <li className="mvx-multistatus-item mvx-divider"></li>
+                      <li className="mvx-multistatus-item">
                         <div
                           className="mvx-multistatus-check-approve"
                           onClick={(e) => this.different_vendor_status(e, "approve")}
@@ -678,7 +678,7 @@ class App extends React.Component {
                           Approve ({this.state.data_approve_vendor.length})
                         </div>
                       </li>
-                      <li className="mvx-col-auto mvx-divider"></li>
+                      <li className="mvx-multistatus-item mvx-divider"></li>
                       <li className="mvx-col-auto">
                         <div
                           className="mvx-multistatus-check-pending status-active"
@@ -687,8 +687,8 @@ class App extends React.Component {
                           Pending ({this.state.data_pending_vendor.length})
                         </div>
                       </li>
-                      <li className="mvx-col-auto mvx-divider"></li>
-                      <li className="mvx-col-auto">
+                      <li className="mvx-multistatus-item mvx-divider"></li>
+                      <li className="mvx-multistatus-item">
                         <div
                           className="mvx-multistatus-check-rejected"
                           onClick={(e) => this.different_vendor_status(e, "rejected")}
@@ -698,8 +698,9 @@ class App extends React.Component {
                       </li>
                     </ul>
                   </div>
-                  <div className="mvx-col-auto">
-                    <div className="mvx-search-holder">
+                  <div className="mvx-searchbar-sec">
+                    <div className='mvx-header-search-section'>
+                      <label><i className='mvx-font icon-search'></i></label>
                       <input
                         type="text"
                         placeholder="Search Vendors"

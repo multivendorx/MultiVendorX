@@ -1712,24 +1712,27 @@ class App extends Component {
 
                       <div className="mvx-search-and-multistatus-wrap mvx-row mvx-align-items-center mvx-justify-content-between mb-15">
 
-                        <div className='mvx-col-55'>
-                          <ul className='mvx-ul-auto mvx-row'>
-                            <li className='mvx-col-auto'>
+                        <div className='mvx-multistatus-sec'>
+                          <ul className='mvx-multistatus-ul mvx-row'>
+                            <li className='mvx-multistatus-item'>
                               <div className="mvx-multistatus-check-all" onClick={(e) => this.handle_post_retrive_status(e, 'all', 'announcement')}>All ({this.state.display_all_announcement.length})</div>
                             </li>
-                            <li class="mvx-col-auto mvx-divider"></li>
-                            <li className='mvx-col-auto'>
+                            <li class="mvx-multistatus-item mvx-divider"></li>
+                            <li className='mvx-multistatus-item'>
                               <div className="mvx-multistatus-check-approve" onClick={(e) => this.handle_post_retrive_status(e, 'publish', 'announcement')}>| Published ({this.state.display_published_announcement.length})</div>
                             </li>
-                            <li class="mvx-col-auto mvx-divider"></li>
-                            <li className='mvx-col-auto'>
+                            <li class="mvx-multistatus-item mvx-divider"></li>
+                            <li className='mvx-multistatus-item'>
                               <div className="mvx-multistatus-check-pending status-active" onClick={(e) => this.handle_post_retrive_status(e, 'pending', 'announcement')}>| Pending ({this.state.display_pending_announcement.length})</div>
                             </li>
                           </ul>
                         </div>
 
-                        <div className='mvx-col-auto'>
-                          <div className='mvx-search-holder'><input type="text" placeholder="Search Announcement" onChange={(e) => this.handle_post_bulk_status(e, 'announcement')} /></div>
+                        <div className='mvx-searchbar-sec'>
+                          <div className='mvx-header-search-section'>
+                              <label><i className='mvx-font icon-search'></i></label>
+                              <input type="text" placeholder="Search Announcement" onChange={(e) => this.handle_post_bulk_status(e, 'announcement')} />
+                          </div>
                         </div>
 
 
@@ -1817,24 +1820,25 @@ class App extends Component {
                       <div>
                         <div className="mvx-search-and-multistatus-wrap mvx-row mvx-align-items-center mvx-justify-content-between mb-15">
 
-                          <div className='mvx-col-55'>
-                            <ul className='mvx-ul-auto mvx-row'>
-                              <li className='mvx-col-auto'>
-                                <div className="mvx-multistatus-check-all" onClick={(e) => this.handle_post_retrive_status(e, 'all', 'knowladgebase')}>All ({this.state.display_all_knowladgebase.length})</div>
+                          <div className='mvx-multistatus-sec'>
+                            <ul className='mvx-multistatus-ul mvx-row'>
+                              <li className='mvx-multistatus-item'>
+                                <div className="mvx-multistatus-check-all" onClick={(e) => this.handle_post_retrive_status(e, 'all', 'knowladgebase')}>All({this.state.display_all_knowladgebase.length})</div>
                               </li>
-                              <li class="mvx-col-auto mvx-divider"></li>
-                              <li class="mvx-col-auto">
-                                <div className="mvx-multistatus-check-approve" onClick={(e) => this.handle_post_retrive_status(e, 'publish', 'knowladgebase')}>| Published ({this.state.display_publish_knowladgebase.length})</div>
+                              <li class="mvx-multistatus-item mvx-divider"></li>
+                              <li class="mvx-multistatus-item">
+                                <div className="mvx-multistatus-check-approve" onClick={(e) => this.handle_post_retrive_status(e, 'publish', 'knowladgebase')}>Published({this.state.display_publish_knowladgebase.length})</div>
                               </li>
-                              <li class="mvx-col-auto mvx-divider"></li>
-                              <li class="mvx-col-auto">
-                                <div className="mvx-multistatus-check-pending status-active" onClick={(e) => this.handle_post_retrive_status(e, 'pending', 'knowladgebase')}>| Pending ({this.state.display_pending_knowladgebase.length})</div>
+                              <li class="mvx-multistatus-item mvx-divider"></li>
+                              <li class="mvx-multistatus-item">
+                                <div className="mvx-multistatus-check-pending status-active" onClick={(e) => this.handle_post_retrive_status(e, 'pending', 'knowladgebase')}>Pending ({this.state.display_pending_knowladgebase.length})</div>
                               </li>
                             </ul>
                           </div>
 
-                          <div className='mvx-col-auto'>
-                            <div className='mvx-search-holder'>
+                          <div className='mvx-searchbar-sec'>
+                          <div className='mvx-header-search-section'>
+                              <label><i className='mvx-font icon-search'></i></label>
                               <input type="text" placeholder="Search Knowledgebase" onChange={(e) => this.handle_post_bulk_status(e, 'knowladgebase')} />
                             </div>
                           </div>
@@ -1876,11 +1880,12 @@ class App extends Component {
                   <div className="mvx-module-grid">
                     <div className="mvx-search-and-multistatus-wrap mvx-row mvx-align-items-center mvx-justify-content-between mb-15">
 
-                      <div className="mvx-col-55">
-                        <ul>
-                          <li className='mvx-col-auto'>
+                      <div className="mvx-multistatus-sec">
+                        <ul className='mvx-multistatus-ul'>
+                          <li className='mvx-multistatus-item'>
                             <div class="mvx-multistatus-check-all">All ({this.state.list_of_store_review.length})</div>
                           </li>
+                          <li clasName='mvx-multistatus-item mvx-divider'></li>
                         </ul>
                         {/* <div className="mvx-multistatus-check-all">All ({this.state.list_of_store_review.length})</div> */}
                         {/*<div className="mvx-multistatus-check-approve" onClick={this.handle_post_retrive_status}>| Approve (10)</div>
@@ -1888,8 +1893,9 @@ class App extends Component {
                       </div>
 
 
-                      <div className="mvx-col-auto">
-                        <div className='mvx-search-holder'>
+                      <div className="mvx-searchbar-sec">
+                        <div className='mvx-header-search-section'>
+                          <label><i className='mvx-font icon-search'></i></label>
                           <input type="text" placeholder="Search Review" name="search" onChange={(e) => this.handle_search_vendor_review(e)} />
                         </div>
 
@@ -1961,22 +1967,23 @@ class App extends Component {
 
                       <div className="mvx-module-grid">
 
-                        <div class="mvx-row mvx-align-items-center mvx-justify-content-between mb-15">
-                          <div class="mvx-col-55">
-                            <ul class="mvx-ul-auto mvx-row">
-                              <li class="mvx-col-auto">
+                        <div class="mvx-search-and-multistatus-wrap mvx-row mvx-align-items-center mvx-justify-content-between mb-15">
+                          <div class="mvx-multistatus-sec">
+                            <ul class="mvx-multistatus-ul">
+                              <li class="mvx-multistatus-item">
                                 <div class="mvx-multistatus-check-all">All ({this.state.list_of_publish_question.length})</div>
                               </li>
 
-                              <li class="mvx-col-auto mvx-divider"></li>
-                              <li class="mvx-col-auto">
+                              <li class="mvx-multistatus-item mvx-divider"></li>
+                              <li class="mvx-multistatus-item">
                                 <div class="mvx-multistatus-check-pending status-active">Pending ({this.state.list_of_pending_question.length})</div>
                               </li>
 
                             </ul>
                           </div>
-                          <div class="mvx-col-auto">
-                            <div class="mvx-search-holder">
+                          <div class="mvx-searchbar-sec">
+                            <div className='mvx-header-search-section'>
+                              <label><i className='mvx-font icon-search'></i></label>
                               <input type="text" placeholder="Search Question" name="search" onChange={(e) => this.handle_question_search(e)} />
                             </div>
                           </div>
