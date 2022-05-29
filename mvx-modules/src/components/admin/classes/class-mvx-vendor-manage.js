@@ -679,7 +679,7 @@ class App extends React.Component {
                         </div>
                       </li>
                       <li className="mvx-multistatus-item mvx-divider"></li>
-                      <li className="mvx-col-auto">
+                      <li className="mvx-multistatus-item">
                         <div
                           className="mvx-multistatus-check-pending status-active"
                           onClick={(e) => this.different_vendor_status(e, "pending")}
@@ -711,8 +711,8 @@ class App extends React.Component {
                   </div>
                 </div>
 
-                <div className="mvx-row mb-15">
-                  <div className="mvx-col-25">
+                <div className="mvx-wrap-bulk-all-date">
+                  <div className="mvx-bulk-action-sec">
                     <Select
                       placeholder="Bulk actions"
                       options={appLocalizer.vendor_list_page_bulk_list_options}

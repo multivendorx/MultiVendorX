@@ -1250,8 +1250,8 @@ class App extends Component {
             </div>
           </div>
 
-          <div className="mvx-wrap-bulk-all-date mb-25">
-            <div className="mvx-wrap-bulk-action mvx-row mvx-row-sm-8">
+          <div className="mvx-wrap-bulk-all-date">
+            <div className="mvx-wrap-bulk-action mvx-wrap-bulk-all-date">
               <div className="mvx-col-auto">
                 <Select
                   placeholder={

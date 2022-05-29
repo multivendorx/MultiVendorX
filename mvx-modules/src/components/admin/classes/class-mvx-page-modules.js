@@ -233,7 +233,7 @@ class App extends Component {
               </p>
             </div>
 
-            <div className="mvx-search-and-multistatus-wrap mvx-row mb-25 mvx-justify-content-between mvx-align-items-center">
+            <div className="mvx-search-and-multistatus-wrap">
               <div className="mvx-multistatus-sec mvx-module-left-sec">
                 <ul className="mvx-multistatus-ul mvx-row">
                   <li className="mvx-multistatus-item mvx-totalmodule-text">
