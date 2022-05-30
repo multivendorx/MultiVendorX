@@ -7213,7 +7213,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 ],
                 [
                     'label' => __('Enter Content', 'dc-woocommerce-multi-vendor'),
-                    'type' => 'wpeditor', 
+                    'type' => 'textarea', 
                     'key' => 'announcement_content', 
                     'database_value' => ''
                 ],
@@ -7237,7 +7237,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 ],
                 [
                     'label' => __('Enter Content', 'dc-woocommerce-multi-vendor'),
-                    'type' => 'wpeditor', 
+                    'type' => 'textarea', 
                     'key' => 'knowladgebase_content', 
                     'database_value' => ''
                 ],

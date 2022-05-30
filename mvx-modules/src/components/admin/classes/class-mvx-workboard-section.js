@@ -211,7 +211,44 @@ class App extends Component {
     this.handle_product_search_abuse = this.handle_product_search_abuse.bind(this);
 
     this.handleAbuseDismiss = this.handleAbuseDismiss.bind(this);
+    this.handle_question_delete = this.handle_question_delete.bind(this);
 
+  }
+
+  handle_question_delete(e, question_id, product_id, type) {
+    if (type == "rejected") {
+      if (confirm("Are you sure to delete?")) {
+        axios({
+          method: 'post',
+          url: `${appLocalizer.apiUrl}/mvx_module/v1/approve_dismiss_pending_question`,
+          data: {
+            question_id: question_id,
+            product_id: product_id,
+            type: type
+          }
+        })
+        .then((responce) => {
+          this.setState({
+            list_of_publish_question: responce.data,
+          });
+        });
+      }
+    } else {
+      axios({
+          method: 'post',
+          url: `${appLocalizer.apiUrl}/mvx_module/v1/approve_dismiss_pending_question`,
+          data: {
+            question_id: question_id,
+            product_id: product_id,
+            type: type
+          }
+        })
+        .then((responce) => {
+          this.setState({
+            list_of_publish_question: responce.data,
+          });
+        });
+    }
   }
 
   handleAbuseDismiss(reason, product, vendor) {
@@ -1175,8 +1212,8 @@ class App extends Component {
 
         data_ques.cell ? data_ques.cell = (row) => <div className="mvx-vendor-action-icon">
 
-          <a href={row.link}><i className="mvx-font icon-edit"></i></a>
-          <div onClick={() => this.handlePostDismiss(row.id, row.type)} id={row.id}><i className="mvx-font icon-no"></i></div>
+          {/*<div onClick={(e) => this.handle_question_delete(e, row.id, row.question_product_id, 'verified')} id={row.id}><i className="mvx-font icon-approve"></i></div>*/}
+          <div onClick={(e) => this.handle_question_delete(e, row.id, row.question_product_id, 'rejected')} id={row.id}><i className="mvx-font icon-no"></i></div>
 
         </div> : '';
 
