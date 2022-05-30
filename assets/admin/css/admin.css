@@ -2012,8 +2012,8 @@ input:focus {
 
 .mvx-notic-display-title {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 140px;
+  right: 70px;
   background: #e35047;
   padding: 8px 24px;
   color: #fdfdfe;
