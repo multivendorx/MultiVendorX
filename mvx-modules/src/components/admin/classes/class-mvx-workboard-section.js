@@ -1358,7 +1358,7 @@ class App extends Component {
                           </div>
                           <div className='mvx-white-box-footer'>
                             <div className='pull-left'>
-                              <a href={pending_data.coupon_url} className='link-icon'><i className="mvx-font icon-tick"></i></a>
+                              <a href={pending_data.coupon_url} className='link-icon'><i className="mvx-font icon-yes"></i></a>
                               <a href={pending_data.product_url} className="link-icon"><i className="mvx-font icon-edit"></i></a>
                               <div className="link-icon"><i className="mvx-font icon-approve" onClick={(e) => this.handle_product_request_by_vendors(e, pending_data.id, pending_data.vendor_id, 'approve')}></i></div>
                               <div className="link-icon"><i className="mvx-font icon-close" onClick={(e) => this.handle_product_request_by_vendors(e, pending_data.id, pending_data.vendor_id, 'dismiss')}></i></div>

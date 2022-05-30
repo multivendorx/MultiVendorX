@@ -930,9 +930,9 @@ a:focus {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .mvx-text-with-line-wrapper::after {
@@ -952,7 +952,6 @@ a:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-bottom: 30px;
 }
 
 .mvx-report-text span {
@@ -1123,7 +1122,7 @@ input[type=radio]:checked::before {
   width: 55%;
   height: 0.0625rem;
   background-color: #d4d1d9;
-  top: 2.5rem;
+  top: 3.4rem;
   left: 15.8125rem;
 }
 
@@ -1143,7 +1142,7 @@ input[type=radio]:checked::before {
 }
 
 .mvx-todo-status-check .mvx-text-with-line-wrapper {
-  padding: 20px 0;
+  padding: 32px 0 16px 0;
 }
 
 .mvx-settings-input-content .mvx-select-deselect-checkbox-content .mvx-select-de-box-and-checkbox .mvx-select-deselect-checkbox-label-marge .mvx-wrap-checkbox-and-label {
@@ -1327,7 +1326,7 @@ textarea, input[type=text], select, input, .default-input {
 }
 
 .mvx-product-box-sec .mvx-all-product-box .mvx-off-white-box .mvx-white-box-body {
-  margin-top: 50px;
+  margin: 50px 0 1rem 0;
 }
 
 .mvx-product-box-sec .mvx-all-product-box .mvx-off-white-box .mvx-white-box-body img {
@@ -1356,7 +1355,7 @@ textarea, input[type=text], select, input, .default-input {
 .mvx-product-box-sec .mvx-all-product-box .mvx-white-box-footer {
   position: absolute;
   bottom: 0;
-  padding: 16px;
+  padding: 8px 16px;
   left: 0;
   width: 100%;
   border-top: 1px solid #d4d1d9;
@@ -1374,7 +1373,7 @@ textarea, input[type=text], select, input, .default-input {
 .mvx-product-box-sec .mvx-all-product-box .mvx-white-box-footer .pull-left .link-icon, .mvx-product-box-sec .mvx-all-product-box .mvx-white-box-footer .pull-right .link-icon {
   display: block;
   color: #3f1473;
-  margin-right: 10px;
+  margin-right: 4px;
   background: #ece8f1;
   padding: 6px 10px;
   border-radius: 4px;
@@ -1433,10 +1432,6 @@ textarea, input[type=text], select, input, .default-input {
   background-color: #d4d1d9;
   top: 3rem;
   left: 10.8125rem;
-}
-
-.mvx-modules .mvx-report-text {
-  margin-top: 34px;
 }
 
 .mv-off-white-box {
@@ -2012,13 +2007,8 @@ input:focus {
 
 .mvx-notic-display-title {
   position: absolute;
-<<<<<<< HEAD
-  top: 140px;
-  right: 70px;
-=======
   top: 0;
   right: 0;
->>>>>>> upstream/main
   background: #e35047;
   padding: 8px 24px;
   color: #fdfdfe;
@@ -2031,10 +2021,7 @@ input:focus {
 }
 
 .mvx-workboard-tab-wrapper .mvx-dynamic-fields-wrapper {
-  padding: 24px;
-  background: #fdfdfe;
-  border: 1px solid #d4d1d0;
-  border-radius: 4px;
+  padding: 24px 0;
   margin: 16px 0 0 0;
 }
 
@@ -2052,7 +2039,17 @@ input:focus {
 }
 
 .mvx-workboard-tab-wrapper .mvx-dynamic-fields-wrapper .mvx-form-group .mvx-settings-input-content textarea {
-  border: none;
+  border: 1px solid #d4d1d9;
+  height: 80px;
+}
+
+.mvx-workboard-tab-wrapper .mvx-dynamic-fields-wrapper .mvx-form-actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .mvx-workboard-tab-wrapper .mvx-dynamic-fields-wrapper .mvx-form-actions button {
@@ -2062,6 +2059,7 @@ input:focus {
   height: 40px;
   padding: 0 24px;
   margin: 24px 0 0 0;
+  margin-left: auto;
 }
 
 .mvx-search-and-multistatus-wrap {
@@ -2087,7 +2085,6 @@ input:focus {
 .mvx-search-and-multistatus-wrap .mvx-multistatus-sec .mvx-multistatus-ul .mvx-multistatus-item {
   display: inline-block;
   margin: 0;
-  padding-right: 8px;
 }
 
 .mvx-wrap-bulk-all-date {
@@ -2493,6 +2490,18 @@ input:focus {
 
 .mvx-commission .mvx-edit-commission-container .mvx-commission-value-class a {
   color: #3f1473;
+}
+
+.mvx-divider {
+  -webkit-box-flex: 0 !important;
+      -ms-flex: 0 0 0.0625rem !important;
+          flex: 0 0 0.0625rem !important;
+  width: 1px !important;
+  max-width: 1px !important;
+  background-color: #181718;
+  padding: 0 !important;
+  margin: 0 8px !important;
+  height: 16px;
 }
 
 /** Start Setup Widget Sec **/
