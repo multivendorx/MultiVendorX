@@ -1674,29 +1674,6 @@ class MVX_REST_API {
         return rest_ensure_response($pending_list);
     }
 
-/*    public function mvx_question_verification_approval() {
-        global $MVX;
-        $question_id = $request && $request->get_param('question_id') ? absint($request->get_param('question_id')) : '';
-        $data_action = $request && $request->get_param('data_action') ? $request->get_param('data_action') : '';
-        $product = $request && $request->get_param('product') ? $request->get_param('product') : '';
-
-        $data = array();
-        if (!empty($question_id)) {
-            if (!empty($data_action)) {
-                $vendor = get_mvx_product_vendors(absint($product));
-                if ($data_action == 'rejected') {
-                    $MVX->product_qna->deleteQuestion( $question_id );
-                    delete_transient('mvx_customer_qna_for_vendor_' . $vendor->id);
-                } else {
-                    $data['status'] = $data_action;
-                    $MVX->product_qna->updateQuestion( $question_id, $data );
-                    $questions = $MVX->product_qna->get_Vendor_Questions($vendor);
-                    set_transient('mvx_customer_qna_for_vendor_' . $vendor->id, $questions);
-                }
-            }
-        }
-    }*/
-
     public function mvx_approve_dismiss_pending_question($request) {
         global $MVX;
         $product_id = $request && $request->get_param('product_id') ? ($request->get_param('product_id')) : 0;

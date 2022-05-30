@@ -619,6 +619,15 @@ class App extends React.Component {
     )
 
     return (
+      user_query.get("ID") ?
+      <TabSection
+        model={appLocalizer.mvx_all_backend_tab_list['marketplace-vendors']}
+        query_name={user_query}
+        funtion_name={this}
+
+        vendor
+      />
+      :
       <div className="mvx-general-wrapper mvx-vendor">
         <HeaderSection />
         <div className="mvx-container mvx-vendor-page-container">
@@ -819,14 +828,7 @@ class App extends React.Component {
             )
           ) : (
 
-            <TabSection
-              model={appLocalizer.mvx_all_backend_tab_list['marketplace-vendors']}
-              query_name={user_query}
-              funtion_name={this}
-              no_banner
-              no_header
-              vendor
-            />
+            ""
             
           )}
 
@@ -840,8 +842,7 @@ class App extends React.Component {
 
   Childparent({ name }) {
     return (
-      <div>
-        {name ?
+      name ?
           <DynamicForm
             key={`dynamic-form-add-new`}
             className="mvx-vendor-add-new"
@@ -852,8 +853,7 @@ class App extends React.Component {
             modulename="vendor_add_personal"
             url="mvx_module/v1/create_vendor"
           />
-          : ''}
-      </div>
+          : ''
     );
   }
 
@@ -940,8 +940,7 @@ class App extends React.Component {
     }
 
     return (
-      <div>
-        {appLocalizer.mvx_all_backend_tab_list["marketplace-vendors"].map(
+        appLocalizer.mvx_all_backend_tab_list["marketplace-vendors"].map(
           (data, index) => (
             <div>
               {data.modulename == name.get("name") ? (
@@ -1454,8 +1453,7 @@ class App extends React.Component {
                     </div>
                   )
                 ) : (
-                  <div>
-                    {this.state.data_setting_fileds &&
+                  this.state.data_setting_fileds &&
                     Object.keys(this.state.data_setting_fileds).length > 0 ? (
                       <DynamicForm
                         key={`dynamic-form-${data.modulename}`}
@@ -1470,16 +1468,14 @@ class App extends React.Component {
                       />
                     ) : (
                       ""
-                    )}
-                  </div>
+                    )
                 )
               ) : (
                 ""
               )}
             </div>
           )
-        )}
-      </div>
+        )
     );
   }
 
