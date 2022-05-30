@@ -1175,7 +1175,7 @@ class App extends Component {
 
         data_ques.cell ? data_ques.cell = (row) => <div className="mvx-vendor-action-icon">
 
-          <a href={row.link}><i className="mvx-font icon-edit"></i></a>
+          <div onClick={() => this.handlePostDismiss(row.id, row.type)} id={row.id}><i className="mvx-font icon-no"></i></div>
           <div onClick={() => this.handlePostDismiss(row.id, row.type)} id={row.id}><i className="mvx-font icon-no"></i></div>
 
         </div> : '';

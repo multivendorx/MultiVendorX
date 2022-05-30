@@ -2679,13 +2679,24 @@ class MVX_REST_API {
         $announcement_content = $fetch_data && isset($fetch_data['announcement_content']) ? $fetch_data['announcement_content'] : '';
         $announcement_vendors = $fetch_data && isset($fetch_data['announcement_vendors']) ? $fetch_data['announcement_vendors'] : '';
         $post_id = wp_insert_post( array( 'post_title' => $announcement_title, 'post_type' => 'mvx_vendor_notice', 'post_status' => 'publish', 'post_content' => $announcement_content ) );
+        $post = get_post($post_id);
         update_post_meta( $post_id, '_mvx_vendor_notices_url', wc_clean($announcement_url) );
-
+        $email_vendor = WC()->mailer()->emails['WC_Email_Vendor_New_Announcement'];
         $notify_vendors = isset($fetch_data['announcement_vendors']) && !empty($fetch_data['announcement_vendors']) ? wp_list_pluck(array_filter($fetch_data['announcement_vendors']), 'value')  : get_mvx_vendors( array(), 'ids' );
         if (isset($fetch_data['announcement_vendors']) && !empty($fetch_data['announcement_vendors'])) {
             update_post_meta($post_id, '_mvx_vendor_notices_vendors', $notify_vendors);
+            // send mail
+            $single = ( count($notify_vendors) == 1 ) ? __( 'Your', 'dc-woocommerce-multi-vendor' ) : __( 'All vendors and their', 'dc-woocommerce-multi-vendor' );
+            foreach ($notify_vendors as $vendor_id) {
+                $email_vendor->trigger( $post, $vendor_id, $single );
+            }
         } else {
             update_post_meta($post_id, '_mvx_vendor_notices_vendors', get_mvx_vendors( array(), 'ids' ));
+            // send mail
+            $single = ( count(get_mvx_vendors( array(), 'ids' )) == 1 ) ? __( 'Your', 'dc-woocommerce-multi-vendor' ) : __( 'All vendors and their', 'dc-woocommerce-multi-vendor' );
+            foreach (get_mvx_vendors( array(), 'ids' ) as $vendor_id) {
+                $email_vendor->trigger( $post, $vendor_id, $single );
+            }
         }
 
         $all_details['redirect_link'] = admin_url('admin.php?page=mvx#&submenu=work-board&name=announcement&AnnouncementID='. $post_id .'');
@@ -3923,7 +3934,7 @@ class MVX_REST_API {
 
                 $commission_list[] = array(
                     'id'            =>  $commission_value,
-                    'commission_id'         =>  '<a href="' . sprintf('?page=%s&CommissionID=%s', 'mvx#&submenu=commission', $commission_value) . '">[Commission - ' . $commission_value . ']</a>',
+                    'commission_id'         =>  '<a href="' . sprintf('?page=%s&CommissionID=%s', 'mvx#&submenu=commission', $commission_value) . '">[' . $commission_value . ']</a>',
                     'link'          =>  sprintf('?page=%s&CommissionID=%s', 'mvx#&submenu=commission', $commission_value),
                     'order_id'      =>  '<a href="' . esc_url($edit_url) . '">#' . $order_id . '</a>',
                     'product'       =>  $product_list,
