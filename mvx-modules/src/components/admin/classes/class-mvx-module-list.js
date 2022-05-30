@@ -209,6 +209,11 @@ class App extends Component {
 
       } else {
         $(el).parent().removeClass('current');
+        
+        // if user enter page=mvx
+        if ($(el).parent().hasClass("wp-first-item") && currentPath == "admin.php?page=mvx") {
+          $(el).parent().addClass('current');
+        }
 
       }
       return;

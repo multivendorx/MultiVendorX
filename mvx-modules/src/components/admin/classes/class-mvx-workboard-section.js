@@ -1291,35 +1291,35 @@ class App extends Component {
                   </div>
                 </div>
 
-                <div className="mvx-row">
+                <div className="mvx-product-box-sec">
 
                   {
                     this.state.list_of_pending_vendor_product.length > 0 ? this.state.list_of_pending_vendor_product.map((pending_data, pending_index) => (
 
-                      <div className='mvx-col-33'>
-                        <div className='mv-off-white-box'>
-                          <div className='mv-white-box-header'>
+                      <div className='mvx-all-product-box'>
+                        <div className='mvx-off-white-box'>
+                          <div className='mvx-white-box-header'>
                             Pending Vendor Product
                             <div className='pull-right'>
                               <input type="checkbox" className="mvx-workboard-checkbox" checked={this.state.pending_product_check[pending_index]} onChange={(e) => this.handle_todo_checkbox_chenage(e, pending_data.id, pending_index)} />
                             </div>
                           </div>
-                          <div className='mv-white-box-body'>
-                            <div className='mvx-row mvx-align-items-center'>
+                          <div className='mvx-white-box-body'>
+                            <div className='mvx-image-row mvx-box-content'>
                               <div className='mvx-col-75 pl-0'>
                                 <p dangerouslySetInnerHTML={{ __html: pending_data.product_src }}></p>
                               </div>
                             </div>
-                            <div className='mvx-row mvx-align-items-center name-txt'>
-                              <div className='mvx-col-33'>Vendor Name:</div>
-                              <div className='mvx-col-67'><a href={pending_data.vendor_link}>{pending_data.vendor}</a></div>
+                            <div className='mvx-vendor-row mvx-box-content name-txt'>
+                              <div className='mvx-product-title'>Vendor Name:</div>
+                              <div className='mvx-product-name'><a href={pending_data.vendor_link}>{pending_data.vendor}</a></div>
                             </div>
-                            <div className='mvx-row mvx-align-items-center name-txt'>
-                              <div className='mvx-col-33'>Product Name:</div>
-                              <div className='mvx-col-67'><a href={pending_data.product_url}>{pending_data.product}</a></div>
+                            <div className='mvx-product-row mvx-box-content name-txt'>
+                              <div className='mvx-product-title'>Product Name:</div>
+                              <div className='mvx-product-name'><a href={pending_data.product_url}>{pending_data.product}</a></div>
                             </div>
                           </div>
-                          <div className='mv-white-box-footer'>
+                          <div className='mvx-white-box-footer'>
                             <div className='pull-left'>
                               <a href={pending_data.coupon_url} className='link-icon'><i className="mvx-font icon-tick"></i></a>
                               <a href={pending_data.product_url} className="link-icon"><i className="mvx-font icon-edit"></i></a>
@@ -1367,33 +1367,33 @@ class App extends Component {
                 </div>
 
 
-                <div className="mvx-row">
+                <div className="mvx-product-box-sec">
 
                   {
                     this.state.list_of_pending_vendor.length > 0 ? this.state.list_of_pending_vendor.map((pending_data, pending_index) => (
 
-                      <div className='mvx-col-33'>
-                        <div className='mv-off-white-box'>
-                          <div className='mv-white-box-header'>
+                      <div className='mvx-all-product-box'>
+                        <div className='mvx-off-white-box'>
+                          <div className='mvx-white-box-header'>
                             Pending User
                             <div className='pull-right'>
                               <input type="checkbox" className="mvx-workboard-checkbox" checked={this.state.pending_user_check[pending_index]} onChange={(e) => this.handle_todo_user_chenage(e, pending_data.id, pending_index)} />
                             </div>
                           </div>
-                          <div className='mv-white-box-body'>
-                            <div className='mvx-row mvx-align-items-center'>
+                          <div className='mvx-white-box-body'>
+                            <div className='mvx-image-row mvx-box-content'>
                               <div className='mvx-col-75 pl-0'>
                                 <p dangerouslySetInnerHTML={{ __html: pending_data.vendor }}></p>
                               </div>
                             </div>
-                            <div className='mvx-row mvx-align-items-center name-txt'>
-                              <div className='mvx-col-33'>Vendor Name:</div>
-                              <div className='mvx-col-67'><a href={pending_data.vendor_link}>{pending_data.vendor_name}</a></div>
+                            <div className='mvx-vendor-row mvx-box-content name-txt'>
+                              <div className='mvx-product-title'>Vendor Name:</div>
+                              <div className='mvx-product-name'><a href={pending_data.vendor_link}>{pending_data.vendor_name}</a></div>
                             </div>
 
 
                           </div>
-                          <div className='mv-white-box-footer'>
+                          <div className='mvx-white-box-footer'>
                             <div className='pull-left'>
                               <a href={pending_data.vendor_link} className='link-icon'><i className="mvx-font icon-edit"></i></a>
                               <div className='link-icon'><i className="mvx-font icon-approve" onClick={(e) => this.handle_user_request_by_vendors(e, pending_data.id, 'approve')}></i></div>
@@ -1441,36 +1441,36 @@ class App extends Component {
 
 
 
-                <div className="mvx-row">
+                <div className="mvx-product-box-sec">
 
                   {
                     this.state.list_of_pending_vendor_coupon.length > 0 ? this.state.list_of_pending_vendor_coupon.map((pending_data, pending_index) => (
 
-                      <div className='mvx-col-33'>
-                        <div className='mv-off-white-box'>
-                          <div className='mv-white-box-header'>
+                      <div className='mvx-all-product-box'>
+                        <div className='mvx-off-white-box'>
+                          <div className='mvx-white-box-header'>
                             Pending coupon
                             <div className='pull-right'>
                               <input type="checkbox" className="mvx-workboard-checkbox" checked={this.state.pending_coupon_check[pending_index]} onChange={(e) => this.handle_todo_coupon_chenage(e, pending_data.id, pending_index)} />
                             </div>
                           </div>
-                          <div className='mv-white-box-body'>
-                            <div className='mvx-row mvx-align-items-center'>
+                          <div className='mvx-white-box-body'>
+                            <div className='mvx-image-row mvx-box-content'>
                               <div className='mvx-col-75 pl-0'>
                                 <span className='blue-txt'>{pending_data.coupon}</span>
                               </div>
                             </div>
-                            <div className='mvx-row mvx-align-items-center name-txt'>
-                              <div className='mvx-col-33'>Vendor Name:</div>
-                              <div className='mvx-col-67'><a href={pending_data.vendor_link}>{pending_data.vendor}</a></div>
+                            <div className='mvx-vendor-row mvx-box-content name-txt'>
+                              <div className='mvx-product-title'>Vendor Name:</div>
+                              <div className='mvx-product-name'><a href={pending_data.vendor_link}>{pending_data.vendor}</a></div>
                             </div>
-                            <div className='mvx-row mvx-align-items-center name-txt'>
-                              <div className='mvx-col-33'>Coupon Name:</div>
-                              <div className='mvx-col-67'><a href={pending_data.coupon_url}>{pending_data.coupon}</a></div>
+                            <div className='mvx-product-row mvx-box-content name-txt'>
+                              <div className='mvx-product-title'>Coupon Name:</div>
+                              <div className='mvx-product-name'><a href={pending_data.coupon_url}>{pending_data.coupon}</a></div>
                             </div>
 
                           </div>
-                          <div className='mv-white-box-footer'>
+                          <div className='mvx-white-box-footer'>
                             <div className='pull-left'>
 
                               <a href={pending_data.coupon_url} className='link-icon'><i className="mvx-font icon-edit"></i></a>
@@ -1517,33 +1517,33 @@ class App extends Component {
                 </div>
 
 
-                <div className="mvx-row">
+                <div className="mvx-product-box-sec">
 
                   {
                     this.state.list_of_pending_transaction.length > 0 ? this.state.list_of_pending_transaction.map((pending_data, pending_index) => (
 
-                      <div className='mvx-col-33'>
-                        <div className='mv-off-white-box'>
-                          <div className='mv-white-box-header'>
+                      <div className='mvx-all-product-box'>
+                        <div className='mvx-off-white-box'>
+                          <div className='mvx-white-box-header'>
                             Pending coupon
                             <div className='pull-right'>
                               <input type="checkbox" className="mvx-workboard-checkbox" checked={this.state.pending_transaction_check[pending_index]} onChange={(e) => this.handle_todo_transaction_chenage(e, pending_data.id, pending_index)} />
                             </div>
                           </div>
-                          <div className='mv-white-box-body'>
-                            <div className='mvx-row mvx-align-items-center'>
+                          <div className='mvx-white-box-body'>
+                            <div className='mvx-image-row mvx-box-content'>
                               <div className='mvx-col-75 pl-0'>
                                 <span className='blue-txt'>{pending_data.coupon}</span>
                               </div>
                             </div>
-                            <div className='mvx-row mvx-align-items-center name-txt'>
-                              <div className='mvx-col-33'>Name:</div>
-                              <div className='mvx-col-67'><a href="">{pending_data.coupon}</a></div>
+                            <div className='mvx-vendor-row mvx-box-content name-txt'>
+                              <div className='mvx-product-title'>Name:</div>
+                              <div className='mvx-product-name'><a href="">{pending_data.coupon}</a></div>
                             </div>
 
 
                           </div>
-                          <div className='mv-white-box-footer'>
+                          <div className='mvx-white-box-footer'>
                             <div className='pull-left'>
 
                               <div className="mvx-left-icon link-icon"><i className="mvx-font icon-edit"></i></div>
@@ -1595,41 +1595,41 @@ class App extends Component {
 
 
 
-                <div className="mvx-row">
+                <div className="mvx-product-box-sec">
 
                   {
                     this.state.list_of_pending_question.length > 0 ? this.state.list_of_pending_question.map((pending_data, pending_index) => (
 
-                      <div className='mvx-col-33'>
-                        <div className='mv-off-white-box'>
-                          <div className='mv-white-box-header'>
+                      <div className='mvx-all-product-box'>
+                        <div className='mvx-off-white-box'>
+                          <div className='mvx-white-box-header'>
                             Pending Question
                             <div className='pull-right'>
                               <input type="checkbox" className="mvx-workboard-checkbox" checked={this.state.pending_question_check[pending_index]} onChange={(e) => this.handle_todo_question_checkbox_chenage(e, pending_data.id, pending_index)} />
                             </div>
                           </div>
-                          <div className='mv-white-box-body'>
-                            <div className='mvx-row mvx-align-items-center'>
+                          <div className='mvx-white-box-body'>
+                            <div className='mvx-image-row mvx-box-content'>
                               <div className='mvx-col-75 pl-0'>
                                 <p dangerouslySetInnerHTML={{ __html: pending_data.question_by }}></p>
                               </div>
                             </div>
-                            <div className='mvx-row mvx-align-items-center name-txt'>
-                              <div className='mvx-col-40'>Question by:</div>
-                              <div className='mvx-col-60'><a href={pending_data.vendor_link}>{pending_data.question_by_name}</a></div>
+                            <div className='mvx-vendor-row mvx-box-content name-txt'>
+                              <div className='mvx-product-title'>Question by:</div>
+                              <div className='mvx-product-name'><a href={pending_data.vendor_link}>{pending_data.question_by_name}</a></div>
                             </div>
-                            <div className='mvx-row mvx-align-items-center name-txt'>
-                              <div className='mvx-col-40'>Product Name:</div>
-                              <div className='mvx-col-66'><a href={pending_data.product_url}>{pending_data.product_name}</a></div>
+                            <div className='mvx-product-row mvx-box-content name-txt'>
+                              <div className='mvx-product-title'>Product Name:</div>
+                              <div className='mvx-product-name'><a href={pending_data.product_url}>{pending_data.product_name}</a></div>
                             </div>
 
-                            <div className='mvx-row mvx-align-items-center name-txt'>
-                              <div className='mvx-col-40'>Question details:</div>
-                              <div className='mvx-col-60'><a href={pending_data.product_url}>{pending_data.question_details}</a></div>
+                            <div className='mvx-product-row mvx-box-content name-txt'>
+                              <div className='mvx-product-title'>Question details:</div>
+                              <div className='mvx-product-name'><a href={pending_data.product_url}>{pending_data.question_details}</a></div>
                             </div>
 
                           </div>
-                          <div className='mv-white-box-footer'>
+                          <div className='mvx-white-box-footer'>
                             <div className='pull-left'>
                               <a href={pending_data.product_url} className='link-icon'><i className="mvx-font icon-edit"></i></a>
                               <div className="mvx-left-icon link-icon"><i className="mvx-font icon-approve" onClick={(e) => this.handle_question_request_by_vendors(e, pending_data.id, pending_data.question_product_id, 'verified')}></i></div>
@@ -1712,24 +1712,27 @@ class App extends Component {
 
                       <div className="mvx-search-and-multistatus-wrap mvx-row mvx-align-items-center mvx-justify-content-between mb-15">
 
-                        <div className='mvx-col-55'>
-                          <ul className='mvx-ul-auto mvx-row'>
-                            <li className='mvx-col-auto'>
+                        <div className='mvx-multistatus-sec'>
+                          <ul className='mvx-multistatus-ul mvx-row'>
+                            <li className='mvx-multistatus-item'>
                               <div className="mvx-multistatus-check-all" onClick={(e) => this.handle_post_retrive_status(e, 'all', 'announcement')}>All ({this.state.display_all_announcement.length})</div>
                             </li>
-                            <li class="mvx-col-auto mvx-divider"></li>
-                            <li className='mvx-col-auto'>
+                            <li class="mvx-multistatus-item mvx-divider"></li>
+                            <li className='mvx-multistatus-item'>
                               <div className="mvx-multistatus-check-approve" onClick={(e) => this.handle_post_retrive_status(e, 'publish', 'announcement')}>| Published ({this.state.display_published_announcement.length})</div>
                             </li>
-                            <li class="mvx-col-auto mvx-divider"></li>
-                            <li className='mvx-col-auto'>
+                            <li class="mvx-multistatus-item mvx-divider"></li>
+                            <li className='mvx-multistatus-item'>
                               <div className="mvx-multistatus-check-pending status-active" onClick={(e) => this.handle_post_retrive_status(e, 'pending', 'announcement')}>| Pending ({this.state.display_pending_announcement.length})</div>
                             </li>
                           </ul>
                         </div>
 
-                        <div className='mvx-col-auto'>
-                          <div className='mvx-search-holder'><input type="text" placeholder="Search Announcement" onChange={(e) => this.handle_post_bulk_status(e, 'announcement')} /></div>
+                        <div className='mvx-searchbar-sec'>
+                          <div className='mvx-header-search-section'>
+                              <label><i className='mvx-font icon-search'></i></label>
+                              <input type="text" placeholder="Search Announcement" onChange={(e) => this.handle_post_bulk_status(e, 'announcement')} />
+                          </div>
                         </div>
 
 
@@ -1737,12 +1740,12 @@ class App extends Component {
 
                       </div>
 
-                      <div className='mvx-wrap-bulk-all-date mb-25'>
-                        <div className="mvx-wrap-bulk-all-date mvx-row mvx-row-sm-8">
-                          <div className='mvx-col-auto'>
+                      <div className='mvx-wrap-bulk-all-date-sec'>
+                        <div className="mvx-wrap-bulk-all-date">
+                          <div className='mvx-bulk-action-sec'>
                             <Select placeholder="Bulk actions" options={appLocalizer.post_bulk_status} isClearable={true} className="mvx-module-section-list-data" onChange={(e) => this.handle_work_board_chenage(e, 'announcement')} />
                           </div>
-                          <div className='mvx-col-auto'>
+                          <div className='mvx-all-dates-sec'>
                             <Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_work_board_chenage} />
                           </div>
                         </div>
@@ -1817,35 +1820,36 @@ class App extends Component {
                       <div>
                         <div className="mvx-search-and-multistatus-wrap mvx-row mvx-align-items-center mvx-justify-content-between mb-15">
 
-                          <div className='mvx-col-55'>
-                            <ul className='mvx-ul-auto mvx-row'>
-                              <li className='mvx-col-auto'>
-                                <div className="mvx-multistatus-check-all" onClick={(e) => this.handle_post_retrive_status(e, 'all', 'knowladgebase')}>All ({this.state.display_all_knowladgebase.length})</div>
+                          <div className='mvx-multistatus-sec'>
+                            <ul className='mvx-multistatus-ul mvx-row'>
+                              <li className='mvx-multistatus-item'>
+                                <div className="mvx-multistatus-check-all" onClick={(e) => this.handle_post_retrive_status(e, 'all', 'knowladgebase')}>All({this.state.display_all_knowladgebase.length})</div>
                               </li>
-                              <li class="mvx-col-auto mvx-divider"></li>
-                              <li class="mvx-col-auto">
-                                <div className="mvx-multistatus-check-approve" onClick={(e) => this.handle_post_retrive_status(e, 'publish', 'knowladgebase')}>| Published ({this.state.display_publish_knowladgebase.length})</div>
+                              <li class="mvx-multistatus-item mvx-divider"></li>
+                              <li class="mvx-multistatus-item">
+                                <div className="mvx-multistatus-check-approve" onClick={(e) => this.handle_post_retrive_status(e, 'publish', 'knowladgebase')}>Published({this.state.display_publish_knowladgebase.length})</div>
                               </li>
-                              <li class="mvx-col-auto mvx-divider"></li>
-                              <li class="mvx-col-auto">
-                                <div className="mvx-multistatus-check-pending status-active" onClick={(e) => this.handle_post_retrive_status(e, 'pending', 'knowladgebase')}>| Pending ({this.state.display_pending_knowladgebase.length})</div>
+                              <li class="mvx-multistatus-item mvx-divider"></li>
+                              <li class="mvx-multistatus-item">
+                                <div className="mvx-multistatus-check-pending status-active" onClick={(e) => this.handle_post_retrive_status(e, 'pending', 'knowladgebase')}>Pending ({this.state.display_pending_knowladgebase.length})</div>
                               </li>
                             </ul>
                           </div>
 
-                          <div className='mvx-col-auto'>
-                            <div className='mvx-search-holder'>
+                          <div className='mvx-searchbar-sec'>
+                          <div className='mvx-header-search-section'>
+                              <label><i className='mvx-font icon-search'></i></label>
                               <input type="text" placeholder="Search Knowledgebase" onChange={(e) => this.handle_post_bulk_status(e, 'knowladgebase')} />
                             </div>
                           </div>
                         </div>
 
-                        <div className='mvx-wrap-bulk-all-date mb-25'>
-                          <div className="mvx-wrap-bulk-action mvx-row mvx-row-sm-8">
-                            <div className='mvx-col-auto'>
+                        <div className='mvx-wrap-bulk-all-date-sec'>
+                          <div className="mvx-wrap-bulk-all-date">
+                            <div className='mvx-bulk-action-sec'>
                               <Select placeholder="Bulk actions" options={appLocalizer.post_bulk_status} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_post_bulk_status} />
                             </div>
-                            <div className='mvx-col-auto'>
+                            <div className='mvx-all-dates-sec'>
                               <Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_work_board_chenage} />
                             </div>
                           </div>
@@ -1876,11 +1880,12 @@ class App extends Component {
                   <div className="mvx-module-grid">
                     <div className="mvx-search-and-multistatus-wrap mvx-row mvx-align-items-center mvx-justify-content-between mb-15">
 
-                      <div className="mvx-col-55">
-                        <ul>
-                          <li className='mvx-col-auto'>
+                      <div className="mvx-multistatus-sec">
+                        <ul className='mvx-multistatus-ul'>
+                          <li className='mvx-multistatus-item'>
                             <div class="mvx-multistatus-check-all">All ({this.state.list_of_store_review.length})</div>
                           </li>
+                          <li clasName='mvx-multistatus-item mvx-divider'></li>
                         </ul>
                         {/* <div className="mvx-multistatus-check-all">All ({this.state.list_of_store_review.length})</div> */}
                         {/*<div className="mvx-multistatus-check-approve" onClick={this.handle_post_retrive_status}>| Approve (10)</div>
@@ -1888,8 +1893,9 @@ class App extends Component {
                       </div>
 
 
-                      <div className="mvx-col-auto">
-                        <div className='mvx-search-holder'>
+                      <div className="mvx-searchbar-sec">
+                        <div className='mvx-header-search-section'>
+                          <label><i className='mvx-font icon-search'></i></label>
                           <input type="text" placeholder="Search Review" name="search" onChange={(e) => this.handle_search_vendor_review(e)} />
                         </div>
 
@@ -1897,9 +1903,9 @@ class App extends Component {
                     </div>
 
 
-                    <div className="mvx-wrap-bulk-all-date mb-25">
-                      <div className="mvx-wrap-bulk-action mvx-row mvx-row-sm-8">
-                        <div className='mvx-col-auto'>
+                    <div className="mvx-wrap-bulk-all-date-sec">
+                      <div className="mvx-wrap-bulk-all-date">
+                        <div className='mvx-bulk-action-sec'>
                           <Select placeholder="Bulk actions" options={appLocalizer.store_review_bulk} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_review_bulk_status} />
                         </div>
                       </div>
@@ -1961,22 +1967,23 @@ class App extends Component {
 
                       <div className="mvx-module-grid">
 
-                        <div class="mvx-row mvx-align-items-center mvx-justify-content-between mb-15">
-                          <div class="mvx-col-55">
-                            <ul class="mvx-ul-auto mvx-row">
-                              <li class="mvx-col-auto">
+                        <div class="mvx-search-and-multistatus-wrap">
+                          <div class="mvx-multistatus-sec">
+                            <ul class="mvx-multistatus-ul">
+                              <li class="mvx-multistatus-item">
                                 <div class="mvx-multistatus-check-all">All ({this.state.list_of_publish_question.length})</div>
                               </li>
 
-                              <li class="mvx-col-auto mvx-divider"></li>
-                              <li class="mvx-col-auto">
+                              <li class="mvx-multistatus-item mvx-divider"></li>
+                              <li class="mvx-multistatus-item">
                                 <div class="mvx-multistatus-check-pending status-active">Pending ({this.state.list_of_pending_question.length})</div>
                               </li>
 
                             </ul>
                           </div>
-                          <div class="mvx-col-auto">
-                            <div class="mvx-search-holder">
+                          <div class="mvx-searchbar-sec">
+                            <div className='mvx-header-search-section'>
+                              <label><i className='mvx-font icon-search'></i></label>
                               <input type="text" placeholder="Search Question" name="search" onChange={(e) => this.handle_question_search(e)} />
                             </div>
                           </div>
@@ -1989,7 +1996,6 @@ class App extends Component {
                           <div className="mvx-wrap-bulk-action">
                             <Select placeholder="Bulk actions" options={appLocalizer.post_bulk_status} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_post_bulk_status} />
                           </div>
-
                           <div className="mvx-wrap-date-action">
                             <Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_work_board_chenage} />
                           </div>
