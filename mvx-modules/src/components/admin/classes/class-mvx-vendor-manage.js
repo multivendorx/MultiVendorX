@@ -942,7 +942,7 @@ class App extends React.Component {
     return (
         appLocalizer.mvx_all_backend_tab_list["marketplace-vendors"].map(
           (data, index) => (
-            <div>
+            <div className="mvx-marketplace-vendors-container">
               {data.modulename == name.get("name") ? (
                 name.get("name") == "vendor-followers" ? (
                   <DataTable
