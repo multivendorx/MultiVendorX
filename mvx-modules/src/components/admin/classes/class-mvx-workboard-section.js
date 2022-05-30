@@ -1752,15 +1752,15 @@ class App extends Component {
                         <div className='mvx-multistatus-sec'>
                           <ul className='mvx-multistatus-ul mvx-row'>
                             <li className='mvx-multistatus-item'>
-                              <div className="mvx-multistatus-check-all" onClick={(e) => this.handle_post_retrive_status(e, 'all', 'announcement')}>All ({this.state.display_all_announcement.length})</div>
+                              <div className="mvx-multistatus-check-all" onClick={(e) => this.handle_post_retrive_status(e, 'all', 'announcement')}>All({this.state.display_all_announcement.length})</div>
                             </li>
                             <li class="mvx-multistatus-item mvx-divider"></li>
                             <li className='mvx-multistatus-item'>
-                              <div className="mvx-multistatus-check-approve" onClick={(e) => this.handle_post_retrive_status(e, 'publish', 'announcement')}>| Published ({this.state.display_published_announcement.length})</div>
+                              <div className="mvx-multistatus-check-approve" onClick={(e) => this.handle_post_retrive_status(e, 'publish', 'announcement')}>Published ({this.state.display_published_announcement.length})</div>
                             </li>
                             <li class="mvx-multistatus-item mvx-divider"></li>
                             <li className='mvx-multistatus-item'>
-                              <div className="mvx-multistatus-check-pending status-active" onClick={(e) => this.handle_post_retrive_status(e, 'pending', 'announcement')}>| Pending ({this.state.display_pending_announcement.length})</div>
+                              <div className="mvx-multistatus-check-pending status-active" onClick={(e) => this.handle_post_retrive_status(e, 'pending', 'announcement')}>Pending ({this.state.display_pending_announcement.length})</div>
                             </li>
                           </ul>
                         </div>
