@@ -648,13 +648,7 @@ class App extends Component {
                                       .item_thunbail,
                                 }}
                               ></p>
-                            </td>
-                          ) : (
-                            ""
-                          )}
-
-                          {this.state.commission_details.line_items ? (
-                            <td>
+                              <div className='mvx-customer-details'>
                               <div
                                 dangerouslySetInnerHTML={{
                                   __html:
@@ -731,6 +725,90 @@ class App extends Component {
                                   ""
                                 )}
                               </div>
+                              </div>
+                            </td>
+                          ) : (
+                            ""
+                          )}
+
+                          {this.state.commission_details.line_items ? (
+                            <td>
+                              {/* <div
+                                dangerouslySetInnerHTML={{
+                                  __html:
+                                    this.state.commission_details.line_items
+                                      .product_link_display,
+                                }}
+                              ></div>
+                              <div
+                                dangerouslySetInnerHTML={{
+                                  __html:
+                                    this.state.commission_details.line_items
+                                      .product_sku,
+                                }}
+                              ></div>
+                              <div
+                                dangerouslySetInnerHTML={{
+                                  __html: this.state.commission_details
+                                    .line_items.check_variation_id
+                                    ? this.state.commission_details.line_items
+                                        .variation_id_text
+                                    : "",
+                                }}
+                              ></div>
+
+                              {this.state.commission_details.line_items
+                                .check_variation_id ? (
+                                <div
+                                  dangerouslySetInnerHTML={{
+                                    __html:
+                                      this.state.commission_details.line_items
+                                        .get_variation_post_type ===
+                                      "product_variation"
+                                        ? this.state.commission_details
+                                            .line_items.item_variation_display
+                                        : this.state.commission_details
+                                            .line_items.no_longer_exist,
+                                  }}
+                                ></div>
+                              ) : (
+                                ""
+                              )}
+
+                              <div
+                                dangerouslySetInnerHTML={{
+                                  __html:
+                                    this.state.commission_details.line_items
+                                      .close_div,
+                                }}
+                              ></div>
+
+                              <div className="view">
+                                {this.state.commission_details.line_items
+                                  .meta_format_data ? (
+                                  <table
+                                    cellspacing="0"
+                                    className="display_meta"
+                                  >
+                                    {this.state.commission_details.line_items.meta_data.map(
+                                      (data, index) => (
+                                        <tr>
+                                          <th>{data.display_key}:</th>
+                                          <td>
+                                            <div
+                                              dangerouslySetInnerHTML={{
+                                                __html: data.display_value,
+                                              }}
+                                            ></div>
+                                          </td>
+                                        </tr>
+                                      )
+                                    )}
+                                  </table>
+                                ) : (
+                                  ""
+                                )}
+                              </div> */}
                             </td>
                           ) : (
                             ""
