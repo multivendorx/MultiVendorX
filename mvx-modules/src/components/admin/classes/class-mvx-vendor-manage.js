@@ -120,6 +120,7 @@ class App extends React.Component {
       datafollowers: [],
 
       data_zone_in_shipping: [],
+      list_vendor_roles_data: []
     };
 
     this.ddddffffff = 'fffffffffffff';
@@ -180,13 +181,13 @@ class App extends React.Component {
   }
 
 
-  handle_rejected_vendor_description(e, vendorid) {
+  handle_rejected_vendor_description(e, vendorid, reload = '') {
     this.setState({
       handle_rejected_vendor_description: e.target.value
     });
   }
 
-  handle_Vendor_Approve(e) {
+  handle_Vendor_Approve(e, reload = '') {
     axios({
       method: 'post',
       url: `${appLocalizer.apiUrl}/mvx_module/v1/approve_vendor`,
@@ -203,7 +204,7 @@ class App extends React.Component {
       });
   }
 
-  handle_Vendor_Reject(e) {
+  handle_Vendor_Reject(e, reload = '') {
     axios({
       method: 'post',
       url: `${appLocalizer.apiUrl}/mvx_module/v1/reject_vendor`,
@@ -902,6 +903,37 @@ class App extends React.Component {
           }
 
         })
+
+        if (name.get("name") == "vendor-application") {
+          
+          axios.get(
+          `${appLocalizer.apiUrl}/mvx_module/v1/list_vendor_application_data`, {
+            params: { vendor_id: new URLSearchParams(window.location.hash).get("ID") }
+          })
+          .then(response => {
+            this.setState({
+              list_vendor_application_data: response.data,
+              set_tab_name: name.get("name")
+            });
+          })
+
+
+
+          axios.get(
+          `${appLocalizer.apiUrl}/mvx_module/v1/list_vendor_roles_data`, {
+            params: { vendor_id: new URLSearchParams(window.location.hash).get("ID") }
+          })
+          .then(response => {
+            this.setState({
+              list_vendor_roles_data: response.data,
+              set_tab_name: name.get("name")
+            });
+          })
+
+
+
+        }
+
     }
 
 
@@ -960,24 +992,24 @@ class App extends React.Component {
                   /> 
                   }
 
-                  {
+                  { this.state.list_vendor_roles_data && this.state.list_vendor_roles_data == 'pending_vendor' ?
                   <div className="mvx-vendor-modal-main">
                     <textarea
                       className="pending-vendor-note form-control"
                       placeholder="Optional note for acceptance / rejection"
-                      onChange={(e) => this.handle_rejected_vendor_description(e, name.get("ID"))}
+                      onChange={(e) => this.handle_rejected_vendor_description(e, name.get("ID"), 'reload')}
                     />
                     <div id="wc-backbone-modal-dialog">
                       
                       <Button
-                        onClick={() => this.handle_Vendor_Approve(name.get("ID"))}
+                        onClick={() => this.handle_Vendor_Approve(name.get("ID") , 'reload')}
                         className="button button-primary mvx-action-button vendor-approve-btn mvx-primary-btn"
                       >
                       Approve
                       </Button>
 
                       <Button
-                        onClick={() => this.handle_Vendor_Reject(name.get("ID"))}
+                        onClick={() => this.handle_Vendor_Reject(name.get("ID"), 'reload')}
                         className="button button-primary mvx-action-button vendor-reject-btn pull-right"
                       >
                       Reject
@@ -985,7 +1017,7 @@ class App extends React.Component {
 
                     </div>
                   </div>
-                  }
+                  : ''}
                 </div>
 
                 )

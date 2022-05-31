@@ -719,6 +719,24 @@ class MVX_REST_API {
             'callback' => array( $this, 'mvx_list_vendor_application_data' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
+
+        register_rest_route( 'mvx_module/v1', '/list_vendor_roles_data', [
+            'methods' => WP_REST_Server::READABLE,
+            'callback' => array( $this, 'mvx_list_vendor_roles_data' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+    }
+
+    public function mvx_list_vendor_roles_data($request) {
+        $vendor_id = $request && $request->get_param('vendor_id') ? absint($request->get_param('vendor_id')) : 0;
+        $user = get_user_by("ID", $vendor_id);
+        $set_user_role = '';
+        if (in_array('dc_rejected_vendor', $user->roles)) {
+            $set_user_role = 'reject_vendor';
+        } else if (in_array('dc_pending_vendor', $user->roles)) {
+            $set_user_role = 'pending_vendor';
+        }
+        return $set_user_role;
     }
 
     public function mvx_list_vendor_application_data($request) {
@@ -782,7 +800,6 @@ class MVX_REST_API {
                 $applcation_data_display .= '<div class="note-clm"><p class="note-description">' . $notes['note'] . '</p><p class="note_time note-meta">On ' . date( "Y-m-d", $time ) . '</p><p class="note_owner note-meta">By ' . $author_info->display_name . '</p></div>';
             }
             $applcation_data_display .= '</div>';
-            //return $rejection_data_display
         }
 
         return $applcation_data_display;
