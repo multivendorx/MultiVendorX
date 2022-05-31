@@ -713,6 +713,96 @@ class MVX_REST_API {
             'callback' => array( $this, 'mvx_active_suspend_vendor' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
+
+        register_rest_route( 'mvx_module/v1', '/list_vendor_application_data', [
+            'methods' => WP_REST_Server::READABLE,
+            'callback' => array( $this, 'mvx_list_vendor_application_data' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
+        register_rest_route( 'mvx_module/v1', '/list_vendor_roles_data', [
+            'methods' => WP_REST_Server::READABLE,
+            'callback' => array( $this, 'mvx_list_vendor_roles_data' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+    }
+
+    public function mvx_list_vendor_roles_data($request) {
+        $vendor_id = $request && $request->get_param('vendor_id') ? absint($request->get_param('vendor_id')) : 0;
+        $user = get_user_by("ID", $vendor_id);
+        $set_user_role = '';
+        if (in_array('dc_rejected_vendor', $user->roles)) {
+            $set_user_role = 'reject_vendor';
+        } else if (in_array('dc_pending_vendor', $user->roles)) {
+            $set_user_role = 'pending_vendor';
+        }
+        return $set_user_role;
+    }
+
+    public function mvx_list_vendor_application_data($request) {
+        global $MVX;
+        $vendor_id = $request && $request->get_param('vendor_id') ? absint($request->get_param('vendor_id')) : 0;
+        $applcation_data_display = $rejection_data_display = '';
+
+        $vendor_application_data = get_user_meta(absint($vendor_id), 'mvx_vendor_fields', true);
+        
+        $applcation_data_display .= '<h2>' . __('Vendor Application Data', 'dc-woocommerce-multi-vendor') . '</h2>';
+
+        if (!empty($vendor_application_data) && is_array($vendor_application_data)) {
+            foreach ($vendor_application_data as $key => $value) {
+                if ($value['type'] == 'recaptcha') continue;
+                $applcation_data_display .= '<div class="mvx-form-field">';
+                $applcation_data_display .= '<label>' . html_entity_decode($value['label']) . ':</label>';
+                if ($value['type'] == 'file') {
+                    if (!empty($value['value']) && is_array($value['value'])) {
+                        foreach ($value['value'] as $attacment_id) {
+                            $applcation_data_display .= '<span> <a href="' . wp_get_attachment_url($attacment_id) . '" download>' . get_the_title($attacment_id) . '</a> </span>';
+                        }
+                    }
+                } else if ($value['type'] == 'checkbox') {
+                    if (!empty($value['value']) && $value['value'] == 'on') {
+                            $applcation_data_display .= '<span> <input type="checkbox" name="" checked disabled /></span>';
+                    } else {
+                        $applcation_data_display .= '<span> <input type="checkbox" name="" disabled /></span>';
+                    }
+                } else if ($value['type'] == 'vendor_country') {
+                                                            $country_code = $value['value'];
+                                                            $country_data = WC()->countries->get_countries();
+                                                            $country_name = ( isset( $country_data[ $country_code ] ) ) ? $country_data[ $country_code ] : $country_code; //To get country name by code
+                    $applcation_data_display .= '<span> ' . $country_name . '</span>';
+                } else if ($value['type'] == 'vendor_state') {
+                                                            $country_field_key = array_search('vendor_country', array_column($vendor_application_data, 'type'));
+                                                            $country_field = $vendor_application_data[$country_field_key];
+                                                            $country_code = $country_field['value'];
+                                                            $state_code = $value['value'];
+                                                            $state_data = WC()->countries->get_states($country_code);
+                                                            $state_name = ( isset( $state_data[$state_code] ) ) ? $state_data[$state_code] : $state_code; //to get State name by state code
+                    $applcation_data_display .= '<span> ' . $state_name . '</span>';
+                } else {
+                    if (is_array($value['value'])) {
+                        $applcation_data_display .= '<span> ' . implode(', ', $value['value']) . '</span>';
+                    } else {
+                        $applcation_data_display .= '<span> ' . $value['value'] . '</span>';
+                    }
+                }
+                $applcation_data_display .= '</div>';
+            }
+        } else {
+            $applcation_data_display .= '<div class="mvx-no-form-data">' . __('No Vendor Application archive data!!', 'dc-woocommerce-multi-vendor') . '</div>';
+        }
+
+        $mvx_vendor_rejection_notes = unserialize( get_user_meta( absint($vendor_id), 'mvx_vendor_rejection_notes', true ) );
+        if(is_array($mvx_vendor_rejection_notes) && count($mvx_vendor_rejection_notes) > 0) {
+            $applcation_data_display .= '<h2>' . __('Notes', 'dc-woocommerce-multi-vendor') . '</h2>';
+            $applcation_data_display .= '<div class="note-clm-wrap">';
+            foreach($mvx_vendor_rejection_notes as $time => $notes) {
+                $author_info = get_userdata($notes['note_by']);
+                $applcation_data_display .= '<div class="note-clm"><p class="note-description">' . $notes['note'] . '</p><p class="note_time note-meta">On ' . date( "Y-m-d", $time ) . '</p><p class="note_owner note-meta">By ' . $author_info->display_name . '</p></div>';
+            }
+            $applcation_data_display .= '</div>';
+        }
+
+        return $applcation_data_display;
     }
 
     public function mvx_active_suspend_vendor($request) {
@@ -942,6 +1032,7 @@ class MVX_REST_API {
                     'wp-parent-theme',
                     'wp-mu-plugins',
                     'wp-plugins-active',
+                    'wp-plugins-inactive',
                     'wp-server',
                     'wp-database',
                     'wp-constants',
@@ -4607,7 +4698,7 @@ class MVX_REST_API {
             if (isset($vendor_profile_image)) $image_info = wp_get_attachment_image_src( $vendor_profile_image , array(32, 32) );
             $final_image = isset($image_info[0]) ? $image_info[0] : get_avatar_url($user->data->ID, array('size' => 32));
             
-            $name_display = "<div class='mvx-vendor-icon-name'><img src='". $final_image ."' width='20' height='20' ></img><a href='". sprintf('?page=%s&ID=%s&name=vendor-personal', 'mvx#&submenu=vendor', $user->data->ID) ."'>" . $user->data->display_name . "</a><a class='mvx-hover-btn' href='".$vendor->permalink."'>Shop</a></div>";
+            $name_display = "<div class='mvx-vendor-icon-name'><img src='". $final_image ."' width='20' height='20' ></img><a href='". sprintf('?page=%s&ID=%s&name=vendor-personal', 'mvx#&submenu=vendor', $user->data->ID) ."'>" . $user->data->display_name . "</a><a class='mvx-hover-btn' href='".$vendor->permalink."' target='_blank'>Shop</a></div>";
 
             $action_display = "
             <div class='mvx-vendor-action-icon'>
