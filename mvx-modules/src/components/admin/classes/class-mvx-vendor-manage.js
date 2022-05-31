@@ -77,6 +77,7 @@ class App extends React.Component {
       set_tab_name_id: '',
       columns_vendor_list: [],
       vendor_loading: false,
+      list_vendor_application_data: '',
 
       columns_followers: [
         {
@@ -944,6 +945,51 @@ class App extends React.Component {
           (data, index) => (
             <div className="mvx-marketplace-vendors-container">
               {data.modulename == name.get("name") ? (
+                
+                name.get("name") == "vendor-application" ? (
+                  
+                <div className="mvx-vendor-application-content">
+                  {
+                  this.state.list_vendor_application_data ? <div dangerouslySetInnerHTML={{ __html: this.state.list_vendor_application_data }}></div> 
+                  :
+                  <PuffLoader
+                    css={override}
+                    color={"#cd0000"}
+                    size={100}
+                    loading={true}
+                  /> 
+                  }
+
+                  {
+                  <div className="mvx-vendor-modal-main">
+                    <textarea
+                      className="pending-vendor-note form-control"
+                      placeholder="Optional note for acceptance / rejection"
+                      onChange={(e) => this.handle_rejected_vendor_description(e, name.get("ID"))}
+                    />
+                    <div id="wc-backbone-modal-dialog">
+                      
+                      <Button
+                        onClick={() => this.handle_Vendor_Approve(name.get("ID"))}
+                        className="button button-primary mvx-action-button vendor-approve-btn mvx-primary-btn"
+                      >
+                      Approve
+                      </Button>
+
+                      <Button
+                        onClick={() => this.handle_Vendor_Reject(name.get("ID"))}
+                        className="button button-primary mvx-action-button vendor-reject-btn pull-right"
+                      >
+                      Reject
+                      </Button>
+
+                    </div>
+                  </div>
+                  }
+                </div>
+
+                )
+                :
                 name.get("name") == "vendor-followers" ? (
                   <DataTable
                     columns={this.state.columns_followers}
@@ -954,7 +1000,7 @@ class App extends React.Component {
                 ) : name.get("name") == "vendor-shipping" ? (
                   name.get("zone_id") ? (
                     <div>
-                      <table className="form-table wcmp-shipping-zone-settings wc-shipping-zone-settings">
+                      <table className="form-table mvx-shipping-zone-settings wc-shipping-zone-settings">
                         <tbody>
                           <tr>
                             <th scope="row" className="titledesc">
@@ -1041,19 +1087,19 @@ class App extends React.Component {
                               <label>Shipping methods</label>
                             </th>
                             <td className>
-                              <table className="wcmp-shipping-zone-methods wc-shipping-zone-methods widefat">
+                              <table className="mvx-shipping-zone-methods wc-shipping-zone-methods widefat">
                                 <thead>
                                   <tr>
-                                    <th className="wcmp-title wc-shipping-zone-method-title">
+                                    <th className="mvx-title wc-shipping-zone-method-title">
                                       Title
                                     </th>
-                                    <th className="wcmp-enabled wc-shipping-zone-method-enabled">
+                                    <th className="mvx-enabled wc-shipping-zone-method-enabled">
                                       Enabled
                                     </th>
-                                    <th className="wcmp-description wc-shipping-zone-method-description">
+                                    <th className="mvx-description wc-shipping-zone-method-description">
                                       Description
                                     </th>
-                                    <th className="wcmp-action">Action</th>
+                                    <th className="mvx-action">Action</th>
                                   </tr>
                                 </thead>
 
@@ -1064,7 +1110,7 @@ class App extends React.Component {
                                         onClick={(e) =>
                                           this.handleaddshipping_method(e)
                                         }
-                                        className="button wcmp-shipping-zone-show-method wc-shipping-zone-add-method"
+                                        className="button mvx-shipping-zone-show-method wc-shipping-zone-add-method"
                                       >
                                         Add shipping method
                                       </Button>
@@ -1079,9 +1125,9 @@ class App extends React.Component {
                                       this.state.data_zone_in_shipping
                                         .vendor_shipping_methods
                                     ).map((data, index) => (
-                                      <tr className="wcmp-shipping-zone-method">
+                                      <tr className="mvx-shipping-zone-method">
                                         <td>{data[1].title}</td>
-                                        <td className="wcmp-shipping-zone-method-enabled wc-shipping-zone-method-enabled">
+                                        <td className="mvx-shipping-zone-method-enabled wc-shipping-zone-method-enabled">
                                           <span>
                                             <input
                                               className="inputcheckbox"
@@ -1118,7 +1164,7 @@ class App extends React.Component {
                                                     index
                                                   )
                                                 }
-                                                className="button wcmp-shipping-zone-show-method wc-shipping-zone-add-method"
+                                                className="button mvx-shipping-zone-show-method wc-shipping-zone-add-method"
                                               >
                                                 EDIT
                                               </Button>
@@ -1133,7 +1179,7 @@ class App extends React.Component {
                                                     name.get("ID")
                                                   )
                                                 }
-                                                className="button wcmp-shipping-zone-show-method wc-shipping-zone-add-method"
+                                                className="button mvx-shipping-zone-show-method wc-shipping-zone-add-method"
                                               >
                                                 DELETE
                                               </Button>
@@ -1147,7 +1193,7 @@ class App extends React.Component {
                                           aria-labelledby="form-dialog-title"
                                         >
                                           <DialogTitle id="form-dialog-title">
-                                            <div className="wcmp-module-dialog-title">
+                                            <div className="mvx-module-dialog-title">
                                               Differnet method
                                             </div>
                                           </DialogTitle>
@@ -1355,7 +1401,7 @@ class App extends React.Component {
                         aria-labelledby="form-dialog-title"
                       >
                         <DialogTitle id="form-dialog-title">
-                          <div className="wcmp-module-dialog-title">
+                          <div className="mvx-module-dialog-title">
                             Add shipping method
                           </div>
                         </DialogTitle>
@@ -1578,6 +1624,17 @@ class App extends React.Component {
           vendor_shipping_option_choice: response.data.vendor_default_shipping_options.value,
         });
       }
+    })
+
+    // fetch vendor application datavendor
+    axios.get(
+    `${appLocalizer.apiUrl}/mvx_module/v1/list_vendor_application_data`, {
+      params: { vendor_id: new URLSearchParams(window.location.hash).get("ID") }
+    })
+    .then(response => {
+      this.setState({
+        list_vendor_application_data: response.data,
+      });
     })
 
   }
