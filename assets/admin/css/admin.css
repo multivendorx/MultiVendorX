@@ -3262,11 +3262,16 @@ body {
 }
 
 .mvx-dashboard .mvx-dashboard-slider-wrapper .mvx-slider-content-main-wrapper .mvx-slider-left-sec .pro-txt p {
-  margin: 24px 0;
+  margin: 8px 0 24px 0;
 }
 
 .mvx-dashboard .mvx-dashboard-slider-wrapper .mvx-slider-content-main-wrapper .mvx-slider-right-sec {
   margin-left: auto;
+}
+
+.mvx-dashboard .mvx-dashboard-slider-wrapper .mvx-slider-content-main-wrapper .mvx-slider-right-sec .border-block {
+  border: 1px solid #d4d1d9;
+  border-radius: 4px;
 }
 
 .mvx-dashboard .mvx-dashboard-slider-wrapper .mvx-slider-content-main-wrapper .mvx-dashboard-slider {

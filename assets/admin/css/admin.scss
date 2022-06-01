@@ -3043,12 +3043,16 @@ body {
                     text-align: left;
                     margin: 0 0 0 24px;
                     & p {
-                        margin: 24px 0;
+                        margin: 8px 0 24px 0;
                     }
                 }
             }
             & .mvx-slider-right-sec {
                 margin-left: auto;
+                & .border-block {
+                    border: $border;
+                    border-radius: $border-radius;
+                }
             }
             & .mvx-dashboard-slider {
                 display: none;
