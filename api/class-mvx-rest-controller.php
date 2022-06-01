@@ -4562,13 +4562,12 @@ class MVX_REST_API {
                     if (isset($model['user_email']) && !empty($model['user_email'])) {
                         $userdata['user_email'] = isset( $model['user_email'] ) ? sanitize_email( $model['user_email'] ) : '';
                     }
-                    if (isset($model['user_pass']) && !empty($model['user_pass'])) {
+                    if (isset($model['password']) && !empty($model['password'])) {
                         $userdata['user_pass'] = isset( $model['password'] ) ? sanitize_text_field( wp_unslash( $model['password'] ) ) : '';
                     }
                     if (isset($model['display_name']['value']) && !empty($model['display_name']['value'])) {
                         $userdata['display_name'] = isset( $model['display_name'] ) && isset($model['display_name']['value']) ? $model['display_name']['value'] : '';
                     }
-
                     $user_id = wp_update_user( $userdata ) ;
                 }
 

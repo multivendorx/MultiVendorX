@@ -583,7 +583,7 @@ class App extends React.Component {
 
 
         data_ann.last_action == 'last_action_trigger' ? data_ann.cell = (row) => <div className="mvx-vendor-action-icon">
-
+          <a href={row.link}><i className="mvx-font icon-edit"></i></a>
           <a href={row.link}><i className="mvx-font icon-edit"></i></a>
           <div onClick={() => this.handleVendorDismiss(row.ID)} id={row.ID}><i className="mvx-font icon-no"></i></div>
 
