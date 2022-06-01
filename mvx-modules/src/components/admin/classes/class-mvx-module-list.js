@@ -274,8 +274,8 @@ class App extends Component {
 
               <div className='mvx-dash-section'>
                 <div className='mvx-container'>
-                  <div className='mvx-row'>
-                    <div className='mvx-col-100'>
+                  <div className='mvx-title-wrapper'>
+                    <div className='mvx-dashboard-title'>
                       <div className="mv-dashboard-top-heading">Welcome to MultiVendorX</div>
                     </div>
                   </div>
@@ -284,12 +284,12 @@ class App extends Component {
 
               <div className='mvx-dash-section mb-90'>
                 <div className='mvx-container'>
-                  <div className='mvx-row'>
-                    <div className='mvx-col-100'>
+                  <div className='mvx-dashboard-slider-wrapper'>
+                    <div className='mvx-dashboard-slider-content'>
                       <div className='mv-off-white-box pa-32 dashboard-top-bg'>
-                        <div className='mvx-row mvx-align-items-center mvx-justify-content-between'>
-                          <div className="mvx-col-70">
-                            <div className="mvx-dashboard-slider">
+                        <div className='mvx-slider-content-main-wrapper'>
+                          <div className="mvx-slider-left-sec">
+                            <div className="mvx-dashboard-slider mvx-flex-content">
                               <div className="mv-dashboard-top-icon mr-24">
                                 <span>Pro</span>
                               </div>
@@ -304,7 +304,7 @@ class App extends Component {
                                 </a>
                               </div>
                             </div>
-                            <div className="mvx-dashboard-slider">
+                            <div className="mvx-dashboard-slider mvx-flex-content">
                               <div className="mv-dashboard-top-icon mr-25">
                                 <span>Pro</span>
                               </div>
@@ -319,7 +319,7 @@ class App extends Component {
                                 </a>
                               </div>
                             </div>
-                            <div className="mvx-dashboard-slider">
+                            <div className="mvx-dashboard-slider mvx-flex-content">
                               <div className="mv-dashboard-top-icon mr-25">
                                 <span>Pro</span>
                               </div>
@@ -334,7 +334,7 @@ class App extends Component {
                                 </a>
                               </div>
                             </div>
-                            <div className="mvx-dashboard-slider">
+                            <div className="mvx-dashboard-slider mvx-flex-content">
                               <div className="mv-dashboard-top-icon mr-25">
                                 <span>Pro</span>
                               </div>
@@ -351,7 +351,7 @@ class App extends Component {
                             </div>
                           </div>
 
-                          <div className='mvx-col-auto'>
+                          <div className='mvx-slider-right-sec'>
                             <div className="border-block">
                               <a href="#" className="p-prev">
                                 <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAABSUlEQVRoge3VSUoDQRTG8ZT7JPRwAK/gsDKCi67qCIIXEEnyXhTidIWcwRlXegBv4bBSb2JA95q8lko32VXV5tnwftD7/9dUdTcaQgghhBBCeFDcAcHSDFZije/tbm+Zu8VbomGdnklicErPI3ePl7TbX6X4zyI+NvjRzPYT7iZnC/F0fFo5xtxNztJ8uFbFw1sd4yfz+PbOKOJuchblBxuJxi97YV/j7b0Wd5OzhXgNL/WKN9ihi/pt45+TXWhyNzmL9GCzjDf4VKv4Al3UOxs/pQt8yN3jbzxeomPzYI/PD/2wetxJ/v5G4H01AvrcSSEUvf1be5x+adCIOygEjYCbcoSBI+6gEIq+StfViOExd1AIGgFX8xE06IQ7KISiI3RZjsjglDsoBI3Ai3KEwTPuoBCKPq3ndR5QUKkebHFHCCGEEEKIf2IGz8t6OLWH744AAAAASUVORK5CYII=' />
@@ -372,12 +372,12 @@ class App extends Component {
 
               <div className='mvx-dash-section mb-90'>
                 <div className='mvx-container'>
-                  <div className='mvx-row'>
-                    <div className='mvx-col-45'>
+                  <div className='mvx-box-content mvx-documentation-quick-link-wrapper'>
+                    <div className='mvx-marketing-tools-sec'>
                       <div className="mv-off-white-box min-h-100 pa-32">
-                        <h3 className="block-title w-100">This is what you get</h3>
-                        <div className="responsive-table w-100">
-                          <ul className="table-ul">
+                        <h3 className="mvx-block-title w-100">This is what you get</h3>
+                        <div className="mvx-responsive-table w-100">
+                          <ul className="mvx-table-ul">
                             <li className="mv-align-items-center hover-border-box">
                               <div className="li-txt">
                                 <span>
@@ -460,9 +460,9 @@ class App extends Component {
                         </div>
                       </div>
                     </div>
-                    <div className='mvx-col-55'>
-                      <div className='mvx-row mvx-row-sm'>
-                        <div className='mvx-col-50'>
+                    <div className='mvx-documentation-quick-link'>
+                      <div className='mvx-box-content mvx-row-sm'>
+                        <div className='mvx-col-50 mvx-documentation-forum'>
                           <div className="mv-off-white-box doc_forum_bg pa-32">
                             <div className="call-block text-center">
                               <figure>
@@ -482,7 +482,7 @@ class App extends Component {
                             </div>
                           </div>
                         </div>
-                        <div className='mvx-col-50'>
+                        <div className='mvx-col-50 mvx-support-forum'>
                           <div className="mv-off-white-box sup_forum_bg pa-32">
                             <div className="call-block text-center">
                               <figure>
@@ -502,7 +502,7 @@ class App extends Component {
                             </div>
                           </div>
                         </div>
-                        <div className='mvx-col-100 mt-10'>
+                        <div className='mvx-quick-link-sec mt-10'>
                           <div className="mv-off-white-box pa-32">
                             <h3 className="block-title w-100 mb-15">Quick Link</h3>
                             <div className="w-100 minh-112">
@@ -560,9 +560,9 @@ class App extends Component {
 
               <div className='mvx-dash-section switch-section  mb-90'>
                 <div className='mvx-container'>
-                  <div className='mvx-row'>
-                    <div className='mvx-col-100 text-center'>
-                      <div className="w-100 mb-45"><div className="mv-dashboard-top-icon float-none gra-por wh-96 box-shadow"><span>Pro</span></div></div>
+                  <div className='mvx-upgrade-to-pro-wrapper'>
+                    <div className='mvx-upgra-pro-sec text-center'>
+                      <div className="mvx-pro-title w-100 mb-45"><div className="mv-dashboard-top-icon float-none gra-por wh-96 box-shadow"><span>Pro</span></div></div>
                       <h2>Get more by Switching to Pro</h2>
                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
                       <a href="#" className="btn red-btn">Upgrade to Pro</a>
@@ -573,8 +573,8 @@ class App extends Component {
 
               <div className='mvx-dash-section compare-section mb-90'>
                 <div className='mvx-container'>
-                  <div className='mvx-row'>
-                    <div className='mvx-col-100'>
+                  <div className='mvx-get-in-pro-wrapper'>
+                    <div className='mvx-get-in-pro-sec'>
                       <div className="w-100 text-center">
                         <h2>Here Is What You Get In Pro Compared to Free</h2>
                         <div className="compare-table-holder">
@@ -649,17 +649,17 @@ class App extends Component {
 
               <div className='mvx-dash-section mb-90 money-section'>
                 <div className='mvx-container'>
-                  <div className='mvx-row'>
-                    <div className='mvx-col-100'>
+                  <div className='mvx-get-in-pro-wrapper mvx-money-back-wrapper'>
+                    <div className='mvx-get-in-pro-sec'>
                       <div className="w-100 text-center">
                         <h2>
-                          <span className="gra-txt">30 Days</span> Money-Back Guarantee
+                          <span className="mvx-gra-txt">30 Days</span> Money-Back Guarantee
                         </h2>
                         <p>
                           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
                           eiusmod tempor incididunt.
                         </p>
-                        <div className="money-table-holder">
+                        <div className="money-table-holder compare-table-holder">
                           <ul>
                             <li>
                               <ul>
@@ -780,9 +780,9 @@ class App extends Component {
 
               <div className="mvx-dash-section switch-section white-bg mb-90">
                 <div className="mvx-container">
-                    <div className="mvx-row">
-                      <div className="mvx-col-100 text-center">
-                          <div className="w-100 mb-45">
+                    <div className="mvx-upgrade-to-pro-wrapper mvx-get-to-go-wrapper">
+                      <div className="mvx-upgra-pro-sec mvx-get-to-go-sec text-center">
+                          <div className="mvx-pro-title w-100 mb-45">
                             <div className="mv-dashboard-top-icon float-none gra-por wh-96 box-shadow"><span>Pro</span></div>
                           </div>
                           <h2>Get to Go?</h2>
