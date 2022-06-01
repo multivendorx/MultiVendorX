@@ -1683,11 +1683,7 @@ class App extends Component {
 
                 {get_current_name && get_current_name.get("create") == 'announcement' ?
                 <div className="mvx-table-text-and-add-wrap mvx-addbtn">
-<<<<<<< HEAD
                   <Link className="btn" to={`?page=mvx#&submenu=work-board&name=announcement&create=announcement`}><i className="mvx-font icon-add"></i>Add Announcement</Link>
-=======
-                  <Link className="btn" to={`?page=mvx#&submenu=work-board&name=announcement`}>Back</Link>
->>>>>>> upstream/main
                 </div>
                 :
                 <div className="mvx-table-text-and-add-wrap mvx-addbtn">
@@ -1790,14 +1786,11 @@ class App extends Component {
 
                 <div className="mvx-module-grid">
 
-<<<<<<< HEAD
 
                   <div className="mvx-table-text-and-add-wrap mvx-addbtn">
                     <Link className="btn" to={`?page=mvx#&submenu=work-board&name=knowladgebase&create=knowladgebase`}><i className="mvx-font icon-add"></i>Add Knowladgebase</Link>
                   </div>
 
-=======
->>>>>>> upstream/main
                   {get_current_name && get_current_name.get("create") == 'knowladgebase' ?
                     <div className="mvx-table-text-and-add-wrap mvx-addbtn">
                       <Link className="btn" to={`?page=mvx#&submenu=work-board&name=knowladgebase`}>Back</Link>
