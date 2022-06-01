@@ -32,7 +32,7 @@ class StoreName extends MVX_Elementor_TagBase {
      * @return string
      */
     public function get_title() {
-        return __( 'Store Name', 'dc-woocommerce-multi-vendor' );
+        return __( 'Store Name', 'multivendorx' );
     }
 
     /**

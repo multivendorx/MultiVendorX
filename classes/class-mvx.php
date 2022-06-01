@@ -276,9 +276,9 @@ final class MVX {
      */
     public function load_plugin_textdomain() {
         $locale = is_admin() && function_exists('get_user_locale') ? get_user_locale() : get_locale();
-        $locale = apply_filters('plugin_locale', $locale, 'dc-woocommerce-multi-vendor');
-        load_textdomain('dc-woocommerce-multi-vendor', WP_LANG_DIR . '/dc-woocommerce-multi-vendor/dc-woocommerce-multi-vendor-' . $locale . '.mo');
-        load_plugin_textdomain('dc-woocommerce-multi-vendor', false, plugin_basename(dirname(dirname(__FILE__))) . '/languages');
+        $locale = apply_filters('plugin_locale', $locale, 'multivendorx');
+        load_textdomain('multivendorx', WP_LANG_DIR . '/dc-woocommerce-multi-vendor/dc-woocommerce-multi-vendor-' . $locale . '.mo');
+        load_plugin_textdomain('multivendorx', false, plugin_basename(dirname(dirname(__FILE__))) . '/languages');
     }
 
     /**
@@ -486,19 +486,19 @@ final class MVX {
     function add_mvx_corn_schedule($schedules) {
         $schedules['weekly'] = array(
             'interval' => 604800,
-            'display' => __('Every 7 Days', 'dc-woocommerce-multi-vendor')
+            'display' => __('Every 7 Days', 'multivendorx')
         );
         $schedules['monthly'] = array(
             'interval' => 2592000,
-            'display' => __('Every 1 Month', 'dc-woocommerce-multi-vendor')
+            'display' => __('Every 1 Month', 'multivendorx')
         );
         $schedules['fortnightly'] = array(
             'interval' => 1296000,
-            'display' => __('Every 15 Days', 'dc-woocommerce-multi-vendor')
+            'display' => __('Every 15 Days', 'multivendorx')
         );
         $schedules['every_5minute'] = array(
                 'interval' => 5*60, // in seconds
-                'display'  => __( 'Every 5 minute', 'dc-woocommerce-multi-vendor' )
+                'display'  => __( 'Every 5 minute', 'multivendorx' )
         );
         
         return $schedules;
@@ -519,8 +519,8 @@ final class MVX {
                 $params = array(
                     'ajax_url' => $this->ajax_url(),
                     'messages' => array(
-                        'confirm_dlt_pro' => __("Are you sure and want to delete this Product?\nYou can't undo this action ...", 'dc-woocommerce-multi-vendor'),
-                        'report_abuse_msg' => __('Report has been sent', 'dc-woocommerce-multi-vendor'),
+                        'confirm_dlt_pro' => __("Are you sure and want to delete this Product?\nYou can't undo this action ...", 'multivendorx'),
+                        'report_abuse_msg' => __('Report has been sent', 'multivendorx'),
                     ),
                 );
                 break;
@@ -538,10 +538,10 @@ final class MVX {
                 $params = array(
                     'ajax_url' => $this->ajax_url(),
                     'messages' => array(
-                        'rating_error_msg_txt' => __('Please rate the vendor', 'dc-woocommerce-multi-vendor'),
-                        'review_error_msg_txt' => __('Please review your vendor and minimum 10 Character required', 'dc-woocommerce-multi-vendor'),
-                        'review_success_msg_txt' => __('Your review submitted successfully', 'dc-woocommerce-multi-vendor'),
-                        'review_failed_msg_txt' => __('Error in system please try again later', 'dc-woocommerce-multi-vendor'),
+                        'rating_error_msg_txt' => __('Please rate the vendor', 'multivendorx'),
+                        'review_error_msg_txt' => __('Please review your vendor and minimum 10 Character required', 'multivendorx'),
+                        'review_success_msg_txt' => __('Your review submitted successfully', 'multivendorx'),
+                        'review_failed_msg_txt' => __('Error in system please try again later', 'multivendorx'),
                     ),
                 );
                 break;
@@ -551,19 +551,19 @@ final class MVX {
                 $params = array(
                     'ajaxurl'	=> $this->ajax_url(),
                     'i18n' 	=> array(
-			'deleteShippingMethodConfirmation'	=> __( 'Are you absolutely sure to delete this shipping method?', 'dc-woocommerce-multi-vendor' ),
+			'deleteShippingMethodConfirmation'	=> __( 'Are you absolutely sure to delete this shipping method?', 'multivendorx' ),
                     ),
-                    'everywhere_else_option'  => __( 'Everywhere Else', 'dc-woocommerce-multi-vendor' ),
+                    'everywhere_else_option'  => __( 'Everywhere Else', 'multivendorx' ),
                     'multiblock_delete_confirm' => __( "Are you sure and want to delete this 'Block'?\nYou can't undo this action ...", "dc-woocommerce-multi-vendor" ),
-                    'mvx_multiblick_addnew_help' => __( 'Add New Block', 'dc-woocommerce-multi-vendor' ),
-                    'mvx_multiblick_remove_help' => __( 'Remove Block', 'dc-woocommerce-multi-vendor' ),
+                    'mvx_multiblick_addnew_help' => __( 'Add New Block', 'multivendorx' ),
+                    'mvx_multiblick_remove_help' => __( 'Remove Block', 'multivendorx' ),
                 );
                 break;
             case 'mvx-meta-boxes' :
                 $params = array(
                     'coupon_meta' => array( 
                         'coupon_code' => array(
-                            'generate_button_text' => esc_html__( 'Generate coupon code', 'dc-woocommerce-multi-vendor' ),
+                            'generate_button_text' => esc_html__( 'Generate coupon code', 'multivendorx' ),
                             'characters'           => apply_filters( 'mvx_coupon_code_generator_characters', 'ABCDEFGHJKMNPQRSTUVWXYZ23456789' ),
                             'char_length'          => apply_filters( 'mvx_coupon_code_generator_character_length', 8 ),
                             'prefix'               => apply_filters( 'mvx_coupon_code_generator_prefix', '' ),
@@ -634,7 +634,7 @@ final class MVX {
     public function mvx_stripe_phpversion_required_notice() {
         ?>
         <div id="message" class="error">
-            <p><?php printf(__("%sMVX Stripe Gateway%s requires PHP 5.3.29 or greater. We recommend upgrading to PHP %s or greater.", 'dc-woocommerce-multi-vendor' ), '<strong>', '</strong>', '5.6' ); ?></p>
+            <p><?php printf(__("%sMVX Stripe Gateway%s requires PHP 5.3.29 or greater. We recommend upgrading to PHP %s or greater.", 'multivendorx' ), '<strong>', '</strong>', '5.6' ); ?></p>
         </div>
         <?php
     }
@@ -642,7 +642,7 @@ final class MVX {
     public function mvx_stripe_curl_required_notice() {
         ?>
         <div id="message" class="error">
-            <p><?php printf(__("%sMVX Stripe gateway depends on the %s PHP extension. Please enable it, or ask your hosting provider to enable it.", 'dc-woocommerce-multi-vendor' ), '<strong>', '</strong>', 'curl' ); ?></p>
+            <p><?php printf(__("%sMVX Stripe gateway depends on the %s PHP extension. Please enable it, or ask your hosting provider to enable it.", 'multivendorx' ), '<strong>', '</strong>', 'curl' ); ?></p>
         </div>
         <?php
     }
@@ -650,7 +650,7 @@ final class MVX {
     public function mvx_stripe_mbstring_required_notice() {
         ?>
         <div id="message" class="error">
-            <p><?php printf(__("%sMVX Stripe gateway depends on the %s PHP extension. Please enable it, or ask your hosting provider to enable it.", 'dc-woocommerce-multi-vendor' ), '<strong>', '</strong>', 'mbstring' ); ?></p>
+            <p><?php printf(__("%sMVX Stripe gateway depends on the %s PHP extension. Please enable it, or ask your hosting provider to enable it.", 'multivendorx' ), '<strong>', '</strong>', 'mbstring' ); ?></p>
         </div>
         <?php
     }
@@ -658,7 +658,7 @@ final class MVX {
     public function mvx_stripe_json_required_notice() {
         ?>
         <div id="message" class="error">
-            <p><?php printf(__("%sMVX Vendor Membership Stripe gateway depends on the %s PHP extension. Please enable it, or ask your hosting provider to enable it.", 'dc-woocommerce-multi-vendor' ), '<strong>', '</strong>', 'json' ); ?></p>
+            <p><?php printf(__("%sMVX Vendor Membership Stripe gateway depends on the %s PHP extension. Please enable it, or ask your hosting provider to enable it.", 'multivendorx' ), '<strong>', '</strong>', 'json' ); ?></p>
         </div>
         <?php
     }

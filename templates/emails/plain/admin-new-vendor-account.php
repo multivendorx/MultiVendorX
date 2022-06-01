@@ -17,9 +17,9 @@ $vendor_application_admin_url = apply_filters('mvx_admin_new_vendor_email_vendor
 
 echo "= " . $email_heading . " =\n\n";
 
-echo sprintf( __( "A new user has applied to be a vendor on %s. His/her email is %s.", 'dc-woocommerce-multi-vendor' ), esc_html( $blogname ), esc_html( $user_object->user_email ) );
+echo sprintf( __( "A new user has applied to be a vendor on %s. His/her email is %s.", 'multivendorx' ), esc_html( $blogname ), esc_html( $user_object->user_email ) );
 
-echo sprintf( __( 'You can access vendor application here: %s.',  'dc-woocommerce-multi-vendor' ), esc_url( $vendor_application_admin_url ) ) . "\n\n";
+echo sprintf( __( 'You can access vendor application here: %s.',  'multivendorx' ), esc_url( $vendor_application_admin_url ) ) . "\n\n";
 
 echo "\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n";
 

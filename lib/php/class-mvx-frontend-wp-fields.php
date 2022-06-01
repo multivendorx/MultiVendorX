@@ -334,8 +334,8 @@ if (!class_exists('MVX_Frontend_WP_Fields')) {
         <span class="dc-wp-fields-uploader">
           %s
           <input type="text" name="%s" id="%s" style="%s" class="%s" readonly value="%s" %s data-mime="%s" />
-          <input type="button" class="upload_button button button-secondary" name="%s_button" id="%s_button" data-mime="%s" value="' . __('Upload', 'dc-woocommerce-multi-vendor') . '" />
-          <input type="button" class="remove_button button button-secondary" name="%s_remove_button" id="%s_remove_button" data-mime="%s" value="' . __('Remove', 'dc-woocommerce-multi-vendor') . '" />
+          <input type="button" class="upload_button button button-secondary" name="%s_button" id="%s_button" data-mime="%s" value="' . __('Upload', 'multivendorx') . '" />
+          <input type="button" class="remove_button button button-secondary" name="%s_remove_button" id="%s_remove_button" data-mime="%s" value="' . __('Remove', 'multivendorx') . '" />
         </span>
         ', $mimeProp, esc_attr($field['name']), esc_attr($field['id']), $customStyle, esc_attr($field['class']), esc_attr($field['value']), implode(' ', $custom_attributes), $field['mime'], esc_attr($field['id']), esc_attr($field['id']), $field['mime'], esc_attr($field['id']), esc_attr($field['id']), $field['mime']
             );

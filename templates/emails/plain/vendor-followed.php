@@ -17,16 +17,16 @@ global $MVX;
 
 echo "= " . $email_heading . " =\n\n";
 
-echo sprintf( __( "Hi there! This is to notify that a new product has been submitted in %s.",  'dc-woocommerce-multi-vendor' ), get_option( 'blogname' ) );
+echo sprintf( __( "Hi there! This is to notify that a new product has been submitted in %s.",  'multivendorx' ), get_option( 'blogname' ) );
 
 if($post->post_type == 'product') {
 	$product = wc_get_product( $post->ID );
 	$product_link = $product ? $product->get_permalink() : '';
-	$title = esc_html__( 'Product', 'dc-woocommerce-multi-vendor' );
-	echo sprintf( __( "A new product is created %s: %s",  'dc-woocommerce-multi-vendor' ), $title, $product_link ) . "\n\n";
+	$title = esc_html__( 'Product', 'multivendorx' );
+	echo sprintf( __( "A new product is created %s: %s",  'multivendorx' ), $title, $product_link ) . "\n\n";
 	echo '\n';
 } else {
-	esc_html_e('A new coupon is created:', 'dc-woocommerce-multi-vendor');
+	esc_html_e('A new coupon is created:', 'multivendorx');
 	echo '\n';
 }
 echo "\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n";

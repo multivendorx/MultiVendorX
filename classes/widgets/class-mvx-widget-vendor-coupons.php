@@ -10,14 +10,14 @@ class MVX_Widget_Vendor_Coupons extends WC_Widget {
 
     public function __construct() {
         $this->widget_cssclass = 'mvx_vendor_coupons';
-        $this->widget_description = __('Displays coupons added by the vendor on the vendor shop page.', 'dc-woocommerce-multi-vendor');
+        $this->widget_description = __('Displays coupons added by the vendor on the vendor shop page.', 'multivendorx');
         $this->widget_id = 'mvx_vendor_coupons';
-        $this->widget_name = __('MVX: Vendor\'s Coupons', 'dc-woocommerce-multi-vendor');
+        $this->widget_name = __('MVX: Vendor\'s Coupons', 'multivendorx');
         $this->settings = array(
             'title' => array(
                 'type' => 'text',
-                'std' => __('MVX Vendor Coupons', 'dc-woocommerce-multi-vendor'),
-                'label' => __('Title', 'dc-woocommerce-multi-vendor'),
+                'std' => __('MVX Vendor Coupons', 'multivendorx'),
+                'label' => __('Title', 'multivendorx'),
             ),
         );
         parent::__construct();
@@ -57,7 +57,7 @@ class MVX_Widget_Vendor_Coupons extends WC_Widget {
 			if ( $coupon->get_date_expires() && ( current_time( 'timestamp', true ) > $coupon->get_date_expires()->getTimestamp() ) ) continue;
 			
 
-			$content .= '<span class="mvx-store-coupon-single tips text_tip" title="' . esc_html( wc_get_coupon_type( $coupon->get_discount_type() ) ) . ': ' . esc_html( wc_format_localized_price( $coupon->get_amount() ) ) . ($coupon->get_date_expires() ? ' ' . __( 'Expiry Date: ', 'dc-woocommerce-multi-vendor' ) . $coupon->get_date_expires()->date_i18n( 'F j, Y' ) : '' ) . ' ' . $vendor_coupon->post_excerpt . '">' . $vendor_coupon->post_title . '</span>';
+			$content .= '<span class="mvx-store-coupon-single tips text_tip" title="' . esc_html( wc_get_coupon_type( $coupon->get_discount_type() ) ) . ': ' . esc_html( wc_format_localized_price( $coupon->get_amount() ) ) . ($coupon->get_date_expires() ? ' ' . __( 'Expiry Date: ', 'multivendorx' ) . $coupon->get_date_expires()->date_i18n( 'F j, Y' ) : '' ) . ' ' . $vendor_coupon->post_excerpt . '">' . $vendor_coupon->post_title . '</span>';
 		}
 		
 		$content .= '</div>';

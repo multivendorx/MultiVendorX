@@ -21,7 +21,7 @@ class MVX_Elementor_StoreTabContents extends MVX_Elementor_StoreName {
      * @return string
      */
     public function get_title() {
-        return __( 'Store Tab Contents', 'dc-woocommerce-multi-vendor' );
+        return __( 'Store Tab Contents', 'multivendorx' );
     }
 
     /**
@@ -117,7 +117,7 @@ class MVX_Elementor_StoreTabContents extends MVX_Elementor_StoreName {
 
             $is_block = get_user_meta($vendor->id, '_vendor_turn_off' , true);
             if ($is_block) {
-                $block_vendor_desc = apply_filters('mvx_blocked_vendor_text', __('Site Administrator has blocked this vendor', 'dc-woocommerce-multi-vendor'), $vendor);
+                $block_vendor_desc = apply_filters('mvx_blocked_vendor_text', __('Site Administrator has blocked this vendor', 'multivendorx'), $vendor);
                 ?><p class="blocked_desc"><?php echo esc_html($block_vendor_desc); ?><p><?php
             } else {
                 switch( $tab ) {

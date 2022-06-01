@@ -25,7 +25,7 @@ class MVX_Vendor_Registration_Shortcode {
         $enable_registration = ( get_option('users_can_register') ) ? get_option('users_can_register') : false;
         $enable_registration = ( !$enable_registration ) ? get_option( 'woocommerce_enable_myaccount_registration' ) != 'yes' ? false : true : $enable_registration;
         if (!apply_filters('enable_users_can_register_for_mvx_vendor_registration', $enable_registration)) {
-            echo ' ' . __('Signup has been disabled.', 'dc-woocommerce-multi-vendor');
+            echo ' ' . __('Signup has been disabled.', 'multivendorx');
             return;
         }
         $frontend_style_path = $MVX->plugin_url . 'assets/frontend/css/';

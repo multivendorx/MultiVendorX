@@ -19,7 +19,7 @@ $image = $vendor->get_image() ? $vendor->get_image('image', array(125, 125)) : $
 $rating_info = mvx_get_vendor_review_info($vendor->term_id);
 $rating = round($rating_info['avg_rating'], 2);
 $review_count = empty(intval($rating_info['total_rating'])) ? '' : intval($rating_info['total_rating']);
-$vendor_phone = $vendor->phone ? $vendor->phone : __('No number yet', 'dc-woocommerce-multi-vendor');
+$vendor_phone = $vendor->phone ? $vendor->phone : __('No number yet', 'multivendorx');
 ?>
 <div class="mvx-store-list mvx-store-list-vendor">
     <?php do_action('mvx_vendor_lists_single_before_image', $vendor->term_id, $vendor->id); ?>
@@ -37,7 +37,7 @@ $vendor_phone = $vendor->phone ? $vendor->phone : __('No number yet', 'dc-woocom
                     </div>
                     <div class="dashicons dashicons-location">
                         <div class="on-hover-cls">
-                         <p><?php echo $vendor->get_formatted_address() ? $vendor->get_formatted_address() : __('No Address found', 'dc-woocommerce-multi-vendor'); ?></p>
+                         <p><?php echo $vendor->get_formatted_address() ? $vendor->get_formatted_address() : __('No Address found', 'multivendorx'); ?></p>
                         </div>
                     </div>
                 </div>

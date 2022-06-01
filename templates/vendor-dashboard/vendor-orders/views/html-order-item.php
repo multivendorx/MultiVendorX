@@ -24,16 +24,16 @@ $row_class    = apply_filters( 'mvx_vendor_dash_html_order_item_class', ! empty(
             <table>
                 <?php 
                 if ( $product && $product->get_sku() ) {
-                    echo '<tr><th>' . esc_html__( 'SKU:', 'dc-woocommerce-multi-vendor' ) . '</th><td>' . esc_html( $product->get_sku() ) . '</td></tr>';
+                    echo '<tr><th>' . esc_html__( 'SKU:', 'multivendorx' ) . '</th><td>' . esc_html( $product->get_sku() ) . '</td></tr>';
                 }
 
                 if ( $item->get_variation_id() ) {
-                    echo '<tr><th>' . esc_html__( 'Variation ID:', 'dc-woocommerce-multi-vendor' ) . '</th><td>';
+                    echo '<tr><th>' . esc_html__( 'Variation ID:', 'multivendorx' ) . '</th><td>';
                     if ( 'product_variation' === get_post_type( $item->get_variation_id() ) ) {
                             echo esc_html( $item->get_variation_id() );
                     } else {
                             /* translators: %s: variation id */
-                            printf( esc_html__( '%s (No longer exists)', 'dc-woocommerce-multi-vendor' ), $item->get_variation_id() );
+                            printf( esc_html__( '%s (No longer exists)', 'multivendorx' ), $item->get_variation_id() );
                     }
                     echo '</td></tr>';
                 }
@@ -92,19 +92,19 @@ $row_class    = apply_filters( 'mvx_vendor_dash_html_order_item_class', ! empty(
             <div>
                 <?php
                 if ( $item->get_subtotal() !== $item->get_total() ) {
-                        echo '<span class="wc-order-item-discount">' . wc_price( wc_format_decimal( $item->get_subtotal() - $item->get_total(), '' ), array( 'currency' => $order->get_currency() ) ) . '</span> '. __('discount', 'dc-woocommerce-multi-vendor');
+                        echo '<span class="wc-order-item-discount">' . wc_price( wc_format_decimal( $item->get_subtotal() - $item->get_total(), '' ), array( 'currency' => $order->get_currency() ) ) . '</span> '. __('discount', 'multivendorx');
                 }
                 ?>
             </div>
             <div class="edit" style="display: none;">
                     <div class="split-input">
                             <div class="input">
-                                    <label><?php esc_attr_e( 'Pre-discount:', 'dc-woocommerce-multi-vendor' ); ?></label>
+                                    <label><?php esc_attr_e( 'Pre-discount:', 'multivendorx' ); ?></label>
                                     <input type="text" name="line_subtotal[<?php echo absint( $item_id ); ?>]" placeholder="<?php echo esc_attr( wc_format_localized_price( 0 ) ); ?>" value="<?php echo esc_attr( wc_format_localized_price( $item->get_subtotal() ) ); ?>" class="form-control line_subtotal wc_input_price" data-subtotal="<?php echo esc_attr( wc_format_localized_price( $item->get_subtotal() ) ); ?>" />
                             </div>
                             <div class="input">
-                                    <label><?php esc_attr_e( 'Total:', 'dc-woocommerce-multi-vendor' ); ?></label>
-                                    <input type="text" name="line_total[<?php echo absint( $item_id ); ?>]" placeholder="<?php echo esc_attr( wc_format_localized_price( 0 ) ); ?>" value="<?php echo esc_attr( wc_format_localized_price( $item->get_total() ) ); ?>" class="form-control line_total wc_input_price" data-tip="<?php esc_attr_e( 'After pre-tax discounts.', 'dc-woocommerce-multi-vendor' ); ?>" data-total="<?php echo esc_attr( wc_format_localized_price( $item->get_total() ) ); ?>" />
+                                    <label><?php esc_attr_e( 'Total:', 'multivendorx' ); ?></label>
+                                    <input type="text" name="line_total[<?php echo absint( $item_id ); ?>]" placeholder="<?php echo esc_attr( wc_format_localized_price( 0 ) ); ?>" value="<?php echo esc_attr( wc_format_localized_price( $item->get_total() ) ); ?>" class="form-control line_total wc_input_price" data-tip="<?php esc_attr_e( 'After pre-tax discounts.', 'multivendorx' ); ?>" data-total="<?php echo esc_attr( wc_format_localized_price( $item->get_total() ) ); ?>" />
                             </div>
                     </div>
             </div>
@@ -145,11 +145,11 @@ $row_class    = apply_filters( 'mvx_vendor_dash_html_order_item_class', ! empty(
                             <div class="edit" style="display: none;">
                                     <div class="split-input">
                                             <div class="input">
-                                                    <label><?php esc_attr_e( 'Pre-discount:', 'dc-woocommerce-multi-vendor' ); ?></label>
+                                                    <label><?php esc_attr_e( 'Pre-discount:', 'multivendorx' ); ?></label>
                                                     <input type="text" name="line_subtotal_tax[<?php echo absint( $item_id ); ?>][<?php echo esc_attr( $tax_item_id ); ?>]" placeholder="<?php echo esc_attr( wc_format_localized_price( 0 ) ); ?>" value="<?php echo esc_attr( wc_format_localized_price( $tax_item_subtotal ) ); ?>" class="form-control line_subtotal_tax wc_input_price" data-subtotal_tax="<?php echo esc_attr( wc_format_localized_price( $tax_item_subtotal ) ); ?>" data-tax_id="<?php echo esc_attr( $tax_item_id ); ?>" />
                                             </div>
                                             <div class="input">
-                                                    <label><?php esc_attr_e( 'Total:', 'dc-woocommerce-multi-vendor' ); ?></label>
+                                                    <label><?php esc_attr_e( 'Total:', 'multivendorx' ); ?></label>
                                                     <input type="text" name="line_tax[<?php echo absint( $item_id ); ?>][<?php echo esc_attr( $tax_item_id ); ?>]" placeholder="<?php echo esc_attr( wc_format_localized_price( 0 ) ); ?>" value="<?php echo esc_attr( wc_format_localized_price( $tax_item_total ) ); ?>" class="form-control line_tax wc_input_price" data-total_tax="<?php echo esc_attr( wc_format_localized_price( $tax_item_total ) ); ?>" data-tax_id="<?php echo esc_attr( $tax_item_id ); ?>" />
                                             </div>
                                     </div>

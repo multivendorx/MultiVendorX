@@ -28,7 +28,7 @@ class MVX_Elementor_StoreSocial extends Widget_Social_Icons {
      * @return string
      */
     public function get_title() {
-        return __( 'Store Social', 'dc-woocommerce-multi-vendor' );
+        return __( 'Store Social', 'multivendorx' );
     }
 
     /**

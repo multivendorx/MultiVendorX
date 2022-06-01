@@ -64,7 +64,7 @@ class StorePage extends Single {
 	 * @return string
 	 */
 	public static function get_title() {
-		return __( 'MVX Store Page', 'dc-woocommerce-multi-vendor' );
+		return __( 'MVX Store Page', 'multivendorx' );
 	}
 
 	/**
@@ -75,7 +75,7 @@ class StorePage extends Single {
 	protected static function get_editor_panel_categories() {
 		$categories = [
 				'mvx-store-elements-single' => [
-						'title'  => __( 'MultivendorX', 'dc-woocommerce-multi-vendor' ),
+						'title'  => __( 'MultivendorX', 'multivendorx' ),
 						'active' => true,
 				],
 		];

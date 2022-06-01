@@ -16,10 +16,10 @@ global $MVX;
 <input type="hidden" name="mvx_msg_tab_to_be_refrash3" id="mvx_msg_tab_to_be_refrash3" value="" />
 <div id = "tabs-1">
     <ul class="mvx_msg_tab_nav">
-        <li data-element="_all"><a href = "#mvx_msg_tab_1"><?php _e('All', 'dc-woocommerce-multi-vendor'); ?></a></li>
-        <li data-element="_read"><a href = "#mvx_msg_tab_2"><?php _e('Read', 'dc-woocommerce-multi-vendor'); ?></a></li>
-        <li data-element="_unread" ><a href = "#mvx_msg_tab_3"><?php _e('Unread', 'dc-woocommerce-multi-vendor'); ?></a></li>
-        <li data-element="_archive"><a href = "#mvx_msg_tab_4"><?php _e('Trash', 'dc-woocommerce-multi-vendor'); ?></a></li>
+        <li data-element="_all"><a href = "#mvx_msg_tab_1"><?php _e('All', 'multivendorx'); ?></a></li>
+        <li data-element="_read"><a href = "#mvx_msg_tab_2"><?php _e('Read', 'multivendorx'); ?></a></li>
+        <li data-element="_unread" ><a href = "#mvx_msg_tab_3"><?php _e('Unread', 'multivendorx'); ?></a></li>
+        <li data-element="_archive"><a href = "#mvx_msg_tab_4"><?php _e('Trash', 'multivendorx'); ?></a></li>
     </ul>
     <!--...................... start tab1 .......................... -->
     <div id = "mvx_msg_tab_1" data-element="_all">

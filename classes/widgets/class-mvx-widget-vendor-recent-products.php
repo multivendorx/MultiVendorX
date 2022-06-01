@@ -10,14 +10,14 @@ class MVX_Widget_Vendor_Recent_Products extends WC_Widget {
 
     public function __construct() {
         $this->widget_cssclass = 'mvx_vendor_rcent_products';
-        $this->widget_description = __('Displays a list of vendor recent products on the vendor shop page.', 'dc-woocommerce-multi-vendor');
+        $this->widget_description = __('Displays a list of vendor recent products on the vendor shop page.', 'multivendorx');
         $this->widget_id = 'mvx_vendor_recent_products';
-        $this->widget_name = __('MVX: Vendor\'s Recent Products', 'dc-woocommerce-multi-vendor');
+        $this->widget_name = __('MVX: Vendor\'s Recent Products', 'multivendorx');
         $this->settings = array(
             'title' => array(
                 'type' => 'text',
-                'std' => __('Vendor recent products', 'dc-woocommerce-multi-vendor'),
-                'label' => __('Title', 'dc-woocommerce-multi-vendor'),
+                'std' => __('Vendor recent products', 'multivendorx'),
+                'label' => __('Title', 'multivendorx'),
             ),
             'number' => array(
 				'type'  => 'number',
@@ -25,7 +25,7 @@ class MVX_Widget_Vendor_Recent_Products extends WC_Widget {
 				'min'   => 1,
 				'max'   => '',
 				'std'   => 3,
-				'label' => __( 'Number of products to show', 'dc-woocommerce-multi-vendor' ),
+				'label' => __( 'Number of products to show', 'multivendorx' ),
 			),
         );
         parent::__construct();

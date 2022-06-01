@@ -26,7 +26,7 @@ class MVX_Elementor_StoreLogo extends Widget_Image {
      * @return string
      */
     public function get_title() {
-        return __( 'Store Logo', 'dc-woocommerce-multi-vendor' );
+        return __( 'Store Logo', 'multivendorx' );
     }
 
     /**
@@ -76,7 +76,7 @@ class MVX_Elementor_StoreLogo extends Widget_Image {
         $this->update_control(
             'section_image',
             [
-                'label' => __( 'Store Logo', 'dc-woocommerce-multi-vendor' ),
+                'label' => __( 'Store Logo', 'multivendorx' ),
             ]
         );
 

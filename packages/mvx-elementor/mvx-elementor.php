@@ -166,7 +166,7 @@ class MVX_Elementor {
 		$elements_manager->add_category(
 			'mvx-store-elements-single',
 			[
-				'title' => __( 'MultivendorX', 'dc-woocommerce-multi-vendor' ),
+				'title' => __( 'MultivendorX', 'multivendorx' ),
 				'icon' => 'fa fa-plug',
 			]
 		);

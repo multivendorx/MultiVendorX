@@ -176,19 +176,19 @@ class MVX_Coupon {
             if($coupon && is_user_mvx_vendor(apply_filters( 'mvx_coupon_vendor', $coupon->post_author ))){
                 if ( $wpnonce && wp_verify_nonce( $wpnonce, 'mvx_delete_coupon' ) && $coupon_id && in_array($coupon->post_author, $current_user_ids ) ) {
                     wp_delete_post( $coupon_id );
-                    wc_add_notice(__('Coupon Deleted!', 'dc-woocommerce-multi-vendor'), 'success');
+                    wc_add_notice(__('Coupon Deleted!', 'multivendorx'), 'success');
                     wp_redirect( $delete_coupon_redirect_url );
                     exit;
                 }
                 if($wpnonce && wp_verify_nonce($wpnonce, 'mvx_untrash_coupon') && $coupon_id && in_array($coupon->post_author, $current_user_ids )){
                     wp_untrash_post($coupon_id);
-                    wc_add_notice(__('Coupon restored from the Trash', 'dc-woocommerce-multi-vendor'), 'success');
+                    wc_add_notice(__('Coupon restored from the Trash', 'multivendorx'), 'success');
                     wp_redirect($delete_coupon_redirect_url);
                     exit;
                 }
                 if($wpnonce && wp_verify_nonce($wpnonce, 'mvx_trash_coupon') && $coupon_id && in_array($coupon->post_author, $current_user_ids )){
                     wp_trash_post($coupon_id);
-                    wc_add_notice(__('Coupon moved to the Trash', 'dc-woocommerce-multi-vendor'), 'success');
+                    wc_add_notice(__('Coupon moved to the Trash', 'multivendorx'), 'success');
                     wp_redirect($delete_coupon_redirect_url);
                     exit;
                 }

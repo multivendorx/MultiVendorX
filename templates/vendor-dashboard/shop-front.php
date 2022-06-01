@@ -50,7 +50,7 @@ $_wp_editor_settings = apply_filters('mvx_vendor_storefront_wp_editor_settings',
     }
 </style>
 <div class="col-md-12">
-    <!-- <div class="mvx_headding2 card-header"><?php _e('General', 'dc-woocommerce-multi-vendor'); ?></div> -->
+    <!-- <div class="mvx_headding2 card-header"><?php _e('General', 'multivendorx'); ?></div> -->
     <form method="post" name="shop_settings_form" class="mvx_shop_settings_form form-horizontal">
         <?php do_action('mvx_before_shop_front'); ?>
 
@@ -64,12 +64,12 @@ $_wp_editor_settings = apply_filters('mvx_vendor_storefront_wp_editor_settings',
                             <div class="vendor-profile-pic-wraper pull-left">
                                 <img id="vendor-profile-img" src="<?php echo (isset($vendor_image['url']) && (!empty($vendor_image['url']))) ? $vendor_image['url'] : $MVX->plugin_url . 'assets/images/logo_placeholder.jpg'; ?>" alt="dp">
                                 <div class="mvx-media profile-pic-btn">
-                                    <button type="button" class="mvx_upload_btn" data-target="vendor-profile"><i class="mvx-font ico-edit-pencil-icon"></i> <?php _e('Store Logo', 'dc-woocommerce-multi-vendor'); ?></button>
+                                    <button type="button" class="mvx_upload_btn" data-target="vendor-profile"><i class="mvx-font ico-edit-pencil-icon"></i> <?php _e('Store Logo', 'multivendorx'); ?></button>
                                 </div>
                                 <input type="hidden" name="vendor_image" id="vendor-profile-img-id" class="user-profile-fields" value="<?php echo (isset($vendor_image['value']) && (!empty($vendor_image['value']))) ? $vendor_image['value'] : $MVX->plugin_url . 'assets/images/WP-stdavatar.png'; ?>"  />
                             </div>
                             <div class="mvx-media cover-pic-button pull-right">
-                                <button type="button" class="mvx_upload_btn" data-target="vendor-cover"><i class="mvx-font ico-edit-pencil-icon"></i> <?php _e('Upload Cover Picture', 'dc-woocommerce-multi-vendor'); ?></button>
+                                <button type="button" class="mvx_upload_btn" data-target="vendor-cover"><i class="mvx-font ico-edit-pencil-icon"></i> <?php _e('Upload Cover Picture', 'multivendorx'); ?></button>
                             </div>
                             <input type="hidden" name="vendor_banner" id="vendor-cover-img-id" class="user-profile-fields" value="<?php echo (isset($vendor_banner['value']) && (!empty($vendor_banner['value'])) ) ? $vendor_banner['value'] : $MVX->plugin_url . 'assets/images/banner_placeholder.jpg'; ?>"  />
                         </div>
@@ -82,8 +82,8 @@ $_wp_editor_settings = apply_filters('mvx_vendor_storefront_wp_editor_settings',
                                 <input type="text" name="vendor_image" id="vendor_image" style="display: none;" class="user-profile-fields" readonly value="<?php echo (isset($vendor_image['value']) && (!empty($vendor_image['value']))) ? $vendor_image['value'] : $MVX->plugin_url . 'assets/images/logo_placeholder.jpg'; ?>"  />
                             </span>
                             <div class="button-group">                            
-                                <button class="upload_button mvx_black_btn moregap two_third_part btn btn-primary" name="vendor_image_button" id="vendor_image_button" value="<?php _e('Upload', 'dc-woocommerce-multi-vendor') ?>" style=" display: block; "><span class="dashicons dashicons-upload"></span> <?php _e('Upload', 'dc-woocommerce-multi-vendor') ?></button>
-                                <button class="remove_button mvx_black_btn moregap two_third_part btn btn-primary" name="vendor_image_remove_button" id="vendor_image_remove_button" value="<?php _e('Replace', 'dc-woocommerce-multi-vendor') ?>"><span class="dashicons dashicons-upload"></span> <?php _e('Replace', 'dc-woocommerce-multi-vendor') ?></button>
+                                <button class="upload_button mvx_black_btn moregap two_third_part btn btn-primary" name="vendor_image_button" id="vendor_image_button" value="<?php _e('Upload', 'multivendorx') ?>" style=" display: block; "><span class="dashicons dashicons-upload"></span> <?php _e('Upload', 'multivendorx') ?></button>
+                                <button class="remove_button mvx_black_btn moregap two_third_part btn btn-primary" name="vendor_image_remove_button" id="vendor_image_remove_button" value="<?php _e('Replace', 'multivendorx') ?>"><span class="dashicons dashicons-upload"></span> <?php _e('Replace', 'multivendorx') ?></button>
                             </div>
                             <div class="clear"></div>
                         </div>
@@ -95,8 +95,8 @@ $_wp_editor_settings = apply_filters('mvx_vendor_storefront_wp_editor_settings',
                                 <input type="text" name="vendor_banner" id="vendor_banner" style="display: none;" class="user-profile-fields" readonly value="<?php echo (isset($vendor_banner['value']) && (!empty($vendor_banner['value'])) ) ? $vendor_banner['value'] : $MVX->plugin_url . 'assets/images/banner_placeholder.jpg'; ?>"  />
                             </span>
                             <div class="button-group">   
-                                <button class="upload_button mvx_black_btn moregap two_third_part btn btn-primary" name="vendor_banner_button" id="vendor_banner_button"><span class="dashicons dashicons-upload"></span> <?php _e('Upload', 'dc-woocommerce-multi-vendor') ?></button>
-                                <button class="remove_button mvx_black_btn moregap two_third_part btn btn-primary" name="vendor_banner_remove_button" id="vendor_banner_remove_button"><span class="dashicons dashicons-upload"></span> <?php _e('Replace', 'dc-woocommerce-multi-vendor') ?></button>
+                                <button class="upload_button mvx_black_btn moregap two_third_part btn btn-primary" name="vendor_banner_button" id="vendor_banner_button"><span class="dashicons dashicons-upload"></span> <?php _e('Upload', 'multivendorx') ?></button>
+                                <button class="remove_button mvx_black_btn moregap two_third_part btn btn-primary" name="vendor_banner_remove_button" id="vendor_banner_remove_button"><span class="dashicons dashicons-upload"></span> <?php _e('Replace', 'multivendorx') ?></button>
                             </div>
                             <div class="clear"></div>
                         </div>       
@@ -108,18 +108,18 @@ $_wp_editor_settings = apply_filters('mvx_vendor_storefront_wp_editor_settings',
 
         <div class="panel panel-default panel-pading pannel-outer-heading">
             <div class="panel-heading d-flex">
-                <h3><?php _e('General', 'dc-woocommerce-multi-vendor'); ?></h3>
+                <h3><?php _e('General', 'multivendorx'); ?></h3>
             </div>
             <div class="panel-body panel-content-padding">
                 <div class="mvx_form1">
                     <div class="form-group">
-                        <label class="control-label col-sm-3 col-md-3"><?php _e('Store Name *', 'dc-woocommerce-multi-vendor'); ?></label>
+                        <label class="control-label col-sm-3 col-md-3"><?php _e('Store Name *', 'multivendorx'); ?></label>
                         <div class="col-md-6 col-sm-9">
-                            <input class="no_input form-control" type="text" name="vendor_page_title" value="<?php echo isset($vendor_page_title['value']) ? $vendor_page_title['value'] : ''; ?>"  placeholder="<?php _e('Enter your Store Name here', 'dc-woocommerce-multi-vendor'); ?>">
+                            <input class="no_input form-control" type="text" name="vendor_page_title" value="<?php echo isset($vendor_page_title['value']) ? $vendor_page_title['value'] : ''; ?>"  placeholder="<?php _e('Enter your Store Name here', 'multivendorx'); ?>">
                         </div>  
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-3 col-md-3"><?php _e(' Store Slug *', 'dc-woocommerce-multi-vendor'); ?></label>
+                        <label class="control-label col-sm-3 col-md-3"><?php _e(' Store Slug *', 'multivendorx'); ?></label>
                         <div class="col-md-6 col-sm-9">
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon3">
@@ -133,12 +133,12 @@ $_wp_editor_settings = apply_filters('mvx_vendor_storefront_wp_editor_settings',
                                     echo $store_slug;
                                     ?>
                                 </span>		
-                                <input class="small no_input form-control" id="basic-url" aria-describedby="basic-addon3" type="text" name="vendor_page_slug" value="<?php echo isset($vendor_page_slug['value']) ? $vendor_page_slug['value'] : ''; ?>" placeholder="<?php _e('Enter your Store Name here', 'dc-woocommerce-multi-vendor'); ?>">
+                                <input class="small no_input form-control" id="basic-url" aria-describedby="basic-addon3" type="text" name="vendor_page_slug" value="<?php echo isset($vendor_page_slug['value']) ? $vendor_page_slug['value'] : ''; ?>" placeholder="<?php _e('Enter your Store Name here', 'multivendorx'); ?>">
                             </div>	
                         </div>	
                     </div>	
                     <div class="form-group">
-                        <label class="control-label col-sm-3 col-md-3"><?php _e('Store Description', 'dc-woocommerce-multi-vendor'); ?></label>
+                        <label class="control-label col-sm-3 col-md-3"><?php _e('Store Description', 'multivendorx'); ?></label>
                         <div class="col-md-6 col-sm-9">
                             <?php $vendor_description = isset($vendor_description['value']) ? $vendor_description['value'] : '';
                             $MVX->mvx_wp_fields->dc_generate_form_field(array("vendor_description" => array('name' => 'vendor_description', 'type' => $field_type, 'class' => 'no_input form-control regular-textarea', 'value' => $vendor_description, 'settings' => $_wp_editor_settings))); ?>
@@ -147,7 +147,7 @@ $_wp_editor_settings = apply_filters('mvx_vendor_storefront_wp_editor_settings',
                     </div>
                     <?php if (apply_filters('can_vendor_add_message_on_email_and_thankyou_page', true)) { ?>
                     <div class="form-group">
-                        <label class="control-label col-sm-3 col-md-3"><?php _e('Message to Buyers', 'dc-woocommerce-multi-vendor'); ?></label>
+                        <label class="control-label col-sm-3 col-md-3"><?php _e('Message to Buyers', 'multivendorx'); ?></label>
                         <div class="col-md-6 col-sm-9">
                             <?php $message_to_buyer = isset($vendor_message_to_buyers['value']) ? $vendor_message_to_buyers['value'] : '';
                             $MVX->mvx_wp_fields->dc_generate_form_field(array("vendor_message_to_buyers" => array('name' => 'vendor_message_to_buyers', 'type' => $field_type, 'class' => 'no_input form-control regular-textarea', 'value' => $message_to_buyer, 'settings' => $_wp_editor_settings))); ?>
@@ -156,41 +156,41 @@ $_wp_editor_settings = apply_filters('mvx_vendor_storefront_wp_editor_settings',
                     </div>
                     <?php } ?>
                     <div class="form-group">
-                        <label class="control-label col-sm-3 col-md-3"><?php _e('Phone', 'dc-woocommerce-multi-vendor'); ?></label>
+                        <label class="control-label col-sm-3 col-md-3"><?php _e('Phone', 'multivendorx'); ?></label>
                         <div class="col-md-6 col-sm-9">
                             <input class="no_input form-control" type="text" name="vendor_phone" placeholder="" value="<?php echo isset($vendor_phone['value']) ? $vendor_phone['value'] : ''; ?>">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-3 col-md-3"><?php _e('Email *', 'dc-woocommerce-multi-vendor'); ?></label>
+                        <label class="control-label col-sm-3 col-md-3"><?php _e('Email *', 'multivendorx'); ?></label>
                         <div class="col-md-6 col-sm-9">                            
                             <input class="no_input vendor_email form-control" type="text" placeholder="" readonly  value="<?php echo isset($vendor->user_data->user_email) ? $vendor->user_data->user_email : ''; ?>">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-3 col-md-3"><?php _e('Address', 'dc-woocommerce-multi-vendor'); ?></label>     
+                        <label class="control-label col-sm-3 col-md-3"><?php _e('Address', 'multivendorx'); ?></label>     
                         <div class="col-md-6 col-sm-9">                      
                             <div class="row">
                                 <div class="col-md-12">
-                                    <input class="no_input form-control inp-btm-margin" type="text" placeholder="<?php _e('Address line 1', 'dc-woocommerce-multi-vendor'); ?>" name="vendor_address_1"  value="<?php echo isset($vendor_address_1['value']) ? $vendor_address_1['value'] : ''; ?>">
-                                    <input class="no_input form-control inp-btm-margin" type="text" placeholder="<?php _e('Address line 2', 'dc-woocommerce-multi-vendor'); ?>" name="vendor_address_2"  value="<?php echo isset($vendor_address_2['value']) ? $vendor_address_2['value'] : ''; ?>">
+                                    <input class="no_input form-control inp-btm-margin" type="text" placeholder="<?php _e('Address line 1', 'multivendorx'); ?>" name="vendor_address_1"  value="<?php echo isset($vendor_address_1['value']) ? $vendor_address_1['value'] : ''; ?>">
+                                    <input class="no_input form-control inp-btm-margin" type="text" placeholder="<?php _e('Address line 2', 'multivendorx'); ?>" name="vendor_address_2"  value="<?php echo isset($vendor_address_2['value']) ? $vendor_address_2['value'] : ''; ?>">
                                 </div>
                                 <div class="col-md-6">
                                     <select name="vendor_country" id="vendor_country" class="country_to_state user-profile-fields form-control inp-btm-margin regular-select" rel="vendor_country">
-                                        <option value=""><?php _e( 'Select a country&hellip;', 'dc-woocommerce-multi-vendor' ); ?></option>
+                                        <option value=""><?php _e( 'Select a country&hellip;', 'multivendorx' ); ?></option>
                                         <?php $country_code = get_user_meta($vendor->id, '_vendor_country_code', true);
                                             foreach ( WC()->countries->get_allowed_countries() as $key => $value ) {
                                                 echo '<option value="' . esc_attr( $key ) . '"' . selected( esc_attr( $country_code ), esc_attr( $key ), false ) . '>' . esc_html( $value ) . '</option>';
                                             }
                                         ?>
                                     </select>
-                                    <!--input class="no_input form-control inp-btm-margin" type="text" placeholder="<?php //_e('Country', 'dc-woocommerce-multi-vendor'); ?>" name="vendor_country" value="<?php echo isset($vendor_country['value']) ? $vendor_country['value'] : ''; ?>"-->
+                                    <!--input class="no_input form-control inp-btm-margin" type="text" placeholder="<?php //_e('Country', 'multivendorx'); ?>" name="vendor_country" value="<?php echo isset($vendor_country['value']) ? $vendor_country['value'] : ''; ?>"-->
                                 </div>
                                 <div class="col-md-6">
                                     <?php $country_code = get_user_meta($vendor->id, '_vendor_country_code', true);
                                     $states = WC()->countries->get_states( $country_code ); ?>
                                     <select name="vendor_state" id="vendor_state" class="state_select user-profile-fields form-control inp-btm-margin regular-select" rel="vendor_state">
-                                        <option value=""><?php esc_html_e( 'Select a state&hellip;', 'dc-woocommerce-multi-vendor' ); ?></option>
+                                        <option value=""><?php esc_html_e( 'Select a state&hellip;', 'multivendorx' ); ?></option>
                                         <?php $state_code = get_user_meta($vendor->id, '_vendor_state_code', true);
                                         if($states):
                                             foreach ( $states as $ckey => $cvalue ) {
@@ -199,22 +199,22 @@ $_wp_editor_settings = apply_filters('mvx_vendor_storefront_wp_editor_settings',
                                         endif;
                                         ?>
                                     </select>
-                                    <!--input class="no_input form-control inp-btm-margin"  type="text" placeholder="<?php //_e('State', 'dc-woocommerce-multi-vendor'); ?>"  name="vendor_state" value="<?php echo isset($vendor_state['value']) ? $vendor_state['value'] : ''; ?>"-->
+                                    <!--input class="no_input form-control inp-btm-margin"  type="text" placeholder="<?php //_e('State', 'multivendorx'); ?>"  name="vendor_state" value="<?php echo isset($vendor_state['value']) ? $vendor_state['value'] : ''; ?>"-->
                                 </div>
                                 <div class="col-md-6">
-                                    <input class="no_input form-control inp-btm-margin" type="text" placeholder="<?php _e('City', 'dc-woocommerce-multi-vendor'); ?>"  name="vendor_city" value="<?php echo isset($vendor_city['value']) ? $vendor_city['value'] : ''; ?>">
+                                    <input class="no_input form-control inp-btm-margin" type="text" placeholder="<?php _e('City', 'multivendorx'); ?>"  name="vendor_city" value="<?php echo isset($vendor_city['value']) ? $vendor_city['value'] : ''; ?>">
                                 </div>
                                 <div class="col-md-6">
-                                    <input class="no_input form-control inp-btm-margin" type="text" placeholder="<?php _e('ZIP code', 'dc-woocommerce-multi-vendor'); ?>" name="vendor_postcode" value="<?php echo isset($vendor_postcode['value']) ? $vendor_postcode['value'] : ''; ?>">
+                                    <input class="no_input form-control inp-btm-margin" type="text" placeholder="<?php _e('ZIP code', 'multivendorx'); ?>" name="vendor_postcode" value="<?php echo isset($vendor_postcode['value']) ? $vendor_postcode['value'] : ''; ?>">
                                 </div>
                                 <?php
                                 if (apply_filters('is_vendor_add_external_url_field', false)) {
                                     ?>
                                     <div class="col-md-6">
-                                        <input class="no_input form-control inp-btm-margin" type="text" placeholder="<?php _e('External store URL', 'dc-woocommerce-multi-vendor'); ?>" name="vendor_external_store_url" value="<?php echo isset($vendor_external_store_url['value']) ? $vendor_external_store_url['value'] : ''; ?>">
+                                        <input class="no_input form-control inp-btm-margin" type="text" placeholder="<?php _e('External store URL', 'multivendorx'); ?>" name="vendor_external_store_url" value="<?php echo isset($vendor_external_store_url['value']) ? $vendor_external_store_url['value'] : ''; ?>">
                                     </div>
                                     <div class="col-md-6">
-                                        <input class="no_input form-control inp-btm-margin" type="text" placeholder="<?php _e('External store URL Label', 'dc-woocommerce-multi-vendor'); ?>" name="vendor_external_store_label" value="<?php echo isset($vendor_external_store_label['value']) ? $vendor_external_store_label['value'] : ''; ?>">
+                                        <input class="no_input form-control inp-btm-margin" type="text" placeholder="<?php _e('External store URL Label', 'multivendorx'); ?>" name="vendor_external_store_label" value="<?php echo isset($vendor_external_store_label['value']) ? $vendor_external_store_label['value'] : ''; ?>">
                                     </div>
                                     <?php
                                 }
@@ -223,7 +223,7 @@ $_wp_editor_settings = apply_filters('mvx_vendor_storefront_wp_editor_settings',
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="timezone_string" class="control-label col-sm-3 col-md-3"><?php _e('Timezone', 'dc-woocommerce-multi-vendor') ?></label>
+                        <label for="timezone_string" class="control-label col-sm-3 col-md-3"><?php _e('Timezone', 'multivendorx') ?></label>
                         <div class="col-md-6 col-sm-9">
                             <?php
                             $current_offset = get_user_meta($vendor->id, 'gmt_offset', true);
@@ -250,7 +250,7 @@ $_wp_editor_settings = apply_filters('mvx_vendor_storefront_wp_editor_settings',
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-3 col-md-3"><?php _e('Store Location', 'dc-woocommerce-multi-vendor'); ?></label>
+                        <label class="control-label col-sm-3 col-md-3"><?php _e('Store Location', 'multivendorx'); ?></label>
                         <div class="col-md-6 col-sm-9">  
                             <?php
                             if (mvx_is_module_active('store-location') && get_mvx_vendor_settings('enable_store_map_for_vendor', 'store')) {
@@ -301,7 +301,7 @@ $_wp_editor_settings = apply_filters('mvx_vendor_storefront_wp_editor_settings',
                                 } elseif (mvx_google_api_enabled()) { ?>
                                     <div class="row">
                                         <div class="col-md-8">
-                                            <input type="text" id="searchStoreAddress" class="store-map-address form-control" placeholder="<?php _e('Enter store location', 'dc-woocommerce-multi-vendor'); ?>">
+                                            <input type="text" id="searchStoreAddress" class="store-map-address form-control" placeholder="<?php _e('Enter store location', 'multivendorx'); ?>">
                                         </div>
                                     </div>
                                     <div class="vendor_store_map" id="vendor_store_map" style="width: 100%; height: 300px;"></div>
@@ -396,7 +396,7 @@ $_wp_editor_settings = apply_filters('mvx_vendor_storefront_wp_editor_settings',
                                   })(jQuery);');
                                 }
                             } else {
-                                echo trim(__('Please contact your administrator to enable Google map feature.', 'dc-woocommerce-multi-vendor'));
+                                echo trim(__('Please contact your administrator to enable Google map feature.', 'multivendorx'));
                             }?>
                         </div>
                     </div>
@@ -408,41 +408,41 @@ $_wp_editor_settings = apply_filters('mvx_vendor_storefront_wp_editor_settings',
 
         <div class="panel panel-default pannel-outer-heading">
             <div class="panel-heading d-flex">
-                <h3><?php _e('Social Media', 'dc-woocommerce-multi-vendor'); ?></h3>
+                <h3><?php _e('Social Media', 'multivendorx'); ?></h3>
             </div>
             <div class="panel-body panel-content-padding form-horizontal">
                 <div class="mvx_media_block">
 
                     <div class="form-group">
-                        <label class="control-label col-sm-3 col-md-3 facebook"><?php _e('Facebook', 'dc-woocommerce-multi-vendor'); ?></label>
+                        <label class="control-label col-sm-3 col-md-3 facebook"><?php _e('Facebook', 'multivendorx'); ?></label>
                         <div class="col-md-6 col-sm-9">
                             <input class="form-control" type="url"   name="vendor_fb_profile" value="<?php echo isset($vendor_fb_profile['value']) ? $vendor_fb_profile['value'] : ''; ?>">
                         </div>  
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-3 col-md-3 twitter"><?php _e('Twitter', 'dc-woocommerce-multi-vendor'); ?></label>
+                        <label class="control-label col-sm-3 col-md-3 twitter"><?php _e('Twitter', 'multivendorx'); ?></label>
                         <div class="col-md-6 col-sm-9">
                             <input class="form-control" type="url"   name="vendor_twitter_profile" value="<?php echo isset($vendor_twitter_profile['value']) ? $vendor_twitter_profile['value'] : ''; ?>">
                         </div>  
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-3 col-md-3 linkedin"><?php _e('LinkedIn', 'dc-woocommerce-multi-vendor'); ?></label>
+                        <label class="control-label col-sm-3 col-md-3 linkedin"><?php _e('LinkedIn', 'multivendorx'); ?></label>
                         <div class="col-md-6 col-sm-9">
                             <input class="form-control" type="url"  name="vendor_linkdin_profile" value="<?php echo isset($vendor_linkdin_profile['value']) ? $vendor_linkdin_profile['value'] : ''; ?>">
                         </div>  
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-3 col-md-3 youtube"><?php _e('YouTube', 'dc-woocommerce-multi-vendor'); ?></label>
+                        <label class="control-label col-sm-3 col-md-3 youtube"><?php _e('YouTube', 'multivendorx'); ?></label>
                         <div class="col-md-6 col-sm-9">
                             <input class="form-control" type="url"   name="vendor_youtube" value="<?php echo isset($vendor_youtube['value']) ? $vendor_youtube['value'] : ''; ?>">
                         </div>  
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-3 col-md-3 instagram"><?php _e('Instagram', 'dc-woocommerce-multi-vendor'); ?></label>
+                        <label class="control-label col-sm-3 col-md-3 instagram"><?php _e('Instagram', 'multivendorx'); ?></label>
                         <div class="col-md-6 col-sm-9">
                             <input class="form-control" type="url"   name="vendor_instagram" value="<?php echo isset($vendor_instagram['value']) ? $vendor_instagram['value'] : ''; ?>">
                         </div>  
@@ -455,7 +455,7 @@ $_wp_editor_settings = apply_filters('mvx_vendor_storefront_wp_editor_settings',
 <?php if (apply_filters('can_vendor_edit_shop_template', false)): ?>
             <div class="panel panel-default panel-pading">
                 <div class="panel-heading d-flex">
-                    <h3><?php _e('Shop Template', 'dc-woocommerce-multi-vendor'); ?></h3>
+                    <h3><?php _e('Shop Template', 'multivendorx'); ?></h3>
                 </div>
                 <div class="panel-body">
                     <ul class="mvx_template_list list-unstyled">
@@ -482,7 +482,7 @@ $_wp_editor_settings = apply_filters('mvx_vendor_storefront_wp_editor_settings',
 <?php do_action('other_exta_field_dcmv'); ?>
         <div class="action_div_space"> </div>
         <div class="mvx-action-container">
-            <button type="submit" class="btn btn-default" name="store_save"><?php _e('Save Options', 'dc-woocommerce-multi-vendor'); ?></button>
+            <button type="submit" class="btn btn-default" name="store_save"><?php _e('Save Options', 'multivendorx'); ?></button>
             <div class="clear"></div>
         </div>
     </form>

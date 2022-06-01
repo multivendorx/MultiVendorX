@@ -23,8 +23,8 @@ if (!class_exists('WC_Email_Admin_New_Question')) :
         function __construct() {
             global $MVX;
             $this->id = 'admin_new_question';
-            $this->title = __('Admin New question', 'dc-woocommerce-multi-vendor');
-            $this->description = __('New question notification emails are sent when customer ask a question.', 'dc-woocommerce-multi-vendor');
+            $this->title = __('Admin New question', 'multivendorx');
+            $this->description = __('New question notification emails are sent when customer ask a question.', 'multivendorx');
 
             $this->template_html = 'emails/admin-new-question.php';
             $this->template_plain = 'emails/plain/admin-new-question.php';
@@ -69,7 +69,7 @@ if (!class_exists('WC_Email_Admin_New_Question')) :
      * @return string
      */
     public function get_default_subject() {
-        $subject = __( ' New Query Received - {product_name}', 'dc-woocommerce-multi-vendor');
+        $subject = __( ' New Query Received - {product_name}', 'multivendorx');
         if( isset($this->object['subject']) && !empty($this->object['subject']) ){
             $subject = $subject . ' - ' . $this->object['subject'];
         }
@@ -83,7 +83,7 @@ if (!class_exists('WC_Email_Admin_New_Question')) :
      * @return string
      */
     public function get_default_heading() {
-        return apply_filters( 'admin_new_question_email_heading', __('Product Query: {product_name}', 'dc-woocommerce-multi-vendor'), $this->object );
+        return apply_filters( 'admin_new_question_email_heading', __('Product Query: {product_name}', 'multivendorx'), $this->object );
     }
     
     
@@ -140,35 +140,35 @@ if (!class_exists('WC_Email_Admin_New_Question')) :
             global $MVX;
             $this->form_fields = array(
                 'enabled' => array(
-                    'title' => __('Enable/Disable', 'dc-woocommerce-multi-vendor'),
+                    'title' => __('Enable/Disable', 'multivendorx'),
                     'type' => 'checkbox',
-                    'label' => __('Enable this email notification.', 'dc-woocommerce-multi-vendor'),
+                    'label' => __('Enable this email notification.', 'multivendorx'),
                     'default' => 'yes'
                 ),
                 'subject' => array(
-                    'title' => __('Subject', 'dc-woocommerce-multi-vendor'),
+                    'title' => __('Subject', 'multivendorx'),
                     'type' => 'text',
-                    'description' => sprintf(__('This controls the email subject line. Leave it blank to use the default subject: <code>%s</code>.', 'dc-woocommerce-multi-vendor'), $this->get_default_subject()),
+                    'description' => sprintf(__('This controls the email subject line. Leave it blank to use the default subject: <code>%s</code>.', 'multivendorx'), $this->get_default_subject()),
                     'placeholder' => '',
                     'default' => ''
                 ),
                 'heading' => array(
-                    'title' => __('Email Heading', 'dc-woocommerce-multi-vendor'),
+                    'title' => __('Email Heading', 'multivendorx'),
                     'type' => 'text',
-                    'description' => sprintf(__('This controls the main heading contained within the email notification. Leave it blank to use the default heading: <code>%s</code>.', 'dc-woocommerce-multi-vendor'), $this->get_default_heading()),
+                    'description' => sprintf(__('This controls the main heading contained within the email notification. Leave it blank to use the default heading: <code>%s</code>.', 'multivendorx'), $this->get_default_heading()),
                     'placeholder' => '',
                     'default' => ''
                 ),
                 'email_type' => array(
-                    'title' => __('Email Type', 'dc-woocommerce-multi-vendor'),
+                    'title' => __('Email Type', 'multivendorx'),
                     'type' => 'select',
-                    'description' => __('Choose which format of email to be sent.', 'dc-woocommerce-multi-vendor'),
+                    'description' => __('Choose which format of email to be sent.', 'multivendorx'),
                     'default' => 'html',
                     'class' => 'email_type',
                     'options' => array(
-                        'plain' => __('Plain Text', 'dc-woocommerce-multi-vendor'),
-                        'html' => __('HTML', 'dc-woocommerce-multi-vendor'),
-                        'multipart' => __('Multipart', 'dc-woocommerce-multi-vendor'),
+                        'plain' => __('Plain Text', 'multivendorx'),
+                        'html' => __('HTML', 'multivendorx'),
+                        'multipart' => __('Multipart', 'multivendorx'),
                     )
                 )
             );

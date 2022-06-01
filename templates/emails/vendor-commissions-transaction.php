@@ -19,9 +19,9 @@ do_action( 'woocommerce_email_header', $email_heading, $email );
 $amount = floatval(get_post_meta($transaction_id, 'amount', true)) - floatval(get_post_meta($transaction_id, 'transfer_charge', true)) - floatval(get_post_meta($transaction_id, 'gateway_charge', true));
 $transaction_mode = get_post_meta($transaction_id, 'transaction_mode', true);
 if($transaction_mode == 'paypal_masspay') {
-?><p><?php printf(__( 'Hello,<br>You have successfully completed a withdrawal of %s on %s through PayPal. The order details are as follows:', 'dc-woocommerce-multi-vendor' ),  wc_price($amount),  get_post_meta($transaction_id, 'paid_date', true)); ?></p>
+?><p><?php printf(__( 'Hello,<br>You have successfully completed a withdrawal of %s on %s through PayPal. The order details are as follows:', 'multivendorx' ),  wc_price($amount),  get_post_meta($transaction_id, 'paid_date', true)); ?></p>
 <?php } else if($transaction_mode == 'direct_bank') { 
-?><p><?php printf(__( 'Hello,<br>This is to notify you that your withdrawal request for %s on %s has been successfully processed. The order details are as follows:  ', 'dc-woocommerce-multi-vendor' ),  wc_price($amount),  get_post_meta($transaction_id, 'paid_date', true)) ?></p>	
+?><p><?php printf(__( 'Hello,<br>This is to notify you that your withdrawal request for %s on %s has been successfully processed. The order details are as follows:  ', 'multivendorx' ),  wc_price($amount),  get_post_meta($transaction_id, 'paid_date', true)) ?></p>	
 <?php }?>
 <table cellspacing="0" cellpadding="6" style="width: 100%; border: 1px solid #eee;"  border="1" bordercolor="#eee">
 	<thead>

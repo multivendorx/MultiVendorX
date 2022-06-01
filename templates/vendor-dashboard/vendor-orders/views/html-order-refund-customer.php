@@ -17,7 +17,7 @@ global $MVX;
 ?>
 <div class="panel panel-default panel-pading pannel-outer-heading cust-refund-request">
     <div class="panel-heading d-flex">
-        <h3><?php _e('Customer Refund Request', 'dc-woocommerce-multi-vendor'); ?></h3>
+        <h3><?php _e('Customer Refund Request', 'multivendorx'); ?></h3>
     </div>
     <div class="panel-body panel-content-padding">
         <form method="post">
@@ -25,10 +25,10 @@ global $MVX;
             <?php 
             $refund_status = get_post_meta( $order->get_id(), '_customer_refund_order', true ) ? get_post_meta( $order->get_id(), '_customer_refund_order', true ) : '';
             $refund_statuses = array( 
-                '' => __( 'Refund Status','dc-woocommerce-multi-vendor' ),
-                'refund_request' => __( 'Refund Requested', 'dc-woocommerce-multi-vendor' ), 
-                'refund_accept' => __( 'Refund Accepted','dc-woocommerce-multi-vendor' ), 
-                'refund_reject' => __( 'Refund Rejected','dc-woocommerce-multi-vendor' ) 
+                '' => __( 'Refund Status','multivendorx' ),
+                'refund_request' => __( 'Refund Requested', 'multivendorx' ), 
+                'refund_accept' => __( 'Refund Accepted','multivendorx' ), 
+                'refund_reject' => __( 'Refund Rejected','multivendorx' ) 
             );
             ?>
             <select id="refund_order_customer" name="refund_order_customer" onchange='refund_admin_reason(this.value);'>
@@ -39,7 +39,7 @@ global $MVX;
             <div class="reason_select_by_admin" id="reason_select_by_admin" style='display:none;'>
                 <textarea class="woocommerce-Input input-text" name="refund_admin_reason_text" id="refund_admin_reason_text" placeholder="Please Enter some massage"></textarea>
             </div>
-            <button class="button grant_access btn btn-default" name="update_cust_refund_status"><?php echo __('Update status', 'dc-woocommerce-multi-vendor'); ?></button>
+            <button class="button grant_access btn btn-default" name="update_cust_refund_status"><?php echo __('Update status', 'multivendorx'); ?></button>
         </div>
         </form>
     </div>

@@ -26,11 +26,11 @@ if (!class_exists('WC_Email_Vendor_Commission_Transactions')) :
         function __construct() {
             global $MVX;
             $this->id = 'vendor_commissions_transaction';
-            $this->title = __('Transactions (for Vendor)', 'dc-woocommerce-multi-vendor');
-            $this->description = __('New commissions have been credited to vendor.', 'dc-woocommerce-multi-vendor');
+            $this->title = __('Transactions (for Vendor)', 'multivendorx');
+            $this->description = __('New commissions have been credited to vendor.', 'multivendorx');
 
-            //$this->heading = __(' Transaction Details', 'dc-woocommerce-multi-vendor');
-            //$this->subject = __('[{site_title}] The transaction you requested was successfully completed.', 'dc-woocommerce-multi-vendor');
+            //$this->heading = __(' Transaction Details', 'multivendorx');
+            //$this->subject = __('[{site_title}] The transaction you requested was successfully completed.', 'multivendorx');
 
             $this->template_base = $MVX->plugin_path . 'templates/';
             $this->template_html = 'emails/vendor-commissions-transaction.php';
@@ -71,7 +71,7 @@ if (!class_exists('WC_Email_Vendor_Commission_Transactions')) :
          * @return string
          */
         public function get_default_subject() {
-            return apply_filters('mvx_vendor_commissions_transaction_email_subject', __('[{site_title}] The transaction you requested was successfully completed.', 'dc-woocommerce-multi-vendor'), $this->object);
+            return apply_filters('mvx_vendor_commissions_transaction_email_subject', __('[{site_title}] The transaction you requested was successfully completed.', 'multivendorx'), $this->object);
         }
 
         /**
@@ -81,7 +81,7 @@ if (!class_exists('WC_Email_Vendor_Commission_Transactions')) :
          * @return string
          */
         public function get_default_heading() {
-            return apply_filters('mvx_vendor_commissions_transaction_email_heading', __(' Transaction Details', 'dc-woocommerce-multi-vendor'), $this->object);
+            return apply_filters('mvx_vendor_commissions_transaction_email_heading', __(' Transaction Details', 'multivendorx'), $this->object);
         }
 
         /**
@@ -135,29 +135,29 @@ if (!class_exists('WC_Email_Vendor_Commission_Transactions')) :
             global $MVX;
             $this->form_fields = array(
                 'enabled' => array(
-                    'title' => __('Enable/Disable', 'dc-woocommerce-multi-vendor'),
+                    'title' => __('Enable/Disable', 'multivendorx'),
                     'type' => 'checkbox',
-                    'label' => __('Enable notification for this email', 'dc-woocommerce-multi-vendor'),
+                    'label' => __('Enable notification for this email', 'multivendorx'),
                     'default' => 'yes'
                 ),
                 'subject' => array(
-                    'title' => __('Subject', 'dc-woocommerce-multi-vendor'),
+                    'title' => __('Subject', 'multivendorx'),
                     'type' => 'text',
-                    'description' => sprintf(__('This controls the email subject line. Leave it blank to use the default subject: <code>%s</code>.', 'dc-woocommerce-multi-vendor'), $this->get_default_subject()),
+                    'description' => sprintf(__('This controls the email subject line. Leave it blank to use the default subject: <code>%s</code>.', 'multivendorx'), $this->get_default_subject()),
                     'placeholder' => '',
                     'default' => ''
                 ),
                 'heading' => array(
-                    'title' => __('Email Heading', 'dc-woocommerce-multi-vendor'),
+                    'title' => __('Email Heading', 'multivendorx'),
                     'type' => 'text',
-                    'description' => sprintf(__('This controls the main heading contained in the email notification. Leave it blank to use the default heading: <code>%s</code>.', 'dc-woocommerce-multi-vendor'), $this->get_default_heading()),
+                    'description' => sprintf(__('This controls the main heading contained in the email notification. Leave it blank to use the default heading: <code>%s</code>.', 'multivendorx'), $this->get_default_heading()),
                     'placeholder' => '',
                     'default' => ''
                 ),
                 'email_type' => array(
-                    'title' => __('Email Type', 'dc-woocommerce-multi-vendor'),
+                    'title' => __('Email Type', 'multivendorx'),
                     'type' => 'select',
-                    'description' => __('Choose format for the email that will be sent.', 'dc-woocommerce-multi-vendor'),
+                    'description' => __('Choose format for the email that will be sent.', 'multivendorx'),
                     'default' => 'html',
                     'class' => 'email_type wc-enhanced-select',
                     'options' => $this->get_email_type_options()

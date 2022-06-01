@@ -34,7 +34,7 @@ class StoreLogo extends MVX_Elementor_DataTagBase {
      * @return string
      */
     public function get_title() {
-        return __( 'Store Logo', 'dc-woocommerce-multi-vendor' );
+        return __( 'Store Logo', 'multivendorx' );
     }
 
     /**
@@ -72,7 +72,7 @@ class StoreLogo extends MVX_Elementor_DataTagBase {
         $this->add_control(
             'fallback',
             [
-                'label' => __( 'Fallback', 'dc-woocommerce-multi-vendor' ),
+                'label' => __( 'Fallback', 'multivendorx' ),
                 'type' => Controls_Manager::MEDIA,
                 'default' => [
                     'id'  => 0,

@@ -25,7 +25,7 @@ class MVX_Gateway_Stripe_Connect extends MVX_Payment_Gateway {
 
     public function __construct() {
         $this->id = 'stripe_masspay';
-        $this->gateway_title = __('Stripe connect', 'dc-woocommerce-multi-vendor');
+        $this->gateway_title = __('Stripe connect', 'multivendorx');
         $this->payment_gateway = $this->id;
         $this->enabled = mvx_is_module_active('stripe-connect') ? 'Enable' : '';
         // Disconnect Vendor stripe account
@@ -53,7 +53,7 @@ class MVX_Gateway_Stripe_Connect extends MVX_Payment_Gateway {
             if($transfer_obj){
                 $this->record_transaction();
                 if ($this->transaction_id) {
-                    return array('message' => __('New transaction has been initiated', 'dc-woocommerce-multi-vendor'), 'type' => 'success', 'transaction_id' => $this->transaction_id, 'transfer_obj' => $transfer_obj);
+                    return array('message' => __('New transaction has been initiated', 'multivendorx'), 'type' => 'success', 'transaction_id' => $this->transaction_id, 'transfer_obj' => $transfer_obj);
                 }
             } else{
                 return $this->message;
@@ -66,13 +66,13 @@ class MVX_Gateway_Stripe_Connect extends MVX_Payment_Gateway {
     public function validate_request() {
         global $MVX;
         if ($this->enabled != 'Enable') {
-            $this->message[] = array('message' => __('Invalid payment method', 'dc-woocommerce-multi-vendor'), 'type' => 'error');
+            $this->message[] = array('message' => __('Invalid payment method', 'multivendorx'), 'type' => 'error');
             return false;
         } else if (!$this->is_connected && !$this->stripe_user_id) {
-            $this->message[] = array('message' => __('Please connect with stripe account', 'dc-woocommerce-multi-vendor'), 'type' => 'error');
+            $this->message[] = array('message' => __('Please connect with stripe account', 'multivendorx'), 'type' => 'error');
             return false;
         } else if (!$this->secret_key) {
-            $this->message[] = array('message' => __('Stripe setting is not configured properly please contact site administrator', 'dc-woocommerce-multi-vendor'), 'type' => 'error');
+            $this->message[] = array('message' => __('Stripe setting is not configured properly please contact site administrator', 'multivendorx'), 'type' => 'error');
             return false;
         }
         if ($this->transaction_mode != 'admin') {
@@ -90,7 +90,7 @@ class MVX_Gateway_Stripe_Connect extends MVX_Payment_Gateway {
             if ($this->get_transaction_total() > $thesold_amount) {
                 return true;
             } else {
-                $this->message[] = array('message' => __('Minimum thesold amount to withdrawal commission is ' . $thesold_amount, 'dc-woocommerce-multi-vendor'), 'type' => 'error');
+                $this->message[] = array('message' => __('Minimum thesold amount to withdrawal commission is ' . $thesold_amount, 'multivendorx'), 'type' => 'error');
                 return false;
             }
         }
@@ -188,9 +188,9 @@ class MVX_Gateway_Stripe_Connect extends MVX_Payment_Gateway {
                     delete_user_meta($user_id, 'refresh_token');
                     delete_user_meta($user_id, 'stripe_publishable_key');
                     delete_user_meta($user_id, 'stripe_user_id');
-                    wc_add_notice(__('Your account has been disconnected', 'dc-woocommerce-multi-vendor'), 'success');
+                    wc_add_notice(__('Your account has been disconnected', 'multivendorx'), 'success');
                 } else {
-                    wc_add_notice(__('Unable to disconnect your account please try again', 'dc-woocommerce-multi-vendor'), 'error');
+                    wc_add_notice(__('Unable to disconnect your account please try again', 'multivendorx'), 'error');
                 }
             } catch (\Stripe\Error\OAuth\OAuthBase $e) {
                 doProductVendorLOG("Stripe deauthorize error: " . $e->getMessage());

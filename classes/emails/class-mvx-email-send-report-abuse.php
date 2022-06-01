@@ -26,8 +26,8 @@ class WC_Email_Send_Report_Abuse extends WC_Email {
     function __construct() {
         global $MVX;
         $this->id                   = 'mvx_send_report_abuse';
-        $this->title 		= __( 'Report Abuse', 'dc-woocommerce-multi-vendor' );
-        $this->description		= __( 'Report Abuse email via customer.', 'dc-woocommerce-multi-vendor');
+        $this->title 		= __( 'Report Abuse', 'multivendorx' );
+        $this->description		= __( 'Report Abuse email via customer.', 'multivendorx');
 
         $this->template_base = $MVX->plugin_path . 'templates/';
         $this->template_html 	= 'emails/report-abuse-email.php';
@@ -69,7 +69,7 @@ class WC_Email_Send_Report_Abuse extends WC_Email {
      * @return string
      */
     public function get_default_subject() {
-        $subject = __( 'Report an abuse for product {product_name}', 'dc-woocommerce-multi-vendor');
+        $subject = __( 'Report an abuse for product {product_name}', 'multivendorx');
         if( isset($this->object['subject']) && !empty($this->object['subject']) ){
             $subject = $subject . ' - ' . $this->object['subject'];
         }
@@ -83,7 +83,7 @@ class WC_Email_Send_Report_Abuse extends WC_Email {
      * @return string
      */
     public function get_default_heading() {
-        return apply_filters( 'mvx_report_abuse_email_heading', __( "Report abuse for {product_name}", 'dc-woocommerce-multi-vendor'), $this->object );
+        return apply_filters( 'mvx_report_abuse_email_heading', __( "Report abuse for {product_name}", 'multivendorx'), $this->object );
     }
     
     /**

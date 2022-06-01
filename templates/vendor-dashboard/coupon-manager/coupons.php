@@ -14,12 +14,12 @@ if (!defined('ABSPATH')) {
 global $MVX;
 do_action('before_mvx_vendor_dashboard_coupon_list_table');
 $coupon_list_table_headers = apply_filters('mvx_datatable_coupon_list_table_headers', array(
-    'coupons'      => array('label' => __( 'Coupon(s)', 'dc-woocommerce-multi-vendor' ), 'class' => 'name'),
-    'type'    => array('label' => __( 'Coupon type', 'dc-woocommerce-multi-vendor' )),
-    'amount'    => array('label' => __( 'Coupon Amount', 'dc-woocommerce-multi-vendor' )),
-    'uses_limit'=> array('label' => __( 'Usage / Limit', 'dc-woocommerce-multi-vendor' )),
-    'expiry_date'  => array('label' => __( 'Expiry Date', 'dc-woocommerce-multi-vendor' )),
-    'actions'  => array('label' => __( 'Actions', 'dc-woocommerce-multi-vendor' )),
+    'coupons'      => array('label' => __( 'Coupon(s)', 'multivendorx' ), 'class' => 'name'),
+    'type'    => array('label' => __( 'Coupon type', 'multivendorx' )),
+    'amount'    => array('label' => __( 'Coupon Amount', 'multivendorx' )),
+    'uses_limit'=> array('label' => __( 'Usage / Limit', 'multivendorx' )),
+    'expiry_date'  => array('label' => __( 'Expiry Date', 'multivendorx' )),
+    'actions'  => array('label' => __( 'Actions', 'multivendorx' )),
 ), get_current_user_id());
 ?>
 <div class="col-md-12">
@@ -41,7 +41,7 @@ $coupon_list_table_headers = apply_filters('mvx_datatable_coupon_list_table_head
             </tbody>
         </table>
         <div class="mvx-action-container">
-            <a href="<?php echo mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_add_coupon_endpoint', 'seller_dashbaord', 'add-coupon'));?>" class="btn btn-default"><?php echo __('Add Coupon', 'dc-woocommerce-multi-vendor');?></a>
+            <a href="<?php echo mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_add_coupon_endpoint', 'seller_dashbaord', 'add-coupon'));?>" class="btn btn-default"><?php echo __('Add Coupon', 'multivendorx');?></a>
         </div>
     </div>
 </div>
@@ -72,22 +72,22 @@ jQuery(document).ready(function($) {
         serverSide: true,
         responsive: true,
         language: {
-            emptyTable: "<?php echo trim(__('No coupons found!','dc-woocommerce-multi-vendor')); ?>",
-            processing: "<?php echo trim(__('Processing...', 'dc-woocommerce-multi-vendor')); ?>",
-            info: "<?php echo trim(__('Showing _START_ to _END_ of _TOTAL_ coupons','dc-woocommerce-multi-vendor')); ?>",
-            infoEmpty: "<?php echo trim(__('Showing 0 to 0 of 0 coupons','dc-woocommerce-multi-vendor')); ?>",
-            lengthMenu: "<?php echo trim(__('Number of rows _MENU_','dc-woocommerce-multi-vendor')); ?>",
-            zeroRecords: "<?php echo trim(__('No matching coupons found','dc-woocommerce-multi-vendor')); ?>",
+            emptyTable: "<?php echo trim(__('No coupons found!','multivendorx')); ?>",
+            processing: "<?php echo trim(__('Processing...', 'multivendorx')); ?>",
+            info: "<?php echo trim(__('Showing _START_ to _END_ of _TOTAL_ coupons','multivendorx')); ?>",
+            infoEmpty: "<?php echo trim(__('Showing 0 to 0 of 0 coupons','multivendorx')); ?>",
+            lengthMenu: "<?php echo trim(__('Number of rows _MENU_','multivendorx')); ?>",
+            zeroRecords: "<?php echo trim(__('No matching coupons found','multivendorx')); ?>",
             paginate: {
-                next: "<?php echo trim(__('Next', 'dc-woocommerce-multi-vendor')); ?>",
-                previous: "<?php echo trim(__('Previous', 'dc-woocommerce-multi-vendor')); ?>"
+                next: "<?php echo trim(__('Next', 'multivendorx')); ?>",
+                previous: "<?php echo trim(__('Previous', 'multivendorx')); ?>"
             }
         },
         ajax:{
             url : '<?php echo add_query_arg( 'action', 'mvx_vendor_coupon_list', $MVX->ajax_url() ); ?>', 
             type: "post", 
             error: function(xhr, status, error) {
-                $("#coupons_table tbody").append('<tr class="odd"><td valign="top" colspan="4" class="dataTables_empty" style="text-align:center;">'+error+' - <a href="javascript:window.location.reload();"><?php _e('Reload', 'dc-woocommerce-multi-vendor'); ?></a></td></tr>');
+                $("#coupons_table tbody").append('<tr class="odd"><td valign="top" colspan="4" class="dataTables_empty" style="text-align:center;">'+error+' - <a href="javascript:window.location.reload();"><?php _e('Reload', 'multivendorx'); ?></a></td></tr>');
                 $("#coupons_table_processing").css("display","none");
             }
         },

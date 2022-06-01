@@ -746,8 +746,7 @@ class MVX_REST_API {
 
         $vendor_application_data = get_user_meta(absint($vendor_id), 'mvx_vendor_fields', true);
         
-        $applcation_data_display .= '<h2>' . __('Vendor Application Data', 'dc-woocommerce-multi-vendor') . '</h2>';
-
+        $applcation_data_display .= '<h2>' . __('Vendor Application Data', 'multivendorx') . '</h2>';
         if (!empty($vendor_application_data) && is_array($vendor_application_data)) {
             foreach ($vendor_application_data as $key => $value) {
                 if ($value['type'] == 'recaptcha') continue;
@@ -788,12 +787,12 @@ class MVX_REST_API {
                 $applcation_data_display .= '</div>';
             }
         } else {
-            $applcation_data_display .= '<div class="mvx-no-form-data">' . __('No Vendor Application archive data!!', 'dc-woocommerce-multi-vendor') . '</div>';
+            $applcation_data_display .= '<div class="mvx-no-form-data">' . __('No Vendor Application archive data!!', 'multivendorx') . '</div>';
         }
 
         $mvx_vendor_rejection_notes = unserialize( get_user_meta( absint($vendor_id), 'mvx_vendor_rejection_notes', true ) );
         if(is_array($mvx_vendor_rejection_notes) && count($mvx_vendor_rejection_notes) > 0) {
-            $applcation_data_display .= '<h2>' . __('Notes', 'dc-woocommerce-multi-vendor') . '</h2>';
+            $applcation_data_display .= '<h2>' . __('Notes', 'multivendorx') . '</h2>';
             $applcation_data_display .= '<div class="note-clm-wrap">';
             foreach($mvx_vendor_rejection_notes as $time => $notes) {
                 $author_info = get_userdata($notes['note_by']);
@@ -1010,7 +1009,7 @@ class MVX_REST_API {
                 ],
                 'plugin_plan'      => [
                     'label' => esc_html__( 'Plugin subscription plan', 'rank-math' ),
-                    'value' => apply_filters('mvx_current_subscription_plan', __('Free', 'dc-woocommerce-multi-vendor') ),
+                    'value' => apply_filters('mvx_current_subscription_plan', __('Free', 'multivendorx') ),
                 ],
                 'active_modules'   => [
                     'label' => esc_html__( 'Active modules', 'rank-math' ),
@@ -1076,10 +1075,10 @@ class MVX_REST_API {
         } else if ($type == 'visitor') {
             $delete = $wpdb->query("TRUNCATE {$wpdb->prefix}mvx_visitors_stats");
             if ( $delete ) {
-                $message = __( 'MVX visitors stats successfully deleted', 'dc-woocommerce-multi-vendor' );
+                $message = __( 'MVX visitors stats successfully deleted', 'multivendorx' );
             } else {
                 $ran     = false;
-                $message = __( 'There was an error calling this tool. There is no callback present.', 'dc-woocommerce-multi-vendor' );
+                $message = __( 'There was an error calling this tool. There is no callback present.', 'multivendorx' );
             }
         } else if ($type == 'migrate_order') {
             delete_option('mvx_orders_table_migrated');
@@ -1110,7 +1109,7 @@ class MVX_REST_API {
                 $vendor_term_id = get_user_meta($comment_vendor_id, '_vendor_term_id', true);
                 $rating_val_array = mvx_get_vendor_review_info($vendor_term_id);
                 $rating = round($rating_val_array['avg_rating'], 1);
-                $review = '<span itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating" class="star-rating" title='. sprintf(__('Rated %s out of 5', 'dc-woocommerce-multi-vendor'), $rating). '>
+                $review = '<span itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating" class="star-rating" title='. sprintf(__('Rated %s out of 5', 'multivendorx'), $rating). '>
                         <span style="width: ' . ( round($rating_val_array['avg_rating']) / 5 ) * 100 .'%"><strong itemprop="ratingValue">'. ($rating). '</strong> '. ('out of 5').'</span>
                     </span>';
                 if (stripos($mvx_vendor_review->comment_content, $value) !== false) {     
@@ -1200,43 +1199,43 @@ class MVX_REST_API {
 
         $all_fields_data['others_fileds_section1'] = array(
             array(
-                'label' =>  __('Dashboard', 'dc-woocommerce-multi-vendor'),
-                'desc'  =>  __('Dashboard Submenu page', 'dc-woocommerce-multi-vendor'),
+                'label' =>  __('Dashboard', 'multivendorx'),
+                'desc'  =>  __('Dashboard Submenu page', 'multivendorx'),
                 'link'  =>  admin_url('admin.php?page=mvx#&submenu=dashboard')
             ),
             array(
-                'label' =>  __('Work Board', 'dc-woocommerce-multi-vendor'),
-                'desc'  =>  __('Work Board Submenu page', 'dc-woocommerce-multi-vendor'),
+                'label' =>  __('Work Board', 'multivendorx'),
+                'desc'  =>  __('Work Board Submenu page', 'multivendorx'),
                 'link'  =>  admin_url('admin.php?page=mvx#&submenu=work-board&name=activity-reminder')
             ),
             array(
-                'label' =>  __('Modules', 'dc-woocommerce-multi-vendor'),
-                'desc'  =>  __('Modules Submenu page', 'dc-woocommerce-multi-vendor'),
+                'label' =>  __('Modules', 'multivendorx'),
+                'desc'  =>  __('Modules Submenu page', 'multivendorx'),
                 'link'  =>  admin_url('admin.php?page=mvx#&submenu=modules')
             ),
             array(
-                'label' =>  __('Vendors', 'dc-woocommerce-multi-vendor'),
-                'desc'  =>  __('Vendors Submenu page', 'dc-woocommerce-multi-vendor'),
+                'label' =>  __('Vendors', 'multivendorx'),
+                'desc'  =>  __('Vendors Submenu page', 'multivendorx'),
                 'link'  =>  admin_url('admin.php?page=mvx#&submenu=vendor')
             ),
             array(
-                'label' =>  __('Payments', 'dc-woocommerce-multi-vendor'),
-                'desc'  =>  __('Payments Submenu page', 'dc-woocommerce-multi-vendor'),
+                'label' =>  __('Payments', 'multivendorx'),
+                'desc'  =>  __('Payments Submenu page', 'multivendorx'),
                 'link'  =>  admin_url('admin.php?page=mvx#&submenu=payment&name=payment-masspay')
             ),
             array(
-                'label' =>  __('Settings', 'dc-woocommerce-multi-vendor'),
-                'desc'  =>  __('Settings Submenu page', 'dc-woocommerce-multi-vendor'),
+                'label' =>  __('Settings', 'multivendorx'),
+                'desc'  =>  __('Settings Submenu page', 'multivendorx'),
                 'link'  =>  admin_url('admin.php?page=mvx#&submenu=settings&name=settings-general')
             ),
             array(
-                'label' =>  __('Analytics', 'dc-woocommerce-multi-vendor'),
-                'desc'  =>  __('Analytics Submenu page', 'dc-woocommerce-multi-vendor'),
+                'label' =>  __('Analytics', 'multivendorx'),
+                'desc'  =>  __('Analytics Submenu page', 'multivendorx'),
                 'link'  =>  admin_url('admin.php?page=mvx#&submenu=analytics&name=admin-overview')
             ),
             array(
-                'label' =>  __('Status and Tools', 'dc-woocommerce-multi-vendor'),
-                'desc'  =>  __('Status and Tools Submenu page', 'dc-woocommerce-multi-vendor'),
+                'label' =>  __('Status and Tools', 'multivendorx'),
+                'desc'  =>  __('Status and Tools Submenu page', 'multivendorx'),
                 'link'  =>  admin_url('admin.php?page=mvx#&submenu=status-tools&name=version-control')
             )
         );
@@ -1581,7 +1580,7 @@ class MVX_REST_API {
                 $vendor_term_id = get_user_meta($comment_vendor_id, '_vendor_term_id', true);
                 $rating_val_array = mvx_get_vendor_review_info($vendor_term_id);
                 $rating = round($rating_val_array['avg_rating'], 1);
-                $review = '<span itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating" class="star-rating" title='. sprintf(__('Rated %s out of 5', 'dc-woocommerce-multi-vendor'), $rating). '>
+                $review = '<span itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating" class="star-rating" title='. sprintf(__('Rated %s out of 5', 'multivendorx'), $rating). '>
                         <span style="width: ' . ( round($rating_val_array['avg_rating']) / 5 ) * 100 .'%"><strong itemprop="ratingValue">'. ($rating). '</strong> '. ('out of 5').'</span>
                     </span>';
 
@@ -1709,10 +1708,10 @@ class MVX_REST_API {
                 $iban = get_user_meta($currentvendor->id, '_vendor_iban', true);
                 $amount = get_post_meta($transaction->ID, 'amount', true) - get_post_meta($transaction->ID, 'transfer_charge', true) - get_post_meta($transaction->ID, 'gateway_charge', true);
                 $address_array = apply_filters('mvx_todo_pending_bank_transfer_row_account_details_data', array(
-                __('Account Name-', 'dc-woocommerce-multi-vendor') . ' ' . $account_name,
-                __('Account No -', 'dc-woocommerce-multi-vendor') . ' ' . $account_no,
-                __('Bank Name -', 'dc-woocommerce-multi-vendor') . ' ' . $bank_name,
-                __('IBAN -', 'dc-woocommerce-multi-vendor') . ' ' . $iban,
+                __('Account Name-', 'multivendorx') . ' ' . $account_name,
+                __('Account No -', 'multivendorx') . ' ' . $account_no,
+                __('Bank Name -', 'multivendorx') . ' ' . $bank_name,
+                __('IBAN -', 'multivendorx') . ' ' . $iban,
                     ), $currentvendor, $transaction);
 
                 $pending_list[] = array(
@@ -1830,14 +1829,14 @@ class MVX_REST_API {
             [
                 'key'       => 'knowladgebase_title',
                 'type'      => 'text',
-                'label'     => __( 'Title (required)', 'dc-woocommerce-multi-vendor' ),
+                'label'     => __( 'Title (required)', 'multivendorx' ),
                 'props'     => array(
                     'required'  => true
                 ),
                 'database_value' => isset($knowladgebase_title) ? $knowladgebase_title : '',
             ],
             [
-                'label' => __('Enter Content', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Enter Content', 'multivendorx'),
                 'type' => 'textarea', 
                 'key' => 'knowladgebase_content', 
                 'database_value' => $knowladgebase_content
@@ -1918,7 +1917,7 @@ class MVX_REST_API {
             [
                 'key'       => 'announcement_title',
                 'type'      => 'text',
-                'label'     => __( 'Title (required)', 'dc-woocommerce-multi-vendor' ),
+                'label'     => __( 'Title (required)', 'multivendorx' ),
                 'props'     => array(
                     'required'  => true
                 ),
@@ -1927,13 +1926,13 @@ class MVX_REST_API {
             [
                 'key'       => 'announcement_url',
                 'type'      => 'url',
-                'label'     => __( 'Enter Url', 'dc-woocommerce-multi-vendor' ),
+                'label'     => __( 'Enter Url', 'multivendorx' ),
                 'props'     => array(
                 ),
                 'database_value' => isset($announcement_url) ? $announcement_url : '',
             ],
             [
-                'label' => __('Enter Content', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Enter Content', 'multivendorx'),
                 'type' => 'textarea', 
                 'key' => 'announcement_content', 
                 'database_value' => $announcement_content
@@ -1941,7 +1940,7 @@ class MVX_REST_API {
             [
                 'key'       => 'announcement_vendors',
                 'type'      => 'multi-select',
-                'label'     => __( 'Vendors', 'dc-woocommerce-multi-vendor' ),
+                'label'     => __( 'Vendors', 'multivendorx' ),
                 'options'   => ($MVX->vendor_rest_api->mvx_show_vendor_name()->data),
                 'database_value' => isset($show_anouncemnt_vendor) ? $show_anouncemnt_vendor : '',
             ],
@@ -2055,18 +2054,18 @@ class MVX_REST_API {
             }
 
             // set option vendor payment method
-            $payment_mode = array('payment_mode' => __('Payment Mode', 'dc-woocommerce-multi-vendor'));
+            $payment_mode = array('payment_mode' => __('Payment Mode', 'multivendorx'));
             if (mvx_is_module_active('paypal-masspay')) {
-                $payment_mode['paypal_masspay'] = __('PayPal Masspay', 'dc-woocommerce-multi-vendor');
+                $payment_mode['paypal_masspay'] = __('PayPal Masspay', 'multivendorx');
             }
             if (mvx_is_module_active('paypal-payout')) {
-                $payment_mode['paypal_payout'] = __('PayPal Payout', 'dc-woocommerce-multi-vendor');
+                $payment_mode['paypal_payout'] = __('PayPal Payout', 'multivendorx');
             }
             if (mvx_is_module_active('stripe-connect')) {
-                $payment_mode['stripe_masspay'] = __('Stripe Connect', 'dc-woocommerce-multi-vendor');
+                $payment_mode['stripe_masspay'] = __('Stripe Connect', 'multivendorx');
             }
             if (mvx_is_module_active('bank-payment')) {
-                $payment_mode['direct_bank'] = __('Direct Bank', 'dc-woocommerce-multi-vendor');
+                $payment_mode['direct_bank'] = __('Direct Bank', 'multivendorx');
             }
             $vendor_payment_mode_select = apply_filters('mvx_vendor_payment_mode', $payment_mode);
             $vendor_payment_method_display_section  =   array();
@@ -2096,9 +2095,9 @@ class MVX_REST_API {
             $vendor_bank_account_number = get_user_meta($vendor_id, '_vendor_bank_account_number', true);
 
 
-            $_vendor_shipping_policy = get_user_meta( $user->data->ID, 'vendor_shipping_policy', true ) ? get_user_meta( $user->data->ID, 'vendor_shipping_policy', true ) : __( 'No policy found', 'dc-woocommerce-multi-vendor' );
-            $_vendor_refund_policy = get_user_meta( $user->data->ID, 'vendor_refund_policy', true ) ? get_user_meta( $user->data->ID, 'vendor_refund_policy', true ) : __( 'No policy found', 'dc-woocommerce-multi-vendor' );
-            $_vendor_cancellation_policy = get_user_meta( $user->data->ID, 'vendor_cancellation_policy', true ) ? get_user_meta( $user->data->ID, 'vendor_cancellation_policy', true ) : __( 'No policy found', 'dc-woocommerce-multi-vendor' );
+            $_vendor_shipping_policy = get_user_meta( $user->data->ID, 'vendor_shipping_policy', true ) ? get_user_meta( $user->data->ID, 'vendor_shipping_policy', true ) : __( 'No policy found', 'multivendorx' );
+            $_vendor_refund_policy = get_user_meta( $user->data->ID, 'vendor_refund_policy', true ) ? get_user_meta( $user->data->ID, 'vendor_refund_policy', true ) : __( 'No policy found', 'multivendorx' );
+            $_vendor_cancellation_policy = get_user_meta( $user->data->ID, 'vendor_cancellation_policy', true ) ? get_user_meta( $user->data->ID, 'vendor_cancellation_policy', true ) : __( 'No policy found', 'multivendorx' );
 
 
             $vendor_phone = get_user_meta( $user->data->ID, '_vendor_phone', true ) ? get_user_meta( $user->data->ID, '_vendor_phone', true ) : '';
@@ -2169,13 +2168,13 @@ class MVX_REST_API {
             $shipping_options = [];
             
             if (mvx_is_module_active('zone-shipping')) {
-                $shipping_options['distance_by_zone'] = __('Shipping by Zone', 'dc-woocommerce-multi-vendor');
+                $shipping_options['distance_by_zone'] = __('Shipping by Zone', 'multivendorx');
             }
             if (mvx_is_module_active('distance-shipping')) {
-                $shipping_options['distance_by_shipping'] = __('Shipping by Distance', 'dc-woocommerce-multi-vendor');
+                $shipping_options['distance_by_shipping'] = __('Shipping by Distance', 'multivendorx');
             }
             if (mvx_is_module_active('country-shipping')) {
-                $shipping_options['shipping_by_country'] = __('Shipping by Country', 'dc-woocommerce-multi-vendor');
+                $shipping_options['shipping_by_country'] = __('Shipping by Country', 'multivendorx');
             }
             foreach ($shipping_options as $shipping_key => $shipping_value) {
                 $shipping_options_list[] = array(
@@ -2215,8 +2214,8 @@ class MVX_REST_API {
             [
                 'key'       => 'user_login',
                 'type'      => 'text',
-                'label'     => __( 'Username (required)', 'dc-woocommerce-multi-vendor' ),
-                'desc' => __('Usernames cannot be changed.', 'dc-woocommerce-multi-vendor'),
+                'label'     => __( 'Username (required)', 'multivendorx' ),
+                'desc' => __('Usernames cannot be changed.', 'multivendorx'),
                 'props'     => array(
                     'required'  => true
                 ),
@@ -2225,8 +2224,8 @@ class MVX_REST_API {
             [
                 'key'       => 'password',
                 'type'      => 'password',
-                'label'     => __( 'Password', 'dc-woocommerce-multi-vendor' ),
-                'desc'     => __('Keep it blank for not to update.', 'dc-woocommerce-multi-vendor'),
+                'label'     => __( 'Password', 'multivendorx' ),
+                'desc'     => __('Keep it blank for not to update.', 'multivendorx'),
                 'props'     => array(
                     'required'  => true
                 ),
@@ -2235,19 +2234,19 @@ class MVX_REST_API {
             [
                 'key'       => 'first_name',
                 'type'      => 'text',
-                'label'     => __( 'First Name', 'dc-woocommerce-multi-vendor' ),
+                'label'     => __( 'First Name', 'multivendorx' ),
                 'database_value' => isset($user->first_name) ? $user->first_name : '',
             ],
             [
                 'key'       => 'last_name',
                 'type'      => 'text',
-                'label'     => __( 'Last Name', 'dc-woocommerce-multi-vendor' ),
+                'label'     => __( 'Last Name', 'multivendorx' ),
                 'database_value' => isset($user->last_name) ? $user->last_name : '',
             ],
             [
                 'key'       => 'user_email',
                 'type'      => 'email',
-                'label'     => __( 'Email (required)', 'dc-woocommerce-multi-vendor' ),
+                'label'     => __( 'Email (required)', 'multivendorx' ),
                 'props'     => array(
                     'required'  => true
                 ),
@@ -2256,7 +2255,7 @@ class MVX_REST_API {
             [
                 'key'       => 'user_nicename',
                 'type'      => 'text',
-                'label'     => __( 'Nick Name (required)', 'dc-woocommerce-multi-vendor' ),
+                'label'     => __( 'Nick Name (required)', 'multivendorx' ),
                 'props'     => array(
                     'required'  => true
                 ),
@@ -2265,15 +2264,15 @@ class MVX_REST_API {
             [
                 'key'       => 'display_name',
                 'type'      => 'select',
-                'label'     => __( 'Display name', 'dc-woocommerce-multi-vendor' ),
-                'desc'      => __( '', 'dc-woocommerce-multi-vendor' ),
+                'label'     => __( 'Display name', 'multivendorx' ),
+                'desc'      => __( '', 'multivendorx' ),
                 'options' => $display_name_option,
                 'restricted_page'   => '?page=vendors&name=add_new',
                 'database_value' => isset($showdisplayname) ? $showdisplayname : '',
             ],
             [
                 'key'    => 'vendor_profile_image',
-                'label'   => __( 'Profile Image', 'dc-woocommerce-multi-vendor' ),
+                'label'   => __( 'Profile Image', 'multivendorx' ),
                 'type'    => 'file',
                 'width' =>  75,
                 'height'    => 75,
@@ -2285,7 +2284,7 @@ class MVX_REST_API {
                 'type'      => 'button',
                 'api_link'  => 'mvx_module/v1/active_suspend_vendor',
                 'vendor_status' => $is_block ? 'activate' : 'suspend',
-                'vendor_status_label' => $is_block ? __('Activate', 'dc-woocommerce-multi-vendor') : __('Suspend', 'dc-woocommerce-multi-vendor'),
+                'vendor_status_label' => $is_block ? __('Activate', 'multivendorx') : __('Suspend', 'multivendorx'),
                 'vendor_id' => $vendor_id,
                 'database_value' => array(),
             ],
@@ -2294,33 +2293,33 @@ class MVX_REST_API {
 
         $settings_fields_data['vendor-store'] =   [
             [
-                'label' => __('Store Name *', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Store Name *', 'multivendorx'),
                 'type' => 'text',
                 'key' => 'vendor_page_title',
                 'database_value' => isset($user_vendor->page_title) ? $user_vendor->page_title : '' 
             ],
             [
-                'label' => __('Store Slug *', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Store Slug *', 'multivendorx'),
                 'type' => 'text',
                 'key' => 'vendor_page_slug',
-                'desc' => sprintf(__('Store URL will be something like - %s', 'dc-woocommerce-multi-vendor'), trailingslashit(get_home_url()) . 'vendor_slug'),
+                'desc' => sprintf(__('Store URL will be something like - %s', 'multivendorx'), trailingslashit(get_home_url()) . 'vendor_slug'),
                 'database_value' => isset($user_vendor->page_slug) ? $user_vendor->page_slug : '',
             ],
             [
-                'label' => __('Store Description', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Store Description', 'multivendorx'),
                 'type' => 'textarea', 
                 'key' => 'vendor_description', 
                 'database_value' => isset($vendor_description) ? $vendor_description : ''
             ],
 
             [
-                'label' => __('Phone', 'dc-woocommerce-multi-vendor'), 
+                'label' => __('Phone', 'multivendorx'), 
                 'type' => 'number', 
                 'key' => 'vendor_phone', 
                 'database_value' => isset($vendor_phone) ? $vendor_phone : ''
             ],
             [
-                'label' => __('Address', 'dc-woocommerce-multi-vendor'), 
+                'label' => __('Address', 'multivendorx'), 
                 'type' => 'text', 
                 'key' => 'vendor_address_1', 
                 'database_value' => isset($vendor_address_1) ? $vendor_address_1 : ''
@@ -2332,7 +2331,7 @@ class MVX_REST_API {
                 'database_value' => isset($vendor_address_2) ? $vendor_address_2 : ''
             ],
             [
-                'label' => __('Country', 'dc-woocommerce-multi-vendor'), 
+                'label' => __('Country', 'multivendorx'), 
                 'type' => 'country', 
                 'key' => 'vendor_country', 
                 'class' => 'country_to_state regular-text', 
@@ -2340,7 +2339,7 @@ class MVX_REST_API {
                 'database_value' => isset($vendor_country_code_data) ? $vendor_country_code_data : ''
             ],
             [
-                'label' => __('State', 'dc-woocommerce-multi-vendor'), 
+                'label' => __('State', 'multivendorx'), 
                 'type' => 'state', 
                 'key' => 'vendor_state', 
                 'class' => 'regular-text', 
@@ -2348,19 +2347,19 @@ class MVX_REST_API {
                 'database_value' => isset($vendor_state_code_data) ? $vendor_state_code_data : ''
             ],
             [
-                'label' => __('City', 'dc-woocommerce-multi-vendor'), 
+                'label' => __('City', 'multivendorx'), 
                 'type' => 'text', 
                 'key' => 'vendor_city', 
                 'database_value' => isset($vendor_city) ? $vendor_city : ''
             ],
             [
-                'label' => __('ZIP code', 'dc-woocommerce-multi-vendor'), 
+                'label' => __('ZIP code', 'multivendorx'), 
                 'type' => 'text', 
                 'key' => 'vendor_postcode', 
                 'database_value' => isset($vendor_postcode) ? $vendor_postcode : ''
             ],
             [
-                'label' => __('Timezone', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Timezone', 'multivendorx'),
                 'type' => 'text', 
                 'key' => 'timezone_string',
                 'props'     => array(
@@ -2369,7 +2368,7 @@ class MVX_REST_API {
                 'database_value' => isset($tzstring) ? $tzstring : '', 
             ],
             /*[
-                'label' => __('Vendor Map', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Vendor Map', 'multivendorx'),
                 'type' => 'map', 
                 'key' => 'vendor_store_map',
                 'database_value' => '', 
@@ -2379,31 +2378,31 @@ class MVX_REST_API {
 
         $settings_fields_data['vendor-social'] =   [
             [
-                'label' => __('Facebook', 'dc-woocommerce-multi-vendor'), 
+                'label' => __('Facebook', 'multivendorx'), 
                 'type' => 'url', 
                 'key' => 'vendor_fb_profile', 
                 'database_value' => isset($vendor_fb_profile) ? $vendor_fb_profile : ''
             ],
             [
-                'label' => __('Twitter', 'dc-woocommerce-multi-vendor'), 
+                'label' => __('Twitter', 'multivendorx'), 
                 'type' => 'url', 
                 'key' => 'vendor_twitter_profile', 
                 'database_value' => isset($vendor_twitter_profile) ? $vendor_twitter_profile : ''
             ],
             [
-                'label' => __('LinkedIn', 'dc-woocommerce-multi-vendor'), 
+                'label' => __('LinkedIn', 'multivendorx'), 
                 'type' => 'url', 
                 'key' => 'vendor_linkdin_profile', 
                 'database_value' => isset($vendor_linkdin_profile) ? $vendor_linkdin_profile : ''
             ],
             [
-                'label' => __('YouTube', 'dc-woocommerce-multi-vendor'), 
+                'label' => __('YouTube', 'multivendorx'), 
                 'type' => 'url', 
                 'key' => 'vendor_youtube', 
                 'database_value' => isset($vendor_youtube_profile) ? $vendor_youtube_profile : ''
             ],
             [
-                'label' => __('Instagram', 'dc-woocommerce-multi-vendor'), 
+                'label' => __('Instagram', 'multivendorx'), 
                 'type' => 'url', 
                 'key' => 'vendor_instagram', 
                 'database_value' => isset($vendor_instagram_profile) ? $vendor_instagram_profile : ''
@@ -2414,19 +2413,20 @@ class MVX_REST_API {
                 [
                     'key'       => 'vendor_payment_mode',
                     'type'      => 'select',
-                    'label'     => __( 'Choose Payment Method', 'dc-woocommerce-multi-vendor' ),
+                    'label'     => __( 'Choose Payment Method', 'multivendorx' ),
                     'options'   => isset($vendor_payment_method_display_section) ? $vendor_payment_method_display_section : array(),
                     'database_value' => isset($showpayment_method) ? $showpayment_method : '',
                 ],
                 [
-                    'label' => __('Commission Amount', 'dc-woocommerce-multi-vendor'), 
+                    'label' => __('Commission Amount', 'multivendorx'), 
                     'type' => 'number', 
                     'key' => 'vendor_commission',
                     'placeholder' => '0.00',
-                    'database_value' => isset($commission_value) ? $commission_value : ''
+                    'database_value' => isset($commission_value) ? $commission_value : '',
+                    'desc'  =>  'To set vendor commission as 0 pass "0" in the Commission Amount filed.'
                 ],
                 [
-                    'label' => __('Paypal Email', 'dc-woocommerce-multi-vendor'), 
+                    'label' => __('Paypal Email', 'multivendorx'), 
                     'type' => 'text', 
                     'key' => 'vendor_paypal_email',
                     'placeholder' => '0.00',
@@ -2435,7 +2435,7 @@ class MVX_REST_API {
                     'database_value' => isset($vendor_paypal_email) ? $vendor_paypal_email : ''
                 ],
                 [
-                    'label' => __('Paypal Email', 'dc-woocommerce-multi-vendor'), 
+                    'label' => __('Paypal Email', 'multivendorx'), 
                     'type' => 'text', 
                     'key' => 'vendor_paypal_email',
                     'placeholder' => '0.00',
@@ -2445,7 +2445,7 @@ class MVX_REST_API {
                 ],
 
                /* [
-                    'label' => __('Account type', 'dc-woocommerce-multi-vendor'), 
+                    'label' => __('Account type', 'multivendorx'), 
                     'type' => 'select', 
                     'key' => 'vendor_bank_account_type', 
                     'label_for' => 'vendor_bank_account_type', 
@@ -2454,7 +2454,7 @@ class MVX_REST_API {
                     'database_value' => $vendor_obj->bank_account_type, 
                 ],*/
                 [
-                    'label' => __('Bank Name', 'dc-woocommerce-multi-vendor'), 
+                    'label' => __('Bank Name', 'multivendorx'), 
                     'type' => 'text',
                     'depend'    => 'vendor_payment_mode',
                     'dependvalue'       =>  'direct_bank',
@@ -2463,7 +2463,7 @@ class MVX_REST_API {
                 ],
 
                 [
-                    'label' => __('ABA Routing Number', 'dc-woocommerce-multi-vendor'), 
+                    'label' => __('ABA Routing Number', 'multivendorx'), 
                     'type' => 'text',
                     'depend'    => 'vendor_payment_mode',
                     'dependvalue'       =>  'direct_bank',
@@ -2472,7 +2472,7 @@ class MVX_REST_API {
                 ],
 
                 [
-                    'label' => __('Destination Currency', 'dc-woocommerce-multi-vendor'), 
+                    'label' => __('Destination Currency', 'multivendorx'), 
                     'type' => 'text',
                     'depend'    => 'vendor_payment_mode',
                     'dependvalue'       =>  'direct_bank',
@@ -2480,7 +2480,7 @@ class MVX_REST_API {
                     'database_value' => isset($vendor_destination_currency) ? $vendor_destination_currency : ''
                 ],
                 [
-                    'label' => __('Bank Address', 'dc-woocommerce-multi-vendor'), 
+                    'label' => __('Bank Address', 'multivendorx'), 
                     'type' => 'textarea', 
                     'key' => 'vendor_bank_address', 
                     'depend'    => 'vendor_payment_mode',
@@ -2490,7 +2490,7 @@ class MVX_REST_API {
                     'database_value' => isset($vendor_bank_address) ? $vendor_bank_address : ''
                 ],
                 [
-                    'label' => __('IBAN', 'dc-woocommerce-multi-vendor'), 
+                    'label' => __('IBAN', 'multivendorx'), 
                     'type' => 'text',
                     'depend'    => 'vendor_payment_mode',
                     'dependvalue'       =>  'direct_bank',
@@ -2498,7 +2498,7 @@ class MVX_REST_API {
                     'database_value' => isset($vendor_iban) ? $vendor_iban : ''
                 ],
                 [
-                    'label' => __('Account Holder Name', 'dc-woocommerce-multi-vendor'), 
+                    'label' => __('Account Holder Name', 'multivendorx'), 
                     'type' => 'text',
                     'depend'    => 'vendor_payment_mode',
                     'dependvalue'       =>  'direct_bank',
@@ -2506,7 +2506,7 @@ class MVX_REST_API {
                     'database_value' => isset($vendor_account_holder_name) ? $vendor_account_holder_name : ''
                 ],
                 [
-                    'label' => __('Account Number', 'dc-woocommerce-multi-vendor'), 
+                    'label' => __('Account Number', 'multivendorx'), 
                     'type' => 'text',
                     'depend'    => 'vendor_payment_mode',
                     'dependvalue'       =>  'direct_bank',
@@ -2517,19 +2517,19 @@ class MVX_REST_API {
 
         $settings_fields_data['vendor-policy'] =   [
             [
-                'label' => __('Shipping Policy', 'dc-woocommerce-multi-vendor'), 
+                'label' => __('Shipping Policy', 'multivendorx'), 
                 'type' => 'textarea', 
                 'key' => 'vendor_shipping_policy', 
                 'database_value' => isset($_vendor_shipping_policy) ? $_vendor_shipping_policy : ''
             ],
             [
-                'label' => __('Refund Policy', 'dc-woocommerce-multi-vendor'), 
+                'label' => __('Refund Policy', 'multivendorx'), 
                 'type' => 'textarea', 
                 'key' => 'vendor_refund_policy', 
                 'database_value' => isset($_vendor_refund_policy) ? $_vendor_refund_policy : ''
             ],
             [
-                'label' => __('Cancellation/Return/Exchange Policy', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Cancellation/Return/Exchange Policy', 'multivendorx'),
                  'type' => 'textarea', 
                  'key' => 'vendor_cancellation_policy', 
                  'database_value' => isset($_vendor_cancellation_policy) ? $_vendor_cancellation_policy : ''
@@ -2538,34 +2538,34 @@ class MVX_REST_API {
 
         $settings_fields_data['distance-shipping'] =   [
             [
-                'label' => __('Default Cost', 'dc-woocommerce-multi-vendor'), 
+                'label' => __('Default Cost', 'multivendorx'), 
                 'type' => 'text', 
                 'key' => 'mvx_byd_default_cost',
                 'placeholder' => '0.00',
                 'database_value' => isset($mvx_shipping_by_distance['_default_cost']) ? $mvx_shipping_by_distance['_default_cost'] : ''
             ],
             [
-                'label' => __('Max Distance (km)', 'dc-woocommerce-multi-vendor'), 
+                'label' => __('Max Distance (km)', 'multivendorx'), 
                 'type' => 'text',
-                'placeholder' => __('No Limit', 'dc-woocommerce-multi-vendor'), 
+                'placeholder' => __('No Limit', 'multivendorx'), 
                 'key' => 'mvx_byd_max_distance', 
                 'database_value' => isset($mvx_shipping_by_distance['_max_distance']) ? $mvx_shipping_by_distance['_max_distance'] : ''
             ],
             /*[
-                'label' => __('Enable Local Pickup', 'dc-woocommerce-multi-vendor'), 
+                'label' => __('Enable Local Pickup', 'multivendorx'), 
                 'type' => 'checkbox', 
                 'key' => 'mvx_byd_enable_local_pickup',
                 'options' => array(
                     array(
                         'key'=> "mvx_byd_enable_local_pickup",
-                        'label'=> __('', 'dc-woocommerce-multi-vendor'),
+                        'label'=> __('', 'multivendorx'),
                         'value'=> "mvx_byd_enable_local_pickup"
                     ),
                 ),
                 'database_value' => isset($mvx_shipping_by_distance['_enable_local_pickup']) ? $mvx_shipping_by_distance['_enable_local_pickup'] : ''
             ],*/
             [
-                'label' => __('Local Pickup Cost', 'dc-woocommerce-multi-vendor'), 
+                'label' => __('Local Pickup Cost', 'multivendorx'), 
                 'type' => 'text', 
                 'key' => 'mvx_byd_local_pickup_cost', 
                 'placeholder' => '0.00',
@@ -2574,24 +2574,24 @@ class MVX_REST_API {
             [
                 'key'       => 'mvx_shipping_by_distance_rates',
                 'type'      => 'nested',
-                'label'     => __( 'Distance-Cost Rules:', 'dc-woocommerce-multi-vendor' ),
+                'label'     => __( 'Distance-Cost Rules:', 'multivendorx' ),
                 'parent_options' => array(
                     array(
                         'key'=>'mvx_distance_rule',
                         'type'=> "select",
                         'class' => "nested-parent-class",
                         'name' => "nested-parent-name",
-                        'label'=> __('Distance Rule', 'dc-woocommerce-multi-vendor'),
+                        'label'=> __('Distance Rule', 'multivendorx'),
                         'options' => array(
                             array(
                                 'key'=> "up_to",
-                                'label'=> __('Distance up to', 'dc-woocommerce-multi-vendor'),
-                                'value'=> __('up_to', 'dc-woocommerce-multi-vendor'),
+                                'label'=> __('Distance up to', 'multivendorx'),
+                                'value'=> __('up_to', 'multivendorx'),
                             ),
                             array(
                                 'key'=> "more_than",
-                                'label'=> __('Distance more than', 'dc-woocommerce-multi-vendor'),
-                                'value'=> __('more_than', 'dc-woocommerce-multi-vendor'),
+                                'label'=> __('Distance more than', 'multivendorx'),
+                                'value'=> __('more_than', 'multivendorx'),
                             ),
                         ),
                     ),
@@ -2600,14 +2600,14 @@ class MVX_REST_API {
                         'type'  => "text",
                         'class' => "nested-parent-class",
                         'name'  => "nested-parent-name",
-                        'label' => __('Distance', 'dc-woocommerce-multi-vendor') . ' ( '. __('km', 'dc-woocommerce-multi-vendor') .' )', 
+                        'label' => __('Distance', 'multivendorx') . ' ( '. __('km', 'multivendorx') .' )', 
                     ),
                     array(
                         'key'   => 'mvx_distance_price',
                         'type'  => "text",
                         'class' => "nested-parent-class",
                         'name'  => "nested-parent-name",
-                        'label' => __('Cost', 'dc-woocommerce-multi-vendor') . ' ('.get_woocommerce_currency_symbol().')',
+                        'label' => __('Cost', 'multivendorx') . ' ('.get_woocommerce_currency_symbol().')',
                     ),
                 ),
                 'child_options' => array(
@@ -2619,7 +2619,7 @@ class MVX_REST_API {
 
         $settings_fields_data['country-shipping'] =   [
                 [
-                    'label' => __('Default Shipping Price', 'dc-woocommerce-multi-vendor'), 
+                    'label' => __('Default Shipping Price', 'multivendorx'), 
                     'placeholder' => '0.00', 
                     'type' => 'text', 
                     'class' => 'col-md-6 col-sm-9', 
@@ -2628,44 +2628,44 @@ class MVX_REST_API {
                 ],
 
                 [
-                    'label' => __('Per Product Additional Price', 'dc-woocommerce-multi-vendor'), 
+                    'label' => __('Per Product Additional Price', 'multivendorx'), 
                     'placeholder' => '0.00', 
                     'type' => 'text', 
                     'class' => 'col-md-6 col-sm-9', 
                     'key' => 'mvx_additional_product', 
                     'database_value' => isset($mvx_shipping_by_country['_mvx_additional_product']) ? $mvx_shipping_by_country['_mvx_additional_product'] : '',
-                    'desc' => __('If a customer buys more than one type product from your store, first product of the every second type will be charged with this price', 'dc-woocommerce-multi-vendor') 
+                    'desc' => __('If a customer buys more than one type product from your store, first product of the every second type will be charged with this price', 'multivendorx') 
                 ],
 
                 [
-                    'label' => __('Per Qty Additional Price', 'dc-woocommerce-multi-vendor'), 
+                    'label' => __('Per Qty Additional Price', 'multivendorx'), 
                     'placeholder' => '0.00', 
                     'type' => 'text', 
                     'class' => 'col-md-6 col-sm-9', 
                     'key' => 'mvx_additional_qty', 
                     'database_value' => isset($mvx_shipping_by_country['_mvx_additional_qty']) ? $mvx_shipping_by_country['_mvx_additional_qty'] : '', 
-                    'hints' => __('Every second product of same type will be charged with this price', 'dc-woocommerce-multi-vendor'),
+                    'hints' => __('Every second product of same type will be charged with this price', 'multivendorx'),
                 ],
 
                 [
-                    'label' => __('Free Shipping Minimum Order Amount', 'dc-woocommerce-multi-vendor'), 
-                    'placeholder' => __( 'NO Free Shipping', 'dc-woocommerce-multi-vendor'), 
+                    'label' => __('Free Shipping Minimum Order Amount', 'multivendorx'), 
+                    'placeholder' => __( 'NO Free Shipping', 'multivendorx'), 
                     'type' => 'text', 
                     'class' => 'col-md-6 col-sm-9', 
                     'key' => 'mvx_byc_free_shipping_amount', 
                     'database_value' => isset($mvx_shipping_by_country['_free_shipping_amount']) ? $mvx_shipping_by_country['_free_shipping_amount'] : '', 
-                    'hints' => __('Free shipping will be available if order amount more than this. Leave empty to disable Free Shipping.', 'dc-woocommerce-multi-vendor') 
+                    'hints' => __('Free shipping will be available if order amount more than this. Leave empty to disable Free Shipping.', 'multivendorx') 
                 ],
 
                 /*[
-                    'label' => __('Enable Local Pickup', 'dc-woocommerce-multi-vendor'), 
+                    'label' => __('Enable Local Pickup', 'multivendorx'), 
                     'type' => 'checkbox', 
                     'class' => 'mvx-checkbox mvx_ele', 
                     'key' => 'mvx_byc_enable_local_pickup', 
                     'options' => array(
                         array(
                             'key'=> "mvx_byc_enable_local_pickup",
-                            'label'=> __('', 'dc-woocommerce-multi-vendor'),
+                            'label'=> __('', 'multivendorx'),
                             'value'=> "mvx_byc_enable_local_pickup"
                         ),
                     ),
@@ -2673,7 +2673,7 @@ class MVX_REST_API {
                 ],*/
 
                 [
-                    'label' => __('Local Pickup Cost', 'dc-woocommerce-multi-vendor'), 
+                    'label' => __('Local Pickup Cost', 'multivendorx'), 
                     'placeholder' => '0.00', 
                     'type' => 'text', 
                     'class' => 'col-md-6 col-sm-9', 
@@ -2684,15 +2684,15 @@ class MVX_REST_API {
                 [
                     'key'       => 'mvx_country_shipping_rates',
                     'type'      => 'nested',
-                    'label'     => __( 'Shipping Rates by Country', 'dc-woocommerce-multi-vendor' ),
-                    'desc' => __( 'Add the countries you deliver your products to. You can specify states as well. If the shipping price is same except some countries, there is an option Everywhere Else, you can use that.', 'dc-woocommerce-multi-vendor' ),
+                    'label'     => __( 'Shipping Rates by Country', 'multivendorx' ),
+                    'desc' => __( 'Add the countries you deliver your products to. You can specify states as well. If the shipping price is same except some countries, there is an option Everywhere Else, you can use that.', 'multivendorx' ),
                     'parent_options' => array(
                         array(
                             'key'       =>'mvx_country_to',
                             'type'      => "country",
                             'class'     => "nested-parent-class",
                             'name'      => "nested-parent-name",
-                            'label'     => __('Country', 'dc-woocommerce-multi-vendor'),
+                            'label'     => __('Country', 'multivendorx'),
                             'options'   => $country_list
                         ),
                         array(
@@ -2700,8 +2700,8 @@ class MVX_REST_API {
                             'type'          => "text",
                             'class'         => "nested-parent-class",
                             'name'          => "nested-parent-name",
-                            'placeholder'   => '0.00 (' . __('Free Shipping', 'dc-woocommerce-multi-vendor') . ')',
-                            'label'         => __('Cost', 'dc-woocommerce-multi-vendor') . ' ('.get_woocommerce_currency_symbol().')',
+                            'placeholder'   => '0.00 (' . __('Free Shipping', 'multivendorx') . ')',
+                            'label'         => __('Cost', 'multivendorx') . ' ('.get_woocommerce_currency_symbol().')',
                         ),
                     ),
                     'child_options' => array(
@@ -2710,7 +2710,7 @@ class MVX_REST_API {
                             'type'      => "state",
                             'class'     => "nested-parent-class",
                             'name'      => "nested-parent-name",
-                            'label'     => __('State', 'dc-woocommerce-multi-vendor'),
+                            'label'     => __('State', 'multivendorx'),
                             'options'   => array()
                         ),
                         array(
@@ -2718,8 +2718,8 @@ class MVX_REST_API {
                             'type'  => "text",
                             'class' => "nested-parent-class",
                             'name'  => "nested-parent-name",
-                            'placeholder' => '0.00 (' . __('Free Shipping', 'dc-woocommerce-multi-vendor') . ')',
-                            'label' => __('Cost', 'dc-woocommerce-multi-vendor') . ' ('.get_woocommerce_currency_symbol().')',
+                            'placeholder' => '0.00 (' . __('Free Shipping', 'multivendorx') . ')',
+                            'label' => __('Cost', 'multivendorx') . ' ('.get_woocommerce_currency_symbol().')',
                         ),
                     ),
                     'database_value' => isset($vendor_id) ? $shipping_country_rate : $default_nested_data,
@@ -2754,14 +2754,14 @@ class MVX_REST_API {
         if (isset($fetch_data['announcement_vendors']) && !empty($fetch_data['announcement_vendors'])) {
             update_post_meta($post_id, '_mvx_vendor_notices_vendors', $notify_vendors);
             // send mail
-            $single = ( count($notify_vendors) == 1 ) ? __( 'Your', 'dc-woocommerce-multi-vendor' ) : __( 'All vendors and their', 'dc-woocommerce-multi-vendor' );
+            $single = ( count($notify_vendors) == 1 ) ? __( 'Your', 'multivendorx' ) : __( 'All vendors and their', 'multivendorx' );
             foreach ($notify_vendors as $vendor_id) {
                 $email_vendor->trigger( $post, $vendor_id, $single );
             }
         } else {
             update_post_meta($post_id, '_mvx_vendor_notices_vendors', get_mvx_vendors( array(), 'ids' ));
             // send mail
-            $single = ( count(get_mvx_vendors( array(), 'ids' )) == 1 ) ? __( 'Your', 'dc-woocommerce-multi-vendor' ) : __( 'All vendors and their', 'dc-woocommerce-multi-vendor' );
+            $single = ( count(get_mvx_vendors( array(), 'ids' )) == 1 ) ? __( 'Your', 'multivendorx' ) : __( 'All vendors and their', 'multivendorx' );
             foreach (get_mvx_vendors( array(), 'ids' ) as $vendor_id) {
                 $email_vendor->trigger( $post, $vendor_id, $single );
             }
@@ -3148,10 +3148,10 @@ class MVX_REST_API {
                     }
                 }
             } else {
-                $report_html = '<tr><td colspan="3">' . __('No product was sold in the given period.', 'dc-woocommerce-multi-vendor') . '</td></tr>';
+                $report_html = '<tr><td colspan="3">' . __('No product was sold in the given period.', 'multivendorx') . '</td></tr>';
             }
         } else {
-            $report_html = '<tr><td colspan="3">' . __('Your store has no products.', 'dc-woocommerce-multi-vendor') . '</td></tr>';
+            $report_html = '<tr><td colspan="3">' . __('Your store has no products.', 'multivendorx') . '</td></tr>';
         }
 
         // total item sold **
@@ -3275,7 +3275,7 @@ class MVX_REST_API {
             }
 
         } else {
-            $html_chart = '<tr><td colspan="3">' . __('Your store has no vendors.', 'dc-woocommerce-multi-vendor') . '</td></tr>';
+            $html_chart = '<tr><td colspan="3">' . __('Your store has no vendors.', 'multivendorx') . '</td></tr>';
         }
 
         $order_number_count = !empty($total_number_orders) ? count($total_number_orders) : 0;
@@ -3370,27 +3370,27 @@ class MVX_REST_API {
             'admin_overview'    =>  array(
                 'sales' =>  array( 
                     'value'  => wc_price($overview_sales), 
-                    'label'    =>  __('Total Sales', 'dc-woocommerce-multi-vendor') 
+                    'label'    =>  __('Total Sales', 'multivendorx') 
                 ),
                 'admin_earning' =>  array( 
                     'value'  => wc_price($overview_admin_earning), 
-                    'label'    =>  __('Admin Earnings', 'dc-woocommerce-multi-vendor') 
+                    'label'    =>  __('Admin Earnings', 'multivendorx') 
                 ),
                 'vendors'   =>  array( 
                     'value'  => ($overview_vendors), 
-                    'label'    =>  __('Signup Vendors', 'dc-woocommerce-multi-vendor') 
+                    'label'    =>  __('Signup Vendors', 'multivendorx') 
                 ),
                 'pending_vendors'   =>  array( 
                     'value'  => ($pending_vendors), 
-                    'label'    =>  __('Awaiting Vendors', 'dc-woocommerce-multi-vendor') 
+                    'label'    =>  __('Awaiting Vendors', 'multivendorx') 
                 ),
                 'products'  =>  array( 
                     'value'  => ($products), 
-                    'label'    =>  __('Awaiting Products', 'dc-woocommerce-multi-vendor') 
+                    'label'    =>  __('Awaiting Products', 'multivendorx') 
                 ),
                 'transactions'  =>  array( 
                     'value'  => wc_price($transactions), 
-                    'label'    =>  __('Awaiting Withdrawals', 'dc-woocommerce-multi-vendor') 
+                    'label'    =>  __('Awaiting Withdrawals', 'multivendorx') 
                 ),
                 'sales_data_chart'  =>  $sales_data_chart
             ),
@@ -3398,15 +3398,15 @@ class MVX_REST_API {
             'vendor'    =>  array(
                 'total_number_orders'   =>  array(
                     'value' =>  ($order_number_count),
-                    'label' =>  __('Orders', 'dc-woocommerce-multi-vendor')
+                    'label' =>  __('Orders', 'multivendorx')
                 ),
                 'net_sales'   =>  array(
                     'value' =>  wc_price($report_vendor_net_sales),
-                    'label' =>  __('Net Sales', 'dc-woocommerce-multi-vendor')
+                    'label' =>  __('Net Sales', 'multivendorx')
                 ),
                 'total_item_sold'   =>  array(
                     'value' =>  ($total_item_sold),
-                    'label' =>  __('Items Sold', 'dc-woocommerce-multi-vendor')
+                    'label' =>  __('Items Sold', 'multivendorx')
                 ),
                 'sales_data_chart'  =>  $final_array_vendor_chart, /*array(
                     'total_orders_product_chart'    =>  $total_number_order_data_chart,
@@ -3419,15 +3419,15 @@ class MVX_REST_API {
             'product'   =>  array(
                 'total_orders_product'  =>  array(
                     'value' =>  ($total_orders_product),
-                    'label' =>  __('Orders', 'dc-woocommerce-multi-vendor')
+                    'label' =>  __('Orders', 'multivendorx')
                 ),
                 'net_sales'  =>  array(
                     'value' =>  wc_price($report_product_net_sales),
-                    'label' =>  __('Net Sales', 'dc-woocommerce-multi-vendor')
+                    'label' =>  __('Net Sales', 'multivendorx')
                 ),
                 'total_item_sold'  =>  array(
                     'value' =>  ($total_item_sold),
-                    'label' =>  __('Items Sold', 'dc-woocommerce-multi-vendor')
+                    'label' =>  __('Items Sold', 'multivendorx')
                 ),
                 'sales_data_chart'  =>  $final_array_product_chart,/*array(
                     'total_orders_product_chart'    =>  $total_orders_product_chart,
@@ -3498,7 +3498,7 @@ class MVX_REST_API {
         if ( $vendor ) {
             /* translators: %s: associated vendor */
             $vendor_string = sprintf(
-                __( '<div class="mvx-commission-label-class">Associated vendor</div> <div class="mvx-commission-value-class">%s</div>', 'dc-woocommerce-multi-vendor' ),
+                __( '<div class="mvx-commission-label-class">Associated vendor</div> <div class="mvx-commission-value-class">%s</div>', 'multivendorx' ),
                 '<a href="' . sprintf('?page=%s&ID=%s&name=vendor-personal', 'vendors', $vendor->id) . '" target="_blank">'.$vendor->page_title.'</a>'
             );
 
@@ -3515,7 +3515,7 @@ class MVX_REST_API {
         }
 
         $meta_list[] = sprintf(
-            __( '<p class="commission-status-text-check">Commission status: </p> %s', 'dc-woocommerce-multi-vendor' ),
+            __( '<p class="commission-status-text-check">Commission status: </p> %s', 'multivendorx' ),
             $status_html
         );
 
@@ -3574,12 +3574,12 @@ class MVX_REST_API {
                     'row_class' =>  apply_filters('mvx_admin_commission_html_order_item_class', !empty($class) ? $class : '', $item, $order),
                     'item_name' =>  $item->get_name(),
                     'product_link_display'  =>  $product_link ? '<a href="' . esc_url($product_link) . '" class="wc-order-item-name">' . esc_html($item->get_name()) . '</a>' : '<div class="wc-order-item-name">' . esc_html($item->get_name()) . '</div>',
-                    'product_sku'   => $product && $product->get_sku() ? '<div class="wc-order-item-sku"><strong>' . esc_html__('SKU:', 'dc-woocommerce-multi-vendor') . '</strong> ' . esc_html($product->get_sku()) . '</div>'    :   '',
-                    'variation_id_text' =>  '<div class="wc-order-item-variation"><strong>' . esc_html__('Variation ID:', 'dc-woocommerce-multi-vendor') . '</strong> ',
+                    'product_sku'   => $product && $product->get_sku() ? '<div class="wc-order-item-sku"><strong>' . esc_html__('SKU:', 'multivendorx') . '</strong> ' . esc_html($product->get_sku()) . '</div>'    :   '',
+                    'variation_id_text' =>  '<div class="wc-order-item-variation"><strong>' . esc_html__('Variation ID:', 'multivendorx') . '</strong> ',
                     'get_variation_post_type'   =>  get_post_type($item->get_variation_id()),
                     'check_variation_id'    =>  $item->get_variation_id(),
                     'item_variation_display'    =>  esc_html($item->get_variation_id()),
-                    'no_longer_exist'   =>  sprintf(esc_html__('%s (No longer exists)', 'dc-woocommerce-multi-vendor'), $item->get_variation_id()),
+                    'no_longer_exist'   =>  sprintf(esc_html__('%s (No longer exists)', 'multivendorx'), $item->get_variation_id()),
                     'close_div' =>  '</div>',
                     'meta_data' =>  $line_items_meta_details,
                     'meta_format_data'  =>  $meta_data,
@@ -3638,7 +3638,7 @@ class MVX_REST_API {
                 }
 
                 $shipping_items_details   =   array(
-                    'shipping_text'   =>  esc_html($item->get_name() ? $item->get_name() : __('Shipping', 'dc-woocommerce-multi-vendor') ),
+                    'shipping_text'   =>  esc_html($item->get_name() ? $item->get_name() : __('Shipping', 'multivendorx') ),
                     'meta_data' =>  $shipping_items_meta_details,
                     'refunded_amount'   =>  $refunded ? '<small class="refunded">-' . wc_price($refunded, array('currency' => $order->get_currency())) . '</small>' : '',
                     'shipping_price'    =>  wc_price($item->get_total(), array('currency' => $order->get_currency())),
@@ -3846,7 +3846,7 @@ class MVX_REST_API {
     }
 
     public function mvx_show_vendor_name() {
-        //$option_lists[] = array('value' => 'all', 'label' => __('Show All Commission', 'dc-woocommerce-multi-vendor'));
+        //$option_lists[] = array('value' => 'all', 'label' => __('Show All Commission', 'multivendorx'));
         $option_lists = [];
         $vendors = get_mvx_vendors();
         if ($vendors) {
@@ -3871,7 +3871,7 @@ class MVX_REST_API {
     }
 
     public function mvx_show_commission_status_list() {
-        $option_lists[] = array('value' => 'all', 'label' => __('Show All Commission', 'dc-woocommerce-multi-vendor'));
+        $option_lists[] = array('value' => 'all', 'label' => __('Show All Commission', 'multivendorx'));
         $commission_statuses = mvx_get_commission_statuses(); 
 
         if ($commission_statuses) {
@@ -3995,7 +3995,7 @@ class MVX_REST_API {
                 ";
 
                 if (get_post_meta($commission_value, '_paid_status', true) == "paid") {
-                    $status_display = "<p class='commission-status-paid'>" . __('Paid', 'dc-woocommerce-multi-vendor') . "</p>";
+                    $status_display = "<p class='commission-status-paid'>" . __('Paid', 'multivendorx') . "</p>";
                 } else {
                     $status_display = "<p class='commission-status-unpaid'>" . ucfirst(get_post_meta($commission_value, '_paid_status', true)) . "</p>";
                 }
@@ -4020,7 +4020,7 @@ class MVX_REST_API {
     }
 
     public function mvx_commission_list_search() {
-        $option_lists[] = array('value' => 'all', 'label' => __('All commission', 'dc-woocommerce-multi-vendor'));
+        $option_lists[] = array('value' => 'all', 'label' => __('All commission', 'multivendorx'));
          $args = array(
             'post_type' => 'dc_commission',
             'post_status' => array('publish', 'private'),
@@ -4119,7 +4119,7 @@ class MVX_REST_API {
         if (is_wp_error($result)) {
             wp_send_json_error($result->get_error_message());
         }
-        $message = $data['checked'] ? __('Shipping method enabled successfully', 'dc-woocommerce-multi-vendor') : __('Shipping method disabled successfully', 'dc-woocommerce-multi-vendor');
+        $message = $data['checked'] ? __('Shipping method enabled successfully', 'multivendorx') : __('Shipping method disabled successfully', 'multivendorx');
         wp_send_json_success($message);
     }
 
@@ -4144,7 +4144,7 @@ class MVX_REST_API {
             wp_send_json_error($result->get_error_message(), 'mvx');
         }
 
-        wp_send_json_success(__('Shipping method deleted', 'dc-woocommerce-multi-vendor'));
+        wp_send_json_success(__('Shipping method deleted', 'multivendorx'));
     }
 
     public function mvx_update_vendor_shipping_method($request) {
@@ -4174,7 +4174,7 @@ class MVX_REST_API {
             wp_send_json_error($result->get_error_message(), 'MVX');
         }
 
-        wp_send_json_success(__('Shipping method updated', 'dc-woocommerce-multi-vendor'));
+        wp_send_json_success(__('Shipping method updated', 'multivendorx'));
 
 
     }
@@ -4215,7 +4215,7 @@ class MVX_REST_API {
             wp_send_json_error($result->get_error_message(), 'mvx');
         }
 
-        wp_send_json_success(__('Shipping method added successfully', 'dc-woocommerce-multi-vendor'));
+        wp_send_json_success(__('Shipping method added successfully', 'multivendorx'));
     }
 
     public function mvx_specific_vendor_shipping_zone($request) {
@@ -4350,7 +4350,7 @@ class MVX_REST_API {
 
     public function mvx_vendor_list_search() {
         $user_list = array();
-        $option_lists[] = array('value' => 'all', 'label' => __('All Vendors', 'dc-woocommerce-multi-vendor'));
+        $option_lists[] = array('value' => 'all', 'label' => __('All Vendors', 'multivendorx'));
         $user_query = new WP_User_Query(array('role' => 'dc_vendor', 'orderby' => 'registered', 'order' => 'ASC'));
         $users = $user_query->get_results();
         foreach($users as $user) {
@@ -4363,7 +4363,7 @@ class MVX_REST_API {
     }
 
     public function mvx_product_list_option() {
-        $option_lists[] = array('value' => 'all', 'label' => __('All Product', 'dc-woocommerce-multi-vendor'));
+        $option_lists[] = array('value' => 'all', 'label' => __('All Product', 'multivendorx'));
         $products = get_posts( array( 'post_type' => 'product', 'posts_per_page' => -1, 'fields' => 'ids' ) );
         if ($products) {
             foreach($products as $product_id) {
@@ -4431,7 +4431,7 @@ class MVX_REST_API {
             $email = WC()->mailer()->emails['WC_Email_Vendor_New_Account'];
             $email->trigger( $user_id, $userdata['user_pass'], false);
             if (isset($fetch_data['vendor_profile_image']) && $fetch_data['vendor_profile_image'] != '') update_user_meta($user_id, "_vendor_profile_image", absint( $fetch_data['vendor_profile_image']));
-            $message = __( 'Vendor successfully created!', 'dc-woocommerce-multi-vendor' );
+            $message = __( 'Vendor successfully created!', 'multivendorx' );
             $redirect_to = apply_filters('mvx_add_new_vendor_redirect_url', admin_url('admin.php?page=mvx#&submenu=vendor&ID='.$user_id. '&name=vendor-personal'));
         }
 
@@ -4579,12 +4579,12 @@ class MVX_REST_API {
                         if ($value != '') {
                             if ($key == 'vendor_page_title') {
                                 if (!$vendor->update_page_title(wc_clean($value))) {
-                                    $all_details['error']   =  __('Title Update Error', 'dc-woocommerce-multi-vendor');
+                                    $all_details['error']   =  __('Title Update Error', 'multivendorx');
                                     return $all_details; 
                                 }
                             } else if ($key == 'vendor_page_slug') {
                                 if (!$vendor->update_page_slug(wc_clean($value))) {
-                                    $all_details['error']   =  __('Slug already exists', 'dc-woocommerce-multi-vendor');
+                                    $all_details['error']   =  __('Slug already exists', 'multivendorx');
                                     return $all_details; 
                                 }
                             } else if ($key === "vendor_country") {
@@ -4683,21 +4683,21 @@ class MVX_REST_API {
                 $is_block = get_user_meta($vendor->id, '_vendor_turn_off', true);
             
                 if ($is_block) {
-                    $status = "<p class='vendor-status suspended-vendor'>" . __('Suspended', 'dc-woocommerce-multi-vendor') . "</p>";
+                    $status = "<p class='vendor-status suspended-vendor'>" . __('Suspended', 'multivendorx') . "</p>";
                 } else {
-                    $status = "<p class='vendor-status approved-vendor'>" . __('Approved', 'dc-woocommerce-multi-vendor') . "</p>";
+                    $status = "<p class='vendor-status approved-vendor'>" . __('Approved', 'multivendorx') . "</p>";
                 }
             } else if (in_array('dc_rejected_vendor', $user->roles)) {
-                $status = "<p class='vendor-status rejected-vendor'>" . __('Rejected', 'dc-woocommerce-multi-vendor') . "</p>";
+                $status = "<p class='vendor-status rejected-vendor'>" . __('Rejected', 'multivendorx') . "</p>";
             } else if (in_array('dc_pending_vendor', $user->roles)) {
-                $status = "<p class='vendor-status pending-vendor'>" . __('Pending', 'dc-woocommerce-multi-vendor') . "</p>";
+                $status = "<p class='vendor-status pending-vendor'>" . __('Pending', 'multivendorx') . "</p>";
             }
 
             $vendor_profile_image = get_user_meta($user->data->ID, '_vendor_profile_image', true);
             if (isset($vendor_profile_image)) $image_info = wp_get_attachment_image_src( $vendor_profile_image , array(32, 32) );
             $final_image = isset($image_info[0]) ? $image_info[0] : get_avatar_url($user->data->ID, array('size' => 32));
             
-            $name_display = "<div class='mvx-vendor-icon-name'><img src='". $final_image ."' width='20' height='20' ></img><a href='". sprintf('?page=%s&ID=%s&name=vendor-personal', 'mvx#&submenu=vendor', $user->data->ID) ."'>" . $user->data->display_name . "</a><a class='mvx-hover-btn' href='".$vendor->permalink."' target='_blank'>Shop</a></div>";
+            $name_display = "<div class='mvx-vendor-icon-name'><img src='". $final_image ."' width='20' height='20' ></img><a href='". sprintf('?page=%s&ID=%s&name=vendor-personal', 'mvx#&submenu=vendor', $user->data->ID) ."'>" . $user->data->display_name . "</a></div>";
 
             $action_display = "
             <div class='mvx-vendor-action-icon'>
@@ -4847,7 +4847,7 @@ class MVX_REST_API {
     }
 
     public function mvx_get_module_lists_keys() {
-        $option_lists[] = array('value' => 'all', 'label' => __('All Modules', 'dc-woocommerce-multi-vendor'));
+        $option_lists[] = array('value' => 'all', 'label' => __('All Modules', 'multivendorx'));
         foreach (mvx_list_all_modules() as $key => $value) {
             $option_lists[] = array(
                 'value' => sanitize_text_field($value['id']),

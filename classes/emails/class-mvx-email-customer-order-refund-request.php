@@ -31,8 +31,8 @@ if (!class_exists('WC_Email_Customer_Refund_Request')) :
         function __construct() {
             global $MVX;
             $this->id = 'customer_order_refund_request';
-            $this->title = __( 'Customer Order Refund Request', 'dc-woocommerce-multi-vendor');
-            $this->description = __('Customer Order Refund Request.', 'dc-woocommerce-multi-vendor');
+            $this->title = __( 'Customer Order Refund Request', 'multivendorx');
+            $this->description = __('Customer Order Refund Request.', 'multivendorx');
 
             $this->template_html = 'emails/customer-order-refund-request.php';
             $this->template_plain = 'emails/plain/customer-order-refund-request.php';
@@ -65,11 +65,11 @@ if (!class_exists('WC_Email_Customer_Refund_Request')) :
                 // refund info
                 $refund_status = get_post_meta( $order_id, '_customer_refund_order', true );
                 if( $refund_status == 'refund_accept' ) {
-                    $this->status = __( 'Accepted', 'dc-woocommerce-multi-vendor' );
+                    $this->status = __( 'Accepted', 'multivendorx' );
                 }elseif( $refund_status == 'refund_reject') {
-                    $this->status = __( 'Rejected', 'dc-woocommerce-multi-vendor' );
+                    $this->status = __( 'Rejected', 'multivendorx' );
                 }else{
-                    $this->status = __( 'Requested', 'dc-woocommerce-multi-vendor' );
+                    $this->status = __( 'Requested', 'multivendorx' );
                 }
                 $details = array(
                     'refund_reason' => isset( $refund_details['refund_reason'] ) ? $refund_details['refund_reason'] : '',
@@ -96,7 +96,7 @@ if (!class_exists('WC_Email_Customer_Refund_Request')) :
          * @return string
          */
         public function get_default_subject() {
-            return apply_filters('mvx_customer_refund_request_email_subject', __('New Refund {refund_status} for - Order -#{order_number}', 'dc-woocommerce-multi-vendor'), $this->object);
+            return apply_filters('mvx_customer_refund_request_email_subject', __('New Refund {refund_status} for - Order -#{order_number}', 'multivendorx'), $this->object);
         }
 
         /**
@@ -106,7 +106,7 @@ if (!class_exists('WC_Email_Customer_Refund_Request')) :
          * @return string
          */
         public function get_default_heading() {
-            return apply_filters('mvx_customer_refund_request_email_heading', __(' Refund {refund_status}! ', 'dc-woocommerce-multi-vendor'), $this->object);
+            return apply_filters('mvx_customer_refund_request_email_heading', __(' Refund {refund_status}! ', 'multivendorx'), $this->object);
         }
 
         /**

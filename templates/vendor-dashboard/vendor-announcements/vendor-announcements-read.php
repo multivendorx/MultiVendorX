@@ -25,8 +25,8 @@ foreach( $posts_array as $post_element) {
 		<div class="msg_arrow_box"><a href="#" class="msg_stat_click"><i class="mvx-font ico-downarrow-2-icon"></i></a>
 			<div class="msg_stat" style="display:none" >
 				<ul class="mvx_msg_read_ul" data-element="<?php echo $post_element->ID; ?>">									
-					<li class="_mvx_vendor_message_unread" ><a href="#"> <?php _e('Mark Unread','dc-woocommerce-multi-vendor');?></a></li>
-					<li class="_mvx_vendor_message_delete" ><a href="#"> <?php _e('Delete','dc-woocommerce-multi-vendor');?></a></li>							 
+					<li class="_mvx_vendor_message_unread" ><a href="#"> <?php _e('Mark Unread','multivendorx');?></a></li>
+					<li class="_mvx_vendor_message_delete" ><a href="#"> <?php _e('Delete','multivendorx');?></a></li>							 
 				</ul>
 			</div>
 		</div>
@@ -37,7 +37,7 @@ foreach( $posts_array as $post_element) {
 		<div class="mvx_anouncement-content">
 			<?php echo $content = apply_filters('the_content',$post_element->post_content); ?>
 			<?php $url = get_post_meta($post_element->ID, '_mvx_vendor_notices_url', true);  if(!empty($url)) { ?>
-			<p style="text-align:right; width:100%;"><a href="<?php echo $url;?>" target="_blank" class="btn btn-default mvx_black_btn_link"><?php echo __('Read More','dc-woocommerce-multi-vendor');?></a></p>
+			<p style="text-align:right; width:100%;"><a href="<?php echo $url;?>" target="_blank" class="btn btn-default mvx_black_btn_link"><?php echo __('Read More','multivendorx');?></a></p>
 			<?php }?>
 		</div>
 	</div>
@@ -56,11 +56,11 @@ foreach( $posts_array as $post_element) {
 
 </div>
 <?php }else{ ?>
-<div class="panel panel-default panel-padding text-center empty-panel"><?php _e('Sorry no read announcement found.','dc-woocommerce-multi-vendor'); ?></div> 
+<div class="panel panel-default panel-padding text-center empty-panel"><?php _e('Sorry no read announcement found.','multivendorx'); ?></div> 
 <?php } ?>
 <div class="mvx_mixed_txt" >
 	<?php if($tab2_counter > 6) {?>	
-	<button class="mvx_black_btn mvx_black_btn_msg_for_nav" style="float:right"><?php _e('Show More','dc-woocommerce-multi-vendor'); ?></button>
+	<button class="mvx_black_btn mvx_black_btn_msg_for_nav" style="float:right"><?php _e('Show More','multivendorx'); ?></button>
 	<?php }?>
 
 	<div class="clear"></div>

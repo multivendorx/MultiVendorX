@@ -10,14 +10,14 @@ class MVX_Widget_Vendor_On_Sale_Products extends WC_Widget {
 
     public function __construct() {
         $this->widget_cssclass = 'mvx_vendor_on_sale_products';
-        $this->widget_description = __('Displays a list of vendor on sale products on the vendor shop page.', 'dc-woocommerce-multi-vendor');
+        $this->widget_description = __('Displays a list of vendor on sale products on the vendor shop page.', 'multivendorx');
         $this->widget_id = 'mvx_vendor_on_sale_products';
-        $this->widget_name = __('MVX: Vendor\'s On Sale Products', 'dc-woocommerce-multi-vendor');
+        $this->widget_name = __('MVX: Vendor\'s On Sale Products', 'multivendorx');
         $this->settings = array(
             'title' => array(
                 'type' => 'text',
-                'std' => __('Vendor on sale products', 'dc-woocommerce-multi-vendor'),
-                'label' => __('Title', 'dc-woocommerce-multi-vendor'),
+                'std' => __('Vendor on sale products', 'multivendorx'),
+                'label' => __('Title', 'multivendorx'),
             ),
             'number' => array(
 				'type'  => 'number',
@@ -25,7 +25,7 @@ class MVX_Widget_Vendor_On_Sale_Products extends WC_Widget {
 				'min'   => 1,
 				'max'   => '',
 				'std'   => 3,
-				'label' => __( 'Number of products to show', 'dc-woocommerce-multi-vendor' ),
+				'label' => __( 'Number of products to show', 'multivendorx' ),
 			),
         );
         parent::__construct();

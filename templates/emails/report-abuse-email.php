@@ -18,17 +18,17 @@ $name = isset( $object['name'] ) ? $object['name'] : '';
 $message = isset( $object['msg'] ) ? $object['msg'] : '';
 $product = wc_get_product( absint( $object['product_id'] ) );
 do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
-<p style="text-align:<?php echo $text_align; ?>;" ><?php printf(esc_html__( 'A customer is reporting an abuse on the product - %s (ID: #%s). Details are as follows:', 'dc-woocommerce-multi-vendor' ), $product->get_title(), $product->get_id() ); ?></p>
+<p style="text-align:<?php echo $text_align; ?>;" ><?php printf(esc_html__( 'A customer is reporting an abuse on the product - %s (ID: #%s). Details are as follows:', 'multivendorx' ), $product->get_title(), $product->get_id() ); ?></p>
 <div style="font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; margin-bottom: 40px;">
-        <h2><?php _e( 'Product details', 'dc-woocommerce-multi-vendor' ); ?></h2>
+        <h2><?php _e( 'Product details', 'multivendorx' ); ?></h2>
         <ul>
-            <li><strong><?php _e( 'Product', 'dc-woocommerce-multi-vendor' ); ?>:</strong> <span class="text"><?php echo $product->get_title(); ?></span></li>
-            <li><strong><?php _e( 'Vendor', 'dc-woocommerce-multi-vendor' ); ?>:</strong> <span class="text"><?php echo $vendor->page_title; ?></span></li>
+            <li><strong><?php _e( 'Product', 'multivendorx' ); ?>:</strong> <span class="text"><?php echo $product->get_title(); ?></span></li>
+            <li><strong><?php _e( 'Vendor', 'multivendorx' ); ?>:</strong> <span class="text"><?php echo $vendor->page_title; ?></span></li>
         </ul>
-        <h2><?php _e( 'Customer details', 'dc-woocommerce-multi-vendor' ); ?></h2>
+        <h2><?php _e( 'Customer details', 'multivendorx' ); ?></h2>
         <ul>
-            <li><strong><?php _e( 'Name', 'dc-woocommerce-multi-vendor' ); ?>:</strong> <span class="text"><?php echo $name; ?></span></li>
-            <li><strong><?php _e( 'Message', 'dc-woocommerce-multi-vendor' ); ?>:</strong> <span class="text"><?php echo $message; ?></span></li>
+            <li><strong><?php _e( 'Name', 'multivendorx' ); ?>:</strong> <span class="text"><?php echo $name; ?></span></li>
+            <li><strong><?php _e( 'Message', 'multivendorx' ); ?>:</strong> <span class="text"><?php echo $message; ?></span></li>
         </ul>
 </div>
 

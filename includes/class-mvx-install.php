@@ -119,8 +119,8 @@ class MVX_Install {
             delete_option('mvx_product_vendor_vendor_dashboard_page_id');
             delete_option('mvx_product_vendor_vendor_page_id');
         }
-        $this->mvx_product_vendor_plugin_create_page(esc_sql(_x('dashboard', 'page_slug', 'dc-woocommerce-multi-vendor')), 'mvx_product_vendor_vendor_page_id', __('Vendor Dashboard', 'dc-woocommerce-multi-vendor'), '[mvx_vendor]');
-        $this->mvx_product_vendor_plugin_create_page(esc_sql(_x('vendor-registration', 'page_slug', 'dc-woocommerce-multi-vendor')), 'mvx_product_vendor_registration_page_id', __('Vendor Registration', 'dc-woocommerce-multi-vendor'), '[vendor_registration]');
+        $this->mvx_product_vendor_plugin_create_page(esc_sql(_x('dashboard', 'page_slug', 'multivendorx')), 'mvx_product_vendor_vendor_page_id', __('Vendor Dashboard', 'multivendorx'), '[mvx_vendor]');
+        $this->mvx_product_vendor_plugin_create_page(esc_sql(_x('vendor-registration', 'page_slug', 'multivendorx')), 'mvx_product_vendor_registration_page_id', __('Vendor Registration', 'multivendorx'), '[vendor_registration]');
         $mvx_product_vendor_vendor_page_id = get_option('mvx_product_vendor_vendor_page_id');
         $mvx_product_vendor_registration_page_id = get_option('mvx_product_vendor_registration_page_id');
         update_mvx_vendor_settings('vendor_dashboard_page', array ( 'value' => $mvx_product_vendor_vendor_page_id, 'label' => 'Vendor Dashboard', 'index' => 1 ), 'settings_general'); 
@@ -354,19 +354,19 @@ class MVX_Install {
      */
     public static function register_user_role() {
 
-        add_role('dc_pending_vendor', apply_filters('dc_pending_vendor_role', __('Pending Vendor', 'dc-woocommerce-multi-vendor')), array(
+        add_role('dc_pending_vendor', apply_filters('dc_pending_vendor_role', __('Pending Vendor', 'multivendorx')), array(
             'read' => true,
             'edit_posts' => false,
             'delete_posts' => false,
         ));
 
-        add_role('dc_rejected_vendor', apply_filters('dc_rejected_vendor_role', __('Rejected Vendor', 'dc-woocommerce-multi-vendor')), array(
+        add_role('dc_rejected_vendor', apply_filters('dc_rejected_vendor_role', __('Rejected Vendor', 'multivendorx')), array(
             'read' => true,
             'edit_posts' => false,
             'delete_posts' => false,
         ));
 
-        add_role('dc_vendor', apply_filters('dc_vendor_role', __('Vendor', 'dc-woocommerce-multi-vendor')), array(
+        add_role('dc_vendor', apply_filters('dc_vendor_role', __('Vendor', 'multivendorx')), array(
             'read' => true,
             'manage_product' => true,
             'edit_post' => true,

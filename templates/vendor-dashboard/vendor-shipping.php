@@ -30,17 +30,17 @@ $vendor_shipping_data = get_user_meta($vendor->id, 'vendor_shipping_data', true)
         <div id="mvx-vendor-shipping-by-zone-section">
         <div class="panel panel-default panel-pading pannel-outer-heading">
             <div class="panel-heading d-flex">
-                <h3><?php esc_html_e('Shipping zones', 'dc-woocommerce-multi-vendor'); ?></h3>
+                <h3><?php esc_html_e('Shipping zones', 'multivendorx'); ?></h3>
             </div>
             <div class="panel-body">
                 <div id="mvx_settings_form_shipping_by_zone" class="mvx-content shipping_type by_zone hide_if_shipping_disabled">
                     <table class="table mvx-table shipping-zone-table">
                         <thead>
                             <tr>
-                                <th><?php esc_html_e('Zone name', 'dc-woocommerce-multi-vendor'); ?></th> 
-                                <th><?php esc_html_e('Region(s)', 'dc-woocommerce-multi-vendor'); ?></th> 
-                                <th><?php esc_html_e('Shipping method(s)', 'dc-woocommerce-multi-vendor'); ?></th>
-                                <th><?php esc_html_e('Actions', 'dc-woocommerce-multi-vendor'); ?></th>
+                                <th><?php esc_html_e('Zone name', 'multivendorx'); ?></th> 
+                                <th><?php esc_html_e('Region(s)', 'multivendorx'); ?></th> 
+                                <th><?php esc_html_e('Shipping method(s)', 'multivendorx'); ?></th>
+                                <th><?php esc_html_e('Actions', 'multivendorx'); ?></th>
                             </tr>
                         </thead> 
                         <tbody>
@@ -69,7 +69,7 @@ $vendor_shipping_data = get_user_meta($vendor->id, 'vendor_shipping_data', true)
 
                                                 if (empty($vendor_shipping_methods)) {
                                                     ?>
-                                                    <span><?php esc_html_e('No shipping methods offered to this zone.', 'dc-woocommerce-multi-vendor'); ?> </span>
+                                                    <span><?php esc_html_e('No shipping methods offered to this zone.', 'multivendorx'); ?> </span>
                                                 <?php } else { ?>
                                                     <?php echo wp_kses_post($vendor_shipping_methods_titles); ?>
                                                 <?php } ?>
@@ -78,7 +78,7 @@ $vendor_shipping_data = get_user_meta($vendor->id, 'vendor_shipping_data', true)
                                         <td>
                                             <div class="col-actions">
                                                 <span class="view">
-                                                    <a href="JavaScript:void(0);" data-zone-id="<?php echo esc_attr($vendor_shipping_zones['zone_id']); ?>" class="vendor_edit_zone modify-shipping-methods" title="<?php esc_html_e('View', 'dc-woocommerce-multi-vendor') ?>"><i class="mvx-font ico-eye-icon"></i></a>
+                                                    <a href="JavaScript:void(0);" data-zone-id="<?php echo esc_attr($vendor_shipping_zones['zone_id']); ?>" class="vendor_edit_zone modify-shipping-methods" title="<?php esc_html_e('View', 'multivendorx') ?>"><i class="mvx-font ico-eye-icon"></i></a>
                                                 </span> 
                                             </div>
                                             <div class="row-actions">
@@ -89,7 +89,7 @@ $vendor_shipping_data = get_user_meta($vendor->id, 'vendor_shipping_data', true)
 } else {
     ?>
                                 <tr>
-                                    <td colspan="3"><?php esc_html_e('No shipping zone found for configuration. Please contact with admin for manage your store shipping', 'dc-woocommerce-multi-vendor'); ?></td>
+                                    <td colspan="3"><?php esc_html_e('No shipping zone found for configuration. Please contact with admin for manage your store shipping', 'multivendorx'); ?></td>
                                 </tr>
     <?php }
 ?>
@@ -102,7 +102,7 @@ $vendor_shipping_data = get_user_meta($vendor->id, 'vendor_shipping_data', true)
         </div>
         <?php do_action('mvx_before_shipping_form_end_vendor_dashboard'); ?>
         <div class="mvx-action-container">
-            <button class="mvx_orange_btn btn btn-default" name="shipping_save"><?php esc_html_e('Save Options', 'dc-woocommerce-multi-vendor'); ?></button>
+            <button class="mvx_orange_btn btn btn-default" name="shipping_save"><?php esc_html_e('Save Options', 'multivendorx'); ?></button>
         </div>
         <div class="clear"></div>
     </form>

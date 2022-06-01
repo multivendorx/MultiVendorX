@@ -30,8 +30,8 @@ if (!class_exists('WC_Email_Suspend_Vendor_Account')) :
         function __construct() {
             global $MVX;
             $this->id = 'suspend_vendor_new_account';
-            $this->title = __('Suspend Vendor Account', 'dc-woocommerce-multi-vendor');
-            $this->description = __('Vendor suspend account emails are sent when site admin suspend vendor.', 'dc-woocommerce-multi-vendor');
+            $this->title = __('Suspend Vendor Account', 'multivendorx');
+            $this->description = __('Vendor suspend account emails are sent when site admin suspend vendor.', 'multivendorx');
 
             $this->template_html = 'emails/suspend-vendor-account.php';
             $this->template_plain = 'emails/plain/suspend-vendor-account.php';
@@ -69,7 +69,7 @@ if (!class_exists('WC_Email_Suspend_Vendor_Account')) :
          * @return string
          */
         public function get_default_subject() {
-            return apply_filters('mvx_suspend_vendor_account_email_subject', __('Attention: Your Vendor Account has been suspended on {site_title}', 'dc-woocommerce-multi-vendor'), $this->object);
+            return apply_filters('mvx_suspend_vendor_account_email_subject', __('Attention: Your Vendor Account has been suspended on {site_title}', 'multivendorx'), $this->object);
         }
 
         /**
@@ -79,7 +79,7 @@ if (!class_exists('WC_Email_Suspend_Vendor_Account')) :
          * @return string
          */
         public function get_default_heading() {
-            return apply_filters('mvx_suspend_vendor_account_email_heading', __('Your Vendor Account Has been Suspended', 'dc-woocommerce-multi-vendor'), $this->object);
+            return apply_filters('mvx_suspend_vendor_account_email_heading', __('Your Vendor Account Has been Suspended', 'multivendorx'), $this->object);
         }
 
         /**

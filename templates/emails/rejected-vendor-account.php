@@ -14,7 +14,7 @@ global $MVX;
 ?>
 <?php do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
-<p><?php printf( esc_html__( "Thanks for creating an account with us on %s. Unfortunately your request has been rejected.",  'dc-woocommerce-multi-vendor' ), esc_html( $blogname )); ?></p>
-<p><?php printf( esc_html__( "You may contact the site admin at %s.",  'dc-woocommerce-multi-vendor' ), get_option('admin_email')); ?></p>
+<p><?php printf( esc_html__( "Thanks for creating an account with us on %s. Unfortunately your request has been rejected.",  'multivendorx' ), esc_html( $blogname )); ?></p>
+<p><?php printf( esc_html__( "You may contact the site admin at %s.",  'multivendorx' ), get_option('admin_email')); ?></p>
 
 <?php do_action( 'mvx_email_footer' ); ?>

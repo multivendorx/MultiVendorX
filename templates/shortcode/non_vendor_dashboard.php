@@ -14,7 +14,7 @@ global $woocommerce, $MVX;
 $user = wp_get_current_user();
 if ($user && !in_array('dc_pending_vendor', $user->roles) && !in_array('administrator', $user->roles)) {
     add_filter('mvx_vendor_registration_submit', function ($text) {
-        return __('Apply to become a vendor', 'dc-woocommerce-multi-vendor');
+        return __('Apply to become a vendor', 'multivendorx');
     });
     echo '<div class="woocommerce">';
     echo do_shortcode('[vendor_registration]');
@@ -25,7 +25,7 @@ if ($user && in_array('administrator', $user->roles)) {
     ?>
     <div class="container">
         <div class="well text-center mvx-non-vendor-notice">
-            <p><?php echo sprintf(__('You have logged in as Administrator. Please <a href="%s">log out</a> and then view this page.', 'dc-woocommerce-multi-vendor'), wc_logout_url()); ?></p>
+            <p><?php echo sprintf(__('You have logged in as Administrator. Please <a href="%s">log out</a> and then view this page.', 'multivendorx'), wc_logout_url()); ?></p>
         </div>
     </div>
     <?php

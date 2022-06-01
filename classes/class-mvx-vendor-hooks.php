@@ -59,7 +59,7 @@ class MVX_Vendor_Hooks {
     public function mvx_get_vendor_dashboard_navigation() {
         $vendor_nav = array(
             'dashboard'            => array(
-                'label'       => __( 'Dashboard', 'dc-woocommerce-multi-vendor' )
+                'label'       => __( 'Dashboard', 'multivendorx' )
                 , 'url'         => mvx_get_vendor_dashboard_endpoint_url( 'dashboard' )
                 , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_dashboard_capability', true )
                 , 'position'    => 0
@@ -68,13 +68,13 @@ class MVX_Vendor_Hooks {
                 , 'nav_icon'    => 'mvx-font ico-dashboard-icon'
             ),
             'store-settings'       => array(
-                'label'       => __( 'Store Settings', 'dc-woocommerce-multi-vendor' )
+                'label'       => __( 'Store Settings', 'multivendorx' )
                 , 'url'         => '#'
                 , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_store_settings_capability', true )
                 , 'position'    => 10
                 , 'submenu'     => array(
                     'storefront'      => array(
-                        'label'       => __( 'Storefront', 'dc-woocommerce-multi-vendor' )
+                        'label'       => __( 'Storefront', 'multivendorx' )
                         , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_store_settings_endpoint', 'seller_dashbaord', 'storefront' ) )
                         , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_shop_front_capability', true )
                         , 'position'    => 10
@@ -82,7 +82,7 @@ class MVX_Vendor_Hooks {
                         , 'nav_icon'    => 'mvx-font ico-storefront-icon'
                     ),
                     'vendor-policies' => array(
-                        'label'       => __( 'Policies', 'dc-woocommerce-multi-vendor' )
+                        'label'       => __( 'Policies', 'multivendorx' )
                         , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_vendor_policies_endpoint', 'seller_dashbaord', 'vendor-policies' ) )
                         , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_vendor_policies_capability', false )
                         , 'position'    => 20
@@ -90,7 +90,7 @@ class MVX_Vendor_Hooks {
                         , 'nav_icon'    => 'mvx-font ico-policies-icon'
                     ),
                     'vendor-billing'  => array(
-                        'label'       => __( 'Billing', 'dc-woocommerce-multi-vendor' )
+                        'label'       => __( 'Billing', 'multivendorx' )
                         , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_vendor_billing_endpoint', 'seller_dashbaord', 'vendor-billing' ) )
                         , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_vendor_billing_capability', true )
                         , 'position'    => 30
@@ -98,7 +98,7 @@ class MVX_Vendor_Hooks {
                         , 'nav_icon'    => 'mvx-font ico-billing-icon'
                     ),
                     'vendor-shipping' => array(
-                        'label'       => __( 'Shipping', 'dc-woocommerce-multi-vendor' )
+                        'label'       => __( 'Shipping', 'multivendorx' )
                         , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_vendor_shipping_endpoint', 'seller_dashbaord', 'vendor-shipping' ) )
                         , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_vendor_shipping_capability', wc_shipping_enabled() )
                         , 'position'    => 40
@@ -110,13 +110,13 @@ class MVX_Vendor_Hooks {
                 , 'nav_icon'    => 'mvx-font ico-store-settings-icon'
             ),
             'vendor-products'      => array(
-                'label'       => __( 'Product Manager', 'dc-woocommerce-multi-vendor' )
+                'label'       => __( 'Product Manager', 'multivendorx' )
                 , 'url'         => '#'
                 , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_vendor_products_capability', 'edit_products' )
                 , 'position'    => 20
                 , 'submenu'     => array(
                     'products'    => array(
-                        'label'       => __( 'All Products', 'dc-woocommerce-multi-vendor' )
+                        'label'       => __( 'All Products', 'multivendorx' )
                         , 'url'         => apply_filters( 'mvx_vendor_products', mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_products_endpoint', 'seller_dashbaord', 'products' ) ) )
                         , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_products_capability', 'edit_products' )
                         , 'position'    => 10
@@ -124,7 +124,7 @@ class MVX_Vendor_Hooks {
                         , 'nav_icon'    => 'mvx-font ico-product-manager-icon'
                     ),
                     'add-product' => array(
-                        'label'       => __( 'Add Product', 'dc-woocommerce-multi-vendor' )
+                        'label'       => __( 'Add Product', 'multivendorx' )
                         , 'url'         => apply_filters( 'mvx_vendor_dashboard_add_product_url', mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_add_product_endpoint', 'seller_dashbaord', 'add-product' ) ) )
                         , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_add_product_capability', 'edit_products' )
                         , 'position'    => 20
@@ -136,13 +136,13 @@ class MVX_Vendor_Hooks {
                 , 'nav_icon'    => 'mvx-font ico-product-manager-icon'
             ),
             'vendor-promte'        => array(
-                'label'       => __( 'Coupons', 'dc-woocommerce-multi-vendor' )
+                'label'       => __( 'Coupons', 'multivendorx' )
                 , 'url'         => '#'
                 , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_vendor_promte_capability', 'edit_shop_coupons' )
                 , 'position'    => 30
                 , 'submenu'     => array(
                     'coupons'    => array(
-                        'label'       => __( 'All Coupons', 'dc-woocommerce-multi-vendor' )
+                        'label'       => __( 'All Coupons', 'multivendorx' )
                         , 'url'         => apply_filters( 'mvx_vendor_coupons', mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_coupons_endpoint', 'seller_dashbaord', 'coupons' ) ) )
                         , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_vendor_coupons_capability', 'edit_shop_coupons' )
                         , 'position'    => 10
@@ -150,7 +150,7 @@ class MVX_Vendor_Hooks {
                         , 'nav_icon'    => 'mvx-font ico-coupons-icon'
                     ),
                     'add-coupon' => array(
-                        'label'       => __( 'Add Coupon', 'dc-woocommerce-multi-vendor' )
+                        'label'       => __( 'Add Coupon', 'multivendorx' )
                         , 'url'         => apply_filters( 'mvx_vendor_submit_coupon', mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_add_coupon_endpoint', 'seller_dashbaord', 'add-coupon' ) ) )
                         , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_add_coupon_capability', 'edit_shop_coupons' )
                         , 'position'    => 20
@@ -162,13 +162,13 @@ class MVX_Vendor_Hooks {
                 , 'nav_icon'    => 'mvx-font ico-coupons-icon'
             ),
             'vendor-report'        => array(
-                'label'       => __( 'Stats / Reports', 'dc-woocommerce-multi-vendor' )
+                'label'       => __( 'Stats / Reports', 'multivendorx' )
                 , 'url'         => '#'
                 , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_vendor_report_capability', true )
                 , 'position'    => 40
                 , 'submenu'     => array(
                     'vendor-report' => array(
-                        'label'       => __( 'Overview', 'dc-woocommerce-multi-vendor' )
+                        'label'       => __( 'Overview', 'multivendorx' )
                         , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_vendor_report_endpoint', 'seller_dashbaord', 'vendor-report' ) )
                         , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_vendor_report_capability', true )
                         , 'position'    => 10
@@ -176,7 +176,7 @@ class MVX_Vendor_Hooks {
                         , 'nav_icon'    => 'mvx-font ico-reports-icon'
                     ),
                     'banking-overview' => array(
-                        'label'       => __( 'Banking Overview', 'dc-woocommerce-multi-vendor' )
+                        'label'       => __( 'Banking Overview', 'multivendorx' )
                         , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_banking_overview_endpoint', 'seller_dashbaord', 'banking-overview' ) )
                         , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_vendor_banking_report_capability', true )
                         , 'position'    => 20
@@ -188,7 +188,7 @@ class MVX_Vendor_Hooks {
                 , 'nav_icon'    => 'mvx-font ico-reports-icon'
             ),
             'vendor-orders'        => array(
-                'label'       => __( 'Orders', 'dc-woocommerce-multi-vendor' )
+                'label'       => __( 'Orders', 'multivendorx' )
                 , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_vendor_orders_endpoint', 'seller_dashbaord', 'vendor-orders' ) )
                 , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_vendor_orders_capability', true )
                 , 'position'    => 50
@@ -197,13 +197,13 @@ class MVX_Vendor_Hooks {
                 , 'nav_icon'    => 'mvx-font ico-orders-icon'
             ),
             'vendor-payments'      => array(
-                'label'       => __( 'Payments', 'dc-woocommerce-multi-vendor' )
+                'label'       => __( 'Payments', 'multivendorx' )
                 , 'url'         => '#'
                 , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_vendor_payments_capability', true )
                 , 'position'    => 60
                 , 'submenu'     => array(
                     'vendor-withdrawal'   => array(
-                        'label'       => __( 'Withdrawal', 'dc-woocommerce-multi-vendor' )
+                        'label'       => __( 'Withdrawal', 'multivendorx' )
                         , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_vendor_withdrawal_endpoint', 'seller_dashbaord', 'vendor-withdrawal' ) )
                         , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_vendor_withdrawal_capability', false )
                         , 'position'    => 10
@@ -211,7 +211,7 @@ class MVX_Vendor_Hooks {
                         , 'nav_icon'    => 'mvx-font ico-revenue-icon'
                     ),
                     'transaction-details' => array(
-                        'label'       => __( 'History', 'dc-woocommerce-multi-vendor' )
+                        'label'       => __( 'History', 'multivendorx' )
                         , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_transaction_details_endpoint', 'seller_dashbaord', 'transaction-details' ) )
                         , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_transaction_details_capability', true )
                         , 'position'    => 20
@@ -223,7 +223,7 @@ class MVX_Vendor_Hooks {
                 , 'nav_icon'    => 'mvx-font ico-payments-icon'
             ),
             'vendor-knowledgebase' => array(
-                'label'       => __( 'Knowledgebase', 'dc-woocommerce-multi-vendor' )
+                'label'       => __( 'Knowledgebase', 'multivendorx' )
                 , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_vendor_knowledgebase_endpoint', 'seller_dashbaord', 'vendor-knowledgebase' ) )
                 , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_vendor_knowledgebase_capability', true )
                 , 'position'    => 70
@@ -232,7 +232,7 @@ class MVX_Vendor_Hooks {
                 , 'nav_icon'    => 'mvx-font ico-knowledgebase-icon'
             ),
             'vendor-tools'         => array(
-                'label'       => __( 'Tools', 'dc-woocommerce-multi-vendor' )
+                'label'       => __( 'Tools', 'multivendorx' )
                 , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_vendor_tools_endpoint', 'seller_dashbaord', 'vendor-tools' ) )
                 , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_vendor_tools_capability', true )
                 , 'position'    => 80
@@ -411,7 +411,7 @@ class MVX_Vendor_Hooks {
 
             $MVX->template->get_template('vendor-dashboard/vendor-shipping.php');
         } else {
-            echo '<p class="mvx_headding3">' . __( 'Sorry you are not authorized for this pages. Please contact with admin.', 'dc-woocommerce-multi-vendor' ) . '</p>';
+            echo '<p class="mvx_headding3">' . __( 'Sorry you are not authorized for this pages. Please contact with admin.', 'multivendorx' ) . '</p>';
         }
     }
 
@@ -443,13 +443,13 @@ class MVX_Vendor_Hooks {
     public function mvx_vendor_dashboard_banking_overview_endpoint() {
         global $MVX;
         $table_headers = apply_filters('mvx_vendor_dashboard_banking_overview_table_headers', array(
-            'status'        => array('label' => __( 'Status', 'dc-woocommerce-multi-vendor' ), 'class' => 'text-center'),
-            'date'          => array('label' => __( 'Date', 'dc-woocommerce-multi-vendor' )),
-            'ref_type'      => array('label' => __( 'Type', 'dc-woocommerce-multi-vendor' )),
-            'ref_info'      => array('label' => __( 'Reference', 'dc-woocommerce-multi-vendor' )),
-            'credit'        => array('label' => __( 'Credit', 'dc-woocommerce-multi-vendor' )),
-            'debit'         => array('label' => __( 'Debit', 'dc-woocommerce-multi-vendor' )),
-            'balance'       => array('label' => __( 'Balance', 'dc-woocommerce-multi-vendor' )),
+            'status'        => array('label' => __( 'Status', 'multivendorx' ), 'class' => 'text-center'),
+            'date'          => array('label' => __( 'Date', 'multivendorx' )),
+            'ref_type'      => array('label' => __( 'Type', 'multivendorx' )),
+            'ref_info'      => array('label' => __( 'Reference', 'multivendorx' )),
+            'credit'        => array('label' => __( 'Credit', 'multivendorx' )),
+            'debit'         => array('label' => __( 'Debit', 'multivendorx' )),
+            'balance'       => array('label' => __( 'Balance', 'multivendorx' )),
         ), get_current_user_id());
         $MVX->library->load_dataTable_lib();
         $MVX->template->get_template( 'vendor-dashboard/vendor-reports/vendor-ledger.php', array( 'table_headers' => $table_headers ) );
@@ -486,7 +486,7 @@ class MVX_Vendor_Hooks {
             'ajax_url' => $MVX->ajax_url(),
             'initial_graphic_url' => $MVX->plugin_url.'assets/images/select-category-graphic.png',
             'i18n' => array(
-                'select_cat_list' => __( 'Select a category from the list', 'dc-woocommerce-multi-vendor' )
+                'select_cat_list' => __( 'Select a category from the list', 'multivendorx' )
             )
         );
         wp_enqueue_script( 'mvx_product_classify' );
@@ -524,27 +524,27 @@ class MVX_Vendor_Hooks {
             $products_table_headers = array(
                 'select_product' => '',
                 'image'      => '<i class="mvx-font ico-image-icon"></i>',
-                'name'       => __( 'Product', 'dc-woocommerce-multi-vendor' ),
-                'price'      => __( 'Price', 'dc-woocommerce-multi-vendor' ),
-                'stock'      => __( 'Stock', 'dc-woocommerce-multi-vendor' ),
-                'categories' => __( 'Categories', 'dc-woocommerce-multi-vendor' ),
-                'date'       => __( 'Date', 'dc-woocommerce-multi-vendor' ),
-                'status'     => __( 'Status', 'dc-woocommerce-multi-vendor' ),
-                'actions'     => __( 'Actions', 'dc-woocommerce-multi-vendor' ),
+                'name'       => __( 'Product', 'multivendorx' ),
+                'price'      => __( 'Price', 'multivendorx' ),
+                'stock'      => __( 'Stock', 'multivendorx' ),
+                'categories' => __( 'Categories', 'multivendorx' ),
+                'date'       => __( 'Date', 'multivendorx' ),
+                'status'     => __( 'Status', 'multivendorx' ),
+                'actions'     => __( 'Actions', 'multivendorx' ),
             );
             $products_table_headers = apply_filters( 'mvx_vendor_dashboard_product_list_table_headers', $products_table_headers );
             $table_init = apply_filters( 'mvx_vendor_dashboard_product_list_table_init', array(
                 'ordering'    => 'true',
                 'searching'   => 'false',
-                'emptyTable'  => __( 'No products found!', 'dc-woocommerce-multi-vendor' ),
-                'processing'  => __( 'Processing...', 'dc-woocommerce-multi-vendor' ),
-                'info'        => __( 'Showing _START_ to _END_ of _TOTAL_ products', 'dc-woocommerce-multi-vendor' ),
-                'infoEmpty'   => __( 'Showing 0 to 0 of 0 products', 'dc-woocommerce-multi-vendor' ),
-                'lengthMenu'  => __( 'Number of rows _MENU_', 'dc-woocommerce-multi-vendor' ),
-                'zeroRecords' => __( 'No matching products found', 'dc-woocommerce-multi-vendor' ),
-                'search'      => __( 'Search:', 'dc-woocommerce-multi-vendor' ),
-                'next'        => __( 'Next', 'dc-woocommerce-multi-vendor' ),
-                'previous'    => __( 'Previous', 'dc-woocommerce-multi-vendor' ),
+                'emptyTable'  => __( 'No products found!', 'multivendorx' ),
+                'processing'  => __( 'Processing...', 'multivendorx' ),
+                'info'        => __( 'Showing _START_ to _END_ of _TOTAL_ products', 'multivendorx' ),
+                'infoEmpty'   => __( 'Showing 0 to 0 of 0 products', 'multivendorx' ),
+                'lengthMenu'  => __( 'Number of rows _MENU_', 'multivendorx' ),
+                'zeroRecords' => __( 'No matching products found', 'multivendorx' ),
+                'search'      => __( 'Search:', 'multivendorx' ),
+                'next'        => __( 'Next', 'multivendorx' ),
+                'previous'    => __( 'Previous', 'multivendorx' ),
             ) );
 
             $MVX->template->get_template( 'vendor-dashboard/product-manager/products.php', array( 'products_table_headers' => $products_table_headers, 'table_init' => $table_init ) );
@@ -612,16 +612,16 @@ class MVX_Vendor_Hooks {
                     'wc-enhanced-select',
                     'wc_enhanced_select_params',
                     array(
-                            'i18n_no_matches'           => _x( 'No matches found', 'enhanced select', 'dc-woocommerce-multi-vendor' ),
-                            'i18n_ajax_error'           => _x( 'Loading failed', 'enhanced select', 'dc-woocommerce-multi-vendor' ),
-                            'i18n_input_too_short_1'    => _x( 'Please enter 1 or more characters', 'enhanced select', 'dc-woocommerce-multi-vendor' ),
-                            'i18n_input_too_short_n'    => _x( 'Please enter %qty% or more characters', 'enhanced select', 'dc-woocommerce-multi-vendor' ),
-                            'i18n_input_too_long_1'     => _x( 'Please delete 1 character', 'enhanced select', 'dc-woocommerce-multi-vendor' ),
-                            'i18n_input_too_long_n'     => _x( 'Please delete %qty% characters', 'enhanced select', 'dc-woocommerce-multi-vendor' ),
-                            'i18n_selection_too_long_1' => _x( 'You can only select 1 item', 'enhanced select', 'dc-woocommerce-multi-vendor' ),
-                            'i18n_selection_too_long_n' => _x( 'You can only select %qty% items', 'enhanced select', 'dc-woocommerce-multi-vendor' ),
-                            'i18n_load_more'            => _x( 'Loading more results&hellip;', 'enhanced select', 'dc-woocommerce-multi-vendor' ),
-                            'i18n_searching'            => _x( 'Searching&hellip;', 'enhanced select', 'dc-woocommerce-multi-vendor' ),
+                            'i18n_no_matches'           => _x( 'No matches found', 'enhanced select', 'multivendorx' ),
+                            'i18n_ajax_error'           => _x( 'Loading failed', 'enhanced select', 'multivendorx' ),
+                            'i18n_input_too_short_1'    => _x( 'Please enter 1 or more characters', 'enhanced select', 'multivendorx' ),
+                            'i18n_input_too_short_n'    => _x( 'Please enter %qty% or more characters', 'enhanced select', 'multivendorx' ),
+                            'i18n_input_too_long_1'     => _x( 'Please delete 1 character', 'enhanced select', 'multivendorx' ),
+                            'i18n_input_too_long_n'     => _x( 'Please delete %qty% characters', 'enhanced select', 'multivendorx' ),
+                            'i18n_selection_too_long_1' => _x( 'You can only select 1 item', 'enhanced select', 'multivendorx' ),
+                            'i18n_selection_too_long_n' => _x( 'You can only select %qty% items', 'enhanced select', 'multivendorx' ),
+                            'i18n_load_more'            => _x( 'Loading more results&hellip;', 'enhanced select', 'multivendorx' ),
+                            'i18n_searching'            => _x( 'Searching&hellip;', 'enhanced select', 'multivendorx' ),
                             'ajax_url'                  => admin_url( 'admin-ajax.php' ),
                             'search_products_nonce'     => wp_create_nonce( 'search-products' ),
                             'search_customers_nonce'    => wp_create_nonce( 'search-customers' ),
@@ -638,7 +638,7 @@ class MVX_Vendor_Hooks {
                     'mvx_order_details_js',
                     'mvx_order_details_js_script_data',
                     array(
-                        'i18n_do_refund'                => __( 'Are you sure you wish to process this refund? This action cannot be undone.', 'dc-woocommerce-multi-vendor' ),
+                        'i18n_do_refund'                => __( 'Are you sure you wish to process this refund? This action cannot be undone.', 'multivendorx' ),
                         'post_id'                       => isset( $vendor_order ) ? $vendor_order : '',
                         'order_item_nonce'              => wp_create_nonce( 'mvx-order-item' ),
                         'grant_access_nonce'            => wp_create_nonce( 'grant-access' ),
@@ -651,9 +651,9 @@ class MVX_Vendor_Hooks {
                         'currency_format_thousand_sep'  => esc_attr( wc_get_price_thousand_separator() ),
                         'currency_format'               => esc_attr( str_replace( array( '%1$s', '%2$s' ), array( '%s', '%v' ), get_woocommerce_price_format() ) ), // For accounting JS.
                         'rounding_precision'            => wc_get_rounding_precision(),
-                        'i18n_download_permission_fail' => __( 'Could not grant access - the user may already have permission for this file or billing email is not set. Ensure the billing email is set, and the order has been saved.', 'dc-woocommerce-multi-vendor' ),
-                        'i18n_permission_revoke'        => __( 'Are you sure you want to revoke access to this download?', 'dc-woocommerce-multi-vendor' ),
-                        'i18n_do_cancel'                => __( 'Are you sure you want to cancel this order? This action cannot be undone.', 'dc-woocommerce-multi-vendor' ),
+                        'i18n_download_permission_fail' => __( 'Could not grant access - the user may already have permission for this file or billing email is not set. Ensure the billing email is set, and the order has been saved.', 'multivendorx' ),
+                        'i18n_permission_revoke'        => __( 'Are you sure you want to revoke access to this download?', 'multivendorx' ),
+                        'i18n_do_cancel'                => __( 'Are you sure you want to cancel this order? This action cannot be undone.', 'multivendorx' ),
                     )
             );
             $MVX->template->get_template( 'vendor-dashboard/vendor-orders/vendor-order-details.php', array( 'order_id' => $vendor_order ) );
@@ -681,9 +681,9 @@ class MVX_Vendor_Hooks {
             
             // bulk actions
             $bulk_actions = apply_filters( 'mvx_bulk_actions_vendor_order_list', array(
-                'mark_processing'   => __( 'Change status to processing', 'dc-woocommerce-multi-vendor' ),
-                'mark_on-hold'      => __( 'Change status to on-hold', 'dc-woocommerce-multi-vendor' ),
-                'mark_completed'   => __( 'Change status to completed', 'dc-woocommerce-multi-vendor' ),
+                'mark_processing'   => __( 'Change status to processing', 'multivendorx' ),
+                'mark_on-hold'      => __( 'Change status to on-hold', 'multivendorx' ),
+                'mark_completed'   => __( 'Change status to completed', 'multivendorx' ),
             ), $vendor );
                 
             $MVX->template->get_template( 'vendor-dashboard/vendor-orders.php', array( 
@@ -722,15 +722,15 @@ class MVX_Vendor_Hooks {
             $table_init = apply_filters( 'mvx_vendor_dashboard_payment_withdrawal_table_init', array(
                 'ordering'    => 'false',
                 'searching'   => 'false',
-                'emptyTable'  => __( 'No orders found!', 'dc-woocommerce-multi-vendor' ),
-                'processing'  => __( 'Processing...', 'dc-woocommerce-multi-vendor' ),
-                'info'        => __( 'Showing _START_ to _END_ of _TOTAL_ orders', 'dc-woocommerce-multi-vendor' ),
-                'infoEmpty'   => __( 'Showing 0 to 0 of 0 orders', 'dc-woocommerce-multi-vendor' ),
-                'lengthMenu'  => __( 'Number of rows _MENU_', 'dc-woocommerce-multi-vendor' ),
-                'zeroRecords' => __( 'No matching orders found', 'dc-woocommerce-multi-vendor' ),
-                'search'      => __( 'Search:', 'dc-woocommerce-multi-vendor' ),
-                'next'        => __( 'Next', 'dc-woocommerce-multi-vendor' ),
-                'previous'    => __( 'Previous', 'dc-woocommerce-multi-vendor' ),
+                'emptyTable'  => __( 'No orders found!', 'multivendorx' ),
+                'processing'  => __( 'Processing...', 'multivendorx' ),
+                'info'        => __( 'Showing _START_ to _END_ of _TOTAL_ orders', 'multivendorx' ),
+                'infoEmpty'   => __( 'Showing 0 to 0 of 0 orders', 'multivendorx' ),
+                'lengthMenu'  => __( 'Number of rows _MENU_', 'multivendorx' ),
+                'zeroRecords' => __( 'No matching orders found', 'multivendorx' ),
+                'search'      => __( 'Search:', 'multivendorx' ),
+                'next'        => __( 'Next', 'multivendorx' ),
+                'previous'    => __( 'Previous', 'multivendorx' ),
             ) );
 
             $MVX->template->get_template( 'vendor-dashboard/vendor-withdrawal.php', array( 'vendor' => $vendor, 'vendor_unpaid_orders' => $vendor_unpaid_orders, 'table_init' => $table_init ) );
@@ -801,7 +801,7 @@ class MVX_Vendor_Hooks {
                 case 'vendor-billing':
                     $error = $MVX->vendor_dashboard->save_store_settings( $vendor->id, $post_data );
                     if ( empty( $error ) ) {
-                        wc_add_notice( __( 'All Options Saved', 'dc-woocommerce-multi-vendor' ), 'success' );
+                        wc_add_notice( __( 'All Options Saved', 'multivendorx' ), 'success' );
                     } else {
                         wc_add_notice( $error, 'error' );
                     }
@@ -898,7 +898,7 @@ class MVX_Vendor_Hooks {
                 if ( $vendor_progress['todo'] && is_array( $vendor_progress['todo'] ) ) {
                     $todo_link = isset( $vendor_progress['todo']['link'] ) ? esc_url( $vendor_progress['todo']['link'] ) : '';
                     $todo_label = isset( $vendor_progress['todo']['label'] ) ? $vendor_progress['todo']['label'] : '';
-                    echo '<div style="margin:17px 20px 12px 20px;">' . __( 'To boost up your profile progress add', 'dc-woocommerce-multi-vendor' ) . ' <a href="' . $todo_link . '">' . $todo_label . '</a></div>';
+                    echo '<div style="margin:17px 20px 12px 20px;">' . __( 'To boost up your profile progress add', 'multivendorx' ) . ' <a href="' . $todo_link . '">' . $todo_label . '</a></div>';
                 }
                 echo '<div class="progress" style="margin:0 20px 20px;">';
                 echo '<div class="progress-bar" role="progressbar" style="width: ' . $vendor_progress['progress'] . '%;" aria-valuenow="' . $vendor_progress['progress'] . '" aria-valuemin="0" aria-valuemax="100">' . $vendor_progress['progress'] . '%</div>';
@@ -1013,7 +1013,7 @@ class MVX_Vendor_Hooks {
         		$mvx_vendor_rejection_notes = unserialize( get_user_meta( $user->ID, 'mvx_vendor_rejection_notes', true ) );
 				$mvx_vendor_rejection_notes[time()] = array(
 						'note_by' => $user->ID,
-						'note' => __( 'Re applied to become a vendor', 'dc-woocommerce-multi-vendor' ));
+						'note' => __( 'Re applied to become a vendor', 'multivendorx' ));
 				update_user_meta( $user->ID, 'mvx_vendor_rejection_notes', serialize( $mvx_vendor_rejection_notes ) );
                 // send mail to admin when rejected vendor reapply
                 if (apply_filters( 'mvx_send_mail_to_admin_when_vendor_reapply', true )) {

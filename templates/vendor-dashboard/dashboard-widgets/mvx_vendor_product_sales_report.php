@@ -14,9 +14,9 @@ if (!defined('ABSPATH')) {
 }
 global $MVX;
 $product_sales_report_table_headers = apply_filters('mvx_datatable_widget_product_sales_report_table_headers', array(
-    'product'      => array('label' => __( 'Product', 'dc-woocommerce-multi-vendor' )),
-    'revenue'    => array('label' => __( 'Revenue', 'dc-woocommerce-multi-vendor' )),
-    'unique_purchase'=> array('label' => __( 'Unique Purchases', 'dc-woocommerce-multi-vendor' )),
+    'product'      => array('label' => __( 'Product', 'multivendorx' )),
+    'revenue'    => array('label' => __( 'Revenue', 'multivendorx' )),
+    'unique_purchase'=> array('label' => __( 'Unique Purchases', 'multivendorx' )),
 ), get_current_user_id());
 ?>
 <table id="widget_product_sales_report" class="table table-striped product_sold_last_week table-bordered mvx-widget-dt" width="100%">
@@ -29,9 +29,9 @@ $product_sales_report_table_headers = apply_filters('mvx_datatable_widget_produc
                 <?php }
             endif;
         ?>
-            <!--th><?php _e('Product', 'dc-woocommerce-multi-vendor'); ?></th>
-            <th><?php _e('Revenue', 'dc-woocommerce-multi-vendor'); ?></th>
-            <th><?php _e('Unique Purchases', 'dc-woocommerce-multi-vendor'); ?></th-->
+            <!--th><?php _e('Product', 'multivendorx'); ?></th>
+            <th><?php _e('Revenue', 'multivendorx'); ?></th>
+            <th><?php _e('Unique Purchases', 'multivendorx'); ?></th-->
         </tr>
     </thead>
     <tbody>
@@ -58,15 +58,15 @@ jQuery(document).ready(function($) {
         serverSide: true,
         responsive: true,
         language: {
-            "emptyTable": "<?php echo trim(__('Not enough data.','dc-woocommerce-multi-vendor')); ?>",
-            "zeroRecords": "<?php echo trim(__('Not enough data.','dc-woocommerce-multi-vendor')); ?>",
+            "emptyTable": "<?php echo trim(__('Not enough data.','multivendorx')); ?>",
+            "zeroRecords": "<?php echo trim(__('Not enough data.','multivendorx')); ?>",
             
         },
         ajax:{
             url : '<?php echo add_query_arg( 'action', 'mvx_widget_vendor_product_sales_report', $MVX->ajax_url() ); ?>', 
             type: "post",
             error: function(xhr, status, error) {
-                $("#widget_product_sales_report tbody").append('<tr class="odd"><td valign="top" colspan="<?php if(is_array($product_sales_report_table_headers)) count($product_sales_report_table_headers); ?>" class="dataTables_empty" style="text-align:center;">'+error+' - <a href="javascript:window.location.reload();"><?php _e('Reload', 'dc-woocommerce-multi-vendor'); ?></a></td></tr>');
+                $("#widget_product_sales_report tbody").append('<tr class="odd"><td valign="top" colspan="<?php if(is_array($product_sales_report_table_headers)) count($product_sales_report_table_headers); ?>" class="dataTables_empty" style="text-align:center;">'+error+' - <a href="javascript:window.location.reload();"><?php _e('Reload', 'multivendorx'); ?></a></td></tr>');
                 $("#widget_product_sales_report").css("display","none");
             }
         },

@@ -28,8 +28,8 @@ class WC_Email_Vendor_Orders_Stats_Report extends WC_Email {
     function __construct() {
         global $MVX;
         $this->id                   = 'vendor_orders_stats_report';
-        $this->title 		= __( 'Vendor orders stats report', 'dc-woocommerce-multi-vendor' );
-        $this->description		= __( 'Vendor gets their weekly or monthly order reports.', 'dc-woocommerce-multi-vendor');
+        $this->title 		= __( 'Vendor orders stats report', 'multivendorx' );
+        $this->description		= __( 'Vendor gets their weekly or monthly order reports.', 'multivendorx');
 
         $this->template_base = $MVX->plugin_path . 'templates/';
         $this->template_html 	= 'emails/vendor-orders-stats-report.php';
@@ -73,7 +73,7 @@ class WC_Email_Vendor_Orders_Stats_Report extends WC_Email {
      * @return string
      */
     public function get_default_subject() {
-        return apply_filters( 'mvx_vendor_orders_stats_report_email_subject', __( '{STORE_NAME}, your orders report', 'dc-woocommerce-multi-vendor'), $this->object );
+        return apply_filters( 'mvx_vendor_orders_stats_report_email_subject', __( '{STORE_NAME}, your orders report', 'multivendorx'), $this->object );
     }
 
     /**
@@ -83,7 +83,7 @@ class WC_Email_Vendor_Orders_Stats_Report extends WC_Email {
      * @return string
      */
     public function get_default_heading() {
-        return apply_filters( 'mvx_vendor_orders_stats_report_email_heading', __( '{STORE_NAME} orders report', 'dc-woocommerce-multi-vendor'),$this->object );
+        return apply_filters( 'mvx_vendor_orders_stats_report_email_heading', __( '{STORE_NAME} orders report', 'multivendorx'),$this->object );
     }
     
     /**

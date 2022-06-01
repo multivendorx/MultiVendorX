@@ -21,7 +21,7 @@ global $MVX;
                     <div class="widget widget-stats bg-ledger">
                         <div class="stats-icon"><i class="mvx-font ico-payments-icon"></i></div>
                         <div class="stats-info">
-                            <h4><?php _e('Initial Balance', 'dc-woocommerce-multi-vendor'); ?></h4>
+                            <h4><?php _e('Initial Balance', 'multivendorx'); ?></h4>
                             <span class="number initial-bal-wrap"></span>	
                         </div>
                         <div class="stats-link"></div>
@@ -31,7 +31,7 @@ global $MVX;
                     <div class="widget widget-stats bg-ledger">
                         <div class="stats-icon"><i class="mvx-font ico-earning-icon"></i></div>
                         <div class="stats-info">
-                            <h4><?php _e('Total Credit', 'dc-woocommerce-multi-vendor'); ?></h4>
+                            <h4><?php _e('Total Credit', 'multivendorx'); ?></h4>
                             <span class="number total-credit-wrap"></span>	
                         </div>
                         <div class="stats-link"></div>
@@ -41,7 +41,7 @@ global $MVX;
                     <div class="widget widget-stats bg-ledger">
                         <div class="stats-icon"><i class="mvx-font ico-revenue-icon"></i></div>
                         <div class="stats-info">
-                            <h4><?php _e('Total Debit', 'dc-woocommerce-multi-vendor'); ?></h4>
+                            <h4><?php _e('Total Debit', 'multivendorx'); ?></h4>
                             <span class="number total-debit-wrap"></span>	
                         </div>
                         <div class="stats-link"></div>
@@ -51,7 +51,7 @@ global $MVX;
                     <div class="widget widget-stats bg-ledger">
                         <div class="stats-icon"><i class="mvx-font ico-payments-icon"></i></div>
                         <div class="stats-info">
-                            <h4><?php _e('Ending Balance', 'dc-woocommerce-multi-vendor'); ?></h4>
+                            <h4><?php _e('Ending Balance', 'multivendorx'); ?></h4>
                             <span class="number ending-bal-wrap"></span>	
                         </div>
                         <div class="stats-link"></div>
@@ -65,7 +65,7 @@ global $MVX;
                 <div class="form-group">
                     <input type="date" id="mvx_to_date" class="form-control" name="to_date" class="" placeholder="To" value="<?php echo date('Y-m-d'); ?>"/>
                 </div>
-                <button type="button" name="order_export_submit" id="do_filter"  class="btn btn-default" ><?php _e('Show', 'dc-woocommerce-multi-vendor') ?></button>
+                <button type="button" name="order_export_submit" id="do_filter"  class="btn btn-default" ><?php _e('Show', 'multivendorx') ?></button>
             </div>  
             <table class="table table-striped table-bordered" id="mvx-vendor-ledger" style="width:100%;">
                 <thead>
@@ -110,16 +110,16 @@ jQuery(document).ready(function($) {
         serverSide: true,
         responsive: true,
         language: {
-            "emptyTable": "<?php echo isset($table_init['emptyTable']) ? trim($table_init['emptyTable']) : __('No transactions found!','dc-woocommerce-multi-vendor'); ?>",
-            "processing": "<?php echo isset($table_init['processing']) ? trim($table_init['processing']) : __('Processing...', 'dc-woocommerce-multi-vendor'); ?>",
-            "info": "<?php echo isset($table_init['info']) ? trim($table_init['info']) : __('Showing _START_ to _END_ of _TOTAL_ transactions','dc-woocommerce-multi-vendor'); ?>",
-            "infoEmpty": "<?php echo isset($table_init['infoEmpty']) ? trim($table_init['infoEmpty']) : __('Showing 0 to 0 of 0 transactions','dc-woocommerce-multi-vendor'); ?>",
-            "lengthMenu": "<?php echo isset($table_init['lengthMenu']) ? trim($table_init['lengthMenu']) : __('Number of rows _MENU_','dc-woocommerce-multi-vendor'); ?>",
-            "zeroRecords": "<?php echo isset($table_init['zeroRecords']) ? trim($table_init['zeroRecords']) : __('No matching transactions found','dc-woocommerce-multi-vendor'); ?>",
-            "search": "<?php echo isset($table_init['search']) ? trim($table_init['search']) : __('Search:','dc-woocommerce-multi-vendor'); ?>",
+            "emptyTable": "<?php echo isset($table_init['emptyTable']) ? trim($table_init['emptyTable']) : __('No transactions found!','multivendorx'); ?>",
+            "processing": "<?php echo isset($table_init['processing']) ? trim($table_init['processing']) : __('Processing...', 'multivendorx'); ?>",
+            "info": "<?php echo isset($table_init['info']) ? trim($table_init['info']) : __('Showing _START_ to _END_ of _TOTAL_ transactions','multivendorx'); ?>",
+            "infoEmpty": "<?php echo isset($table_init['infoEmpty']) ? trim($table_init['infoEmpty']) : __('Showing 0 to 0 of 0 transactions','multivendorx'); ?>",
+            "lengthMenu": "<?php echo isset($table_init['lengthMenu']) ? trim($table_init['lengthMenu']) : __('Number of rows _MENU_','multivendorx'); ?>",
+            "zeroRecords": "<?php echo isset($table_init['zeroRecords']) ? trim($table_init['zeroRecords']) : __('No matching transactions found','multivendorx'); ?>",
+            "search": "<?php echo isset($table_init['search']) ? trim($table_init['search']) : __('Search:','multivendorx'); ?>",
             "paginate": {
-                "next":  "<?php echo isset($table_init['next']) ? trim($table_init['next']) : __('Next','dc-woocommerce-multi-vendor'); ?>",
-                "previous":  "<?php echo isset($table_init['previous']) ? trim($table_init['previous']) : __('Previous','dc-woocommerce-multi-vendor'); ?>"
+                "next":  "<?php echo isset($table_init['next']) ? trim($table_init['next']) : __('Next','multivendorx'); ?>",
+                "previous":  "<?php echo isset($table_init['previous']) ? trim($table_init['previous']) : __('Previous','multivendorx'); ?>"
             }
         },
         ajax:{
@@ -130,7 +130,7 @@ jQuery(document).ready(function($) {
                 data.to_date = $('#mvx_to_date').val();
             },
             error: function(xhr, status, error) {
-                $("#mvx-vendor-ledger tbody").append('<tr class="odd"><td valign="top" colspan="6" class="dataTables_empty" style="text-align:center;">'+error+' - <a href="javascript:window.location.reload();"><?php _e('Reload', 'dc-woocommerce-multi-vendor'); ?></a></td></tr>');
+                $("#mvx-vendor-ledger tbody").append('<tr class="odd"><td valign="top" colspan="6" class="dataTables_empty" style="text-align:center;">'+error+' - <a href="javascript:window.location.reload();"><?php _e('Reload', 'multivendorx'); ?></a></td></tr>');
                 $("#mvx-vendor-ledger_processing").css("display","none");
             }
         },

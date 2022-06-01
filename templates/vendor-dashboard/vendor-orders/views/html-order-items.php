@@ -45,26 +45,26 @@ if ( wc_tax_enabled() ) {
 </style>
 <div class="mvx_order_items_wrapper panel panel-default panel-pading pannel-outer-heading order-detail-table-wrap">
     <div class="panel-heading d-flex">
-        <h3><?php _e('Items', 'dc-woocommerce-multi-vendor'); ?></h3>
+        <h3><?php _e('Items', 'multivendorx'); ?></h3>
     </div>
     <div class="panel-body">
         <div class="single-order-detail-table">
             <table class="woocommerce_order_items table">
                 <thead>
                     <tr>
-                        <th colspan="2"><?php esc_html_e('Item', 'dc-woocommerce-multi-vendor'); ?>:</th>
+                        <th colspan="2"><?php esc_html_e('Item', 'multivendorx'); ?>:</th>
                         <?php do_action('mvx_vendor_dash_order_item_headers', $order); ?>
-                        <th><?php esc_html_e('Cost', 'dc-woocommerce-multi-vendor'); ?></th>
-                        <th><?php esc_html_e('Qty', 'dc-woocommerce-multi-vendor'); ?></th>
-                        <th><?php esc_html_e('Total', 'dc-woocommerce-multi-vendor'); ?></th>
+                        <th><?php esc_html_e('Cost', 'multivendorx'); ?></th>
+                        <th><?php esc_html_e('Qty', 'multivendorx'); ?></th>
+                        <th><?php esc_html_e('Total', 'multivendorx'); ?></th>
                         <?php
                         if (!empty($order_taxes)) :
                             foreach ($order_taxes as $tax_id => $tax_item) :
                                 $tax_class = wc_get_tax_class_by_tax_id($tax_item['rate_id']);
-                                $tax_class_name = isset($classes_options[$tax_class]) ? $classes_options[$tax_class] : __('Tax', 'dc-woocommerce-multi-vendor');
-                                $column_label = !empty($tax_item['label']) ? $tax_item['label'] : __('Tax', 'dc-woocommerce-multi-vendor');
+                                $tax_class_name = isset($classes_options[$tax_class]) ? $classes_options[$tax_class] : __('Tax', 'multivendorx');
+                                $column_label = !empty($tax_item['label']) ? $tax_item['label'] : __('Tax', 'multivendorx');
                                 /* translators: %1$s: tax item name %2$s: tax class name  */
-                                $column_tip = sprintf(esc_html__('%1$s (%2$s)', 'dc-woocommerce-multi-vendor'), $tax_item['name'], $tax_class_name);
+                                $column_tip = sprintf(esc_html__('%1$s (%2$s)', 'multivendorx'), $tax_item['name'], $tax_class_name);
                                 ?>
                                 <th class="line_tax tips" data-tip="<?php echo esc_attr($column_tip); ?>">
                                     <?php echo esc_attr($column_label); ?>
@@ -74,7 +74,7 @@ if ( wc_tax_enabled() ) {
                             endforeach;
                         endif;
                         ?>
-                        <th width="100px"><?php _e('Commission', 'dc-woocommerce-multi-vendor'); ?></th>
+                        <th width="100px"><?php _e('Commission', 'multivendorx'); ?></th>
                     </tr>
                 </thead>
                 <tbody id="mvx_order_line_items" class="mvx-order-tbody">
@@ -120,7 +120,7 @@ if ( wc_tax_enabled() ) {
                                     ?>
                                     <div class="wc-used-coupons">
                                         <ul class="wc_coupon_list">
-                                            <li><strong><?php esc_html_e('Coupon(s)', 'dc-woocommerce-multi-vendor'); ?></strong></li>
+                                            <li><strong><?php esc_html_e('Coupon(s)', 'multivendorx'); ?></strong></li>
                                             <?php
                                             foreach ($coupons as $item_id => $item) :
                                                 $post_id = $wpdb->get_var($wpdb->prepare("SELECT ID FROM {$wpdb->posts} WHERE post_title = %s AND post_type = 'shop_coupon' AND post_status = 'publish' LIMIT 1;", $item->get_code()));
@@ -154,7 +154,7 @@ if ( wc_tax_enabled() ) {
                                 <?php endif; ?>
                                 <table class="mvx-order-totals">
                                     <tr>
-                                        <td class="label primary-color"><?php _e('Commission:', 'dc-woocommerce-multi-vendor'); ?></td>
+                                        <td class="label primary-color"><?php _e('Commission:', 'multivendorx'); ?></td>
                                         <td width="1%"></td>
                                         <td class="total primary-color">
                                             <?php echo $vendor_order->get_formatted_commission_total(); // WPCS: XSS ok.  ?>
@@ -162,7 +162,7 @@ if ( wc_tax_enabled() ) {
                                     </tr>
                                     <?php if (0 < $order->get_total_discount()) : ?>
                                         <tr>
-                                            <td class="label"><?php esc_html_e('Discount:', 'dc-woocommerce-multi-vendor'); ?></td>
+                                            <td class="label"><?php esc_html_e('Discount:', 'multivendorx'); ?></td>
                                             <td width="1%"></td>
                                             <td class="total">
                                                 <?php echo wc_price($order->get_total_discount(), array('currency' => $order->get_currency())); // WPCS: XSS ok.  ?>
@@ -174,7 +174,7 @@ if ( wc_tax_enabled() ) {
 
                                     <?php if ($order->get_shipping_methods()) : ?>
                                         <tr>
-                                            <td class="label"><?php esc_html_e('Shipping:', 'dc-woocommerce-multi-vendor'); ?></td>
+                                            <td class="label"><?php esc_html_e('Shipping:', 'multivendorx'); ?></td>
                                             <td width="1%"></td>
                                             <td class="total">
                                                 <?php
@@ -213,7 +213,7 @@ if ( wc_tax_enabled() ) {
                                     <?php do_action('mvx_vendor_order_totals_after_tax', $order->get_id()); ?>
 
                                     <tr>
-                                        <td class="label"><?php esc_html_e('Total', 'dc-woocommerce-multi-vendor'); ?>:</td>
+                                        <td class="label"><?php esc_html_e('Total', 'multivendorx'); ?>:</td>
                                         <td width="1%"></td>
                                         <td class="total">
                                             <?php echo $order->get_formatted_order_total(); // WPCS: XSS ok.  ?>
@@ -221,7 +221,7 @@ if ( wc_tax_enabled() ) {
                                     </tr>
                                     
                                     <tr>
-                                        <td class="label"><?php esc_html_e('Total Earned', 'dc-woocommerce-multi-vendor'); ?>:</td>
+                                        <td class="label"><?php esc_html_e('Total Earned', 'multivendorx'); ?>:</td>
                                         <td width="1%"></td>
                                         <td class="total">
                                             <?php echo $vendor_order->get_formatted_order_total_earned(); // WPCS: XSS ok.  ?>
@@ -232,12 +232,12 @@ if ( wc_tax_enabled() ) {
 
                                     <?php if ($order->get_total_refunded()) : ?>
                                         <tr>
-                                            <td class="label refunded-total"><?php esc_html_e('Refunded', 'dc-woocommerce-multi-vendor'); ?>:</td>
+                                            <td class="label refunded-total"><?php esc_html_e('Refunded', 'multivendorx'); ?>:</td>
                                             <td width="1%"></td>
                                             <td class="total refunded-total">-<?php echo wc_price($order->get_total_refunded(), array('currency' => $order->get_currency())); // WPCS: XSS ok.  ?></td>
                                         </tr>
                                         <tr>
-                                            <td class="label refunded-total"><?php esc_html_e('Commission Refunded', 'dc-woocommerce-multi-vendor'); ?>:</td>
+                                            <td class="label refunded-total"><?php esc_html_e('Commission Refunded', 'multivendorx'); ?>:</td>
                                             <td width="1%"></td>
                                             <td class="total refunded-total"><?php echo $vendor_order->get_total_commission_refunded_amount(); // WPCS: XSS ok.  ?></td>
                                         </tr>
@@ -252,7 +252,7 @@ if ( wc_tax_enabled() ) {
                             <div class="mvx-order-actions  mvx-order-data-row-toggle">
                                 <?php if (0 < $order->get_total() - $order->get_total_refunded() || 0 < absint($order->get_item_count() - $order->get_item_count_refunded())) : ?>
                                 <?php if( $order->get_status( 'edit' ) != 'cancelled' ) : ?>
-                                    <button type="button" class="button refund-items btn btn-default"><?php esc_html_e('Refund', 'dc-woocommerce-multi-vendor'); ?></button>
+                                    <button type="button" class="button refund-items btn btn-default"><?php esc_html_e('Refund', 'multivendorx'); ?></button>
                                 <?php endif; ?>
                                 <?php endif; ?>
                                 <?php
@@ -266,27 +266,27 @@ if ( wc_tax_enabled() ) {
                                     <table class="wc-order-totals pull-right">
                                         <?php if ('yes' === get_option('woocommerce_manage_stock')) : ?>
                                             <tr>
-                                                <td class="label"><label for="restock_refunded_items"><?php esc_html_e('Restock refunded items', 'dc-woocommerce-multi-vendor'); ?>:</label></td>
+                                                <td class="label"><label for="restock_refunded_items"><?php esc_html_e('Restock refunded items', 'multivendorx'); ?>:</label></td>
                                                 <td class="total"><input type="checkbox" id="restock_refunded_items" name="restock_refunded_items" <?php checked(apply_filters('woocommerce_restock_refunded_items', true)); ?> /></td>
                                             </tr>
                                         <?php endif; ?>
                                         <tr>
-                                            <td class="label"><?php esc_html_e('Amount already refunded', 'dc-woocommerce-multi-vendor'); ?>:</td>
+                                            <td class="label"><?php esc_html_e('Amount already refunded', 'multivendorx'); ?>:</td>
                                             <td class="total">-<?php echo wc_price($order->get_total_refunded(), array('currency' => $order->get_currency())); // WPCS: XSS ok.   ?></td>
                                         </tr>
                                         <tr>
-                                            <td class="label"><?php esc_html_e('Total available to refund', 'dc-woocommerce-multi-vendor'); ?>:</td>
+                                            <td class="label"><?php esc_html_e('Total available to refund', 'multivendorx'); ?>:</td>
                                             <td class="total"><?php echo wc_price($order->get_total() - $order->get_total_refunded(), array('currency' => $order->get_currency())); // WPCS: XSS ok.   ?></td>
                                         </tr>
                                         <tr>
-                                            <td class="label"><label for="refund_amount"><?php esc_html_e('Refund amount', 'dc-woocommerce-multi-vendor'); ?>:</label></td>
+                                            <td class="label"><label for="refund_amount"><?php esc_html_e('Refund amount', 'multivendorx'); ?>:</label></td>
                                             <td class="total">
                                                 <input type="text" id="refund_amount" name="refund_amount" class="wc_input_price form-control" />
                                                 <div class="clear"></div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="label"><label for="refund_reason"><?php echo wc_help_tip(__('Note: the refund reason will be visible by the customer.', 'dc-woocommerce-multi-vendor')); ?> <?php esc_html_e('Reason for refund (optional):', 'dc-woocommerce-multi-vendor'); ?></label></td>
+                                            <td class="label"><label for="refund_reason"><?php echo wc_help_tip(__('Note: the refund reason will be visible by the customer.', 'multivendorx')); ?> <?php esc_html_e('Reason for refund (optional):', 'multivendorx'); ?></label></td>
                                             <td class="total">
                                                 <input type="text" id="refund_reason" name="refund_reason" class="form-control" />
                                                 <div class="clear"></div>
@@ -297,16 +297,16 @@ if ( wc_tax_enabled() ) {
                                     <div class="refund-actions">
                                         <?php
                                         $refund_amount = '<span class="wc-order-refund-amount">' . wc_price(0, array('currency' => $order->get_currency())) . '</span>';
-                                        $gateway_name = false !== $payment_gateway ? (!empty($payment_gateway->method_title) ? $payment_gateway->method_title : $payment_gateway->get_title() ) : __('Payment gateway', 'dc-woocommerce-multi-vendor');
+                                        $gateway_name = false !== $payment_gateway ? (!empty($payment_gateway->method_title) ? $payment_gateway->method_title : $payment_gateway->get_title() ) : __('Payment gateway', 'multivendorx');
 
                                         if (false !== $payment_gateway && $payment_gateway->can_refund_order($order)) {
                                             /* translators: refund amount, gateway name */
-                                            //echo '<button type="button" class="button button-primary do-api-refund">' . sprintf(esc_html__('Refund %1$s via %2$s', 'dc-woocommerce-multi-vendor'), wp_kses_post($refund_amount), esc_html($gateway_name)) . '</button>';
+                                            //echo '<button type="button" class="button button-primary do-api-refund">' . sprintf(esc_html__('Refund %1$s via %2$s', 'multivendorx'), wp_kses_post($refund_amount), esc_html($gateway_name)) . '</button>';
                                         }
                                         ?>
                                         <?php /* translators: refund amount  */ ?>
-                                        <button type="button" class="btn btn-default do-manual-refund tips" data-tip="<?php esc_attr_e('You will need to manually issue a refund through your payment gateway after using this.', 'dc-woocommerce-multi-vendor'); ?>"><?php printf(esc_html__('Refund %s manually', 'dc-woocommerce-multi-vendor'), wp_kses_post($refund_amount)); ?></button>
-                                        <button type="button" class="btn btn-secondary cancel-action"><?php esc_html_e('Cancel', 'dc-woocommerce-multi-vendor'); ?></button>
+                                        <button type="button" class="btn btn-default do-manual-refund tips" data-tip="<?php esc_attr_e('You will need to manually issue a refund through your payment gateway after using this.', 'multivendorx'); ?>"><?php printf(esc_html__('Refund %s manually', 'multivendorx'), wp_kses_post($refund_amount)); ?></button>
+                                        <button type="button" class="btn btn-secondary cancel-action"><?php esc_html_e('Cancel', 'multivendorx'); ?></button>
                                         <input type="hidden" id="refunded_amount" name="refunded_amount" value="<?php echo esc_attr($order->get_total_refunded()); ?>" />
                                         <div class="clear"></div>
                                     </div>

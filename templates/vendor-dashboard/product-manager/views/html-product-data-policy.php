@@ -22,7 +22,7 @@ $_mvx_cancallation_policy = get_post_meta( $id, '_mvx_cancallation_policy', true
         <?php do_action( 'mvx_afm_before_vendor_policies', $post->ID, $product_object, $post ); ?>
         <?php if ( apply_filters( 'can_vendor_edit_shipping_policy_field', true ) ) : ?>
             <div class="form-group">
-                <label class="control-label col-sm-3 col-md-3" for="_mvx_shipping_policy"><?php esc_attr_e( 'Shipping Policy', 'dc-woocommerce-multi-vendor' ); ?></label>
+                <label class="control-label col-sm-3 col-md-3" for="_mvx_shipping_policy"><?php esc_attr_e( 'Shipping Policy', 'multivendorx' ); ?></label>
                 <div class="col-md-6 col-sm-9"><?php
                     $shipping_policy_settings = array(
                         'textarea_name' => '_mvx_shipping_policy',
@@ -41,7 +41,7 @@ $_mvx_cancallation_policy = get_post_meta( $id, '_mvx_cancallation_policy', true
         <?php endif; ?>
         <?php if ( apply_filters( 'can_vendor_edit_refund_policy_field', true ) ) : ?>
             <div class="form-group">
-                <label class="control-label col-sm-3 col-md-3" for="_mvx_refund_policy"><?php esc_attr_e( 'Refund Policy', 'dc-woocommerce-multi-vendor' ); ?></label>
+                <label class="control-label col-sm-3 col-md-3" for="_mvx_refund_policy"><?php esc_attr_e( 'Refund Policy', 'multivendorx' ); ?></label>
                 <div class="col-md-6 col-sm-9"><?php
                     $refund_policy_settings = array(
                         'textarea_name' => '_mvx_refund_policy',
@@ -60,7 +60,7 @@ $_mvx_cancallation_policy = get_post_meta( $id, '_mvx_cancallation_policy', true
         <?php endif; ?>
         <?php if ( apply_filters( 'can_vendor_edit_cancellation_policy_field', true ) ) : ?>
             <div class="form-group">
-                <label class="control-label col-sm-3 col-md-3" for="_mvx_cancallation_policy"><?php esc_attr_e( 'Cancellation/Return/Exchange Policy', 'dc-woocommerce-multi-vendor' ); ?></label>
+                <label class="control-label col-sm-3 col-md-3" for="_mvx_cancallation_policy"><?php esc_attr_e( 'Cancellation/Return/Exchange Policy', 'multivendorx' ); ?></label>
                 <div class="col-md-6 col-sm-9"><?php
                     $cancallation_policy_settings = array(
                         'textarea_name' => '_mvx_cancallation_policy',

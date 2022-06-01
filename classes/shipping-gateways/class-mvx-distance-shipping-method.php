@@ -21,14 +21,14 @@ class MVX_Shipping_By_Distance extends WC_Shipping_Method {
   */
   public function __construct() {
     $this->id                 = 'mvx_product_shipping_by_distance';
-    $this->method_title       = __( 'MVX Shipping by Distance', 'dc-woocommerce-multi-vendor' );
-    $this->method_description = __( 'Enable vendors to set marketplace shipping by distance range', 'dc-woocommerce-multi-vendor' );
+    $this->method_title       = __( 'MVX Shipping by Distance', 'multivendorx' );
+    $this->method_description = __( 'Enable vendors to set marketplace shipping by distance range', 'multivendorx' );
 
     $this->enabled      = $this->get_option( 'enabled' );
     $this->title        = $this->get_option( 'title' );
     $this->tax_status   = $this->get_option( 'tax_status' );
     
-    if( !$this->title ) $this->title = __( 'Shipping Cost', 'dc-woocommerce-multi-vendor' );
+    if( !$this->title ) $this->title = __( 'Shipping Cost', 'multivendorx' );
 
     $this->init();
 
@@ -101,7 +101,7 @@ class MVX_Shipping_By_Distance extends WC_Shipping_Method {
     $max_distance = isset($mvx_shipping_by_distance['_max_distance']) ? $mvx_shipping_by_distance['_max_distance'] : '';
     
     if( $max_distance && ( $distance > $max_distance ) ) {
-        wc_add_notice( __( 'Some cart item(s) are not deliverable to your location.', 'dc-woocommerce-multi-vendor' ), "error" );
+        wc_add_notice( __( 'Some cart item(s) are not deliverable to your location.', 'multivendorx' ), "error" );
         return;
     }
     
@@ -114,7 +114,7 @@ class MVX_Shipping_By_Distance extends WC_Shipping_Method {
              $tax_rate  = apply_filters( 'mvx_is_apply_tax_on_shipping_rates', $tax_rate );
              
              if( !$amount ) {
-                 $this->title = __('Free Shipping', 'dc-woocommerce-multi-vendor');
+                 $this->title = __('Free Shipping', 'multivendorx');
              }
     
              $rate = array(
@@ -135,7 +135,7 @@ class MVX_Shipping_By_Distance extends WC_Shipping_Method {
                 $address .= $vendor->address_2;
                 $rate = array(
                          'id'    => 'local_pickup:1',
-                         'label' => apply_filters( 'mvx_local_pickup_shipping_option_label', __('Pickup from Store', 'dc-woocommerce-multi-vendor') . ' ('. $address .')', $vendor_id ),
+                         'label' => apply_filters( 'mvx_local_pickup_shipping_option_label', __('Pickup from Store', 'multivendorx') . ' ('. $address .')', $vendor_id ),
                          'cost'  => $local_pickup_cost,
                          'taxes' => $tax_rate
                  );
@@ -151,7 +151,7 @@ class MVX_Shipping_By_Distance extends WC_Shipping_Method {
                  if( !$amount ) {
                      $rate = array(
                              'id'    => 'free_shipping:1',
-                             'label' => __('Free Shipping', 'dc-woocommerce-multi-vendor'),
+                             'label' => __('Free Shipping', 'multivendorx'),
                              'cost'  => $amount,
                              'taxes' => $tax_rate
                      );
@@ -182,25 +182,25 @@ class MVX_Shipping_By_Distance extends WC_Shipping_Method {
 
      $this->form_fields = array(
       'enabled' => array(
-          'title'         => __( 'Enable/Disable', 'dc-woocommerce-multi-vendor' ),
+          'title'         => __( 'Enable/Disable', 'multivendorx' ),
           'type'          => 'checkbox',
-          'label'         => __( 'Enable Shipping', 'dc-woocommerce-multi-vendor' ),
+          'label'         => __( 'Enable Shipping', 'multivendorx' ),
           'default'       => 'yes'
       ),
       'title' => array(
-          'title'         => __( 'Method Title', 'dc-woocommerce-multi-vendor' ),
+          'title'         => __( 'Method Title', 'multivendorx' ),
           'type'          => 'text',
-          'description'   => __( 'This controls the title which the user sees during checkout.', 'dc-woocommerce-multi-vendor' ),
-          'default'       => __( 'Shipping Cost', 'dc-woocommerce-multi-vendor' ),
+          'description'   => __( 'This controls the title which the user sees during checkout.', 'multivendorx' ),
+          'default'       => __( 'Shipping Cost', 'multivendorx' ),
           'desc_tip'      => true,
       ),
       'tax_status' => array(
-          'title'         => __( 'Tax Status', 'dc-woocommerce-multi-vendor' ),
+          'title'         => __( 'Tax Status', 'multivendorx' ),
           'type'          => 'select',
           'default'       => 'taxable',
           'options'       => array(
-              'taxable'   => __( 'Taxable', 'dc-woocommerce-multi-vendor' ),
-              'none'      => _x( 'None', 'Tax status', 'dc-woocommerce-multi-vendor' )
+              'taxable'   => __( 'Taxable', 'multivendorx' ),
+              'none'      => _x( 'None', 'Tax status', 'multivendorx' )
           ),
       ),
 

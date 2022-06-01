@@ -723,7 +723,7 @@ a:focus {
 .mvx-header-search-section input:focus {
   -webkit-box-shadow: none;
           box-shadow: none;
-  border: none;
+  border: 1px solid #d4d1d9;
 }
 
 .mvx-search-content {
@@ -1665,7 +1665,7 @@ input:focus {
   outline: none !important;
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
-  border: 1px solid #d4d1d9;
+  border: 1px solid #d4d1d9 !important;
 }
 
 .mvx-module-current-status {
@@ -1920,10 +1920,6 @@ input:focus {
   margin: 0 0 16px 0;
 }
 
-.mvx-general-settings-wrapper .mvx-general-settings-child-wrapper .mvx-form-group .mvx-settings-input-content .mvx-select-deselect-trigger {
-  font-weight: 600;
-}
-
 .mvx-general-settings-wrapper .mvx-general-settings-child-wrapper .mvx-form-group input {
   height: 40px;
 }
@@ -2034,21 +2030,11 @@ input:focus {
 }
 
 .mvx-review-management .mvx-form-group .mvx-multi-nested-class .mvx-boarder-parent .mvx-boarder-parent-loop {
-  width: 80%;
+  width: 100%;
 }
 
 .mvx-review-management .mvx-form-group .mvx-multi-nested-class .mvx-boarder-parent .horizontal-class {
   margin: 16px 0 0 16px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.mvx-review-management .mvx-form-group .mvx-multi-nested-class .mvx-boarder-parent .horizontal-class .button-secondary {
-  margin-right: 8px;
 }
 
 .mvx-review-management .mvx-form-group .mvx-multi-nested-class .mvx-boarder-parent .horizontal-class .button-controls a {

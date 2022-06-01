@@ -175,7 +175,7 @@ class MVX_Ajax {
         );
 
         if (!$cropped || is_wp_error($cropped)) {
-            wp_send_json_error(array('message' => __('Image could not be processed. Please go back and try again.', 'dc-woocommerce-multi-vendor')));
+            wp_send_json_error(array('message' => __('Image could not be processed. Please go back and try again.', 'multivendorx')));
         }
 
         /** This filter is documented in wp-admin/custom-header.php */
@@ -253,12 +253,12 @@ class MVX_Ajax {
                 if ( isset( $order_statuses[ 'wc-' . $new_status ] ) ) { 
                     foreach ( $ids as $id ) {
                         $order = wc_get_order( $id );
-                        $order->update_status( $new_status, __( 'Order status changed by vendor bulk edit:', 'dc-woocommerce-multi-vendor' ), true );
+                        $order->update_status( $new_status, __( 'Order status changed by vendor bulk edit:', 'multivendorx' ), true );
                         do_action( 'mvx_vendor_order_edit_status', $id, $new_status );
                     }
                 }
                 $notices[] = array(
-                    'message' => ((count($filterActionData['selected_orders']) > 1) ? sprintf(__('%s orders', 'dc-woocommerce-multi-vendor'), count($filterActionData['selected_orders'])) : sprintf(__('%s order', 'dc-woocommerce-multi-vendor'), count($filterActionData['selected_orders']))) . ' ' . __('status changed to.', 'dc-woocommerce-multi-vendor') . $new_status,
+                    'message' => ((count($filterActionData['selected_orders']) > 1) ? sprintf(__('%s orders', 'multivendorx'), count($filterActionData['selected_orders'])) : sprintf(__('%s order', 'multivendorx'), count($filterActionData['selected_orders']))) . ' ' . __('status changed to.', 'multivendorx') . $new_status,
                     'type' => 'success'
                 );
                
@@ -303,20 +303,20 @@ class MVX_Ajax {
                 $actions = array();
                 $is_shipped = (array) get_post_meta($order->get_id(), 'dc_pv_shipped', true);
                 if (!in_array($vendor->id, $is_shipped)) {
-                    $mark_ship_title = __('Mark as shipped', 'dc-woocommerce-multi-vendor');
+                    $mark_ship_title = __('Mark as shipped', 'multivendorx');
                 } else {
-                    $mark_ship_title = __('Shipped', 'dc-woocommerce-multi-vendor');
+                    $mark_ship_title = __('Shipped', 'multivendorx');
                 }
                 $actions['view'] = array(
                     'url' => esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_orders_endpoint', 'seller_dashbaord', 'vendor-orders'), $order->get_id())),
                     'icon' => 'ico-eye-icon action-icon',
-                    'title' => __('View', 'dc-woocommerce-multi-vendor'),
+                    'title' => __('View', 'multivendorx'),
                 );
                 if (apply_filters('can_mvx_vendor_export_orders_csv', true, get_current_vendor_id())) :
                     $actions['mvx_vendor_csv_download_per_order'] = array(
                         'url' => admin_url('admin-ajax.php?action=mvx_vendor_csv_download_per_order&order_id=' . $order->get_id() . '&nonce=' . wp_create_nonce('mvx_vendor_csv_download_per_order')),
                         'icon' => 'ico-download-icon action-icon',
-                        'title' => __('Download', 'dc-woocommerce-multi-vendor'),
+                        'title' => __('Download', 'multivendorx'),
                     );
                 endif;
                 if ($vendor->is_shipping_enable()) {
@@ -591,7 +591,7 @@ class MVX_Ajax {
             }
             $html .= "</ul>";
         } else {
-            $html .= "<ul><li class='mvx_no-suggesion'>" . __('No Suggestion found', 'dc-woocommerce-multi-vendor') . "</li></ul>";
+            $html .= "<ul><li class='mvx_no-suggesion'>" . __('No Suggestion found', 'multivendorx') . "</li></ul>";
         }
 
         wp_send_json(array('html' => $html, 'results_count' => count($product_objects)));
@@ -634,7 +634,7 @@ class MVX_Ajax {
             if (is_array($msgs_array) && !empty($msgs_array) && count($msgs_array) > 0) {
                 $msg = $msgs_array[0];
                 ?>
-                <h2><?php echo __('Admin Message:', 'dc-woocommerce-multi-vendor'); ?> </h2>
+                <h2><?php echo __('Admin Message:', 'multivendorx'); ?> </h2>
                 <span> <?php echo $msg->post_title; ?> </span><br/>
                 <span class="mormaltext" style="font-weight:normal;"> <?php
                 echo $short_content = substr(stripslashes(strip_tags($msg->post_content)), 0, 155);
@@ -642,18 +642,18 @@ class MVX_Ajax {
                     echo '...';
                 }
                 ?> </span><br/>
-                <a href="<?php echo get_permalink(get_option('mvx_product_vendor_messages_page_id')); ?>"><button><?php echo __('DETAILS', 'dc-woocommerce-multi-vendor'); ?></button></a>
+                <a href="<?php echo get_permalink(get_option('mvx_product_vendor_messages_page_id')); ?>"><button><?php echo __('DETAILS', 'multivendorx'); ?></button></a>
                 <div class="clear"></div>
                 <a href="#" id="cross-admin" data-element = "<?php echo $msg->ID; ?>"  class="mvx_cross mvx_delate_message_dashboard"><i class="fa fa-times-circle"></i></a>
                     <?php
                 } else {
                     ?>
-                <h2><?php echo __('No Messages Found:', 'dc-woocommerce-multi-vendor'); ?> </h2>
+                <h2><?php echo __('No Messages Found:', 'multivendorx'); ?> </h2>
                 <?php
             }
         } else {
             ?>
-            <h2><?php echo __('Error in process:', 'dc-woocommerce-multi-vendor'); ?> </h2>
+            <h2><?php echo __('Error in process:', 'multivendorx'); ?> </h2>
             <?php
         }
         die;
@@ -698,7 +698,7 @@ class MVX_Ajax {
                 $data_str = implode(',', $data_arr);
             }
             if (update_user_meta($current_user_id, '_mvx_vendor_message_readed', $data_str)) {
-                echo __('Mark Unread', 'dc-woocommerce-multi-vendor');
+                echo __('Mark Unread', 'multivendorx');
             } else {
                 echo 0;
             }
@@ -714,7 +714,7 @@ class MVX_Ajax {
                 $data_str = implode(',', $data_arr);
             }
             if (update_user_meta($current_user_id, '_mvx_vendor_message_readed', $data_str)) {
-                echo __('Mark Read', 'dc-woocommerce-multi-vendor');
+                echo __('Mark Read', 'multivendorx');
             } else {
                 echo 0;
             }
@@ -730,7 +730,7 @@ class MVX_Ajax {
                 $data_str = implode(',', $data_arr);
             }
             if (update_user_meta($current_user_id, '_mvx_vendor_message_deleted', $data_str)) {
-                echo __('Mark Restore', 'dc-woocommerce-multi-vendor');
+                echo __('Mark Restore', 'multivendorx');
             } else {
                 echo 0;
             }
@@ -753,7 +753,7 @@ class MVX_Ajax {
                 $MVX->template->get_template('vendor-dashboard/dashboard/vendor-dashboard-sales-item.php', array('vendor' => $vendor, 'today_or_weekly' => $today_or_weekly, 'start' => $start, 'to' => $perpagedata));
             }
         } else {
-            echo "<tr><td colspan='5'>" . __('no more data found', 'dc-woocommerce-multi-vendor') . "</td></tr>";
+            echo "<tr><td colspan='5'>" . __('no more data found', 'multivendorx') . "</td></tr>";
         }
         die;
     }
@@ -773,7 +773,7 @@ class MVX_Ajax {
                 $MVX->template->get_template('vendor-dashboard/dashboard/vendor-dasboard-pending-shipping-items.php', array('vendor' => $vendor, 'today_or_weekly' => $today_or_weekly, 'start' => $start, 'to' => $perpagedata));
             }
         } else {
-            echo "<tr><td colspan='5'>" . __('no more data found', 'dc-woocommerce-multi-vendor') . "</td></tr>";
+            echo "<tr><td colspan='5'>" . __('no more data found', 'multivendorx') . "</td></tr>";
         }
         die;
     }
@@ -916,20 +916,20 @@ class MVX_Ajax {
             }
 
             $report_html = '
-                <h4>' . __("Sales and Earnings", 'dc-woocommerce-multi-vendor') . '</h4>
+                <h4>' . __("Sales and Earnings", 'multivendorx') . '</h4>
                 <div class="bar_indecator">
                     <div class="bar1">&nbsp;</div>
-                    <span class="">' . __('Gross Sales', 'dc-woocommerce-multi-vendor') . '</span>
+                    <span class="">' . __('Gross Sales', 'multivendorx') . '</span>
                     <div class="bar2">&nbsp;</div>
-                    <span class="">' . __('Admin Earnings', 'dc-woocommerce-multi-vendor') . '</span>
+                    <span class="">' . __('Admin Earnings', 'multivendorx') . '</span>
                     <div class="bar3">&nbsp;</div>
-                    <span class="">' . __('Vendor Earnings', 'dc-woocommerce-multi-vendor') . '</span>
+                    <span class="">' . __('Vendor Earnings', 'multivendorx') . '</span>
                 </div>
                 <table class="bar_chart">
                     <thead>
                         <tr>
-                            <th>' . __("Month", 'dc-woocommerce-multi-vendor') . '</th>
-                            <th colspan="2">' . __("Sales Report", 'dc-woocommerce-multi-vendor') . '</th>
+                            <th>' . __("Month", 'multivendorx') . '</th>
+                            <th colspan="2">' . __("Sales Report", 'multivendorx') . '</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -938,7 +938,7 @@ class MVX_Ajax {
                 </table>
             ';
         } else {
-            $report_html = '<tr><td colspan="3">' . __('No product was sold in the given period.', 'dc-woocommerce-multi-vendor') . '</td></tr>';
+            $report_html = '<tr><td colspan="3">' . __('No product was sold in the given period.', 'multivendorx') . '</td></tr>';
         }
 
         echo $report_html;
@@ -1026,20 +1026,20 @@ class MVX_Ajax {
                 }
 
                 $report_html = '
-                    <h4>' . __("Sales and Earnings", 'dc-woocommerce-multi-vendor') . '</h4>
+                    <h4>' . __("Sales and Earnings", 'multivendorx') . '</h4>
                     <div class="bar_indecator">
                         <div class="bar1">&nbsp;</div>
-                        <span class="">' . __('Gross Sales', 'dc-woocommerce-multi-vendor') . '</span>
+                        <span class="">' . __('Gross Sales', 'multivendorx') . '</span>
                         <div class="bar2">&nbsp;</div>
-                        <span class="">' . __('Admin Earnings', 'dc-woocommerce-multi-vendor') . '</span>
+                        <span class="">' . __('Admin Earnings', 'multivendorx') . '</span>
                                                 <div class="bar3">&nbsp;</div>
-                        <span class="">' . __('Vendor Earnings', 'dc-woocommerce-multi-vendor') . '</span>
+                        <span class="">' . __('Vendor Earnings', 'multivendorx') . '</span>
                     </div>
                     <table class="bar_chart">
                         <thead>
                             <tr>
-                                <th>' . __("Month", 'dc-woocommerce-multi-vendor') . '</th>
-                                <th colspan="2">' . __("Sales Report", 'dc-woocommerce-multi-vendor') . '</th>
+                                <th>' . __("Month", 'multivendorx') . '</th>
+                                <th colspan="2">' . __("Sales Report", 'multivendorx') . '</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -1048,12 +1048,12 @@ class MVX_Ajax {
                     </table>
                 ';
             } else {
-                $report_html = '<tr><td colspan="3">' . __('This product was not sold in the given period.', 'dc-woocommerce-multi-vendor') . '</td></tr>';
+                $report_html = '<tr><td colspan="3">' . __('This product was not sold in the given period.', 'multivendorx') . '</td></tr>';
             }
 
             echo $report_html;
         } else {
-            echo '<tr><td colspan="3">' . __('Please select a product.', 'dc-woocommerce-multi-vendor') . '</td></tr>';
+            echo '<tr><td colspan="3">' . __('Please select a product.', 'multivendorx') . '</td></tr>';
         }
 
         die;
@@ -1120,16 +1120,16 @@ class MVX_Ajax {
         $orders = apply_filters('mvx_filter_orders_report_vendor', $qry->get_posts());
         
         if ( ($vendor_id && empty($products) ) || empty($orders)) {
-            $no_vendor = '<h4>' . __("Sales and Earnings", 'dc-woocommerce-multi-vendor') . '</h4>
+            $no_vendor = '<h4>' . __("Sales and Earnings", 'multivendorx') . '</h4>
             <table class="bar_chart">
                 <thead>
                     <tr>
-                        <th>' . __("Month", 'dc-woocommerce-multi-vendor') . '</th>
-                        <th colspan="2">' . __("Sales", 'dc-woocommerce-multi-vendor') . '</th>
+                        <th>' . __("Month", 'multivendorx') . '</th>
+                        <th colspan="2">' . __("Sales", 'multivendorx') . '</th>
                     </tr>
                 </thead>
                 <tbody> 
-                    <tr><td colspan="3">' . __("No Sales :(", 'dc-woocommerce-multi-vendor') . '</td></tr>
+                    <tr><td colspan="3">' . __("No Sales :(", 'multivendorx') . '</td></tr>
                 </tbody>
             </table>';
 
@@ -1188,17 +1188,17 @@ class MVX_Ajax {
                     <h4>' . $vendor->page_title . '</h4>
                     <div class="bar_indecator">
                         <div class="bar1">&nbsp;</div>
-                        <span class="">' . __('Gross Sales', 'dc-woocommerce-multi-vendor') . '</span>
+                        <span class="">' . __('Gross Sales', 'multivendorx') . '</span>
                         <div class="bar2">&nbsp;</div>
-                        <span class="">' . __('Admin Earnings', 'dc-woocommerce-multi-vendor') . '</span>
+                        <span class="">' . __('Admin Earnings', 'multivendorx') . '</span>
                         <div class="bar3">&nbsp;</div>
-                        <span class="">' . __('Vendor Earnings', 'dc-woocommerce-multi-vendor') . '</span>
+                        <span class="">' . __('Vendor Earnings', 'multivendorx') . '</span>
                     </div>
                     <table class="bar_chart">
                         <thead>
                             <tr>
-                                <th>' . __("Month", 'dc-woocommerce-multi-vendor') . '</th>
-                                <th colspan="2">' . __("Vendor Earnings", 'dc-woocommerce-multi-vendor') . '</th>
+                                <th>' . __("Month", 'multivendorx') . '</th>
+                                <th colspan="2">' . __("Vendor Earnings", 'multivendorx') . '</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -1207,7 +1207,7 @@ class MVX_Ajax {
                     </table>
                 ';
             } else {
-                $report_html = '<tr><td colspan="3">' . __('This vendor did not generate any sales in the given period.', 'dc-woocommerce-multi-vendor') . '</td></tr>';
+                $report_html = '<tr><td colspan="3">' . __('This vendor did not generate any sales in the given period.', 'multivendorx') . '</td></tr>';
             }
         }
 
@@ -1290,20 +1290,20 @@ class MVX_Ajax {
             }
 
             $html_chart = '
-                <h4>' . __("Sales and Earnings", 'dc-woocommerce-multi-vendor') . '</h4>
+                <h4>' . __("Sales and Earnings", 'multivendorx') . '</h4>
                 <div class="bar_indecator">
                     <div class="bar1">&nbsp;</div>
-                    <span class="">' . __("Gross Sales", 'dc-woocommerce-multi-vendor') . '</span>
+                    <span class="">' . __("Gross Sales", 'multivendorx') . '</span>
                     <div class="bar2">&nbsp;</div>
-                    <span class="">' . __('Admin Earnings', 'dc-woocommerce-multi-vendor') . '</span>
+                    <span class="">' . __('Admin Earnings', 'multivendorx') . '</span>
                     <div class="bar3">&nbsp;</div>
-                    <span class="">' . __('Vendor Earnings', 'dc-woocommerce-multi-vendor') . '</span>
+                    <span class="">' . __('Vendor Earnings', 'multivendorx') . '</span>
                 </div>
                 <table class="bar_chart">
                     <thead>
                         <tr>
-                            <th>' . __("Vendors", 'dc-woocommerce-multi-vendor') . '</th>
-                            <th colspan="2">' . __("Sales Report", 'dc-woocommerce-multi-vendor') . '</th>
+                            <th>' . __("Vendors", 'multivendorx') . '</th>
+                            <th colspan="2">' . __("Sales Report", 'multivendorx') . '</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -1312,7 +1312,7 @@ class MVX_Ajax {
                 </table>
             ';
         } else {
-            $html_chart = '<tr><td colspan="3">' . __('Any vendor did not generate any sales in the given period.', 'dc-woocommerce-multi-vendor') . '</td></tr>';
+            $html_chart = '<tr><td colspan="3">' . __('Any vendor did not generate any sales in the given period.', 'multivendorx') . '</td></tr>';
         }
 
         echo $html_chart;
@@ -1350,7 +1350,7 @@ class MVX_Ajax {
                     'order_id'      => $order_id,
                     'ref_id'        => $transaction_id,
                     'ref_type'      => 'withdrawal',
-                    'ref_info'      => sprintf(__('Withdrawal generated for Commission &ndash; #%s', 'dc-woocommerce-multi-vendor'), $commission_id),
+                    'ref_info'      => sprintf(__('Withdrawal generated for Commission &ndash; #%s', 'multivendorx'), $commission_id),
                     'ref_status'    => 'completed',
                     'ref_updated'   => date('Y-m-d H:i:s', current_time('timestamp')),
                     'debit'         => $withdrawal_total,
@@ -1633,7 +1633,7 @@ class MVX_Ajax {
             } else {
                 $html .= '<div style=" width: 100%; margin-bottom: 5px; clear: both; display: block;">
                     <div style="display: inline;  padding: 10px;">
-                        ' . __('No Vendor Matched!', 'dc-woocommerce-multi-vendor') . '
+                        ' . __('No Vendor Matched!', 'multivendorx') . '
                     </div>
                 </div>';
             }
@@ -1767,13 +1767,13 @@ class MVX_Ajax {
             $products_table_headers = array(
                 'select_product' => '',
                 'image' => '',
-                'name' => __('Product', 'dc-woocommerce-multi-vendor'),
-                'price' => __('Price', 'dc-woocommerce-multi-vendor'),
-                'stock' => __('Stock', 'dc-woocommerce-multi-vendor'),
-                'categories' => __('Categories', 'dc-woocommerce-multi-vendor'),
-                'date' => __('Date', 'dc-woocommerce-multi-vendor'),
-                'status' => __('Status', 'dc-woocommerce-multi-vendor'),
-                'actions' => __('Actions', 'dc-woocommerce-multi-vendor'),
+                'name' => __('Product', 'multivendorx'),
+                'price' => __('Price', 'multivendorx'),
+                'stock' => __('Stock', 'multivendorx'),
+                'categories' => __('Categories', 'multivendorx'),
+                'date' => __('Date', 'multivendorx'),
+                'status' => __('Status', 'multivendorx'),
+                'actions' => __('Actions', 'multivendorx'),
             );
             $products_table_headers = apply_filters('mvx_vendor_dashboard_product_list_table_headers', $products_table_headers);
             // storing columns keys for ordering
@@ -1795,7 +1795,7 @@ class MVX_Ajax {
                         wp_trash_post($id);
                     }
                     $notices[] = array(
-                        'message' => ((count($filterActionData['selected_products']) > 1) ? sprintf(__('%s products', 'dc-woocommerce-multi-vendor'), count($filterActionData['selected_products'])) : sprintf(__('%s product', 'dc-woocommerce-multi-vendor'), count($filterActionData['selected_products']))) . ' ' . __('moved to the Trash.', 'dc-woocommerce-multi-vendor'),
+                        'message' => ((count($filterActionData['selected_products']) > 1) ? sprintf(__('%s products', 'multivendorx'), count($filterActionData['selected_products'])) : sprintf(__('%s product', 'multivendorx'), count($filterActionData['selected_products']))) . ' ' . __('moved to the Trash.', 'multivendorx'),
                         'type' => 'success'
                     );
                 } elseif ($requestData['bulk_action'] === 'untrash') {
@@ -1804,7 +1804,7 @@ class MVX_Ajax {
                         wp_untrash_post($id);
                     }
                     $notices[] = array(
-                        'message' => ((count($filterActionData['selected_products']) > 1) ? sprintf(__('%s products', 'dc-woocommerce-multi-vendor'), count($filterActionData['selected_products'])) : sprintf(__('%s product', 'dc-woocommerce-multi-vendor'), count($filterActionData['selected_products']))) . ' ' . __('restored from the Trash.', 'dc-woocommerce-multi-vendor'),
+                        'message' => ((count($filterActionData['selected_products']) > 1) ? sprintf(__('%s products', 'multivendorx'), count($filterActionData['selected_products'])) : sprintf(__('%s product', 'multivendorx'), count($filterActionData['selected_products']))) . ' ' . __('restored from the Trash.', 'multivendorx'),
                         'type' => 'success'
                     );
                 } elseif ($requestData['bulk_action'] === 'delete') {
@@ -1814,12 +1814,12 @@ class MVX_Ajax {
                             wp_delete_post($id);
                         }
                         $notices[] = array(
-                            'message' => ((count($filterActionData['selected_products']) > 1) ? sprintf(__('%s products', 'dc-woocommerce-multi-vendor'), count($filterActionData['selected_products'])) : sprintf(__('%s product', 'dc-woocommerce-multi-vendor'), count($filterActionData['selected_products']))) . ' ' . __('deleted from the Trash.', 'dc-woocommerce-multi-vendor'),
+                            'message' => ((count($filterActionData['selected_products']) > 1) ? sprintf(__('%s products', 'multivendorx'), count($filterActionData['selected_products'])) : sprintf(__('%s product', 'multivendorx'), count($filterActionData['selected_products']))) . ' ' . __('deleted from the Trash.', 'multivendorx'),
                             'type' => 'success'
                         );
                     } else {
                         $notices[] = array(
-                            'message' => __('Sorry! You do not have this permission.', 'dc-woocommerce-multi-vendor'),
+                            'message' => __('Sorry! You do not have this permission.', 'multivendorx'),
                             'type' => 'error'
                         );
                     }
@@ -1907,13 +1907,13 @@ class MVX_Ajax {
                     if(!current_vendor_can('edit_product') && in_array($product->get_status(), apply_filters('mvx_enable_edit_product_options_for_statuses', array('draft', 'pending')))) $edit_product_link = '';
                     $edit_product_link = apply_filters('mvx_vendor_product_list_product_edit_link', $edit_product_link, $product);
                     // Get actions
-                    $onclick = "return confirm('" . __('Are you sure want to delete this product?', 'dc-woocommerce-multi-vendor') . "')";
-                    $view_title = __('View', 'dc-woocommerce-multi-vendor');
+                    $onclick = "return confirm('" . __('Are you sure want to delete this product?', 'multivendorx') . "')";
+                    $view_title = __('View', 'multivendorx');
                     if (in_array($product->get_status(), array('draft', 'pending'))) {
-                        $view_title = __('Preview', 'dc-woocommerce-multi-vendor');
+                        $view_title = __('Preview', 'multivendorx');
                     }
                     $actions = array(
-                        'id' => sprintf(__('ID: %d', 'dc-woocommerce-multi-vendor'), $product->get_id()),
+                        'id' => sprintf(__('ID: %d', 'multivendorx'), $product->get_id()),
                     );
                     // Add GTIN if have
                     if (get_mvx_vendor_settings('is_gtin_enable', 'general') == 'Enable') {
@@ -1925,7 +1925,7 @@ class MVX_Ajax {
                         $gtin_code = get_post_meta($product->get_id(), '_mvx_gtin_code', true);
 
                         if ($gtin_code) {
-                            $actions['gtin'] = ( $gtin_label ) ? $gtin_label . ': ' . $gtin_code : __('GTIN', 'dc-woocommerce-multi-vendor') . ': ' . $gtin_code;
+                            $actions['gtin'] = ( $gtin_label ) ? $gtin_label . ': ' . $gtin_code : __('GTIN', 'multivendorx') . ': ' . $gtin_code;
                         }
                     }
 
@@ -1940,7 +1940,7 @@ class MVX_Ajax {
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">'.__('Rejection Note', 'dc-woocommerce-multi-vendor').'</h4>
+                                        <h4 class="modal-title">'.__('Rejection Note', 'multivendorx').'</h4>
                                     </div>
                                     <div class="mvx-product-dismiss-modal modal-body order-notes">     
                                         <p class="order-note"><span>'.wptexturize( wp_kses_post( $dismiss_comment->comment_content ) ).'</span></p>
@@ -1954,11 +1954,11 @@ class MVX_Ajax {
 
                     $actions_col = array(
                         'view' => '<a href="' . esc_url($product->get_permalink()) . '" target="_blank" title="' . $view_title . '"><i class="mvx-font ico-eye-icon"></i></a>',
-                        'edit' => '<a href="' . esc_url($edit_product_link) . '" title="' . __('Edit', 'dc-woocommerce-multi-vendor') . '"><i class="mvx-font ico-edit-pencil-icon"></i></a>',
-                        'restore' => '<a href="' . esc_url(wp_nonce_url(add_query_arg(array('product_id' => $product->get_id()), mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_products_endpoint', 'seller_dashbaord', 'products'))), 'mvx_untrash_product')) . '" title="' . __('Restore from the Trash', 'dc-woocommerce-multi-vendor') . '"><i class="mvx-font ico-reply-icon"></i></a>',
-                        'trash' => '<a class="productDelete" href="' . esc_url(wp_nonce_url(add_query_arg(array('product_id' => $product->get_id()), mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_products_endpoint', 'seller_dashbaord', 'products'))), 'mvx_trash_product')) . '" title="' . __('Move to the Trash', 'dc-woocommerce-multi-vendor') . '"><i class="mvx-font ico-delete-icon"></i></a>',
-                        'delete' => '<a class="productDelete" href="' . esc_url(wp_nonce_url(add_query_arg(array('product_id' => $product->get_id()), mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_products_endpoint', 'seller_dashbaord', 'products'))), 'mvx_delete_product')) . '" onclick="' . $onclick . '" title="' . __('Delete Permanently', 'dc-woocommerce-multi-vendor') . '"><i class="mvx-font ico-delete-icon"></i></a>',
-                        'dismiss' => $dismiss_reason_modal.'<a data-toggle="modal" data-target="#mvx-product-dismiss-reason-modal-'.$product->get_id().'" title="' . __('Click to view reason for dismiss', 'dc-woocommerce-multi-vendor') . '"><i class="mvx-font ico-reject-icon"></i></a>',
+                        'edit' => '<a href="' . esc_url($edit_product_link) . '" title="' . __('Edit', 'multivendorx') . '"><i class="mvx-font ico-edit-pencil-icon"></i></a>',
+                        'restore' => '<a href="' . esc_url(wp_nonce_url(add_query_arg(array('product_id' => $product->get_id()), mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_products_endpoint', 'seller_dashbaord', 'products'))), 'mvx_untrash_product')) . '" title="' . __('Restore from the Trash', 'multivendorx') . '"><i class="mvx-font ico-reply-icon"></i></a>',
+                        'trash' => '<a class="productDelete" href="' . esc_url(wp_nonce_url(add_query_arg(array('product_id' => $product->get_id()), mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_products_endpoint', 'seller_dashbaord', 'products'))), 'mvx_trash_product')) . '" title="' . __('Move to the Trash', 'multivendorx') . '"><i class="mvx-font ico-delete-icon"></i></a>',
+                        'delete' => '<a class="productDelete" href="' . esc_url(wp_nonce_url(add_query_arg(array('product_id' => $product->get_id()), mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_products_endpoint', 'seller_dashbaord', 'products'))), 'mvx_delete_product')) . '" onclick="' . $onclick . '" title="' . __('Delete Permanently', 'multivendorx') . '"><i class="mvx-font ico-delete-icon"></i></a>',
+                        'dismiss' => $dismiss_reason_modal.'<a data-toggle="modal" data-target="#mvx-product-dismiss-reason-modal-'.$product->get_id().'" title="' . __('Click to view reason for dismiss', 'multivendorx') . '"><i class="mvx-font ico-reject-icon"></i></a>',
                     );
                     if ($product->get_status() == 'trash') {
                         $edit_product_link = '';
@@ -1993,13 +1993,13 @@ class MVX_Ajax {
                     $actions_col_html = '<div class="col-actions">' . implode(' <span class="divider">|</span> ', $row_actions_col) . '</div>';
                     // is in stock
                     if ($product->is_in_stock()) {
-                        $stock_html = '<span class="text-success">' . __('In stock', 'dc-woocommerce-multi-vendor');
+                        $stock_html = '<span class="text-success">' . __('In stock', 'multivendorx');
                         if ($product->managing_stock()) {
                             $stock_html .= ' (' . wc_stock_amount($product->get_stock_quantity()) . ')';
                         }
                         $stock_html .= '</span>';
                     } else {
-                        $stock_html = '<span class="text-danger">' . __('Out of stock', 'dc-woocommerce-multi-vendor') . '</span>';
+                        $stock_html = '<span class="text-danger">' . __('Out of stock', 'multivendorx') . '</span>';
                     }
                     // product cat
                     $product_cats = '';
@@ -2018,16 +2018,16 @@ class MVX_Ajax {
                     }
                     $date = '&ndash;';
                     if ($product->get_status() == 'publish') {
-                        $status = __('Published', 'dc-woocommerce-multi-vendor');
+                        $status = __('Published', 'multivendorx');
                         $date = mvx_date($product->get_date_created('edit'));
                     } elseif ($product->get_status() == 'pending') {
-                        $status = __('Pending', 'dc-woocommerce-multi-vendor');
+                        $status = __('Pending', 'multivendorx');
                     } elseif ($product->get_status() == 'draft') {
-                        $status = __('Draft', 'dc-woocommerce-multi-vendor');
+                        $status = __('Draft', 'multivendorx');
                     } elseif ($product->get_status() == 'private') {
-                        $status = __('Private', 'dc-woocommerce-multi-vendor');
+                        $status = __('Private', 'multivendorx');
                     } elseif ($product->get_status() == 'trash') {
-                        $status = __('Trash', 'dc-woocommerce-multi-vendor');
+                        $status = __('Trash', 'multivendorx');
                     } else {
                         $status = ucfirst($product->get_status());
                     }
@@ -2166,15 +2166,15 @@ class MVX_Ajax {
                         $edit_coupon_link = esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_add_coupon_endpoint', 'seller_dashbaord', 'add-coupon'), $coupon_single->ID));
                     }
                     // Get actions
-                    $onclick = "return confirm('" . __('Are you sure want to delete this coupon?', 'dc-woocommerce-multi-vendor') . "')";
+                    $onclick = "return confirm('" . __('Are you sure want to delete this coupon?', 'multivendorx') . "')";
                     $actions = array(
-                        'id' => sprintf(__('ID: %d', 'dc-woocommerce-multi-vendor'), $coupon_single->ID),
+                        'id' => sprintf(__('ID: %d', 'multivendorx'), $coupon_single->ID),
                     );
                     $actions_col = array(
-                        'edit' => '<a href="' . esc_url($edit_coupon_link) . '" title="' . __('Edit', 'dc-woocommerce-multi-vendor') . '"><i class="mvx-font ico-edit-pencil-icon"></i></a>',
-                        'restore' => '<a href="' . esc_url(wp_nonce_url(add_query_arg(array('coupon_id' => $coupon_single->ID), mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_coupons_endpoint', 'seller_dashbaord', 'coupons'))), 'mvx_untrash_coupon')) . '" title="' . __('Restore from the Trash', 'dc-woocommerce-multi-vendor') . '"><i class="mvx-font ico-reply-icon"></i></a>',
-                        'trash' => '<a class="couponDelete" href="' . esc_url(wp_nonce_url(add_query_arg(array('coupon_id' => $coupon_single->ID), mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_coupons_endpoint', 'seller_dashbaord', 'coupons'))), 'mvx_trash_coupon')) . '" title="' . __('Move to the Trash', 'dc-woocommerce-multi-vendor') . '"><i class="mvx-font ico-delete-icon"></i></a>',
-                        'delete' => '<a class="couponDelete" href="' . esc_url(wp_nonce_url(add_query_arg(array('coupon_id' => $coupon_single->ID), mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_coupons_endpoint', 'products_capability'))), 'mvx_delete_coupon')) . '" onclick="' . $onclick . '" title="' . __('Delete Permanently', 'dc-woocommerce-multi-vendor') . '"><i class="mvx-font ico-delete-icon"></i></a>',
+                        'edit' => '<a href="' . esc_url($edit_coupon_link) . '" title="' . __('Edit', 'multivendorx') . '"><i class="mvx-font ico-edit-pencil-icon"></i></a>',
+                        'restore' => '<a href="' . esc_url(wp_nonce_url(add_query_arg(array('coupon_id' => $coupon_single->ID), mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_coupons_endpoint', 'seller_dashbaord', 'coupons'))), 'mvx_untrash_coupon')) . '" title="' . __('Restore from the Trash', 'multivendorx') . '"><i class="mvx-font ico-reply-icon"></i></a>',
+                        'trash' => '<a class="couponDelete" href="' . esc_url(wp_nonce_url(add_query_arg(array('coupon_id' => $coupon_single->ID), mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_coupons_endpoint', 'seller_dashbaord', 'coupons'))), 'mvx_trash_coupon')) . '" title="' . __('Move to the Trash', 'multivendorx') . '"><i class="mvx-font ico-delete-icon"></i></a>',
+                        'delete' => '<a class="couponDelete" href="' . esc_url(wp_nonce_url(add_query_arg(array('coupon_id' => $coupon_single->ID), mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_coupons_endpoint', 'products_capability'))), 'mvx_delete_coupon')) . '" onclick="' . $onclick . '" title="' . __('Delete Permanently', 'multivendorx') . '"><i class="mvx-font ico-delete-icon"></i></a>',
                     );
                     if ($coupon_single->post_status == 'trash') {
                         unset($actions_col['edit']);
@@ -2315,7 +2315,7 @@ class MVX_Ajax {
                         delete_transient('mvx_customer_qna_for_vendor_' . $vendor->id);
                     }
                     $no_data = 0;
-                    $msg = __("Your question submitted successfully!", 'dc-woocommerce-multi-vendor');
+                    $msg = __("Your question submitted successfully!", 'multivendorx');
                     $email_vendor = WC()->mailer()->emails['WC_Email_Vendor_New_Question'];
                     $email_vendor->trigger( $vendor, $product_id, $cust_question, $cust_id );
                     $email_admin = WC()->mailer()->emails['WC_Email_Admin_New_Question'];
@@ -2357,18 +2357,18 @@ class MVX_Ajax {
                         if (is_user_logged_in()) {
                             if ($ans_vote && array_key_exists(get_current_user_id(), $ans_vote)) {
                                 if ($ans_vote[get_current_user_id()] > 0) {
-                                    $qna_data .= '<a href="javascript:void(0)" title="' . __('You already gave a thumbs up.', 'dc-woocommerce-multi-vendor') . '" class="give-up-vote" data-vote="up" data-ans="' . $qna->ans_ID . '"><i class="vote-sprite vote-sprite-like"></i></a>
+                                    $qna_data .= '<a href="javascript:void(0)" title="' . __('You already gave a thumbs up.', 'multivendorx') . '" class="give-up-vote" data-vote="up" data-ans="' . $qna->ans_ID . '"><i class="vote-sprite vote-sprite-like"></i></a>
                                     <span class="vote-count">' . $count . '</span>
-                                    <a href="" title="' . __('Give a thumbs down', 'dc-woocommerce-multi-vendor') . '" class="give-vote-btn give-down-vote" data-vote="down" data-ans="' . $qna->ans_ID . '"><i class="vote-sprite vote-sprite-dislike"></i></a>';
+                                    <a href="" title="' . __('Give a thumbs down', 'multivendorx') . '" class="give-vote-btn give-down-vote" data-vote="down" data-ans="' . $qna->ans_ID . '"><i class="vote-sprite vote-sprite-dislike"></i></a>';
                                 } else {
-                                    $qna_data .= '<a href="" title="' . __('Give a thumbs up', 'dc-woocommerce-multi-vendor') . '" class="give-vote-btn give-up-vote" data-vote="up" data-ans="' . $qna->ans_ID . '"><i class="vote-sprite vote-sprite-like"></i></a>
+                                    $qna_data .= '<a href="" title="' . __('Give a thumbs up', 'multivendorx') . '" class="give-vote-btn give-up-vote" data-vote="up" data-ans="' . $qna->ans_ID . '"><i class="vote-sprite vote-sprite-like"></i></a>
                                     <span class="vote-count">' . $count . '</span>
-                                    <a href="javascript:void(0)" title="' . __('You already gave a thumbs down.', 'dc-woocommerce-multi-vendor') . '" class="give-vote-btn give-down-vote" data-vote="down" data-ans="' . $qna->ans_ID . '"><i class="vote-sprite vote-sprite-dislike"></i></a>';
+                                    <a href="javascript:void(0)" title="' . __('You already gave a thumbs down.', 'multivendorx') . '" class="give-vote-btn give-down-vote" data-vote="down" data-ans="' . $qna->ans_ID . '"><i class="vote-sprite vote-sprite-dislike"></i></a>';
                                 }
                             } else {
-                                $qna_data .= '<a href="" title="' . __('Give a thumbs up', 'dc-woocommerce-multi-vendor') . '" class="give-vote-btn give-up-vote" data-vote="up" data-ans="' . $qna->ans_ID . '"><i class="vote-sprite vote-sprite-like"></i></a>
+                                $qna_data .= '<a href="" title="' . __('Give a thumbs up', 'multivendorx') . '" class="give-vote-btn give-up-vote" data-vote="up" data-ans="' . $qna->ans_ID . '"><i class="vote-sprite vote-sprite-like"></i></a>
                                     <span class="vote-count">' . $count . '</span>
-                                    <a href="" title="' . __('Give a thumbs down', 'dc-woocommerce-multi-vendor') . '" class="give-vote-btn give-down-vote" data-vote="down" data-ans="' . $qna->ans_ID . '"><i class="vote-sprite vote-sprite-dislike"></i></a>';
+                                    <a href="" title="' . __('Give a thumbs down', 'multivendorx') . '" class="give-vote-btn give-down-vote" data-vote="down" data-ans="' . $qna->ans_ID . '"><i class="vote-sprite vote-sprite-dislike"></i></a>';
                             }
                         } else {
                             $qna_data .= '<a href="javascript:void(0)" class="non_loggedin"><i class="vote-sprite vote-sprite-like"></i></a><span class="vote-count">' . $count . '</span><a href="javascript:void(0)" class="non_loggedin"><i class="vote-sprite vote-sprite-dislike"></i></a>';
@@ -2377,11 +2377,11 @@ class MVX_Ajax {
                                 . '<div class="qtn-content">'
                                 . '<div class="qtn-row">'
                                 . '<p class="qna-question">'
-                                . '<span>' . __('Q: ', 'dc-woocommerce-multi-vendor') . ' </span>' . $qna->ques_details . '</p>'
+                                . '<span>' . __('Q: ', 'multivendorx') . ' </span>' . $qna->ques_details . '</p>'
                                 . '</div>'
                                 . '<div class="qtn-row">'
                                 . '<p class="qna-answer">'
-                                . '<span>' . __('A: ', 'dc-woocommerce-multi-vendor') . ' </span>' . $qna->ans_details . '</p>'
+                                . '<span>' . __('A: ', 'multivendorx') . ' </span>' . $qna->ans_details . '</p>'
                                 . '</div>'
                                 . '<div class="bottom-qna">'
                                 . '<ul class="qna-info">';
@@ -2393,13 +2393,13 @@ class MVX_Ajax {
                                 . '</div></div></div>';
                     }
                     if (count($qnas_data) > 4) {
-                        $qna_data .= '<div class="qna-item-wrap load-more-qna"><a href="" class="load-more-btn button" style="width:100%;text-align:center;">' . __('Load More', 'dc-woocommerce-multi-vendor') . '</a></div>';
+                        $qna_data .= '<div class="qna-item-wrap load-more-qna"><a href="" class="load-more-btn button" style="width:100%;text-align:center;">' . __('Load More', 'multivendorx') . '</a></div>';
                     }
                 }
             }
             if (empty($qna_data)) {
                 if (!is_user_logged_in()) {
-                    $msg = __("You are not logged in.", 'dc-woocommerce-multi-vendor');
+                    $msg = __("You are not logged in.", 'multivendorx');
                 }
                 $no_data = 1;
             }
@@ -2430,7 +2430,7 @@ class MVX_Ajax {
                     }
                     $remain_data = count($MVX->product_qna->get_Vendor_Questions($vendor));
                     if ($remain_data == 0) {
-                        $msg = __('No more customer query found.', 'dc-woocommerce-multi-vendor');
+                        $msg = __('No more customer query found.', 'multivendorx');
                     } else {
                         $msg = '';
                     }
@@ -2462,7 +2462,7 @@ class MVX_Ajax {
                 $result = $MVX->product_qna->updateAnswer($ans_ID, array('ans_vote' => maybe_serialize($vote)));
                 if ($result) {
                     $qna_data = '';
-                    $msg = __("Thanks for your vote!", 'dc-woocommerce-multi-vendor');
+                    $msg = __("Thanks for your vote!", 'multivendorx');
                     $no_data = 0;
                     wc_add_notice($msg, 'success');
                     do_action('mvx_product_qna_after_vote_submitted', $ans_ID, $vote_type);
@@ -2479,7 +2479,7 @@ class MVX_Ajax {
             }
             if ($result) {
                 $qna_data = '';
-                $msg = __("Answer updated successfully!", 'dc-woocommerce-multi-vendor');
+                $msg = __("Answer updated successfully!", 'multivendorx');
                 $no_data = 0;
                 wc_add_notice($msg, 'success');
                 do_action('mvx_product_qna_after_update_answer_submitted', $ans_ID, $answer);
@@ -2526,9 +2526,9 @@ class MVX_Ajax {
                         <a href="#">' . get_avatar($comment->user_id, 50, '', '') . '</a>
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">' . $comment_by . ' -- <small>' . human_time_diff(strtotime($comment->comment_date)) . __(' ago', 'dc-woocommerce-multi-vendor') . '</small></h4>
+                        <h4 class="media-heading">' . $comment_by . ' -- <small>' . human_time_diff(strtotime($comment->comment_date)) . __(' ago', 'multivendorx') . '</small></h4>
                         <p>' . wp_trim_words($comment->comment_content, 250, '...') . '</p>
-                        <a data-toggle="modal" data-target="#commient-modal-' . $comment->comment_ID . '">' . __('Reply', 'dc-woocommerce-multi-vendor') . '</a>
+                        <a data-toggle="modal" data-target="#commient-modal-' . $comment->comment_ID . '">' . __('Reply', 'multivendorx') . '</a>
                         <!-- Modal -->
                         <div class="modal fade" id="commient-modal-' . $comment->comment_ID . '" role="dialog">
                             <div class="modal-dialog">
@@ -2537,13 +2537,13 @@ class MVX_Ajax {
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">' . __('Reply to ', 'dc-woocommerce-multi-vendor') . $comment_by . '</h4>
+                                        <h4 class="modal-title">' . __('Reply to ', 'multivendorx') . $comment_by . '</h4>
                                     </div>
                                     <div class="mvx-widget-modal modal-body">
-                                            <textarea class="form-control" rows="5" id="comment-content-' . $comment->comment_ID . '" placeholder="' . __('Enter reply...', 'dc-woocommerce-multi-vendor') . '"></textarea>
+                                            <textarea class="form-control" rows="5" id="comment-content-' . $comment->comment_ID . '" placeholder="' . __('Enter reply...', 'multivendorx') . '"></textarea>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" data-comment_id="' . $comment->comment_ID . '" data-vendor_id="' . get_current_vendor_id() . '" class="btn btn-default mvx-comment-reply">' . __('Comment', 'dc-woocommerce-multi-vendor') . '</button>
+                                        <button type="button" data-comment_id="' . $comment->comment_ID . '" data-vendor_id="' . get_current_vendor_id() . '" class="btn btn-default mvx-comment-reply">' . __('Comment', 'multivendorx') . '</button>
                                     </div>
                                 </div>
 
@@ -2595,7 +2595,7 @@ class MVX_Ajax {
                             $row .= '<div class="mvx_vendor_question"><a class="accept_verification do_verify" id="question_response" data-verification="question_verification" data-action="verified" data-question_id="'.$data->ques_ID.'" data-product="'.$data->product_ID.'"><i class="mvx-font ico-approve-icon action-icon"></i></a>
                              <a class="reject_verification do_verify" id="question_response" data-verification="question_verification" data-action="rejected" data-question_id="'.$data->ques_ID.'" data-product="'.$data->product_ID.'"><i class="mvx-font ico-delete-icon action-icon"></i></a></div>';
                          } else {
-                            $row .='<a data-toggle="modal" data-target="#qna-reply-modal-' . $data->ques_ID . '" >' . __('Reply', 'dc-woocommerce-multi-vendor') . '</a>';
+                            $row .='<a data-toggle="modal" data-target="#qna-reply-modal-' . $data->ques_ID . '" >' . __('Reply', 'multivendorx') . '</a>';
                         }
                                 /* Modal*/
                         $row .='<div class="modal fade" id="qna-reply-modal-' . $data->ques_ID . '" role="dialog">
@@ -2604,14 +2604,14 @@ class MVX_Ajax {
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 class="modal-title">' . __('Product - ', 'dc-woocommerce-multi-vendor') . ' ' . $product->get_formatted_name() . '</h4>
+                                                <h4 class="modal-title">' . __('Product - ', 'multivendorx') . ' ' . $product->get_formatted_name() . '</h4>
                                             </div>
                                             <div class="mvx-widget-modal modal-body">
                                                     <label class="qna-question">' . stripslashes($data->ques_details) . '</label>
-                                                    <textarea class="form-control" rows="5" id="qna-reply-' . $data->ques_ID . '" placeholder="' . __('Post your answer...', 'dc-woocommerce-multi-vendor') . '"></textarea>
+                                                    <textarea class="form-control" rows="5" id="qna-reply-' . $data->ques_ID . '" placeholder="' . __('Post your answer...', 'multivendorx') . '"></textarea>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" data-key="' . $data->ques_ID . '" class="btn btn-default mvx-add-qna-reply">' . __('Add', 'dc-woocommerce-multi-vendor') . '</button>
+                                                <button type="button" data-key="' . $data->ques_ID . '" class="btn btn-default mvx-add-qna-reply">' . __('Add', 'multivendorx') . '</button>
                                             </div>
                                         </div>
                                     </div>
@@ -2689,16 +2689,16 @@ class MVX_Ajax {
                     $status = '';
                     $vote = '&ndash;';
                     if (!isset($have_answer[0])) {
-                        $status = '<span class="unanswered label label-default">' . __('Unanswered', 'dc-woocommerce-multi-vendor') . '</span>';
+                        $status = '<span class="unanswered label label-default">' . __('Unanswered', 'multivendorx') . '</span>';
                         $details .= '<div class="mvx-question-details-modal modal-body">
-                                        <textarea class="form-control" rows="5" id="qna-reply-' . $question->ques_ID . '" placeholder="' . __('Post your answer...', 'dc-woocommerce-multi-vendor') . '"></textarea>
+                                        <textarea class="form-control" rows="5" id="qna-reply-' . $question->ques_ID . '" placeholder="' . __('Post your answer...', 'multivendorx') . '"></textarea>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" data-key="' . $question->ques_ID . '" class="btn btn-default mvx-add-qna-reply">' . __('Add', 'dc-woocommerce-multi-vendor') . '</button>
+                                        <button type="button" data-key="' . $question->ques_ID . '" class="btn btn-default mvx-add-qna-reply">' . __('Add', 'multivendorx') . '</button>
                                     </div>';
                         $reply = '<a data-toggle="modal" data-target="#question-details-modal-' . $question->ques_ID . '" data-ques="' . $question->ques_ID . '" class="question-details"><i class="mvx-font ico-reply-icon action-icon"></i></a>';
                     } else {
-                        $status = '<span class="answered label label-success">' . __('Answered', 'dc-woocommerce-multi-vendor') . '</span>';
+                        $status = '<span class="answered label label-success">' . __('Answered', 'multivendorx') . '</span>';
                         $reply = '<a data-toggle="modal" data-target="#question-details-modal-' . $question->ques_ID . '" data-ques="' . $question->ques_ID . '" class="question-details"><i class="mvx-font ico-edit-pencil-icon action-icon"></i></a>';
                         $ans_vote = maybe_unserialize($have_answer[0]->ans_vote);
                         if (is_array($ans_vote)) {
@@ -2714,7 +2714,7 @@ class MVX_Ajax {
                                         <textarea class="form-control" rows="5" id="qna-answer-' . $have_answer[0]->ans_ID . '">' . stripslashes($have_answer[0]->ans_details) . '</textarea>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" data-key="' . $have_answer[0]->ans_ID . '" class="btn btn-default mvx-update-qna-answer">' . __('Edit', 'dc-woocommerce-multi-vendor') . '</button>
+                                        <button type="button" data-key="' . $have_answer[0]->ans_ID . '" class="btn btn-default mvx-update-qna-answer">' . __('Edit', 'multivendorx') . '</button>
                                     </div>';
                         } else {
                             $details .= '<div class="mvx-question-details-modal modal-body">
@@ -2791,7 +2791,7 @@ class MVX_Ajax {
         global $MVX;
 
         if (!isset($_GET['vendor_id'])) {
-            wp_die(__('No Vendor ID found', 'dc-woocommerce-multi-vendor'));
+            wp_die(__('No Vendor ID found', 'multivendorx'));
         }
 
         if (isset($_GET['vendor_id']) && isset($_GET['vendor_id']) && isset($_GET['nonce'])) {
@@ -2799,7 +2799,7 @@ class MVX_Ajax {
             $nonce = isset($_REQUEST["nonce"]) ? wc_clean($_REQUEST["nonce"]) : '';
 
             if (!wp_verify_nonce($nonce, 'mvx-vendors'))
-                wp_die(__('Invalid request', 'dc-woocommerce-multi-vendor'));
+                wp_die(__('Invalid request', 'multivendorx'));
 
             $vendor = get_mvx_vendor($vendor_id);
             $product_count = 0;
@@ -2875,44 +2875,44 @@ class MVX_Ajax {
             if (in_array('dc_vendor', $user->roles)) {
                 $is_block = get_user_meta($vendor_id, '_vendor_turn_off', true);
                 if ($is_block) {
-                    $user_info['status_name'] = __('Suspended', 'dc-woocommerce-multi-vendor');
+                    $user_info['status_name'] = __('Suspended', 'multivendorx');
                     $user_info['status'] = 'suspended';
                     $actions['activate'] = array(
                         'ID' => $user_info['ID'],
                         'ajax_action' => 'mvx_activate_vendor',
                         'url' => '#',
-                        'name' => __('Activate', 'dc-woocommerce-multi-vendor'),
+                        'name' => __('Activate', 'multivendorx'),
                         'action' => 'activate',
                     );
                 } else {
-                    $user_info['status_name'] = __('Approved', 'dc-woocommerce-multi-vendor');
+                    $user_info['status_name'] = __('Approved', 'multivendorx');
                     $user_info['status'] = 'approved';
                     $actions['suspend'] = array(
                         'ID' => $user_info['ID'],
                         'ajax_action' => 'mvx_suspend_vendor',
                         'url' => '#',
-                        'name' => __('Suspend', 'dc-woocommerce-multi-vendor'),
+                        'name' => __('Suspend', 'multivendorx'),
                         'action' => 'suspend',
                     );
                 }
             } else if (in_array('dc_rejected_vendor', $user->roles)) {
-                $user_info['status_name'] = __('Rejected', 'dc-woocommerce-multi-vendor');
+                $user_info['status_name'] = __('Rejected', 'multivendorx');
                 $user_info['status'] = 'rejected';
             } else if (in_array('dc_pending_vendor', $user->roles)) {
-                $user_info['status_name'] = __('Pending', 'dc-woocommerce-multi-vendor');
+                $user_info['status_name'] = __('Pending', 'multivendorx');
                 $user_info['status'] = 'pending';
                 $actions['approve'] = array(
                     'ID' => $user_info['ID'],
                     'ajax_action' => 'activate_pending_vendor',
                     'url' => '#',
-                    'name' => __('Approve', 'dc-woocommerce-multi-vendor'),
+                    'name' => __('Approve', 'multivendorx'),
                     'action' => 'approve',
                 );
                 $actions['reject'] = array(
                     'ID' => $user_info['ID'],
                     'ajax_action' => 'reject_pending_vendor',
                     'url' => '#',
-                    'name' => __('Reject', 'dc-woocommerce-multi-vendor'),
+                    'name' => __('Reject', 'multivendorx'),
                     'action' => 'reject',
                 );
             }
@@ -2982,7 +2982,7 @@ class MVX_Ajax {
         $message = '';
         $status = false;
         if (!apply_filters('mvx_vendor_can_add_product_tag', true, get_current_user_id())) {
-            $message = __("You don't have permission to add product tags", 'dc-woocommerce-multi-vendor');
+            $message = __("You don't have permission to add product tags", 'multivendorx');
             wp_send_json(array('status' => $status, 'tag_name' => $tag_name, 'message' => $message));
             die;
         }
@@ -2990,7 +2990,7 @@ class MVX_Ajax {
         $tag = wp_insert_term($_POST['new_tag'], $taxonomy, array());
 
         if (!$tag || is_wp_error($tag) || (!$tag = get_term($tag['term_id'], $taxonomy))) {
-            $message = __('An error has occurred. Please reload the page and try again.', 'dc-woocommerce-multi-vendor');
+            $message = __('An error has occurred. Please reload the page and try again.', 'multivendorx');
             if (is_wp_error($tag) && $tag->get_error_message())
                 $message = $tag->get_error_message();
         }else {
@@ -3035,9 +3035,9 @@ class MVX_Ajax {
                             $is_shipped = (array) get_post_meta($pending_order->get_id(), 'dc_pv_shipped', true);
                             $vendor_order_shipped = get_post_meta($pending_order->get_id(), 'mvx_vendor_order_shipped');
                             if (!in_array($vendor->id, $is_shipped) && !$vendor_order_shipped ) {
-                                $action_html .= '<a href="javascript:void(0)" title="' . __('Mark as shipped', 'dc-woocommerce-multi-vendor') . '" onclick="mvxMarkeAsShip(this,' . $pending_order->get_id() . ')"><i class="mvx-font ico-shippingnew-icon action-icon"></i></a> ';
+                                $action_html .= '<a href="javascript:void(0)" title="' . __('Mark as shipped', 'multivendorx') . '" onclick="mvxMarkeAsShip(this,' . $pending_order->get_id() . ')"><i class="mvx-font ico-shippingnew-icon action-icon"></i></a> ';
                             } else {
-                                $action_html .= '<i title="' . __('Shipped', 'dc-woocommerce-multi-vendor') . '" class="mvx-font ico-shipping-icon"></i> ';
+                                $action_html .= '<i title="' . __('Shipped', 'multivendorx') . '" class="mvx-font ico-shipping-icon"></i> ';
                             }
                         }
                         // shipping amount
@@ -3131,7 +3131,7 @@ class MVX_Ajax {
                     $row ['revenue'] = wc_price( $sold_item_data['item_total'] );
                     $row ['unique_purchase'] = $sold_item_data['qty'];
                 } else {
-                    $row ['product'] = __('This product does not exists', 'dc-woocommerce-multi-vendor');
+                    $row ['product'] = __('This product does not exists', 'multivendorx');
                     $row ['revenue'] = '-';
                     $row ['unique_purchase'] = $sold_item_data['qty'];
                 }
@@ -3244,7 +3244,7 @@ class MVX_Ajax {
         ?>
         <div class="wrap">
         <div id="icon-woocommerce" class="icon32 icon32-woocommerce-reports"><br/></div>
-        <h2><?php _e('Shipping', 'dc-woocommerce-multi-vendor'); ?></h2> <?php
+        <h2><?php _e('Shipping', 'multivendorx'); ?></h2> <?php
         $vendor_id = isset($_POST['vendor_id']) ? absint($_POST['vendor_id']) : 0;
         if( !class_exists( 'MVX_Shipping_Zone' ) ) {
             $MVX->load_vendor_shipping();
@@ -3319,24 +3319,24 @@ class MVX_Ajax {
                 <tr valign="top" class="">
                     <th scope="row" class="titledesc">
                         <label for="">
-                            <?php _e('Zone Name', 'dc-woocommerce-multi-vendor'); ?>
+                            <?php _e('Zone Name', 'multivendorx'); ?>
                         </label>
                     </th>
-                    <td class="forminp"><?php _e($zones['data']['zone_name'], 'dc-woocommerce-multi-vendor'); ?></td>
+                    <td class="forminp"><?php _e($zones['data']['zone_name'], 'multivendorx'); ?></td>
                 </tr>
                 <tr valign="top" class="">
                     <th scope="row" class="titledesc">
                         <label for="">
-                            <?php _e('Zone region', 'dc-woocommerce-multi-vendor'); ?>
+                            <?php _e('Zone region', 'multivendorx'); ?>
                         </label>
                     </th>
-                    <td class="forminp"><?php _e($zones['formatted_zone_location'], 'dc-woocommerce-multi-vendor'); ?></td>
+                    <td class="forminp"><?php _e($zones['formatted_zone_location'], 'multivendorx'); ?></td>
                 </tr>
                 <?php if ($show_limit_location_link && $zone_id !== 0) { ?>
                     <tr valign="top" class="">
                         <th scope="row" class="titledesc">
                             <label for="">
-                                <?php _e('Limit Zone Location', 'dc-woocommerce-multi-vendor'); ?>
+                                <?php _e('Limit Zone Location', 'multivendorx'); ?>
                             </label>
                         </th>
                         <td class="forminp"><input id="limit_zone_location" class="" type="checkbox" name="<?php echo 'mvx_shipping_zone[' . $zone_id . '][_limit_zone_location]'; ?>" value="1" <?php checked($want_to_limit_location, 1); ?>></td>
@@ -3346,7 +3346,7 @@ class MVX_Ajax {
                     <tr valign="top" class="hide_if_zone_not_limited">
                         <th scope="row" class="titledesc">
                             <label for="">
-                                <?php _e('Select specific states', 'dc-woocommerce-multi-vendor'); ?>
+                                <?php _e('Select specific states', 'multivendorx'); ?>
                             </label>
                         </th>
                         <td class="forminp">
@@ -3362,49 +3362,49 @@ class MVX_Ajax {
                     <tr valign="top" class="hide_if_zone_not_limited">
                         <th scope="row" class="titledesc">
                             <label for="">
-                                <?php _e('Set your postcode', 'dc-woocommerce-multi-vendor'); ?>
+                                <?php _e('Set your postcode', 'multivendorx'); ?>
                             </label>
                         </th>
                         <td class="forminp">
-                            <input id="select_zone_postcodes" class="form-control" type="text" name="<?php echo 'mvx_shipping_zone[' . $zone_id . '][_select_zone_postcodes]'; ?>" value="<?php echo $postcodes; ?>" placeholder="<?php _e('Postcodes need to be comma separated', 'dc-woocommerce-multi-vendor'); ?>">
+                            <input id="select_zone_postcodes" class="form-control" type="text" name="<?php echo 'mvx_shipping_zone[' . $zone_id . '][_select_zone_postcodes]'; ?>" value="<?php echo $postcodes; ?>" placeholder="<?php _e('Postcodes need to be comma separated', 'multivendorx'); ?>">
                         </td>
                     </tr>
                 <?php } ?>
                 <tr valign="top" class="">
                     <th scope="row" class="titledesc">
                         <label>
-                            <?php _e('Shipping methods', 'dc-woocommerce-multi-vendor'); ?>
-                            <?php echo wc_help_tip(__('Add your shipping method for appropiate zone', 'dc-woocommerce-multi-vendor')); // @codingStandardsIgnoreLine  ?>
+                            <?php _e('Shipping methods', 'multivendorx'); ?>
+                            <?php echo wc_help_tip(__('Add your shipping method for appropiate zone', 'multivendorx')); // @codingStandardsIgnoreLine  ?>
                         </label>
                     </th>
                     <td class="">
                         <table class="mvx-shipping-zone-methods wc-shipping-zone-methods widefat">
                             <thead>
                                 <tr>   
-                                    <th class="mvx-title wc-shipping-zone-method-title"><?php _e('Title', 'dc-woocommerce-multi-vendor'); ?></th>
-                                    <th class="mvx-enabled wc-shipping-zone-method-enabled"><?php _e('Enabled', 'dc-woocommerce-multi-vendor'); ?></th> 
-                                    <th class="mvx-description wc-shipping-zone-method-description"><?php _e('Description', 'dc-woocommerce-multi-vendor'); ?></th>
-                                    <th class="mvx-action"><?php _e('Action', 'dc-woocommerce-multi-vendor'); ?></th>
+                                    <th class="mvx-title wc-shipping-zone-method-title"><?php _e('Title', 'multivendorx'); ?></th>
+                                    <th class="mvx-enabled wc-shipping-zone-method-enabled"><?php _e('Enabled', 'multivendorx'); ?></th> 
+                                    <th class="mvx-description wc-shipping-zone-method-description"><?php _e('Description', 'multivendorx'); ?></th>
+                                    <th class="mvx-action"><?php _e('Action', 'multivendorx'); ?></th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <td colspan="4">
-                                        <button type="submit" class="button mvx-shipping-zone-show-method wc-shipping-zone-add-method" value="<?php esc_attr_e('Add shipping method', 'dc-woocommerce-multi-vendor'); ?>"><?php esc_html_e('Add shipping method', 'dc-woocommerce-multi-vendor'); ?></button>
+                                        <button type="submit" class="button mvx-shipping-zone-show-method wc-shipping-zone-add-method" value="<?php esc_attr_e('Add shipping method', 'multivendorx'); ?>"><?php esc_html_e('Add shipping method', 'multivendorx'); ?></button>
                                     </td>
                                 </tr>
                             </tfoot>
                             <tbody>
                                 <?php if (empty($vendor_shipping_methods)) { ?> 
                                     <tr>
-                                        <td colspan="4"><?php _e('You can add multiple shipping methods within this zone. Only customers within the zone will see them.', 'dc-woocommerce-multi-vendor'); ?></td>
+                                        <td colspan="4"><?php _e('You can add multiple shipping methods within this zone. Only customers within the zone will see them.', 'multivendorx'); ?></td>
                                     </tr>
                                     <?php
                                 } else { 
                                     foreach ($vendor_shipping_methods as $vendor_shipping_method) {
                                         ?>
                                         <tr class="mvx-shipping-zone-method">
-                                            <td><?php esc_html_e($vendor_shipping_method['title'], 'dc-woocommerce-multi-vendor'); ?>
+                                            <td><?php esc_html_e($vendor_shipping_method['title'], 'multivendorx'); ?>
                                                 <div data-instance_id="<?php echo $vendor_shipping_method['instance_id']; ?>" data-method_id="<?php echo $vendor_shipping_method['id']; ?>" data-method-settings='<?php echo json_encode($vendor_shipping_method); ?>' class="row-actions edit_del_actions">
                                                 </div>
                                             </td>
@@ -3413,12 +3413,12 @@ class MVX_Ajax {
                                                     <input id="method_status <?php echo $vendor_shipping_method['instance_id']; ?>" data-vendor_id="<?php echo $vendor_id; ?>" class="input-checkbox method-status" type="checkbox" name="method_status" value="<?php echo $vendor_shipping_method['instance_id']; ?>" <?php checked(( $vendor_shipping_method['enabled'] == "yes"), true); ?>>
                                                 </span>
                                             </td>
-                                            <td><?php _e($vendor_shipping_method['settings']['description'], 'dc-woocommerce-multi-vendor'); ?></td>
+                                            <td><?php _e($vendor_shipping_method['settings']['description'], 'multivendorx'); ?></td>
                                             <td>
                                                 <div class="col-actions edit_del_actions" data-instance_id="<?php echo $vendor_shipping_method['instance_id']; ?>" data-method_id="<?php echo $vendor_shipping_method['id']; ?>" data-method-settings='<?php echo json_encode($vendor_shipping_method); ?>'>
-                                                    <span class="edit"><a href="javascript:void(0);" data-vendor_id="<?php echo $vendor_id; ?>" class="edit-shipping-method" data-zone_id="<?php echo $zone_id; ?>" data-method_id="<?php echo $vendor_shipping_method['id']; ?>" data-instance_id="<?php echo $vendor_shipping_method['instance_id']; ?>" title="<?php _e('Edit', 'dc-woocommerce-multi-vendor') ?>"><?php _e('Edit', 'dc-woocommerce-multi-vendor') ?></a>
+                                                    <span class="edit"><a href="javascript:void(0);" data-vendor_id="<?php echo $vendor_id; ?>" class="edit-shipping-method" data-zone_id="<?php echo $zone_id; ?>" data-method_id="<?php echo $vendor_shipping_method['id']; ?>" data-instance_id="<?php echo $vendor_shipping_method['instance_id']; ?>" title="<?php _e('Edit', 'multivendorx') ?>"><?php _e('Edit', 'multivendorx') ?></a>
                                                     </span>|
-                                                    <span class="delete"><a class="delete-shipping-method" data-vendor_id="<?php echo $vendor_id; ?>" href="javascript:void(0);" data-method_id="<?php echo $vendor_shipping_method['id']; ?>" data-instance_id="<?php echo $vendor_shipping_method['instance_id']; ?>" title="<?php _e('Delete', 'dc-woocommerce-multi-vendor') ?>"><?php _e('Delete', 'dc-woocommerce-multi-vendor') ?></a></span>
+                                                    <span class="delete"><a class="delete-shipping-method" data-vendor_id="<?php echo $vendor_id; ?>" href="javascript:void(0);" data-method_id="<?php echo $vendor_shipping_method['id']; ?>" data-instance_id="<?php echo $vendor_shipping_method['instance_id']; ?>" title="<?php _e('Delete', 'multivendorx') ?>"><?php _e('Delete', 'multivendorx') ?></a></span>
                                                 </div>
                                             </td>
                                         </tr>
@@ -3437,9 +3437,9 @@ class MVX_Ajax {
                 <div class="wc-backbone-modal-content">
                 <section class="wc-backbone-modal-main" role="main">
                 <header class="wc-backbone-modal-header">
-                <h1><?php esc_html_e('Add shipping method', 'dc-woocommerce-multi-vendor'); ?></h1>
+                <h1><?php esc_html_e('Add shipping method', 'multivendorx'); ?></h1>
                 <button class="modal-close modal-close-link dashicons dashicons-no-alt">
-                <span class="screen-reader-text"><?php esc_html_e('Close modal panel', 'dc-woocommerce-multi-vendor'); ?></span>
+                <span class="screen-reader-text"><?php esc_html_e('Close modal panel', 'multivendorx'); ?></span>
                 </button>
                 </header>
                 <article>
@@ -3448,7 +3448,7 @@ class MVX_Ajax {
                 <input type="hidden" name="vendor_id" value="<?php echo $vendor_id; ?>"/>
                 
                 <div class="wc-shipping-zone-method-selector">
-                <p><?php esc_html_e('Choose the shipping method you wish to add. Only shipping methods which support zones are listed.', 'dc-woocommerce-multi-vendor'); ?></p>
+                <p><?php esc_html_e('Choose the shipping method you wish to add. Only shipping methods which support zones are listed.', 'multivendorx'); ?></p>
                 <?php $shipping_methods = mvx_get_shipping_methods(); ?>
                 <select id="shipping_method" class="form-control mt-15" name="mvx_shipping_method">
                 <?php foreach ($shipping_methods as $key => $method) { ?>
@@ -3461,7 +3461,7 @@ class MVX_Ajax {
                 </article>
                 <footer>
                 <div class="inner">
-                <button id="btn-ok" data-vendor_id="<?php echo $vendor_id; ?>" class="button button-primary button-large mvx-shipping-zone-add-method" data-zone_id="<?php echo $zone_id; ?>"><?php esc_html_e('Add shipping method', 'dc-woocommerce-multi-vendor'); ?></button>
+                <button id="btn-ok" data-vendor_id="<?php echo $vendor_id; ?>" class="button button-primary button-large mvx-shipping-zone-add-method" data-zone_id="<?php echo $zone_id; ?>"><?php esc_html_e('Add shipping method', 'multivendorx'); ?></button>
                 </div>
                 </footer>
                 </section>
@@ -3474,22 +3474,22 @@ class MVX_Ajax {
                 global $MVX;
 
                 $is_method_taxable_array = array(
-                    'none' => __('None', 'dc-woocommerce-multi-vendor'),
-                    'taxable' => __('Taxable', 'dc-woocommerce-multi-vendor')
+                    'none' => __('None', 'multivendorx'),
+                    'taxable' => __('Taxable', 'multivendorx')
                 );
 
                 $calculation_type = array(
-                    'class' => __('Per class: Charge shipping for each shipping class individually', 'dc-woocommerce-multi-vendor'),
-                    'order' => __('Per order: Charge shipping for the most expensive shipping class', 'dc-woocommerce-multi-vendor'),
+                    'class' => __('Per class: Charge shipping for each shipping class individually', 'multivendorx'),
+                    'order' => __('Per order: Charge shipping for the most expensive shipping class', 'multivendorx'),
                 );
                 ?>
                 <div class="wc-backbone-modal mvx-modal-add-shipping-method-modal">
                 <div class="wc-backbone-modal-content">
                 <section class="wc-backbone-modal-main" role="main">
                 <header class="wc-backbone-modal-header">
-                <h1><?php _e( 'Edit Shipping Methods', 'dc-woocommerce-multi-vendor' ); ?></h1>
+                <h1><?php _e( 'Edit Shipping Methods', 'multivendorx' ); ?></h1>
                 <button class="modal-close modal-close-link dashicons dashicons-no-alt">
-                <span class="screen-reader-text"><?php esc_html_e('Close modal panel', 'dc-woocommerce-multi-vendor'); ?></span>
+                <span class="screen-reader-text"><?php esc_html_e('Close modal panel', 'multivendorx'); ?></span>
                 </button>
                 </header>
                 <article class="mvx-shipping-methods">
@@ -3504,7 +3504,7 @@ class MVX_Ajax {
                 </article>
                 <footer>
                 <div class="inner">
-                <button id="btn-ok" class="button button-primary button-large mvx-shipping-zone-add-method" data-vendor_id="<?php echo $vendor_id; ?>" data-zone_id="<?php echo $zone_id; ?>"><?php esc_html_e('Save changes', 'dc-woocommerce-multi-vendor'); ?></button>
+                <button id="btn-ok" class="button button-primary button-large mvx-shipping-zone-add-method" data-vendor_id="<?php echo $vendor_id; ?>" data-zone_id="<?php echo $zone_id; ?>"><?php esc_html_e('Save changes', 'multivendorx'); ?></button>
                 </div>
                 </footer>
                 </section>
@@ -3534,7 +3534,7 @@ class MVX_Ajax {
             wp_send_json_error($result->get_error_message(), 'mvx');
         }
 
-        wp_send_json_success(__('Shipping method added successfully', 'dc-woocommerce-multi-vendor'));
+        wp_send_json_success(__('Shipping method added successfully', 'multivendorx'));
     }
 
     public function mvx_update_shipping_method() {
@@ -3550,7 +3550,7 @@ class MVX_Ajax {
         $args['settings'] = apply_filters('mvx_before_update_shipping_method_settings', array_merge($form_fields + $posted_data), $_POST);
 
         if (empty($args['settings']['title'])) {
-            wp_send_json_error(__('Shipping title must be required', 'dc-woocommerce-multi-vendor'));
+            wp_send_json_error(__('Shipping title must be required', 'multivendorx'));
         }
         
         if( !class_exists( 'MVX_Shipping_Zone' ) ) {
@@ -3572,7 +3572,7 @@ class MVX_Ajax {
             wp_send_json_error($result->get_error_message(), 'mvx');
         }
 
-        wp_send_json_success(__('Shipping method updated', 'dc-woocommerce-multi-vendor'));
+        wp_send_json_success(__('Shipping method updated', 'multivendorx'));
     }
 
     public function mvx_delete_shipping_method() {
@@ -3592,7 +3592,7 @@ class MVX_Ajax {
             wp_send_json_error($result->get_error_message(), 'mvx');
         }
 
-        wp_send_json_success(__('Shipping method deleted', 'dc-woocommerce-multi-vendor'));
+        wp_send_json_success(__('Shipping method deleted', 'multivendorx'));
     }
 
     public function mvx_toggle_shipping_method() {
@@ -3609,7 +3609,7 @@ class MVX_Ajax {
         if (is_wp_error($result)) {
             wp_send_json_error($result->get_error_message());
         }
-        $message = $data['checked'] ? __('Shipping method enabled successfully', 'dc-woocommerce-multi-vendor') : __('Shipping method disabled successfully', 'dc-woocommerce-multi-vendor');
+        $message = $data['checked'] ? __('Shipping method enabled successfully', 'multivendorx') : __('Shipping method disabled successfully', 'multivendorx');
         wp_send_json_success($message);
     }
     
@@ -3627,33 +3627,33 @@ class MVX_Ajax {
             $vendor_shipping_methods = $zones['shipping_methods'];
             $config_settings = array();
             $is_method_taxable_array = array(
-                'none' => __('None', 'dc-woocommerce-multi-vendor'),
-                'taxable' => __('Taxable', 'dc-woocommerce-multi-vendor')
+                'none' => __('None', 'multivendorx'),
+                'taxable' => __('Taxable', 'multivendorx')
             );
             $vendor_shipping_method = $vendor_shipping_methods[$method_id.':'.$instance_id];
             $calculation_type = array(
-                'class' => __('Per class: Charge shipping for each shipping class individually', 'dc-woocommerce-multi-vendor'),
-                'order' => __('Per order: Charge shipping for the most expensive shipping class', 'dc-woocommerce-multi-vendor'),
+                'class' => __('Per class: Charge shipping for each shipping class individually', 'multivendorx'),
+                'order' => __('Per order: Charge shipping for the most expensive shipping class', 'multivendorx'),
             );
             $settings_html = '';
                 if ($vendor_shipping_method['id'] == 'free_shipping') {
                     $settings_html = '<!-- Free shipping -->'
                             . '<div class="shipping_form" id="' . $vendor_shipping_method['id'] . '">'
                             . '<div class="form-group">'
-                            . '<label for="" class="control-label col-sm-3 col-md-3">' . __('Method Title', 'dc-woocommerce-multi-vendor') . '</label>'
+                            . '<label for="" class="control-label col-sm-3 col-md-3">' . __('Method Title', 'multivendorx') . '</label>'
                             . '<div class="col-md-9 col-sm-9">'
-                            . '<input id="method_title_fs" class="form-control" type="text" name="title" value="'.$vendor_shipping_method['title'].'" placeholder="'.__( 'Enter method title', 'dc-woocommerce-multi-vendor' ).'">'
+                            . '<input id="method_title_fs" class="form-control" type="text" name="title" value="'.$vendor_shipping_method['title'].'" placeholder="'.__( 'Enter method title', 'multivendorx' ).'">'
                             . '</div></div>'
                             . '<div class="form-group">'
-                            . '<label for="" class="control-label col-sm-3 col-md-3">' . __('Minimum order amount for free shipping', 'dc-woocommerce-multi-vendor') . '</label>'
+                            . '<label for="" class="control-label col-sm-3 col-md-3">' . __('Minimum order amount for free shipping', 'multivendorx') . '</label>'
                             . '<div class="col-md-9 col-sm-9">'
-                            . '<input id="minimum_order_amount_fs" class="form-control" type="text" name="min_amount" value="'.$vendor_shipping_method['settings']['min_amount'].'" placeholder="'.__( '0.00', 'dc-woocommerce-multi-vendor' ).'">'
+                            . '<input id="minimum_order_amount_fs" class="form-control" type="text" name="min_amount" value="'.$vendor_shipping_method['settings']['min_amount'].'" placeholder="'.__( '0.00', 'multivendorx' ).'">'
                             . '</div></div>'
                             . '<input type="hidden" id="method_description_fs" name="description" value="'.$vendor_shipping_method['settings']['description'].'" />'
                             . '<input type="hidden" id="method_cost_fs" name="cost" value="0" />'
                             . '<input type="hidden" id="method_tax_status_fs" name="tax_status" value="none" />'
                             . '<!--div class="form-group">'
-                            . '<label for="" class="control-label col-sm-3 col-md-3">' . __('Description', 'dc-woocommerce-multi-vendor') . '</label>'
+                            . '<label for="" class="control-label col-sm-3 col-md-3">' . __('Description', 'multivendorx') . '</label>'
                             . '<div class="col-md-9 col-sm-9">'
                             . '<textarea id="method_description_fs" class="form-control" name="method_description">' . $vendor_shipping_method['settings']['description'] . '</textarea>'
                             . '</div></div--></div>';
@@ -3661,18 +3661,18 @@ class MVX_Ajax {
                     $settings_html = '<!-- Local Pickup -->'
                             . '<div class="shipping_form " id="' . $vendor_shipping_method['id'] . '">'
                             . '<div class="form-group">'
-                            . '<label for="" class="control-label col-sm-3 col-md-3">' . __('Method Title', 'dc-woocommerce-multi-vendor') . '</label>'
+                            . '<label for="" class="control-label col-sm-3 col-md-3">' . __('Method Title', 'multivendorx') . '</label>'
                             . '<div class="col-md-9 col-sm-9">'
-                            . '<input id="method_title_fs" class="form-control" type="text" name="title" value="'.$vendor_shipping_method['title'].'" placeholder="'.__( 'Enter method title', 'dc-woocommerce-multi-vendor' ).'">'
+                            . '<input id="method_title_fs" class="form-control" type="text" name="title" value="'.$vendor_shipping_method['title'].'" placeholder="'.__( 'Enter method title', 'multivendorx' ).'">'
                             . '</div></div>'
                             . '<div class="form-group">'
-                            . '<label for="" class="control-label col-sm-3 col-md-3">' . __('Cost', 'dc-woocommerce-multi-vendor') . '</label>'
+                            . '<label for="" class="control-label col-sm-3 col-md-3">' . __('Cost', 'multivendorx') . '</label>'
                             . '<div class="col-md-9 col-sm-9">'
-                            . '<input id="method_cost_lp" class="form-control" type="text" name="cost" value="'.$vendor_shipping_method['settings']['cost'].'" placeholder="'.__( '0.00', 'dc-woocommerce-multi-vendor' ).'">'
+                            . '<input id="method_cost_lp" class="form-control" type="text" name="cost" value="'.$vendor_shipping_method['settings']['cost'].'" placeholder="'.__( '0.00', 'multivendorx' ).'">'
                             . '</div></div>';
                             if( apply_filters( 'mvx_show_shipping_zone_tax', true ) ) {
                             $settings_html .= '<div class="form-group">'
-                                    . '<label for="" class="control-label col-sm-3 col-md-3">'.__( 'Tax Status', 'dc-woocommerce-multi-vendor' ).'</label>'
+                                    . '<label for="" class="control-label col-sm-3 col-md-3">'.__( 'Tax Status', 'multivendorx' ).'</label>'
                                     . '<div class="col-md-9 col-sm-9">'
                                     . '<select id="method_tax_status_lp" class="form-control" name="tax_status">';
                                 foreach( $is_method_taxable_array as $key => $value ) { 
@@ -3682,7 +3682,7 @@ class MVX_Ajax {
                             }
                     $settings_html .= '<input type="hidden" id="method_description_lp" name="description" value="'.$vendor_shipping_method['settings']['description'].'" />'
                             . '<!--div class="form-group">'
-                            . '<label for="" class="control-label col-sm-3 col-md-3">' . __('Description', 'dc-woocommerce-multi-vendor') . '</label>'
+                            . '<label for="" class="control-label col-sm-3 col-md-3">' . __('Description', 'multivendorx') . '</label>'
                             . '<div class="col-md-9 col-sm-9">'
                             . '<textarea id="method_description_lp" class="form-control" name="method_description">' . $vendor_shipping_method['settings']['description'] . '</textarea>'
                             . '</div></div--></div>';
@@ -3690,18 +3690,18 @@ class MVX_Ajax {
                     $settings_html = '<!-- Flat rate -->'
                             . '<div class="shipping_form" id="' . $vendor_shipping_method['id'] . '">'
                             . '<div class="form-group">'
-                            . '<label for="" class="control-label col-sm-3 col-md-3">' . __('Method Title', 'dc-woocommerce-multi-vendor') . '</label>'
+                            . '<label for="" class="control-label col-sm-3 col-md-3">' . __('Method Title', 'multivendorx') . '</label>'
                             . '<div class="col-md-9 col-sm-9">'
-                            . '<input id="method_title_fs" class="form-control" type="text" name="title" value="'.$vendor_shipping_method['title'].'" placeholder="'.__( 'Enter method title', 'dc-woocommerce-multi-vendor' ).'">'
+                            . '<input id="method_title_fs" class="form-control" type="text" name="title" value="'.$vendor_shipping_method['title'].'" placeholder="'.__( 'Enter method title', 'multivendorx' ).'">'
                             . '</div></div>'
                             . '<div class="form-group">'
-                            . '<label for="" class="control-label col-sm-3 col-md-3">' . __('Cost', 'dc-woocommerce-multi-vendor') . '</label>'
+                            . '<label for="" class="control-label col-sm-3 col-md-3">' . __('Cost', 'multivendorx') . '</label>'
                             . '<div class="col-md-9 col-sm-9">'
-                            . '<input id="method_cost_fr" class="form-control" type="text" name="cost" value="'.$vendor_shipping_method['settings']['cost'].'" placeholder="'.__( '0.00', 'dc-woocommerce-multi-vendor' ).'">'
+                            . '<input id="method_cost_fr" class="form-control" type="text" name="cost" value="'.$vendor_shipping_method['settings']['cost'].'" placeholder="'.__( '0.00', 'multivendorx' ).'">'
                             . '</div></div>';
                             if( apply_filters( 'mvx_show_shipping_zone_tax', true ) ) { 
                             $settings_html .= '<div class="form-group">'
-                                    . '<label for="" class="control-label col-sm-3 col-md-3">'.__( 'Tax Status', 'dc-woocommerce-multi-vendor' ).'</label>'
+                                    . '<label for="" class="control-label col-sm-3 col-md-3">'.__( 'Tax Status', 'multivendorx' ).'</label>'
                                     . '<div class="col-md-9 col-sm-9">'
                                     . '<select id="method_tax_status_fr" class="form-control" name="tax_status">';
                                 foreach( $is_method_taxable_array as $key => $value ) { 
@@ -3711,31 +3711,31 @@ class MVX_Ajax {
                             }
                             $settings_html .= '<input type="hidden" id="method_description_fr" name="description" value="'.$vendor_shipping_method['settings']['description'].'" />'
                                     . '<!--div class="form-group">'
-                                    . '<label for="" class="control-label col-sm-3 col-md-3">'.__( 'Description', 'dc-woocommerce-multi-vendor' ).'</label>'
+                                    . '<label for="" class="control-label col-sm-3 col-md-3">'.__( 'Description', 'multivendorx' ).'</label>'
                                     . '<div class="col-md-9 col-sm-9">'
                                     . '<textarea id="method_description_fr" class="form-control" name="method_description">'.$vendor_shipping_method['settings']['description'].'</textarea>'
                                     . '</div></div-->';
                             if (!apply_filters( 'mvx_hide_vendor_shipping_classes', false )) { 
                             $settings_html .= '<div class="mvx_shipping_classes"><hr>'
-                                    . '<h2>'.__('Shipping Class Cost', 'dc-woocommerce-multi-vendor').'</h2>'
-                                    . '<div class="description mb-15">'.__('These costs can be optionally entered based on the shipping class set per product (This cost will be added with the shipping cost above).', 'dc-woocommerce-multi-vendor').'</div>';
+                                    . '<h2>'.__('Shipping Class Cost', 'multivendorx').'</h2>'
+                                    . '<div class="description mb-15">'.__('These costs can be optionally entered based on the shipping class set per product (This cost will be added with the shipping cost above).', 'multivendorx').'</div>';
       
                             $shipping_classes = get_vendor_shipping_classes();
 
                             if(empty($shipping_classes)) {
-                            $settings_html .= '<div class="no_shipping_classes">' . __("No Shipping Classes set by Admin", 'dc-woocommerce-multi-vendor') . '</div>';
+                            $settings_html .= '<div class="no_shipping_classes">' . __("No Shipping Classes set by Admin", 'multivendorx') . '</div>';
                             } else {
                                 foreach ($shipping_classes as $shipping_class ) {
                                     $settings_html .= '<div class="form-group">'
-                                            . '<label for="" class="control-label col-sm-3 col-md-3">'.__( 'Cost of Shipping Class:', 'dc-woocommerce-multi-vendor' ) .' '. $shipping_class->name .'</label>'
+                                            . '<label for="" class="control-label col-sm-3 col-md-3">'.__( 'Cost of Shipping Class:', 'multivendorx' ) .' '. $shipping_class->name .'</label>'
                                             . '<div class="col-md-9 col-sm-9">'
                                             . '<input type="hidden" name="shipping_class_id" value="'.$shipping_class->term_id.'" />'
-                                            . '<input id="'.$shipping_class->slug.'" class="form-control sc_vals" type="text" name="class_cost_'.$shipping_class->term_id.'" value="'.$vendor_shipping_method['settings']['class_cost_'.$shipping_class->term_id].'" placeholder="'.__( 'N/A', 'dc-woocommerce-multi-vendor' ).'" data-shipping_class_id="'. $shipping_class->term_id.'">'
-                                            . '<div class="description">'.__( 'Enter a cost (excl. tax) or sum, e.g. <code>10.00 * [qty]</code>.', 'dc-woocommerce-multi-vendor' ) . '<br/><br/>' . __( 'Use <code>[qty]</code> for the number of items, <br/><code>[cost]</code> for the total cost of items, and <code>[fee percent="10" min_fee="20" max_fee=""]</code> for percentage based fees.', 'dc-woocommerce-multi-vendor' ).'</div>'
+                                            . '<input id="'.$shipping_class->slug.'" class="form-control sc_vals" type="text" name="class_cost_'.$shipping_class->term_id.'" value="'.$vendor_shipping_method['settings']['class_cost_'.$shipping_class->term_id].'" placeholder="'.__( 'N/A', 'multivendorx' ).'" data-shipping_class_id="'. $shipping_class->term_id.'">'
+                                            . '<div class="description">'.__( 'Enter a cost (excl. tax) or sum, e.g. <code>10.00 * [qty]</code>.', 'multivendorx' ) . '<br/><br/>' . __( 'Use <code>[qty]</code> for the number of items, <br/><code>[cost]</code> for the total cost of items, and <code>[fee percent="10" min_fee="20" max_fee=""]</code> for percentage based fees.', 'multivendorx' ).'</div>'
                                             . '</div></div>';
                                 }
                             $settings_html .= '<div class="form-group">'
-                                    . '<label for="" class="control-label col-sm-3 col-md-3">' . __('Calculation type', 'dc-woocommerce-multi-vendor') . '</label>'
+                                    . '<label for="" class="control-label col-sm-3 col-md-3">' . __('Calculation type', 'multivendorx') . '</label>'
                                     . '<div class="col-md-9 col-sm-9">'
                                     . '<select id="calculation_type" class="form-control" name="calculation_type">';
                             foreach ($calculation_type as $key => $value) {
@@ -3767,13 +3767,13 @@ class MVX_Ajax {
             $vendor_shipping_methods = $zones['shipping_methods'];
             $config_settings = array();
             $is_method_taxable_array = array(
-                'none' => __('None', 'dc-woocommerce-multi-vendor'),
-                'taxable' => __('Taxable', 'dc-woocommerce-multi-vendor')
+                'none' => __('None', 'multivendorx'),
+                'taxable' => __('Taxable', 'multivendorx')
             );
 
             $calculation_type = array(
-                'class' => __('Per class: Charge shipping for each shipping class individually', 'dc-woocommerce-multi-vendor'),
-                'order' => __('Per order: Charge shipping for the most expensive shipping class', 'dc-woocommerce-multi-vendor'),
+                'class' => __('Per class: Charge shipping for each shipping class individually', 'multivendorx'),
+                'order' => __('Per order: Charge shipping for the most expensive shipping class', 'multivendorx'),
             );
 
             $settings_html = '';
@@ -3820,7 +3820,7 @@ class MVX_Ajax {
             //$level = 'final';
             $html_level .= '<div class="final-cat-button">'
                     . '<p>' . $term->name . '<p>'
-                    . '<button class="classified-pro-cat-btn btn btn-default" data-term-id="' . $term->term_id . '" data-taxonomy="' . $taxonomy . '">' . strtoupper(__('Select', 'dc-woocommerce-multi-vendor')) . '</button>'
+                    . '<button class="classified-pro-cat-btn btn btn-default" data-term-id="' . $term->term_id . '" data-taxonomy="' . $taxonomy . '">' . strtoupper(__('Select', 'multivendorx')) . '</button>'
                     . '</div>';
         }
         wp_send_json(array('html_level' => $html_level, 'level' => $level, 'is_final' => $final, 'hierarchy' => $html_hierarchy));
@@ -3869,7 +3869,7 @@ class MVX_Ajax {
         $html_level .= '<div class="mvx-product-cat-level ' . $level . '-level-cat cat-column select-cat-button-holder" data-level="' . $level . '">'
                 . '<div class="final-cat-button">'
                 . '<p>' . $h_term->name . '<p>'
-                . '<button class="classified-pro-cat-btn btn btn-default" data-term-id="' . $h_term->term_id . '" data-taxonomy="' . $taxonomy . '">' . strtoupper(__('Select', 'dc-woocommerce-multi-vendor')) . '</button>'
+                . '<button class="classified-pro-cat-btn btn btn-default" data-term-id="' . $h_term->term_id . '" data-taxonomy="' . $taxonomy . '">' . strtoupper(__('Select', 'multivendorx')) . '</button>'
                 . '</div></div>';
 
         wp_send_json(array('html_level' => $html_level));
@@ -3905,7 +3905,7 @@ class MVX_Ajax {
                     $html_search_result .= '</ul></li>';
                 }
             } else {
-                $html_search_result .= '<li class="list-group-item"><p>' . __('No results found', 'dc-woocommerce-multi-vendor') . '</p></li>';
+                $html_search_result .= '<li class="list-group-item"><p>' . __('No results found', 'multivendorx') . '</p></li>';
             }
             wp_send_json(array('results' => $html_search_result));
             die;
@@ -3982,7 +3982,7 @@ class MVX_Ajax {
                                     . '<p>' . $product_object->get_price_html() . '</p>'
                                     . '<p>' . $product_cats . '</p>'
                                     . '</div>'
-                                    . '<a href="javascript:void(0)" data-product_id="' . $product_object->get_id() . '" class="mvx-create-pro-duplicate-btn btn btn-default item-sell">' . __('Sell yours', 'dc-woocommerce-multi-vendor') . '</a>'
+                                    . '<a href="javascript:void(0)" data-product_id="' . $product_object->get_id() . '" class="mvx-create-pro-duplicate-btn btn btn-default item-sell">' . __('Sell yours', 'multivendorx') . '</a>'
                                     . '</div>';
                         } else {
                             
@@ -3990,10 +3990,10 @@ class MVX_Ajax {
                     }
                 }
             } else {
-                $html .= '<div class="search-result-clm"><div class="result-content">' . __('No Suggestions found', 'dc-woocommerce-multi-vendor') . "</div></div>";
+                $html .= '<div class="search-result-clm"><div class="result-content">' . __('No Suggestions found', 'multivendorx') . "</div></div>";
             }
         } else {
-            $html .= '<div class="search-result-clm"><div class="result-content">' . __('Empty search field! Enter a text to search.', 'dc-woocommerce-multi-vendor') . "</div></div>";
+            $html .= '<div class="search-result-clm"><div class="result-content">' . __('Empty search field! Enter a text to search.', 'multivendorx') . "</div></div>";
         }
         wp_send_json(array('results' => $html));
         die;
@@ -4106,11 +4106,11 @@ class MVX_Ajax {
             $max_refund = wc_format_decimal($order->get_total() - $order->get_total_refunded(), wc_get_price_decimals());
 
             if (!$refund_amount || $max_refund < $refund_amount || 0 > $refund_amount) {
-                throw new exception(__('Invalid refund amount', 'dc-woocommerce-multi-vendor'));
+                throw new exception(__('Invalid refund amount', 'multivendorx'));
             }
 
             if ($refunded_amount !== wc_format_decimal($order->get_total_refunded(), wc_get_price_decimals())) {
-                throw new exception(__('Error processing refund. Please try again.', 'dc-woocommerce-multi-vendor'));
+                throw new exception(__('Error processing refund. Please try again.', 'multivendorx'));
             }
 
             // Prepare line items which we are refunding.
@@ -4345,7 +4345,7 @@ class MVX_Ajax {
                                         if ( $file->get_name() ) {
                                                 $file_count = $file->get_name();
                                         } else {
-                                                $file_count = sprintf( __( 'File %d', 'dc-woocommerce-multi-vendor' ), $file_counter );
+                                                $file_count = sprintf( __( 'File %d', 'multivendorx' ), $file_counter );
                                         }
                                         include $MVX->plugin_path . 'templates/vendor-dashboard/vendor-orders/views/html-order-download-permission.php';
                                 }
@@ -4463,11 +4463,11 @@ class MVX_Ajax {
                         $trid = $wpml_post_translations->get_element_trid ( $product_id );
                         $translation_edit_url = '';
                         if( $translated_id ) {
-                            $translate_text = sprintf( __( 'Edit the %s translation', 'dc-woocommerce-multi-vendor' ), $language_data['display_name'] );
+                            $translate_text = sprintf( __( 'Edit the %s translation', 'multivendorx' ), $language_data['display_name'] );
                             $product_url = mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_edit_product_endpoint', 'seller_dashbaord', 'edit-product'), $translated_id, '', $language_data['code']);
                             $translation_edit_url = '<a href="' . $product_url . '" title="' . $translate_text . '"><img style="padding:1px;margin:2px;" border="0" src="' . ICL_PLUGIN_URL . '/res/img/edit_translation.png" alt="' . $translate_text . '" width="16" height="16" /></a>';
                         } else {
-                            $translate_text = sprintf( __( 'Add translation to %s', 'dc-woocommerce-multi-vendor' ), $language_data['display_name'] );
+                            $translate_text = sprintf( __( 'Add translation to %s', 'multivendorx' ), $language_data['display_name'] );
                             $translation_edit_url = '<a href="#" class="mvx_product_new_translation" data-trid="' . $trid . '" data-source_lang="' . $current_language . '" data-proid="' . $product_id . '" data-lang="' . $language_data['code'] . '" title="' . $translate_text . '"><img style="padding:1px;margin:2px;" border="0" src="' . ICL_PLUGIN_URL . '/res/img/add_translation.png" alt="' . $translate_text . '" width="16" height="16" /></a>';
                         }
                         
@@ -4493,7 +4493,7 @@ class MVX_Ajax {
                         $product = wc_get_product( $product_id );
                         if ( false === $product ) {
                             /* translators: %s: product id */
-                            echo '{"status": false, "message": "' . sprintf( __( 'Product creation failed, could not find original product: %s', 'dc-woocommerce-multi-vendor' ), $product_id ) . '" }';
+                            echo '{"status": false, "message": "' . sprintf( __( 'Product creation failed, could not find original product: %s', 'multivendorx' ), $product_id ) . '" }';
                         }
 
                         if( !class_exists( 'WC_Admin_Duplicate_Product' ) ) {
@@ -4599,7 +4599,7 @@ class MVX_Ajax {
         $current_user_id = get_current_user_id() ? absint(get_current_user_id()) : 0;
 
         if (!$current_user_id || !$store_vendor_id)
-            wp_send_json_error( new WP_Error( 'invalid_vendor', __( 'Invalid vendor or customer', 'dc-woocommerce-multi-vendor' ) ), 422 );
+            wp_send_json_error( new WP_Error( 'invalid_vendor', __( 'Invalid vendor or customer', 'multivendorx' ) ), 422 );
 
         // get followed vendor by customer
         $mvx_customer_follow_vendor = get_user_meta( $current_user_id, 'mvx_customer_follow_vendor', true ) ? get_user_meta( $current_user_id, 'mvx_customer_follow_vendor', true ) : array();

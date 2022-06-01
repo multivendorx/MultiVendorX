@@ -56,20 +56,20 @@ class MVX_Commission {
         if (post_type_exists($this->post_type))
             return;
         $labels = array(
-            'name' => _x('Commissions', 'post type general name', 'dc-woocommerce-multi-vendor'),
-            'singular_name' => _x('Commission', 'post type singular name', 'dc-woocommerce-multi-vendor'),
-            'add_new' => _x('Add New', $this->post_type, 'dc-woocommerce-multi-vendor'),
-            'add_new_item' => sprintf(__('Add New %s', 'dc-woocommerce-multi-vendor'), __('Commission', 'dc-woocommerce-multi-vendor')),
-            'edit_item' => sprintf(__('Edit %s', 'dc-woocommerce-multi-vendor'), __('Commission', 'dc-woocommerce-multi-vendor')),
-            'new_item' => sprintf(__('New %s', 'dc-woocommerce-multi-vendor'), __('Commission', 'dc-woocommerce-multi-vendor')),
-            'all_items' => sprintf(__('All %s', 'dc-woocommerce-multi-vendor'), __('Commissions', 'dc-woocommerce-multi-vendor')),
-            'view_item' => sprintf(__('View %s', 'dc-woocommerce-multi-vendor'), __('Commission', 'dc-woocommerce-multi-vendor')),
-            'search_items' => sprintf(__('Search %s', 'dc-woocommerce-multi-vendor'), __('Commissions', 'dc-woocommerce-multi-vendor')),
-            'not_found' => sprintf(__('No %s found', 'dc-woocommerce-multi-vendor'), __('Commissions', 'dc-woocommerce-multi-vendor')),
-            'not_found_in_trash' => sprintf(__('No %s found in trash', 'dc-woocommerce-multi-vendor'), __('Commissions', 'dc-woocommerce-multi-vendor')),
+            'name' => _x('Commissions', 'post type general name', 'multivendorx'),
+            'singular_name' => _x('Commission', 'post type singular name', 'multivendorx'),
+            'add_new' => _x('Add New', $this->post_type, 'multivendorx'),
+            'add_new_item' => sprintf(__('Add New %s', 'multivendorx'), __('Commission', 'multivendorx')),
+            'edit_item' => sprintf(__('Edit %s', 'multivendorx'), __('Commission', 'multivendorx')),
+            'new_item' => sprintf(__('New %s', 'multivendorx'), __('Commission', 'multivendorx')),
+            'all_items' => sprintf(__('All %s', 'multivendorx'), __('Commissions', 'multivendorx')),
+            'view_item' => sprintf(__('View %s', 'multivendorx'), __('Commission', 'multivendorx')),
+            'search_items' => sprintf(__('Search %s', 'multivendorx'), __('Commissions', 'multivendorx')),
+            'not_found' => sprintf(__('No %s found', 'multivendorx'), __('Commissions', 'multivendorx')),
+            'not_found_in_trash' => sprintf(__('No %s found in trash', 'multivendorx'), __('Commissions', 'multivendorx')),
             'parent_item_colon' => '',
-            'all_items' => __('Commissions', 'dc-woocommerce-multi-vendor'),
-            'menu_name' => __('Commissions', 'dc-woocommerce-multi-vendor')
+            'all_items' => __('Commissions', 'multivendorx'),
+            'menu_name' => __('Commissions', 'multivendorx')
         );
 
         $args = array(
@@ -101,11 +101,11 @@ class MVX_Commission {
      * @return void
      */
     public function meta_box_setup() {
-        add_meta_box('mvx-commission-data', __('Commission Details', 'dc-woocommerce-multi-vendor'), array(&$this, 'mvx_meta_box_content'), $this->post_type, 'normal', 'high');
-        add_meta_box('mvx-commission-note', __('Commission notes', 'dc-woocommerce-multi-vendor'), array(&$this, 'mvx_meta_box_commission_notes'), $this->post_type, 'side', 'low');
+        add_meta_box('mvx-commission-data', __('Commission Details', 'multivendorx'), array(&$this, 'mvx_meta_box_content'), $this->post_type, 'normal', 'high');
+        add_meta_box('mvx-commission-note', __('Commission notes', 'multivendorx'), array(&$this, 'mvx_meta_box_commission_notes'), $this->post_type, 'side', 'low');
         remove_meta_box('commentsdiv', 'dc_commission', 'normal');
         if (!is_mvx_version_less_3_4_0())
-            add_meta_box('woocommerce-order-items', __('Commission Order Details', 'dc-woocommerce-multi-vendor'), array(&$this, 'mvx_commission_order_content'), $this->post_type, 'normal', 'high');
+            add_meta_box('woocommerce-order-items', __('Commission Order Details', 'multivendorx'), array(&$this, 'mvx_commission_order_content'), $this->post_type, 'normal', 'high');
     }
 
     /**
@@ -120,7 +120,7 @@ class MVX_Commission {
             // create vendor commission
             $default = array(
                 'post_type' => 'dc_commission',
-                'post_title' => sprintf(__('Commission - %s', 'dc-woocommerce-multi-vendor'), strftime(_x('%B %e, %Y @ %I:%M %p', 'Commission date parsed by strftime', 'dc-woocommerce-multi-vendor'), current_time('timestamp'))),
+                'post_title' => sprintf(__('Commission - %s', 'multivendorx'), strftime(_x('%B %e, %Y @ %I:%M %p', 'Commission date parsed by strftime', 'multivendorx'), current_time('timestamp'))),
                 'post_status' => 'private',
                 'ping_status' => 'closed',
                 'post_excerpt' => '',
@@ -144,7 +144,7 @@ class MVX_Commission {
                  */
                 do_action('mvx_commission_update_commission_meta', $commission_id);
 
-                self::add_commission_note($commission_id, sprintf(__('Commission for order <a href="%s">(ID : %s)</a> is created.', 'dc-woocommerce-multi-vendor'), get_admin_url() . 'post.php?post=' . $order_id . '&action=edit', $order_id), $vendor_id);
+                self::add_commission_note($commission_id, sprintf(__('Commission for order <a href="%s">(ID : %s)</a> is created.', 'multivendorx'), get_admin_url() . 'post.php?post=' . $order_id . '&action=edit', $order_id), $vendor_id);
                 return $commission_id;
             }
         }
@@ -290,7 +290,7 @@ class MVX_Commission {
 
                     /* translators: 1: commission type 2: commission id */
                     printf(
-                            esc_html__( '%1$s #%2$s details', 'dc-woocommerce-multi-vendor' ),
+                            esc_html__( '%1$s #%2$s details', 'multivendorx' ),
                             esc_html( $commission_type_object->labels->singular_name ),
                             esc_html( $post_id )
                     );
@@ -304,7 +304,7 @@ class MVX_Commission {
                     if ( $vendor ) {
                         /* translators: %s: associated vendor */
                         $vendor_string = sprintf(
-                            __( 'Associated vendor %s', 'dc-woocommerce-multi-vendor' ),
+                            __( 'Associated vendor %s', 'multivendorx' ),
                             '<a href="'.get_edit_user_link($vendor->id).'" target="_blank">'.$vendor->page_title.'</a>'
                         );
 
@@ -321,7 +321,7 @@ class MVX_Commission {
                     }
 
                     $meta_list[] = sprintf(
-                        __( 'Commission status: %s', 'dc-woocommerce-multi-vendor' ),
+                        __( 'Commission status: %s', 'multivendorx' ),
                         $status_html
                     );
 
@@ -331,18 +331,18 @@ class MVX_Commission {
                 </p>
                 <div class="order_data_column_container">
                     <div class="order_data_column">
-                        <h3><?php esc_html_e( 'General', 'dc-woocommerce-multi-vendor' ); ?></h3>
+                        <h3><?php esc_html_e( 'General', 'multivendorx' ); ?></h3>
                         <p class="form-field form-field-wide">
-                            <label><strong><?php esc_html_e( 'Associated order', 'dc-woocommerce-multi-vendor' ); ?>:</strong></label> 
+                            <label><strong><?php esc_html_e( 'Associated order', 'multivendorx' ); ?>:</strong></label> 
                             <a href="<?php echo get_edit_post_link($commission_order_id); ?>">#<?php echo esc_attr($commission_order_id); ?></a>
                         </p>
                         <p class="form-field form-field-wide">
-                            <label><strong><?php esc_html_e( 'Order status', 'dc-woocommerce-multi-vendor' ); ?>:</strong></label>
+                            <label><strong><?php esc_html_e( 'Order status', 'multivendorx' ); ?>:</strong></label>
                             <?php echo ucfirst($order->get_status()); ?>
                         </p>
                         <p class="form-field form-field-wide wc-order-status">
                             <label for="commission_status">
-                                <?php _e( 'Commission Status:', 'dc-woocommerce-multi-vendor' ); ?>
+                                <?php _e( 'Commission Status:', 'multivendorx' ); ?>
                             </label>
                             <select id="commission_status" name="commission_status" class="wc-enhanced-select">
                                 <?php
@@ -356,7 +356,7 @@ class MVX_Commission {
                         
                     </div>
                     <div class="order_data_column">
-                        <h3><?php esc_html_e( 'Vendor details', 'dc-woocommerce-multi-vendor' ); ?></h3>
+                        <h3><?php esc_html_e( 'Vendor details', 'multivendorx' ); ?></h3>
                         <?php if($vendor) : ?>
                         <span class="commission-vendor">
                             <?php echo get_avatar($vendor->id, 50); ?>
@@ -364,11 +364,11 @@ class MVX_Commission {
                         </span>
                         
                         <p class="form-field form-field-wide">
-                            <label><strong><?php esc_html_e( 'Email', 'dc-woocommerce-multi-vendor' ); ?>:</strong></label>
+                            <label><strong><?php esc_html_e( 'Email', 'multivendorx' ); ?>:</strong></label>
                             <a href="mailto:<?php echo $vendor->user_data->user_email; ?>"><?php echo $vendor->user_data->user_email; ?></a>
                         </p>
                         <p class="form-field form-field-wide">
-                            <label><strong><?php esc_html_e( 'Payment mode', 'dc-woocommerce-multi-vendor' ); ?>:</strong></label>
+                            <label><strong><?php esc_html_e( 'Payment mode', 'multivendorx' ); ?>:</strong></label>
                             <?php 
                             $payment_title = isset($MVX->payment_gateway->payment_gateways[$vendor->payment_mode]) ? $MVX->payment_gateway->payment_gateways[$vendor->payment_mode]->gateway_title : '';
                             echo $payment_title;
@@ -377,11 +377,11 @@ class MVX_Commission {
                         <?php endif; ?>
                     </div>
                     <div class="order_data_column">
-                        <h3><?php esc_html_e( 'Commission data', 'dc-woocommerce-multi-vendor' ); ?></h3>
+                        <h3><?php esc_html_e( 'Commission data', 'multivendorx' ); ?></h3>
                         <p class="form-field form-field-wide mvx-commission-amount">
                             <label>
-                                <strong><?php esc_html_e( 'Commission amount', 'dc-woocommerce-multi-vendor' ); ?>:</strong>
-                                <a href="#" class="edit_commission_amount"><?php _e( 'Edit', 'dc-woocommerce-multi-vendor' ); ?></a>
+                                <strong><?php esc_html_e( 'Commission amount', 'multivendorx' ); ?>:</strong>
+                                <a href="#" class="edit_commission_amount"><?php _e( 'Edit', 'multivendorx' ); ?></a>
                             </label>
                             <span class="commission-amount-view">
                                 <?php 
@@ -397,7 +397,7 @@ class MVX_Commission {
                             <input name="_commission_amount" type="text" id="_commission_amount" class="regular-text commission-amount-edit" value="<?php echo self::commission_amount_totals($post_id, 'edit'); ?>" style="display:none;" />
                         </p>
                         <p class="form-field form-field-wide">
-                            <label><strong><?php esc_html_e( 'Shipping', 'dc-woocommerce-multi-vendor' ); ?>:</strong></label>
+                            <label><strong><?php esc_html_e( 'Shipping', 'multivendorx' ); ?>:</strong></label>
                             <?php 
                             $shipping_amount = get_post_meta( $post_id, '_shipping', true );
                             if($shipping_amount != self::commission_shipping_totals($post_id, 'edit')){
@@ -408,7 +408,7 @@ class MVX_Commission {
                             ?>
                         </p>
                         <p class="form-field form-field-wide">
-                            <label><strong><?php esc_html_e( 'Tax', 'dc-woocommerce-multi-vendor' ); ?>:</strong></label>
+                            <label><strong><?php esc_html_e( 'Tax', 'multivendorx' ); ?>:</strong></label>
                             <?php 
                             $tax_amount = get_post_meta( $post_id, '_tax', true );
                             if($tax_amount != self::commission_tax_totals($post_id, 'edit')){
@@ -732,19 +732,19 @@ class MVX_Commission {
             <table cellpadding="0" cellspacing="0" class="woocommerce_order_items">
                 <thead>
                     <tr>
-                        <th class="item sortable" colspan="2" data-sort="string-ins"><?php esc_html_e('Item', 'dc-woocommerce-multi-vendor'); ?></th>
+                        <th class="item sortable" colspan="2" data-sort="string-ins"><?php esc_html_e('Item', 'multivendorx'); ?></th>
                         <?php do_action('mvx_admin_commission_order_item_headers', $order); ?>
-                        <th class="item_cost sortable" data-sort="float"><?php esc_html_e('Cost', 'dc-woocommerce-multi-vendor'); ?></th>
-                        <th class="quantity sortable" data-sort="int"><?php esc_html_e('Qty', 'dc-woocommerce-multi-vendor'); ?></th>
-                        <th class="line_cost sortable" data-sort="float"><?php esc_html_e('Total', 'dc-woocommerce-multi-vendor'); ?></th>
+                        <th class="item_cost sortable" data-sort="float"><?php esc_html_e('Cost', 'multivendorx'); ?></th>
+                        <th class="quantity sortable" data-sort="int"><?php esc_html_e('Qty', 'multivendorx'); ?></th>
+                        <th class="line_cost sortable" data-sort="float"><?php esc_html_e('Total', 'multivendorx'); ?></th>
                         <?php
                         if (!empty($order_taxes)) :
                             foreach ($order_taxes as $tax_id => $tax_item) :
                                 $tax_class = wc_get_tax_class_by_tax_id($tax_item['rate_id']);
-                                $tax_class_name = isset($classes_options[$tax_class]) ? $classes_options[$tax_class] : __('Tax', 'dc-woocommerce-multi-vendor');
-                                $column_label = !empty($tax_item['label']) ? $tax_item['label'] : __('Tax', 'dc-woocommerce-multi-vendor');
+                                $tax_class_name = isset($classes_options[$tax_class]) ? $classes_options[$tax_class] : __('Tax', 'multivendorx');
+                                $column_label = !empty($tax_item['label']) ? $tax_item['label'] : __('Tax', 'multivendorx');
                                 /* translators: %1$s: tax item name %2$s: tax class name  */
-                                $column_tip = sprintf(esc_html__('%1$s (%2$s)', 'dc-woocommerce-multi-vendor'), $tax_item['name'], $tax_class_name);
+                                $column_tip = sprintf(esc_html__('%1$s (%2$s)', 'multivendorx'), $tax_item['name'], $tax_class_name);
                                 ?>
                                 <th class="line_tax tips" data-tip="<?php echo esc_attr($column_tip); ?>">
                                     <?php echo esc_attr($column_label); ?>
@@ -775,16 +775,16 @@ class MVX_Commission {
                                 echo $product_link ? '<a href="' . esc_url($product_link) . '" class="wc-order-item-name">' . esc_html($item->get_name()) . '</a>' : '<div class="wc-order-item-name">' . esc_html($item->get_name()) . '</div>';
 
                                 if ($product && $product->get_sku()) {
-                                    echo '<div class="wc-order-item-sku"><strong>' . esc_html__('SKU:', 'dc-woocommerce-multi-vendor') . '</strong> ' . esc_html($product->get_sku()) . '</div>';
+                                    echo '<div class="wc-order-item-sku"><strong>' . esc_html__('SKU:', 'multivendorx') . '</strong> ' . esc_html($product->get_sku()) . '</div>';
                                 }
 
                                 if ($item->get_variation_id()) {
-                                    echo '<div class="wc-order-item-variation"><strong>' . esc_html__('Variation ID:', 'dc-woocommerce-multi-vendor') . '</strong> ';
+                                    echo '<div class="wc-order-item-variation"><strong>' . esc_html__('Variation ID:', 'multivendorx') . '</strong> ';
                                     if ('product_variation' === get_post_type($item->get_variation_id())) {
                                         echo esc_html($item->get_variation_id());
                                     } else {
                                         /* translators: %s: variation id */
-                                        printf(esc_html__('%s (No longer exists)', 'dc-woocommerce-multi-vendor'), $item->get_variation_id());
+                                        printf(esc_html__('%s (No longer exists)', 'multivendorx'), $item->get_variation_id());
                                     }
                                     echo '</div>';
                                 }
@@ -923,14 +923,14 @@ class MVX_Commission {
 
                             <td class="name">
                                 <div class="view">
-                                    <?php echo esc_html($item->get_name() ? $item->get_name() : __('Shipping', 'dc-woocommerce-multi-vendor') ); ?>
+                                    <?php echo esc_html($item->get_name() ? $item->get_name() : __('Shipping', 'multivendorx') ); ?>
                                 </div>
                                 <div class="edit" style="display: none;">
                                     <input type="hidden" name="shipping_method_id[]" value="<?php echo esc_attr($item_id); ?>" />
-                                    <input type="text" class="shipping_method_name" placeholder="<?php esc_attr_e('Shipping name', 'dc-woocommerce-multi-vendor'); ?>" name="shipping_method_title[<?php echo esc_attr($item_id); ?>]" value="<?php echo esc_attr($item->get_name()); ?>" />
+                                    <input type="text" class="shipping_method_name" placeholder="<?php esc_attr_e('Shipping name', 'multivendorx'); ?>" name="shipping_method_title[<?php echo esc_attr($item_id); ?>]" value="<?php echo esc_attr($item->get_name()); ?>" />
                                     <select class="shipping_method" name="shipping_method[<?php echo esc_attr($item_id); ?>]">
-                                        <optgroup label="<?php esc_attr_e('Shipping method', 'dc-woocommerce-multi-vendor'); ?>">
-                                            <option value=""><?php esc_html_e('N/A', 'dc-woocommerce-multi-vendor'); ?></option>
+                                        <optgroup label="<?php esc_attr_e('Shipping method', 'multivendorx'); ?>">
+                                            <option value=""><?php esc_html_e('N/A', 'multivendorx'); ?></option>
                                             <?php
                                             $found_method = false;
 
@@ -945,9 +945,9 @@ class MVX_Commission {
                                             }
 
                                             if (!$found_method && $item->get_method_id()) {
-                                                echo '<option value="' . esc_attr($item->get_method_id()) . '" selected="selected">' . esc_html__('Other', 'dc-woocommerce-multi-vendor') . '</option>';
+                                                echo '<option value="' . esc_attr($item->get_method_id()) . '" selected="selected">' . esc_html__('Other', 'multivendorx') . '</option>';
                                             } else {
-                                                echo '<option value="other">' . esc_html__('Other', 'dc-woocommerce-multi-vendor') . '</option>';
+                                                echo '<option value="other">' . esc_html__('Other', 'multivendorx') . '</option>';
                                             }
                                             ?>
                                         </optgroup>
@@ -1068,20 +1068,20 @@ class MVX_Commission {
                                 if ( $who_refunded->exists() ) {
                                     printf(
                                         /* translators: 1: refund id 2: refund date 3: username */
-                                        esc_html__( 'Refund #%1$s - %2$s by %3$s', 'dc-woocommerce-multi-vendor' ),
+                                        esc_html__( 'Refund #%1$s - %2$s by %3$s', 'multivendorx' ),
                                         $refund->get_id(),
                                         wc_format_datetime( $refund->get_date_created(), get_option( 'date_format' ) . ', ' . get_option( 'time_format' ) ),
                                         sprintf(
                                                 '<abbr class="refund_by" title="%1$s">%2$s</abbr>',
                                                 /* translators: 1: ID who refunded */
-                                                sprintf( esc_attr__( 'ID: %d', 'dc-woocommerce-multi-vendor' ), absint( $who_refunded->ID ) ),
+                                                sprintf( esc_attr__( 'ID: %d', 'multivendorx' ), absint( $who_refunded->ID ) ),
                                                 esc_html( $who_refunded->display_name )
                                         )
                                     );
                                 } else {
                                     printf(
                                         /* translators: 1: refund id 2: refund date */
-                                        esc_html__( 'Refund #%1$s - %2$s', 'dc-woocommerce-multi-vendor' ),
+                                        esc_html__( 'Refund #%1$s - %2$s', 'multivendorx' ),
                                         $refund->get_id(),
                                         wc_format_datetime( $refund->get_date_created(), get_option( 'date_format' ) . ', ' . get_option( 'time_format' ) )
                                     );
@@ -1117,13 +1117,13 @@ class MVX_Commission {
             <div class="wc-used-coupons">
                 <ul class="wc_coupon_list">
                     <?php if ( 0 < $order->get_total_discount() && get_post_meta($post_id, '_commission_include_coupon', true) ) : ?>
-                    <li><em>* <?php esc_html_e( 'Commission calculated including coupon.', 'dc-woocommerce-multi-vendor' ); ?></em></li>
+                    <li><em>* <?php esc_html_e( 'Commission calculated including coupon.', 'multivendorx' ); ?></em></li>
                     <?php endif; 
                     if ( 0 < get_post_meta($post_id, '_shipping', true) && get_post_meta($post_id, '_commission_total_include_shipping', true) ) : ?>
-                    <li><em>** <?php esc_html_e( 'Commission total calcutated including shipping charges.', 'dc-woocommerce-multi-vendor' ); ?></em></li>
+                    <li><em>** <?php esc_html_e( 'Commission total calcutated including shipping charges.', 'multivendorx' ); ?></em></li>
                     <?php endif; 
                     if ( 0 < get_post_meta($post_id, '_tax', true) && get_post_meta($post_id, '_commission_total_include_tax', true) ) : ?>
-                    <li><em>** <?php esc_html_e( 'Commission total calcutated including tax charges.', 'dc-woocommerce-multi-vendor' ); ?></em></li>
+                    <li><em>** <?php esc_html_e( 'Commission total calcutated including tax charges.', 'multivendorx' ); ?></em></li>
                     <?php endif; ?>
                 </ul>
             </div>
@@ -1132,7 +1132,7 @@ class MVX_Commission {
                 <?php $commission_amount = get_post_meta( $post_id, '_commission_amount', true );
                 if ($commission_amount != 0) : ?>
                     <tr>
-                        <td class="label"><?php if ( 0 < $order->get_total_discount() && get_post_meta($post_id, '_commission_include_coupon', true) ) : ?>*<?php endif; ?><?php esc_html_e('Commission:', 'dc-woocommerce-multi-vendor'); ?></td>
+                        <td class="label"><?php if ( 0 < $order->get_total_discount() && get_post_meta($post_id, '_commission_include_coupon', true) ) : ?>*<?php endif; ?><?php esc_html_e('Commission:', 'multivendorx'); ?></td>
                         <td width="1%"></td>
                         <td class="total">
                             <?php echo $vendor_order->get_formatted_commission_total(); ?>
@@ -1142,7 +1142,7 @@ class MVX_Commission {
 
                 <?php if ($order->get_shipping_methods()) : ?>
                     <tr>
-                        <td class="label"><?php esc_html_e('Shipping:', 'dc-woocommerce-multi-vendor'); ?></td>
+                        <td class="label"><?php esc_html_e('Shipping:', 'multivendorx'); ?></td>
                         <td width="1%"></td>
                         <td class="total">
                             <?php 
@@ -1181,7 +1181,7 @@ class MVX_Commission {
                 <?php do_action('mvx_admin_commission_order_totals_after_tax', $order->get_id()); ?>
 
                 <tr>
-                    <td class="label"><?php esc_html_e('**Total', 'dc-woocommerce-multi-vendor'); ?>:</td>
+                    <td class="label"><?php esc_html_e('**Total', 'multivendorx'); ?>:</td>
                     <td width="1%"></td>
                     <td class="total">
                         <?php $commission_total = get_post_meta( $post_id, '_commission_total', true );
@@ -1199,7 +1199,7 @@ class MVX_Commission {
 
                 <?php if (get_post_meta( $post_id, '_commission_refunded', true )) : ?>
                     <tr>
-                        <td class="label refunded-total"><?php esc_html_e('Refunded', 'dc-woocommerce-multi-vendor'); ?>:</td>
+                        <td class="label refunded-total"><?php esc_html_e('Refunded', 'multivendorx'); ?>:</td>
                         <td width="1%"></td>
                         <td class="total refunded-total"><?php echo wc_price(get_post_meta( $post_id, '_commission_refunded', true ), array('currency' => $order->get_currency())); ?></td>
                     </tr>
@@ -1236,8 +1236,8 @@ class MVX_Commission {
             return 0;
         }
 
-        $comment_author = __('MVX', 'dc-woocommerce-multi-vendor');
-        $comment_author_email = strtolower(__('MVX', 'dc-woocommerce-multi-vendor')) . '@';
+        $comment_author = __('MVX', 'multivendorx');
+        $comment_author_email = strtolower(__('MVX', 'multivendorx')) . '@';
         $comment_author_email .= isset($_SERVER['HTTP_HOST']) ? str_replace('www.', '', $_SERVER['HTTP_HOST']) : 'noreply.com';
         $comment_author_email = sanitize_email($comment_author_email);
 
@@ -1285,32 +1285,32 @@ class MVX_Commission {
         $fields = array();
 
         $fields['_commission_order_id'] = array(
-            'name' => __('Order ID:', 'dc-woocommerce-multi-vendor'),
-            'description' => __('The order ID of Commission (' . get_woocommerce_currency_symbol() . ').', 'dc-woocommerce-multi-vendor'),
+            'name' => __('Order ID:', 'multivendorx'),
+            'description' => __('The order ID of Commission (' . get_woocommerce_currency_symbol() . ').', 'multivendorx'),
             'type' => 'text',
             'default' => '',
             'section' => 'mvx-commission-data'
         );
 
         $fields['_commission_product'] = array(
-            'name' => __('Product:', 'dc-woocommerce-multi-vendor'),
-            'description' => __('The product purchased that generated this commission.', 'dc-woocommerce-multi-vendor'),
+            'name' => __('Product:', 'multivendorx'),
+            'description' => __('The product purchased that generated this commission.', 'multivendorx'),
             'type' => 'select',
             'default' => '',
             'section' => 'mvx-commission-data'
         );
 
         $fields['_commission_vendor'] = array(
-            'name' => __('Vendor:', 'dc-woocommerce-multi-vendor'),
-            'description' => __('The vendor who receives this commission.', 'dc-woocommerce-multi-vendor'),
+            'name' => __('Vendor:', 'multivendorx'),
+            'description' => __('The vendor who receives this commission.', 'multivendorx'),
             'type' => 'select',
             'default' => '',
             'section' => 'mvx-commission-data'
         );
 
         $fields['_commission_amount'] = array(
-            'name' => __('Amount:', 'dc-woocommerce-multi-vendor'),
-            'description' => __('The total value of this commission (' . get_woocommerce_currency_symbol() . ').', 'dc-woocommerce-multi-vendor'),
+            'name' => __('Amount:', 'multivendorx'),
+            'description' => __('The total value of this commission (' . get_woocommerce_currency_symbol() . ').', 'multivendorx'),
             'type' => 'text',
             'default' => 0.00,
             'section' => 'mvx-commission-data'
@@ -1318,20 +1318,20 @@ class MVX_Commission {
 
         if (get_post_meta($post_id, '_paid_status', true) == 'paid') {
             $fields['_commission_amount']['type'] = 'price';
-            $fields['_commission_amount']['description'] = __('The total value of this commission.', 'dc-woocommerce-multi-vendor');
+            $fields['_commission_amount']['description'] = __('The total value of this commission.', 'multivendorx');
         }
 
         $fields['_shipping'] = array(
-            'name' => __('Shipping Amount:', 'dc-woocommerce-multi-vendor'),
-            'description' => __('The total value of shipping.', 'dc-woocommerce-multi-vendor'),
+            'name' => __('Shipping Amount:', 'multivendorx'),
+            'description' => __('The total value of shipping.', 'multivendorx'),
             'type' => 'price',
             'default' => 0.00,
             'section' => 'mvx-commission-data'
         );
 
         $fields['_tax'] = array(
-            'name' => __('Tax Amount:', 'dc-woocommerce-multi-vendor'),
-            'description' => __('The total value of this tax.', 'dc-woocommerce-multi-vendor'),
+            'name' => __('Tax Amount:', 'multivendorx'),
+            'description' => __('The total value of this tax.', 'multivendorx'),
             'type' => 'price',
             'default' => 0.00,
             'section' => 'mvx-commission-data'
@@ -1368,7 +1368,7 @@ class MVX_Commission {
             if($order && $order->get_refunds()){
                 update_post_meta($post_id, '_paid_status', wc_clean(wp_unslash($_POST['commission_status'])));
             }else{
-                set_transient('mvx_comm_save_status_'.$post_id, __('Please make order refundable first.', 'dc-woocommerce-multi-vendor'), MINUTE_IN_SECONDS);
+                set_transient('mvx_comm_save_status_'.$post_id, __('Please make order refundable first.', 'multivendorx'), MINUTE_IN_SECONDS);
             }
         }elseif(isset($_POST['commission_status'])){
             if( $_POST['commission_status'] == 'paid' ) {
@@ -1392,11 +1392,11 @@ class MVX_Commission {
 
             $status = get_post_meta($post->ID, '_paid_status', true) ? get_post_meta($post->ID, '_paid_status', true) : 'unpaid';
             if ($status == 'unpaid') {
-                echo '<input type="checkbox" name="_paid_status" id="_paid_status-paid" value="paid" ' . checked($status, 'paid', false) . '/> <label for="_paid_status-paid" class="select-it">' . __("Mark as Paid", 'dc-woocommerce-multi-vendor') . '</label>&nbsp;&nbsp;&nbsp;&nbsp;';
+                echo '<input type="checkbox" name="_paid_status" id="_paid_status-paid" value="paid" ' . checked($status, 'paid', false) . '/> <label for="_paid_status-paid" class="select-it">' . __("Mark as Paid", 'multivendorx') . '</label>&nbsp;&nbsp;&nbsp;&nbsp;';
             } else if ($status == 'paid') {
-                echo '<input type="checkbox" name="_paid_status" id="_paid_status-reverse" value="reverse" ' . checked($status, 'reverse', false) . '/> <label for="_paid_status-reverse" class="select-it">' . __("Mark as Reverse", 'dc-woocommerce-multi-vendor') . '</label>';
+                echo '<input type="checkbox" name="_paid_status" id="_paid_status-reverse" value="reverse" ' . checked($status, 'reverse', false) . '/> <label for="_paid_status-reverse" class="select-it">' . __("Mark as Reverse", 'multivendorx') . '</label>';
             } else if ($status == 'reverse') {
-                echo '<label class="select-it">'.__( "Reversed", 'dc-woocommerce-multi-vendor' ).'</label>';
+                echo '<label class="select-it">'.__( "Reversed", 'multivendorx' ).'</label>';
             }
             echo '</div>';
         }
@@ -1428,10 +1428,10 @@ class MVX_Commission {
                         if (array_key_exists($payment_method, $MVX->payment_gateway->payment_gateways)) {
                             $MVX->payment_gateway->payment_gateways[$payment_method]->process_payment($vendor, array($post_id), 'admin');
                         } else {
-                            set_transient("mvx_commission_save_{$post_id}", array('message' => __('Invalid payment method', 'dc-woocommerce-multi-vendor'), 'type' => 'error'), 120);
+                            set_transient("mvx_commission_save_{$post_id}", array('message' => __('Invalid payment method', 'multivendorx'), 'type' => 'error'), 120);
                         }
                     } else {
-                        set_transient("mvx_commission_save_{$post_id}", array('message' => __('Please set payment method for this commission vendor', 'dc-woocommerce-multi-vendor'), 'type' => 'error'), 120);
+                        set_transient("mvx_commission_save_{$post_id}", array('message' => __('Please set payment method for this commission vendor', 'multivendorx'), 'type' => 'error'), 120);
                     }
                 } else if ($status == 'reverse') {
                     update_post_meta($post_id, '_paid_status', $status, 'paid');
@@ -1457,12 +1457,12 @@ class MVX_Commission {
      */
     public function mvx_register_custom_column_headings($defaults) {
         $new_columns = array(
-            '_commission_order_id' => __('Order ID', 'dc-woocommerce-multi-vendor'),
-            '_commission_product' => __('Product', 'dc-woocommerce-multi-vendor'),
-            '_commission_vendor' => __('Vendor', 'dc-woocommerce-multi-vendor'),
-            '_commission_amount' => __('Amount', 'dc-woocommerce-multi-vendor'),
-            '_commission_earning' => __('Net Earning', 'dc-woocommerce-multi-vendor'),
-            '_paid_status' => __('Status', 'dc-woocommerce-multi-vendor'),
+            '_commission_order_id' => __('Order ID', 'multivendorx'),
+            '_commission_product' => __('Product', 'multivendorx'),
+            '_commission_vendor' => __('Vendor', 'multivendorx'),
+            '_commission_amount' => __('Amount', 'multivendorx'),
+            '_commission_earning' => __('Net Earning', 'multivendorx'),
+            '_paid_status' => __('Status', 'multivendorx'),
         );
 
         $last_item = '';
@@ -1594,8 +1594,8 @@ class MVX_Commission {
             unset($bulk_actions['untrash']);
         }
 
-        $bulk_actions['mark_paid'] = __('Mark paid', 'dc-woocommerce-multi-vendor');
-        $bulk_actions['export'] = __('Export', 'dc-woocommerce-multi-vendor');
+        $bulk_actions['mark_paid'] = __('Mark paid', 'multivendorx');
+        $bulk_actions['export'] = __('Export', 'multivendorx');
         return apply_filters('mvx_commission_bulk_action', $bulk_actions);
     }
 
@@ -1760,7 +1760,7 @@ class MVX_Commission {
         // Commission Satus
         ?>
         <select name='commission_status' id='dropdown_commission_status'>
-            <option value=""><?php _e('Show Commission Status', 'dc-woocommerce-multi-vendor'); ?></option>
+            <option value=""><?php _e('Show Commission Status', 'multivendorx'); ?></option>
             <?php $commission_statuses = mvx_get_commission_statuses(); 
             foreach( $commission_statuses as $key => $label ) { 
                 echo "<option value='{$key}'>{$label}</option>";

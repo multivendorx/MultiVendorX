@@ -53,13 +53,13 @@ class MVX_Migrator {
 	public function get_plugin_name_by_class() {
 		$this->init_migration();
 		if ($this->is_marketplace) {
-			$marketplace_title = __( 'Multivendor X', 'dc-woocommerce-multi-vendor' );
+			$marketplace_title = __( 'Multivendor X', 'multivendorx' );
 			if ($this->is_marketplace == 'wcfmmarketplace') {
-				$marketplace_title = __( 'WCFM Marketplace', 'dc-woocommerce-multi-vendor' );
+				$marketplace_title = __( 'WCFM Marketplace', 'multivendorx' );
 			} elseif ($this->is_marketplace == 'wcvendors') {
-				$marketplace_title = __( 'WCVendor Marketplace', 'dc-woocommerce-multi-vendor' );
+				$marketplace_title = __( 'WCVendor Marketplace', 'multivendorx' );
 			} elseif ($this->is_marketplace == 'dokan') {
-				$marketplace_title = __( 'Dokan Marketplace', 'dc-woocommerce-multi-vendor' );
+				$marketplace_title = __( 'Dokan Marketplace', 'multivendorx' );
 			}
 		}
 		return $marketplace_title;
@@ -75,7 +75,7 @@ class MVX_Migrator {
 	function add_mvx_migrate_corn_schedule($schedules) {
 	    $schedules['inevery_1minute'] = array(
 	            'interval' => 5*60, // in seconds
-	            'display'  => __( 'Every 5 minute', 'dc-woocommerce-multi-vendor' )
+	            'display'  => __( 'Every 5 minute', 'multivendorx' )
 	    );
 	    return $schedules;
 	}
@@ -101,18 +101,18 @@ class MVX_Migrator {
 		}
 		
 		$default_steps = array(
-			'introduction_migration' => array(
-				'name' => __('Introduction', 'dc-woocommerce-multi-vendor' ),
+			'introduction-migration' => array(
+				'name' => __('Introduction', 'multivendorx' ),
 				'view' => array($this, 'mvx_migration_introduction'),
 				'handler' => '',
 			),
 			'store-process' => array(
-				'name' => __('Processing', 'dc-woocommerce-multi-vendor'),
+				'name' => __('Processing', 'multivendorx'),
 				'view' => array($this, 'mvx_migration_store_process'),
 				'handler' => ''
 			),
 			'next_steps' => array(
-				'name' => __('Complete!', 'dc-woocommerce-multi-vendor'),
+				'name' => __('Complete!', 'multivendorx'),
 				'view' => array($this, 'mvx_migration_complete'),
 				'handler' => '',
 			),
@@ -176,7 +176,7 @@ class MVX_Migrator {
 			<head>
 				<meta name="viewport" content="width=device-width" />
 				<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-				<title><?php esc_html_e('MVX Marketplace Migration', 'dc-woocommerce-multi-vendor'); ?></title>
+				<title><?php esc_html_e('MVX Marketplace Migration', 'multivendorx'); ?></title>
 				<?php wp_print_scripts('jquery-blockui'); ?>
 				<?php
 				?>
@@ -190,7 +190,7 @@ class MVX_Migrator {
 			</head>
 			<body class="wc-setup wp-core-ui">
 
-			 <h1 id="wc-logo"><a target="_blank" href="<?php echo site_url(); ?>"><img src="<?php echo trailingslashit(plugins_url('dc-woocommerce-multi-vendor')); ?>assets/images/wc-marketplace.png" alt="<?php echo get_bloginfo('title'); ?>" /></a></h1>
+			 <h1 id="wc-logo"><a target="_blank" href="<?php echo site_url(); ?>"><img src="<?php echo trailingslashit(plugins_url('multivendorx')); ?>assets/images/wc-marketplace.png" alt="<?php echo get_bloginfo('title'); ?>" /></a></h1>
 			<?php
 	}
 
@@ -236,12 +236,12 @@ class MVX_Migrator {
 	public function mvx_migration_first_step ($next_step_link) {
 		?>
         <div class="woocommerce-message woocommerce-tracker" style="text-align: center">
-       	 <h1><strong><?php esc_html_e( 'Import Marketplace Settings', 'dc-woocommerce-multi-vendor' ); ?></strong></h1>
-       	 <?php esc_html_e( 'You can import Marketplace settings from the following plugins : ', 'dc-woocommerce-multi-vendor' ); ?>
+       	 <h1><strong><?php esc_html_e( 'Import Marketplace Settings', 'multivendorx' ); ?></strong></h1>
+       	 <?php esc_html_e( 'You can import Marketplace settings from the following plugins : ', 'multivendorx' ); ?>
        	</div>
         <div class="wc-setup-next-steps wc-setup-next-line">
         	<div class="wc-setup-next-steps-first">
-	        	<h2><?php esc_html_e( 'Input Data From :', 'dc-woocommerce-multi-vendor' ); ?></h2>
+	        	<h2><?php esc_html_e( 'Input Data From :', 'multivendorx' ); ?></h2>
 	        </div>
 	        <div class="multivendor-select-content">
 				<button class="current-multivendor-accordion"><?php echo $this->get_plugin_name_by_class(); ?></button>
@@ -249,32 +249,32 @@ class MVX_Migrator {
 		    		<ul class="wc-wizard-payment-gateways">
 		    			<li class="wc-wizard-service-item wc-wizard-gateway">
 		    				<div class="wc-wizard-migrator-name">
-		    					<?php esc_html_e( 'Marketplace Vendors ', 'dc-woocommerce-multi-vendor' ); ?>
+		    					<?php esc_html_e( 'Marketplace Vendors ', 'multivendorx' ); ?>
 		    				</div>
 		    				<div class="wc-wizard-migrator-name">
-		    					<?php esc_html_e( 'Marketplace Products', 'dc-woocommerce-multi-vendor' ); ?>
+		    					<?php esc_html_e( 'Marketplace Products', 'multivendorx' ); ?>
 		    				</div>
 		    			</li>
 		    			<li class="wc-wizard-service-item wc-wizard-gateway">
 		    				<div class="wc-wizard-migrator-name">
-		    					<?php esc_html_e( 'Vendor Orders', 'dc-woocommerce-multi-vendor' ); ?>
+		    					<?php esc_html_e( 'Vendor Orders', 'multivendorx' ); ?>
 		    				</div>
 		    				<div class="wc-wizard-migrator-name">
-		    					<?php esc_html_e( 'Vendor Store Details', 'dc-woocommerce-multi-vendor' ); ?>
+		    					<?php esc_html_e( 'Vendor Store Details', 'multivendorx' ); ?>
 		    				</div>
 		    				
 		    			</li>
 		    			<li class="wc-wizard-service-item wc-wizard-gateway">
 		    				<div class="wc-wizard-migrator-name">
-		    					<?php esc_html_e( 'Product Commissions', 'dc-woocommerce-multi-vendor' ); ?>
+		    					<?php esc_html_e( 'Product Commissions', 'multivendorx' ); ?>
 		    				</div>
 		    				<div class="wc-wizard-migrator-name">
-		    					<?php esc_html_e( 'Vendor Commissions', 'dc-woocommerce-multi-vendor' ); ?>
+		    					<?php esc_html_e( 'Vendor Commissions', 'multivendorx' ); ?>
 		    				</div>
 		    			</li>
 		    			<p class="mvx-multivendor-choose-content">
 		    				<?php esc_html_e( 'Import settings and meta data from the '. $this->get_plugin_name_by_class() .' plugin. The process may take a few minutes if you have a large number of posts or pages Learn more about the import process here.
-		    				'. $this->get_plugin_name_by_class() .' plugin will be disabled automatically moving forward to avoid conflicts. ', 'dc-woocommerce-multi-vendor' ); ?> <strong><?php esc_html_e( 'It is thus recommended to import the data you need now.', 'dc-woocommerce-multi-vendor' ); ?></strong>
+		    				'. $this->get_plugin_name_by_class() .' plugin will be disabled automatically moving forward to avoid conflicts. ', 'multivendorx' ); ?> <strong><?php esc_html_e( 'It is thus recommended to import the data you need now.', 'multivendorx' ); ?></strong>
 		    			</p>
 		    		</ul>
 		    	</div>
@@ -351,22 +351,22 @@ class MVX_Migrator {
         	}
 		</style>
 
-		<p><?php printf( __('Before we start please read this carefully -', 'dc-woocommerce-multi-vendor') ); ?></p>
+		<p><?php printf( __('Before we start please read this carefully -', 'multivendorx') ); ?></p>
 		<ul>
-			<li><?php esc_html_e("You have already kept backup of your site's Database.", 'dc-woocommerce-multi-vendor'); ?></li>
-			<li><?php esc_html_e("Disabled caching and optimize plugins.", 'dc-woocommerce-multi-vendor'); ?></li>
-			<li><?php esc_html_e("Your previous multi-vendor plugin installed and activated.", 'dc-woocommerce-multi-vendor'); ?></li>
-			<li><?php esc_html_e("Multivendor X installed and activated.", 'dc-woocommerce-multi-vendor'); ?></li>
-			<li><?php esc_html_e("You are using a non-interrupted internet connection.", 'dc-woocommerce-multi-vendor'); ?></li>
+			<li><?php esc_html_e("You have already kept backup of your site's Database.", 'multivendorx'); ?></li>
+			<li><?php esc_html_e("Disabled caching and optimize plugins.", 'multivendorx'); ?></li>
+			<li><?php esc_html_e("Your previous multi-vendor plugin installed and activated.", 'multivendorx'); ?></li>
+			<li><?php esc_html_e("Multivendor X installed and activated.", 'multivendorx'); ?></li>
+			<li><?php esc_html_e("You are using a non-interrupted internet connection.", 'multivendorx'); ?></li>
 		</ul>
-		<p style="color: #ff9900;  font-weight: 400;">*<?php printf( __("This migration tool only for migrating vendors as well as product, marketplace orders will not migrated using this. Orders will migrated using cron schedule. Which will run in every five minute.", 'dc-woocommerce-multi-vendor') ); ?></p>
-		<p style="color: #ff4500;  font-weight: 400;">**<?php printf( __("Vendor's shipping setting will not migrate as Multivendor X vendor shipping totally different than your previous multi-vendor plugin!", 'dc-woocommerce-multi-vendor') ); ?></p>
-		<p style="color: #ff4500;  font-weight: 400;">**<?php printf( __("Deleted orders or deleted product's orders will not be migrated!", 'dc-woocommerce-multi-vendor') ); ?></p>
-		<p style="color: #bb0000;  font-weight: 600;">***<?php printf( __('Never close this browser tab when migration is running.', 'dc-woocommerce-multi-vendor') ); ?></p>
-		<p><?php printf( __('Thanks for reading. Welcome aboard!! Congratulations on being part of the MVX Family!!', 'dc-woocommerce-multi-vendor') ); ?></p>
+		<p style="color: #ff9900;  font-weight: 400;">*<?php printf( __("This migration tool only for migrating vendors as well as product, marketplace orders will not migrated using this. Orders will migrated using cron schedule. Which will run in every five minute.", 'multivendorx') ); ?></p>
+		<p style="color: #ff4500;  font-weight: 400;">**<?php printf( __("Vendor's shipping setting will not migrate as Multivendor X vendor shipping totally different than your previous multi-vendor plugin!", 'multivendorx') ); ?></p>
+		<p style="color: #ff4500;  font-weight: 400;">**<?php printf( __("Deleted orders or deleted product's orders will not be migrated!", 'multivendorx') ); ?></p>
+		<p style="color: #bb0000;  font-weight: 600;">***<?php printf( __('Never close this browser tab when migration is running.', 'multivendorx') ); ?></p>
+		<p><?php printf( __('Thanks for reading. Welcome aboard!! Congratulations on being part of the MVX Family!!', 'multivendorx') ); ?></p>
 		<p class="wc-setup-actions step">
-			<a href="<?php echo esc_url($next_step_link); ?>" class="button-primary button button-large button-next"><?php esc_html_e("Start Import", 'dc-woocommerce-multi-vendor'); ?></a>
-			<a href="<?php echo esc_url(admin_url('admin.php?page=vendors')); ?>" class="button button-large"><?php esc_html_e("Skip, Don't Import Now", 'dc-woocommerce-multi-vendor'); ?></a>
+			<a href="<?php echo esc_url($next_step_link); ?>" class="button-primary button button-large button-next"><?php esc_html_e("Start Import", 'multivendorx'); ?></a>
+			<a href="<?php echo esc_url(admin_url('admin.php?page=vendors')); ?>" class="button button-large"><?php esc_html_e("Skip, Don't Import Now", 'multivendorx'); ?></a>
 		</p>
 		<?php
 	}
@@ -386,7 +386,7 @@ class MVX_Migrator {
 		if( !empty( $marketplace_get_vendors ) ) {
 			foreach( $marketplace_get_vendors as $vendor_id => $marketplace_vendor ) {
 				?>
-				<h1><?php printf( __("Migrating Store: #%s", 'dc-woocommerce-multi-vendor'), $vendor_id. ' ' . $marketplace_vendor->ID ); ?></h1>
+				<h1><?php printf( __("Migrating Store: #%s", 'multivendorx'), $vendor_id. ' ' . $marketplace_vendor->ID ); ?></h1>
 				<script>
 				  jQuery(document).ready(function($) {
 				  		$('.wc-setup-content').block({
@@ -406,7 +406,7 @@ class MVX_Migrator {
 				</style>
 				<div class="processing_box processing_box_setting">
 				  <?php if( !$migration_step ) { ?>
-						<p class="setting_process processing_message" style=""><span class="fa fa-gear processing_box_icon"></span><?php printf( __('Store setting migrating ....', 'dc-woocommerce-multi-vendor') ); ?></p>
+						<p class="setting_process processing_message" style=""><span class="fa fa-gear processing_box_icon"></span><?php printf( __('Store setting migrating ....', 'multivendorx') ); ?></p>
 						<?php 
 						$setting_complete = $this->store_setting_migrate(); 
 						if( $setting_complete ) {
@@ -416,15 +416,15 @@ class MVX_Migrator {
 							<style>
 								.setting_process{display:none;}
 							</style>
-							<p class="setting_complete processing_message" style=""><span class="fa fa-gear processing_box_icon"></span><?php printf( __('Store setting migration complete', 'dc-woocommerce-multi-vendor') ); ?><span class="fa fa-check-square-o processing_box_status"></span></p>
+							<p class="setting_complete processing_message" style=""><span class="fa fa-gear processing_box_icon"></span><?php printf( __('Store setting migration complete', 'multivendorx') ); ?><span class="fa fa-check-square-o processing_box_status"></span></p>
 						<?php } ?>
 					<?php } else { ?>
-						<p class="setting_complete processing_message" style=""><span class="fa fa-gear processing_box_icon"></span><?php printf( __('Store setting migration complete', 'dc-woocommerce-multi-vendor') ); ?><span class="fa fa-check-square-o processing_box_status"></span></p>
+						<p class="setting_complete processing_message" style=""><span class="fa fa-gear processing_box_icon"></span><?php printf( __('Store setting migration complete', 'multivendorx') ); ?><span class="fa fa-check-square-o processing_box_status"></span></p>
 					<?php } ?>
 				</div>
 				<div class="processing_box processing_box_product">
 				  <?php if( $migration_step == 'setting' ) { ?>
-						<p class="product_process processing_message" style=""><span class="fa fa-cube processing_box_icon"></span><?php printf( __('Store product and vendor migrating ....', 'dc-woocommerce-multi-vendor') ); ?></p>
+						<p class="product_process processing_message" style=""><span class="fa fa-cube processing_box_icon"></span><?php printf( __('Store product and vendor migrating ....', 'multivendorx') ); ?></p>
 						<?php 
 						$product_complete = $this->mvx_migration_marketplace->store_product_vendor_migrate($marketplace_vendor->ID); 
 						if( $product_complete ) {
@@ -434,10 +434,10 @@ class MVX_Migrator {
 							<style>
 								.product_process{display:none;}
 							</style>
-							<p class="product_complete processing_message" style=""><span class="fa fa-cube processing_box_icon"></span><?php printf( __('Store product migration complete', 'dc-woocommerce-multi-vendor') ); ?><span class="fa fa-check-square-o processing_box_status"></span></p>
+							<p class="product_complete processing_message" style=""><span class="fa fa-cube processing_box_icon"></span><?php printf( __('Store product migration complete', 'multivendorx') ); ?><span class="fa fa-check-square-o processing_box_status"></span></p>
 						<?php } ?>
 					<?php } else { ?>
-						<p class="product_complete processing_message" style=""><span class="fa fa-cube processing_box_icon"></span><?php printf( __('Store product migration complete', 'dc-woocommerce-multi-vendor') ); ?><span class="fa fa-check-square-o processing_box_status"></span></p>
+						<p class="product_complete processing_message" style=""><span class="fa fa-cube processing_box_icon"></span><?php printf( __('Store product migration complete', 'multivendorx') ); ?><span class="fa fa-check-square-o processing_box_status"></span></p>
 					<?php } ?>
 				</div>
 				

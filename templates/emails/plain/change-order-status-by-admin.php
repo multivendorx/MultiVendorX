@@ -15,7 +15,7 @@ global $MVX;
 
 echo "= " . $email_heading . " =\n\n";
 
-echo sprintf( __( "Hi there! This is to notify that an order #%s status has been changed on %s.",  'dc-woocommerce-multi-vendor' ), $order_id, get_option( 'blogname' ) );
+echo sprintf( __( "Hi there! This is to notify that an order #%s status has been changed on %s.",  'multivendorx' ), $order_id, get_option( 'blogname' ) );
 echo '\n'; 
 
 echo "\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n";

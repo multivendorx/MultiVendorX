@@ -10,14 +10,14 @@ class MVX_Widget_Vendor_Top_Rated_Products extends WC_Widget {
 
     public function __construct() {
         $this->widget_cssclass = 'mvx woocommerce mvx_widget_vendor_top_rated_products widget_top_rated_products';
-        $this->widget_description = __('Displays a list of vendor top-rated products on the vendor shop page.', 'dc-woocommerce-multi-vendor');
+        $this->widget_description = __('Displays a list of vendor top-rated products on the vendor shop page.', 'multivendorx');
         $this->widget_id = 'mvx_vendor_top_rated_products';
-        $this->widget_name = __('MVX: Vendor\'s Products by Rating', 'dc-woocommerce-multi-vendor');
+        $this->widget_name = __('MVX: Vendor\'s Products by Rating', 'multivendorx');
         $this->settings = array(
             'title' => array(
                 'type' => 'text',
-                'std' => __('Vendor top rated products', 'dc-woocommerce-multi-vendor'),
-                'label' => __('Title', 'dc-woocommerce-multi-vendor'),
+                'std' => __('Vendor top rated products', 'multivendorx'),
+                'label' => __('Title', 'multivendorx'),
             ),
             'number' => array(
 				'type'  => 'number',
@@ -25,7 +25,7 @@ class MVX_Widget_Vendor_Top_Rated_Products extends WC_Widget {
 				'min'   => 1,
 				'max'   => '',
 				'std'   => 5,
-				'label' => __( 'Number of products to show', 'dc-woocommerce-multi-vendor' ),
+				'label' => __( 'Number of products to show', 'multivendorx' ),
 			),
         );
         parent::__construct();

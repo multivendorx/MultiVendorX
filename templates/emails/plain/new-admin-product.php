@@ -15,17 +15,17 @@ global $MVX;
 
 echo "= " . $email_heading . " =\n\n";
 
-echo sprintf( __( "Hi there! This is to notify that a new product has been submitted in %s.",  'dc-woocommerce-multi-vendor' ), get_option( 'blogname' ) );
+echo sprintf( __( "Hi there! This is to notify that a new product has been submitted in %s.",  'multivendorx' ), get_option( 'blogname' ) );
 echo '\n'; 
-echo sprintf( __( "Product title: %s",  'dc-woocommerce-multi-vendor' ), $product_name ); 
+echo sprintf( __( "Product title: %s",  'multivendorx' ), $product_name ); 
 echo '\n';
-echo sprintf( __( "Submitted by: %s",  'dc-woocommerce-multi-vendor' ), 'Site Administrator' ); 
+echo sprintf( __( "Submitted by: %s",  'multivendorx' ), 'Site Administrator' ); 
 echo '\n';
 $product_link = apply_filters( 'mvx_email_admin_new_product_link', esc_url( mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_edit_product_endpoint', 'seller_dashbaord', 'edit-product' ), $post_id ) ) );
 if($submit_product) {
-	printf( __( "Edit product: %s",  'dc-woocommerce-multi-vendor' ), $product_link ); 
+	printf( __( "Edit product: %s",  'multivendorx' ), $product_link ); 
 } else {
-	printf( __( "View product: %s",  'dc-woocommerce-multi-vendor' ), get_permalink($post_id)); 
+	printf( __( "View product: %s",  'multivendorx' ), get_permalink($post_id)); 
 }
 
 echo "\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n";

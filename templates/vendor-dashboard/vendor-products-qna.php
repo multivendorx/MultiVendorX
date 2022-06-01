@@ -29,23 +29,23 @@ do_action('before_mvx_vendor_dashboard_products_qna_table');
                     } ?>
                 </select>
             </div>
-            <button id="show_qna_by_products_btn" class="mvx_black_btn btn btn-default" type="button" name="show_qna_by_products_btn"><?php _e('Show', 'dc-woocommerce-multi-vendor'); ?></button>
+            <button id="show_qna_by_products_btn" class="mvx_black_btn btn btn-default" type="button" name="show_qna_by_products_btn"><?php _e('Show', 'multivendorx'); ?></button>
         </div>
         <table id="vendor_products_qna_table" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
                 <tr>
-                    <th><?php _e('Customer questions', 'dc-woocommerce-multi-vendor'); ?></th>
-                    <th><?php _e('Product', 'dc-woocommerce-multi-vendor'); ?></th>
-                    <th><?php _e('Date', 'dc-woocommerce-multi-vendor'); ?></th>
-                    <th><?php _e('Vote', 'dc-woocommerce-multi-vendor'); ?></th>
-                    <th><?php _e('Status', 'dc-woocommerce-multi-vendor'); ?></th>
-                    <th><?php _e('Action', 'dc-woocommerce-multi-vendor'); ?></th>
+                    <th><?php _e('Customer questions', 'multivendorx'); ?></th>
+                    <th><?php _e('Product', 'multivendorx'); ?></th>
+                    <th><?php _e('Date', 'multivendorx'); ?></th>
+                    <th><?php _e('Vote', 'multivendorx'); ?></th>
+                    <th><?php _e('Status', 'multivendorx'); ?></th>
+                    <th><?php _e('Action', 'multivendorx'); ?></th>
                 </tr>
             </thead>
             <tbody></tbody>
         </table>
         <div class="mvx-action-container">
-            <!--a href="<?php echo mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_add_coupon_endpoint', 'seller_dashbaord', 'add-product'));?>" class="btn btn-default"><?php echo __('Add Product', 'dc-woocommerce-multi-vendor');?></a-->
+            <!--a href="<?php echo mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_add_coupon_endpoint', 'seller_dashbaord', 'add-product'));?>" class="btn btn-default"><?php echo __('Add Product', 'multivendorx');?></a-->
         </div>
     </div>
 </div>
@@ -55,8 +55,8 @@ do_action('before_mvx_vendor_dashboard_products_qna_table');
         var statuses = [];
         <?php 
         $filter_by_status = apply_filters('mvx_vendor_dashboard_order_filter_status_arr',array(
-            'unanswer' => __('Unanswered', 'dc-woocommerce-multi-vendor'),
-            'all' => __('All Q&As', 'dc-woocommerce-multi-vendor')
+            'unanswer' => __('Unanswered', 'multivendorx'),
+            'all' => __('All Q&As', 'multivendorx')
         ));
         foreach ($filter_by_status as $key => $label) { ?>
             obj = {};
@@ -71,16 +71,16 @@ do_action('before_mvx_vendor_dashboard_products_qna_table');
             serverSide: true,
             responsive: true,
             language: {
-                emptyTable: "<?php echo trim(__('No customer questions found!', 'dc-woocommerce-multi-vendor')); ?>",
-                processing: "<?php echo trim(__('Processing...', 'dc-woocommerce-multi-vendor')); ?>",
-                info: "<?php echo trim(__('Showing _START_ to _END_ of _TOTAL_ questions', 'dc-woocommerce-multi-vendor')); ?>",
-                infoEmpty: "<?php echo trim(__('Showing 0 to 0 of 0 questions', 'dc-woocommerce-multi-vendor')); ?>",
-                lengthMenu: "<?php echo trim(__('Number of rows _MENU_', 'dc-woocommerce-multi-vendor')); ?>",
-                zeroRecords: "<?php echo trim(__('No matching customer questions found', 'dc-woocommerce-multi-vendor')); ?>",
-                search: "<?php echo trim(__('Search:', 'dc-woocommerce-multi-vendor')); ?>",
+                emptyTable: "<?php echo trim(__('No customer questions found!', 'multivendorx')); ?>",
+                processing: "<?php echo trim(__('Processing...', 'multivendorx')); ?>",
+                info: "<?php echo trim(__('Showing _START_ to _END_ of _TOTAL_ questions', 'multivendorx')); ?>",
+                infoEmpty: "<?php echo trim(__('Showing 0 to 0 of 0 questions', 'multivendorx')); ?>",
+                lengthMenu: "<?php echo trim(__('Number of rows _MENU_', 'multivendorx')); ?>",
+                zeroRecords: "<?php echo trim(__('No matching customer questions found', 'multivendorx')); ?>",
+                search: "<?php echo trim(__('Search:', 'multivendorx')); ?>",
                 paginate: {
-                    next: "<?php echo trim(__('Next', 'dc-woocommerce-multi-vendor')); ?>",
-                    previous: "<?php echo trim(__('Previous', 'dc-woocommerce-multi-vendor')); ?>"
+                    next: "<?php echo trim(__('Next', 'multivendorx')); ?>",
+                    previous: "<?php echo trim(__('Previous', 'multivendorx')); ?>"
                 }
             },
             drawCallback: function(settings){
@@ -102,7 +102,7 @@ do_action('before_mvx_vendor_dashboard_products_qna_table');
                     data.qna_products = $('#show_qna_by_products').val();
                 },
                 error: function(xhr, status, error) {
-                    $("#vendor_products_qna_table tbody").append('<tr class="odd"><td valign="top" colspan="5" class="dataTables_empty" style="text-align:center;">'+error+' - <a href="javascript:window.location.reload();"><?php _e('Reload', 'dc-woocommerce-multi-vendor'); ?></a></td></tr>');
+                    $("#vendor_products_qna_table tbody").append('<tr class="odd"><td valign="top" colspan="5" class="dataTables_empty" style="text-align:center;">'+error+' - <a href="javascript:window.location.reload();"><?php _e('Reload', 'multivendorx'); ?></a></td></tr>');
                     $("#vendor_products_qna_table_processing").css("display","none");
                 }
             },
@@ -126,7 +126,7 @@ do_action('before_mvx_vendor_dashboard_products_qna_table');
             qna_table.ajax.reload();
         });
         $("#show_qna_by_products").select2({
-            placeholder: '<?php echo trim(__('Choose product...', 'dc-woocommerce-multi-vendor'));?>'
+            placeholder: '<?php echo trim(__('Choose product...', 'multivendorx'));?>'
         });
     });
 

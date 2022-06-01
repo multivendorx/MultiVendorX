@@ -32,7 +32,7 @@ class StoreRating extends MVX_Elementor_TagBase {
      * @return string
      */
     public function get_title() {
-        return __( 'Store Rating', 'dc-woocommerce-multi-vendor' );
+        return __( 'Store Rating', 'multivendorx' );
     }
 
     /**

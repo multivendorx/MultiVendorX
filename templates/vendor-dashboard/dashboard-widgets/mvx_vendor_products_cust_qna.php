@@ -38,7 +38,7 @@ jQuery(document).ready(function($) {
         serverSide: true,
         pagingType: 'numbers',
         language: {
-            emptyTable: '<article class="reply-item" style="border-bottom:none;"><div class="col-md-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;"><?php echo trim(__('No unanswered questions found.', 'dc-woocommerce-multi-vendor')); ?></div></article>',
+            emptyTable: '<article class="reply-item" style="border-bottom:none;"><div class="col-md-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;"><?php echo trim(__('No unanswered questions found.', 'multivendorx')); ?></div></article>',
         },
         preDrawCallback: function( settings ) {
             $('#customer_questions thead').hide();
@@ -54,7 +54,7 @@ jQuery(document).ready(function($) {
             url : '<?php echo add_query_arg( 'action', 'mvx_vendor_dashboard_customer_questions_data', $MVX->ajax_url() ); ?>', 
             type: "post",
             'error': function(xhr, status, error) {
-                $("#customer_questions tbody").append('<tr class="odd"><td valign="top" colspan="1" class="dataTables_empty"><article class="reply-item" style="border-bottom:none;"><div class="col-md-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">'+error+' - <a href="javascript:window.location.reload();"><?php _e('Reload', 'dc-woocommerce-multi-vendor'); ?></a></div></article></td></tr>');
+                $("#customer_questions tbody").append('<tr class="odd"><td valign="top" colspan="1" class="dataTables_empty"><article class="reply-item" style="border-bottom:none;"><div class="col-md-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">'+error+' - <a href="javascript:window.location.reload();"><?php _e('Reload', 'multivendorx'); ?></a></div></article></td></tr>');
                 $("#customer_questions_processing").css("display","none");
             }
         }

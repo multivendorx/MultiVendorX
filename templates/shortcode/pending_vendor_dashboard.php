@@ -38,7 +38,7 @@ $is_single = !is_null($MVX->endpoints->get_current_endpoint_var()) ? '-single' :
         <div class="row">
             <div class="col-md-12 text-center">
 				<div class="panel mvx-pending-vendor-notice">
-                    <?php echo apply_filters( 'mvx_pending_vendor_dashboard_message', __('Congratulations! You have successfully applied as a Vendor. Please wait for further notifications from the admin.', 'dc-woocommerce-multi-vendor') ); ?>
+                    <?php echo apply_filters( 'mvx_pending_vendor_dashboard_message', __('Congratulations! You have successfully applied as a Vendor. Please wait for further notifications from the admin.', 'multivendorx') ); ?>
                 </div>
 			</div>
         </div>

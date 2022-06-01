@@ -14,8 +14,8 @@ global $woocommerce, $MVX;
 ?>
 <tr>	
     <td align="center" >ID</td>
-    <td align="center" ><?php _e('SKU', 'dc-woocommerce-multi-vendor'); ?></td>
-    <td class="no_display"  align="center" ><?php _e('Sales', 'dc-woocommerce-multi-vendor'); ?></td>
-    <td class="no_display" align="center" ><?php _e('Discount', 'dc-woocommerce-multi-vendor'); ?></td>
-    <td align="center" ><?php _e('My Earnings', 'dc-woocommerce-multi-vendor'); ?></td>
+    <td align="center" ><?php _e('SKU', 'multivendorx'); ?></td>
+    <td class="no_display"  align="center" ><?php _e('Sales', 'multivendorx'); ?></td>
+    <td class="no_display" align="center" ><?php _e('Discount', 'multivendorx'); ?></td>
+    <td align="center" ><?php _e('My Earnings', 'multivendorx'); ?></td>
 </tr>

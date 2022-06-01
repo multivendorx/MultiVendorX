@@ -63,7 +63,7 @@ if (mvx_mapbox_api_enabled() || mvx_google_api_enabled()) {
         }
     endif; ?>
     <?php if (!mvx_mapbox_api_enabled()) { ?>
-        <a href="<?php echo esc_url($gmaps_link); ?>" target="_blank"><?php esc_html_e( 'Show in Google Maps', 'dc-woocommerce-multi-vendor' ) ?></a>
+        <a href="<?php echo esc_url($gmaps_link); ?>" target="_blank"><?php esc_html_e( 'Show in Google Maps', 'multivendorx' ) ?></a>
     <?php } 
 }?>
 </div>

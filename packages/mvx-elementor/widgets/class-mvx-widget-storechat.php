@@ -24,7 +24,7 @@ class MVX_Elementor_StoreChat extends Widget_Button {
      * @return string
      */
     public function get_title() {
-        return __( 'Store Chat Button', 'dc-woocommerce-multi-vendor' );
+        return __( 'Store Chat Button', 'multivendorx' );
     }
 
     /**
@@ -123,7 +123,7 @@ class MVX_Elementor_StoreChat extends Widget_Button {
 				'dynamic' => [
 					'active' => false,
 				],
-				'placeholder' => __( 'No link required.', 'dc-woocommerce-multi-vendor' ),
+				'placeholder' => __( 'No link required.', 'multivendorx' ),
 			]
         );
     }

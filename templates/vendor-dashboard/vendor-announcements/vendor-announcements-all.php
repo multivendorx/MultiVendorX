@@ -25,12 +25,12 @@ $tab1_counter = 0;
                         <div class="msg_stat" style="display:none" >
                                 <ul class="mvx_msg_all_ul" data-element="<?php echo $post_element->ID; ?>">									
                                         <?php if(!$post_element->is_read) {?>
-                                        <li class="_mvx_vendor_message_read"><a href="#"> <?php _e('Mark Read','dc-woocommerce-multi-vendor');?></a></li>
+                                        <li class="_mvx_vendor_message_read"><a href="#"> <?php _e('Mark Read','multivendorx');?></a></li>
                                         <?php } ?>
                                         <?php if($post_element->is_read) {?>
-                                        <li class="_mvx_vendor_message_unread"><a href="#"> <?php _e('Mark Unread','dc-woocommerce-multi-vendor');?></a></li>
+                                        <li class="_mvx_vendor_message_unread"><a href="#"> <?php _e('Mark Unread','multivendorx');?></a></li>
                                         <?php } ?>
-                                        <li class="_mvx_vendor_message_delete"><a href="#"> <?php _e('Delete','dc-woocommerce-multi-vendor');?></a></li>							 
+                                        <li class="_mvx_vendor_message_delete"><a href="#"> <?php _e('Delete','multivendorx');?></a></li>							 
                                 </ul>
                         </div>
                 </div>
@@ -41,7 +41,7 @@ $tab1_counter = 0;
                 <div class="mvx_anouncement-content">
                         <?php echo $content = apply_filters('the_content',$post_element->post_content); ?>	
                         <?php $url = get_post_meta($post_element->ID, '_mvx_vendor_notices_url', true);  if(!empty($url)) { ?>
-                        <p style="text-align:right; width:100%;"><a href="<?php echo $url;?>" target="_blank" class="btn btn-default mvx_black_btn_link"><?php echo __('Read More','dc-woocommerce-multi-vendor');?></a></p>
+                        <p style="text-align:right; width:100%;"><a href="<?php echo $url;?>" target="_blank" class="btn btn-default mvx_black_btn_link"><?php echo __('Read More','multivendorx');?></a></p>
                         <?php }?>
                 </div>
         </div>
@@ -56,13 +56,13 @@ $tab1_counter = 0;
         ?>
 </div>
 <?php }else{ ?>
-  <div class="panel panel-default panel-pading text-center empty-panel"><?php _e('Sorry no announcement found.','dc-woocommerce-multi-vendor'); ?></div>  
+  <div class="panel panel-default panel-pading text-center empty-panel"><?php _e('Sorry no announcement found.','multivendorx'); ?></div>  
 <?php }	?>			
 
 
 <div class="mvx_mixed_txt" >
 	<?php if($tab1_counter > 6) {?>	
-	<button class="mvx_black_btn mvx_black_btn_msg_for_nav" style="float:right"><?php _e('Show More','dc-woocommerce-multi-vendor'); ?></button>
+	<button class="mvx_black_btn mvx_black_btn_msg_for_nav" style="float:right"><?php _e('Show More','multivendorx'); ?></button>
 	<?php }?>
 
 	<div class="clear"></div>

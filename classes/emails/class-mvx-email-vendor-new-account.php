@@ -31,14 +31,14 @@ if (!class_exists('WC_Email_Vendor_New_Account')) :
         function __construct() {
             global $MVX;
             $this->id = 'vendor_new_account';
-            $this->title = __('New Vendor Account', 'dc-woocommerce-multi-vendor');
-            $this->description = __('Vendor new account emails are sent when a customer signs up via the checkout or My Account page.', 'dc-woocommerce-multi-vendor');
+            $this->title = __('New Vendor Account', 'multivendorx');
+            $this->description = __('Vendor new account emails are sent when a customer signs up via the checkout or My Account page.', 'multivendorx');
 
             $this->template_html = 'emails/vendor-new-account.php';
             $this->template_plain = 'emails/plain/vendor-new-account.php';
 
-            //$this->subject = __('Your account on {site_title}', 'dc-woocommerce-multi-vendor');
-            //$this->heading = __('Welcome to {site_title}', 'dc-woocommerce-multi-vendor');
+            //$this->subject = __('Your account on {site_title}', 'multivendorx');
+            //$this->heading = __('Welcome to {site_title}', 'multivendorx');
             $this->template_base = $MVX->plugin_path . 'templates/';
             // Call parent constuctor
             parent::__construct();
@@ -75,7 +75,7 @@ if (!class_exists('WC_Email_Vendor_New_Account')) :
          * @return string
          */
         public function get_default_subject() {
-            return apply_filters('mvx_vendor_new_account_email_subject', __('Your account on {site_title}', 'dc-woocommerce-multi-vendor'), $this->object);
+            return apply_filters('mvx_vendor_new_account_email_subject', __('Your account on {site_title}', 'multivendorx'), $this->object);
         }
 
         /**
@@ -85,7 +85,7 @@ if (!class_exists('WC_Email_Vendor_New_Account')) :
          * @return string
          */
         public function get_default_heading() {
-            return apply_filters('mvx_vendor_new_account_email_heading', __('Welcome to {site_title}', 'dc-woocommerce-multi-vendor'), $this->object);
+            return apply_filters('mvx_vendor_new_account_email_heading', __('Welcome to {site_title}', 'multivendorx'), $this->object);
         }
 
         /**

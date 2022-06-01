@@ -71,7 +71,7 @@ class MVX_Shipping_Zone {
         $table_name = "{$wpdb->prefix}mvx_shipping_zone_methods";
 
         if ( empty( $data['method_id'] ) ) {
-            return new WP_Error( 'no-method-id', __( 'No shipping method found for adding', 'dc-woocommerce-multi-vendor' ) );
+            return new WP_Error( 'no-method-id', __( 'No shipping method found for adding', 'multivendorx' ) );
         }
 
         $result = $wpdb->insert(
@@ -89,7 +89,7 @@ class MVX_Shipping_Zone {
         );
 
         if ( ! $result ) {
-            return new WP_Error( 'method-not-added', __( 'Shipping method not added successfully', 'dc-woocommerce-multi-vendor' ) );
+            return new WP_Error( 'method-not-added', __( 'Shipping method not added successfully', 'multivendorx' ) );
         }
 
         return $wpdb->insert_id;
@@ -103,7 +103,7 @@ class MVX_Shipping_Zone {
         $result = $wpdb->query( $wpdb->prepare( "DELETE FROM {$table_name} WHERE zone_id=%d AND vendor_id=%d AND instance_id=%d", $data['zone_id'], $vendor_id, $data['instance_id'] ) );
 
         if ( ! $result ) {
-            return new WP_Error( 'method-not-deleted', __( 'Shipping method not deleted', 'dc-woocommerce-multi-vendor' ) );
+            return new WP_Error( 'method-not-deleted', __( 'Shipping method not deleted', 'multivendorx' ) );
         }
 
         return $result;
@@ -129,7 +129,7 @@ class MVX_Shipping_Zone {
             $shipping_method = isset( $vendor_shipping_methods[$result->method_id] ) ? $vendor_shipping_methods[$result->method_id] : array();
             $default_settings = array(
                 'title'       => ( $shipping_method ) ? $shipping_method->get_method_title() : self::get_method_label( $result->method_id ),
-                'description' => ( $shipping_method ) ? $shipping_method->get_method_description() : __( 'Lets you charge a rate for shipping', 'dc-woocommerce-multi-vendor' ),
+                'description' => ( $shipping_method ) ? $shipping_method->get_method_description() : __( 'Lets you charge a rate for shipping', 'multivendorx' ),
                 'cost'        => '0',
                 'tax_status'  => 'none'
             );
@@ -187,7 +187,7 @@ class MVX_Shipping_Zone {
         );
 
         if ( ! $updated ) {
-            return new WP_Error( 'method-not-toggled', __( 'Method enable or disable not working', 'dc-woocommerce-multi-vendor' ) );
+            return new WP_Error( 'method-not-toggled', __( 'Method enable or disable not working', 'multivendorx' ) );
         }
 
         return true;

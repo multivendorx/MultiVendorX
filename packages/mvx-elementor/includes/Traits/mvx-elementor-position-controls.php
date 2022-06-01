@@ -19,7 +19,7 @@ trait PositionControls {
 			$this->start_controls_section(
 					'section_position',
 					[
-							'label' => __( 'Position', 'dc-woocommerce-multi-vendor' ),
+							'label' => __( 'Position', 'multivendorx' ),
 							'tab'   => Controls_Manager::TAB_ADVANCED,
 					]
 			);
@@ -27,14 +27,14 @@ trait PositionControls {
 			$this->add_responsive_control(
 					'_mvx_position',
 					[
-							'label'   => __( 'Position', 'dc-woocommerce-multi-vendor' ),
+							'label'   => __( 'Position', 'multivendorx' ),
 							'type'    => Controls_Manager::SELECT,
 							'options' => [
-									'static'   => __( 'Static', 'dc-woocommerce-multi-vendor' ),
-									'relative' => __( 'Relative', 'dc-woocommerce-multi-vendor' ),
-									'absolute' => __( 'Absolute', 'dc-woocommerce-multi-vendor' ),
-									'sticky'   => __( 'Sticky', 'dc-woocommerce-multi-vendor' ),
-									'fixed'    => __( 'Fixed', 'dc-woocommerce-multi-vendor' ),
+									'static'   => __( 'Static', 'multivendorx' ),
+									'relative' => __( 'Relative', 'multivendorx' ),
+									'absolute' => __( 'Absolute', 'multivendorx' ),
+									'sticky'   => __( 'Sticky', 'multivendorx' ),
+									'fixed'    => __( 'Fixed', 'multivendorx' ),
 							],
 							'desktop_default' => 'relative',
 							'tablet_default'  => 'relative',
@@ -49,7 +49,7 @@ trait PositionControls {
 			$this->add_responsive_control(
 					'_mvx_position_top',
 					[
-							'label'     => __( 'Top', 'dc-woocommerce-multi-vendor' ),
+							'label'     => __( 'Top', 'multivendorx' ),
 							'type'      => Controls_Manager::TEXT,
 							'default'   => '',
 							'selectors' => [
@@ -61,7 +61,7 @@ trait PositionControls {
 			$this->add_responsive_control(
 					'_mvx_position_right',
 					[
-							'label'     => __( 'Right', 'dc-woocommerce-multi-vendor' ),
+							'label'     => __( 'Right', 'multivendorx' ),
 							'type'      => Controls_Manager::TEXT,
 							'default'   => '',
 							'selectors' => [
@@ -73,7 +73,7 @@ trait PositionControls {
 			$this->add_responsive_control(
 					'_mvx_position_bottom',
 					[
-							'label'     => __( 'Bottom', 'dc-woocommerce-multi-vendor' ),
+							'label'     => __( 'Bottom', 'multivendorx' ),
 							'type'      => Controls_Manager::TEXT,
 							'default'   => '',
 							'selectors' => [
@@ -85,7 +85,7 @@ trait PositionControls {
 			$this->add_responsive_control(
 					'_mvx_position_left',
 					[
-							'label'     => __( 'Left', 'dc-woocommerce-multi-vendor' ),
+							'label'     => __( 'Left', 'multivendorx' ),
 							'type'      => Controls_Manager::TEXT,
 							'default'   => '',
 							'selectors' => [

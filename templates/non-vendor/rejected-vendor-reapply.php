@@ -20,7 +20,7 @@ if(!is_user_mvx_rejected_vendor(get_current_vendor_id())) {
 		<div class="row">
             <div class="col-md-12 text-center">
 				<div class="panel mvx-pending-vendor-notice">
-					<?php echo apply_filters( 'mvx_pending_vendor_dashboard_message', __('Congratulations! You have successfully applied as a Vendor. Please wait for further notifications from the admin.', 'dc-woocommerce-multi-vendor') ); ?>
+					<?php echo apply_filters( 'mvx_pending_vendor_dashboard_message', __('Congratulations! You have successfully applied as a Vendor. Please wait for further notifications from the admin.', 'multivendorx') ); ?>
 				</div>
 			</div>
         </div>
@@ -30,7 +30,7 @@ if(!is_user_mvx_rejected_vendor(get_current_vendor_id())) {
 	return;
 }
 
-$mvx_vendor_registration_form_data = mvx_get_option('mvx_vendor_registration_form_data');
+$mvx_vendor_registration_form_data = mvx_get_option('mvx_new_vendor_registration_form_data');
 $form_data = array();
 if(isset($mvx_vendor_registration_form_data) && is_array($mvx_vendor_registration_form_data)) {
 	$vendor_application_data = get_user_meta(get_current_user_id(), 'mvx_vendor_fields', true);
@@ -51,7 +51,7 @@ if(isset($mvx_vendor_registration_form_data) && is_array($mvx_vendor_registratio
 		<?php do_action('mvx_before_reapply_vendor_application_form'); ?>
 			<div class="panel panel-default pannel-outer-heading">
 				<div class="panel-heading d-flex">
-					<h3><?php _e('Previously Submitted Details', 'dc-woocommerce-multi-vendor'); ?></h3>
+					<h3><?php _e('Previously Submitted Details', 'multivendorx'); ?></h3>
 				</div>
 				<div class="panel-body panel-content-padding">
 					<div class="mvx_regi_form_box">
@@ -64,7 +64,7 @@ if(isset($mvx_vendor_registration_form_data) && is_array($mvx_vendor_registratio
 			</div>
 		<?php do_action('mvx_after_reapply_vendor_application_form'); ?>
 		<div class="mvx-action-container">
-			<button class="btn btn-default" name="reapply_vendor_application"><?php _e('Apply Again!!', 'dc-woocommerce-multi-vendor'); ?></button>
+			<button class="btn btn-default" name="reapply_vendor_application"><?php _e('Apply Again!!', 'multivendorx'); ?></button>
 			<div class="clear"></div>
 		</div>
 	</form>

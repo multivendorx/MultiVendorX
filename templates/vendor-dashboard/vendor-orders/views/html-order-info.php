@@ -29,18 +29,18 @@ $lng = get_post_meta(wp_get_post_parent_id($order->get_id()), '_mvx_user_locatio
         <table>
             <?php do_action( 'mvx_vendor_dash_order_details_before_top_left_data', $order, $vendor ); ?>
             <tr>
-                <th><?php esc_html_e( 'Order date', 'dc-woocommerce-multi-vendor' ); ?> :</th>
+                <th><?php esc_html_e( 'Order date', 'multivendorx' ); ?> :</th>
                 <td><?php echo esc_html( $order->get_date_created()->date_i18n( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ) ) ); ?></td>
             </tr>
             <?php $payment_method = $order->get_payment_method(); 
             if( $payment_method ) : ?>
             <tr>
-                <th><?php esc_html_e( 'Payment method', 'dc-woocommerce-multi-vendor' ); ?> :</th>
+                <th><?php esc_html_e( 'Payment method', 'multivendorx' ); ?> :</th>
                 <td>
                     <?php 
                     /* translators: %s: payment method */
                     printf(
-                        __( 'Payment via <u><strong>%s</strong></u>', 'dc-woocommerce-multi-vendor' ),
+                        __( 'Payment via <u><strong>%s</strong></u>', 'multivendorx' ),
                         esc_html( isset( $payment_gateways[ $payment_method ] ) ? $payment_gateways[ $payment_method ]->get_title() : $payment_method )
                     );
                     ?>
@@ -49,7 +49,7 @@ $lng = get_post_meta(wp_get_post_parent_id($order->get_id()), '_mvx_user_locatio
             <?php endif; ?>
             <?php if ($address) { ?>
                 <tr>
-                    <th><?php esc_html_e( 'Delivery location from map', 'dc-woocommerce-multi-vendor' ); ?> :</th>
+                    <th><?php esc_html_e( 'Delivery location from map', 'multivendorx' ); ?> :</th>
                     <td>
                         <?php
                         $address = '<a href="https://google.com/maps/place/' . rawurlencode( $address ) . '/@' . $lat . ',' . $lng . '" target="_blank">' . esc_html($address) . '</a>';
@@ -72,13 +72,13 @@ $lng = get_post_meta(wp_get_post_parent_id($order->get_id()), '_mvx_user_locatio
         <?php if( apply_filters( 'is_vendor_can_see_order_billing_address', true, $vendor->id, $order ) ) : ?>
         <div class="col-md-4">
             <div class="border">
-                <h3><?php esc_html_e( 'Billing address', 'dc-woocommerce-multi-vendor' ); ?></h3>
+                <h3><?php esc_html_e( 'Billing address', 'multivendorx' ); ?></h3>
                 <?php 
                 // Display values.
                 if ( $order->get_formatted_billing_address() ) {
                         echo '<p>' . wp_kses( $order->get_formatted_billing_address(), array( 'br' => array() ) ) . '</p>';
                 } else {
-                        echo '<p class="none_set"><strong>' . __( 'Address:', 'dc-woocommerce-multi-vendor' ) . '</strong> ' . __( 'No billing address set.', 'dc-woocommerce-multi-vendor' ) . '</p>';
+                        echo '<p class="none_set"><strong>' . __( 'Address:', 'multivendorx' ) . '</strong> ' . __( 'No billing address set.', 'multivendorx' ) . '</p>';
                 }
                 ?>
             </div>
@@ -87,13 +87,13 @@ $lng = get_post_meta(wp_get_post_parent_id($order->get_id()), '_mvx_user_locatio
         <?php if( apply_filters( 'is_vendor_can_see_order_shipping_address', true, $vendor->id, $order ) ) : ?>
         <div class="col-md-4">
             <div class="border">
-                <h3><?php esc_html_e( 'Shipping address', 'dc-woocommerce-multi-vendor' ); ?></h3>
+                <h3><?php esc_html_e( 'Shipping address', 'multivendorx' ); ?></h3>
                 <?php 
                 // Display values.
                 if ( $order->get_formatted_shipping_address() ) {
                         echo '<p>' . wp_kses( $order->get_formatted_shipping_address(), array( 'br' => array() ) ) . '</p>';
                 } else {
-                        echo '<p class="none_set"><strong>' . __( 'Address:', 'dc-woocommerce-multi-vendor' ) . '</strong> ' . __( 'No shipping address set.', 'dc-woocommerce-multi-vendor' ) . '</p>';
+                        echo '<p class="none_set"><strong>' . __( 'Address:', 'multivendorx' ) . '</strong> ' . __( 'No shipping address set.', 'multivendorx' ) . '</p>';
                 }
                 ?>
             </div>
@@ -102,7 +102,7 @@ $lng = get_post_meta(wp_get_post_parent_id($order->get_id()), '_mvx_user_locatio
         <?php if( apply_filters( 'is_vendor_can_see_customer_details', true, $vendor->id, $order ) ) : ?>
         <div class="col-md-4">
             <div class="border">
-                <h3><?php esc_html_e( 'Customer detail', 'dc-woocommerce-multi-vendor' ); ?></h3>
+                <h3><?php esc_html_e( 'Customer detail', 'multivendorx' ); ?></h3>
                 <div class="customer-detail">
                     <?php 
                     $user = '';
@@ -119,8 +119,8 @@ $lng = get_post_meta(wp_get_post_parent_id($order->get_id()), '_mvx_user_locatio
                     <div class="detail-contnt">
                         <p><?php echo $user->display_name; ?></p>
                         <?php $billing_fields = apply_filters( 'mvx_vendor_dash_customer_details_data', array(
-                            'email' => array( 'label' => __( 'Email address', 'dc-woocommerce-multi-vendor' ) ),
-                            'phone' => array( 'label' => __( 'Phone', 'dc-woocommerce-multi-vendor' ) )
+                            'email' => array( 'label' => __( 'Email address', 'multivendorx' ) ),
+                            'phone' => array( 'label' => __( 'Phone', 'multivendorx' ) )
                         ) );
                         foreach ( $billing_fields as $key => $field ) {
                             if ( isset( $field['show'] ) && false === $field['show'] ) {
@@ -155,7 +155,7 @@ $lng = get_post_meta(wp_get_post_parent_id($order->get_id()), '_mvx_user_locatio
                 if( $order->get_customer_note() ) :
                 ?>
                 <hr>
-                <h3><?php esc_html_e( 'Customer provided note:', 'dc-woocommerce-multi-vendor' ); ?></h3>
+                <h3><?php esc_html_e( 'Customer provided note:', 'multivendorx' ); ?></h3>
                 <div class="order_note">
                     <?php
                     $order_customer_note = $order->get_customer_note();

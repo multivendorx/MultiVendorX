@@ -17,7 +17,7 @@ global $MVX;
 ?>
 <div class="panel panel-default panel-pading pannel-outer-heading download-product-permission">
     <div class="panel-heading d-flex">
-        <h3><?php esc_html_e('Downloadable product permissions', 'dc-woocommerce-multi-vendor'); ?></h3>
+        <h3><?php esc_html_e('Downloadable product permissions', 'multivendorx'); ?></h3>
     </div>
     <div class="order_download_permissions wc-metaboxes-wrapper panel-body panel-content-padding">
         <div class="wc-metaboxes" id="vorder-dwnld-accordion">
@@ -48,7 +48,7 @@ global $MVX;
 
                     // Show file title instead of count if set.
                     $file = $product->get_file($download->get_download_id());
-                    $file_count = isset($file['name']) ? $file['name'] : sprintf(__('File %d', 'dc-woocommerce-multi-vendor'), $file_counter);
+                    $file_count = isset($file['name']) ? $file['name'] : sprintf(__('File %d', 'multivendorx'), $file_counter);
 
                     include 'html-order-download-permission.php';
 
@@ -60,8 +60,8 @@ global $MVX;
         </div>
         <div class="toolbar">
             <div class="form-group mb-0">
-                <select id="grant_access_id" class="wc-product-search" name="grant_access_id[]" multiple="multiple" style="width: 400px;" data-placeholder="<?php esc_attr_e('Search for a downloadable product&hellip;', 'dc-woocommerce-multi-vendor'); ?>" data-action="mvx_json_search_downloadable_products_and_variations"></select>
-                <button class="button grant_access btn btn-default"><?php esc_html_e('Grant access', 'dc-woocommerce-multi-vendor'); ?></button>
+                <select id="grant_access_id" class="wc-product-search" name="grant_access_id[]" multiple="multiple" style="width: 400px;" data-placeholder="<?php esc_attr_e('Search for a downloadable product&hellip;', 'multivendorx'); ?>" data-action="mvx_json_search_downloadable_products_and_variations"></select>
+                <button class="button grant_access btn btn-default"><?php esc_html_e('Grant access', 'multivendorx'); ?></button>
             </div>
         </div>
     </div>

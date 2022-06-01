@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     </td>
     <td colspan="3">
         <div class="order-item-detail">
-            <p><strong><?php echo esc_html( $item->get_name() ? $item->get_name() : __( 'Shipping', 'dc-woocommerce-multi-vendor' ) ); ?></strong></p>
+            <p><strong><?php echo esc_html( $item->get_name() ? $item->get_name() : __( 'Shipping', 'multivendorx' ) ); ?></strong></p>
             <table>
                 <?php do_action( 'mvx_vendor_dash_before_order_itemmeta', $item_id, $item, null ); ?>
 		<?php require 'html-order-item-meta.php'; ?>

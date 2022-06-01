@@ -33,11 +33,11 @@ if (!class_exists('WC_Email_Vendor_Product_Rejected')) :
 
             $this->id = 'admin_vendor_product_rejected';
 
-            $this->title = __('Vendor Product Rejected', 'dc-woocommerce-multi-vendor');
-            $this->description = __('Notification emails are sent when a product is rejected by an admin.', 'dc-woocommerce-multi-vendor');
+            $this->title = __('Vendor Product Rejected', 'multivendorx');
+            $this->description = __('Notification emails are sent when a product is rejected by an admin.', 'multivendorx');
 
-            //$this->heading = __('New product submitted: {product_name}', 'dc-woocommerce-multi-vendor');
-            //$this->subject = __('[{blogname}] New product submitted by {vendor_name} - {product_name}', 'dc-woocommerce-multi-vendor');
+            //$this->heading = __('New product submitted: {product_name}', 'multivendorx');
+            //$this->subject = __('[{blogname}] New product submitted by {vendor_name} - {product_name}', 'multivendorx');
 
             $this->template_base = $MVX->plugin_path . 'templates/';
             $this->template_html = 'emails/product-rejected.php';
@@ -91,7 +91,7 @@ if (!class_exists('WC_Email_Vendor_Product_Rejected')) :
          * @return string
          */
         public function get_default_subject() {
-            return apply_filters('mvx_admin_new_vendor_product_email_subject', __('[{blogname}] Submitted Product Rejected by {vendor_name} - {product_name}', 'dc-woocommerce-multi-vendor'), $this->object);
+            return apply_filters('mvx_admin_new_vendor_product_email_subject', __('[{blogname}] Submitted Product Rejected by {vendor_name} - {product_name}', 'multivendorx'), $this->object);
         }
 
         /**
@@ -101,7 +101,7 @@ if (!class_exists('WC_Email_Vendor_Product_Rejected')) :
          * @return string
          */
         public function get_default_heading() {
-            return apply_filters('mvx_admin_new_vendor_product_email_heading', __('Submitted Product Rejected: {product_name}', 'dc-woocommerce-multi-vendor'), $this->object);
+            return apply_filters('mvx_admin_new_vendor_product_email_heading', __('Submitted Product Rejected: {product_name}', 'multivendorx'), $this->object);
         }
 
         /**
@@ -156,42 +156,42 @@ if (!class_exists('WC_Email_Vendor_Product_Rejected')) :
             global $MVX;
             $this->form_fields = array(
                 'enabled' => array(
-                    'title' => __('Enable/Disable', 'dc-woocommerce-multi-vendor'),
+                    'title' => __('Enable/Disable', 'multivendorx'),
                     'type' => 'checkbox',
-                    'label' => __('Enable this email notification.', 'dc-woocommerce-multi-vendor'),
+                    'label' => __('Enable this email notification.', 'multivendorx'),
                     'default' => 'yes'
                 ),
                 'recipient' => array(
-                    'title' => __('Recipient(s)', 'dc-woocommerce-multi-vendor'),
+                    'title' => __('Recipient(s)', 'multivendorx'),
                     'type' => 'text',
-                    'description' => sprintf(__('Enter recipient(s) (comma separated) for this email. Defaults to <code>%s</code>.', 'dc-woocommerce-multi-vendor'), esc_attr(get_option('admin_email'))),
+                    'description' => sprintf(__('Enter recipient(s) (comma separated) for this email. Defaults to <code>%s</code>.', 'multivendorx'), esc_attr(get_option('admin_email'))),
                     'placeholder' => '',
                     'default' => ''
                 ),
                 'subject' => array(
-                    'title' => __('Subject', 'dc-woocommerce-multi-vendor'),
+                    'title' => __('Subject', 'multivendorx'),
                     'type' => 'text',
-                    'description' => sprintf(__('This controls the email subject line. Leave it blank to use the default subject: <code>%s</code>.', 'dc-woocommerce-multi-vendor'), $this->get_default_subject()),
+                    'description' => sprintf(__('This controls the email subject line. Leave it blank to use the default subject: <code>%s</code>.', 'multivendorx'), $this->get_default_subject()),
                     'placeholder' => '',
                     'default' => ''
                 ),
                 'heading' => array(
-                    'title' => __('Email Heading', 'dc-woocommerce-multi-vendor'),
+                    'title' => __('Email Heading', 'multivendorx'),
                     'type' => 'text',
-                    'description' => sprintf(__('This controls the main heading contained within the email notification. Leave it blank to use the default heading: <code>%s</code>.', 'dc-woocommerce-multi-vendor'), $this->get_default_heading()),
+                    'description' => sprintf(__('This controls the main heading contained within the email notification. Leave it blank to use the default heading: <code>%s</code>.', 'multivendorx'), $this->get_default_heading()),
                     'placeholder' => '',
                     'default' => ''
                 ),
                 'email_type' => array(
-                    'title' => __('Email Type', 'dc-woocommerce-multi-vendor'),
+                    'title' => __('Email Type', 'multivendorx'),
                     'type' => 'select',
-                    'description' => __('Choose which format of email to be sent.', 'dc-woocommerce-multi-vendor'),
+                    'description' => __('Choose which format of email to be sent.', 'multivendorx'),
                     'default' => 'html',
                     'class' => 'email_type',
                     'options' => array(
-                        'plain' => __('Plain Text', 'dc-woocommerce-multi-vendor'),
-                        'html' => __('HTML', 'dc-woocommerce-multi-vendor'),
-                        'multipart' => __('Multipart', 'dc-woocommerce-multi-vendor'),
+                        'plain' => __('Plain Text', 'multivendorx'),
+                        'html' => __('HTML', 'multivendorx'),
+                        'multipart' => __('Multipart', 'multivendorx'),
                     )
                 )
             );

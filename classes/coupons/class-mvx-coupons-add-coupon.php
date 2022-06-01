@@ -42,23 +42,23 @@ class MVX_Coupons_Add_Coupon {
         $current_vendor_id = get_current_user_id();
         $current_user_ids = apply_filters( 'mvx_current_coupon_edit' , array( get_current_user_id() ) ,$coupon_id );
         if ( ! $current_vendor_id ) {
-            $this->error_msg = __( 'You do not have permission to view this content. Please contact site administrator.', 'dc-woocommerce-multi-vendor' );
+            $this->error_msg = __( 'You do not have permission to view this content. Please contact site administrator.', 'multivendorx' );
             return false;
         }
         if ( $coupon_id && !in_array( absint( get_post_field( 'post_author', $coupon_id ) ), $current_user_ids ) ) {
-            $this->error_msg = __( 'You do not have permission to view this content. Please contact site administrator.', 'dc-woocommerce-multi-vendor' );
+            $this->error_msg = __( 'You do not have permission to view this content. Please contact site administrator.', 'multivendorx' );
             return false;
         }
         switch ( $action ) {
             case 'add':
                 if ( ! ( current_vendor_can( 'edit_shop_coupon' ) ) ) {
-                    $this->error_msg = __( 'You do not have enough permission to submit a new coupon. Please contact site administrator.', 'dc-woocommerce-multi-vendor' );
+                    $this->error_msg = __( 'You do not have enough permission to submit a new coupon. Please contact site administrator.', 'multivendorx' );
                     return false;
                 }
                 return true;
             case 'edit':
                 if ( ! ( current_vendor_can( 'edit_shop_coupon' ) && current_vendor_can( 'edit_published_shop_coupons' ) && $coupon_id && apply_filters( 'mvx_vendor_capability_to_edit_coupons' , is_current_vendor_coupon( $coupon_id ) ) ) ) {
-                    $this->error_msg = __( 'You do not have permission to view this content. Please contact site administrator.', 'dc-woocommerce-multi-vendor' );
+                    $this->error_msg = __( 'You do not have permission to view this content. Please contact site administrator.', 'multivendorx' );
                     return false;
                 }
                 return true;
@@ -81,7 +81,7 @@ class MVX_Coupons_Add_Coupon {
         $current_vendor_id = get_current_user_id();
         $vendor = get_mvx_vendor( $current_vendor_id );
         if ( $vendor ) {
-            $post_id = wp_insert_post( array( 'post_title' => __( 'Auto Draft', 'dc-woocommerce-multi-vendor' ), 'post_type' => $post_type, 'post_status' => 'auto-draft' ) );
+            $post_id = wp_insert_post( array( 'post_title' => __( 'Auto Draft', 'multivendorx' ), 'post_type' => $post_type, 'post_status' => 'auto-draft' ) );
             return get_post( $post_id );
         }
         return false;
@@ -102,19 +102,19 @@ class MVX_Coupons_Add_Coupon {
     public function get_coupon_data_tabs() {
         $tabs = apply_filters( 'mvx_afm_coupon_data_tabs', array(
             'general'           => array(
-                'label'    => __( 'General', 'dc-woocommerce-multi-vendor' ),
+                'label'    => __( 'General', 'multivendorx' ),
                 'target'   => 'general_coupon_data',
                 'class'    => array(),
                 'priority' => 10,
             ),
             'usage_restriction' => array(
-                'label'    => __( 'Usage restriction', 'dc-woocommerce-multi-vendor' ),
+                'label'    => __( 'Usage restriction', 'multivendorx' ),
                 'target'   => 'usage_restriction_coupon_data',
                 'class'    => array(),
                 'priority' => 20,
             ),
             'usage_limit'       => array(
-                'label'    => __( 'Usage limits', 'dc-woocommerce-multi-vendor' ),
+                'label'    => __( 'Usage limits', 'multivendorx' ),
                 'target'   => 'usage_limit_coupon_data',
                 'class'    => array(),
                 'priority' => 30,

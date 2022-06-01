@@ -93,7 +93,7 @@ class MVX_Elementor_Module extends MVX_Elementor_ModuleBase {
 			$module = $mvx_elementor->mvx_elementor()->dynamic_tags;
 
 			$module->register_group( 'mvx', [
-					'title' => __( 'MVX', 'dc-woocommerce-multi-vendor' ),
+					'title' => __( 'MVX', 'multivendorx' ),
 			] );
 
 			foreach ( $tags as $tag ) {

@@ -34,11 +34,11 @@ if (!class_exists('WC_Email_Admin_Added_New_Product_to_Vendor')) :
 
             $this->id = 'admin_added_new_product_to_vendor';
 
-            $this->title = __('New Vendor Product By Admin', 'dc-woocommerce-multi-vendor');
-            $this->description = __('New order emails are sent when a new product is assigned to a vendor by the admin', 'dc-woocommerce-multi-vendor');
+            $this->title = __('New Vendor Product By Admin', 'multivendorx');
+            $this->description = __('New order emails are sent when a new product is assigned to a vendor by the admin', 'multivendorx');
 
-            //$this->heading = __('New product submitted: {product_name}', 'dc-woocommerce-multi-vendor');
-            //$this->subject = __('[{blogname}] Admin has assigned new product to You- {product_name}', 'dc-woocommerce-multi-vendor');
+            //$this->heading = __('New product submitted: {product_name}', 'multivendorx');
+            //$this->subject = __('[{blogname}] Admin has assigned new product to You- {product_name}', 'multivendorx');
 
             $this->template_base = $MVX->plugin_path . 'templates/';
             $this->template_html = 'emails/new-admin-product.php';
@@ -98,9 +98,9 @@ if (!class_exists('WC_Email_Admin_Added_New_Product_to_Vendor')) :
          */
         public function get_default_subject() {
             if ($this->is_first_time) {
-                return apply_filters('wcmp_admin_added_new_product_to_vendor_email_subject', __('[{blogname}] Admin has assigned new product to You- {product_name}', 'dc-woocommerce-multi-vendor'), $this->object);
+                return apply_filters('wcmp_admin_added_new_product_to_vendor_email_subject', __('[{blogname}] Admin has assigned new product to You- {product_name}', 'multivendorx'), $this->object);
             } else {
-                return apply_filters('wcmp_admin_published_product_to_vendor_email_subject', __('[{blogname}] Admin has published your product with - {product_name}', 'dc-woocommerce-multi-vendor'), $this->object);
+                return apply_filters('wcmp_admin_published_product_to_vendor_email_subject', __('[{blogname}] Admin has published your product with - {product_name}', 'multivendorx'), $this->object);
             }
         }
 
@@ -111,7 +111,7 @@ if (!class_exists('WC_Email_Admin_Added_New_Product_to_Vendor')) :
          * @return string
          */
         public function get_default_heading() {
-            return apply_filters('mvx_admin_added_new_product_to_vendor_email_heading', __('New product submitted: {product_name}', 'dc-woocommerce-multi-vendor'), $this->object);
+            return apply_filters('mvx_admin_added_new_product_to_vendor_email_heading', __('New product submitted: {product_name}', 'multivendorx'), $this->object);
         }
 
         /**
@@ -165,35 +165,35 @@ if (!class_exists('WC_Email_Admin_Added_New_Product_to_Vendor')) :
 
             $this->form_fields = array(
                 'enabled' => array(
-                    'title' => __('Enable/Disable', 'dc-woocommerce-multi-vendor'),
+                    'title' => __('Enable/Disable', 'multivendorx'),
                     'type' => 'checkbox',
-                    'label' => __('Enable this email notification.', 'dc-woocommerce-multi-vendor'),
+                    'label' => __('Enable this email notification.', 'multivendorx'),
                     'default' => 'yes'
                 ),
                 'subject' => array(
-                    'title' => __('Subject', 'dc-woocommerce-multi-vendor'),
+                    'title' => __('Subject', 'multivendorx'),
                     'type' => 'text',
-                    'description' => sprintf(__('This controls the email subject line. Leave it blank to use the default subject: <code>%s</code>.', 'dc-woocommerce-multi-vendor'), $this->get_default_subject()),
+                    'description' => sprintf(__('This controls the email subject line. Leave it blank to use the default subject: <code>%s</code>.', 'multivendorx'), $this->get_default_subject()),
                     'placeholder' => '',
                     'default' => ''
                 ),
                 'heading' => array(
-                    'title' => __('Email Heading', 'dc-woocommerce-multi-vendor'),
+                    'title' => __('Email Heading', 'multivendorx'),
                     'type' => 'text',
-                    'description' => sprintf(__('This controls the main heading contained within the email notification. Leave it blank to use the default heading: <code>%s</code>.', 'dc-woocommerce-multi-vendor'), $this->get_default_heading()),
+                    'description' => sprintf(__('This controls the main heading contained within the email notification. Leave it blank to use the default heading: <code>%s</code>.', 'multivendorx'), $this->get_default_heading()),
                     'placeholder' => '',
                     'default' => ''
                 ),
                 'email_type' => array(
-                    'title' => __('Email Type', 'dc-woocommerce-multi-vendor'),
+                    'title' => __('Email Type', 'multivendorx'),
                     'type' => 'select',
-                    'description' => __('Choose which format of email to be sent.', 'dc-woocommerce-multi-vendor'),
+                    'description' => __('Choose which format of email to be sent.', 'multivendorx'),
                     'default' => 'html',
                     'class' => 'email_type',
                     'options' => array(
-                        'plain' => __('Plain Text', 'dc-woocommerce-multi-vendor'),
-                        'html' => __('HTML', 'dc-woocommerce-multi-vendor'),
-                        'multipart' => __('Multipart', 'dc-woocommerce-multi-vendor'),
+                        'plain' => __('Plain Text', 'multivendorx'),
+                        'html' => __('HTML', 'multivendorx'),
+                        'multipart' => __('Multipart', 'multivendorx'),
                     )
                 )
             );

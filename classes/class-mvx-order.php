@@ -91,7 +91,7 @@ class MVX_Order {
 
     public function add_meta_date_in_order_line_item($item, $item_key, $values, $order) {
         if ( $order && wp_get_post_parent_id( $order->get_id() ) == 0 || (function_exists('wcs_is_subscription') && wcs_is_subscription( $order )) ) {
-            $general_cap = apply_filters('mvx_sold_by_text', __('Sold By', 'dc-woocommerce-multi-vendor'));
+            $general_cap = apply_filters('mvx_sold_by_text', __('Sold By', 'multivendorx'));
             $vendor = get_mvx_product_vendors($item['product_id']);
             if ($vendor) {
                 $item->add_meta_data($general_cap, $vendor->page_title);
@@ -232,7 +232,7 @@ class MVX_Order {
 
         $order_title_number = version_compare(WC_VERSION, '3.3.0', '>=') ? 'order_number' : 'order_title';
         if ((!isset($_GET['post_status']) || ( isset($_GET['post_status']) && 'trash' != $_GET['post_status'] ))) {
-            $suborder = array('mvx_suborder' => __('Suborders', 'dc-woocommerce-multi-vendor'));
+            $suborder = array('mvx_suborder' => __('Suborders', 'multivendorx'));
             $title_number_pos = array_search($order_title_number, array_keys($columns));
             $columns = array_slice($columns, 0, $title_number_pos + 1, true) + $suborder + array_slice($columns, $title_number_pos + 1, count($columns) - 1, true);
         }
@@ -253,10 +253,10 @@ class MVX_Order {
                     echo '<ul class="mvx-order-vendor" style="margin:0px;">';
                     foreach ($mvx_suborders as $suborder) {
                         $vendor = get_mvx_vendor(get_post_field('post_author', $suborder->get_id()));
-                        $vendor_page_title = ($vendor) ? $vendor->page_title : __('Deleted vendor', 'dc-woocommerce-multi-vendor');
+                        $vendor_page_title = ($vendor) ? $vendor->page_title : __('Deleted vendor', 'multivendorx');
                         $order_uri = apply_filters('mvx_admin_vendor_shop_order_edit_url', esc_url('post.php?post=' . $suborder->get_id() . '&action=edit'), $suborder->get_id());
 
-                        printf('<li><mark class="%s tips" data-tip="%s">%s</mark> <strong><a href="%s">#%s</a></strong> &ndash; <small class="mvx-order-for-vendor">%s %s</small></li>', sanitize_title($suborder->get_status()), $suborder->get_status(), $suborder->get_status(), $order_uri, $suborder->get_order_number(), _x('for', 'Order table details', 'dc-woocommerce-multi-vendor'), $vendor_page_title
+                        printf('<li><mark class="%s tips" data-tip="%s">%s</mark> <strong><a href="%s">#%s</a></strong> &ndash; <small class="mvx-order-for-vendor">%s %s</small></li>', sanitize_title($suborder->get_status()), $suborder->get_status(), $suborder->get_status(), $order_uri, $suborder->get_order_number(), _x('for', 'Order table details', 'multivendorx'), $vendor_page_title
                         );
 
                         do_action('mvx_after_suborder_details', $suborder);
@@ -331,7 +331,7 @@ class MVX_Order {
         $items = $order->get_items();
         foreach ($items as $key => $value) {
             if ( $order || (function_exists('wcs_is_subscription') && wcs_is_subscription( $order )) ) {
-                $general_cap = apply_filters('mvx_sold_by_text', __('Sold By', 'dc-woocommerce-multi-vendor'));
+                $general_cap = apply_filters('mvx_sold_by_text', __('Sold By', 'multivendorx'));
                 $vendor = get_mvx_product_vendors($value['product_id']);
                 if ($vendor) {
                     if ( !wc_get_order_item_meta( $key, '_vendor_id' ) ) 
@@ -360,7 +360,7 @@ class MVX_Order {
         $items = $order->get_items();
         foreach ($items as $key => $value) {
             if ( $order && wp_get_post_parent_id( $order->get_id() ) == 0 || (function_exists('wcs_is_subscription') && wcs_is_subscription( $order )) ) {
-                $general_cap = apply_filters('mvx_sold_by_text', __('Sold By', 'dc-woocommerce-multi-vendor'));
+                $general_cap = apply_filters('mvx_sold_by_text', __('Sold By', 'multivendorx'));
                 $vendor = get_mvx_product_vendors($value['product_id']);
                 if ($vendor) {
                     wc_add_order_item_meta($key, '_vendor_id', $vendor->id);
@@ -466,7 +466,7 @@ class MVX_Order {
                 'post_status' => 'wc-' . ( $order->get_status('edit') ? $order->get_status('edit') : apply_filters('mvx_create_vendor_order_default_order_status', 'pending') ),
                 'ping_status' => 'closed',
                 'post_author' => absint($args['vendor_id']),
-                'post_title' => sprintf(__('Vendor Order &ndash; %s', 'dc-woocommerce-multi-vendor'), strftime(_x('%B %e, %Y @ %I:%M %p', 'Commission date parsed by strftime', 'dc-woocommerce-multi-vendor'), current_time('timestamp'))),
+                'post_title' => sprintf(__('Vendor Order &ndash; %s', 'multivendorx'), strftime(_x('%B %e, %Y @ %I:%M %p', 'Commission date parsed by strftime', 'multivendorx'), current_time('timestamp'))),
                 'post_password' => uniqid('mvx_order_'),
                 'post_parent' => absint($args['order_id']),
                 'post_excerpt' => isset($args['posted_data']['order_comments']) ? $args['posted_data']['order_comments'] : '',
@@ -612,7 +612,7 @@ class MVX_Order {
 //                $item->add_meta_data('_vendor_id', $args['vendor_id']);
 //                // BW compatibility with old meta.
 //                $vendor = get_mvx_vendor($args['vendor_id']);
-//                $general_cap = apply_filters('mvx_sold_by_text', __('Sold By', 'dc-woocommerce-multi-vendor'));
+//                $general_cap = apply_filters('mvx_sold_by_text', __('Sold By', 'multivendorx'));
 //                $item->add_meta_data($general_cap, $vendor->page_title);
 
 
@@ -829,7 +829,7 @@ class MVX_Order {
 
             if ($mvx_suborders) {
                 foreach ($mvx_suborders as $suborder) {
-                    $suborder->update_status($new_status, _x('Update via parent order: ', 'Order note', 'dc-woocommerce-multi-vendor'));
+                    $suborder->update_status($new_status, _x('Update via parent order: ', 'Order note', 'multivendorx'));
                 }
                 update_post_meta($order_id, 'mvx_vendor_order_status_synchronized', true);
                 
@@ -874,7 +874,7 @@ class MVX_Order {
             $parent_order = wc_get_order( $parent_order_id );
             if($parent_order->get_total() == $suborder_totals){
                 if ( $suborder_count == $new_status_count && in_array( $new_status, $status_to_sync ) ) {
-                    $parent_order->update_status( $new_status, _x( "Sync from vendor's suborders: ", 'Order note', 'dc-woocommerce-multi-vendor' ) );
+                    $parent_order->update_status( $new_status, _x( "Sync from vendor's suborders: ", 'Order note', 'multivendorx' ) );
                 } elseif ( $suborder_count != 0 ) {
                     /**
                      * If the parent order have only 1 suborder I can sync it with the same status.
@@ -883,7 +883,7 @@ class MVX_Order {
                     $status = array_unique(array_keys($suborder_statuses));
                     if ( $suborder_count == 1 ) {
                         $new_status = isset($status[0]) ? $status[0] : $new_status;
-                        $parent_order->update_status( $new_status, _x( "Sync from vendor's suborders: ", 'Order note', 'dc-woocommerce-multi-vendor' ) );
+                        $parent_order->update_status( $new_status, _x( "Sync from vendor's suborders: ", 'Order note', 'multivendorx' ) );
                     } /**
                      * Check only for suborder > 1 to exclude orders without suborder
                      */
@@ -895,7 +895,7 @@ class MVX_Order {
 //                            }
 //                        }
                         if( count($status) == 1 && isset($status[0]) ) {
-                            $parent_order->update_status( $new_status, _x( "Sync from vendor's suborders: ", 'Order note', 'dc-woocommerce-multi-vendor' ) );
+                            $parent_order->update_status( $new_status, _x( "Sync from vendor's suborders: ", 'Order note', 'multivendorx' ) );
                         }
                     }
                 }
@@ -1256,7 +1256,7 @@ class MVX_Order {
     }
     
     public function woocommerce_my_account_my_orders_columns( $columns ) {
-        $suborder_column['mvx_suborder'] = __( 'Suborders', 'dc-woocommerce-multi-vendor' );
+        $suborder_column['mvx_suborder'] = __( 'Suborders', 'multivendorx' );
         $columns = array_slice($columns, 0, 1, true) + $suborder_column + array_slice($columns, 1, count($columns) - 1, true);
         return $columns;
     }
@@ -1269,7 +1269,7 @@ class MVX_Order {
             foreach ($mvx_suborders as $suborder) {
                 $vendor = get_mvx_vendor(get_post_field('post_author', $suborder->get_id()));
                 $order_uri = esc_url( $suborder->get_view_order_url() );
-                printf('<li><strong><a href="%s" title="%s">#%s</a></strong> &ndash; <small class="mvx-order-for-vendor">%s %s</small></li>', $order_uri, sanitize_title($suborder->get_status()), $suborder->get_order_number(), _x('for', 'Order table details', 'dc-woocommerce-multi-vendor'), $vendor->page_title
+                printf('<li><strong><a href="%s" title="%s">#%s</a></strong> &ndash; <small class="mvx-order-for-vendor">%s %s</small></li>', $order_uri, sanitize_title($suborder->get_status()), $suborder->get_order_number(), _x('for', 'Order table details', 'multivendorx'), $vendor->page_title
                 );
                 do_action('mvx_after_suborder_details', $suborder);
             }
@@ -1436,7 +1436,7 @@ class MVX_Order {
         $refund_settings = get_option( 'mvx_payment_refund_payment_settings_name', true );
         if ( isset( $refund_settings['disable_refund_customer_end'] ) && $refund_settings['disable_refund_customer_end'] == 'Enable' ) return;
         $refund_reason_options = get_mvx_global_settings('refund_order_msg') ? explode( "||", get_mvx_global_settings('refund_order_msg') ) : array();
-        $refund_button_text = apply_filters( 'mvx_customer_my_account_refund_request_button_text', __( 'Request a refund', 'dc-woocommerce-multi-vendor' ), $order );
+        $refund_button_text = apply_filters( 'mvx_customer_my_account_refund_request_button_text', __( 'Request a refund', 'multivendorx' ), $order );
         // Print refund messages, if any
         if( mvx_get_customer_refund_order_msg( $order, $refund_settings ) ) {
             $msg_data = mvx_get_customer_refund_order_msg( $order, $refund_settings );
@@ -1454,7 +1454,7 @@ class MVX_Order {
             <form method="POST">
             <?php wp_nonce_field( 'customer_request_refund', 'cust-request-refund-nonce' ); ?>
             <fieldset>
-                <legend><?php echo apply_filters( 'mvx_customer_my_account_refund_reason_label', __('Please mention your reason for refund', 'dc-woocommerce-multi-vendor'), $order ); ?></legend>
+                <legend><?php echo apply_filters( 'mvx_customer_my_account_refund_reason_label', __('Please mention your reason for refund', 'multivendorx'), $order ); ?></legend>
 
                 <?php 
                 if( $refund_reason_options ) {
@@ -1469,30 +1469,30 @@ class MVX_Order {
                     echo '<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
                         <label class="refund_reason_option" for="refund_reason_option-other">
                             <input type="radio" class="woocommerce-Input input-radio" name="refund_reason_option" id="refund_reason_option-other" value="others" />
-                            '.__( 'Others reason', 'dc-woocommerce-multi-vendor' ).'
+                            '.__( 'Others reason', 'multivendorx' ).'
                         </label></p>';
                         ?>
                     <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide cust-rr-other">
-                        <label for="refund_reason_other"><?php _e( 'Refund reason', 'dc-woocommerce-multi-vendor' ); ?></label>
+                        <label for="refund_reason_other"><?php _e( 'Refund reason', 'multivendorx' ); ?></label>
                         <input type="text" class="woocommerce-Input input-text" name="refund_reason_other" id="refund_reason_other" autocomplete="off" />
                     </p>
                         <?php
                 }else{
                     ?>
                     <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                        <label for="refund_reason_other"><?php _e( 'Refund reason', 'dc-woocommerce-multi-vendor' ); ?></label>
+                        <label for="refund_reason_other"><?php _e( 'Refund reason', 'multivendorx' ); ?></label>
                         <input type="text" class="woocommerce-Input input-text" name="refund_reason_other" id="refund_reason_other" autocomplete="off" />
                     </p>
                     <?php
                 }
                 ?>
                 <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                    <label for="additional_info"><?php _e( 'Provide additional information', 'dc-woocommerce-multi-vendor' ); ?></label>
+                    <label for="additional_info"><?php _e( 'Provide additional information', 'multivendorx' ); ?></label>
                     <textarea class="woocommerce-Input input-text" name="refund_request_addi_info" id="refund_request_addi_info"></textarea>
                 </p>
                 
                 <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                    <button type="submit" class="button" name="cust_request_refund_sbmt" value="<?php _e( 'Submit', 'dc-woocommerce-multi-vendor' ); ?>"><?php _e( 'Submit', 'dc-woocommerce-multi-vendor' ); ?></button>
+                    <button type="submit" class="button" name="cust_request_refund_sbmt" value="<?php _e( 'Submit', 'multivendorx' ); ?>"><?php _e( 'Submit', 'multivendorx' ); ?></button>
                 </p>
             </fieldset>
             </form>
@@ -1525,7 +1525,7 @@ class MVX_Order {
         }
         // If no refund reason is selected
         if ( !isset( $_REQUEST['refund_reason_option'] ) ) {
-            wc_add_notice( __( 'Kindly choose a refund reason', 'dc-woocommerce-multi-vendor' ) , 'error' );
+            wc_add_notice( __( 'Kindly choose a refund reason', 'multivendorx' ) , 'error' );
             return;
         }
         if( !isset( $wp->query_vars['view-order'] ) ) return;
@@ -1543,7 +1543,7 @@ class MVX_Order {
         );
         // update customer refunt request 
         update_post_meta( $order_id, '_customer_refund_order', 'refund_request' );
-        $comment_id = $order->add_order_note( __('Customer requested a refund ', 'dc-woocommerce-multi-vendor') .$order_id.' .' );
+        $comment_id = $order->add_order_note( __('Customer requested a refund ', 'multivendorx') .$order_id.' .' );
         // user info
         $user_info = get_userdata(get_current_user_id());
         wp_update_comment(array('comment_ID' => $comment_id, 'comment_author' => $user_info->user_name, 'comment_author_email' => $user_info->user_email));
@@ -1551,7 +1551,7 @@ class MVX_Order {
         // parent order
         $parent_order_id = wp_get_post_parent_id($order->get_id());
         $parent_order = wc_get_order( $parent_order_id );
-        $comment_id_parent = $parent_order->add_order_note( __('Customer requested a refund for ', 'dc-woocommerce-multi-vendor') .$order_id.'.'  );
+        $comment_id_parent = $parent_order->add_order_note( __('Customer requested a refund for ', 'multivendorx') .$order_id.'.'  );
         wp_update_comment(array('comment_ID' => $comment_id_parent, 'comment_author' => $user_info->user_name, 'comment_author_email' => $user_info->user_email));
 
         $mail = WC()->mailer()->emails['WC_Email_Customer_Refund_Request'];
@@ -1559,24 +1559,24 @@ class MVX_Order {
         $vendor_id = get_post_meta( $order_id, '_vendor_id', true );
         $vendor_user_info = get_userdata($vendor_id);
         $mail->trigger( $vendor_user_info->user_email, $order_id, $refund_details );
-        wc_add_notice( __( 'Refund request successfully placed.', 'dc-woocommerce-multi-vendor' ) );
+        wc_add_notice( __( 'Refund request successfully placed.', 'multivendorx' ) );
     }
 
     public function mvx_refund_order_status_customer_meta(){
         global $post;
         if( $post && $post->post_type != 'shop_order' ) return;
         if( !mvx_get_order( $post->ID ) ) return;
-        add_meta_box( 'refund_status_customer', __('Customer refund status', 'dc-woocommerce-multi-vendor'),  array( $this, 'mvx_order_customer_refund_dd' ), 'shop_order', 'side', 'core' );
+        add_meta_box( 'refund_status_customer', __('Customer refund status', 'multivendorx'),  array( $this, 'mvx_order_customer_refund_dd' ), 'shop_order', 'side', 'core' );
     }
 
     public function mvx_order_customer_refund_dd(){
         global $post;
         $refund_status = get_post_meta( $post->ID, '_customer_refund_order', true ) ? get_post_meta( $post->ID, '_customer_refund_order', true ) : '';
         $refund_statuses = array( 
-            '' => __('Refund Status','dc-woocommerce-multi-vendor'),
-            'refund_request' => __('Refund Requested', 'dc-woocommerce-multi-vendor'), 
-            'refund_accept' => __('Refund Accepted','dc-woocommerce-multi-vendor'), 
-            'refund_reject' => __('Refund Rejected','dc-woocommerce-multi-vendor') 
+            '' => __('Refund Status','multivendorx'),
+            'refund_request' => __('Refund Requested', 'multivendorx'), 
+            'refund_accept' => __('Refund Accepted','multivendorx'), 
+            'refund_reject' => __('Refund Rejected','multivendorx') 
         );
         ?>
         <select id="refund_order_customer" name="refund_order_customer" onchange='refund_admin_reason(this.value);'>
@@ -1585,10 +1585,10 @@ class MVX_Order {
             <?php } ?>
         </select>
         <div class="reason_select_by_admin" id="reason_select_by_admin" style='display:none;'>
-            <label for="additional_massage"><?php _e( 'Please Provide Some Reason', 'dc-woocommerce-multi-vendor' ); ?></label>
+            <label for="additional_massage"><?php _e( 'Please Provide Some Reason', 'multivendorx' ); ?></label>
             <textarea class="woocommerce-Input input-text" name="refund_admin_reason_text" id="refund_admin_reason_text"></textarea>
         </div>
-        <button type="submit" class="button cust-refund-status button-default" name="cust_refund_status" value="<?php echo __('Update status', 'dc-woocommerce-multi-vendor'); ?>"><?php echo __('Update status', 'dc-woocommerce-multi-vendor'); ?></button>
+        <button type="submit" class="button cust-refund-status button-default" name="cust_refund_status" value="<?php echo __('Update status', 'multivendorx'); ?>"><?php echo __('Update status', 'multivendorx'); ?></button>
         <script>
             function refund_admin_reason(val){
                 var element = document.getElementById('reason_select_by_admin');
@@ -1617,13 +1617,13 @@ class MVX_Order {
                 
                 $order_status = '';
                 if( $_POST['refund_order_customer'] == 'refund_accept' ) {
-                    $order_status = __( 'accepted', 'dc-woocommerce-multi-vendor' );
+                    $order_status = __( 'accepted', 'multivendorx' );
                 }elseif( $_POST['refund_order_customer'] == 'refund_reject') {
-                    $order_status = __( 'rejected', 'dc-woocommerce-multi-vendor' );
+                    $order_status = __( 'rejected', 'multivendorx' );
                 }
                 // Comment note for suborder
                 $order = wc_get_order( $post_id );
-                $comment_id = $order->add_order_note( __('Site admin ', 'dc-woocommerce-multi-vendor') . $order_status. __(' refund request for order #', 'dc-woocommerce-multi-vendor') .$post_id.' .' );
+                $comment_id = $order->add_order_note( __('Site admin ', 'multivendorx') . $order_status. __(' refund request for order #', 'multivendorx') .$post_id.' .' );
                 // user info
                 $user_info = get_userdata(get_current_user_id());
                 wp_update_comment(array('comment_ID' => $comment_id, 'comment_author' => $user_info->user_name, 'comment_author_email' => $user_info->user_email));
@@ -1631,7 +1631,7 @@ class MVX_Order {
                 // Comment note for parent order
                 $parent_order_id = wp_get_post_parent_id($post_id);
                 $parent_order = wc_get_order( $parent_order_id );
-                $comment_id_parent = $parent_order->add_order_note( __('Site admin ', 'dc-woocommerce-multi-vendor') . $order_status. __(' refund request for order #', 'dc-woocommerce-multi-vendor') . $post_id .'.' );
+                $comment_id_parent = $parent_order->add_order_note( __('Site admin ', 'multivendorx') . $order_status. __(' refund request for order #', 'multivendorx') . $post_id .'.' );
                 wp_update_comment(array('comment_ID' => $comment_id_parent, 'comment_author' => $user_info->user_name, 'comment_author_email' => $user_info->user_email));
 
                 $mail = WC()->mailer()->emails['WC_Email_Customer_Refund_Request'];

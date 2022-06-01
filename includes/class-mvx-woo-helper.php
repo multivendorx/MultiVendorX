@@ -52,7 +52,7 @@ final class MVX_Woo_Helper {
      * @since 3.0.0
      */
     public function __clone() {
-        _doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'dc-woocommerce-multi-vendor' ), '3.2.3' );
+        _doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'multivendorx' ), '3.2.3' );
     }
 
     /**
@@ -61,7 +61,7 @@ final class MVX_Woo_Helper {
      * @since 3.0.0
      */
     public function __wakeup() {
-        _doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'dc-woocommerce-multi-vendor' ), '3.2.3' );
+        _doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'multivendorx' ), '3.2.3' );
     }
 
     /**
@@ -94,7 +94,7 @@ final class MVX_Woo_Helper {
                 if ( isset( $data['variable_stock'], $data['variable_stock'][$i] ) ) {
                     if ( isset( $data['variable_original_stock'], $data['variable_original_stock'][$i] ) && wc_stock_amount( $variation->get_stock_quantity( 'edit' ) ) !== wc_stock_amount( $data['variable_original_stock'][$i] ) ) {
                         /* translators: 1: product ID 2: quantity in stock */
-                        $errors[] = sprintf( __( 'The stock has not been updated because the value has changed since editing. Product %1$d has %2$d units in stock.', 'dc-woocommerce-multi-vendor' ), $variation->get_id(), $variation->get_stock_quantity( 'edit' ) );
+                        $errors[] = sprintf( __( 'The stock has not been updated because the value has changed since editing. Product %1$d has %2$d units in stock.', 'multivendorx' ), $variation->get_id(), $variation->get_stock_quantity( 'edit' ) );
                     } else {
                         $stock = wc_stock_amount( $data['variable_stock'][$i] );
                     }

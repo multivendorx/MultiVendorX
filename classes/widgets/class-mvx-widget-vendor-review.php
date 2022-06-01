@@ -20,8 +20,8 @@ class MVX_Widget_Vendor_Review_Widget extends WP_Widget {
 
         // Widget variable settings
         $this->widget_idbase = 'dc-vendor-vendor-review';
-        $this->widget_title = __('MVX: Vendor Review', 'dc-woocommerce-multi-vendor');
-        $this->widget_description = __('Add a vendor review widget on vendor\'s shop page and single product page.', 'dc-woocommerce-multi-vendor');
+        $this->widget_title = __('MVX: Vendor Review', 'multivendorx');
+        $this->widget_description = __('Add a vendor review widget on vendor\'s shop page and single product page.', 'multivendorx');
         $this->widget_cssclass = 'widget_mvx_vendor_review';
 
         // Widget settings
@@ -148,15 +148,15 @@ class MVX_Widget_Vendor_Review_Widget extends WP_Widget {
         $instance = wp_parse_args((array) $instance, $defaults);
         ?>
         <p>
-            <label for="<?php echo esc_attr($this->get_field_id('title')); ?>"><?php esc_html_e('Title (optional):', 'dc-woocommerce-multi-vendor'); ?></label>
+            <label for="<?php echo esc_attr($this->get_field_id('title')); ?>"><?php esc_html_e('Title (optional):', 'multivendorx'); ?></label>
             <input type="text" name="<?php echo esc_attr($this->get_field_name('title')); ?>"  value="<?php echo esc_attr($instance['title']); ?>" class="widefat" id="<?php echo esc_attr($this->get_field_id('title')); ?>" />
         </p>
         <p>
-            <label for="<?php echo esc_attr($this->get_field_id('reviews_number')); ?>"><?php esc_html_e('Number of reviews', 'dc-woocommerce-multi-vendor') ?>:
+            <label for="<?php echo esc_attr($this->get_field_id('reviews_number')); ?>"><?php esc_html_e('Number of reviews', 'multivendorx') ?>:
                 <input type="number" id="<?php echo esc_attr($this->get_field_id('reviews_number')); ?>" name="<?php echo esc_attr($this->get_field_name('reviews_number')); ?>" value="<?php echo esc_attr($instance['reviews_number']); ?>" class="widefat" min="1"/>
             </label>
         </p>
-        <span class="description"><?php esc_html_e('This widget shows vendor reviews.', 'dc-woocommerce-multi-vendor') ?> </span>
+        <span class="description"><?php esc_html_e('This widget shows vendor reviews.', 'multivendorx') ?> </span>
         <?php
     }
 }

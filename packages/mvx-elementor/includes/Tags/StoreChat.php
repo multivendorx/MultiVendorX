@@ -32,7 +32,7 @@ class StoreChat extends MVX_Elementor_TagBase {
      * @return string
      */
     public function get_title() {
-        return __( 'Store Chat Button', 'dc-woocommerce-multi-vendor' );
+        return __( 'Store Chat Button', 'multivendorx' );
     }
 
     /**
@@ -52,9 +52,9 @@ class StoreChat extends MVX_Elementor_TagBase {
         }
         $enable_vendor_chat = !empty(get_user_meta($vendor_id, 'vendor_chat_enable', true)) ? get_user_meta($vendor_id, 'vendor_chat_enable', true) : '';
         if( get_live_chat_settings('enable_chat') != 'Enable' ) {
-            esc_html_e( 'Chat module is not active', 'dc-woocommerce-multi-vendor' );
+            esc_html_e( 'Chat module is not active', 'multivendorx' );
             return;
         }
-        esc_html_e('Chat Now', 'dc-woocommerce-multi-vendor');
+        esc_html_e('Chat Now', 'multivendorx');
     }
 }

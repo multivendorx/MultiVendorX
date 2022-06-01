@@ -38,7 +38,7 @@ abstract class MVX_Payment_Gateway {
         }
         $transaction_args = array(
             'post_type' => 'mvx_transaction',
-            'post_title' => sprintf(__('Transaction - %s', 'dc-woocommerce-multi-vendor'), strftime(_x('%B %e, %Y @ %I:%M %p', 'Transaction date parsed by strftime', 'dc-woocommerce-multi-vendor'), current_time( 'timestamp' ))),
+            'post_title' => sprintf(__('Transaction - %s', 'multivendorx'), strftime(_x('%B %e, %Y @ %I:%M %p', 'Transaction date parsed by strftime', 'multivendorx'), current_time( 'timestamp' ))),
             'post_status' => $commission_status,
             'ping_status' => 'closed',
             'post_author' => $this->vendor->term_id
@@ -47,7 +47,7 @@ abstract class MVX_Payment_Gateway {
         if (!is_wp_error($this->transaction_id) && $this->transaction_id) {
             $this->update_meta_data($commission_status);
             $this->email_notify($commission_status);
-            $this->add_commission_note($this->commissions, sprintf(__('Commission paid via %s <a href="%s">(ID : %s)</a>', 'dc-woocommerce-multi-vendor'), $this->gateway_title, get_admin_url('mvx-transaction-details') . 'admin.php?page=mvx-transaction-details&trans_id=' . $this->transaction_id, $this->transaction_id));
+            $this->add_commission_note($this->commissions, sprintf(__('Commission paid via %s <a href="%s">(ID : %s)</a>', 'multivendorx'), $this->gateway_title, get_admin_url('mvx-transaction-details') . 'admin.php?page=mvx-transaction-details&trans_id=' . $this->transaction_id, $this->transaction_id));
         }
     }
 

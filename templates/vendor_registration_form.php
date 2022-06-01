@@ -22,13 +22,13 @@ if (!empty($mvx_vendor_registration_form_data) && is_array($mvx_vendor_registrat
                 <div class="clearboth"></div>
                 </div>
                 <div class="mvx_regi_form_box">
-                <h3 class="reg_header2"><?php echo esc_html_e($value['label'],'dc-woocommerce-multi-vendor'); ?></h3>
+                <h3 class="reg_header2"><?php echo esc_html_e($value['label'],'multivendorx'); ?></h3>
                 <?php
                 break;
             case 'textbox':
                 ?>
                 <div class="mvx-regi-form-row <?php if(!empty($value['cssClass'])){ echo $value['cssClass']; } else {  echo 'mvx-regi-12'; } ?>">
-                    <label><?php echo __($value['label'],'dc-woocommerce-multi-vendor'); ?><?php if($value['required']){ echo ' <span class="required">*</span>'; }?>
+                    <label><?php echo __($value['label'],'multivendorx'); ?><?php if($value['required']){ echo ' <span class="required">*</span>'; }?>
                     <?php if (isset($value['tip_description']) && !empty($value['tip_description'])) { ?>
                         <span class="img_tip" data-desc="<?php echo esc_html( $value['tip_description'] ); ?>"></span>
                     <?php } ?>
@@ -42,7 +42,7 @@ if (!empty($mvx_vendor_registration_form_data) && is_array($mvx_vendor_registrat
             case 'email':
                 ?>
                 <div class="mvx-regi-form-row <?php if(!empty($value['cssClass'])){ echo $value['cssClass']; } else {  echo 'mvx-regi-12'; } ?>">
-                    <label><?php echo __($value['label'],'dc-woocommerce-multi-vendor'); ?><?php if($value['required']){ echo ' <span class="required">*</span>'; }?></label>
+                    <label><?php echo __($value['label'],'multivendorx'); ?><?php if($value['required']){ echo ' <span class="required">*</span>'; }?></label>
                     <input type="email" value="<?php if (!empty($form_data['mvx_vendor_fields'][$key]["value"])) echo esc_attr($form_data['mvx_vendor_fields'][$key]["value"]); ?>" name="mvx_vendor_fields[<?php echo $key; ?>][value]" placeholder="<?php echo $value['placeholder']; ?>" <?php if($value['required']){ echo 'required="required"'; }?> />
                     <input type="hidden" name="mvx_vendor_fields[<?php echo $key; ?>][label]" value="<?php echo htmlentities($value['label']); ?>" />
                     <input type="hidden" name="mvx_vendor_fields[<?php echo $key; ?>][type]" value="email" />
@@ -52,12 +52,12 @@ if (!empty($mvx_vendor_registration_form_data) && is_array($mvx_vendor_registrat
             case 'textarea':
                 ?>
                 <div class="mvx-regi-form-row <?php if(!empty($value['cssClass'])){ echo $value['cssClass']; } else {  echo 'mvx-regi-12'; } ?>">
-                    <label><?php echo __($value['label'],'dc-woocommerce-multi-vendor'); ?><?php if($value['required']){ echo ' <span class="required">*</span>'; }?>
+                    <label><?php echo __($value['label'],'multivendorx'); ?><?php if($value['required']){ echo ' <span class="required">*</span>'; }?>
                     <?php if (isset($value['tip_description']) && !empty($value['tip_description'])) { ?>
                         <span class="img_tip" data-desc="<?php echo esc_html( $value['tip_description'] ); ?>"></span>
                     <?php } ?>
                     </label>
-                    <textarea <?php if(!empty($value['limit'])){ echo 'maxlength="'.$value['limit'].'"'; } ?> name="mvx_vendor_fields[<?php echo $key; ?>][value]" placeholder="<?php echo $value['defaultValue']; ?>" <?php if($value['required']){ echo 'required'; }?>><?php if (!empty($form_data['mvx_vendor_fields'][$key]["value"])){ echo esc_attr($form_data['mvx_vendor_fields'][$key]["value"]); } ?></textarea>
+                    <textarea <?php if(!empty($value['limit'])){ echo 'maxlength="'.$value['limit'].'"'; } ?> name="mvx_vendor_fields[<?php echo $key; ?>][value]" placeholder="<?php echo $value['placeholder']; ?>" <?php if($value['required']){ echo 'required'; }?>><?php if (!empty($form_data['mvx_vendor_fields'][$key]["value"])){ echo esc_attr($form_data['mvx_vendor_fields'][$key]["value"]); } ?></textarea>
                     <input type="hidden" name="mvx_vendor_fields[<?php echo $key; ?>][label]" value="<?php echo htmlentities($value['label']); ?>" />
                     <input type="hidden" name="mvx_vendor_fields[<?php echo $key; ?>][type]" value="textarea" />
                 </div>
@@ -66,7 +66,7 @@ if (!empty($mvx_vendor_registration_form_data) && is_array($mvx_vendor_registrat
             case 'url': 
                 ?>
                 <div class="mvx-regi-form-row <?php if(!empty($value['cssClass'])){ echo $value['cssClass']; } else {  echo 'mvx-regi-12'; } ?>">
-                    <label><?php echo __($value['label'],'dc-woocommerce-multi-vendor'); ?><?php if($value['required']){ echo ' <span class="required">*</span>'; }?></label>
+                    <label><?php echo __($value['label'],'multivendorx'); ?><?php if($value['required']){ echo ' <span class="required">*</span>'; }?></label>
                     <input type="url" value="<?php if (!empty($form_data['mvx_vendor_fields'][$key]["value"])) echo esc_attr($form_data['mvx_vendor_fields'][$key]["value"]); ?>" name="mvx_vendor_fields[<?php echo $key; ?>][value]" placeholder="<?php echo $value['placeholder']; ?>" <?php if($value['required']){ echo 'required="required"'; }?> />
                     <input type="hidden" name="mvx_vendor_fields[<?php echo $key; ?>][label]" value="<?php echo htmlentities($value['label']); ?>" />
                     <input type="hidden" name="mvx_vendor_fields[<?php echo $key; ?>][type]" value="url" />
@@ -76,7 +76,7 @@ if (!empty($mvx_vendor_registration_form_data) && is_array($mvx_vendor_registrat
             case 'selectbox':
                 ?>
                 <div class="mvx-regi-form-row <?php if(!empty($value['cssClass'])){ echo $value['cssClass']; } else {  echo 'mvx-regi-12'; } ?>">
-                    <label><?php echo __($value['label'],'dc-woocommerce-multi-vendor'); ?><?php if($value['required']){ echo ' <span class="required">*</span>'; }?></label>
+                    <label><?php echo __($value['label'],'multivendorx'); ?><?php if($value['required']){ echo ' <span class="required">*</span>'; }?></label>
                     <input type="hidden" name="mvx_vendor_fields[<?php echo $key; ?>][label]" value="<?php echo htmlentities($value['label']); ?>" />
                     <input type="hidden" name="mvx_vendor_fields[<?php echo $key; ?>][type]" value="selectbox" />
                     <?php
@@ -157,7 +157,7 @@ if (!empty($mvx_vendor_registration_form_data) && is_array($mvx_vendor_registrat
                 ?>
                 <div class="mvx-regi-form-row <?php if(!empty($value['cssClass'])){ echo $value['cssClass']; } else {  echo 'mvx-regi-12'; } ?>">
                     <input type="checkbox" name="mvx_vendor_fields[<?php echo $key; ?>][value]" <?php if (!empty($form_data['mvx_vendor_fields'][$key]["value"]) && $form_data['mvx_vendor_fields'][$key]["value"] == 'on') { echo 'checked="checked"';}?> <?php if(!isset($form_data['mvx_vendor_fields'][$key]["value"]) && $value['defaultValue'] == 'checked'){ echo 'checked="checked"';} ?>  <?php if($value['required']){ echo 'required="required"'; }?> />
-                    <label><?php echo __($value['label'],'dc-woocommerce-multi-vendor'); ?><?php if($value['required']){ echo ' <span class="required">*</span>'; }?></label>
+                    <label><?php echo __($value['label'],'multivendorx'); ?><?php if($value['required']){ echo ' <span class="required">*</span>'; }?></label>
                     <input type="hidden" name="mvx_vendor_fields[<?php echo $key; ?>][label]" value="<?php echo htmlentities($value['label']); ?>" />
                     <input type="hidden" name="mvx_vendor_fields[<?php echo $key; ?>][type]" value="checkbox" />
                 </div>
@@ -181,7 +181,7 @@ if (!empty($mvx_vendor_registration_form_data) && is_array($mvx_vendor_registrat
                 </script>
                 <?php endif; ?>
                 <div class="mvx-regi-form-row <?php if(!empty($value['cssClass'])){ echo $value['cssClass']; } else {  echo 'mvx-regi-12'; } ?>">
-                    <label><?php echo ($recaptcha_type == 'v2') ? __($value['label'],'dc-woocommerce-multi-vendor') : ''; ?><?php if($value['required']){ echo ' <span class="required">*</span>'; }?></label>
+                    <label><?php echo ($recaptcha_type == 'v2') ? __($value['label'],'multivendorx') : ''; ?><?php if($value['required']){ echo ' <span class="required">*</span>'; }?></label>
                     <?php echo $value['script']; ?>
                     <input type="hidden" name="mvx_vendor_fields[<?php echo $key; ?>][value]" value="Verified" />
                     <input type="hidden" name="mvx_vendor_fields[<?php echo $key; ?>][label]" value="<?php echo htmlentities($value['label']); ?>" />
@@ -198,7 +198,7 @@ if (!empty($mvx_vendor_registration_form_data) && is_array($mvx_vendor_registrat
             case 'file':
                 ?>
                 <div class="mvx-regi-form-row <?php if(!empty($value['cssClass'])){ echo $value['cssClass']; } else {  echo 'mvx-regi-12'; } ?>">
-                    <label><?php echo __($value['label'],'dc-woocommerce-multi-vendor'); ?><?php if($value['required']){ echo ' <span class="required">*</span>'; }?></label>
+                    <label><?php echo __($value['label'],'multivendorx'); ?><?php if($value['required']){ echo ' <span class="required">*</span>'; }?></label>
                     <input type="file" name="mvx_vendor_fields[<?php echo $key; ?>][]" <?php if($value['required']){ echo 'required="required"'; }?> <?php if($value['muliple']){ echo 'multiple="true"'; }?> />
                     <input type="hidden" name="mvx_vendor_fields[<?php echo $key; ?>][label]" value="<?php echo htmlentities($value['label']); ?>" />
                     <input type="hidden" name="mvx_vendor_fields[<?php echo $key; ?>][type]" value="file" />
@@ -213,7 +213,7 @@ if (!empty($mvx_vendor_registration_form_data) && is_array($mvx_vendor_registrat
             case 'vendor_paypal_email':
                 ?>
                 <div class="mvx-regi-form-row <?php if(!empty($value['cssClass'])){ echo $value['cssClass']; } else {  echo 'mvx-regi-12'; } ?>">
-                    <label><?php echo __($value['label'],'dc-woocommerce-multi-vendor'); ?><?php if($value['required']){ echo ' <span class="required">*</span>'; }?></label>
+                    <label><?php echo __($value['label'],'multivendorx'); ?><?php if($value['required']){ echo ' <span class="required">*</span>'; }?></label>
                     <input type="text" value="<?php if (!empty($form_data['mvx_vendor_fields'][$key]["value"])) echo esc_attr($form_data['mvx_vendor_fields'][$key]["value"]); ?>" name="mvx_vendor_fields[<?php echo $key; ?>][value]" placeholder="<?php echo $value['placeholder']; ?>" <?php if($value['required']){ echo 'required="required"'; }?> />
                     <input type="hidden" name="mvx_vendor_fields[<?php echo $key; ?>][label]" value="<?php echo htmlentities($value['label']); ?>" />
                     <input type="hidden" name="mvx_vendor_fields[<?php echo $key; ?>][type]" value="<?php echo $value['type']; ?>" />
@@ -223,11 +223,11 @@ if (!empty($mvx_vendor_registration_form_data) && is_array($mvx_vendor_registrat
             case 'vendor_country':
                 ?>
                 <div class="mvx-regi-form-row <?php if(!empty($value['cssClass'])){ echo $value['cssClass']; } else {  echo 'mvx-regi-12'; } ?>">
-                    <label><?php echo __($value['label'],'dc-woocommerce-multi-vendor'); ?><?php if($value['required']){ echo ' <span class="required">*</span>'; }?></label>
+                    <label><?php echo __($value['label'],'multivendorx'); ?><?php if($value['required']){ echo ' <span class="required">*</span>'; }?></label>
                     <input type="hidden" name="mvx_vendor_fields[<?php echo $key; ?>][label]" value="<?php echo htmlentities($value['label']); ?>" />
                     <input type="hidden" name="mvx_vendor_fields[<?php echo $key; ?>][type]" value="<?php echo $value['type']; ?>" />
                     <select class="country_to_state select_box" name="mvx_vendor_fields[<?php echo $key; ?>][value]" <?php if($value['required']){ echo 'required="required"'; }?>>
-                        <option value=""><?php esc_html_e( 'Select a country&hellip;', 'dc-woocommerce-multi-vendor' ); ?></option>
+                        <option value=""><?php esc_html_e( 'Select a country&hellip;', 'multivendorx' ); ?></option>
                         <?php 
                             foreach ( WC()->countries->get_allowed_countries() as $key => $value ) {
                                 echo '<option value="' . esc_attr( $key ) . '" '. selected(apply_filters('mvx_vendor_registration_form_default_country_code', '', $key), $key).'>' . esc_html( $value ) . '</option>';
@@ -240,7 +240,7 @@ if (!empty($mvx_vendor_registration_form_data) && is_array($mvx_vendor_registrat
             case 'vendor_state':
                 ?>
                 <div class="vendor_state_wrapper mvx-regi-form-row <?php if(!empty($value['cssClass'])){ echo $value['cssClass']; } else {  echo 'mvx-regi-12'; } ?>">
-                    <label><?php echo __($value['label'],'dc-woocommerce-multi-vendor'); ?><?php if($value['required']){ echo ' <span class="required">*</span>'; }?></label>
+                    <label><?php echo __($value['label'],'multivendorx'); ?><?php if($value['required']){ echo ' <span class="required">*</span>'; }?></label>
                     <input type="hidden" name="mvx_vendor_fields[<?php echo $key; ?>][label]" value="<?php echo htmlentities($value['label']); ?>" />
                     <input type="hidden" name="mvx_vendor_fields[<?php echo $key; ?>][type]" value="<?php echo esc_attr($value['type']); ?>" />
                     <select id="vendor_state" class="state_select select_box" name="mvx_vendor_fields[<?php echo $key; ?>][value]" <?php if($value['required']){ echo 'required="required"'; }?>>
@@ -252,7 +252,7 @@ if (!empty($mvx_vendor_registration_form_data) && is_array($mvx_vendor_registrat
             case 'vendor_description':
                 ?>
                 <div class="mvx-regi-form-row <?php if(!empty($value['cssClass'])){ echo $value['cssClass']; } else {  echo 'mvx-regi-12'; } ?>">
-                    <label><?php echo __($value['label'],'dc-woocommerce-multi-vendor'); ?><?php if($value['required']){ echo ' <span class="required">*</span>'; }?></label>
+                    <label><?php echo __($value['label'],'multivendorx'); ?><?php if($value['required']){ echo ' <span class="required">*</span>'; }?></label>
                     <textarea <?php if(!empty($value['limit'])){ echo 'maxlength="'.$value['limit'].'"'; } ?> name="mvx_vendor_fields[<?php echo $key; ?>][value]" placeholder="<?php echo esc_attr($value['defaultValue']); ?>" <?php if($value['required']){ echo 'required'; }?>><?php if (!empty($form_data['mvx_vendor_fields'][$key]["value"])){ echo esc_attr($form_data['mvx_vendor_fields'][$key]["value"]); } ?></textarea>
                     <input type="hidden" name="mvx_vendor_fields[<?php echo $key; ?>][label]" value="<?php echo htmlentities($value['label']); ?>" />
                     <input type="hidden" name="mvx_vendor_fields[<?php echo $key; ?>][type]" value="<?php echo $value['type']; ?>" />

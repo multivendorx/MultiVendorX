@@ -40,7 +40,7 @@ $is_single = !is_null($MVX->endpoints->get_current_endpoint_var()) ? '-single' :
 				?>
 				<div class="col-md-12 text-center">
 					<div class="panel mvx-suspended-vendor-notice content-padding">
-					    <?php echo apply_filters( 'mvx_suspended_vendor_dashboard_message', sprintf( __('Your account has been suspended by the admin due to some suspicious activity. Please contact your <a href="mailto:%s">admin</a> for further information.', 'dc-woocommerce-multi-vendor'), get_option('admin_email')) ); ?>
+					    <?php echo apply_filters( 'mvx_suspended_vendor_dashboard_message', sprintf( __('Your account has been suspended by the admin due to some suspicious activity. Please contact your <a href="mailto:%s">admin</a> for further information.', 'multivendorx'), get_option('admin_email')) ); ?>
 					</div>
 				</div>
 			<?php } else {

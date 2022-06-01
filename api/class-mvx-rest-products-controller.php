@@ -57,7 +57,7 @@ function assign_product_to_vendor($object, $request, $new_product) {
 			wp_set_object_terms($object->get_id(), absint($vendor->term_id), $MVX->taxonomy->taxonomy_name);
 		} else {
 			return new WP_Error(
-				"woocommerce_rest_product_invalid_vendor_id", __( 'Invalid Vendor ID.', 'dc-woocommerce-multi-vendor' ), array(
+				"woocommerce_rest_product_invalid_vendor_id", __( 'Invalid Vendor ID.', 'multivendorx' ), array(
 					'status' => 404,
 				)
 			);

@@ -13,7 +13,7 @@ if($total_products == 0){
     $trashed_products_percentage = round((float)$trashed_products_count / $total_products * $total, 2);
 }
 if($total_products == 0) {
-    _e('No products Available.', 'dc-woocommerce-multi-vendor');
+    _e('No products Available.', 'multivendorx');
 } else {
 ?>
 <div class="mvx_product_stats_wrap">
@@ -43,22 +43,22 @@ if($total_products == 0) {
         <ul class="list-group">
             <li class="list-group-item justify-content-between">
                 <div class="stat-left-border" style="background-color:#c35244;"></div>
-                <p><?php _e('Published', 'dc-woocommerce-multi-vendor');?></p>
+                <p><?php _e('Published', 'multivendorx');?></p>
                 <span class="badge badge-default badge-pill"><?php echo $publish_products_count; ?></span>
             </li>
             <li class="list-group-item justify-content-between">
                 <div class="stat-left-border" style="background-color:#a75579;"></div>
-                <p><?php _e('Pending', 'dc-woocommerce-multi-vendor');?></p>
+                <p><?php _e('Pending', 'multivendorx');?></p>
                 <span class="badge badge-default badge-pill"><?php echo $pending_products_count; ?></span>
             </li>
             <li class="list-group-item justify-content-between">
                 <div class="stat-left-border" style="background-color:#d28c4d;"></div>
-                <p><?php _e('Draft', 'dc-woocommerce-multi-vendor');?></p>
+                <p><?php _e('Draft', 'multivendorx');?></p>
                 <span class="badge badge-default badge-pill"><?php echo $draft_products_count; ?></span>
             </li>
             <li class="list-group-item justify-content-between">
                 <div class="stat-left-border" style="background-color:#519a9e;"></div>
-                <p><?php _e('Not Approved', 'dc-woocommerce-multi-vendor');?></p>
+                <p><?php _e('Not Approved', 'multivendorx');?></p>
                 <span class="badge badge-default badge-pill"><?php echo $trashed_products_count; ?></span>
             </li>
         </ul>

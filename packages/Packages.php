@@ -88,7 +88,7 @@ class Packages {
 			error_log(  // phpcs:ignore
 				sprintf(
 					/* Translators: %s package name. */
-					esc_html__( 'Missing the MVX %s package', 'dc-woocommerce-multi-vendor' ),
+					esc_html__( 'Missing the MVX %s package', 'multivendorx' ),
 					'<code>' . esc_html( $package ) . '</code>'
 				)
 			);
@@ -103,7 +103,7 @@ class Packages {
 							<?php
 							printf(
 								/* Translators: %s package name. */
-								esc_html__( 'Missing the MVX %s package', 'dc-woocommerce-multi-vendor' ),
+								esc_html__( 'Missing the MVX %s package', 'multivendorx' ),
 								'<code>' . esc_html( $package ) . '</code>'
 							);
 							?>

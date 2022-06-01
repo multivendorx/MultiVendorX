@@ -10,29 +10,29 @@ class MVX_Widget_Vendor_Policies extends WC_Widget {
 
     public function __construct() {
         $this->widget_cssclass = 'mvx_vendor_widget_policy';
-        $this->widget_description = __('Displays vendor policies on the vendor shop page.', 'dc-woocommerce-multi-vendor');
+        $this->widget_description = __('Displays vendor policies on the vendor shop page.', 'multivendorx');
         $this->widget_id = 'mvx_vendor_widget_policy';
-        $this->widget_name = __('MVX: Vendor\'s Policies',     'dc-woocommerce-multi-vendor');
+        $this->widget_name = __('MVX: Vendor\'s Policies',     'multivendorx');
         $this->settings = array(
             'title' => array(
                 'type' => 'text',
-                'std' => __('Vendor Policies', 'dc-woocommerce-multi-vendor'),
-                'label' => __('Title', 'dc-woocommerce-multi-vendor'),
+                'std' => __('Vendor Policies', 'multivendorx'),
+                'label' => __('Title', 'multivendorx'),
             ),
             'shipping' => array(
                 'type' => 'checkbox',
                 'std' => 1,
-                'label' => __('Shipping Policy', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Shipping Policy', 'multivendorx'),
             ),
 			'refund'       => array(
 				'type'  => 'checkbox',
 				'std'   => 1,
-				'label' => __('Refund Policy', 'dc-woocommerce-multi-vendor'),
+				'label' => __('Refund Policy', 'multivendorx'),
 			),
             'cancel'       => array(
                 'type'  => 'checkbox',
                 'std'   => 1,
-                'label' => __('Cancellation/Return/Exchange Policy', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Cancellation/Return/Exchange Policy', 'multivendorx'),
             ),
         );
         parent::__construct();
@@ -62,19 +62,19 @@ class MVX_Widget_Vendor_Policies extends WC_Widget {
             $content .= '<div class="mvx-product-policies">';
             if(isset($policies['shipping_policy']) && !empty($policies['shipping_policy']) && $shipping) {
                 $content .='<div class="mvx-shipping-policies policy">
-                    <h2 class="mvx_policies_heading heading">'. esc_html_e('Shipping Policy', 'dc-woocommerce-multi-vendor').'</h2>
+                    <h2 class="mvx_policies_heading heading">'. esc_html_e('Shipping Policy', 'multivendorx').'</h2>
                     <div class="mvx_policies_description description" >'.$policies['shipping_policy'].'</div>
                 </div>';
             } 
             if(isset($policies['refund_policy']) && !empty($policies['refund_policy']) && $refund){ 
                 $content .='<div class="mvx-refund-policies policy">
-                    <h2 class="mvx_policies_heading heading heading">'. esc_html_e('Refund Policy', 'dc-woocommerce-multi-vendor').'</h2>
+                    <h2 class="mvx_policies_heading heading heading">'. esc_html_e('Refund Policy', 'multivendorx').'</h2>
                     <div class="mvx_policies_description description">'.$policies['refund_policy'].'</div>
                 </div>';
             } 
             if(isset($policies['cancellation_policy']) && !empty($policies['cancellation_policy']) && $cancel){ 
                 $content .='<div class="mvx-cancellation-policies policy">
-                    <h2 class="mvx_policies_heading heading">'. esc_html_e('Cancellation / Return / Exchange Policy', 'dc-woocommerce-multi-vendor').'</h2>
+                    <h2 class="mvx_policies_heading heading">'. esc_html_e('Cancellation / Return / Exchange Policy', 'multivendorx').'</h2>
                     <div class="mvx_policies_description description" >'.$policies['cancellation_policy'].'</div>
                 </div>';
             }

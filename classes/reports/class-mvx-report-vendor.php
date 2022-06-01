@@ -23,10 +23,10 @@ class MVX_Report_Vendor extends WC_Admin_Report {
         $vendor = $vendor_id = $order_items = false;
 
         $ranges = array(
-            'year' => __('Year', 'dc-woocommerce-multi-vendor'),
-            'last_month' => __('Last Month', 'dc-woocommerce-multi-vendor'),
-            'month' => __('This Month', 'dc-woocommerce-multi-vendor'),
-            '7day' => __('Last 7 Days', 'dc-woocommerce-multi-vendor')
+            'year' => __('Year', 'multivendorx'),
+            'last_month' => __('Last Month', 'multivendorx'),
+            'month' => __('This Month', 'multivendorx'),
+            '7day' => __('Last 7 Days', 'multivendorx')
         );
 
         $current_range = !empty($_GET['range']) ? sanitize_text_field($_GET['range']) : '7day';
@@ -151,20 +151,20 @@ class MVX_Report_Vendor extends WC_Admin_Report {
                                                 <span class="vendor_bar alt" style="width:' . esc_attr($vendor_earning_width) . '%">&nbsp;</span>
 					</td></tr>';
                 $html_chart = '
-					<h4>' . __("Sales and Earnings", 'dc-woocommerce-multi-vendor') . '</h4>
+					<h4>' . __("Sales and Earnings", 'multivendorx') . '</h4>
 					<div class="bar_indecator">
 						<div class="bar1">&nbsp;</div>
-						<span class="">' . __('Gross Sales', 'dc-woocommerce-multi-vendor') . '</span>
+						<span class="">' . __('Gross Sales', 'multivendorx') . '</span>
 						<div class="bar2">&nbsp;</div>
-						<span class="">' . __('Admin Earnings', 'dc-woocommerce-multi-vendor') . '</span>
+						<span class="">' . __('Admin Earnings', 'multivendorx') . '</span>
                                                 <div class="bar3">&nbsp;</div>
-						<span class="">' . __('Vendor Earnings', 'dc-woocommerce-multi-vendor') . '</span>
+						<span class="">' . __('Vendor Earnings', 'multivendorx') . '</span>
 					</div>
 					<table class="bar_chart">
 						<thead>
 							<tr>
-								<th>' . __("Vendors", 'dc-woocommerce-multi-vendor') . '</th>
-								<th colspan="2">' . __("Sales Report", 'dc-woocommerce-multi-vendor') . '</th>
+								<th>' . __("Vendors", 'multivendorx') . '</th>
+								<th colspan="2">' . __("Sales Report", 'multivendorx') . '</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -175,7 +175,7 @@ class MVX_Report_Vendor extends WC_Admin_Report {
             }
 
         } else {
-            $html_chart = '<tr><td colspan="3">' . __('Your store has no vendors.', 'dc-woocommerce-multi-vendor') . '</td></tr>';
+            $html_chart = '<tr><td colspan="3">' . __('Your store has no vendors.', 'multivendorx') . '</td></tr>';
         }
 
         include( $MVX->plugin_path . '/classes/reports/views/html-mvx-report-by-vendor.php');

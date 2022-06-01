@@ -123,8 +123,6 @@ class App extends React.Component {
       list_vendor_roles_data: []
     };
 
-    this.ddddffffff = 'fffffffffffff';
-
     this.handleChange = this.handleChange.bind(this);
 
     this.QueryParamsDemo = this.QueryParamsDemo.bind(this);
@@ -197,10 +195,15 @@ class App extends React.Component {
       }
     })
       .then((response) => {
-        this.handleClose_dynamic();
-        this.setState({
-          datavendor: response.data,
-        });
+
+        if (reload) {
+          location.reload();
+        } else {
+          this.handleClose_dynamic();
+          this.setState({
+            datavendor: response.data,
+          });
+        }
       });
   }
 
@@ -214,10 +217,15 @@ class App extends React.Component {
       }
     })
       .then((response) => {
-        this.handleClose_dynamic();
-        this.setState({
-          datavendor: response.data,
-        });
+
+        if (reload) {
+          location.reload();
+        } else {
+          this.handleClose_dynamic();
+          this.setState({
+            datavendor: response.data,
+          });
+        }
       });
 
   }

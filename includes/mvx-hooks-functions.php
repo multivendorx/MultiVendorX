@@ -148,7 +148,7 @@ if ( ! function_exists( 'mvx_vendor_list_paging_info' ) ) {
         extract($vendor_list);
         if ( $vendor_total <= $per_page || -1 === $per_page ) {
             /* translators: %d: total results */
-            printf( _n( 'Viewing the single vendor', 'Viewing all %d vendors', $vendor_total, 'dc-woocommerce-multi-vendor' ), $vendor_total );
+            printf( _n( 'Viewing the single vendor', 'Viewing all %d vendors', $vendor_total, 'multivendorx' ), $vendor_total );
         } else {
             $first = ( $per_page * $current ) - $per_page + 1;
             if(!apply_filters('mvx_vendor_list_ignore_pagination', false)) {
@@ -157,7 +157,7 @@ if ( ! function_exists( 'mvx_vendor_list_paging_info' ) ) {
                 $last  = $vendor_total;
             }
             /* translators: 1: first result 2: last result 3: total results */
-            printf( _nx( 'Viewing the single vendor', 'Viewing %1$d&ndash;%2$d of %3$d vendors', $vendor_total, 'with first and last result', 'dc-woocommerce-multi-vendor' ), $first, $last, $vendor_total );
+            printf( _nx( 'Viewing the single vendor', 'Viewing %1$d&ndash;%2$d of %3$d vendors', $vendor_total, 'with first and last result', 'multivendorx' ), $first, $last, $vendor_total );
         }
 	}
 }
@@ -220,7 +220,7 @@ if ( ! function_exists( 'mvx_no_vendors_found_data' ) ) {
 	 * No vendors found section.
 	 */
 	function mvx_no_vendors_found_data() {
-		echo apply_filters( 'mvx_no_vendors_found_data', __('No vendor found!', 'dc-woocommerce-multi-vendor') );
+		echo apply_filters( 'mvx_no_vendors_found_data', __('No vendor found!', 'multivendorx') );
 	}
 }
 
@@ -269,7 +269,7 @@ if ( ! function_exists( 'mvx_vendor_lists_vendor_top_products' ) ) {
 		$top3_products = apply_filters('mvx_vendor_top_product_list_suffle', true) ? $vendor->get_top_rated_products( array( 'posts_per_page' => 3 ) ) : get_transient( 'mvx_vendorlist_top_products_' . $vendor->id );
 		if( !$top3_products ) return false;
 		$html = '<div class="mvx-headline">
-                <div class="mvx-topProduct">' .__( 'Top Products' , 'dc-woocommerce-multi-vendor' ) . '</div>
+                <div class="mvx-topProduct">' .__( 'Top Products' , 'multivendorx' ) . '</div>
             </div>';
 		$html .= '<div class="mvx-productImg">';
 

@@ -24,7 +24,7 @@ $vendor = isset($vendor) ? $vendor : '';
 					}
 				?>
 				<li class="custom <?php echo $current_range == 'custom' ? 'active' : ''; ?>">
-					<?php esc_html_e( 'Custom', 'dc-woocommerce-multi-vendor' ); ?>
+					<?php esc_html_e( 'Custom', 'multivendorx' ); ?>
 					<form method="GET">
 						<div>
 							<?php
@@ -40,9 +40,9 @@ $vendor = isset($vendor) ? $vendor : '';
 								}
 							?>
 							<input type="hidden" name="range" value="custom" />
-							<input type="date" size="9" placeholder="<?php esc_attr_e('yyyy-mm-dd', 'dc-woocommerce-multi-vendor' ); ?>" value="<?php if ( ! empty( $_GET['start_date'] ) ) echo esc_attr( $_GET['start_date'] ); ?>" name="start_date" class="range_datepicker from" />
-							<input type="date" size="9" placeholder="<?php esc_attr_e('yyyy-mm-dd', 'dc-woocommerce-multi-vendor' ); ?>" value="<?php if ( ! empty( $_GET['end_date'] ) ) echo esc_attr( $_GET['end_date'] ); ?>" name="end_date" class="range_datepicker to" />
-							<input type="submit" class="button" value="<?php esc_attr_e( 'Go', 'dc-woocommerce-multi-vendor' ); ?>" />
+							<input type="date" size="9" placeholder="<?php esc_attr_e('yyyy-mm-dd', 'multivendorx' ); ?>" value="<?php if ( ! empty( $_GET['start_date'] ) ) echo esc_attr( $_GET['start_date'] ); ?>" name="start_date" class="range_datepicker from" />
+							<input type="date" size="9" placeholder="<?php esc_attr_e('yyyy-mm-dd', 'multivendorx' ); ?>" value="<?php if ( ! empty( $_GET['end_date'] ) ) echo esc_attr( $_GET['end_date'] ); ?>" name="end_date" class="range_datepicker to" />
+							<input type="submit" class="button" value="<?php esc_attr_e( 'Go', 'multivendorx' ); ?>" />
 						</div>
 					</form>
 				</li>
@@ -51,10 +51,10 @@ $vendor = isset($vendor) ? $vendor : '';
 		<div class="left_align pad_left" style="float: left">
 			<form method="post" action="">
 				<p>
-					<select id="vendor" name="vendor" class="ajax_chosen_select_vendor banking_overview_vendor" data-placeholder="<?php esc_attr_e( 'Search for a vendor...', 'dc-woocommerce-multi-vendor' ); ?>" style="min-width:210px;">
+					<select id="vendor" name="vendor" class="ajax_chosen_select_vendor banking_overview_vendor" data-placeholder="<?php esc_attr_e( 'Search for a vendor...', 'multivendorx' ); ?>" style="min-width:210px;">
 						<?php echo $option; ?>
 					</select>
-					<input type="button" style="vertical-align: top;" class="banking_overview_report_search submit button" value="<?php esc_attr_e( 'Show', 'dc-woocommerce-multi-vendor' ); ?>" />
+					<input type="button" style="vertical-align: top;" class="banking_overview_report_search submit button" value="<?php esc_attr_e( 'Show', 'multivendorx' ); ?>" />
 				</p>
 			</form>
 		</div>
@@ -63,13 +63,13 @@ $vendor = isset($vendor) ? $vendor : '';
 	<div class="sort_banking_table">
 		<?php
 		$table_headers = apply_filters('mvx_admin_report_banking_header', array(
-		    'status'      => __( 'Status', 'dc-woocommerce-multi-vendor' ),
-		    'date'      => __( 'Date', 'dc-woocommerce-multi-vendor' ),
-		    'type'      => __( 'Type', 'dc-woocommerce-multi-vendor' ),
-		    'reference_id'      => __( 'Reference ID', 'dc-woocommerce-multi-vendor' ),
-		    'Credit'      => __( 'Credit', 'dc-woocommerce-multi-vendor' ),
-		    'Debit'      => __( 'Debit', 'dc-woocommerce-multi-vendor' ),
-		    'balance'      => __( 'Balance', 'dc-woocommerce-multi-vendor' ),
+		    'status'      => __( 'Status', 'multivendorx' ),
+		    'date'      => __( 'Date', 'multivendorx' ),
+		    'type'      => __( 'Type', 'multivendorx' ),
+		    'reference_id'      => __( 'Reference ID', 'multivendorx' ),
+		    'Credit'      => __( 'Credit', 'multivendorx' ),
+		    'Debit'      => __( 'Debit', 'multivendorx' ),
+		    'balance'      => __( 'Balance', 'multivendorx' ),
 		));
 		$headers = array_keys($table_headers);
 		if(isset($vendor_all_ledgers)) {
@@ -129,7 +129,7 @@ $vendor = isset($vendor) ? $vendor : '';
 						<?php
 	                }
 	            } else {
-	            	echo '<tr><td colspan="3">' . esc_html_e('No records found.', 'dc-woocommerce-multi-vendor') . '</td></tr>';
+	            	echo '<tr><td colspan="3">' . esc_html_e('No records found.', 'multivendorx') . '</td></tr>';
 	            }
 	            
 				?>

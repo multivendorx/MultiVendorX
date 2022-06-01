@@ -43,11 +43,11 @@ class MVX_REST_API_Vendor_Reviews_Controller extends WC_REST_Controller {
 		register_rest_route( $this->namespace, '/' . $this->rest_base, array(
 			'args' => array(
 				'vendor_id' => array(
-					'description' => __( 'Unique identifier for the vendor.', 'dc-woocommerce-multi-vendor' ),
+					'description' => __( 'Unique identifier for the vendor.', 'multivendorx' ),
 					'type'        => 'integer',
 				),
 				'id' => array(
-					'description' => __( 'Unique vendor review id.', 'dc-woocommerce-multi-vendor' ),
+					'description' => __( 'Unique vendor review id.', 'multivendorx' ),
 					'type'        => 'integer',
 				),
 			),
@@ -65,12 +65,12 @@ class MVX_REST_API_Vendor_Reviews_Controller extends WC_REST_Controller {
 					'review' => array(
 						'required'    => true,
 						'type'        => 'string',
-						'description' => __( 'Review content.', 'dc-woocommerce-multi-vendor' ),
+						'description' => __( 'Review content.', 'multivendorx' ),
 					),
 					'email' => array(
 						'required'    => true,
 						'type'        => 'string',
-						'description' => __( 'Email of the reviewer.', 'dc-woocommerce-multi-vendor' ),
+						'description' => __( 'Email of the reviewer.', 'multivendorx' ),
 					),
 				) ),
 			),
@@ -80,11 +80,11 @@ class MVX_REST_API_Vendor_Reviews_Controller extends WC_REST_Controller {
 		register_rest_route( $this->namespace, '/' . $this->rest_base . '/(?P<id>[\d]+)', array(
 			'args' => array(
 				'vendor_id' => array(
-					'description' => __( 'Unique identifier for the vendor.', 'dc-woocommerce-multi-vendor' ),
+					'description' => __( 'Unique identifier for the vendor.', 'multivendorx' ),
 					'type'        => 'integer',
 				),
 				'id' => array(
-					'description' => __( 'Unique vendor review.', 'dc-woocommerce-multi-vendor' ),
+					'description' => __( 'Unique vendor review.', 'multivendorx' ),
 					'type'        => 'integer',
 				),
 			),
@@ -110,7 +110,7 @@ class MVX_REST_API_Vendor_Reviews_Controller extends WC_REST_Controller {
 					'force' => array(
 						'default'     => false,
 						'type'        => 'boolean',
-						'description' => __( 'Whether to bypass trash and force deletion.', 'dc-woocommerce-multi-vendor' ),
+						'description' => __( 'Whether to bypass trash and force deletion.', 'multivendorx' ),
 					),
 				),
 			),
@@ -127,7 +127,7 @@ class MVX_REST_API_Vendor_Reviews_Controller extends WC_REST_Controller {
 	public function get_items_permissions_check( $request ) {
 		$vendor_id = isset($request['vendor_id']) ? (int) $request['vendor_id'] : 0;
 		if ( !is_user_mvx_vendor( $vendor_id ) ) {
-			return new WP_Error( 'mvx_rest_cannot_view', __( 'Sorry, you cannot list resources.', 'dc-woocommerce-multi-vendor' ), array( 'status' => rest_authorization_required_code() ) );
+			return new WP_Error( 'mvx_rest_cannot_view', __( 'Sorry, you cannot list resources.', 'multivendorx' ), array( 'status' => rest_authorization_required_code() ) );
 		}
 		return true;
 	}
@@ -141,7 +141,7 @@ class MVX_REST_API_Vendor_Reviews_Controller extends WC_REST_Controller {
 	public function get_item_permissions_check( $request ) {
 		$vendor_id = isset($request['vendor_id']) ? (int) $request['vendor_id'] : 0;
 		if ( !is_user_mvx_vendor( $vendor_id ) ) {
-			return new WP_Error( 'mvx_rest_cannot_view', __( 'Sorry, you cannot view this resource.', 'dc-woocommerce-multi-vendor' ), array( 'status' => rest_authorization_required_code() ) );
+			return new WP_Error( 'mvx_rest_cannot_view', __( 'Sorry, you cannot view this resource.', 'multivendorx' ), array( 'status' => rest_authorization_required_code() ) );
 		}
 		return true;
 	}
@@ -155,7 +155,7 @@ class MVX_REST_API_Vendor_Reviews_Controller extends WC_REST_Controller {
 	public function create_item_permissions_check( $request ) {
 		$vendor_id = isset($request['vendor_id']) ? (int) $request['vendor_id'] : 0;
 		if ( !is_user_mvx_vendor( $vendor_id ) ) {
-			return new WP_Error( 'mvx_rest_cannot_create', __( 'Sorry, you are not allowed to create resources.', 'dc-woocommerce-multi-vendor' ), array( 'status' => rest_authorization_required_code() ) );
+			return new WP_Error( 'mvx_rest_cannot_create', __( 'Sorry, you are not allowed to create resources.', 'multivendorx' ), array( 'status' => rest_authorization_required_code() ) );
 		}
 		return true;
 	}
@@ -169,7 +169,7 @@ class MVX_REST_API_Vendor_Reviews_Controller extends WC_REST_Controller {
 	public function update_item_permissions_check( $request ) {
 		$vendor_id = isset($request['vendor_id']) ? (int) $request['vendor_id'] : 0;
 		if ( !is_user_mvx_vendor( $vendor_id ) ) {
-			return new WP_Error( 'mvx_rest_cannot_edit', __( 'Sorry, you cannot edit this resource.', 'dc-woocommerce-multi-vendor' ), array( 'status' => rest_authorization_required_code() ) );
+			return new WP_Error( 'mvx_rest_cannot_edit', __( 'Sorry, you cannot edit this resource.', 'multivendorx' ), array( 'status' => rest_authorization_required_code() ) );
 		}
 		return true;
 	}
@@ -183,7 +183,7 @@ class MVX_REST_API_Vendor_Reviews_Controller extends WC_REST_Controller {
 	public function delete_item_permissions_check( $request ) {
 		$vendor_id = isset($request['vendor_id']) ? (int) $request['vendor_id'] : 0;
 		if ( !is_user_mvx_vendor( $vendor_id ) ) {
-			return new WP_Error( 'mvx_rest_cannot_edit', __( 'Sorry, you cannot delete this resource.', 'dc-woocommerce-multi-vendor' ), array( 'status' => rest_authorization_required_code() ) );
+			return new WP_Error( 'mvx_rest_cannot_edit', __( 'Sorry, you cannot delete this resource.', 'multivendorx' ), array( 'status' => rest_authorization_required_code() ) );
 		}
 		return true;
 	}
@@ -209,7 +209,7 @@ class MVX_REST_API_Vendor_Reviews_Controller extends WC_REST_Controller {
 		$vendor_id = isset($request['vendor_id']) ? (int) $request['vendor_id'] : 0;
 
 		if ( !is_user_mvx_vendor( $vendor_id ) ) {
-			return new WP_Error( 'mvx_rest_vendor_invalid_id', __( 'Invalid Vendor ID.', 'dc-woocommerce-multi-vendor' ), array( 'status' => 404 ) );
+			return new WP_Error( 'mvx_rest_vendor_invalid_id', __( 'Invalid Vendor ID.', 'multivendorx' ), array( 'status' => 404 ) );
 		}
 
 		$vendor_term_id = get_user_meta( $request['vendor_id'], '_vendor_term_id', true );
@@ -277,13 +277,13 @@ class MVX_REST_API_Vendor_Reviews_Controller extends WC_REST_Controller {
 		$vendor_id = isset($request['vendor_id']) ? (int) $request['vendor_id'] : 0;
 		//return if not a vendor
 		if ( !is_user_mvx_vendor( $vendor_id ) ) {
-			return new WP_Error( 'mvx_rest_vendor_invalid_id', __( 'Invalid Vendor ID.', 'dc-woocommerce-multi-vendor' ), array( 'status' => 404 ) );
+			return new WP_Error( 'mvx_rest_vendor_invalid_id', __( 'Invalid Vendor ID.', 'multivendorx' ), array( 'status' => 404 ) );
 		}
 		$review = get_comment( $id );
 		$comment_vendor_id = get_comment_meta($id, 'vendor_rating_id', true);
 
 		if ( empty( $id ) || empty( $review ) || intval( $comment_vendor_id ) !== $vendor_id ) {
-			return new WP_Error( 'mvx_rest_invalid_id', __( 'Invalid resource ID.', 'dc-woocommerce-multi-vendor' ), array( 'status' => 404 ) );
+			return new WP_Error( 'mvx_rest_invalid_id', __( 'Invalid resource ID.', 'multivendorx' ), array( 'status' => 404 ) );
 		}
 
 		$delivery = $this->prepare_item_for_response( $review, $request );
@@ -314,7 +314,7 @@ class MVX_REST_API_Vendor_Reviews_Controller extends WC_REST_Controller {
 	public function create_item( $request ) {
 		$vendor_id = isset($request['vendor_id']) ? (int) $request['vendor_id'] : 0;
 		if ( !is_user_mvx_vendor( $vendor_id ) ) {
-			return new WP_Error( 'mvx_rest_vendor_invalid_id', __( 'Invalid Vendor ID.', 'dc-woocommerce-multi-vendor' ), array( 'status' => 404 ) );
+			return new WP_Error( 'mvx_rest_vendor_invalid_id', __( 'Invalid Vendor ID.', 'multivendorx' ), array( 'status' => 404 ) );
 		}
 
 		$userdata = false;
@@ -323,12 +323,12 @@ class MVX_REST_API_Vendor_Reviews_Controller extends WC_REST_Controller {
 		} elseif ( !empty( $request['user_id'] ) ) {
 			$userdata = get_user_by("ID", $request['user_id']);
 		} else {
-			return new WP_Error( 'mvx_rest_empty_user', __( 'Email or user Id must required.', 'dc-woocommerce-multi-vendor' ), array( 'status' => 404 ) );
+			return new WP_Error( 'mvx_rest_empty_user', __( 'Email or user Id must required.', 'multivendorx' ), array( 'status' => 404 ) );
 		}
 		if($userdata === false) {
-			return new WP_Error( 'mvx_rest_user_not_exists', __( 'User email / UserId does not exists.', 'dc-woocommerce-multi-vendor' ), array( 'status' => 404 ) );
+			return new WP_Error( 'mvx_rest_user_not_exists', __( 'User email / UserId does not exists.', 'multivendorx' ), array( 'status' => 404 ) );
 		} elseif (!empty( $request['user_id'] ) && $request['user_id'] != $userdata->ID) {
-			return new WP_Error( 'mvx_rest_validate_user_with_email', __( 'User Id not match with email.', 'dc-woocommerce-multi-vendor' ), array( 'status' => 404 ) );
+			return new WP_Error( 'mvx_rest_validate_user_with_email', __( 'User Id not match with email.', 'multivendorx' ), array( 'status' => 404 ) );
 		}
 
 		$prepared_review = $this->prepare_item_for_database( $request );
@@ -345,7 +345,7 @@ class MVX_REST_API_Vendor_Reviews_Controller extends WC_REST_Controller {
 
 		$vendor_review_id = wp_insert_comment( $prepared_review );
 		if ( ! $vendor_review_id ) {
-			return new WP_Error( 'rest_vendor_review_failed_create', __( 'Creating vendor review failed.', 'dc-woocommerce-multi-vendor' ), array( 'status' => 500 ) );
+			return new WP_Error( 'rest_vendor_review_failed_create', __( 'Creating vendor review failed.', 'multivendorx' ), array( 'status' => 500 ) );
 		}
 
 		update_comment_meta( $vendor_review_id, 'vendor_rating', ( ! empty( $request['vendor_rating'] ) ? $request['vendor_rating'] : '0' ) );
@@ -398,11 +398,11 @@ class MVX_REST_API_Vendor_Reviews_Controller extends WC_REST_Controller {
 		$vendor_id        = isset($request['vendor_id']) ? (int) $request['vendor_id'] : 0;
 
 		if ( !is_user_mvx_vendor( $vendor_id ) ) {
-			return new WP_Error( 'mvx_rest_vendor_invalid_id', __( 'Invalid vendor ID.', 'dc-woocommerce-multi-vendor' ), array( 'status' => 404 ) );
+			return new WP_Error( 'mvx_rest_vendor_invalid_id', __( 'Invalid vendor ID.', 'multivendorx' ), array( 'status' => 404 ) );
 		}
 		
 		if ( !empty( $request['user_url'] ) || !empty( $request['name'] ) || !empty( $request['user_id'] ) || !empty( $request['email'] ) ) {
-			return new WP_Error( 'mvx_rest_vendor_review_update', __( 'You can not change url,name,user id and email ', 'dc-woocommerce-multi-vendor' ), array( 'status' => 404 ) );
+			return new WP_Error( 'mvx_rest_vendor_review_update', __( 'You can not change url,name,user id and email ', 'multivendorx' ), array( 'status' => 404 ) );
 		}
 
 
@@ -410,14 +410,14 @@ class MVX_REST_API_Vendor_Reviews_Controller extends WC_REST_Controller {
 		$comment_vendor_id = get_comment_meta($vendor_review_id, 'vendor_rating_id', true);
 
 		if ( empty( $vendor_review_id ) || empty( $review ) || intval( $comment_vendor_id ) !== $vendor_id ) {
-			return new WP_Error( 'mvx_rest_vendor_review_invalid_id', __( 'Invalid resource ID.', 'dc-woocommerce-multi-vendor' ), array( 'status' => 404 ) );
+			return new WP_Error( 'mvx_rest_vendor_review_invalid_id', __( 'Invalid resource ID.', 'multivendorx' ), array( 'status' => 404 ) );
 		}
 
 		$prepared_review = $this->prepare_item_for_database( $request );
 
 		$updated = wp_update_comment( $prepared_review );
 		if ( 0 === $updated ) {
-			return new WP_Error( 'rest_vendor_review_failed_edit', __( 'Updating vendor review failed.', 'dc-woocommerce-multi-vendor' ), array( 'status' => 500 ) );
+			return new WP_Error( 'rest_vendor_review_failed_edit', __( 'Updating vendor review failed.', 'multivendorx' ), array( 'status' => 500 ) );
 		}
 
 		if ($request['rating'] && !empty($request['rating'])) {
@@ -457,7 +457,7 @@ class MVX_REST_API_Vendor_Reviews_Controller extends WC_REST_Controller {
 
 		$vendor_review = get_comment( $vendor_review_id );
 		if ( empty( $vendor_review_id ) || empty( $vendor_review->comment_ID ) || empty( $vendor_review->comment_post_ID ) ) {
-			return new WP_Error( 'mvx_rest_vendor_review_invalid_id', __( 'Invalid vendor review ID.', 'dc-woocommerce-multi-vendor' ), array( 'status' => 404 ) );
+			return new WP_Error( 'mvx_rest_vendor_review_invalid_id', __( 'Invalid vendor review ID.', 'multivendorx' ), array( 'status' => 404 ) );
 		}
 
 		/**
@@ -477,18 +477,18 @@ class MVX_REST_API_Vendor_Reviews_Controller extends WC_REST_Controller {
 			$result = wp_delete_comment( $vendor_review_id, true );
 		} else {
 			if ( ! $supports_trash ) {
-				return new WP_Error( 'rest_trash_not_supported', __( 'The vendor review does not support trashing.', 'dc-woocommerce-multi-vendor' ), array( 'status' => 501 ) );
+				return new WP_Error( 'rest_trash_not_supported', __( 'The vendor review does not support trashing.', 'multivendorx' ), array( 'status' => 501 ) );
 			}
 
 			if ( 'trash' === $vendor_review->comment_approved ) {
-				return new WP_Error( 'rest_already_trashed', __( 'The comment has already been trashed.', 'dc-woocommerce-multi-vendor' ), array( 'status' => 410 ) );
+				return new WP_Error( 'rest_already_trashed', __( 'The comment has already been trashed.', 'multivendorx' ), array( 'status' => 410 ) );
 			}
 
 			$result = wp_trash_comment( $vendor_review->comment_ID );
 		}
 
 		if ( ! $result ) {
-			return new WP_Error( 'rest_cannot_delete', __( 'The vendor review cannot be deleted.', 'dc-woocommerce-multi-vendor' ), array( 'status' => 500 ) );
+			return new WP_Error( 'rest_cannot_delete', __( 'The vendor review cannot be deleted.', 'multivendorx' ), array( 'status' => 500 ) );
 		}
 
 		/**
@@ -623,44 +623,44 @@ class MVX_REST_API_Vendor_Reviews_Controller extends WC_REST_Controller {
 			'type'       => 'object',
 			'properties' => array(
 				'id' => array(
-					'description' => __( 'Unique identifier for the resource.', 'dc-woocommerce-multi-vendor' ),
+					'description' => __( 'Unique identifier for the resource.', 'multivendorx' ),
 					'type'        => 'integer',
 					'context'     => array( 'view', 'edit' ),
 					'readonly'    => true,
 				),
 				'review_content' => array(
-					'description' => __( 'The content of the review.', 'dc-woocommerce-multi-vendor' ),
+					'description' => __( 'The content of the review.', 'multivendorx' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
 				),
 				'review_rating' => array(
-					'description' => __( 'Review rating (0 to 5).', 'dc-woocommerce-multi-vendor' ),
+					'description' => __( 'Review rating (0 to 5).', 'multivendorx' ),
 					'type'        => 'integer',
 					'context'     => array( 'view', 'edit' ),
 				),
 				'reviewer_id' => array(
-					'description' => __( "The date the review was created, in the site's timezone.", 'dc-woocommerce-multi-vendor' ),
+					'description' => __( "The date the review was created, in the site's timezone.", 'multivendorx' ),
 					'type'        => 'date-time',
 					'context'     => array( 'view', 'edit' ),
 				),
 				'reviewer_name' => array(
-					'description' => __( 'Reviewer name.', 'dc-woocommerce-multi-vendor' ),
+					'description' => __( 'Reviewer name.', 'multivendorx' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
 				),
 				'reviewer_email' => array(
-					'description' => __( 'Reviewer email.', 'dc-woocommerce-multi-vendor' ),
+					'description' => __( 'Reviewer email.', 'multivendorx' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
 				),
 				'reviewer_verified' => array(
-					'description' => __( 'Shows if the reviewer bought from the vendor or not.', 'dc-woocommerce-multi-vendor' ),
+					'description' => __( 'Shows if the reviewer bought from the vendor or not.', 'multivendorx' ),
 					'type'        => 'boolean',
 					'context'     => array( 'view', 'edit' ),
 					'readonly'    => true,
 				),
 				'date_created' => array(
-					'description' => __( "The date the review was created, in the site's timezone.", 'dc-woocommerce-multi-vendor' ),
+					'description' => __( "The date the review was created, in the site's timezone.", 'multivendorx' ),
 					'type'        => 'date-time',
 					'context'     => array( 'view', 'edit' ),
 				),

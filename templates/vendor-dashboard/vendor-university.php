@@ -50,7 +50,7 @@ $count_university = count($university_posts);
     ?>
 <?php
 if ($count_university == 0) {
-    echo '<div class="panel panel-default panel-pading text-center empty-panel">' . __('Sorry no knowledgebase found', 'dc-woocommerce-multi-vendor') . "</div>";
+    echo '<div class="panel panel-default panel-pading text-center empty-panel">' . __('Sorry no knowledgebase found', 'multivendorx') . "</div>";
 }
 ?>
 </div>

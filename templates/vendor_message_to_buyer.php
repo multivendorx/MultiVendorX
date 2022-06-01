@@ -23,34 +23,34 @@ global $MVX;
             $vendor_message_to_buyer = apply_filters('mvx_display_vendor_message_to_buyer', get_user_meta($vendor_id, '_vendor_message_to_buyers', true), $vendor_id);
             if ($cc == 0) { ?>
                 <tr>
-                    <th style="padding:10px 10px; background:none; border-right: 1px solid #e4e4e4; border-bottom: 1px solid #e4e4e4; width:50%;" align="left" valign="top"><?php echo esc_html_e('Vendor Details', 'dc-woocommerce-multi-vendor'); ?></th>
+                    <th style="padding:10px 10px; background:none; border-right: 1px solid #e4e4e4; border-bottom: 1px solid #e4e4e4; width:50%;" align="left" valign="top"><?php echo esc_html_e('Vendor Details', 'multivendorx'); ?></th>
                     <?php if( $vendor_message_to_buyer ) { ?>    
-                        <th style="padding:10px 10px;width: 50%; border-bottom: 1px solid #e4e4e4;  background:none;" align="left" valign="top"><?php echo esc_html_e('Message', 'dc-woocommerce-multi-vendor'); ?></th>
+                        <th style="padding:10px 10px;width: 50%; border-bottom: 1px solid #e4e4e4;  background:none;" align="left" valign="top"><?php echo esc_html_e('Message', 'multivendorx'); ?></th>
                     <?php } ?>
                 </tr>
             <?php } ?>
             <tr>
                 <td style="padding:10px 10px; background:none; border-right: 1px solid #e4e4e4; border-bottom: 1px solid #e4e4e4; width:50%;" align="left" valign="top">
-                    <p><strong><?php echo esc_html_e('Vendor Name', 'dc-woocommerce-multi-vendor'); ?> </strong><br>
+                    <p><strong><?php echo esc_html_e('Vendor Name', 'multivendorx'); ?> </strong><br>
                      <?php echo $vendor->page_title; ?> </p>
-                    <p><strong><?php echo esc_html_e('Product Name', 'dc-woocommerce-multi-vendor'); ?> </strong><br>
+                    <p><strong><?php echo esc_html_e('Product Name', 'multivendorx'); ?> </strong><br>
                     <?php echo esc_html($products); ?>
                     </p>
                     <?php if (get_mvx_vendor_settings('is_customer_support_details', 'settings_general')) {
                             if( isset( $vendor_meta['_vendor_customer_email'][0] ) || isset( $vendor_meta['_vendor_customer_phone'][0] ) ) { ?>
-                                <p style="border-bottom:1px solid #eeeeee; padding-bottom:10px"> <strong><?php echo esc_html_e('Customer Support Details', 'dc-woocommerce-multi-vendor'); ?></strong></p>
+                                <p style="border-bottom:1px solid #eeeeee; padding-bottom:10px"> <strong><?php echo esc_html_e('Customer Support Details', 'multivendorx'); ?></strong></p>
                             <?php } ?>
                             <?php if (isset($vendor_meta['_vendor_customer_email'][0])) { ?>
-                                <p><strong><?php echo esc_html_e('Email : ', 'dc-woocommerce-multi-vendor'); ?></strong><br>
+                                <p><strong><?php echo esc_html_e('Email : ', 'multivendorx'); ?></strong><br>
                                     <a style="color:#505050;font-weight:normal;text-decoration:underline" href="mailto:<?php echo esc_html($vendor_meta['_vendor_customer_email'][0]); ?>" target="_blank"><?php echo esc_html($vendor_meta['_vendor_customer_email'][0]); ?></a>
                                 </p>
                             <?php } ?>
                             <?php if (isset($vendor_meta['_vendor_customer_phone'][0])) { ?>
-                                    <p><strong><?php echo esc_html_e('Phone : ', 'dc-woocommerce-multi-vendor'); ?></strong> <br>
+                                    <p><strong><?php echo esc_html_e('Phone : ', 'multivendorx'); ?></strong> <br>
                                     <?php echo esc_html($vendor_meta['_vendor_customer_phone'][0]); ?></p>
                             <?php } ?>
                             <?php if( isset( $vendor_meta['_vendor_csd_return_address1'][0] ) || isset( $vendor_meta['_vendor_csd_return_city'][0] ) || isset( $vendor_meta['_vendor_csd_return_country'][0] ) ) { ?>
-                                <p><strong><?php echo esc_html_e('Return Address ', 'dc-woocommerce-multi-vendor'); ?></strong></p>
+                                <p><strong><?php echo esc_html_e('Return Address ', 'multivendorx'); ?></strong></p>
                             <?php } ?>
                             <p>
                                 <?php if (isset($vendor_meta['_vendor_csd_return_address1'][0])) {
@@ -69,20 +69,20 @@ global $MVX;
                             </p>
                     <?php } else { ?>
                         <?php if( isset( $customer_support_details_settings['csd_email'] ) || isset( $customer_support_details_settings['csd_phone'] ) ) { ?>
-                                <p style="border-bottom:1px solid #eeeeee; padding-bottom:10px"> <strong><?php echo esc_html_e('Customer Support Details', 'dc-woocommerce-multi-vendor'); ?></strong></p>
+                                <p style="border-bottom:1px solid #eeeeee; padding-bottom:10px"> <strong><?php echo esc_html_e('Customer Support Details', 'multivendorx'); ?></strong></p>
                             <?php } ?>
                             <?php if (isset($customer_support_details_settings['csd_email'])) { ?>
-                                <p><strong><?php echo esc_html_e('Email : ', 'dc-woocommerce-multi-vendor'); ?></strong><br>
+                                <p><strong><?php echo esc_html_e('Email : ', 'multivendorx'); ?></strong><br>
                                     <a style="color:#505050;font-weight:normal;text-decoration:underline" href="mailto:<?php echo $customer_support_details_settings['csd_email']; ?>" target="_blank"><?php echo esc_html($customer_support_details_settings['csd_email']); ?></a>     
                                 </p>
                             <?php } ?>
                             <?php if (isset($customer_support_details_settings['csd_phone'])) { ?>
-                                    <p><strong><?php echo esc_html_e('Phone : ', 'dc-woocommerce-multi-vendor'); ?></strong> <br>
+                                    <p><strong><?php echo esc_html_e('Phone : ', 'multivendorx'); ?></strong> <br>
                                         <?php echo esc_html($customer_support_details_settings['csd_phone']); ?>
                                     </p>
                             <?php } ?>
                             <?php if( isset( $customer_support_details_settings['csd_return_address_1'] ) || isset( $customer_support_details_settings['csd_return_city'] ) || isset( $customer_support_details_settings['csd_return_country'] ) ) { ?>
-                                    <p><strong><?php echo esc_html_e('Return Address ', 'dc-woocommerce-multi-vendor'); ?></strong></p>
+                                    <p><strong><?php echo esc_html_e('Return Address ', 'multivendorx'); ?></strong></p>
                             <?php } ?>
                             <p>
                                 <?php if (isset($customer_support_details_settings['csd_return_address_1'])) { ?>

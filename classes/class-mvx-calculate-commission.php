@@ -233,7 +233,7 @@ class MVX_Calculate_Commission {
                         $commissions_refunded_total = $amount;
                         if( -($amount) != 0 ){
                             $comm_refunded_amt += $amount;
-                            $note = sprintf( __( 'Refunded %s from commission', 'dc-woocommerce-multi-vendor' ), wc_price( abs( $amount ) ) );
+                            $note = sprintf( __( 'Refunded %s from commission', 'multivendorx' ), wc_price( abs( $amount ) ) );
                             if($_refund_id == $refund_id){
                                 MVX_Commission::add_commission_note($commission_id, $note, $vendor_id);
                                 /**
@@ -445,7 +445,7 @@ class MVX_Calculate_Commission {
         }
         $commission_data = array(
             'post_type' => 'dc_commission',
-            'post_title' => sprintf(__('Commission - %s', 'dc-woocommerce-multi-vendor'), strftime(_x('%B %e, %Y @ %I:%M %p', 'Commission date parsed by strftime', 'dc-woocommerce-multi-vendor'), current_time('timestamp'))),
+            'post_title' => sprintf(__('Commission - %s', 'multivendorx'), strftime(_x('%B %e, %Y @ %I:%M %p', 'Commission date parsed by strftime', 'multivendorx'), current_time('timestamp'))),
             'post_status' => 'private',
             'ping_status' => 'closed',
             'post_excerpt' => '',
