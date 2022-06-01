@@ -622,35 +622,28 @@ class App extends React.Component {
 
     return (
       user_query.get("ID") ?
-      <TabSection
-        model={appLocalizer.mvx_all_backend_tab_list['marketplace-vendors']}
-        query_name={user_query}
-        funtion_name={this}
-
-        vendor
-      />
+        <TabSection
+          model={appLocalizer.mvx_all_backend_tab_list['marketplace-vendors']}
+          query_name={user_query}
+          funtion_name={this}
+          vendor
+        />
       :
+      user_query.get("name") == "add_new" ?
+        
+        <TabSection
+          model={appLocalizer.settings_fields['vendor_add_personal']}
+          query_name={user_query.get("name")}
+          funtion_name={this}
+          default_vendor_funtion
+          no_tabs
+        />
+      
+      :
+
       <div className="mvx-general-wrapper mvx-vendor">
         <HeaderSection />
         <div className="mvx-container mvx-vendor-page-container">
-          {user_query.get("name") == "add_new" ? (
-            
-
-
-            <TabSection
-              model={appLocalizer.settings_fields['vendor_add_personal']}
-              query_name={user_query.get("name")}
-              funtion_name={this}
-              default_vendor_funtion
-              no_banner
-              no_header
-              no_tabs
-            />
-
-
-          ) : (
-            ""
-          )}
 
           {!user_query.get("ID") ? (
             user_query.get("name") == "add_new" ? (
@@ -975,9 +968,7 @@ class App extends React.Component {
     return (
         appLocalizer.mvx_all_backend_tab_list["marketplace-vendors"].map(
           (data, index) => (
-            <div className="mvx-marketplace-vendors-container">
-              {data.modulename == name.get("name") ? (
-                
+              data.modulename == name.get("name") ? (
                 name.get("name") == "vendor-application" ? (
                   
                 <div className="mvx-vendor-application-content">
@@ -1550,8 +1541,7 @@ class App extends React.Component {
                 )
               ) : (
                 ""
-              )}
-            </div>
+              )
           )
         )
     );

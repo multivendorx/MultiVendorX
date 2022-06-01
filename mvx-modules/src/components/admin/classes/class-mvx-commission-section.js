@@ -1257,11 +1257,7 @@ class App extends Component {
             {/* Commission vendor and order details end*/}
           </div>
 
-          <div className="mvx-adv-image-display">
-            <a href="https://www.qries.com/" target="__blank">
-              <img alt="Multivendor X" src={appLocalizer.multivendor_logo} />
-            </a>
-          </div>
+          <BannerSection />
         </div>
     ) : (
       ""

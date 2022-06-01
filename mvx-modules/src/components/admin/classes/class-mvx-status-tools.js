@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import axios from 'axios';
-import Select from 'react-select';
-import RingLoader from "react-spinners/RingLoader";
 import { css } from "@emotion/react";
 import PuffLoader from "react-spinners/PuffLoader";
 
@@ -15,27 +13,7 @@ import {
   NavLink
 } from "react-router-dom";
 
-import DynamicForm from "../../../DynamicForm";
-
-import DataTable from 'react-data-table-component';
-
-
-import HeaderSection from './class-mvx-page-header';
-import BannerSection from './class-mvx-page-banner';
 import TabSection from './class-mvx-page-tab';
-import {
-    LineChart,
-    ResponsiveContainer,
-    Legend, Tooltip,
-    Line,
-    XAxis,
-    YAxis,
-    CartesianGrid,
-    BarChart,
-    Bar
-} from 'recharts';
-
-import { CSVLink } from "react-csv";
 
 const override = css`
   display: block;
@@ -52,19 +30,11 @@ class App extends Component {
       store_index_data: [],
     };
 
-    this.query = null;
-    // when click on checkbox
-
     this.QueryParamsDemo = this.QueryParamsDemo.bind(this);
-
     this.useQuery = this.useQuery.bind(this);
-
     this.Child = this.Child.bind(this);
-
     this.handle_tools_triggers = this.handle_tools_triggers.bind(this);
-
     this.open_closed_system_info = this.open_closed_system_info.bind(this);
-    
   }
 
   open_closed_system_info(e, index, parent_index) {
@@ -87,15 +57,10 @@ class App extends Component {
       }
     })
     .then( ( responce ) => {
-      /*this.setState({
-        list_of_store_review: responce.data,
-      }); */ 
-      
       if (responce.data.redirect_link) {
         window.location.href = responce.data.redirect_link;
       }
-
-    } );
+    });
   }
 
   componentDidMount() {
@@ -103,22 +68,16 @@ class App extends Component {
     `${appLocalizer.apiUrl}/mvx_module/v1/fetch_system_info`
     )
     .then(response => {
-
       var store_index_data = [];
       if (response.data) {
         Object.entries(response.data).map((list_data, index_data) => 
           store_index_data[index_data] = 'false'
         )
       }
-
-        this.setState({
-          list_of_system_info: response.data,
-          store_index_data: store_index_data
-        });
-
-
-
-      
+      this.setState({
+        list_of_system_info: response.data,
+        store_index_data: store_index_data
+      });
     })
 
     axios.get(
@@ -150,55 +109,38 @@ class App extends Component {
 
 Child({ name }) {
   return (
-    <div>
-
-
-      
-
-      {
         name = !name ? appLocalizer.mvx_all_backend_tab_list['status-tools'][0]['modulename'] : name,
-
         name == 'version-control' ?
-          
-            <div className="mvx-status-tools-content">
+          <div className="mvx-status-tools-content">
+            <form>
+              <header>
+                <h3>Rollback to Previous Version</h3>
+              </header>
+              <p>If you are facing issues after an update, you can reinstall a previous version with this tool</p>
+              <p className="description warning"><strong>Warning Previous versions may not be secure or stable. Proceed with caution and always create a backup<span className="warning"></span></strong></p>
 
-              <form>
-                <header>
-                  <h3>Rollback to Previous Version</h3>
-                </header>
-
-                <p>If you are facing issues after an update, you can reinstall a previous version with this tool</p>
+            <table className="form-table">
+              <tbody>
+                <tr>
+                <th scope="row"><label>Your Version</label></th>
+                  <td>
                   
-                <p className="description warning"><strong>Warning Previous versions may not be secure or stable. Proceed with caution and always create a backup<span class="warning"></span></strong></p>
-
-
-              <table className="form-table">
-                <tbody>
-                  <tr>
-                  <th scope="row"><label>Your Version</label></th>
-                    <td>
-                    
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-
-              </form>
-
-            </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            </form>
+          </div>
 
             :
 
             name == appLocalizer.mvx_all_backend_tab_list['status-tools'][0]['modulename'] ?
 
             <div className="mvx-status-database-tools-content">
-              
               <div className="mvx-vendor-transients">
-
-              <div class="mvx-text-with-line-wrapper">
-                <div class="mvx-report-text w-100 mr-0"><span> WCMp vendors transients</span></div>
-              </div>
-
+                <div className="mvx-text-with-line-wrapper">
+                  <div className="mvx-report-text w-100 mr-0"><span> WCMp vendors transients</span></div>
+                </div>
                 <div className="mvx-vendor-transients-description">
                   This tool will clear all WCMp vendors transients cache.
                 </div>
@@ -208,8 +150,8 @@ Child({ name }) {
               </div>
 
               <div className="mvx-vendor-transients">
-                <div class="mvx-text-with-line-wrapper">
-                  <div class="mvx-report-text w-100 mr-0"><span>Reset visitors stats table</span></div>
+                <div className="mvx-text-with-line-wrapper">
+                  <div className="mvx-report-text w-100 mr-0"><span>Reset visitors stats table</span></div>
                 </div>
                 
                 <div className="mvx-vendor-transients-description">
@@ -221,8 +163,8 @@ Child({ name }) {
               </div>
 
               <div className="mvx-vendor-transients">
-                <div class="mvx-text-with-line-wrapper">
-                  <div class="mvx-report-text w-100 mr-0"><span>Force WCMp order migrate</span></div>
+                <div className="mvx-text-with-line-wrapper">
+                  <div className="mvx-report-text w-100 mr-0"><span>Force WCMp order migrate</span></div>
                 </div>
                 
                 <div className="mvx-vendor-transients-description">
@@ -234,8 +176,8 @@ Child({ name }) {
               </div>
 
               <div className="mvx-vendor-transients">
-                <div class="mvx-text-with-line-wrapper">
-                  <div class="mvx-report-text w-100 mr-0"><span> Multivendor Migration</span></div>
+                <div className="mvx-text-with-line-wrapper">
+                  <div className="mvx-report-text w-100 mr-0"><span> Multivendor Migration</span></div>
                 </div>
                 
                 <div className="mvx-vendor-transients-description">
@@ -245,7 +187,6 @@ Child({ name }) {
                   <button type="button" className="btn border-btn" onClick={(e) => this.handle_tools_triggers(e, 'migrate')}>Multivendor migrate</button>
                 </div>
               </div>
-
             </div>
 
             :
@@ -253,8 +194,6 @@ Child({ name }) {
             name == appLocalizer.mvx_all_backend_tab_list['status-tools'][1]['modulename'] ?
             
             <div className="mvx-status-tools-content">
-
-
             <header>
               <h3>System Info</h3>
             </header>
@@ -306,10 +245,6 @@ Child({ name }) {
                 )) : ''
               }
 
-
-
-
-
               <header className='mt-24'>
                 <h3>Error Log</h3>
               </header>
@@ -326,17 +261,9 @@ Child({ name }) {
                   <span className="success hidden" aria-hidden="true">Copied!</span>
                 </div>
               </div>
-
               <textarea name="name" rows="16" cols="80" className="code large-text rank-math-code-box" disabled="disabled" id="rank-math-status-error-log">{appLocalizer.errors_log}</textarea>
-
-
             </div>
-
-            :
-
-            ''
-      }
-      </div>
+            : ''
   );
 }
 

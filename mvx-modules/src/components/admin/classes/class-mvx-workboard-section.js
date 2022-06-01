@@ -141,9 +141,6 @@ class App extends Component {
 
     };
 
-    this.query = null;
-    // when click on checkbox
-
     this.QueryParamsDemo = this.QueryParamsDemo.bind(this);
 
     this.useQuery = this.useQuery.bind(this);
@@ -1113,20 +1110,6 @@ class App extends Component {
 
   Child({ name }) {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     var get_current_name = this.useQuery();
 
 
@@ -1304,14 +1287,9 @@ class App extends Component {
     }
 
     return (
-      <div className='mvx-workboard-tab-wrapper'>
-        {
           name == 'activity-reminder' ?
 
             <div className="mvx-module-grid">
-
-
-
               {/* Pending Vendor's product approval work done */}
               <div className="mvx-todo-status-check">
 
@@ -1703,49 +1681,50 @@ class App extends Component {
             name == 'announcement' ?
               <div className="mvx-module-grid">
 
+                {get_current_name && get_current_name.get("create") == 'announcement' ?
+                <div className="mvx-table-text-and-add-wrap mvx-addbtn">
+                  <Link className="btn" to={`?page=mvx#&submenu=work-board&name=announcement`}>Back</Link>
+                </div>
+                :
                 <div className="mvx-table-text-and-add-wrap mvx-addbtn">
                   <Link className="btn" to={`?page=mvx#&submenu=work-board&name=announcement&create=announcement`}><i className="mvx-font icon-add"></i>Add Announcement</Link>
                 </div>
-
+                }  
 
 
                 {get_current_name && get_current_name.get("create") == 'announcement' ?
-
-                  <DynamicForm
-                    key={`dynamic-form-announcement-add-new`}
-                    className="mvx-announcement-add-new"
-                    title="Add new Announcement"
-                    model={appLocalizer.settings_fields['create_announcement']}
-                    method="post"
-                    modulename="create_announcement"
-                    url="mvx_module/v1/create_announcement"
-                    submit_title="Publish"
-                  />
+                    <DynamicForm
+                      key={`dynamic-form-announcement-add-new`}
+                      className="mvx-announcement-add-new"
+                      title="Add new Announcement"
+                      model={appLocalizer.settings_fields['create_announcement']}
+                      method="post"
+                      modulename="create_announcement"
+                      url="mvx_module/v1/create_announcement"
+                      submit_title="Publish"
+                    />
                   :
 
                   get_current_name.get("AnnouncementID") ?
 
                     this.state.edit_announcement_fileds && Object.keys(this.state.edit_announcement_fileds).length > 0 ?
-                      <DynamicForm
-                        key={`dynamic-form-announcement-add-new`}
-                        className="mvx-announcement-add-new"
-                        title="Update Announcement"
-                        model={this.state.edit_announcement_fileds['update_announcement_display']}
-                        method="post"
-                        announcement_id={get_current_name.get("AnnouncementID")}
-                        modulename="update_announcement"
-                        url="mvx_module/v1/update_announcement"
-                        submitbutton="false"
-                      />
+                        <DynamicForm
+                          key={`dynamic-form-announcement-add-new`}
+                          className="mvx-announcement-add-new"
+                          title="Update Announcement"
+                          model={this.state.edit_announcement_fileds['update_announcement_display']}
+                          method="post"
+                          announcement_id={get_current_name.get("AnnouncementID")}
+                          modulename="update_announcement"
+                          url="mvx_module/v1/update_announcement"
+                          submitbutton="false"
+                        />
                       : <PuffLoader css={override} color={"#3f1473"} size={100} loading={true} />
 
                     :
 
 
-                    <div>
-
-
-
+                    <div className="mvx-knowladgebase-different-funtionality">
 
                       <div className="mvx-search-and-multistatus-wrap mvx-row mvx-align-items-center mvx-justify-content-between mb-15">
 
@@ -1772,9 +1751,6 @@ class App extends Component {
                           </div>
                         </div>
 
-
-
-
                       </div>
 
                       <div className='mvx-wrap-bulk-all-date-sec'>
@@ -1788,9 +1764,6 @@ class App extends Component {
                         </div>
                       </div>
 
-
-
-
                       <div className="mvx-backend-datatable-wrapper">
                         {this.state.columns_announcement_new && this.state.columns_announcement_new.length > 0 ?
                           <DataTable
@@ -1803,10 +1776,6 @@ class App extends Component {
                           : ''}
                       </div>
 
-
-
-
-
                     </div>
                 }
               </div>
@@ -1817,44 +1786,48 @@ class App extends Component {
 
                 <div className="mvx-module-grid">
 
-
-                  <div className="mvx-table-text-and-add-wrap mvx-addbtn">
-                    <Link className="btn" to={`?page=mvx#&submenu=work-board&name=knowladgebase&create=knowladgebase`}><i className="mvx-font icon-add"></i>Add Knowladgebase</Link>
-                  </div>
+                  {get_current_name && get_current_name.get("create") == 'knowladgebase' ?
+                    <div className="mvx-table-text-and-add-wrap mvx-addbtn">
+                      <Link className="btn" to={`?page=mvx#&submenu=work-board&name=knowladgebase`}>Back</Link>
+                    </div>
+                    :
+                    <div className="mvx-table-text-and-add-wrap mvx-addbtn">
+                      <Link className="btn" to={`?page=mvx#&submenu=work-board&name=knowladgebase&create=knowladgebase`}><i className="mvx-font icon-add"></i>Add Knowladgebase</Link>
+                    </div>
+                  }
 
                   {get_current_name && get_current_name.get("create") == 'knowladgebase' ?
-
-                    <DynamicForm
-                      key={`dynamic-form-knowladgebase-add-new`}
-                      className="mvx-knowladgebase-add-new"
-                      title="Add new knowladgebase"
-                      model={appLocalizer.settings_fields['create_knowladgebase']}
-                      method="post"
-                      modulename="create_knowladgebase"
-                      url="mvx_module/v1/create_knowladgebase"
-                      submit_title="Publish"
-                    />
+                      <DynamicForm
+                        key={`dynamic-form-knowladgebase-add-new`}
+                        className="mvx-knowladgebase-add-new"
+                        title="Add new knowladgebase"
+                        model={appLocalizer.settings_fields['create_knowladgebase']}
+                        method="post"
+                        modulename="create_knowladgebase"
+                        url="mvx_module/v1/create_knowladgebase"
+                        submit_title="Publish"
+                      />
                     :
 
                     get_current_name.get("knowladgebaseID") ?
 
                       this.state.edit_knowledgebase_fileds && Object.keys(this.state.edit_knowledgebase_fileds).length > 0 ?
-                        <DynamicForm
-                          key={`dynamic-form-knowladgebase-add-new`}
-                          className="mvx-knowladgebase-add-new"
-                          title="Update Announcement"
-                          model={this.state.edit_knowledgebase_fileds['update_knowladgebase_display']}
-                          method="post"
-                          knowladgebase_id={get_current_name.get("knowladgebaseID")}
-                          modulename="update_knowladgebase"
-                          url="mvx_module/v1/update_knowladgebase"
-                          submitbutton="false"
-                        />
+                          <DynamicForm
+                            key={`dynamic-form-knowladgebase-add-new`}
+                            className="mvx-knowladgebase-add-new"
+                            title="Update Announcement"
+                            model={this.state.edit_knowledgebase_fileds['update_knowladgebase_display']}
+                            method="post"
+                            knowladgebase_id={get_current_name.get("knowladgebaseID")}
+                            modulename="update_knowladgebase"
+                            url="mvx_module/v1/update_knowladgebase"
+                            submitbutton="false"
+                          />
                         : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
 
                       :
 
-                      <div>
+                      <div className="mvx-knowladgebase-different-funtionality">
                         <div className="mvx-search-and-multistatus-wrap mvx-row mvx-align-items-center mvx-justify-content-between mb-15">
 
                           <div className='mvx-multistatus-sec'>
@@ -1935,7 +1908,6 @@ class App extends Component {
                           <label><i className='mvx-font icon-search'></i></label>
                           <input type="text" placeholder="Search Review" name="search" onChange={(e) => this.handle_search_vendor_review(e)} />
                         </div>
-
                       </div>
                     </div>
 
@@ -1948,8 +1920,8 @@ class App extends Component {
                       </div>
 
                       {/*<div className="mvx-wrap-date-action">
-              <Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_work_board_chenage} />
-            </div>*/}
+                        <Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_work_board_chenage} />
+                      </div>*/}
                     </div>
 
                     <div className="mvx-backend-datatable-wrapper">
@@ -1973,8 +1945,8 @@ class App extends Component {
 
                       <div className="mvx-wrap-bulk-all-date">
                         {/*<div className="mvx-wrap-bulk-action">
-            <Select placeholder="Bulk actions" options={appLocalizer.store_review_bulk} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_review_bulk_status} />
-          </div>*/}
+                          <Select placeholder="Bulk actions" options={appLocalizer.store_review_bulk} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_review_bulk_status} />
+                        </div>*/}
 
                         <div className="mvx-wrap-bulk-action">
                           <Select placeholder="Filter by vendor" options={this.state.show_vendor_name} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_vendor_search_abuse} />
@@ -2012,6 +1984,7 @@ class App extends Component {
                               </li>
 
                               <li class="mvx-multistatus-item mvx-divider"></li>
+
                               <li class="mvx-multistatus-item">
                                 <div class="mvx-multistatus-check-pending status-active">Pending ({this.state.list_of_pending_question.length})</div>
                               </li>
@@ -2025,8 +1998,6 @@ class App extends Component {
                             </div>
                           </div>
                         </div>
-
-
 
 
                         {/*<div className="mvx-wrap-bulk-all-date">
@@ -2049,13 +2020,8 @@ class App extends Component {
                             : ''}
                         </div>
                       </div>
+                      : ''
 
-                      :
-
-                      ''
-
-        }
-      </div>
     );
   }
 

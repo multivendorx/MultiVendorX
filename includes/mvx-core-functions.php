@@ -7207,7 +7207,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'type'      => 'url',
                     'label'     => __( 'Enter Url', 'dc-woocommerce-multi-vendor' ),
                     'props'     => array(
-                        'required'  => true
+                        //'required'  => true
                     ),
                     'database_value' => '',
                 ],
