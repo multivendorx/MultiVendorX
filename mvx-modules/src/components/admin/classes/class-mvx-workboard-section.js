@@ -670,74 +670,75 @@ class App extends Component {
 
   handle_user_request_by_vendors(e, id, type) {
     if (type == 'dismiss') {
-
-      axios({
-        method: 'post',
-        url: `${appLocalizer.apiUrl}/mvx_module/v1/dismiss_vendor`,
-        data: {
-          vendor_id: id
-        }
-      })
+      if (confirm("Are you sure to dismiss?")) {
+        axios({
+          method: 'post',
+          url: `${appLocalizer.apiUrl}/mvx_module/v1/dismiss_vendor`,
+          data: {
+            vendor_id: id
+          }
+        })
         .then((responce) => {
           this.setState({
             list_of_pending_vendor: responce.data,
           });
         });
+      }
 
     } else if (type == 'approve') {
-
-      axios({
-        method: 'post',
-        url: `${appLocalizer.apiUrl}/mvx_module/v1/approve_vendor`,
-        data: {
-          vendor_id: id
-        }
-      })
+      if (confirm("Are you sure to approve?")) {
+        axios({
+          method: 'post',
+          url: `${appLocalizer.apiUrl}/mvx_module/v1/approve_vendor`,
+          data: {
+            vendor_id: id
+          }
+        })
         .then((responce) => {
           this.setState({
             list_of_pending_vendor: responce.data,
           });
         });
-
+      }
     }
   }
 
 
   handle_product_request_by_vendors(e, product_id, vendor_id, type) {
     if (type == 'dismiss') {
-      axios({
-        method: 'post',
-        url: `${appLocalizer.apiUrl}/mvx_module/v1/dismiss_requested_vendors_query`,
-        data: {
-          product_id: product_id,
-          type: type,
-          vendor_id: vendor_id
-        }
-      })
+      if (confirm("Are you sure to dismiss?")) {
+        axios({
+          method: 'post',
+          url: `${appLocalizer.apiUrl}/mvx_module/v1/dismiss_requested_vendors_query`,
+          data: {
+            product_id: product_id,
+            type: type,
+            vendor_id: vendor_id
+          }
+        })
         .then((responce) => {
-
           this.setState({
             list_of_pending_vendor_product: responce.data,
           });
-
         });
+      }
     } else if (type == 'approve') {
-
-      axios({
-        method: 'post',
-        url: `${appLocalizer.apiUrl}/mvx_module/v1/approve_product`,
-        data: {
-          product_id: product_id,
-          type: type,
-          vendor_id: vendor_id
-        }
-      })
+      if (confirm("Are you sure to approve?")) {
+        axios({
+          method: 'post',
+          url: `${appLocalizer.apiUrl}/mvx_module/v1/approve_product`,
+          data: {
+            product_id: product_id,
+            type: type,
+            vendor_id: vendor_id
+          }
+        })
         .then((responce) => {
           this.setState({
             list_of_pending_vendor_product: responce.data,
           });
         });
-
+      }
     }
   }
 
@@ -1336,7 +1337,6 @@ class App extends Component {
                           </div>
                           <div className='mvx-white-box-footer'>
                             <div className='pull-left'>
-                              <a href={pending_data.coupon_url} className='link-icon'><i className="mvx-font icon-yes"></i></a>
                               <a href={pending_data.product_url} className="link-icon"><i className="mvx-font icon-edit"></i></a>
                               <div className="link-icon"><i className="mvx-font icon-approve" onClick={(e) => this.handle_product_request_by_vendors(e, pending_data.id, pending_data.vendor_id, 'approve')}></i></div>
                               <div className="link-icon"><i className="mvx-font icon-close" onClick={(e) => this.handle_product_request_by_vendors(e, pending_data.id, pending_data.vendor_id, 'dismiss')}></i></div>
@@ -1374,7 +1374,7 @@ class App extends Component {
                   </div>
                   <div className="mvx-select-all-bulk-wrap">
                     <div className="mvx-select-all-checkbox">
-                      <input type="checkbox" className="mvx-select-all" checked={this.state.pending_parent_product_check} onChange={(e) => this.handle_parent_todo_checkbox_chenage(e)} />
+                      <input type="checkbox" className="mvx-select-all" checked={this.state.pending_parent_user_check} onChange={(e) => this.handle_parent_user_todo_checkbox_chenage(e)} />
                       <span className="mvx-select-all-text">Select All</span>
                     </div>
                     <Select placeholder="Bulk Action" options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'product_approval')} />
@@ -1447,7 +1447,7 @@ class App extends Component {
                   </div>
                   <div className="mvx-select-all-bulk-wrap">
                     <div className="mvx-select-all-checkbox">
-                      <input type="checkbox" className="mvx-select-all" checked={this.state.pending_parent_product_check} onChange={(e) => this.handle_parent_todo_checkbox_chenage(e)} />
+                      <input type="checkbox" className="mvx-select-all" checked={this.state.pending_parent_coupon_check} onChange={(e) => this.handle_parent_coupon_todo_checkbox_chenage(e)} />
                       <span className="mvx-select-all-text">Select All</span>
                     </div>
                     <Select placeholder="Bulk Action" options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'product_approval')} />
@@ -1524,7 +1524,7 @@ class App extends Component {
                   </div>
                   <div className="mvx-select-all-bulk-wrap">
                     <div className="mvx-select-all-checkbox">
-                      <input type="checkbox" className="mvx-select-all" checked={this.state.pending_parent_product_check} onChange={(e) => this.handle_parent_todo_checkbox_chenage(e)} />
+                      <input type="checkbox" className="mvx-select-all" checked={this.state.pending_parent_transaction_check} onChange={(e) => this.handle_parent_transaction_todo_checkbox_chenage(e)} />
                       <span className="mvx-select-all-text">Select All</span>
                     </div>
                     <Select placeholder="Bulk Action" options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'product_approval')} />
@@ -1601,7 +1601,7 @@ class App extends Component {
                   </div>
                   <div className="mvx-select-all-bulk-wrap">
                     <div className="mvx-select-all-checkbox">
-                      <input type="checkbox" className="mvx-select-all" checked={this.state.pending_parent_product_check} onChange={(e) => this.handle_parent_todo_checkbox_chenage(e)} />
+                      <input type="checkbox" className="mvx-select-all" checked={this.state.pending_parent_question_check} onChange={(e) => this.handle_parent_question_todo_checkbox_chenage(e)} />
                       <span className="mvx-select-all-text">Select All</span>
                     </div>
                     <Select placeholder="Bulk Action" options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'product_approval')} />
