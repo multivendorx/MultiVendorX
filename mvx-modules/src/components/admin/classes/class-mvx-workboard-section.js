@@ -210,6 +210,44 @@ class App extends Component {
     this.handleAbuseDismiss = this.handleAbuseDismiss.bind(this);
     this.handle_question_delete = this.handle_question_delete.bind(this);
 
+    this.handle_transaction_request_by_vendors = this.handle_transaction_request_by_vendors.bind(this);
+    
+  }
+
+  handle_transaction_request_by_vendors(e, transaction_id, vendor_id, status) {
+    if (status == "dismiss") {
+      if (confirm("Are you sure to dismiss?")) {
+        axios({
+          method: 'post',
+          url: `${appLocalizer.apiUrl}/mvx_module/v1/approve_dismiss_pending_transaction`,
+          data: {
+            transaction_id: transaction_id,
+            vendor_id: vendor_id,
+            status: status
+          }
+        })
+        .then((responce) => {
+          this.setState({
+            list_of_pending_transaction: responce.data,
+          });
+        });
+      }
+    } else {
+      axios({
+          method: 'post',
+          url: `${appLocalizer.apiUrl}/mvx_module/v1/approve_dismiss_pending_question`,
+          data: {
+            transaction_id: transaction_id,
+            vendor_id: vendor_id,
+            status: status
+          }
+        })
+        .then((responce) => {
+          this.setState({
+            list_of_pending_transaction: responce.data,
+          });
+        });
+    }
   }
 
   handle_question_delete(e, question_id, product_id, type) {
@@ -459,11 +497,11 @@ class App extends Component {
           type: type
         }
       })
-        .then((responce) => {
-          this.setState({
-            list_of_pending_vendor_product: responce.data,
-          });
+      .then((responce) => {
+        this.setState({
+          list_of_pending_transaction: responce.data,
         });
+      });
 
     } else if (type == 'question_approval') {
 
@@ -1343,7 +1381,7 @@ class App extends Component {
                             </div>
 
                             <div className="pull-right">
-                              <div className='link-icon'><i className="mvx-font icon-download"></i></div>
+                              {/*<div className='link-icon'><i className="mvx-font icon-download"></i></div>*/}
                             </div>
 
                           </div>
@@ -1377,7 +1415,7 @@ class App extends Component {
                       <input type="checkbox" className="mvx-select-all" checked={this.state.pending_parent_user_check} onChange={(e) => this.handle_parent_user_todo_checkbox_chenage(e)} />
                       <span className="mvx-select-all-text">Select All</span>
                     </div>
-                    <Select placeholder="Bulk Action" options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'product_approval')} />
+                    <Select placeholder="Bulk Action" options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'user_approval')} />
                   </div>
                 </div>
 
@@ -1416,7 +1454,7 @@ class App extends Component {
                             </div>
 
                             <div className="pull-right">
-                              <div className='link-icon'><i className="mvx-font icon-download"></i></div>
+                              {/*<div className='link-icon'><i className="mvx-font icon-download"></i></div>*/}
                             </div>
 
                           </div>
@@ -1450,7 +1488,7 @@ class App extends Component {
                       <input type="checkbox" className="mvx-select-all" checked={this.state.pending_parent_coupon_check} onChange={(e) => this.handle_parent_coupon_todo_checkbox_chenage(e)} />
                       <span className="mvx-select-all-text">Select All</span>
                     </div>
-                    <Select placeholder="Bulk Action" options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'product_approval')} />
+                    <Select placeholder="Bulk Action" options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'coupon_approval')} />
                   </div>
                 </div>
 
@@ -1493,7 +1531,7 @@ class App extends Component {
                               <div className="mvx-left-icon link-icon"><i className="mvx-font icon-close" onClick={(e) => this.handle_coupon_request_by_vendors(e, pending_data.id, 'dismiss')}></i></div>
                             </div>
                             <div className="pull-right">
-                              <div className='link-icon'><i className="mvx-font icon-download"></i></div>
+                              {/*<div className='link-icon'><i className="mvx-font icon-download"></i></div>*/}
                             </div>
                           </div>
                         </div>
@@ -1527,7 +1565,7 @@ class App extends Component {
                       <input type="checkbox" className="mvx-select-all" checked={this.state.pending_parent_transaction_check} onChange={(e) => this.handle_parent_transaction_todo_checkbox_chenage(e)} />
                       <span className="mvx-select-all-text">Select All</span>
                     </div>
-                    <Select placeholder="Bulk Action" options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'product_approval')} />
+                    <Select placeholder="Bulk Action" options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'transaction_approval')} />
                   </div>
                 </div>
 
@@ -1540,34 +1578,44 @@ class App extends Component {
                       <div className='mvx-all-product-box'>
                         <div className='mvx-off-white-box'>
                           <div className='mvx-white-box-header'>
-                            Pending coupon
+                            Pending Transaction
                             <div className='pull-right'>
                               <input type="checkbox" className="mvx-workboard-checkbox" checked={this.state.pending_transaction_check[pending_index]} onChange={(e) => this.handle_todo_transaction_chenage(e, pending_data.id, pending_index)} />
                             </div>
                           </div>
                           <div className='mvx-white-box-body'>
-                            <div className='mvx-image-row mvx-box-content'>
-                              <div className='mvx-col-75 pl-0'>
-                                <span className='blue-txt'>{pending_data.coupon}</span>
-                              </div>
-                            </div>
+                            
                             <div className='mvx-vendor-row mvx-box-content name-txt'>
-                              <div className='mvx-product-title'>Name:</div>
-                              <div className='mvx-product-name'><a href="">{pending_data.coupon}</a></div>
+                              <div className='mvx-product-title'>Vendor Name:</div>
+                              <div className='mvx-product-name'><a href="">{pending_data.vendor}</a></div>
                             </div>
 
+                            <div className='mvx-vendor-row mvx-box-content name-txt'>
+                              <div className='mvx-product-title'>Commission:</div>
+                              <div className='mvx-product-name'><a href="">{pending_data.commission}</a></div>
+                            </div>
+
+                            <div className='mvx-vendor-row mvx-box-content name-txt'>
+                              <div className='mvx-product-title'>Amount:</div>
+                              <div className='mvx-product-name'><a href="">{pending_data.amount}</a></div>
+                            </div>
+
+                            <div className='mvx-vendor-row mvx-box-content name-txt'>
+                              <div className='mvx-product-title'>Account Detail:</div>
+                              <p ></p>
+                              <div className='mvx-product-name' dangerouslySetInnerHTML={{ __html: pending_data.account_details }}></div>
+                            </div>
 
                           </div>
                           <div className='mvx-white-box-footer'>
                             <div className='pull-left'>
 
-                              <div className="mvx-left-icon link-icon"><i className="mvx-font icon-edit"></i></div>
-                              <div className="mvx-left-icon link-icon"><i className="mvx-font icon-approve"></i></div>
-                              <div className="mvx-left-icon link-icon"><i className="mvx-font icon-close"></i></div>
+                              <div className="mvx-left-icon link-icon"><i className="mvx-font icon-approve" onClick={(e) => this.handle_transaction_request_by_vendors(e, pending_data.id, pending_data.vendor_id, 'transaction_done')}></i></div>
+                              <div className="mvx-left-icon link-icon"><i className="mvx-font icon-close" onClick={(e) => this.handle_transaction_request_by_vendors(e, pending_data.id, pending_data.vendor_id, 'dismiss')}></i></div>
                             </div>
 
                             <div className="pull-right">
-                              <div className='link-icon'><i className="mvx-font icon-download"></i></div>
+                              {/*<div className='link-icon'><i className="mvx-font icon-download"></i></div>*/}
                             </div>
                           </div>
                         </div>
@@ -1604,7 +1652,7 @@ class App extends Component {
                       <input type="checkbox" className="mvx-select-all" checked={this.state.pending_parent_question_check} onChange={(e) => this.handle_parent_question_todo_checkbox_chenage(e)} />
                       <span className="mvx-select-all-text">Select All</span>
                     </div>
-                    <Select placeholder="Bulk Action" options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'product_approval')} />
+                    <Select placeholder="Bulk Action" options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'question_approval')} />
                   </div>
                 </div>
 
@@ -1652,7 +1700,7 @@ class App extends Component {
                             </div>
 
                             <div className="pull-right">
-                              <div className='link-icon'><i className="mvx-font icon-download"></i></div>
+                              {/*<div className='link-icon'><i className="mvx-font icon-download"></i></div>*/}
                             </div>
 
                           </div>

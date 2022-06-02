@@ -725,6 +725,63 @@ class MVX_REST_API {
             'callback' => array( $this, 'mvx_list_vendor_roles_data' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
+
+        register_rest_route( 'mvx_module/v1', '/approve_dismiss_pending_transaction', [
+            'methods' => WP_REST_Server::EDITABLE,
+            'callback' => array( $this, 'mvx_approve_dismiss_pending_transaction' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+    }
+
+    public function mvx_approve_dismiss_pending_transaction($request) {
+        global $MVX;
+        $transaction_id = $request && $request->get_param('transaction_id') ? absint($request->get_param('transaction_id')) : 0;
+        $vendor_id = $request && $request->get_param('vendor_id') ? absint($request->get_param('vendor_id')) : 0;
+        $status = $request && $request->get_param('status') ? $request->get_param('status') : '';
+        if ($status == 'dismiss') {
+            update_post_meta($transaction_id, '_dismiss_to_do_list', 'true');
+            wp_update_post(array('ID' => $transaction_id, 'post_status' => 'mvx_canceled'));
+        } else {
+            $vendor = get_mvx_vendor_by_term( $vendor_id );
+            update_post_meta($transaction_id, 'paid_date', date("Y-m-d H:i:s"));
+            $commission_detail = get_post_meta($transaction_id, 'commission_detail', true);
+            if ($commission_detail && is_array($commission_detail)) {
+                foreach ($commission_detail as $commission_id) {
+                    mvx_paid_commission_status($commission_id);
+                    $withdrawal_total = MVX_Commission::commission_totals($commission_id, 'edit');
+                    $order_id = get_post_meta( $commission_id, '_commission_order_id', true );
+                    $args = array(
+                        'meta_query' => array(
+                            array(
+                                'key' => '_commission_vendor',
+                                'value' => absint($vendor->term_id),
+                                'compare' => '='
+                            ),
+                        ),
+                    );
+                    $unpaid_commission_total = MVX_Commission::get_commissions_total_data( $args, $vendor->id );
+                    $data = array(
+                        'vendor_id'     => $vendor->id,
+                        'order_id'      => $order_id,
+                        'ref_id'        => $transaction_id,
+                        'ref_type'      => 'withdrawal',
+                        'ref_info'      => sprintf(__('Withdrawal generated for Commission &ndash; #%s', 'dc-woocommerce-multi-vendor'), $commission_id),
+                        'ref_status'    => 'completed',
+                        'ref_updated'   => date('Y-m-d H:i:s', current_time('timestamp')),
+                        'debit'         => $withdrawal_total,
+                        'balance'       => $unpaid_commission_total['total'],
+                    );
+                    $data_store = $MVX->ledger->load_ledger_data_store();
+                    $ledger_id = $data_store->create($data);
+                }
+                $email_admin = WC()->mailer()->emails['WC_Email_Vendor_Commission_Transactions'];
+                $email_admin->trigger($transaction_id, $vendor_id);
+                update_post_meta($transaction_id, '_dismiss_to_do_list', 'true');
+                wp_update_post(array('ID' => $transaction_id, 'post_status' => 'mvx_completed'));
+                do_action( 'mvx_todo_done_pending_transaction', $transaction_id, $vendor );
+            }
+        }
+        return $this->mvx_list_of_pending_transaction();    
     }
 
     public function mvx_list_vendor_roles_data($request) {
@@ -1467,7 +1524,7 @@ class MVX_REST_API {
     // dissmiss pending user
     public function mvx_dismiss_vendor($request) {
         $vendor_id = $request && $request->get_param('vendor_id') ? $request->get_param('vendor_id') : 0;
-        update_post_meta($id, '_dismiss_to_do_list', 'true');
+        update_user_meta($vendor_id, '_dismiss_to_do_list', 'true');
         return $this->mvx_list_of_pending_vendor();
     }
 
@@ -1715,8 +1772,9 @@ class MVX_REST_API {
                     ), $currentvendor, $transaction);
 
                 $pending_list[] = array(
-                    'id'        =>  $currentvendor->id,
+                    'id'        =>  $transaction->ID,
                     'vendor'    =>  $vendor_term->name,
+                    'vendor_id'    =>  $vendor_term_id,
                     'commission'    =>  $transaction->post_title,
                     'amount'    =>  $amount,
                     'account_details'   =>  implode('<br/>', $address_array)

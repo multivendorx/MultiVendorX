@@ -14,8 +14,8 @@ exit;
 }
 global $woocommerce, $MVX;
 $get_vendor_thresold = 0;
-if (isset($MVX->vendor_caps->payment_cap['commission_threshold']) && $MVX->vendor_caps->payment_cap['commission_threshold']) {
-$get_vendor_thresold = $MVX->vendor_caps->payment_cap['commission_threshold'];
+if (get_mvx_vendor_settings( 'commission_threshold', 'disbursement' )) {
+$get_vendor_thresold = get_mvx_vendor_settings( 'commission_threshold', 'disbursement' );
 }
 $withdrawal_list_table_headers = apply_filters('mvx_datatable_vendor_withdrawal_list_table_headers', array(
     'select_withdrawal'  => array('label' => '', 'class' => 'text-center', 'orderable' => false),
@@ -26,7 +26,7 @@ $withdrawal_list_table_headers = apply_filters('mvx_datatable_vendor_withdrawal_
     'total'        => array('label' => __( 'Total', 'multivendorx' ), 'orderable' => false),
 ), get_current_user_id());
 ?>
-<?php if($get_vendor_thresold) : ?>
+<?php if ($get_vendor_thresold) : ?>
 <div class="col-md-12">
     <blockquote>
         <span><?php esc_html_e('Your Threshold value for withdrawals is :', 'multivendorx'); ?> <?php echo wc_price($get_vendor_thresold); ?></span>
@@ -42,12 +42,12 @@ $withdrawal_list_table_headers = apply_filters('mvx_datatable_vendor_withdrawal_
                     <thead>
                         <tr>
                         <?php 
-                            if($withdrawal_list_table_headers) :
+                            if ($withdrawal_list_table_headers) :
                                 foreach ($withdrawal_list_table_headers as $key => $header) {
-                                    if($key == 'select_withdrawal'){ ?>
-                            <th class="<?php if(isset($header['class'])) echo $header['class']; ?>"><input type="checkbox" class="select_all_withdrawal" onchange="toggleAllCheckBox(this, 'vendor_withdrawal');" /></th>
+                                    if ($key == 'select_withdrawal'){ ?>
+                            <th class="<?php if (isset($header['class'])) echo $header['class']; ?>"><input type="checkbox" class="select_all_withdrawal" onchange="toggleAllCheckBox(this, 'vendor_withdrawal');" /></th>
                                 <?php }else{ ?>
-                            <th class="<?php if(isset($header['class'])) echo $header['class']; ?>"><?php if(isset($header['label'])) echo $header['label']; ?></th>         
+                            <th class="<?php if (isset($header['class'])) echo $header['class']; ?>"><?php if (isset($header['label'])) echo $header['label']; ?></th>         
                                 <?php }
                                 }
                             endif;
@@ -60,12 +60,12 @@ $withdrawal_list_table_headers = apply_filters('mvx_datatable_vendor_withdrawal_
                 <div class="mvx_table_loader">
                     <input type="hidden" id="total_orders_count" value = "<?php echo count($vendor_unpaid_orders); ?>" />
                     <?php if (count($vendor_unpaid_orders) > 0) { 
-                        if (isset($MVX->vendor_caps->payment_cap['mvx_disbursal_mode_vendor']) && $MVX->vendor_caps->payment_cap['mvx_disbursal_mode_vendor'] == 'Enable') {
+                        if (get_mvx_vendor_settings( 'withdrawal_request', 'disbursement' )) {
                             $total_vendor_due = $vendor->mvx_vendor_get_total_amount_due();
                             
-                            if ( (isset($MVX->vendor_caps->payment_cap['commission_threshold']) && !empty($MVX->vendor_caps->payment_cap['commission_threshold']) && $total_vendor_due > $get_vendor_thresold ) 
-                                    || (isset($MVX->vendor_caps->payment_cap['commission_threshold']) && empty($MVX->vendor_caps->payment_cap['commission_threshold']) && $vendor_unpaid_orders ) 
-                                    || ( !isset($MVX->vendor_caps->payment_cap['commission_threshold']) && $vendor_unpaid_orders ) ){ ?>
+                            if ( (get_mvx_vendor_settings( 'commission_threshold', 'disbursement' ) && !empty(get_mvx_vendor_settings( 'commission_threshold', 'disbursement' )) && $total_vendor_due > $get_vendor_thresold ) 
+                                    || (get_mvx_vendor_settings( 'commission_threshold', 'disbursement' ) && empty(get_mvx_vendor_settings( 'commission_threshold', 'disbursement' )) && $vendor_unpaid_orders ) 
+                                    || ( !get_mvx_vendor_settings( 'commission_threshold', 'disbursement' ) && $vendor_unpaid_orders ) ){ ?>
                             <div class="mvx-action-container">
                                 <button name="vendor_get_paid" type="submit" class="btn btn-default"><?php _e('Request Withdrawals', 'multivendorx'); ?></button>
                             </div>
@@ -90,12 +90,12 @@ $withdrawal_list_table_headers = apply_filters('mvx_datatable_vendor_withdrawal_
 jQuery(document).ready(function($) {
     var vendor_withdrawal;
     var columns = [];
-    <?php if($withdrawal_list_table_headers) {
+    <?php if ($withdrawal_list_table_headers) {
      foreach ($withdrawal_list_table_headers as $key => $header) { ?>
         obj = {};
         obj['data'] = '<?php echo esc_js($key); ?>';
-        obj['className'] = '<?php if(isset($header['class'])) echo esc_js($header['class']); ?>';
-        obj['orderable'] = '<?php if(isset($header['orderable'])) echo esc_js($header['orderable']); ?>';
+        obj['className'] = '<?php if (isset($header['class'])) echo esc_js($header['class']); ?>';
+        obj['orderable'] = '<?php if (isset($header['orderable'])) echo esc_js($header['orderable']); ?>';
         columns.push(obj);
      <?php }
         } ?>
@@ -120,7 +120,7 @@ jQuery(document).ready(function($) {
         },
         drawCallback: function () {
             $('table.dataTable tr [type="checkbox"]').each(function(){
-                if($(this).prop('disabled')){
+                if ($(this).prop('disabled')){
                     $(this).css('cursor', 'not-allowed');
                     $(this).parents('tr[role="row"]').css('background-color', '#edf0f1');
                 }
