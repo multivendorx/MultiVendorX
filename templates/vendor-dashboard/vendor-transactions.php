@@ -14,12 +14,12 @@ if (!defined('ABSPATH')) {
 global $MVX;
 $transactions_list_table_headers = apply_filters('mvx_datatable_vendor_transactions_list_table_headers', array(
     'select_transaction'  => array('label' => '', 'class' => 'text-center'),
-    'date'      => array('label' => __( 'Date', 'dc-woocommerce-multi-vendor' )),
-    'order_id'  => array('label' => __( 'Order IDs', 'dc-woocommerce-multi-vendor' )),
-    'transaction_id'    => array('label' => __( 'Transc.ID', 'dc-woocommerce-multi-vendor' )),
-    'commission_ids'=> array('label' => __( 'Commission IDs', 'dc-woocommerce-multi-vendor' )),
-    'fees'  => array('label' => __( 'Fee', 'dc-woocommerce-multi-vendor' )),
-    'net_earning'        => array('label' => __( 'Net Earnings', 'dc-woocommerce-multi-vendor' )),
+    'date'      => array('label' => __( 'Date', 'multivendorx' )),
+    'order_id'  => array('label' => __( 'Order IDs', 'multivendorx' )),
+    'transaction_id'    => array('label' => __( 'Transc.ID', 'multivendorx' )),
+    'commission_ids'=> array('label' => __( 'Commission IDs', 'multivendorx' )),
+    'fees'  => array('label' => __( 'Fee', 'multivendorx' )),
+    'net_earning'        => array('label' => __( 'Net Earnings', 'multivendorx' )),
 ), get_current_user_id());
 ?>
 <div class="col-md-12">
@@ -33,7 +33,7 @@ $transactions_list_table_headers = apply_filters('mvx_datatable_vendor_transacti
                 <div class="form-group">
                     <input type="date" id="mvx_to_date" class="form-control" name="to_date" class="pickdate" placeholder="To" value ="<?php echo   date('Y-m-d'); ?>"/>
                 </div>
-                <button type="button" name="order_export_submit" id="do_filter"  class="btn btn-default" ><?php _e('Show', 'dc-woocommerce-multi-vendor') ?></button>
+                <button type="button" name="order_export_submit" id="do_filter"  class="btn btn-default" ><?php _e('Show', 'multivendorx') ?></button>
             </div>  
             <form method="post" name="export_transaction">
                 <div class="mvx_table_holder">
@@ -61,7 +61,7 @@ $transactions_list_table_headers = apply_filters('mvx_datatable_vendor_transacti
                 <div id="export_transaction_wrap" class="mvx-action-container mvx_table_loader" style="display: none;">
                     <input type="hidden" id="export_transaction_start_date" name="from_date" value="<?php echo date('Y-m-01'); ?>" />
                     <input id="export_transaction_end_date" type="hidden" name="to_date" value="<?php echo date('Y-m-d'); ?>" />
-                    <button type="submit" name="export_transaction" class="btn btn-default"><?php _e('Download CSV', 'dc-woocommerce-multi-vendor'); ?></button>
+                    <button type="submit" name="export_transaction" class="btn btn-default"><?php _e('Download CSV', 'multivendorx'); ?></button>
                     <div class="clear"></div>
                 </div>
             </form>
@@ -88,16 +88,16 @@ jQuery(document).ready(function($) {
         serverSide: true,
         responsive: true,
         language: {
-            "emptyTable": "<?php echo trim(__('Sorry. No transactions are available.','dc-woocommerce-multi-vendor')); ?>",
-            "processing": "<?php echo trim(__('Processing...', 'dc-woocommerce-multi-vendor')); ?>",
-            "info": "<?php echo trim(__('Showing _START_ to _END_ of _TOTAL_ transactions','dc-woocommerce-multi-vendor')); ?>",
-            "infoEmpty": "<?php echo trim(__('Showing 0 to 0 of 0 transactions','dc-woocommerce-multi-vendor')); ?>",
-            "lengthMenu": "<?php echo trim(__('Number of rows _MENU_','dc-woocommerce-multi-vendor')); ?>",
-            "zeroRecords": "<?php echo trim(__('No matching transactions found','dc-woocommerce-multi-vendor')); ?>",
-            "search": "<?php echo trim(__('Search:','dc-woocommerce-multi-vendor')); ?>",
+            "emptyTable": "<?php echo trim(__('Sorry. No transactions are available.','multivendorx')); ?>",
+            "processing": "<?php echo trim(__('Processing...', 'multivendorx')); ?>",
+            "info": "<?php echo trim(__('Showing _START_ to _END_ of _TOTAL_ transactions','multivendorx')); ?>",
+            "infoEmpty": "<?php echo trim(__('Showing 0 to 0 of 0 transactions','multivendorx')); ?>",
+            "lengthMenu": "<?php echo trim(__('Number of rows _MENU_','multivendorx')); ?>",
+            "zeroRecords": "<?php echo trim(__('No matching transactions found','multivendorx')); ?>",
+            "search": "<?php echo trim(__('Search:','multivendorx')); ?>",
             "paginate": {
-                "next":  "<?php echo trim(__('Next','dc-woocommerce-multi-vendor')); ?>",
-                "previous":  "<?php echo trim(__('Previous','dc-woocommerce-multi-vendor')); ?>"
+                "next":  "<?php echo trim(__('Next','multivendorx')); ?>",
+                "previous":  "<?php echo trim(__('Previous','multivendorx')); ?>"
             }
         },
         initComplete: function (settings, json) {
@@ -118,7 +118,7 @@ jQuery(document).ready(function($) {
                 data.to_date = $('#mvx_to_date').val();
             },
             error: function(xhr, status, error) {
-                $("#vendor_transactions tbody").append('<tr class="odd"><td valign="top" colspan="6" class="dataTables_empty" style="text-align:center;">'+error+' - <a href="javascript:window.location.reload();"><?php _e('Reload', 'dc-woocommerce-multi-vendor'); ?></a></td></tr>');
+                $("#vendor_transactions tbody").append('<tr class="odd"><td valign="top" colspan="6" class="dataTables_empty" style="text-align:center;">'+error+' - <a href="javascript:window.location.reload();"><?php _e('Reload', 'multivendorx'); ?></a></td></tr>');
                 $("#vendor_transactions_processing").css("display","none");
             }
         },

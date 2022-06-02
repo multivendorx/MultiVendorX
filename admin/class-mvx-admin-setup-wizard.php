@@ -48,68 +48,68 @@ class MVX_Admin_Setup_Wizard {
         }
         $default_steps = array(
             'introduction' => array(
-                'name' => __('Introduction', 'dc-woocommerce-multi-vendor'),
+                'name' => __('Introduction', 'multivendorx'),
                 'view' => array($this, 'mvx_setup_introduction'),
                 'handler' => '',
             ),
             'store' => array(
-                'name' => __('Store Setup', 'dc-woocommerce-multi-vendor'),
+                'name' => __('Store Setup', 'multivendorx'),
                 'view' => array($this, 'mvx_setup_store'),
                 'handler' => array($this, 'mvx_setup_store_save')
             ),
             'commission' => array(
-                'name' => __('Commission Setup', 'dc-woocommerce-multi-vendor'),
+                'name' => __('Commission Setup', 'multivendorx'),
                 'view' => array($this, 'mvx_setup_commission'),
                 'handler' => array($this, 'mvx_setup_commission_save')
             ),
             'payments' => array(
-                'name' => __('Payments', 'dc-woocommerce-multi-vendor'),
+                'name' => __('Payments', 'multivendorx'),
                 'view' => array($this, 'mvx_setup_payments'),
                 'handler' => array($this, 'mvx_setup_payments_save')
             ),
             'capability' => array(
-                'name' => __('Capability', 'dc-woocommerce-multi-vendor'),
+                'name' => __('Capability', 'multivendorx'),
                 'view' => array($this, 'mvx_setup_capability'),
                 'handler' => array($this, 'mvx_setup_capability_save')
             ),
-            'introduction_migration' => array(
-                'name' => __('Migration', 'dc-woocommerce-multi-vendor' ),
+            'introduction-migration' => array(
+                'name' => __('Migration', 'multivendorx' ),
                 'view' => array($this, 'mvx_migration_introduction'),
                 'handler' => '',
             ),
             'store-process' => array(
-                'name' => __('Processing', 'dc-woocommerce-multi-vendor'),
+                'name' => __('Processing', 'multivendorx'),
                 'view' => array($this, 'mvx_migration_store_process'),
                 'handler' => ''
             ),
             'next_steps' => array(
-                'name' => __('Ready!', 'dc-woocommerce-multi-vendor'),
+                'name' => __('Ready!', 'multivendorx'),
                 'view' => array($this, 'mvx_setup_ready'),
                 'handler' => '',
             ),
         );
         if (!$MVX->multivendor_migration->mvx_is_marketplace()) {
-            unset( $default_steps['introduction_migration'], $default_steps['store-process'] );
+            unset( $default_steps['introduction-migration'], $default_steps['store-process'] );
         } 
         $this->steps = apply_filters('mvx_setup_wizard_steps', $default_steps);
         $current_step = filter_input(INPUT_GET, 'step');
         $this->step = $current_step ? sanitize_key($current_step) : current(array_keys($this->steps));
-        $suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '.min';
+        $suffix = defined('MVX_SCRIPT_DEBUG') && MVX_SCRIPT_DEBUG ? '' : '.min';
         wp_register_script('jquery-blockui', WC()->plugin_url() . '/assets/js/jquery-blockui/jquery.blockUI' . $suffix . '.js', array('jquery'), '2.70', true);
         wp_register_script( 'jquery-tiptip', WC()->plugin_url() . '/assets/js/jquery-tiptip/jquery.tipTip' . $suffix . '.js', array( 'jquery' ), WC_VERSION, true );
         wp_register_script( 'selectWoo', WC()->plugin_url() . '/assets/js/selectWoo/selectWoo.full' . $suffix . '.js', array( 'jquery' ), '1.0.0' );
         wp_register_script('wc-enhanced-select', WC()->plugin_url() . '/assets/js/admin/wc-enhanced-select' . $suffix . '.js', array('jquery', 'selectWoo'), WC_VERSION);
         wp_localize_script('wc-enhanced-select', 'wc_enhanced_select_params', array(
-            'i18n_no_matches' => _x('No matches found', 'enhanced select', 'dc-woocommerce-multi-vendor'),
-            'i18n_ajax_error' => _x('Loading failed', 'enhanced select', 'dc-woocommerce-multi-vendor'),
-            'i18n_input_too_short_1' => _x('Please enter 1 or more characters', 'enhanced select', 'dc-woocommerce-multi-vendor'),
-            'i18n_input_too_short_n' => _x('Please enter %qty% or more characters', 'enhanced select', 'dc-woocommerce-multi-vendor'),
-            'i18n_input_too_long_1' => _x('Please delete 1 character', 'enhanced select', 'dc-woocommerce-multi-vendor'),
-            'i18n_input_too_long_n' => _x('Please delete %qty% characters', 'enhanced select', 'dc-woocommerce-multi-vendor'),
-            'i18n_selection_too_long_1' => _x('You can only select 1 item', 'enhanced select', 'dc-woocommerce-multi-vendor'),
-            'i18n_selection_too_long_n' => _x('You can only select %qty% items', 'enhanced select', 'dc-woocommerce-multi-vendor'),
-            'i18n_load_more' => _x('Loading more results&hellip;', 'enhanced select', 'dc-woocommerce-multi-vendor'),
-            'i18n_searching' => _x('Searching&hellip;', 'enhanced select', 'dc-woocommerce-multi-vendor'),
+            'i18n_no_matches' => _x('No matches found', 'enhanced select', 'multivendorx'),
+            'i18n_ajax_error' => _x('Loading failed', 'enhanced select', 'multivendorx'),
+            'i18n_input_too_short_1' => _x('Please enter 1 or more characters', 'enhanced select', 'multivendorx'),
+            'i18n_input_too_short_n' => _x('Please enter %qty% or more characters', 'enhanced select', 'multivendorx'),
+            'i18n_input_too_long_1' => _x('Please delete 1 character', 'enhanced select', 'multivendorx'),
+            'i18n_input_too_long_n' => _x('Please delete %qty% characters', 'enhanced select', 'multivendorx'),
+            'i18n_selection_too_long_1' => _x('You can only select 1 item', 'enhanced select', 'multivendorx'),
+            'i18n_selection_too_long_n' => _x('You can only select %qty% items', 'enhanced select', 'multivendorx'),
+            'i18n_load_more' => _x('Loading more results&hellip;', 'enhanced select', 'multivendorx'),
+            'i18n_searching' => _x('Searching&hellip;', 'enhanced select', 'multivendorx'),
             'ajax_url' => admin_url('admin-ajax.php'),
             'search_products_nonce' => wp_create_nonce('search-products'),
             'search_customers_nonce' => wp_create_nonce('search-customers'),
@@ -117,6 +117,7 @@ class MVX_Admin_Setup_Wizard {
 
         wp_enqueue_style('woocommerce_admin_styles', WC()->plugin_url() . '/assets/css/admin.css', array(), WC_VERSION);
         wp_enqueue_style('wc-setup', WC()->plugin_url() . '/assets/css/wc-setup.css', array('dashicons', 'install'), WC_VERSION);
+        wp_enqueue_style('mvx_admin_css', $MVX->plugin_url . 'assets/admin/css/admin' . $suffix . '.css', array(), $MVX->version);
         wp_register_script('wc-setup', WC()->plugin_url() . '/assets/js/admin/wc-setup' . $suffix . '.js', array('jquery', 'wc-enhanced-select', 'jquery-blockui', 'jquery-tiptip'), WC_VERSION);
         wp_register_script('mvx-setup', $MVX->plugin_url . '/assets/admin/js/setup-wizard.js', array('wc-setup'), WC_VERSION);
         wp_localize_script('wc-setup', 'wc_setup_params', array(
@@ -145,68 +146,16 @@ class MVX_Admin_Setup_Wizard {
             <head>
                 <meta name="viewport" content="width=device-width" />
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <title><?php esc_html_e('MultivendorX &rsaquo; Setup Wizard', 'dc-woocommerce-multi-vendor'); ?></title>
+                <title><?php esc_html_e('MultivendorX &rsaquo; Setup Wizard', 'multivendorx'); ?></title>
                 <?php do_action('admin_print_styles'); ?>
-        <?php do_action('admin_head'); ?>
-                <style type="text/css">
-                    body {
-                        margin: 100px auto 24px;
-                        box-shadow: none;
-                        background: #f1f1f1;
-                        padding: 0;
-                        max-width: 700px;
-                    }
-                    #mvx-logo {
-                        border: 0;
-                        margin: 0 0 24px;
-                        padding: 0;
-                        text-align: center;
-                    }
-                    .mvx-install-woocommerce {
-                        box-shadow: 0 1px 3px rgba(0,0,0,.13);
-                        padding: 24px 24px 0;
-                        margin: 0 0 20px;
-                        background: #fff;
-                        overflow: hidden;
-                        zoom: 1;
-                    }
-                    .mvx-install-woocommerce .button-primary{
-                        font-size: 1.25em;
-                        padding: .5em 1em;
-                        line-height: 1em;
-                        margin-right: .5em;
-                        margin-bottom: 2px;
-                        height: auto;
-                    }
-                    .mvx-install-woocommerce{
-                        font-family: sans-serif;
-                        text-align: center;    
-                    }
-                    .mvx-install-woocommerce form .button-primary{
-                        color: #fff;
-                        background-color: #9c5e91;
-                        font-size: 16px;
-                        border: 1px solid #9a548d;
-                        width: 230px;
-                        padding: 10px;
-                        margin: 25px 0 20px;
-                        cursor: pointer;
-                    }
-                    .mvx-install-woocommerce form .button-primary:hover{
-                        background-color: #9a548d;
-                    }
-                    .mvx-install-woocommerce p{
-                        line-height: 1.6;
-                    }
-
-                </style>
+                <?php do_action('admin_head'); ?>
             </head>
             <body class="mvx-setup wp-core-ui">
-                <h1 id="mvx-logo"><a href="https://multivendorx.com/"><img src="<?php echo trailingslashit(plugins_url('dc-woocommerce-multi-vendor')); ?>assets/images/widget-multivendorX.png" alt="MultivendorX" /></a></h1>
+                <h1 id="mvx-logo"><a href="https://multivendorx.com/"><img src="<?php echo trailingslashit(plugins_url('multivendorx')); ?>assets/images/widget-multivendorX.png" alt="MultivendorX" /></a></h1>
                 <div class="mvx-install-woocommerce">
-                    <p><?php esc_html_e('MultivendorX requires WooCommerce plugin to be active!', 'dc-woocommerce-multi-vendor'); ?></p>
+                    <p><?php esc_html_e('MultivendorX requires WooCommerce plugin to be active!', 'multivendorx'); ?></p>
                     <form method="post" action="" name="mvx_install_woocommerce">
-                        <?php submit_button(__('Install WooCommerce', 'dc-woocommerce-multi-vendor'), 'primary', 'mvx_install_woocommerce'); ?>
+                        <?php submit_button(__('Install WooCommerce', 'multivendorx'), 'primary', 'mvx_install_woocommerce'); ?>
         <?php wp_nonce_field('mvx-install-woocommerce'); ?>
                     </form>
                 </div>
@@ -300,7 +249,7 @@ class MVX_Admin_Setup_Wizard {
                 $activate = true;
             } catch (Exception $e) {
                 printf(
-                        __('%1$s could not be installed (%2$s). <a href="%3$s">Please install it manually by clicking here.</a>', 'dc-woocommerce-multi-vendor'), 'WooCommerce', $e->getMessage(), esc_url(admin_url('plugin-install.php?tab=search&s=woocommerce'))
+                        __('%1$s could not be installed (%2$s). <a href="%3$s">Please install it manually by clicking here.</a>', 'multivendorx'), 'WooCommerce', $e->getMessage(), esc_url(admin_url('plugin-install.php?tab=search&s=woocommerce'))
                 );
                 exit();
             }
@@ -320,7 +269,7 @@ class MVX_Admin_Setup_Wizard {
                 }
             } catch (Exception $e) {
                 printf(
-                        __('%1$s was installed but could not be activated. <a href="%2$s">Please activate it manually by clicking here.</a>', 'dc-woocommerce-multi-vendor'), 'WooCommerce', admin_url('plugins.php')
+                        __('%1$s was installed but could not be activated. <a href="%2$s">Please activate it manually by clicking here.</a>', 'multivendorx'), 'WooCommerce', admin_url('plugins.php')
                 );
                 exit();
             }
@@ -376,15 +325,11 @@ class MVX_Admin_Setup_Wizard {
             <head>
                 <meta name="viewport" content="width=device-width" />
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <title><?php esc_html_e('MultivendorX &rsaquo; Setup Wizard', 'dc-woocommerce-multi-vendor'); ?></title>
+                <title><?php esc_html_e('MultivendorX &rsaquo; Setup Wizard', 'multivendorx'); ?></title>
                 <?php wp_print_scripts('wc-setup'); ?>
                 <?php wp_print_scripts('mvx-setup'); ?>
                 <?php do_action('admin_print_styles'); ?>
-                <style type="text/css">
-                    .wc-setup-steps {
-                        justify-content: center;
-                    }
-                </style>
+
             </head>
             <body class="wc-setup wp-core-ui">
                 <h1 id="wc-logo"><a href="https://multivendorx.com/"><img src="<?php echo esc_url($MVX->plugin_url); ?>assets/images/widget-multivendorX.png" alt="MultivendorX" /></a></h1>
@@ -426,12 +371,12 @@ class MVX_Admin_Setup_Wizard {
      */
     public function mvx_setup_introduction() {
         ?>
-        <h1><?php esc_html_e('Welcome to the MultivendorX family!', 'dc-woocommerce-multi-vendor'); ?></h1>
-        <p><?php echo wp_kses_post('Thank you for choosing MultivendorX! This quick setup wizard will help you configure the basic settings and you will have your marketplace ready in no time. <strong>It’s completely optional and shouldn’t take longer than five minutes.</strong>', 'dc-woocommerce-multi-vendor'); ?></p>
-        <p><?php esc_html_e("If you don't want to go through the wizard right now, you can skip and return to the WordPress dashboard. Come back anytime if you change your mind!", 'dc-woocommerce-multi-vendor'); ?></p>
+        <h1><?php esc_html_e('Welcome to the MultivendorX family!', 'multivendorx'); ?></h1>
+        <p><?php echo wp_kses_post('Thank you for choosing MultivendorX! This quick setup wizard will help you configure the basic settings and you will have your marketplace ready in no time. <strong>It’s completely optional and shouldn’t take longer than five minutes.</strong>', 'multivendorx'); ?></p>
+        <p><?php esc_html_e("If you don't want to go through the wizard right now, you can skip and return to the WordPress dashboard. Come back anytime if you change your mind!", 'multivendorx'); ?></p>
         <p class="wc-setup-actions step">
-            <a href="<?php echo esc_url($this->get_next_step_link()); ?>" class="btn red-btn button button-large button-next" style="background-color: #e35047; border-color: #e35047; color: #FFF;"><?php esc_html_e("Let's go!", 'dc-woocommerce-multi-vendor'); ?></a>
-            <a href="<?php echo esc_url(admin_url()); ?>" class="button button-large" style="background-color: transparent; color:#65438f;border-color: #65438f;"><?php esc_html_e('Not right now', 'dc-woocommerce-multi-vendor'); ?></a>
+            <a href="<?php echo esc_url($this->get_next_step_link()); ?>" class="btn red-btn button button-large button-next"><?php esc_html_e("Let's go!", 'multivendorx'); ?></a>
+            <a href="<?php echo esc_url(admin_url()); ?>" class="button button-large"><?php esc_html_e('Not right now', 'multivendorx'); ?></a>
         </p>
         <?php
     }
@@ -441,22 +386,22 @@ class MVX_Admin_Setup_Wizard {
      */
     public function mvx_setup_store() {
         ?>
-        <h1><?php esc_html_e('Store setup', 'dc-woocommerce-multi-vendor'); ?></h1>
+        <h1><?php esc_html_e('Store setup', 'multivendorx'); ?></h1>
         <form method="post">
             <table class="form-table">
                 <tr>
-                    <th scope="row"><label for="vendor_store_url"><?php esc_html_e('Store URL', 'dc-woocommerce-multi-vendor'); ?></label></th>
+                    <th scope="row"><label for="vendor_store_url"><?php esc_html_e('Store URL', 'multivendorx'); ?></label></th>
                     <td>
                         <?php
                         $permalinks = get_option('dc_vendors_permalinks');
-                        $vendor_slug = empty($permalinks['vendor_shop_base']) ? _x('', 'slug', 'dc-woocommerce-multi-vendor') : $permalinks['vendor_shop_base'];
+                        $vendor_slug = empty($permalinks['vendor_shop_base']) ? _x('', 'slug', 'multivendorx') : $permalinks['vendor_shop_base'];
                         ?>
-                        <input type="text" id="vendor_store_url" name="vendor_store_url" placeholder="<?php esc_attr_e('vendor', 'dc-woocommerce-multi-vendor'); ?>" value="<?php echo esc_attr( $vendor_slug ); ?>" />
-                        <p class="description"><?php esc_html_e('Define vendor store URL (' . site_url() . '/[this-text]/[seller-name])', 'dc-woocommerce-multi-vendor') ?></p>
+                        <input type="text" id="vendor_store_url" name="vendor_store_url" placeholder="<?php esc_attr_e('vendor', 'multivendorx'); ?>" value="<?php echo esc_attr( $vendor_slug ); ?>" />
+                        <p class="description"><?php esc_html_e('Define vendor store URL (' . site_url() . '/[this-text]/[seller-name])', 'multivendorx') ?></p>
                     </td>
                 </tr>
                 <tr>
-                    <th scope="row"><label for="is_single_product_multiple_vendor"><?php esc_html_e('Single Product Multiple Vendors', 'dc-woocommerce-multi-vendor'); ?></label></th>
+                    <th scope="row"><label for="is_single_product_multiple_vendor"><?php esc_html_e('Single Product Multiple Vendors', 'multivendorx'); ?></label></th>
                     <td>
                         <?php $is_single_product_multiple_vendor = get_mvx_global_settings('is_singleproductmultiseller') ? 'Enable' : ''; ?>
                         <input type="checkbox" <?php checked($is_single_product_multiple_vendor, 'Enable'); ?> id="is_single_product_multiple_vendor" name="is_single_product_multiple_vendor" class="input-checkbox" value="Enable" />
@@ -464,8 +409,8 @@ class MVX_Admin_Setup_Wizard {
                 </tr>
             </table>
             <p class="wc-setup-actions step">
-                <input type="submit" class="button-primary button button-large button-next" value="<?php esc_attr_e('Continue', 'dc-woocommerce-multi-vendor'); ?>" name="save_step" />
-                <a href="<?php echo esc_url($this->get_next_step_link()); ?>" class="button button-large button-next"><?php esc_html_e('Skip this step', 'dc-woocommerce-multi-vendor'); ?></a>
+                <input type="submit" class="button-primary button button-large button-next" value="<?php esc_attr_e('Continue', 'multivendorx'); ?>" name="save_step" />
+                <a href="<?php echo esc_url($this->get_next_step_link()); ?>" class="button button-large button-next"><?php esc_html_e('Skip this step', 'multivendorx'); ?></a>
         <?php wp_nonce_field('mvx-setup'); ?>
             </p>
         </form>
@@ -478,36 +423,36 @@ class MVX_Admin_Setup_Wizard {
     public function mvx_setup_commission() {
         $payment_settings = get_option('mvx_commissions_tab_settings');
         ?>
-        <h1><?php esc_html_e('Commission Setup', 'dc-woocommerce-multi-vendor'); ?></h1>
+        <h1><?php esc_html_e('Commission Setup', 'multivendorx'); ?></h1>
         <form method="post">
             <table class="form-table">
                 <tr>
-                    <th scope="row"><label for="revenue_sharing_mode"><?php esc_html_e('Revenue Sharing Mode', 'dc-woocommerce-multi-vendor'); ?></label></th>
+                    <th scope="row"><label for="revenue_sharing_mode"><?php esc_html_e('Revenue Sharing Mode', 'multivendorx'); ?></label></th>
                     <td>
                         <?php
                         $revenue_sharing_mode = isset($payment_settings['revenue_sharing_mode']) ? $payment_settings['revenue_sharing_mode'] : 'revenue_sharing_mode_vendor';
                         ?>
-                        <label><input type="radio" <?php checked($revenue_sharing_mode, 'revenue_sharing_mode_admin'); ?> id="revenue_sharing_mode" name="revenue_sharing_mode" class="input-radio" value="revenue_sharing_mode_admin" /> <?php esc_html_e('Admin fees', 'dc-woocommerce-multi-vendor'); ?></label><br/>
-                        <label><input type="radio" <?php checked($revenue_sharing_mode, 'revenue_sharing_mode_vendor'); ?> id="revenue_sharing_mode" name="revenue_sharing_mode" class="input-radio" value="revenue_sharing_mode_vendor" /> <?php esc_html_e('Vendor Commissions', 'dc-woocommerce-multi-vendor'); ?></label>
+                        <label><input type="radio" <?php checked($revenue_sharing_mode, 'revenue_sharing_mode_admin'); ?> id="revenue_sharing_mode" name="revenue_sharing_mode" class="input-radio" value="revenue_sharing_mode_admin" /> <?php esc_html_e('Admin fees', 'multivendorx'); ?></label><br/>
+                        <label><input type="radio" <?php checked($revenue_sharing_mode, 'revenue_sharing_mode_vendor'); ?> id="revenue_sharing_mode" name="revenue_sharing_mode" class="input-radio" value="revenue_sharing_mode_vendor" /> <?php esc_html_e('Vendor Commissions', 'multivendorx'); ?></label>
                     </td>
                 </tr>
 
                 <tr>
-                    <th scope="row"><label for="commission_type"><?php esc_html_e('Commission Type', 'dc-woocommerce-multi-vendor'); ?></label></th>
+                    <th scope="row"><label for="commission_type"><?php esc_html_e('Commission Type', 'multivendorx'); ?></label></th>
                     <td>
                         <?php
                         $commission_type = isset($payment_settings['commission_type']['value']) ? $payment_settings['commission_type']['value'] : 'percent';
                         ?>
                         <select id="commission_type" name="commission_type" class="wc-enhanced-select">
-                            <option value="fixed" data-fields="#tr_default_commission" <?php selected($commission_type, 'fixed'); ?>><?php esc_html_e('Fixed Amount', 'dc-woocommerce-multi-vendor'); ?></option>
-                            <option value="percent" data-fields="#tr_default_commission" <?php selected($commission_type, 'percent'); ?>><?php esc_html_e('Percentage', 'dc-woocommerce-multi-vendor'); ?></option>
-                            <option value="fixed_with_percentage" data-fields="#tr_default_percentage,#tr_fixed_with_percentage" <?php selected($commission_type, 'fixed_with_percentage'); ?>><?php esc_html_e('%age + Fixed (per transaction)', 'dc-woocommerce-multi-vendor'); ?></option>
-                            <option value="fixed_with_percentage_qty" data-fields="#tr_default_percentage,#tr_fixed_with_percentage_qty" <?php selected($commission_type, 'fixed_with_percentage_qty'); ?>><?php esc_html_e('%age + Fixed (per unit)', 'dc-woocommerce-multi-vendor'); ?></option>
+                            <option value="fixed" data-fields="#tr_default_commission" <?php selected($commission_type, 'fixed'); ?>><?php esc_html_e('Fixed Amount', 'multivendorx'); ?></option>
+                            <option value="percent" data-fields="#tr_default_commission" <?php selected($commission_type, 'percent'); ?>><?php esc_html_e('Percentage', 'multivendorx'); ?></option>
+                            <option value="fixed_with_percentage" data-fields="#tr_default_percentage,#tr_fixed_with_percentage" <?php selected($commission_type, 'fixed_with_percentage'); ?>><?php esc_html_e('%age + Fixed (per transaction)', 'multivendorx'); ?></option>
+                            <option value="fixed_with_percentage_qty" data-fields="#tr_default_percentage,#tr_fixed_with_percentage_qty" <?php selected($commission_type, 'fixed_with_percentage_qty'); ?>><?php esc_html_e('%age + Fixed (per unit)', 'multivendorx'); ?></option>
                         </select>
                     </td>
                 </tr>
                 <tr id="tr_default_commission" class="mvx_commission_type_fields">
-                    <th scope="row"><label for="default_commission"><?php esc_html_e('Commission value', 'dc-woocommerce-multi-vendor'); ?></label></th>
+                    <th scope="row"><label for="default_commission"><?php esc_html_e('Commission value', 'multivendorx'); ?></label></th>
                     <td>
                         <?php
                         $default_commission = isset($payment_settings['default_commission'][0]['value']) ? $payment_settings['default_commission'][0]['value'] : '';
@@ -517,7 +462,7 @@ class MVX_Admin_Setup_Wizard {
                 </tr>
 
                 <tr id="tr_default_percentage" class="mvx_commission_type_fields">
-                    <th scope="row"><label for="default_percentage"><?php esc_html_e('Commission Percentage', 'dc-woocommerce-multi-vendor'); ?></label></th>
+                    <th scope="row"><label for="default_percentage"><?php esc_html_e('Commission Percentage', 'multivendorx'); ?></label></th>
                     <td>
                         <?php
                         $default_percentage = isset($payment_settings['default_commission'][0]['value']) ? $payment_settings['default_commission'][0]['value'] : '';
@@ -527,7 +472,7 @@ class MVX_Admin_Setup_Wizard {
                 </tr>
 
                 <tr id="tr_fixed_with_percentage" class="mvx_commission_type_fields">
-                    <th scope="row"><label for="fixed_with_percentage"><?php esc_html_e('Fixed Amount', 'dc-woocommerce-multi-vendor'); ?></label></th>
+                    <th scope="row"><label for="fixed_with_percentage"><?php esc_html_e('Fixed Amount', 'multivendorx'); ?></label></th>
                     <td>
                         <?php
                         $fixed_with_percentage = isset($payment_settings['fixed_with_percentage'][0]['value']) ? $payment_settings['fixed_with_percentage'][0]['value'] : '';
@@ -537,7 +482,7 @@ class MVX_Admin_Setup_Wizard {
                 </tr>
 
                 <tr id="tr_fixed_with_percentage_qty" class="mvx_commission_type_fields">
-                    <th scope="row"><label for="fixed_with_percentage_qty"><?php esc_html_e('Fixed Amount', 'dc-woocommerce-multi-vendor'); ?></label></th>
+                    <th scope="row"><label for="fixed_with_percentage_qty"><?php esc_html_e('Fixed Amount', 'multivendorx'); ?></label></th>
                     <td>
                         <?php
                         $fixed_with_percentage_qty = isset($payment_settings['fixed_with_percentage_qty'][0]['value']) ? $payment_settings['fixed_with_percentage_qty'][0]['value'] : '';
@@ -548,8 +493,8 @@ class MVX_Admin_Setup_Wizard {
 
             </table>
             <p class="wc-setup-actions step">
-                <input type="submit" class="button-primary button button-large button-next" value="<?php esc_attr_e('Continue', 'dc-woocommerce-multi-vendor'); ?>" name="save_step" />
-                <a href="<?php echo esc_url($this->get_next_step_link()); ?>" class="button button-large button-next"><?php esc_html_e('Skip this step', 'dc-woocommerce-multi-vendor'); ?></a>
+                <input type="submit" class="button-primary button button-large button-next" value="<?php esc_attr_e('Continue', 'multivendorx'); ?>" name="save_step" />
+                <a href="<?php echo esc_url($this->get_next_step_link()); ?>" class="button button-large button-next"><?php esc_html_e('Skip this step', 'multivendorx'); ?></a>
         <?php wp_nonce_field('mvx-setup'); ?>
             </p>
         </form>
@@ -564,9 +509,9 @@ class MVX_Admin_Setup_Wizard {
         $disbursement_settings = get_option('mvx_disbursement_tab_settings');
         $gateways = $this->get_payment_methods();
         ?>
-        <h1><?php esc_html_e('Payments', 'dc-woocommerce-multi-vendor'); ?></h1>
+        <h1><?php esc_html_e('Payments', 'multivendorx'); ?></h1>
         <form method="post" class="wc-wizard-payment-gateway-form">
-            <p><?php esc_html_e('Allowed Payment Methods', 'dc-woocommerce-multi-vendor'); ?></p>
+            <p><?php esc_html_e('Allowed Payment Methods', 'multivendorx'); ?></p>
             <ul class="wc-wizard-services wc-wizard-payment-gateways">
                         <?php foreach ($gateways as $gateway_id => $gateway): ?>
                     <li class="wc-wizard-service-item wc-wizard-gateway <?php echo esc_attr($gateway['class']); ?>">
@@ -591,42 +536,42 @@ class MVX_Admin_Setup_Wizard {
             </ul>
             <table class="form-table">
                 <tr>
-                    <th scope="row"><label for="mvx_disbursal_mode_admin"><?php esc_html_e('Disbursal Schedule', 'dc-woocommerce-multi-vendor'); ?></label></th>
+                    <th scope="row"><label for="mvx_disbursal_mode_admin"><?php esc_html_e('Disbursal Schedule', 'multivendorx'); ?></label></th>
                     <td>
                         <?php
                         $mvx_disbursal_mode_admin = isset($disbursement_settings['choose_payment_mode_automatic_disbursal']) ? 'Enable' : '';
                         ?>
                         <input type="checkbox" data-field="#tr_payment_schedule" <?php checked($mvx_disbursal_mode_admin, 'Enable'); ?> id="mvx_disbursal_mode_admin" name="mvx_disbursal_mode_admin" class="input-checkbox" value="Enable" />
-                        <p class="description"><?php esc_html_e('If checked, automatically vendors commission will disburse.', 'dc-woocommerce-multi-vendor') ?></p>
+                        <p class="description"><?php esc_html_e('If checked, automatically vendors commission will disburse.', 'multivendorx') ?></p>
                     </td>
                 </tr>
                 <tr id="tr_payment_schedule">
-                    <th scope="row"><label for="payment_schedule"><?php esc_html_e('Set Schedule', 'dc-woocommerce-multi-vendor'); ?></label></th>
+                    <th scope="row"><label for="payment_schedule"><?php esc_html_e('Set Schedule', 'multivendorx'); ?></label></th>
                     <?php
                     $payment_schedule = isset($disbursement_settings['payment_schedule']) ? $disbursement_settings['payment_schedule'] : 'monthly';
                     ?>
                     <td>
-                        <label><input type="radio" <?php checked($payment_schedule, 'weekly'); ?> id="payment_schedule" name="payment_schedule" class="input-radio" value="weekly" /> <?php esc_html_e('Weekly', 'dc-woocommerce-multi-vendor'); ?></label><br/>
-                        <label><input type="radio" <?php checked($payment_schedule, 'daily'); ?> id="payment_schedule" name="payment_schedule" class="input-radio" value="daily" /> <?php esc_html_e('Daily', 'dc-woocommerce-multi-vendor'); ?></label><br/>
-                        <label><input type="radio" <?php checked($payment_schedule, 'monthly'); ?> id="payment_schedule" name="payment_schedule" class="input-radio" value="monthly" /> <?php esc_html_e('Monthly', 'dc-woocommerce-multi-vendor'); ?></label><br/>
-                        <label><input type="radio" <?php checked($payment_schedule, 'fortnightly'); ?> id="payment_schedule" name="payment_schedule" class="input-radio" value="fortnightly" /> <?php esc_html_e('Fortnightly', 'dc-woocommerce-multi-vendor'); ?></label><br/>
-                        <label><input type="radio" <?php checked($payment_schedule, 'hourly'); ?> id="payment_schedule" name="payment_schedule" class="input-radio" value="hourly" /> <?php esc_html_e('Hourly', 'dc-woocommerce-multi-vendor'); ?></label>
+                        <label><input type="radio" <?php checked($payment_schedule, 'weekly'); ?> id="payment_schedule" name="payment_schedule" class="input-radio" value="weekly" /> <?php esc_html_e('Weekly', 'multivendorx'); ?></label><br/>
+                        <label><input type="radio" <?php checked($payment_schedule, 'daily'); ?> id="payment_schedule" name="payment_schedule" class="input-radio" value="daily" /> <?php esc_html_e('Daily', 'multivendorx'); ?></label><br/>
+                        <label><input type="radio" <?php checked($payment_schedule, 'monthly'); ?> id="payment_schedule" name="payment_schedule" class="input-radio" value="monthly" /> <?php esc_html_e('Monthly', 'multivendorx'); ?></label><br/>
+                        <label><input type="radio" <?php checked($payment_schedule, 'fortnightly'); ?> id="payment_schedule" name="payment_schedule" class="input-radio" value="fortnightly" /> <?php esc_html_e('Fortnightly', 'multivendorx'); ?></label><br/>
+                        <label><input type="radio" <?php checked($payment_schedule, 'hourly'); ?> id="payment_schedule" name="payment_schedule" class="input-radio" value="hourly" /> <?php esc_html_e('Hourly', 'multivendorx'); ?></label>
                     </td>
                 </tr>
                 <tr>
-                    <th scope="row"><label for="mvx_disbursal_mode_vendor"><?php esc_html_e('Withdrawal Request', 'dc-woocommerce-multi-vendor'); ?></label></th>
+                    <th scope="row"><label for="mvx_disbursal_mode_vendor"><?php esc_html_e('Withdrawal Request', 'multivendorx'); ?></label></th>
                     <td>
                         <?php
                         $mvx_disbursal_mode_vendor = $disbursement_settings['withdrawal_request'] ? 'Enable' : '';
                         ?>
                         <input type="checkbox" <?php checked($mvx_disbursal_mode_vendor, 'Enable'); ?> id="mvx_disbursal_mode_vendor" name="mvx_disbursal_mode_vendor" class="input-checkbox" value="Enable" />
-                        <p class="description"><?php esc_html_e('Vendors can request for commission withdrawal.', 'dc-woocommerce-multi-vendor') ?></p>
+                        <p class="description"><?php esc_html_e('Vendors can request for commission withdrawal.', 'multivendorx') ?></p>
                     </td>
                 </tr>
             </table>
             <p class="wc-setup-actions step">
-                <input type="submit" class="button-primary button button-large button-next" value="<?php esc_attr_e('Continue', 'dc-woocommerce-multi-vendor'); ?>" name="save_step" />
-                <a href="<?php echo esc_url($this->get_next_step_link()); ?>" class="button button-large button-next"><?php esc_html_e('Skip this step', 'dc-woocommerce-multi-vendor'); ?></a>
+                <input type="submit" class="button-primary button button-large button-next" value="<?php esc_attr_e('Continue', 'multivendorx'); ?>" name="save_step" />
+                <a href="<?php echo esc_url($this->get_next_step_link()); ?>" class="button button-large button-next"><?php esc_html_e('Skip this step', 'multivendorx'); ?></a>
         <?php wp_nonce_field('mvx-setup'); ?>
             </p>
         </form>
@@ -639,84 +584,84 @@ class MVX_Admin_Setup_Wizard {
     public function mvx_setup_capability() {
         $capabilities_settings = get_option('mvx_products_capability_tab_settings');
         ?>
-        <h1><?php esc_html_e('Capability', 'dc-woocommerce-multi-vendor'); ?></h1>
+        <h1><?php esc_html_e('Capability', 'multivendorx'); ?></h1>
         <form method="post">
             <table class="form-table">
                 <?php
                 $is_submit_product = isset($capabilities_settings['is_submit_product']) ? 'Enable' : '';
                 ?>
                 <tr>
-                    <th scope="row"><label for="is_submit_product"><?php esc_html_e('Submit Products', 'dc-woocommerce-multi-vendor'); ?></label></th>
+                    <th scope="row"><label for="is_submit_product"><?php esc_html_e('Submit Products', 'multivendorx'); ?></label></th>
                     <td>
                         <input type="checkbox" <?php checked($is_submit_product, 'Enable'); ?> id="is_submit_product" name="is_submit_product" class="input-checkbox" value="Enable">
-                        <p class="description"><?php esc_html_e('Allow vendors to submit products for approval/publishing.', 'dc-woocommerce-multi-vendor'); ?></p>
+                        <p class="description"><?php esc_html_e('Allow vendors to submit products for approval/publishing.', 'multivendorx'); ?></p>
                     </td>
                 </tr>
                 <?php
                 $is_published_product = isset($capabilities_settings['is_published_product']) ? 'Enable' : '';
                 ?>
                 <tr>
-                    <th scope="row"><label for="is_published_product"><?php esc_html_e('Publish Products', 'dc-woocommerce-multi-vendor'); ?></label></th>
+                    <th scope="row"><label for="is_published_product"><?php esc_html_e('Publish Products', 'multivendorx'); ?></label></th>
                     <td>
                         <input type="checkbox" <?php checked($is_published_product, 'Enable'); ?> id="is_published_product" name="is_published_product" class="input-checkbox" value="Enable">
-                        <p class="description"><?php esc_html_e('If checked, products uploaded by vendors will be directly published without admin approval.', 'dc-woocommerce-multi-vendor'); ?></p>
+                        <p class="description"><?php esc_html_e('If checked, products uploaded by vendors will be directly published without admin approval.', 'multivendorx'); ?></p>
                     </td>
                 </tr>
                 <?php
                 $is_edit_delete_published_product = isset($capabilities_settings['is_edit_delete_published_product']) ? 'Enable' : '';
                 ?>
                 <tr>
-                    <th scope="row"><label for="is_edit_delete_published_product"><?php esc_html_e('Edit Publish Products', 'dc-woocommerce-multi-vendor'); ?></label></th>
+                    <th scope="row"><label for="is_edit_delete_published_product"><?php esc_html_e('Edit Publish Products', 'multivendorx'); ?></label></th>
                     <td>
                         <input type="checkbox" <?php checked($is_edit_delete_published_product, 'Enable'); ?> id="is_edit_delete_published_product" name="is_edit_delete_published_product" class="input-checkbox" value="Enable">
-                        <p class="description"><?php esc_html_e('Allow vendors to Edit published products.', 'dc-woocommerce-multi-vendor'); ?></p>
+                        <p class="description"><?php esc_html_e('Allow vendors to Edit published products.', 'multivendorx'); ?></p>
                     </td>
                 </tr>
                 <?php
                 $is_submit_coupon = isset($capabilities_settings['is_submit_coupon']) ? 'Enable' : '';
                 ?>
                 <tr>
-                    <th scope="row"><label for="is_submit_coupon"><?php esc_html_e('Submit Coupons', 'dc-woocommerce-multi-vendor'); ?></label></th>
+                    <th scope="row"><label for="is_submit_coupon"><?php esc_html_e('Submit Coupons', 'multivendorx'); ?></label></th>
                     <td>
                         <input type="checkbox" <?php checked($is_submit_coupon, 'Enable'); ?> id="is_submit_coupon" name="is_submit_coupon" class="input-checkbox" value="Enable">
-                        <p class="description"><?php esc_html_e('Allow vendors to create coupons.', 'dc-woocommerce-multi-vendor'); ?></p>
+                        <p class="description"><?php esc_html_e('Allow vendors to create coupons.', 'multivendorx'); ?></p>
                     </td>
                 </tr>
                 <?php
                 $is_published_coupon = isset($capabilities_settings['is_published_coupon']) ? 'Enable' : '';
                 ?>
                 <tr>
-                    <th scope="row"><label for="is_published_coupon"><?php esc_html_e('Publish Coupons', 'dc-woocommerce-multi-vendor'); ?></label></th>
+                    <th scope="row"><label for="is_published_coupon"><?php esc_html_e('Publish Coupons', 'multivendorx'); ?></label></th>
                     <td>
                         <input type="checkbox" <?php checked($is_published_coupon, 'Enable'); ?> id="is_published_coupon" name="is_published_coupon" class="input-checkbox" value="Enable">
-                        <p class="description"><?php esc_html_e('If checked, coupons added by vendors will be directly published without admin approval.', 'dc-woocommerce-multi-vendor'); ?></p>
+                        <p class="description"><?php esc_html_e('If checked, coupons added by vendors will be directly published without admin approval.', 'multivendorx'); ?></p>
                     </td>
                 </tr>
                 <?php
                 $is_edit_delete_published_coupon = isset($capabilities_settings['is_edit_delete_published_coupon']) ? 'Enable' : '';
                 ?>
                 <tr>
-                    <th scope="row"><label for="is_edit_delete_published_coupon"><?php esc_html_e('Edit Publish Coupons', 'dc-woocommerce-multi-vendor'); ?></label></th>
+                    <th scope="row"><label for="is_edit_delete_published_coupon"><?php esc_html_e('Edit Publish Coupons', 'multivendorx'); ?></label></th>
                     <td>
                         <input type="checkbox" <?php checked($is_edit_delete_published_coupon, 'Enable'); ?> id="is_edit_delete_published_coupon" name="is_edit_delete_published_coupon" class="input-checkbox" value="Enable">
-                        <p class="description"><?php esc_html_e('Allow Vendor To edit delete published shop coupons.', 'dc-woocommerce-multi-vendor'); ?></p>
+                        <p class="description"><?php esc_html_e('Allow Vendor To edit delete published shop coupons.', 'multivendorx'); ?></p>
                     </td>
                 </tr>
                 <?php
                 $is_upload_files = isset($capabilities_settings['is_upload_files']) ? 'Enable' : '';
                 ?>
                 <tr>
-                    <th scope="row"><label for="is_upload_files"><?php esc_html_e('Upload Media Files', 'dc-woocommerce-multi-vendor'); ?></label></th>
+                    <th scope="row"><label for="is_upload_files"><?php esc_html_e('Upload Media Files', 'multivendorx'); ?></label></th>
                     <td>
                         <input type="checkbox" <?php checked($is_upload_files, 'Enable'); ?> id="is_upload_files" name="is_upload_files" class="input-checkbox" value="Enable">
-                        <p class="description"><?php esc_html_e('Allow vendors to upload media files.', 'dc-woocommerce-multi-vendor'); ?></p>
+                        <p class="description"><?php esc_html_e('Allow vendors to upload media files.', 'multivendorx'); ?></p>
                     </td>
                 </tr>
 
             </table>
             <p class="wc-setup-actions step">
-                <input type="submit" class="button-primary button button-large button-next" value="<?php esc_attr_e('Continue', 'dc-woocommerce-multi-vendor'); ?>" name="save_step" />
-                <a href="<?php echo esc_url($this->get_next_step_link()); ?>" class="button button-large button-next"><?php esc_html_e('Skip this step', 'dc-woocommerce-multi-vendor'); ?></a>
+                <input type="submit" class="button-primary button button-large button-next" value="<?php esc_attr_e('Continue', 'multivendorx'); ?>" name="save_step" />
+                <a href="<?php echo esc_url($this->get_next_step_link()); ?>" class="button button-large button-next"><?php esc_html_e('Skip this step', 'multivendorx'); ?></a>
                 <?php wp_nonce_field('mvx-setup'); ?>
             </p>
         </form>
@@ -730,23 +675,23 @@ class MVX_Admin_Setup_Wizard {
         ?>
         <a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo site_url(); ?>" data-text="Hey Guys! Our new marketplace is now live and ready to be ransacked! Check it out at" data-via="wc_marketplace" data-size="large">Tweet</a>
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-        <h1><?php esc_html_e('Yay! All done!', 'dc-woocommerce-multi-vendor'); ?></h1>
+        <h1><?php esc_html_e('Yay! All done!', 'multivendorx'); ?></h1>
         <div class="woocommerce-message woocommerce-tracker">
             <p><?php esc_html_e("Your marketplace is ready. It's time to bring some sellers on your platform and start your journey. We wish you all the success for your business, you will be great!", "dc-woocommerce-multi-vendor") ?></p>
         </div>
         <div class="wc-setup-next-steps">
             <div class="wc-setup-next-steps-first">
-                <h2><?php esc_html_e( 'Next steps', 'dc-woocommerce-multi-vendor' ); ?></h2>
+                <h2><?php esc_html_e( 'Next steps', 'multivendorx' ); ?></h2>
                 <ul>
-                    <li class="setup-product"><a class="button button-primary button-large" href="<?php echo esc_url( admin_url( 'admin.php?page=mvx-setting-admin&tab=vendor&tab_section=registration' ) ); ?>"><?php esc_html_e( 'Create your vendor registration form', 'dc-woocommerce-multi-vendor' ); ?></a></li>
+                    <li class="setup-product"><a class="button button-primary button-large" href="<?php echo esc_url( admin_url( 'admin.php?page=mvx-setting-admin&tab=vendor&tab_section=registration' ) ); ?>"><?php esc_html_e( 'Create your vendor registration form', 'multivendorx' ); ?></a></li>
                 </ul>
             </div>
             <div class="wc-setup-next-steps-last">
-                <h2><?php _e( 'Learn more', 'dc-woocommerce-multi-vendor' ); ?></h2>
+                <h2><?php _e( 'Learn more', 'multivendorx' ); ?></h2>
                 <ul>
-                    <li class="video-walkthrough"><a href="https://www.youtube.com/c/MultivendorX"><?php esc_html_e( 'Watch the tutorial videos', 'dc-woocommerce-multi-vendor' ); ?></a></li>
-                    <li class="newsletter"><a href="https://wc-marketplace.com/knowledgebase/mvx-setup-guide/?utm_source=mvx_plugin&utm_medium=setup_wizard&utm_campaign=new_installation&utm_content=documentation"><?php esc_html_e( 'Looking for help to get started', 'dc-woocommerce-multi-vendor' ); ?></a></li>
-                    <li class="learn-more"><a href="https://wc-marketplace.com/best-revenue-model-marketplace-part-one/?utm_source=mvx_plugin&utm_medium=setup_wizard&utm_campaign=new_installation&utm_content=blog"><?php esc_html_e( 'Learn more about revenue models', 'dc-woocommerce-multi-vendor' ); ?></a></li>
+                    <li class="video-walkthrough"><a href="https://www.youtube.com/c/MultivendorX"><?php esc_html_e( 'Watch the tutorial videos', 'multivendorx' ); ?></a></li>
+                    <li class="newsletter"><a href="https://wc-marketplace.com/knowledgebase/mvx-setup-guide/?utm_source=mvx_plugin&utm_medium=setup_wizard&utm_campaign=new_installation&utm_content=documentation"><?php esc_html_e( 'Looking for help to get started', 'multivendorx' ); ?></a></li>
+                    <li class="learn-more"><a href="https://wc-marketplace.com/best-revenue-model-marketplace-part-one/?utm_source=mvx_plugin&utm_medium=setup_wizard&utm_campaign=new_installation&utm_content=blog"><?php esc_html_e( 'Learn more about revenue models', 'multivendorx' ); ?></a></li>
                 </ul>
             </div>
         </div>
@@ -964,7 +909,7 @@ class MVX_Admin_Setup_Wizard {
     public function setup_wizard_footer() {
         if ('next_steps' === $this->step) :
             ?>
-            <a class="wc-return-to-dashboard" href="<?php echo esc_url(admin_url()); ?>"><?php esc_html_e('Return to the WordPress Dashboard', 'dc-woocommerce-multi-vendor'); ?></a>
+            <a class="wc-return-to-dashboard" href="<?php echo esc_url(admin_url()); ?>"><?php esc_html_e('Return to the WordPress Dashboard', 'multivendorx'); ?></a>
 <?php endif; ?>
     </body>
 </html>
@@ -974,29 +919,29 @@ class MVX_Admin_Setup_Wizard {
     public function get_payment_methods() {
         $methods = array(
             'paypal_masspay' => array(
-                'label' => __('Paypal Masspay', 'dc-woocommerce-multi-vendor'),
-                'description' => __('Pay via paypal masspay', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Paypal Masspay', 'multivendorx'),
+                'description' => __('Pay via paypal masspay', 'multivendorx'),
                 'class' => 'featured featured-row-last'
             ),
             'paypal_payout' => array(
-                'label' => __('Paypal Payout', 'dc-woocommerce-multi-vendor'),
-                'description' => __('Pay via paypal payout', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Paypal Payout', 'multivendorx'),
+                'description' => __('Pay via paypal payout', 'multivendorx'),
                 'class' => 'featured featured-row-first'
             ),
             'direct_bank' => array(
-                'label' => __('Direct Bank Transfer', 'dc-woocommerce-multi-vendor'),
-                'description' => __('', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Direct Bank Transfer', 'multivendorx'),
+                'description' => __('', 'multivendorx'),
                 'class' => ''
             ),
             'stripe_masspay' => array(
-                'label' => __('Stripe Connect', 'dc-woocommerce-multi-vendor'),
-                'description' => __('', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Stripe Connect', 'multivendorx'),
+                'description' => __('', 'multivendorx'),
                 //'repo-slug' => 'marketplace-stripe-gateway',
                 'class' => ''
             ),
             'paypal_adaptive' => array(
-                'label' => __('PayPal Adaptive', 'dc-woocommerce-multi-vendor'),
-                'description' => __('', 'dc-woocommerce-multi-vendor'),
+                'label' => __('PayPal Adaptive', 'multivendorx'),
+                'description' => __('', 'multivendorx'),
                 'repo-slug' => 'mvx-paypal-adaptive-gateway',
                 'class' => ''
             )

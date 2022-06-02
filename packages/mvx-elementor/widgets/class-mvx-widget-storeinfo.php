@@ -27,7 +27,7 @@ class MVX_Elementor_StoreInfo extends Widget_Icon_List {
      * @return string
      */
     public function get_title() {
-        return __( 'Store Info', 'dc-woocommerce-multi-vendor' );
+        return __( 'Store Info', 'multivendorx' );
     }
 
     /**
@@ -77,7 +77,7 @@ class MVX_Elementor_StoreInfo extends Widget_Icon_List {
         $this->update_control(
             'section_icon',
             [
-                'label' => __( 'Store Info', 'dc-woocommerce-multi-vendor' ),
+                'label' => __( 'Store Info', 'multivendorx' ),
             ]
         );
 
@@ -86,16 +86,16 @@ class MVX_Elementor_StoreInfo extends Widget_Icon_List {
         $repeater->add_control(
             'title',
             [
-                'label'   => __( 'Title', 'dc-woocommerce-multi-vendor' ),
+                'label'   => __( 'Title', 'multivendorx' ),
                 'type'    => Controls_Manager::HIDDEN,
-                'default' => __( 'Title', 'dc-woocommerce-multi-vendor' ),
+                'default' => __( 'Title', 'multivendorx' ),
             ]
         );
 
         $repeater->add_control(
             'text',
             [
-            	  'label'       => __( 'Content', 'dc-woocommerce-multi-vendor' ),
+            	  'label'       => __( 'Content', 'multivendorx' ),
                 'type' => Controls_Manager::HIDDEN,
                 'label_block' => true,
             ]
@@ -104,7 +104,7 @@ class MVX_Elementor_StoreInfo extends Widget_Icon_List {
         $repeater->add_control(
             'icon',
             [
-                'label'       => __( 'Icon', 'dc-woocommerce-multi-vendor' ),
+                'label'       => __( 'Icon', 'multivendorx' ),
                 'type'        => Controls_Manager::ICON,
                 'label_block' => true,
                 'default'     => 'fa fa-check',

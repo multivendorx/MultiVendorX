@@ -16,9 +16,9 @@ defined( 'ABSPATH' ) || exit;
         <?php if ( mvx_is_allowed_product_type( 'grouped' ) ) : ?>
             <div class="show_if_grouped"> 
                 <div class="form-group">
-                    <label class="control-label col-sm-3 col-md-3" for="grouped_products"><?php esc_html_e( 'Grouped products', 'dc-woocommerce-multi-vendor' ); ?></label>
+                    <label class="control-label col-sm-3 col-md-3" for="grouped_products"><?php esc_html_e( 'Grouped products', 'multivendorx' ); ?></label>
                     <div class="col-md-6 col-sm-9">
-                        <select class="wc-product-search form-control" multiple="multiple" id="grouped_products" name="grouped_products[]" data-sortable="true" data-placeholder="<?php esc_attr_e( 'Search for a product&hellip;', 'dc-woocommerce-multi-vendor' ); ?>" data-action="woocommerce_json_search_products" data-exclude="<?php echo intval( $post->ID ); ?>">
+                        <select class="wc-product-search form-control" multiple="multiple" id="grouped_products" name="grouped_products[]" data-sortable="true" data-placeholder="<?php esc_attr_e( 'Search for a product&hellip;', 'multivendorx' ); ?>" data-action="woocommerce_json_search_products" data-exclude="<?php echo intval( $post->ID ); ?>">
                             <?php
                             $product_ids = $product_object->is_type( 'grouped' ) ? $product_object->get_children( 'edit' ) : array();
 
@@ -35,9 +35,9 @@ defined( 'ABSPATH' ) || exit;
             </div>
         <?php endif; ?> 
             <div class="form-group">
-                <label class="control-label col-sm-3 col-md-3" for="upsell_ids"><?php esc_html_e( 'Upsells', 'dc-woocommerce-multi-vendor' ); ?></label>
+                <label class="control-label col-sm-3 col-md-3" for="upsell_ids"><?php esc_html_e( 'Upsells', 'multivendorx' ); ?></label>
                 <div class="col-md-6 col-sm-9">
-                    <select class="wc-product-search form-control" multiple="multiple" id="upsell_ids" name="upsell_ids[]" data-placeholder="<?php esc_attr_e( 'Search for a product&hellip;', 'dc-woocommerce-multi-vendor' ); ?>" data-action="woocommerce_json_search_products_and_variations" data-exclude="<?php echo intval( $post->ID ); ?>">
+                    <select class="wc-product-search form-control" multiple="multiple" id="upsell_ids" name="upsell_ids[]" data-placeholder="<?php esc_attr_e( 'Search for a product&hellip;', 'multivendorx' ); ?>" data-action="woocommerce_json_search_products_and_variations" data-exclude="<?php echo intval( $post->ID ); ?>">
                         <?php
                         $product_ids = $product_object->get_upsell_ids( 'edit' );
 
@@ -54,9 +54,9 @@ defined( 'ABSPATH' ) || exit;
 
         <div class="hide_if_grouped hide_if_external">
             <div class="form-group">
-                <label class="control-label col-sm-3 col-md-3" for="crosssell_ids"><?php esc_html_e( 'Cross-sells', 'dc-woocommerce-multi-vendor' ); ?></label>
+                <label class="control-label col-sm-3 col-md-3" for="crosssell_ids"><?php esc_html_e( 'Cross-sells', 'multivendorx' ); ?></label>
                 <div class="col-md-6 col-sm-9">
-                    <select class="wc-product-search form-control" multiple="multiple" id="crosssell_ids" name="crosssell_ids[]" data-placeholder="<?php esc_attr_e( 'Search for a product&hellip;', 'dc-woocommerce-multi-vendor' ); ?>" data-action="woocommerce_json_search_products_and_variations" data-exclude="<?php echo intval( $post->ID ); ?>">
+                    <select class="wc-product-search form-control" multiple="multiple" id="crosssell_ids" name="crosssell_ids[]" data-placeholder="<?php esc_attr_e( 'Search for a product&hellip;', 'multivendorx' ); ?>" data-action="woocommerce_json_search_products_and_variations" data-exclude="<?php echo intval( $post->ID ); ?>">
                         <?php
                         $product_ids = $product_object->get_cross_sell_ids( 'edit' );
 

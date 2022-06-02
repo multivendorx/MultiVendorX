@@ -17,13 +17,13 @@ global $MVX;
 echo $email_heading . "\n\n";
 
 if( $user_type != 'customer' ) {
-    echo __( 'Refund details', 'dc-woocommerce-multi-vendor' ) . "\n\n";
-    printf( __( "Order ID: #%s",  'dc-woocommerce-multi-vendor' ), $order->get_id()) . "\n";
-    printf( __( "Refund Reason: %s",  'dc-woocommerce-multi-vendor' ), $refund_details['refund_reason']) . "\n";
-    printf( __( "Additional Information: %s",  'dc-woocommerce-multi-vendor' ), $refund_details['addi_info']) . "\n";
-    printf( __( "Refund Status: %s",  'dc-woocommerce-multi-vendor' ), $refund_details['status']) . "\n";
+    echo __( 'Refund details', 'multivendorx' ) . "\n\n";
+    printf( __( "Order ID: #%s",  'multivendorx' ), $order->get_id()) . "\n";
+    printf( __( "Refund Reason: %s",  'multivendorx' ), $refund_details['refund_reason']) . "\n";
+    printf( __( "Additional Information: %s",  'multivendorx' ), $refund_details['addi_info']) . "\n";
+    printf( __( "Refund Status: %s",  'multivendorx' ), $refund_details['status']) . "\n";
 }else{
-    printf( __( "Your refund request for order %s is %s",  'dc-woocommerce-multi-vendor' ), $order->get_id(), $refund_details['status'] ) . "\n";
+    printf( __( "Your refund request for order %s is %s",  'multivendorx' ), $order->get_id(), $refund_details['status'] ) . "\n";
 }
 
 echo apply_filters( 'mvx_email_footer_text', get_option( 'mvx_email_footer_text' ) ); 

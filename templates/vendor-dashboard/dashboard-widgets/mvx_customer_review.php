@@ -48,7 +48,7 @@ jQuery(document).ready(function($) {
         responsive: true,
         pagingType: 'numbers',
         language: {
-            emptyTable: '<div><?php echo trim(__('No reviews found.', 'dc-woocommerce-multi-vendor')); ?></div>'
+            emptyTable: '<div><?php echo trim(__('No reviews found.', 'multivendorx')); ?></div>'
         },
         preDrawCallback: function( settings ) {
             $('#vendor_reviews thead').hide();
@@ -64,7 +64,7 @@ jQuery(document).ready(function($) {
             url : '<?php echo add_query_arg( 'action', 'mvx_vendor_dashboard_reviews_data', $MVX->ajax_url() ); ?>', 
             type: "post",
             error: function(xhr, status, error) {
-                $("#vendor_reviews tbody").append('<tr class="odd"><td valign="top" colspan="1" class="dataTables_empty"><div>'+error+' - <a href="javascript:window.location.reload();"><?php _e('Reload', 'dc-woocommerce-multi-vendor'); ?></div></td></tr>');
+                $("#vendor_reviews tbody").append('<tr class="odd"><td valign="top" colspan="1" class="dataTables_empty"><div>'+error+' - <a href="javascript:window.location.reload();"><?php _e('Reload', 'multivendorx'); ?></div></td></tr>');
                 $("#vendor_reviews_processing").css("display","none");
             }
         },

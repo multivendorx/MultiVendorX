@@ -2,13 +2,13 @@
     global $MVX;
 
     $is_method_taxable_array = array(
-        'none'      => __( 'None', 'dc-woocommerce-multi-vendor' ),
-        'taxable'   => __( 'Taxable' , 'dc-woocommerce-multi-vendor' )
+        'none'      => __( 'None', 'multivendorx' ),
+        'taxable'   => __( 'Taxable' , 'multivendorx' )
     );
 
     $calculation_type = array(
-        'class' => __( 'Per class: Charge shipping for each shipping class individually', 'dc-woocommerce-multi-vendor' ),
-        'order' => __( 'Per order: Charge shipping for the most expensive shipping class', 'dc-woocommerce-multi-vendor' ),
+        'class' => __( 'Per class: Charge shipping for each shipping class individually', 'multivendorx' ),
+        'order' => __( 'Per order: Charge shipping for the most expensive shipping class', 'multivendorx' ),
     );
 ?>
 <div class="collapse mvx-modal-dialog" id="mvx_shipping_method_edit_container">
@@ -16,9 +16,9 @@
         <div class="mvx-modal-content">
             <section class="mvx-modal-main" role="main">
                 <header class="mvx-modal-header page_collapsible modal_head" id="mvx_shipping_method_edit_general_head">
-                    <h1><?php _e( 'Edit Shipping Methods', 'dc-woocommerce-multi-vendor' ); ?></h1>
+                    <h1><?php _e( 'Edit Shipping Methods', 'multivendorx' ); ?></h1>
                     <button class="modal-close modal-close-link dashicons dashicons-no-alt">
-                        <span class="screen-reader-text"><?php _e( 'Close modal panel', 'dc-woocommerce-multi-vendor' ); ?></span>
+                        <span class="screen-reader-text"><?php _e( 'Close modal panel', 'multivendorx' ); ?></span>
                     </button>  
                 </header>
                 <article class="modal_body" id="mvx_shipping_method_edit_form_general_body"> 
@@ -33,7 +33,7 @@
                 </article>
                 <footer class="modal_footer" id="mvx_shipping_method_edit_general_footer">
                     <div class="inner">
-                        <button class="btn btn-default update-shipping-method" id="mvx_shipping_method_edit_button"><?php _e( 'Save changes', 'dc-woocommerce-multi-vendor' ); ?></button>
+                        <button class="btn btn-default update-shipping-method" id="mvx_shipping_method_edit_button"><?php _e( 'Save changes', 'multivendorx' ); ?></button>
                     </div>
                 </footer> 
             </section>   

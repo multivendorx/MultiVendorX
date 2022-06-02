@@ -19,23 +19,23 @@ $get_vendor_thresold = $MVX->vendor_caps->payment_cap['commission_threshold'];
 }
 $withdrawal_list_table_headers = apply_filters('mvx_datatable_vendor_withdrawal_list_table_headers', array(
     'select_withdrawal'  => array('label' => '', 'class' => 'text-center', 'orderable' => false),
-    'order_id'      => array('label' => __( 'Order ID', 'dc-woocommerce-multi-vendor' ), 'orderable' => false),
-    'commission_amount'    => array('label' => __( 'Commission Amount', 'dc-woocommerce-multi-vendor' ), 'orderable' => false),
-    'shipping_amount'=> array('label' => __( 'Shipping Amount', 'dc-woocommerce-multi-vendor' ), 'orderable' => false),
-    'tax_amount'  => array('label' => __( 'Tax Amount', 'dc-woocommerce-multi-vendor' ), 'orderable' => false),
-    'total'        => array('label' => __( 'Total', 'dc-woocommerce-multi-vendor' ), 'orderable' => false),
+    'order_id'      => array('label' => __( 'Order ID', 'multivendorx' ), 'orderable' => false),
+    'commission_amount'    => array('label' => __( 'Commission Amount', 'multivendorx' ), 'orderable' => false),
+    'shipping_amount'=> array('label' => __( 'Shipping Amount', 'multivendorx' ), 'orderable' => false),
+    'tax_amount'  => array('label' => __( 'Tax Amount', 'multivendorx' ), 'orderable' => false),
+    'total'        => array('label' => __( 'Total', 'multivendorx' ), 'orderable' => false),
 ), get_current_user_id());
 ?>
 <?php if($get_vendor_thresold) : ?>
 <div class="col-md-12">
     <blockquote>
-        <span><?php esc_html_e('Your Threshold value for withdrawals is :', 'dc-woocommerce-multi-vendor'); ?> <?php echo wc_price($get_vendor_thresold); ?></span>
+        <span><?php esc_html_e('Your Threshold value for withdrawals is :', 'multivendorx'); ?> <?php echo wc_price($get_vendor_thresold); ?></span>
     </blockquote>
 </div>
 <?php endif; ?>
 <div class="col-md-12">
     <div class="panel panel-default">
-        <h3 class="panel-heading d-flex"><?php esc_html_e('Withdrawal Orders', 'dc-woocommerce-multi-vendor'); ?></h3>
+        <h3 class="panel-heading d-flex"><?php esc_html_e('Withdrawal Orders', 'multivendorx'); ?></h3>
         <div class="panel-body">
             <form method="post" name="get_paid_form">
                 <table id="vendor_withdrawal" class="table table-striped table-bordered" width="100%">
@@ -67,7 +67,7 @@ $withdrawal_list_table_headers = apply_filters('mvx_datatable_vendor_withdrawal_
                                     || (isset($MVX->vendor_caps->payment_cap['commission_threshold']) && empty($MVX->vendor_caps->payment_cap['commission_threshold']) && $vendor_unpaid_orders ) 
                                     || ( !isset($MVX->vendor_caps->payment_cap['commission_threshold']) && $vendor_unpaid_orders ) ){ ?>
                             <div class="mvx-action-container">
-                                <button name="vendor_get_paid" type="submit" class="btn btn-default"><?php _e('Request Withdrawals', 'dc-woocommerce-multi-vendor'); ?></button>
+                                <button name="vendor_get_paid" type="submit" class="btn btn-default"><?php _e('Request Withdrawals', 'multivendorx'); ?></button>
                             </div>
                     <?php
                             }
@@ -80,7 +80,7 @@ $withdrawal_list_table_headers = apply_filters('mvx_datatable_vendor_withdrawal_
             <?php $vendor_payment_mode = get_user_meta($vendor->id, '_vendor_payment_mode', true);
             if ($vendor_payment_mode == 'paypal_masspay' && wp_next_scheduled('masspay_cron_start')) { ?>
             <div class="mvx_admin_massege">
-                <div class="mvx_mixed_msg"><?php esc_html_e('Your next scheduled payment date is on:', 'dc-woocommerce-multi-vendor'); ?>	<span><?php echo date('d/m/Y g:i:s A', wp_next_scheduled('masspay_cron_start')); ?></span> </div>
+                <div class="mvx_mixed_msg"><?php esc_html_e('Your next scheduled payment date is on:', 'multivendorx'); ?>	<span><?php echo date('d/m/Y g:i:s A', wp_next_scheduled('masspay_cron_start')); ?></span> </div>
             </div>
         <?php } ?> 
         </div>
@@ -106,16 +106,16 @@ jQuery(document).ready(function($) {
         serverSide: true,
         responsive: true,
         language: {
-            "emptyTable": "<?php echo isset($table_init['emptyTable']) ? trim($table_init['emptyTable']) : __('No orders found!','dc-woocommerce-multi-vendor'); ?>",
-            "processing": "<?php echo isset($table_init['processing']) ? trim($table_init['processing']) : __('Processing...', 'dc-woocommerce-multi-vendor'); ?>",
-            "info": "<?php echo isset($table_init['info']) ? trim($table_init['info']) : __('Showing _START_ to _END_ of _TOTAL_ orders','dc-woocommerce-multi-vendor'); ?>",
-            "infoEmpty": "<?php echo isset($table_init['infoEmpty']) ? trim($table_init['infoEmpty']) : __('Showing 0 to 0 of 0 orders','dc-woocommerce-multi-vendor'); ?>",
-            "lengthMenu": "<?php echo isset($table_init['lengthMenu']) ? trim($table_init['lengthMenu']) : __('Number of rows _MENU_','dc-woocommerce-multi-vendor'); ?>",
-            "zeroRecords": "<?php echo isset($table_init['zeroRecords']) ? trim($table_init['zeroRecords']) : __('No matching orders found','dc-woocommerce-multi-vendor'); ?>",
-            "search": "<?php echo isset($table_init['search']) ? trim($table_init['search']) : __('Search:','dc-woocommerce-multi-vendor'); ?>",
+            "emptyTable": "<?php echo isset($table_init['emptyTable']) ? trim($table_init['emptyTable']) : __('No orders found!','multivendorx'); ?>",
+            "processing": "<?php echo isset($table_init['processing']) ? trim($table_init['processing']) : __('Processing...', 'multivendorx'); ?>",
+            "info": "<?php echo isset($table_init['info']) ? trim($table_init['info']) : __('Showing _START_ to _END_ of _TOTAL_ orders','multivendorx'); ?>",
+            "infoEmpty": "<?php echo isset($table_init['infoEmpty']) ? trim($table_init['infoEmpty']) : __('Showing 0 to 0 of 0 orders','multivendorx'); ?>",
+            "lengthMenu": "<?php echo isset($table_init['lengthMenu']) ? trim($table_init['lengthMenu']) : __('Number of rows _MENU_','multivendorx'); ?>",
+            "zeroRecords": "<?php echo isset($table_init['zeroRecords']) ? trim($table_init['zeroRecords']) : __('No matching orders found','multivendorx'); ?>",
+            "search": "<?php echo isset($table_init['search']) ? trim($table_init['search']) : __('Search:','multivendorx'); ?>",
             "paginate": {
-                "next":  "<?php echo isset($table_init['next']) ? trim($table_init['next']) : __('Next','dc-woocommerce-multi-vendor'); ?>",
-                "previous":  "<?php echo isset($table_init['previous']) ? trim($table_init['previous']) : __('Previous','dc-woocommerce-multi-vendor'); ?>"
+                "next":  "<?php echo isset($table_init['next']) ? trim($table_init['next']) : __('Next','multivendorx'); ?>",
+                "previous":  "<?php echo isset($table_init['previous']) ? trim($table_init['previous']) : __('Previous','multivendorx'); ?>"
             }
         },
         drawCallback: function () {
@@ -130,7 +130,7 @@ jQuery(document).ready(function($) {
             url : '<?php echo add_query_arg( 'action', 'mvx_vendor_unpaid_order_vendor_withdrawal_list', $MVX->ajax_url() ); ?>', 
             type: "post",
             error: function(xhr, status, error) {
-                $("#vendor_withdrawal tbody").append('<tr class="odd"><td valign="top" colspan="6" class="dataTables_empty" style="text-align:center;">'+error+' - <a href="javascript:window.location.reload();"><?php _e('Reload', 'dc-woocommerce-multi-vendor'); ?></a></td></tr>');
+                $("#vendor_withdrawal tbody").append('<tr class="odd"><td valign="top" colspan="6" class="dataTables_empty" style="text-align:center;">'+error+' - <a href="javascript:window.location.reload();"><?php _e('Reload', 'multivendorx'); ?></a></td></tr>');
                 $("#vendor_withdrawal_processing").css("display","none");
             }
         },

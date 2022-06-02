@@ -67,7 +67,7 @@ if(isset($more_product_array) && is_array($more_product_array) && count($more_pr
                                     'quantity' => 1,
                                 ) );
                                 ?>
-				<a href="<?php echo esc_url(get_permalink($more_product['product_id'])); ?>" class="buttongap button" ><?php echo esc_html_e('Details','dc-woocommerce-multi-vendor'); ?></a>
+				<a href="<?php echo esc_url(get_permalink($more_product['product_id'])); ?>" class="buttongap button" ><?php echo esc_html_e('Details','multivendorx'); ?></a>
 			</div>
 			<div style="clear:both;"></div>							
 		</div>

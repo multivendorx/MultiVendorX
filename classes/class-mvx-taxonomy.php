@@ -20,7 +20,7 @@ class MVX_Taxonomy {
     public function __construct() {
         $permalinks = get_option('dc_vendors_permalinks');
         $this->taxonomy_name = 'dc_vendor_shop';
-        $this->taxonomy_slug = empty($permalinks['vendor_shop_base']) ? _x('vendor', 'slug', 'dc-woocommerce-multi-vendor') : $permalinks['vendor_shop_base'];
+        $this->taxonomy_slug = empty($permalinks['vendor_shop_base']) ? _x('vendor', 'slug', 'multivendorx') : $permalinks['vendor_shop_base'];
         $this->register_post_taxonomy();
         //add_action('created_term', array($this, 'created_term'), 10, 3);
         add_filter('get_the_terms', array(&$this, 'mvx_get_the_terms'), 10, 3);
@@ -41,23 +41,23 @@ class MVX_Taxonomy {
      */
     public function register_post_taxonomy() {
         $labels = array(
-            'name' => apply_filters('mvx_vendor_taxonomy_name', __('Vendor', 'dc-woocommerce-multi-vendor')),
-            'singular_name' => __('Vendor', 'dc-woocommerce-multi-vendor'),
-            'menu_name' => __('Vendors', 'dc-woocommerce-multi-vendor'),
-            'search_items' => __('Search Vendors', 'dc-woocommerce-multi-vendor'),
-            'all_items' => __('All Vendors', 'dc-woocommerce-multi-vendor'),
-            'parent_item' => __('Parent Vendor', 'dc-woocommerce-multi-vendor'),
-            'parent_item_colon' => __('Parent Vendor:', 'dc-woocommerce-multi-vendor'),
-            'view_item' => __('View Vendor', 'dc-woocommerce-multi-vendor'),
-            'edit_item' => __('Edit Vendor', 'dc-woocommerce-multi-vendor'),
-            'update_item' => __('Update Vendor', 'dc-woocommerce-multi-vendor'),
-            'add_new_item' => __('Add New Vendor', 'dc-woocommerce-multi-vendor'),
-            'new_item_name' => __('New Vendor Name', 'dc-woocommerce-multi-vendor'),
-            'popular_items' => __('Popular Vendors', 'dc-woocommerce-multi-vendor'),
-            'separate_items_with_commas' => __('Separate vendors with commas', 'dc-woocommerce-multi-vendor'),
-            'add_or_remove_items' => __('Add or remove vendors', 'dc-woocommerce-multi-vendor'),
-            'choose_from_most_used' => __('Choose from most used vendors', 'dc-woocommerce-multi-vendor'),
-            'not_found' => __('No vendors found', 'dc-woocommerce-multi-vendor'),
+            'name' => apply_filters('mvx_vendor_taxonomy_name', __('Vendor', 'multivendorx')),
+            'singular_name' => __('Vendor', 'multivendorx'),
+            'menu_name' => __('Vendors', 'multivendorx'),
+            'search_items' => __('Search Vendors', 'multivendorx'),
+            'all_items' => __('All Vendors', 'multivendorx'),
+            'parent_item' => __('Parent Vendor', 'multivendorx'),
+            'parent_item_colon' => __('Parent Vendor:', 'multivendorx'),
+            'view_item' => __('View Vendor', 'multivendorx'),
+            'edit_item' => __('Edit Vendor', 'multivendorx'),
+            'update_item' => __('Update Vendor', 'multivendorx'),
+            'add_new_item' => __('Add New Vendor', 'multivendorx'),
+            'new_item_name' => __('New Vendor Name', 'multivendorx'),
+            'popular_items' => __('Popular Vendors', 'multivendorx'),
+            'separate_items_with_commas' => __('Separate vendors with commas', 'multivendorx'),
+            'add_or_remove_items' => __('Add or remove vendors', 'multivendorx'),
+            'choose_from_most_used' => __('Choose from most used vendors', 'multivendorx'),
+            'not_found' => __('No vendors found', 'multivendorx'),
         );
 
         $vendor_slug = apply_filters('mvx_vendor_slug', $this->taxonomy_slug);
@@ -129,7 +129,7 @@ class MVX_Taxonomy {
             $this->mvx_spmv_taxonomy,
             'product',
             array(
-                'label' => __( 'MVX SPMV', 'dc-woocommerce-multi-vendor' ),
+                'label' => __( 'MVX SPMV', 'multivendorx' ),
                 'public' => false,
                 'rewrite' => false,
                 'hierarchical' => false,
@@ -141,16 +141,16 @@ class MVX_Taxonomy {
         // Add default spmv terms
         $mvx_spmv_default_terms = apply_filters('mvx_spmv_default_terms', array(
             'min-price' => array(
-                'label'=> __('Min Price', 'dc-woocommerce-multi-vendor'), 
-                'description' => __('Used for minimum price products under all single product multi vendor concept.', 'dc-woocommerce-multi-vendor'),
+                'label'=> __('Min Price', 'multivendorx'), 
+                'description' => __('Used for minimum price products under all single product multi vendor concept.', 'multivendorx'),
             ),
             'max-price' => array(
-                'label'=> __('Max Price', 'dc-woocommerce-multi-vendor'), 
-                'description' => __('Used for maximum price products under all single product multi vendor concept.', 'dc-woocommerce-multi-vendor'),
+                'label'=> __('Max Price', 'multivendorx'), 
+                'description' => __('Used for maximum price products under all single product multi vendor concept.', 'multivendorx'),
             ),
             'top-rated-vendor' => array(
-                'label'=> __('Top rated vendor', 'dc-woocommerce-multi-vendor'), 
-                'description' => __('Used for top rated vendor products under all single product multi vendor concept.', 'dc-woocommerce-multi-vendor'),
+                'label'=> __('Top rated vendor', 'multivendorx'), 
+                'description' => __('Used for top rated vendor products under all single product multi vendor concept.', 'multivendorx'),
             ),
         ));
         
@@ -182,7 +182,7 @@ class MVX_Taxonomy {
             $this->mvx_gtin_taxonomy,
             'product',
             array(
-                'label' => apply_filters('mvx_taxonomy_gtin_label_text',__( 'GTIN', 'dc-woocommerce-multi-vendor' )),
+                'label' => apply_filters('mvx_taxonomy_gtin_label_text',__( 'GTIN', 'multivendorx' )),
                 'public' => false,
                 'rewrite' => false,
                 'hierarchical' => false,
@@ -193,14 +193,14 @@ class MVX_Taxonomy {
         
         // Add default spmv terms
         $mvx_gtin_default_terms = apply_filters('mvx_gtin_default_terms', array(
-            'upc'   => __( 'UPC', 'dc-woocommerce-multi-vendor' ),
-            'ean'   => __( 'EAN', 'dc-woocommerce-multi-vendor' ),
-            'isbn'  => __( 'ISBN', 'dc-woocommerce-multi-vendor' ),
-            'issn'  => __( 'ISSN', 'dc-woocommerce-multi-vendor' ),
-            'ismn'  => __( 'ISMN', 'dc-woocommerce-multi-vendor' ),
-            'jan'   => __( 'JAN', 'dc-woocommerce-multi-vendor' ),
-            'itf-14'=> __( 'ITF-14', 'dc-woocommerce-multi-vendor' ),
-            'mpuin' => apply_filters( 'mvx_gtin_default_marketplace_unique_item_number_label', __( 'MPUIN', 'dc-woocommerce-multi-vendor' )),
+            'upc'   => __( 'UPC', 'multivendorx' ),
+            'ean'   => __( 'EAN', 'multivendorx' ),
+            'isbn'  => __( 'ISBN', 'multivendorx' ),
+            'issn'  => __( 'ISSN', 'multivendorx' ),
+            'ismn'  => __( 'ISMN', 'multivendorx' ),
+            'jan'   => __( 'JAN', 'multivendorx' ),
+            'itf-14'=> __( 'ITF-14', 'multivendorx' ),
+            'mpuin' => apply_filters( 'mvx_gtin_default_marketplace_unique_item_number_label', __( 'MPUIN', 'multivendorx' )),
             
         ));
         

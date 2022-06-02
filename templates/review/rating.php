@@ -26,9 +26,9 @@ $count = intval($rating_val_array['total_rating']);
 $rating_type = $rating_val_array['rating_type'];
 $rating_url = $MVX->frontend->mvx_get_review_url( mvx_find_shop_page_vendor() );
 if( $rating_type == 'product-rating' ) {
-    $review_text = $count > 1 ? __('Products reviews', 'dc-woocommerce-multi-vendor') : __('Product review', 'dc-woocommerce-multi-vendor');
+    $review_text = $count > 1 ? __('Products reviews', 'multivendorx') : __('Product review', 'multivendorx');
 } else {
-    $review_text = $count > 1 ? __('Reviews', 'dc-woocommerce-multi-vendor') : __('Review', 'dc-woocommerce-multi-vendor');
+    $review_text = $count > 1 ? __('Reviews', 'multivendorx') : __('Review', 'multivendorx');
 }
 
 ?> 
@@ -42,14 +42,14 @@ if( $rating_type == 'product-rating' ) {
     <a href="<?php echo ($rating_type != 'product-rating' ) ? esc_url($rating_url) : ''; ?>">
 <?php } ?>
 <?php if ($count > 0) { ?>  
-        <span itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating" class="star-rating" title="<?php echo sprintf(__('Rated %s out of 5', 'dc-woocommerce-multi-vendor'), $rating) ?>">
-            <span style="width:<?php echo ( round($rating_val_array['avg_rating']) / 5 ) * 100; ?>%"><strong itemprop="ratingValue"><?php echo esc_html($rating); ?></strong> <?php esc_html_e('out of 5', 'dc-woocommerce-multi-vendor'); ?></span>
+        <span itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating" class="star-rating" title="<?php echo sprintf(__('Rated %s out of 5', 'multivendorx'), $rating) ?>">
+            <span style="width:<?php echo ( round($rating_val_array['avg_rating']) / 5 ) * 100; ?>%"><strong itemprop="ratingValue"><?php echo esc_html($rating); ?></strong> <?php esc_html_e('out of 5', 'multivendorx'); ?></span>
         </span>
         <?php echo esc_html(sprintf(' %s %s', $count, $review_text)); ?>
 
     <?php
 } else {
     ?>
-        <?php echo __(' No Review Yet ', 'dc-woocommerce-multi-vendor'); ?>
+        <?php echo __(' No Review Yet ', 'multivendorx'); ?>
     <?php } ?>
 </a>

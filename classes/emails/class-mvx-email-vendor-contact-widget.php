@@ -26,8 +26,8 @@ class WC_Email_Vendor_Contact_Widget extends WC_Email {
     function __construct() {
         global $MVX;
         $this->id                   = 'vendor_contact_widget_email';
-        $this->title 		= __( 'Vendor Contact Email', 'dc-woocommerce-multi-vendor' );
-        $this->description		= __( 'Vendor contact email via customer.', 'dc-woocommerce-multi-vendor');
+        $this->title 		= __( 'Vendor Contact Email', 'multivendorx' );
+        $this->description		= __( 'Vendor contact email via customer.', 'multivendorx');
 
         $this->template_base = $MVX->plugin_path . 'templates/';
         $this->template_html 	= 'emails/vendor-contact-widget-email.php';
@@ -68,7 +68,7 @@ class WC_Email_Vendor_Contact_Widget extends WC_Email {
      * @return string
      */
     public function get_default_subject() {
-        $subject = __( '[{site_title}] Contact Vendor', 'dc-woocommerce-multi-vendor');
+        $subject = __( '[{site_title}] Contact Vendor', 'multivendorx');
         if( isset($this->object['subject']) && !empty($this->object['subject']) ){
             $subject = $subject . ' - ' . $this->object['subject'];
         }
@@ -82,7 +82,7 @@ class WC_Email_Vendor_Contact_Widget extends WC_Email {
      * @return string
      */
     public function get_default_heading() {
-        return apply_filters( 'mvx_vendor_contact_widget_email_heading', __( "{STORE_NAME}'s Customer contact", 'dc-woocommerce-multi-vendor'), $this->object );
+        return apply_filters( 'mvx_vendor_contact_widget_email_heading', __( "{STORE_NAME}'s Customer contact", 'multivendorx'), $this->object );
     }
     
     /**

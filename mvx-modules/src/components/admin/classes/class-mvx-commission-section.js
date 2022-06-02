@@ -897,10 +897,14 @@ class App extends Component {
                   </div>
                   {/* Commission order details end*/}
 
-                  {/* Commission order details start*/}
+                  {/* Commission order shipping details start*/}
+                  
+                  {this.state.commission_details.shipping_items_details ?
                   <div className="mvx-commission-order-details-text">
                     Shipping
                   </div>
+                  : ''}
+                  {this.state.commission_details.shipping_items_details ?
                   <div className="mvx-commission-order-data woocommerce_order_items_wrapper wc-order-items-editable">
                     <table
                       cellpadding="0"
@@ -986,7 +990,8 @@ class App extends Component {
                       </tbody>
                     </table>
                   </div>
-                  {/* Commission order details end*/}
+                  : ''}
+                  {/* Commission order shipping details end*/}
 
                   <div className="wc-used-coupons">
                     <ul className="wc_coupon_list"></ul>

@@ -22,7 +22,7 @@ class MVX_Gateway_Paypal_Payout extends MVX_Payment_Gateway {
 
     public function __construct() {
         $this->id = 'paypal_payout';
-        $this->gateway_title = __('Paypal payout', 'dc-woocommerce-multi-vendor');
+        $this->gateway_title = __('Paypal payout', 'multivendorx');
         $this->payment_gateway = $this->id;
         $this->enabled = mvx_is_module_active('paypal-payout') ? 'Enable' : '';
         $this->client_id = get_mvx_global_settings('client_id');
@@ -53,7 +53,7 @@ class MVX_Gateway_Paypal_Payout extends MVX_Payment_Gateway {
             if ($paypal_response) {
                 $this->record_transaction();
                 if ($this->transaction_id) {
-                    return array('message' => __('New transaction has been initiated', 'dc-woocommerce-multi-vendor'), 'type' => 'success', 'transaction_id' => $this->transaction_id);
+                    return array('message' => __('New transaction has been initiated', 'multivendorx'), 'type' => 'success', 'transaction_id' => $this->transaction_id);
                 }
             } else {
                 return false;
@@ -66,13 +66,13 @@ class MVX_Gateway_Paypal_Payout extends MVX_Payment_Gateway {
     public function validate_request() {
         global $MVX;
         if ($this->enabled != 'Enable') {
-            $this->message[] = array('message' => __('Invalid payment method', 'dc-woocommerce-multi-vendor'), 'type' => 'error');
+            $this->message[] = array('message' => __('Invalid payment method', 'multivendorx'), 'type' => 'error');
             return false;
         } else if (!$this->client_id && !$this->client_secret) {
-            $this->message[] = array('message' => __('Paypal payout setting is not configured properly please contact site administrator', 'dc-woocommerce-multi-vendor'), 'type' => 'error');
+            $this->message[] = array('message' => __('Paypal payout setting is not configured properly please contact site administrator', 'multivendorx'), 'type' => 'error');
             return false;
         } else if (!$this->reciver_email) {
-            $this->message[] = array('message' => __('Please update your paypal email to receive commission', 'dc-woocommerce-multi-vendor'), 'type' => 'error');
+            $this->message[] = array('message' => __('Please update your paypal email to receive commission', 'multivendorx'), 'type' => 'error');
             return false;
         }
         if ($this->transaction_mode != 'admin') {
@@ -90,7 +90,7 @@ class MVX_Gateway_Paypal_Payout extends MVX_Payment_Gateway {
             if ($this->get_transaction_total() > $thesold_amount) {
                 return true;
             } else {
-                $this->message[] = array('message' => __('Minimum thesold amount to withdrawal commission is ' . $thesold_amount, 'dc-woocommerce-multi-vendor'), 'type' => 'error');
+                $this->message[] = array('message' => __('Minimum thesold amount to withdrawal commission is ' . $thesold_amount, 'multivendorx'), 'type' => 'error');
                 return false;
             }
         }
@@ -123,7 +123,7 @@ class MVX_Gateway_Paypal_Payout extends MVX_Payment_Gateway {
     private function process_paypal_payout() {
         $api_authorization = "Authorization: {$this->token_type} {$this->access_token}";
         $amount_to_pay = round($this->get_transaction_total() - $this->transfer_charge($this->transaction_mode) - $this->gateway_charge(), 2);
-        $note = sprintf(__('Total commissions earned from %1$s as at %2$s on %3$s', 'dc-woocommerce-multi-vendor'), get_bloginfo('name'), date('H:i:s'), date('d-m-Y'));
+        $note = sprintf(__('Total commissions earned from %1$s as at %2$s on %3$s', 'multivendorx'), get_bloginfo('name'), date('H:i:s'), date('d-m-Y'));
         $request_params = '{
 		"sender_batch_header": {
                     "sender_batch_id":"' . uniqid() . '",
@@ -165,7 +165,7 @@ class MVX_Gateway_Paypal_Payout extends MVX_Payment_Gateway {
                 return $result_array;
             } else {
                 doProductVendorLOG(json_encode($result_array));
-                $this->add_commission_note($this->commissions, __('Payment failed', 'dc-woocommerce-multi-vendor'));
+                $this->add_commission_note($this->commissions, __('Payment failed', 'multivendorx'));
                 return false;
             }
         }else{
@@ -174,7 +174,7 @@ class MVX_Gateway_Paypal_Payout extends MVX_Payment_Gateway {
                 return $result_array;
             } else {
                 doProductVendorLOG(json_encode($result_array));
-                $this->add_commission_note($this->commissions, __('Payment failed', 'dc-woocommerce-multi-vendor'));
+                $this->add_commission_note($this->commissions, __('Payment failed', 'multivendorx'));
                 return false;
             }
         }

@@ -188,7 +188,7 @@ module.exports = function (grunt) {
         // Check textdomain errors.
         checktextdomain: {
             options: {
-                text_domain: 'dc-woocommerce-multi-vendor',
+                text_domain: 'multivendorx',
                 keywords: [
                     '__:1,2d',
                     '_e:1,2d',

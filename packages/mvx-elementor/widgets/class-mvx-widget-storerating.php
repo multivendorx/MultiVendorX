@@ -33,7 +33,7 @@ class MVX_Elementor_StoreRating extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Store Rating', 'dc-woocommerce-multi-vendor' );
+		return __( 'Store Rating', 'multivendorx' );
 	}
 
 	/**
@@ -88,14 +88,14 @@ class MVX_Elementor_StoreRating extends Widget_Base {
 		$this->start_controls_section(
 			'section_rating',
 			[
-				'label' => __( 'Rating', 'dc-woocommerce-multi-vendor' ),
+				'label' => __( 'Rating', 'multivendorx' ),
 			]
 		);
 
 		$this->add_control(
 			'rating_scale',
 			[
-				'label' => __( 'Rating Scale', 'dc-woocommerce-multi-vendor' ),
+				'label' => __( 'Rating Scale', 'multivendorx' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
 					'5' => '0-5',
@@ -108,7 +108,7 @@ class MVX_Elementor_StoreRating extends Widget_Base {
 		$this->add_control(
 			'rating',
 			[
-				'label' => __( 'Rating', 'dc-woocommerce-multi-vendor' ),
+				'label' => __( 'Rating', 'multivendorx' ),
 				'type' => Controls_Manager::NUMBER,
 				'min' => 0,
 				'max' => 10,
@@ -123,7 +123,7 @@ class MVX_Elementor_StoreRating extends Widget_Base {
 		$this->add_control(
 			'star_style',
 			[
-				'label' => __( 'Icon', 'dc-woocommerce-multi-vendor' ),
+				'label' => __( 'Icon', 'multivendorx' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
 					'star_fontawesome' => 'Font Awesome',
@@ -139,16 +139,16 @@ class MVX_Elementor_StoreRating extends Widget_Base {
 		$this->add_control(
 			'unmarked_star_style',
 			[
-				'label' => __( 'Unmarked Style', 'dc-woocommerce-multi-vendor' ),
+				'label' => __( 'Unmarked Style', 'multivendorx' ),
 				'type' => Controls_Manager::CHOOSE,
 				'label_block' => false,
 				'options' => [
 					'solid' => [
-						'title' => __( 'Solid', 'dc-woocommerce-multi-vendor' ),
+						'title' => __( 'Solid', 'multivendorx' ),
 						'icon' => 'eicon-star',
 					],
 					'outline' => [
-						'title' => __( 'Outline', 'dc-woocommerce-multi-vendor' ),
+						'title' => __( 'Outline', 'multivendorx' ),
 						'icon' => 'eicon-star-o',
 					],
 				],
@@ -159,23 +159,23 @@ class MVX_Elementor_StoreRating extends Widget_Base {
 		$this->add_responsive_control(
 			'align',
 			[
-				'label' => __( 'Alignment', 'dc-woocommerce-multi-vendor' ),
+				'label' => __( 'Alignment', 'multivendorx' ),
 				'type' => Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
-						'title' => __( 'Left', 'dc-woocommerce-multi-vendor' ),
+						'title' => __( 'Left', 'multivendorx' ),
 						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
-						'title' => __( 'Center', 'dc-woocommerce-multi-vendor' ),
+						'title' => __( 'Center', 'multivendorx' ),
 						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
-						'title' => __( 'Right', 'dc-woocommerce-multi-vendor' ),
+						'title' => __( 'Right', 'multivendorx' ),
 						'icon' => 'eicon-text-align-right',
 					],
 					'justify' => [
-						'title' => __( 'Justified', 'dc-woocommerce-multi-vendor' ),
+						'title' => __( 'Justified', 'multivendorx' ),
 						'icon' => 'eicon-text-align-justify',
 					],
 				],
@@ -191,7 +191,7 @@ class MVX_Elementor_StoreRating extends Widget_Base {
 		$this->start_controls_section(
 			'section_title_style',
 			[
-				'label' => __( 'Title', 'dc-woocommerce-multi-vendor' ),
+				'label' => __( 'Title', 'multivendorx' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'title!' => '',
@@ -202,7 +202,7 @@ class MVX_Elementor_StoreRating extends Widget_Base {
 		$this->add_control(
 			'title_color',
 			[
-				'label' => __( 'Text Color', 'dc-woocommerce-multi-vendor' ),
+				'label' => __( 'Text Color', 'multivendorx' ),
 				'type' => Controls_Manager::COLOR,
 				'scheme' => [
 					'type' => Color::get_type(),
@@ -226,7 +226,7 @@ class MVX_Elementor_StoreRating extends Widget_Base {
 		$this->add_responsive_control(
 			'title_gap',
 			[
-				'label' => __( 'Gap', 'dc-woocommerce-multi-vendor' ),
+				'label' => __( 'Gap', 'multivendorx' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -246,7 +246,7 @@ class MVX_Elementor_StoreRating extends Widget_Base {
 		$this->start_controls_section(
 			'section_stars_style',
 			[
-				'label' => __( 'Stars', 'dc-woocommerce-multi-vendor' ),
+				'label' => __( 'Stars', 'multivendorx' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -254,7 +254,7 @@ class MVX_Elementor_StoreRating extends Widget_Base {
 		$this->add_responsive_control(
 			'icon_size',
 			[
-				'label' => __( 'Size', 'dc-woocommerce-multi-vendor' ),
+				'label' => __( 'Size', 'multivendorx' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -271,7 +271,7 @@ class MVX_Elementor_StoreRating extends Widget_Base {
 		$this->add_responsive_control(
 			'icon_space',
 			[
-				'label' => __( 'Spacing', 'dc-woocommerce-multi-vendor' ),
+				'label' => __( 'Spacing', 'multivendorx' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -289,7 +289,7 @@ class MVX_Elementor_StoreRating extends Widget_Base {
 		$this->add_control(
 			'stars_color',
 			[
-				'label' => __( 'Color', 'dc-woocommerce-multi-vendor' ),
+				'label' => __( 'Color', 'multivendorx' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-star-rating i:before' => 'color: {{VALUE}}',
@@ -301,7 +301,7 @@ class MVX_Elementor_StoreRating extends Widget_Base {
 		$this->add_control(
 			'stars_unmarked_color',
 			[
-				'label' => __( 'Unmarked Color', 'dc-woocommerce-multi-vendor' ),
+				'label' => __( 'Unmarked Color', 'multivendorx' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-star-rating i' => 'color: {{VALUE}}',

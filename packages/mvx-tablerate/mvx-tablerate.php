@@ -203,7 +203,7 @@ class MVX_Tablerate {
     public function add_shipping_updated_notice() {
         ?>
         <div id="message" class="updated settings-error notice is-dismissible">
-            <p><strong><?php esc_html_e('Table rates Updated', 'dc-woocommerce-multi-vendor') ?></strong></p>
+            <p><strong><?php esc_html_e('Table rates Updated', 'multivendorx') ?></strong></p>
         </div>
         <?php
     }
@@ -336,7 +336,7 @@ class MVX_Tablerate {
                         );
                     }
                 }
-                wc_add_notice(__('Table rates Updated', 'dc-woocommerce-multi-vendor'), 'success');
+                wc_add_notice(__('Table rates Updated', 'multivendorx'), 'success');
             }
         }
     }
@@ -394,12 +394,12 @@ class MVX_Tablerate {
         if (is_wp_error($result)) {
             wp_send_json_error($result->get_error_message());
         }
-        $message = $data['checked'] ? __('Shipping method enabled successfully', 'dc-woocommerce-multi-vendor') : __('Shipping method disabled successfully', 'dc-woocommerce-multi-vendor');
+        $message = $data['checked'] ? __('Shipping method enabled successfully', 'multivendorx') : __('Shipping method disabled successfully', 'multivendorx');
         wp_send_json_success($message);
     }
 
     public function add_fields_mvx_vendor_shipping_methods($vendor_shippings) {
-        $vendor_shippings['table_rate'] = __('Table Rates', 'dc-woocommerce-multi-vendor');
+        $vendor_shippings['table_rate'] = __('Table Rates', 'multivendorx');
         return $vendor_shippings;
     }
 
@@ -407,9 +407,9 @@ class MVX_Tablerate {
         ?>
         <div id="wrapper-<?php echo esc_attr($shipping_method['id']) ?>">
             <div class="form-group">
-                <label for="" class="control-label col-sm-3 col-md-3"><?php esc_html_e( 'Method Title', 'dc-woocommerce-multi-vendor' ); ?></label>
+                <label for="" class="control-label col-sm-3 col-md-3"><?php esc_html_e( 'Method Title', 'multivendorx' ); ?></label>
                 <div class="col-md-9 col-sm-9">
-                    <input id="method_title_lp" class="form-control" type="text" name="title" value="<?php echo isset($shipping_method['title']) ? esc_attr($shipping_method['title']) : ''; ?>" placholder="<?php esc_attr_e('Enter method title', 'dc-woocommerce-multi-vendor'); ?>">
+                    <input id="method_title_lp" class="form-control" type="text" name="title" value="<?php echo isset($shipping_method['title']) ? esc_attr($shipping_method['title']) : ''; ?>" placholder="<?php esc_attr_e('Enter method title', 'multivendorx'); ?>">
                 </div>
             </div>
              
@@ -449,23 +449,23 @@ class MVX_Tablerate {
      			<input type="hidden" name="shipping_class_id" value="<?php echo esc_attr($shipping_class_id); ?>" />
      			<div class="panel panel-default pannel-outer-heading">
      				<div class="panel-heading">
-     					<h3 class="mvx_black_headding"><?php esc_html_e('Table Rates: ', 'dc-woocommerce-multi-vendor'); echo $zone->get_zone_name(); ?></h3>
+     					<h3 class="mvx_black_headding"><?php esc_html_e('Table Rates: ', 'multivendorx'); echo $zone->get_zone_name(); ?></h3>
      				</div>
      				<div class="mvx_table_holder panel-body">
      					<table class="table table-bordered responsive-table mvx_table_rate_shipping widefat striped">
      						<thead>
      							<tr>
-     								<th><?php esc_html_e('Select Shipping', 'dc-woocommerce-multi-vendor'); ?></th>
-     								<th width="126"><?php esc_html_e('Condition', 'dc-woocommerce-multi-vendor'); ?></th>
-     								<th><?php esc_html_e('Min', 'dc-woocommerce-multi-vendor'); ?></th>
-     								<th><?php esc_html_e('Max', 'dc-woocommerce-multi-vendor'); ?></th>
-     								<th><?php esc_html_e('Break', 'dc-woocommerce-multi-vendor'); ?></th>
-     								<th><?php esc_html_e('Abort', 'dc-woocommerce-multi-vendor'); ?></th>
-     								<th><?php esc_html_e('Row cost', 'dc-woocommerce-multi-vendor'); ?></th>
-     								<th><?php esc_html_e('Item cost', 'dc-woocommerce-multi-vendor'); ?></th>
-     								<th><?php esc_html_e('Kg cost', 'dc-woocommerce-multi-vendor'); ?></th>
-     								<th><?php esc_html_e('% cost', 'dc-woocommerce-multi-vendor'); ?></th>
-     								<th><?php esc_html_e('Label', 'dc-woocommerce-multi-vendor'); ?></th>
+     								<th><?php esc_html_e('Select Shipping', 'multivendorx'); ?></th>
+     								<th width="126"><?php esc_html_e('Condition', 'multivendorx'); ?></th>
+     								<th><?php esc_html_e('Min', 'multivendorx'); ?></th>
+     								<th><?php esc_html_e('Max', 'multivendorx'); ?></th>
+     								<th><?php esc_html_e('Break', 'multivendorx'); ?></th>
+     								<th><?php esc_html_e('Abort', 'multivendorx'); ?></th>
+     								<th><?php esc_html_e('Row cost', 'multivendorx'); ?></th>
+     								<th><?php esc_html_e('Item cost', 'multivendorx'); ?></th>
+     								<th><?php esc_html_e('Kg cost', 'multivendorx'); ?></th>
+     								<th><?php esc_html_e('% cost', 'multivendorx'); ?></th>
+     								<th><?php esc_html_e('Label', 'multivendorx'); ?></th>
      							</tr>
      						</thead>
      						<tbody>
@@ -499,10 +499,10 @@ class MVX_Tablerate {
      						<tfoot>
      							<tr>
      								<td colspan="5">
-     									<button type="button" class="mvx_add_tablerate_item btn btn-default"><?php esc_html_e('Add Shipping Rate', 'dc-woocommerce-multi-vendor') ?></button>
+     									<button type="button" class="mvx_add_tablerate_item btn btn-default"><?php esc_html_e('Add Shipping Rate', 'multivendorx') ?></button>
      								</td>
      								<td colspan="6">
-     									<button style="float: right;" type="button" name="mvx_remove_table_rate_item" class="mvx_remove_table_rate_item btn btn-default"><?php esc_html_e('Delete selected rows', 'dc-woocommerce-multi-vendor') ?></button>
+     									<button style="float: right;" type="button" name="mvx_remove_table_rate_item" class="mvx_remove_table_rate_item btn btn-default"><?php esc_html_e('Delete selected rows', 'multivendorx') ?></button>
      								</td>
      							</tr>
      						</tfoot>
@@ -525,12 +525,12 @@ class MVX_Tablerate {
                     . '<div class="shipping_form" id="'.$vendor_shipping_method['id'].'">'  
                     .'<input type="hidden" id="method_description_lp" name="description" value="'.$vendor_shipping_method['settings']['description'].'" />'
                      . '<div class="form-group">'
-                    . '<label for="" class="control-label col-sm-3 col-md-3">'.__( 'Method Title', 'dc-woocommerce-multi-vendor' ).'</label>'
+                    . '<label for="" class="control-label col-sm-3 col-md-3">'.__( 'Method Title', 'multivendorx' ).'</label>'
                     . '<div class="col-md-9 col-sm-9">'
-                    . '<input id="method_title_fs" class="form-control" type="text" name="title" value="'.$vendor_shipping_method['title'].'" placholder="'.__( 'Enter method title', 'dc-woocommerce-multi-vendor' ).'">'
+                    . '<input id="method_title_fs" class="form-control" type="text" name="title" value="'.$vendor_shipping_method['title'].'" placholder="'.__( 'Enter method title', 'multivendorx' ).'">'
                     . '</div></div>'
                     . '<!--div class="form-group">'
-                    . '<label for="" class="control-label col-sm-3 col-md-3">'.__( 'Description', 'dc-woocommerce-multi-vendor' ).'</label>'
+                    . '<label for="" class="control-label col-sm-3 col-md-3">'.__( 'Description', 'multivendorx' ).'</label>'
                     . '<div class="col-md-9 col-sm-9">'
                     . '<textarea id="method_description_lp" class="form-control" name="method_description">'.$vendor_shipping_method['settings']['description'].'</textarea>'
                     . '</div></div--></div>'
@@ -538,22 +538,22 @@ class MVX_Tablerate {
                    .' <input type="hidden" name="shipping_class_id" value="'.$shipping_class_id.'" />'
                     .'<div class="panel panel-default pannel-outer-heading">'
                     .' <div class="panel-heading">'
-                    .'<h3 class="mvx_black_headding">'. __('Table Rates: ', 'dc-woocommerce-multi-vendor') . $zone->get_zone_name() .'</h3>'
+                    .'<h3 class="mvx_black_headding">'. __('Table Rates: ', 'multivendorx') . $zone->get_zone_name() .'</h3>'
                     .'</div>'
                     . '<div class="mvx_table_holder panel-body">'
                     . '<table class="table table-bordered responsive-table mvx_table_rate_shipping widefat striped">'
                     .'<thead><tr>'.'<th>'
-                    . __('Select Shipping', 'dc-woocommerce-multi-vendor') .'</th>'
-                    .'<th width="126">'. __('Condition', 'dc-woocommerce-multi-vendor').'</th>'
-                    .'<th>'. __('Min', 'dc-woocommerce-multi-vendor') .'</th>'
-                        .'<th>'. __('Max', 'dc-woocommerce-multi-vendor') .'</th>'
-                        .'<th>'. __('Break', 'dc-woocommerce-multi-vendor') .'</th>'
-                        .'<th>'. __('Abort', 'dc-woocommerce-multi-vendor') .'</th>'
-                        .'<th>'. __('Row cost', 'dc-woocommerce-multi-vendor').'</th>'
-                        .'<th>'.__('Item cost', 'dc-woocommerce-multi-vendor') .'</th>'
-                        .'<th>'.__('Kg cost', 'dc-woocommerce-multi-vendor') .'</th>'
-                        .'<th>'. __('% cost', 'dc-woocommerce-multi-vendor') .'</th>'
-                        .'<th>'. __('Label', 'dc-woocommerce-multi-vendor') .'</th>'
+                    . __('Select Shipping', 'multivendorx') .'</th>'
+                    .'<th width="126">'. __('Condition', 'multivendorx').'</th>'
+                    .'<th>'. __('Min', 'multivendorx') .'</th>'
+                        .'<th>'. __('Max', 'multivendorx') .'</th>'
+                        .'<th>'. __('Break', 'multivendorx') .'</th>'
+                        .'<th>'. __('Abort', 'multivendorx') .'</th>'
+                        .'<th>'. __('Row cost', 'multivendorx').'</th>'
+                        .'<th>'.__('Item cost', 'multivendorx') .'</th>'
+                        .'<th>'.__('Kg cost', 'multivendorx') .'</th>'
+                        .'<th>'. __('% cost', 'multivendorx') .'</th>'
+                        .'<th>'. __('Label', 'multivendorx') .'</th>'
                     .'</tr></thead>'
                     .'<tbody>';
                 $table_rates = $wpdb->get_results( $wpdb->prepare("SELECT * FROM {$wpdb->prefix}woocommerce_shipping_table_rates WHERE `rate_class` = %d AND `shipping_method_id` = %d order by 'shipping_method_id' ", $shipping_class_id, $raw_method->instance_id, OBJECT) );
@@ -590,10 +590,10 @@ class MVX_Tablerate {
                 $settings_html .= '</tbody>' 
                         .'<tfoot><tr>'
                        .'<td colspan="5"> 
-                                <button type="button" class="mvx_add_tablerate_item btn btn-default">'. __('Add Shipping Rate', 'dc-woocommerce-multi-vendor') .'</button>
+                                <button type="button" class="mvx_add_tablerate_item btn btn-default">'. __('Add Shipping Rate', 'multivendorx') .'</button>
                             </td>'
                            .'<td colspan="6">
-                                <button style="float: right;" type="button" name="mvx_remove_table_rate_item" class="mvx_remove_table_rate_item btn btn-default">'. __('Delete selected rows', 'dc-woocommerce-multi-vendor') .'</button>
+                                <button style="float: right;" type="button" name="mvx_remove_table_rate_item" class="mvx_remove_table_rate_item btn btn-default">'. __('Delete selected rows', 'multivendorx') .'</button>
                             </td>'
                        .' </tr> </tfoot>'         
                     .'</table>'
@@ -605,7 +605,7 @@ class MVX_Tablerate {
     }
 
     public function mvx_advance_shipping_template_table_rate_item( $option = '', $shipping_method_id = 0 ) {
-    	$conditions = array('' => __('None', 'dc-woocommerce-multi-vendor'), 'price' => __('Price', 'dc-woocommerce-multi-vendor'), 'weight' => __('Weight', 'dc-woocommerce-multi-vendor'), 'items' => __('Item count', 'dc-woocommerce-multi-vendor'));
+    	$conditions = array('' => __('None', 'multivendorx'), 'price' => __('Price', 'multivendorx'), 'weight' => __('Weight', 'multivendorx'), 'items' => __('Item count', 'multivendorx'));
     	$index = !empty( $option->rate_id ) ? absint($option->rate_id) : 0;
     	?>
     	<tr>

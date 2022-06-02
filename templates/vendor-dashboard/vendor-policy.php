@@ -32,25 +32,25 @@ $_wp_editor_settings = apply_filters('mvx_vendor_policies_wp_editor_settings', $
         <?php if (apply_filters('mvx_vendor_can_overwrite_policies', true) && mvx_is_module_active('store-policy')): ?>
             <div class="panel panel-default pannel-outer-heading">
                 <div class="panel-heading d-flex">
-                    <h3><?php _e('Policy Details', 'dc-woocommerce-multi-vendor'); ?></h3>
+                    <h3><?php _e('Policy Details', 'multivendorx'); ?></h3>
                 </div>
                 <div class="panel-body panel-content-padding">
                         <div class="form-group">
-                            <label class="control-label col-sm-3"><?php _e('Shipping Policy', 'dc-woocommerce-multi-vendor'); ?></label>
+                            <label class="control-label col-sm-3"><?php _e('Shipping Policy', 'multivendorx'); ?></label>
                             <div class="col-md-6 col-sm-9">
                                 <?php $MVX->mvx_wp_fields->dc_generate_form_field(array("vendor_shipping_policy" => array('name' => 'vendor_shipping_policy', 'type' => 'wpeditor', 'class' => 'regular-textarea', 'value' => $vendor_shipping_policy, 'settings' => $_wp_editor_settings))); ?>
                                 <!--textarea  class="no_input form-control" name="vendor_shipping_policy" cols="" rows=""><?php echo isset($vendor_shipping_policy['value']) ? $vendor_shipping_policy['value'] : $mvx_policy_settings['shipping_policy']; ?></textarea-->
                             </div>  
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-3"><?php _e('Refund Policy', 'dc-woocommerce-multi-vendor'); ?></label>
+                            <label class="control-label col-sm-3"><?php _e('Refund Policy', 'multivendorx'); ?></label>
                             <div class="col-md-6 col-sm-9">
                                 <?php $MVX->mvx_wp_fields->dc_generate_form_field(array("vendor_refund_policy" => array('name' => 'vendor_refund_policy', 'type' => 'wpeditor', 'class' => 'regular-textarea', 'value' => $vendor_refund_policy, 'settings' => $_wp_editor_settings))); ?>
                                 <!--textarea  class="no_input form-control" name="vendor_refund_policy" cols="" rows=""><?php echo isset($vendor_refund_policy['value']) ? $vendor_refund_policy['value'] : $mvx_policy_settings['refund_policy']; ?></textarea-->
                             </div>  
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-3"><?php _e('Cancellation/Return/Exchange Policy', 'dc-woocommerce-multi-vendor'); ?></label>
+                            <label class="control-label col-sm-3"><?php _e('Cancellation/Return/Exchange Policy', 'multivendorx'); ?></label>
                             <div class="col-md-6 col-sm-9">
                                 <?php $MVX->mvx_wp_fields->dc_generate_form_field(array("vendor_cancellation_policy" => array('name' => 'vendor_cancellation_policy', 'type' => 'wpeditor', 'class' => 'regular-textarea', 'value' => $vendor_cancellation_policy, 'settings' => $_wp_editor_settings))); ?>
                                 <!--textarea class="no_input form-control" type="text" name="vendor_cancellation_policy" cols="" rows=""><?php echo isset($vendor_cancellation_policy['value']) ? $vendor_cancellation_policy['value'] : ''; ?></textarea-->
@@ -62,42 +62,42 @@ $_wp_editor_settings = apply_filters('mvx_vendor_policies_wp_editor_settings', $
         <?php if (get_mvx_vendor_settings('is_customer_support_details', 'settings_general')) { ?>
             <div class="panel panel-default pannel-outer-heading">
                 <div class="panel-heading d-flex">
-                    <h3><?php _e('Customer Support Details', 'dc-woocommerce-multi-vendor'); ?></h3>
+                    <h3><?php _e('Customer Support Details', 'multivendorx'); ?></h3>
                 </div>
                 <div class="panel-body panel-content-padding">
                     <div class="form-group">
-                        <label class="control-label col-sm-3"><?php _e('Phone', 'dc-woocommerce-multi-vendor'); ?></label>
+                        <label class="control-label col-sm-3"><?php _e('Phone', 'multivendorx'); ?></label>
                         <div class="col-md-6 col-sm-9">
                             <input  class="no_input form-control" type="text" name="vendor_customer_phone" placeholder="" value="<?php echo isset($vendor_customer_phone['value']) ? $vendor_customer_phone['value'] : ''; ?>">
                         </div>  
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-3"><?php _e('Email', 'dc-woocommerce-multi-vendor'); ?></label>
+                        <label class="control-label col-sm-3"><?php _e('Email', 'multivendorx'); ?></label>
                         <div class="col-md-6 col-sm-9">
                             <input  class="no_input form-control" type="email" name="vendor_customer_email" placeholder="" value="<?php echo isset($vendor_customer_email['value']) ? $vendor_customer_email['value'] : ''; ?>">
                         </div>  
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-3"><?php _e('Address', 'dc-woocommerce-multi-vendor'); ?></label>
+                        <label class="control-label col-sm-3"><?php _e('Address', 'multivendorx'); ?></label>
                         <div class="col-md-6 col-sm-9">
                             <div class="form-group">
                                 <div class="col-sm-6 inp-btm-margin">
-                                    <input  class="no_input form-control" type="text" placeholder="<?php _e('Address line 1', 'dc-woocommerce-multi-vendor'); ?>" name="vendor_csd_return_address1"  value="<?php echo isset($vendor_csd_return_address1['value']) ? $vendor_csd_return_address1['value'] : ''; ?>">
+                                    <input  class="no_input form-control" type="text" placeholder="<?php _e('Address line 1', 'multivendorx'); ?>" name="vendor_csd_return_address1"  value="<?php echo isset($vendor_csd_return_address1['value']) ? $vendor_csd_return_address1['value'] : ''; ?>">
                                 </div>
                                 <div class="col-sm-6 inp-btm-margin">
-                                    <input  class="no_input form-control" type="text" placeholder="<?php _e('Address line 2', 'dc-woocommerce-multi-vendor'); ?>" name="vendor_csd_return_address2"  value="<?php echo isset($vendor_csd_return_address2['value']) ? $vendor_csd_return_address2['value'] : ''; ?>">
+                                    <input  class="no_input form-control" type="text" placeholder="<?php _e('Address line 2', 'multivendorx'); ?>" name="vendor_csd_return_address2"  value="<?php echo isset($vendor_csd_return_address2['value']) ? $vendor_csd_return_address2['value'] : ''; ?>">
                                 </div>
                                 <div class="col-sm-6 inp-btm-margin">
-                                    <input  class="no_input form-control" type="text" placeholder="<?php _e('Country', 'dc-woocommerce-multi-vendor'); ?>" name="vendor_csd_return_country" value="<?php echo isset($vendor_csd_return_country['value']) ? $vendor_csd_return_country['value'] : ''; ?>">
+                                    <input  class="no_input form-control" type="text" placeholder="<?php _e('Country', 'multivendorx'); ?>" name="vendor_csd_return_country" value="<?php echo isset($vendor_csd_return_country['value']) ? $vendor_csd_return_country['value'] : ''; ?>">
                                 </div>
                                 <div class="col-sm-6 inp-btm-margin">
-                                    <input  class="no_input form-control" type="text" placeholder="<?php _e('State', 'dc-woocommerce-multi-vendor'); ?>"  name="vendor_csd_return_state" value="<?php echo isset($vendor_csd_return_state['value']) ? $vendor_csd_return_state['value'] : ''; ?>">
+                                    <input  class="no_input form-control" type="text" placeholder="<?php _e('State', 'multivendorx'); ?>"  name="vendor_csd_return_state" value="<?php echo isset($vendor_csd_return_state['value']) ? $vendor_csd_return_state['value'] : ''; ?>">
                                 </div>
                                 <div class="col-sm-6 inp-btm-margin">
-                                    <input  class="no_input form-control" type="text" placeholder="<?php _e('City', 'dc-woocommerce-multi-vendor'); ?>"  name="vendor_csd_return_city" value="<?php echo isset($vendor_csd_return_city['value']) ? $vendor_csd_return_city['value'] : ''; ?>">
+                                    <input  class="no_input form-control" type="text" placeholder="<?php _e('City', 'multivendorx'); ?>"  name="vendor_csd_return_city" value="<?php echo isset($vendor_csd_return_city['value']) ? $vendor_csd_return_city['value'] : ''; ?>">
                                 </div>
                                 <div class="col-sm-6 inp-btm-margin">
-                                    <input  class="no_input form-control" type="text" placeholder="<?php _e('Zip code', 'dc-woocommerce-multi-vendor'); ?>" name="vendor_csd_return_zip" value="<?php echo isset($vendor_csd_return_zip['value']) ? $vendor_csd_return_zip['value'] : ''; ?>">
+                                    <input  class="no_input form-control" type="text" placeholder="<?php _e('Zip code', 'multivendorx'); ?>" name="vendor_csd_return_zip" value="<?php echo isset($vendor_csd_return_zip['value']) ? $vendor_csd_return_zip['value'] : ''; ?>">
                                 </div>
                             </div>
                         </div>  
@@ -108,7 +108,7 @@ $_wp_editor_settings = apply_filters('mvx_vendor_policies_wp_editor_settings', $
         <?php do_action('mvx_after_vendor_policy'); ?>
         <?php do_action('other_exta_field_dcmv'); ?>
         <div class="mvx-action-container">
-            <button class="btn btn-default" name="store_save_policy"><?php _e('Save Options', 'dc-woocommerce-multi-vendor'); ?></button>
+            <button class="btn btn-default" name="store_save_policy"><?php _e('Save Options', 'multivendorx'); ?></button>
             <div class="clear"></div>
         </div>
     </form>

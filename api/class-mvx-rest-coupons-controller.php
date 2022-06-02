@@ -55,7 +55,7 @@ function assign_shop_coupon_to_vendor($object, $request, $new_shop_coupon) {
 			wp_update_post( $update_post_author );
 		} else {
 			return new WP_Error(
-				"woocommerce_rest_shop_coupon_invalid_vendor_id", __( 'Invalid Vendor ID.', 'dc-woocommerce-multi-vendor' ), array(
+				"woocommerce_rest_shop_coupon_invalid_vendor_id", __( 'Invalid Vendor ID.', 'multivendorx' ), array(
 					'status' => 404,
 				)
 			);

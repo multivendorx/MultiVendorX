@@ -156,7 +156,7 @@ class MVX_Capabilities {
      */
     public function add_sold_by_text_cart($array, $cart_item) {
         if (get_mvx_vendor_settings('display_product_seller', 'settings_general') && apply_filters('mvx_sold_by_text_in_cart_checkout', true, $cart_item['product_id'])) {
-            $sold_by_text = apply_filters('mvx_sold_by_text', __('Sold By', 'dc-woocommerce-multi-vendor'), $cart_item['product_id']);
+            $sold_by_text = apply_filters('mvx_sold_by_text', __('Sold By', 'multivendorx'), $cart_item['product_id']);
             $vendor = get_mvx_product_vendors($cart_item['product_id']);
             if ($vendor) {
                 $array = array_merge($array, array(array('name' => $sold_by_text, 'value' => $vendor->page_title)));
@@ -176,7 +176,7 @@ class MVX_Capabilities {
         if (get_mvx_vendor_settings('display_product_seller', 'settings_general') && apply_filters('mvx_sold_by_text_after_products_shop_page', true, $post->ID)) {
             $vendor = get_mvx_product_vendors($post->ID);
             if ($vendor) {
-                $sold_by_text = apply_filters('mvx_sold_by_text', __('Sold By', 'dc-woocommerce-multi-vendor'), $post->ID);
+                $sold_by_text = apply_filters('mvx_sold_by_text', __('Sold By', 'multivendorx'), $post->ID);
                 echo '<a class="by-vendor-name-link" style="display: block;" href="' . $vendor->permalink . '">' . $sold_by_text . ' ' . $vendor->page_title . '</a>';
                 do_action('after_sold_by_text_shop_page', $vendor);
             }

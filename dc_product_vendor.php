@@ -82,7 +82,7 @@ if (!class_exists('MVX') && WC_Dependencies_Product_Vendor::is_woocommerce_activ
     function mvx_admin_notice() {
         ?>
         <div class="error">
-            <p><?php _e('Multivendor X plugin requires <a href="https://wordpress.org/plugins/woocommerce/">WooCommerce</a> plugins to be active!', 'dc-woocommerce-multi-vendor'); ?></p>
+            <p><?php _e('Multivendor X plugin requires <a href="https://wordpress.org/plugins/woocommerce/">WooCommerce</a> plugins to be active!', 'multivendorx'); ?></p>
         </div>
         <?php
     }
@@ -101,8 +101,3 @@ function mvx_namespace_approve( $value ) {
 	
 	return $return;
 }
-/*add_action('init', function() {
-    $order = wc_get_order( 506 );
-    $order_status  = $order->get_status();
-    print_r($order_status);die;
-});*/

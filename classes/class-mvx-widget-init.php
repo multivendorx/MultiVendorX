@@ -21,7 +21,7 @@ class MVX_Widget_Init {
     public function mvx_register_store_sidebar() {
         register_sidebar(
             apply_filters( 'mvx_store_sidebar_args', array(
-                        'name'          => __( 'Vendor Store Sidebar', 'dc-woocommerce-multi-vendor' ),
+                        'name'          => __( 'Vendor Store Sidebar', 'multivendorx' ),
                         'id'            => 'sidebar-mvx-store',
                         'before_widget' => '<aside id="%1$s" class="widget sidebar-box clr %2$s">',
                         'after_widget'  => '</aside>',

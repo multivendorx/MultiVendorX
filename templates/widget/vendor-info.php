@@ -25,7 +25,7 @@ global $MVX;
 ?>
 <p class="vendor-info-description"><?php echo esc_html($description); ?> </p>
 <p class="vendor-info-shop-link">
-	<a href="<?php echo esc_url( $vendor->permalink ); ?>" title="<?php echo sprintf( __( 'More Products from %1$s', 'dc-woocommerce-multi-vendor' ), $vendor->page_title ); ?>">
-		<?php echo sprintf( __( 'More Products from %1$s', 'dc-woocommerce-multi-vendor' ), $vendor->page_title );?>
+	<a href="<?php echo esc_url( $vendor->permalink ); ?>" title="<?php echo sprintf( __( 'More Products from %1$s', 'multivendorx' ), $vendor->page_title ); ?>">
+		<?php echo sprintf( __( 'More Products from %1$s', 'multivendorx' ), $vendor->page_title );?>
 	</a>
 </p>

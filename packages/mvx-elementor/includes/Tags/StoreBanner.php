@@ -34,7 +34,7 @@ class StoreBanner extends MVX_Elementor_DataTagBase {
      * @return string
      */
     public function get_title() {
-        return __( 'Store Banner', 'dc-woocommerce-multi-vendor' );
+        return __( 'Store Banner', 'multivendorx' );
     }
 
     /**
@@ -83,7 +83,7 @@ class StoreBanner extends MVX_Elementor_DataTagBase {
         $this->add_control(
             'fallback',
             [
-                'label' => __( 'Fallback', 'dc-woocommerce-multi-vendor' ),
+                'label' => __( 'Fallback', 'multivendorx' ),
                 'type' => Controls_Manager::MEDIA,
                 'default' => [
                     'url' => $MVX->plugin_url . 'packages/mvx-elementor/assets/images/default-banner.jpg',

@@ -15,9 +15,9 @@ echo $email_heading . "\n\n";
 $amount = get_post_meta($transaction_id, 'amount', true) - get_post_meta($transaction_id, 'transfer_charge', true) - get_post_meta($transaction_id, 'gateway_charge', true);
 $transaction_mode = get_post_meta($transaction_id, 'transaction_mode', true);
 if($transaction_mode == 'paypal_masspay') {
-	printf(__( 'Hello,<br>You have successfully completed a withdrawal of $%s on %s through Paypal. The order details are as follows:', 'dc-woocommerce-multi-vendor' ),  $amount,  get_post_meta($transaction_id, 'paid_date', true));
+	printf(__( 'Hello,<br>You have successfully completed a withdrawal of $%s on %s through Paypal. The order details are as follows:', 'multivendorx' ),  $amount,  get_post_meta($transaction_id, 'paid_date', true));
 } else if($transaction_mode == 'direct_bank') { 
-	printf(__( 'Hello,<br>This is to notify you that your withdrawal request for $%s on %s has been successfully processed. The order details are as follows:  ', 'dc-woocommerce-multi-vendor' ),  $amount,  get_post_meta($transaction_id, 'paid_date', true));
+	printf(__( 'Hello,<br>This is to notify you that your withdrawal request for $%s on %s has been successfully processed. The order details are as follows:  ', 'multivendorx' ),  $amount,  get_post_meta($transaction_id, 'paid_date', true));
 }
 
 echo "****************************************************\n\n";

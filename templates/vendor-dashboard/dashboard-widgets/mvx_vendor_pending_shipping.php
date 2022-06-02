@@ -39,16 +39,16 @@ do_action('before_mvx_vendor_pending_shipping');
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title"><?php esc_html_e('Shipment Tracking Details', 'dc-woocommerce-multi-vendor'); ?></h4>
+                    <h4 class="modal-title"><?php esc_html_e('Shipment Tracking Details', 'multivendorx'); ?></h4>
                 </div>
 
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="tracking_url"><?php esc_html_e('Enter Tracking Url', 'dc-woocommerce-multi-vendor'); ?> *</label>
+                        <label for="tracking_url"><?php esc_html_e('Enter Tracking Url', 'multivendorx'); ?> *</label>
                         <input type="url" class="form-control" id="email" name="tracking_url" required="">
                     </div>
                     <div class="form-group">
-                        <label for="tracking_id"><?php esc_html_e('Enter Tracking ID', 'dc-woocommerce-multi-vendor'); ?> *</label>
+                        <label for="tracking_id"><?php esc_html_e('Enter Tracking ID', 'multivendorx'); ?> *</label>
                         <input type="text" class="form-control" id="pwd" name="tracking_id" required="">
                     </div>
                 </div>
@@ -60,7 +60,7 @@ do_action('before_mvx_vendor_pending_shipping');
                     <input type="hidden" name="mvx_end_date_order" value="<?php echo isset($_POST['mvx_end_date_order']) ? wc_clean($_POST['mvx_end_date_order']) : date('Y-m-d'); ?>" />
                 <?php endif; ?>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" name="mvx-submit-mark-as-ship"><?php esc_html_e('Submit', 'dc-woocommerce-multi-vendor'); ?></button>
+                    <button type="submit" class="btn btn-primary" name="mvx-submit-mark-as-ship"><?php esc_html_e('Submit', 'multivendorx'); ?></button>
                 </div>
             </div>
         </form>
@@ -87,15 +87,15 @@ jQuery(document).ready(function($) {
         serverSide: true,
         responsive: true,
         language: {
-            "emptyTable": "<?php echo trim(__('You have no pending shipping!','dc-woocommerce-multi-vendor')); ?>",
-            "zeroRecords": "<?php echo trim(__('You have no pending shipping!','dc-woocommerce-multi-vendor')); ?>",
+            "emptyTable": "<?php echo trim(__('You have no pending shipping!','multivendorx')); ?>",
+            "zeroRecords": "<?php echo trim(__('You have no pending shipping!','multivendorx')); ?>",
             
         },
         ajax:{
             url : '<?php echo add_query_arg( 'action', 'mvx_widget_vendor_pending_shipping', $MVX->ajax_url() ); ?>', 
             type: "post",
             error: function(xhr, status, error) {
-                $("#widget_vendor_pending_shipping tbody").append('<tr class="odd"><td valign="top" colspan="<?php if(is_array($default_headers)) count($default_headers); ?>" class="dataTables_empty" style="text-align:center;">'+error+' - <a href="javascript:window.location.reload();"><?php esc_html_e('Reload', 'dc-woocommerce-multi-vendor'); ?></a></td></tr>');
+                $("#widget_vendor_pending_shipping tbody").append('<tr class="odd"><td valign="top" colspan="<?php if(is_array($default_headers)) count($default_headers); ?>" class="dataTables_empty" style="text-align:center;">'+error+' - <a href="javascript:window.location.reload();"><?php esc_html_e('Reload', 'multivendorx'); ?></a></td></tr>');
                 $("#widget_vendor_pending_shipping").css("display","none");
             }
         },

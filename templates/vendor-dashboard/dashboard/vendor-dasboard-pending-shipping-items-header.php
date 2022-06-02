@@ -13,10 +13,10 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 global $woocommerce, $MVX;
 ?>
 <tr>
-	<td align="center" ><?php echo __('Product Name','dc-woocommerce-multi-vendor'); ?></td>
-	<td  align="center" class="no_display" ><?php echo __('Order Date','dc-woocommerce-multi-vendor'); ?><br>
-		<span style="font-size:12px;"><?php echo __('dd/mm','dc-woocommerce-multi-vendor'); ?></span></td>
-	<td  align="center" class="no_display" ><?php echo __('L/B/H/W','dc-woocommerce-multi-vendor'); ?></td>
-	<td align="left" ><?php echo __('Address','dc-woocommerce-multi-vendor'); ?></td>
-	<td align="center" class="no_display" ><?php echo __('Charges','dc-woocommerce-multi-vendor'); ?></td>
+	<td align="center" ><?php echo __('Product Name','multivendorx'); ?></td>
+	<td  align="center" class="no_display" ><?php echo __('Order Date','multivendorx'); ?><br>
+		<span style="font-size:12px;"><?php echo __('dd/mm','multivendorx'); ?></span></td>
+	<td  align="center" class="no_display" ><?php echo __('L/B/H/W','multivendorx'); ?></td>
+	<td align="left" ><?php echo __('Address','multivendorx'); ?></td>
+	<td align="center" class="no_display" ><?php echo __('Charges','multivendorx'); ?></td>
 </tr>

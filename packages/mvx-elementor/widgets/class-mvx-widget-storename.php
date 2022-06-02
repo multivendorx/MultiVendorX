@@ -25,7 +25,7 @@ class MVX_Elementor_StoreName extends Widget_Heading {
      * @return string
      */
     public function get_title() {
-        return __( 'Store Name', 'dc-woocommerce-multi-vendor' );
+        return __( 'Store Name', 'multivendorx' );
     }
 
     /**

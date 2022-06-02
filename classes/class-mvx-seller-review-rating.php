@@ -103,7 +103,7 @@ class MVX_Seller_Review_Rating {
                 $screens = array('comment');
                 foreach ($screens as $screen) {
                     add_meta_box(
-                            'mvx_vendor_rating', __('Vendor Rating', 'dc-woocommerce-multi-vendor'), array($this, 'mvx_comment_vendor_rating_callback'), $screen, 'normal', 'high'
+                            'mvx_vendor_rating', __('Vendor Rating', 'multivendorx'), array($this, 'mvx_comment_vendor_rating_callback'), $screen, 'normal', 'high'
                     );
                 }
             }
@@ -127,9 +127,9 @@ class MVX_Seller_Review_Rating {
                 <tr class="vendor_rating_author_wrapper">
                     <th class="vendor_rating_author_label_holder">
                         <p class="vendor_rating_author">
-                            <strong><?php echo __('Vendor Name.', 'dc-woocommerce-multi-vendor'); ?></strong>
+                            <strong><?php echo __('Vendor Name.', 'multivendorx'); ?></strong>
                         </p>
-                        <label for="vendor_rating_author" class="screen-reader-text"><?php echo __('Vendor Name.', 'dc-woocommerce-multi-vendor'); ?></label>
+                        <label for="vendor_rating_author" class="screen-reader-text"><?php echo __('Vendor Name.', 'multivendorx'); ?></label>
                     </th>
                     <td>
         <?php echo $name; ?>
@@ -154,10 +154,10 @@ class MVX_Seller_Review_Rating {
                 $vendor_rating = get_comment_meta($comment->comment_ID, 'vendor_rating', true);
                 $fields = apply_filters('mvx_vendor_rating_field_filter', array(
                     "vendor_rating" => array(
-                        'label' => __('Vendor Rating.', 'dc-woocommerce-multi-vendor'),
+                        'label' => __('Vendor Rating.', 'multivendorx'),
                         'type' => 'select',
-                        'desc' => __('Vendor Rating Star.', 'dc-woocommerce-multi-vendor'),
-                        'options' => array('' => __('Please Select', 'dc-woocommerce-multi-vendor'), '1' => __('1 Star', 'dc-woocommerce-multi-vendor'), '2' => __('2 Star', 'dc-woocommerce-multi-vendor'), '3' => __('3 Star', 'dc-woocommerce-multi-vendor'), '4' => __('4 Star', 'dc-woocommerce-multi-vendor'), '5' => __('5 Star', 'dc-woocommerce-multi-vendor')),
+                        'desc' => __('Vendor Rating Star.', 'multivendorx'),
+                        'options' => array('' => __('Please Select', 'multivendorx'), '1' => __('1 Star', 'multivendorx'), '2' => __('2 Star', 'multivendorx'), '3' => __('3 Star', 'multivendorx'), '4' => __('4 Star', 'multivendorx'), '5' => __('5 Star', 'multivendorx')),
                         'value' => $vendor_rating ? $vendor_rating : '',
                         'class' => 'user-profile-fields'
                     )

@@ -140,7 +140,7 @@ class MVX_User {
                 $mvx_vendor_registration_form_data = mvx_get_option('mvx_vendor_registration_form_data');
                 if(isset($_POST['g-recaptchatype']) && $_POST['g-recaptchatype'] == 'v2'){
                     if (isset($_POST['g-recaptcha-response']) && empty($_POST['g-recaptcha-response'])) {
-                        $validation_errors->add('recaptcha is not validate', __('Please Verify  Recaptcha', 'dc-woocommerce-multi-vendor'));
+                        $validation_errors->add('recaptcha is not validate', __('Please Verify  Recaptcha', 'multivendorx'));
                     }
                 }elseif(isset($_POST['g-recaptchatype']) && $_POST['g-recaptchatype'] == 'v3') {
                     $recaptcha_secret = isset($_POST['recaptchav3_secretkey']) ? $_POST['recaptchav3_secretkey'] : '';
@@ -151,7 +151,7 @@ class MVX_User {
                     $recaptcha = json_decode($recaptcha);
 
                     if (!$recaptcha->success || $recaptcha->score < 0.5) {
-                        $validation_errors->add('recaptcha is not validate', __('Please Verify  Recaptcha', 'dc-woocommerce-multi-vendor'));
+                        $validation_errors->add('recaptcha is not validate', __('Please Verify  Recaptcha', 'multivendorx'));
                     }
                 }
 
@@ -167,13 +167,13 @@ class MVX_User {
                             }
                             foreach ($attacment_files['type'][$key] as $file_key => $file_value) {
                                 if ($mvx_vendor_registration_form_data[$key]['required'] && !in_array($file_value, $file_type)) {
-                                    $validation_errors->add('file type error', __('Please Upload valid file', 'dc-woocommerce-multi-vendor'));
+                                    $validation_errors->add('file type error', __('Please Upload valid file', 'multivendorx'));
                                 }
                             }
                             foreach ($attacment_files['size'][$key] as $file_size_key => $file_size_value) {
                                 if (!empty($mvx_vendor_registration_form_data[$key]['fileSize'])) {
                                     if ($mvx_vendor_registration_form_data[$key]['required'] && $file_size_value > $mvx_vendor_registration_form_data[$key]['fileSize']) {
-                                        $validation_errors->add('file size error', __('File upload limit exceeded', 'dc-woocommerce-multi-vendor'));
+                                        $validation_errors->add('file size error', __('File upload limit exceeded', 'multivendorx'));
                                     }
                                 }
                             }
@@ -270,12 +270,12 @@ class MVX_User {
     public function woocommerce_before_my_account() {
         $current_user = wp_get_current_user();
         if (is_user_mvx_pending_vendor($current_user)) {
-            _e('Congratulations! You have successfully applied as a Vendor. Please wait for further notifications from the admin.', 'dc-woocommerce-multi-vendor');
+            _e('Congratulations! You have successfully applied as a Vendor. Please wait for further notifications from the admin.', 'multivendorx');
             do_action('add_vendor_extra_information_my_account');
         }
         if (is_user_mvx_vendor($current_user)) {
             $dashboard_page_link = mvx_vendor_dashboard_page_id() ? get_permalink(mvx_vendor_dashboard_page_id()) : '#';
-            echo apply_filters('mvx_vendor_goto_dashboard', '<a href="' . $dashboard_page_link . '">' . __('Dashboard - manage your account here', 'dc-woocommerce-multi-vendor') . '</a>');
+            echo apply_filters('mvx_vendor_goto_dashboard', '<a href="' . $dashboard_page_link . '">' . __('Dashboard - manage your account here', 'multivendorx') . '</a>');
         }
     }
 
@@ -335,137 +335,137 @@ class MVX_User {
 
         $fields = apply_filters('mvx_vendor_fields', array(
             "vendor_page_title" => array(
-                'label' => __('Vendor Page Title', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Vendor Page Title', 'multivendorx'),
                 'type' => 'text',
                 'value' => $vendor->page_title,
                 'class' => "user-profile-fields regular-text"
             ), // Text
             "vendor_page_slug" => array(
-                'label' => __('Vendor Page Slug', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Vendor Page Slug', 'multivendorx'),
                 'type' => 'text',
                 'value' => $vendor->page_slug,
                 'class' => "user-profile-fields regular-text"
             ), // Text
             "vendor_description" => array(
-                'label' => __('Description', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Description', 'multivendorx'),
                 'type' => 'wpeditor',
                 'value' => $vendor->description,
                 'class' => "user-profile-fields"
             ), //Wp Eeditor
             "vendor_hide_address" => array(
-                'label' => __('Hide address in frontend', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Hide address in frontend', 'multivendorx'),
                 'type' => 'checkbox',
                 'dfvalue' => $vendor->hide_address,
                 'value' => 'Enable',
                 'class' => 'user-profile-fields'
             ),
             "vendor_hide_phone" => array(
-                'label' => __('Hide phone in frontend', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Hide phone in frontend', 'multivendorx'),
                 'type' => 'checkbox',
                 'dfvalue' => $vendor->hide_phone,
                 'value' => 'Enable',
                 'class' => 'user-profile-fields'
             ),
             "vendor_hide_email" => array(
-                'label' => __('Hide email in frontend', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Hide email in frontend', 'multivendorx'),
                 'type' => 'checkbox',
                 'dfvalue' => $vendor->hide_email,
                 'value' => 'Enable',
                 'class' => 'user-profile-fields'
             ),
             "vendor_hide_description" => array(
-                'label' => __('Hide description in frontend', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Hide description in frontend', 'multivendorx'),
                 'type' => 'checkbox',
                 'dfvalue' => $vendor->hide_description,
                 'value' => 'Enable',
                 'class' => 'user-profile-fields'
             ),
             "vendor_address_1" => array(
-                'label' => __('Address 1', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Address 1', 'multivendorx'),
                 'type' => 'text',
                 'value' => $vendor->address_1,
                 'class' => "user-profile-fields regular-text"
             ), // Text
             "vendor_address_2" => array(
-                'label' => __('Address 2', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Address 2', 'multivendorx'),
                 'type' => 'text',
                 'value' => $vendor->address_2,
                 'class' => "user-profile-fields regular-text"
             ), // Text
             "vendor_city" => array(
-                'label' => __('City', 'dc-woocommerce-multi-vendor'),
+                'label' => __('City', 'multivendorx'),
                 'type' => 'text',
                 'value' => $vendor->city,
                 'class' => "user-profile-fields regular-text"
             ), // Text
             "vendor_postcode" => array(
-                'label' => __('Postcode', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Postcode', 'multivendorx'),
                 'type' => 'text',
                 'value' => $vendor->postcode,
                 'class' => "user-profile-fields regular-text"
             ), // Text
             "vendor_external_store_url" => array(
-                'label' => __('External store URL', 'dc-woocommerce-multi-vendor'),
+                'label' => __('External store URL', 'multivendorx'),
                 'type' => 'text',
                 'value' => $vendor->external_store_url,
                 'class' => "user-profile-fields regular-text"
             ), // Text
             "vendor_external_store_label" => array(
-                'label' => __('External store URL label', 'dc-woocommerce-multi-vendor'),
+                'label' => __('External store URL label', 'multivendorx'),
                 'type' => 'text',
                 'value' => $vendor->external_store_label,
                 'class' => "user-profile-fields regular-text"
             ), // Text
             "vendor_state" => array(
-                'label' => __('State', 'dc-woocommerce-multi-vendor'),
+                'label' => __('State', 'multivendorx'),
                 'type' => 'text',
                 'value' => $vendor->state,
                 'class' => "user-profile-fields regular-text"
             ), // Text
             "vendor_country" => array(
-                'label' => __('Country', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Country', 'multivendorx'),
                 'type' => 'text',
                 'value' => $vendor->country,
                 'class' => "user-profile-fields regular-text"
             ), // Text
             "vendor_phone" => array(
-                'label' => __('Phone', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Phone', 'multivendorx'),
                 'type' => 'text',
                 'value' => $vendor->phone,
                 'class' => "user-profile-fields regular-text"
             ), // Text
             "vendor_fb_profile" => array(
-                'label' => __('Facebook Profile', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Facebook Profile', 'multivendorx'),
                 'type' => 'text',
                 'value' => $vendor->fb_profile,
                 'class' => "user-profile-fields regular-text"
             ), // Text
             "vendor_twitter_profile" => array(
-                'label' => __('Twitter Profile', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Twitter Profile', 'multivendorx'),
                 'type' => 'text',
                 'value' => $vendor->twitter_profile,
                 'class' => "user-profile-fields regular-text"
             ), // Text
             "vendor_linkdin_profile" => array(
-                'label' => __('LinkedIn Profile', 'dc-woocommerce-multi-vendor'),
+                'label' => __('LinkedIn Profile', 'multivendorx'),
                 'type' => 'text',
                 'value' => $vendor->linkdin_profile,
                 'class' => "user-profile-fields regular-text"
             ), // Text
             "vendor_youtube" => array(
-                'label' => __('YouTube Channel', 'dc-woocommerce-multi-vendor'),
+                'label' => __('YouTube Channel', 'multivendorx'),
                 'type' => 'text',
                 'value' => $vendor->youtube,
                 'class' => "user-profile-fields regular-text"
             ), // Text
             "vendor_instagram" => array(
-                'label' => __('Instagram Profile', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Instagram Profile', 'multivendorx'),
                 'type' => 'text',
                 'value' => $vendor->instagram,
                 'class' => "user-profile-fields regular-text"
             ), // Text
             "vendor_image" => array(
-                'label' => __('Logo', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Logo', 'multivendorx'),
                 'type' => 'upload',
                 'prwidth' => 125,
                 'url' => $vendor->get_image() ? $vendor->get_image() : '',
@@ -473,7 +473,7 @@ class MVX_User {
                 'class' => "user-profile-fields"
             ), // Upload
             "vendor_banner" => array(
-                'label' => __('Banner', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Banner', 'multivendorx'),
                 'type' => 'upload',
                 'prwidth' => 600,
                 'url' => $vendor->get_image('banner') ? $vendor->get_image('banner') : '',
@@ -481,49 +481,49 @@ class MVX_User {
                 'class' => "user-profile-fields"
             ), // Upload            
             "vendor_csd_return_address1" => array(
-                'label' => __('Customer address1', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Customer address1', 'multivendorx'),
                 'type' => 'text',
                 'value' => $vendor->csd_return_address1,
                 'class' => "user-profile-fields regular-text"
             ), // Text
             "vendor_csd_return_address2" => array(
-                'label' => __('Customer address2', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Customer address2', 'multivendorx'),
                 'type' => 'text',
                 'value' => $vendor->csd_return_address2,
                 'class' => "user-profile-fields regular-text"
             ), // Text
             "vendor_csd_return_country" => array(
-                'label' => __('Customer Country', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Customer Country', 'multivendorx'),
                 'type' => 'text',
                 'value' => $vendor->csd_return_country,
                 'class' => "user-profile-fields regular-text"
             ), // Text
             "vendor_csd_return_state" => array(
-                'label' => __('Customer Return State', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Customer Return State', 'multivendorx'),
                 'type' => 'text',
                 'value' => $vendor->csd_return_state,
                 'class' => "user-profile-fields regular-text"
             ), // Text
             "vendor_csd_return_city" => array(
-                'label' => __('Customer Return City', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Customer Return City', 'multivendorx'),
                 'type' => 'text',
                 'value' => $vendor->csd_return_city,
                 'class' => "user-profile-fields regular-text"
             ), // Text 
             "vendor_csd_return_zip" => array(
-                'label' => __('Customer Return Zip', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Customer Return Zip', 'multivendorx'),
                 'type' => 'text',
                 'value' => $vendor->csd_return_zip,
                 'class' => "user-profile-fields regular-text"
             ), // Text  
             "vendor_customer_phone" => array(
-                'label' => __('Customer Phone', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Customer Phone', 'multivendorx'),
                 'type' => 'text',
                 'value' => $vendor->customer_phone,
                 'class' => "user-profile-fields regular-text"
             ), // Text
             "vendor_customer_email" => array(
-                'label' => __('Customer Email', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Customer Email', 'multivendorx'),
                 'type' => 'text',
                 'value' => $vendor->customer_email,
                 'class' => "user-profile-fields regular-text"
@@ -536,22 +536,22 @@ class MVX_User {
         }
 
         $payment_admin_settings = get_option('mvx_payment_settings_name');
-        $payment_mode = array('' => __('Payment Mode', 'dc-woocommerce-multi-vendor'));
+        $payment_mode = array('' => __('Payment Mode', 'multivendorx'));
         if (isset($payment_admin_settings['payment_method_paypal_masspay']) && $payment_admin_settings['payment_method_paypal_masspay'] = 'Enable') {
-            $payment_mode['paypal_masspay'] = __('PayPal Masspay', 'dc-woocommerce-multi-vendor');
+            $payment_mode['paypal_masspay'] = __('PayPal Masspay', 'multivendorx');
         }
         if (isset($payment_admin_settings['payment_method_paypal_payout']) && $payment_admin_settings['payment_method_paypal_payout'] = 'Enable') {
-            $payment_mode['paypal_payout'] = __('PayPal Payout', 'dc-woocommerce-multi-vendor');
+            $payment_mode['paypal_payout'] = __('PayPal Payout', 'multivendorx');
         }
         if (isset($payment_admin_settings['payment_method_stripe_masspay']) && $payment_admin_settings['payment_method_stripe_masspay'] = 'Enable') {
-            $payment_mode['stripe_masspay'] = __('Stripe Connect', 'dc-woocommerce-multi-vendor');
+            $payment_mode['stripe_masspay'] = __('Stripe Connect', 'multivendorx');
         }
         if (isset($payment_admin_settings['payment_method_direct_bank']) && $payment_admin_settings['payment_method_direct_bank'] = 'Enable') {
-            $payment_mode['direct_bank'] = __('Direct Bank', 'dc-woocommerce-multi-vendor');
+            $payment_mode['direct_bank'] = __('Direct Bank', 'multivendorx');
         }
 
         $fields["vendor_payment_mode"] = array(
-            'label' => __('Payment Mode', 'dc-woocommerce-multi-vendor'),
+            'label' => __('Payment Mode', 'multivendorx'),
             'type' => 'select',
             'options' => apply_filters('mvx_vendor_payment_mode', $payment_mode),
             'value' => $vendor->payment_mode,
@@ -559,63 +559,63 @@ class MVX_User {
         ); // Text
 
         $fields["vendor_bank_account_type"] = array(
-            'label' => __('Bank Account Type', 'dc-woocommerce-multi-vendor'),
+            'label' => __('Bank Account Type', 'multivendorx'),
             'type' => 'select',
-            'options' => array('current' => __('Current', 'dc-woocommerce-multi-vendor'), 'savings' => __('Savings', 'dc-woocommerce-multi-vendor')),
+            'options' => array('current' => __('Current', 'multivendorx'), 'savings' => __('Savings', 'multivendorx')),
             'value' => $vendor->bank_account_type,
             'class' => "user-profile-fields regular-text"
         ); // Text
 
         $fields["vendor_bank_account_number"] = array(
-            'label' => __('Bank Account Number', 'dc-woocommerce-multi-vendor'),
+            'label' => __('Bank Account Number', 'multivendorx'),
             'type' => 'text',
             'value' => $vendor->bank_account_number,
             'class' => "user-profile-fields regular-text"
         ); // Text
 
         $fields["vendor_bank_name"] = array(
-            'label' => __('Bank Name', 'dc-woocommerce-multi-vendor'),
+            'label' => __('Bank Name', 'multivendorx'),
             'type' => 'text',
             'value' => $vendor->bank_name,
             'class' => "user-profile-fields regular-text"
         ); // Text
 
         $fields["vendor_aba_routing_number"] = array(
-            'label' => __('ABA Routing Number', 'dc-woocommerce-multi-vendor'),
+            'label' => __('ABA Routing Number', 'multivendorx'),
             'type' => 'text',
             'value' => $vendor->aba_routing_number,
             'class' => "user-profile-fields regular-text"
         ); // Text
 
         $fields["vendor_bank_address"] = array(
-            'label' => __('Bank Address', 'dc-woocommerce-multi-vendor'),
+            'label' => __('Bank Address', 'multivendorx'),
             'type' => 'textarea',
             'value' => $vendor->bank_address,
             'class' => "user-profile-fields"
         ); // Text
 
         $fields["vendor_destination_currency"] = array(
-            'label' => __('Destination Currency', 'dc-woocommerce-multi-vendor'),
+            'label' => __('Destination Currency', 'multivendorx'),
             'type' => 'text',
             'value' => $vendor->destination_currency,
             'class' => "user-profile-fields regular-text"
         ); // Text
 
         $fields["vendor_iban"] = array(
-            'label' => __('IBAN', 'dc-woocommerce-multi-vendor'),
+            'label' => __('IBAN', 'multivendorx'),
             'type' => 'text',
             'value' => $vendor->iban,
             'class' => "user-profile-fields regular-text"
         ); // Text
 
         $fields["vendor_account_holder_name"] = array(
-            'label' => __('Account Holder Name', 'dc-woocommerce-multi-vendor'),
+            'label' => __('Account Holder Name', 'multivendorx'),
             'type' => 'text',
             'value' => $vendor->account_holder_name,
             'class' => "user-profile-fields regular-text"
         ); // Text
         $fields["vendor_paypal_email"] = array(
-            'label' => __('PayPal Email', 'dc-woocommerce-multi-vendor'),
+            'label' => __('PayPal Email', 'multivendorx'),
             'type' => 'text',
             'value' => $vendor->paypal_email,
             'class' => "user-profile-fields regular-text"
@@ -627,20 +627,20 @@ class MVX_User {
             }
             $_wp_editor_settings = apply_filters('mvx_vendor_policies_wp_editor_settings', $_wp_editor_settings);
             $fields['vendor_cancellation_policy'] = array(
-                'label' => __('Cancellation/Return/Exchange Policy', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Cancellation/Return/Exchange Policy', 'multivendorx'),
                 'type' => 'wpeditor',
                 'value' => $vendor->cancellation_policy,
                 'class' => 'user-profile-fields'
             );
             $fields['vendor_refund_policy'] = array(
-                'label' => __('Refund Policy', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Refund Policy', 'multivendorx'),
                 'type' => 'wpeditor',
                 'value' => $vendor->refund_policy,
                 'class' => 'user-profile-fields',
                 'settings' => $_wp_editor_settings
             );
             $fields['vendor_shipping_policy'] = array(
-                'label' => __('Shipping Policy', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Shipping Policy', 'multivendorx'),
                 'type' => 'wpeditor',
                 'value' => $vendor->shipping_policy,
                 'class' => 'user-profile-fields regular-text',
@@ -653,7 +653,7 @@ class MVX_User {
         }
         $_wp_editor_settings = apply_filters('mvx_vendor_msg_to_buyer_wp_editor_settings', $_wp_editor_settings);
         $fields['vendor_message_to_buyers'] = array(
-            'label' => __('Message to Buyers', 'dc-woocommerce-multi-vendor'),
+            'label' => __('Message to Buyers', 'multivendorx'),
             'type' => 'wpeditor',
             'value' => $vendor->message_to_buyers,
             'class' => 'user-profile-fields',
@@ -663,27 +663,27 @@ class MVX_User {
         $user = wp_get_current_user();
         if (is_array($user->roles) && in_array('administrator', $user->roles)) {
             $fields['vendor_commission'] = array(
-                'label' => __('Commission Amount', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Commission Amount', 'multivendorx'),
                 'type' => 'number',
                 'value' => $vendor->commission,
                 'class' => "user-profile-fields regular-text"
             );
             $fields['vendor_give_tax'] = array(
-                'label' => __('Withhold Tax', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Withhold Tax', 'multivendorx'),
                 'type' => 'checkbox',
                 'dfvalue' => $vendor->give_tax,
                 'value' => 'Enable',
                 'class' => 'user-profile-fields'
             );
             $fields['vendor_give_shipping'] = array(
-                'label' => __('Withhold Shipping', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Withhold Shipping', 'multivendorx'),
                 'type' => 'checkbox',
                 'dfvalue' => $vendor->give_shipping,
                 'value' => 'Enable',
                 'class' => 'user-profile-fields'
             );
             $fields['vendor_turn_off'] = array(
-                'label' => __('Block this vendor with all items', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Block this vendor with all items', 'multivendorx'),
                 'type' => 'checkbox',
                 'dfvalue' => $vendor->turn_off,
                 'value' => 'Enable',
@@ -695,13 +695,13 @@ class MVX_User {
             if ($MVX->vendor_caps->payment_cap['commission_type'] == 'fixed_with_percentage') {
                 unset($fields['vendor_commission']);
                 $fields['vendor_commission_percentage'] = array(
-                    'label' => __('Commission Percentage(%)', 'dc-woocommerce-multi-vendor'),
+                    'label' => __('Commission Percentage(%)', 'multivendorx'),
                     'type' => 'number',
                     'value' => $vendor->commission_percentage,
                     'class' => 'user-profile-fields regular-text'
                 );
                 $fields['vendor_commission_fixed_with_percentage'] = array(
-                    'label' => __('Commission(fixed), Per Transaction', 'dc-woocommerce-multi-vendor'),
+                    'label' => __('Commission(fixed), Per Transaction', 'multivendorx'),
                     'type' => 'number',
                     'value' => $vendor->commission_fixed_with_percentage,
                     'class' => 'user-profile-fields regular-text'
@@ -711,13 +711,13 @@ class MVX_User {
             if ($MVX->vendor_caps->payment_cap['commission_type'] == 'fixed_with_percentage_qty') {
                 unset($fields['vendor_commission']);
                 $fields['vendor_commission_percentage'] = array(
-                    'label' => __('Commission Percentage(%)', 'dc-woocommerce-multi-vendor'),
+                    'label' => __('Commission Percentage(%)', 'multivendorx'),
                     'type' => 'number',
                     'value' => $vendor->commission_percentage,
                     'class' => 'user-profile-fields regular-text'
                 );
                 $fields['vendor_commission_fixed_with_percentage_qty'] = array(
-                    'label' => __('Commission Fixed Per Unit', 'dc-woocommerce-multi-vendor'),
+                    'label' => __('Commission Fixed Per Unit', 'multivendorx'),
                     'type' => 'number',
                     'value' => $vendor->commission_fixed_with_percentage_qty,
                     'class' => 'user-profile-fields regular-text'
@@ -756,7 +756,7 @@ class MVX_User {
      * @return array
      */
     function column_register_product($columns) {
-        $columns['product'] = __('Products', 'dc-woocommerce-multi-vendor');
+        $columns['product'] = __('Products', 'multivendorx');
         return $columns;
     }
 
@@ -790,21 +790,21 @@ class MVX_User {
             $vendor = get_mvx_vendor($user_object->ID);
             if ($vendor) {
                 unset($actions['view']);
-                $actions['view_vendor'] = "<a target=_blank class='view_vendor' href='" . $vendor->permalink . "'>" . __('View', 'dc-woocommerce-multi-vendor') . "</a>";
+                $actions['view_vendor'] = "<a target=_blank class='view_vendor' href='" . $vendor->permalink . "'>" . __('View', 'multivendorx') . "</a>";
             }
         }
 
         if (is_user_mvx_pending_vendor($user_object)) {
             $vendor = get_mvx_vendor($user_object->ID);
             unset($actions['view']);
-            $actions['activate'] = "<a class='activate_vendor' data-id='" . $user_object->ID . "'href=#>" . __('Approve', 'dc-woocommerce-multi-vendor') . "</a>";
-            $actions['reject'] = "<a class='reject_vendor' data-id='" . $user_object->ID . "'href=#>" . __('Reject', 'dc-woocommerce-multi-vendor') . "</a>";
+            $actions['activate'] = "<a class='activate_vendor' data-id='" . $user_object->ID . "'href=#>" . __('Approve', 'multivendorx') . "</a>";
+            $actions['reject'] = "<a class='reject_vendor' data-id='" . $user_object->ID . "'href=#>" . __('Reject', 'multivendorx') . "</a>";
         }
 
         if (is_user_mvx_rejected_vendor($user_object)) {
             $vendor = get_mvx_vendor($user_object->ID);
             unset($actions['view']);
-            $actions['activate'] = "<a class='activate_vendor' data-id='" . $user_object->ID . "'href=#>" . __('Approve', 'dc-woocommerce-multi-vendor') . "</a>";
+            $actions['activate'] = "<a class='activate_vendor' data-id='" . $user_object->ID . "'href=#>" . __('Approve', 'multivendorx') . "</a>";
         }
         return $actions;
     }
@@ -825,7 +825,7 @@ class MVX_User {
                 <tbody>
                     <tr>
                         <th>
-                            <label for="View Vendor" > <?php _e('View Vendor', 'dc-woocommerce-multi-vendor'); ?></label>
+                            <label for="View Vendor" > <?php _e('View Vendor', 'multivendorx'); ?></label>
                         </th>
                         <td>
                             <a class="button-primary" target="_blank" href=<?php echo $vendor->permalink; ?>>View</a>
@@ -846,7 +846,7 @@ class MVX_User {
         if (isset($_POST['vendor_page_slug'])) {
             if (!$update) {
                 if (term_exists(sanitize_title($_POST['vendor_page_slug']), $MVX->taxonomy->taxonomy_name)) {
-                    $errors->add('vendor_slug_exists', __('Slug Already Exists', 'dc-woocommerce-multi-vendor'));
+                    $errors->add('vendor_slug_exists', __('Slug Already Exists', 'multivendorx'));
                 }
             } else {
                 if (is_user_mvx_vendor($user->ID)) {
@@ -856,7 +856,7 @@ class MVX_User {
                     }
                     if (isset($_POST['vendor_page_slug']) && isset($vendor_term->slug) && $vendor_term->slug != $_POST['vendor_page_slug']) {
                         if (term_exists(sanitize_title($_POST['vendor_page_slug']), $MVX->taxonomy->taxonomy_name)) {
-                            $errors->add('vendor_slug_exists', __('Slug already exists', 'dc-woocommerce-multi-vendor'));
+                            $errors->add('vendor_slug_exists', __('Slug already exists', 'multivendorx'));
                         }
                     }
                 }
@@ -885,7 +885,7 @@ class MVX_User {
                 if ($fieldvalue) {
                     if ($fieldkey == 'vendor_page_title') {
                         if (!$vendor->update_page_title(wc_clean($fieldvalue))) {
-                            $errors->add('vendor_title_exists', __('Title Update Error', 'dc-woocommerce-multi-vendor'));
+                            $errors->add('vendor_title_exists', __('Title Update Error', 'multivendorx'));
                         } else {
                             if(apply_filters('mvx_update_user_display_name_with_vendor_store_name', false, $user_id)){
                                 wp_update_user(array('ID' => $user_id, 'display_name' => $fieldvalue));
@@ -893,7 +893,7 @@ class MVX_User {
                         }
                     } elseif ($fieldkey == 'vendor_page_slug') {
                         if (!$vendor->update_page_slug(wc_clean($fieldvalue))) {
-                            $errors->add('vendor_slug_exists', __('Slug already exists', 'dc-woocommerce-multi-vendor'));
+                            $errors->add('vendor_slug_exists', __('Slug already exists', 'multivendorx'));
                         }
                     } elseif ($fieldkey == 'vendor_description') {
                         update_user_meta($user_id, '_' . $fieldkey, wp_kses_post($_POST[$fieldkey]));
@@ -951,7 +951,7 @@ class MVX_User {
                         }
                     }
                 } else {
-                    wp_die(__('Select a Vendor.', 'dc-woocommerce-multi-vendor'));
+                    wp_die(__('Select a Vendor.', 'multivendorx'));
                 }
             }
 

@@ -21,14 +21,14 @@ class MVX_Widget_Vendor_Product_Search extends WC_Widget {
 	 */
 	public function __construct() {
 		$this->widget_cssclass    = 'mvx-vproduct-search woocommerce widget_vproduct_search';
-		$this->widget_description = __( 'A search form for vendor store products search.', 'dc-woocommerce-multi-vendor' );
+		$this->widget_description = __( 'A search form for vendor store products search.', 'multivendorx' );
 		$this->widget_id          = 'mvx_vendor_product_search';
-		$this->widget_name        = __( 'MVX: Vendor Product Search', 'dc-woocommerce-multi-vendor' );
+		$this->widget_name        = __( 'MVX: Vendor Product Search', 'multivendorx' );
 		$this->settings           = array(
 			'title' => array(
 				'type'  => 'text',
 				'std'   => '',
-				'label' => __( 'Title', 'dc-woocommerce-multi-vendor' ),
+				'label' => __( 'Title', 'multivendorx' ),
 			),
 		);
 

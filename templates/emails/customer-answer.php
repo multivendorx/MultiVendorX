@@ -19,8 +19,8 @@ $product_id = isset( $product_id ) ? $product_id : '';
 $product = wc_get_product($product_id);
 do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 <p style="text-align:<?php echo $text_align; ?>;" >
-<?php printf(esc_html__('Your question had been noted and answered by the vendor : %s', 'dc-woocommerce-multi-vendor'), $answer ); ?><br><br>
-    <?php  printf(esc_html__('Kindly check if the reply is up to your satisfaction : %s', 'dc-woocommerce-multi-vendor'), esc_url($product->get_permalink()) );?>
+<?php printf(esc_html__('Your question had been noted and answered by the vendor : %s', 'multivendorx'), $answer ); ?><br><br>
+    <?php  printf(esc_html__('Kindly check if the reply is up to your satisfaction : %s', 'multivendorx'), esc_url($product->get_permalink()) );?>
 </p>
 
 

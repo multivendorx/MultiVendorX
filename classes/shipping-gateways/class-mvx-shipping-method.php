@@ -2,18 +2,18 @@
 class MVX_Vendor_Shipping_Method extends WC_Shipping_Method {
     public $default_option;
     public function __clone() {
-        _doing_it_wrong( __FUNCTION__, __( 'Cloning this class could cause catastrophic disasters!', 'dc-woocommerce-multi-vendor' ), '3.0' );
+        _doing_it_wrong( __FUNCTION__, __( 'Cloning this class could cause catastrophic disasters!', 'multivendorx' ), '3.0' );
     }
 
     public function __wakeup() {
-        _doing_it_wrong( __FUNCTION__, __( 'Unserializing is forbidden!', 'dc-woocommerce-multi-vendor' ), '3.0' );
+        _doing_it_wrong( __FUNCTION__, __( 'Unserializing is forbidden!', 'multivendorx' ), '3.0' );
     }
 
     public function __construct( $instance_id = 0 ) {
         $this->id                   = 'mvx_vendor_shipping';
         $this->instance_id          = absint( $instance_id );
-        $this->method_title         = __( 'Vendor Shipping', 'dc-woocommerce-multi-vendor' );
-        $this->method_description   = __( 'Charge varying rates based on user defined conditions', 'dc-woocommerce-multi-vendor' );
+        $this->method_title         = __( 'Vendor Shipping', 'multivendorx' );
+        $this->method_description   = __( 'Charge varying rates based on user defined conditions', 'multivendorx' );
         $this->supports             = array( 'shipping-zones', 'instance-settings', 'instance-settings-modal' );
         $this->default              = "";
 
@@ -151,20 +151,20 @@ class MVX_Vendor_Shipping_Method extends WC_Shipping_Method {
     public function init() {
         $this->instance_form_fields = array(
             'title' => array(
-                'title'         => __( 'Method title', 'dc-woocommerce-multi-vendor' ),
+                'title'         => __( 'Method title', 'multivendorx' ),
                 'type'          => 'text',
-                'description'   => __( 'This controls the title which the user sees during checkout.', 'dc-woocommerce-multi-vendor' ),
-                'default'       => __( 'Vendor Shipping', 'dc-woocommerce-multi-vendor' ),
+                'description'   => __( 'This controls the title which the user sees during checkout.', 'multivendorx' ),
+                'default'       => __( 'Vendor Shipping', 'multivendorx' ),
                 'desc_tip'      => true,
             ),
             'tax_status' => array(
-                'title'         => __( 'Tax status', 'dc-woocommerce-multi-vendor' ),
+                'title'         => __( 'Tax status', 'multivendorx' ),
                 'type'          => 'select',
                 'class'         => 'wc-enhanced-select',
                 'default'       => 'taxable',
                 'options'       => array(
-                    'taxable'   => __( 'Taxable', 'dc-woocommerce-multi-vendor' ),
-                    'none'      => _x( 'None', 'Tax status', 'dc-woocommerce-multi-vendor' ),
+                    'taxable'   => __( 'Taxable', 'multivendorx' ),
+                    'none'      => _x( 'None', 'Tax status', 'multivendorx' ),
                 ),
             )
         );

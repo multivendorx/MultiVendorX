@@ -24,7 +24,7 @@ class MVX_Elementor_StoreFollow extends Widget_Button {
      * @return string
      */                                                  
     public function get_title() {
-        return __( 'Store Follow Button', 'dc-woocommerce-multi-vendor' );
+        return __( 'Store Follow Button', 'multivendorx' );
     }
 
     /**
@@ -123,7 +123,7 @@ class MVX_Elementor_StoreFollow extends Widget_Button {
 				'dynamic' => [
 					'active' => false,
 				],
-				'placeholder' => __( 'No link required.', 'dc-woocommerce-multi-vendor' ),
+				'placeholder' => __( 'No link required.', 'multivendorx' ),
 			]
         );
     }
@@ -165,7 +165,7 @@ class MVX_Elementor_StoreFollow extends Widget_Button {
         $vendor_id = mvx_find_shop_page_vendor();
         $mvx_customer_follow_vendor = get_user_meta( get_current_user_id(), 'mvx_customer_follow_vendor', true ) ? get_user_meta( get_current_user_id(), 'mvx_customer_follow_vendor', true ) : array();
         $vendor_lists = !empty($mvx_customer_follow_vendor) ? wp_list_pluck( $mvx_customer_follow_vendor, 'user_id' ) : array();
-        $follow_status = in_array($vendor_id, $vendor_lists) ? __( 'Unfollow', 'dc-woocommerce-multi-vendor' ) : __( 'Follow', 'dc-woocommerce-multi-vendor' );
+        $follow_status = in_array($vendor_id, $vendor_lists) ? __( 'Unfollow', 'multivendorx' ) : __( 'Follow', 'multivendorx' );
 
         $this->add_render_attribute( 'button', 'class', 'mvx-butn' );
         if (is_user_logged_in()) {

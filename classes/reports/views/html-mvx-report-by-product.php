@@ -21,7 +21,7 @@ global $MVX;
 					}
 				?>
 				<li class="custom <?php echo $current_range == 'custom' ? 'active' : ''; ?>">
-					<?php _e( 'Custom', 'dc-woocommerce-multi-vendor' ); ?>
+					<?php _e( 'Custom', 'multivendorx' ); ?>
 					<form method="GET">
 						<div>
 							<?php
@@ -37,9 +37,9 @@ global $MVX;
 								}
 							?>
 							<input type="hidden" name="range" value="custom" />
-							<input type="date" size="9" placeholder="<?php esc_attr_e('yyyy-mm-dd', 'dc-woocommerce-multi-vendor' ); ?>" value="<?php if ( ! empty( $_GET['start_date'] ) ) echo esc_attr( $_GET['start_date'] ); ?>" name="start_date" class="range_datepicker from" />
-							<input type="date" size="9" placeholder="<?php esc_attr_e('yyyy-mm-dd', 'dc-woocommerce-multi-vendor' ); ?>" value="<?php if ( ! empty( $_GET['end_date'] ) ) echo esc_attr( $_GET['end_date'] ); ?>" name="end_date" class="range_datepicker to" />
-							<input type="submit" class="button" value="<?php esc_attr_e( 'Go', 'dc-woocommerce-multi-vendor' ); ?>" />
+							<input type="date" size="9" placeholder="<?php esc_attr_e('yyyy-mm-dd', 'multivendorx' ); ?>" value="<?php if ( ! empty( $_GET['start_date'] ) ) echo esc_attr( $_GET['start_date'] ); ?>" name="start_date" class="range_datepicker from" />
+							<input type="date" size="9" placeholder="<?php esc_attr_e('yyyy-mm-dd', 'multivendorx' ); ?>" value="<?php if ( ! empty( $_GET['end_date'] ) ) echo esc_attr( $_GET['end_date'] ); ?>" name="end_date" class="range_datepicker to" />
+							<input type="submit" class="button" value="<?php esc_attr_e( 'Go', 'multivendorx' ); ?>" />
 						</div>
 					</form>
 				</li>
@@ -48,10 +48,10 @@ global $MVX;
 		<div class="left_align pad_left">
 			<form name="search_product_form" method="post" action="">
 				<p>
-					<select id="search_product" name="search_product" class="wc-product-search" data-placeholder="<?php esc_attr_e('Search for a product...', 'dc-woocommerce-multi-vendor') ?>" data-action="mvx_json_search_products_and_variations" style="min-width:210px;">
+					<select id="search_product" name="search_product" class="wc-product-search" data-placeholder="<?php esc_attr_e('Search for a product...', 'multivendorx') ?>" data-action="mvx_json_search_products_and_variations" style="min-width:210px;">
 						<?php echo $option; ?>
 					</select> 
-					<input type="button" style="vertical-align: top;" class="product_report_search submit button" value="<?php esc_attr_e( 'Show', 'dc-woocommerce-multi-vendor' ); ?>" />
+					<input type="button" style="vertical-align: top;" class="product_report_search submit button" value="<?php esc_attr_e( 'Show', 'multivendorx' ); ?>" />
 					<?php do_action( 'mvx_frontend_report_product_filter', $start_date, $end_date ); ?>
 				</p>
 			</form>
@@ -59,11 +59,11 @@ global $MVX;
 	</div>
 	<div class="postbox sort_chart box_data">
                 <div class="sorting_box">
-                        <span><b><?php _e( 'Sort By : ', 'dc-woocommerce-multi-vendor' ); ?></b></span>
+                        <span><b><?php _e( 'Sort By : ', 'multivendorx' ); ?></b></span>
                         <select name="product_report_sort" class="product_report_sort">
-                                <option value="total_sales"><?php _e( 'Total Sales', 'dc-woocommerce-multi-vendor' ); ?></option>
-                                <option value="admin_earning"><?php _e( 'Admin Earnings', 'dc-woocommerce-multi-vendor' ); ?></option>
-                                <option value="vendor_earning"><?php _e( 'Vendor Earnings', 'dc-woocommerce-multi-vendor' ); ?></option>
+                                <option value="total_sales"><?php _e( 'Total Sales', 'multivendorx' ); ?></option>
+                                <option value="admin_earning"><?php _e( 'Admin Earnings', 'multivendorx' ); ?></option>
+                                <option value="vendor_earning"><?php _e( 'Vendor Earnings', 'multivendorx' ); ?></option>
                         </select>
                         <input type="checkbox" class="low_to_high" name="low_to_high" value="checked" />
                         <button class="low_to_high_btn_product"><i class="dashicons dashicons-arrow-up-alt"></i></button>

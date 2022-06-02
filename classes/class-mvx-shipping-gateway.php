@@ -80,15 +80,15 @@ class MVX_Shipping_Gateway {
         ?>
         <div id="wrapper-<?php echo $shipping_method['id'] ?>">
             <div class="form-group">
-                <label for="" class="control-label"><?php _e( 'Method Title', 'dc-woocommerce-multi-vendor' ); ?></label>
+                <label for="" class="control-label"><?php _e( 'Method Title', 'multivendorx' ); ?></label>
                 <div class="col-md-9 col-sm-9">
-                    <input id="method_title_fs" class="form-control" type="text" name="title" value="<?php echo isset($shipping_method['title']) ? $shipping_method['title'] : ''; ?>" placeholder="<?php esc_attr_e( 'Enter method title', 'dc-woocommerce-multi-vendor' ); ?>">
+                    <input id="method_title_fs" class="form-control" type="text" name="title" value="<?php echo isset($shipping_method['title']) ? $shipping_method['title'] : ''; ?>" placeholder="<?php esc_attr_e( 'Enter method title', 'multivendorx' ); ?>">
                 </div>
             </div>
             <div class="form-group">
-                <label for="" class="control-label"><?php _e( 'Minimum order amount for free shipping', 'dc-woocommerce-multi-vendor' ); ?></label>
+                <label for="" class="control-label"><?php _e( 'Minimum order amount for free shipping', 'multivendorx' ); ?></label>
                 <div class="col-md-9 col-sm-9">
-                    <input id="minimum_order_amount_fs" class="form-control" type="text" name="min_amount" value="<?php echo isset($shipping_method['settings']['min_amount']) ? $shipping_method['settings']['min_amount'] : ''; ?>" placeholder="<?php esc_attr_e( '0.00', 'dc-woocommerce-multi-vendor' ); ?>">
+                    <input id="minimum_order_amount_fs" class="form-control" type="text" name="min_amount" value="<?php echo isset($shipping_method['settings']['min_amount']) ? $shipping_method['settings']['min_amount'] : ''; ?>" placeholder="<?php esc_attr_e( '0.00', 'multivendorx' ); ?>">
                 </div>
             </div>
             <input type="hidden" id="method_description_fs" name="description" value="<?php echo isset($shipping_method['settings']['description']) ? $shipping_method['settings']['description'] : ''; ?>" />
@@ -100,31 +100,31 @@ class MVX_Shipping_Gateway {
     
     public function flat_rate_configure_form_fields( $shipping_method, $postdata ){
         $is_method_taxable_array = array(
-            'none'      => __( 'None', 'dc-woocommerce-multi-vendor' ),
-            'taxable'   => __( 'Taxable' , 'dc-woocommerce-multi-vendor' )
+            'none'      => __( 'None', 'multivendorx' ),
+            'taxable'   => __( 'Taxable' , 'multivendorx' )
         );
 
         $calculation_type = array(
-            'class' => __( 'Per class: Charge shipping for each shipping class individually', 'dc-woocommerce-multi-vendor' ),
-            'order' => __( 'Per order: Charge shipping for the most expensive shipping class', 'dc-woocommerce-multi-vendor' ),
+            'class' => __( 'Per class: Charge shipping for each shipping class individually', 'multivendorx' ),
+            'order' => __( 'Per order: Charge shipping for the most expensive shipping class', 'multivendorx' ),
         );
         ?>
         <div id="wrapper-<?php echo $shipping_method['id'] ?>">
             <div class="form-group">
-                <label for="" class="control-label"><?php _e( 'Method Title', 'dc-woocommerce-multi-vendor' ); ?></label>
+                <label for="" class="control-label"><?php _e( 'Method Title', 'multivendorx' ); ?></label>
                 <div class="col-md-9 col-sm-9">
-                    <input id="method_title_fr" class="form-control" type="text" name="title" value="<?php echo isset($shipping_method['title']) ? $shipping_method['title'] : ''; ?>" placeholder="<?php esc_attr_e( 'Enter method title', 'dc-woocommerce-multi-vendor' ); ?>">
+                    <input id="method_title_fr" class="form-control" type="text" name="title" value="<?php echo isset($shipping_method['title']) ? $shipping_method['title'] : ''; ?>" placeholder="<?php esc_attr_e( 'Enter method title', 'multivendorx' ); ?>">
                 </div>
             </div>
             <div class="form-group">
-                <label for="" class="control-label"><?php _e( 'Cost', 'dc-woocommerce-multi-vendor' ); ?></label>
+                <label for="" class="control-label"><?php _e( 'Cost', 'multivendorx' ); ?></label>
                 <div class="col-md-9 col-sm-9">
-                    <input id="method_cost_fr" class="form-control" type="text" name="cost" value="<?php echo isset($shipping_method['settings']['cost']) ? $shipping_method['settings']['cost'] : ''; ?>" placeholder="<?php esc_attr_e( '0.00', 'dc-woocommerce-multi-vendor' ); ?>">
+                    <input id="method_cost_fr" class="form-control" type="text" name="cost" value="<?php echo isset($shipping_method['settings']['cost']) ? $shipping_method['settings']['cost'] : ''; ?>" placeholder="<?php esc_attr_e( '0.00', 'multivendorx' ); ?>">
                 </div>
             </div>
             <?php if( apply_filters( 'show_shipping_zone_tax', true ) ) { ?>
                 <div class="form-group">
-                    <label for="" class="control-label"><?php _e( 'Tax Status', 'dc-woocommerce-multi-vendor' ); ?></label>
+                    <label for="" class="control-label"><?php _e( 'Tax Status', 'multivendorx' ); ?></label>
                     <div class="col-md-9 col-sm-9">
                         <select id="method_tax_status_fr" class="form-control" name="tax_status">
                             <?php foreach( $is_method_taxable_array as $key => $value ) { 
@@ -143,30 +143,30 @@ class MVX_Shipping_Gateway {
             if (!apply_filters( 'hide_vendor_shipping_classes', false )) { ?>
                 <div class="mvx_shipping_classes">
                     <hr>
-                    <h2><?php _e('Shipping Class Cost', 'dc-woocommerce-multi-vendor'); ?></h2> 
-                    <div class="description mb-15"><?php _e('These costs can be optionally entered based on the shipping class set per product (This cost will be added with the shipping cost above).', 'dc-woocommerce-multi-vendor'); ?></div>
+                    <h2><?php _e('Shipping Class Cost', 'multivendorx'); ?></h2> 
+                    <div class="description mb-15"><?php _e('These costs can be optionally entered based on the shipping class set per product (This cost will be added with the shipping cost above).', 'multivendorx'); ?></div>
                     <?php
 
                     // $shipping_classes =  WC()->shipping->get_shipping_classes();
                     $shipping_classes =  get_vendor_shipping_classes();
 
                     if(empty($shipping_classes)) {
-                        echo '<div class="no_shipping_classes">' . __("No Shipping Classes set by Admin", 'dc-woocommerce-multi-vendor') . '</div>';
+                        echo '<div class="no_shipping_classes">' . __("No Shipping Classes set by Admin", 'multivendorx') . '</div>';
                     } else {
                         foreach ($shipping_classes as $shipping_class ) {
                             ?>
                             <div class="form-group">
-                                <label for="" class="control-label"><?php printf( __( 'Cost of Shipping Class: "%s"', 'dc-woocommerce-multi-vendor' ), $shipping_class->name ); ?></label>
+                                <label for="" class="control-label"><?php printf( __( 'Cost of Shipping Class: "%s"', 'multivendorx' ), $shipping_class->name ); ?></label>
                                 <div class="col-md-9 col-sm-9">
-                                    <input id="<?php echo $shipping_class->slug; ?>" class="form-control sc_vals" type="text" name="class_cost_<?php echo $shipping_class->term_id; ?>" value='<?php echo isset($shipping_method['settings']['class_cost_'.$shipping_class->term_id]) ? $shipping_method['settings']['class_cost_'.$shipping_class->term_id] : ''; ?>' placeholder="<?php esc_attr_e( 'N/A', 'dc-woocommerce-multi-vendor' ); ?>" data-shipping_class_id="<?php echo $shipping_class->term_id; ?>">
-                                    <div class="description"><?php _e( 'Enter a cost (excl. tax) or sum, e.g. <code>10.00 * [qty]</code>.', 'dc-woocommerce-multi-vendor' ) . '<br/><br/>' . _e( 'Use <code>[qty]</code> for the number of items, <br/><code>[cost]</code> for the total cost of items, and <code>[fee percent="10" min_fee="20" max_fee=""]</code> for percentage based fees.', 'dc-woocommerce-multi-vendor' ); ?></div>
+                                    <input id="<?php echo $shipping_class->slug; ?>" class="form-control sc_vals" type="text" name="class_cost_<?php echo $shipping_class->term_id; ?>" value='<?php echo isset($shipping_method['settings']['class_cost_'.$shipping_class->term_id]) ? $shipping_method['settings']['class_cost_'.$shipping_class->term_id] : ''; ?>' placeholder="<?php esc_attr_e( 'N/A', 'multivendorx' ); ?>" data-shipping_class_id="<?php echo $shipping_class->term_id; ?>">
+                                    <div class="description"><?php _e( 'Enter a cost (excl. tax) or sum, e.g. <code>10.00 * [qty]</code>.', 'multivendorx' ) . '<br/><br/>' . _e( 'Use <code>[qty]</code> for the number of items, <br/><code>[cost]</code> for the total cost of items, and <code>[fee percent="10" min_fee="20" max_fee=""]</code> for percentage based fees.', 'multivendorx' ); ?></div>
                                 </div>
                             </div>
                             <?php 
                         }
                         ?>
                         <div class="form-group">
-                            <label for="" class="control-label"><?php _e( 'Calculation type', 'dc-woocommerce-multi-vendor' ); ?></label>
+                            <label for="" class="control-label"><?php _e( 'Calculation type', 'multivendorx' ); ?></label>
                             <div class="col-md-9 col-sm-9">
                                 <select id="calculation_type" class="form-control" name="calculation_type">
                                     <?php foreach( $calculation_type as $key => $value ) { ?>
@@ -185,27 +185,27 @@ class MVX_Shipping_Gateway {
     
     public function local_pickup_configure_form_fields( $shipping_method, $postdata ){
         $is_method_taxable_array = array(
-            'none'      => __( 'None', 'dc-woocommerce-multi-vendor' ),
-            'taxable'   => __( 'Taxable' , 'dc-woocommerce-multi-vendor' )
+            'none'      => __( 'None', 'multivendorx' ),
+            'taxable'   => __( 'Taxable' , 'multivendorx' )
         );
 
         ?>
         <div id="wrapper-<?php echo $shipping_method['id'] ?>">
             <div class="form-group">
-                <label for="" class="control-label"><?php _e( 'Method Title', 'dc-woocommerce-multi-vendor' ); ?></label>
+                <label for="" class="control-label"><?php _e( 'Method Title', 'multivendorx' ); ?></label>
                 <div class="col-md-9 col-sm-9">
-                    <input id="method_title_lp" class="form-control" type="text" name="title" value="<?php echo isset($shipping_method['title']) ? $shipping_method['title'] : ''; ?>" placeholder="<?php esc_attr_e( 'Enter method title', 'dc-woocommerce-multi-vendor' ); ?>">
+                    <input id="method_title_lp" class="form-control" type="text" name="title" value="<?php echo isset($shipping_method['title']) ? $shipping_method['title'] : ''; ?>" placeholder="<?php esc_attr_e( 'Enter method title', 'multivendorx' ); ?>">
                 </div>
             </div>
             <div class="form-group">
-                <label for="" class="control-label"><?php _e( 'Cost', 'dc-woocommerce-multi-vendor' ); ?></label>
+                <label for="" class="control-label"><?php _e( 'Cost', 'multivendorx' ); ?></label>
                 <div class="col-md-9 col-sm-9">
-                    <input id="method_cost_lp" class="form-control" type="text" name="cost" value="<?php echo isset($shipping_method['settings']['cost']) ? $shipping_method['settings']['cost'] : ''; ?>" placeholder="<?php esc_attr_e( '0.00', 'dc-woocommerce-multi-vendor' ); ?>">
+                    <input id="method_cost_lp" class="form-control" type="text" name="cost" value="<?php echo isset($shipping_method['settings']['cost']) ? $shipping_method['settings']['cost'] : ''; ?>" placeholder="<?php esc_attr_e( '0.00', 'multivendorx' ); ?>">
                 </div>
             </div>
             <?php if( apply_filters( 'show_shipping_zone_tax', true ) ) { ?>
                 <div class="form-group">
-                    <label for="" class="control-label"><?php _e( 'Tax Status', 'dc-woocommerce-multi-vendor' ); ?></label>
+                    <label for="" class="control-label"><?php _e( 'Tax Status', 'multivendorx' ); ?></label>
                     <div class="col-md-9 col-sm-9">
                         <select id="method_tax_status_lp" class="form-control" name="tax_status">
                             <?php foreach( $is_method_taxable_array as $key => $value ) { ?>

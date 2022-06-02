@@ -20,7 +20,7 @@ global $MVX;
                     }
                 ?>
                 <li class="custom <?php echo $current_range == 'custom' ? 'active' : ''; ?>">
-                    <?php esc_html_e( 'Custom', 'dc-woocommerce-multi-vendor' ); ?>
+                    <?php esc_html_e( 'Custom', 'multivendorx' ); ?>
                     <form method="GET">
                         <div>
                             <?php
@@ -38,7 +38,7 @@ global $MVX;
                             <input type="hidden" name="range" value="custom" />
                             <input type="date" size="9" placeholder="yyyy-mm-dd" value="<?php if ( ! empty( $_GET['start_date'] ) ) echo esc_attr( $_GET['start_date'] ); ?>" name="start_date" class="range_datepicker from" />
                             <input type="date" size="9" placeholder="yyyy-mm-dd" value="<?php if ( ! empty( $_GET['end_date'] ) ) echo esc_attr( $_GET['end_date'] ); ?>" name="end_date" class="range_datepicker to" />
-                            <input type="submit" class="button" value="<?php esc_attr_e( 'Go', 'dc-woocommerce-multi-vendor' ); ?>" />
+                            <input type="submit" class="button" value="<?php esc_attr_e( 'Go', 'multivendorx' ); ?>" />
                         </div>
                     </form>
                 </li>
@@ -57,37 +57,37 @@ global $MVX;
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="mvx_displaybox2 text-center">
-                                                <h4><a href="#"><?php esc_html_e('Net Sales', 'dc-woocommerce-multi-vendor'); ?></a></h4>
+                                                <h4><a href="#"><?php esc_html_e('Net Sales', 'multivendorx'); ?></a></h4>
                                                 <h3><?php echo wc_price($sales); ?></h3>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mvx_displaybox2 text-center">
-                                                <h4><a href ="<?php echo esc_url(admin_url('edit.php?post_type=dc_commission')); ?>"><?php esc_html_e('My Earnings', 'dc-woocommerce-multi-vendor'); ?></a></h4>
+                                                <h4><a href ="<?php echo esc_url(admin_url('edit.php?post_type=dc_commission')); ?>"><?php esc_html_e('My Earnings', 'multivendorx'); ?></a></h4>
                                                 <h3><?php echo wc_price($admin_earning); ?></h3>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mvx_displaybox2 text-center">
-                                                <h4><a href ="<?php echo esc_url(admin_url('admin.php?page=vendors')); ?>"><?php esc_html_e('Signup Vendors', 'dc-woocommerce-multi-vendor'); ?></a></h4>
+                                                <h4><a href ="<?php echo esc_url(admin_url('admin.php?page=vendors')); ?>"><?php esc_html_e('Signup Vendors', 'multivendorx'); ?></a></h4>
                                                 <h3><?php echo $vendors; ?></h3>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mvx_displaybox2 text-center">
-                                                <h4><a href ="<?php echo esc_url(admin_url('admin.php?page=mvx-to-do')); ?>"><?php esc_html_e('Pending Vendors', 'dc-woocommerce-multi-vendor'); ?></a></h4>
+                                                <h4><a href ="<?php echo esc_url(admin_url('admin.php?page=mvx-to-do')); ?>"><?php esc_html_e('Pending Vendors', 'multivendorx'); ?></a></h4>
                                                 <h3><?php echo $pending_vendors; ?></h3>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mvx_displaybox2 text-center">
-                                                <h4><a href ="<?php echo esc_url(admin_url('admin.php?page=mvx-to-do')); ?>"><?php esc_html_e('Awaiting Products', 'dc-woocommerce-multi-vendor'); ?></a></h4>
+                                                <h4><a href ="<?php echo esc_url(admin_url('admin.php?page=mvx-to-do')); ?>"><?php esc_html_e('Awaiting Products', 'multivendorx'); ?></a></h4>
                                                 <h3><?php echo esc_html($products); ?></h3>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mvx_displaybox2 text-center">
-                                                <h4><a href ="<?php echo esc_url(admin_url('admin.php?page=mvx-to-do')); ?>"><?php _e('Awaiting Withdrawals', 'dc-woocommerce-multi-vendor'); ?></a></h4>
+                                                <h4><a href ="<?php echo esc_url(admin_url('admin.php?page=mvx-to-do')); ?>"><?php _e('Awaiting Withdrawals', 'multivendorx'); ?></a></h4>
                                                 <h3><?php echo wc_price($transactions); ?></h3>
                                             </div>
                                         </div>

@@ -32,20 +32,20 @@ class mvx_transaction {
             return;
         }
         $labels = array(
-            'name' => _x('Transactions', 'post type general name', 'dc-woocommerce-multi-vendor'),
-            'singular_name' => _x('Transaction', 'post type singular name', 'dc-woocommerce-multi-vendor'),
-            'add_new' => _x('Add New', $this->post_type, 'dc-woocommerce-multi-vendor'),
-            'add_new_item' => sprintf(__('Add New %s', 'dc-woocommerce-multi-vendor'), __('Transaction', 'dc-woocommerce-multi-vendor')),
-            'edit_item' => sprintf(__('Edit %s', 'dc-woocommerce-multi-vendor'), __('Transaction', 'dc-woocommerce-multi-vendor')),
-            'new_item' => sprintf(__('New %s', 'dc-woocommerce-multi-vendor'), __('Transaction', 'dc-woocommerce-multi-vendor')),
-            'all_items' => sprintf(__('All %s', 'dc-woocommerce-multi-vendor'), __('Transaction', 'dc-woocommerce-multi-vendor')),
-            'view_item' => sprintf(__('View %s', 'dc-woocommerce-multi-vendor'), __('Transaction', 'dc-woocommerce-multi-vendor')),
-            'search_items' => sprintf(__('Search %s', 'dc-woocommerce-multi-vendor'), __('Transactions', 'dc-woocommerce-multi-vendor')),
-            'not_found' => sprintf(__('No %s found', 'dc-woocommerce-multi-vendor'), __('Transactions', 'dc-woocommerce-multi-vendor')),
-            'not_found_in_trash' => sprintf(__('No %s found In trash', 'dc-woocommerce-multi-vendor'), __('Transactions', 'dc-woocommerce-multi-vendor')),
+            'name' => _x('Transactions', 'post type general name', 'multivendorx'),
+            'singular_name' => _x('Transaction', 'post type singular name', 'multivendorx'),
+            'add_new' => _x('Add New', $this->post_type, 'multivendorx'),
+            'add_new_item' => sprintf(__('Add New %s', 'multivendorx'), __('Transaction', 'multivendorx')),
+            'edit_item' => sprintf(__('Edit %s', 'multivendorx'), __('Transaction', 'multivendorx')),
+            'new_item' => sprintf(__('New %s', 'multivendorx'), __('Transaction', 'multivendorx')),
+            'all_items' => sprintf(__('All %s', 'multivendorx'), __('Transaction', 'multivendorx')),
+            'view_item' => sprintf(__('View %s', 'multivendorx'), __('Transaction', 'multivendorx')),
+            'search_items' => sprintf(__('Search %s', 'multivendorx'), __('Transactions', 'multivendorx')),
+            'not_found' => sprintf(__('No %s found', 'multivendorx'), __('Transactions', 'multivendorx')),
+            'not_found_in_trash' => sprintf(__('No %s found In trash', 'multivendorx'), __('Transactions', 'multivendorx')),
             'parent_item_colon' => '',
-            'all_items' => __('Transactions', 'dc-woocommerce-multi-vendor'),
-            'menu_name' => __('Transactions', 'dc-woocommerce-multi-vendor')
+            'all_items' => __('Transactions', 'multivendorx'),
+            'menu_name' => __('Transactions', 'multivendorx')
         );
 
         $args = array(
@@ -77,29 +77,29 @@ class mvx_transaction {
      */
     private function register_post_status() {
         register_post_status('mvx_processing', array(
-            'label' => _x('Processing', $this->post_type, 'dc-woocommerce-multi-vendor'),
+            'label' => _x('Processing', $this->post_type, 'multivendorx'),
             'public' => true,
             'exclude_from_search' => false,
             'show_in_admin_all_list' => true,
             'show_in_admin_status_list' => true,
-            'label_count' => _n_noop('Processing <span class="count">(%s)</span>', 'Processing <span class="count">(%s)</span>', 'dc-woocommerce-multi-vendor'),
+            'label_count' => _n_noop('Processing <span class="count">(%s)</span>', 'Processing <span class="count">(%s)</span>', 'multivendorx'),
         ));
 
         register_post_status('mvx_completed', array(
-            'label' => _x('Completed', $this->post_type, 'dc-woocommerce-multi-vendor'),
+            'label' => _x('Completed', $this->post_type, 'multivendorx'),
             'public' => true,
             'exclude_from_search' => false,
             'show_in_admin_all_list' => true,
             'show_in_admin_status_list' => true,
-            'label_count' => _n_noop('Completed <span class="count">(%s)</span>', 'Completed <span class="count">(%s)</span>', 'dc-woocommerce-multi-vendor'),
+            'label_count' => _n_noop('Completed <span class="count">(%s)</span>', 'Completed <span class="count">(%s)</span>', 'multivendorx'),
         ));
         register_post_status('mvx_canceled', array(
-            'label' => _x('Canceled', $this->post_type, 'dc-woocommerce-multi-vendor'),
+            'label' => _x('Canceled', $this->post_type, 'multivendorx'),
             'public' => true,
             'exclude_from_search' => false,
             'show_in_admin_all_list' => true,
             'show_in_admin_status_list' => true,
-            'label_count' => _n_noop('Canceled <span class="count">(%s)</span>', 'Canceled <span class="count">(%s)</span>', 'dc-woocommerce-multi-vendor'),
+            'label_count' => _n_noop('Canceled <span class="count">(%s)</span>', 'Canceled <span class="count">(%s)</span>', 'multivendorx'),
         ));
     }
 
@@ -120,7 +120,7 @@ class mvx_transaction {
             foreach ($transaction_data as $vendor_id => $transaction_detail) {
                 $trans_details = array(
                     'post_type' => $this->post_type,
-                    'post_title' => sprintf(__('Transaction - %s', 'dc-woocommerce-multi-vendor'), strftime(_x('%B %e, %Y @ %I:%M %p', 'Transaction date parsed by strftime', 'dc-woocommerce-multi-vendor'), current_time( 'timestamp' ))),
+                    'post_title' => sprintf(__('Transaction - %s', 'multivendorx'), strftime(_x('%B %e, %Y @ %I:%M %p', 'Transaction date parsed by strftime', 'multivendorx'), current_time( 'timestamp' ))),
                     'post_status' => $transaction_status,
                     'ping_status' => 'closed',
                     'post_author' => $vendor_id
@@ -172,35 +172,35 @@ class mvx_transaction {
         $transfer_charge = get_post_meta($transaction_id, 'transfer_charge', true);
         $gateway_charge = get_post_meta($transaction_id, 'gateway_charge', true);
         $transaction_mode = get_post_meta($transaction_id, 'transaction_mode', true);
-        $item_totals['date'] = array('label' => __('Date of request', 'dc-woocommerce-multi-vendor'), 'value' => mvx_date(get_post($transaction_id)->post_date));
-        $item_totals['amount'] = array('label' => __('Amount', 'dc-woocommerce-multi-vendor'), 'value' => wc_price($transaction_amount));
+        $item_totals['date'] = array('label' => __('Date of request', 'multivendorx'), 'value' => mvx_date(get_post($transaction_id)->post_date));
+        $item_totals['amount'] = array('label' => __('Amount', 'multivendorx'), 'value' => wc_price($transaction_amount));
         if ($transfer_charge) {
-            $item_totals['transfer_fee'] = array('label' => __('Transfer Fee', 'dc-woocommerce-multi-vendor'), 'value' => wc_price($transfer_charge));
+            $item_totals['transfer_fee'] = array('label' => __('Transfer Fee', 'multivendorx'), 'value' => wc_price($transfer_charge));
         }
         if($gateway_charge){
-            $item_totals['gateway_charge'] = array('label' => __('Gateway Fee', 'dc-woocommerce-multi-vendor'), 'value' => wc_price($gateway_charge));
+            $item_totals['gateway_charge'] = array('label' => __('Gateway Fee', 'multivendorx'), 'value' => wc_price($gateway_charge));
         }
 
         if ($transaction_mode == 'direct_bank') {
-            $item_totals['via'] = array('label' => __('Transaction Mode', 'dc-woocommerce-multi-vendor'), 'value' => __('Direct Bank', 'dc-woocommerce-multi-vendor'));
-            $item_totals['bank_account_type'] = array('label' => __('Bank Account Type', 'dc-woocommerce-multi-vendor'), 'value' => get_user_meta($vendor->id, '_vendor_bank_account_type', true));
-            $item_totals['bank_account_name'] = array('label' => __('Bank Account Number', 'dc-woocommerce-multi-vendor'), 'value' => get_user_meta($vendor->id, '_vendor_bank_account_number', true));
-            $item_totals['bank_name'] = array('label' => __('Bank Name', 'dc-woocommerce-multi-vendor'), 'value' => get_user_meta($vendor->id, '_vendor_bank_name', true));
-            $item_totals['aba_routing_number'] = array('label' => __('ABA Routing Number', 'dc-woocommerce-multi-vendor'), 'value' => get_user_meta($vendor->id, '_vendor_aba_routing_number', true));
-            $item_totals['bank_address'] = array('label' => __('Bank Address', 'dc-woocommerce-multi-vendor'), 'value' => get_user_meta($vendor->id, '_vendor_bank_address', true));
-            $item_totals['destination_currency'] = array('label' => __('Destination Currency', 'dc-woocommerce-multi-vendor'), 'value' => get_user_meta($vendor->id, '_vendor_destination_currency', true));
-            $item_totals['iban'] = array('label' => __('IBAN', 'dc-woocommerce-multi-vendor'), 'value' => get_user_meta($vendor->id, '_vendor_iban', true));
-            $item_totals['account_holder_name'] = array('label' => __('Account Holder Name', 'dc-woocommerce-multi-vendor'), 'value' => get_user_meta($vendor->id, '_vendor_account_holder_name', true));
+            $item_totals['via'] = array('label' => __('Transaction Mode', 'multivendorx'), 'value' => __('Direct Bank', 'multivendorx'));
+            $item_totals['bank_account_type'] = array('label' => __('Bank Account Type', 'multivendorx'), 'value' => get_user_meta($vendor->id, '_vendor_bank_account_type', true));
+            $item_totals['bank_account_name'] = array('label' => __('Bank Account Number', 'multivendorx'), 'value' => get_user_meta($vendor->id, '_vendor_bank_account_number', true));
+            $item_totals['bank_name'] = array('label' => __('Bank Name', 'multivendorx'), 'value' => get_user_meta($vendor->id, '_vendor_bank_name', true));
+            $item_totals['aba_routing_number'] = array('label' => __('ABA Routing Number', 'multivendorx'), 'value' => get_user_meta($vendor->id, '_vendor_aba_routing_number', true));
+            $item_totals['bank_address'] = array('label' => __('Bank Address', 'multivendorx'), 'value' => get_user_meta($vendor->id, '_vendor_bank_address', true));
+            $item_totals['destination_currency'] = array('label' => __('Destination Currency', 'multivendorx'), 'value' => get_user_meta($vendor->id, '_vendor_destination_currency', true));
+            $item_totals['iban'] = array('label' => __('IBAN', 'multivendorx'), 'value' => get_user_meta($vendor->id, '_vendor_iban', true));
+            $item_totals['account_holder_name'] = array('label' => __('Account Holder Name', 'multivendorx'), 'value' => get_user_meta($vendor->id, '_vendor_account_holder_name', true));
         } else if ($transaction_mode == 'paypal_masspay') {
-            $item_totals['via'] = array('label' => __('Transaction Mode', 'dc-woocommerce-multi-vendor'), 'value' => __('PayPal Masspay', 'dc-woocommerce-multi-vendor'));
-            $item_totals['paypal_email'] = array('label' => __('PayPal Email', 'dc-woocommerce-multi-vendor'), 'value' => get_user_meta($vendor->id, '_vendor_paypal_email', true));
+            $item_totals['via'] = array('label' => __('Transaction Mode', 'multivendorx'), 'value' => __('PayPal Masspay', 'multivendorx'));
+            $item_totals['paypal_email'] = array('label' => __('PayPal Email', 'multivendorx'), 'value' => get_user_meta($vendor->id, '_vendor_paypal_email', true));
         } else if ($transaction_mode == 'paypal_payout') {
-            $item_totals['via'] = array('label' => __('Transaction Mode', 'dc-woocommerce-multi-vendor'), 'value' => __('PayPal Payout', 'dc-woocommerce-multi-vendor'));
-            $item_totals['paypal_email'] = array('label' => __('PayPal Email', 'dc-woocommerce-multi-vendor'), 'value' => get_user_meta($vendor->id, '_vendor_paypal_email', true));
+            $item_totals['via'] = array('label' => __('Transaction Mode', 'multivendorx'), 'value' => __('PayPal Payout', 'multivendorx'));
+            $item_totals['paypal_email'] = array('label' => __('PayPal Email', 'multivendorx'), 'value' => get_user_meta($vendor->id, '_vendor_paypal_email', true));
         } else if ($transaction_mode == 'stripe_masspay') {
-            $item_totals['via'] = array('label' => __('Transaction Mode', 'dc-woocommerce-multi-vendor'), 'value' => __('Stripe Connect', 'dc-woocommerce-multi-vendor'));
+            $item_totals['via'] = array('label' => __('Transaction Mode', 'multivendorx'), 'value' => __('Stripe Connect', 'multivendorx'));
         } else if ($transaction_mode == 'manual') {
-            $item_totals['via'] = array('label' => __('Transaction Mode', 'dc-woocommerce-multi-vendor'), 'value' => __('Manual', 'dc-woocommerce-multi-vendor'));
+            $item_totals['via'] = array('label' => __('Transaction Mode', 'multivendorx'), 'value' => __('Manual', 'multivendorx'));
         }
         return apply_filters('mvx_transaction_item_totals', $item_totals, $transaction_id);
     }
@@ -229,11 +229,11 @@ class mvx_transaction {
         }
         $status = get_post_status($transaction_id);
         if($status == 'mvx_completed'){
-            $transaction_status = __('Completed', 'dc-woocommerce-multi-vendor');
+            $transaction_status = __('Completed', 'multivendorx');
         } else if($status == 'mvx_processing'){
-            $transaction_status = __('Processing', 'dc-woocommerce-multi-vendor');
+            $transaction_status = __('Processing', 'multivendorx');
         }else{
-            $transaction_status = __('Cancelled', 'dc-woocommerce-multi-vendor');
+            $transaction_status = __('Cancelled', 'multivendorx');
         }
         
         $amount = (float) get_post_meta($transaction_id, 'amount', true) - (float) get_post_meta($transaction_id, 'transfer_charge', true) - (float) get_post_meta($transaction_id, 'gateway_charge', true);
@@ -241,7 +241,7 @@ class mvx_transaction {
         $commission_details['body'][$commission_id][]['Products'] = implode(', ', $title);
         $commission_details['body'][$commission_id][]['Status'] = $transaction_status;
         $commission_details['body'][$commission_id][]['Amount'] = wc_price($amount);
-        $commission_details['header'] = array(__('Commission ID', 'dc-woocommerce-multi-vendor'), __('Products', 'dc-woocommerce-multi-vendor'), __('Status', 'dc-woocommerce-multi-vendor'), __('Amount', 'dc-woocommerce-multi-vendor'));
+        $commission_details['header'] = array(__('Commission ID', 'multivendorx'), __('Products', 'multivendorx'), __('Status', 'multivendorx'), __('Amount', 'multivendorx'));
         return apply_filters( 'mvx_transaction_item_details', $commission_details, $transaction_id );
     }
 
@@ -313,9 +313,9 @@ class mvx_transaction {
 
                 $transaction_details[$transaction->ID]['post_date'] = $transaction->post_date;
                 if ($transaction->post_status == 'mvx_completed') {
-                    $transaction_details[$transaction->ID]['status'] = __('Completed', 'dc-woocommerce-multi-vendor');
+                    $transaction_details[$transaction->ID]['status'] = __('Completed', 'multivendorx');
                 } else if ($transaction->post_status == 'mvx_processing') {
-                    $transaction_details[$transaction->ID]['status'] = __('Processing', 'dc-woocommerce-multi-vendor');
+                    $transaction_details[$transaction->ID]['status'] = __('Processing', 'multivendorx');
                 }
                 $transaction_details[$transaction->ID]['post_status'] = $transaction->post_status;
                 $transaction_details[$transaction->ID]['vendor_id'] = $transaction->post_author;
@@ -327,9 +327,9 @@ class mvx_transaction {
                 $transaction_details[$transaction->ID]['id'] = $transaction->ID;
                 $mode = get_post_meta($transaction->ID, 'transaction_mode', true);
                 if ($mode == 'paypal_masspay') {
-                    $transaction_details[$transaction->ID]['mode'] = __('PayPal', 'dc-woocommerce-multi-vendor');
+                    $transaction_details[$transaction->ID]['mode'] = __('PayPal', 'multivendorx');
                 } else if ($mode == 'direct_bank') {
-                    $transaction_details[$transaction->ID]['mode'] = __('Direct Bank Transfer', 'dc-woocommerce-multi-vendor');
+                    $transaction_details[$transaction->ID]['mode'] = __('Direct Bank Transfer', 'multivendorx');
                 }
             }
         }

@@ -23,10 +23,10 @@ class MVX_Report_Admin_overview extends WC_Admin_Report {
         global $wpdb, $woocommerce, $MVX;
 
         $ranges = array(
-            'year' => __('Year', 'dc-woocommerce-multi-vendor'),
-            'last_month' => __('Last Month', 'dc-woocommerce-multi-vendor'),
-            'month' => __('This Month', 'dc-woocommerce-multi-vendor'),
-            '7day' => __('Last 7 Days', 'dc-woocommerce-multi-vendor')
+            'year' => __('Year', 'multivendorx'),
+            'last_month' => __('Last Month', 'multivendorx'),
+            'month' => __('This Month', 'multivendorx'),
+            '7day' => __('Last 7 Days', 'multivendorx')
         );
 
         $current_range = ( isset($_GET['range']) && !empty($_GET['range']) ) ? sanitize_text_field($_GET['range']) : '7day';

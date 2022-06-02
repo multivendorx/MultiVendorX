@@ -33,7 +33,7 @@ if ($vendor) {
     if ('' != $vendor->description) {
         $html .= apply_filters('the_content', $vendor->description );
     }
-    $html .= '<p><a href="' . $vendor->permalink . '">' . sprintf(__('More Products from %1$s', 'dc-woocommerce-multi-vendor'), $vendor->page_title) . '</a></p>';
+    $html .= '<p><a href="' . $vendor->permalink . '">' . sprintf(__('More Products from %1$s', 'multivendorx'), $vendor->page_title) . '</a></p>';
     $html .= apply_filters('mvx_after_seller_info_tab', '');
     $html .= '</div>';
     echo $html;

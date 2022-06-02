@@ -17,9 +17,7 @@ class MVX_Admin {
     public function __construct() {
         // Admin script and style
         add_action('admin_enqueue_scripts', array(&$this, 'enqueue_admin_script'), 30);
-        add_action('dualcube_admin_footer', array(&$this, 'dualcube_admin_footer_for_mvx'));
         add_action('admin_bar_menu', array(&$this, 'add_toolbar_items'), 100);
-        add_action('admin_head', array(&$this, 'admin_header'));
         add_action('current_screen', array($this, 'conditonal_includes'));
         if (mvx_is_module_active('spmv') && get_mvx_vendor_settings('is_singleproductmultiseller', 'spmv_pages')) {
             add_action('admin_enqueue_scripts', array($this, 'mvx_kill_auto_save'));
@@ -56,9 +54,9 @@ class MVX_Admin {
             <div class="round3"></div>
             <div class="round4"></div>
             <div class="mvx_banner-content">
-                <span class="txt"><?php esc_html_e('Your settings migration cron is running. Please wait.', 'dc-woocommerce-multi-vendor') ?>  </span>
+                <span class="txt"><?php esc_html_e('Your settings migration cron is running. Please wait.', 'multivendorx') ?>  </span>
                 <div class="rightside">        
-                    <a href="https://wc-marketplace.com/latest-release/" target="_blank" class="mvx_btn_service_claim_now"><?php esc_html_e('Checkout latest release', 'dc-woocommerce-multi-vendor'); ?></a>
+                    <a href="https://wc-marketplace.com/latest-release/" target="_blank" class="mvx_btn_service_claim_now"><?php esc_html_e('Checkout latest release', 'multivendorx'); ?></a>
                     <button onclick="dismiss_servive_notice(event);" type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button>
                 </div>
 
@@ -95,7 +93,7 @@ class MVX_Admin {
         // Add our settings
         add_settings_field(
                 'dc_product_vendor_taxonomy_slug', // id
-                __('Vendor Shop Base', 'dc-woocommerce-multi-vendor'), // setting title
+                __('Vendor Shop Base', 'multivendorx'), // setting title
                 array(&$this, 'mvx_taxonomy_slug_input'), // display callback
                 'permalink', // settings page
                 'optional'                                      // settings section
@@ -105,7 +103,7 @@ class MVX_Admin {
     function mvx_taxonomy_slug_input() {
         $permalinks = get_option('dc_vendors_permalinks');
         ?>
-        <input name="dc_product_vendor_taxonomy_slug" type="text" class="regular-text code" value="<?php if (isset($permalinks['vendor_shop_base'])) echo esc_attr($permalinks['vendor_shop_base']); ?>" placeholder="<?php esc_attr_e('vendor slug', 'dc-woocommerce-multi-vendor') ?>" />
+        <input name="dc_product_vendor_taxonomy_slug" type="text" class="regular-text code" value="<?php if (isset($permalinks['vendor_shop_base'])) echo esc_attr($permalinks['vendor_shop_base']); ?>" placeholder="<?php esc_attr_e('vendor slug', 'multivendorx') ?>" />
         <?php
     }
 
@@ -142,10 +140,10 @@ class MVX_Admin {
             $admin_bar->add_menu(
                     array(
                         'id' => 'vendor_dashboard',
-                        'title' => __('Frontend  Dashboard', 'dc-woocommerce-multi-vendor'),
+                        'title' => __('Frontend  Dashboard', 'multivendorx'),
                         'href' => get_permalink(mvx_vendor_dashboard_page_id()),
                         'meta' => array(
-                            'title' => __('Frontend Dashboard', 'dc-woocommerce-multi-vendor'),
+                            'title' => __('Frontend Dashboard', 'multivendorx'),
                             'target' => '_blank',
                             'class' => 'shop-settings'
                         ),
@@ -154,10 +152,10 @@ class MVX_Admin {
             $admin_bar->add_menu(
                     array(
                         'id' => 'shop_settings',
-                        'title' => __('Storefront', 'dc-woocommerce-multi-vendor'),
+                        'title' => __('Storefront', 'multivendorx'),
                         'href' => mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_store_settings_endpoint', 'seller_dashbaord', 'storefront')),
                         'meta' => array(
-                            'title' => __('Storefront', 'dc-woocommerce-multi-vendor'),
+                            'title' => __('Storefront', 'multivendorx'),
                             'target' => '_blank',
                             'class' => 'shop-settings'
                         ),
@@ -175,51 +173,6 @@ class MVX_Admin {
 
     // End load_class()
 
-    /**
-     * Add dualcube footer text on plugin settings page
-     *
-     * @access public
-     * @param admin bar
-     * @return void
-     */
-    function dualcube_admin_footer_for_mvx() {
-        global $MVX;
-        ?>
-        <div style="clear: both"></div>
-        <div id="dc_admin_footer">
-            <?php _e('Powered by', 'dc-woocommerce-multi-vendor'); ?> <a href="https://wc-marketplace.com/" target="_blank"><img src="<?php echo $MVX->plugin_url . 'assets/images/dualcube.png'; ?>"></a><?php _e('Multivendor X', 'dc-woocommerce-multi-vendor'); ?> &copy; <?php echo date('Y'); ?>
-        </div>
-        <?php
-    }
-
-    /**
-     * Add css on admin header
-     *
-     * @access public
-     * @return void
-     */
-    function admin_header() {
-        $screen = get_current_screen();
-        if (is_user_logged_in()) {
-            if (isset($screen->id) && in_array($screen->id, array('edit-dc_commission', 'edit-mvx_university', 'edit-mvx_vendor_notice'))) {
-                ?>
-                <script>
-                    jQuery(document).ready(function ($) {
-                        var target_ele = $(".wrap .wp-header-end");
-                        var targethtml = target_ele.html();
-                        //targethtml = targethtml + '<a href="<?php echo trailingslashit(get_admin_url()) . 'admin.php?page=mvx-setting-admin'; ?>" class="page-title-action">Back To MVX Settings</a>';
-                        //target_ele.html(targethtml);
-                <?php if (in_array($screen->id, array('edit-mvx_university'))) { ?>
-                            target_ele.before('<p><b><?php echo __('"Knowledgebase" section is visible only to vendors through the vendor dashboard. You may use this section to onboard your vendors. Share tutorials, best practices, "how to" guides or whatever you feel is appropriate with your vendors.', 'dc-woocommerce-multi-vendor'); ?></b></p>');
-                <?php } ?>
-                });
-
-                </script>
-                <?php
-            }
-        }
-    }
-
     public function mvx_admin_menu() {
         if (is_user_mvx_vendor(get_current_vendor_id())) {
             remove_menu_page('edit.php');
@@ -233,11 +186,11 @@ class MVX_Admin {
         if (isset($submenu['mvx'])) {
             if (apply_filters('mvx_submenu_show_necesarry_count', true) && current_user_can('manage_woocommerce') ) {
                 foreach ($submenu['mvx'] as $key => $menu_item) {
-                    if (0 === strpos($menu_item[0], _x('Commissions', 'Admin menu name', 'dc-woocommerce-multi-vendor'))) {
+                    if (0 === strpos($menu_item[0], _x('Commissions', 'Admin menu name', 'multivendorx'))) {
                         $order_count = isset( mvx_count_commission()->unpaid ) ? mvx_count_commission()->unpaid : 0;
                         $submenu['mvx'][$key][0] .= ' <span class="awaiting-mod update-plugins count-' . $order_count . '"><span class="processing-count">' . number_format_i18n($order_count) . '</span></span>';
                     }
-                    if (0 === strpos($menu_item[0], _x('To-do List', 'Admin menu name', 'dc-woocommerce-multi-vendor'))) {
+                    if (0 === strpos($menu_item[0], _x('To-do List', 'Admin menu name', 'multivendorx'))) {
                         $to_do_list_count = mvx_count_to_do_list();
                         $submenu['mvx'][$key][0] .= ' <span class="awaiting-mod update-plugins count-' . $to_do_list_count . '"><span class="processing-count">' . number_format_i18n($to_do_list_count) . '</span></span>';
                     }
@@ -305,8 +258,8 @@ class MVX_Admin {
 
         $commission_bulk_list_action = array();
         $commission_bulk_list = array(
-            'mark_paid' => __('Mark paid', 'dc-woocommerce-multi-vendor'),
-            //'export' => __('Export', 'dc-woocommerce-multi-vendor')
+            'mark_paid' => __('Mark paid', 'multivendorx'),
+            //'export' => __('Export', 'multivendorx')
         );
         if ($commission_bulk_list) {
             foreach($commission_bulk_list as $bulk_key => $bulk_value) {
@@ -345,48 +298,48 @@ class MVX_Admin {
         }
 
         $commission_page_string     =   array(
-            'details'   =>  __('details', 'dc-woocommerce-multi-vendor'),
-            'general'   =>  __('General', 'dc-woocommerce-multi-vendor'),
-            'associated_order'   =>  __('Associated order', 'dc-woocommerce-multi-vendor'),
-            'order_status'   =>  __('Order status', 'dc-woocommerce-multi-vendor'),
-            'commission_status'   =>  __('Commission Status', 'dc-woocommerce-multi-vendor'),
-            'vendor_details'   =>  __('Vendor details', 'dc-woocommerce-multi-vendor'),
-            'email'   =>  __('Email Address', 'dc-woocommerce-multi-vendor'),
-            'payment_mode'   =>  __('Payment mode', 'dc-woocommerce-multi-vendor'),
-            'commission_data'   =>  __('Commission data', 'dc-woocommerce-multi-vendor'),
-            'commission_amount'   =>  __('Commission amount', 'dc-woocommerce-multi-vendor'),
-            'shipping'   =>  __('Shipping', 'dc-woocommerce-multi-vendor'),
-            'tax'   =>  __('Tax', 'dc-woocommerce-multi-vendor'),
-            'commission'   =>  __('Commission', 'dc-woocommerce-multi-vendor'),
-            'total'   =>  __('Total', 'dc-woocommerce-multi-vendor'),
-            'refunded'   =>  __('Refunded', 'dc-woocommerce-multi-vendor'),
-            'commission_notes'   =>  __('Commission Notes', 'dc-woocommerce-multi-vendor'),
-            'search_commission'   =>  __('Search Commission', 'dc-woocommerce-multi-vendor'),
-            'show_commission_status'   =>  __('Show Commission Status', 'dc-woocommerce-multi-vendor'),
-            'show_all_vendor'   =>  __('Show All Vendor', 'dc-woocommerce-multi-vendor'),
-            'bulk_action'   =>  __('Bulk Action', 'dc-woocommerce-multi-vendor'),
+            'details'   =>  __('details', 'multivendorx'),
+            'general'   =>  __('General', 'multivendorx'),
+            'associated_order'   =>  __('Associated order', 'multivendorx'),
+            'order_status'   =>  __('Order status', 'multivendorx'),
+            'commission_status'   =>  __('Commission Status', 'multivendorx'),
+            'vendor_details'   =>  __('Vendor details', 'multivendorx'),
+            'email'   =>  __('Email Address', 'multivendorx'),
+            'payment_mode'   =>  __('Payment mode', 'multivendorx'),
+            'commission_data'   =>  __('Commission data', 'multivendorx'),
+            'commission_amount'   =>  __('Commission amount', 'multivendorx'),
+            'shipping'   =>  __('Shipping', 'multivendorx'),
+            'tax'   =>  __('Tax', 'multivendorx'),
+            'commission'   =>  __('Commission', 'multivendorx'),
+            'total'   =>  __('Total', 'multivendorx'),
+            'refunded'   =>  __('Refunded', 'multivendorx'),
+            'commission_notes'   =>  __('Commission Notes', 'multivendorx'),
+            'search_commission'   =>  __('Search Commission', 'multivendorx'),
+            'show_commission_status'   =>  __('Show Commission Status', 'multivendorx'),
+            'show_all_vendor'   =>  __('Show All Vendor', 'multivendorx'),
+            'bulk_action'   =>  __('Bulk Action', 'multivendorx'),
         );
 
         $report_page_string = array(
-            'vendor_select' =>  __('Select your vendor to view transaction details', 'dc-woocommerce-multi-vendor'),
-            'choose_vendor' =>  __('Search Vendors', 'dc-woocommerce-multi-vendor'),
-            'choose_product'    =>  __('Search Product', 'dc-woocommerce-multi-vendor'),
-            'performance'    =>  __('Performance', 'dc-woocommerce-multi-vendor'),
-            'charts'    =>  __('Charts', 'dc-woocommerce-multi-vendor'),
-            'net_sales'    =>  __('Charts', 'dc-woocommerce-multi-vendor'),
-            'order_count'    =>  __('Order Count', 'dc-woocommerce-multi-vendor'),
-            'item_sold'    =>  __('Item Sold', 'dc-woocommerce-multi-vendor'),
-            'download_csv'  =>  __('Download CSV', 'dc-woocommerce-multi-vendor'),
-            'leaderboards'  =>  __('Leaderboards', 'dc-woocommerce-multi-vendor')
+            'vendor_select' =>  __('Select your vendor to view transaction details', 'multivendorx'),
+            'choose_vendor' =>  __('Search Vendors', 'multivendorx'),
+            'choose_product'    =>  __('Search Product', 'multivendorx'),
+            'performance'    =>  __('Performance', 'multivendorx'),
+            'charts'    =>  __('Charts', 'multivendorx'),
+            'net_sales'    =>  __('Charts', 'multivendorx'),
+            'order_count'    =>  __('Order Count', 'multivendorx'),
+            'item_sold'    =>  __('Item Sold', 'multivendorx'),
+            'download_csv'  =>  __('Download CSV', 'multivendorx'),
+            'leaderboards'  =>  __('Leaderboards', 'multivendorx')
         );
 
         // product report chart data
         $report_product_header = [];
         $headers = apply_filters('mvx_vendor_commission_data_header',array(
-            __('Product Name', 'dc-woocommerce-multi-vendor'),
-            __('Net Sales', 'dc-woocommerce-multi-vendor'),
-            __('Admin Earning', 'dc-woocommerce-multi-vendor'),
-            __('Vendor Earning', 'dc-woocommerce-multi-vendor'),
+            __('Product Name', 'multivendorx'),
+            __('Net Sales', 'multivendorx'),
+            __('Admin Earning', 'multivendorx'),
+            __('Vendor Earning', 'multivendorx'),
         ));
         foreach ($headers as $headerskey => $headersvalue) {
             $report_product_header[] = array(
@@ -398,10 +351,10 @@ class MVX_Admin {
         // vendor report chart data
         $report_vendor_header = [];
         $headers = apply_filters('mvx_vendor_commission_data_header',array(
-            __('Vendor Name', 'dc-woocommerce-multi-vendor'),
-            __('Net Sales', 'dc-woocommerce-multi-vendor'),
-            __('Admin Earning', 'dc-woocommerce-multi-vendor'),
-            __('Vendor Earning', 'dc-woocommerce-multi-vendor'),
+            __('Vendor Name', 'multivendorx'),
+            __('Net Sales', 'multivendorx'),
+            __('Admin Earning', 'multivendorx'),
+            __('Vendor Earning', 'multivendorx'),
         ));
         foreach ($headers as $headerskey => $headersvalue) {
             $report_vendor_header[] = array(
@@ -413,67 +366,67 @@ class MVX_Admin {
         $pending_question_bulk = array(
             array(
                 'value' => 'verified',
-                'label' => __('Verified', 'dc-woocommerce-multi-vendor')
+                'label' => __('Verified', 'multivendorx')
             ),
             array(
                 'value' => 'rejected',
-                'label' => __('Rejected', 'dc-woocommerce-multi-vendor')
+                'label' => __('Rejected', 'multivendorx')
             ),
         );
 
         $store_review_bulk = array(
             array(
                 'value' => 'delete',
-                'label' => __('Delete', 'dc-woocommerce-multi-vendor')
+                'label' => __('Delete', 'multivendorx')
             )
         );
 
         $post_bulk_status = array(
             array(
                 'value' => 'pending',
-                'label' => __('Pending', 'dc-woocommerce-multi-vendor')
+                'label' => __('Pending', 'multivendorx')
             ),
             array(
                 'value' => 'publish',
-                'label' => __('Published', 'dc-woocommerce-multi-vendor')
+                'label' => __('Published', 'multivendorx')
             ),
         );
 
         $task_board_bulk_status = array(
             array(
                 'value' => 'approve',
-                'label' => __('Approve', 'dc-woocommerce-multi-vendor')
+                'label' => __('Approve', 'multivendorx')
             ),
             array(
                 'value' => 'dismiss',
-                'label' => __('Dismiss', 'dc-woocommerce-multi-vendor')
+                'label' => __('Dismiss', 'multivendorx')
             ),
         );
 
 
         $columns_announcement = array(
             array(
-                'name'      =>  __('Title', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Title', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "title",
                 
             ),
             array(
-                'name'      =>  __('Vendors', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Vendors', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "vendor",
                 
             ),
             array(
-                'name'      =>  __('Date', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Date', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "date",
             ),
             array(
-                'name'      =>  __('Action', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Action', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'cell'  =>  'cell',
@@ -485,39 +438,39 @@ class MVX_Admin {
 
         $columns_questions = array(
             array(
-                'name'      =>  __('Question by', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Question by', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "question_by",
                 
             ),
             array(
-                'name'      =>  __('Product Name', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Product Name', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "product_name",
                 
             ),
             array(
-                'name'      =>  __('Date', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Date', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "question_date",
             ),
             array(
-                'name'      =>  __('Status', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Status', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "question_status",
             ),
             array(
-                'name'      =>  __('Question details', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Question details', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "question_details",
             ),
             array(
-                'name'      =>  __('Action', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Action', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'cell'  =>  'cell',
@@ -529,20 +482,20 @@ class MVX_Admin {
 
         $columns_knowledgebase = array(
             array(
-                'name'      =>  __('Title', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Title', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "title",
                 
             ),
             array(
-                'name'      =>  __('Date', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Date', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "date",
             ),
             array(
-                'name'      =>  __('Action', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Action', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'cell'  =>  'cell',
@@ -555,42 +508,42 @@ class MVX_Admin {
 
         $columns_store_review = array(
             array(
-                'name'      =>  __('Customer', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Customer', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "author",
                 
             ),
             array(
-                'name'      =>  __('Vendor', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Vendor', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "user_id",
                 
             ),
             array(
-                'name'      =>  __('Content', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Content', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "content",
                 
             ),
             array(
-                'name'      =>  __('Time', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Time', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "time",
                 
             ),
             array(
-                'name'      =>  __('Review', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Review', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "review",
                 
             ),
             array(
-                'name'      =>  __('Action', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Action', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'cell'  =>  'cell',
@@ -602,14 +555,14 @@ class MVX_Admin {
 
         $columns_vendor = array(
             array(
-                'name'      =>  __('Name', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Name', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "name",
                 
             ),
             array(
-                'name'      =>  __('', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'cell'  =>  'cell',
@@ -619,31 +572,31 @@ class MVX_Admin {
                 'last_action'   =>  'eyeicon_trigger'
             ),
             array(
-                'name'      =>  __('Email', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Email', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "email",
             ),
             array(
-                'name'      =>  __('Registered', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Registered', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "registered",
             ),
             array(
-                'name'      =>  __('Products', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Products', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "products",
             ),
             array(
-                'name'      =>  __('Status', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Status', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "status",
             ),
             array(
-                'name'      =>  __('Action', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Action', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'cell'  =>  'cell',
@@ -657,56 +610,56 @@ class MVX_Admin {
 
         $columns_commission = array(
             array(
-                'name'      =>  __('Commission ID', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Commission ID', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "commission_id",
                 
             ),
             array(
-                'name'      =>  __('Order ID', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Order ID', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "order_id",
             ),
             array(
-                'name'      =>  __('Product', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Product', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "product",
             ),
             array(
-                'name'      =>  __('Vendor', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Vendor', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "vendor",
             ),
             array(
-                'name'      =>  __('Amount', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Amount', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "amount",
             ),
             array(
-                'name'      =>  __('Net Earning', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Net Earning', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "net_earning",
             ),
             array(
-                'name'      =>  __('Status', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Status', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "status",
             ),
             array(
-                'name'      =>  __('Date', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Date', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "date",
             ),
             array(
-                'name'      =>  __('Action', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Action', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'cell'  =>  'cell',
@@ -719,32 +672,32 @@ class MVX_Admin {
 
         $columns_report_abuse = array(
             array(
-                'name'      =>  __('Reason', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Reason', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "reason",
                 
             ),
             array(
-                'name'      =>  __('Product', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Product', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "product",
             ),
             array(
-                'name'      =>  __('Vendor', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Vendor', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "vendor",
             ),
             array(
-                'name'      =>  __('Reported by', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Reported by', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "reported_by",
             ),
             array(
-                'name'      =>  __('Action', 'dc-woocommerce-multi-vendor'),
+                'name'      =>  __('Action', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'cell'  =>  'cell',
@@ -758,34 +711,34 @@ class MVX_Admin {
         $select_module_category_option = array(
             array(
                 'value' => 'payment',
-                'label' => __('Payment', 'dc-woocommerce-multi-vendor')
+                'label' => __('Payment', 'multivendorx')
             ),
             array(
                 'value' => 'shipping',
-                'label' => __('Shipping', 'dc-woocommerce-multi-vendor')
+                'label' => __('Shipping', 'multivendorx')
             ),
             array(
                 'value' => 'vendor_store_boosters',
-                'label' => __('Vendor Store Boosters', 'dc-woocommerce-multi-vendor')
+                'label' => __('Vendor Store Boosters', 'multivendorx')
             ),
             array(
                 'value' => 'notifictaion',
-                'label' => __('Notifictaion', 'dc-woocommerce-multi-vendor')
+                'label' => __('Notifictaion', 'multivendorx')
             ),
             array(
                 'value' => 'marketplace_products',
-                'label' => __('Marketplace Products', 'dc-woocommerce-multi-vendor')
+                'label' => __('Marketplace Products', 'multivendorx')
             ),
             array(
                 'value' => 'third_party_compartibility',
-                'label' => __('Third Party Compartibility', 'dc-woocommerce-multi-vendor')
+                'label' => __('Third Party Compartibility', 'multivendorx')
             )
         );
 
 
         $vendor_list_page_bulk_list_options = array();
         $vendor_bulk_list = array(
-            'delete' => __('Delete', 'dc-woocommerce-multi-vendor'),
+            'delete' => __('Delete', 'multivendorx'),
         );
         if ($vendor_bulk_list) {
             foreach($vendor_bulk_list as $bulk_key => $bulk_value) {
@@ -803,14 +756,14 @@ class MVX_Admin {
             'mvx_logo' => $MVX->plugin_url.'assets/images/dclogo.png',
             'multivendor_logo' => $MVX->plugin_url.'assets/images/multivendorX.png',
             'knowledgebase' => 'https://wc-marketplace.com/knowledgebase/',
-            'knowledgebase_title' => __('MVX knowledge Base', 'dc-woocommerce-multi-vendor'),
-            'search_module' =>  __('Search Modules', 'dc-woocommerce-multi-vendor'),
-            'marketplace_text' => __('MultiVendorX', 'dc-woocommerce-multi-vendor'),
-            'search_module_placeholder' => __('Search Modules', 'dc-woocommerce-multi-vendor'),
-            'pro_text' => __('PRO', 'dc-woocommerce-multi-vendor'),
-            'documentation_extra_text' => __('For more info, please check the', 'dc-woocommerce-multi-vendor'),
-            'documentation_text' => __('DOC', 'dc-woocommerce-multi-vendor'),
-            'settings_text' => __('Settings', 'dc-woocommerce-multi-vendor'),
+            'knowledgebase_title' => __('MVX knowledge Base', 'multivendorx'),
+            'search_module' =>  __('Search Modules', 'multivendorx'),
+            'marketplace_text' => __('MultiVendorX', 'multivendorx'),
+            'search_module_placeholder' => __('Search Modules', 'multivendorx'),
+            'pro_text' => __('PRO', 'multivendorx'),
+            'documentation_extra_text' => __('For more info, please check the', 'multivendorx'),
+            'documentation_text' => __('DOC', 'multivendorx'),
+            'settings_text' => __('Settings', 'multivendorx'),
             'admin_mod_url' => admin_url('admin.php?page=modules'),
             'admin_setup_widget_option' => admin_url( 'index.php?page=mvx-setup' ),
             'admin_migration_widget_option' => admin_url( 'index.php?page=mvx-setup' ),
@@ -847,12 +800,9 @@ class MVX_Admin {
         ] ) );
 
         if ( in_array($screen->id, $page_details)) {
-            wp_enqueue_style('mvx_admin_css', $MVX->plugin_url . 'assets/admin/css/admin' . '' . '.css', array(), $MVX->version);
+            wp_enqueue_style('mvx_admin_css', $MVX->plugin_url . 'assets/admin/css/admin' . $suffix . '.css', array(), $MVX->version);
             wp_enqueue_style('mvx_admin_rsuite_css', $MVX->plugin_url . 'assets/admin/css/rsuite-default' . '.min' . '.css', array(), $MVX->version);
-        }
-
-        //wp_enqueue_style('fffffffffffff', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css', array(), $MVX->version);
-        
+        }        
 
         $mvx_admin_screens = apply_filters('mvx_enable_admin_script_screen_ids', array(
             'dc_commission',
@@ -868,7 +818,7 @@ class MVX_Admin {
 
         // hide media list view access for vendor
         $user = wp_get_current_user();
-        if(in_array('dc_vendor', $user->roles)){
+        if (in_array('dc_vendor', $user->roles)){
             $custom_css = "
             .view-switch .view-list{
                     display: none;
@@ -903,7 +853,7 @@ class MVX_Admin {
         }
         
         // hide product cat from quick & bulk edit
-        if(is_user_mvx_vendor(get_current_vendor_id()) && in_array($screen->id, array('edit-product'))){
+        if (is_user_mvx_vendor(get_current_vendor_id()) && in_array($screen->id, array('edit-product'))){
             $custom_css = "
             .inline-edit-product .inline-edit-categories, .bulk-edit-product .inline-edit-categories{
                 display: none;
@@ -913,8 +863,6 @@ class MVX_Admin {
     }
 
     public function get_error_log_rows( $limit = -1 ) {
-
-
         $wp_filesystem  = $this->get_filesystem();
         $log_path = ini_get( 'error_log' );
 
@@ -960,15 +908,15 @@ class MVX_Admin {
 
     public function woocommerce_order_actions($actions) {
         global $post;
-        if( $post && wp_get_post_parent_id( $post->ID ) )
-            $actions['regenerate_order_commissions'] = __('Regenerate order commissions', 'dc-woocommerce-multi-vendor');
-        if( $post && !wp_get_post_parent_id( $post->ID ) )
-            $actions['regenerate_suborders'] = __('Regenerate suborders', 'dc-woocommerce-multi-vendor');
-        if(is_user_mvx_vendor(get_current_user_id())){
-            if(isset($actions['regenerate_order_commissions'])) unset($actions['regenerate_order_commissions']);
-            if(isset($actions['send_order_details'])) unset( $actions['send_order_details'] );
-            if(isset($actions['send_order_details_admin'])) unset( $actions['send_order_details_admin'] );
-            if(isset($actions['regenerate_suborders'])) unset($actions['regenerate_suborders']);
+        if ( $post && wp_get_post_parent_id( $post->ID ) )
+            $actions['regenerate_order_commissions'] = __('Regenerate order commissions', 'multivendorx');
+        if ( $post && !wp_get_post_parent_id( $post->ID ) )
+            $actions['regenerate_suborders'] = __('Regenerate suborders', 'multivendorx');
+        if (is_user_mvx_vendor(get_current_user_id())){
+            if (isset($actions['regenerate_order_commissions'])) unset($actions['regenerate_order_commissions']);
+            if (isset($actions['send_order_details'])) unset( $actions['send_order_details'] );
+            if (isset($actions['send_order_details_admin'])) unset( $actions['send_order_details_admin'] );
+            if (isset($actions['regenerate_suborders'])) unset($actions['regenerate_suborders']);
         }
         return $actions;
     }
@@ -997,7 +945,7 @@ class MVX_Admin {
         $commission_id = MVX_Commission::create_commission($order->get_id());
         if ($commission_id) {
             // Add order note
-            $order->add_order_note( __( 'Regenerated order commission.', 'dc-woocommerce-multi-vendor') );
+            $order->add_order_note( __( 'Regenerated order commission.', 'multivendorx') );
             /**
              * Action filter to recalculate commission with modified settings.
              *
@@ -1026,8 +974,8 @@ class MVX_Admin {
     }
 
     public function mvx_vendor_shipping_admin_capability($current_id){
-        if( !is_user_mvx_vendor($current_id) ){
-            if( isset($_POST['vendor_id'] )){
+        if ( !is_user_mvx_vendor($current_id) ){
+            if ( isset($_POST['vendor_id'] )){
                 $current_id = isset($_POST['vendor_id']) ? absint($_POST['vendor_id']) : 0;
             } else {
                 $current_id = isset($_GET['ID']) ? absint($_GET['ID']) : 0;
@@ -1041,7 +989,7 @@ class MVX_Admin {
         'post_status' => array('wc-processing'),
         );
         $sub_orders = mvx_get_orders( $args, 'ids', true );
-        if( empty( $sub_orders ) )
+        if ( empty( $sub_orders ) )
             $sub_orders = array();
 
         $processing_orders = count(wc_get_orders(array(

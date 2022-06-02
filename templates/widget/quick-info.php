@@ -10,7 +10,7 @@
  */
 
 global $MVX;
-$submit_label = isset( $instance['submit_label'] ) ? $instance['submit_label'] : __( 'Submit', 'dc-woocommerce-multi-vendor' );
+$submit_label = isset( $instance['submit_label'] ) ? $instance['submit_label'] : __( 'Submit', 'multivendorx' );
 $enable_recaptcha = isset( $instance['enable_google_recaptcha'] ) ? $instance['enable_google_recaptcha'] : false;
 $recaptcha_type = ( $enable_recaptcha && isset( $instance['google_recaptcha_type'] ) ) ? $instance['google_recaptcha_type'] : 'v2';
 
@@ -50,10 +50,10 @@ extract( $instance );
         <?php }
     }
     ?>
-                    <input type="text" class="input-text " name="quick_info[name]" value="<?php echo esc_html($current_user->display_name); ?>" placeholder="<?php esc_attr_e( 'Name', 'dc-woocommerce-multi-vendor' ) ?>" required/>
-                    <input type="text" class="input-text " name="quick_info[subject]" value="" placeholder="<?php esc_attr_e( 'Subject', 'dc-woocommerce-multi-vendor' ) ?>" required/>
-                    <input type="email" class="input-text " name="quick_info[email]" value="<?php echo esc_html($current_user->user_email);  ?>" placeholder="<?php esc_attr_e( 'Email', 'dc-woocommerce-multi-vendor' ) ?>" required/>
-                    <textarea name="quick_info[message]" rows="5" placeholder="<?php esc_attr_e( 'Message', 'dc-woocommerce-multi-vendor' ) ?>" required></textarea>
+                    <input type="text" class="input-text " name="quick_info[name]" value="<?php echo esc_html($current_user->display_name); ?>" placeholder="<?php esc_attr_e( 'Name', 'multivendorx' ) ?>" required/>
+                    <input type="text" class="input-text " name="quick_info[subject]" value="" placeholder="<?php esc_attr_e( 'Subject', 'multivendorx' ) ?>" required/>
+                    <input type="email" class="input-text " name="quick_info[email]" value="<?php echo esc_html($current_user->user_email);  ?>" placeholder="<?php esc_attr_e( 'Email', 'multivendorx' ) ?>" required/>
+                    <textarea name="quick_info[message]" rows="5" placeholder="<?php esc_attr_e( 'Message', 'multivendorx' ) ?>" required></textarea>
                     <input type="submit" class="submit" id="submit" name="quick_info[submit]" value="<?php echo esc_html($submit_label); ?>" />
                     <input type="hidden" name="quick_info[spam]" value="" />
                     <input type="hidden" name="quick_info[vendor_id]" value="<?php echo esc_html($vendor->id); ?>" />

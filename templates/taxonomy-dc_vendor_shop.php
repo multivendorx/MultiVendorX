@@ -52,7 +52,7 @@ if($is_block) {
 		}
 
 		do_action( 'woocommerce_archive_description' ); 
-		$block_vendor_desc = apply_filters('mvx_blocked_vendor_text', __('Site Administrator has blocked this vendor', 'dc-woocommerce-multi-vendor'), $vendor);
+		$block_vendor_desc = apply_filters('mvx_blocked_vendor_text', __('Site Administrator has blocked this vendor', 'multivendorx'), $vendor);
 		?>
 		<p class="blocked_desc">
 			<?php echo esc_html($block_vendor_desc); ?>

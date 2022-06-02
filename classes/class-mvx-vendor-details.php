@@ -685,7 +685,7 @@ class MVX_Vendor {
             wc_display_item_meta($item);
 
             // Quantity
-            echo "\n" . sprintf(__('Quantity: %s', 'dc-woocommerce-multi-vendor'), $item['qty']);
+            echo "\n" . sprintf(__('Quantity: %s', 'multivendorx'), $item['qty']);
             $variation_id = 0;
             if (isset($item['variation_id']) && !empty($item['variation_id'])) {
                 $variation_id = $item['variation_id'];
@@ -693,9 +693,9 @@ class MVX_Vendor {
             $product_id = $item['product_id'];
             $commission_amount = $item->get_meta('_vendor_item_commission', true);
             if ($is_ship)
-                echo "\n" . sprintf(__('Total: %s', 'dc-woocommerce-multi-vendor'), $order->get_formatted_line_subtotal($item));
+                echo "\n" . sprintf(__('Total: %s', 'multivendorx'), $order->get_formatted_line_subtotal($item));
             else
-                echo "\n" . sprintf(__('Commission: %s', 'dc-woocommerce-multi-vendor'), wc_price($commission_amount));
+                echo "\n" . sprintf(__('Commission: %s', 'multivendorx'), wc_price($commission_amount));
 
             echo "\n\n";
         }
@@ -794,25 +794,25 @@ class MVX_Vendor {
         $vendor_shipping_method = get_mvx_vendor_order_shipping_method($order->get_id(), $vendor->id);
         $order_item_totals = array();
         $order_item_totals['commission_subtotal'] = array(
-            'label' => __('Commission Subtotal:', 'dc-woocommerce-multi-vendor'),
+            'label' => __('Commission Subtotal:', 'multivendorx'),
             'value' => $vendor_order->get_commission()
         );
         $order_item_totals['tax_subtotal'] = array(
-            'label' => __('Tax Subtotal:', 'dc-woocommerce-multi-vendor'),
+            'label' => __('Tax Subtotal:', 'multivendorx'),
             'value' => $vendor_order->get_tax()
         );
         if ($vendor_shipping_method) {
             $order_item_totals['shipping_method'] = array(
-                'label' => __('Shipping Method:', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Shipping Method:', 'multivendorx'),
                 'value' => $vendor_shipping_method->get_name()
             );
         }
         $order_item_totals['shipping_subtotal'] = array(
-            'label' => __('Shipping Subtotal:', 'dc-woocommerce-multi-vendor'),
+            'label' => __('Shipping Subtotal:', 'multivendorx'),
             'value' => $vendor_order->get_shipping()
         );
         $order_item_totals['total'] = array(
-            'label' => __('Total:', 'dc-woocommerce-multi-vendor'),
+            'label' => __('Total:', 'multivendorx'),
             'value' => $vendor_order->get_commission_total()
         );
         return apply_filters( 'mvx_vendor_get_order_item_totals', $order_item_totals, $order, $vendor );
@@ -1068,7 +1068,7 @@ class MVX_Vendor {
         }
         do_action('mvx_vendors_vendor_ship', $order_id, $this->term_id);
         $order = wc_get_order($order_id);
-        $comment_id = $order->add_order_note(__('Vendor ', 'dc-woocommerce-multi-vendor') . $this->page_title . __(' has shipped his part of order to customer.', 'dc-woocommerce-multi-vendor') . '<br><span>' . __('Tracking Url : ', 'dc-woocommerce-multi-vendor') . '</span> <a target="_blank" href="' . $tracking_url . '">' . $tracking_url . '</a><br><span>' . __('Tracking Id : ', 'dc-woocommerce-multi-vendor') . '</span>' . $tracking_id, 0, true);
+        $comment_id = $order->add_order_note(__('Vendor ', 'multivendorx') . $this->page_title . __(' has shipped his part of order to customer.', 'multivendorx') . '<br><span>' . __('Tracking Url : ', 'multivendorx') . '</span> <a target="_blank" href="' . $tracking_url . '">' . $tracking_url . '</a><br><span>' . __('Tracking Id : ', 'multivendorx') . '</span>' . $tracking_id, 0, true);
         // update comment author & email
         wp_update_comment(array('comment_ID' => $comment_id, 'comment_author' => $this->page_title, 'comment_author_email' => $this->user_data->user_email));
         add_comment_meta($comment_id, '_vendor_id', $this->id);
@@ -1262,7 +1262,7 @@ class MVX_Vendor {
                 }
                 $order_total_arr[] = $subtotal;
                 $total_rows['order_subtotal'] = array(
-                    'label' => __( 'Subtotal:', 'dc-woocommerce-multi-vendor' ),
+                    'label' => __( 'Subtotal:', 'multivendorx' ),
                     'value' => ($html_price) ? wc_price($subtotal) : $subtotal,
                 );
             }
@@ -1271,14 +1271,14 @@ class MVX_Vendor {
             if ( $discount_amount ) {
                 $order_total_arr[] = ( - $discount_amount );
                 $total_rows['discount_cost'] = array(
-                    'label' => __( 'Discount:', 'dc-woocommerce-multi-vendor' ),
+                    'label' => __( 'Discount:', 'multivendorx' ),
                     'value' => ($html_price) ? wc_price($discount_amount) : $discount_amount,
                 );
             }
             // shipping methods
             if ( $this->is_shipping_enable() && $vendor_shipping_method ) {
                 $total_rows['shipping'] = array(
-                    'label' => __( 'Shipping:', 'dc-woocommerce-multi-vendor' ),
+                    'label' => __( 'Shipping:', 'multivendorx' ),
                     'value' => $vendor_shipping_method->get_name(),
                 );
             }
@@ -1287,7 +1287,7 @@ class MVX_Vendor {
             if ( $this->is_shipping_enable() && $shipping_amount ) {
                 $order_total_arr[] = $shipping_amount;
                 $total_rows['shipping_cost'] = array(
-                    'label' => __( 'Shipping cost:', 'dc-woocommerce-multi-vendor' ),
+                    'label' => __( 'Shipping cost:', 'multivendorx' ),
                     'value' => ($html_price) ? wc_price($shipping_amount) : $shipping_amount,
                 );
             }
@@ -1303,7 +1303,7 @@ class MVX_Vendor {
             }else{
                 $order_total_arr[] = $shipping_tax_amount;
                 $total_rows['shipping_tax'] = array(
-                    'label' => __( 'Shipping:', 'dc-woocommerce-multi-vendor' ).' '.WC()->countries->tax_or_vat() . ':',
+                    'label' => __( 'Shipping:', 'multivendorx' ).' '.WC()->countries->tax_or_vat() . ':',
                     'value' => ($html_price) ? wc_price($shipping_tax_amount) : $shipping_tax_amount,
                 );
                 $order_total_arr[] = $tax_amount;
@@ -1314,12 +1314,12 @@ class MVX_Vendor {
             }
             // payment methods
             $total_rows['payment_method'] = array(
-                'label' => __( 'Payment method:', 'dc-woocommerce-multi-vendor' ),
+                'label' => __( 'Payment method:', 'multivendorx' ),
                 'value' => $order->get_payment_method_title(),
             );
             // Order totals
             $total_rows['order_total'] = array(
-                'label' => __( 'Total:', 'dc-woocommerce-multi-vendor' ),
+                'label' => __( 'Total:', 'multivendorx' ),
                 'value' => ($html_price) ? wc_price(array_sum($order_total_arr)) : array_sum($order_total_arr),
             );
             

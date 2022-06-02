@@ -28,7 +28,7 @@ class StoreCondition extends Condition_Base {
 	 * @return string
 	 */
 	public function get_label() {
-		return __( 'MVX Store Page', 'dc-woocommerce-multi-vendor' );
+		return __( 'MVX Store Page', 'multivendorx' );
 	}
 
 	/**
@@ -37,7 +37,7 @@ class StoreCondition extends Condition_Base {
 	 * @return string
 	 */
 	public function get_all_label() {
-		return __( 'All Stores', 'dc-woocommerce-multi-vendor' );
+		return __( 'All Stores', 'multivendorx' );
 	}
 
 	/**

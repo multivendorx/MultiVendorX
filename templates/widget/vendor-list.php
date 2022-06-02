@@ -14,7 +14,7 @@ global $MVX;
 $vendor_count = count($vendors); ?>
 <div id="mvx_widget_vendor_search" class="vendor_search_wrap">
 	<?php wp_nonce_field( 'mvx_widget_vendor_search_form', 'mvx_vendor_search_nonce' ); ?>
-	<input type="search" class="search_keyword search-field" placeholder="<?php esc_attr_e('Search Vendor…', 'dc-woocommerce-multi-vendor'); ?>" value="" name="s" style="width: 100%;margin-bottom: 10px;">
+	<input type="search" class="search_keyword search-field" placeholder="<?php esc_attr_e('Search Vendor…', 'multivendorx'); ?>" value="" name="s" style="width: 100%;margin-bottom: 10px;">
 </div>
 <?php
 if($vendor_count > 5 )	{ ?>

@@ -27,9 +27,9 @@ $rating = 0;
 $review_data_final = apply_filters('mvx_review_link_final_filter',$review_data);
 ?>
 <div class="review_link_data_wappers">
-<a target="_blank" class="button" href="<?php echo $review_data_final['vendor_review_link']; ?>"><?php echo __('Leave Vendor feedback','dc-woocommerce-multi-vendor'); ?></a> 
-<a href="<?php echo $review_data_final['vendor_review_link']; ?>" target="_blank"><div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating" class="star-rating" title="<?php echo sprintf( __( 'Leave Vendor feedback', 'dc-woocommerce-multi-vendor' ) ) ?>">
-		<span style="width:<?php echo ( $rating / 5 ) * 100; ?>%"><strong itemprop="ratingValue"><?php echo $rating; ?></strong> <?php _e( 'out of 5', 'dc-woocommerce-multi-vendor' ); ?></span>
+<a target="_blank" class="button" href="<?php echo $review_data_final['vendor_review_link']; ?>"><?php echo __('Leave Vendor feedback','multivendorx'); ?></a> 
+<a href="<?php echo $review_data_final['vendor_review_link']; ?>" target="_blank"><div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating" class="star-rating" title="<?php echo sprintf( __( 'Leave Vendor feedback', 'multivendorx' ) ) ?>">
+		<span style="width:<?php echo ( $rating / 5 ) * 100; ?>%"><strong itemprop="ratingValue"><?php echo $rating; ?></strong> <?php _e( 'out of 5', 'multivendorx' ); ?></span>
 	</div></a>
 </div>
 <?php }?>

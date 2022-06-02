@@ -23,9 +23,9 @@ class DC_Widget_Vendor_List extends WP_Widget {
         global $MVX, $wp_version;
         // Widget variable settings
         $this->widget_cssclass = 'widget_product_vendor_list';
-        $this->widget_description = __('Display list of registered vendors on your site.', 'dc-woocommerce-multi-vendor');
+        $this->widget_description = __('Display list of registered vendors on your site.', 'multivendorx');
         $this->widget_idbase = 'dc_product_vendors_list';
-        $this->widget_title = __('MVX: Vendors List', 'dc-woocommerce-multi-vendor');
+        $this->widget_title = __('MVX: Vendors List', 'multivendorx');
 
         // Widget settings
         $widget_ops = array('classname' => $this->widget_cssclass, 'description' => $this->widget_description);
@@ -124,10 +124,10 @@ class DC_Widget_Vendor_List extends WP_Widget {
         $instance = wp_parse_args((array) $instance, $defaults);
         ?>
         <p>
-            <label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Title (optional):', 'dc-woocommerce-multi-vendor'); ?></label>
+            <label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Title (optional):', 'multivendorx'); ?></label>
             <input type="text" name="<?php echo $this->get_field_name('title'); ?>"  value="<?php echo esc_attr($instance['title']); ?>" class="widefat" id="<?php echo $this->get_field_id('title'); ?>" />
         </p>
-        <span class="description"><?php esc_html_e('This widget shows a list of shop vendors..', 'dc-woocommerce-multi-vendor') ?> </span>
+        <span class="description"><?php esc_html_e('This widget shows a list of shop vendors..', 'multivendorx') ?> </span>
         <?php
     }
 

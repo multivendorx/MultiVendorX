@@ -393,7 +393,6 @@ class App extends Component {
 
   OnRegistrationSelectChange(e, index, types) {
     let new_items = this.state.mvx_registration_fileds_list;
-
     if (types == 'select_drop') {
       new_items[index]['type'] = e.target.value;
 
@@ -572,9 +571,11 @@ class App extends Component {
                       <div className='mvx-form-registration-group'>
                         <div className="mvx-untitle-content">
                           <input className='mvx-registration-default-input' type="text" placeholder="Registration form title" value={this.state.mvx_registration_fileds_list[0].label} onChange={e => { this.OnRegistrationSelectChange(e, '', 'parent_label') }} />
+                          <div className="mvx-registration-fileds-description">Type the form title you want the vendor to see. eg registrazione del venditore</div>
                         </div>
                         <div className="mvx-registration-from-description">
                           <input className='mvx-registration-default-contetnt' type="text" placeholder="Registration form description" value={this.state.mvx_registration_fileds_list[0].description} onChange={e => { this.OnRegistrationSelectChange(e, '', 'parent_description') }} />
+                          <div className="mvx-registration-fileds-description">Add guidelines or valuable information applicable for registration.</div>
                         </div>
                       </div>
                     </div>
@@ -598,6 +599,7 @@ class App extends Component {
 
                                     <div className="mvx-question-input-items">
                                       <input type="text" className='default-input' placeholder="Question title" value={registration_json_value.label} onChange={e => { this.OnRegistrationSelectChange(e, registration_json_index, 'label') }} />
+                                      {registration_json_value.hidden ? <div className="mvx-registration-fileds-description">Write questions applicable to your marketplace.</div> : ''}
                                     </div>
 
                                     {registration_json_value.hidden ?
@@ -628,6 +630,7 @@ class App extends Component {
                                           <option value="vendor_postcode">Postcode</option>
                                           <option value="vendor_paypal_email">PayPal Email</option>
                                         </select>
+                                        <div className="mvx-registration-fileds-description">Select your preferred question format. Read doc to know more about each format.</div>
                                       </div>
                                       : ''}
 
@@ -642,11 +645,14 @@ class App extends Component {
                                         <div className="mvx-basic-description">
                                           <div className="mvx-vendor-form-input-field-container">
                                             <input type="text" className="mvx-vendor-form-input-field" placeholder="Placeholder" value={registration_json_value.placeholder} onChange={e => { this.onlebelchange(e, registration_json_index, 'placeholder') }} />
+                                            <div className="mvx-registration-fileds-description">Leave this section blank or add examples of an answer here.</div>
                                           </div>
 
                                           <div className="mvx-vendor-form-input-field-container">
                                             <input type="text" className="mvx-vendor-form-input-field" placeholder="Tooltip description" value={registration_json_value.tip_description} onChange={e => { this.onlebelchange(e, registration_json_index, 'tip_description') }} />
+                                            <div className="mvx-registration-fileds-description">Add more information or specific instructions here.</div>
                                           </div>
+
                                         </div>
                                         : ''
                                     }
@@ -658,6 +664,7 @@ class App extends Component {
                                           <div className='mvx-registration-texarea'>
                                             <label>Characters Limit</label>
                                             <input type="number" className="mvx-vendor-form-input-field" value={registration_json_value.limit} onChange={e => { this.onlebelchange(e, registration_json_index, 'limit') }} />
+                                            <div className="mvx-registration-fileds-description">Restrict vendor descriptions to a certain number of characters.</div>
                                           </div>
                                         </div>
                                         : ''
@@ -676,6 +683,7 @@ class App extends Component {
                                           <div className="mvx-vendor-form-input-field-container col-50">
                                             <label>Maximum file size</label>
                                             <input type="text" className="mvx-vendor-form-input-field" value={registration_json_value.fileSize} onChange={e => { this.onlebelchange(e, registration_json_index, 'fileSize') }} />
+                                            <div className="mvx-registration-fileds-description">Choose your preferred file type .</div>
                                           </div>
 
                                           <div className="mvx-vendor-form-input-field-container col-50">
@@ -686,7 +694,9 @@ class App extends Component {
                                                 <label>{xnew.label}</label>
                                               </div>
                                             )}
+                                            <div className="mvx-registration-fileds-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
                                           </div>
+                                          
                                         </div>
                                         : ''
                                     }
@@ -736,6 +746,7 @@ class App extends Component {
                                             <p>To get <b>reCAPTCHA</b> script, register your site with google account <a href="https://www.google.com/recaptcha" target="_blank">Register</a></p>
                                           </div>
 
+                                          <div className="mvx-registration-fileds-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
                                         </div>
 
                                         : ''
@@ -760,10 +771,12 @@ class App extends Component {
                                               <div className='f-row-42'>
                                                 <label className="form-title">Label</label>
                                                 <input type="text" value={chekbox_option_key.label} onChange={e => { this.onlebelchange(e, registration_json_index, 'select_option', checkbox_option_index) }} />
+                                                <div className="mvx-registration-fileds-description">Write titles for your options here.</div>
                                               </div>
                                               <div className='f-row-42'>
                                                 <label className="form-title">Value</label>
                                                 <input type="text" value={chekbox_option_key.value} onChange={e => { this.onlebelchange(e, registration_json_index, 'select_option1', checkbox_option_index) }} />
+                                                <div className="mvx-registration-fileds-description">This section is available for developers who might want to mark the labels they create.</div>
                                               </div>
                                               <div className='f-row-8'>
                                                 <a className='del-btn mt-35' onClick={(e) => this.removeSelectboxOption(e, registration_json_index, checkbox_option_index)}><i className="mvx-font icon-close"></i></a>

@@ -94,14 +94,14 @@ class MVX_Email {
         if (!isset($_GET['section'])) {
 	        $mvx_footer_settings = array(
 		        array(
-		            'title'       => __( 'MVX Footer text', 'dc-woocommerce-multi-vendor' ),
-		            'desc'        => __( 'The text to appear in the footer of MVX emails.', 'dc-woocommerce-multi-vendor' ),
+		            'title'       => __( 'MVX Footer text', 'multivendorx' ),
+		            'desc'        => __( 'The text to appear in the footer of MVX emails.', 'multivendorx' ),
 		            'id'          => 'mvx_email_footer_text',
 		            'css'         => 'width:300px; height: 75px;',
-		            'placeholder' => __( 'N/A', 'dc-woocommerce-multi-vendor' ),
+		            'placeholder' => __( 'N/A', 'multivendorx' ),
 		            'type'        => 'textarea',
 		            /* translators: %s: site name */
-		            'default'     => sprintf( __( '%s - Powered by Multivendor X', 'dc-woocommerce-multi-vendor' ), get_bloginfo( 'name', 'display' ) ),
+		            'default'     => sprintf( __( '%s - Powered by Multivendor X', 'multivendorx' ), get_bloginfo( 'name', 'display' ) ),
 		            'autoload'    => false,
 		            'desc_tip'    => true,
 		        )
@@ -168,56 +168,56 @@ class MVX_Email {
 		$capability_settings = get_option('mvx_general_customer_support_details_settings_name');
 		ob_start();
 		echo '<td valign="top" align="left" style=" background:#f4f4f4; padding:0px 40px"><h3 style="color:#557da1;display:block;font-family:Arial,sans-serif; font-size:16px;font-weight:bold;line-height:130%;margin:16px 0 8px;text-align:left">';
-		echo __('Customer Support Details of : ','dc-woocommerce-multi-vendor');
+		echo __('Customer Support Details of : ','multivendorx');
 		echo '<span style="color:#555;">';
 		echo $products;
 		echo '</span>';
 		echo '<table style="width:100%;vertical-align:top;color:#a4a4a4; padding:10px 0 20px 0" border="0" cellpadding="2" cellspacing="0" >';
 		echo '<tr>';
 		echo '<td valign="top" align="left" >';
-		echo __('Email : ','dc-woocommerce-multi-vendor'); 
+		echo __('Email : ','multivendorx'); 
 		echo '</td>';
 		echo '<td valign="top" align="left" >: <a style="color:#505050;" href="mailto:'.$user_meta['_vendor_customer_email'][0].'" target="_blank">';
     echo  $user_meta['_vendor_customer_email'][0];
 		echo '</a></td>';
 		echo '</tr>';		
 		echo '<tr><td valign="top" align="left" >';
-		echo  __('Phone : ','dc-woocommerce-multi-vendor'); 
+		echo  __('Phone : ','multivendorx'); 
 		echo '</td><td valign="top" align="left" >:';
 		echo $user_meta['_vendor_customer_phone'][0];
 		echo '</td></tr>';		
 		echo '<tr><td valign="top" align="left" >';
-		echo __('Return Address of : ','dc-woocommerce-multi-vendor');
+		echo __('Return Address of : ','multivendorx');
 		echo '</td><td valign="top" align="left" >: <b>';
 		echo  $products;
 		echo '</b></td></tr>';		
 		echo '<tr><td valign="top" align="left" >';
-		echo  __('Address Line 1 : ','dc-woocommerce-multi-vendor'); 
+		echo  __('Address Line 1 : ','multivendorx'); 
 		echo '</td><td valign="top" align="left" >:';
 		echo $user_meta['_vendor_csd_return_address1'][0];
 		echo '</td></tr>';
     echo '<tr><td valign="top" align="left" >';
-    echo  __('Address Line 2 : ','dc-woocommerce-multi-vendor');
+    echo  __('Address Line 2 : ','multivendorx');
     echo '</td><td valign="top" align="left" >:';
     echo $user_meta['_vendor_csd_return_address2'][0];
     echo '</td></tr>'; 
     echo '<tr><td valign="top" align="left" >';
-    echo  __('State : ','dc-woocommerce-multi-vendor'); 
+    echo  __('State : ','multivendorx'); 
     echo '</td><td valign="top" align="left" >:';
     echo $user_meta['_vendor_csd_return_state'][0];
     echo '</td></tr>'; 
     echo '<tr><td valign="top" align="left" >';
-    echo  __('City : ','dc-woocommerce-multi-vendor');
+    echo  __('City : ','multivendorx');
     echo '</td><td valign="top" align="left" >:';
     echo $user_meta['_vendor_csd_return_city'][0];
     echo '</td></tr>'; 
     echo '<tr><td valign="top" align="left" >';
-    echo  __('Country : ','dc-woocommerce-multi-vendor');  
+    echo  __('Country : ','multivendorx');  
     echo '</td><td valign="top" align="left" >:';
     echo $user_meta['_vendor_csd_return_country'][0];
     echo '</td></tr>'; 
     echo '<tr><td valign="top" align="left" >';
-    echo  __('Zip Code : ','dc-woocommerce-multi-vendor');
+    echo  __('Zip Code : ','multivendorx');
     echo '</td><td valign="top" align="left" >:';
     echo $user_meta['_vendor_csd_return_zip'][0];
     echo '</td></tr>';
@@ -236,13 +236,13 @@ class MVX_Email {
 		<table>
 			<tr>
 				<th colspan="2">
-				<?php echo __('Customer Support Details :','dc-woocommerce-multi-vendor'); ?>
+				<?php echo __('Customer Support Details :','multivendorx'); ?>
 				</th>				
 			</tr>
 			<?php if(isset($capability_settings['csd_email'])) { ?>
 			<tr>
 				<td>
-					<b><?php echo __('Email : ','dc-woocommerce-multi-vendor'); ?></b>
+					<b><?php echo __('Email : ','multivendorx'); ?></b>
 				</td>
 				<td>
 					<?php echo $capability_settings['csd_email']; ?>
@@ -252,7 +252,7 @@ class MVX_Email {
 			<?php if(isset($capability_settings['csd_phone'])) { ?>
 			<tr>
 				<td>
-					<b><?php echo __('Phone : ','dc-woocommerce-multi-vendor'); ?></b>
+					<b><?php echo __('Phone : ','multivendorx'); ?></b>
 				</td>
 				<td>
 					<?php echo $capability_settings['csd_phone']; ?>
@@ -261,14 +261,14 @@ class MVX_Email {
 			<?php }?>
 			<tr>
 				<th colspan="2">
-				<?php echo __('Our Return Address :','dc-woocommerce-multi-vendor'); ?>
+				<?php echo __('Our Return Address :','multivendorx'); ?>
 				</th>				
 			</tr>
 			
 			<?php if(isset($capability_settings['csd_return_address_1'])) { ?>
 			<tr>
 				<td>
-					<b><?php echo __('Address Line 1 : ','dc-woocommerce-multi-vendor'); ?></b>
+					<b><?php echo __('Address Line 1 : ','multivendorx'); ?></b>
 				</td>
 				<td>
 					<?php echo $capability_settings['csd_return_address_1']; ?>
@@ -278,7 +278,7 @@ class MVX_Email {
 			<?php if(isset($capability_settings['csd_return_address_2'])) { ?>
 			<tr>
 				<td>
-					<b><?php echo __('Address Line 2 : ','dc-woocommerce-multi-vendor'); ?></b>
+					<b><?php echo __('Address Line 2 : ','multivendorx'); ?></b>
 				</td>
 				<td>
 					<?php echo $capability_settings['csd_return_address_2']; ?>
@@ -288,7 +288,7 @@ class MVX_Email {
 			<?php if(isset($capability_settings['csd_return_state'])) { ?>
 			<tr>
 				<td>
-					<b><?php echo __('State : ','dc-woocommerce-multi-vendor'); ?></b>
+					<b><?php echo __('State : ','multivendorx'); ?></b>
 				</td>
 				<td>
 					<?php echo $capability_settings['csd_return_state']; ?>
@@ -298,7 +298,7 @@ class MVX_Email {
 			<?php if(isset($capability_settings['csd_return_city'])) { ?>
 			<tr>
 				<td>
-					<b><?php echo __('City : ','dc-woocommerce-multi-vendor'); ?></b>
+					<b><?php echo __('City : ','multivendorx'); ?></b>
 				</td>
 				<td>
 					<?php echo $capability_settings['csd_return_city']; ?>
@@ -308,7 +308,7 @@ class MVX_Email {
 			<?php if(isset($capability_settings['csd_return_country'])) { ?>
 			<tr>
 				<td>
-					<b><?php echo __('Country : ','dc-woocommerce-multi-vendor'); ?></b>
+					<b><?php echo __('Country : ','multivendorx'); ?></b>
 				</td>
 				<td>
 					<?php echo $capability_settings['csd_return_country']; ?>
@@ -318,7 +318,7 @@ class MVX_Email {
 			<?php if(isset($capability_settings['csd_return_zipcode'])) { ?>
 			<tr>
 				<td>
-					<b><?php echo __('Zip Code : ','dc-woocommerce-multi-vendor'); ?></b>
+					<b><?php echo __('Zip Code : ','multivendorx'); ?></b>
 				</td>
 				<td>
 					<?php echo $capability_settings['csd_return_zipcode']; ?>

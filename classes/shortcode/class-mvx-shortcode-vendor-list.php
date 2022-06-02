@@ -194,11 +194,11 @@ if (!class_exists('MVX_Shortcode_Vendor_List')) {
                 'mapbox_emable' => mvx_mapbox_api_enabled(),
                 'stores'    => $listed_stores['stores'],
                 'lang'      => array(
-                    'geolocation_service_failed' => __('Error: The Geolocation service failed.', 'dc-woocommerce-multi-vendor'),
-                    'geolocation_permission_denied' => __('Error: User denied the request for Geolocation.', 'dc-woocommerce-multi-vendor'),
-                    'geolocation_position_unavailable' => __('Error: Location information is unavailable.', 'dc-woocommerce-multi-vendor'),
-                    'geolocation_timeout' => __('Error: The request to get user location timed out.', 'dc-woocommerce-multi-vendor'),
-                    'geolocation_doesnt_support' => __('Error: Your browser does not support geolocation.', 'dc-woocommerce-multi-vendor'),
+                    'geolocation_service_failed' => __('Error: The Geolocation service failed.', 'multivendorx'),
+                    'geolocation_permission_denied' => __('Error: User denied the request for Geolocation.', 'multivendorx'),
+                    'geolocation_position_unavailable' => __('Error: Location information is unavailable.', 'multivendorx'),
+                    'geolocation_timeout' => __('Error: The request to get user location timed out.', 'multivendorx'),
+                    'geolocation_doesnt_support' => __('Error: Your browser does not support geolocation.', 'multivendorx'),
                 ),
                 'map_data' => array(
                     'map_options' => array('zoom' => 10, 'mapTypeControlOptions' => array('mapTypeIds' => array('roadmap', 'satellite'))),
@@ -218,7 +218,7 @@ if (!class_exists('MVX_Shortcode_Vendor_List')) {
                             )
                         ),
                     ),
-                    'map_style_title' => __('Styled Map', 'dc-woocommerce-multi-vendor'),
+                    'map_style_title' => __('Styled Map', 'multivendorx'),
                 ),
                 'autocomplete' => true,
             );

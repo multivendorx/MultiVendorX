@@ -22,10 +22,10 @@ class MVX_Report_Banking_overview extends WC_Admin_Report {
         $vendor = $vendor_id = $order_items = false;
 
         $ranges = array(
-            'year' => __('Year', 'dc-woocommerce-multi-vendor'),
-            'last_month' => __('Last Month', 'dc-woocommerce-multi-vendor'),
-            'month' => __('This Month', 'dc-woocommerce-multi-vendor'),
-            '7day' => __('Last 7 Days', 'dc-woocommerce-multi-vendor')
+            'year' => __('Year', 'multivendorx'),
+            'last_month' => __('Last Month', 'multivendorx'),
+            'month' => __('This Month', 'multivendorx'),
+            '7day' => __('Last 7 Days', 'multivendorx')
         );
 
         $current_range = ( isset($_GET['range']) && !empty($_GET['range']) ) ? sanitize_text_field($_GET['range']) : '7day';
@@ -44,7 +44,7 @@ class MVX_Report_Banking_overview extends WC_Admin_Report {
             'end_date' => $end_date
         ));
 
-        $table = __( 'Please Select a vendor first', 'dc-woocommerce-multi-vendor' );
+        $table = __( 'Please Select a vendor first', 'multivendorx' );
         if (isset($_POST['banking_overview_vendor'])) {
             $vendor_id = absint($_POST['banking_overview_vendor']);
         }

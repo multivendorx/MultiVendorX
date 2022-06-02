@@ -26,11 +26,11 @@ if (!class_exists('WC_Email_Admin_Widthdrawal_Request')) :
         function __construct() {
             global $MVX;
             $this->id = 'admin_widthdrawal_request';
-            $this->title = __('Withdrawal request to Admin from Vendor by BAC', 'dc-woocommerce-multi-vendor');
-            $this->description = __('New commissions withdrawal request have been submitted.', 'dc-woocommerce-multi-vendor');
+            $this->title = __('Withdrawal request to Admin from Vendor by BAC', 'multivendorx');
+            $this->description = __('New commissions withdrawal request have been submitted.', 'multivendorx');
 
-            //$this->heading = __('New Commission Withdrawal Request', 'dc-woocommerce-multi-vendor');
-            //$this->subject = __('[{site_title}] Commission Widthdrawal Request', 'dc-woocommerce-multi-vendor');
+            //$this->heading = __('New Commission Withdrawal Request', 'multivendorx');
+            //$this->subject = __('[{site_title}] Commission Widthdrawal Request', 'multivendorx');
 
             $this->template_base = $MVX->plugin_path . 'templates/';
             $this->template_html = 'emails/admin-widthdrawal-request.php';
@@ -79,7 +79,7 @@ if (!class_exists('WC_Email_Admin_Widthdrawal_Request')) :
          * @return string
          */
         public function get_default_subject() {
-            return apply_filters('mvx_admin_widthdrawal_request_email_subject', __('[{site_title}] Commission Widthdrawal Request', 'dc-woocommerce-multi-vendor'), $this->object);
+            return apply_filters('mvx_admin_widthdrawal_request_email_subject', __('[{site_title}] Commission Widthdrawal Request', 'multivendorx'), $this->object);
         }
 
         /**
@@ -89,7 +89,7 @@ if (!class_exists('WC_Email_Admin_Widthdrawal_Request')) :
          * @return string
          */
         public function get_default_heading() {
-            return apply_filters('mvx_admin_widthdrawal_request_email_heading', __('New Commission Withdrawal Request', 'dc-woocommerce-multi-vendor'), $this->object);
+            return apply_filters('mvx_admin_widthdrawal_request_email_heading', __('New Commission Withdrawal Request', 'multivendorx'), $this->object);
         }
 
         /**
@@ -145,29 +145,29 @@ if (!class_exists('WC_Email_Admin_Widthdrawal_Request')) :
             global $MVX;
             $this->form_fields = array(
                 'enabled' => array(
-                    'title' => __('Enable/Disable', 'dc-woocommerce-multi-vendor'),
+                    'title' => __('Enable/Disable', 'multivendorx'),
                     'type' => 'checkbox',
-                    'label' => __('Enable notification for this email', 'dc-woocommerce-multi-vendor'),
+                    'label' => __('Enable notification for this email', 'multivendorx'),
                     'default' => 'yes'
                 ),
                 'subject' => array(
-                    'title' => __('Subject', 'dc-woocommerce-multi-vendor'),
+                    'title' => __('Subject', 'multivendorx'),
                     'type' => 'text',
-                    'description' => sprintf(__('This controls the email subject line. Leave it blank to use the default subject: <code>%s</code>.', 'dc-woocommerce-multi-vendor'), $this->get_default_subject()),
+                    'description' => sprintf(__('This controls the email subject line. Leave it blank to use the default subject: <code>%s</code>.', 'multivendorx'), $this->get_default_subject()),
                     'placeholder' => '',
                     'default' => ''
                 ),
                 'heading' => array(
-                    'title' => __('Email Heading', 'dc-woocommerce-multi-vendor'),
+                    'title' => __('Email Heading', 'multivendorx'),
                     'type' => 'text',
-                    'description' => sprintf(__('This controls the main heading contained in the email notification. Leave it blank to use the default heading: <code>%s</code>.', 'dc-woocommerce-multi-vendor'), $this->get_default_heading()),
+                    'description' => sprintf(__('This controls the main heading contained in the email notification. Leave it blank to use the default heading: <code>%s</code>.', 'multivendorx'), $this->get_default_heading()),
                     'placeholder' => '',
                     'default' => ''
                 ),
                 'email_type' => array(
-                    'title' => __('Email Type', 'dc-woocommerce-multi-vendor'),
+                    'title' => __('Email Type', 'multivendorx'),
                     'type' => 'select',
-                    'description' => __('Choose format for the email that will be sent.', 'dc-woocommerce-multi-vendor'),
+                    'description' => __('Choose format for the email that will be sent.', 'multivendorx'),
                     'default' => 'html',
                     'class' => 'email_type wc-enhanced-select',
                     'options' => $this->get_email_type_options()

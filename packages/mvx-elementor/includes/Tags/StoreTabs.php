@@ -23,7 +23,7 @@ class StoreTabs extends MVX_Elementor_TagBase {
      * @return string
      */
     public function get_title() {
-        return __( 'Store Tabs', 'dc-woocommerce-multi-vendor' );
+        return __( 'Store Tabs', 'multivendorx' );
     }
 
     /**
@@ -92,15 +92,15 @@ class StoreTabs extends MVX_Elementor_TagBase {
     protected function get_store_tab_items() {
         return [
             'products' => [
-                'title' => __( 'Products', 'dc-woocommerce-multi-vendor' ),
+                'title' => __( 'Products', 'multivendorx' ),
                 'url'   => '#',
             ],
             'policies' => [
-                'title' => __( 'Policies', 'dc-woocommerce-multi-vendor' ),
+                'title' => __( 'Policies', 'multivendorx' ),
                 'url'   => '#',
             ],
             'reviews' => [
-                'title' => __( 'Reviews', 'dc-woocommerce-multi-vendor' ),
+                'title' => __( 'Reviews', 'multivendorx' ),
                 'url'   => '#'
             ],
         ];

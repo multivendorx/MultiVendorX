@@ -16,5 +16,5 @@
  */ 
 global $MVX; 
 ?>
-<div class = "mvx-load-more-button-wrapper" ><button id="mvx-load-more-button" class = "mvx-load-more-button button" ><?php echo esc_html_e(' Load More ','dc-woocommerce-multi-vendor');?> </button></div>
+<div class = "mvx-load-more-button-wrapper" ><button id="mvx-load-more-button" class = "mvx-load-more-button button" ><?php echo esc_html_e(' Load More ','multivendorx');?> </button></div>
 

@@ -42,7 +42,7 @@ foreach ($get_product_data_tabs as $key_tabs => $value_tabs) {
             <div class="right-primary-info"> 
                 <div class="form-group-wrapper">
                     <div class="form-group product-short-description">
-                        <label class="control-label col-md-12 pt-0" for="product_short_description"><?php esc_html_e( 'Product short description', 'dc-woocommerce-multi-vendor' ); ?></label>
+                        <label class="control-label col-md-12 pt-0" for="product_short_description"><?php esc_html_e( 'Product short description', 'multivendorx' ); ?></label>
                         <div class="col-md-12">
                             <?php
                             $settings = array(
@@ -64,7 +64,7 @@ foreach ($get_product_data_tabs as $key_tabs => $value_tabs) {
                     </div>
                     
                     <div class="form-group product-description">
-                        <label class="control-label col-md-12" for="product_description"><?php esc_attr_e( 'Product description', 'dc-woocommerce-multi-vendor' ); ?></label>
+                        <label class="control-label col-md-12" for="product_description"><?php esc_attr_e( 'Product description', 'multivendorx' ); ?></label>
                         <div class="col-md-12">
                             <?php
                             $settings = array(
@@ -89,17 +89,17 @@ foreach ($get_product_data_tabs as $key_tabs => $value_tabs) {
             <div class="left-primary-info">
                 <div class="product-gallery-wrapper">
                     <div class="featured-img upload_image"><?php $featured_img = isset($_POST['featured_img']) ? wc_clean($_POST['featured_img']) : ($product_object->get_image_id( 'edit' ) ? $product_object->get_image_id( 'edit' ) : ''); ?>
-                        <a href="#" class="upload_image_button tips <?php echo $featured_img ? 'remove' : ''; ?>" <?php echo current_user_can( 'upload_files' ) ? '' : 'data-nocaps="true" '; ?>data-title="<?php esc_attr_e( 'Product image', 'dc-woocommerce-multi-vendor' ); ?>" data-button="<?php esc_attr_e( 'Set product image', 'dc-woocommerce-multi-vendor' ); ?>" rel="<?php echo esc_attr( $post->ID ); ?>">
+                        <a href="#" class="upload_image_button tips <?php echo $featured_img ? 'remove' : ''; ?>" <?php echo current_user_can( 'upload_files' ) ? '' : 'data-nocaps="true" '; ?>data-title="<?php esc_attr_e( 'Product image', 'multivendorx' ); ?>" data-button="<?php esc_attr_e( 'Set product image', 'multivendorx' ); ?>" rel="<?php echo esc_attr( $post->ID ); ?>">
                             <div class="upload-placeholder pos-middle">
                                 <i class="mvx-font ico-image-icon"></i>
-                                <p><?php _e( 'Click to upload Image', 'dc-woocommerce-multi-vendor' );?></p>
+                                <p><?php _e( 'Click to upload Image', 'multivendorx' );?></p>
                             </div>
                             <img src="<?php echo $featured_img ? esc_url( wp_get_attachment_image_src( $featured_img, $image_size )[0] ) : esc_url( wc_placeholder_img_src() ); ?>" />
                             <input type="hidden" name="featured_img" class="upload_image_id" value="<?php echo esc_attr( $featured_img ); ?>" />
                         </a>
                     </div>
                     <div id="product_images_container" class="custom-panel">
-                        <h3><?php _e( 'Product gallery', 'dc-woocommerce-multi-vendor' );?></h3>
+                        <h3><?php _e( 'Product gallery', 'multivendorx' );?></h3>
                         <ul class="product_images">
                             <?php
                             if ( metadata_exists( 'post', $post->ID, '_product_image_gallery' ) ) {
@@ -128,7 +128,7 @@ foreach ($get_product_data_tabs as $key_tabs => $value_tabs) {
                                     echo '<li class="image" data-attachment_id="' . esc_attr( $attachment_id ) . '">
                                             ' . $attachment . '
                                             <ul class="actions">
-                                                <li><a href="#" class="delete tips" data-tip="' . esc_attr__( 'Delete image', 'dc-woocommerce-multi-vendor' ) . '">' . __( 'Delete', 'dc-woocommerce-multi-vendor' ) . '</a></li>
+                                                <li><a href="#" class="delete tips" data-tip="' . esc_attr__( 'Delete image', 'multivendorx' ) . '">' . __( 'Delete', 'multivendorx' ) . '</a></li>
                                             </ul>
                                         </li>';
 
@@ -145,7 +145,7 @@ foreach ($get_product_data_tabs as $key_tabs => $value_tabs) {
                         </ul>
                         <input type="hidden" id="product_image_gallery" name="product_image_gallery" value="<?php echo esc_attr( $product_image_gallery ); ?>" />
                         <p class="add_product_images">
-                            <a href="#" <?php echo current_user_can( 'upload_files' ) ? '' : 'data-nocaps="true" '; ?>data-choose="<?php esc_attr_e( 'Add images to product gallery', 'dc-woocommerce-multi-vendor' ); ?>" data-update="<?php esc_attr_e( 'Add to gallery', 'dc-woocommerce-multi-vendor' ); ?>" data-delete="<?php esc_attr_e( 'Delete image', 'dc-woocommerce-multi-vendor' ); ?>" data-text="<?php esc_attr_e( 'Delete', 'dc-woocommerce-multi-vendor' ); ?>"><?php _e( 'Add product gallery images', 'dc-woocommerce-multi-vendor' ); ?></a>
+                            <a href="#" <?php echo current_user_can( 'upload_files' ) ? '' : 'data-nocaps="true" '; ?>data-choose="<?php esc_attr_e( 'Add images to product gallery', 'multivendorx' ); ?>" data-update="<?php esc_attr_e( 'Add to gallery', 'multivendorx' ); ?>" data-delete="<?php esc_attr_e( 'Delete image', 'multivendorx' ); ?>" data-text="<?php esc_attr_e( 'Delete', 'multivendorx' ); ?>"><?php _e( 'Add product gallery images', 'multivendorx' ); ?></a>
                         </p>
                     </div>
                     <?php do_action('mvx_product_manager_right_panel_after', $post->ID); ?>
@@ -158,7 +158,7 @@ foreach ($get_product_data_tabs as $key_tabs => $value_tabs) {
 
                     <div class="add-product-info-header row-padding">
                         <div class="select-group">
-                            <label for="product-type"><?php esc_html_e( 'Product Type', 'dc-woocommerce-multi-vendor' ); ?></label>
+                            <label for="product-type"><?php esc_html_e( 'Product Type', 'multivendorx' ); ?></label>
                             <select class="form-control inline-select" id="product-type" name="product-type">
                                 <?php foreach ( mvx_get_product_types() as $value => $label ) : ?>
                                     <option value="<?php echo esc_attr( $value ); ?>" <?php echo selected( $product_object->get_type(), $value, false ); ?>><?php echo esc_html( $label ); ?></option>
@@ -246,7 +246,7 @@ foreach ($get_product_data_tabs as $key_tabs => $value_tabs) {
                 <?php if($post->post_status == 'pending') { ?>
                 <div class="panel panel-default pannel-outer-heading order-action">
                     <div class="panel-heading d-flex">
-                        <?php esc_html_e( 'Rejection Note', 'dc-woocommerce-multi-vendor' ); ?>
+                        <?php esc_html_e( 'Rejection Note', 'multivendorx' ); ?>
                     </div>
                     <div class="panel-body panel-content-padding form-group-wrapper"> 
                         <ul class="order_notes list-group mb-0">
@@ -254,19 +254,19 @@ foreach ($get_product_data_tabs as $key_tabs => $value_tabs) {
                                 <?php if (apply_filters('is_vendor_can_add_product_notes', true, $vendor->id)) : ?>
                                 <!--  <form method="post" name="add_product_comment"> -->
                                 <?php wp_nonce_field('dc-vendor-add-product-comment', 'vendor_add_product_nonce'); ?> 
-                                    <h3><?php _e( 'Add note', 'dc-woocommerce-multi-vendor' ); ?> <span class="img_tip" data-desc="<?php echo __( 'Add a note for your reference, or add a customer note (the user will be notified).', 'dc-woocommerce-multi-vendor' ); ?>"></span></h3>
+                                    <h3><?php _e( 'Add note', 'multivendorx' ); ?> <span class="img_tip" data-desc="<?php echo __( 'Add a note for your reference, or add a customer note (the user will be notified).', 'multivendorx' ); ?>"></span></h3>
                                     <div class="form-group">
-                                        <textarea placeholder="<?php _e('Enter text ...', 'dc-woocommerce-multi-vendor'); ?>" class="form-control" name="product_comment_text"></textarea>
+                                        <textarea placeholder="<?php _e('Enter text ...', 'multivendorx'); ?>" class="form-control" name="product_comment_text"></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <input class="btn btn-default mvx-add-order-note" type="submit" name="mvx_submit_product_comment" value="<?php _e('Submit', 'dc-woocommerce-multi-vendor'); ?>">
+                                        <input class="btn btn-default mvx-add-order-note" type="submit" name="mvx_submit_product_comment" value="<?php _e('Submit', 'multivendorx'); ?>">
                                     </div>
                                     <input type="hidden" name="product_id" value="<?php echo $post->ID; ?>">
                                     <input type="hidden" name="current_user_id" value="<?php echo $vendor->id; ?>">
                                 <!--  </form>  --> 
                                 <?php endif; ?>  
                             </li>
-                            <li class="list-group-item list-group-item-action flex-column align-items-start"><div class="form-group"><h3><?php esc_html_e( 'Communication Log', 'dc-woocommerce-multi-vendor' ); ?></h3></div></li>
+                            <li class="list-group-item list-group-item-action flex-column align-items-start"><div class="form-group"><h3><?php esc_html_e( 'Communication Log', 'multivendorx' ); ?></h3></div></li>
                             <?php
                             if ($notes) {
                                 foreach ($notes as $note) {
@@ -280,7 +280,7 @@ foreach ($get_product_data_tabs as $key_tabs => $value_tabs) {
                                     <?php
                                 }
                             }else{
-                                echo '<li class="list-group-item list-group-item-action flex-column align-items-start order-notes">' . __( 'There are no notes yet.', 'dc-woocommerce-multi-vendor' ) . '</li>';
+                                echo '<li class="list-group-item list-group-item-action flex-column align-items-start order-notes">' . __( 'There are no notes yet.', 'multivendorx' ) . '</li>';
                             }
                             ?>
                         </ul>
@@ -295,7 +295,7 @@ foreach ($get_product_data_tabs as $key_tabs => $value_tabs) {
                 <?php if ( $product_categories ) : ?>
                     <div class="panel panel-default pannel-outer-heading">
                         <div class="panel-heading d-flex">
-                            <h3 class="pull-left"><?php esc_html_e( 'Product categories', 'dc-woocommerce-multi-vendor' ); ?></h3>
+                            <h3 class="pull-left"><?php esc_html_e( 'Product categories', 'multivendorx' ); ?></h3>
                         </div>
                         <div class="panel-body panel-content-padding form-group-wrapper"> 
                             <?php
@@ -309,7 +309,7 @@ foreach ($get_product_data_tabs as $key_tabs => $value_tabs) {
                 <?php if ( $product_tags ) : ?>
                     <div class="panel panel-default pannel-outer-heading">
                         <div class="panel-heading d-flex">
-                            <h3 class="pull-left"><?php esc_html_e( 'Product tags', 'dc-woocommerce-multi-vendor' ); ?></h3>
+                            <h3 class="pull-left"><?php esc_html_e( 'Product tags', 'multivendorx' ); ?></h3>
                         </div>
                         <div class="panel-body panel-content-padding form-group-wrapper">
                             <div class="form-group">
@@ -352,17 +352,17 @@ foreach ($get_product_data_tabs as $key_tabs => $value_tabs) {
         <?php if ( ! empty( mvx_get_product_types() ) ) : ?>
             <div class="mvx-action-container">
                 <?php
-                $primary_action = __( 'Submit', 'dc-woocommerce-multi-vendor' );    //default value
+                $primary_action = __( 'Submit', 'multivendorx' );    //default value
                 if ( current_vendor_can( 'publish_products' ) ) {
                     if ( ! empty( $product_object->get_id() ) && get_post_status( $product_object->get_id() ) === 'publish' ) {
-                        $primary_action = __( 'Update', 'dc-woocommerce-multi-vendor' );
+                        $primary_action = __( 'Update', 'multivendorx' );
                     } else {
-                        $primary_action = __( 'Publish', 'dc-woocommerce-multi-vendor' );
+                        $primary_action = __( 'Publish', 'multivendorx' );
                     }
                 }
                 ?>
                 <input type="submit" class="btn btn-default" name="submit-data" value="<?php echo esc_attr( $primary_action ); ?>" id="mvx_afm_product_submit" />
-                <input type="submit" class="btn btn-default" name="draft-data" value="<?php esc_attr_e( 'Draft', 'dc-woocommerce-multi-vendor' ); ?>" id="mvx_afm_product_draft" />
+                <input type="submit" class="btn btn-default" name="draft-data" value="<?php esc_attr_e( 'Draft', 'multivendorx' ); ?>" id="mvx_afm_product_draft" />
                 <input type="hidden" name="status" value="<?php echo esc_attr( get_post_status( $post ) ); ?>">
                 <?php wp_nonce_field( 'mvx-product', 'mvx_product_nonce' ); ?>
             </div>

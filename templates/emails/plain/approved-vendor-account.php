@@ -16,13 +16,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $MVX;
 
 echo "= " . $email_heading . " =\n\n";
-echo sprintf( __("Congratulations! Your vendor application on %s has been approved!", 'dc-woocommerce-multi-vendor' ), get_option( 'blogname' ) );
+echo sprintf( __("Congratulations! Your vendor application on %s has been approved!", 'multivendorx' ), get_option( 'blogname' ) );
 echo '\n';
-echo sprintf( __( "Application Status: %s", 'dc-woocommerce-multi-vendor' ), 'Approved' );
+echo sprintf( __( "Application Status: %s", 'multivendorx' ), 'Approved' );
 echo '\n';
-echo sprintf( __( "Applicant Username: %s", 'dc-woocommerce-multi-vendor' ), $user_login ); 
+echo sprintf( __( "Applicant Username: %s", 'multivendorx' ), $user_login ); 
 echo '\n';
-echo _e('You have been cleared for landing! Congratulations and welcome aboard!', 'dc-woocommerce-multi-vendor');
+echo _e('You have been cleared for landing! Congratulations and welcome aboard!', 'multivendorx');
 
 echo "\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n";
 echo apply_filters( 'mvx_email_footer_text', get_option( 'mvx_email_footer_text' ) );

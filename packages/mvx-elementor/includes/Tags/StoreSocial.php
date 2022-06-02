@@ -32,7 +32,7 @@ class StoreSocial extends MVX_Elementor_TagBase {
      * @return string
      */
     public function get_title() {
-        return __( 'Store Social', 'dc-woocommerce-multi-vendor' );
+        return __( 'Store Social', 'multivendorx' );
     }
 
     /**

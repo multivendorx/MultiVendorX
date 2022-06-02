@@ -24,8 +24,8 @@ class DC_Woocommerce_Store_Location_Widget extends WP_Widget {
 
         // Widget variable settings
         $this->widget_idbase = 'dc-vendor-store-location';
-        $this->widget_title = __('MVX: Vendor\'s Store Location', 'dc-woocommerce-multi-vendor');
-        $this->widget_description = __('Display the vendor\'s store location on Google Maps.', 'dc-woocommerce-multi-vendor');
+        $this->widget_title = __('MVX: Vendor\'s Store Location', 'multivendorx');
+        $this->widget_description = __('Display the vendor\'s store location on Google Maps.', 'multivendorx');
         $this->widget_cssclass = 'widget_mvx_store_location';
 
         // Widget settings
@@ -142,13 +142,13 @@ class DC_Woocommerce_Store_Location_Widget extends WP_Widget {
     public function form($instance) {
         global $MVX, $woocommerce;
         $defaults = array(
-            'title' => __('Store Location', 'dc-woocommerce-multi-vendor'),
+            'title' => __('Store Location', 'multivendorx'),
         );
 
         $instance = wp_parse_args((array) $instance, $defaults);
         ?>
         <p>
-            <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title', 'dc-woocommerce-multi-vendor') ?>:
+            <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title', 'multivendorx') ?>:
                 <input type="text" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo esc_attr($instance['title']); ?>" class="widefat" />
             </label>
         </p>

@@ -23,8 +23,8 @@ if (!class_exists('WC_Email_Customer_Answer')) :
         function __construct() {
             global $MVX;
             $this->id = 'customer_answer';
-            $this->title = __('Customer Answer', 'dc-woocommerce-multi-vendor');
-            $this->description = __('Answer notification emails are sent when vendor reply a question.', 'dc-woocommerce-multi-vendor');
+            $this->title = __('Customer Answer', 'multivendorx');
+            $this->description = __('Answer notification emails are sent when vendor reply a question.', 'multivendorx');
 
             $this->template_html = 'emails/customer-answer.php';
             $this->template_plain = 'emails/plain/customer-answer.php';
@@ -65,7 +65,7 @@ if (!class_exists('WC_Email_Customer_Answer')) :
      * @return string
      */
     public function get_default_subject() {
-        $subject = __( 'Product Name - {product_name}', 'dc-woocommerce-multi-vendor');
+        $subject = __( 'Product Name - {product_name}', 'multivendorx');
         if( isset($this->object['subject']) && !empty($this->object['subject']) ){
             $subject = $subject . ' - ' . $this->object['subject'];
         }
@@ -79,7 +79,7 @@ if (!class_exists('WC_Email_Customer_Answer')) :
      * @return string
      */
     public function get_default_heading() {
-        return apply_filters( 'mvx_vendor_customer_answer_email_heading', __( "Query Response - Answered ", 'dc-woocommerce-multi-vendor'), $this->object );
+        return apply_filters( 'mvx_vendor_customer_answer_email_heading', __( "Query Response - Answered ", 'multivendorx'), $this->object );
     }
     
     /**

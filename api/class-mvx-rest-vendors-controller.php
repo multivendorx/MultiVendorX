@@ -65,7 +65,7 @@ class MVX_REST_API_Vendors_Controller extends WC_REST_Controller {
 		register_rest_route( $this->namespace, '/' . $this->rest_base . '/(?P<id>[\d]+)', array(
 			'args' => array(
 				'id' => array(
-					'description' => __( 'Unique identifier for the resource.', 'dc-woocommerce-multi-vendor' ),
+					'description' => __( 'Unique identifier for the resource.', 'multivendorx' ),
 					'type'        => 'integer',
 				),
 			),
@@ -105,35 +105,35 @@ class MVX_REST_API_Vendors_Controller extends WC_REST_Controller {
 	
 	public function get_item_permissions_check( $request ) {
 		if ( ! current_user_can( 'list_users' ) ) {
-			return new WP_Error( 'mvx_rest_cannot_access', __( 'Sorry, you cannot check list vendors.', 'dc-woocommerce-multi-vendor' ), array( 'status' => rest_authorization_required_code() ) );
+			return new WP_Error( 'mvx_rest_cannot_access', __( 'Sorry, you cannot check list vendors.', 'multivendorx' ), array( 'status' => rest_authorization_required_code() ) );
 		}
 		return true;
 	}
 	
 	public function create_item_permissions_check( $request ) {
 		if ( ! current_user_can( 'create_users' ) ) {
-			return new WP_Error( 'mvx_rest_cannot_create', __( 'Sorry, you cannot create vendors.', 'dc-woocommerce-multi-vendor' ), array( 'status' => rest_authorization_required_code() ) );
+			return new WP_Error( 'mvx_rest_cannot_create', __( 'Sorry, you cannot create vendors.', 'multivendorx' ), array( 'status' => rest_authorization_required_code() ) );
 		}
 		return true;
 	}
 	
 	public function update_item_permissions_check( $request ) {
 		if ( ! current_user_can( 'edit_users' ) ) {
-			return new WP_Error( 'mvx_rest_cannot_update', __( 'Sorry, you cannot update vendors.', 'dc-woocommerce-multi-vendor' ), array( 'status' => rest_authorization_required_code() ) );
+			return new WP_Error( 'mvx_rest_cannot_update', __( 'Sorry, you cannot update vendors.', 'multivendorx' ), array( 'status' => rest_authorization_required_code() ) );
 		}
 		return true;
 	}
 	
 	public function delete_item_permissions_check( $request ) {
 		if ( ! current_user_can( 'delete_users' ) ) {
-			return new WP_Error( 'mvx_rest_cannot_delete', __( 'Sorry, you cannot delete vendors.', 'dc-woocommerce-multi-vendor' ), array( 'status' => rest_authorization_required_code() ) );
+			return new WP_Error( 'mvx_rest_cannot_delete', __( 'Sorry, you cannot delete vendors.', 'multivendorx' ), array( 'status' => rest_authorization_required_code() ) );
 		}
 		return true;
 	}
 	
 	public function batch_items_permissions_check( $request ) {
 		if ( ! current_user_can( 'edit_users' ) ) {
-			return new WP_Error( 'mvx_rest_cannot_do_batch', __( 'Sorry, you cannot process batch.', 'dc-woocommerce-multi-vendor' ), array( 'status' => rest_authorization_required_code() ) );
+			return new WP_Error( 'mvx_rest_cannot_do_batch', __( 'Sorry, you cannot process batch.', 'multivendorx' ), array( 'status' => rest_authorization_required_code() ) );
 		}
 		return true;
 	}
@@ -150,7 +150,7 @@ class MVX_REST_API_Vendors_Controller extends WC_REST_Controller {
 			'type'       => 'object',
 			'properties' => array(
 				'id' => array(
-					'description' => __( 'Unique identifier for the resource.', 'dc-woocommerce-multi-vendor' ),
+					'description' => __( 'Unique identifier for the resource.', 'multivendorx' ),
 					'type'        => 'integer',
 					'context'     => array( 'view', 'edit' ),
 					'readonly'    => true,
@@ -367,17 +367,17 @@ class MVX_REST_API_Vendors_Controller extends WC_REST_Controller {
 	public function create_item( $request ) {
 		if ( ! empty( $request['id'] ) ) {
 			/* translators: %s: post type */
-			return new WP_Error( "mvx_rest_{$this->post_type}_exists", sprintf( __( 'Cannot create existing %s.', 'dc-woocommerce-multi-vendor' ), $this->post_type ), array( 'status' => 400 ) );
+			return new WP_Error( "mvx_rest_{$this->post_type}_exists", sprintf( __( 'Cannot create existing %s.', 'multivendorx' ), $this->post_type ), array( 'status' => 400 ) );
 		}
 		
 		if ( empty( $request['login'] ) ) {
 			/* translators: %s: post type */
-			return new WP_Error( "mvx_rest_{$this->post_type}_login_empty", sprintf( __( '%s login required.', 'dc-woocommerce-multi-vendor' ), $this->post_type ), array( 'status' => 400 ) );
+			return new WP_Error( "mvx_rest_{$this->post_type}_login_empty", sprintf( __( '%s login required.', 'multivendorx' ), $this->post_type ), array( 'status' => 400 ) );
 		}
 		
 		if ( empty( $request['email'] ) ) {
 			/* translators: %s: post type */
-			return new WP_Error( "mvx_rest_{$this->post_type}_email_empty", sprintf( __( '%s email required.', 'dc-woocommerce-multi-vendor' ), $this->post_type ), array( 'status' => 400 ) );
+			return new WP_Error( "mvx_rest_{$this->post_type}_email_empty", sprintf( __( '%s email required.', 'multivendorx' ), $this->post_type ), array( 'status' => 400 ) );
 		}
 
 		$userdata = array(
@@ -511,7 +511,7 @@ class MVX_REST_API_Vendors_Controller extends WC_REST_Controller {
 					$attachment_id = wc_rest_set_uploaded_image_as_attachment( $upload, $vendor );
 				}
 				if ( ! wp_attachment_is_image( $attachment_id ) ) {
-					throw new WC_REST_Exception( 'mvx_vendor_invalid_image_id', sprintf( __( '#%s is an invalid image ID.', 'dc-woocommerce-multi-vendor' ), $attachment_id ), 400 );
+					throw new WC_REST_Exception( 'mvx_vendor_invalid_image_id', sprintf( __( '#%s is an invalid image ID.', 'multivendorx' ), $attachment_id ), 400 );
 				}
 				// For crop section start
 				$cropped == false;
@@ -520,10 +520,10 @@ class MVX_REST_API_Vendors_Controller extends WC_REST_Controller {
 				} elseif ( isset( $image['position'] ) && 'cover' === $image['position'] ) {
 					$cropped = wp_crop_image( $attachment_id, 0, 0, 1920,622, 1200, 390 );
 				} else {
-					return new WP_Error( 'mvx_rest_wrong_position', __( 'Wrong position name.', 'dc-woocommerce-multi-vendor' ), array( 'status' => 404 ) );
+					return new WP_Error( 'mvx_rest_wrong_position', __( 'Wrong position name.', 'multivendorx' ), array( 'status' => 404 ) );
 				}
 				if (!$cropped || is_wp_error($cropped)) {
-					wp_send_json_error(array('message' => __('Image could not be processed. Please go back and try again.', 'dc-woocommerce-multi-vendor')));
+					wp_send_json_error(array('message' => __('Image could not be processed. Please go back and try again.', 'multivendorx')));
 				}
         		$cropped = apply_filters('mvx_rest_create_file_in_uploads', $cropped, $attachment_id); 
 				$parent = get_post($attachment_id);
@@ -579,12 +579,12 @@ class MVX_REST_API_Vendors_Controller extends WC_REST_Controller {
 	public function get_item( $request ) {
 		if ( empty( $request['id'] ) || $request['id'] == '' ) {
 			/* translators: %s: post type */
-			return new WP_Error( "mvx_rest_{$this->post_type}_insufficient_param", sprintf( __( 'Parameter insufficient for %s.', 'dc-woocommerce-multi-vendor' ), $this->post_type ), array( 'status' => 400 ) );
+			return new WP_Error( "mvx_rest_{$this->post_type}_insufficient_param", sprintf( __( 'Parameter insufficient for %s.', 'multivendorx' ), $this->post_type ), array( 'status' => 400 ) );
 		}
 		
 		if( ! is_user_mvx_vendor($request['id']) ) {
 			/* translators: %s: post type */
-			return new WP_Error( "mvx_rest_is_not_a_{$this->post_type}", sprintf( __( 'User is not a %s.', 'dc-woocommerce-multi-vendor' ), $this->post_type ), array( 'status' => 400 ) );
+			return new WP_Error( "mvx_rest_is_not_a_{$this->post_type}", sprintf( __( 'User is not a %s.', 'multivendorx' ), $this->post_type ), array( 'status' => 400 ) );
 		}
 		
 		$vendor = get_mvx_vendor($request['id']);
@@ -615,12 +615,12 @@ class MVX_REST_API_Vendors_Controller extends WC_REST_Controller {
 	public function update_item( $request ) {
 		if ( empty( $request['id'] ) || $request['id'] == '' ) {
 			/* translators: %s: post type */
-			return new WP_Error( "mvx_rest_{$this->post_type}_insufficient_param", sprintf( __( 'Parameter insufficient for %s.', 'dc-woocommerce-multi-vendor' ), $this->post_type ), array( 'status' => 400 ) );
+			return new WP_Error( "mvx_rest_{$this->post_type}_insufficient_param", sprintf( __( 'Parameter insufficient for %s.', 'multivendorx' ), $this->post_type ), array( 'status' => 400 ) );
 		}
 		
 		if( ! is_user_mvx_vendor($request['id']) ) {
 			/* translators: %s: post type */
-			return new WP_Error( "mvx_rest_is_not_a_{$this->post_type}", sprintf( __( 'User is not a %s.', 'dc-woocommerce-multi-vendor' ), $this->post_type ), array( 'status' => 400 ) );
+			return new WP_Error( "mvx_rest_is_not_a_{$this->post_type}", sprintf( __( 'User is not a %s.', 'multivendorx' ), $this->post_type ), array( 'status' => 400 ) );
 		}
 
 		$userdata = array(
@@ -673,12 +673,12 @@ class MVX_REST_API_Vendors_Controller extends WC_REST_Controller {
 		
 		if ( empty( $request['id'] ) || $request['id'] == '' ) {
 			/* translators: %s: post type */
-			return new WP_Error( "mvx_rest_{$this->post_type}_insufficient_param", sprintf( __( 'Parameter insufficient for %s.', 'dc-woocommerce-multi-vendor' ), $this->post_type ), array( 'status' => 400 ) );
+			return new WP_Error( "mvx_rest_{$this->post_type}_insufficient_param", sprintf( __( 'Parameter insufficient for %s.', 'multivendorx' ), $this->post_type ), array( 'status' => 400 ) );
 		}
 		
 		if( ! is_user_mvx_vendor($request['id']) ) {
 			/* translators: %s: post type */
-			return new WP_Error( "mvx_rest_is_not_a_{$this->post_type}", sprintf( __( 'User is not a %s.', 'dc-woocommerce-multi-vendor' ), $this->post_type ), array( 'status' => 400 ) );
+			return new WP_Error( "mvx_rest_is_not_a_{$this->post_type}", sprintf( __( 'User is not a %s.', 'multivendorx' ), $this->post_type ), array( 'status' => 400 ) );
 		}
 
 		$previous = $this->prepare_item_for_response( get_mvx_vendor( $request['id'] ), $request );
@@ -686,7 +686,7 @@ class MVX_REST_API_Vendors_Controller extends WC_REST_Controller {
 		$deleted = wp_delete_user( $request['id'] ) ;
 		
 		if ( ! $deleted ) {
-			return new WP_Error( 'mvx_rest_cannot_delete', __( 'The vendor cannot be deleted.', 'dc-woocommerce-multi-vendor' ), array( 'status' => 500 ) );
+			return new WP_Error( 'mvx_rest_cannot_delete', __( 'The vendor cannot be deleted.', 'multivendorx' ), array( 'status' => 500 ) );
         }
  
 		$request->set_param( 'context', 'view' );

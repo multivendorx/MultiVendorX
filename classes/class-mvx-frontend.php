@@ -13,7 +13,7 @@ class MVX_Frontend {
     public function __construct() {
 
         $permalinks = get_option('dc_vendors_permalinks');
-        $this->custom_store_url = empty($permalinks['vendor_shop_base']) ? _x('vendor', 'slug', 'dc-woocommerce-multi-vendor') : $permalinks['vendor_shop_base'];
+        $this->custom_store_url = empty($permalinks['vendor_shop_base']) ? _x('vendor', 'slug', 'multivendorx') : $permalinks['vendor_shop_base'];
         //enqueue scripts
         add_action('wp_enqueue_scripts', array(&$this, 'frontend_scripts'));
         //enqueue styles
@@ -174,7 +174,7 @@ class MVX_Frontend {
         $mvx_vendor_registration_form_data = mvx_get_option('mvx_vendor_registration_form_data');
         if(isset($_POST['g-recaptchatype']) && $_POST['g-recaptchatype'] == 'v2'){
             if (isset($_POST['g-recaptcha-response']) && empty($_POST['g-recaptcha-response'])) {
-                $validation_errors->add('recaptcha is not validate', __('Please Verify  Recaptcha', 'dc-woocommerce-multi-vendor'));
+                $validation_errors->add('recaptcha is not validate', __('Please Verify  Recaptcha', 'multivendorx'));
             }
         }elseif(isset($_POST['g-recaptchatype']) && $_POST['g-recaptchatype'] == 'v3') {
             $recaptcha_secret = isset($_POST['recaptchav3_secretkey']) ? wc_clean( $_POST['recaptchav3_secretkey'] ) : '';
@@ -185,7 +185,7 @@ class MVX_Frontend {
             $recaptcha = json_decode($recaptcha);
 
             if ( !$recaptcha->success || $recaptcha->score < 0.5 ) {
-                $validation_errors->add('recaptcha is not validate', __('Please Verify  Recaptcha', 'dc-woocommerce-multi-vendor'));
+                $validation_errors->add('recaptcha is not validate', __('Please Verify  Recaptcha', 'multivendorx'));
             }
         }
         
@@ -202,14 +202,14 @@ class MVX_Frontend {
                     foreach ($attacment_files['type'][$key] as $file_key => $file_value) {
                         if (!empty($attacment_files['name'][$key][$file_key])) {
                             if ($mvx_vendor_registration_form_data[$key]['required'] && !in_array($file_value, $file_type)) {
-                                $validation_errors->add('file type error', __('Please Upload valid file', 'dc-woocommerce-multi-vendor'));
+                                $validation_errors->add('file type error', __('Please Upload valid file', 'multivendorx'));
                             }
                         }
                     }
                     foreach ($attacment_files['size'][$key] as $file_size_key => $file_size_value) {
                         if (!empty($mvx_vendor_registration_form_data[$key]['fileSize'])) {
                             if ($mvx_vendor_registration_form_data[$key]['required'] && $file_size_value > $mvx_vendor_registration_form_data[$key]['fileSize']) {
-                                $validation_errors->add('file size error', __('File upload limit exceeded', 'dc-woocommerce-multi-vendor'));
+                                $validation_errors->add('file size error', __('File upload limit exceeded', 'multivendorx'));
                             }
                         }
                     }
@@ -353,7 +353,7 @@ class MVX_Frontend {
             $vendor = get_mvx_vendor($vendor_id);
             
             if ($vendor) {
-                return $vendor->page_title . __(' Shipping', 'dc-woocommerce-multi-vendor');
+                return $vendor->page_title . __(' Shipping', 'multivendorx');
             }
             return $package_name;
         }
@@ -440,7 +440,7 @@ class MVX_Frontend {
                 $MVX->library->load_gmap_api();                
             }
             wp_enqueue_script( 'mvx_checkout_location_js', $frontend_script_path . 'checkout/mvx-script-checkout-location' . $suffix . '.js', array('jquery' ), $MVX->version, true );
-            wp_localize_script( 'mvx_checkout_location_js', 'mvx_checkout_map_options', array( 'search_location' => __( 'Insert your address ..', 'dc-woocommerce-multi-vendor' ), 'mapbox_emable' => mvx_mapbox_api_enabled(), 'default_lat' => -79.4512, 'default_lng' => 43.6568, 'default_zoom' => 2, 'store_icon' => $MVX->plugin_url . 'assets/images/store-marker.png', 'icon_width' => apply_filters( 'mvx_map_icon_width', 40 ), 'icon_height' => apply_filters( 'mvx_map_icon_height', 57 ) ) );
+            wp_localize_script( 'mvx_checkout_location_js', 'mvx_checkout_map_options', array( 'search_location' => __( 'Insert your address ..', 'multivendorx' ), 'mapbox_emable' => mvx_mapbox_api_enabled(), 'default_lat' => -79.4512, 'default_lng' => 43.6568, 'default_zoom' => 2, 'store_icon' => $MVX->plugin_url . 'assets/images/store-marker.png', 'icon_width' => apply_filters( 'mvx_map_icon_width', 40 ), 'icon_height' => apply_filters( 'mvx_map_icon_height', 57 ) ) );
         }
     }
 
@@ -660,8 +660,8 @@ class MVX_Frontend {
             ?>
             <div id="product_images_container" class="custom-panel">
                 <div style="max-width: 214px; margin: 0 auto;">
-                    <h3><p class="product_translations"><strong><?php esc_html_e( 'Translations', 'dc-woocommerce-multi-vendor' ); ?></strong></p></h3>
-                    <label class="screen-reader-text" for="product_translations"><?php esc_html_e( 'Translations', 'dc-woocommerce-multi-vendor' ); ?></label>
+                    <h3><p class="product_translations"><strong><?php esc_html_e( 'Translations', 'multivendorx' ); ?></strong></p></h3>
+                    <label class="screen-reader-text" for="product_translations"><?php esc_html_e( 'Translations', 'multivendorx' ); ?></label>
                     
                     <table style="margin-top:0px;">
                         <tbody id="mvx_product_translations" data-product_id="<?php echo esc_attr($product_id); ?>">
@@ -735,22 +735,22 @@ class MVX_Frontend {
     }
 
     public function mvx_vendor_shop_page_policies_endpoint( $store_id, $query_vars_name ) {
-        $_vendor_shipping_policy = get_user_meta( $store_id, 'vendor_shipping_policy', true ) ? get_user_meta( $store_id, 'vendor_shipping_policy', true ) : __( 'No policy found', 'dc-woocommerce-multi-vendor' );
+        $_vendor_shipping_policy = get_user_meta( $store_id, 'vendor_shipping_policy', true ) ? get_user_meta( $store_id, 'vendor_shipping_policy', true ) : __( 'No policy found', 'multivendorx' );
 
-        $_vendor_refund_policy = get_user_meta( $store_id, 'vendor_refund_policy', true ) ? get_user_meta( $store_id, 'vendor_refund_policy', true ) : __( 'No policy found', 'dc-woocommerce-multi-vendor' );
+        $_vendor_refund_policy = get_user_meta( $store_id, 'vendor_refund_policy', true ) ? get_user_meta( $store_id, 'vendor_refund_policy', true ) : __( 'No policy found', 'multivendorx' );
 
-        $_vendor_cancellation_policy = get_user_meta( $store_id, 'vendor_cancellation_policy', true ) ? get_user_meta( $store_id, 'vendor_cancellation_policy', true ) : __( 'No policy found', 'dc-woocommerce-multi-vendor' );
+        $_vendor_cancellation_policy = get_user_meta( $store_id, 'vendor_cancellation_policy', true ) ? get_user_meta( $store_id, 'vendor_cancellation_policy', true ) : __( 'No policy found', 'multivendorx' );
 
         ?>
         <div class="mvx-policie-sec">
             <div class="mvx-policies-header mvx-tabcontent-header">
-                <div class='mvx-heading'><?php esc_html_e( 'Shop policies', 'dc-woocommerce-multi-vendor' ); ?></div>
+                <div class='mvx-heading'><?php esc_html_e( 'Shop policies', 'multivendorx' ); ?></div>
             </div>
             <!-- Shipping policy -->
             <div>
                 <div class="mvx-sub-heading">
                     <span class="dashicons dashicons-cart"></span>
-                    <p><?php esc_html_e( 'Shipping Policy', 'dc-woocommerce-multi-vendor' ); ?></p>
+                    <p><?php esc_html_e( 'Shipping Policy', 'multivendorx' ); ?></p>
                 </div>
                 <div class='mvx-policie-sub-area'>
                     <p><?php echo wp_kses_post( $_vendor_shipping_policy ); ?></p>
@@ -760,7 +760,7 @@ class MVX_Frontend {
             <div>
                 <div class="mvx-sub-heading">
                     <span class="dashicons dashicons-cart"></span>
-                    <p><?php esc_html_e( 'Refund Policy', 'dc-woocommerce-multi-vendor' ); ?></p>
+                    <p><?php esc_html_e( 'Refund Policy', 'multivendorx' ); ?></p>
                 </div>
                 <div class='mvx-policie-sub-area'>
                     <p><?php echo wp_kses_post( $_vendor_refund_policy ); ?></p>
@@ -770,7 +770,7 @@ class MVX_Frontend {
             <div>
                 <div class="mvx-sub-heading">
                     <span class="dashicons dashicons-cart"></span>
-                    <p><?php esc_html_e( 'Cancellation/Return/Exchange Policy', 'dc-woocommerce-multi-vendor' ); ?></p>
+                    <p><?php esc_html_e( 'Cancellation/Return/Exchange Policy', 'multivendorx' ); ?></p>
                 </div>
                 <div class='mvx-policie-sub-area'>
                     <p><?php echo wp_kses_post( $_vendor_cancellation_policy ); ?></p>
@@ -888,7 +888,7 @@ class MVX_Frontend {
         $tabs = array(
             'products' => array(
                 'id' => 'products',
-                'title' => __( 'Products', 'dc-woocommerce-multi-vendor' ),
+                'title' => __( 'Products', 'multivendorx' ),
                 'url'   => $userstore,
                 'priority' => 1
             )
@@ -896,7 +896,7 @@ class MVX_Frontend {
         if (mvx_is_module_active('store-policy')) {
             $tabs['policies'] = array(
                 'id' => 'policies',
-                'title' => __( 'Policies', 'dc-woocommerce-multi-vendor' ),
+                'title' => __( 'Policies', 'multivendorx' ),
                 'url'   => $this->mvx_get_policies_url( $store_id ),
                 'priority' => 3
             );
@@ -905,7 +905,7 @@ class MVX_Frontend {
         if (mvx_is_module_active('store-review') && get_mvx_vendor_settings('is_sellerreview', 'review_management')) {
             $tabs['reviews'] = array(
                 'id' => 'reviews',
-                'title' => __( 'Reviews', 'dc-woocommerce-multi-vendor' ),
+                'title' => __( 'Reviews', 'multivendorx' ),
                 'url'   => $this->mvx_get_review_url( $store_id ),
                 'priority' => 2
             );
@@ -1006,8 +1006,8 @@ class MVX_Frontend {
             return $items;
         }
         unset( $items['customer-logout'] );
-        $items[ 'followers' ] = __( 'Following', 'dc-woocommerce-multi-vendor' );
-        $items[ 'customer-logout' ] = __( 'Log out', 'dc-woocommerce-multi-vendor' );
+        $items[ 'followers' ] = __( 'Following', 'multivendorx' );
+        $items[ 'customer-logout' ] = __( 'Log out', 'multivendorx' );
         return $items;
     }
     public function mvx_customer_followers_vendor_callback() {
@@ -1029,7 +1029,7 @@ class MVX_Frontend {
                         <?php
                     }
                 } else {
-                    esc_html_e('You do not follow any customer till now', 'dc-woocommerce-multi-vendor');
+                    esc_html_e('You do not follow any customer till now', 'multivendorx');
                 }
                 ?>
             </tbody>
@@ -1088,8 +1088,8 @@ class MVX_Frontend {
             if( ( true === WC()->cart->needs_shipping() ) && apply_filters( 'mvx_is_allow_checkout_user_location', true ) ) {
                 $user_location_filed = mvx_mapbox_api_enabled() ? array('input-hidden') : array('form-row-wide');
                 $fields['billing']['mvx_user_location'] = array(
-                        'label'     => __( 'Delivery Location', 'dc-woocommerce-multi-vendor' ),
-                        'placeholder'   => _x( 'Insert your address ..', 'placeholder', 'dc-woocommerce-multi-vendor' ),
+                        'label'     => __( 'Delivery Location', 'multivendorx' ),
+                        'placeholder'   => _x( 'Insert your address ..', 'placeholder', 'multivendorx' ),
                         'required'  => true,
                         'class'     => $user_location_filed,
                         'clear'     => true,

@@ -170,7 +170,7 @@ class MVX_Product {
      */
     function product_single_product_multivendor_tab($tabs) {
         global $product, $MVX;
-        $title = apply_filters('mvx_more_vendors_tab', __('More Offers', 'dc-woocommerce-multi-vendor'));
+        $title = apply_filters('mvx_more_vendors_tab', __('More Offers', 'multivendorx'));
         $tabs['singleproductmultivendor'] = array(
             'title' => $title,
             'priority' => 80,
@@ -305,7 +305,7 @@ class MVX_Product {
 
     public function review_title($reviews_title, $count, $product) {
         $count = get_comments(array('post_id' => $product->get_id(), 'type__not_in' => array('product_note', 'comment'), 'count' => true));
-        $reviews_title = sprintf( esc_html( _n( '%1$s review for %2$s', '%1$s reviews for %2$s', $count, 'dc-woocommerce-multi-vendor' ) ), esc_html( $count ), '<span>' . $product->get_title() . '</span>' );
+        $reviews_title = sprintf( esc_html( _n( '%1$s review for %2$s', '%1$s reviews for %2$s', $count, 'multivendorx' ) ), esc_html( $count ), '<span>' . $product->get_title() . '</span>' );
         return $reviews_title;
     }
 
@@ -315,7 +315,7 @@ class MVX_Product {
             $count = get_comments(array('post_id' => $product->get_id(), 'type__not_in' => array('product_note', 'comment'), 'count' => true));
 
             $tabs['reviews'] = array(
-                    'title'    => sprintf( __( 'Reviews (%d)', 'dc-woocommerce-multi-vendor' ), $count),
+                    'title'    => sprintf( __( 'Reviews (%d)', 'multivendorx' ), $count),
                     'priority' => 30,
                     'callback' => 'comments_template',
                 );
@@ -406,7 +406,7 @@ class MVX_Product {
     function error_notice_for_sku_not_available() {
         global $MVX;
         $class = "error";
-        $message = __("SKU must be unique", 'dc-woocommerce-multi-vendor');
+        $message = __("SKU must be unique", 'multivendorx');
         echo"<div class=\"$class\"> <p>$message</p></div>";
     }
 
@@ -478,7 +478,7 @@ class MVX_Product {
                     $selected = isset($_GET[$taxonomy]) ? wc_clean( wp_unslash( $_GET[$taxonomy] ) ) : '';
                     $info_taxonomy = get_taxonomy($taxonomy);
                     wp_dropdown_categories(array(
-                        'show_option_all' => __("Show All {$info_taxonomy->label}", 'dc-woocommerce-multi-vendor'),
+                        'show_option_all' => __("Show All {$info_taxonomy->label}", 'multivendorx'),
                         'taxonomy' => $taxonomy,
                         'name' => $taxonomy,
                         'orderby' => 'name',
@@ -543,9 +543,9 @@ class MVX_Product {
             }
             ?>
             <label>
-                <span class="title"><?php esc_html_e('Vendor', 'dc-woocommerce-multi-vendor'); ?></span>
+                <span class="title"><?php esc_html_e('Vendor', 'multivendorx'); ?></span>
                 <span class="input-text-wrap vendor_bulk">
-                    <select name="choose_vendor_bulk" id="choose_vendor_ajax_bulk" class="mvx_select_vendor" data-placeholder="<?php esc_attr_e('Search for vendor', 'dc-woocommerce-multi-vendor') ?>" style="width:300px;" >
+                    <select name="choose_vendor_bulk" id="choose_vendor_ajax_bulk" class="mvx_select_vendor" data-placeholder="<?php esc_attr_e('Search for vendor', 'multivendorx') ?>" style="width:300px;" >
                         <?php echo $option; ?>
                     </select>
                 </span>
@@ -700,7 +700,7 @@ class MVX_Product {
     function add_vendor_tab() {
         global $MVX;
         ?>
-        <li class="vendor_icon vendor_icons"><a href="#choose_vendor"><span><?php _e('Vendor', 'dc-woocommerce-multi-vendor'); ?></span></a></li>
+        <li class="vendor_icon vendor_icons"><a href="#choose_vendor"><span><?php _e('Vendor', 'multivendorx'); ?></span></a></li>
         <?php
     }
 
@@ -733,7 +733,7 @@ class MVX_Product {
                 }
             }
         }
-        $html .= '<tr valign="top"><td scope="row"><label id="vendor-label" for="' . esc_attr('vendor') . '">' . __("Vendor", 'dc-woocommerce-multi-vendor') . '</label></td><td>';
+        $html .= '<tr valign="top"><td scope="row"><label id="vendor-label" for="' . esc_attr('vendor') . '">' . __("Vendor", 'multivendorx') . '</label></td><td>';
         if (!$current_user_is_vendor) {
             $html .= '<select name="' . esc_attr('choose_vendor') . '" data-placeholder="'. esc_attr("Choose vendor", "dc-woocommerce-multi-vendor").'" id="' . esc_attr('choose_vendor_ajax') . '" class="mvx_select_vendor" style="width:300px;" >' . $option . '</select>';
             $html .= '<p class="description">' . 'choose vendor' . '</p>';
@@ -749,22 +749,22 @@ class MVX_Product {
         if ($MVX->vendor_caps->payment_cap['commission_type'] == 'fixed_with_percentage') {
 
             if (!$current_user_is_vendor) {
-                $html .= '<tr valign="top"><td scope="row"><label id="vendor-label" for= "Commission">' . __("Commission Percentage", 'dc-woocommerce-multi-vendor') . '</label></td><td>';
+                $html .= '<tr valign="top"><td scope="row"><label id="vendor-label" for= "Commission">' . __("Commission Percentage", 'multivendorx') . '</label></td><td>';
                 $html .= '<input class="input-commision" type="text" name="commission_percentage" value="' . $commission_percentage_per_poduct . '"% />';
             } else {
                 if (!empty($commission_percentage_per_poduct)) {
-                    $html .= '<tr valign="top"><td scope="row"><label id="vendor-label" for= "Commission">' . __("Commission Percentage", 'dc-woocommerce-multi-vendor') . '</label></td><td>';
+                    $html .= '<tr valign="top"><td scope="row"><label id="vendor-label" for= "Commission">' . __("Commission Percentage", 'multivendorx') . '</label></td><td>';
                     $html .= '<span>' . $commission_percentage_per_poduct . '%</span>';
                 }
             }
             $html .= '</td></tr>';
 
             if (!$current_user_is_vendor) {
-                $html .= '<tr valign="top"><td scope="row"><label id="vendor-label" for= "Commission">' . __("Commission Fixed per transaction", 'dc-woocommerce-multi-vendor') . '</label></td><td>';
+                $html .= '<tr valign="top"><td scope="row"><label id="vendor-label" for= "Commission">' . __("Commission Fixed per transaction", 'multivendorx') . '</label></td><td>';
                 $html .= '<input class="input-commision" type="text" name="fixed_with_percentage" value="' . $commission_fixed_with_percentage . '" />';
             } else {
                 if (!empty($commission_fixed_with_percentage)) {
-                    $html .= '<tr valign="top"><td scope="row"><label id="vendor-label" for= "Commission">' . __("Commission Fixed per transaction", 'dc-woocommerce-multi-vendor') . '</label></td><td>';
+                    $html .= '<tr valign="top"><td scope="row"><label id="vendor-label" for= "Commission">' . __("Commission Fixed per transaction", 'multivendorx') . '</label></td><td>';
                     $html .= '<span>' . $commission_fixed_with_percentage . '</span>';
                 }
             }
@@ -772,22 +772,22 @@ class MVX_Product {
         } else if ($MVX->vendor_caps->payment_cap['commission_type'] == 'fixed_with_percentage_qty') {
 
             if (!$current_user_is_vendor) {
-                $html .= '<tr valign="top"><td scope="row"><label id="vendor-label" for= "Commission">' . __("Commission Percentage", 'dc-woocommerce-multi-vendor') . '</label></td><td>';
+                $html .= '<tr valign="top"><td scope="row"><label id="vendor-label" for= "Commission">' . __("Commission Percentage", 'multivendorx') . '</label></td><td>';
                 $html .= '<input class="input-commision" type="text" name="commission_percentage" value="' . $commission_percentage_per_poduct . '"% />';
             } else {
                 if (!empty($commission_percentage_per_poduct)) {
-                    $html .= '<tr valign="top"><td scope="row"><label id="vendor-label" for= "Commission">' . __("Commission Percentage", 'dc-woocommerce-multi-vendor') . '</label></td><td>';
+                    $html .= '<tr valign="top"><td scope="row"><label id="vendor-label" for= "Commission">' . __("Commission Percentage", 'multivendorx') . '</label></td><td>';
                     $html .= '<span>' . $commission_percentage_per_poduct . '%</span>';
                 }
             }
             $html .= '</td></tr>';
 
             if (!$current_user_is_vendor) {
-                $html .= '<tr valign="top"><td scope="row"><label id="vendor-label" for= "fixed amount">' . __("Commission Fixed per unit", 'dc-woocommerce-multi-vendor') . '</label></td><td>';
+                $html .= '<tr valign="top"><td scope="row"><label id="vendor-label" for= "fixed amount">' . __("Commission Fixed per unit", 'multivendorx') . '</label></td><td>';
                 $html .= '<input class="input-commision" type="text" name="fixed_with_percentage_qty" value="' . $commission_fixed_with_percentage_qty . '" />';
             } else {
                 if (!empty($commission_fixed_with_percentage_qty)) {
-                    $html .= '<tr valign="top"><td scope="row"><label id="vendor-label" for= "fixed amount">' . __("Commission Fixed per unit", 'dc-woocommerce-multi-vendor') . '</label></td><td>';
+                    $html .= '<tr valign="top"><td scope="row"><label id="vendor-label" for= "fixed amount">' . __("Commission Fixed per unit", 'multivendorx') . '</label></td><td>';
                     $html .= '<span>' . $commission_fixed_with_percentage_qty . '</span>';
                 }
             }
@@ -795,11 +795,11 @@ class MVX_Product {
         } else {
 
             if (!$current_user_is_vendor) {
-                $html .= '<tr valign="top"><td scope="row"><label id="vendor-label" for= "Commission">' . __("Commission", 'dc-woocommerce-multi-vendor') . '</label></td><td>';
+                $html .= '<tr valign="top"><td scope="row"><label id="vendor-label" for= "Commission">' . __("Commission", 'multivendorx') . '</label></td><td>';
                 $html .= '<input class="input-commision" type="text" name="commision" value="' . $commission_per_poduct . '" />';
             } else {
                 if (!empty($commission_per_poduct)) {
-                    $html .= '<tr valign="top"><td scope="row"><label id="vendor-label" for= "Commission">' . __("Commission", 'dc-woocommerce-multi-vendor') . '</label></td><td>';
+                    $html .= '<tr valign="top"><td scope="row"><label id="vendor-label" for= "Commission">' . __("Commission", 'multivendorx') . '</label></td><td>';
                     $html .= '<span>' . $commission_per_poduct . '</span>';
                 }
             }
@@ -810,7 +810,7 @@ class MVX_Product {
 
         if ($vendor) {
             if (current_user_can('manage_options')) {
-                $html .= '<tr valign="top"><td scope="row"><input type="button" class="delete_vendor_data button" value="' . __("Unassign vendor", 'dc-woocommerce-multi-vendor') . '" /></td></tr>';
+                $html .= '<tr valign="top"><td scope="row"><input type="button" class="delete_vendor_data button" value="' . __("Unassign vendor", 'multivendorx') . '" /></td></tr>';
 
                 wp_localize_script('mvx-admin-product-js', 'unassign_vendors_data', array('current_product_id' => $post->ID, 'current_user_id' => get_current_vendor_id()));
             }
@@ -832,7 +832,7 @@ class MVX_Product {
         if ( in_array( $post_type, $post_types ) ) {
             add_meta_box(
                 'wf_child_letters'
-                ,__( 'Rejection History', 'dc-woocommerce-multi-vendor' )
+                ,__( 'Rejection History', 'multivendorx' )
                 ,array( $this, 'render_meta_box_content' )
                 ,$post_type
                 ,'side'
@@ -849,11 +849,11 @@ class MVX_Product {
              <?php wp_nonce_field('dc-vendor-add-product-comment', 'vendor_add_product_nonce'); ?> 
              <div class="add_note">
                  <p>
-                     <label for="add_order_note"><?php esc_html_e( 'Add note', 'dc-woocommerce-multi-vendor' ); ?> <?php echo wc_help_tip( __( 'Add a note for your reference, or add a customer note (the user will be notified).', 'dc-woocommerce-multi-vendor' ) ); ?></label>
-                     <textarea placeholder="<?php esc_attr_e('Enter text ...', 'dc-woocommerce-multi-vendor'); ?>" class="form-control" name="product_comment_text"></textarea>
+                     <label for="add_order_note"><?php esc_html_e( 'Add note', 'multivendorx' ); ?> <?php echo wc_help_tip( __( 'Add a note for your reference, or add a customer note (the user will be notified).', 'multivendorx' ) ); ?></label>
+                     <textarea placeholder="<?php esc_attr_e('Enter text ...', 'multivendorx'); ?>" class="form-control" name="product_comment_text"></textarea>
                  </p>
                  <p>
-                     <input class="add_note button mvx-add-order-note" type="submit" name="mvx_submit_product_comment" value="<?php _e('Submit', 'dc-woocommerce-multi-vendor'); ?>">
+                     <input class="add_note button mvx-add-order-note" type="submit" name="mvx_submit_product_comment" value="<?php _e('Submit', 'multivendorx'); ?>">
                  </p>
              </div>
              <input type="hidden" name="product_id" value="<?php echo $post->ID; ?>">
@@ -861,7 +861,7 @@ class MVX_Product {
          <?php endif; 
          $log_statuses = apply_filters('admin_product_logs_status', array('pending', 'publish'));
          if( in_array($post->post_status, $log_statuses) ) { ?>
-             <div><b><?php echo esc_html_e( 'Communication Log', 'dc-woocommerce-multi-vendor' ); ?></b></div>
+             <div><b><?php echo esc_html_e( 'Communication Log', 'multivendorx' ); ?></b></div>
              <ul class="order_notes">
                  <?php
                  if ($notes) {
@@ -878,7 +878,7 @@ class MVX_Product {
                          <?php
                      }
                  }else{
-                     echo '<li class="list-group-item list-group-item-action flex-column align-items-start order-notes">' . __( 'There are no notes yet.', 'dc-woocommerce-multi-vendor' ) . '</li>';
+                     echo '<li class="list-group-item list-group-item-action flex-column align-items-start order-notes">' . __( 'There are no notes yet.', 'multivendorx' ) . '</li>';
                  }
                  ?>
              </ul>
@@ -888,7 +888,7 @@ class MVX_Product {
 
     function add_policies_tab() {
         ?>
-        <li class="policy_icon policy_icons"><a href="#set_policies"><span><?php echo apply_filters('mvx_policies_tab_title', __('Policies', 'dc-woocommerce-multi-vendor')); ?></span></a></li>
+        <li class="policy_icon policy_icons"><a href="#set_policies"><span><?php echo apply_filters('mvx_policies_tab_title', __('Policies', 'multivendorx')); ?></span></a></li>
         <?php
     }
 
@@ -905,9 +905,9 @@ class MVX_Product {
                         <?php
                         $MVX->library->load_wp_fields()->dc_generate_form_field(
                                 array(
-                                    "_mvx_shipping_policy" => array('label' => __('Shipping Policy', 'dc-woocommerce-multi-vendor'), 'type' => 'wpeditor', 'id' => '_mvx_shipping_policy', 'label_for' => '_mvx_shipping_policy', 'name' => '_mvx_shipping_policy', 'class' => 'regular-text', 'value' => $_mvx_shipping_policy, 'in_table' => true),
-                                    "_mvx_refund_policy" => array('label' => __('Refund Policy', 'dc-woocommerce-multi-vendor'), 'type' => 'wpeditor', 'id' => '_mvx_refund_policy', 'label_for' => '_mvx_refund_policy', 'name' => '_mvx_refund_policy', 'class' => 'regular-text', 'value' => $_mvx_refund_policy, 'in_table' => true),
-                                    "_mvx_cancallation_policy" => array('label' => __('Cancellation/Return/Exchange Policy', 'dc-woocommerce-multi-vendor'), 'type' => 'wpeditor', 'id' => '_mvx_cancallation_policy', 'label_for' => '_mvx_cancallation_policy', 'name' => '_mvx_cancallation_policy', 'class' => 'regular-text', 'value' => $_mvx_cancallation_policy, 'in_table' => true),
+                                    "_mvx_shipping_policy" => array('label' => __('Shipping Policy', 'multivendorx'), 'type' => 'wpeditor', 'id' => '_mvx_shipping_policy', 'label_for' => '_mvx_shipping_policy', 'name' => '_mvx_shipping_policy', 'class' => 'regular-text', 'value' => $_mvx_shipping_policy, 'in_table' => true),
+                                    "_mvx_refund_policy" => array('label' => __('Refund Policy', 'multivendorx'), 'type' => 'wpeditor', 'id' => '_mvx_refund_policy', 'label_for' => '_mvx_refund_policy', 'name' => '_mvx_refund_policy', 'class' => 'regular-text', 'value' => $_mvx_refund_policy, 'in_table' => true),
+                                    "_mvx_cancallation_policy" => array('label' => __('Cancellation/Return/Exchange Policy', 'multivendorx'), 'type' => 'wpeditor', 'id' => '_mvx_cancallation_policy', 'label_for' => '_mvx_cancallation_policy', 'name' => '_mvx_cancallation_policy', 'class' => 'regular-text', 'value' => $_mvx_cancallation_policy, 'in_table' => true),
                                 )
                         );
                         do_action('mvx_product_options_policy_product_data');
@@ -1118,7 +1118,7 @@ class MVX_Product {
                     $html .= '<tr>
                                             <td>
                                                 <div class="_product_vendors_commission_percentage">
-                                                    <label for="_product_vendors_commission_percentage_' . $loop . '">' . __('Commission (percentage)', 'dc-woocommerce-multi-vendor') . ':</label>
+                                                    <label for="_product_vendors_commission_percentage_' . $loop . '">' . __('Commission (percentage)', 'multivendorx') . ':</label>
                                                     <span class="variable_commission_cls">' . $commission_percentage . '</span>
                                                 </div>
                                             </td>
@@ -1128,7 +1128,7 @@ class MVX_Product {
                     $html .= '<tr>
                                             <td>
                                                 <div class="_product_vendors_commission_fixed_per_trans">
-                                                    <label for="_product_vendors_commission_fixed_per_trans_' . $loop . '">' . __('Commission (fixed) Per Transaction', 'dc-woocommerce-multi-vendor') . ':</label>
+                                                    <label for="_product_vendors_commission_fixed_per_trans_' . $loop . '">' . __('Commission (fixed) Per Transaction', 'multivendorx') . ':</label>
                                                     <span class="variable_commission_cls">' . $commission_fixed_per_trans . '</span>
                                                 </div>
                                             </td>
@@ -1138,7 +1138,7 @@ class MVX_Product {
                 $html .= '<tr>
                                         <td>
                                             <div class="_product_vendors_commission_percentage">
-                                                <label for="_product_vendors_commission_percentage_' . $loop . '">' . __('Commission (percentage)', 'dc-woocommerce-multi-vendor') . ':</label>
+                                                <label for="_product_vendors_commission_percentage_' . $loop . '">' . __('Commission (percentage)', 'multivendorx') . ':</label>
                                                 <input size="4" type="text" name="variable_product_vendors_commission_percentage[' . $loop . ']" id="_product_vendors_commission_percentage_' . $loop . '" value="' . $commission_percentage . '" />
                                             </div>
                                         </td>
@@ -1146,7 +1146,7 @@ class MVX_Product {
                 $html .= '<tr>
                                         <td>
                                             <div class="_product_vendors_commission_fixed_per_trans">
-                                                <label for="_product_vendors_commission_fixed_per_trans_' . $loop . '">' . __('Commission (fixed) Per Transaction', 'dc-woocommerce-multi-vendor') . ':</label>
+                                                <label for="_product_vendors_commission_fixed_per_trans_' . $loop . '">' . __('Commission (fixed) Per Transaction', 'multivendorx') . ':</label>
                                                 <input size="4" type="text" name="variable_product_vendors_commission_fixed_per_trans[' . $loop . ']" id="_product_vendors_commission_fixed_per_trans__' . $loop . '" value="' . $commission_fixed_per_trans . '" />
                                             </div>
                                         </td>
@@ -1159,7 +1159,7 @@ class MVX_Product {
                     $html .= '<tr>
                                             <td>
                                                 <div class="_product_vendors_commission_percentage">
-                                                    <label for="_product_vendors_commission_percentage_' . $loop . '">' . __('Commission Percentage', 'dc-woocommerce-multi-vendor') . ':</label>
+                                                    <label for="_product_vendors_commission_percentage_' . $loop . '">' . __('Commission Percentage', 'multivendorx') . ':</label>
                                                     <span class="variable_commission_cls">' . $commission_percentage . '</span>
                                                 </div>
                                             </td>
@@ -1170,7 +1170,7 @@ class MVX_Product {
                     $html .= '<tr>
                                         <td>
                                             <div class="_product_vendors_commission_fixed_per_qty">
-                                                <label for="_product_vendors_commission_fixed_per_qty_' . $loop . '">' . __('Commission Fixed per unit', 'dc-woocommerce-multi-vendor') . ':</label>
+                                                <label for="_product_vendors_commission_fixed_per_qty_' . $loop . '">' . __('Commission Fixed per unit', 'multivendorx') . ':</label>
                                                 <span class="variable_commission_cls">' . $commission_fixed_per_qty . '</span>
                                             </div>
                                         </td>
@@ -1180,7 +1180,7 @@ class MVX_Product {
                 $html .= '<tr>
                                         <td>
                                             <div class="_product_vendors_commission_percentage">
-                                                <label for="_product_vendors_commission_percentage_' . $loop . '">' . __('Commission Percentage', 'dc-woocommerce-multi-vendor') . ':</label>
+                                                <label for="_product_vendors_commission_percentage_' . $loop . '">' . __('Commission Percentage', 'multivendorx') . ':</label>
                                                 <input size="4" type="text" name="variable_product_vendors_commission_percentage[' . $loop . ']" id="_product_vendors_commission_percentage_' . $loop . '" value="' . $commission_percentage . '" />
                                             </div>
                                         </td>
@@ -1189,7 +1189,7 @@ class MVX_Product {
                 $html .= '<tr>
                                         <td>
                                             <div class="_product_vendors_commission_fixed_per_qty">
-                                                <label for="_product_vendors_commission_fixed_per_qty_' . $loop . '">' . __('Commission Fixed per unit', 'dc-woocommerce-multi-vendor') . ':</label>
+                                                <label for="_product_vendors_commission_fixed_per_qty_' . $loop . '">' . __('Commission Fixed per unit', 'multivendorx') . ':</label>
                                                 <input size="4" type="text" name="variable_product_vendors_commission_fixed_per_qty[' . $loop . ']" id="_product_vendors_commission_fixed_per_qty__' . $loop . '" value="' . $commission_fixed_per_qty . '" />
                                             </div>
                                         </td>
@@ -1201,7 +1201,7 @@ class MVX_Product {
                     $html .= '<tr>
                                             <td>
                                                 <div class="_product_vendors_commission">
-                                                    <label for="_product_vendors_commission_' . $loop . '">' . __('Commission', 'dc-woocommerce-multi-vendor') . ':</label>
+                                                    <label for="_product_vendors_commission_' . $loop . '">' . __('Commission', 'multivendorx') . ':</label>
                                                     <span class="variable_commission_cls">' . $commission . '</span>
                                                 </div>
                                             </td>
@@ -1211,7 +1211,7 @@ class MVX_Product {
                 $html .= '<tr>
                                         <td>
                                             <div class="_product_vendors_commission">
-                                                <label for="_product_vendors_commission_' . $loop . '">' . __('Commission', 'dc-woocommerce-multi-vendor') . ':</label>
+                                                <label for="_product_vendors_commission_' . $loop . '">' . __('Commission', 'multivendorx') . ':</label>
                                                 <input size="4" type="text" name="variable_product_vendors_commission[' . $loop . ']" id="_product_vendors_commission_' . $loop . '" value="' . $commission . '" />
                                             </div>
                                         </td>
@@ -1232,7 +1232,7 @@ class MVX_Product {
         if ($product) {
             $vendor = get_mvx_product_vendors($product->get_id());
             if ($vendor) {
-                $title = __('Vendor', 'dc-woocommerce-multi-vendor');
+                $title = __('Vendor', 'multivendorx');
                 $tabs['vendor'] = array(
                     'title' => $title,
                     'priority' => 20,
@@ -1264,7 +1264,7 @@ class MVX_Product {
             $policies = get_mvx_product_policies($product->get_id());
             if (count($policies) > 0) {
                 $tabs['policies'] = array(
-                    'title' => apply_filters('mvx_policies_tab_title', __('Policies', 'dc-woocommerce-multi-vendor')),
+                    'title' => apply_filters('mvx_policies_tab_title', __('Policies', 'multivendorx')),
                     'priority' => 30,
                     'callback' => array($this, 'woocommerce_product_policies_tab')
                 );
@@ -1338,7 +1338,7 @@ class MVX_Product {
     function add_report_abuse_link() {
         global $product;
         if (apply_filters('mvx_show_report_abuse_link', true, $product) && mvx_is_module_active('report-abuse')) {
-            $report_abuse_text = apply_filters('mvx_report_abuse_text', __('Report Abuse', 'dc-woocommerce-multi-vendor'), $product);
+            $report_abuse_text = apply_filters('mvx_report_abuse_text', __('Report Abuse', 'multivendorx'), $product);
             $show_in_popup = apply_filters('mvx_show_report_abuse_form_popup', true, $product)
             ?>
             <div class="mvx-report-abouse-wrapper">
@@ -1347,25 +1347,25 @@ class MVX_Product {
                     <div class="<?php echo ( $show_in_popup ) ? 'modal-content' : 'toggle-content'; ?>">
                         <div class="modal-header">
                             <button type="button" class="close">&times;</button>
-                            <h2 class="mvx-abuse-report-title1"><?php esc_html_e('Report an abuse for product ', 'dc-woocommerce-multi-vendor') . ' ' . the_title(); ?> </h2>
+                            <h2 class="mvx-abuse-report-title1"><?php esc_html_e('Report an abuse for product ', 'multivendorx') . ' ' . the_title(); ?> </h2>
                         </div>
                         <div class="modal-body">
                             <p class="field-row">
-                                <input type="text" class="report_abuse_name" id="report_abuse_name" name="report_abuse[name]" value="" style="width: 100%;" placeholder="<?php esc_attr_e('Name', 'dc-woocommerce-multi-vendor'); ?>" required="">
+                                <input type="text" class="report_abuse_name" id="report_abuse_name" name="report_abuse[name]" value="" style="width: 100%;" placeholder="<?php esc_attr_e('Name', 'multivendorx'); ?>" required="">
                                 <span class="mvx-report-abuse-error"></span>
                             </p>
                             <p class="field-row">
-                                <input type="email" class="report_abuse_email" id="report_abuse_email" name="report_abuse[email]" value="" style="width: 100%;" placeholder="<?php esc_attr_e('Email', 'dc-woocommerce-multi-vendor'); ?>" required="">
+                                <input type="email" class="report_abuse_email" id="report_abuse_email" name="report_abuse[email]" value="" style="width: 100%;" placeholder="<?php esc_attr_e('Email', 'multivendorx'); ?>" required="">
                                 <span class="mvx-report-abuse-error"></span>
                             </p>
                             <p class="field-row">
-                                <textarea name="report_abuse[message]" class="report_abuse_msg" id="report_abuse_msg" rows="5" style="width: 100%;" placeholder="<?php esc_attr_e('Leave a message explaining the reasons for your abuse report', 'dc-woocommerce-multi-vendor'); ?>" required=""></textarea>
+                                <textarea name="report_abuse[message]" class="report_abuse_msg" id="report_abuse_msg" rows="5" style="width: 100%;" placeholder="<?php esc_attr_e('Leave a message explaining the reasons for your abuse report', 'multivendorx'); ?>" required=""></textarea>
                                 <span class="mvx-report-abuse-error"></span>
                             </p>
                         </div> 
                         <div class="modal-footer">
                             <input type="hidden" class="report_abuse_product_id" value="<?php echo $product->get_id(); ?>">
-                            <button type="button" class="btn btn-primary submit-report-abuse" name="report_abuse[submit]"><?php esc_html_e('Report', 'dc-woocommerce-multi-vendor'); ?></button>
+                            <button type="button" class="btn btn-primary submit-report-abuse" name="report_abuse[submit]"><?php esc_html_e('Report', 'multivendorx'); ?></button>
                         </div>
                     </div>
                 </div>
@@ -1484,20 +1484,20 @@ class MVX_Product {
         if ($wpnonce && wp_verify_nonce($wpnonce, 'mvx_delete_product') && $product_id && in_array($vendor->id, $current_user_ids )) {
             if (current_user_can('delete_published_products')) {
                 wp_delete_post($product_id);
-                wc_add_notice(__('Product Deleted!', 'dc-woocommerce-multi-vendor'), 'success');
+                wc_add_notice(__('Product Deleted!', 'multivendorx'), 'success');
                 wp_redirect($delete_product_redirect_url);
                 exit;
             }
         }
         if($wpnonce && wp_verify_nonce($wpnonce, 'mvx_untrash_product') && $product_id && in_array($vendor->id, $current_user_ids )){
             wp_untrash_post($product_id);
-            wc_add_notice(__('Product restored from the Trash', 'dc-woocommerce-multi-vendor'), 'success');
+            wc_add_notice(__('Product restored from the Trash', 'multivendorx'), 'success');
             wp_redirect($delete_product_redirect_url);
             exit;
         }
         if($wpnonce && wp_verify_nonce($wpnonce, 'mvx_trash_product') && $product_id && in_array($vendor->id, $current_user_ids )){
             wp_trash_post($product_id);
-            wc_add_notice(__('Product moved to the Trash', 'dc-woocommerce-multi-vendor'), 'success');
+            wc_add_notice(__('Product moved to the Trash', 'multivendorx'), 'success');
             wp_redirect($delete_product_redirect_url);
             exit;
         }
@@ -1514,7 +1514,7 @@ class MVX_Product {
             $vendor = get_mvx_product_vendors($product->get_id());
             if ($vendor && apply_filters('mvx_customer_questions_and_answers_enabled', true, $product->get_id())) {
                 $tabs['mvx_customer_qna'] = array(
-                    'title' => __('Questions and Answers', 'dc-woocommerce-multi-vendor'),
+                    'title' => __('Questions and Answers', 'multivendorx'),
                     'priority' => 40,
                     'callback' => array($this, 'mvx_customer_questions_and_answers_content')
                 );
@@ -1543,25 +1543,25 @@ class MVX_Product {
         ?>
         <?php if ('fixed' === get_mvx_vendor_settings('commission_type', 'payment', '', 'fixed') || 'percent' === get_mvx_vendor_settings('commission_type', 'payment', '', 'fixed')): ?>
             <div class="form-field term-display-type-wrap">
-                <label for="commision"><?php _e('Commission', 'dc-woocommerce-multi-vendor'); ?></label>
+                <label for="commision"><?php _e('Commission', 'multivendorx'); ?></label>
                 <input type="number" class="short" style="" name="commision" id="commision" value="" placeholder="">
             </div>
         <?php endif; ?>
         <?php if ('fixed_with_percentage' === get_mvx_vendor_settings('commission_type', 'payment', '', 'fixed') || 'fixed_with_percentage_qty' === get_mvx_vendor_settings('commission_type', 'payment', '', 'fixed')): ?>
             <div class="form-field term-display-type-wrap">
-                <label for="commission_percentage"><?php _e('Commission Percentage', 'dc-woocommerce-multi-vendor'); ?></label>
+                <label for="commission_percentage"><?php _e('Commission Percentage', 'multivendorx'); ?></label>
                 <input type="number" class="short" style="" name="commission_percentage" id="commission_percentage" value="" placeholder="">
             </div>
         <?php endif; ?>
         <?php if ('fixed_with_percentage' === get_mvx_vendor_settings('commission_type', 'payment', '', 'fixed')): ?>
             <div class="form-field term-display-type-wrap">
-                <label for="fixed_with_percentage"><?php _e('Commission Fixed per transaction', 'dc-woocommerce-multi-vendor'); ?></label>
+                <label for="fixed_with_percentage"><?php _e('Commission Fixed per transaction', 'multivendorx'); ?></label>
                 <input type="number" class="short" style="" name="fixed_with_percentage" id="fixed_with_percentage" value="" placeholder="">
             </div>
         <?php endif; ?>
         <?php if ('fixed_with_percentage_qty' === get_mvx_vendor_settings('commission_type', 'payment', '', 'fixed')): ?>
             <div class="form-field term-display-type-wrap">
-                <label for="fixed_with_percentage_qty"><?php _e('Commission Fixed per unit', 'dc-woocommerce-multi-vendor'); ?></label>
+                <label for="fixed_with_percentage_qty"><?php _e('Commission Fixed per unit', 'multivendorx'); ?></label>
                 <input type="number" class="short" style="" name="fixed_with_percentage_qty" id="fixed_with_percentage_qty" value="" placeholder="">
             </div>
         <?php endif; ?>
@@ -1581,25 +1581,25 @@ class MVX_Product {
         ?>
         <?php if ('fixed' === $commission_type_value || 'percent' === $commission_type_value): ?>
             <tr class="form-field">
-                <th scope="row" valign="top"><label for="commision"><?php _e('Commission', 'dc-woocommerce-multi-vendor'); ?></label></th>
+                <th scope="row" valign="top"><label for="commision"><?php _e('Commission', 'multivendorx'); ?></label></th>
                 <td><input type="text" class="short" style="" name="commision" id="commision" value="<?php echo $commision; ?>" placeholder=""></td>
             </tr>
         <?php endif; ?>
         <?php if ('fixed_with_percentage' === $commission_type_value || 'fixed_with_percentage_qty' === $commission_type_value): ?>
             <tr class="form-field">
-                <th scope="row" valign="top"><label for="commission_percentage"><?php _e('Commission Percentage', 'dc-woocommerce-multi-vendor'); ?></label></th>
+                <th scope="row" valign="top"><label for="commission_percentage"><?php _e('Commission Percentage', 'multivendorx'); ?></label></th>
                 <td><input type="number" class="short" style="" name="commission_percentage" id="commission_percentage" value="<?php echo $commission_percentage; ?>" placeholder=""></td>
             </tr>
         <?php endif; ?>
         <?php if ('fixed_with_percentage' === $commission_type_value): ?>
             <tr class="form-field">
-                <th scope="row" valign="top"><label for="fixed_with_percentage"><?php _e('Commission Fixed per transaction', 'dc-woocommerce-multi-vendor'); ?></label></th>
+                <th scope="row" valign="top"><label for="fixed_with_percentage"><?php _e('Commission Fixed per transaction', 'multivendorx'); ?></label></th>
                 <td><input type="number" class="short" style="" name="fixed_with_percentage" id="fixed_with_percentage" value="<?php echo $fixed_with_percentage; ?>" placeholder=""></td>
             </tr>
         <?php endif; ?>
         <?php if ('fixed_with_percentage_qty' === $commission_type_value): ?>
             <tr class="form-field">
-                <th scope="row" valign="top"><label for="fixed_with_percentage_qty"><?php _e('Commission Fixed per unit', 'dc-woocommerce-multi-vendor'); ?></label></th>
+                <th scope="row" valign="top"><label for="fixed_with_percentage_qty"><?php _e('Commission Fixed per unit', 'multivendorx'); ?></label></th>
                 <td><input type="number" class="short" style="" name="fixed_with_percentage_qty" id="fixed_with_percentage_qty" value="<?php echo $fixed_with_percentage_qty; ?>" placeholder=""></td>
             </tr>
         <?php endif; ?>
@@ -1641,23 +1641,23 @@ class MVX_Product {
         if(is_user_mvx_vendor(get_current_user_id()) && isset( $_REQUEST['post'] ) && isset( $_REQUEST['action'] ) &&  $_REQUEST['action'] == 'edit' ){
             $custom_attributes['disabled'] = 'disabled';
         }
-        $gtin_type_options = array('' => __( 'Select type', 'dc-woocommerce-multi-vendor' )) + $MVX->taxonomy->get_mvx_gtin_terms(array('fields' => 'id=>name', 'orderby' => 'id'));
+        $gtin_type_options = array('' => __( 'Select type', 'multivendorx' )) + $MVX->taxonomy->get_mvx_gtin_terms(array('fields' => 'id=>name', 'orderby' => 'id'));
         woocommerce_wp_select( array(
                 'id'            => '_mvx_gtin_type',
                 'value'         => $gtin_type,
                 'wrapper_class' => 'mvx_gtin_type',
-                'label'         => __( 'GTIN type', 'dc-woocommerce-multi-vendor' ),
+                'label'         => __( 'GTIN type', 'multivendorx' ),
                 'options'       => $gtin_type_options,
                 'desc_tip'      => true,
-                'description'   => __( 'Add the GTIN code for this product.', 'dc-woocommerce-multi-vendor' ),
+                'description'   => __( 'Add the GTIN code for this product.', 'multivendorx' ),
                 'custom_attributes' => $custom_attributes,
         ) );
         woocommerce_wp_text_input( array(
                 'id'          => '_mvx_gtin_code',
-                'label'       => __( 'GTIN Code:', 'dc-woocommerce-multi-vendor' ),
+                'label'       => __( 'GTIN Code:', 'multivendorx' ),
                 'placeholder' => '',
                 'desc_tip'    => true,
-                'description' => __( 'Add the GTIN code for this product.', 'dc-woocommerce-multi-vendor' ),
+                'description' => __( 'Add the GTIN code for this product.', 'multivendorx' ),
                 'custom_attributes' => $custom_attributes,
         ) );
     }
@@ -1741,7 +1741,7 @@ class MVX_Product {
      * @return array
      */
     public function manage_product_columns( $columns ){
-        $product_items = array( 'mvx_product_gtin' => __( 'GTIN', 'dc-woocommerce-multi-vendor' ) );
+        $product_items = array( 'mvx_product_gtin' => __( 'GTIN', 'multivendorx' ) );
         $ref_pos       = array_search ( 'sku', array_keys ( $columns ) );
         $columns = array_slice ( $columns, 0, $ref_pos + 1, true ) + $product_items + array_slice ( $columns, $ref_pos + 1, count ( $columns ) - 1, true );
         return $columns;
@@ -1805,7 +1805,7 @@ class MVX_Product {
             // product category
             remove_meta_box( 'product_catdiv', 'product', 'side' );
             
-            add_meta_box( 'mvx_product_cat_hierarchy', __( 'Category hierarchy', 'dc-woocommerce-multi-vendor' ), array( $this, 'mvx_product_cat_hierarchy_meta_box' ), $post->post_type, 'side' );
+            add_meta_box( 'mvx_product_cat_hierarchy', __( 'Category hierarchy', 'multivendorx' ), array( $this, 'mvx_product_cat_hierarchy_meta_box' ), $post->post_type, 'side' );
         }
     }
     
@@ -1819,7 +1819,7 @@ class MVX_Product {
                 $default_cat_hierarchy = get_post_meta( $post->ID, '_default_cat_hierarchy_term_id', true );
                 echo '<div class="mvx-pro-cat-hierarchy" id="mvx-pro-cat-hierarchy">';
                 if( $nos_hierarchy > 1 ){
-                    echo '<p class="howto" id="new-tag-product_tag-desc">'.__( 'This product has multiple categories hierarchy.', 'dc-woocommerce-multi-vendor' ) . " " . __( 'Choose default', 'dc-woocommerce-multi-vendor' ) . '-</p>';
+                    echo '<p class="howto" id="new-tag-product_tag-desc">'.__( 'This product has multiple categories hierarchy.', 'multivendorx' ) . " " . __( 'Choose default', 'multivendorx' ) . '-</p>';
                 }
                 echo '<ul class="hierarchy-wrapper">';
                 foreach ( $get_different_terms_hierarchy as $term_id ) {
@@ -1913,7 +1913,7 @@ class MVX_Product {
         $vendor = get_mvx_product_vendors( $product->get_id() );
         if( !$vendor ) return $html;
         if ( get_mvx_vendor_settings('display_product_seller', 'settings_general') && apply_filters( 'mvx_enable_sold_by_on_wc_blocks_product_grid', true, $product ) ) {
-            $sold_by_text = apply_filters( 'mvx_sold_by_text', __('Sold By', 'dc-woocommerce-multi-vendor'), $product->get_id() );
+            $sold_by_text = apply_filters( 'mvx_sold_by_text', __('Sold By', 'multivendorx'), $product->get_id() );
             $html = "<li class=\"wc-block-grid__product\">
                     <a href=\"{$data->permalink}\" class=\"wc-block-grid__product-link\">
                             {$data->image}

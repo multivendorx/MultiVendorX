@@ -14,6 +14,6 @@ if ( !defined( 'ABSPATH' ) ) exit;  ?>
 
 <?php do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
-	<p><?php printf( esc_html__( "Hi there! This is to notify that an order #%s status has been changed on %s.",  'dc-woocommerce-multi-vendor' ), $order_id, get_option( 'blogname' ) ); ?></p>
+	<p><?php printf( esc_html__( "Hi there! This is to notify that an order #%s status has been changed on %s.",  'multivendorx' ), $order_id, get_option( 'blogname' ) ); ?></p>
 
 <?php do_action( 'mvx_email_footer' ); ?>

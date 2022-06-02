@@ -13,7 +13,7 @@ class MVX_Gateway_Bank_Transfer extends MVX_Payment_Gateway {
 
     public function __construct() {
         $this->id = 'direct_bank';
-        $this->gateway_title = __('Bank transfer', 'dc-woocommerce-multi-vendor');
+        $this->gateway_title = __('Bank transfer', 'multivendorx');
         $this->payment_gateway = $this->id;
         $this->enabled = mvx_is_module_active('bank-payment') ? 'Enable' : '';
     }
@@ -28,7 +28,7 @@ class MVX_Gateway_Bank_Transfer extends MVX_Payment_Gateway {
         if ($this->validate_request()) {
             $this->record_transaction();
             if ($this->transaction_id) {
-                return array('message' => __('New transaction has been initiated', 'dc-woocommerce-multi-vendor'), 'type' => 'success', 'transaction_id' => $this->transaction_id);
+                return array('message' => __('New transaction has been initiated', 'multivendorx'), 'type' => 'success', 'transaction_id' => $this->transaction_id);
             }
         } else {
             return $this->message;
@@ -38,7 +38,7 @@ class MVX_Gateway_Bank_Transfer extends MVX_Payment_Gateway {
     public function validate_request() {
         global $MVX;
         if ($this->enabled != 'Enable') {
-            $this->message[] = array('message' => __('Invalid payment method', 'dc-woocommerce-multi-vendor'), 'type' => 'error');
+            $this->message[] = array('message' => __('Invalid payment method', 'multivendorx'), 'type' => 'error');
             return false;
         }
 
@@ -57,7 +57,7 @@ class MVX_Gateway_Bank_Transfer extends MVX_Payment_Gateway {
             if ($this->get_transaction_total() > $thesold_amount) {
                 return true;
             } else {
-                $this->message[] = array('message' => __('Minimum threshold amount for commission withdrawal is ' . $thesold_amount, 'dc-woocommerce-multi-vendor'), 'type' => 'error');
+                $this->message[] = array('message' => __('Minimum threshold amount for commission withdrawal is ' . $thesold_amount, 'multivendorx'), 'type' => 'error');
                 return false;
             }
         }

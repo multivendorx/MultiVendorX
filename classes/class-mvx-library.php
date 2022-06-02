@@ -90,7 +90,7 @@ class MVX_Library {
         global $MVX;
         wp_enqueue_media();
         wp_enqueue_script('frontend_upload_js', $this->lib_url . 'upload/media-upload.js', array('jquery'), $MVX->version, true);
-        wp_localize_script('frontend_upload_js', 'media_upload_params', array('media_title' => __('Choose Media', 'dc-woocommerce-multi-vendor')));
+        wp_localize_script('frontend_upload_js', 'media_upload_params', array('media_title' => __('Choose Media', 'multivendorx')));
         wp_enqueue_style('upload_css', $this->lib_url . 'upload/media-upload.css', array(), $MVX->version);
     }
 

@@ -24,8 +24,8 @@ if($comments){
 		if ( $rating && get_option( 'woocommerce_enable_review_rating' ) === 'yes'){?>
 			<div class="comment-text">
 				<a href="<?php echo esc_url($vendor->permalink).'#li-comment-'.$comment->comment_ID ?>">
-					<div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating" class="star-rating" title="<?php echo sprintf( __( 'Rated %d out of 5', 'dc-woocommerce-multi-vendor' ), $rating ) ?>">
-						<span style="width:<?php echo ( $rating / 5 ) * 100; ?>%"><strong itemprop="ratingValue"><?php echo esc_html($rating); ?></strong> <?php esc_html_e( 'out of 5', 'dc-woocommerce-multi-vendor' ); ?></span>
+					<div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating" class="star-rating" title="<?php echo sprintf( __( 'Rated %d out of 5', 'multivendorx' ), $rating ) ?>">
+						<span style="width:<?php echo ( $rating / 5 ) * 100; ?>%"><strong itemprop="ratingValue"><?php echo esc_html($rating); ?></strong> <?php esc_html_e( 'out of 5', 'multivendorx' ); ?></span>
 					</div>
 				</a>
 				<?php if ( $comment->comment_approved != '0' ) {?>
@@ -33,7 +33,7 @@ if($comments){
 						<strong itemprop="author"><?php esc_html(comment_author($comment->comment_ID)); ?></strong> <?php
 						if ( get_option( 'woocommerce_review_rating_verification_label' ) === 'yes' )
 							if ( $verified )
-								echo '<em class="verified">(' . apply_filters('mvx_widget_varified_buyer_text_filter',esc_html_e( 'verified buyer', 'dc-woocommerce-multi-vendor' )) . ')</em> ';
+								echo '<em class="verified">(' . apply_filters('mvx_widget_varified_buyer_text_filter',esc_html_e( 'verified buyer', 'multivendorx' )) . ')</em> ';
 
 						?>&ndash; <time itemprop="datePublished" datetime="<?php echo get_comment_date( 'c',$comment->comment_ID ); ?>"><?php echo esc_html(get_comment_date( wc_date_format(), $comment->comment_ID )); ?></time>
 					</p>
@@ -47,7 +47,7 @@ if($comments){
 		}
 	}
 } else {
- 		echo apply_filters('mvx_widget_empty_reviews_text_filter',__( 'No Reviews..', 'dc-woocommerce-multi-vendor' ));
+ 		echo apply_filters('mvx_widget_empty_reviews_text_filter',__( 'No Reviews..', 'multivendorx' ));
  	}
  ?>
 </div>

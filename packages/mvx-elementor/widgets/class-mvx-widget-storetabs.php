@@ -21,7 +21,7 @@ class MVX_Elementor_StoreTabs extends MVX_Elementor_StoreInfo {
      * @return string
      */
     public function get_title() {
-        return __( 'Store Tabs', 'dc-woocommerce-multi-vendor' );
+        return __( 'Store Tabs', 'multivendorx' );
     }
 
     /**

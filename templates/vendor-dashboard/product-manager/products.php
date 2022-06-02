@@ -22,11 +22,11 @@ do_action('before_mvx_vendor_dashboard_product_list_table');
                 <div class="product_filters pull-left">
                     <?php
                     $statuses = apply_filters('mvx_vendor_dashboard_product_list_filters_status', array(
-                        'all' => __('All', 'dc-woocommerce-multi-vendor'),
-                        'publish' => __('Published', 'dc-woocommerce-multi-vendor'),
-                        'pending' => __('Pending', 'dc-woocommerce-multi-vendor'),
-                        'draft' => __('Draft', 'dc-woocommerce-multi-vendor'),
-                        'trash' => __('Trash', 'dc-woocommerce-multi-vendor')
+                        'all' => __('All', 'multivendorx'),
+                        'publish' => __('Published', 'multivendorx'),
+                        'pending' => __('Pending', 'multivendorx'),
+                        'draft' => __('Draft', 'multivendorx'),
+                        'trash' => __('Trash', 'multivendorx')
                     ));
                     $current_status = isset($_GET['post_status']) ? wc_clean($_GET['post_status']) : 'all';
                     echo '<ul class="subsubsub by_status nav nav-pills category-filter-nav">';
@@ -47,7 +47,7 @@ do_action('before_mvx_vendor_dashboard_product_list_table');
                 </div>
                 <div class="product_search pull-right">
                     <input type="text" class="pro_search_key no_input form-control inline-input" id="pro_search_key" name="search_keyword" />
-                    <button class="mvx_black_btn btn btn-secondary" type="button" id="pro_search_btn"><?php _e('Search', 'dc-woocommerce-multi-vendor'); ?></button>
+                    <button class="mvx_black_btn btn btn-secondary" type="button" id="pro_search_btn"><?php _e('Search', 'multivendorx'); ?></button>
                 </div>
             </div>
         </div>
@@ -55,9 +55,9 @@ do_action('before_mvx_vendor_dashboard_product_list_table');
         <div class="product-filter-actions">
             <div class="alignleft actions">
                 <?php $pro_bulk_actions = apply_filters( 'mvx_product_list_bulk_actions', array(
-                    'trash' => __('Move to trash', 'dc-woocommerce-multi-vendor'),
-                    'untrash' => __('Restore', 'dc-woocommerce-multi-vendor'),
-                    'delete' => __('Delete Permanently', 'dc-woocommerce-multi-vendor'),
+                    'trash' => __('Move to trash', 'multivendorx'),
+                    'untrash' => __('Restore', 'multivendorx'),
+                    'delete' => __('Delete Permanently', 'multivendorx'),
                 ));
                 // Filter bulk actions according to post status
                 if(isset($_REQUEST['post_status']) && $_REQUEST['post_status'] == 'trash'){
@@ -70,7 +70,7 @@ do_action('before_mvx_vendor_dashboard_product_list_table');
                 }
                 ?>
                 <select id="product_bulk_actions" name="bulk_action" class="mvx-filter-dtdd mvx_product_bulk_actions form-control inline-input">
-                    <option value=""><?php _e('Bulk Actions', 'dc-woocommerce-multi-vendor'); ?></option>
+                    <option value=""><?php _e('Bulk Actions', 'multivendorx'); ?></option>
                     <?php 
                     if($pro_bulk_actions) :
                         foreach ($pro_bulk_actions as $key => $label) {
@@ -79,9 +79,9 @@ do_action('before_mvx_vendor_dashboard_product_list_table');
                     endif;
                     ?>
                 </select>
-                <button class="mvx_black_btn btn btn-secondary" type="button" id="product_list_do_bulk_action"><?php _e('Apply', 'dc-woocommerce-multi-vendor'); ?></button>
+                <button class="mvx_black_btn btn btn-secondary" type="button" id="product_list_do_bulk_action"><?php _e('Apply', 'multivendorx'); ?></button>
                 <select id="product_cat" name="product_cat" class="mvx-filter-dtdd mvx_filter_product_cat form-control inline-input">
-                    <option value=""><?php _e('Select a Category', 'dc-woocommerce-multi-vendor'); ?></option>
+                    <option value=""><?php _e('Select a Category', 'multivendorx'); ?></option>
                     <?php 
                     $product_taxonomy_terms = get_terms('product_cat', 'orderby=name&hide_empty=0&parent=0');
                     if ($product_taxonomy_terms) {
@@ -90,7 +90,7 @@ do_action('before_mvx_vendor_dashboard_product_list_table');
                     ?>
                 </select>
                 <select id="product_types" name="product_type" class="mvx-filter-dtdd mvx_filter_product_types form-control inline-input">
-                    <option value=""><?php _e('Filter by product type', 'dc-woocommerce-multi-vendor'); ?></option>
+                    <option value=""><?php _e('Filter by product type', 'multivendorx'); ?></option>
                     <?php 
                     $product_types = mvx_get_available_product_types();
                     if($product_types) :
@@ -108,7 +108,7 @@ do_action('before_mvx_vendor_dashboard_product_list_table');
                     ?>
                 </select>
                 <?php do_action( 'mvx_products_list_add_extra_filters' ); ?>
-                <button class="mvx_black_btn btn btn-secondary" type="button" id="product_list_do_filter"><?php _e('Filter', 'dc-woocommerce-multi-vendor'); ?></button>
+                <button class="mvx_black_btn btn btn-secondary" type="button" id="product_list_do_filter"><?php _e('Filter', 'multivendorx'); ?></button>
             </div>
         </div>
             
@@ -129,7 +129,7 @@ do_action('before_mvx_vendor_dashboard_product_list_table');
         </table>
         <div class="mvx-action-container">
             <?php do_action('before_mvx_vendor_dash_product_list_page_header_action_btn'); ?>
-            <a href="<?php echo apply_filters('mvx_vendor_dashboard_add_product_url', mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_add_product_endpoint', 'seller_dashbaord', 'add-product')));?>" class="btn btn-default"><i class="mvx-font ico-add-booking"></i><?php echo __('Add Product', 'dc-woocommerce-multi-vendor');?></a>
+            <a href="<?php echo apply_filters('mvx_vendor_dashboard_add_product_url', mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_add_product_endpoint', 'seller_dashbaord', 'add-product')));?>" class="btn btn-default"><i class="mvx-font ico-add-booking"></i><?php echo __('Add Product', 'multivendorx');?></a>
             <?php do_action('after_mvx_vendor_dash_product_list_page_header_action_btn'); ?>
         </div>
         </form>
@@ -169,16 +169,16 @@ if ($products_table_headers) {
             "lengthChange": false,
             "responsive": true,
             "language": {
-                "emptyTable": "<?php echo isset($table_init['emptyTable']) ? trim($table_init['emptyTable']) : __('No products found!', 'dc-woocommerce-multi-vendor'); ?>",
-                "processing": "<?php echo isset($table_init['processing']) ? trim($table_init['processing']) : __('Processing...', 'dc-woocommerce-multi-vendor'); ?>",
-                "info": "<?php echo isset($table_init['info']) ? trim($table_init['info']) : __('Showing _START_ to _END_ of _TOTAL_ products', 'dc-woocommerce-multi-vendor'); ?>",
-                "infoEmpty": "<?php echo isset($table_init['infoEmpty']) ? trim($table_init['infoEmpty']) : __('Showing 0 to 0 of 0 products', 'dc-woocommerce-multi-vendor'); ?>",
-                "lengthMenu": "<?php echo isset($table_init['lengthMenu']) ? trim($table_init['lengthMenu']) : __('Number of rows _MENU_', 'dc-woocommerce-multi-vendor'); ?>",
-                "zeroRecords": "<?php echo isset($table_init['zeroRecords']) ? trim($table_init['zeroRecords']) : __('No matching products found', 'dc-woocommerce-multi-vendor'); ?>",
-                "search": "<?php echo isset($table_init['search']) ? trim($table_init['search']) : __('Search:', 'dc-woocommerce-multi-vendor'); ?>",
+                "emptyTable": "<?php echo isset($table_init['emptyTable']) ? trim($table_init['emptyTable']) : __('No products found!', 'multivendorx'); ?>",
+                "processing": "<?php echo isset($table_init['processing']) ? trim($table_init['processing']) : __('Processing...', 'multivendorx'); ?>",
+                "info": "<?php echo isset($table_init['info']) ? trim($table_init['info']) : __('Showing _START_ to _END_ of _TOTAL_ products', 'multivendorx'); ?>",
+                "infoEmpty": "<?php echo isset($table_init['infoEmpty']) ? trim($table_init['infoEmpty']) : __('Showing 0 to 0 of 0 products', 'multivendorx'); ?>",
+                "lengthMenu": "<?php echo isset($table_init['lengthMenu']) ? trim($table_init['lengthMenu']) : __('Number of rows _MENU_', 'multivendorx'); ?>",
+                "zeroRecords": "<?php echo isset($table_init['zeroRecords']) ? trim($table_init['zeroRecords']) : __('No matching products found', 'multivendorx'); ?>",
+                "search": "<?php echo isset($table_init['search']) ? trim($table_init['search']) : __('Search:', 'multivendorx'); ?>",
                 "paginate": {
-                    "next": "<?php echo isset($table_init['next']) ? trim($table_init['next']) : __('Next', 'dc-woocommerce-multi-vendor'); ?>",
-                    "previous": "<?php echo isset($table_init['previous']) ? trim($table_init['previous']) : __('Previous', 'dc-woocommerce-multi-vendor'); ?>"
+                    "next": "<?php echo isset($table_init['next']) ? trim($table_init['next']) : __('Next', 'multivendorx'); ?>",
+                    "previous": "<?php echo isset($table_init['previous']) ? trim($table_init['previous']) : __('Previous', 'multivendorx'); ?>"
                 },
             },
             "drawCallback": function(settings){
@@ -186,7 +186,7 @@ if ($products_table_headers) {
                 $('thead tr th.select_product').removeClass('sorting_asc');
                 $('thead tr th.image').removeClass('sorting_asc');
 //                var product_cat_sel = $('<select id="product_cat" class="mvx-filter-dtdd mvx_filter_product_cat form-control">').appendTo("#product_table_length");
-//                product_cat_sel.append($("<option>").attr('value', '').text('<?php echo trim(__('Select a Category', 'dc-woocommerce-multi-vendor')); ?>'));
+//                product_cat_sel.append($("<option>").attr('value', '').text('<?php echo trim(__('Select a Category', 'multivendorx')); ?>'));
 //                $(filter_by_category_list).each(function () {
 //                    product_cat_sel.append($("<option>").attr('value', this.key).text(this.label));
 //                });
@@ -215,7 +215,7 @@ if ($products_table_headers) {
                     data.search_keyword = $('#pro_search_key').val();
                 },
                 error: function(xhr, status, error) {
-                    $("#product_table tbody").append('<tr class="odd"><td valign="top" colspan="<?php echo count($products_table_headers); ?>" class="dataTables_empty" style="text-align:center;">'+error+' - <a href="javascript:window.location.reload();"><?php _e('Reload', 'dc-woocommerce-multi-vendor'); ?></a></td></tr>');
+                    $("#product_table tbody").append('<tr class="odd"><td valign="top" colspan="<?php echo count($products_table_headers); ?>" class="dataTables_empty" style="text-align:center;">'+error+' - <a href="javascript:window.location.reload();"><?php _e('Reload', 'multivendorx'); ?></a></td></tr>');
                     $("#product_table_processing").css("display","none");
                 }
             },

@@ -136,7 +136,7 @@ class MVX_Cron_Job {
                         $vendor_weekly_stats['total_transaction'] = array_sum(wp_list_pluck($transaction_details, 'total_amount'));
                     }
                     $report_data = array(
-                        'period' => __('weekly', 'dc-woocommerce-multi-vendor'),
+                        'period' => __('weekly', 'multivendorx'),
                         'start_date' => date('Y-m-d', strtotime('-7 days')),
                         'end_date' => @date('Y-m-d'),
                         'stats' => $vendor_weekly_stats,
@@ -214,7 +214,7 @@ class MVX_Cron_Job {
                         $vendor_monthly_stats['total_transaction'] = array_sum(wp_list_pluck($transaction_details, 'total_amount'));
                     }
                     $report_data = array(
-                        'period' => __('monthly', 'dc-woocommerce-multi-vendor'),
+                        'period' => __('monthly', 'multivendorx'),
                         'start_date' => date('Y-m-d', strtotime('-30 days')),
                         'end_date' => @date('Y-m-d'),
                         'stats' => $vendor_monthly_stats,
@@ -294,7 +294,7 @@ class MVX_Cron_Job {
                         $vendor_custom_date_stats['total_transaction'] = array_sum(wp_list_pluck($transaction_details, 'total_amount'));
                     }
                     $report_data = array(
-                        'period' => __('monthly', 'dc-woocommerce-multi-vendor'),
+                        'period' => __('monthly', 'multivendorx'),
                         'start_date' => date('Y-m-d', $strtotime),
                         'end_date' => @date('Y-m-d'),
                         'stats' => $vendor_custom_date_stats,
@@ -680,12 +680,12 @@ class MVX_Cron_Job {
                 $choose_map_api = array(
                     array(
                         'key'=> "google_map_set",
-                        'label'=> __('Google map', 'dc-woocommerce-multi-vendor'),
+                        'label'=> __('Google map', 'multivendorx'),
                         'value'=> 'google_map_set',
                     ),
                     array(
                         'key'=> "mapbox_api_set",
-                        'label'=> __('Mapbox map', 'dc-woocommerce-multi-vendor'),
+                        'label'=> __('Mapbox map', 'multivendorx'),
                         'value'=> 'mapbox_api_set',
                     )
                 );
@@ -786,17 +786,17 @@ class MVX_Cron_Job {
                 $options_spmv = array(
                     array(
                         'key'=> "min-price",
-                        'label'=> __('Min Price', 'dc-woocommerce-multi-vendor'),
+                        'label'=> __('Min Price', 'multivendorx'),
                         'value'=> 'min-price',
                     ),
                     array(
                         'key'=> "max-price",
-                        'label'=> __('Max Price', 'dc-woocommerce-multi-vendor'),
+                        'label'=> __('Max Price', 'multivendorx'),
                         'value'=> 'max-price',
                     ),
                     array(
                         'key'=> "top-rated-vendor",
-                        'label'=> __('Top rated vendor', 'dc-woocommerce-multi-vendor'),
+                        'label'=> __('Top rated vendor', 'multivendorx'),
                         'value'=> 'top-rated-vendor',
                     )
                 );
@@ -824,38 +824,38 @@ class MVX_Cron_Job {
                 $options_type = array(
                     array(
                         'key'=> "fixed",
-                        'label'=> __('Fixed Amount', 'dc-woocommerce-multi-vendor'),
-                        'value'=> __('fixed', 'dc-woocommerce-multi-vendor'),
+                        'label'=> __('Fixed Amount', 'multivendorx'),
+                        'value'=> __('fixed', 'multivendorx'),
                     ),
                     array(
                         'key'=> "percent",
-                        'label'=> __('Percentage', 'dc-woocommerce-multi-vendor'),
-                        'value'=> __('percent', 'dc-woocommerce-multi-vendor'),
+                        'label'=> __('Percentage', 'multivendorx'),
+                        'value'=> __('percent', 'multivendorx'),
                     ),
                     array(
                         'key'=> "fixed_with_percentage",
-                        'label'=> __('%age + Fixed (per transaction)', 'dc-woocommerce-multi-vendor'),
-                        'value'=> __('fixed_with_percentage', 'dc-woocommerce-multi-vendor'),
+                        'label'=> __('%age + Fixed (per transaction)', 'multivendorx'),
+                        'value'=> __('fixed_with_percentage', 'multivendorx'),
                     ),
                     array(
                         'key'=> "fixed_with_percentage_qty",
-                        'label'=> __('%age + Fixed (per unit)', 'dc-woocommerce-multi-vendor'),
-                        'value'=> __('fixed_with_percentage_qty', 'dc-woocommerce-multi-vendor'),
+                        'label'=> __('%age + Fixed (per unit)', 'multivendorx'),
+                        'value'=> __('fixed_with_percentage_qty', 'multivendorx'),
                     ),
                     array(
                         'key'=> "commission_by_product_price",
-                        'label'=> __('Commission By Product Price', 'dc-woocommerce-multi-vendor'),
-                        'value'=> __('commission_by_product_price', 'dc-woocommerce-multi-vendor'),
+                        'label'=> __('Commission By Product Price', 'multivendorx'),
+                        'value'=> __('commission_by_product_price', 'multivendorx'),
                     ),
                     array(
                         'key'=> "commission_by_purchase_quantity",
-                        'label'=> __('Commission By Purchase Quantity', 'dc-woocommerce-multi-vendor'),
-                        'value'=> __('commission_by_purchase_quantity', 'dc-woocommerce-multi-vendor'),
+                        'label'=> __('Commission By Purchase Quantity', 'multivendorx'),
+                        'value'=> __('commission_by_purchase_quantity', 'multivendorx'),
                     ),
                     array(
                         'key'=> "fixed_with_percentage_per_vendor",
-                        'label'=> __('%age + Fixed (per vendor)', 'dc-woocommerce-multi-vendor'),
-                        'value'=> __('fixed_with_percentage_per_vendor', 'dc-woocommerce-multi-vendor'),
+                        'label'=> __('%age + Fixed (per vendor)', 'multivendorx'),
+                        'value'=> __('fixed_with_percentage_per_vendor', 'multivendorx'),
                     )
                 );
                 foreach ($options_type as $key_type => $value_type) {
@@ -892,29 +892,29 @@ class MVX_Cron_Job {
 
             // bear the gateway charges
             if (get_mvx_older_global_settings('gateway_charges_cost_carrier') && get_mvx_older_global_settings('gateway_charges_cost_carrier') == 'vendor') {
-                $commission_data['gateway_charges_cost_carrier'] = array('label'=> __('Vendor', 'dc-woocommerce-multi-vendor'), 'value'=> 'vendor', 'index' => 0 );
+                $commission_data['gateway_charges_cost_carrier'] = array('label'=> __('Vendor', 'multivendorx'), 'value'=> 'vendor', 'index' => 0 );
                 mvx_update_option('mvx_commissions_tab_settings', $commission_data);
             }
             if (get_mvx_older_global_settings('gateway_charges_cost_carrier') && get_mvx_older_global_settings('gateway_charges_cost_carrier') == 'admin') {
-                $commission_data['gateway_charges_cost_carrier'] = array('label'=> __('Admin', 'dc-woocommerce-multi-vendor'), 'value'=> 'admin', 'index' => 1 );
+                $commission_data['gateway_charges_cost_carrier'] = array('label'=> __('Admin', 'multivendorx'), 'value'=> 'admin', 'index' => 1 );
                 mvx_update_option('mvx_commissions_tab_settings', $commission_data);
             }
             if (get_mvx_older_global_settings('gateway_charges_cost_carrier') && get_mvx_older_global_settings('gateway_charges_cost_carrier') == 'separate') {
-                $commission_data['gateway_charges_cost_carrier'] = array('label'=> __('Separately', 'dc-woocommerce-multi-vendor'), 'value'=> 'separate', 'index' => 2 );
+                $commission_data['gateway_charges_cost_carrier'] = array('label'=> __('Separately', 'multivendorx'), 'value'=> 'separate', 'index' => 2 );
                 mvx_update_option('mvx_commissions_tab_settings', $commission_data);
             }
 
             // gateway charge type
             if (get_mvx_older_global_settings('payment_gateway_charge_type') && get_mvx_older_global_settings('payment_gateway_charge_type') == 'percent') {
-                $commission_data['payment_gateway_charge_type'] = array('label'=> __('Percentage', 'dc-woocommerce-multi-vendor'), 'value'=> 'percent', 'index' => 0 );
+                $commission_data['payment_gateway_charge_type'] = array('label'=> __('Percentage', 'multivendorx'), 'value'=> 'percent', 'index' => 0 );
                 mvx_update_option('mvx_commissions_tab_settings', $commission_data);
             }
             if (get_mvx_older_global_settings('payment_gateway_charge_type') && get_mvx_older_global_settings('payment_gateway_charge_type') == 'fixed') {
-                $commission_data['payment_gateway_charge_type'] = array('label'=> __('Fixed Amount', 'dc-woocommerce-multi-vendor'), 'value'=> 'fixed', 'index' => 1 );
+                $commission_data['payment_gateway_charge_type'] = array('label'=> __('Fixed Amount', 'multivendorx'), 'value'=> 'fixed', 'index' => 1 );
                 mvx_update_option('mvx_commissions_tab_settings', $commission_data);
             }
             if (get_mvx_older_global_settings('payment_gateway_charge_type') && get_mvx_older_global_settings('payment_gateway_charge_type') == 'fixed_with_percentage') {
-                $commission_data['payment_gateway_charge_type'] = array('label'=> __('%age + Fixed', 'dc-woocommerce-multi-vendor'), 'value'=> 'fixed_with_percentage', 'index' => 2 );
+                $commission_data['payment_gateway_charge_type'] = array('label'=> __('%age + Fixed', 'multivendorx'), 'value'=> 'fixed_with_percentage', 'index' => 2 );
                 mvx_update_option('mvx_commissions_tab_settings', $commission_data);
             }
 
@@ -1027,15 +1027,15 @@ class MVX_Cron_Job {
             }
             // order withdrawl status
             if (get_mvx_older_global_settings('order_withdrawl_statuson-hold')) {
-                $disbursement_data['order_withdrawl_status'] = array('value' => 'on-hold', 'label' => __('On hold', 'dc-woocommerce-multi-vendor'), 'index' => 0);
+                $disbursement_data['order_withdrawl_status'] = array('value' => 'on-hold', 'label' => __('On hold', 'multivendorx'), 'index' => 0);
                 mvx_update_option('mvx_disbursement_tab_settings', $disbursement_data);
             }
             if (get_mvx_older_global_settings('order_withdrawl_statusprocessing')) {
-                $disbursement_data['order_withdrawl_status'] = array('value' => 'processing', 'label' => __('Processing', 'dc-woocommerce-multi-vendor'), 'index' => 1);
+                $disbursement_data['order_withdrawl_status'] = array('value' => 'processing', 'label' => __('Processing', 'multivendorx'), 'index' => 1);
                 mvx_update_option('mvx_disbursement_tab_settings', $disbursement_data);
             }
             if (get_mvx_older_global_settings('order_withdrawl_statuscompleted')) {
-                $disbursement_data['order_withdrawl_status'] = array('value' => 'completed', 'label' => __('Completed', 'dc-woocommerce-multi-vendor'), 'index' => 2);
+                $disbursement_data['order_withdrawl_status'] = array('value' => 'completed', 'label' => __('Completed', 'multivendorx'), 'index' => 2);
                 mvx_update_option('mvx_disbursement_tab_settings', $disbursement_data);
             }
 

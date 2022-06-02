@@ -123,8 +123,6 @@ class App extends React.Component {
       list_vendor_roles_data: []
     };
 
-    this.ddddffffff = 'fffffffffffff';
-
     this.handleChange = this.handleChange.bind(this);
 
     this.QueryParamsDemo = this.QueryParamsDemo.bind(this);
@@ -197,10 +195,15 @@ class App extends React.Component {
       }
     })
       .then((response) => {
-        this.handleClose_dynamic();
-        this.setState({
-          datavendor: response.data,
-        });
+
+        if (reload) {
+          location.reload();
+        } else {
+          this.handleClose_dynamic();
+          this.setState({
+            datavendor: response.data,
+          });
+        }
       });
   }
 
@@ -214,10 +217,15 @@ class App extends React.Component {
       }
     })
       .then((response) => {
-        this.handleClose_dynamic();
-        this.setState({
-          datavendor: response.data,
-        });
+
+        if (reload) {
+          location.reload();
+        } else {
+          this.handleClose_dynamic();
+          this.setState({
+            datavendor: response.data,
+          });
+        }
       });
 
   }
@@ -583,7 +591,7 @@ class App extends React.Component {
 
 
         data_ann.last_action == 'last_action_trigger' ? data_ann.cell = (row) => <div className="mvx-vendor-action-icon">
-
+          <a href={row.link}><i className="mvx-font icon-edit"></i></a>
           <a href={row.link}><i className="mvx-font icon-edit"></i></a>
           <div onClick={() => this.handleVendorDismiss(row.ID)} id={row.ID}><i className="mvx-font icon-no"></i></div>
 

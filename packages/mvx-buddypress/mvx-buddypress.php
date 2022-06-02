@@ -103,7 +103,7 @@ class MVX_BuddyPress {
     	if (!is_user_mvx_vendor(bp_displayed_user_id())) return;
     	bp_core_new_nav_item( apply_filters( 'bp_nav_mvx_shop_page', 
     		array(
-    			'name' => __('Shop','dc-woocommerce-multi-vendor'),
+    			'name' => __('Shop','multivendorx'),
     			'slug' => 'shop',
     			'screen_function' => array($this, 'bp_custom_menu_page_screen_vendor_function' ),
     			'default_subnav_slug' => 'shop',
@@ -325,17 +325,17 @@ class MVX_BuddyPress {
     	?>
 		<div class="panel panel-default pannel-outer-heading">
 		<div class="panel-heading d-flex">
-			<h3><?php _e('BuddyPress Setting', 'dc-woocommerce-multi-vendor'); ?></h3>
+			<h3><?php _e('BuddyPress Setting', 'multivendorx'); ?></h3>
 		</div>
 		<div class="panel-body panel-content-padding form-horizontal">
 			<div class="mvx_media_block">
 				<div class="form-group">
-					<label class="control-label col-sm-3 col-md-3 facebook"><?php _e('Sync Setting', 'dc-woocommerce-multi-vendor'); ?></label>
+					<label class="control-label col-sm-3 col-md-3 facebook"><?php _e('Sync Setting', 'multivendorx'); ?></label>
 					<div class="col-md-6 col-sm-9">
 						<?php 
-						$buddypress_setting = apply_filters( 'buddypress_setting_at_storefont' , array( 'dashboard_to' => __('My store to BuddyPress', 'dc-woocommerce-multi-vendor'), 'buddypress_to' =>__('BuddyPress to My store','dc-woocommerce-multi-vendor') ) ); ?>
+						$buddypress_setting = apply_filters( 'buddypress_setting_at_storefont' , array( 'dashboard_to' => __('My store to BuddyPress', 'multivendorx'), 'buddypress_to' =>__('BuddyPress to My store','multivendorx') ) ); ?>
 						<select name="vendor_sync" id="vendor_sync" class="state_select user-profile-fields form-control inp-btm-margin regular-select" rel="vendor_sync">
-							<option value=""><?php esc_html_e( 'Select a option&hellip;', 'dc-woocommerce-multi-vendor' ); ?></option>
+							<option value=""><?php esc_html_e( 'Select a option&hellip;', 'multivendorx' ); ?></option>
 							<?php
 							if($buddypress_setting):
 
@@ -353,15 +353,15 @@ class MVX_BuddyPress {
 
 				<div class="mvx_media_block">
 					<div class="form-group">
-						<label class="control-label col-sm-3 col-md-3 facebook"><?php _e('Sync Optios', 'dc-woocommerce-multi-vendor'); ?></label>
+						<label class="control-label col-sm-3 col-md-3 facebook"><?php _e('Sync Optios', 'multivendorx'); ?></label>
 						<div class="col-md-6 col-sm-9">
 
 							<input type="checkbox" id="profile_image" name="profile_image" value="image">
-							<label for="profile_image"><?php echo __( 'Store Logo / Profile picture' ,'dc-woocommerce-multi-vendor' ); ?> </label><br>
+							<label for="profile_image"><?php echo __( 'Store Logo / Profile picture' ,'multivendorx' ); ?> </label><br>
 							<input type="checkbox" id="profile_cover" name="profile_cover" value="cover">
-							<label for="profile_cover"><?php echo __( 'Cover Photo / Cover Photo', 'dc-woocommerce-multi-vendor' ) ?></label><br>
+							<label for="profile_cover"><?php echo __( 'Cover Photo / Cover Photo', 'multivendorx' ) ?></label><br>
 							<input type="checkbox" id="profile_name" name="profile_name" value="profile_name">
-							<label for="profile_name"> <?php echo __('Name / Name','dc-woocommerce-multi-vendor') ?> </label><br>
+							<label for="profile_name"> <?php echo __('Name / Name','multivendorx') ?> </label><br>
 
 						</div>
 					</div>
@@ -382,9 +382,9 @@ class MVX_BuddyPress {
 
     /******************** (MVX->settings->capabilities) Give setting on admin end for capabilities to vendor *************************/
     public function mvx_buddypress_capability_to_vendor( $data ){
-      $data['sections']['default_buddypress_settings_section_type_option'] = array( "title"  => __( 'BuddyPress Sync Options ', 'dc-woocommerce-multi-vendor' ), // Section one
+      $data['sections']['default_buddypress_settings_section_type_option'] = array( "title"  => __( 'BuddyPress Sync Options ', 'multivendorx' ), // Section one
                     "fields" => apply_filters( "mvx_vendor_buddypress_options", array(
-                        "profile_sync" => array('title' => __('Vendor Capability Sync', 'dc-woocommerce-multi-vendor'), 'type' => 'checkbox', 'id' => 'profile_sync', 'label_for' => 'profile_sync', 'name' => 'profile_sync', 'value' => 'Enable' ,'desc' => __('Ignore if BuddyPress is not active' , 'dc-woocommerce-multi-vendor' ) ), // Select
+                        "profile_sync" => array('title' => __('Vendor Capability Sync', 'multivendorx'), 'type' => 'checkbox', 'id' => 'profile_sync', 'label_for' => 'profile_sync', 'name' => 'profile_sync', 'value' => 'Enable' ,'desc' => __('Ignore if BuddyPress is not active' , 'multivendorx' ) ), // Select
                         )
                     )
                 );
@@ -403,7 +403,7 @@ class MVX_BuddyPress {
     public function mvx_save_storefont_data( $user_data ,$user_id ){
     	$vendor = new MVX_Vendor($user_id);
     	$user_data['vendor_buddypress'] = array(
-                'label' => __('BuddyPress Profile', 'dc-woocommerce-multi-vendor'),
+                'label' => __('BuddyPress Profile', 'multivendorx'),
                 'type' => 'text',
                 'value' => $vendor->buddypress,
                 'class' => "user-profile-fields regular-text"
@@ -414,7 +414,7 @@ class MVX_BuddyPress {
     public function mvx_add_storefont_buddypress_link( $vendor ){
         ?>
         <div class="form-group">
-            <label class="control-label col-sm-3 col-md-3 buddypress"><?php _e('BuddyPress', 'dc-woocommerce-multi-vendor'); ?></label>
+            <label class="control-label col-sm-3 col-md-3 buddypress"><?php _e('BuddyPress', 'multivendorx'); ?></label>
             <div class="col-md-6 col-sm-9">
                 <input class="form-control" type="url" name="vendor_buddypress" value="<?php echo $vendor->buddypress; ?>" >
             </div>  
@@ -428,7 +428,7 @@ class MVX_BuddyPress {
     }
     
     public function mvx_buddypress_tab_admin( $social_tab_options, $vendor_obj ){
-        $social_tab_options['vendor_buddypress'] = array('label' => __('BuddyPress', 'dc-woocommerce-multi-vendor'), 'type' => 'url', 'id' => 'vendor_buddypress', 'label_for' => 'vendor_buddypress', 'name' => 'vendor_buddypress', 'value' => $vendor_obj->buddypress);
+        $social_tab_options['vendor_buddypress'] = array('label' => __('BuddyPress', 'multivendorx'), 'type' => 'url', 'id' => 'vendor_buddypress', 'label_for' => 'vendor_buddypress', 'name' => 'vendor_buddypress', 'value' => $vendor_obj->buddypress);
         return $social_tab_options;
     }
 

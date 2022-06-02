@@ -19,7 +19,7 @@ class MVX_Gateway_Paypal_Masspay extends MVX_Payment_Gateway {
 
     public function __construct() {
         $this->id = 'paypal_masspay';
-        $this->gateway_title = __('Paypal masspay', 'dc-woocommerce-multi-vendor');
+        $this->gateway_title = __('Paypal masspay', 'multivendorx');
         $this->payment_gateway = $this->id;
         $this->enabled = mvx_is_module_active('paypal-masspay') ? 'Enable' : '';
         $this->api_username = get_mvx_global_settings('api_username');
@@ -45,7 +45,7 @@ class MVX_Gateway_Paypal_Masspay extends MVX_Payment_Gateway {
             if ($paypal_response) {
                 $this->record_transaction();
                 if ($this->transaction_id) {
-                    return array('message' => __('New transaction has been initiated', 'dc-woocommerce-multi-vendor'), 'type' => 'success', 'transaction_id' => $this->transaction_id);
+                    return array('message' => __('New transaction has been initiated', 'multivendorx'), 'type' => 'success', 'transaction_id' => $this->transaction_id);
                 }
             } else {
                 return false;
@@ -58,13 +58,13 @@ class MVX_Gateway_Paypal_Masspay extends MVX_Payment_Gateway {
     public function validate_request() {
         global $MVX;
         if ($this->enabled != 'Enable') {
-            $this->message[] = array('message' => __('Invalid payment method', 'dc-woocommerce-multi-vendor'), 'type' => 'error');
+            $this->message[] = array('message' => __('Invalid payment method', 'multivendorx'), 'type' => 'error');
             return false;
         } else if (!$this->api_username && !$this->api_password && !$this->api_signature) {
-            $this->message[] = array('message' => __('Paypal masspay setting is not configured properly please contact site administrator', 'dc-woocommerce-multi-vendor'), 'type' => 'error');
+            $this->message[] = array('message' => __('Paypal masspay setting is not configured properly please contact site administrator', 'multivendorx'), 'type' => 'error');
             return false;
         } else if (!$this->reciver_email) {
-            $this->message[] = array('message' => __('Please update your paypal email to receive commission', 'dc-woocommerce-multi-vendor'), 'type' => 'error');
+            $this->message[] = array('message' => __('Please update your paypal email to receive commission', 'multivendorx'), 'type' => 'error');
             return false;
         }
         if ($this->transaction_mode != 'admin') {
@@ -82,7 +82,7 @@ class MVX_Gateway_Paypal_Masspay extends MVX_Payment_Gateway {
             if ($this->get_transaction_total() > $thesold_amount) {
                 return true;
             } else {
-                $this->message[] = array('message' => __('Minimum thesold amount to withdrawal commission is ' . $thesold_amount, 'dc-woocommerce-multi-vendor'), 'type' => 'error');
+                $this->message[] = array('message' => __('Minimum thesold amount to withdrawal commission is ' . $thesold_amount, 'multivendorx'), 'type' => 'error');
                 return false;
             }
         }
@@ -92,7 +92,7 @@ class MVX_Gateway_Paypal_Masspay extends MVX_Payment_Gateway {
     private function process_paypal_masspay() {
         $nvpheader = "&PWD=" . urlencode($this->api_password) . "&USER=" . urlencode($this->api_username) . "&SIGNATURE=" . urlencode($this->api_signature);
         $amount_to_pay = round($this->get_transaction_total() - $this->transfer_charge($this->transaction_mode) - $this->gateway_charge(), 2);
-        $note = sprintf(__('Total commissions earned from %1$s as at %2$s on %3$s', 'dc-woocommerce-multi-vendor'), get_bloginfo('name'), date('H:i:s'), date('d-m-Y'));
+        $note = sprintf(__('Total commissions earned from %1$s as at %2$s on %3$s', 'multivendorx'), get_bloginfo('name'), date('H:i:s'), date('d-m-Y'));
         $nvpStr = '&L_EMAIL0=' . urlencode($this->reciver_email) . '&L_Amt0=' . urlencode($amount_to_pay) . '&L_UNIQUEID0=' . urlencode($this->vendor->id) . '&L_NOTE0=' . urlencode($note) . '&EMAILSUBJECT=' . urlencode('You have money!') . '&RECEIVERTYPE=' . urlencode('EmailAddress') . '&CURRENCYCODE=' . urlencode($this->currency);
         $nvpStr = $nvpheader . $nvpStr;
         $nvpStr = "&VERSION=" . urlencode(90) . $nvpStr;

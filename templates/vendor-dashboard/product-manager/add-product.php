@@ -16,7 +16,7 @@ if (is_user_logged_in() && is_user_mvx_vendor($current_vendor_id) && !current_us
     ?>
     <div class="col-md-12">
         <div class="panel panel-default">
-            <?php _e('You do not have enough permission to submit a new product. Please contact site administrator.', 'dc-woocommerce-multi-vendor'); ?>
+            <?php _e('You do not have enough permission to submit a new product. Please contact site administrator.', 'multivendorx'); ?>
         </div>
     </div>
     <?php
@@ -35,14 +35,14 @@ if (is_user_logged_in() && is_user_mvx_vendor($current_vendor_id) && !current_us
             <div class="cat-step1" >
                 <div class="panel panel-default pannel-outer-heading mt-0">
                     <div class="panel-heading d-flex">
-                        <h1><span class="primary-color"><span><?php _e( 'Step 1 of', 'dc-woocommerce-multi-vendor' );?></span> <?php _e( '2:', 'dc-woocommerce-multi-vendor' );?></span> <?php _e('Select a product category', 'dc-woocommerce-multi-vendor'); ?></h1>
-                        <h3><?php _e('Once a category is assigned to a product, it cannot be altered.', 'dc-woocommerce-multi-vendor'); ?></h3>
+                        <h1><span class="primary-color"><span><?php _e( 'Step 1 of', 'multivendorx' );?></span> <?php _e( '2:', 'multivendorx' );?></span> <?php _e('Select a product category', 'multivendorx'); ?></h1>
+                        <h3><?php _e('Once a category is assigned to a product, it cannot be altered.', 'multivendorx'); ?></h3>
                     </div>
                     <div class="panel-body panel-content-padding form-horizontal breadcrumb-panel">
                         <div class="product-search-wrapper categories-search-wrapper">
-                            <div class="form-text"><?php _e('Search category', 'dc-woocommerce-multi-vendor'); ?></div>
+                            <div class="form-text"><?php _e('Search category', 'multivendorx'); ?></div>
                             <div class="form-input">
-                                <input id="search-categories-keyword" type="text" placeholder="<?php esc_attr_e('Example: tshirt, music, album etc...', 'dc-woocommerce-multi-vendor'); ?>">
+                                <input id="search-categories-keyword" type="text" placeholder="<?php esc_attr_e('Example: tshirt, music, album etc...', 'multivendorx'); ?>">
                                 <ul id="searched-categories-results" class="list-group">
                                     
                                 </ul>
@@ -76,12 +76,12 @@ if (is_user_logged_in() && is_user_mvx_vendor($current_vendor_id) && !current_us
             <div class="panel panel-default pannel-outer-heading mt-0"> 
                 <div class="panel-body panel-content-padding form-horizontal text-center">
                     <img src="<?php echo $MVX->plugin_url.'assets/images/add-product-graphic.png'; ?>" alt="">
-                    <h1 class="heading-underline"><?php _e('List a New Product', 'dc-woocommerce-multi-vendor'); ?></h1>
+                    <h1 class="heading-underline"><?php _e('List a New Product', 'multivendorx'); ?></h1>
                     <div class="serach-product-cat-wrapper">
-                        <h2><?php _e('Search from our existing Product Catalog', 'dc-woocommerce-multi-vendor'); ?></h2>
+                        <h2><?php _e('Search from our existing Product Catalog', 'multivendorx'); ?></h2>
                         <form class="search-pro-by-name-gtin">
-                            <input type="text" placeholder="<?php esc_attr_e('Product name, UPC, ISBN ...', 'dc-woocommerce-multi-vendor'); ?>" class="form-control inline-input search-product-name-gtin-keyword" required>
-                            <button type="button" class="btn btn-default search-product-name-gtin-btn"><?php echo strtoupper(__('Search', 'dc-woocommerce-multi-vendor')); ?></button> 
+                            <input type="text" placeholder="<?php esc_attr_e('Product name, UPC, ISBN ...', 'multivendorx'); ?>" class="form-control inline-input search-product-name-gtin-keyword" required>
+                            <button type="button" class="btn btn-default search-product-name-gtin-btn"><?php echo strtoupper(__('Search', 'multivendorx')); ?></button> 
                         </form>
                         <?php 
 
@@ -93,12 +93,12 @@ if (is_user_logged_in() && is_user_mvx_vendor($current_vendor_id) && !current_us
 
                         
                         $url = ( get_mvx_vendor_settings('category_pyramid_guide', 'settings_general') == false ) ? esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_edit_product_endpoint', 'seller_dashbaord', 'edit-product'))) : $category_url; ?>
-                        <p><?php _e('Not in the catalog?', 'dc-woocommerce-multi-vendor'); ?> <a href="<?php echo $url; ?>" class="cat-step-btn"><?php _e('Create a new product', 'dc-woocommerce-multi-vendor'); ?> <i class="mvx-font ico-right-arrow-icon"></i></a></p>
+                        <p><?php _e('Not in the catalog?', 'multivendorx'); ?> <a href="<?php echo $url; ?>" class="cat-step-btn"><?php _e('Create a new product', 'multivendorx'); ?> <i class="mvx-font ico-right-arrow-icon"></i></a></p>
                     </div>
                 </div>
             </div>
             <div class="panel panel-custom mt-15 product-search-panel searched-products-name-gtin-panel">
-                <div class="panel-heading d-flex"><?php _e('Your search results:', 'dc-woocommerce-multi-vendor'); ?></div>
+                <div class="panel-heading d-flex"><?php _e('Your search results:', 'multivendorx'); ?></div>
                 <div class="panel-body search-result-holder p-0 searched-result-products-name-gtin"></div>
             </div>          
         </div>

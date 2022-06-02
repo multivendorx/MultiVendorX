@@ -14,7 +14,7 @@ global $MVX;
 
 echo $email_heading . "\n\n";
 
-echo sprintf( __( "Thanks for creating an account as Pending Vendor on %s. But your request has been rejected due to some reason.",  'dc-woocommerce-multi-vendor' ), $blogname ) . "\n\n";
+echo sprintf( __( "Thanks for creating an account as Pending Vendor on %s. But your request has been rejected due to some reason.",  'multivendorx' ), $blogname ) . "\n\n";
 
 echo "\n****************************************************\n\n";
 

@@ -10,24 +10,24 @@ class MVX_Widget_Vendor_Product_Categories extends WC_Widget {
 
     public function __construct() {
         $this->widget_cssclass = 'mvx woocommerce mvx_widget_vendor_product_categories widget_product_categories';
-        $this->widget_description = __('Displays a list of product categories added by the vendor on the vendor shop page.', 'dc-woocommerce-multi-vendor');
+        $this->widget_description = __('Displays a list of product categories added by the vendor on the vendor shop page.', 'multivendorx');
         $this->widget_id = 'mvx_vendor_product_categories';
-        $this->widget_name = __('MVX: Vendor\'s Product Categories', 'dc-woocommerce-multi-vendor');
+        $this->widget_name = __('MVX: Vendor\'s Product Categories', 'multivendorx');
         $this->settings = array(
             'title' => array(
                 'type' => 'text',
-                'std' => __('Vendor Product categories', 'dc-woocommerce-multi-vendor'),
-                'label' => __('Title', 'dc-woocommerce-multi-vendor'),
+                'std' => __('Vendor Product categories', 'multivendorx'),
+                'label' => __('Title', 'multivendorx'),
             ),
             'count' => array(
                 'type' => 'checkbox',
                 'std' => 1,
-                'label' => __('Show product counts', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Show product counts', 'multivendorx'),
             ),
 			'hierarchical'       => array(
 				'type'  => 'checkbox',
 				'std'   => 1,
-				'label' => __('Show hierarchy', 'dc-woocommerce-multi-vendor'),
+				'label' => __('Show hierarchy', 'multivendorx'),
 			),
         );
         parent::__construct();

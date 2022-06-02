@@ -19,17 +19,17 @@ $rating = isset( $rating ) ? absint( $rating ) : '';
 do_action( 'woocommerce_email_header', $email_heading ); ?>
 
 <div style="font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; margin-bottom: 40px;">
-        <h2><?php _e( 'Review details', 'dc-woocommerce-multi-vendor' ); ?></h2>
+        <h2><?php _e( 'Review details', 'multivendorx' ); ?></h2>
         <ul>
-            <li><?php printf( esc_html__( "Customer Name : %s", 'dc-woocommerce-multi-vendor' ), '<strong>' . $customer_name . '</strong>' ); ?>
+            <li><?php printf( esc_html__( "Customer Name : %s", 'multivendorx' ), '<strong>' . $customer_name . '</strong>' ); ?>
             </li>
             <?php if( !empty( $rating ) ){ ?>
             <li>
-                <?php printf( esc_html__( "Rating : %s out of 5", 'dc-woocommerce-multi-vendor' ), '<strong>' . $rating . '</strong>' ); ?>
+                <?php printf( esc_html__( "Rating : %s out of 5", 'multivendorx' ), '<strong>' . $rating . '</strong>' ); ?>
             </li>
             <?php } ?>
             <li>
-            <?php printf( esc_html__( "Comment : %s", 'dc-woocommerce-multi-vendor' ), '<strong>' . $review . '</strong>' ); ?>
+            <?php printf( esc_html__( "Comment : %s", 'multivendorx' ), '<strong>' . $review . '</strong>' ); ?>
             </li>
         </ul>
 </div>

@@ -20,10 +20,10 @@ extract( $vendor_list );
     <select class="select short" id="vendor_sort_type" name="vendor_sort_type">
         <?php
         $vendor_sort_type = apply_filters('mvx_vendor_list_vendor_sort_type', array(
-            'registered' => __('By date', 'dc-woocommerce-multi-vendor'),
-            'name' => __('By Alphabetically', 'dc-woocommerce-multi-vendor'),
-            'category' => __('By Category', 'dc-woocommerce-multi-vendor'),
-            'shipping' => __('By Shipping', 'dc-woocommerce-multi-vendor')
+            'registered' => __('By date', 'multivendorx'),
+            'name' => __('By Alphabetically', 'multivendorx'),
+            'category' => __('By Category', 'multivendorx'),
+            'shipping' => __('By Shipping', 'multivendorx')
         ));
         if ($vendor_sort_type && is_array($vendor_sort_type)) {
             foreach ($vendor_sort_type as $key => $label) {
@@ -49,7 +49,7 @@ extract( $vendor_list );
     }
     ?>
     <select name="vendor_country" id="vendor_country" class="country_to_state vendors_sort_shipping_fields form-control regular-select" rel="vendor_country">
-        <option value=""><?php _e( 'Select a country&hellip;', 'dc-woocommerce-multi-vendor' ); ?></option>
+        <option value=""><?php _e( 'Select a country&hellip;', 'multivendorx' ); ?></option>
         <?php $country_code = 0;
         foreach ( WC()->countries->get_allowed_countries() as $key => $value ) {
             echo '<option value="' . esc_attr( $key ) . '"' . selected( esc_attr( $country_code ), esc_attr( $key ), false ) . '>' . esc_html( $value ) . '</option>';
@@ -58,10 +58,10 @@ extract( $vendor_list );
     </select>
     <!-- Sort by Shipping -->
     <select name="vendor_state" id="vendor_state" class="state_select vendors_sort_shipping_fields form-control regular-select" rel="vendor_state">
-        <option value=""><?php esc_html_e( 'Select a state&hellip;', 'dc-woocommerce-multi-vendor' ); ?></option>
+        <option value=""><?php esc_html_e( 'Select a state&hellip;', 'multivendorx' ); ?></option>
     </select>
-    <input class="vendors_sort_shipping_fields" type="text" placeholder="<?php _e('ZIP code', 'dc-woocommerce-multi-vendor'); ?>" name="vendor_postcode_list" value="<?php echo isset($request['vendor_postcode_list']) ? $request['vendor_postcode_list'] : ''; ?>">
+    <input class="vendors_sort_shipping_fields" type="text" placeholder="<?php _e('ZIP code', 'multivendorx'); ?>" name="vendor_postcode_list" value="<?php echo isset($request['vendor_postcode_list']) ? $request['vendor_postcode_list'] : ''; ?>">
     <select name="vendor_sort_category" id="vendor_sort_category" class="select"><?php echo $options_html; ?></select>
     <?php do_action( 'mvx_vendor_list_vendor_sort_extra_attributes', $request ); ?>
-    <input value="<?php echo __('Sort', 'dc-woocommerce-multi-vendor'); ?>" type="submit">
+    <input value="<?php echo __('Sort', 'multivendorx'); ?>" type="submit">
 </div>

@@ -35,7 +35,7 @@ $is_start_with_full_rating = apply_filters('mvx_is_start_with_full_rating', fals
                 if (!is_customer_not_given_review_to_vendor( $vendor_id, get_current_user_id())) {
                     ?>
                     <div class="woocommerce-info">
-                        <?php esc_html_e('You have already reviewed this vendor', 'dc-woocommerce-multi-vendor'); ?>
+                        <?php esc_html_e('You have already reviewed this vendor', 'multivendorx'); ?>
                     </div>
                     <?php
                 }
@@ -46,25 +46,25 @@ $is_start_with_full_rating = apply_filters('mvx_is_start_with_full_rating', fals
                             <?php if ($vendor->id != get_current_vendor_id() && is_customer_not_given_review_to_vendor( $vendor_id, get_current_user_id()) && mvx_seller_review_enable($vendor_term_id) && apply_filters('customer_can_share_review_only_once', true)) : ?>
                                 <h3 id="reply-title" class="comment-reply-title"><?php
                                     if ($count == 0) {
-                                        echo sprintf(__('Be the first to review “%s”', 'dc-woocommerce-multi-vendor'), $shop_name);
+                                        echo sprintf(__('Be the first to review “%s”', 'multivendorx'), $shop_name);
                                     } else {
-                                        echo sprintf(__('Add a review to “%s”', 'dc-woocommerce-multi-vendor'), $shop_name);
+                                        echo sprintf(__('Add a review to “%s”', 'multivendorx'), $shop_name);
                                     }
                                     ?></h3>                
                                 <form action="" method="post" id="commentform" class="comment-form" novalidate="">
                                     <p id="mvx_seller_review_rating"></p>
-                                    <p class="comment-form-rating"><label for="rating"><?php esc_html_e('Your Rating', 'dc-woocommerce-multi-vendor'); ?></label>
+                                    <p class="comment-form-rating"><label for="rating"><?php esc_html_e('Your Rating', 'multivendorx'); ?></label>
                                     <div class="mvx-star-rating-content">
                                         <?php if ($mvx_review_categories) { ?>
                                             <?php foreach( $mvx_review_categories as $mvx_review_cat_key => $mvx_review_category ) { ?>
                                             <div class="mvx-star-rating-heading">
                                                 <select name="rating" id="rating">
-                                                    <option value=""><?php esc_html_e('Rate...', 'dc-woocommerce-multi-vendor'); ?></option>
-                                                    <option value="5"><?php esc_html_e('Perfect', 'dc-woocommerce-multi-vendor'); ?></option>
-                                                    <option value="4"><?php esc_html_e('Good', 'dc-woocommerce-multi-vendor'); ?></option>
-                                                    <option value="3"><?php esc_html_e('Average', 'dc-woocommerce-multi-vendor'); ?></option>
-                                                    <option value="2"><?php esc_html_e('Not that bad', 'dc-woocommerce-multi-vendor'); ?></option>
-                                                    <option value="1"><?php esc_html_e('Very Poor', 'dc-woocommerce-multi-vendor'); ?></option>
+                                                    <option value=""><?php esc_html_e('Rate...', 'multivendorx'); ?></option>
+                                                    <option value="5"><?php esc_html_e('Perfect', 'multivendorx'); ?></option>
+                                                    <option value="4"><?php esc_html_e('Good', 'multivendorx'); ?></option>
+                                                    <option value="3"><?php esc_html_e('Average', 'multivendorx'); ?></option>
+                                                    <option value="2"><?php esc_html_e('Not that bad', 'multivendorx'); ?></option>
+                                                    <option value="1"><?php esc_html_e('Very Poor', 'multivendorx'); ?></option>
                                                 </select>
                                                 <span><span class="rating_text <?php echo $mvx_review_category ?>"><?php if( $is_start_with_full_rating ) { echo '5'; } else { echo '0'; } ?></span>.0 <?php esc_html_e( $mvx_review_category, 'wc-multivendor-marketplace' ); ?></span>
                                                 <input type="hidden" class="rating_value" name="mvx_store_review_category[<?php echo $mvx_review_cat_key; ?>]" value="<?php if( $is_start_with_full_rating ) { echo '5'; } else { echo '0'; } ?>" />
@@ -72,25 +72,25 @@ $is_start_with_full_rating = apply_filters('mvx_is_start_with_full_rating', fals
                                             <?php } ?>
                                         <?php } else { ?>
                                         <select name="rating" id="rating">
-                                            <option value=""><?php esc_html_e('Rate...', 'dc-woocommerce-multi-vendor'); ?></option>
-                                            <option value="5"><?php esc_html_e('Perfect', 'dc-woocommerce-multi-vendor'); ?></option>
-                                            <option value="4"><?php esc_html_e('Good', 'dc-woocommerce-multi-vendor'); ?></option>
-                                            <option value="3"><?php esc_html_e('Average', 'dc-woocommerce-multi-vendor'); ?></option>
-                                            <option value="2"><?php esc_html_e('Not that bad', 'dc-woocommerce-multi-vendor'); ?></option>
-                                            <option value="1"><?php esc_html_e('Very Poor', 'dc-woocommerce-multi-vendor'); ?></option>
+                                            <option value=""><?php esc_html_e('Rate...', 'multivendorx'); ?></option>
+                                            <option value="5"><?php esc_html_e('Perfect', 'multivendorx'); ?></option>
+                                            <option value="4"><?php esc_html_e('Good', 'multivendorx'); ?></option>
+                                            <option value="3"><?php esc_html_e('Average', 'multivendorx'); ?></option>
+                                            <option value="2"><?php esc_html_e('Not that bad', 'multivendorx'); ?></option>
+                                            <option value="1"><?php esc_html_e('Very Poor', 'multivendorx'); ?></option>
                                        </select>
                                         <?php } ?>
                                     </div>
                                     </p>
                                     <p class="comment-form-comment">
-                                        <label for="comment"><?php esc_html_e('Your Review', 'dc-woocommerce-multi-vendor'); ?> </label>
+                                        <label for="comment"><?php esc_html_e('Your Review', 'multivendorx'); ?> </label>
                                         <textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea>
                                     </p>                    
                                     <p class="form-submit">
                                         <input id="mvx_vendor_for_rating" name="mvx_vendor_for_rating" type="hidden" value="<?php echo esc_attr($vendor_id); ?>"  >
                                         <input id="author" name="author" type="hidden" value="<?php echo esc_attr($current_user->display_name); ?>" size="30" aria-required="true">                  
                                         <input id="email" name="email" type="hidden" value="<?php echo esc_attr($current_user->user_email); ?>" size="30" aria-required="true">
-                                        <input name="submit" type="button" id="submit" class="submit" value="<?php esc_attr_e('Submit', 'dc-woocommerce-multi-vendor') ?>">
+                                        <input name="submit" type="button" id="submit" class="submit" value="<?php esc_attr_e('Submit', 'multivendorx') ?>">
 
                                     </p>                
                                 </form>
@@ -106,7 +106,7 @@ $is_start_with_full_rating = apply_filters('mvx_is_start_with_full_rating', fals
                     $posts_per_page = get_option('posts_per_page');
                     $total_pages = ceil($count / $posts_per_page);
                     ?>
-                    <h2><?php printf(_n('%s review for %s', '%s reviews for %s', $count, 'dc-woocommerce-multi-vendor'), $count, $shop_name); ?>    </h2>
+                    <h2><?php printf(_n('%s review for %s', '%s reviews for %s', $count, 'multivendorx'), $count, $shop_name); ?>    </h2>
                     <form id="vendor_review_rating_pagi_form" >
                         <input type="hidden" name="pageno" id="mvx_review_rating_pageno" value="1" >
                         <input type="hidden" name="postperpage" id="mvx_review_rating_postperpage" value="<?php echo esc_attr($posts_per_page); ?>" >
@@ -121,12 +121,12 @@ $is_start_with_full_rating = apply_filters('mvx_is_start_with_full_rating', fals
                         echo '</ol>';
                         if ($total_pages > 1) {
                             echo '<div class="mvx_review_loader"><img src="' . $MVX->plugin_url . 'assets/images/ajax-loader.gif" alt="ajax-loader" /></div>';
-                            echo '<input name="loadmore" type="button" id="mvx_review_load_more" class="submit mvx_load_more" style="float:right;" value="' . esc_attr('Load More', 'dc-woocommerce-multi-vendor') . '">';
+                            echo '<input name="loadmore" type="button" id="mvx_review_load_more" class="submit mvx_load_more" style="float:right;" value="' . esc_attr('Load More', 'multivendorx') . '">';
                         }
                     }
                 } elseif ($count == 0) {
                     ?>
-                    <p class="woocommerce-noreviews"><?php esc_html_e('There are no reviews yet.', 'dc-woocommerce-multi-vendor'); ?> </p>
+                    <p class="woocommerce-noreviews"><?php esc_html_e('There are no reviews yet.', 'multivendorx'); ?> </p>
                 <?php } ?>
             </div>  
             <div class="clear"></div>

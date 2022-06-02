@@ -506,22 +506,22 @@ class MVX_Report_Overview extends WC_Admin_Report {
             case 'day':
                 /* translators: %s: average total sales */
                 $average_total_sales_title = sprintf(
-                        __('%s average gross daily sales', 'dc-woocommerce-multi-vendor'), '<strong>' . wc_price($data->average_total_sales) . '</strong>'
+                        __('%s average gross daily sales', 'multivendorx'), '<strong>' . wc_price($data->average_total_sales) . '</strong>'
                 );
                 /* translators: %s: average sales */
                 $average_sales_title = sprintf(
-                        __('%s average net daily sales', 'dc-woocommerce-multi-vendor'), '<strong>' . wc_price($data->average_sales) . '</strong>'
+                        __('%s average net daily sales', 'multivendorx'), '<strong>' . wc_price($data->average_sales) . '</strong>'
                 );
                 break;
             case 'month':
             default:
                 /* translators: %s: average total sales */
                 $average_total_sales_title = sprintf(
-                        __('%s average gross monthly sales', 'dc-woocommerce-multi-vendor'), '<strong>' . wc_price($data->average_total_sales) . '</strong>'
+                        __('%s average gross monthly sales', 'multivendorx'), '<strong>' . wc_price($data->average_total_sales) . '</strong>'
                 );
                 /* translators: %s: average sales */
                 $average_sales_title = sprintf(
-                        __('%s average net monthly sales', 'dc-woocommerce-multi-vendor'), '<strong>' . wc_price($data->average_sales) . '</strong>'
+                        __('%s average net monthly sales', 'multivendorx'), '<strong>' . wc_price($data->average_sales) . '</strong>'
                 );
                 break;
         }
@@ -529,9 +529,9 @@ class MVX_Report_Overview extends WC_Admin_Report {
         $legend[] = array(
             /* translators: %s: total sales */
             'title' => sprintf(
-                    __('%s gross sales in this period', 'dc-woocommerce-multi-vendor'), '<strong>' . wc_price($data->total_sales) . '</strong>'
+                    __('%s gross sales in this period', 'multivendorx'), '<strong>' . wc_price($data->total_sales) . '</strong>'
             ),
-            'placeholder' => __('This is the sum of the order totals after any refunds and including shipping and taxes.', 'dc-woocommerce-multi-vendor'),
+            'placeholder' => __('This is the sum of the order totals after any refunds and including shipping and taxes.', 'multivendorx'),
             'color' => $this->chart_colours['sales_amount'],
             'highlight_series' => 6,
         );
@@ -546,9 +546,9 @@ class MVX_Report_Overview extends WC_Admin_Report {
         $legend[] = array(
             /* translators: %s: net sales */
             'title' => sprintf(
-                    __('%s net sales in this period', 'dc-woocommerce-multi-vendor'), '<strong>' . wc_price($data->net_sales) . '</strong>'
+                    __('%s net sales in this period', 'multivendorx'), '<strong>' . wc_price($data->net_sales) . '</strong>'
             ),
-            'placeholder' => __('This is the sum of the order totals after any refunds and excluding shipping and taxes.', 'dc-woocommerce-multi-vendor'),
+            'placeholder' => __('This is the sum of the order totals after any refunds and excluding shipping and taxes.', 'multivendorx'),
             'color' => $this->chart_colours['net_sales_amount'],
             'highlight_series' => 7,
         );
@@ -561,12 +561,12 @@ class MVX_Report_Overview extends WC_Admin_Report {
         }
         // vendor earning
         $legend[] = array(
-            'title' => sprintf(__('%s Net Earnings in this Period', 'dc-woocommerce-multi-vendor'), '<strong>' . $data->total_net_earned . '</strong>'),
+            'title' => sprintf(__('%s Net Earnings in this Period', 'multivendorx'), '<strong>' . $data->total_net_earned . '</strong>'),
             'color' => $this->chart_colours['total_net_earned'],
             'highlight_series' => 9
         );
         $legend[] = array(
-            'title' => sprintf(__('%s Net Commission', 'dc-woocommerce-multi-vendor'), '<strong>' . $data->vendor_total_earned . '</strong>'),
+            'title' => sprintf(__('%s Net Commission', 'multivendorx'), '<strong>' . $data->vendor_total_earned . '</strong>'),
             'color' => $this->chart_colours['vendor_total_earned'],
             'highlight_series' => 10
         );
@@ -574,7 +574,7 @@ class MVX_Report_Overview extends WC_Admin_Report {
         $legend[] = array(
             /* translators: %s: total orders */
             'title' => sprintf(
-                    __('%s orders placed', 'dc-woocommerce-multi-vendor'), '<strong>' . $data->total_orders . '</strong>'
+                    __('%s orders placed', 'multivendorx'), '<strong>' . $data->total_orders . '</strong>'
             ),
             'color' => $this->chart_colours['order_count'],
             'highlight_series' => 1,
@@ -583,7 +583,7 @@ class MVX_Report_Overview extends WC_Admin_Report {
         $legend[] = array(
             /* translators: %s: total items */
             'title' => sprintf(
-                    __('%s items purchased', 'dc-woocommerce-multi-vendor'), '<strong>' . $data->total_items . '</strong>'
+                    __('%s items purchased', 'multivendorx'), '<strong>' . $data->total_items . '</strong>'
             ),
             'color' => $this->chart_colours['item_count'],
             'highlight_series' => 0,
@@ -591,7 +591,7 @@ class MVX_Report_Overview extends WC_Admin_Report {
         $legend[] = array(
             /* translators: 1: total refunds 2: total refunded orders 3: refunded items */
             'title' => sprintf(
-                    _n('%1$s refunded %2$d order (%3$d item)', '%1$s refunded %2$d orders (%3$d items)', $this->report_data->total_refunded_orders, 'dc-woocommerce-multi-vendor'), '<strong>' . wc_price($data->total_refunds) . '</strong>', $this->report_data->total_refunded_orders, $this->report_data->refunded_order_items
+                    _n('%1$s refunded %2$d order (%3$d item)', '%1$s refunded %2$d orders (%3$d items)', $this->report_data->total_refunded_orders, 'multivendorx'), '<strong>' . wc_price($data->total_refunds) . '</strong>', $this->report_data->total_refunded_orders, $this->report_data->refunded_order_items
             ),
             'color' => $this->chart_colours['refund_amount'],
             'highlight_series' => 8,
@@ -599,7 +599,7 @@ class MVX_Report_Overview extends WC_Admin_Report {
         $legend[] = array(
             /* translators: %s: total shipping */
             'title' => sprintf(
-                    __('%s charged for shipping', 'dc-woocommerce-multi-vendor'), '<strong>' . wc_price($data->total_shipping) . '</strong>'
+                    __('%s charged for shipping', 'multivendorx'), '<strong>' . wc_price($data->total_shipping) . '</strong>'
             ),
             'color' => $this->chart_colours['shipping_amount'],
             'highlight_series' => 5,
@@ -607,7 +607,7 @@ class MVX_Report_Overview extends WC_Admin_Report {
         $legend[] = array(
             /* translators: %s: total coupons */
             'title' => sprintf(
-                    __('%s worth of coupons used', 'dc-woocommerce-multi-vendor'), '<strong>' . wc_price($data->total_coupons) . '</strong>'
+                    __('%s worth of coupons used', 'multivendorx'), '<strong>' . wc_price($data->total_coupons) . '</strong>'
             ),
             'color' => $this->chart_colours['coupon_amount'],
             'highlight_series' => 4,
@@ -622,10 +622,10 @@ class MVX_Report_Overview extends WC_Admin_Report {
     public function output_report() {
         global $MVX;
         $ranges = array(
-            'year' => __('Year', 'dc-woocommerce-multi-vendor'),
-            'last_month' => __('Last Month', 'dc-woocommerce-multi-vendor'),
-            'month' => __('This Month', 'dc-woocommerce-multi-vendor'),
-            '7day' => __('Last 7 Days', 'dc-woocommerce-multi-vendor')
+            'year' => __('Year', 'multivendorx'),
+            'last_month' => __('Last Month', 'multivendorx'),
+            'month' => __('This Month', 'multivendorx'),
+            '7day' => __('Last 7 Days', 'multivendorx')
         );
 
         $this->chart_colours = array(
@@ -666,11 +666,11 @@ class MVX_Report_Overview extends WC_Admin_Report {
             download="report-<?php echo esc_attr($current_range); ?>-<?php echo date_i18n('Y-m-d', current_time('timestamp')); ?>.csv"
             class="export_csv"
             data-export="chart"
-            data-xaxes="<?php esc_attr_e('Date', 'dc-woocommerce-multi-vendor'); ?>"
+            data-xaxes="<?php esc_attr_e('Date', 'multivendorx'); ?>"
             data-exclude_series="2"
             data-groupby="<?php echo $this->chart_groupby; ?>"
             >
-        <?php _e('Export CSV', 'dc-woocommerce-multi-vendor'); ?>
+        <?php _e('Export CSV', 'multivendorx'); ?>
         </a>
         <?php
     }
@@ -754,7 +754,7 @@ class MVX_Report_Overview extends WC_Admin_Report {
                 var drawGraph = function (highlight) {
                     var series = [
                         {
-                            label: "<?php echo esc_js(__('Number of items sold', 'dc-woocommerce-multi-vendor')); ?>",
+                            label: "<?php echo esc_js(__('Number of items sold', 'multivendorx')); ?>",
                             data: order_data.order_item_counts,
                             color: '<?php echo $this->chart_colours['item_count']; ?>',
                             bars: {fillColor: '<?php echo $this->chart_colours['item_count']; ?>', fill: true, show: true, lineWidth: 0, barWidth: <?php echo $this->barwidth; ?> * 0.5, align: 'center'},
@@ -762,7 +762,7 @@ class MVX_Report_Overview extends WC_Admin_Report {
                             hoverable: false
                         },
                         {
-                            label: "<?php echo esc_js(__('Number of orders', 'dc-woocommerce-multi-vendor')); ?>",
+                            label: "<?php echo esc_js(__('Number of orders', 'multivendorx')); ?>",
                             data: order_data.order_counts,
                             color: '<?php echo $this->chart_colours['order_count']; ?>',
                             bars: {fillColor: '<?php echo $this->chart_colours['order_count']; ?>', fill: true, show: true, lineWidth: 0, barWidth: <?php echo $this->barwidth; ?> * 0.5, align: 'center'},
@@ -770,7 +770,7 @@ class MVX_Report_Overview extends WC_Admin_Report {
                             hoverable: false
                         },
                         {
-                            label: "<?php echo esc_js(__('Average gross sales amount', 'dc-woocommerce-multi-vendor')); ?>",
+                            label: "<?php echo esc_js(__('Average gross sales amount', 'multivendorx')); ?>",
                             data: [[<?php echo min(array_keys($data['order_amounts'])); ?>, <?php echo $this->report_data->average_total_sales; ?>], [<?php echo max(array_keys($data['order_amounts'])); ?>, <?php echo $this->report_data->average_total_sales; ?>]],
                             yaxis: 2,
                             color: '<?php echo $this->chart_colours['average']; ?>',
@@ -780,7 +780,7 @@ class MVX_Report_Overview extends WC_Admin_Report {
                             hoverable: false
                         },
                         {
-                            label: "<?php echo esc_js(__('Average net sales amount', 'dc-woocommerce-multi-vendor')); ?>",
+                            label: "<?php echo esc_js(__('Average net sales amount', 'multivendorx')); ?>",
                             data: [[<?php echo min(array_keys($data['order_amounts'])); ?>, <?php echo $this->report_data->average_sales; ?>], [<?php echo max(array_keys($data['order_amounts'])); ?>, <?php echo $this->report_data->average_sales; ?>]],
                             yaxis: 2,
                             color: '<?php echo $this->chart_colours['net_average']; ?>',
@@ -790,7 +790,7 @@ class MVX_Report_Overview extends WC_Admin_Report {
                             hoverable: false
                         },
                         {
-                            label: "<?php echo esc_js(__('Coupon amount', 'dc-woocommerce-multi-vendor')); ?>",
+                            label: "<?php echo esc_js(__('Coupon amount', 'multivendorx')); ?>",
                             data: order_data.coupon_amounts,
                             yaxis: 2,
                             color: '<?php echo $this->chart_colours['coupon_amount']; ?>',
@@ -800,7 +800,7 @@ class MVX_Report_Overview extends WC_Admin_Report {
         <?php echo $this->get_currency_tooltip(); ?>
                         },
                         {
-                            label: "<?php echo esc_js(__('Shipping amount', 'dc-woocommerce-multi-vendor')); ?>",
+                            label: "<?php echo esc_js(__('Shipping amount', 'multivendorx')); ?>",
                             data: order_data.shipping_amounts,
                             yaxis: 2,
                             color: '<?php echo $this->chart_colours['shipping_amount']; ?>',
@@ -810,7 +810,7 @@ class MVX_Report_Overview extends WC_Admin_Report {
                             prepend_tooltip: "<?php echo get_woocommerce_currency_symbol(); ?>"
                         },
                         {
-                            label: "<?php echo esc_js(__('Gross sales amount', 'dc-woocommerce-multi-vendor')); ?>",
+                            label: "<?php echo esc_js(__('Gross sales amount', 'multivendorx')); ?>",
                             data: order_data.gross_order_amounts,
                             yaxis: 2,
                             color: '<?php echo $this->chart_colours['sales_amount']; ?>',
@@ -820,7 +820,7 @@ class MVX_Report_Overview extends WC_Admin_Report {
         <?php echo $this->get_currency_tooltip(); ?>
                         },
                         {
-                            label: "<?php echo esc_js(__('Net sales amount', 'dc-woocommerce-multi-vendor')); ?>",
+                            label: "<?php echo esc_js(__('Net sales amount', 'multivendorx')); ?>",
                             data: order_data.net_order_amounts,
                             yaxis: 2,
                             color: '<?php echo $this->chart_colours['net_sales_amount']; ?>',
@@ -830,7 +830,7 @@ class MVX_Report_Overview extends WC_Admin_Report {
         <?php echo $this->get_currency_tooltip(); ?>
                         },
                         {
-                            label: "<?php echo esc_js(__('Refund amount', 'dc-woocommerce-multi-vendor')); ?>",
+                            label: "<?php echo esc_js(__('Refund amount', 'multivendorx')); ?>",
                             data: order_data.refund_amounts,
                             yaxis: 2,
                             color: '<?php echo $this->chart_colours['refund_amount']; ?>',
@@ -840,7 +840,7 @@ class MVX_Report_Overview extends WC_Admin_Report {
                             prepend_tooltip: "<?php echo get_woocommerce_currency_symbol(); ?>"
                         },
                         {
-                            label: "<?php echo esc_js(__('Total Earnings', 'dc-woocommerce-multi-vendor')) ?>",
+                            label: "<?php echo esc_js(__('Total Earnings', 'multivendorx')) ?>",
                             data: order_data.total_net_earned,
                             yaxis: 2,
                             color: '<?php echo $this->chart_colours['total_net_earned']; ?>',
@@ -850,7 +850,7 @@ class MVX_Report_Overview extends WC_Admin_Report {
                             prepend_tooltip: "<?php echo get_woocommerce_currency_symbol(); ?>"
                         },
                         {
-                            label: "<?php echo esc_js(__('Total Earnings commission', 'dc-woocommerce-multi-vendor')) ?>",
+                            label: "<?php echo esc_js(__('Total Earnings commission', 'multivendorx')) ?>",
                             data: order_data.vendor_total_earned,
                             yaxis: 2,
                             color: '<?php echo $this->chart_colours['vendor_total_earned']; ?>',

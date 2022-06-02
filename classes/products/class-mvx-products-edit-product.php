@@ -55,19 +55,19 @@ class MVX_Products_Edit_Product {
         global $MVX;
         $current_vendor_id = apply_filters('mvx_current_vendor_product_capability',get_current_user_id() ) ;
         if ( ! $current_vendor_id ) {
-            $this->error_msg = __( 'You do not have permission to view this content. Please contact site administrator.', 'dc-woocommerce-multi-vendor' );
+            $this->error_msg = __( 'You do not have permission to view this content. Please contact site administrator.', 'multivendorx' );
             return false;
         }
         $product_vendor = get_mvx_product_vendors( $product_id );
         if ( $product_vendor && $current_vendor_id !== $product_vendor->id ) {
-            $this->error_msg = __( 'You do not have permission to view this content. Please contact site administrator.', 'dc-woocommerce-multi-vendor' );
+            $this->error_msg = __( 'You do not have permission to view this content. Please contact site administrator.', 'multivendorx' );
             return false;
         }
         if ( ! empty( mvx_get_product_types() ) ) {
             switch ( $action ) {
                 case 'add':
                     if ( ! ( current_vendor_can( 'edit_products' ) ) ) {
-                        $this->error_msg = __( 'You do not have enough permission to submit a new coupon. Please contact site administrator.', 'dc-woocommerce-multi-vendor' );
+                        $this->error_msg = __( 'You do not have enough permission to submit a new coupon. Please contact site administrator.', 'multivendorx' );
                         return false;
                     }
                     return true;
@@ -75,27 +75,27 @@ class MVX_Products_Edit_Product {
                     if ( $product_id && get_mvx_product_vendors( $product_id ) ) {
                         $product = wc_get_product( $product_id );
                         if ( $product->get_status() === 'trash' ) {
-                            $this->error_msg = __( 'You can&#8217;t edit this item because it is in the Trash. Please restore it and try again.', 'dc-woocommerce-multi-vendor' );
+                            $this->error_msg = __( 'You can&#8217;t edit this item because it is in the Trash. Please restore it and try again.', 'multivendorx' );
                             return false;
                         }
                         if ( $product->get_status() === 'publish' ) {
                             if ( ! current_vendor_can( 'edit_published_products' ) ) {
-                                $this->error_msg = __( 'Sorry, you are not allowed to edit this item.', 'dc-woocommerce-multi-vendor' );
+                                $this->error_msg = __( 'Sorry, you are not allowed to edit this item.', 'multivendorx' );
                                 return false;
                             }
                         } else {
                             if ( ! current_vendor_can( 'edit_product' ) ) {
-                                $this->error_msg = __( 'Sorry, you are not allowed to edit this item.', 'dc-woocommerce-multi-vendor' );
+                                $this->error_msg = __( 'Sorry, you are not allowed to edit this item.', 'multivendorx' );
                                 return false;
                             }
                         }
                         return true;
                     }
-                    $this->error_msg = __( 'You attempted to edit an item that doesn&#8217;t exist. Perhaps it was deleted?', 'dc-woocommerce-multi-vendor' );
+                    $this->error_msg = __( 'You attempted to edit an item that doesn&#8217;t exist. Perhaps it was deleted?', 'multivendorx' );
                     return false;
             }
         } else {
-            $this->error_msg = __( 'No allowed Product types found. Please contact site administrator.', 'dc-woocommerce-multi-vendor' );
+            $this->error_msg = __( 'No allowed Product types found. Please contact site administrator.', 'multivendorx' );
         }
         return false;
     }
@@ -115,7 +115,7 @@ class MVX_Products_Edit_Product {
         $user = wp_get_current_user();
         $vendor = get_mvx_vendor( $user->ID );
         if ( $vendor && $vendor->id ) {
-            $post_id = wp_insert_post( array( 'post_title' => __( 'Auto Draft', 'dc-woocommerce-multi-vendor' ), 'post_type' => $post_type, 'post_status' => 'auto-draft' ) );
+            $post_id = wp_insert_post( array( 'post_title' => __( 'Auto Draft', 'multivendorx' ), 'post_type' => $post_type, 'post_status' => 'auto-draft' ) );
             return get_post( $post_id );
         }
         return false;
@@ -136,44 +136,44 @@ class MVX_Products_Edit_Product {
     public function get_product_data_tabs() {
         $tabs = apply_filters( 'mvx_product_data_tabs', array(
             'general'        => array(
-                'label'    => __( 'General', 'dc-woocommerce-multi-vendor' ),
+                'label'    => __( 'General', 'multivendorx' ),
                 'target'   => 'general_product_data',
                 'class'    => array( 'hide_if_grouped', 'show_if_simple' ),
                 'priority' => 10,
             ),
             'inventory'      => array(
-                'label'    => __( 'Inventory', 'dc-woocommerce-multi-vendor' ),
+                'label'    => __( 'Inventory', 'multivendorx' ),
                 'target'   => 'inventory_product_data',
                 'class'    => array( 'show_if_simple', 'show_if_variable', 'show_if_grouped', 'show_if_external' ),
                 'priority' => 20,
             ),
             'shipping'       => array(
-                'label'    => __( 'Shipping', 'dc-woocommerce-multi-vendor' ),
+                'label'    => __( 'Shipping', 'multivendorx' ),
                 'target'   => 'shipping_product_data',
                 'class'    => array( 'hide_if_virtual', 'hide_if_grouped', 'hide_if_external' ),
                 'priority' => 30,
             ),
             'linked_product' => array(
-                'label'    => __( 'Linked Products', 'dc-woocommerce-multi-vendor' ),
+                'label'    => __( 'Linked Products', 'multivendorx' ),
                 'target'   => 'linked_product_data',
                 'class'    => array(),
                 'priority' => 40,
             ),
             'attribute'      => array(
-                'label'    => __( 'Attributes', 'dc-woocommerce-multi-vendor' ),
+                'label'    => __( 'Attributes', 'multivendorx' ),
                 'target'   => 'product_attributes_data',
                 'class'    => array(),
                 'priority' => 50,
             ),
             'variations'     => array(
                 'p_type'   => 'variable',
-                'label'    => __( 'Variations', 'dc-woocommerce-multi-vendor' ),
+                'label'    => __( 'Variations', 'multivendorx' ),
                 'target'   => 'variable_product_options',
                 'class'    => array( 'show_if_variable' ),
                 'priority' => 60,
             ),
             'advanced'       => array(
-                'label'    => __( 'Advanced', 'dc-woocommerce-multi-vendor' ),
+                'label'    => __( 'Advanced', 'multivendorx' ),
                 'target'   => 'advanced_product_data',
                 'class'    => array(),
                 'priority' => 70,
@@ -215,7 +215,7 @@ class MVX_Products_Edit_Product {
     public function add_policy_tab( $product_tabs ) {
         $policy_tab = array(
             'policies' => array(
-                'label'    => __( 'Policies', 'dc-woocommerce-multi-vendor' ),
+                'label'    => __( 'Policies', 'multivendorx' ),
                 'target'   => 'product_policy_data',
                 'class'    => array(),
                 'priority' => 200,
@@ -256,15 +256,15 @@ class MVX_Products_Edit_Product {
             'virtual'      => array(
                 'id'            => '_virtual',
                 'wrapper_class' => 'show_if_simple',
-                'label'         => __( 'Virtual', 'dc-woocommerce-multi-vendor' ),
-                'description'   => __( 'Virtual products are intangible and are not shipped.', 'dc-woocommerce-multi-vendor' ),
+                'label'         => __( 'Virtual', 'multivendorx' ),
+                'description'   => __( 'Virtual products are intangible and are not shipped.', 'multivendorx' ),
                 'default'       => 'no',
             ),
             'downloadable' => array(
                 'id'            => '_downloadable',
                 'wrapper_class' => 'show_if_simple',
-                'label'         => __( 'Downloadable', 'dc-woocommerce-multi-vendor' ),
-                'description'   => __( 'Downloadable products give access to a file upon purchase.', 'dc-woocommerce-multi-vendor' ),
+                'label'         => __( 'Downloadable', 'multivendorx' ),
+                'description'   => __( 'Downloadable products give access to a file upon purchase.', 'multivendorx' ),
                 'default'       => 'no',
             ),
             ) );
@@ -314,26 +314,26 @@ class MVX_Products_Edit_Product {
                 'downloadable_files'                  => json_encode( $downloadable_contents ),
                 'attributes'                          => $this->product_object->get_attributes( 'edit' ),
                 'custom_attribute'                    => apply_filters( 'vendor_can_add_custom_attribute', true ),
-                'new_attribute_prompt'                => esc_js( __( 'Enter a name for the new attribute term:', 'dc-woocommerce-multi-vendor' ) ),
-                'remove_attribute'                    => esc_js( __( 'Remove this attribute?', 'dc-woocommerce-multi-vendor' ) ),
+                'new_attribute_prompt'                => esc_js( __( 'Enter a name for the new attribute term:', 'multivendorx' ) ),
+                'remove_attribute'                    => esc_js( __( 'Remove this attribute?', 'multivendorx' ) ),
                 'woocommerce_placeholder_img_src'     => wc_placeholder_img_src(),
-                'i18n_link_all_variations'            => esc_js( sprintf( __( 'Are you sure you want to link all variations? This will create a new variation for each and every possible combination of variation attributes (max %d per run).', 'dc-woocommerce-multi-vendor' ), defined( 'WC_MAX_LINKED_VARIATIONS' ) ? WC_MAX_LINKED_VARIATIONS : 50 ) ),
-                'i18n_enter_a_value'                  => esc_js( __( 'Enter a value', 'dc-woocommerce-multi-vendor' ) ),
-                'i18n_enter_menu_order'               => esc_js( __( 'Variation menu order (determines position in the list of variations)', 'dc-woocommerce-multi-vendor' ) ),
-                'i18n_enter_a_value_fixed_or_percent' => esc_js( __( 'Enter a value (fixed or %)', 'dc-woocommerce-multi-vendor' ) ),
-                'i18n_delete_all_variations'          => esc_js( __( 'Are you sure you want to delete all variations? This cannot be undone.', 'dc-woocommerce-multi-vendor' ) ),
-                'i18n_last_warning'                   => esc_js( __( 'Last warning, are you sure?', 'dc-woocommerce-multi-vendor' ) ),
-                'i18n_choose_image'                   => esc_js( __( 'Choose an image', 'dc-woocommerce-multi-vendor' ) ),
-                'i18n_set_image'                      => esc_js( __( 'Set variation image', 'dc-woocommerce-multi-vendor' ) ),
-                'i18n_variation_added'                => esc_js( __( "variation added", 'dc-woocommerce-multi-vendor' ) ),
-                'i18n_variations_added'               => esc_js( __( "variations added", 'dc-woocommerce-multi-vendor' ) ),
-                'i18n_no_variations_added'            => esc_js( __( "No variations added", 'dc-woocommerce-multi-vendor' ) ),
-                'i18n_remove_variation'               => esc_js( __( 'Are you sure you want to remove this variation?', 'dc-woocommerce-multi-vendor' ) ),
-                'i18n_scheduled_sale_start'           => esc_js( __( 'Sale start date (YYYY-MM-DD format or leave blank)', 'dc-woocommerce-multi-vendor' ) ),
-                'i18n_scheduled_sale_end'             => esc_js( __( 'Sale end date (YYYY-MM-DD format or leave blank)', 'dc-woocommerce-multi-vendor' ) ),
-                'i18n_edited_variations'              => esc_js( __( 'Save changes before changing page?', 'dc-woocommerce-multi-vendor' ) ),
-                'i18n_variation_count_single'         => esc_js( __( '%qty% variation', 'dc-woocommerce-multi-vendor' ) ),
-                'i18n_variation_count_plural'         => esc_js( __( '%qty% variations', 'dc-woocommerce-multi-vendor' ) ),
+                'i18n_link_all_variations'            => esc_js( sprintf( __( 'Are you sure you want to link all variations? This will create a new variation for each and every possible combination of variation attributes (max %d per run).', 'multivendorx' ), defined( 'WC_MAX_LINKED_VARIATIONS' ) ? WC_MAX_LINKED_VARIATIONS : 50 ) ),
+                'i18n_enter_a_value'                  => esc_js( __( 'Enter a value', 'multivendorx' ) ),
+                'i18n_enter_menu_order'               => esc_js( __( 'Variation menu order (determines position in the list of variations)', 'multivendorx' ) ),
+                'i18n_enter_a_value_fixed_or_percent' => esc_js( __( 'Enter a value (fixed or %)', 'multivendorx' ) ),
+                'i18n_delete_all_variations'          => esc_js( __( 'Are you sure you want to delete all variations? This cannot be undone.', 'multivendorx' ) ),
+                'i18n_last_warning'                   => esc_js( __( 'Last warning, are you sure?', 'multivendorx' ) ),
+                'i18n_choose_image'                   => esc_js( __( 'Choose an image', 'multivendorx' ) ),
+                'i18n_set_image'                      => esc_js( __( 'Set variation image', 'multivendorx' ) ),
+                'i18n_variation_added'                => esc_js( __( "variation added", 'multivendorx' ) ),
+                'i18n_variations_added'               => esc_js( __( "variations added", 'multivendorx' ) ),
+                'i18n_no_variations_added'            => esc_js( __( "No variations added", 'multivendorx' ) ),
+                'i18n_remove_variation'               => esc_js( __( 'Are you sure you want to remove this variation?', 'multivendorx' ) ),
+                'i18n_scheduled_sale_start'           => esc_js( __( 'Sale start date (YYYY-MM-DD format or leave blank)', 'multivendorx' ) ),
+                'i18n_scheduled_sale_end'             => esc_js( __( 'Sale end date (YYYY-MM-DD format or leave blank)', 'multivendorx' ) ),
+                'i18n_edited_variations'              => esc_js( __( 'Save changes before changing page?', 'multivendorx' ) ),
+                'i18n_variation_count_single'         => esc_js( __( '%qty% variation', 'multivendorx' ) ),
+                'i18n_variation_count_plural'         => esc_js( __( '%qty% variations', 'multivendorx' ) ),
                 'variations_per_page'                 => absint( apply_filters( 'woocommerce_admin_meta_boxes_variations_per_page', 15 ) ),
                 'mon_decimal_point'                   => wc_get_price_decimal_separator(),
                 'add_tags'                            => apply_filters( 'mvx_vendor_can_add_product_tag', true, get_current_vendor_id() ),

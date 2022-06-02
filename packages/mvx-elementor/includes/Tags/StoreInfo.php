@@ -23,7 +23,7 @@ class StoreInfo extends MVX_Elementor_TagBase {
      * @return string
      */
     public function get_title() {
-        return __( 'Store Info', 'dc-woocommerce-multi-vendor' );
+        return __( 'Store Info', 'multivendorx' );
     }
 
     /**
@@ -40,7 +40,7 @@ class StoreInfo extends MVX_Elementor_TagBase {
         $store_info = [
             [
                 'key'         => 'address',
-                'title'       => __( 'Address', 'dc-woocommerce-multi-vendor' ),
+                'title'       => __( 'Address', 'multivendorx' ),
                 'text'        => $store_data['address'],
                 'icon'        => 'mvx-font ico-location-icon',
                 'show'        => true,
@@ -50,7 +50,7 @@ class StoreInfo extends MVX_Elementor_TagBase {
             ],
             [
                 'key'         => 'email',
-                'title'       => __( 'Email', 'dc-woocommerce-multi-vendor' ),
+                'title'       => __( 'Email', 'multivendorx' ),
                 'text'        => $store_data['email'],
                 'icon'        => 'mvx-font ico-mail-icon',
                 'show'        => true,
@@ -60,7 +60,7 @@ class StoreInfo extends MVX_Elementor_TagBase {
             ],
             [
                 'key'         => 'phone',
-                'title'       => __( 'Phone No', 'dc-woocommerce-multi-vendor' ),
+                'title'       => __( 'Phone No', 'multivendorx' ),
                 'text'        => $store_data['phone'],
                 'icon'        => 'mvx-font ico-call-icon',
                 'show'        => true,
@@ -70,7 +70,7 @@ class StoreInfo extends MVX_Elementor_TagBase {
             ],
             [
                 'key'         => 'store_description',
-                'title'       => __( 'Store Description', 'dc-woocommerce-multi-vendor' ),
+                'title'       => __( 'Store Description', 'multivendorx' ),
                 'text'        => $store_data['store_description'],
                 'icon'        => 'mvx-font ico-location-icon',
                 'show'        => true,

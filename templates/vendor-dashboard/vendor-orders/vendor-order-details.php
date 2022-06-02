@@ -19,7 +19,7 @@ if (!$order || !is_mvx_vendor_order($order, apply_filters( 'mvx_current_vendor_o
     ?>
     <div class="col-md-12">
         <div class="panel panel-default">
-            <?php _e('Invalid order', 'dc-woocommerce-multi-vendor'); ?>
+            <?php _e('Invalid order', 'multivendorx'); ?>
         </div>
     </div>
     <?php
@@ -39,7 +39,7 @@ $disallow_vendor_order_status = get_mvx_vendor_settings('disallow_vendor_order_s
                 <?php 
                 /* translators: 1: order type 2: order number */
                 printf(
-                        esc_html__( 'Order details #%1$s', 'dc-woocommerce-multi-vendor' ),
+                        esc_html__( 'Order details #%1$s', 'multivendorx' ),
                         esc_html( $order->get_order_number() )
                 ); ?>
                 <input type="hidden" id="order_ID" value="<?php echo $order->get_id(); ?>" />
@@ -51,7 +51,7 @@ $disallow_vendor_order_status = get_mvx_vendor_settings('disallow_vendor_order_s
                 </div>
                 <?php if( $order->get_status( 'edit' ) != 'cancelled' && !$disallow_vendor_order_status ) : ?>
                 <div class="dropdown-order-statuses dropdown pull-left clearfix">
-                    <span class="order-status-edit-button pull-left dropdown-toggle" data-toggle="dropdown"><u><?php _e( 'Edit', 'dc-woocommerce-multi-vendor' ); ?></u></span>
+                    <span class="order-status-edit-button pull-left dropdown-toggle" data-toggle="dropdown"><u><?php _e( 'Edit', 'multivendorx' ); ?></u></span>
                     <input type="hidden" id="order_current_status" value="<?php echo 'wc-' . $order->get_status( 'edit' ); ?>" />
                     <ul id="order_status" class="dropdown-menu dropdown-menu-right" style="margin-top:9px;">
                             <?php

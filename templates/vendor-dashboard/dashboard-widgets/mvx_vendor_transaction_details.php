@@ -1,6 +1,6 @@
 <div class="transaction-details">
 	<div class="total-balance-wrap">
-		<h4><?php _e('Withdrawable Balance', 'dc-woocommerce-multi-vendor');?></h4>
+		<h4><?php _e('Withdrawable Balance', 'multivendorx');?></h4>
 		<div class="mvx_dashboard_widget_total_transaction"><?php echo wc_price($total_amount);  ?></div>
 	</div>
     <?php if($transaction_display_array) : ?>
