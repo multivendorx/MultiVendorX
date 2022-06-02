@@ -392,6 +392,17 @@ class MVX_Admin {
             ),
         );
 
+        $question_selection_wordpboard = array(
+            array(
+                'value' => 'unanswer',
+                'label' => __('Unanswered', 'multivendorx')
+            ),
+            array(
+                'value' => 'all',
+                'label' => __('All Q&As', 'multivendorx')
+            ),
+        );
+
         $task_board_bulk_status = array(
             array(
                 'value' => 'approve',
@@ -784,6 +795,7 @@ class MVX_Admin {
             'report_vendor_header'          =>  $report_vendor_header,
             'report_page_string'            =>  $report_page_string,
             'post_bulk_status'              =>  $post_bulk_status,
+            'question_selection_wordpboard' =>  $question_selection_wordpboard,
             'pending_question_bulk'         =>  $pending_question_bulk,
             'store_review_bulk'             =>  $store_review_bulk,
             'task_board_bulk_status'        =>  $task_board_bulk_status,
