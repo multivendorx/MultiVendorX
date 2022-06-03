@@ -3080,7 +3080,6 @@ class MVX_REST_API {
         $qry = new WP_Query($args_overview);
         $orders_overview = apply_filters('mvx_report_admin_overview_orders_overview', $qry->get_posts());
         $sales_data_chart = array();
-
          if ( !empty( $orders_overview ) ) {
             foreach ( $orders_overview as $order_obj ) {
                 $order = wc_get_order($order_obj->ID);
@@ -3292,19 +3291,6 @@ class MVX_REST_API {
                                 'Net Sales'  => $detailsvalue['value'],
                             );
                         }
-
-                    /*$order_id = wc_get_order($sales_report['order_id']);
-
-                    $order = wc_get_order($order_id);
-                    $date = date_create($order->order_date);
-                    $product_sales_data_chart[] = array(
-                        'name'  =>  date_format($date,"d M"),
-                        'Net Sales'  => ( $sales_report['total_sales'] > 0 ) ? $sales_report['total_sales'] : 0,
-                    );*/
-                    
-                    //$total_sales_width = ( $sales_report['total_sales'] > 0 ) ? round($sales_report['total_sales']) / round($sales_report['total_sales']) * 100 : 0;
-                    //$admin_earning_width = ( $sales_report['admin_earning'] > 0 ) ? ( $sales_report['admin_earning'] / round($sales_report['total_sales']) ) * 100 : 0;
-                    //$vendor_earning_width = ( $sales_report['vendor_earning'] > 0 ) ? ( $sales_report['vendor_earning'] / round($sales_report['total_sales']) ) * 100 : 0;
                     $product = wc_get_product($product_id);
                     if ( $product ) {
 
@@ -3453,8 +3439,6 @@ class MVX_REST_API {
 
 
         
-        //print_r($total_sales);die;
-
         $vendor_report_datatable = array();
         if ($total_sales) {
             foreach ($total_sales as $total_sales_key => $total_sales_value) {

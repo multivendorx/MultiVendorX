@@ -41,6 +41,7 @@ class MVX_Commission {
             add_action('admin_notices', array(&$this, 'mvx_commission_update_notice'));
             // Commissions delete on order deleted
             add_action('deleted_post', array(&$this, 'mvx_commission_delete_on_order_deleted'));
+            add_action('trashed_post', array(&$this, 'mvx_commission_delete_on_order_deleted'));
             add_action('admin_notices', array(&$this, 'mvx_commission_notices') );
         }
     }

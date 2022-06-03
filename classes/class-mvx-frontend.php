@@ -313,7 +313,7 @@ class MVX_Frontend {
                 )
             );
 
-            if( apply_filters( 'mvx_is_allow_checkout_user_location', true ) ) {
+            if( apply_filters( 'mvx_is_allow_checkout_user_location', true ) && mvx_is_module_active('distance-shipping') ) {
                 $mvx_user_location     = WC()->session->get( '_mvx_user_location' );
                 $mvx_user_location_lat = WC()->session->get( '_mvx_user_location_lat' );
                 $mvx_user_location_lng = WC()->session->get( '_mvx_user_location_lng' );
@@ -433,7 +433,7 @@ class MVX_Frontend {
             wp_enqueue_script('mvx_seller_review_rating_js');
             wp_enqueue_script('frontend_js');
         }
-        if( is_checkout() && apply_filters( 'mvx_is_allow_checkout_user_location', true ) ) {
+        if( is_checkout() && apply_filters( 'mvx_is_allow_checkout_user_location', true ) && mvx_is_module_active('distance-shipping') ) {
             if (mvx_mapbox_api_enabled()) {
                 $MVX->library->load_mapbox_api();
             } else {
@@ -1041,7 +1041,7 @@ class MVX_Frontend {
      * Checkout User Location Field Save
      */
     public function mvx_checkout_user_location_save( $order_id ) {
-        if( apply_filters( 'mvx_is_allow_checkout_user_location', true ) ) {
+        if( apply_filters( 'mvx_is_allow_checkout_user_location', true ) && mvx_is_module_active('distance-shipping') ) {
             if ( ! empty( $_POST['mvx_user_location'] ) ) {
                 update_post_meta( $order_id, '_mvx_user_location', sanitize_text_field( $_POST['mvx_user_location'] ) );
             }
@@ -1058,7 +1058,7 @@ class MVX_Frontend {
      * Checkout User Location Field Save in Session
      */
     public function mvx_checkout_user_location_session_set( $post_data_raw ) {
-        if( apply_filters( 'mvx_is_allow_checkout_user_location', true ) ) {
+        if( apply_filters( 'mvx_is_allow_checkout_user_location', true ) && mvx_is_module_active('distance-shipping') ) {
             parse_str( $post_data_raw, $post_data );
             if ( ! empty( $post_data['mvx_user_location'] ) ) {
                 WC()->customer->set_props( array( 'mvx_user_location' => sanitize_text_field( $post_data['mvx_user_location'] ) ) );
@@ -1085,7 +1085,7 @@ class MVX_Frontend {
         </style>
         <?php
         if( ! WC()->is_rest_api_request() ) {
-            if( ( true === WC()->cart->needs_shipping() ) && apply_filters( 'mvx_is_allow_checkout_user_location', true ) ) {
+            if( ( true === WC()->cart->needs_shipping() ) && apply_filters( 'mvx_is_allow_checkout_user_location', true ) && mvx_is_module_active('distance-shipping') ) {
                 $user_location_filed = mvx_mapbox_api_enabled() ? array('input-hidden') : array('form-row-wide');
                 $fields['billing']['mvx_user_location'] = array(
                         'label'     => __( 'Delivery Location', 'multivendorx' ),
@@ -1116,7 +1116,7 @@ class MVX_Frontend {
      * Checkout User Location Map
      */
     public function mvx_checkout_user_location_map( $checkout ) {
-        if( ( true === WC()->cart->needs_shipping() ) && apply_filters( 'mvx_is_allow_checkout_user_location', true ) ) {
+        if( ( true === WC()->cart->needs_shipping() ) && apply_filters( 'mvx_is_allow_checkout_user_location', true ) && mvx_is_module_active('distance-shipping') ) {
             ?>
             <div class="woocommerce-billing-fields__field-wrapper">
                 <div class="mvx-user-locaton-map" id="mvx-user-locaton-map" style="width: 100%; height: 300px;"></div>
