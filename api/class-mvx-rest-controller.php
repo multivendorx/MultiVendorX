@@ -2993,10 +2993,8 @@ class MVX_REST_API {
         $product = $request && $request->get_param('product') ? ($request->get_param('product')) : 0;
         $selectvendor = $request && $request->get_param('vendor') ? ($request->get_param('vendor')) : 0;
 
-        //print_r($product);die;
-
         // Bydefault last 7 days
-        $start_date    = strtotime( '-6 days', strtotime( 'midnight', current_time( 'timestamp' ) ) );
+        $start_date    = strtotime( '-7 days', strtotime( 'midnight', current_time( 'timestamp' ) ) );
         $end_date      = strtotime( 'midnight', current_time( 'timestamp' ) );
 
         if ($value) {
@@ -3067,7 +3065,7 @@ class MVX_REST_API {
                     'after' => array(
                         'year' => date('Y', $start_date),
                         'month' => date('n', $start_date),
-                        'day' => date('1'),
+                        'day' => date('j', $start_date), //date('1'),
                     ),
                     'before' => array(
                         'year' => date('Y', $end_date),
@@ -3076,6 +3074,7 @@ class MVX_REST_API {
                     ),
                 )
             ));
+
 
         $qry = new WP_Query($args_overview);
         $orders_overview = apply_filters('mvx_report_admin_overview_orders_overview', $qry->get_posts());
@@ -3111,7 +3110,7 @@ class MVX_REST_API {
                 'after' => array(
                     'year' => date('Y', $start_date),
                     'month' => date('n', $start_date),
-                    'day' => date('1'),
+                    'day' => date('j', $start_date), //date('1'),
                 ),
                 'before' => array(
                     'year' => date('Y', $end_date),
@@ -3131,7 +3130,7 @@ class MVX_REST_API {
                 'after' => array(
                     'year' => date('Y', $start_date),
                     'month' => date('n', $start_date),
-                    'day' => date('1'),
+                    'day' => date('j', $start_date), //date('1'),
                 ),
                 'before' => array(
                     'year' => date('Y', $end_date),
@@ -3154,7 +3153,7 @@ class MVX_REST_API {
                 'after' => array(
                     'year' => date('Y', $start_date),
                     'month' => date('n', $start_date),
-                    'day' => date('1'),
+                    'day' => date('j', $start_date), //date('1'),
                 ),
                 'before' => array(
                     'year' => date('Y', $end_date),
@@ -3178,7 +3177,7 @@ class MVX_REST_API {
                 'after' => array(
                     'year' => date('Y', $start_date),
                     'month' => date('n', $start_date),
-                    'day' => date('1'),
+                    'day' => date('j', $start_date), //date('1'),
                 ),
                 'before' => array(
                     'year' => date('Y', $end_date),
@@ -3230,13 +3229,8 @@ class MVX_REST_API {
                 try {
                     $order = wc_get_order($order_obj->ID);
                     if ($order) :
-
+                        
                         $date = date_create($order->order_date);
-                        /*$total_orders_product_chart[] = array(
-                            'name'  =>  date_format($date,"d M"),
-                            'Net Sales'  =>  absint(1),
-                        );*/
-
                         $vendor_order = mvx_get_order($order->get_id());
                         if ( $vendor_order ) {
                             $line_items = $order->get_items( 'line_item' );
@@ -3891,12 +3885,7 @@ class MVX_REST_API {
             'shipping_items_details'    =>  $shipping_items_details
         );
 
-                ///print_r($payment_details);die;
-
-
-        return $payment_details; 
-
-
+        return rest_ensure_response($payment_details); 
     }
 
     public function mvx_vendor_delete($request) {

@@ -93,7 +93,7 @@ final class MVX {
         // Add mvx namespace support along with WooCommerce.
         add_filter( 'woocommerce_rest_is_request_to_rest_api', 'mvx_namespace_approve', 10, 1 );
         // Load Vendor Shipping
-        if( !defined('WP_ALLOW_MULTISITE')){
+        if ( !defined('WP_ALLOW_MULTISITE')) {
             add_action( 'woocommerce_loaded', array( &$this, 'load_vendor_shipping' ) );
         }else{
             $this->load_vendor_shipping();
@@ -288,7 +288,7 @@ final class MVX {
      */
     public function load_class($class_name = '', $dir = '') {
         if ('' != $class_name && '' != $this->token) {
-            if(!$dir)
+            if (!$dir)
                 require_once ( 'class-' . esc_attr($this->token) . '-' . esc_attr($class_name) . '.php' );
             else
                 require_once ( trailingslashit( $dir ) . 'class-' . esc_attr($this->token) . '-' . strtolower($dir) . '-' . esc_attr($class_name) . '.php' );
@@ -447,7 +447,7 @@ final class MVX {
      * @access public
      * @package MVX/Include/Woo_Helper
     */
-    public function load_woo_helper(){
+    public function load_woo_helper() {
         //common woo methods
         if ( ! class_exists( 'MVX_Woo_Helper' ) ) {
             require_once ( $this->plugin_path . 'includes/class-mvx-woo-helper.php' );
@@ -576,7 +576,7 @@ final class MVX {
             default:
                 $params = array('ajax_url' => $this->ajax_url());
         }
-        if($default && is_array($default)) $params = array_merge($default,$params);
+        if ($default && is_array($default)) $params = array_merge($default,$params);
         return apply_filters('mvx_get_script_data', $params, $handle);
     }
 
@@ -588,7 +588,7 @@ final class MVX {
     public function localize_script($handle, $params = array(), $object = '') {
         if ( $data = $this->mvx_get_script_data($handle, $params) ) {
             $name = str_replace('-', '_', $handle) . '_script_data';
-            if($object){
+            if ($object) {
                 $name = str_replace('-', '_', $object) . '_script_data';
             }
             wp_localize_script($handle, $name, apply_filters($name, $data));
@@ -600,14 +600,13 @@ final class MVX {
      *
      * @access public
      */
-    public function init_stripe_library(){
+    public function init_stripe_library() {
         global $MVX;
-        $load_library = (get_mvx_vendor_settings('payment_method_stripe_masspay', 'payment') == 'Enable') ? true : false;
-        if(apply_filters('mvx_load_stripe_library', $load_library)){
+        $load_library = mvx_is_module_active('stripe-connect') ? true : false;
+        if (apply_filters('mvx_load_stripe_library', $load_library)) {
             $stripe_dependencies = WC_Dependencies_Product_Vendor::stripe_dependencies();
-            if($stripe_dependencies['status']){
-                $load_library = (get_mvx_vendor_settings('payment_method_stripe_masspay', 'payment') == 'Enable') ? true : false;
-                if(!class_exists("Stripe\Stripe")) {
+            if ($stripe_dependencies['status']) {
+                if (!class_exists("Stripe\Stripe")) {
                     require_once( $this->plugin_path . 'lib/Stripe/init.php' );
                 }
             }else{

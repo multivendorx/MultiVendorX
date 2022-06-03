@@ -33,6 +33,7 @@ class App extends Component {
     super(props);
     this.state = {
       commission_select_option_open: false,
+      commission_reload: false,
       commission_loading: false,
       commission_details: [],
       updated_commission_status: [],
@@ -154,6 +155,11 @@ class App extends Component {
   }
 
   handleupdatecommission(e) {
+
+    this.setState({
+      commission_reload: true,
+    });
+
     axios({
       method: 'post',
       url: `${appLocalizer.apiUrl}/mvx_module/v1/update_commission_status`,
@@ -177,6 +183,7 @@ class App extends Component {
 
       this.setState({
         commission_select_option_open: false,
+        commission_reload: false,
       });
     });
   }
@@ -452,7 +459,7 @@ class App extends Component {
   <HeaderSection />
 
   {new URLSearchParams(window.location.hash).get("CommissionID") ? (
-    this.state.commission_details ? (
+    Object.keys(this.state.commission_details).length > 0 ? (
         <div className="mvx-container mvx-edit-commission-container">
           <div className="mvx-middle-container-wrapper">
             <div className="woocommerce-order-data">
@@ -506,18 +513,26 @@ class App extends Component {
                 <div className="mvx-commission-wrap-amount-shipping-tax">
                   <div className="mvx-commission-status-wrap">
                     {this.state.commission_select_option_open ? (
-                      <div className="commission-status-hide-and-show-wrap">
-                        <p className="commission-status-text-check">
-                          Commission status:{" "}
-                        </p>
-                        <Select
-                          placeholder="Status"
-                          options={appLocalizer.commission_status_list_action}
-                          defaultValue={this.state.get_commission_id_status}
-                          className="mvx-module-section-nav-child-data"
-                          onChange={(e) => this.handleupdatecommission(e)}
+                      !this.state.commission_reload ?
+                        <div className="commission-status-hide-and-show-wrap">
+                          <p className="commission-status-text-check">
+                            Commission status:{" "}
+                          </p>
+                          <Select
+                            placeholder="Status"
+                            options={appLocalizer.commission_status_list_action}
+                            defaultValue={this.state.get_commission_id_status}
+                            className="mvx-module-section-nav-child-data"
+                            onChange={(e) => this.handleupdatecommission(e)}
+                          />
+                        </div>
+                        : 
+                        <PuffLoader
+                          css={override}
+                          color={"#cd0000"}
+                          size={100}
+                          loading={true}
                         />
-                      </div>
                     ) : (
                       ""
                     )}
@@ -1265,7 +1280,12 @@ class App extends Component {
           <BannerSection />
         </div>
     ) : (
-      ""
+      <PuffLoader
+        css={override}
+        color={"#cd0000"}
+        size={100}
+        loading={true}
+      />
     )
   ) : (
       <div className="mvx-container">

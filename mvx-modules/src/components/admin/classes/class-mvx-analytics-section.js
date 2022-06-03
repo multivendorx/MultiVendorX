@@ -436,7 +436,7 @@ Child({ name }) {
 
                 <div className="mvx-content-two-graph-wrap">
                   <div className="mvx-header-and-graph-wrap">
-                    <div className="mvx-commission-order-details-text">First header</div>
+                    <div className="mvx-commission-order-details-text">Net Sales</div>
                     <div className="mvx-chart-graph-visible">
                         {!this.useQuery().get('type') || this.useQuery().get('type') == 'line' ?
                           <ResponsiveContainer aspect={3}>
@@ -486,56 +486,6 @@ Child({ name }) {
                   </div>
                 </div>
 
-                <div className="mvx-header-and-graph-wrap">
-                  <div className="mvx-commission-order-details-text">second header</div>
-                    <div className="mvx-chart-graph-visible">
-                      {!this.useQuery().get('type') || this.useQuery().get('type') == 'line' ?
-                        <ResponsiveContainer aspect={3}>
-                          <LineChart
-                            width={500}
-                            height={300}
-                            data={this.state.report_overview_data.admin_overview.sales_data_chart}
-                            margin={{
-                              top: 100,
-                              right: 30,
-                              left: 20,
-                              bottom: 5,
-                            }}
-                            >
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="name" />
-                            <YAxis tickFormatter={this.state.formatter} />
-                            <Tooltip />
-                            <Legend />
-                            <Line type="monotone" dataKey="Net Sales" stroke="red" activeDot={{ r: 8 }} />
-                          </LineChart>
-                        </ResponsiveContainer>
-                        :
-                        <ResponsiveContainer aspect={3}>
-                          <BarChart
-                            width={500}
-                            height={300}
-                            data={this.state.report_overview_data.admin_overview.sales_data_chart}
-                            margin={{
-                              top: 5,
-                              right: 30,
-                              left: 20,
-                              bottom: 5,
-                            }}
-                            >
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="Date" />
-                            <YAxis tickFormatter={this.state.formatter} />
-                            <Tooltip />
-                            <Legend />
-                            <Bar dataKey="Net Sales" fill="red"  />
-                          </BarChart>
-                        </ResponsiveContainer>
-                      }
-
-                    { /*<div className="mvx-pro-image-display"><img src="https://wc-marketplace.com//wp-content//uploads//2021//06//722x415-paypal-300x172.jpg"/></div> */}
-                  </div>
-                </div>
               </div>
             </div>
 
