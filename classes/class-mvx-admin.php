@@ -403,6 +403,23 @@ class MVX_Admin {
             ),
         );
 
+        $question_product_selection_wordpboard = [];
+        $args_multi_vendor = array(
+            'posts_per_page' => -1,
+            'post_type' => 'product',
+            'post_status' => 'publish',
+        );
+        $product_query = new WP_Query($args_multi_vendor);
+        if ($product_query->get_posts()) {
+            foreach ($product_query->get_posts() as $product) {
+                $question_product_selection_wordpboard[] = array(
+                    'value' => esc_attr($product->ID),
+                    'label' => esc_attr($product->post_title),
+                );
+            }
+        }
+
+
         $task_board_bulk_status = array(
             array(
                 'value' => 'approve',
@@ -796,6 +813,7 @@ class MVX_Admin {
             'report_page_string'            =>  $report_page_string,
             'post_bulk_status'              =>  $post_bulk_status,
             'question_selection_wordpboard' =>  $question_selection_wordpboard,
+            'question_product_selection_wordpboard' =>  $question_product_selection_wordpboard,
             'pending_question_bulk'         =>  $pending_question_bulk,
             'store_review_bulk'             =>  $store_review_bulk,
             'task_board_bulk_status'        =>  $task_board_bulk_status,

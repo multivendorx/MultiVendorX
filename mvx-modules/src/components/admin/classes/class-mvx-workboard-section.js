@@ -223,6 +223,7 @@ class App extends Component {
         url: `${appLocalizer.apiUrl}/mvx_module/v1/list_of_bulk_change_status_question`,
         data: {
           value: e.value,
+          product_ids: Array.isArray(e) ? e : ''
         }
       })
       .then((responce) => {
@@ -230,6 +231,17 @@ class App extends Component {
           list_of_publish_question: responce.data,
         });
       });
+    } else {
+      axios.get(
+        `${appLocalizer.apiUrl}/mvx_module/v1/list_of_pending_question`, {
+        params: { status: 'publish' }
+      })
+      .then(response => {
+        this.setState({
+          list_of_publish_question: response.data,
+        });
+      })
+
     }
   }
 
@@ -1029,11 +1041,11 @@ class App extends Component {
       `${appLocalizer.apiUrl}/mvx_module/v1/list_of_pending_question`, {
       params: { status: 'publish' }
     })
-      .then(response => {
-        this.setState({
-          list_of_publish_question: response.data,
-        });
-      })
+    .then(response => {
+      this.setState({
+        list_of_publish_question: response.data,
+      });
+    })
 
 
     axios.get(
@@ -2078,7 +2090,11 @@ class App extends Component {
 
                         <div className="mvx-wrap-bulk-all-date">
                           <div className="mvx-wrap-bulk-action">
-                            <Select placeholder="Bulk actions" options={appLocalizer.question_selection_wordpboard} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_question_bulk_status_change} />
+                            <Select placeholder="Search status" options={appLocalizer.question_selection_wordpboard} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_question_bulk_status_change} />
+                          </div>
+
+                          <div className="mvx-wrap-bulk-action">
+                            <Select placeholder="Search product status" isMulti options={appLocalizer.question_product_selection_wordpboard} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_question_bulk_status_change} />
                           </div>
                         </div>
 

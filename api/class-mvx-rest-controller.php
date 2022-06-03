@@ -743,11 +743,24 @@ class MVX_REST_API {
     public function mvx_list_of_bulk_change_status_question($request) {
         global $MVX;
         $value = $request && $request->get_param('value') ? $request->get_param('value') : '';
+        $product_ids = $request && $request->get_param('product_ids') ? $request->get_param('product_ids') : array();
         $pending_list = [];
         if ($value == 'all') {
-            $vendor_questions_n_answers = $MVX->product_qna->get_Vendor_Questions(false);
+            $vendor_questions_n_answers = $MVX->product_qna->get_All_Vendor_Questions(false);
         } else {
-            $vendor_questions_n_answers = $MVX->product_qna->get_Vendor_Questions(true);
+            $vendor_questions_n_answers = $MVX->product_qna->get_All_Vendor_Questions(true);
+        }
+        
+        // filter by products
+        if ($product_ids && is_array($product_ids)) {
+            $qna_products = wp_list_pluck($product_ids, 'value');
+            if ($vendor_questions_n_answers) {
+                foreach ($vendor_questions_n_answers as $key => $qna_ques) {
+                    if (!in_array($qna_ques->product_ID, $qna_products)) {
+                        unset($vendor_questions_n_answers[$key]);
+                    }
+                }
+            }
         }
 
         if (!empty($vendor_questions_n_answers)) {
