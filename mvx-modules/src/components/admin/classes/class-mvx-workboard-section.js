@@ -1760,9 +1760,9 @@ class App extends Component {
             name == 'announcement' ?
               <div className="mvx-module-grid">
 
-                {get_current_name && get_current_name.get("create") == 'announcement' ?
-                <div className="mvx-table-text-and-add-wrap mvx-addbtn">
-                  <Link className="btn" to={`?page=mvx#&submenu=work-board&name=announcement`}>Back</Link>
+                {get_current_name && get_current_name.get("create") == 'announcement' || get_current_name.get("AnnouncementID") ?
+                <div className="mvx-back-btn">
+                  <Link className="btn" to={`?page=mvx#&submenu=work-board&name=announcement`}><i className="mvx-font icon-edit"></i>Back</Link>
                 </div>
                 :
                 <div className="mvx-table-text-and-add-wrap mvx-addbtn">
@@ -1865,9 +1865,9 @@ class App extends Component {
 
                 <div className="mvx-module-grid">
 
-                  {get_current_name && get_current_name.get("create") == 'knowladgebase' ?
-                    <div className="mvx-table-text-and-add-wrap mvx-addbtn">
-                      <Link className="btn" to={`?page=mvx#&submenu=work-board&name=knowladgebase`}>Back</Link>
+                  {get_current_name && get_current_name.get("create") == 'knowladgebase' || get_current_name.get("knowladgebaseID") ?
+                    <div className="mvx-back-btn">
+                      <Link className="btn" to={`?page=mvx#&submenu=work-board&name=knowladgebase`}><i className="mvx-font icon-edit"></i>Back</Link>
                     </div>
                     :
                     <div className="mvx-table-text-and-add-wrap mvx-addbtn">

@@ -591,7 +591,7 @@ class App extends React.Component {
 
 
         data_ann.last_action == 'last_action_trigger' ? data_ann.cell = (row) => <div className="mvx-vendor-action-icon">
-          <a href={row.link}><i className="mvx-font icon-edit"></i></a>
+          <a href={row.link_shop}><i className="mvx-font icon-edit"></i></a>
           <a href={row.link}><i className="mvx-font icon-edit"></i></a>
           <div onClick={() => this.handleVendorDismiss(row.ID)} id={row.ID}><i className="mvx-font icon-no"></i></div>
 
@@ -618,15 +618,6 @@ class App extends React.Component {
 
 
     let user_query = this.useQuery();
-    var tab_name_display = '';
-    var tab_description_display = '';
-    appLocalizer.mvx_all_backend_tab_list['marketplace-vendors'].map((data, index) => {
-      if (user_query.get("name") == data.modulename) {
-          tab_name_display = data.tablabel;
-          tab_description_display = data.description;
-        }
-      }
-    )
 
     return (
       user_query.get("ID") ?
@@ -845,6 +836,11 @@ class App extends React.Component {
 
   Childparent({ name }) {
     return (
+      <div className="mvx-dynamic-form-content">
+        <div className="mvx-back-btn">
+          <Link className="btn" to={`?page=mvx#&submenu=vendor`}><i className="mvx-font icon-edit"></i>Back</Link>
+        </div>
+      {
       name ?
           <DynamicForm
             key={`dynamic-form-add-new`}
@@ -856,7 +852,8 @@ class App extends React.Component {
             modulename="vendor_add_personal"
             url="mvx_module/v1/create_vendor"
           />
-          : ''
+          : ''}
+      </div>
     );
   }
 
@@ -1532,6 +1529,11 @@ class App extends React.Component {
                 ) : (
                   this.state.data_setting_fileds &&
                     Object.keys(this.state.data_setting_fileds).length > 0 ? (
+                    <div className="mvx-dynamic-form-content">
+                      <div className="mvx-back-btn">
+                        <Link className="btn" to={`?page=mvx#&submenu=vendor`}><i className="mvx-font icon-edit"></i>Back</Link>
+                      </div>
+                      {
                       <DynamicForm
                         key={`dynamic-form-${data.modulename}`}
                         className={data.classname}
@@ -1543,6 +1545,8 @@ class App extends React.Component {
                         url={data.apiurl}
                         submitbutton="false"
                       />
+                      }
+                      </div>
                     ) : (
                       ""
                     )

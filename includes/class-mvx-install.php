@@ -404,5 +404,9 @@ class MVX_Install {
         if (apply_filters('mvx_do_schedule_cron_mvx_older_settings_migrated_migration', true) && !wp_next_scheduled('mvx_older_settings_migrated_migration') && !get_option('_is_dismiss_mvx40_notice', false)) {
             wp_schedule_event(time(), 'every_5minute', 'mvx_older_settings_migrated_migration');
         }
+        if (apply_filters('mvx_do_masspay_cron_start', true) && !wp_next_scheduled('masspay_cron_start') && get_mvx_vendor_settings('choose_payment_mode_automatic_disbursal', 'disbursement') ) {
+            $payment_schedule = get_mvx_vendor_settings('payment_schedule', 'disbursement');
+            wp_schedule_event(time(), $payment_schedule, 'masspay_cron_start');
+        }
     }
 }

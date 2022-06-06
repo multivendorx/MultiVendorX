@@ -4855,6 +4855,7 @@ class MVX_REST_API {
                 'name'          => $name_display,
                 'sample_title'  => $user->data->display_name,
                 'link'          => sprintf('?page=%s&ID=%s&name=vendor-personal', 'mvx#&submenu=vendor', $user->data->ID),
+                'link_shop'          => $vendor->permalink,
                 'admin_link'    => admin_url('admin.php?page=mvx#&submenu=vendor&ID='. $user->data->ID .'&name=vendor-personal'),
                 'email'         => $user->data->user_email,
                 'registered'    => get_date_from_gmt( $user->data->user_registered ),
