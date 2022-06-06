@@ -21,6 +21,16 @@ class MVX_Deprecated_Action_Hooks extends WC_Deprecated_Hooks {
 	 */
 	protected $deprecated_hooks = array(
 		'after_mvx_vendor_description'               => 'after_wcmp_vendor_description',
+		'mvx_rest_api_request'                       => 'wcmp_rest_api_request',
+		 'mvx_rest_api'                              => 'wcmp_rest_api',
+		 'mvx_todo_done_pending_transaction'         => 'wcmp_todo_done_pending_transaction',
+		 'mvx_before_update_shipping_method'         => 'wcmp_before_update_shipping_method',
+		 'mvx_vendor_details_update'                 => 'wcmp_vendor_details_update',
+		 'mvx_rest_insert_vendor_review'             => 'wcmp_rest_insert_vendor_review',
+         'before_mvx_orders_list_query_bind'         => 'before_wcmp_orders_list_query_bind',
+         'mvx_vendor_order_edit_status'              => 'wcmp_vendor_order_edit_status',
+         'mvx_orders_list_do_handle_bulk_actions'    => 'wcmp_orders_list_do_handle_bulk_actions',
+
 	);
 
 	/**
@@ -30,6 +40,17 @@ class MVX_Deprecated_Action_Hooks extends WC_Deprecated_Hooks {
 	 */
 	protected $deprecated_version = array(
 		'after_wcmp_vendor_description'                   => '4.0.0',
+		'wcmp_rest_api_request'                           => '4.0.0',
+		'wcmp_rest_api'                                   => '4.0.0',
+		'wcmp_todo_done_pending_transaction'              => '4.0.0',
+		'wcmp_before_update_shipping_method'              => '4.0.0',
+		'wcmp_vendor_details_update'                      => '4.0.0',
+		'wcmp_rest_insert_vendor_review'                  => '4.0.0',
+		'before_wcmp_orders_list_query_bind'              => '4.0.0',
+		'wcmp_vendor_order_edit_status'                   => '4.0.0',
+		'wcmp_orders_list_do_handle_bulk_actions1'        => '4.0.0',
+
+
 	);
 
 	/**
