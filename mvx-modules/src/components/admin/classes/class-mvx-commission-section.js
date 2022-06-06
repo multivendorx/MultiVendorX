@@ -461,8 +461,15 @@ class App extends Component {
   {new URLSearchParams(window.location.hash).get("CommissionID") ? (
     Object.keys(this.state.commission_details).length > 0 ? (
         <div className="mvx-container mvx-edit-commission-container">
+
           <div className="mvx-middle-container-wrapper">
             <div className="woocommerce-order-data">
+
+            {/* Back button */}
+            <div className="mvx-back-btn">
+              <Link className="btn" to={`?page=mvx#&&submenu=commission`}><i className="mvx-font icon-edit"></i>Back</Link>
+            </div>
+
               <div className="mvx-datatable-text">Edit Commission</div>
 
               {/* Commission Details Start */}
