@@ -57,7 +57,8 @@ class App extends Component {
       current: {},
       registration_title_hidden: false,
       list_of_module_data: [],
-      set_tab_name: ''
+      set_tab_name: '',
+      list_of_all_tabs: []
     };
 
     
@@ -524,7 +525,15 @@ class App extends Component {
       })
 
 
-
+    // tab list
+    axios({
+      url: `${appLocalizer.apiUrl}/mvx_module/v1/list_of_all_tabs`
+    })
+    .then(response => {
+      this.setState({
+        list_of_all_tabs: response.data,
+      });
+    })
 
 
 
@@ -537,11 +546,13 @@ class App extends Component {
   QueryParamsDemo() {
     let use_query = this.useQuery();
     return (
+      Object.keys(this.state.list_of_all_tabs).length > 0 ?
       <TabSection
-        model={appLocalizer.mvx_all_backend_tab_list['marketplace-general-settings']}
+        model={this.state.list_of_all_tabs['marketplace-general-settings']}
         query_name={use_query.get("name")}
         funtion_name={this}
       />
+      : <PuffLoader css={override} color={"#cd0000"} size={200} loading={true} />
     );
   }
 

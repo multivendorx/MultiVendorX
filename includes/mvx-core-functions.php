@@ -4855,7 +4855,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
         );
 
         $review_options_data = get_option('mvx_review_management_tab_settings');
-        $mvx_review_categories = $review_options_data ? $review_options_data['mvx_review_categories'] : $default_nested_data;
+        $mvx_review_categories = $review_options_data && isset($review_options_data['mvx_review_categories']) ? $review_options_data['mvx_review_categories'] : $default_nested_data;
 
         $commission_options_data = get_option('mvx_commissions_tab_settings');
         $mvx_product_commission_variations = isset($commission_options_data['vendor_commission_by_products']) ? $commission_options_data['vendor_commission_by_products'] : $default_nested_data;
