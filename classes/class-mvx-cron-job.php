@@ -79,7 +79,7 @@ class MVX_Cron_Job {
                 $vendor_term_id = get_post_meta($commission_id, '_commission_vendor', true);
                 $order_id = get_post_meta( $commission_id ,'_commission_order_id', true );
                 $order = wc_get_order( $order_id );
-                if( is_a( $order, 'WC_Order' ) && !in_array( $order->get_status(), apply_filters( 'mvx_cron_mass_payment_exclude_order_statuses',array( 'failed', 'cancelled' ) ) ) ) {
+                if ( is_a( $order, 'WC_Order' ) && !in_array( $order->get_status(), apply_filters( 'mvx_cron_mass_payment_exclude_order_statuses',array( 'failed', 'cancelled' ) ) ) ) {
                     $commission_to_pay[$vendor_term_id][] = $commission_id;
                 }
             }
@@ -128,7 +128,7 @@ class MVX_Cron_Job {
                     $order_data = array();
                     $vendor = get_mvx_vendor($vendor_obj->id);
                     $is_block = get_user_meta($vendor->id, '_vendor_turn_off', true);
-                    if($is_block) continue;
+                    if ($is_block) continue;
                     $email = WC()->mailer()->emails['WC_Email_Vendor_Orders_Stats_Report'];
                     $vendor_weekly_stats = $vendor->get_vendor_orders_reports_of('vendor_stats', array('vendor_id' => $vendor->id));
                     $transaction_details = $MVX->transaction->get_transactions($vendor->term_id, date('Y-m-d', strtotime('-7 days')), date('Y-m-d'));
@@ -206,7 +206,7 @@ class MVX_Cron_Job {
                     $order_data = array();
                     $vendor = get_mvx_vendor($vendor_obj->id);
                     $is_block = get_user_meta($vendor->id, '_vendor_turn_off', true);
-                    if($is_block) continue;
+                    if ($is_block) continue;
                     $email = WC()->mailer()->emails['WC_Email_Vendor_Orders_Stats_Report'];
                     $vendor_monthly_stats = $vendor->get_vendor_orders_reports_of('vendor_stats', array('vendor_id' => $vendor->id, 'start_date' => date('Y-m-d H:i:s', strtotime('-30 days'))));
                     $transaction_details = $MVX->transaction->get_transactions($vendor->term_id, date('Y-m-d', strtotime('-30 days')), date('Y-m-d'));
@@ -286,7 +286,7 @@ class MVX_Cron_Job {
                     $order_data = array();
                     $vendor = get_mvx_vendor($vendor_obj->id);
                     $is_block = get_user_meta($vendor->id, '_vendor_turn_off', true);
-                    if($is_block) continue;
+                    if ($is_block) continue;
                     $email = WC()->mailer()->emails['WC_Email_Vendor_Orders_Stats_Report'];
                     $vendor_custom_date_stats = $vendor->get_vendor_orders_reports_of('vendor_stats', array('vendor_id' => $vendor->id, 'start_date' => date('Y-m-d H:i:s', $strtotime)));
                     $transaction_details = $MVX->transaction->get_transactions($vendor->term_id, date('Y-m-d', $strtotime), date('Y-m-d'));
@@ -363,20 +363,20 @@ class MVX_Cron_Job {
         ));
         $products = get_posts($args);
 
-        if($products){
+        if ($products){
             foreach ($products as $product_id => $parent_id) {
-                if($parent_id){
+                if ($parent_id){
                     delete_post_meta($product_id, '_mvx_child_product');
                     wp_update_post(array('ID' => $product_id, 'post_parent' => 0), true);
                     $data = array('product_id' => $product_id);
-                    if(get_post_meta($product_id, '_mvx_spmv_map_id', true) || get_post_meta($parent_id, '_mvx_spmv_map_id', true)){
+                    if (get_post_meta($product_id, '_mvx_spmv_map_id', true) || get_post_meta($parent_id, '_mvx_spmv_map_id', true)){
                         $product_map_id = (get_post_meta($product_id, '_mvx_spmv_map_id', true)) ? get_post_meta($product_id, '_mvx_spmv_map_id', true) : 0;
                         $product_map_id = (get_post_meta($parent_id, '_mvx_spmv_map_id', true)) ? get_post_meta($parent_id, '_mvx_spmv_map_id', true) : $product_map_id;
                         $data['product_map_id'] = $product_map_id;
                     }
                     
                     $map_id = mvx_spmv_products_map($data, 'insert');
-                    if($map_id){
+                    if ($map_id){
                         $data['product_map_id'] = $map_id;
                         $data['product_id'] = $parent_id;
                         mvx_spmv_products_map($data, 'insert');
@@ -409,13 +409,13 @@ class MVX_Cron_Job {
     
     public function mvx_spmv_product_meta_update() {
         $products_map_data = get_mvx_spmv_products_map_data();
-        if($products_map_data){
+        if ($products_map_data){
             foreach ($products_map_data as $product_map_id => $product_ids) {
-                if($product_ids){
+                if ($product_ids){
                     foreach ($product_ids as $product_id) {
                         $is_mvx_spmv_product = get_post_meta($product_id, '_mvx_spmv_product', true);
                         $has_mvx_spmv_map_id = get_post_meta($product_id, '_mvx_spmv_map_id', true);
-                        if(!$is_mvx_spmv_product || !$has_mvx_spmv_map_id){
+                        if (!$is_mvx_spmv_product || !$has_mvx_spmv_map_id){
                             update_post_meta($product_id, '_mvx_spmv_product', true);
                             update_post_meta($product_id, '_mvx_spmv_map_id', $product_map_id);
                         }
@@ -442,21 +442,21 @@ class MVX_Cron_Job {
         if ($vendors) {
             foreach ($vendors as $vendor) {
                 $vendor_orders = get_mvx_vendor_orders(array('vendor_id' => $vendor->id));
-                if($vendor_orders){
+                if ($vendor_orders){
                     $vendor_done_commissions_ids = array();
                     foreach ($vendor_orders as $vorder) {
-                        if(!in_array($vorder->commission_id, $vendor_done_commissions_ids)){
+                        if (!in_array($vorder->commission_id, $vendor_done_commissions_ids)){
                             $vendor_done_commissions_ids[] = $vorder->commission_id;
                             $commission_specific_orders = get_mvx_vendor_orders(array('vendor_id' => $vendor->id, 'commission_id' => $vorder->commission_id));
                             $items = array();
                             $commission_specific_orders_ids_done = array();
                             foreach ($commission_specific_orders as $corder) {
                                 $order = wc_get_order($corder->order_id);
-                                if(!$order){
+                                if (!$order){
                                     continue;
                                 }
                                 $vendor_specific_order_migrated = (get_post_meta($corder->order_id, '_mvx_vendor_specific_order_migrated', true)) ? get_post_meta($corder->order_id, '_mvx_vendor_specific_order_migrated', true) : array();
-                                if(in_array($vendor->id, $vendor_specific_order_migrated) || in_array($corder->order_id, $commission_specific_orders_ids_done)){
+                                if (in_array($vendor->id, $vendor_specific_order_migrated) || in_array($corder->order_id, $commission_specific_orders_ids_done)){
                                     continue;
                                 }
                                 $vendor_specific_order_migrated[] = $vendor->id;
@@ -526,7 +526,8 @@ class MVX_Cron_Job {
                 }
             }
 
-            $get_managements_data = $seller_dashboard = $store_data = $products_data = $products_capabily_data = $spmv_data = $commission_data = $disbursement_data = $policy_data = $refund_data = $review_data = $social_data = $payemnts_masspay_data = $payemnts_payout_data = $payemnts_stripe_data = [];
+            $get_managements_data = $seller_dashboard = $store_data = $products_data = $products_capabily_data = $spmv_data = $commission_data = $disbursement_data = $policy_data = $refund_data = $review_data = $social_data = $payemnts_masspay_data = $payemnts_payout_data = $payemnts_stripe_data = $pages_dashboard_array = $pages_array = [];
+
             $get_managements_data = get_option('mvx_settings_general_tab_settings', array());
             if (get_mvx_older_global_settings('approve_vendor_manually') && get_mvx_older_global_settings('approve_vendor_manually') == 'Enable') {
                 $get_managements_data['approve_vendor'] = 'manually';
@@ -540,10 +541,11 @@ class MVX_Cron_Job {
                 $get_managements_data['category_pyramid_guide'] = array('category_pyramid_guide');
                 mvx_update_option('mvx_settings_general_tab_settings', $get_managements_data);
             }
-             
+            
+            $pages = get_pages();
+
             if (get_mvx_older_global_settings('vendor_registration')) {
-                $pages = get_pages();
-                if($pages) {
+                if ($pages) {
                     foreach ($pages as $page) {
                         if ($page->ID == get_mvx_older_global_settings('vendor_registration')) {
                             $pages_array = array(
@@ -559,8 +561,7 @@ class MVX_Cron_Job {
             }
 
             if (get_mvx_older_global_settings('wcmp_vendor')) {
-                $pages = get_pages();
-                if($pages) {
+                if ($pages) {
                     foreach ($pages as $page) {
                         if ($page->ID == get_mvx_older_global_settings('wcmp_vendor')) {
                             $pages_dashboard_array = array(

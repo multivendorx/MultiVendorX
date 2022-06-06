@@ -738,6 +738,16 @@ class MVX_REST_API {
             'callback' => array( $this, 'mvx_approve_dismiss_pending_transaction' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
+
+        register_rest_route( 'mvx_module/v1', '/list_of_all_tabs', [
+            'methods' => WP_REST_Server::READABLE,
+            'callback' => array( $this, 'mvx_list_of_all_tabs' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+    }
+
+    public function mvx_list_of_all_tabs() {
+        return rest_ensure_response(mvx_admin_backend_tab_settings());
     }
 
     public function mvx_list_of_bulk_change_status_question($request) {

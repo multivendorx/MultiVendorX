@@ -114,7 +114,7 @@ class App extends Component {
       pending_user_loding_end: false,
       pending_coupon_loding_end: false,
       pending_question_loding_end: false,
-
+      list_of_all_tabs: [],
 
       pending_tranaction: [
         {
@@ -1144,6 +1144,16 @@ class App extends Component {
       })
 
 
+    // tab list
+    axios({
+      url: `${appLocalizer.apiUrl}/mvx_module/v1/list_of_all_tabs`
+    })
+    .then(response => {
+      this.setState({
+        list_of_all_tabs: response.data,
+      });
+    })
+
   }
 
   useQuery() {
@@ -1168,13 +1178,15 @@ class App extends Component {
 
     let use_query = this.useQuery();
     return (
+      Object.keys(this.state.list_of_all_tabs).length > 0 ?
       <TabSection
-        model={appLocalizer.mvx_all_backend_tab_list['marketplace-workboard']}
+        model={this.state.list_of_all_tabs['marketplace-workboard']}
         query_name={use_query.get("name")}
         funtion_name={this}
         horizontally
         no_banner
       />
+       : <PuffLoader css={override} color={"#cd0000"} size={200} loading={true} />
     );
   }
 
