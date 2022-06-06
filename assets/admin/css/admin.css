@@ -784,17 +784,16 @@ a:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding-left: 20px;
-  margin-bottom: 9px;
+  margin-bottom: -1px;
 }
 
 .mvx-container .mvx-horizontal-tabs li {
   display: inline-block;
   padding-right: 15px;
   display: inline-block;
-  width: auto;
+  width: auto !important;
   height: 48px;
-  background: #fdfdfe;
+  background: #fdfdfe !important;
   text-align: center;
   line-height: 48px;
   padding: 0 24px;
@@ -832,13 +831,18 @@ a:focus {
   border-radius: 0 4px 0 0;
 }
 
+.mvx-container .mvx-horizontal-tabs li:last-child {
+  border-bottom: none !important;
+}
+
 .mvx-container .mvx-horizontal-tabs .active-current-tab {
   border-bottom: 1px solid #f7f6f9;
-  background-color: #f7f6f9;
+  background-color: #f7f6f9 !important;
+  z-index: 0;
 }
 
 .mvx-container .mvx-tab-content {
-  background: #f7f6f9;
+  background: #f7f6f9 !important;
   margin-top: -16px;
   padding-left: 20px;
   padding-right: 24px;
@@ -1172,6 +1176,10 @@ input[type=radio]:checked::before {
 
 .mvx-question-ans .mvx-middle-container-wrapper {
   width: 100%;
+}
+
+.mvx-question-ans .mvx-wrap-bulk-all-date .mvx-wrap-bulk-action:first-child {
+  margin: 0 10px 0 0;
 }
 
 .mvx-select-all-checkbox {
@@ -1887,11 +1895,7 @@ input:focus {
   background-color: #fdfdfe;
 }
 
-<<<<<<< HEAD
 .mvx-general-wrapper .mvx-form-group {
-=======
-.mvx-vertical-tabs .mvx-form-group {
->>>>>>> upstream/main
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1901,19 +1905,11 @@ input:focus {
   padding: 32px 0;
 }
 
-<<<<<<< HEAD
 .mvx-general-wrapper .mvx-form-group label p {
   width: 180px;
 }
 
 .mvx-general-wrapper .mvx-form-group .mvx-settings-input-content {
-=======
-.mvx-vertical-tabs .mvx-form-group label p {
-  width: 180px;
-}
-
-.mvx-vertical-tabs .mvx-form-group .mvx-settings-input-content {
->>>>>>> upstream/main
   width: 100%;
 }
 
@@ -2220,6 +2216,10 @@ input:focus {
           align-items: center;
 }
 
+.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon div {
+  margin-right: 10px;
+}
+
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon a {
   display: block;
   margin-right: 10px;
@@ -2259,6 +2259,15 @@ input:focus {
 
 .mvx-admin-dashboard {
   position: relative;
+}
+
+.mvx-vertical-tabs .mvx-current-tab-lists {
+  width: 22.8% !important;
+}
+
+.mvx-vertical-tabs .mvx-tab-content {
+  width: 75% !important;
+  background-color: #fdfdfe !important;
 }
 
 .mvx-notic-display-title {

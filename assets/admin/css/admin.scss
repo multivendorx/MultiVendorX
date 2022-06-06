@@ -656,9 +656,9 @@ $fill-color : #fdfdfe;
 }
 @mixin tabs {
     display: inline-block;
-    width: auto;
+    width: auto !important;
     height: 48px;
-    background: #fdfdfe;
+    background: #fdfdfe !important;
     text-align: center;
     line-height: 48px;
     padding: 0 24px;
@@ -827,85 +827,6 @@ $fill-color : #fdfdfe;
 .mvx-database-tools {
 
 }
-@mixin registration-sec {
-    // & .mvx-form-vendor-register {
-    //     & .mvx-top-part-registartion-from  {
-    //         background: #fdfdfe;
-    //         padding: 16px;
-    //         margin-top: 22px;
-    //         border-radius: $border-radius;
-    //         & .mvx-form-group-new {
-    //             & .w-100 {
-    //                 display: flex;
-    //                 flex-direction: column;
-    //                 margin-bottom: 10px;
-    //             }
-    //             & input {
-    //                 border: $border;
-    //                 height: 40px;
-    //             }
-    //             & input:focus {
-    //                 box-shadow: none;
-    //             }
-    //         }
-    //     }
-    //     & .meta-box-sortables {
-    //         & li {
-    //             border: none;
-    //             background: transparent;
-    //             padding: 0;
-    //             width: 100%;
-    //         }
-    //     }
-    // }
-    // & .mvx-option-part {
-    //     background: #fdfdfe;
-    //     padding: 16px;
-    //     margin-top: 22px;
-    //     border-radius: $border-radius;
-    //     & .mvx-form-group {
-    //         justify-content: center;
-    //     }
-    // }
-    // & .mvx-tab-content {
-    //     height: 750px;
-    // }
-    // & .question-input-items {
-    //     flex-direction: column;
-    //     @include flexprops(center);
-    //     margin-right: 10px;
-    //     & input {
-    //         border: $border;
-    //         height: 40px;
-    //     }
-    //     & input:focus {
-    //         box-shadow: none;
-    //     }
-    //     & select {
-    //         border: $border;
-    //         height: 40px;
-    //     }
-    //     & select:focus {
-    //         box-shadow: none;
-    //     }
-    // }
-    // .mvx-basic-description {
-    //     @include flexprops(center);
-    //     justify-content: center;
-    //     .mvx-vendor-form-input-field-container {
-    //         @include flexprops(center);
-    //         flex-direction: column;
-    //         margin-right: 10px;
-    //         & input {
-    //             border: $border;
-    //             height: 40px;
-    //         }
-    //         & input:focus {
-    //             box-shadow: none;
-    //         }
-    //     }
-    // }
-}
 @mixin add-announcement-btn {
         background: #3f1473;
         border-radius: $border-radius;
@@ -1040,8 +961,7 @@ $fill-color : #fdfdfe;
     }
     & .mvx-horizontal-tabs {
         @include flexprops(center);
-        padding-left: 20px;
-        margin-bottom: 9px;
+        margin-bottom: -1px;
         & li {
             @include activedashboardtabs;
             @include tabs;
@@ -1067,14 +987,18 @@ $fill-color : #fdfdfe;
             & li:nth-child(4){
                 border-radius: 0 4px 0 0;
             }
+            & li:last-child {
+                border-bottom: none !important;
+            }
             & .active-current-tab {
                 border-bottom: 1px solid #f7f6f9;
-                background-color: #f7f6f9;
+                background-color: #f7f6f9 !important;
+                z-index: 0;
             }
     }
 
     & .mvx-tab-content {
-        background: #f7f6f9;
+        background: #f7f6f9 !important;
         margin-top: -16px;
         @include padding-left;
         padding-right: 24px;
@@ -1349,6 +1273,11 @@ input[type=radio]:checked::before {
 .mvx-question-ans {
     & .mvx-middle-container-wrapper {
         width: 100%;
+    }
+    & .mvx-wrap-bulk-all-date {
+        & .mvx-wrap-bulk-action:first-child {
+            margin: 0 10px 0 0;
+        }
     }
 }
 .mvx-select-all-checkbox {
@@ -2016,9 +1945,9 @@ input:focus {
         }
     }
 }
-.mvx-registration {
-    @include registration-sec;
-}
+// .mvx-registration {
+//     @include registration-sec;
+// }
 .mvx-store {
     & .mvx-section-img-fluid {
         width: 100%;
@@ -2104,6 +2033,9 @@ margin-top: 10px;
                 & .rdt_TableCell {
                     & .mvx-vendor-action-icon {
                         @include flexprops(center);
+                        & div {
+                            margin-right: 10px;
+                        }
                         & a {
                             display: block;
                             margin-right: 10px;
@@ -2144,6 +2076,15 @@ margin-top: 10px;
 }
 .mvx-admin-dashboard {
     position: relative;
+}
+.mvx-vertical-tabs {
+    & .mvx-current-tab-lists  {
+        width: 22.8% !important;
+    }
+    & .mvx-tab-content {
+        width: 75% !important;
+        background-color: #fdfdfe !important;
+    }
 }
 .mvx-notic-display-title {
     position: fixed;
