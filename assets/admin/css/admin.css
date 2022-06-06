@@ -1821,15 +1821,15 @@ input:focus {
 }
 
 /** Start Settings Page Css **/
-.mvx-vertical-tabs .mvx-current-tab-lists {
+.mvx-general-wrapper .mvx-current-tab-lists {
   float: left;
   background-color: #f1f1f1;
-  width: 22%;
+  width: auto;
   height: auto;
   margin-left: 20px;
 }
 
-.mvx-vertical-tabs .mvx-current-tab-lists li {
+.mvx-general-wrapper .mvx-current-tab-lists li {
   height: auto;
   line-height: 48px;
   padding: 16px 24px;
@@ -1845,7 +1845,7 @@ input:focus {
   background: #f7f6f9;
 }
 
-.mvx-vertical-tabs .mvx-current-tab-lists li a {
+.mvx-general-wrapper .mvx-current-tab-lists li a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1858,28 +1858,28 @@ input:focus {
   text-decoration: none;
 }
 
-.mvx-vertical-tabs .mvx-current-tab-lists li a i {
+.mvx-general-wrapper .mvx-current-tab-lists li a i {
   padding-right: 8px;
 }
 
-.mvx-vertical-tabs .mvx-current-tab-lists li:last-child {
+.mvx-general-wrapper .mvx-current-tab-lists li:last-child {
   border-bottom: 1px solid #d4d1d9;
 }
 
-.mvx-vertical-tabs .mvx-current-tab-lists li:nth-child(4) {
+.mvx-general-wrapper .mvx-current-tab-lists li:nth-child(4) {
   border-radius: 0;
 }
 
-.mvx-vertical-tabs .mvx-current-tab-lists .active-current-tab {
+.mvx-general-wrapper .mvx-current-tab-lists .active-current-tab {
   border-right: 1px solid #f7f6f9;
   background-color: #fdfdfe;
 }
 
-.mvx-vertical-tabs .mvx-tab-content {
+.mvx-general-wrapper .mvx-tab-content {
   padding: 24px;
   border: 1px solid #d4d1d9;
   float: left;
-  width: 75.8%;
+  width: 100%;
   height: auto;
   margin-top: 0;
   border-radius: 0px 4px 4px 0px;
@@ -1887,7 +1887,7 @@ input:focus {
   background-color: #fdfdfe;
 }
 
-.mvx-vertical-tabs .mvx-form-group {
+.mvx-general-wrapper .mvx-form-group {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1897,11 +1897,11 @@ input:focus {
   padding: 32px 0;
 }
 
-.mvx-vertical-tabs .mvx-form-group label p {
+.mvx-general-wrapper .mvx-form-group label p {
   width: 180px;
 }
 
-.mvx-vertical-tabs .mvx-form-group .mvx-settings-input-content {
+.mvx-general-wrapper .mvx-form-group .mvx-settings-input-content {
   width: 100%;
 }
 

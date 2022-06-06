@@ -773,7 +773,7 @@ $fill-color : #fdfdfe;
     & .mvx-current-tab-lists {
         float: left;
         background-color: #f1f1f1;
-        width: 22%;
+        width: auto;
         height: auto;
         margin-left: 20px;
         & li {
@@ -816,13 +816,16 @@ $fill-color : #fdfdfe;
         padding: 24px;
         border: 1px solid #d4d1d9;
         float: left;
-        width: 75.8%;
+        width: 100%;
         height: auto;
         margin-top: 0;
         border-radius: 0px 4px 4px 0px;
         border-left: 0;
         background-color: $fill-color;
     }
+}
+.mvx-database-tools {
+
 }
 @mixin registration-sec {
     // & .mvx-form-vendor-register {
@@ -1839,7 +1842,7 @@ input:focus {
 
 /** Start Settings Page Css **/
 
-.mvx-vertical-tabs {
+.mvx-general-wrapper {
     @include tabvertical;
     & .mvx-form-group {
         @include flexprops(start);
