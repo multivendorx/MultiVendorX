@@ -1887,7 +1887,11 @@ input:focus {
   background-color: #fdfdfe;
 }
 
+<<<<<<< HEAD
 .mvx-general-wrapper .mvx-form-group {
+=======
+.mvx-vertical-tabs .mvx-form-group {
+>>>>>>> upstream/main
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1897,11 +1901,19 @@ input:focus {
   padding: 32px 0;
 }
 
+<<<<<<< HEAD
 .mvx-general-wrapper .mvx-form-group label p {
   width: 180px;
 }
 
 .mvx-general-wrapper .mvx-form-group .mvx-settings-input-content {
+=======
+.mvx-vertical-tabs .mvx-form-group label p {
+  width: 180px;
+}
+
+.mvx-vertical-tabs .mvx-form-group .mvx-settings-input-content {
+>>>>>>> upstream/main
   width: 100%;
 }
 

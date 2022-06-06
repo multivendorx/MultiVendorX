@@ -105,9 +105,9 @@ $multi_split_payment_options = $MVX->vendor_dashboard->is_multi_option_split_ena
                 	$account_type = apply_filters('mvx_vendor_stripe_connect_account_type', 'standard', '', $user_id);
                     
                 	if( $account_type == 'standard' || $account_type == 'express' ) {
-						$testmode = get_mvx_vendor_settings('testmode', 'payment-stripe-connect') ? true : false;
-						$client_id = $testmode ? get_mvx_vendor_settings('test_client_id', 'payment-stripe-connect') : get_mvx_vendor_settings('live_client_id', 'payment-stripe-connect');
-						$secret_key = $testmode ? get_mvx_vendor_settings('test_secret_key', 'payment-stripe-connect') : get_mvx_vendor_settings('live_secret_key', 'payment', 'stripe_gateway');
+						$testmode = get_mvx_vendor_settings('testmode', 'payment_stripe_connect') ? true : false;
+						$client_id = $testmode ? get_mvx_vendor_settings('test_client_id', 'payment_stripe_connect') : get_mvx_vendor_settings('live_client_id', 'payment_stripe_connect');
+						$secret_key = $testmode ? get_mvx_vendor_settings('test_secret_key', 'payment_stripe_connect') : get_mvx_vendor_settings('live_secret_key', 'payment', 'stripe_gateway');
 						if (isset($client_id) && isset($secret_key)) {
 							if (isset($_GET['code'])) {
 								$code = wc_clean($_GET['code']);

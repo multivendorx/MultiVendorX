@@ -69,10 +69,10 @@ class MVX_Product_QNA {
      * @since  3.0.4
      * @param MVX_Product_QNA question $ques_ID
      */
-    public function mvx_product_qna_delete_question( $ques_ID ){
-        if($ques_ID){
+    public function mvx_product_qna_delete_question( $ques_ID ) {
+        if ($ques_ID) {
             $answers = $this->get_Answers($ques_ID);
-            if($answers){
+            if ($answers) {
                 foreach ($answers as $ans) {
                     $this->deleteAnswer($ans->ans_ID);
                 }
@@ -96,7 +96,7 @@ class MVX_Product_QNA {
         $questions = $this->get_Questions( $product_ID );
         $pending_questions = [];
         foreach( $questions as $question ) {
-            if( $question->status == 'pending' ) {
+            if ( $question->status == 'pending' ) {
                 $pending_questions[] = $question;
             } 
         }
@@ -125,14 +125,43 @@ class MVX_Product_QNA {
      */
     public function get_Vendor_Questions( $vendor, $unanswer = true ) {
         $vendor_questions = array();
-        if($vendor && $vendor->get_products_ids()){ 
+        if ($vendor && $vendor->get_products_ids()) { 
             foreach ($vendor->get_products_ids() as $product) { 
                 $product_questions = $this->get_Questions($product->ID, "ORDER BY ques_created DESC");
-                if($product_questions){
+                if ($product_questions) {
                     foreach ($product_questions as $question) {
-                        if($unanswer){
+                        if ($unanswer) {
                             $_is_answer_given = $this->get_Answers($question->ques_ID);
-                            if(!$_is_answer_given){
+                            if (!$_is_answer_given) {
+                                $vendor_questions[$question->ques_ID] = $question;
+                            }
+                        }else{
+                            $vendor_questions[$question->ques_ID] = $question;
+                        }
+                    }
+                }  
+            }
+        }
+        return $vendor_questions;
+    }
+
+    public function get_All_Vendor_Questions( $unanswer = true ) {
+        $vendor_questions = array();
+        $args_multi_vendor = array(
+            'posts_per_page' => -1,
+            'post_type' => 'product',
+            'post_status' => 'publish',
+            'fields' => 'ids'
+        );
+        $vendor_query = new WP_Query($args_multi_vendor);
+        if ($vendor_query->get_posts()) { 
+            foreach ($vendor_query->get_posts() as $product) { 
+                $product_questions = $this->get_Questions($product, "ORDER BY ques_created DESC");
+                if ($product_questions) {
+                    foreach ($product_questions as $question) {
+                        if ($unanswer) {
+                            $_is_answer_given = $this->get_Answers($question->ques_ID);
+                            if (!$_is_answer_given) {
                                 $vendor_questions[$question->ques_ID] = $question;
                             }
                         }else{
@@ -209,10 +238,10 @@ class MVX_Product_QNA {
     public function get_Answers( $ques_ID = 0, $where = '' ) {
         global $wpdb;
         $get_ans_sql = "SELECT * FROM {$this->answer_table}";
-        if($ques_ID && $ques_ID != 0){
+        if ($ques_ID && $ques_ID != 0) {
             $get_ans_sql .=  " WHERE ques_ID = '" . esc_sql( $ques_ID ) . "' ";
         } 
-        if($where){
+        if ($where) {
             $get_ans_sql .= $where;
         }
         return $wpdb->get_results( $get_ans_sql );
@@ -234,26 +263,26 @@ class MVX_Product_QNA {
         );
         $args = wp_parse_args($args, $default);
         $get_qna_sql = "SELECT * FROM {$this->question_table} AS question INNER JOIN {$this->answer_table} AS answer ON question.ques_ID = answer.ques_ID WHERE product_ID = %d ";
-        if($args['sortby'] == 'date'){
+        if ($args['sortby'] == 'date') {
             $get_qna_sql .= "ORDER BY question.ques_created ". esc_sql($args['sort']) ." ";
         }
-        if($args['where']){
+        if ($args['where']) {
             $get_qna_sql .= $args['where'];
         }
         $product_QNAs = $wpdb->get_results( $wpdb->prepare( wc_clean($get_qna_sql), absint($product_ID) ) );
-        if($args['sortby'] == 'vote' && $product_QNAs){
+        if ($args['sortby'] == 'vote' && $product_QNAs) {
             $votes = array();
             foreach ($product_QNAs as $key => $qna) { 
                 $count = 0;
                 $ans_vote = maybe_unserialize($qna->ans_vote);
-                if(is_array($ans_vote)){
+                if (is_array($ans_vote)) {
                     $count = array_sum($ans_vote);
                 }
                 $product_QNAs[$key]->vote_count = $count;
                 $votes[$key] = $count;
             }
 
-            if($args['sort']== 'ASC'){
+            if ($args['sort']== 'ASC') {
                 array_multisort($votes, SORT_ASC, $product_QNAs);
             }else{
                 array_multisort($votes, SORT_DESC, $product_QNAs);

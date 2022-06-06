@@ -530,6 +530,13 @@ class MVX_REST_API {
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
 
+        // pending Question
+        register_rest_route( 'mvx_module/v1', '/list_of_bulk_change_status_question', [
+            'methods' => WP_REST_Server::EDITABLE,
+            'callback' => array( $this, 'mvx_list_of_bulk_change_status_question' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
         // approve pending Question
         register_rest_route( 'mvx_module/v1', '/approve_dismiss_pending_question', [
             'methods' => WP_REST_Server::EDITABLE,
@@ -731,6 +738,50 @@ class MVX_REST_API {
             'callback' => array( $this, 'mvx_approve_dismiss_pending_transaction' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
+    }
+
+    public function mvx_list_of_bulk_change_status_question($request) {
+        global $MVX;
+        $value = $request && $request->get_param('value') ? $request->get_param('value') : '';
+        $product_ids = $request && $request->get_param('product_ids') ? $request->get_param('product_ids') : array();
+        $pending_list = [];
+        if ($value == 'all') {
+            $vendor_questions_n_answers = $MVX->product_qna->get_All_Vendor_Questions(false);
+        } else {
+            $vendor_questions_n_answers = $MVX->product_qna->get_All_Vendor_Questions(true);
+        }
+        
+        // filter by products
+        if ($product_ids && is_array($product_ids)) {
+            $qna_products = wp_list_pluck($product_ids, 'value');
+            if ($vendor_questions_n_answers) {
+                foreach ($vendor_questions_n_answers as $key => $qna_ques) {
+                    if (!in_array($qna_ques->product_ID, $qna_products)) {
+                        unset($vendor_questions_n_answers[$key]);
+                    }
+                }
+            }
+        }
+
+        if (!empty($vendor_questions_n_answers)) {
+            foreach ($vendor_questions_n_answers as $pending_question) {
+                $question_by_details = get_userdata($pending_question->ques_by);
+                $question_by = "<img src=' " . $MVX->plugin_url . 'assets/images/wp-avatar-frau.jpg' ."' class='avatar avatar-32 photo' height='32' width='32'>" .$question_by_details->data->display_name . "";
+                $pending_list[] = array(
+                    'id'                    =>  $pending_question->ques_ID,
+                    'question_by'           =>  $question_by,
+                    'question_product_id'   =>  $pending_question->product_ID,
+                    'question_by_name'      =>  $question_by_details->data->display_name,
+                    'product_name'          =>  get_the_title($pending_question->product_ID),
+                    'question_details'      =>  $pending_question->ques_details,
+                    'question_date'         =>  human_time_diff(strtotime($pending_question->ques_created)),
+                    'question_status'       =>  $pending_question->status,
+                    'product_url'           =>  admin_url('post.php?post=' . $pending_question->product_ID . '&action=edit'),
+                );
+            }   
+        }
+
+        return rest_ensure_response($pending_list);
     }
 
     public function mvx_approve_dismiss_pending_transaction($request) {
@@ -1420,6 +1471,67 @@ class MVX_REST_API {
 
         } elseif ($type == "transaction_approval") {
             $transaction_list = $request && $request->get_param('transaction_list') ? $request->get_param('transaction_list') : 0;
+            $get_transaction_list = [];
+            if ($this->mvx_list_of_pending_transaction()->data) {
+                foreach ($this->mvx_list_of_pending_transaction()->data as $key => $value) {
+                    if ($transaction_list[$key]) {
+                        $get_transaction_list[] = array('transaction_id'    =>  $value['id'], 'vendor_id'    =>    $value['vendor_id']);
+                    }
+                }
+            }
+
+            if ($value == "approve") {
+                if ($get_transaction_list) {
+                    foreach ($get_transaction_list as $transaction_key => $transaction_id) {
+                        $vendor = get_mvx_vendor_by_term( $transaction_id['vendor_id'] );
+                        update_post_meta($transaction_id['transaction_id'], 'paid_date', date("Y-m-d H:i:s"));
+                        $commission_detail = get_post_meta($transaction_id['transaction_id'], 'commission_detail', true);
+                        if ($commission_detail && is_array($commission_detail)) {
+                            foreach ($commission_detail as $commission_id) {
+                                mvx_paid_commission_status($commission_id);
+                                $withdrawal_total = MVX_Commission::commission_totals($commission_id, 'edit');
+                                $order_id = get_post_meta( $commission_id, '_commission_order_id', true );
+                                $args = array(
+                                    'meta_query' => array(
+                                        array(
+                                            'key' => '_commission_vendor',
+                                            'value' => absint($vendor->term_id),
+                                            'compare' => '='
+                                        ),
+                                    ),
+                                );
+                                $unpaid_commission_total = MVX_Commission::get_commissions_total_data( $args, $vendor->id );
+                                $data = array(
+                                    'vendor_id'     => $vendor->id,
+                                    'order_id'      => $order_id,
+                                    'ref_id'        => $transaction_id['transaction_id'],
+                                    'ref_type'      => 'withdrawal',
+                                    'ref_info'      => sprintf(__('Withdrawal generated for Commission &ndash; #%s', 'dc-woocommerce-multi-vendor'), $commission_id),
+                                    'ref_status'    => 'completed',
+                                    'ref_updated'   => date('Y-m-d H:i:s', current_time('timestamp')),
+                                    'debit'         => $withdrawal_total,
+                                    'balance'       => $unpaid_commission_total['total'],
+                                );
+                                $data_store = $MVX->ledger->load_ledger_data_store();
+                                $ledger_id = $data_store->create($data);
+                            }
+                            $email_admin = WC()->mailer()->emails['WC_Email_Vendor_Commission_Transactions'];
+                            $email_admin->trigger($transaction_id['transaction_id'], $vendor_id);
+                            update_post_meta($transaction_id['transaction_id'], '_dismiss_to_do_list', 'true');
+                            wp_update_post(array('ID' => $transaction_id['transaction_id'], 'post_status' => 'mvx_completed'));
+                            do_action( 'mvx_todo_done_pending_transaction', $transaction_id['transaction_id'], $vendor );
+                        }
+                    }
+                }
+            } else {
+                if ($get_transaction_list) {
+                    foreach ($get_transaction_list as $transaction_key => $transaction_id) {
+                        update_post_meta($transaction_id['transaction_id'], '_dismiss_to_do_list', 'true');
+                        wp_update_post(array('ID' => $transaction_id['transaction_id'], 'post_status' => 'mvx_canceled'));
+                    }
+                }
+            }
+            return $this->mvx_list_of_pending_transaction();
 
         } elseif ($type == "question_approval") {
             $product_list = $request && $request->get_param('product_list') ? $request->get_param('product_list') : 0;
@@ -1427,8 +1539,8 @@ class MVX_REST_API {
             $type = $request && $request->get_param('type') ? $request->get_param('type') : 0;
 
             $get_pending_questions_list = [];
-            if ($this->mvx_list_of_pending_question('')->data) {
-                foreach ($this->mvx_list_of_pending_question('')->data as $key => $value_p) {
+            if ($this->mvx_list_of_pending_question('', '')->data) {
+                foreach ($this->mvx_list_of_pending_question('', '')->data as $key => $value_p) {
                     if ($product_list[$key]) {
                         $get_pending_questions_list[] = array(
                             'question_id'   => $value_p['id'],
@@ -1459,7 +1571,7 @@ class MVX_REST_API {
 
                 }
             }
-            return $this->mvx_list_of_pending_question();
+            return $this->mvx_list_of_pending_question('', '');
         }
     }
 
@@ -2881,10 +2993,8 @@ class MVX_REST_API {
         $product = $request && $request->get_param('product') ? ($request->get_param('product')) : 0;
         $selectvendor = $request && $request->get_param('vendor') ? ($request->get_param('vendor')) : 0;
 
-        //print_r($product);die;
-
         // Bydefault last 7 days
-        $start_date    = strtotime( '-6 days', strtotime( 'midnight', current_time( 'timestamp' ) ) );
+        $start_date    = strtotime( '-7 days', strtotime( 'midnight', current_time( 'timestamp' ) ) );
         $end_date      = strtotime( 'midnight', current_time( 'timestamp' ) );
 
         if ($value) {
@@ -2955,7 +3065,7 @@ class MVX_REST_API {
                     'after' => array(
                         'year' => date('Y', $start_date),
                         'month' => date('n', $start_date),
-                        'day' => date('1'),
+                        'day' => date('j', $start_date), //date('1'),
                     ),
                     'before' => array(
                         'year' => date('Y', $end_date),
@@ -2965,10 +3075,10 @@ class MVX_REST_API {
                 )
             ));
 
+
         $qry = new WP_Query($args_overview);
         $orders_overview = apply_filters('mvx_report_admin_overview_orders_overview', $qry->get_posts());
         $sales_data_chart = array();
-
          if ( !empty( $orders_overview ) ) {
             foreach ( $orders_overview as $order_obj ) {
                 $order = wc_get_order($order_obj->ID);
@@ -3000,7 +3110,7 @@ class MVX_REST_API {
                 'after' => array(
                     'year' => date('Y', $start_date),
                     'month' => date('n', $start_date),
-                    'day' => date('1'),
+                    'day' => date('j', $start_date), //date('1'),
                 ),
                 'before' => array(
                     'year' => date('Y', $end_date),
@@ -3020,7 +3130,7 @@ class MVX_REST_API {
                 'after' => array(
                     'year' => date('Y', $start_date),
                     'month' => date('n', $start_date),
-                    'day' => date('1'),
+                    'day' => date('j', $start_date), //date('1'),
                 ),
                 'before' => array(
                     'year' => date('Y', $end_date),
@@ -3043,7 +3153,7 @@ class MVX_REST_API {
                 'after' => array(
                     'year' => date('Y', $start_date),
                     'month' => date('n', $start_date),
-                    'day' => date('1'),
+                    'day' => date('j', $start_date), //date('1'),
                 ),
                 'before' => array(
                     'year' => date('Y', $end_date),
@@ -3067,7 +3177,7 @@ class MVX_REST_API {
                 'after' => array(
                     'year' => date('Y', $start_date),
                     'month' => date('n', $start_date),
-                    'day' => date('1'),
+                    'day' => date('j', $start_date), //date('1'),
                 ),
                 'before' => array(
                     'year' => date('Y', $end_date),
@@ -3119,13 +3229,8 @@ class MVX_REST_API {
                 try {
                     $order = wc_get_order($order_obj->ID);
                     if ($order) :
-
+                        
                         $date = date_create($order->order_date);
-                        /*$total_orders_product_chart[] = array(
-                            'name'  =>  date_format($date,"d M"),
-                            'Net Sales'  =>  absint(1),
-                        );*/
-
                         $vendor_order = mvx_get_order($order->get_id());
                         if ( $vendor_order ) {
                             $line_items = $order->get_items( 'line_item' );
@@ -3180,19 +3285,6 @@ class MVX_REST_API {
                                 'Net Sales'  => $detailsvalue['value'],
                             );
                         }
-
-                    /*$order_id = wc_get_order($sales_report['order_id']);
-
-                    $order = wc_get_order($order_id);
-                    $date = date_create($order->order_date);
-                    $product_sales_data_chart[] = array(
-                        'name'  =>  date_format($date,"d M"),
-                        'Net Sales'  => ( $sales_report['total_sales'] > 0 ) ? $sales_report['total_sales'] : 0,
-                    );*/
-                    
-                    //$total_sales_width = ( $sales_report['total_sales'] > 0 ) ? round($sales_report['total_sales']) / round($sales_report['total_sales']) * 100 : 0;
-                    //$admin_earning_width = ( $sales_report['admin_earning'] > 0 ) ? ( $sales_report['admin_earning'] / round($sales_report['total_sales']) ) * 100 : 0;
-                    //$vendor_earning_width = ( $sales_report['vendor_earning'] > 0 ) ? ( $sales_report['vendor_earning'] / round($sales_report['total_sales']) ) * 100 : 0;
                     $product = wc_get_product($product_id);
                     if ( $product ) {
 
@@ -3341,8 +3433,6 @@ class MVX_REST_API {
 
 
         
-        //print_r($total_sales);die;
-
         $vendor_report_datatable = array();
         if ($total_sales) {
             foreach ($total_sales as $total_sales_key => $total_sales_value) {
@@ -3795,12 +3885,7 @@ class MVX_REST_API {
             'shipping_items_details'    =>  $shipping_items_details
         );
 
-                ///print_r($payment_details);die;
-
-
-        return $payment_details; 
-
-
+        return rest_ensure_response($payment_details); 
     }
 
     public function mvx_vendor_delete($request) {

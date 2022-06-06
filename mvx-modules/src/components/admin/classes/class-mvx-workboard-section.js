@@ -212,6 +212,37 @@ class App extends Component {
 
     this.handle_transaction_request_by_vendors = this.handle_transaction_request_by_vendors.bind(this);
     
+    this.handle_question_bulk_status_change = this.handle_question_bulk_status_change.bind(this);
+    
+  }
+
+  handle_question_bulk_status_change(e) {
+    if (e) {
+      axios({
+        method: 'post',
+        url: `${appLocalizer.apiUrl}/mvx_module/v1/list_of_bulk_change_status_question`,
+        data: {
+          value: e.value,
+          product_ids: Array.isArray(e) ? e : ''
+        }
+      })
+      .then((responce) => {
+        this.setState({
+          list_of_publish_question: responce.data,
+        });
+      });
+    } else {
+      axios.get(
+        `${appLocalizer.apiUrl}/mvx_module/v1/list_of_pending_question`, {
+        params: { status: 'publish' }
+      })
+      .then(response => {
+        this.setState({
+          list_of_publish_question: response.data,
+        });
+      })
+
+    }
   }
 
   handle_transaction_request_by_vendors(e, transaction_id, vendor_id, status) {
@@ -235,7 +266,7 @@ class App extends Component {
     } else {
       axios({
           method: 'post',
-          url: `${appLocalizer.apiUrl}/mvx_module/v1/approve_dismiss_pending_question`,
+          url: `${appLocalizer.apiUrl}/mvx_module/v1/approve_dismiss_pending_transaction`,
           data: {
             transaction_id: transaction_id,
             vendor_id: vendor_id,
@@ -1010,11 +1041,11 @@ class App extends Component {
       `${appLocalizer.apiUrl}/mvx_module/v1/list_of_pending_question`, {
       params: { status: 'publish' }
     })
-      .then(response => {
-        this.setState({
-          list_of_publish_question: response.data,
-        });
-      })
+    .then(response => {
+      this.setState({
+        list_of_publish_question: response.data,
+      });
+    })
 
 
     axios.get(
@@ -1234,7 +1265,7 @@ class App extends Component {
 
         data_ques.cell ? data_ques.cell = (row) => <div className="mvx-vendor-action-icon">
 
-          {/*<div onClick={(e) => this.handle_question_delete(e, row.id, row.question_product_id, 'verified')} id={row.id}><i className="mvx-font icon-approve"></i></div>*/}
+          <div onClick={(e) => this.handle_question_delete(e, row.id, row.question_product_id, 'verified')} id={row.id}><i className="mvx-font icon-approve"></i></div>
           <div onClick={(e) => this.handle_question_delete(e, row.id, row.question_product_id, 'rejected')} id={row.id}><i className="mvx-font icon-no"></i></div>
 
         </div> : '';
@@ -2061,6 +2092,16 @@ class App extends Component {
                             <Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_work_board_chenage} />
                           </div>
                         </div>*/}
+
+                        <div className="mvx-wrap-bulk-all-date">
+                          <div className="mvx-wrap-bulk-action">
+                            <Select placeholder="Search status" options={appLocalizer.question_selection_wordpboard} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_question_bulk_status_change} />
+                          </div>
+
+                          <div className="mvx-wrap-bulk-action">
+                            <Select placeholder="Search product status" isMulti options={appLocalizer.question_product_selection_wordpboard} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_question_bulk_status_change} />
+                          </div>
+                        </div>
 
                         <div className="mvx-backend-datatable-wrapper">
                           {this.state.columns_questions_new && this.state.columns_questions_new.length > 0 ?

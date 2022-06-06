@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import axios from 'axios';
 import Select from 'react-select';
-import RingLoader from "react-spinners/RingLoader";
-
+import PuffLoader from "react-spinners/PuffLoader";
+import { css } from "@emotion/react";
 import {
   BrowserRouter as Router,
   Link,
@@ -34,11 +34,18 @@ import {
 
 import { CSVLink } from "react-csv";
 
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: green;
+`;
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       report_overview_data: [],
+      vendor_loading: false,
       columns_product: [
         {
             name: <div className="mvx-datatable-header-text">Product Title</div>,
@@ -330,6 +337,7 @@ class App extends Component {
       .then(response => {
         this.setState({
           report_overview_data: response.data,
+          vendor_loading: true
         });
       })
 
@@ -392,32 +400,41 @@ Child({ name }) {
               </div>
 
               <div className="mvx-report-performance-content w-100">
-                {this.state.report_overview_data.admin_overview ? 
-                  <div className="mvx-text-with-line-wrapper">
-                    <div className="mvx-report-text">
-                      <span>{appLocalizer.report_page_string.performance}</span>
-                    </div>
+                <div className="mvx-text-with-line-wrapper">
+                  <div className="mvx-report-text">
+                    <span>{appLocalizer.report_page_string.performance}</span>
                   </div>
-                : ''}
-
-                <div className="mvx-wrapper-performance-content">
-                {
-                this.state.report_overview_data.admin_overview ? Object.entries(this.state.report_overview_data.admin_overview).map((data, index) => (
-                  data[0] && data[0] != "sales_data_chart" ?
-                    <div className="mvx-performance-wrapper-content">
-                      <div className="mvx-labels">{data[1].label}</div>
-                      <div className="mvx-wrap-price-and-percent">
-                        <div className="mvx-price-display" dangerouslySetInnerHTML={{__html: data[1].value}}>
-                        </div>
-                        <div className="mvx-percent-show">0%</div>
-                      </div>
-                    </div>
-                  : ''
-                ))
-                
-                : ''
-                }
                 </div>
+
+                {this.state.vendor_loading ?
+                  <div className="mvx-wrapper-performance-content">
+                  {
+                  this.state.report_overview_data.admin_overview ? Object.entries(this.state.report_overview_data.admin_overview).map((data, index) => (
+                    data[0] && data[0] != "sales_data_chart" ?
+                      <div className="mvx-performance-wrapper-content">
+                        <div className="mvx-labels">{data[1].label}</div>
+                        <div className="mvx-wrap-price-and-percent">
+                          <div className="mvx-price-display" dangerouslySetInnerHTML={{__html: data[1].value}}>
+                          </div>
+                          <div className="mvx-percent-show">0%</div>
+                        </div>
+                      </div>
+                    : ''
+                  ))
+                  
+                  : ''
+                  }
+                  </div>
+                  
+                  : 
+                  <PuffLoader
+                    css={override}
+                    color={"#cd0000"}
+                    size={100}
+                    loading={true}
+                  />
+
+                }
               </div>
 
 
@@ -436,7 +453,7 @@ Child({ name }) {
 
                 <div className="mvx-content-two-graph-wrap">
                   <div className="mvx-header-and-graph-wrap">
-                    <div className="mvx-commission-order-details-text">First header</div>
+                    <div className="mvx-commission-order-details-text">Net Sales</div>
                     <div className="mvx-chart-graph-visible">
                         {!this.useQuery().get('type') || this.useQuery().get('type') == 'line' ?
                           <ResponsiveContainer aspect={3}>
@@ -486,56 +503,6 @@ Child({ name }) {
                   </div>
                 </div>
 
-                <div className="mvx-header-and-graph-wrap">
-                  <div className="mvx-commission-order-details-text">second header</div>
-                    <div className="mvx-chart-graph-visible">
-                      {!this.useQuery().get('type') || this.useQuery().get('type') == 'line' ?
-                        <ResponsiveContainer aspect={3}>
-                          <LineChart
-                            width={500}
-                            height={300}
-                            data={this.state.report_overview_data.admin_overview.sales_data_chart}
-                            margin={{
-                              top: 100,
-                              right: 30,
-                              left: 20,
-                              bottom: 5,
-                            }}
-                            >
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="name" />
-                            <YAxis tickFormatter={this.state.formatter} />
-                            <Tooltip />
-                            <Legend />
-                            <Line type="monotone" dataKey="Net Sales" stroke="red" activeDot={{ r: 8 }} />
-                          </LineChart>
-                        </ResponsiveContainer>
-                        :
-                        <ResponsiveContainer aspect={3}>
-                          <BarChart
-                            width={500}
-                            height={300}
-                            data={this.state.report_overview_data.admin_overview.sales_data_chart}
-                            margin={{
-                              top: 5,
-                              right: 30,
-                              left: 20,
-                              bottom: 5,
-                            }}
-                            >
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="Date" />
-                            <YAxis tickFormatter={this.state.formatter} />
-                            <Tooltip />
-                            <Legend />
-                            <Bar dataKey="Net Sales" fill="red"  />
-                          </BarChart>
-                        </ResponsiveContainer>
-                      }
-
-                    { /*<div className="mvx-pro-image-display"><img src="https://wc-marketplace.com//wp-content//uploads//2021//06//722x415-paypal-300x172.jpg"/></div> */}
-                  </div>
-                </div>
               </div>
             </div>
 
@@ -549,24 +516,42 @@ Child({ name }) {
               <div className="mvx-analytic-details-wrap">
                 <div className="mvx-commission-order-details-text">Vendor Details</div>
                 <div className="mvx-backend-datatable-wrapper default-table">
+                {this.state.vendor_loading ?
                   <DataTable
                     columns={this.state.columns_vendor}
                     data={this.state.report_overview_data.vendor ? this.state.report_overview_data.vendor.vendor_report_datatable : this.state.dataproductchart}
                     selectableRows
                     pagination
                   />
+                  : 
+                  <PuffLoader
+                    css={override}
+                    color={"#cd0000"}
+                    size={100}
+                    loading={true}
+                  /> 
+                    }
                 </div>
               </div>
 
               <div className="mvx-analytic-details-wrap">
                 <div className="mvx-commission-order-details-text">Commission Details</div>
                 <div className="mvx-backend-datatable-wrapper default-table">
+                {this.state.vendor_loading ?
                   <DataTable
                     columns={this.state.columns_commission}
                     data={this.state.datacommission}
                     selectableRows
                     pagination
                   />
+                  : 
+                  <PuffLoader
+                    css={override}
+                    color={"#cd0000"}
+                    size={100}
+                    loading={true}
+                  /> 
+                    }
                 </div>
               </div>
 
