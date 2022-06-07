@@ -78,6 +78,14 @@ class MVX_Deprecated_Action_Hooks extends WC_Deprecated_Hooks {
          'mvx_admin_commission_order_items_after_line_items'  => 'wcmp_admin_commission_order_items_after_line_items',
          'mvx_admin_commission_before_order_itemmeta'  => 'wcmp_admin_commission_before_order_itemmeta',
          'mvx_admin_commission_order_item_values'  => 'wcmp_admin_commission_order_item_values',
+         'mvx_admin_commission_order_items_after_shipping'  => 'wcmp_admin_commission_order_items_after_shipping',
+         'mvx_admin_commission_order_items_after_fees'  => 'wcmp_admin_commission_order_items_after_fees',
+         'mvx_admin_commission_order_items_after_refunds'  => 'wcmp_admin_commission_order_items_after_refunds',
+         'mvx_admin_commission_order_totals_after_tax'  => 'wcmp_admin_commission_order_totals_after_tax',
+         'mvx_admin_commission_order_totals_after_total'  => 'wcmp_admin_commission_order_totals_after_total',
+         'mvx_admin_commission_order_totals_after_refunded'  => 'wcmp_admin_commission_order_totals_after_refunded',
+         'mvx_admin_commission_order_totals_after_shipping'  => 'wcmp_admin_commission_order_totals_after_shipping',
+
 
 	);
 
@@ -144,6 +152,13 @@ class MVX_Deprecated_Action_Hooks extends WC_Deprecated_Hooks {
 		'wcmp_admin_commission_order_items_after_line_items'                  => '4.0.0',
 		'wcmp_admin_commission_before_order_itemmeta'                      => '4.0.0',
 		'wcmp_admin_commission_order_item_values'                          => '4.0.0',
+		'wcmp_admin_commission_order_items_after_shipping'                          => '4.0.0',
+		'wcmp_admin_commission_order_items_after_fees'             => '4.0.0',
+		'wcmp_admin_commission_order_items_after_refunds'                   => '4.0.0',
+		'wcmp_admin_commission_order_totals_after_tax'                  => '4.0.0',
+		'wcmp_admin_commission_order_totals_after_total'                      => '4.0.0',
+		'wcmp_admin_commission_order_totals_after_refunded'                          => '4.0.0',
+		'wcmp_admin_commission_order_totals_after_shipping'                          => '4.0.0',
 
 	);
 
