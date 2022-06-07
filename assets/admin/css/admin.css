@@ -2315,25 +2315,25 @@ input:focus {
   margin-left: auto !important;
 }
 
-.mvx-vendor-personal .mvx-tab-content {
+.mvx-vendor-personal .mvx-tab-content, .mvx-vendor-store .mvx-tab-content, .mvx-vendor-social .mvx-tab-content, .mvx-vendor-payments .mvx-tab-content, .mvx-vendor-application .mvx-tab-content, .mvx-vendor-shipping .mvx-tab-content, .mvx-vendor-followers .mvx-tab-content, .mvx-vendor-policy .mvx-tab-content {
   padding: 24px;
 }
 
-.mvx-vendor-personal .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group {
+.mvx-vendor-personal .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group, .mvx-vendor-store .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group, .mvx-vendor-social .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group, .mvx-vendor-payments .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group, .mvx-vendor-application .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group, .mvx-vendor-shipping .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group, .mvx-vendor-followers .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group, .mvx-vendor-policy .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group {
   margin: 0 0 24px 0;
 }
 
-.mvx-vendor-personal .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group label p {
+.mvx-vendor-personal .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group label p, .mvx-vendor-store .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group label p, .mvx-vendor-social .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group label p, .mvx-vendor-payments .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group label p, .mvx-vendor-application .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group label p, .mvx-vendor-shipping .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group label p, .mvx-vendor-followers .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group label p, .mvx-vendor-policy .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group label p {
   font-size: 14px;
   margin: 0 0 8px 0;
 }
 
-.mvx-vendor-personal .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group input {
+.mvx-vendor-personal .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group input, .mvx-vendor-store .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group input, .mvx-vendor-social .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group input, .mvx-vendor-payments .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group input, .mvx-vendor-application .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group input, .mvx-vendor-shipping .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group input, .mvx-vendor-followers .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group input, .mvx-vendor-policy .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group input {
   height: 40px;
   border: 1px solid #d4d1d9;
 }
 
-.mvx-vendor-personal .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-button-group .mvx-settings-basic-input-class .default-btn {
+.mvx-vendor-personal .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-button-group .mvx-settings-basic-input-class .default-btn, .mvx-vendor-store .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-button-group .mvx-settings-basic-input-class .default-btn, .mvx-vendor-social .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-button-group .mvx-settings-basic-input-class .default-btn, .mvx-vendor-payments .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-button-group .mvx-settings-basic-input-class .default-btn, .mvx-vendor-application .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-button-group .mvx-settings-basic-input-class .default-btn, .mvx-vendor-shipping .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-button-group .mvx-settings-basic-input-class .default-btn, .mvx-vendor-followers .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-button-group .mvx-settings-basic-input-class .default-btn, .mvx-vendor-policy .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-button-group .mvx-settings-basic-input-class .default-btn {
   height: 40px;
   background-color: #e35047;
   width: 20%;
@@ -2341,181 +2341,6 @@ input:focus {
   clear: left;
   float: right;
   margin: 24px 0 0 0;
-}
-
-.mvx-vendor-store .mvx-tab-content {
-  padding: 24px;
-}
-
-.mvx-vendor-store .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group {
-  margin: 0 0 24px 0;
-}
-
-.mvx-vendor-store .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group label p {
-  font-size: 14px;
-  margin: 0 0 8px 0;
-}
-
-.mvx-vendor-store .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group input {
-  height: 40px;
-  border: 1px solid #d4d1d9;
-}
-
-.mvx-vendor-store .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-button-group .mvx-settings-basic-input-class .default-btn {
-  height: 40px;
-  background-color: #3f1473;
-  width: 20%;
-  color: #fdfdfe;
-}
-
-.mvx-vendor-social .mvx-tab-content {
-  padding: 24px;
-}
-
-.mvx-vendor-social .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group {
-  margin: 0 0 24px 0;
-}
-
-.mvx-vendor-social .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group label p {
-  font-size: 14px;
-  margin: 0 0 8px 0;
-}
-
-.mvx-vendor-social .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group input {
-  height: 40px;
-  border: 1px solid #d4d1d9;
-}
-
-.mvx-vendor-social .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-button-group .mvx-settings-basic-input-class .default-btn {
-  height: 40px;
-  background-color: #3f1473;
-  width: 20%;
-  color: #fdfdfe;
-}
-
-.mvx-vendor-payments .mvx-tab-content {
-  padding: 24px;
-}
-
-.mvx-vendor-payments .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group {
-  margin: 0 0 24px 0;
-}
-
-.mvx-vendor-payments .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group label p {
-  font-size: 14px;
-  margin: 0 0 8px 0;
-}
-
-.mvx-vendor-payments .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group input {
-  height: 40px;
-  border: 1px solid #d4d1d9;
-}
-
-.mvx-vendor-payments .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-button-group .mvx-settings-basic-input-class .default-btn {
-  height: 40px;
-  background-color: #3f1473;
-  width: 20%;
-  color: #fdfdfe;
-}
-
-.mvx-vendor-application .mvx-tab-content {
-  padding: 24px;
-}
-
-.mvx-vendor-application .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group {
-  margin: 0 0 24px 0;
-}
-
-.mvx-vendor-application .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group label p {
-  font-size: 14px;
-  margin: 0 0 8px 0;
-}
-
-.mvx-vendor-application .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group input {
-  height: 40px;
-  border: 1px solid #d4d1d9;
-}
-
-.mvx-vendor-application .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-button-group .mvx-settings-basic-input-class .default-btn {
-  height: 40px;
-  background-color: #3f1473;
-  width: 20%;
-  color: #fdfdfe;
-}
-
-.mvx-vendor-shipping .mvx-tab-content {
-  padding: 24px;
-}
-
-.mvx-vendor-shipping .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group {
-  margin: 0 0 24px 0;
-}
-
-.mvx-vendor-shipping .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group label p {
-  font-size: 14px;
-  margin: 0 0 8px 0;
-}
-
-.mvx-vendor-shipping .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group input {
-  height: 40px;
-  border: 1px solid #d4d1d9;
-}
-
-.mvx-vendor-shipping .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-button-group .mvx-settings-basic-input-class .default-btn {
-  height: 40px;
-  background-color: #3f1473;
-  width: 20%;
-  color: #fdfdfe;
-}
-
-.mvx-vendor-followers .mvx-tab-content {
-  padding: 24px;
-}
-
-.mvx-vendor-followers .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group {
-  margin: 0 0 24px 0;
-}
-
-.mvx-vendor-followers .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group label p {
-  font-size: 14px;
-  margin: 0 0 8px 0;
-}
-
-.mvx-vendor-followers .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group input {
-  height: 40px;
-  border: 1px solid #d4d1d9;
-}
-
-.mvx-vendor-followers .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-button-group .mvx-settings-basic-input-class .default-btn {
-  height: 40px;
-  background-color: #3f1473;
-  width: 20%;
-  color: #fdfdfe;
-}
-
-.mvx-vendor-policy .mvx-tab-content {
-  padding: 24px;
-}
-
-.mvx-vendor-policy .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group {
-  margin: 0 0 24px 0;
-}
-
-.mvx-vendor-policy .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group label p {
-  font-size: 14px;
-  margin: 0 0 8px 0;
-}
-
-.mvx-vendor-policy .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-group input {
-  height: 40px;
-  border: 1px solid #d4d1d9;
-}
-
-.mvx-vendor-policy .mvx-tab-content .mvx-dynamic-fields-wrapper .mvx-dynamic-form .mvx-form-button-group .mvx-settings-basic-input-class .default-btn {
-  height: 40px;
-  background-color: #3f1473;
-  width: 20%;
-  color: #fdfdfe;
 }
 
 .mvx-setting-section-divider {
