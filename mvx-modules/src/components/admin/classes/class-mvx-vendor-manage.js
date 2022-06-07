@@ -622,10 +622,10 @@ class App extends React.Component {
           vendor
         />
       :
-      user_query.get("name") == "add_new" ?
+      user_query.get("name") == "add-new" ?
         
         <TabSection
-          model={appLocalizer.settings_fields['vendor_add_personal']}
+          model={appLocalizer.mvx_all_backend_tab_list['marketplace-new-vendor']}
           query_name={user_query.get("name")}
           funtion_name={this}
           default_vendor_funtion
@@ -639,7 +639,7 @@ class App extends React.Component {
         <div className="mvx-container mvx-vendor-page-container">
 
           {!user_query.get("ID") ? (
-            user_query.get("name") == "add_new" ? (
+            user_query.get("name") == "add-new" ? (
               ""
             ) : (
               <div className="mvx-middle-container-wrapper">
@@ -647,7 +647,7 @@ class App extends React.Component {
                   <p>Vendors</p>
                   <div className="mvx-addbtn">
                     <Link
-                      to={`?page=mvx#&submenu=vendor&name=add_new`}
+                      to={`?page=mvx#&submenu=vendor&name=add-new`}
                       className="btn default-btn ml-12"
                     >
                       <i className="mvx-font icon-add"></i>Add Vendor
@@ -840,7 +840,7 @@ class App extends React.Component {
             key={`dynamic-form-add-new`}
             className="mvx-vendor-add-new"
             title="Add new vendor"
-            model={appLocalizer.settings_fields['vendor_add_personal']}
+            model={appLocalizer.settings_fields['add-new']}
             method="post"
             location={useLocation().search}
             modulename="vendor_add_personal"
