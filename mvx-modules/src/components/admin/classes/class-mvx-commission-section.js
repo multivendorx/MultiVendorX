@@ -10,14 +10,8 @@ import DataTable from 'react-data-table-component';
 import {
   BrowserRouter as Router,
   Link,
-  useLocation,
-  withRouter,
-  useParams,
-  NavLink
 } from "react-router-dom";
 
-
-import DynamicForm from "../../../DynamicForm";
 import { CSVLink } from "react-csv";
 import HeaderSection from './class-mvx-page-header';
 import BannerSection from './class-mvx-page-banner';
@@ -28,7 +22,7 @@ const override = css`
   border-color: green;
 `;
 
-class App extends Component {
+class MVX_Commission extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -244,6 +238,8 @@ class App extends Component {
           });
         }
       })
+    } else {
+        this.state.commission_details = [];
     }
   }
 
@@ -464,11 +460,6 @@ class App extends Component {
 
           <div className="mvx-middle-container-wrapper">
             <div className="woocommerce-order-data">
-
-            {/* Back button */}
-            <div className="mvx-back-btn">
-              <Link className="btn" to={`?page=mvx#&&submenu=commission`}><i className="mvx-font icon-edit"></i>Back</Link>
-            </div>
 
               <div className="mvx-datatable-text">Edit Commission</div>
 
@@ -1424,4 +1415,4 @@ class App extends Component {
     );
   }
 }
-export default App;
+export default MVX_Commission;

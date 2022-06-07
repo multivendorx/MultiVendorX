@@ -151,7 +151,7 @@ class MVX_Admin_Setup_Wizard {
                 <?php do_action('admin_head'); ?>
             </head>
             <body class="mvx-setup wp-core-ui">
-                <h1 id="mvx-logo"><a href="https://multivendorx.com/"><img src="<?php echo trailingslashit(plugins_url('multivendorx')); ?>assets/images/widget-multivendorX.png" alt="MultivendorX" /></a></h1>
+                <h1 id="mvx-logo"><a href="https://multivendorx.com/"><img src="<?php echo trailingslashit(plugins_url('multivendorx')); ?>assets/images/widget-multivendorX.svg" alt="MultivendorX" /></a></h1>
                 <div class="mvx-install-woocommerce">
                     <p><?php esc_html_e('MultivendorX requires WooCommerce plugin to be active!', 'multivendorx'); ?></p>
                     <form method="post" action="" name="mvx_install_woocommerce">
@@ -332,7 +332,7 @@ class MVX_Admin_Setup_Wizard {
 
             </head>
             <body class="wc-setup wp-core-ui">
-                <h1 id="wc-logo"><a href="https://multivendorx.com/"><img src="<?php echo esc_url($MVX->plugin_url); ?>assets/images/widget-multivendorX.png" alt="MultivendorX" /></a></h1>
+                <h1 id="wc-logo"><a href="https://multivendorx.com/"><img src="<?php echo esc_url($MVX->plugin_url); ?>assets/images/widget-multivendorX.svg" alt="MultivendorX" /></a></h1>
                 <?php
             }
 
@@ -375,8 +375,8 @@ class MVX_Admin_Setup_Wizard {
         <p><?php echo wp_kses_post('Thank you for choosing MultivendorX! This quick setup wizard will help you configure the basic settings and you will have your marketplace ready in no time. <strong>It’s completely optional and shouldn’t take longer than five minutes.</strong>', 'multivendorx'); ?></p>
         <p><?php esc_html_e("If you don't want to go through the wizard right now, you can skip and return to the WordPress dashboard. Come back anytime if you change your mind!", 'multivendorx'); ?></p>
         <p class="wc-setup-actions step">
-            <a href="<?php echo esc_url($this->get_next_step_link()); ?>" class="btn red-btn button button-large button-next"><?php esc_html_e("Let's go!", 'multivendorx'); ?></a>
             <a href="<?php echo esc_url(admin_url()); ?>" class="button button-large"><?php esc_html_e('Not right now', 'multivendorx'); ?></a>
+            <a href="<?php echo esc_url($this->get_next_step_link()); ?>" class="btn red-btn button button-large button-next"><?php esc_html_e("Let's go!", 'multivendorx'); ?></a>
         </p>
         <?php
     }
@@ -391,7 +391,7 @@ class MVX_Admin_Setup_Wizard {
             <table class="form-table">
                 <tr>
                     <th scope="row"><label for="vendor_store_url"><?php esc_html_e('Store URL', 'multivendorx'); ?></label></th>
-                    <td>
+                    <td class="mvx-store-setup">
                         <?php
                         $permalinks = get_option('dc_vendors_permalinks');
                         $vendor_slug = empty($permalinks['vendor_shop_base']) ? _x('', 'slug', 'multivendorx') : $permalinks['vendor_shop_base'];
@@ -409,8 +409,8 @@ class MVX_Admin_Setup_Wizard {
                 </tr>
             </table>
             <p class="wc-setup-actions step">
-                <input type="submit" class="button-primary button button-large button-next" value="<?php esc_attr_e('Continue', 'multivendorx'); ?>" name="save_step" />
                 <a href="<?php echo esc_url($this->get_next_step_link()); ?>" class="button button-large button-next"><?php esc_html_e('Skip this step', 'multivendorx'); ?></a>
+                <input type="submit" class="button-primary button button-large button-next" value="<?php esc_attr_e('Continue', 'multivendorx'); ?>" name="save_step" />
         <?php wp_nonce_field('mvx-setup'); ?>
             </p>
         </form>
@@ -493,8 +493,8 @@ class MVX_Admin_Setup_Wizard {
 
             </table>
             <p class="wc-setup-actions step">
-                <input type="submit" class="button-primary button button-large button-next" value="<?php esc_attr_e('Continue', 'multivendorx'); ?>" name="save_step" />
                 <a href="<?php echo esc_url($this->get_next_step_link()); ?>" class="button button-large button-next"><?php esc_html_e('Skip this step', 'multivendorx'); ?></a>
+                <input type="submit" class="button-primary button button-large button-next" value="<?php esc_attr_e('Continue', 'multivendorx'); ?>" name="save_step" />
         <?php wp_nonce_field('mvx-setup'); ?>
             </p>
         </form>
@@ -570,8 +570,8 @@ class MVX_Admin_Setup_Wizard {
                 </tr>
             </table>
             <p class="wc-setup-actions step">
-                <input type="submit" class="button-primary button button-large button-next" value="<?php esc_attr_e('Continue', 'multivendorx'); ?>" name="save_step" />
                 <a href="<?php echo esc_url($this->get_next_step_link()); ?>" class="button button-large button-next"><?php esc_html_e('Skip this step', 'multivendorx'); ?></a>
+                <input type="submit" class="button-primary button button-large button-next" value="<?php esc_attr_e('Continue', 'multivendorx'); ?>" name="save_step" />
         <?php wp_nonce_field('mvx-setup'); ?>
             </p>
         </form>
@@ -660,8 +660,8 @@ class MVX_Admin_Setup_Wizard {
 
             </table>
             <p class="wc-setup-actions step">
-                <input type="submit" class="button-primary button button-large button-next" value="<?php esc_attr_e('Continue', 'multivendorx'); ?>" name="save_step" />
                 <a href="<?php echo esc_url($this->get_next_step_link()); ?>" class="button button-large button-next"><?php esc_html_e('Skip this step', 'multivendorx'); ?></a>
+                <input type="submit" class="button-primary button button-large button-next" value="<?php esc_attr_e('Continue', 'multivendorx'); ?>" name="save_step" />
                 <?php wp_nonce_field('mvx-setup'); ?>
             </p>
         </form>
@@ -673,9 +673,14 @@ class MVX_Admin_Setup_Wizard {
      */
     public function mvx_setup_ready() {
         ?>
-        <a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo site_url(); ?>" data-text="Hey Guys! Our new marketplace is now live and ready to be ransacked! Check it out at" data-via="wc_marketplace" data-size="large">Tweet</a>
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-        <h1><?php esc_html_e('Yay! All done!', 'multivendorx'); ?></h1>
+        
+        <div class="mvx-all-done-page-header-sec">
+            <i className="mvx-font icon-yes"></i></a>
+            <h1 class="mvx-title"><?php esc_html_e('Yay! All done!', 'multivendorx'); ?></h1>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo site_url(); ?>" data-text="Hey Guys! Our new marketplace is now live and ready to be ransacked! Check it out at" data-via="wc_marketplace" data-size="large">Tweet</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        
         <div class="woocommerce-message woocommerce-tracker">
             <p><?php esc_html_e("Your marketplace is ready. It's time to bring some sellers on your platform and start your journey. We wish you all the success for your business, you will be great!", "dc-woocommerce-multi-vendor") ?></p>
         </div>
