@@ -7,11 +7,7 @@ import HeaderSection from './class-mvx-page-header';
 
 import {
   BrowserRouter as Router,
-  Link,
-  useLocation,
-  withRouter,
-  useParams,
-  NavLink
+  useLocation
 } from "react-router-dom";
 
 const override = css`
@@ -20,7 +16,7 @@ const override = css`
   border-color: red;
 `;
 
-class App extends Component {
+class MVX_Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -300,7 +296,7 @@ class App extends Component {
 
             <div className="mvx-text-center">
               <h2>Here Is What You Get In Pro Compared to Free</h2>
-              <ul className="compare-table-holder">
+              <ul className="mvx-compare-table-holder">
 
                 <li>
                   <ul>
@@ -417,7 +413,7 @@ class App extends Component {
                 </li>
 
                 <li>
-                  <span className="recommend-tag saver">Super saver</span>
+                  <span className="mvx-recommend-tag">Super saver</span>
                   <ul>
                     <li>Lifetime</li>
                     <li>
@@ -513,4 +509,4 @@ class App extends Component {
     );
   }
 }
-export default App;
+export default MVX_Dashboard;
