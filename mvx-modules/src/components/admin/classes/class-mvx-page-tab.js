@@ -44,35 +44,37 @@ export default class TabSection extends React.Component {
     <div className={`mvx-general-wrapper mvx-${query_name_modified}`}> 
     {no_header ? '' : <HeaderSection />}
     <div className="mvx-container">
-        {this.props.tab_description && this.props.tab_description == 'no' ? '' : TabUI}
         <div className={`mvx-middle-container-wrapper ${horizontally ? '' : 'mvx-vertical-tabs'}`}>
-          {this.props.no_tabs ? '' :
-            <ul className={`mvx-current-tab-lists ${horizontally ? 'mvx-horizontal-tabs' : ''}`}>
-            {model.map((m, index) => {
-              return (
+          {this.props.tab_description && this.props.tab_description == 'no' ? '' : TabUI}
+          <div className="mvx-middle-child-container">
+            {this.props.no_tabs ? '' :
+              <ul className={`mvx-current-tab-lists ${horizontally ? 'mvx-horizontal-tabs' : ''}`}>
+              {model.map((m, index) => {
+                return (
 
-                m.link ? 
+                  m.link ? 
 
-                <li className={query_name_modified == m.modulename ? 'active-current-tab' : ''}>
-                    <a href={m.link}>{m.icon ? <i class={`mvx-font ${m.icon}`}></i> : ''}
+                  <li className={query_name_modified == m.modulename ? 'active-current-tab' : ''}>
+                      <a href={m.link}>{m.icon ? <i class={`mvx-font ${m.icon}`}></i> : ''}
+                        {m.tablabel}
+                      </a>
+                  </li> 
+
+                  :
+
+                  <li className={query_name_modified == m.modulename ? 'active-current-tab' : ''} >
+                    <Link to={this.props.vendor ? `?page=mvx#&submenu=${m.submenu}&ID=${query_name.get("ID")}&name=${m.modulename}` : `?page=mvx#&submenu=${m.submenu}&name=${m.modulename}`}>
+                      {m.icon ? <i class={`mvx-font ${m.icon}`}></i> : ''}
                       {m.tablabel}
-                    </a>
-                </li> 
-
-                :
-
-                <li className={query_name_modified == m.modulename ? 'active-current-tab' : ''} >
-                  <Link to={this.props.vendor ? `?page=mvx#&submenu=${m.submenu}&ID=${query_name.get("ID")}&name=${m.modulename}` : `?page=mvx#&submenu=${m.submenu}&name=${m.modulename}`}>
-                    {m.icon ? <i class={`mvx-font ${m.icon}`}></i> : ''}
-                    {m.tablabel}
-                  </Link>
-                </li>
-              );
-            })}
-            </ul>
-          }
-          <div className="mvx-tab-content">
-            {this.props.default_vendor_funtion ? <funtion_name.Childparent name={query_name} /> : <funtion_name.Child name={query_name} /> }
+                    </Link>
+                  </li>
+                );
+              })}
+              </ul>
+            }
+            <div className="mvx-tab-content">
+              {this.props.default_vendor_funtion ? <funtion_name.Childparent name={query_name} /> : <funtion_name.Child name={query_name} /> }
+            </div>
           </div>
         </div>
         {no_banner ? '' : <BannerSection />}
