@@ -845,6 +845,7 @@ class App extends React.Component {
             location={useLocation().search}
             modulename="vendor_add_personal"
             url="mvx_module/v1/create_vendor"
+            submit_title="Add New"
           />
           : ''}
       </div>
