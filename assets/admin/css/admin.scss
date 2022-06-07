@@ -824,22 +824,6 @@ $fill-color : #fdfdfe;
         background-color: $fill-color;
     }
 }
-.mvx-database-tools {
-
-}
-@mixin add-announcement-btn {
-        background: #3f1473;
-        border-radius: $border-radius;
-        display: inline-flex;
-        & a {
-            color: #fdfdfe !important;
-            height: 40px;
-            & i {
-                padding-right: 10px;
-            }
-        }
-}
-
 
 #wpcontent {
     margin-left: 140px !important;
@@ -1423,23 +1407,6 @@ textarea, input[type=text], select, input, .default-input {
         width: 100%;
     }
 }
-.mvx-workboard-tab-wrapper {
-    padding: 32px 0;
-    & .mvx-wrap-bulk-all-date {
-        & .mvx-wrap-bulk-action {
-            margin-bottom: 10px;
-            & input:focus {
-                border: $border;
-                box-shadow: none;
-            }
-        }
-        & .mvx-col-auto {
-            margin-left: 0;
-            margin-right: 10px;
-        }
-    }
-    
-}
 .mvx-product-box-sec {
     @include flexprops(center);
     .mvx-all-product-box {
@@ -1751,39 +1718,6 @@ input:focus {
         background-color: #65438f;
         border: none !important;
         color: $fill-color !important;
-    }
-}
-.mvx-general-settings-wrapper {
-    & .mvx-general-settings-child-wrapper {
-        & .mvx-form-group {
-            @include flexprops(start);
-            padding: 24px 0;
-            & .mvx-settings-form-label {
-                margin-right: 20px;
-                & p {
-                    font-size: 1rem;
-                    color: $title-color;
-                    width: 200px;
-                }
-            }
-            & .mvx-settings-input-content {
-                width: 100%;
-                & .mvx-toggle-checkbox-content {
-                    margin-top: -14px;
-                    margin-bottom: 10px;
-                }
-                & .mvx-settings-basic-input-class {
-                    & .mvx-settings-basic-child-wrap {
-                        & .mvx-settings-basic-input-child-class {
-                            margin: 0 0 16px 0;
-                        }
-                    }
-                }
-            }
-            & input {
-                height: 40px;
-            }
-        }
     }
 }
 .mvx-form-group-radio-color {
@@ -2128,38 +2062,6 @@ margin-top: 10px;
 .mvx-vendor-personal {
     & .mvx-tab-content {
         padding: 24px;
-        & .mvx-marketplace-vendors-container {
-            & .mvx-dynamic-fields-wrapper {
-                & .mvx-dynamic-form {
-                    & .mvx-form-group {
-                        margin: 0 0 24px 0;
-                        & label {
-                            & p {
-                                font-size: 14px;
-                                margin: 0 0 8px 0;
-                            }
-                        }
-                        & input {
-                            height: 40px;
-                            border: $border;
-                        }
-                    }
-                    & .mvx-form-button-group {
-                        & .mvx-settings-basic-input-class {
-                            & .default-btn {
-                                height: 40px;
-                                background-color: #e35047;
-                                width: 20%;
-                                color: $fill-color !important;
-                                clear: left;
-                                float: right;
-                                margin: 24px 0 0 0;
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
 }
 .mvx-vendor-store{
@@ -2692,25 +2594,6 @@ margin-top: 10px;
         }
     }
 }
-// .mvx-payments-tab-wrapper {
-//     .mvx-dynamic-form {
-//         & .mvx-form-group {
-//             margin-bottom: 10px;
-//             & label p{
-//                 margin-bottom: 8px;
-//             }
-//             & input {
-//                 width: 100%;
-//                 border: $border;
-//                 border-radius: $border-radius;
-//                 height: 50px;
-//             }
-//         }
-//         & .mvx-form-group:first-child {
-//             margin-top: 10px;
-//         }
-//     }
-// }
 .mvx-status-database-tools-content {
     margin-top: 24px;
     & .mvx-vendor-transients {
@@ -3145,9 +3028,6 @@ margin-top: 10px;
                     }
                 }
             }
-        }
-        & .mvx-slider-right-sec {
-            margin-left: auto;
         }
         & .mvx-marketing-tools-sec {
             width: 100%;

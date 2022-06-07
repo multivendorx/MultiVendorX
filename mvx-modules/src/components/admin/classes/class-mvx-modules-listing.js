@@ -224,8 +224,8 @@ class MVX_Module_Listing extends Component {
         <HeaderSection />
         <div className="mvx-container">
           <div className="mvx-middle-container-wrapper">
-            <div className="mv-off-white-box">
-              <div className="mvx-tab-name-display">Module</div>
+            <div className="mvx-tab-description-start">
+              <div className="mvx-tab-name">Module</div>
               <p>
                 Customize your marketplace site by enabling the module that you
                 prefer.
