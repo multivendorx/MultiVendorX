@@ -151,7 +151,7 @@ class MVX_Admin_Setup_Wizard {
                 <?php do_action('admin_head'); ?>
             </head>
             <body class="mvx-setup wp-core-ui">
-                <h1 id="mvx-logo"><a href="https://multivendorx.com/"><img src="<?php echo trailingslashit(plugins_url('multivendorx')); ?>assets/images/widget-multivendorX.png" alt="MultivendorX" /></a></h1>
+                <h1 id="mvx-logo"><a href="https://multivendorx.com/"><img src="<?php echo trailingslashit(plugins_url('multivendorx')); ?>assets/images/widget-multivendorX.svg" alt="MultivendorX" /></a></h1>
                 <div class="mvx-install-woocommerce">
                     <p><?php esc_html_e('MultivendorX requires WooCommerce plugin to be active!', 'multivendorx'); ?></p>
                     <form method="post" action="" name="mvx_install_woocommerce">
@@ -332,7 +332,7 @@ class MVX_Admin_Setup_Wizard {
 
             </head>
             <body class="wc-setup wp-core-ui">
-                <h1 id="wc-logo"><a href="https://multivendorx.com/"><img src="<?php echo esc_url($MVX->plugin_url); ?>assets/images/widget-multivendorX.png" alt="MultivendorX" /></a></h1>
+                <h1 id="wc-logo"><a href="https://multivendorx.com/"><img src="<?php echo esc_url($MVX->plugin_url); ?>assets/images/widget-multivendorX.svg" alt="MultivendorX" /></a></h1>
                 <?php
             }
 

@@ -28,10 +28,23 @@ class App extends Component {
     this.state = {     
       current: {},
       list_of_module_data: [],
+      list_of_all_tabs: []
     };
     this.QueryParamsDemo = this.QueryParamsDemo.bind(this);
     this.useQuery = this.useQuery.bind(this);
     this.Child = this.Child.bind(this);
+  }
+
+  componentDidMount() {
+    // tab list
+    axios({
+      url: `${appLocalizer.apiUrl}/mvx_module/v1/list_of_all_tabs`
+    })
+    .then(response => {
+      this.setState({
+        list_of_all_tabs: response.data,
+      });
+    })
   }
 
   useQuery() {
@@ -41,11 +54,13 @@ class App extends Component {
   QueryParamsDemo() {
     let use_query = this.useQuery();
     return (
+      Object.keys(this.state.list_of_all_tabs).length > 0 ?
         <TabSection
-          model={appLocalizer.mvx_all_backend_tab_list['marketplace-payments']}
+          model={this.state.list_of_all_tabs['marketplace-payments']}
           query_name={use_query.get("name")}
           funtion_name={this}
         />
+      : <PuffLoader css={override} color={"#cd0000"} size={200} loading={true} /> 
     );
   }
 

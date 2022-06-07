@@ -1438,35 +1438,7 @@ textarea, input[type=text], select, input, .default-input {
             margin-right: 10px;
         }
     }
-    // & .mv-off-white-box {
-    //     width: 350px;
-    //     height: 250px;
-    //     position: relative;
-    //     padding: 16px;
-    //     margin-right: 10px;
-        // & .mv-white-box-header {
-        //     @include flexprops(center);
-        //     position: absolute;
-        //     top: 0px;
-        //     background: #d4d1d9;
-        //     left: 0;
-        //     width: 100%;
-        //     padding: 16px;
-        //     & .pull-right {
-        //         margin-left: auto;
-        //     }
-        // }
-        // & .mv-white-box-body {
-        //     margin-top: 50px;
-        //     // & .mvx-row {
-        //     //     padding-bottom: 10px;
-        //     // }
-        //     & img {
-        //         border-radius: $border-radius;
-        //         margin-right: 10px;
-        //     }
-        // }
-    // }
+    
 }
 .mvx-product-box-sec {
     @include flexprops(center);
@@ -1575,22 +1547,7 @@ textarea, input[type=text], select, input, .default-input {
 
     }
 }
-.mv-off-white-box {
-    text-align: center;
-    background: #fdfdfe;
-    border-radius: $border-radius;
-    padding: 20px 30px;
-    border: $border;
-    & .mvx-tab-name-display {
-        font-size: 20px;
-        font-weight: 500;
-        padding: 0 0 10px 0;
-        color: $title-color;
-    }
-    & p {
-        color: $paragraph-color;
-    }
-}
+
 .mvx-col-auto.mvx-module-left-sec {
     margin-left: 0;
 }
@@ -3130,46 +3087,7 @@ margin-top: 10px;
 
 /** START DASHBOARD CSS **/
 .mvx-dashboard {
-    & .mvx-dashboard-slider-wrapper {
-        width: 100%;
-        & .mvx-slider-content-main-wrapper {
-            @include flexprops(center);
-            & .mvx-slider-left-sec {
-                & .mv-dashboard-top-icon {
-                    float: left;
-                    width: 4rem;
-                    height: 4rem;
-                    display: table;
-                    position: relative;
-                    box-sizing: border-box;
-                    background-color: #9f8ab9;
-                    border-radius: 0.5rem;
-                    text-align: center;
-                    color: #fff;
-                    font-weight: 700;
-                    font-size: 1.5rem;
-                    line-height: 4rem;
-                }
-                & .pro-txt {
-                    float: left;
-                    text-align: left;
-                    margin: 0 0 0 24px;
-                    & p {
-                        margin: 24px 0;
-                    }
-                }
-            }
-            & .mvx-slider-right-sec {
-                margin-left: auto;
-            }
-            & .mvx-dashboard-slider {
-                display: none;
-            }
-            & .mvx-dashboard-slider:nth-child(1) {
-                display: block;
-            }
-        }
-    }
+
     & .mvx-child-container {
         padding: 0 14px 0 20px;
         background-color: #f2eff5;
@@ -3178,16 +3096,7 @@ margin-top: 10px;
         width: 100%;
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
-        & .mvx-title-wrapper {
-            width: 100%;
-            margin: 48px 0 8px 0;
-        }
-    }
-    & .mv-dashboard-top-heading {
-        text-align: center;
-        font-size: 1.5rem;
-        color: #181718;
-        font-weight: 500;
+
     }
     & .dashboard-top-bg {
         background-image: url(../../images/dashboard-top-bg.png), url(../../images/dashboard-top-bg2.png);
@@ -3195,24 +3104,11 @@ margin-top: 10px;
         background-position: left top, top right;
         background-repeat: no-repeat, no-repeat;
     }
-    & .mv-off-white-box {
-        background-color: $fill-color;
-        border: $border;
-        border-radius: $border-radius;
-        box-sizing: border-box;
-        width: 100%;
-        padding: 32px
-    }
     & .mvx-box-content {
         @include flexprops(start);
         width: 100%;
         & .mvx-slider-left-sec {
-            & .mvx-dashboard-slider:nth-child(1) {
-                // display: block;
-            }
-            & .mvx-dashboard-slider {
-                display: none;
-            }
+
             & .mvx-flex-content {
                 @include flexprops(center !important);
                 & .mv-dashboard-top-icon {
@@ -3345,14 +3241,6 @@ margin-top: 10px;
                     border-radius: $border-radius;
                     & span::before {
                         transform: rotate(0deg);
-                    }
-                }
-                & .mv-off-white-box {
-                    border: none;
-                    background-color: transparent;
-                    & p {
-                        color: #5e5d60;
-                        margin: 16px 0 16px 0;
                     }
                 }
             }

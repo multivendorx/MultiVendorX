@@ -55,12 +55,6 @@ class App extends React.Component {
       module_tabs: [],
       tabIndex: 0,
       query: null,
-      dialog_open: false,
-      lastname: '',
-      email: '',
-      abcarray: [],
-      first_toggle: '',
-      second_toggle: '',
       handle_rejected_vendor_description: '',
       current: {},
       filterText: '',
@@ -1529,11 +1523,6 @@ class App extends React.Component {
                 ) : (
                   this.state.data_setting_fileds &&
                     Object.keys(this.state.data_setting_fileds).length > 0 ? (
-                    <div className="mvx-dynamic-form-content">
-                      <div className="mvx-back-btn">
-                        <Link className="btn" to={`?page=mvx#&submenu=vendor`}><i className="mvx-font icon-edit"></i>Back</Link>
-                      </div>
-                      {
                       <DynamicForm
                         key={`dynamic-form-${data.modulename}`}
                         className={data.classname}
@@ -1545,8 +1534,6 @@ class App extends React.Component {
                         url={data.apiurl}
                         submitbutton="false"
                       />
-                      }
-                      </div>
                     ) : (
                       ""
                     )
