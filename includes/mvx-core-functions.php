@@ -7242,7 +7242,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'database_value' => ''
                 ],
             ],
-            'vendor_add_personal' => [
+            'add-new' => [
                 [
                     'key'       => 'user_login',
                     'type'      => 'text',
@@ -7580,6 +7580,17 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
             ),
         );
 
+        $marketplace_new_vendor = array(
+            array(
+                'tablabel'      =>  __('Vendor', 'multivendorx'),
+                'description'   =>  __('Create MultivendorX vendor', 'multivendorx'),
+                'apiurl'        =>  'mvx_module/v1/update_vendor',
+                'icon'          =>  'icon-vendor-personal',
+                'submenu'       =>  'vendor',
+                'modulename'     =>  'add-new'
+            )
+        );
+
         if (is_mvx_shipping_module_active()) {
             $marketplace_vendors[] = array(
                 'tablabel'      =>  __('Vendor Shipping', 'multivendorx'),
@@ -7725,6 +7736,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
             'marketplace-payments'              => $payment_page_endpoint,
             'marketplace-general-settings'      => array_values($general_settings_page_endpoint),
             'marketplace-vendors'               => $marketplace_vendors,
+            'marketplace-new-vendor'            => $marketplace_new_vendor,
             'marketplace-workboard'             => array_values($marketplace_workboard)
         ));
         return $mvx_all_backend_tab_list;
