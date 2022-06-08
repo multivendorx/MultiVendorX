@@ -2169,8 +2169,8 @@ input:focus {
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon div:hover .mvxicon-hover-text {
   display: block;
   position: absolute;
-  top: 28px;
-  right: 0px;
+  top: 0px;
+  right: 10px;
 }
 
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon a {
