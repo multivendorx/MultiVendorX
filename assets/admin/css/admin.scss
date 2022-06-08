@@ -768,6 +768,18 @@ $fill-color : #fdfdfe;
         width: 20px;
     }
 }
+@mixin add-announcement-btn {
+    background: #3f1473;
+    border-radius: $border-radius;
+    display: inline-flex;
+    & a {
+        color: #fdfdfe !important;
+        height: 40px;
+        & i {
+            padding-right: 10px;
+        }
+    }
+}
 @mixin tabvertical {
     & .mvx-current-tab-lists {
         // float: left;
@@ -944,8 +956,15 @@ $fill-color : #fdfdfe;
         min-width: 60%;
     }
     & .mvx-horizontal-tabs {
-        @include flexprops(center);
-        margin-bottom: -1px;
+        // @include flexprops(center);
+        // margin-bottom: -1px;
+        & .mvx-middle-child-container {
+            display: block !important;
+            & .mvx-current-tab-lists {
+                @include flexprops(center);
+                margin: 0 0 -1px 20px;
+            }
+        }
         & li {
             @include activedashboardtabs;
             @include tabs;
@@ -2060,84 +2079,7 @@ margin-top: 10px;
         margin-left: auto !important;
     }
 }
-<<<<<<< HEAD
 .mvx-vendor-personal, .mvx-vendor-store, .mvx-vendor-social, .mvx-vendor-payments, .mvx-vendor-application, .mvx-vendor-shipping, .mvx-vendor-followers, .mvx-vendor-policy {
-=======
-.mvx-vendor-personal {
-    & .mvx-tab-content {
-        padding: 24px;
-    }
-}
-.mvx-vendor-store{
-    & .mvx-tab-content {
-        padding: 24px;
-        & .mvx-marketplace-vendors-container {
-            & .mvx-dynamic-fields-wrapper {
-                & .mvx-dynamic-form {
-                    & .mvx-form-group {
-                        margin: 0 0 24px 0;
-                        & label {
-                            & p {
-                                font-size: 14px;
-                                margin: 0 0 8px 0;
-                            }
-                        }
-                        & input {
-                            height: 40px;
-                            border: $border;
-                        }
-                    }
-                    & .mvx-form-button-group {
-                        & .mvx-settings-basic-input-class {
-                            & .default-btn {
-                                height: 40px;
-                                background-color: #3f1473;
-                                width: 20%;
-                                color: $fill-color;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-.mvx-vendor-social{
-    & .mvx-tab-content {
-        padding: 24px;
-        & .mvx-marketplace-vendors-container {
-            & .mvx-dynamic-fields-wrapper {
-                & .mvx-dynamic-form {
-                    & .mvx-form-group {
-                        margin: 0 0 24px 0;
-                        & label {
-                            & p {
-                                font-size: 14px;
-                                margin: 0 0 8px 0;
-                            }
-                        }
-                        & input {
-                            height: 40px;
-                            border: $border;
-                        }
-                    }
-                    & .mvx-form-button-group {
-                        & .mvx-settings-basic-input-class {
-                            & .default-btn {
-                                height: 40px;
-                                background-color: #3f1473;
-                                width: 20%;
-                                color: $fill-color;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-.mvx-vendor-payments{
->>>>>>> upstream/main
     & .mvx-tab-content {
         padding: 24px;
         & .mvx-dynamic-fields-wrapper {
