@@ -770,7 +770,7 @@ $fill-color : #fdfdfe;
 }
 @mixin tabvertical {
     & .mvx-current-tab-lists {
-        float: left;
+        // float: left;
         background-color: #f1f1f1;
         width: auto;
         height: auto;
@@ -2012,12 +2012,15 @@ margin-top: 10px;
 }
 .mvx-vertical-tabs {
     & .mvx-current-tab-lists  {
-        width: 22.8% !important;
+        // width: 22.8% !important;
     }
     & .mvx-tab-content {
-        width: 75% !important;
+        // width: 75% !important;
         background-color: #fdfdfe !important;
     }
+}
+.mvx-middle-child-container {
+    @include flexprops(unset);
 }
 .mvx-notic-display-title {
     position: fixed;
@@ -2363,7 +2366,7 @@ margin-top: 10px;
         }
     }
 }
-.mvx-add_new {
+.mvx-add-new {
     margin-top: 32px;
     background-color: #f7f6f9;
     border-left: $border;
