@@ -692,9 +692,8 @@ class App extends Component {
                                           </div>
 
                                           <div className="mvx-vendor-form-input-field-container col-50">
-                                            <label>Maximum file size</label>
-                                            <input type="text" className="mvx-vendor-form-input-field" value={registration_json_value.fileSize} onChange={e => { this.onlebelchange(e, registration_json_index, 'fileSize') }} />
-                                            <div className="mvx-registration-fileds-description">Choose your preferred file type .</div>
+                                            <input type="text" placeholder="Maximum file size" className="mvx-vendor-form-input-field" value={registration_json_value.fileSize} onChange={e => { this.onlebelchange(e, registration_json_index, 'fileSize') }} />
+                                            <div className="mvx-registration-fileds-description">Add limitation for file size</div>
                                           </div>
 
                                           <div className="mvx-vendor-form-input-field-container col-50">
@@ -705,7 +704,7 @@ class App extends Component {
                                                 <label>{xnew.label}</label>
                                               </div>
                                             )}
-                                            <div className="mvx-registration-fileds-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+                                            <div className="mvx-registration-fileds-description">Choose preferred file size.</div>
                                           </div>
                                           
                                         </div>

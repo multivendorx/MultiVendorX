@@ -5,13 +5,6 @@ import Select from 'react-select';
 import PuffLoader from "react-spinners/PuffLoader";
 import { css } from "@emotion/react";
 
-import { ReactSortable } from "react-sortablejs";
-
-
-//import DynamicDataTable from "@langleyfoxall/react-dynamic-data-table";
-
-import styled from 'styled-components'
-
 import {
   BrowserRouter as Router,
   Link,
@@ -21,11 +14,8 @@ import {
   NavLink
 } from "react-router-dom";
 
-
 import DynamicForm from "../../../DynamicForm";
 import DataTable from 'react-data-table-component';
-
-import HeaderSection from './class-mvx-page-header';
 import TabSection from './class-mvx-page-tab';
 
 const override = css`
@@ -34,47 +24,22 @@ const override = css`
   border-color: green;
 `;
 
-
-class App extends Component {
+class MVX_Workboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      error: null,
-      isLoaded: false,
-      items: [],
-      checkedState: [],
-      module_ids: [],
-      open_model: false,
-      open_model_dynamic: [],
-      isLoading: true,
-      loading: false,
-      module_tabs: [],
-      tabIndex: 0,
-      query: null,
-      firstname: true,
-      lastname: '',
-      email: '',
-      abcarray: [],
-      first_toggle: '',
-      second_toggle: '',
       product_list_option: '',
-      current: {},
       bulkselectlist: [],
       bulkselectreviewlist: [],
       bulkselectabuselist: [],
       show_vendor_name: '',
-
       display_announcement: [],
       display_pending_announcement: [],
       display_published_announcement: [],
       display_all_announcement: [],
-
-
       display_all_knowladgebase: [],
       display_publish_knowladgebase: [],
       display_pending_knowladgebase: [],
-
-      knowledge_data_fileds: [],
       edit_announcement_fileds: [],
       edit_knowledgebase_fileds: [],
       display_list_knowladgebase: [],
@@ -83,79 +48,39 @@ class App extends Component {
       list_of_pending_vendor_coupon: [],
       list_of_pending_transaction: [],
       list_of_pending_question: [],
-
-
       list_of_store_review: [],
       list_of_report_abuse: [],
-
       columns_announcement_new: [],
-
       columns_knowledgebase_new: [],
       columns_questions_new: [],
       columns_store_review: [],
       columns_report_abuse: [],
-
       pending_product_check: [],
       pending_user_check: [],
       pending_coupon_check: [],
       pending_transaction_check: [],
       pending_question_check: [],
       list_of_publish_question: [],
-
       pending_parent_product_check: false,
       pending_parent_user_check: false,
       pending_parent_coupon_check: false,
       pending_parent_transaction_check: false,
       pending_parent_question_check: false,
-
-
       pending_transaction_loding_end: false,
       pending_product_loding_end: false,
       pending_user_loding_end: false,
       pending_coupon_loding_end: false,
       pending_question_loding_end: false,
       list_of_all_tabs: [],
-
-      pending_tranaction: [
-        {
-          name: <div className="mvx-datatable-header-text">Vendor Name</div>,
-          selector: row => <div dangerouslySetInnerHTML={{ __html: row.vendor }}></div>,
-          sortable: true,
-        },
-        {
-          name: <div className="mvx-datatable-header-text">Commission</div>,
-          selector: row => <div dangerouslySetInnerHTML={{ __html: row.commission }}></div>,
-          sortable: true,
-        },
-        {
-          name: <div className="mvx-datatable-header-text">Amount</div>,
-          selector: row => <div dangerouslySetInnerHTML={{ __html: row.amount }}></div>,
-          sortable: true,
-        },
-        {
-          name: <div className="mvx-datatable-header-text">Account Detail</div>,
-          selector: row => <div dangerouslySetInnerHTML={{ __html: row.account_details }}></div>,
-          sortable: true,
-        },
-      ],
-
     };
 
     this.QueryParamsDemo = this.QueryParamsDemo.bind(this);
-
     this.useQuery = this.useQuery.bind(this);
-
     this.Child = this.Child.bind(this);
-
     this.handle_post_retrive_status = this.handle_post_retrive_status.bind(this);
-
     this.handle_post_bulk_status = this.handle_post_bulk_status.bind(this);
-
     this.onSelectedRowsChange = this.onSelectedRowsChange.bind(this);
-
     this.handle_work_board_chenage = this.handle_work_board_chenage.bind(this);
-
-
     this.handlePostDismiss = this.handlePostDismiss.bind(this);
 
     // pending product todo action
@@ -170,48 +95,29 @@ class App extends Component {
     //trigger todo user
     this.handle_user_request_by_vendors = this.handle_user_request_by_vendors.bind(this);
 
-
     // individual checkbox trigger
     this.handle_todo_checkbox_chenage = this.handle_todo_checkbox_chenage.bind(this);
     this.handle_todo_user_chenage = this.handle_todo_user_chenage.bind(this);
     this.handle_todo_coupon_chenage = this.handle_todo_coupon_chenage.bind(this);
     this.handle_todo_transaction_chenage = this.handle_todo_transaction_chenage.bind(this);
     this.handle_todo_question_checkbox_chenage = this.handle_todo_question_checkbox_chenage.bind(this);
-
-
-
     this.handle_task_board_bulk_chenage = this.handle_task_board_bulk_chenage.bind(this);
-
     this.handle_parent_todo_checkbox_chenage = this.handle_parent_todo_checkbox_chenage.bind(this);
-
-
-
     this.handle_parent_user_todo_checkbox_chenage = this.handle_parent_user_todo_checkbox_chenage.bind(this);
     this.handle_parent_coupon_todo_checkbox_chenage = this.handle_parent_coupon_todo_checkbox_chenage.bind(this);
     this.handle_parent_transaction_todo_checkbox_chenage = this.handle_parent_transaction_todo_checkbox_chenage.bind(this);
     this.handle_parent_question_todo_checkbox_chenage = this.handle_parent_question_todo_checkbox_chenage.bind(this);
-
-
     this.handle_question_search = this.handle_question_search.bind(this);
-
     this.handleReviewDismiss = this.handleReviewDismiss.bind(this);
-
     this.handle_review_bulk_status = this.handle_review_bulk_status.bind(this);
-
     this.handleselectreviews = this.handleselectreviews.bind(this);
-
     this.handle_search_vendor_review = this.handle_search_vendor_review.bind(this);
-
     this.handleselectabuse = this.handleselectabuse.bind(this);
-
     this.handle_vendor_search_abuse = this.handle_vendor_search_abuse.bind(this);
     this.handle_product_search_abuse = this.handle_product_search_abuse.bind(this);
-
     this.handleAbuseDismiss = this.handleAbuseDismiss.bind(this);
     this.handle_question_delete = this.handle_question_delete.bind(this);
-
     this.handle_transaction_request_by_vendors = this.handle_transaction_request_by_vendors.bind(this);
-    
     this.handle_question_bulk_status_change = this.handle_question_bulk_status_change.bind(this);
     
   }
@@ -689,19 +595,6 @@ class App extends Component {
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
   handle_question_request_by_vendors(e, question_id, product_id, type) {
     axios({
       method: 'post',
@@ -1172,8 +1065,21 @@ class App extends Component {
         })
 
     }
-
     // update announcement table end
+
+
+    // update knowledgebase table when clock on knowledgebase tab
+    if (new URLSearchParams(window.location.hash).get("name") == 'knowladgebase') {
+      axios.get(
+        `${appLocalizer.apiUrl}/mvx_module/v1/display_list_knowladgebase`
+      )
+      .then(response => {
+        //this.setState({
+          this.state.display_list_knowladgebase = response.data;
+        //});
+      })
+    }
+    // update knowledgebase table end
 
 
     let use_query = this.useQuery();
@@ -1192,6 +1098,7 @@ class App extends Component {
 
   Child({ name }) {
 
+
     var get_current_name = this.useQuery();
 
 
@@ -1201,6 +1108,7 @@ class App extends Component {
 
     if (!get_current_name.get("knowladgebaseID")) {
       this.state.edit_knowledgebase_fileds = [];
+      //this.state.columns_knowledgebase_new = [];
     }
 
     if (get_current_name.get("AnnouncementID")) {
@@ -1420,7 +1328,7 @@ class App extends Component {
                             <div className='pull-left'>
                               <a href={pending_data.product_url} className="link-icon"><i className="mvx-font icon-edit"></i></a>
                               <div className="link-icon"><i className="mvx-font icon-approve" onClick={(e) => this.handle_product_request_by_vendors(e, pending_data.id, pending_data.vendor_id, 'approve')}></i></div>
-                              <div className="link-icon"><i className="mvx-font icon-close" onClick={(e) => this.handle_product_request_by_vendors(e, pending_data.id, pending_data.vendor_id, 'dismiss')}></i></div>
+                              <div className="link-icon"><i className="mvx-font icon-close" onClick={(e) => this.handle_product_request_by_vendors(e, pending_data.id, pending_data.vendor_id, 'dismiss')}></i><p className='mvxicon-hover-text'>Shop</p></div>
                             </div>
 
                             <div className="pull-right">
@@ -1774,7 +1682,7 @@ class App extends Component {
 
                 {get_current_name && get_current_name.get("create") == 'announcement' || get_current_name.get("AnnouncementID") ?
                 <div className="mvx-back-btn">
-                  <Link className="btn" to={`?page=mvx#&submenu=work-board&name=announcement`}><i className="mvx-font icon-edit"></i>Back</Link>
+                  <Link className="btn" to={`?page=mvx#&submenu=work-board&name=announcement`}><i className="mvx-font icon-back"></i>Back</Link>
                 </div>
                 :
                 <div className="mvx-table-text-and-add-wrap mvx-addbtn">
@@ -1879,7 +1787,7 @@ class App extends Component {
 
                   {get_current_name && get_current_name.get("create") == 'knowladgebase' || get_current_name.get("knowladgebaseID") ?
                     <div className="mvx-back-btn">
-                      <Link className="btn" to={`?page=mvx#&submenu=work-board&name=knowladgebase`}><i className="mvx-font icon-edit"></i>Back</Link>
+                      <Link className="btn" to={`?page=mvx#&submenu=work-board&name=knowladgebase`}><i className="mvx-font icon-back"></i>Back</Link>
                     </div>
                     :
                     <div className="mvx-table-text-and-add-wrap mvx-addbtn">
@@ -2134,4 +2042,4 @@ class App extends Component {
     );
   }
 }
-export default App;
+export default MVX_Workboard;
