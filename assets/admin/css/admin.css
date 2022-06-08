@@ -2145,6 +2145,10 @@ input:focus {
   margin-bottom: 2px;
 }
 
+.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell {
+  z-index: 1;
+}
+
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2158,12 +2162,15 @@ input:focus {
   margin-right: 10px;
 }
 
-.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon div:hover {
-  background: #ece8f1;
-  padding: 8px;
-  border-radius: 4px;
-  -webkit-transition: ease-in-out 1s;
-  transition: ease-in-out 1s;
+.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon div .mvxicon-hover-text {
+  display: none;
+}
+
+.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon div:hover .mvxicon-hover-text {
+  display: block;
+  position: absolute;
+  top: 28px;
+  right: 0px;
 }
 
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon a {
@@ -2180,14 +2187,6 @@ input:focus {
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow a {
   color: #3f1473;
   font-weight: 500;
-}
-
-.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow a:hover {
-  background: #ece8f1;
-  padding: 8px;
-  border-radius: 4px;
-  -webkit-transition: ease-in-out 1s;
-  transition: ease-in-out 1s;
 }
 
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .fvAeSn img {

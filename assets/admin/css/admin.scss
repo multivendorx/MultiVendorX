@@ -1921,17 +1921,26 @@ margin-top: 10px;
                 border-radius: $border-radius;
                 margin-bottom: 2px;
                 & .rdt_TableCell {
+                    z-index: 1;
                     & .mvx-vendor-action-icon {
                         @include flexprops(center);
-
                         & div {
                             margin-right: 10px;
+                            & .mvxicon-hover-text {
+                                display: none;
+                            }
                         }
-                        & div:hover {
-                            background: #ece8f1;
-                            padding: 8px;
-                            border-radius: $border-radius;
-                            transition: ease-in-out 1s;
+                        // & div:hover {
+                        //     background: #ece8f1;
+                        //     padding: 8px;
+                        //     border-radius: $border-radius;
+                        //     transition: ease-in-out 1s;
+                        // }
+                        & div:hover .mvxicon-hover-text{
+                            display: block;
+                            position: absolute;
+                            top: 28px;
+                            right: 0px;
                         }
                         & a {
                             display: block;
@@ -1947,12 +1956,12 @@ margin-top: 10px;
                     color: #3f1473;
                     font-weight: 500;
                 }
-                & a:hover {
-                    background: #ece8f1;
-                    padding: 8px;
-                    border-radius: $border-radius;
-                    transition: ease-in-out 1s;
-                }
+                // & a:hover {
+                //     background: #ece8f1;
+                //     padding: 8px;
+                //     border-radius: $border-radius;
+                //     transition: ease-in-out 1s;
+                // }
 
                 & .fvAeSn {
                     & img {
