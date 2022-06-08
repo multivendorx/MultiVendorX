@@ -361,7 +361,10 @@ class MVX_Commission extends Component {
 
         data_ann.cell ? data_ann.cell = (row) => <div className="mvx-vendor-action-icon">
           <a href={row.link}><i className="mvx-font icon-edit"></i></a>
-          <div onClick={() => this.handleCommisssionDismiss(row.id)} id={row.id}><i className="mvx-font icon-no"></i></div>
+          <div onClick={() => this.handleCommisssionDismiss(row.id)} id={row.id}>
+            <i className="mvx-font icon-no"></i>
+            <p className='mvxicon-hover-text'>Close</p>
+          </div>
         </div> : '';
 
         this.state.columns_commission_list[index_ann] = data_ann
