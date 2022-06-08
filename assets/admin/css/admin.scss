@@ -655,13 +655,10 @@ $fill-color : #fdfdfe;
     padding-right: 15px;
 }
 @mixin tabs {
-    display: inline-block;
     width: auto !important;
-    height: 48px;
     background: #fdfdfe !important;
     text-align: center;
-    line-height: 48px;
-    padding: 0 24px;
+    padding: 16px 24px;
     border: $border;
 }
 @mixin anchortag {
@@ -684,7 +681,6 @@ $fill-color : #fdfdfe;
     flex-wrap: wrap;
     & .mvx-module-section-options-list {
         width: 32.33%;
-        // flex: 1 0 calc(33.33% - 10px);
         background: #fdfdfe;
         padding: 24px;
         margin: 12px 12px 0px 0;
@@ -769,9 +765,21 @@ $fill-color : #fdfdfe;
         width: 20px;
     }
 }
+@mixin add-announcement-btn {
+    background: #3f1473;
+    border-radius: $border-radius;
+    display: inline-flex;
+    & a {
+        color: #fdfdfe !important;
+        height: 40px;
+        & i {
+            padding-right: 10px;
+        }
+    }
+}
 @mixin tabvertical {
     & .mvx-current-tab-lists {
-        float: left;
+        // float: left;
         background-color: #f1f1f1;
         width: auto;
         height: auto;
@@ -944,44 +952,6 @@ $fill-color : #fdfdfe;
         margin-right: 24px;
         min-width: 60%;
     }
-    & .mvx-horizontal-tabs {
-        @include flexprops(center);
-        margin-bottom: -1px;
-        & li {
-            @include activedashboardtabs;
-            @include tabs;
-                & a {
-                    @include anchortag;
-                        & i{
-                        padding-right: 8px;
-                        }
-                }
-            }
-            & li:nth-child(1){
-                border-radius: 4px 0 0 0;
-            }
-            & li:nth-child(2){
-                border-right: 0;
-            }
-            & li:nth-child(1){
-                border-right: 0;
-            }
-            // & li:nth-child(3){
-            //     border-right: 0;
-            // }
-            & li:nth-child(4){
-                border-radius: 0 4px 0 0;
-            }
-            & li:last-child {
-                border-bottom: none !important;
-            }
-            & .active-current-tab {
-                border-bottom: 1px solid #f7f6f9;
-                background-color: #f7f6f9 !important;
-                z-index: 0;
-            }
-    }
-
     & .mvx-tab-content {
         background: #f7f6f9 !important;
         margin-top: -16px;
@@ -1010,6 +980,7 @@ $fill-color : #fdfdfe;
                     border: none;
                     width: 246px;
                     line-height: 32px;
+                    border: none !important;
                 }
                 & input::placeholder {
                     text-transform: uppercase;
@@ -1057,6 +1028,31 @@ $fill-color : #fdfdfe;
                     font-size: 1.25rem;
                 }
             }
+        }
+    }
+}
+.mvx-horizontal-tabs {
+    & .mvx-middle-child-container {
+        display: block;
+        & .mvx-current-tab-lists {
+            @include flexprops(center);
+            margin: 0 0 -1px 20px;
+            & li {
+                @include activedashboardtabs;
+                @include tabs;
+                    & a {
+                        @include anchortag;
+                            & i{
+                            padding-right: 8px;
+                            }
+                    }
+                }
+                & .active-current-tab {
+                    border-bottom: 1px solid #f7f6f9;
+                    background-color: #f7f6f9 !important;
+                    z-index: 0;
+                    border-right: $border !important;
+                }
         }
     }
 }
@@ -1383,28 +1379,18 @@ textarea, input[type=text], select, input, .default-input {
 
     }
 }
-.mvx-announcement {
+.mvx-announcement, .mvx-knowladgebase, .mvx-store-review, .mvx-report-abuse {
     & .mvx-middle-container-wrapper {
         width: 100%;
     }
-}
-.mvx-knowladgebase {
-    & .mvx-middle-container-wrapper {
-        width: 100%;
+    & .mvx-multistatus-item {
+        background-color: #f7f6f9 !important;
     }
 }
 .mvx-store-review {
     & .mvx-col-auto {
         border: none;
         background: transparent;
-    }
-    & .mvx-middle-container-wrapper {
-        width: 100%;
-    }
-}
-.mvx-report-abuse {
-    & .mvx-middle-container-wrapper {
-        width: 100%;
     }
 }
 .mvx-product-box-sec {
@@ -1935,17 +1921,26 @@ margin-top: 10px;
                 border-radius: $border-radius;
                 margin-bottom: 2px;
                 & .rdt_TableCell {
+                    z-index: 1;
                     & .mvx-vendor-action-icon {
                         @include flexprops(center);
-
                         & div {
                             margin-right: 10px;
+                            & .mvxicon-hover-text {
+                                display: none;
+                            }
                         }
-                        & div:hover {
-                            background: #ece8f1;
-                            padding: 8px;
-                            border-radius: $border-radius;
-                            transition: ease-in-out 1s;
+                        // & div:hover {
+                        //     background: #ece8f1;
+                        //     padding: 8px;
+                        //     border-radius: $border-radius;
+                        //     transition: ease-in-out 1s;
+                        // }
+                        & div:hover .mvxicon-hover-text{
+                            display: block;
+                            position: absolute;
+                            top: 0px;
+                            right: 10px;
                         }
                         & a {
                             display: block;
@@ -1961,12 +1956,12 @@ margin-top: 10px;
                     color: #3f1473;
                     font-weight: 500;
                 }
-                & a:hover {
-                    background: #ece8f1;
-                    padding: 8px;
-                    border-radius: $border-radius;
-                    transition: ease-in-out 1s;
-                }
+                // & a:hover {
+                //     background: #ece8f1;
+                //     padding: 8px;
+                //     border-radius: $border-radius;
+                //     transition: ease-in-out 1s;
+                // }
 
                 & .fvAeSn {
                     & img {
@@ -1998,12 +1993,15 @@ margin-top: 10px;
 }
 .mvx-vertical-tabs {
     & .mvx-current-tab-lists  {
-        width: 22.8% !important;
+        // width: 22.8% !important;
     }
     & .mvx-tab-content {
-        width: 75% !important;
+        // width: 75% !important;
         background-color: #fdfdfe !important;
     }
+}
+.mvx-middle-child-container {
+    @include flexprops(unset);
 }
 .mvx-notic-display-title {
     position: fixed;
@@ -2059,242 +2057,34 @@ margin-top: 10px;
         margin-left: auto !important;
     }
 }
-.mvx-vendor-personal {
+.mvx-vendor-personal, .mvx-vendor-store, .mvx-vendor-social, .mvx-vendor-payments, .mvx-vendor-application, .mvx-vendor-shipping, .mvx-vendor-followers, .mvx-vendor-policy {
     & .mvx-tab-content {
         padding: 24px;
-    }
-}
-.mvx-vendor-store{
-    & .mvx-tab-content {
-        padding: 24px;
-        & .mvx-marketplace-vendors-container {
-            & .mvx-dynamic-fields-wrapper {
-                & .mvx-dynamic-form {
-                    & .mvx-form-group {
-                        margin: 0 0 24px 0;
-                        & label {
-                            & p {
-                                font-size: 14px;
-                                margin: 0 0 8px 0;
-                            }
-                        }
-                        & input {
-                            height: 40px;
-                            border: $border;
+        & .mvx-dynamic-fields-wrapper {
+            & .mvx-dynamic-form {
+                & .mvx-form-group {
+                    margin: 0 0 24px 0;
+                    & label {
+                        & p {
+                            font-size: 14px;
+                            margin: 0 0 8px 0;
                         }
                     }
-                    & .mvx-form-button-group {
-                        & .mvx-settings-basic-input-class {
-                            & .default-btn {
-                                height: 40px;
-                                background-color: #3f1473;
-                                width: 20%;
-                                color: $fill-color;
-                            }
-                        }
+                    & input {
+                        height: 40px;
+                        border: $border;
                     }
                 }
-            }
-        }
-    }
-}
-.mvx-vendor-social{
-    & .mvx-tab-content {
-        padding: 24px;
-        & .mvx-marketplace-vendors-container {
-            & .mvx-dynamic-fields-wrapper {
-                & .mvx-dynamic-form {
-                    & .mvx-form-group {
-                        margin: 0 0 24px 0;
-                        & label {
-                            & p {
-                                font-size: 14px;
-                                margin: 0 0 8px 0;
-                            }
-                        }
-                        & input {
+                & .mvx-form-button-group {
+                    & .mvx-settings-basic-input-class {
+                        & .default-btn {
                             height: 40px;
-                            border: $border;
-                        }
-                    }
-                    & .mvx-form-button-group {
-                        & .mvx-settings-basic-input-class {
-                            & .default-btn {
-                                height: 40px;
-                                background-color: #3f1473;
-                                width: 20%;
-                                color: $fill-color;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-.mvx-vendor-payments{
-    & .mvx-tab-content {
-        padding: 24px;
-        & .mvx-marketplace-vendors-container {
-            & .mvx-dynamic-fields-wrapper {
-                & .mvx-dynamic-form {
-                    & .mvx-form-group {
-                        margin: 0 0 24px 0;
-                        & label {
-                            & p {
-                                font-size: 14px;
-                                margin: 0 0 8px 0;
-                            }
-                        }
-                        & input {
-                            height: 40px;
-                            border: $border;
-                        }
-                    }
-                    & .mvx-form-button-group {
-                        & .mvx-settings-basic-input-class {
-                            & .default-btn {
-                                height: 40px;
-                                background-color: #3f1473;
-                                width: 20%;
-                                color: $fill-color;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-.mvx-vendor-application{
-    & .mvx-tab-content {
-        padding: 24px;
-        & .mvx-marketplace-vendors-container {
-            & .mvx-dynamic-fields-wrapper {
-                & .mvx-dynamic-form {
-                    & .mvx-form-group {
-                        margin: 0 0 24px 0;
-                        & label {
-                            & p {
-                                font-size: 14px;
-                                margin: 0 0 8px 0;
-                            }
-                        }
-                        & input {
-                            height: 40px;
-                            border: $border;
-                        }
-                    }
-                    & .mvx-form-button-group {
-                        & .mvx-settings-basic-input-class {
-                            & .default-btn {
-                                height: 40px;
-                                background-color: #3f1473;
-                                width: 20%;
-                                color: $fill-color;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-.mvx-vendor-shipping{
-    & .mvx-tab-content {
-        padding: 24px;
-        & .mvx-marketplace-vendors-container {
-            & .mvx-dynamic-fields-wrapper {
-                & .mvx-dynamic-form {
-                    & .mvx-form-group {
-                        margin: 0 0 24px 0;
-                        & label {
-                            & p {
-                                font-size: 14px;
-                                margin: 0 0 8px 0;
-                            }
-                        }
-                        & input {
-                            height: 40px;
-                            border: $border;
-                        }
-                    }
-                    & .mvx-form-button-group {
-                        & .mvx-settings-basic-input-class {
-                            & .default-btn {
-                                height: 40px;
-                                background-color: #3f1473;
-                                width: 20%;
-                                color: $fill-color;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-.mvx-vendor-followers{
-    & .mvx-tab-content {
-        padding: 24px;
-        & .mvx-marketplace-vendors-container {
-            & .mvx-dynamic-fields-wrapper {
-                & .mvx-dynamic-form {
-                    & .mvx-form-group {
-                        margin: 0 0 24px 0;
-                        & label {
-                            & p {
-                                font-size: 14px;
-                                margin: 0 0 8px 0;
-                            }
-                        }
-                        & input {
-                            height: 40px;
-                            border: $border;
-                        }
-                    }
-                    & .mvx-form-button-group {
-                        & .mvx-settings-basic-input-class {
-                            & .default-btn {
-                                height: 40px;
-                                background-color: #3f1473;
-                                width: 20%;
-                                color: $fill-color;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-.mvx-vendor-policy{
-    & .mvx-tab-content {
-        padding: 24px;
-        & .mvx-marketplace-vendors-container {
-            & .mvx-dynamic-fields-wrapper {
-                & .mvx-dynamic-form {
-                    & .mvx-form-group {
-                        margin: 0 0 24px 0;
-                        & label {
-                            & p {
-                                font-size: 14px;
-                                margin: 0 0 8px 0;
-                            }
-                        }
-                        & input {
-                            height: 40px;
-                            border: $border;
-                        }
-                    }
-                    & .mvx-form-button-group {
-                        & .mvx-settings-basic-input-class {
-                            & .default-btn {
-                                height: 40px;
-                                background-color: #3f1473;
-                                width: 20%;
-                                color: $fill-color;
-                            }
+                            background-color: #e35047;
+                            width: 20%;
+                            color: $fill-color !important;
+                            clear: left;
+                            float: right;
+                            margin: 24px 0 0 0;
                         }
                     }
                 }
@@ -2336,7 +2126,16 @@ margin-top: 10px;
             @include flexprops(center);
             & .mvx-multistatus-item {
                 display: inline-block;
-                margin: 0;
+                margin: 0 !important;
+            }
+            & .mvx-divider {
+                flex: 0 0 0.0625rem !important;
+                width: 1px !important;
+                max-width: 1px !important;
+                background-color: #181718 !important;
+                padding: 0 !important;
+                margin: 0 8px !important;
+                height: 16px !important;
             }
         }
     }
@@ -2557,8 +2356,7 @@ margin-top: 10px;
         }
     }
 }
-.mvx-add_new {
-    width: 100%;
+.mvx-add-new {
     margin-top: 32px;
     background-color: #f7f6f9;
     border-left: $border;
@@ -2571,27 +2369,6 @@ margin-top: 10px;
         border-left: $border;
         border-radius: $border-radius;
         margin: 32px 0 0 0;
-        & .mvx-form-group {
-            @include flexprops(center);
-            margin-bottom: 10px;
-            & .mvx-settings-form-label {
-                width: 150px;
-            }
-            & .mvx-settings-input-content {
-                & .mvx-settings-basic-input-class{
-                    @include flexprops(center);
-                    & input {
-                        width: 100%;
-                        border: $border;
-                        border-radius: $border;
-                        height: 50px;
-                    }
-                    & .mvx-settings-metabox-description {
-                        padding-left: 8px;
-                    }
-                }
-            }
-        }
     }
 }
 .mvx-status-database-tools-content {
@@ -2782,9 +2559,6 @@ margin-top: 10px;
                 color: #3f1473;
             }
         }
-        // & .mvx-order-details-vendor-details-wrap {
-        //     @include flexprops(center);
-        // }
         & .commission-status-hide-and-show-wrap {
             @include flexprops(center);
             & .commission-status-text-check {
@@ -2796,15 +2570,7 @@ margin-top: 10px;
         }
     }
 }
-.mvx-divider {
-    flex: 0 0 0.0625rem !important;
-    width: 1px !important;
-    max-width: 1px !important;
-    background-color: #181718;
-    padding: 0 !important;
-    margin: 0 8px !important;
-    height: 16px;
-}
+
 
 /** Start Setup Widget Sec **/
 .wc-setup {
@@ -2816,6 +2582,8 @@ margin-top: 10px;
         margin: 0 0 32px 0;
         & a {
             display: block;
+            width: 175px;
+            margin: auto;
         }
     }
     & .wc-setup-steps > li {
@@ -3061,10 +2829,6 @@ margin-top: 10px;
         & .mvx-table-ul > li:hover {
             border: 1px solid #65438f !important;
         }
-        // & .hover-border-box:hover {
-        //     border: 1px solid #3f1473;
-        //     transition: 0.2s all ease;
-        // }
         & .li-txt {
             flex-basis: 0;
             flex-grow: 1;
