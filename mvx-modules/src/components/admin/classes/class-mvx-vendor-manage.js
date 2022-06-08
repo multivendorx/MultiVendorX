@@ -574,7 +574,11 @@ class App extends React.Component {
 
   QueryParamsDemo(e) {
 
-
+    if (!this.useQuery().get("ID")) {
+      this.state.data_setting_fileds = [];
+      this.state.data_zone_shipping = [];
+    }
+    
     // Display table column and row slection
     if (this.state.columns_vendor_list.length == 0 && new URLSearchParams(window.location.hash).get("submenu") == 'vendor') {
       appLocalizer.columns_vendor.map((data_ann, index_ann) => {
@@ -609,6 +613,31 @@ class App extends React.Component {
     // Display table column and row slection end
 
 
+
+    if (this.state.datavendor.length == 0) {
+      axios({
+        url: `${appLocalizer.apiUrl}/mvx_module/v1/all_vendors`
+      })
+      .then(response => {
+        //open_vendor_model_dynamic
+        var default_vendor_eye_popup = [];
+        response.data.map((data_ann, index_ann) => {
+          default_vendor_eye_popup[data_ann.ID] = false;
+
+        })
+        this.setState({
+          datavendor: response.data,
+          data_all_vendor: response.data,
+          open_vendor_model_dynamic: default_vendor_eye_popup,
+          vendor_loading: true
+        });
+      })
+    }
+
+    if (this.useQuery().get("ID")) {
+      this.state.datavendor = [];
+      this.state.vendor_loading = false;
+    }
 
 
     let user_query = this.useQuery();
@@ -855,19 +884,14 @@ class App extends React.Component {
 
   Child({ name }) {
 
-    if (!new URLSearchParams(window.location.hash).get("ID")) {
-      this.state.data_setting_fileds = [];
-      this.state.data_zone_shipping = [];
-    }
-
-    if (!new URLSearchParams(window.location.hash).get("zone_id")) {
+    if (!this.useQuery().get("zone_id")) {
       this.state.data_zone_in_shipping = [];
     }
 
-    if (new URLSearchParams(window.location.hash).get("ID") && name.get("ID") != this.state.set_tab_name_id) {
+    if (this.useQuery().get("ID") && name.get("ID") != this.state.set_tab_name_id) {
       axios.get(
         `${appLocalizer.apiUrl}/mvx_module/v1/list_of_all_tab_based_settings_field`, {
-        params: { vendor_id: new URLSearchParams(window.location.hash).get("ID") }
+        params: { vendor_id: this.useQuery().get("ID") }
       })
         .then(response => {
           if (response.data) {
@@ -881,10 +905,10 @@ class App extends React.Component {
         })
     }
 
-    if (new URLSearchParams(window.location.hash).get("ID") && name.get("name") != this.state.set_tab_name) {
+    if (this.useQuery().get("ID") && name.get("name") != this.state.set_tab_name) {
       axios.get(
         `${appLocalizer.apiUrl}/mvx_module/v1/list_of_all_tab_based_settings_field`, {
-        params: { vendor_id: new URLSearchParams(window.location.hash).get("ID") }
+        params: { vendor_id: this.useQuery().get("ID") }
       })
         .then(response => {
           if (response.data) {
@@ -901,7 +925,7 @@ class App extends React.Component {
           
           axios.get(
           `${appLocalizer.apiUrl}/mvx_module/v1/list_vendor_application_data`, {
-            params: { vendor_id: new URLSearchParams(window.location.hash).get("ID") }
+            params: { vendor_id: this.useQuery().get("ID") }
           })
           .then(response => {
             this.setState({
@@ -914,7 +938,7 @@ class App extends React.Component {
 
           axios.get(
           `${appLocalizer.apiUrl}/mvx_module/v1/list_vendor_roles_data`, {
-            params: { vendor_id: new URLSearchParams(window.location.hash).get("ID") }
+            params: { vendor_id: this.useQuery().get("ID") }
           })
           .then(response => {
             this.setState({
@@ -930,10 +954,10 @@ class App extends React.Component {
     }
 
 
-    if (new URLSearchParams(window.location.hash).get("name") == 'vendor-shipping') {
+    if (this.useQuery().get("name") == 'vendor-shipping') {
       axios.get(
         `${appLocalizer.apiUrl}/mvx_module/v1/specific_vendor_shipping`, {
-        params: { vendor_id: new URLSearchParams(window.location.hash).get("ID") }
+        params: { vendor_id: this.useQuery().get("ID") }
       })
         .then(response => {
           if (response.data && this.state.data_zone_shipping.length == 0) {
@@ -944,10 +968,10 @@ class App extends React.Component {
         })
     }
 
-    if (new URLSearchParams(window.location.hash).get("zone_id")) {
+    if (this.useQuery().get("zone_id")) {
       var params = {
-        vendor_id: new URLSearchParams(window.location.hash).get("ID"),
-        zone_id: new URLSearchParams(window.location.hash).get("zone_id")
+        vendor_id: this.useQuery().get("ID"),
+        zone_id: this.useQuery().get("zone_id")
       };
 
       axios.get(
@@ -972,6 +996,7 @@ class App extends React.Component {
                 name.get("name") == "vendor-application" ? (
                   
                 <div className="mvx-vendor-application-content">
+
                   {
                   this.state.list_vendor_application_data ? <div dangerouslySetInnerHTML={{ __html: this.state.list_vendor_application_data }}></div> 
                   :
@@ -1536,7 +1561,12 @@ class App extends React.Component {
                         submitbutton="false"
                       />
                     ) : (
-                      ""
+                      <PuffLoader
+                        css={override}
+                        color={"#cd0000"}
+                        size={100}
+                        loading={true}
+                      />
                     )
                 )
               ) : (
@@ -1556,24 +1586,6 @@ class App extends React.Component {
 
 
   componentDidMount() {
-
-    axios({
-      url: `${appLocalizer.apiUrl}/mvx_module/v1/all_vendors`
-    })
-    .then(response => {
-      //open_vendor_model_dynamic
-      var default_vendor_eye_popup = [];
-      response.data.map((data_ann, index_ann) => {
-        default_vendor_eye_popup[data_ann.ID] = false;
-
-      })
-      this.setState({
-        datavendor: response.data,
-        data_all_vendor: response.data,
-        open_vendor_model_dynamic: default_vendor_eye_popup,
-        vendor_loading: true
-      });
-    })
 
     // approve vendor
     axios.get(
@@ -1636,7 +1648,7 @@ class App extends React.Component {
       });
     })
 
-    axios.get(
+/*    axios.get(
     `${appLocalizer.apiUrl}/mvx_module/v1/list_of_all_tab_based_settings_field`, {
       params: { vendor_id: new URLSearchParams(window.location.hash).get("ID") }
     })
@@ -1646,7 +1658,7 @@ class App extends React.Component {
           vendor_shipping_option_choice: response.data.vendor_default_shipping_options.value,
         });
       }
-    })
+    })*/
 
     // fetch vendor application datavendor
     axios.get(
