@@ -655,13 +655,10 @@ $fill-color : #fdfdfe;
     padding-right: 15px;
 }
 @mixin tabs {
-    display: inline-block;
     width: auto !important;
-    height: 48px;
     background: #fdfdfe !important;
     text-align: center;
-    line-height: 48px;
-    padding: 0 24px;
+    padding: 16px 24px;
     border: $border;
 }
 @mixin anchortag {
@@ -1039,7 +1036,7 @@ $fill-color : #fdfdfe;
         display: block;
         & .mvx-current-tab-lists {
             @include flexprops(center);
-            margin: 0 0 0 20px;
+            margin: 0 0 -1px 20px;
             & li {
                 @include activedashboardtabs;
                 @include tabs;
@@ -1049,6 +1046,12 @@ $fill-color : #fdfdfe;
                             padding-right: 8px;
                             }
                     }
+                }
+                & .active-current-tab {
+                    border-bottom: 1px solid #f7f6f9;
+                    background-color: #f7f6f9 !important;
+                    z-index: 0;
+                    border-right: $border !important;
                 }
         }
     }

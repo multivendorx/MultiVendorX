@@ -902,19 +902,16 @@ a:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin: 0 0 0 20px;
+  margin: 0 0 -1px 20px;
 }
 
 .mvx-horizontal-tabs .mvx-middle-child-container .mvx-current-tab-lists li {
   display: inline-block;
   padding-right: 15px;
-  display: inline-block;
   width: auto !important;
-  height: 48px;
   background: #fdfdfe !important;
   text-align: center;
-  line-height: 48px;
-  padding: 0 24px;
+  padding: 16px 24px;
   border: 1px solid #d4d1d9;
 }
 
@@ -927,6 +924,13 @@ a:focus {
 
 .mvx-horizontal-tabs .mvx-middle-child-container .mvx-current-tab-lists li a i {
   padding-right: 8px;
+}
+
+.mvx-horizontal-tabs .mvx-middle-child-container .mvx-current-tab-lists .active-current-tab {
+  border-bottom: 1px solid #f7f6f9;
+  background-color: #f7f6f9 !important;
+  z-index: 0;
+  border-right: 1px solid #d4d1d9 !important;
 }
 
 .mvx-transaction-history .mvx-tab-content {
