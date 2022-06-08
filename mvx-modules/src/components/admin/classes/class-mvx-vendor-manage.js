@@ -38,7 +38,7 @@ const override = css`
   border-color: green;
 `;
 
-class App extends React.Component {
+class MVX_Backend_Vendor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -589,9 +589,12 @@ class App extends React.Component {
 
 
         data_ann.last_action == 'last_action_trigger' ? data_ann.cell = (row) => <div className="mvx-vendor-action-icon">
-          <a href={row.link_shop}><i className="mvx-font icon-edit"></i></a>
-          <a href={row.link}><i className="mvx-font icon-edit"></i></a>
-          <div onClick={() => this.handleVendorDismiss(row.ID)} id={row.ID}><i className="mvx-font icon-no"></i></div>
+          
+          <div><a href={row.link_shop}><i className="mvx-font icon-shop"></i><p className='mvxicon-hover-text'>Shop</p></a></div>
+          
+          <div><a href={row.link}><i className="mvx-font icon-edit"></i><p className='mvxicon-hover-text'>Edit</p></a></div>
+
+          <div onClick={() => this.handleVendorDismiss(row.ID)} id={row.ID}><i className="mvx-font icon-no"></i><p className='mvxicon-hover-text'>Close</p></div>
 
         </div> : '';
 
@@ -861,7 +864,7 @@ class App extends React.Component {
     return (
       <div className="mvx-dynamic-form-content">
         <div className="mvx-back-btn">
-          <Link className="btn" to={`?page=mvx#&submenu=vendor`}><i className="mvx-font icon-edit"></i>Back</Link>
+          <Link className="btn" to={`?page=mvx#&submenu=vendor`}><i className="mvx-font icon-back"></i>Back</Link>
         </div>
       {
       name ?
@@ -906,20 +909,24 @@ class App extends React.Component {
     }
 
     if (this.useQuery().get("ID") && name.get("name") != this.state.set_tab_name) {
+      
+
       axios.get(
         `${appLocalizer.apiUrl}/mvx_module/v1/list_of_all_tab_based_settings_field`, {
         params: { vendor_id: this.useQuery().get("ID") }
       })
-        .then(response => {
-          if (response.data) {
-            this.setState({
-              data_setting_fileds: response.data,
-              vendor_shipping_option_choice: response.data.vendor_default_shipping_options.value,
-              set_tab_name: name.get("name")
-            });
-          }
+      .then(response => {
+        if (response.data) {
+          this.setState({
+            data_setting_fileds: response.data,
+            vendor_shipping_option_choice: response.data.vendor_default_shipping_options.value,
+            set_tab_name: name.get("name")
+          });
+        }
 
-        })
+      })
+
+      
 
         if (name.get("name") == "vendor-application") {
           
@@ -1681,4 +1688,4 @@ class App extends React.Component {
     );
   }
 }
-export default App;
+export default MVX_Backend_Vendor;

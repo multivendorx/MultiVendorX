@@ -360,8 +360,13 @@ class MVX_Commission extends Component {
         data_ann.selector = row => <div dangerouslySetInnerHTML={{ __html: row[data_selector] }}></div>;
 
         data_ann.cell ? data_ann.cell = (row) => <div className="mvx-vendor-action-icon">
-          <a href={row.link}><i className="mvx-font icon-edit"></i></a>
-          <div onClick={() => this.handleCommisssionDismiss(row.id)} id={row.id}><i className="mvx-font icon-no"></i></div>
+
+          <div><a href={row.link}><i className="mvx-font icon-edit"></i><p className='mvxicon-hover-text'>Edit</p></a></div>
+
+          <div onClick={() => this.handleCommisssionDismiss(row.id)} id={row.id}>
+            <i className="mvx-font icon-no"></i>
+            <p className='mvxicon-hover-text'>Close</p>
+          </div>
         </div> : '';
 
         this.state.columns_commission_list[index_ann] = data_ann
@@ -546,6 +551,7 @@ class MVX_Commission extends Component {
                       ""
                     )}
                     {!this.state.commission_select_option_open ? (
+                      
                       <i
                         className="mvx-font icon-edit"
                         onClick={(e) => this.handlecommission_paid(e)}
