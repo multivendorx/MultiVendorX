@@ -22,7 +22,7 @@ const override = css`
   border-color: green;
 `;
 
-class MVX_Commission extends Component {
+class MVX_Backend_Commission extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -113,7 +113,6 @@ class MVX_Commission extends Component {
           params: { commission_ids: e.target.value }
       })
         .then(response => {
-          //console.log(response.data);
           this.setState({
             datacommission: response.data,
           });
@@ -131,7 +130,7 @@ class MVX_Commission extends Component {
   }
 
   handleCommisssionDismiss(e) {
-    if (confirm("Confirm delete?") == true) {
+    if (confirm(appLocalizer.global_string.confirm_delete) == true) {
       axios({
         method: 'post',
         url: `${appLocalizer.apiUrl}/mvx_module/v1/commission_delete`,
@@ -361,11 +360,11 @@ class MVX_Commission extends Component {
 
         data_ann.cell ? data_ann.cell = (row) => <div className="mvx-vendor-action-icon">
 
-          <div><a href={row.link}><i className="mvx-font icon-edit"></i><p className='mvxicon-hover-text'>Edit</p></a></div>
+          <div><a href={row.link}><i className="mvx-font icon-edit"></i><p className='mvxicon-hover-text'>{appLocalizer.global_string.edit}</p></a></div>
 
           <div onClick={() => this.handleCommisssionDismiss(row.id)} id={row.id}>
             <i className="mvx-font icon-no"></i>
-            <p className='mvxicon-hover-text'>Close</p>
+            <p className='mvxicon-hover-text'>{appLocalizer.global_string.close}</p>
           </div>
         </div> : '';
 
@@ -519,7 +518,7 @@ class MVX_Commission extends Component {
                       !this.state.commission_reload ?
                         <div className="commission-status-hide-and-show-wrap">
                           <p className="commission-status-text-check">
-                            Commission status:{" "}
+                            {appLocalizer.commission_page_string.commission_status}:{" "}
                           </p>
                           <Select
                             placeholder="Status"
@@ -631,7 +630,7 @@ class MVX_Commission extends Component {
                 <div className="mvx-order-details-wrap">
                   {/* Commission order details start*/}
                   <div className="mvx-commission-order-details-text">
-                    Order Details
+                    {appLocalizer.commission_page_string.order_details}
                   </div>
                   <div className="mvx-commission-order-data woocommerce_order_items_wrapper wc-order-items-editable">
                     <table
@@ -920,7 +919,7 @@ class MVX_Commission extends Component {
                   
                   {this.state.commission_details.shipping_items_details ?
                   <div className="mvx-commission-order-details-text">
-                    Shipping
+                    {appLocalizer.commission_page_string.shipping}
                   </div>
                   : ''}
                   {this.state.commission_details.shipping_items_details ?
@@ -1024,7 +1023,7 @@ class MVX_Commission extends Component {
                         this.state.commission_details
                           .commission_include_coupon ? (
                           <li>
-                            <em>*Commission calculated including coupon</em>
+                            <em>*{appLocalizer.commission_page_string.calculated_coupon}</em>
                           </li>
                         ) : (
                           ""
@@ -1034,8 +1033,7 @@ class MVX_Commission extends Component {
                           .commission_total_include_shipping ? (
                           <li>
                             <em>
-                              *Commission total calcutated including shipping
-                              charges.
+                              *{appLocalizer.commission_page_string.calculated_shipping}
                             </em>
                           </li>
                         ) : (
@@ -1046,8 +1044,7 @@ class MVX_Commission extends Component {
                           .commission_total_include_tax ? (
                           <li>
                             <em>
-                              *Commission total calcutated including tax
-                              charges.
+                              *{appLocalizer.commission_page_string.calculated_tax}
                             </em>
                           </li>
                         ) : (
@@ -1295,7 +1292,7 @@ class MVX_Commission extends Component {
       <div className="mvx-container">
         <div className="mvx-middle-container-wrapper">
           <div className="mvx-page-title">
-            Commission
+            {appLocalizer.commission_page_string.commission}
             <div className="pull-right">
               <CSVLink
                 data={this.state.commissiondata}
@@ -1303,7 +1300,7 @@ class MVX_Commission extends Component {
                 filename={"Commissions.csv"}
                 className="button-commission-secondary btn default-btn"
               >
-                <i className="mvx-font icon-download"></i>Download CSV
+                <i className="mvx-font icon-download"></i>{appLocalizer.global_string.download_csv}
               </CSVLink>
             </div>
           </div>
@@ -1318,7 +1315,7 @@ class MVX_Commission extends Component {
                       this.handle_commission_status_check(e, "all")
                     }
                   >
-                    All ({this.state.mvx_all_commission_list.length})
+                    {appLocalizer.commission_page_string.all} ({this.state.mvx_all_commission_list.length})
                   </div>
                 </li>
                 <li class="mvx-multistatus-item mvx-divider"></li>
@@ -1329,7 +1326,7 @@ class MVX_Commission extends Component {
                       this.handle_commission_status_check(e, "paid")
                     }
                   >
-                    Paid ({this.state.data_paid_commission.length})
+                    {appLocalizer.commission_page_string.paid} ({this.state.data_paid_commission.length})
                   </div>
                 </li>
                 <li class="mvx-multistatus-item mvx-divider"></li>
@@ -1340,7 +1337,7 @@ class MVX_Commission extends Component {
                       this.handle_commission_status_check(e, "unpaid")
                     }
                   >
-                    Unpaid ({this.state.data_unpaid_commission.length})
+                    {appLocalizer.commission_page_string.unpaid} ({this.state.data_unpaid_commission.length})
                   </div>
                 </li>
               </ul>
@@ -1421,4 +1418,4 @@ class MVX_Commission extends Component {
     );
   }
 }
-export default MVX_Commission;
+export default MVX_Backend_Commission;

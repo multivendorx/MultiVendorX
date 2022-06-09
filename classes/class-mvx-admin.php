@@ -62,7 +62,7 @@ class MVX_Admin {
 
             </div>
         </div>
-        <style type="text/css">.clearfix{clear:both}.mvx_admin_new_banner.updated{border-left:0}.mvx_admin_new_banner{box-shadow:0 3px 1px 1px rgba(0,0,0,.2);padding:10px 30px;background:#fff;position:relative;overflow:hidden;clear:both;border-top:2px solid #8abee5;text-align:left;background-size:contain}.mvx_admin_new_banner .round{width:200px;height:200px;position:absolute;border-radius:100%;border:30px solid rgba(157,42,255,.05);top:-150px;left:73px;z-index:1}.mvx_admin_new_banner .round1{position:absolute;border-radius:100%;border:45px solid rgba(194,108,144,.05);bottom:-82px;right:-58px;width:180px;height:180px;z-index:1}.mvx_admin_new_banner .round2,.mvx_admin_new_banner .round3{border-radius:100%;width:180px;height:180px;position:absolute;z-index:1}.mvx_admin_new_banner .round2{border:18px solid rgba(194,108,144,.05);top:35px;left:249px}.mvx_admin_new_banner .round3{border:45px solid rgba(31,194,255,.05);top:2px;right:40%}.mvx_admin_new_banner .round4{position:absolute;border-radius:100%;border:31px solid rgba(31,194,255,.05);top:11px;left:-49px;width:100px;height:100px;z-index:1}.mvx_banner-content{display: -webkit-box;display: -moz-box;display: -ms-flexbox;display: -webkit-flex;display: flex;align-items:center}.mvx_admin_new_banner .txt{color:#333;font-size:15px;line-height:1.4;width:calc(100% - 345px);position:relative;z-index:2;display:inline-block;font-weight:400;float:left;padding-left:8px}.mvx_admin_new_banner .link,.mvx_admin_new_banner .mvx_btn_service_claim_now{font-weight:400;display:inline-block;z-index:2;padding:0 20px;position:relative}.mvx_admin_new_banner .rightside{float:right;width:345px}.mvx_admin_new_banner .mvx_btn_service_claim_now{cursor:pointer;background:#8abee5;height:40px;color:#fff;font-size:20px;text-align:center;border:none;margin:5px 13px;border-radius:5px;text-decoration:none;line-height:40px}.mvx_admin_new_banner button:hover{opacity:.8;transition:.5s}.mvx_admin_new_banner .link{font-size:18px;line-height:49px;background:0 0;height:50px}.mvx_admin_new_banner .link a{color:#333;text-decoration:none}@media (max-width:990px){.mvx_admin_new_banner::before{left:-4%;top:-12%}}@media (max-width:767px){.mvx_admin_new_banner::before{left:0;top:0;transform:rotate(0);width:10px}.mvx_admin_new_banner .txt{width:400px;max-width:100%;text-align:center;padding:0;margin:0 auto 5px;float:none;display:block;font-size:17px;line-height:1.6}.mvx_admin_new_banner .rightside{width:100%;padding-left:10px;text-align:center;box-sizing:border-box}.mvx_admin_new_banner .mvx_btn_service_claim_now{margin:10px 0}.mvx_banner-content{display:block}}.mvx_admin_new_banner button.notice-dismiss{z-index:1;position:absolute;top:50%;transform:translateY(-50%)}</style>
+        <style type="text/css">.clearfix{clear:both}.mvx_admin_new_banner.updated{border-left:0}.mvx_admin_new_banner{box-shadow:0 3px 1px 1px rgba(0,0,0,.2);padding:10px 30px;background:#fff;position:relative;overflow:hidden;clear:both;border-top:2px solid #8abee5;text-align:left;background-size:contain}.mvx_admin_new_banner .round{width:200px;height:200px;position:absolute;border-radius:100%;border:30px solid rgba(157,42,255,.05);top:-150px;left:73px;z-index:1}.mvx_admin_new_banner .round1{position:absolute;border-radius:100%;border:45px solid rgba(194,108,144,.05);bottom:-82px;right:-58px;width:180px;height:180px;z-index:1}.mvx_admin_new_banner .round2,.mvx_admin_new_banner .round3{border-radius:100%;width:180px;height:180px;position:absolute;z-index:1}.mvx_admin_new_banner .round2{border:18px solid rgba(194,108,144,.05);top:35px;left:249px}.mvx_admin_new_banner .round3{border:45px solid rgba(31,194,255,.05);top:2px;right:40%}.mvx_admin_new_banner .round4{position:absolute;border-radius:100%;border:31px solid rgba(31,194,255,.05);top:11px;left:-49px;width:100px;height:100px;z-index:1}.mvx_banner-content{display: -webkit-box;display: -moz-box;display: -ms-flexbox;display: -webkit-flex;display: flex;align-items:center}.mvx_admin_new_banner .txt{color:#333;font-size:15px;line-height:1.4;width:calc(100% - 345px);position:relative;z-index:2;display:inline-block;font-weight:400;float:left;padding-left:8px}.mvx_admin_new_banner .link,.mvx_admin_new_banner .mvx_btn_service_claim_now{font-weight:400;display:inline-block;z-index:2;padding:0 20px;position:relative}.mvx_admin_new_banner .rightside{float:right;width:345px}.mvx_admin_new_banner .mvx_btn_service_claim_now{cursor:pointer;background:#8abee5;height:40px;color:#fff;font-size:20px;text-align:center;border:none;margin:5px 13px;border-radius:5px;text-decoration:none;line-height:40px}.mvx_admin_new_banner button:hover{opacity:.8;transition:.5s}.mvx_admin_new_banner .link{font-size:18px;line-height:49px;background:0 0;height:50px}.mvx_admin_new_banner .link a{color:#333;text-decoration:none}@media (max-width:990px) {.mvx_admin_new_banner::before{left:-4%;top:-12%}}@media (max-width:767px) {.mvx_admin_new_banner::before{left:0;top:0;transform:rotate(0);width:10px}.mvx_admin_new_banner .txt{width:400px;max-width:100%;text-align:center;padding:0;margin:0 auto 5px;float:none;display:block;font-size:17px;line-height:1.6}.mvx_admin_new_banner .rightside{width:100%;padding-left:10px;text-align:center;box-sizing:border-box}.mvx_admin_new_banner .mvx_btn_service_claim_now{margin:10px 0}.mvx_banner-content{display:block}}.mvx_admin_new_banner button.notice-dismiss{z-index:1;position:absolute;top:50%;transform:translateY(-50%)}</style>
         <script type="text/javascript">
             function dismiss_servive_notice(e, i) {
                 jQuery.post(ajaxurl, {action: "dismiss_mvx_servive_notice"}, function (e) {
@@ -244,10 +244,6 @@ class MVX_Admin {
             wp_enqueue_script('mvx-admin-product-js');
         }
 
-
-        wp_register_script('mvx-admin-to-do-js', $MVX->plugin_url . 'assets/admin/js/mvx-to-do-action' . $suffix . '.js', array('jquery'), $MVX->version, true);
-        wp_enqueue_script('mvx-admin-to-do-js');
-
         wp_enqueue_script(
             'mvx-modules-build-frontend',
             $MVX->plugin_url . 'mvx-modules/build/index.js',
@@ -256,52 +252,65 @@ class MVX_Admin {
             true
         );
 
-        $commission_bulk_list_action = array();
-        $commission_bulk_list = array(
-            'mark_paid' => __('Mark paid', 'multivendorx'),
-            //'export' => __('Export', 'multivendorx')
+        // select product list
+        $product_query = new WP_Query(array('posts_per_page' => -1, 'post_type' => 'product', 'post_status' => 'publish'));
+        if ($product_query->get_posts()) {
+            $question_product_selection_wordpboard = mvx_convert_select_structure($product_query->get_posts());
+        }
+
+        $commission_bulk_list_action = mvx_convert_select_structure(array('mark_paid' => __('Mark paid', 'multivendorx')));
+
+        // Commission csv header
+        $commission_header = mvx_convert_select_structure(
+            apply_filters('mvx_vendor_commission_data_header',array(
+                __('Recipient', 'multivendorx'),
+                __('Currency', 'multivendorx'),
+                __('Commission', 'multivendorx'),
+                __('Shipping', 'multivendorx'),
+                __('Tax', 'multivendorx'),
+                __('Total', 'multivendorx'),
+                __('Status', 'multivendorx'),
+                )
+            ), true);
+
+        $commission_status_list_action = mvx_convert_select_structure(mvx_get_commission_statuses());
+
+        $select_option_delete = mvx_convert_select_structure(array('delete' => __('Delete', 'multivendorx')));
+
+        // product report chart data for csv
+        $report_product_header = mvx_convert_select_structure(
+            apply_filters('mvx_product_report_data_header',array(
+                __('Product Name', 'multivendorx'),
+                __('Net Sales', 'multivendorx'),
+                __('Admin Earning', 'multivendorx'),
+                __('Vendor Earning', 'multivendorx'),
+                )
+            ), true);
+
+        // vendor report chart data for csv
+        $report_vendor_header = mvx_convert_select_structure(
+            apply_filters('mvx_vendor_report_data_header',array(
+                __('Vendor Name', 'multivendorx'),
+                __('Net Sales', 'multivendorx'),
+                __('Admin Earning', 'multivendorx'),
+                __('Vendor Earning', 'multivendorx'),
+                )
+            ), true);
+
+
+        $global_string = array(
+            'close' =>  __('Close', 'multivendorx'),
+            'edit' =>  __('Edit', 'multivendorx'),
+            'download_csv'  =>  __('Download CSV', 'multivendorx'),
+            'confirm_delete' => __('Confirm delete?', 'multivendorx'),
         );
-        if ($commission_bulk_list) {
-            foreach($commission_bulk_list as $bulk_key => $bulk_value) {
-                $commission_bulk_list_action[] = array(
-                    'value' => $bulk_key,
-                    'label' => $bulk_value
-                );
-            }
-        }
-
-        // Commission header
-        $commission_header = [];
-        $headers = apply_filters('mvx_vendor_commission_data_header',array(
-            'Recipient',
-            'Currency',
-            'Commission',
-            'Shipping',
-            'Tax',
-            'Total',
-            'Status',
-        ));
-        foreach ($headers as $headerskey => $headersvalue) {
-            $commission_header[] = array(
-                'label' => $headersvalue,
-                'key' => $headersvalue
-            );
-        }
-
-        $commission_status_list_action = array();
-        $commission_status = mvx_get_commission_statuses();
-        foreach ($commission_status as $status_key => $status_value) {
-            $commission_status_list_action[] = array(
-                'value' => $status_key,
-                'label' => $status_value
-            );
-        }
 
         $commission_page_string     =   array(
             'details'   =>  __('details', 'multivendorx'),
             'general'   =>  __('General', 'multivendorx'),
             'associated_order'   =>  __('Associated order', 'multivendorx'),
             'order_status'   =>  __('Order status', 'multivendorx'),
+            'order_details'         =>  __('Order Details', 'multivendorx'),
             'commission_status'   =>  __('Commission Status', 'multivendorx'),
             'vendor_details'   =>  __('Vendor details', 'multivendorx'),
             'email'   =>  __('Email Address', 'multivendorx'),
@@ -318,6 +327,12 @@ class MVX_Admin {
             'show_commission_status'   =>  __('Show Commission Status', 'multivendorx'),
             'show_all_vendor'   =>  __('Show All Vendor', 'multivendorx'),
             'bulk_action'   =>  __('Bulk Action', 'multivendorx'),
+            'calculated_coupon' =>  __('Commission calculated including coupon.', 'multivendorx'),
+            'calculated_shipping' =>  __('Commission total calcutated including shipping charges.', 'multivendorx'),
+            'calculated_tax' =>  __('Commission total calcutated including tax charges.', 'multivendorx'),
+            'all'  =>  __('All', 'multivendorx'),
+            'paid'  =>  __('Paid', 'multivendorx'),
+            'unpaid'  =>  __('Unpaid', 'multivendorx'),
         );
 
         $report_page_string = array(
@@ -333,36 +348,6 @@ class MVX_Admin {
             'leaderboards'  =>  __('Leaderboards', 'multivendorx')
         );
 
-        // product report chart data
-        $report_product_header = [];
-        $headers = apply_filters('mvx_vendor_commission_data_header',array(
-            __('Product Name', 'multivendorx'),
-            __('Net Sales', 'multivendorx'),
-            __('Admin Earning', 'multivendorx'),
-            __('Vendor Earning', 'multivendorx'),
-        ));
-        foreach ($headers as $headerskey => $headersvalue) {
-            $report_product_header[] = array(
-                'label' => $headersvalue,
-                'key' => $headersvalue
-            );
-        }
-
-        // vendor report chart data
-        $report_vendor_header = [];
-        $headers = apply_filters('mvx_vendor_commission_data_header',array(
-            __('Vendor Name', 'multivendorx'),
-            __('Net Sales', 'multivendorx'),
-            __('Admin Earning', 'multivendorx'),
-            __('Vendor Earning', 'multivendorx'),
-        ));
-        foreach ($headers as $headerskey => $headersvalue) {
-            $report_vendor_header[] = array(
-                'label' => $headersvalue,
-                'key' => $headersvalue
-            );
-        }
-
         $pending_question_bulk = array(
             array(
                 'value' => 'verified',
@@ -372,13 +357,6 @@ class MVX_Admin {
                 'value' => 'rejected',
                 'label' => __('Rejected', 'multivendorx')
             ),
-        );
-
-        $store_review_bulk = array(
-            array(
-                'value' => 'delete',
-                'label' => __('Delete', 'multivendorx')
-            )
         );
 
         $post_bulk_status = array(
@@ -403,23 +381,6 @@ class MVX_Admin {
             ),
         );
 
-        $question_product_selection_wordpboard = [];
-        $args_multi_vendor = array(
-            'posts_per_page' => -1,
-            'post_type' => 'product',
-            'post_status' => 'publish',
-        );
-        $product_query = new WP_Query($args_multi_vendor);
-        if ($product_query->get_posts()) {
-            foreach ($product_query->get_posts() as $product) {
-                $question_product_selection_wordpboard[] = array(
-                    'value' => esc_attr($product->ID),
-                    'label' => esc_attr($product->post_title),
-                );
-            }
-        }
-
-
         $task_board_bulk_status = array(
             array(
                 'value' => 'approve',
@@ -431,153 +392,39 @@ class MVX_Admin {
             ),
         );
 
-
-        $columns_announcement = array(
+        $columns_followers = array(
             array(
-                'name'      =>  __('Title', 'multivendorx'),
+                'name'      =>  __('Customer Name', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
-                'selector_choice'  => "title",
-                
-            ),
-            array(
-                'name'      =>  __('Vendors', 'multivendorx'),
-                'selector'  =>  '',
-                'sortable'  =>  true,
-                'selector_choice'  => "vendor",
-                
+                'selector_choice'  => "name",
             ),
             array(
                 'name'      =>  __('Date', 'multivendorx'),
-                'selector'  =>  '',
-                'sortable'  =>  true,
-                'selector_choice'  => "date",
-            ),
-            array(
-                'name'      =>  __('Action', 'multivendorx'),
-                'selector'  =>  '',
-                'sortable'  =>  true,
-                'cell'  =>  'cell',
-                'ignoreRowClick'=> true,
-                'allowOverflow'=> true,
-                'button'=> true,
-            )
-        );
-
-        $columns_questions = array(
-            array(
-                'name'      =>  __('Question by', 'multivendorx'),
-                'selector'  =>  '',
-                'sortable'  =>  true,
-                'selector_choice'  => "question_by",
-                
-            ),
-            array(
-                'name'      =>  __('Product Name', 'multivendorx'),
-                'selector'  =>  '',
-                'sortable'  =>  true,
-                'selector_choice'  => "product_name",
-                
-            ),
-            array(
-                'name'      =>  __('Date', 'multivendorx'),
-                'selector'  =>  '',
-                'sortable'  =>  true,
-                'selector_choice'  => "question_date",
-            ),
-            array(
-                'name'      =>  __('Status', 'multivendorx'),
-                'selector'  =>  '',
-                'sortable'  =>  true,
-                'selector_choice'  => "question_status",
-            ),
-            array(
-                'name'      =>  __('Question details', 'multivendorx'),
-                'selector'  =>  '',
-                'sortable'  =>  true,
-                'selector_choice'  => "question_details",
-            ),
-            array(
-                'name'      =>  __('Action', 'multivendorx'),
-                'selector'  =>  '',
-                'sortable'  =>  true,
-                'cell'  =>  'cell',
-                'ignoreRowClick'=> true,
-                'allowOverflow'=> true,
-                'button'=> true,
-            )
-        );
-
-        $columns_knowledgebase = array(
-            array(
-                'name'      =>  __('Title', 'multivendorx'),
-                'selector'  =>  '',
-                'sortable'  =>  true,
-                'selector_choice'  => "title",
-                
-            ),
-            array(
-                'name'      =>  __('Date', 'multivendorx'),
-                'selector'  =>  '',
-                'sortable'  =>  true,
-                'selector_choice'  => "date",
-            ),
-            array(
-                'name'      =>  __('Action', 'multivendorx'),
-                'selector'  =>  '',
-                'sortable'  =>  true,
-                'cell'  =>  'cell',
-                'ignoreRowClick'=> true,
-                'allowOverflow'=> true,
-                'button'=> true,
-            )
-        );
-
-
-        $columns_store_review = array(
-            array(
-                'name'      =>  __('Customer', 'multivendorx'),
-                'selector'  =>  '',
-                'sortable'  =>  true,
-                'selector_choice'  => "author",
-                
-            ),
-            array(
-                'name'      =>  __('Vendor', 'multivendorx'),
-                'selector'  =>  '',
-                'sortable'  =>  true,
-                'selector_choice'  => "user_id",
-                
-            ),
-            array(
-                'name'      =>  __('Content', 'multivendorx'),
-                'selector'  =>  '',
-                'sortable'  =>  true,
-                'selector_choice'  => "content",
-                
-            ),
-            array(
-                'name'      =>  __('Time', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "time",
-                
-            ),
+            )
+        );
+
+        $columns_zone_shipping = array(
             array(
-                'name'      =>  __('Review', 'multivendorx'),
+                'name'      =>  __('Zone name', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
-                'selector_choice'  => "review",
-                
+                'selector_choice'  => "zone_name",
             ),
             array(
-                'name'      =>  __('Action', 'multivendorx'),
+                'name'      =>  __('Region(s)', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
-                'cell'  =>  'cell',
-                'ignoreRowClick'=> true,
-                'allowOverflow'=> true,
-                'button'=> true,
+                'selector_choice'  => "region",
+            ),
+            array(
+                'name'      =>  __('Shipping method(s)', 'multivendorx'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "shipping_method",
             )
         );
 
@@ -587,7 +434,6 @@ class MVX_Admin {
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "name",
-                
             ),
             array(
                 'name'      =>  __('', 'multivendorx'),
@@ -635,14 +481,12 @@ class MVX_Admin {
             )
         );
 
-
         $columns_commission = array(
             array(
                 'name'      =>  __('Commission ID', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "commission_id",
-                
             ),
             array(
                 'name'      =>  __('Order ID', 'multivendorx'),
@@ -698,6 +542,147 @@ class MVX_Admin {
         );
 
 
+        // word board section start
+        $columns_announcement = array(
+            array(
+                'name'      =>  __('Title', 'multivendorx'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "title",
+                
+            ),
+            array(
+                'name'      =>  __('Vendors', 'multivendorx'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "vendor",
+                
+            ),
+            array(
+                'name'      =>  __('Date', 'multivendorx'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "date",
+            ),
+            array(
+                'name'      =>  __('Action', 'multivendorx'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'cell'  =>  'cell',
+                'ignoreRowClick'=> true,
+                'allowOverflow'=> true,
+                'button'=> true,
+            )
+        );
+
+        $columns_questions = array(
+            array(
+                'name'      =>  __('Question by', 'multivendorx'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "question_by",
+            ),
+            array(
+                'name'      =>  __('Product Name', 'multivendorx'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "product_name",
+            ),
+            array(
+                'name'      =>  __('Date', 'multivendorx'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "question_date",
+            ),
+            array(
+                'name'      =>  __('Status', 'multivendorx'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "question_status",
+            ),
+            array(
+                'name'      =>  __('Question details', 'multivendorx'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "question_details",
+            ),
+            array(
+                'name'      =>  __('Action', 'multivendorx'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'cell'  =>  'cell',
+                'ignoreRowClick'=> true,
+                'allowOverflow'=> true,
+                'button'=> true,
+            )
+        );
+
+        $columns_knowledgebase = array(
+            array(
+                'name'      =>  __('Title', 'multivendorx'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "title",
+            ),
+            array(
+                'name'      =>  __('Date', 'multivendorx'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "date",
+            ),
+            array(
+                'name'      =>  __('Action', 'multivendorx'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'cell'  =>  'cell',
+                'ignoreRowClick'=> true,
+                'allowOverflow'=> true,
+                'button'=> true,
+            )
+        );
+
+        $columns_store_review = array(
+            array(
+                'name'      =>  __('Customer', 'multivendorx'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "author",
+            ),
+            array(
+                'name'      =>  __('Vendor', 'multivendorx'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "user_id",
+            ),
+            array(
+                'name'      =>  __('Content', 'multivendorx'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "content",
+            ),
+            array(
+                'name'      =>  __('Time', 'multivendorx'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "time",
+            ),
+            array(
+                'name'      =>  __('Review', 'multivendorx'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "review",
+            ),
+            array(
+                'name'      =>  __('Action', 'multivendorx'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'cell'  =>  'cell',
+                'ignoreRowClick'=> true,
+                'allowOverflow'=> true,
+                'button'=> true,
+            )
+        );
+
         $columns_report_abuse = array(
             array(
                 'name'      =>  __('Reason', 'multivendorx'),
@@ -734,6 +719,7 @@ class MVX_Admin {
                 'button'=> true,
             )
         );
+        // word board section end
 
 
         $select_module_category_option = array(
@@ -764,18 +750,38 @@ class MVX_Admin {
         );
 
 
-        $vendor_list_page_bulk_list_options = array();
-        $vendor_bulk_list = array(
-            'delete' => __('Delete', 'multivendorx'),
-        );
-        if ($vendor_bulk_list) {
-            foreach($vendor_bulk_list as $bulk_key => $bulk_value) {
-                $vendor_list_page_bulk_list_options[] = array(
-                    'value' => $bulk_key,
-                    'label' => $bulk_value
-                );
-            }
-        }
+
+        // all modules localize datas
+        /*$modules_control = array(
+            'category-list' =>  array(
+                array(
+                    'value' => 'payment',
+                    'label' => __('Payment', 'multivendorx')
+                ),
+                array(
+                    'value' => 'shipping',
+                    'label' => __('Shipping', 'multivendorx')
+                ),
+                array(
+                    'value' => 'vendor_store_boosters',
+                    'label' => __('Vendor Store Boosters', 'multivendorx')
+                ),
+                array(
+                    'value' => 'notifictaion',
+                    'label' => __('Notifictaion', 'multivendorx')
+                ),
+                array(
+                    'value' => 'marketplace_products',
+                    'label' => __('Marketplace Products', 'multivendorx')
+                ),
+                array(
+                    'value' => 'third_party_compartibility',
+                    'label' => __('Third Party Compartibility', 'multivendorx')
+                )
+            )
+
+        );*/
+
 
 
         wp_localize_script( 'mvx-modules-build-frontend', 'appLocalizer', apply_filters('mvx_module_complete_settings', [
@@ -804,10 +810,9 @@ class MVX_Admin {
             'cross_logo'                    => $MVX->plugin_url.'assets/images/cross_tick.png',
             'commission_bulk_list_option'   =>  $commission_bulk_list_action,
             'commission_header'             => $commission_header,
-            //'shipping_options'  => $shipping_options_list,
-            //'vendor_default_shipping_options'   => $vendor_default_shipping_options,
             'commission_status_list_action' =>  $commission_status_list_action,
             'commission_page_string'        =>  $commission_page_string,
+            'global_string'                 =>  $global_string,
             'report_product_header'         =>  $report_product_header,
             'report_vendor_header'          =>  $report_vendor_header,
             'report_page_string'            =>  $report_page_string,
@@ -815,14 +820,15 @@ class MVX_Admin {
             'question_selection_wordpboard' =>  $question_selection_wordpboard,
             'question_product_selection_wordpboard' =>  $question_product_selection_wordpboard,
             'pending_question_bulk'         =>  $pending_question_bulk,
-            'store_review_bulk'             =>  $store_review_bulk,
             'task_board_bulk_status'        =>  $task_board_bulk_status,
             'columns_announcement'          =>  $columns_announcement,
             'columns_questions'             =>  $columns_questions,
             'columns_knowledgebase'         =>  $columns_knowledgebase,
             'columns_store_review'          =>  $columns_store_review,
             'columns_vendor'                =>  $columns_vendor,
-            'vendor_list_page_bulk_list_options'    =>  $vendor_list_page_bulk_list_options,
+            'columns_followers'             =>  $columns_followers,
+            'columns_zone_shipping'         =>  $columns_zone_shipping,
+            'select_option_delete'    =>  $select_option_delete,
             'columns_commission'                    =>  $columns_commission,
             'columns_report_abuse'                  =>  $columns_report_abuse,
             'select_module_category_option'         =>  $select_module_category_option,
@@ -832,23 +838,11 @@ class MVX_Admin {
         if ( in_array($screen->id, $page_details)) {
             wp_enqueue_style('mvx_admin_css', $MVX->plugin_url . 'assets/admin/css/admin' . $suffix . '.css', array(), $MVX->version);
             wp_enqueue_style('mvx_admin_rsuite_css', $MVX->plugin_url . 'assets/admin/css/rsuite-default' . '.min' . '.css', array(), $MVX->version);
-        }        
-
-        $mvx_admin_screens = apply_filters('mvx_enable_admin_script_screen_ids', array(
-            'dc_commission',
-            'product',
-            'edit-product',
-            'edit-shop_order',
-            'user-edit',
-            'profile',
-            'users',
-            'toplevel_page_dc-vendor-shipping',
-            'widgets',
-	    ));
+        }
 
         // hide media list view access for vendor
         $user = wp_get_current_user();
-        if (in_array('dc_vendor', $user->roles)){
+        if (in_array('dc_vendor', $user->roles)) {
             $custom_css = "
             .view-switch .view-list{
                     display: none;
@@ -883,7 +877,7 @@ class MVX_Admin {
         }
         
         // hide product cat from quick & bulk edit
-        if (is_user_mvx_vendor(get_current_vendor_id()) && in_array($screen->id, array('edit-product'))){
+        if (is_user_mvx_vendor(get_current_vendor_id()) && in_array($screen->id, array('edit-product'))) {
             $custom_css = "
             .inline-edit-product .inline-edit-categories, .bulk-edit-product .inline-edit-categories{
                 display: none;
@@ -942,7 +936,7 @@ class MVX_Admin {
             $actions['regenerate_order_commissions'] = __('Regenerate order commissions', 'multivendorx');
         if ( $post && !wp_get_post_parent_id( $post->ID ) )
             $actions['regenerate_suborders'] = __('Regenerate suborders', 'multivendorx');
-        if (is_user_mvx_vendor(get_current_user_id())){
+        if (is_user_mvx_vendor(get_current_user_id())) {
             if (isset($actions['regenerate_order_commissions'])) unset($actions['regenerate_order_commissions']);
             if (isset($actions['send_order_details'])) unset( $actions['send_order_details'] );
             if (isset($actions['send_order_details_admin'])) unset( $actions['send_order_details_admin'] );
@@ -998,14 +992,14 @@ class MVX_Admin {
         $MVX->order->mvx_manually_create_order_item_and_suborder($order->get_id(), '', true);
     }
     
-    public function add_mvx_screen_ids($screen_ids){
+    public function add_mvx_screen_ids($screen_ids) {
         $screen_ids[] = 'toplevel_page_dc-vendor-shipping';
         return $screen_ids;
     }
 
-    public function mvx_vendor_shipping_admin_capability($current_id){
-        if ( !is_user_mvx_vendor($current_id) ){
-            if ( isset($_POST['vendor_id'] )){
+    public function mvx_vendor_shipping_admin_capability($current_id) {
+        if ( !is_user_mvx_vendor($current_id) ) {
+            if ( isset($_POST['vendor_id'] )) {
                 $current_id = isset($_POST['vendor_id']) ? absint($_POST['vendor_id']) : 0;
             } else {
                 $current_id = isset($_GET['ID']) ? absint($_GET['ID']) : 0;

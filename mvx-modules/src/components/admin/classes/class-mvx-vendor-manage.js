@@ -70,39 +70,10 @@ class MVX_Backend_Vendor extends React.Component {
       set_tab_name: '',
       set_tab_name_id: '',
       columns_vendor_list: [],
+      columns_vendor_followers_list: [],
+      columns_vendor_zone_list: [],
       vendor_loading: false,
       list_vendor_application_data: '',
-
-      columns_followers: [
-        {
-          name: <div className="mvx-datatable-header-text">Customer Name</div>,
-          selector: row => <div dangerouslySetInnerHTML={{ __html: row.name }}></div>,
-          sortable: true,
-        },
-        {
-          name: <div className="mvx-datatable-header-text">Date</div>,
-          selector: row => <div dangerouslySetInnerHTML={{ __html: row.time }}></div>,
-          sortable: true,
-        }
-      ],
-
-      columns_zone_shipping: [
-        {
-          name: <div className="mvx-datatable-header-text">Zone name</div>,
-          selector: row => <div dangerouslySetInnerHTML={{ __html: row.zone_name }}></div>,
-          sortable: true,
-        },
-        {
-          name: <div className="mvx-datatable-header-text">Region(s)</div>,
-          selector: row => <div dangerouslySetInnerHTML={{ __html: row.region }}></div>,
-          sortable: true,
-        },
-        {
-          name: <div className="mvx-datatable-header-text">Shipping method(s) </div>,
-          selector: row => <div dangerouslySetInnerHTML={{ __html: row.shipping_method }}></div>,
-          sortable: true,
-        }
-      ],
 
       data_zone_shipping: [],
 
@@ -302,7 +273,7 @@ class MVX_Backend_Vendor extends React.Component {
   handlevendoractionsearch(e) {
     if (e) {
       if (e.value == 'delete') {
-        if (confirm("Confirm delete?") == true) {
+        if (confirm(appLocalizer.global_string.confirm_delete) == true) {
           axios({
             method: 'post',
             url: `${appLocalizer.apiUrl}/mvx_module/v1/vendor_delete`,
@@ -322,7 +293,7 @@ class MVX_Backend_Vendor extends React.Component {
   }
 
   handleVendorDismiss(e) {
-    if (confirm("Confirm delete?") == true) {
+    if (confirm(appLocalizer.global_string.confirm_delete) == true) {
 
       axios({
         method: 'post',
@@ -331,18 +302,18 @@ class MVX_Backend_Vendor extends React.Component {
           vendor_ids: e,
         }
       })
-        .then((response) => {
-          this.setState({
-            datavendor: response.data,
-          });
-
+      .then((response) => {
+        this.setState({
+          datavendor: response.data,
         });
+
+      });
     }
   }
 
   handledeletevendor(e) {
 
-    if (confirm("Confirm delete?") == true) {
+    if (confirm(appLocalizer.global_string.confirm_delete) == true) {
 
       axios({
         method: 'post',
@@ -577,6 +548,7 @@ class MVX_Backend_Vendor extends React.Component {
     if (!this.useQuery().get("ID")) {
       this.state.data_setting_fileds = [];
       this.state.data_zone_shipping = [];
+
     }
     
     // Display table column and row slection
@@ -614,6 +586,45 @@ class MVX_Backend_Vendor extends React.Component {
       )
     }
     // Display table column and row slection end
+
+
+
+    // column followers start
+    if (this.state.columns_vendor_followers_list.length == 0 && new URLSearchParams(window.location.hash).get("submenu") == 'vendor') {
+      appLocalizer.columns_followers.map((data_follow, index_follow) => {
+        var data_selector_followers = '';
+        var set_for_dynamic_column_followers = '';
+        data_selector_followers = data_follow['selector_choice'];
+        data_follow.selector = row => <div dangerouslySetInnerHTML={{ __html: row[data_selector_followers] }}></div>;
+
+        this.state.columns_vendor_followers_list[index_follow] = data_follow
+        set_for_dynamic_column_followers = this.state.columns_vendor_followers_list;
+        this.setState({
+          columns_vendor_followers_list: set_for_dynamic_column_followers,
+        });
+      }
+      )
+    }
+    // column followers end
+
+
+    // column followers start
+    if (this.state.columns_vendor_zone_list.length == 0 && new URLSearchParams(window.location.hash).get("submenu") == 'vendor') {
+      appLocalizer.columns_zone_shipping.map((data_zone, index_zone) => {
+        var data_selector_zone = '';
+        var set_for_dynamic_column_zone = '';
+        data_selector_zone = data_zone['selector_choice'];
+        data_zone.selector = row => <div dangerouslySetInnerHTML={{ __html: row[data_selector_zone] }}></div>;
+
+        this.state.columns_vendor_zone_list[index_zone] = data_zone
+        set_for_dynamic_column_zone = this.state.columns_vendor_zone_list;
+        this.setState({
+          columns_vendor_zone_list: set_for_dynamic_column_zone,
+        });
+      }
+      )
+    }
+    // column followers end
 
 
 
@@ -744,7 +755,7 @@ class MVX_Backend_Vendor extends React.Component {
                   <div className="mvx-bulk-action-sec">
                     <Select
                       placeholder="Bulk actions"
-                      options={appLocalizer.vendor_list_page_bulk_list_options}
+                      options={appLocalizer.select_option_delete}
                       isClearable={true}
                       className="mvx-module-section-list-data"
                       onChange={this.handlevendoractionsearch}
@@ -891,26 +902,18 @@ class MVX_Backend_Vendor extends React.Component {
       this.state.data_zone_in_shipping = [];
     }
 
-    if (this.useQuery().get("ID") && name.get("ID") != this.state.set_tab_name_id) {
-      axios.get(
-        `${appLocalizer.apiUrl}/mvx_module/v1/list_of_all_tab_based_settings_field`, {
-        params: { vendor_id: this.useQuery().get("ID") }
-      })
-        .then(response => {
-          if (response.data) {
-            this.setState({
-              data_setting_fileds: response.data,
-              vendor_shipping_option_choice: response.data.vendor_default_shipping_options.value,
-              set_tab_name_id: name.get("ID")
-            });
-          }
 
-        })
-    }
 
-    if (this.useQuery().get("ID") && name.get("name") != this.state.set_tab_name) {
-      
 
+
+
+
+
+
+
+
+    if (name.get("ID") && name.get("ID") != this.state.set_tab_name_id) {
+      this.state.data_setting_fileds = [];
       axios.get(
         `${appLocalizer.apiUrl}/mvx_module/v1/list_of_all_tab_based_settings_field`, {
         params: { vendor_id: this.useQuery().get("ID") }
@@ -920,80 +923,105 @@ class MVX_Backend_Vendor extends React.Component {
           this.setState({
             data_setting_fileds: response.data,
             vendor_shipping_option_choice: response.data.vendor_default_shipping_options.value,
+            set_tab_name_id: name.get("ID")
+          });
+        }
+      })
+    }
+
+
+
+
+
+
+
+    if (name.get("ID") && name.get("name") != this.state.set_tab_name) {
+      axios.get(
+        `${appLocalizer.apiUrl}/mvx_module/v1/list_of_all_tab_based_settings_field`, {
+        params: { vendor_id: name.get("ID") }
+      })
+      .then(response => {
+        if (response.data) {
+          this.setState({
+            data_setting_fileds: response.data,
+            vendor_shipping_option_choice: response.data.vendor_default_shipping_options.value,
             set_tab_name: name.get("name")
           });
         }
-
       })
 
       
+      if (name.get("name") == "vendor-application") {
+        axios.get(
+        `${appLocalizer.apiUrl}/mvx_module/v1/list_vendor_application_data`, {
+          params: { vendor_id: name.get("ID") }
+        })
+        .then(response => {
+          this.setState({
+            list_vendor_application_data: response.data,
+            set_tab_name: name.get("name")
+          });
+        })
 
-        if (name.get("name") == "vendor-application") {
-          
-          axios.get(
-          `${appLocalizer.apiUrl}/mvx_module/v1/list_vendor_application_data`, {
-            params: { vendor_id: this.useQuery().get("ID") }
-          })
-          .then(response => {
-            this.setState({
-              list_vendor_application_data: response.data,
-              set_tab_name: name.get("name")
-            });
-          })
-
-
-
-          axios.get(
-          `${appLocalizer.apiUrl}/mvx_module/v1/list_vendor_roles_data`, {
-            params: { vendor_id: this.useQuery().get("ID") }
-          })
-          .then(response => {
-            this.setState({
-              list_vendor_roles_data: response.data,
-              set_tab_name: name.get("name")
-            });
-          })
-
-
-
-        }
+        axios.get(
+        `${appLocalizer.apiUrl}/mvx_module/v1/list_vendor_roles_data`, {
+          params: { vendor_id: name.get("ID") }
+        })
+        .then(response => {
+          this.setState({
+            list_vendor_roles_data: response.data,
+            set_tab_name: name.get("name")
+          });
+        })
+      }
 
     }
 
 
-    if (this.useQuery().get("name") == 'vendor-shipping') {
+
+
+
+
+
+
+
+
+
+
+
+    if (name.get("name") == 'vendor-shipping') {
       axios.get(
         `${appLocalizer.apiUrl}/mvx_module/v1/specific_vendor_shipping`, {
-        params: { vendor_id: this.useQuery().get("ID") }
+        params: { vendor_id: name.get("ID") }
       })
-        .then(response => {
-          if (response.data && this.state.data_zone_shipping.length == 0) {
-            this.setState({
-              data_zone_shipping: response.data,
-            });
-          }
-        })
+      .then(response => {
+        if (response.data && this.state.data_zone_shipping.length == 0) {
+          this.setState({
+            data_zone_shipping: response.data,
+          });
+        }
+      })
     }
 
-    if (this.useQuery().get("zone_id")) {
+    if (name.get("zone_id")) {
       var params = {
-        vendor_id: this.useQuery().get("ID"),
-        zone_id: this.useQuery().get("zone_id")
+        vendor_id: name.get("ID"),
+        zone_id: name.get("zone_id")
       };
 
       axios.get(
         `${appLocalizer.apiUrl}/mvx_module/v1/specific_vendor_shipping_zone`, { params }
       )
-        .then(response => {
+      .then(response => {
 
-          var add_module_false = response.data.vendor_shipping_methods ? new Array(Object.keys(response.data.vendor_shipping_methods).length).fill(false) : '';
-          if (response.data && this.state.data_zone_in_shipping.length == 0) {
-            this.setState({
-              data_zone_in_shipping: response.data,
-              open_child_model: add_module_false
-            });
-          }
-        })
+        var add_module_false = response.data.vendor_shipping_methods ? new Array(Object.keys(response.data.vendor_shipping_methods).length).fill(false) : '';
+        if (response.data && this.state.data_zone_in_shipping.length == 0) {
+          this.setState({
+            data_zone_in_shipping: response.data,
+            open_child_model: add_module_false
+          });
+        }
+      })
     }
 
     return (
@@ -1046,12 +1074,14 @@ class MVX_Backend_Vendor extends React.Component {
                 )
                 :
                 name.get("name") == "vendor-followers" ? (
-                  <DataTable
-                    columns={this.state.columns_followers}
-                    data={this.state.datafollowers}
-                    selectableRows
-                    pagination
-                  />
+                  this.state.columns_vendor_followers_list && this.state.columns_vendor_followers_list.length > 0 ?
+                    <DataTable
+                      columns={this.state.columns_vendor_followers_list}
+                      data={this.state.datafollowers}
+                      selectableRows
+                      pagination
+                    />
+                  : ''
                 ) : name.get("name") == "vendor-shipping" ? (
                   name.get("zone_id") ? (
                     <div>
@@ -1508,12 +1538,14 @@ class MVX_Backend_Vendor extends React.Component {
 
                           {this.state.vendor_shipping_option_choice ==
                           "distance_by_zone" ? (
+                            this.state.columns_vendor_zone_list && this.state.columns_vendor_zone_list.length > 0 ?
                             <DataTable
-                              columns={this.state.columns_zone_shipping}
+                              columns={this.state.columns_vendor_zone_list}
                               data={this.state.data_zone_shipping}
                               selectableRows
                               pagination
                             />
+                            : ''
                           ) : this.state.vendor_shipping_option_choice ==
                             "distance_by_shipping" ? (
                             <DynamicForm

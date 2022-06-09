@@ -1914,7 +1914,7 @@ class MVX_Workboard extends Component {
                     <div className="mvx-wrap-bulk-all-date-sec">
                       <div className="mvx-wrap-bulk-all-date">
                         <div className='mvx-bulk-action-sec'>
-                          <Select placeholder="Bulk actions" options={appLocalizer.store_review_bulk} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_review_bulk_status} />
+                          <Select placeholder="Bulk actions" options={appLocalizer.select_option_delete} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_review_bulk_status} />
                         </div>
                       </div>
 
@@ -1944,7 +1944,7 @@ class MVX_Workboard extends Component {
 
                       <div className="mvx-wrap-bulk-all-date">
                         {/*<div className="mvx-wrap-bulk-action">
-                          <Select placeholder="Bulk actions" options={appLocalizer.store_review_bulk} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_review_bulk_status} />
+                          <Select placeholder="Bulk actions" options={appLocalizer.select_option_delete} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_review_bulk_status} />
                         </div>*/}
 
                         <div className="mvx-wrap-bulk-action">

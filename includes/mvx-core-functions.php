@@ -8630,3 +8630,19 @@ if (!function_exists('is_mvx_shipping_module_active')) {
         return false;
     }
 }
+
+if (!function_exists('mvx_convert_select_structure')) {
+    function mvx_convert_select_structure($data_fileds = array(), $csv = false) {
+        $is_csv = $csv ? 'key' : 'value';
+        $datafileds_initialize_array = [];
+        if ($data_fileds) {
+            foreach($data_fileds as $fileds_key => $fileds_value) {
+                $datafileds_initialize_array[] = array(
+                    $is_csv => $csv ? $fileds_value : $fileds_key,
+                    'label' => $fileds_value
+                );
+            }
+        }
+        return $datafileds_initialize_array;
+    }
+}
