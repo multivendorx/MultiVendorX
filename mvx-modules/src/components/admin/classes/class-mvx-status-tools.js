@@ -139,10 +139,10 @@ Child({ name }) {
             <div className="mvx-status-database-tools-content">
               <div className="mvx-vendor-transients">
                 <div className="mvx-text-with-line-wrapper">
-                  <div className="mvx-report-text w-100 mr-0"><span> WCMp vendors transients</span></div>
+                  <div className="mvx-report-text w-100 mr-0"><span> MVX vendors transients</span></div>
                 </div>
                 <div className="mvx-vendor-transients-description">
-                  This tool will clear all WCMp vendors transients cache.
+                  This tool will clear all MVX vendors transients cache.
                 </div>
                 <div className="mvx-vendor-transients-button">
                   <button type="button" className="btn border-btn" onClick={(e) => this.handle_tools_triggers(e, 'transients')}>Clear transients</button>
@@ -155,7 +155,7 @@ Child({ name }) {
                 </div>
                 
                 <div className="mvx-vendor-transients-description">
-                  This tool will clear ALL the table data of WCMp visitors stats.
+                  This tool will clear ALL the table data of MVX visitors stats.
                 </div>
                 <div className="mvx-vendor-transients-button">
                   <button type="button" className="btn border-btn" onClick={(e) => this.handle_tools_triggers(e, 'visitor')}>Reset Database</button>
@@ -164,7 +164,7 @@ Child({ name }) {
 
               <div className="mvx-vendor-transients">
                 <div className="mvx-text-with-line-wrapper">
-                  <div className="mvx-report-text w-100 mr-0"><span>Force WCMp order migrate</span></div>
+                  <div className="mvx-report-text w-100 mr-0"><span>Force MVX order migrate</span></div>
                 </div>
                 
                 <div className="mvx-vendor-transients-description">

@@ -12,11 +12,7 @@ import {
   BrowserRouter as Router,
   Link,
   useLocation,
-  withRouter,
-  useParams,
-  NavLink
 } from "react-router-dom";
-
 
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -25,13 +21,11 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 import Button from '@material-ui/core/Button';
-
 import DynamicForm from "../../../DynamicForm";
-
 import HeaderSection from './class-mvx-page-header';
-
 import BannerSection from './class-mvx-page-banner';
 import TabSection from './class-mvx-page-tab';
+
 const override = css`
   display: block;
   margin: 0 auto;
@@ -42,50 +36,33 @@ class MVX_Backend_Vendor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      error: null,
-      isLoaded: false,
-      items: [],
-      checkedState: [],
-      module_ids: [],
-      open_model: false,
       open_child_model: [],
       open_vendor_model_dynamic: [],
-      isLoading: true,
-      loading: false,
-      module_tabs: [],
-      tabIndex: 0,
-      query: null,
       handle_rejected_vendor_description: '',
-      current: {},
-      filterText: '',
-      resetPaginationToggle: false,
-      module_ids: [],
       details_vendor: [],
       add_shipping_options_data: [],
-      open1: false,
       vendor_shipping_option_choice: '',
       bulkselectlist: [],
       data_setting_fileds: [],
-      mvx_store_endpoint: '',
       set_tab_name: '',
       set_tab_name_id: '',
       columns_vendor_list: [],
       columns_vendor_followers_list: [],
       columns_vendor_zone_list: [],
-      vendor_loading: false,
       list_vendor_application_data: '',
-
       data_zone_shipping: [],
-
       datavendor: [],
       data_pending_vendor: [],
       data_all_vendor: [],
       data_approve_vendor: [],
       data_rejected_vendor: [],
       datafollowers: [],
-
       data_zone_in_shipping: [],
-      list_vendor_roles_data: []
+      list_vendor_roles_data: [],
+
+      open_model: false,
+      datafollowers_loader: false,
+      vendor_loading: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -100,8 +77,6 @@ class MVX_Backend_Vendor extends React.Component {
 
     this.handlevendorsearch = this.handlevendorsearch.bind(this);
 
-    this.isClearable = this.isClearable.bind(this);
-
     this.handleClose = this.handleClose.bind(this);
 
     this.handlechildClose = this.handlechildClose.bind(this);
@@ -113,7 +88,6 @@ class MVX_Backend_Vendor extends React.Component {
     this.handle_different_shipping_add = this.handle_different_shipping_add.bind(this);
 
     this.handle_different_shipping_delete = this.handle_different_shipping_delete.bind(this);
-
 
     this.handleOnChange = this.handleOnChange.bind(this);
 
@@ -135,14 +109,12 @@ class MVX_Backend_Vendor extends React.Component {
 
     this.handleClose_dynamic = this.handleClose_dynamic.bind(this);
 
-
     this.handle_rejected_vendor_description = this.handle_rejected_vendor_description.bind(this);
     this.handle_Vendor_Approve = this.handle_Vendor_Approve.bind(this);
     this.handle_Vendor_Reject = this.handle_Vendor_Reject.bind(this);
     this.handle_Vendor_Edit = this.handle_Vendor_Edit.bind(this);
 
   }
-
 
   handle_rejected_vendor_description(e, vendorid, reload = '') {
     this.setState({
@@ -181,18 +153,16 @@ class MVX_Backend_Vendor extends React.Component {
         custom_note: this.state.handle_rejected_vendor_description
       }
     })
-      .then((response) => {
-
-        if (reload) {
-          location.reload();
-        } else {
-          this.handleClose_dynamic();
-          this.setState({
-            datavendor: response.data,
-          });
-        }
-      });
-
+    .then((response) => {
+      if (reload) {
+        location.reload();
+      } else {
+        this.handleClose_dynamic();
+        this.setState({
+          datavendor: response.data,
+        });
+      }
+    });
   }
 
   handle_Vendor_Edit(e) {
@@ -203,7 +173,6 @@ class MVX_Backend_Vendor extends React.Component {
     var default_vendor_eye_popup = [];
     this.state.open_vendor_model_dynamic.map((data_ann, index_ann) => {
       default_vendor_eye_popup[data_ann.ID] = false;
-
     })
     this.setState({
       open_vendor_model_dynamic: default_vendor_eye_popup
@@ -211,16 +180,12 @@ class MVX_Backend_Vendor extends React.Component {
   }
 
   handleEyeIcon(e) {
-
-
     var set_vendors_id_data = [];
     set_vendors_id_data = this.state.open_vendor_model_dynamic;
     set_vendors_id_data[e] = true;
     this.setState({
       open_vendor_model_dynamic: set_vendors_id_data,
     });
-
-
   }
 
   different_vendor_status(e, type) {
@@ -230,41 +195,41 @@ class MVX_Backend_Vendor extends React.Component {
         `${appLocalizer.apiUrl}/mvx_module/v1/all_vendors`, {
         params: { role: 'dc_vendor' }
       })
-        .then(response => {
-          this.setState({
-            datavendor: response.data,
-          });
-        })
+      .then(response => {
+        this.setState({
+          datavendor: response.data,
+        });
+      })
     } else if (type == 'pending') {
       axios.get(
         `${appLocalizer.apiUrl}/mvx_module/v1/all_vendors`, {
         params: { role: 'dc_pending_vendor' }
       })
-        .then(response => {
-          this.setState({
-            datavendor: response.data,
-          });
-        })
+      .then(response => {
+        this.setState({
+          datavendor: response.data,
+        });
+      })
     } else if (type == 'rejected') {
       axios.get(
         `${appLocalizer.apiUrl}/mvx_module/v1/all_vendors`, {
         params: { role: 'dc_rejected_vendor' }
       })
-        .then(response => {
-          this.setState({
-            datavendor: response.data,
-          });
-        })
+      .then(response => {
+        this.setState({
+          datavendor: response.data,
+        });
+      })
     } else if (type == 'all') {
       axios.get(
         `${appLocalizer.apiUrl}/mvx_module/v1/all_vendors`, {
         params: { role: '' }
       })
-        .then(response => {
-          this.setState({
-            datavendor: response.data,
-          });
-        })
+      .then(response => {
+        this.setState({
+          datavendor: response.data,
+        });
+      })
     }
 
   }
@@ -281,12 +246,11 @@ class MVX_Backend_Vendor extends React.Component {
               vendor_ids: this.state.bulkselectlist,
             }
           })
-            .then((response) => {
-              this.setState({
-                datavendor: response.data,
-              });
-
+          .then((response) => {
+            this.setState({
+              datavendor: response.data,
             });
+          });
         }
       }
     }
@@ -294,7 +258,6 @@ class MVX_Backend_Vendor extends React.Component {
 
   handleVendorDismiss(e) {
     if (confirm(appLocalizer.global_string.confirm_delete) == true) {
-
       axios({
         method: 'post',
         url: `${appLocalizer.apiUrl}/mvx_module/v1/vendor_delete`,
@@ -306,15 +269,12 @@ class MVX_Backend_Vendor extends React.Component {
         this.setState({
           datavendor: response.data,
         });
-
       });
     }
   }
 
   handledeletevendor(e) {
-
     if (confirm(appLocalizer.global_string.confirm_delete) == true) {
-
       axios({
         method: 'post',
         url: `${appLocalizer.apiUrl}/mvx_module/v1/vendor_delete`,
@@ -322,17 +282,16 @@ class MVX_Backend_Vendor extends React.Component {
           vendor_ids: this.state.bulkselectlist,
         }
       })
-        .then((responce) => {
-          location.reload();
-          if (responce.data.redirect_link) {
-            window.location.href = responce.data.redirect_link;
-          }
-        });
+      .then((responce) => {
+        location.reload();
+        if (responce.data.redirect_link) {
+          window.location.href = responce.data.redirect_link;
+        }
+      });
     }
   }
 
   onChangeshippingoption(e, vendor_id) {
-
     this.setState({
       vendor_shipping_option_choice: e.value
     });
@@ -345,9 +304,9 @@ class MVX_Backend_Vendor extends React.Component {
         vendor_id: vendor_id,
       }
     })
-      .then((responce) => {
-        console.log('success');
-      });
+    .then((responce) => {
+      console.log('success');
+    });
   }
 
   update_post_code(e, zone_id, vendor_id, type) {
@@ -372,9 +331,9 @@ class MVX_Backend_Vendor extends React.Component {
         type: type
       }
     })
-      .then((responce) => {
-        console.log('success');
-      });
+    .then((responce) => {
+      console.log('success');
+    });
   }
 
   toggle_shipping_method(e, instance_id, zone_id, vendor_id) {
@@ -388,27 +347,22 @@ class MVX_Backend_Vendor extends React.Component {
         zone_id: zone_id
       }
     })
-      .then((responce) => {
-        console.log('success');
-      });
-
+    .then((responce) => {
+      console.log('success');
+    });
 
     var params = {
       vendor_id: vendor_id,
       zone_id: zone_id
     };
-
-
-    // update text
     axios.get(
       `${appLocalizer.apiUrl}/mvx_module/v1/specific_vendor_shipping_zone`, { params }
     )
-      .then(response => {
-        this.setState({
-          data_zone_in_shipping: response.data,
-        });
-      })
-
+    .then(response => {
+      this.setState({
+        data_zone_in_shipping: response.data,
+      });
+    })
 
   }
 
@@ -424,7 +378,6 @@ class MVX_Backend_Vendor extends React.Component {
     } else if (type == 'min_cost') {
       getdata['settings']['min_amount'] = e.target.value;
     }
-
 
     getdata['zone_id'] = zoneid;
 
@@ -444,9 +397,9 @@ class MVX_Backend_Vendor extends React.Component {
         zoneid: zoneid
       }
     })
-      .then((responce) => {
-        console.log('success');
-      });
+    .then((responce) => {
+      console.log('success');
+    });
 
   }
 
@@ -468,10 +421,9 @@ class MVX_Backend_Vendor extends React.Component {
         vendor_id: vendor_id
       }
     })
-      .then((responce) => {
-        //console.log('success');
-        location.reload();
-      });
+    .then((responce) => {
+      location.reload();
+    });
   }
 
   handlechildClose(e) {
@@ -482,7 +434,6 @@ class MVX_Backend_Vendor extends React.Component {
   }
 
   onChangeshipping(e, zoneid, vendorid) {
-
     axios({
       method: 'post',
       url: `${appLocalizer.apiUrl}/mvx_module/v1/add_vendor_shipping_method`,
@@ -492,10 +443,9 @@ class MVX_Backend_Vendor extends React.Component {
         zoneid: zoneid
       }
     })
-      .then((responce) => {
-        console.log('success');
-        location.reload();
-      });
+    .then((responce) => {
+      location.reload();
+    });
 
   }
 
@@ -510,10 +460,6 @@ class MVX_Backend_Vendor extends React.Component {
     this.setState({
       open_model: false
     });
-  }
-
-  isClearable(e) {
-
   }
 
   handlevendorsearch(e) {
@@ -531,11 +477,11 @@ class MVX_Backend_Vendor extends React.Component {
       axios({
         url: `${appLocalizer.apiUrl}/mvx_module/v1/all_vendors`
       })
-        .then(response => {
-          this.setState({
-            datavendor: response.data,
-          });
-        })
+      .then(response => {
+        this.setState({
+          datavendor: response.data,
+        });
+      })
     }
   }
 
@@ -548,10 +494,9 @@ class MVX_Backend_Vendor extends React.Component {
     if (!this.useQuery().get("ID")) {
       this.state.data_setting_fileds = [];
       this.state.data_zone_shipping = [];
-
     }
     
-    // Display table column and row slection
+    // Display vendor list table column and row slection
     if (this.state.columns_vendor_list.length == 0 && new URLSearchParams(window.location.hash).get("submenu") == 'vendor') {
       appLocalizer.columns_vendor.map((data_ann, index_ann) => {
         var data_selector = '';
@@ -559,23 +504,15 @@ class MVX_Backend_Vendor extends React.Component {
         data_selector = data_ann['selector_choice'];
         data_ann.selector = row => <div dangerouslySetInnerHTML={{ __html: row[data_selector] }}></div>;
 
-
         data_ann.last_action == 'last_action_trigger' ? data_ann.cell = (row) => <div className="mvx-vendor-action-icon">
-          
           <div><a href={row.link_shop}><i className="mvx-font icon-shop"></i><p className='mvxicon-hover-text'>Shop</p></a></div>
-          
           <div><a href={row.link}><i className="mvx-font icon-edit"></i><p className='mvxicon-hover-text'>Edit</p></a></div>
-
           <div onClick={() => this.handleVendorDismiss(row.ID)} id={row.ID}><i className="mvx-font icon-no"></i><p className='mvxicon-hover-text'>Close</p></div>
-
         </div> : '';
-
-
 
         data_ann.last_action == 'eyeicon_trigger' ? data_ann.cell = (row) => <div className="mvx-vendor-action-icon">
           <div onClick={() => this.handleEyeIcon(row.ID)} id={row.ID}><i className="mvx-font icon-eye-preview"></i></div>
         </div> : '';
-
 
         this.state.columns_vendor_list[index_ann] = data_ann
         set_for_dynamic_column = this.state.columns_vendor_list;
@@ -585,12 +522,12 @@ class MVX_Backend_Vendor extends React.Component {
       }
       )
     }
-    // Display table column and row slection end
+    // Display vendor list table column and row slection end
 
 
 
-    // column followers start
-    if (this.state.columns_vendor_followers_list.length == 0 && new URLSearchParams(window.location.hash).get("submenu") == 'vendor') {
+    {/* column list followers start */}
+    if (this.useQuery().get("name") == 'vendor-followers') {
       appLocalizer.columns_followers.map((data_follow, index_follow) => {
         var data_selector_followers = '';
         var set_for_dynamic_column_followers = '';
@@ -599,17 +536,14 @@ class MVX_Backend_Vendor extends React.Component {
 
         this.state.columns_vendor_followers_list[index_follow] = data_follow
         set_for_dynamic_column_followers = this.state.columns_vendor_followers_list;
-        this.setState({
-          columns_vendor_followers_list: set_for_dynamic_column_followers,
-        });
-      }
-      )
+        this.state.columns_vendor_followers_list = set_for_dynamic_column_followers;
+      })
     }
-    // column followers end
+    {/* column list followers end */}
 
 
-    // column followers start
-    if (this.state.columns_vendor_zone_list.length == 0 && new URLSearchParams(window.location.hash).get("submenu") == 'vendor') {
+    {/* column zone list start */}
+    if ( new URLSearchParams(window.location.hash).get("submenu") == 'vendor') {
       appLocalizer.columns_zone_shipping.map((data_zone, index_zone) => {
         var data_selector_zone = '';
         var set_for_dynamic_column_zone = '';
@@ -618,14 +552,10 @@ class MVX_Backend_Vendor extends React.Component {
 
         this.state.columns_vendor_zone_list[index_zone] = data_zone
         set_for_dynamic_column_zone = this.state.columns_vendor_zone_list;
-        this.setState({
-          columns_vendor_zone_list: set_for_dynamic_column_zone,
-        });
-      }
-      )
+        this.state.columns_vendor_zone_list = set_for_dynamic_column_zone;
+      })
     }
-    // column followers end
-
+    {/* column zone list end */}
 
 
     if (this.state.datavendor.length == 0) {
@@ -652,7 +582,6 @@ class MVX_Backend_Vendor extends React.Component {
       this.state.datavendor = [];
       this.state.vendor_loading = false;
     }
-
 
     let user_query = this.useQuery();
 
@@ -903,15 +832,6 @@ class MVX_Backend_Vendor extends React.Component {
     }
 
 
-
-
-
-
-
-
-
-
-
     if (name.get("ID") && name.get("ID") != this.state.set_tab_name_id) {
       this.state.data_setting_fileds = [];
       axios.get(
@@ -930,11 +850,6 @@ class MVX_Backend_Vendor extends React.Component {
     }
 
 
-
-
-
-
-
     if (name.get("ID") && name.get("name") != this.state.set_tab_name) {
       axios.get(
         `${appLocalizer.apiUrl}/mvx_module/v1/list_of_all_tab_based_settings_field`, {
@@ -949,6 +864,21 @@ class MVX_Backend_Vendor extends React.Component {
           });
         }
       })
+
+
+      if (this.useQuery().get("ID") && this.useQuery().get("name") == 'vendor-followers') {
+          this.state.datafollowers_loader = false;
+        axios.get(
+          `${appLocalizer.apiUrl}/mvx_module/v1/all_vendor_followers`, {
+            params: { vendor_id: this.useQuery().get("ID") }
+          })
+        .then(response => {
+          this.setState({
+            datafollowers: response.data,
+            datafollowers_loader: true,
+          });
+        })
+      }
 
       
       if (name.get("name") == "vendor-application") {
@@ -974,20 +904,7 @@ class MVX_Backend_Vendor extends React.Component {
           });
         })
       }
-
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
     if (name.get("name") == 'vendor-shipping') {
       axios.get(
@@ -1056,14 +973,14 @@ class MVX_Backend_Vendor extends React.Component {
                         onClick={() => this.handle_Vendor_Approve(name.get("ID") , 'reload')}
                         className="button button-primary mvx-action-button vendor-approve-btn mvx-primary-btn"
                       >
-                      Approve
+                      {appLocalizer.vendor_page_string.approve}
                       </Button>
 
                       <Button
                         onClick={() => this.handle_Vendor_Reject(name.get("ID"), 'reload')}
                         className="button button-primary mvx-action-button vendor-reject-btn pull-right"
                       >
-                      Reject
+                      {appLocalizer.vendor_page_string.approve}
                       </Button>
 
                     </div>
@@ -1074,22 +991,24 @@ class MVX_Backend_Vendor extends React.Component {
                 )
                 :
                 name.get("name") == "vendor-followers" ? (
-                  this.state.columns_vendor_followers_list && this.state.columns_vendor_followers_list.length > 0 ?
+                  this.state.datafollowers_loader ?
                     <DataTable
                       columns={this.state.columns_vendor_followers_list}
                       data={this.state.datafollowers}
                       selectableRows
                       pagination
                     />
-                  : ''
+                  : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
                 ) : name.get("name") == "vendor-shipping" ? (
                   name.get("zone_id") ? (
+
+                    this.state.data_zone_in_shipping && Object.keys(this.state.data_zone_in_shipping).length > 0 ? 
                     <div>
                       <table className="form-table mvx-shipping-zone-settings wc-shipping-zone-settings">
                         <tbody>
                           <tr>
                             <th scope="row" className="titledesc">
-                              <label>Zone Name</label>
+                              <label>{appLocalizer.vendor_page_string.zone_name}</label>
                             </th>
                             <td className="forminp">
                               {this.state.data_zone_in_shipping.zones
@@ -1101,7 +1020,7 @@ class MVX_Backend_Vendor extends React.Component {
 
                           <tr>
                             <th scope="row" className="titledesc">
-                              <label htmlFor>Zone region</label>
+                              <label htmlFor>{appLocalizer.vendor_page_string.zone_region}</label>
                             </th>
                             <td className="forminp">
                               {this.state.data_zone_in_shipping.zones
@@ -1115,7 +1034,7 @@ class MVX_Backend_Vendor extends React.Component {
 
                           <tr className="hide_if_zone_not_limited">
                             <th scope="row" className="titledesc">
-                              <label htmlFor>Select specific states</label>
+                              <label htmlFor>{appLocalizer.vendor_page_string.specific_state}</label>
                             </th>
                             <td className="forminp">
                               <Select
@@ -1144,7 +1063,7 @@ class MVX_Backend_Vendor extends React.Component {
 
                           <tr className="hide_if_zone_not_limited">
                             <th className="titledesc">
-                              <label htmlFor>Set your postcode</label>
+                              <label htmlFor>{appLocalizer.vendor_page_string.postcode}</label>
                             </th>
                             <td className="mvx-settings-basic-input-class">
                               <input
@@ -1154,7 +1073,7 @@ class MVX_Backend_Vendor extends React.Component {
                                 defaultValue={
                                   this.state.data_zone_in_shipping.postcodes
                                 }
-                                placeholder="Postcodes need to be comma separated"
+                                placeholder={appLocalizer.vendor_page_string.comma_separated}
                                 onChange={(e) =>
                                   this.update_post_code(
                                     e,
@@ -1169,20 +1088,20 @@ class MVX_Backend_Vendor extends React.Component {
 
                           <tr>
                             <th className="titledesc">
-                              <label>Shipping methods</label>
+                              <label>{appLocalizer.vendor_page_string.shipping_methods}</label>
                             </th>
                             <td className>
                               <table className="mvx-shipping-zone-methods wc-shipping-zone-methods widefat">
                                 <thead>
                                   <tr>
                                     <th className="mvx-title wc-shipping-zone-method-title">
-                                      Title
+                                      {appLocalizer.vendor_page_string.title}
                                     </th>
                                     <th className="mvx-enabled wc-shipping-zone-method-enabled">
-                                      Enabled
+                                      {appLocalizer.vendor_page_string.enabled}
                                     </th>
                                     <th className="mvx-description wc-shipping-zone-method-description">
-                                      Description
+                                      {appLocalizer.vendor_page_string.description}
                                     </th>
                                     <th className="mvx-action">Action</th>
                                   </tr>
@@ -1197,7 +1116,7 @@ class MVX_Backend_Vendor extends React.Component {
                                         }
                                         className="button mvx-shipping-zone-show-method wc-shipping-zone-add-method"
                                       >
-                                        Add shipping method
+                                      {appLocalizer.vendor_page_string.shipping_methods}
                                       </Button>
                                     </td>
                                   </tr>
@@ -1251,7 +1170,7 @@ class MVX_Backend_Vendor extends React.Component {
                                                 }
                                                 className="button mvx-shipping-zone-show-method wc-shipping-zone-add-method"
                                               >
-                                                EDIT
+                                                {appLocalizer.vendor_page_string.edit}
                                               </Button>
                                             </span>
                                             <span className="delete">
@@ -1266,7 +1185,7 @@ class MVX_Backend_Vendor extends React.Component {
                                                 }
                                                 className="button mvx-shipping-zone-show-method wc-shipping-zone-add-method"
                                               >
-                                                DELETE
+                                                {appLocalizer.vendor_page_string.delete}
                                               </Button>
                                             </span>
                                           </div>
@@ -1279,7 +1198,7 @@ class MVX_Backend_Vendor extends React.Component {
                                         >
                                           <DialogTitle id="form-dialog-title">
                                             <div className="mvx-module-dialog-title">
-                                              Differnet method
+                                            {appLocalizer.vendor_page_string.differnet_method}
                                             </div>
                                           </DialogTitle>
                                           <DialogContent>
@@ -1288,7 +1207,7 @@ class MVX_Backend_Vendor extends React.Component {
                                               data[1].id == "flat_rate" ? (
                                                 <div className="mvx-vendor-shipping-method-details">
                                                   <label className="control-label col-sm-3 col-md-3">
-                                                    Method Title
+                                                    {appLocalizer.vendor_page_string.method_title}
                                                   </label>
                                                   <input
                                                     type="text"
@@ -1305,7 +1224,7 @@ class MVX_Backend_Vendor extends React.Component {
                                                   />
 
                                                   <label className="control-label col-sm-3 col-md-3">
-                                                    Cost
+                                                    {appLocalizer.vendor_page_string.cost}
                                                   </label>
                                                   <input
                                                     id="method_cost_fr"
@@ -1342,14 +1261,14 @@ class MVX_Backend_Vendor extends React.Component {
                                                   >
                                                     <option value="none">None</option>
                                                     <option value="taxable">
-                                                      Taxable
+                                                      {appLocalizer.vendor_page_string.taxable}
                                                     </option>
                                                   </select>
                                                 </div>
                                               ) : data[1].id == "local_pickup" ? (
                                                 <div>
                                                   <label className="control-label col-sm-3 col-md-3">
-                                                    Method Title
+                                                    {appLocalizer.vendor_page_string.method_title}
                                                   </label>
                                                   <input
                                                     type="text"
@@ -1366,7 +1285,7 @@ class MVX_Backend_Vendor extends React.Component {
                                                   />
 
                                                   <label className="control-label col-sm-3 col-md-3">
-                                                    Cost
+                                                    {appLocalizer.vendor_page_string.cost}
                                                   </label>
                                                   <input
                                                     id="method_cost_fr"
@@ -1403,14 +1322,14 @@ class MVX_Backend_Vendor extends React.Component {
                                                   >
                                                     <option value="none">None</option>
                                                     <option value="taxable">
-                                                      Taxable
+                                                      {appLocalizer.vendor_page_string.taxable}
                                                     </option>
                                                   </select>
                                                 </div>
                                               ) : data[1].id == "free_shipping" ? (
                                                 <div>
                                                   <label className="control-label col-sm-3 col-md-3">
-                                                    Method Title
+                                                    {appLocalizer.vendor_page_string.method_title}
                                                   </label>
                                                   <input
                                                     type="text"
@@ -1427,7 +1346,7 @@ class MVX_Backend_Vendor extends React.Component {
                                                   />
 
                                                   <label className="control-label col-sm-3 col-md-3">
-                                                    Cost
+                                                    {appLocalizer.vendor_page_string.cost}
                                                   </label>
                                                   <input
                                                     id="method_cost_fr"
@@ -1458,7 +1377,7 @@ class MVX_Backend_Vendor extends React.Component {
                                               onClick={this.handlechildClose}
                                               color="primary"
                                             >
-                                              Cancel
+                                              {appLocalizer.global_string.save_changes}
                                             </Button>
                                           </DialogActions>
                                         </Dialog>
@@ -1467,9 +1386,7 @@ class MVX_Backend_Vendor extends React.Component {
                                   ) : (
                                     <tr>
                                       <td colspan="4">
-                                        You can add multiple shipping methods within
-                                        this zone. Only customers within the zone will
-                                        see them
+                                        {appLocalizer.vendor_page_string.shipping3}
                                       </td>
                                     </tr>
                                   )}
@@ -1487,14 +1404,13 @@ class MVX_Backend_Vendor extends React.Component {
                       >
                         <DialogTitle id="form-dialog-title">
                           <div className="mvx-module-dialog-title">
-                            Add shipping method
+                            {appLocalizer.vendor_page_string.add_shipping_methods}
                           </div>
                         </DialogTitle>
                         <DialogContent>
                           <DialogContentText>
                             <p>
-                              Choose the shipping method you wish to add. Only
-                              shipping methods which support zones are listed
+                              {appLocalizer.vendor_page_string.shipping1}
                             </p>
 
                             <Select
@@ -1509,17 +1425,23 @@ class MVX_Backend_Vendor extends React.Component {
                               }}
                             ></Select>
                             <div className="wc-shipping-zone-method-description">
-                              Lets you charge a rate for shipping.
+                              {appLocalizer.vendor_page_string.shipping2}
                             </div>
                           </DialogContentText>
                         </DialogContent>
                         <DialogActions>
                           <Button onClick={this.handleClose} color="primary">
-                            Add shipping method
+                            {appLocalizer.vendor_page_string.add_shipping_methods}
                           </Button>
                         </DialogActions>
                       </Dialog>
                     </div>
+                    : <PuffLoader
+                        css={override}
+                        color={"#cd0000"}
+                        size={100}
+                        loading={true}
+                      />
                   ) : (
                     <div>
                       {this.state.data_setting_fileds.shipping_options ? (
@@ -1616,13 +1538,11 @@ class MVX_Backend_Vendor extends React.Component {
     );
   }
 
-
   handleChange(e) {
     this.setState({
       bulkselectlist: e.selectedRows,
     });
   }
-
 
   componentDidMount() {
 
@@ -1659,16 +1579,6 @@ class MVX_Backend_Vendor extends React.Component {
       });
     })
 
-    axios.get(
-      `${appLocalizer.apiUrl}/mvx_module/v1/all_vendor_followers`, {
-        params: { vendor_id: new URLSearchParams(window.location.hash).get("ID") }
-      })
-    .then(response => {
-      this.setState({
-        datafollowers: response.data,
-      });
-    })
-
     axios({
       url: `${appLocalizer.apiUrl}/mvx_module/v1/vendor_list_search`
     })
@@ -1686,18 +1596,6 @@ class MVX_Backend_Vendor extends React.Component {
         add_shipping_options_data: response.data,
       });
     })
-
-/*    axios.get(
-    `${appLocalizer.apiUrl}/mvx_module/v1/list_of_all_tab_based_settings_field`, {
-      params: { vendor_id: new URLSearchParams(window.location.hash).get("ID") }
-    })
-    .then(response => {
-      if (new URLSearchParams(window.location.hash).get("ID") && new URLSearchParams(window.location.hash).get("name") == 'vendor-shipping' && response.data && Object.keys(response.data).length > 0 && response.data.vendor_default_shipping_options) {
-        this.setState({
-          vendor_shipping_option_choice: response.data.vendor_default_shipping_options.value,
-        });
-      }
-    })*/
 
     // fetch vendor application datavendor
     axios.get(

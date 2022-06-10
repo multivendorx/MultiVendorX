@@ -299,10 +299,11 @@ class MVX_Admin {
 
 
         $global_string = array(
-            'close' =>  __('Close', 'multivendorx'),
-            'edit' =>  __('Edit', 'multivendorx'),
-            'download_csv'  =>  __('Download CSV', 'multivendorx'),
-            'confirm_delete' => __('Confirm delete?', 'multivendorx'),
+            'close'             =>  __('Close', 'multivendorx'),
+            'edit'              =>  __('Edit', 'multivendorx'),
+            'download_csv'      =>  __('Download CSV', 'multivendorx'),
+            'confirm_delete'    =>  __('Confirm delete?', 'multivendorx'),
+            'save_changes'      =>  __('Save Changes', 'multivendorx'),
         );
 
         $commission_page_string     =   array(
@@ -333,6 +334,31 @@ class MVX_Admin {
             'all'  =>  __('All', 'multivendorx'),
             'paid'  =>  __('Paid', 'multivendorx'),
             'unpaid'  =>  __('Unpaid', 'multivendorx'),
+        );
+
+        $vendor_page_string     =   array(
+            'shipping1'   =>  __('Choose the shipping method you wish to add. Only shipping methods which support zones are listed', 'multivendorx'),
+            'shipping2'   =>  __('Lets you charge a rate for shipping.', 'multivendorx'),
+            'shipping3'   =>  __('You can add multiple shipping methods within this zone. Only customers within the zone will see them', 'multivendorx'),
+            'add_shipping_methods'  =>  __('Add shipping method', 'multivendorx'),
+            'zone_name'  =>  __('Zone Name', 'multivendorx'),
+            'zone_region'  =>  __('Zone Region', 'multivendorx'),
+            'specific_state'  =>  __('Select specific states', 'multivendorx'),
+            'postcode'  =>  __('Set your postcode', 'multivendorx'),
+            'comma_separated'  =>  __('Postcodes need to be comma separated', 'multivendorx'),
+            'shipping_methods'  =>  __('Shipping methods', 'multivendorx'),
+
+            'title'  =>  __('Title', 'multivendorx'),
+            'enabled'  =>  __('Enabled', 'multivendorx'),
+            'description'  =>  __('Description', 'multivendorx'),
+            'edit'  =>  __('Edit', 'multivendorx'),
+            'delete'  =>  __('Delete', 'multivendorx'),
+            'differnet_method'  =>  __('Differnet method', 'multivendorx'),
+            'cost'  =>  __('Cost', 'multivendorx'),
+            'taxable'  =>  __('Taxable', 'multivendorx'),
+            'method_title'  =>  __('Method Title', 'multivendorx'),
+            'approve'  =>  __('Approve', 'multivendorx'),
+            'reject'  =>  __('Reject', 'multivendorx'),
         );
 
         $report_page_string = array(
@@ -812,6 +838,7 @@ class MVX_Admin {
             'commission_header'             => $commission_header,
             'commission_status_list_action' =>  $commission_status_list_action,
             'commission_page_string'        =>  $commission_page_string,
+            'vendor_page_string'            =>  $vendor_page_string,
             'global_string'                 =>  $global_string,
             'report_product_header'         =>  $report_product_header,
             'report_vendor_header'          =>  $report_vendor_header,

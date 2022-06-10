@@ -98,9 +98,9 @@ if (!class_exists('WC_Email_Admin_Added_New_Product_to_Vendor')) :
          */
         public function get_default_subject() {
             if ($this->is_first_time) {
-                return apply_filters('wcmp_admin_added_new_product_to_vendor_email_subject', __('[{blogname}] Admin has assigned new product to You- {product_name}', 'multivendorx'), $this->object);
+                return apply_filters('mvx_admin_added_new_product_to_vendor_email_subject', __('[{blogname}] Admin has assigned new product to You- {product_name}', 'multivendorx'), $this->object);
             } else {
-                return apply_filters('wcmp_admin_published_product_to_vendor_email_subject', __('[{blogname}] Admin has published your product with - {product_name}', 'multivendorx'), $this->object);
+                return apply_filters('mvx_admin_published_product_to_vendor_email_subject', __('[{blogname}] Admin has published your product with - {product_name}', 'multivendorx'), $this->object);
             }
         }
 

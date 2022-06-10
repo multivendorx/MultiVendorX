@@ -5060,7 +5060,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'key'       =>  'vendor_list_page',
                     'type'      =>  'blocktext',
                     'label'     =>  __( 'no_label', 'multivendorx' ),
-                    'blocktext'      =>  __( "Use the <code>[wcmp_vendorlist]</code> shortcode to display vendor's list on your site <a href='https://www.w3schools.com'>Learn More</a>", 'multivendorx' ),
+                    'blocktext'      =>  __( "Use the <code>[mvx_vendorlist]</code> shortcode to display vendor's list on your site <a href='https://www.w3schools.com'>Learn More</a>", 'multivendorx' ),
                     'database_value' => '',
                 ],
                 [
