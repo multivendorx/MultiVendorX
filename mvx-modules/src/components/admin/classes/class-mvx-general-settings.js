@@ -519,8 +519,8 @@ class MVX_Settings extends Component {
                                         <ul className="field-selectbox-options mb-24">
                                           {registration_json_value.options.map((chekbox_option_key, checkbox_option_index) =>
                                             <li>
-                                              <div className='f-row-8'>
-                                                <div className='mt-35'>
+                                              <div>
+                                                <div>
                                                   {registration_json_value.type === 'radio' || registration_json_value.type === 'dropdown' ?
                                                     <input type="radio" value="1" name={`option-${registration_json_value.id}`} checked={chekbox_option_key.selected} onChange={e => { this.onlebelchange(e, registration_json_index, 'selected_radio_box', option) }} />
                                                     :
@@ -538,8 +538,8 @@ class MVX_Settings extends Component {
                                                 <input type="text" value={chekbox_option_key.value} onChange={e => { this.onlebelchange(e, registration_json_index, 'select_option1', checkbox_option_index) }} />
                                                 <div className="mvx-registration-fileds-description">This section is available for developers who might want to mark the labels they create.</div>
                                               </div>
-                                              <div className='f-row-8'>
-                                                <a className='del-btn mt-35' onClick={(e) => this.removeSelectboxOption(e, registration_json_index, checkbox_option_index)}><i className="mvx-font icon-close"></i></a>
+                                              <div>
+                                                <a onClick={(e) => this.removeSelectboxOption(e, registration_json_index, checkbox_option_index)}><i className="mvx-font icon-close"></i></a>
                                               </div>
                                             </li>
                                           )}

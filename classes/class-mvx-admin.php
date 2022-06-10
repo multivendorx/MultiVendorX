@@ -397,8 +397,32 @@ class MVX_Admin {
         );
 
         $settings_page_string = array(
-            'leaderboards'  =>  __('Leaderboards', 'multivendorx'),
-
+            'registration_form_title'  =>  __('Registration form title', 'multivendorx'),
+            'registration_form_title_desc'  =>  __('Type the form title you want the vendor to see. eg registrazione del venditore', 'multivendorx'),
+            'registration_form_desc'  =>  __('Registration form description', 'multivendorx'),
+            'leaderboards'  =>  __('Add guidelines or valuable information applicable for registration.', 'multivendorx'),
+            'leaderboards'  =>  __('Write questions applicable to your marketplace', 'multivendorx'),
+            'leaderboards'  =>  __('Select your preferred question format. Read doc to know more about each format.', 'multivendorx'),
+            'leaderboards'  =>  __('Placeholder', 'multivendorx'),
+            'leaderboards'  =>  __('Tooltip description', 'multivendorx'),
+            'leaderboards'  =>  __('Leave this section blank or add examples of an answer here.', 'multivendorx'),
+            'leaderboards'  =>  __('Add more information or specific instructions here.', 'multivendorx'),
+            'leaderboards'  =>  __('Characters Limit', 'multivendorx'),
+            'leaderboards'  =>  __('Restrict vendor descriptions to a certain number of characters.', 'multivendorx'),
+            'leaderboards'  =>  __('File Type', 'multivendorx'),
+            'leaderboards'  =>  __('Multiple', 'multivendorx'),
+            'leaderboards'  =>  __('Maximum file size', 'multivendorx'),
+            'leaderboards'  =>  __('Add limitation for file size', 'multivendorx'),
+            'leaderboards'  =>  __('Acceptable file types', 'multivendorx'),
+            'leaderboards'  =>  __('Choose preferred file size.', 'multivendorx'),
+            'leaderboards'  =>  __('reCAPTCHA Type', 'multivendorx'),
+            'leaderboards'  =>  __('reCAPTCHA v3', 'multivendorx'),
+            'leaderboards'  =>  __('reCAPTCHA v2', 'multivendorx'),
+            'leaderboards'  =>  __('Site key', 'multivendorx'),
+            'leaderboards'  =>  __('Secret key', 'multivendorx'),
+            'leaderboards'  =>  __('Recaptcha Script', 'multivendorx'),
+            'leaderboards'  =>  __('Write titles for your options here.', 'multivendorx'),
+            'leaderboards'  =>  __('This section is available for developers who might want to mark the labels they create.', 'multivendorx'),
         );
 
         $report_page_string = array(
