@@ -361,6 +361,46 @@ class MVX_Admin {
             'reject'  =>  __('Reject', 'multivendorx'),
         );
 
+        $status_and_tools_string = array(
+            'database-tools'    =>  array(
+                array(
+                    'name'              =>  __('Clear transients', 'multivendorx'),
+                    'key'               =>  'transients',
+                    'headline_text'     =>  __('MVX vendors transients', ' multivendorx'),
+                    'description_text'  =>  __('This tool will clear all MVX vendors transients cache', 'multivendorx')
+                ),
+                array(
+                    'name'              =>  __('Reset Database', 'multivendorx'),
+                    'key'               =>  'visitor',
+                    'headline_text'     =>  __('Reset visitors stats table', ' multivendorx'),
+                    'description_text'  =>  __('This tool will clear ALL the table data of MVX visitors stats.', 'multivendorx')
+                ),
+                array(
+                    'name'              =>  __('Order Migrate', 'multivendorx'),
+                    'key'               =>  'migrate_order',
+                    'headline_text'     =>  __('Force MVX order migrate', ' multivendorx'),
+                    'description_text'  =>  __('This will regenerate all vendors older orders to individual orders', 'multivendorx')
+                ),
+                array(
+                    'name'              =>  __('Multivendor migrate', 'multivendorx'),
+                    'key'               =>  'migrate',
+                    'headline_text'     =>  __('Multivendor Migration', ' multivendorx'),
+                    'description_text'  =>  __('This will migrate older marketplace details', 'multivendorx')
+                ),
+            ),
+            'system-info'   =>  __('System Info', 'multivendorx'),
+            'copy-system-info'   =>  __('Copy System Info to Clipboard', 'multivendorx'),
+            'copied'   =>  __('Copied!', 'multivendorx'),
+            'error-log'   =>  __('Error Log', 'multivendorx'),
+            'copied-text'   =>  __('If you have enabled, errors will be stored in a log file. Here you can find the last 100 lines in reversed order so that you or the MultivendorX support team can view it easily. The file cannot be edited here', 'multivendorx'),
+            'copy-log-clipboard'   =>  __('Copy Log to Clipboard', 'multivendorx'),
+        );
+
+        $settings_page_string = array(
+            'leaderboards'  =>  __('Leaderboards', 'multivendorx'),
+
+        );
+
         $report_page_string = array(
             'vendor_select' =>  __('Select your vendor to view transaction details', 'multivendorx'),
             'choose_vendor' =>  __('Search Vendors', 'multivendorx'),
@@ -815,7 +855,7 @@ class MVX_Admin {
             'nonce' => wp_create_nonce( 'wp_rest' ),
             'mvx_logo' => $MVX->plugin_url.'assets/images/dclogo.png',
             'multivendor_logo' => $MVX->plugin_url.'assets/images/multivendorX.png',
-            'knowledgebase' => 'https://wc-marketplace.com/knowledgebase/',
+            'knowledgebase' => 'https://multivendorx.com/knowledgebase/',
             'knowledgebase_title' => __('MVX knowledge Base', 'multivendorx'),
             'search_module' =>  __('Search Modules', 'multivendorx'),
             'marketplace_text' => __('MultiVendorX', 'multivendorx'),
@@ -839,6 +879,7 @@ class MVX_Admin {
             'commission_status_list_action' =>  $commission_status_list_action,
             'commission_page_string'        =>  $commission_page_string,
             'vendor_page_string'            =>  $vendor_page_string,
+            'status_and_tools_string'       =>  $status_and_tools_string,
             'global_string'                 =>  $global_string,
             'report_product_header'         =>  $report_product_header,
             'report_vendor_header'          =>  $report_vendor_header,

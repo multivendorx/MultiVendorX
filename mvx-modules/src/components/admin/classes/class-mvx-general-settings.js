@@ -2,75 +2,35 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import axios from 'axios';
 import Select from 'react-select';
-import RingLoader from "react-spinners/RingLoader";
 import { css } from "@emotion/react";
 import PuffLoader from "react-spinners/PuffLoader";
 import { ReactSortable } from "react-sortablejs";
-
 import {
   BrowserRouter as Router,
-  Link,
   useLocation,
-  withRouter,
-  useParams,
-  NavLink
 } from "react-router-dom";
-
-
 import DynamicForm from "../../../DynamicForm";
-
 const override = css`
   display: block;
   margin: 0 auto;
   border-color: red;
 `;
-
-import HeaderSection from './class-mvx-page-header';
-import BannerSection from './class-mvx-page-banner';
-
 import TabSection from './class-mvx-page-tab';
 
-class App extends Component {
+class MVX_Settings extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      testing: '',
-      error: null,
-      isLoaded: false,
-      items: [],
-      checkedState: [],
-      module_ids: [],
-      open_model: false,
-      open_model_dynamic: [],
-      isLoading: true,
-      loading: false,
-      module_tabs: [],
-      tabIndex: 0,
-      query: null,
-      firstname: true,
-      lastname: '',
-      email: '',
-      abcarray: [],
-      first_toggle: '',
-      second_toggle: '',
       mvx_registration_fileds_list: [],
       current: {},
-      registration_title_hidden: false,
       list_of_module_data: [],
       set_tab_name: '',
       list_of_all_tabs: []
     };
 
-    
-    this.query = null;
-    // when click on checkbox
-
     this.QueryParamsDemo = this.QueryParamsDemo.bind(this);
-
     this.useQuery = this.useQuery.bind(this);
-
     this.Child = this.Child.bind(this);
-
     // add new click
     this.handleAddClickNew = this.handleAddClickNew.bind(this);
     // remove click
@@ -79,84 +39,16 @@ class App extends Component {
     this.handleActiveClick = this.handleActiveClick.bind(this);
     // select from dropdown
     this.OnRegistrationSelectChange = this.OnRegistrationSelectChange.bind(this);
-
-
     this.onlebelchange = this.onlebelchange.bind(this);
-
-    this.removeFormField = this.removeFormField.bind(this);
-
     this.addSelectBoxOption = this.addSelectBoxOption.bind(this);
-
     this.removeSelectboxOption = this.removeSelectboxOption.bind(this);
-
-    this.handleSaveRegistration = this.handleSaveRegistration.bind(this);
-
-    this.togglePostboxField = this.togglePostboxField.bind(this);
-
-    this.togglePostbox = this.togglePostbox.bind(this);
-
-    this.togglevendorStoreField = this.togglevendorStoreField.bind(this);
-
     // new registration save function
     this.handleSaveNewRegistration = this.handleSaveNewRegistration.bind(this);
-
     // duplicate content
     this.OnDuplicateSelectChange = this.OnDuplicateSelectChange.bind(this);
-
     // sortable change
     this.handleResortClick = this.handleResortClick.bind(this);
-
-
   }
-
-  togglePostbox(e) {
-    if (this.state.first_toggle === "") {
-      this.state.first_toggle = "closed";
-    } else {
-      this.state.first_toggle = "";
-    }
-    this.setState({
-      first_toggle: this.state.first_toggle
-    });
-  }
-
-  togglevendorStoreField(e) {
-    if (this.state.second_toggle === "") {
-      this.state.second_toggle = "closed";
-    } else {
-      this.state.second_toggle = "";
-    }
-    this.setState({
-      second_toggle: this.state.second_toggle
-    });
-  }
-
-  togglePostboxField(e, index) {
-    if (this.state.abcarray[index].hidden) {
-      this.state.abcarray[index].hidden = false;
-    } else {
-      this.state.abcarray[index].hidden = true;
-    }
-    this.setState({
-      abcarray: this.state.abcarray
-    });
-  }
-
-  handleSaveRegistration(e) {
-    this.setState({ loading: true });
-    axios({
-      method: 'post',
-      url: `${appLocalizer.apiUrl}/mvx_module/v1/save_registration`,
-      data: {
-        form_data: JSON.stringify(this.state.abcarray),
-      }
-    })
-      .then((res) => {
-        console.log('success');
-        this.setState({ loading: false });
-      });
-  }
-
 
   // save new registration form
   handleSaveNewRegistration(e) {
@@ -167,20 +59,10 @@ class App extends Component {
         form_data: JSON.stringify(this.state.mvx_registration_fileds_list),
       }
     })
-      .then((res) => {
-        console.log('success');
-      });
+    .then((responce) => {});
   }
 
-
   addSelectBoxOption(e, index) {
-    /*var count = this.state.abcarray[index].options.length + 1;
-    this.state.abcarray[index].options.push({value: 'option' + count, label: 'Option ' + count, selected: false});
-    this.setState({
-      abcarray: this.state.abcarray
-    });*/
-
-
     var count = this.state.mvx_registration_fileds_list[index].options.length + 1;
     this.state.mvx_registration_fileds_list[index].options.push({ value: 'option' + count, label: 'Option ' + count, selected: false });
     this.setState({
@@ -189,72 +71,19 @@ class App extends Component {
   }
 
   removeSelectboxOption(e, index, key) {
-    /*this.state.abcarray[index].options.splice(key, 1);
-    this.setState({
-      abcarray: this.state.abcarray
-    });*/
-
     this.state.mvx_registration_fileds_list[index].options.splice(key, 1);
     this.setState({
       mvx_registration_fileds_list: this.state.mvx_registration_fileds_list
     });
   }
 
-  removeFormField(e, index) {
-    this.state.abcarray.splice(index, 1);
-    this.setState({
-      abcarray: this.state.abcarray
-    });
-  }
-
   onlebelchange(e, index, label, childindex) {
-
-    /*var save_value;
-    if (label == 'required' || label == 'muliple' || label == 'selected') {
-      save_value = e.target.checked;
-    } else {
-      save_value = e.target.value;
-    }
-
-    let items = this.state.abcarray;
-
-    if (label == 'selected') {
-      items[index]['fileType'][childindex][label] = save_value;
-    } else if (label == 'select_option') {
-      items[index]['options'][childindex]['label'] = save_value;
-    } else if (label == 'selected_radio_box') {
-
-      items[index]['options'][childindex]['selected'] = save_value;
-      items[index]['options'].map((number, indexs) => {
-        if(childindex !== indexs) {
-          items[index]['options'][indexs]['selected'] = false;
-        }
-      });
-
-    } else if (label == 'selected_box') {
-      items[index]['options'][childindex]['selected'] = e.target.checked;
-    } else if (label == 'select_option1') {
-      items[index]['options'][childindex]['value'] = save_value;
-    } else {
-      items[index][label] = save_value;
-    }
-
-    this.setState({
-      items,
-    });*/
-
-
-
-
-
-
     var save_value;
     if (label == 'required' || label == 'muliple' || label == 'selected') {
       save_value = e.target.checked;
     } else {
       save_value = e.target.value;
     }
-
     let items = this.state.mvx_registration_fileds_list;
 
     if (label == 'select_option') {
@@ -275,20 +104,16 @@ class App extends Component {
     } else {
       items[index][label] = save_value;
     }
-
     this.setState({
       items,
     });
 
-
     setTimeout(() => {
       this.handleSaveNewRegistration('');
     }, 10)
-
   }
 
   // new registration settings
-
   handleAddClickNew(e, type) {
     var formJson = this.state.mvx_registration_fileds_list;
     var jsonLength = formJson.length;
@@ -322,50 +147,42 @@ class App extends Component {
 
   }
 
-  // duplicate
+  // duplicate icon click
   OnDuplicateSelectChange(e, index, duplicate) {
     var formJson = this.state.mvx_registration_fileds_list;
     var jsonLength = formJson.length;
     formJson.push(formJson[index]);
   }
 
-  // sore
+  // sotring funtion
   handleResortClick(sort) {
-
     this.setState({
       mvx_registration_fileds_list: sort
     });
-
     setTimeout(() => {
       this.handleSaveNewRegistration('');
     }, 10)
   }
-
+  // remove fileds
   handleRemoveClickNew(e, index) {
     this.state.mvx_registration_fileds_list.splice(index, 1);
     this.setState({
       mvx_registration_fileds_list: this.state.mvx_registration_fileds_list
     });
-
     setTimeout(() => {
       this.handleSaveNewRegistration('');
     }, 10)
   }
-
+  // active metabox hide or show
   handleActiveClick(e, index, label) {
-
     let new_items = this.state.mvx_registration_fileds_list;
     if (label == 'parent') {
       new_items[0].hidden = true;
-
-
       new_items.map((data_active, index_active) => {
         if (index == 0) { } else {
           new_items[index_active].hidden = false;
         }
-      }
-      )
-
+      })
     } else if (label == 'sub') {
       new_items.map((data_active, index_active) => {
         if (index == 0) { } else {
@@ -375,34 +192,25 @@ class App extends Component {
             new_items[index_active].hidden = false;
           }
         }
-      }
-      )
-    } else if (label == 'sortable') { }
-
-    //registration_title_hidden
-
-
+      })
+    }
     this.setState({
       new_items
     });
-
-
     setTimeout(() => {
       this.handleSaveNewRegistration('');
     }, 10)
   }
-
+  // select button trigger
   OnRegistrationSelectChange(e, index, types) {
     let new_items = this.state.mvx_registration_fileds_list;
     if (types == 'select_drop') {
       new_items[index]['type'] = e.target.value;
-
       if (new_items[index].options.length == 0) {
         if (e.target.value == 'checkboxes' || e.target.value == 'multi-select' || e.target.value == 'radio' || e.target.value == 'dropdown') {
           var count = new_items[index].options.length + 1;
           new_items[index].options.push({ value: 'option' + count, label: 'Option ' + count, selected: false });
         } else if (e.target.value == 'attachment') {
-
           new_items[index].fileType.push(
             {
               value: 'application/pdf',
@@ -432,8 +240,6 @@ class App extends Component {
           );
         }
       }
-
-
     } else if (types == 'label') {
       new_items[index]['label'] = e.target.value;
     } else if (types == 'parent_label') {
@@ -443,47 +249,23 @@ class App extends Component {
     } else if (types == 'require') {
       new_items[index]['required'] = e.target.checked;
     }
-
-
     this.setState({
       new_items,
     });
-
-
     setTimeout(() => {
       this.handleSaveNewRegistration('');
     }, 10)
-    //console.log(e.target.value);
   }
 
-
   componentDidMount() {
-
-    /*axios({
-      url: `${appLocalizer.apiUrl}/mvx_module/v1/get_registration`
-    })
-    .then(response => {
-      this.setState({
-        abcarray: response.data ? response.data : []
-      });
-    })*/
-
-
-
-
     axios({
       url: `${appLocalizer.apiUrl}/mvx_module/v1/get_registration`
     })
       .then(response => {
-
         var formJson4 = this.state.mvx_registration_fileds_list;
-
         if (response.data.length > 0) {
           formJson4 = response.data;
         } else {
-
-          // new registration from
-
           formJson4.push({
             id: 'parent_title',
             type: 'p_title',
@@ -513,19 +295,12 @@ class App extends Component {
             script: ''
           });
         }
-
         this.setState({
           mvx_registration_fileds_list: formJson4
         });
-
-
-        /*this.setState({
-          mvx_registration_fileds_list: response.data ? response.data : []
-        });*/
       })
 
-
-    // tab list
+    // list of all tabs
     axios({
       url: `${appLocalizer.apiUrl}/mvx_module/v1/list_of_all_tabs`
     })
@@ -534,9 +309,6 @@ class App extends Component {
         list_of_all_tabs: response.data,
       });
     })
-
-
-
   }
 
   useQuery() {
@@ -547,27 +319,26 @@ class App extends Component {
     let use_query = this.useQuery();
     return (
       Object.keys(this.state.list_of_all_tabs).length > 0 ?
-      <TabSection
-        model={this.state.list_of_all_tabs['marketplace-general-settings']}
-        query_name={use_query.get("name")}
-        funtion_name={this}
-      />
+        <TabSection
+          model={this.state.list_of_all_tabs['marketplace-general-settings']}
+          query_name={use_query.get("name")}
+          funtion_name={this}
+        />
       : <PuffLoader css={override} color={"#cd0000"} size={200} loading={true} />
     );
   }
 
   Child({ name }) {
-
     if (name != this.state.set_tab_name) {
       axios({
         url: `${appLocalizer.apiUrl}/mvx_module/v1/fetch_all_modules_data`
       })
-        .then(response => {
-          this.setState({
-            list_of_module_data: response.data,
-            set_tab_name: name
-          });
+      .then(response => {
+        this.setState({
+          list_of_module_data: response.data,
+          set_tab_name: name
         });
+      });
     }
 
     return (
@@ -575,7 +346,6 @@ class App extends Component {
         data.modulename == name ?
           data.modulename == 'registration' ?
               <div className="mvx-form-vendor-register">
-
                 {this.state.mvx_registration_fileds_list.length > 0 ?
                   <div className={`mvx-top-part-registartion-from ${this.state.mvx_registration_fileds_list && this.state.mvx_registration_fileds_list.length > 0 && this.state.mvx_registration_fileds_list[0].hidden ? 'mvx-form-left-line-active' : ''}`} onClick={(e) => this.handleActiveClick(e, '', 'parent')}>
                     <div className="mvx-registration-content">
@@ -593,16 +363,12 @@ class App extends Component {
                   </div>
                   : ''}
 
-
                 <ul className="meta-box-sortables">
                   <ReactSortable list={this.state.mvx_registration_fileds_list} setList={(newState) => this.handleResortClick(newState)}>
-
                     {this.state.mvx_registration_fileds_list.map((registration_json_value, registration_json_index) => (
                       <li>
-
                         {
                           registration_json_value.id == 'parent_title' ? '' :
-
                             <div className={`mvx-option-part ${registration_json_value.hidden ? 'mvx-form-left-line-active' : ''}`} onClick={(e) => this.handleActiveClick(e, registration_json_index, 'sub')}>
                               <div className="mvx-registration-content">
                                 <div className='mvx-form-group-loop'>
@@ -629,8 +395,6 @@ class App extends Component {
                                           <option value="recapta">Recapta</option>
                                           <option value="attachment">Attachment</option>
                                           <option value="section">Section</option>
-
-
                                           <option value="vendor_description">Store Description</option>
                                           <option value="vendor_address_1">Address 1</option>
                                           <option value="vendor_address_2">Address 2</option>
@@ -644,13 +408,10 @@ class App extends Component {
                                         <div className="mvx-registration-fileds-description">Select your preferred question format. Read doc to know more about each format.</div>
                                       </div>
                                       : ''}
-
                                   </div>
                                 </div>
-
                                 {registration_json_value.hidden ?
                                   <div className="next_option_part">
-
                                     {
                                       registration_json_value.type == 'textbox' || registration_json_value.type == 'email' || registration_json_value.type == 'url' || registration_json_value.type == 'textarea' || registration_json_value.type == 'vendor_description' || registration_json_value.type == 'vendor_address_1' || registration_json_value.type == 'vendor_address_2' || registration_json_value.type == 'vendor_phone' || registration_json_value.type == 'vendor_country' || registration_json_value.type == 'vendor_state' || registration_json_value.type == 'vendor_city' || registration_json_value.type == 'vendor_postcode' || registration_json_value.type == 'vendor_paypal_email' ?
                                         <div className="mvx-basic-description">
@@ -665,9 +426,8 @@ class App extends Component {
                                           </div>
 
                                         </div>
-                                        : ''
+                                      : ''
                                     }
-
 
                                     {
                                       registration_json_value.type == 'textarea' ?
@@ -678,9 +438,8 @@ class App extends Component {
                                             <div className="mvx-registration-fileds-description">Restrict vendor descriptions to a certain number of characters.</div>
                                           </div>
                                         </div>
-                                        : ''
+                                      : ''
                                     }
-
 
                                     {
                                       registration_json_value.type == 'attachment' ?
@@ -708,10 +467,8 @@ class App extends Component {
                                           </div>
                                           
                                         </div>
-                                        : ''
+                                      : ''
                                     }
-
-
 
                                     {
                                       registration_json_value.type == 'recapta' ?
@@ -727,30 +484,26 @@ class App extends Component {
                                             </div>
                                           </div>
 
-
-
                                           {registration_json_value.recaptchatype === 'v3' ?
                                             <div className="mvx-vendor-form-input-field-container col-50">
                                               <label className='mvx-form-title'>Site key</label>
                                               <input type="text" className="mvx-vendor-form-input-field" value={registration_json_value.sitekey} onChange={e => { this.onlebelchange(e, registration_json_index, 'sitekey') }} />
                                             </div>
-                                            : ''}
-
+                                          : ''}
 
                                           {registration_json_value.recaptchatype === 'v3' ?
                                             <div className="mvx-vendor-form-input-field-container col-50">
                                               <label className='mvx-form-title'>Secret key</label>
                                               <input type="text" ng-model="field.secretkey" className="mvx-vendor-form-input-field" value={registration_json_value.secretkey} onChange={e => { this.onlebelchange(e, registration_json_index, 'secretkey') }} />
                                             </div>
-                                            : ''}
+                                          : ''}
 
                                           {registration_json_value.recaptchatype === 'v2' ?
                                             <div className="mvx-vendor-form-input-field-container col-100">
                                               <label className='mvx-form-title'>Recaptcha Script</label>
                                               <textarea cols="20" rows="3" className="mvx-vendor-form-input-field default-textarea" value={registration_json_value.script} onChange={e => { this.onlebelchange(e, registration_json_index, 'script') }}></textarea>
                                             </div>
-                                            : ''}
-
+                                          : ''}
 
                                           <div className="mvx-vendor-form-input-field-container col-100">
                                             <p>To get <b>reCAPTCHA</b> script, register your site with google account <a href="https://www.google.com/recaptcha" target="_blank">Register</a></p>
@@ -758,14 +511,11 @@ class App extends Component {
 
                                           <div className="mvx-registration-fileds-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
                                         </div>
-
-                                        : ''
+                                      : ''
                                     }
-
 
                                     {registration_json_value.type == 'checkboxes' || registration_json_value.type == 'multi-select' || registration_json_value.type == 'radio' || registration_json_value.type == 'dropdown' ?
                                       <div className="mvx-vendor-form-input-field-container">
-
                                         <ul className="field-selectbox-options mb-24">
                                           {registration_json_value.options.map((chekbox_option_key, checkbox_option_index) =>
                                             <li>
@@ -778,12 +528,12 @@ class App extends Component {
                                                   }
                                                 </div>
                                               </div>
-                                              <div className='f-row-42'>
+                                              <div>
                                                 <label className="form-title">Label</label>
                                                 <input type="text" value={chekbox_option_key.label} onChange={e => { this.onlebelchange(e, registration_json_index, 'select_option', checkbox_option_index) }} />
                                                 <div className="mvx-registration-fileds-description">Write titles for your options here.</div>
                                               </div>
-                                              <div className='f-row-42'>
+                                              <div>
                                                 <label className="form-title">Value</label>
                                                 <input type="text" value={chekbox_option_key.value} onChange={e => { this.onlebelchange(e, registration_json_index, 'select_option1', checkbox_option_index) }} />
                                                 <div className="mvx-registration-fileds-description">This section is available for developers who might want to mark the labels they create.</div>
@@ -796,15 +546,9 @@ class App extends Component {
                                         </ul>
                                         <a className="btn purple-btn" onClick={(e) => this.addSelectBoxOption(e, registration_json_index)}>Add New</a>
                                       </div>
-                                      : ''}
-
-                                    {/*<p className="add-option"><sapn><i className="far fa-circle"></i> <input type="text" placeholder="option 1"/></sapn></p>
-
-                                      <p className="add-option"><sapn><i className="far fa-circle"></i> <input type="text" placeholder="Add option  or add others"/></sapn></p>*/}
-
+                                    : ''}
                                   </div>
-                                  : ''}
-
+                                : ''}
 
                                 {registration_json_value.hidden ?
                                   <div className="mvx-footer-icon-form">
@@ -813,7 +557,7 @@ class App extends Component {
                                     <i className="mvx-font icon-vendor-form-add" onClick={(e) => this.handleAddClickNew(e, registration_json_value.type)}></i>
                                     <span className='mvx-perple-txt'>Require <input type="checkbox" checked={registration_json_value.required} onChange={e => { this.OnRegistrationSelectChange(e, registration_json_index, 'require') }} /></span>
                                   </div>
-                                  : ''}
+                                : ''}
                               </div>
                             </div>
                             }
@@ -824,26 +568,23 @@ class App extends Component {
                   </div>
                   :
                   Object.keys(this.state.list_of_module_data).length > 0 ?
-                      <DynamicForm
-                        key={`dynamic-form-${data.modulename}`}
-                        className={data.classname}
-                        title={data.tablabel}
-                        defaultValues={this.state.current}
-                        model={this.state.list_of_module_data[data.modulename]}
-                        method="post"
-                        modulename={data.modulename}
-                        url={data.apiurl}
-                        submitbutton="false"
-                      />
-                      : 
+                    <DynamicForm
+                      key={`dynamic-form-${data.modulename}`}
+                      className={data.classname}
+                      title={data.tablabel}
+                      defaultValues={this.state.current}
+                      model={this.state.list_of_module_data[data.modulename]}
+                      method="post"
+                      modulename={data.modulename}
+                      url={data.apiurl}
+                      submitbutton="false"
+                    />
+                    : 
                   <PuffLoader css={override} color={"#cd0000"} size={200} loading={true} />
-
                 : ''
-            
         ))
     );
   }
-
   render() {
     return (
       <Router>
@@ -852,4 +593,4 @@ class App extends Component {
     );
   }
 }
-export default App;
+export default MVX_Settings;

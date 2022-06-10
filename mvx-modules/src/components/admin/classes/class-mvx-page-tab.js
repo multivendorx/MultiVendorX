@@ -2,10 +2,6 @@ import React from "react";
 import {
   BrowserRouter as Router,
   Link,
-  useLocation,
-  withRouter,
-  useParams,
-  NavLink
 } from "react-router-dom";
 
 import HeaderSection from './class-mvx-page-header';
@@ -20,13 +16,11 @@ export default class TabSection extends React.Component {
 
   renderTab = () => {
     let model = this.props.model;
-    
     let funtion_name = this.props.funtion_name;
     let horizontally = this.props.horizontally;
     let no_banner = this.props.no_banner;
     let no_header = this.props.no_header;
     let query_name = this.props.query_name;
-
     let query_name_modified = this.props.vendor ? query_name.get("name") : query_name;
 
     let TabUI = model.map((m, index) => {
@@ -42,8 +36,8 @@ export default class TabSection extends React.Component {
 
     let TabUIContent =
     <div className={`mvx-general-wrapper mvx-${query_name_modified}`}> 
-    {no_header ? '' : <HeaderSection />}
-    <div className="mvx-container">
+      {no_header ? '' : <HeaderSection />}
+      <div className="mvx-container">
         <div className={`mvx-middle-container-wrapper ${horizontally ? 'mvx-horizontal-tabs' : 'mvx-vertical-tabs'}`}>
           {this.props.tab_description && this.props.tab_description == 'no' ? '' : TabUI}
           <div className="mvx-middle-child-container">

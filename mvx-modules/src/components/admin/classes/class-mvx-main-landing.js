@@ -3,11 +3,7 @@ import { render } from 'react-dom';
 
 import {
   BrowserRouter as Router,
-  Link,
   useLocation,
-  withRouter,
-  useParams,
-  NavLink
 } from "react-router-dom";
 
 import VendorManage from './class-mvx-vendor-manage';
@@ -20,7 +16,7 @@ import Modules from './class-mvx-modules-listing';
 import StatusTools from './class-mvx-status-tools';
 import Dashboard from './class-mvx-dashboard-section';
 
-class App extends Component {
+class Mvx_Backend_Endpoints_Load extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -28,6 +24,7 @@ class App extends Component {
   }
 
   QueryParamsDemo() {
+    // For active submneu pages
     var $ = jQuery;
     let menuRoot = $('#toplevel_page_' + 'mvx');
     let currentUrl = window.location.href;
@@ -59,8 +56,7 @@ class App extends Component {
       }
       return;
     });
-
-
+    // call every endpoint by checking from url #
     if (new URLSearchParams(useLocation().hash).get("submenu") && new URLSearchParams(useLocation().hash).get("submenu") == 'vendor') {
       return (
         <VendorManage />
@@ -108,4 +104,4 @@ class App extends Component {
     );
   }
 }
-export default App;
+export default Mvx_Backend_Endpoints_Load;
