@@ -1248,7 +1248,7 @@ textarea, input[type=text], select, input, .default-input {
   border: 1px solid #d4d1d9;
 }
 
-.mvx-form-vendor-register .mvx-top-part-registartion-from .mvx-registration-content .mvx-form-registration-group {
+.mvx-form-vendor-register .mvx-top-part-registartion-from {
   padding: 2rem;
   background-color: #f7f6f9;
   border-radius: 0.4rem;
@@ -1256,23 +1256,15 @@ textarea, input[type=text], select, input, .default-input {
   border: 0.0625rem solid #d4d1d9;
 }
 
-.mvx-form-vendor-register .mvx-top-part-registartion-from .mvx-registration-content .mvx-form-registration-group .mvx-untitle-content {
-  margin: 0 0 8px 0;
-}
-
-.mvx-form-vendor-register .mvx-top-part-registartion-from .mvx-registration-content .mvx-form-registration-group .mvx-untitle-content div {
-  padding: 8px 0 16px 0;
-}
-
-.mvx-form-vendor-register .mvx-top-part-registartion-from .mvx-registration-content .mvx-form-registration-group input {
+.mvx-form-vendor-register .mvx-top-part-registartion-from input {
   height: 40px;
 }
 
-.mvx-form-vendor-register .mvx-top-part-registartion-from .mvx-registration-content .mvx-form-registration-group input[type=checkbox] {
+.mvx-form-vendor-register .mvx-top-part-registartion-from input[type=checkbox] {
   height: 16px !important;
 }
 
-.mvx-form-vendor-register .mvx-top-part-registartion-from .mvx-registration-content .mvx-form-registration-group .mvx-registration-from-description div {
+.mvx-form-vendor-register .mvx-top-part-registartion-from .mvx-registration-from-content-and-description div {
   padding: 8px 0 16px 0;
 }
 

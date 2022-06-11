@@ -348,21 +348,16 @@ class MVX_Settings extends Component {
               <div className="mvx-form-vendor-register">
                 {this.state.mvx_registration_fileds_list.length > 0 ?
                   <div className={`mvx-top-part-registartion-from ${this.state.mvx_registration_fileds_list && this.state.mvx_registration_fileds_list.length > 0 && this.state.mvx_registration_fileds_list[0].hidden ? 'mvx-form-left-line-active' : ''}`} onClick={(e) => this.handleActiveClick(e, '', 'parent')}>
-                    <div className="mvx-registration-content">
-                      <div className='mvx-form-registration-group'>
-                        <div className="mvx-untitle-content">
-                          <input className='mvx-registration-default-input' type="text" placeholder="Registration form title" value={this.state.mvx_registration_fileds_list[0].label} onChange={e => { this.OnRegistrationSelectChange(e, '', 'parent_label') }} />
-                          <div className="mvx-registration-fileds-description">Type the form title you want the vendor to see. eg registrazione del venditore</div>
-                        </div>
-                        <div className="mvx-registration-from-description">
-                          <input className='mvx-registration-default-contetnt' type="text" placeholder="Registration form description" value={this.state.mvx_registration_fileds_list[0].description} onChange={e => { this.OnRegistrationSelectChange(e, '', 'parent_description') }} />
-                          <div className="mvx-registration-fileds-description">Add guidelines or valuable information applicable for registration.</div>
-                        </div>
-                      </div>
+                    <div className="mvx-registration-from-content-and-description">
+                      <input type="text" placeholder={appLocalizer.settings_page_string.registration_form_title} value={this.state.mvx_registration_fileds_list[0].label} onChange={e => { this.OnRegistrationSelectChange(e, '', 'parent_label') }} />
+                      <div className="mvx-registration-fileds-description">{appLocalizer.settings_page_string.registration_form_title_desc}</div>
+                    </div>
+                    <div className="mvx-registration-from-content-and-description">
+                      <input type="text" placeholder={appLocalizer.settings_page_string.registration_form_desc} value={this.state.mvx_registration_fileds_list[0].description} onChange={e => { this.OnRegistrationSelectChange(e, '', 'parent_description') }} />
+                      <div className="mvx-registration-fileds-description">{appLocalizer.settings_page_string.registration1}</div>
                     </div>
                   </div>
-                  : ''}
-
+                : ''}
                 <ul className="meta-box-sortables">
                   <ReactSortable list={this.state.mvx_registration_fileds_list} setList={(newState) => this.handleResortClick(newState)}>
                     {this.state.mvx_registration_fileds_list.map((registration_json_value, registration_json_index) => (
@@ -371,58 +366,37 @@ class MVX_Settings extends Component {
                           registration_json_value.id == 'parent_title' ? '' :
                             <div className={`mvx-option-part ${registration_json_value.hidden ? 'mvx-form-left-line-active' : ''}`} onClick={(e) => this.handleActiveClick(e, registration_json_index, 'sub')}>
                               <div className="mvx-registration-content">
-                                <div className='mvx-form-group-loop'>
-                                  <div className="mvx-question-input mvx-form-group">
-
-                                    <div className="mvx-question-input-items">
-                                      <input type="text" className='default-input' placeholder="Question title" value={registration_json_value.label} onChange={e => { this.OnRegistrationSelectChange(e, registration_json_index, 'label') }} />
-                                      {registration_json_value.hidden ? <div className="mvx-registration-fileds-description">Write questions applicable to your marketplace.</div> : ''}
-                                    </div>
-
-                                    {registration_json_value.hidden ?
-                                      <div className="mvx-question-input-items">
-                                        <select className="mvx-registration-select-choice default-select" value={registration_json_value.type}
-                                          onChange={e => { this.OnRegistrationSelectChange(e, registration_json_index, 'select_drop') }}>
-                                          <option value="select_question_type">Select question type</option>
-                                          <option value="textbox" data-icon="glyphicon-music">Textbox</option>
-                                          <option value="email">Email</option>
-                                          <option value="url">Url</option>
-                                          <option value="textarea">Textarea</option>
-                                          <option value="checkboxes">Checkboxes</option>
-                                          <option value="multi-select">Multi select</option>
-                                          <option value="radio">Radio</option>
-                                          <option value="dropdown">Dropdown</option>
-                                          <option value="recapta">Recapta</option>
-                                          <option value="attachment">Attachment</option>
-                                          <option value="section">Section</option>
-                                          <option value="vendor_description">Store Description</option>
-                                          <option value="vendor_address_1">Address 1</option>
-                                          <option value="vendor_address_2">Address 2</option>
-                                          <option value="vendor_phone">Phone</option>
-                                          <option value="vendor_country">Country</option>
-                                          <option value="vendor_state">State</option>
-                                          <option value="vendor_city">City</option>
-                                          <option value="vendor_postcode">Postcode</option>
-                                          <option value="vendor_paypal_email">PayPal Email</option>
-                                        </select>
-                                        <div className="mvx-registration-fileds-description">Select your preferred question format. Read doc to know more about each format.</div>
-                                      </div>
-                                      : ''}
+                                <div className="mvx-form-group">
+                                  <div className="mvx-question-input-items">
+                                    <input type="text" className='default-input' placeholder="Question title" value={registration_json_value.label} onChange={e => { this.OnRegistrationSelectChange(e, registration_json_index, 'label') }} />
+                                    {registration_json_value.hidden ? <div className="mvx-registration-fileds-description">{appLocalizer.settings_page_string.registration2}</div> : ''}
                                   </div>
+
+                                  {registration_json_value.hidden ?
+                                    <div className="mvx-question-input-items">
+                                      <select value={registration_json_value.type}
+                                        onChange={e => { this.OnRegistrationSelectChange(e, registration_json_index, 'select_drop') }}>
+                                        {appLocalizer.settings_page_string['question-format'].map((question_content, question_index) =>
+                                          <option value={question_content.value}>{question_content.label}</option>
+                                        )}
+                                      </select>
+                                      <div className="mvx-registration-fileds-description">{appLocalizer.settings_page_string.registration1}</div>
+                                    </div>
+                                  : ''}
                                 </div>
                                 {registration_json_value.hidden ?
-                                  <div className="next_option_part">
+                                  <div>
                                     {
                                       registration_json_value.type == 'textbox' || registration_json_value.type == 'email' || registration_json_value.type == 'url' || registration_json_value.type == 'textarea' || registration_json_value.type == 'vendor_description' || registration_json_value.type == 'vendor_address_1' || registration_json_value.type == 'vendor_address_2' || registration_json_value.type == 'vendor_phone' || registration_json_value.type == 'vendor_country' || registration_json_value.type == 'vendor_state' || registration_json_value.type == 'vendor_city' || registration_json_value.type == 'vendor_postcode' || registration_json_value.type == 'vendor_paypal_email' ?
                                         <div className="mvx-basic-description">
                                           <div className="mvx-vendor-form-input-field-container">
-                                            <input type="text" className="mvx-vendor-form-input-field" placeholder="Placeholder" value={registration_json_value.placeholder} onChange={e => { this.onlebelchange(e, registration_json_index, 'placeholder') }} />
-                                            <div className="mvx-registration-fileds-description">Leave this section blank or add examples of an answer here.</div>
+                                            <input type="text" placeholder={appLocalizer.settings_page_string.registration4} value={registration_json_value.placeholder} onChange={e => { this.onlebelchange(e, registration_json_index, 'placeholder') }} />
+                                            <div className="mvx-registration-fileds-description">{appLocalizer.settings_page_string.registration6}</div>
                                           </div>
 
                                           <div className="mvx-vendor-form-input-field-container">
-                                            <input type="text" className="mvx-vendor-form-input-field" placeholder="Tooltip description" value={registration_json_value.tip_description} onChange={e => { this.onlebelchange(e, registration_json_index, 'tip_description') }} />
-                                            <div className="mvx-registration-fileds-description">Add more information or specific instructions here.</div>
+                                            <input type="text" placeholder={appLocalizer.settings_page_string.registration5} value={registration_json_value.tip_description} onChange={e => { this.onlebelchange(e, registration_json_index, 'tip_description') }} />
+                                            <div className="mvx-registration-fileds-description">{appLocalizer.settings_page_string.registration7}</div>
                                           </div>
 
                                         </div>
@@ -432,38 +406,36 @@ class MVX_Settings extends Component {
                                     {
                                       registration_json_value.type == 'textarea' ?
                                         <div className="mvx-vendor-form-input-field-container">
-                                          <div className='mvx-registration-texarea'>
-                                            <label>Characters Limit</label>
-                                            <input type="number" className="mvx-vendor-form-input-field" value={registration_json_value.limit} onChange={e => { this.onlebelchange(e, registration_json_index, 'limit') }} />
-                                            <div className="mvx-registration-fileds-description">Restrict vendor descriptions to a certain number of characters.</div>
-                                          </div>
+                                          <label>{appLocalizer.settings_page_string.registration8}</label>
+                                          <input type="number" value={registration_json_value.limit} onChange={e => { this.onlebelchange(e, registration_json_index, 'limit') }} />
+                                          <div className="mvx-registration-fileds-description">{appLocalizer.settings_page_string.registration9}</div>
                                         </div>
                                       : ''
                                     }
 
                                     {
                                       registration_json_value.type == 'attachment' ?
-                                        <div className='row'>
-                                          <div className="mvx-vendor-form-input-field-container col-50">
-                                            <label>File Type</label>
-                                            <input type="checkbox" className="mvx-vendor-form-input-field" checked={registration_json_value.muliple} onChange={e => { this.onlebelchange(e, registration_json_index, 'muliple') }} />
-                                            <label className='auto-width'>Multiple</label>
+                                        <div>
+                                          <div className="mvx-vendor-form-input-field-container">
+                                            <label>{appLocalizer.settings_page_string.registration10}</label>
+                                            <input type="checkbox" checked={registration_json_value.muliple} onChange={e => { this.onlebelchange(e, registration_json_index, 'muliple') }} />
+                                            <label className='auto-width'>{appLocalizer.settings_page_string.registration11}</label>
                                           </div>
 
-                                          <div className="mvx-vendor-form-input-field-container col-50">
-                                            <input type="text" placeholder="Maximum file size" className="mvx-vendor-form-input-field" value={registration_json_value.fileSize} onChange={e => { this.onlebelchange(e, registration_json_index, 'fileSize') }} />
-                                            <div className="mvx-registration-fileds-description">Add limitation for file size</div>
+                                          <div className="mvx-vendor-form-input-field-container">
+                                            <input type="text" placeholder={appLocalizer.settings_page_string.registration12} value={registration_json_value.fileSize} onChange={e => { this.onlebelchange(e, registration_json_index, 'fileSize') }} />
+                                            <div className="mvx-registration-fileds-description">{appLocalizer.settings_page_string.registration13}</div>
                                           </div>
 
-                                          <div className="mvx-vendor-form-input-field-container col-50">
-                                            <label className='auto-width'>Acceptable file types</label>
+                                          <div className="mvx-vendor-form-input-field-container">
+                                            <label>{appLocalizer.settings_page_string.registration14}</label>
                                             {registration_json_value.fileType.map((xnew, inew) =>
                                               <div>
                                                 <input type="checkbox" checked={xnew.selected} onChange={e => { this.onlebelchange(e, registration_json_index, 'selected', inew) }} />
                                                 <label>{xnew.label}</label>
                                               </div>
                                             )}
-                                            <div className="mvx-registration-fileds-description">Choose preferred file size.</div>
+                                            <div className="mvx-registration-fileds-description">{appLocalizer.settings_page_string.registration15}</div>
                                           </div>
                                           
                                         </div>
@@ -472,51 +444,51 @@ class MVX_Settings extends Component {
 
                                     {
                                       registration_json_value.type == 'recapta' ?
-                                        <div className='row'>
-                                          <div className="mvx-vendor-form-input-field-container col-100" value={registration_json_value.recaptchatype}
+                                        <div>
+                                          <div className="mvx-vendor-form-input-field-container" value={registration_json_value.recaptchatype}
                                             onChange={e => { this.onlebelchange(e, registration_json_index, 'recaptchatype') }}>
                                             <div className='mvx-registration-recapta-option'>
-                                              <label className='mvx-form-title'>reCAPTCHA Type</label>
-                                              <select className="mvx-vendor-form-input-field default-select">
-                                                <option value="v3">reCAPTCHA v3</option>
-                                                <option value="v2">reCAPTCHA v2</option>
+                                              <label className='mvx-form-title'>{appLocalizer.settings_page_string.registration16}</label>
+                                              <select>
+                                                <option value="v3">{appLocalizer.settings_page_string.registration17}</option>
+                                                <option value="v2">{appLocalizer.settings_page_string.registration18}</option>
                                               </select>
                                             </div>
                                           </div>
 
                                           {registration_json_value.recaptchatype === 'v3' ?
-                                            <div className="mvx-vendor-form-input-field-container col-50">
-                                              <label className='mvx-form-title'>Site key</label>
-                                              <input type="text" className="mvx-vendor-form-input-field" value={registration_json_value.sitekey} onChange={e => { this.onlebelchange(e, registration_json_index, 'sitekey') }} />
+                                            <div className="mvx-vendor-form-input-field-container">
+                                              <label className='mvx-form-title'>{appLocalizer.settings_page_string.registration19}</label>
+                                              <input type="text" value={registration_json_value.sitekey} onChange={e => { this.onlebelchange(e, registration_json_index, 'sitekey') }} />
                                             </div>
                                           : ''}
 
                                           {registration_json_value.recaptchatype === 'v3' ?
-                                            <div className="mvx-vendor-form-input-field-container col-50">
-                                              <label className='mvx-form-title'>Secret key</label>
-                                              <input type="text" ng-model="field.secretkey" className="mvx-vendor-form-input-field" value={registration_json_value.secretkey} onChange={e => { this.onlebelchange(e, registration_json_index, 'secretkey') }} />
+                                            <div className="mvx-vendor-form-input-field-container">
+                                              <label className='mvx-form-title'>{appLocalizer.settings_page_string.registration20}</label>
+                                              <input type="text" ng-model="field.secretkey" value={registration_json_value.secretkey} onChange={e => { this.onlebelchange(e, registration_json_index, 'secretkey') }} />
                                             </div>
                                           : ''}
 
                                           {registration_json_value.recaptchatype === 'v2' ?
-                                            <div className="mvx-vendor-form-input-field-container col-100">
-                                              <label className='mvx-form-title'>Recaptcha Script</label>
-                                              <textarea cols="20" rows="3" className="mvx-vendor-form-input-field default-textarea" value={registration_json_value.script} onChange={e => { this.onlebelchange(e, registration_json_index, 'script') }}></textarea>
+                                            <div className="mvx-vendor-form-input-field-container">
+                                              <label className='mvx-form-title'>{appLocalizer.settings_page_string.registration21}</label>
+                                              <textarea cols="20" rows="3" value={registration_json_value.script} onChange={e => { this.onlebelchange(e, registration_json_index, 'script') }}></textarea>
                                             </div>
                                           : ''}
 
-                                          <div className="mvx-vendor-form-input-field-container col-100">
-                                            <p>To get <b>reCAPTCHA</b> script, register your site with google account <a href="https://www.google.com/recaptcha" target="_blank">Register</a></p>
+                                          <div className="mvx-vendor-form-input-field-container">
+                                            <p>{appLocalizer.settings_page_string.registration26}<b> {appLocalizer.settings_page_string.registration27}</b> {appLocalizer.settings_page_string.registration28}<a href="https://www.google.com/recaptcha" target="_blank"> {appLocalizer.settings_page_string.registration29}</a></p>
                                           </div>
 
-                                          <div className="mvx-registration-fileds-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+                                          <div className="mvx-registration-fileds-description">{appLocalizer.settings_page_string.registration24}</div>
                                         </div>
                                       : ''
                                     }
 
                                     {registration_json_value.type == 'checkboxes' || registration_json_value.type == 'multi-select' || registration_json_value.type == 'radio' || registration_json_value.type == 'dropdown' ?
                                       <div className="mvx-vendor-form-input-field-container">
-                                        <ul className="field-selectbox-options mb-24">
+                                        <ul>
                                           {registration_json_value.options.map((chekbox_option_key, checkbox_option_index) =>
                                             <li>
                                               <div>
@@ -529,14 +501,12 @@ class MVX_Settings extends Component {
                                                 </div>
                                               </div>
                                               <div>
-                                                <label className="form-title">Label</label>
                                                 <input type="text" value={chekbox_option_key.label} onChange={e => { this.onlebelchange(e, registration_json_index, 'select_option', checkbox_option_index) }} />
-                                                <div className="mvx-registration-fileds-description">Write titles for your options here.</div>
+                                                <div className="mvx-registration-fileds-description">{appLocalizer.settings_page_string.registration22}</div>
                                               </div>
                                               <div>
-                                                <label className="form-title">Value</label>
                                                 <input type="text" value={chekbox_option_key.value} onChange={e => { this.onlebelchange(e, registration_json_index, 'select_option1', checkbox_option_index) }} />
-                                                <div className="mvx-registration-fileds-description">This section is available for developers who might want to mark the labels they create.</div>
+                                                <div className="mvx-registration-fileds-description">{appLocalizer.settings_page_string.registration23}</div>
                                               </div>
                                               <div>
                                                 <a onClick={(e) => this.removeSelectboxOption(e, registration_json_index, checkbox_option_index)}><i className="mvx-font icon-close"></i></a>
@@ -555,7 +525,7 @@ class MVX_Settings extends Component {
                                     <i className="mvx-font icon-vendor-form-copy" onClick={e => { this.OnDuplicateSelectChange(e, registration_json_index, 'duplicate') }}></i>
                                     {this.state.mvx_registration_fileds_list.length > 2 ? <i className="mvx-font icon-vendor-form-delete" onClick={(e) => this.handleRemoveClickNew(e, registration_json_index)}></i> : '' }
                                     <i className="mvx-font icon-vendor-form-add" onClick={(e) => this.handleAddClickNew(e, registration_json_value.type)}></i>
-                                    <span className='mvx-perple-txt'>Require <input type="checkbox" checked={registration_json_value.required} onChange={e => { this.OnRegistrationSelectChange(e, registration_json_index, 'require') }} /></span>
+                                    <span className='mvx-perple-txt'>{appLocalizer.settings_page_string.registration25} <input type="checkbox" checked={registration_json_value.required} onChange={e => { this.OnRegistrationSelectChange(e, registration_json_index, 'require') }} /></span>
                                   </div>
                                 : ''}
                               </div>
@@ -566,7 +536,7 @@ class MVX_Settings extends Component {
                       </ReactSortable>
                     </ul>
                   </div>
-                  :
+                :
                   Object.keys(this.state.list_of_module_data).length > 0 ?
                     <DynamicForm
                       key={`dynamic-form-${data.modulename}`}

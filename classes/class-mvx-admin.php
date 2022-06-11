@@ -397,32 +397,126 @@ class MVX_Admin {
         );
 
         $settings_page_string = array(
-            'registration_form_title'  =>  __('Registration form title', 'multivendorx'),
+            'registration_form_title'       =>  __('Registration form title', 'multivendorx'),
             'registration_form_title_desc'  =>  __('Type the form title you want the vendor to see. eg registrazione del venditore', 'multivendorx'),
-            'registration_form_desc'  =>  __('Registration form description', 'multivendorx'),
-            'leaderboards'  =>  __('Add guidelines or valuable information applicable for registration.', 'multivendorx'),
-            'leaderboards'  =>  __('Write questions applicable to your marketplace', 'multivendorx'),
-            'leaderboards'  =>  __('Select your preferred question format. Read doc to know more about each format.', 'multivendorx'),
-            'leaderboards'  =>  __('Placeholder', 'multivendorx'),
-            'leaderboards'  =>  __('Tooltip description', 'multivendorx'),
-            'leaderboards'  =>  __('Leave this section blank or add examples of an answer here.', 'multivendorx'),
-            'leaderboards'  =>  __('Add more information or specific instructions here.', 'multivendorx'),
-            'leaderboards'  =>  __('Characters Limit', 'multivendorx'),
-            'leaderboards'  =>  __('Restrict vendor descriptions to a certain number of characters.', 'multivendorx'),
-            'leaderboards'  =>  __('File Type', 'multivendorx'),
-            'leaderboards'  =>  __('Multiple', 'multivendorx'),
-            'leaderboards'  =>  __('Maximum file size', 'multivendorx'),
-            'leaderboards'  =>  __('Add limitation for file size', 'multivendorx'),
-            'leaderboards'  =>  __('Acceptable file types', 'multivendorx'),
-            'leaderboards'  =>  __('Choose preferred file size.', 'multivendorx'),
-            'leaderboards'  =>  __('reCAPTCHA Type', 'multivendorx'),
-            'leaderboards'  =>  __('reCAPTCHA v3', 'multivendorx'),
-            'leaderboards'  =>  __('reCAPTCHA v2', 'multivendorx'),
-            'leaderboards'  =>  __('Site key', 'multivendorx'),
-            'leaderboards'  =>  __('Secret key', 'multivendorx'),
-            'leaderboards'  =>  __('Recaptcha Script', 'multivendorx'),
-            'leaderboards'  =>  __('Write titles for your options here.', 'multivendorx'),
-            'leaderboards'  =>  __('This section is available for developers who might want to mark the labels they create.', 'multivendorx'),
+            'registration_form_desc'        =>  __('Registration form description', 'multivendorx'),
+            'registration1'                  =>  __('Add guidelines or valuable information applicable for registration.', 'multivendorx'),
+            'registration2'                  =>  __('Write questions applicable to your marketplace', 'multivendorx'),
+            'registration3'                  =>  __('Select your preferred question format. Read doc to know more about each format.', 'multivendorx'),
+            'registration4'                  =>  __('Placeholder', 'multivendorx'),
+            'registration5'                  =>  __('Tooltip description', 'multivendorx'),
+            'registration6'                  =>  __('Leave this section blank or add examples of an answer here.', 'multivendorx'),
+            'registration7'                  =>  __('Add more information or specific instructions here.', 'multivendorx'),
+            'registration8'                  =>  __('Characters Limit', 'multivendorx'),
+            'registration9'                  =>  __('Restrict vendor descriptions to a certain number of characters.', 'multivendorx'),
+            'registration10'                  =>  __('File Type', 'multivendorx'),
+            'registration11'                  =>  __('Multiple', 'multivendorx'),
+            'registration12'                  =>  __('Maximum file size', 'multivendorx'),
+            'registration13'                  =>  __('Add limitation for file size', 'multivendorx'),
+            'registration14'                  =>  __('Acceptable file types', 'multivendorx'),
+            'registration15'                  =>  __('Choose preferred file size.', 'multivendorx'),
+            'registration16'                  =>  __('reCAPTCHA Type', 'multivendorx'),
+            'registration17'                  =>  __('reCAPTCHA v3', 'multivendorx'),
+            'registration18'                  =>  __('reCAPTCHA v2', 'multivendorx'),
+            'registration19'                  =>  __('Site key', 'multivendorx'),
+            'registration20'                  =>  __('Secret key', 'multivendorx'),
+            'registration21'                  =>  __('Recaptcha Script', 'multivendorx'),
+            'registration22'                  =>  __('Write titles for your options here.', 'multivendorx'),
+            'registration23'                  =>  __('This section is available for developers who might want to mark the labels they create.', 'multivendorx'),
+            'registration24'                  =>  __('', 'multivendorx'),
+            'registration25'                  =>  __('Require', 'multivendorx'),
+
+            'registration26'                  =>  __('To get', 'multivendorx'),
+            'registration27'                  =>  __('reCAPTCHA', 'multivendorx'),
+            'registration28'                  =>  __('script, register your site with google account', 'multivendorx'),
+            'registration29'                  =>  __('Register', 'multivendorx'),
+
+            'question-format'                 => array(
+                array(
+                    'value' => 'select_question_type',
+                    'label' =>  __('Select question type', 'multivendorx')
+                ),
+                array(
+                    'value' => 'textbox',
+                    'label' =>  __('Textbox', 'multivendorx')
+                ),
+                array(
+                    'value' => 'email',
+                    'label' =>  __('Email', 'multivendorx')
+                ),
+                array(
+                    'value' => 'url',
+                    'label' =>  __('Url', 'multivendorx')
+                ),
+                array(
+                    'value' => 'textarea',
+                    'label' =>  __('Textarea', 'multivendorx')
+                ),
+                array(
+                    'value' => 'checkboxes',
+                    'label' =>  __('Checkboxes', 'multivendorx')
+                ),
+                array(
+                    'value' => 'multi-select',
+                    'label' =>  __('Multi Select', 'multivendorx')
+                ),
+                array(
+                    'value' => 'radio',
+                    'label' =>  __('Radio', 'multivendorx')
+                ),
+                array(
+                    'value' => 'dropdown',
+                    'label' =>  __('Dropdown', 'multivendorx')
+                ),
+                array(
+                    'value' => 'recapta',
+                    'label' =>  __('Recapta', 'multivendorx')
+                ),
+                array(
+                    'value' => 'attachment',
+                    'label' =>  __('Attachment', 'multivendorx')
+                ),
+                array(
+                    'value' => 'section',
+                    'label' =>  __('Section', 'multivendorx')
+                ),
+                array(
+                    'value' => 'vendor_description',
+                    'label' =>  __('Store Description', 'multivendorx')
+                ),
+                array(
+                    'value' => 'vendor_address_1',
+                    'label' =>  __('Address 1', 'multivendorx')
+                ),
+                array(
+                    'value' => 'vendor_address_2',
+                    'label' =>  __('Address 2', 'multivendorx')
+                ),
+                array(
+                    'value' => 'vendor_phone',
+                    'label' =>  __('Phone', 'multivendorx')
+                ),
+                array(
+                    'value' => 'vendor_country',
+                    'label' =>  __('Country', 'multivendorx')
+                ),
+                array(
+                    'value' => 'vendor_state',
+                    'label' =>  __('State', 'multivendorx')
+                ),
+                array(
+                    'value' => 'vendor_city',
+                    'label' =>  __('City', 'multivendorx')
+                ),
+                array(
+                    'value' => 'vendor_postcode',
+                    'label' =>  __('Postcode', 'multivendorx')
+                ),
+                array(
+                    'value' => 'vendor_paypal_email',
+                    'label' =>  __('PayPal Email', 'multivendorx')
+                )
+            )
         );
 
         $report_page_string = array(
@@ -904,6 +998,7 @@ class MVX_Admin {
             'commission_page_string'        =>  $commission_page_string,
             'vendor_page_string'            =>  $vendor_page_string,
             'status_and_tools_string'       =>  $status_and_tools_string,
+            'settings_page_string'          =>  $settings_page_string,
             'global_string'                 =>  $global_string,
             'report_product_header'         =>  $report_product_header,
             'report_vendor_header'          =>  $report_vendor_header,

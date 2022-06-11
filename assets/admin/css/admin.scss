@@ -1244,31 +1244,21 @@ textarea, input[type=text], select, input, .default-input {
     border: $border;
 }
 .mvx-form-vendor-register {
-    & .mvx-top-part-registartion-from{
-        & .mvx-registration-content {
-            & .mvx-form-registration-group {
-                padding: 2rem;
-                background-color: #f7f6f9;
-                border-radius: 0.4rem;
-                margin: 0.7rem 0;
-                border: 0.0625rem solid #d4d1d9;
-                & .mvx-untitle-content {
-                    margin: 0 0 8px 0;
-                    & div {
-                        padding: 8px 0 16px 0;
-                    }
-                }
-                & input {
-                    height: 40px;
-                }
-                & input[type=checkbox] {
-                    height: 16px !important;
-                }
-                & .mvx-registration-from-description {
-                    & div {
-                        padding: 8px 0 16px 0;
-                    }
-                }
+    & .mvx-top-part-registartion-from {
+        padding: 2rem;
+        background-color: #f7f6f9;
+        border-radius: 0.4rem;
+        margin: 0.7rem 0;
+        border: 0.0625rem solid #d4d1d9;
+        & input {
+            height: 40px;
+        }
+        & input[type=checkbox] {
+            height: 16px !important;
+        }
+        & .mvx-registration-from-content-and-description {
+            & div {
+                padding: 8px 0 16px 0;
             }
         }
     }
