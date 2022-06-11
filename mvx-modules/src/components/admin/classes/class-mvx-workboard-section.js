@@ -9,9 +9,6 @@ import {
   BrowserRouter as Router,
   Link,
   useLocation,
-  withRouter,
-  useParams,
-  NavLink
 } from "react-router-dom";
 
 import DynamicForm from "../../../DynamicForm";
@@ -82,19 +79,14 @@ class MVX_Workboard extends Component {
     this.onSelectedRowsChange = this.onSelectedRowsChange.bind(this);
     this.handle_work_board_chenage = this.handle_work_board_chenage.bind(this);
     this.handlePostDismiss = this.handlePostDismiss.bind(this);
-
     // pending product todo action
     this.handle_product_request_by_vendors = this.handle_product_request_by_vendors.bind(this);
-
     // trigger questions
     this.handle_question_request_by_vendors = this.handle_question_request_by_vendors.bind(this);
-
     // trigger counpon todo
     this.handle_coupon_request_by_vendors = this.handle_coupon_request_by_vendors.bind(this);
-
     //trigger todo user
     this.handle_user_request_by_vendors = this.handle_user_request_by_vendors.bind(this);
-
     // individual checkbox trigger
     this.handle_todo_checkbox_chenage = this.handle_todo_checkbox_chenage.bind(this);
     this.handle_todo_user_chenage = this.handle_todo_user_chenage.bind(this);
@@ -119,7 +111,6 @@ class MVX_Workboard extends Component {
     this.handle_question_delete = this.handle_question_delete.bind(this);
     this.handle_transaction_request_by_vendors = this.handle_transaction_request_by_vendors.bind(this);
     this.handle_question_bulk_status_change = this.handle_question_bulk_status_change.bind(this);
-    
   }
 
   handle_question_bulk_status_change(e) {
@@ -147,13 +138,12 @@ class MVX_Workboard extends Component {
           list_of_publish_question: response.data,
         });
       })
-
     }
   }
 
   handle_transaction_request_by_vendors(e, transaction_id, vendor_id, status) {
     if (status == "dismiss") {
-      if (confirm("Are you sure to dismiss?")) {
+      if (confirm(appLocalizer.global_string.confirm_dismiss)) {
         axios({
           method: 'post',
           url: `${appLocalizer.apiUrl}/mvx_module/v1/approve_dismiss_pending_transaction`,
@@ -171,25 +161,25 @@ class MVX_Workboard extends Component {
       }
     } else {
       axios({
-          method: 'post',
-          url: `${appLocalizer.apiUrl}/mvx_module/v1/approve_dismiss_pending_transaction`,
-          data: {
-            transaction_id: transaction_id,
-            vendor_id: vendor_id,
-            status: status
-          }
-        })
-        .then((responce) => {
-          this.setState({
-            list_of_pending_transaction: responce.data,
-          });
+        method: 'post',
+        url: `${appLocalizer.apiUrl}/mvx_module/v1/approve_dismiss_pending_transaction`,
+        data: {
+          transaction_id: transaction_id,
+          vendor_id: vendor_id,
+          status: status
+        }
+      })
+      .then((responce) => {
+        this.setState({
+          list_of_pending_transaction: responce.data,
         });
+      });
     }
   }
 
   handle_question_delete(e, question_id, product_id, type) {
     if (type == "rejected") {
-      if (confirm("Are you sure to delete?")) {
+      if (confirm(appLocalizer.global_string.confirm_dismiss)) {
         axios({
           method: 'post',
           url: `${appLocalizer.apiUrl}/mvx_module/v1/approve_dismiss_pending_question`,
@@ -224,7 +214,7 @@ class MVX_Workboard extends Component {
   }
 
   handleAbuseDismiss(reason, product, vendor) {
-    if (confirm("Are you sure to delete?")) {
+    if (confirm(appLocalizer.global_string.confirm_delete)) {
       axios({
         method: 'post',
         url: `${appLocalizer.apiUrl}/mvx_module/v1/report_abuse_delete`,
@@ -310,7 +300,7 @@ class MVX_Workboard extends Component {
   }
 
   handle_review_bulk_status(e) {
-    if (confirm("Are you sure to delete?")) {
+    if (confirm(appLocalizer.global_string.confirm_delete)) {
       axios({
         method: 'post',
         url: `${appLocalizer.apiUrl}/mvx_module/v1/delete_review`,
@@ -318,26 +308,22 @@ class MVX_Workboard extends Component {
           id: this.state.bulkselectreviewlist,
         }
       })
-        .then((responce) => {
-
-          this.setState({
-            list_of_store_review: responce.data,
-          });
-
+      .then((responce) => {
+        this.setState({
+          list_of_store_review: responce.data,
         });
+      });
     }
-
   }
 
   handleselectreviews(e) {
     this.setState({
       bulkselectreviewlist: e.selectedRows,
     })
-
   }
 
   handleReviewDismiss(id) {
-    if (confirm("Are you sure to delete?")) {
+    if (confirm(appLocalizer.global_string.confirm_delete)) {
       axios({
         method: 'post',
         url: `${appLocalizer.apiUrl}/mvx_module/v1/delete_review`,
@@ -345,13 +331,11 @@ class MVX_Workboard extends Component {
           id: id,
         }
       })
-        .then((responce) => {
-
-          this.setState({
-            list_of_store_review: responce.data,
-          });
-
+      .then((responce) => {
+        this.setState({
+          list_of_store_review: responce.data,
         });
+      });
     }
   }
 
@@ -364,16 +348,15 @@ class MVX_Workboard extends Component {
         value: e.target.value,
       }
     })
-      .then((responce) => {
-        this.setState({
-          list_of_publish_question: responce.data,
-        });
+    .then((responce) => {
+      this.setState({
+        list_of_publish_question: responce.data,
       });
+    });
   }
 
   handle_task_board_bulk_chenage(e, type) {
     if (type == 'product_approval') {
-
       axios({
         method: 'post',
         url: `${appLocalizer.apiUrl}/mvx_module/v1/bulk_todo_pending_product`,
@@ -383,14 +366,12 @@ class MVX_Workboard extends Component {
           type: type
         }
       })
-        .then((responce) => {
-          this.setState({
-            list_of_pending_vendor_product: responce.data,
-          });
+      .then((responce) => {
+        this.setState({
+          list_of_pending_vendor_product: responce.data,
         });
-
+      });
     } else if (type == 'user_approval') {
-
       axios({
         method: 'post',
         url: `${appLocalizer.apiUrl}/mvx_module/v1/bulk_todo_pending_product`,
@@ -400,14 +381,12 @@ class MVX_Workboard extends Component {
           type: type
         }
       })
-        .then((responce) => {
-          this.setState({
-            list_of_pending_vendor_product: responce.data,
-          });
+      .then((responce) => {
+        this.setState({
+          list_of_pending_vendor_product: responce.data,
         });
-
+      });
     } else if (type == 'coupon_approval') {
-
       axios({
         method: 'post',
         url: `${appLocalizer.apiUrl}/mvx_module/v1/bulk_todo_pending_product`,
@@ -417,14 +396,12 @@ class MVX_Workboard extends Component {
           type: type
         }
       })
-        .then((responce) => {
-          this.setState({
-            list_of_pending_vendor_product: responce.data,
-          });
+      .then((responce) => {
+        this.setState({
+          list_of_pending_vendor_product: responce.data,
         });
-
+      });
     } else if (type == 'transaction_approval') {
-
       axios({
         method: 'post',
         url: `${appLocalizer.apiUrl}/mvx_module/v1/bulk_todo_pending_product`,
@@ -439,9 +416,7 @@ class MVX_Workboard extends Component {
           list_of_pending_transaction: responce.data,
         });
       });
-
     } else if (type == 'question_approval') {
-
       axios({
         method: 'post',
         url: `${appLocalizer.apiUrl}/mvx_module/v1/bulk_todo_pending_product`,
@@ -451,14 +426,12 @@ class MVX_Workboard extends Component {
           type: type
         }
       })
-        .then((responce) => {
-          this.setState({
-            list_of_pending_question: responce.data,
-          });
+      .then((responce) => {
+        this.setState({
+          list_of_pending_question: responce.data,
         });
-
+      });
     }
-
   }
 
 
@@ -533,14 +506,9 @@ class MVX_Workboard extends Component {
     }
   }
 
-
-
   /**************************  Parent checkbox trigger end **************************************/
-
-
   // individual checkbox trigger
   handle_todo_checkbox_chenage(e, id, position) {
-
     var updatedCheckedState = this.state.pending_product_check.map((item, index) =>
       index === position ? !item : item
     );
@@ -551,7 +519,6 @@ class MVX_Workboard extends Component {
   }
 
   handle_todo_user_chenage(e, id, position) {
-
     var updatedCheckedState = this.state.pending_user_check.map((item, index) =>
       index === position ? !item : item
     );
@@ -562,7 +529,6 @@ class MVX_Workboard extends Component {
   }
 
   handle_todo_coupon_chenage(e, id, position) {
-
     var updatedCheckedState = this.state.pending_coupon_check.map((item, index) =>
       index === position ? !item : item
     );
@@ -573,7 +539,6 @@ class MVX_Workboard extends Component {
   }
 
   handle_todo_transaction_chenage(e, id, position) {
-
     var updatedCheckedState = this.state.pending_transaction_check.map((item, index) =>
       index === position ? !item : item
     );
@@ -584,7 +549,6 @@ class MVX_Workboard extends Component {
   }
 
   handle_todo_question_checkbox_chenage(e, id, position) {
-
     var updatedCheckedState = this.state.pending_question_check.map((item, index) =>
       index === position ? !item : item
     );
@@ -593,7 +557,6 @@ class MVX_Workboard extends Component {
       pending_question_check: updatedCheckedState,
     });
   }
-
 
   handle_question_request_by_vendors(e, question_id, product_id, type) {
     axios({
@@ -605,15 +568,14 @@ class MVX_Workboard extends Component {
         type: type
       }
     })
-      .then((responce) => {
-        this.setState({
-          list_of_pending_question: responce.data,
-        });
+    .then((responce) => {
+      this.setState({
+        list_of_pending_question: responce.data,
       });
+    });
   }
 
   handle_coupon_request_by_vendors(e, id, type) {
-
     axios({
       method: 'post',
       url: `${appLocalizer.apiUrl}/mvx_module/v1/dismiss_and_approve_vendor_coupon`,
@@ -622,17 +584,16 @@ class MVX_Workboard extends Component {
         type: type
       }
     })
-      .then((responce) => {
-        this.setState({
-          list_of_pending_vendor_coupon: responce.data,
-        });
+    .then((responce) => {
+      this.setState({
+        list_of_pending_vendor_coupon: responce.data,
       });
-
+    });
   }
 
   handle_user_request_by_vendors(e, id, type) {
     if (type == 'dismiss') {
-      if (confirm("Are you sure to dismiss?")) {
+      if (confirm(appLocalizer.global_string.confirm_dismiss)) {
         axios({
           method: 'post',
           url: `${appLocalizer.apiUrl}/mvx_module/v1/dismiss_vendor`,
@@ -648,7 +609,7 @@ class MVX_Workboard extends Component {
       }
 
     } else if (type == 'approve') {
-      if (confirm("Are you sure to approve?")) {
+      if (confirm(appLocalizer.global_string.confirm_approve)) {
         axios({
           method: 'post',
           url: `${appLocalizer.apiUrl}/mvx_module/v1/approve_vendor`,
@@ -665,10 +626,9 @@ class MVX_Workboard extends Component {
     }
   }
 
-
   handle_product_request_by_vendors(e, product_id, vendor_id, type) {
     if (type == 'dismiss') {
-      if (confirm("Are you sure to dismiss?")) {
+      if (confirm(appLocalizer.global_string.confirm_dismiss)) {
         axios({
           method: 'post',
           url: `${appLocalizer.apiUrl}/mvx_module/v1/dismiss_requested_vendors_query`,
@@ -685,7 +645,7 @@ class MVX_Workboard extends Component {
         });
       }
     } else if (type == 'approve') {
-      if (confirm("Are you sure to approve?")) {
+      if (confirm(appLocalizer.global_string.confirm_approve)) {
         axios({
           method: 'post',
           url: `${appLocalizer.apiUrl}/mvx_module/v1/approve_product`,
@@ -704,10 +664,8 @@ class MVX_Workboard extends Component {
     }
   }
 
-
   handlePostDismiss(e, title) {
-
-    if (confirm("Are you sure to delete?")) {
+    if (confirm(appLocalizer.global_string.confirm_delete)) {
       axios({
         method: 'post',
         url: `${appLocalizer.apiUrl}/mvx_module/v1/delete_post_details`,
@@ -716,15 +674,12 @@ class MVX_Workboard extends Component {
           title: title
         }
       })
-        .then((responce) => {
-
-          this.setState({
-            display_announcement: responce.data,
-          });
-
+      .then((responce) => {
+        this.setState({
+          display_announcement: responce.data,
         });
+      });
     }
-
   }
 
   handle_work_board_chenage(e, type) {
@@ -737,14 +692,9 @@ class MVX_Workboard extends Component {
           value: e.value
         }
       })
-        .then((responce) => {
-        });
-
-
-
+      .then((responce) => {});
     }
   }
-
 
   onSelectedRowsChange(e) {
     this.setState({
@@ -753,36 +703,30 @@ class MVX_Workboard extends Component {
   }
 
   handle_post_retrive_status(e, status, type) {
-
     if (type == 'announcement') {
       axios.get(
         `${appLocalizer.apiUrl}/mvx_module/v1/display_announcement`, {
         params: { status: status }
       })
-        .then(response => {
-          this.setState({
-            display_announcement: response.data,
-          });
-        })
+      .then(response => {
+        this.setState({
+          display_announcement: response.data,
+        });
+      })
     } else if (type == 'knowladgebase') {
-
       axios.get(
         `${appLocalizer.apiUrl}/mvx_module/v1/display_list_knowladgebase`, {
         params: { status: status }
       })
-        .then(response => {
-          this.setState({
-            display_list_knowladgebase: response.data,
-          });
-        })
-
+      .then(response => {
+        this.setState({
+          display_list_knowladgebase: response.data,
+        });
+      })
     }
-
   }
 
-
   handle_post_bulk_status(e, type) {
-
     if (type == 'announcement') {
       axios({
         method: 'post',
@@ -792,14 +736,12 @@ class MVX_Workboard extends Component {
           value: e.target.value
         }
       })
-        .then((responce) => {
-          this.setState({
-            display_announcement: responce.data,
-          });
-
+      .then((responce) => {
+        this.setState({
+          display_announcement: responce.data,
         });
+      });
     } else if (type == 'knowladgebase') {
-
       axios({
         method: 'post',
         url: `${appLocalizer.apiUrl}/mvx_module/v1/search_knowledgebase`,
@@ -807,13 +749,11 @@ class MVX_Workboard extends Component {
           value: e.target.value
         }
       })
-        .then((responce) => {
-          this.setState({
-            display_list_knowladgebase: responce.data,
-          });
-
+      .then((responce) => {
+        this.setState({
+          display_list_knowladgebase: responce.data,
         });
-
+      });
     }
   }
 
@@ -824,110 +764,99 @@ class MVX_Workboard extends Component {
     axios.get(
       `${appLocalizer.apiUrl}/mvx_module/v1/display_announcement`
     )
-      .then(response => {
-        this.setState({
-          display_announcement: response.data,
-        });
-      })
+    .then(response => {
+      this.setState({
+        display_announcement: response.data,
+      });
+    })
 
     // pending announcement
     axios.get(
       `${appLocalizer.apiUrl}/mvx_module/v1/display_announcement`, {
       params: { status: 'pending' }
     })
-      .then(response => {
-        this.setState({
-          display_pending_announcement: response.data,
-        });
-      })
+    .then(response => {
+      this.setState({
+        display_pending_announcement: response.data,
+      });
+    })
 
     // published announcement
     axios.get(
       `${appLocalizer.apiUrl}/mvx_module/v1/display_announcement`, {
       params: { status: 'publish' }
     })
-      .then(response => {
-        this.setState({
-          display_published_announcement: response.data,
-        });
-      })
+    .then(response => {
+      this.setState({
+        display_published_announcement: response.data,
+      });
+    })
 
     // all announcement count
     axios.get(
       `${appLocalizer.apiUrl}/mvx_module/v1/display_announcement`, {
       params: { status: 'all' }
     })
-      .then(response => {
-        this.setState({
-          display_all_announcement: response.data,
-        });
-      })
+    .then(response => {
+      this.setState({
+        display_all_announcement: response.data,
+      });
+    })
     /***********  Announcement  ******************/
 
-
     /***********  Knowledgebase  **************/
-
     axios.get(
       `${appLocalizer.apiUrl}/mvx_module/v1/display_list_knowladgebase`
     )
-      .then(response => {
-        this.setState({
-          display_list_knowladgebase: response.data,
-        });
-      })
-
+    .then(response => {
+      this.setState({
+        display_list_knowladgebase: response.data,
+      });
+    })
 
     axios.get(
       `${appLocalizer.apiUrl}/mvx_module/v1/display_list_knowladgebase`, {
       params: { status: 'all' }
     })
-      .then(response => {
-        this.setState({
-          display_all_knowladgebase: response.data,
-        });
-      })
-
+    .then(response => {
+      this.setState({
+        display_all_knowladgebase: response.data,
+      });
+    })
 
     axios.get(
       `${appLocalizer.apiUrl}/mvx_module/v1/display_list_knowladgebase`, {
       params: { status: 'publish' }
     })
-      .then(response => {
-        this.setState({
-          display_publish_knowladgebase: response.data,
-        });
-      })
-
+    .then(response => {
+      this.setState({
+        display_publish_knowladgebase: response.data,
+      });
+    })
 
     axios.get(
       `${appLocalizer.apiUrl}/mvx_module/v1/display_list_knowladgebase`, {
       params: { status: 'pending' }
     })
-      .then(response => {
-        this.setState({
-          display_pending_knowladgebase: response.data,
-        });
-      })
-
-
-
+    .then(response => {
+      this.setState({
+        display_pending_knowladgebase: response.data,
+      });
+    })
 
     /******** Knowledgebase end  ************/
-
-
     // pending details
     axios.get(
       `${appLocalizer.apiUrl}/mvx_module/v1/list_of_pending_question`
     )
-      .then(response => {
-        var all_pending_data_checkbox = new Array(response.data.length).fill(false);
-        this.setState({
-          list_of_pending_question: response.data,
-          pending_question_check: all_pending_data_checkbox,
-          pending_question_loding_end: true
-        });
-      })
-
+    .then(response => {
+      var all_pending_data_checkbox = new Array(response.data.length).fill(false);
+      this.setState({
+        list_of_pending_question: response.data,
+        pending_question_check: all_pending_data_checkbox,
+        pending_question_loding_end: true
+      });
+    })
 
     // publish details
     axios.get(
@@ -940,102 +869,92 @@ class MVX_Workboard extends Component {
       });
     })
 
-
     axios.get(
       `${appLocalizer.apiUrl}/mvx_module/v1/list_of_pending_transaction`
     )
-      .then(response => {
-        this.setState({
-          list_of_pending_transaction: response.data,
-          pending_transaction_loding_end: true,
-          pending_transaction_check: new Array(response.data.length).fill(false)
-        });
-      })
-
+    .then(response => {
+      this.setState({
+        list_of_pending_transaction: response.data,
+        pending_transaction_loding_end: true,
+        pending_transaction_check: new Array(response.data.length).fill(false)
+      });
+    })
 
     axios.get(
       `${appLocalizer.apiUrl}/mvx_module/v1/list_of_pending_vendor_coupon`
     )
-      .then(response => {
-        this.setState({
-          list_of_pending_vendor_coupon: response.data,
-          pending_coupon_loding_end: true,
-          pending_coupon_check: new Array(response.data.length).fill(false)
-        });
-      })
-
+    .then(response => {
+      this.setState({
+        list_of_pending_vendor_coupon: response.data,
+        pending_coupon_loding_end: true,
+        pending_coupon_check: new Array(response.data.length).fill(false)
+      });
+    })
 
     axios.get(
       `${appLocalizer.apiUrl}/mvx_module/v1/list_of_pending_vendor`
     )
-      .then(response => {
-        var all_pending_data_checkbox = new Array(response.data.length).fill(false);
-        this.setState({
-          list_of_pending_vendor: response.data,
-          pending_user_loding_end: true,
-          pending_user_check: all_pending_data_checkbox,
-        });
-      })
+    .then(response => {
+      var all_pending_data_checkbox = new Array(response.data.length).fill(false);
+      this.setState({
+        list_of_pending_vendor: response.data,
+        pending_user_loding_end: true,
+        pending_user_check: all_pending_data_checkbox,
+      });
+    })
 
     axios.get(
       `${appLocalizer.apiUrl}/mvx_module/v1/list_of_pending_vendor_product`
     )
-      .then(response => {
-        var all_pending_product_checkbox = new Array(response.data.length).fill(false);
+    .then(response => {
+      var all_pending_product_checkbox = new Array(response.data.length).fill(false);
 
-        this.setState({
-          list_of_pending_vendor_product: response.data,
-          pending_product_loding_end: true,
-          pending_product_check: all_pending_product_checkbox
-        });
-      })
-
-
-
-
+      this.setState({
+        list_of_pending_vendor_product: response.data,
+        pending_product_loding_end: true,
+        pending_product_check: all_pending_product_checkbox
+      });
+    })
 
     // fetch review
     axios.get(
       `${appLocalizer.apiUrl}/mvx_module/v1/list_of_store_review`
     )
-      .then(response => {
-        this.setState({
-          list_of_store_review: response.data,
-        });
-      })
-
+    .then(response => {
+      this.setState({
+        list_of_store_review: response.data,
+      });
+    })
 
     // fetch review
     axios.get(
       `${appLocalizer.apiUrl}/mvx_module/v1/report_abuse_details`
     )
-      .then(response => {
-        this.setState({
-          list_of_report_abuse: response.data,
-        });
-      })
-
+    .then(response => {
+      this.setState({
+        list_of_report_abuse: response.data,
+      });
+    })
 
     // get vendor name on select
     axios({
       url: `${appLocalizer.apiUrl}/mvx_module/v1/show_vendor_name`
     })
-      .then(response => {
-        this.setState({
-          show_vendor_name: response.data,
-        });
-      })
+    .then(response => {
+      this.setState({
+        show_vendor_name: response.data,
+      });
+    })
 
     // product list
     axios({
       url: `${appLocalizer.apiUrl}/mvx_module/v1/product_list_option`
     })
-      .then(response => {
-        this.setState({
-          product_list_option: response.data,
-        });
-      })
-
+    .then(response => {
+      this.setState({
+        product_list_option: response.data,
+      });
+    })
 
     // tab list
     axios({
@@ -1046,7 +965,6 @@ class MVX_Workboard extends Component {
         list_of_all_tabs: response.data,
       });
     })
-
   }
 
   useQuery() {
@@ -1054,7 +972,6 @@ class MVX_Workboard extends Component {
   }
 
   QueryParamsDemo() {
-
     // update announcement table when clock on announcement tab
     if (new URLSearchParams(window.location.hash).get("name") == 'announcement') {
       axios.get(
@@ -1098,9 +1015,7 @@ class MVX_Workboard extends Component {
 
   Child({ name }) {
 
-
     var get_current_name = this.useQuery();
-
 
     if (!get_current_name.get("AnnouncementID")) {
       this.state.edit_announcement_fileds = [];
@@ -1108,7 +1023,6 @@ class MVX_Workboard extends Component {
 
     if (!get_current_name.get("knowladgebaseID")) {
       this.state.edit_knowledgebase_fileds = [];
-      //this.state.columns_knowledgebase_new = [];
     }
 
     if (get_current_name.get("AnnouncementID")) {
@@ -1139,13 +1053,6 @@ class MVX_Workboard extends Component {
         })
     }
 
-
-
-
-
-
-
-
     // Display table column and row slection
     if (this.state.columns_announcement_new.length == 0 && new URLSearchParams(window.location.hash).get("name") == 'announcement') {
       appLocalizer.columns_announcement.map((data_ann, index_ann) => {
@@ -1154,14 +1061,10 @@ class MVX_Workboard extends Component {
         data_selector = data_ann['selector_choice'];
         data_ann.selector = row => <div dangerouslySetInnerHTML={{ __html: row[data_selector] }}></div>;
 
-
         data_ann.cell ? data_ann.cell = (row) => <div className="mvx-vendor-action-icon">
-
           <a href={row.link}><i className="mvx-font icon-edit"></i></a>
           <div onClick={() => this.handlePostDismiss(row.id, row.type)} id={row.id}><i className="mvx-font icon-no"></i></div>
-
         </div> : '';
-
 
         this.state.columns_announcement_new[index_ann] = data_ann
         set_for_dynamic_column = this.state.columns_announcement_new;
@@ -1173,7 +1076,6 @@ class MVX_Workboard extends Component {
     }
     // Display table column and row slection end
 
-
     // Display table column and row slection for questions
     if (this.state.columns_questions_new.length == 0 && new URLSearchParams(window.location.hash).get("name") == 'question-ans') {
       appLocalizer.columns_questions.map((data_ques, index_ques) => {
@@ -1182,14 +1084,12 @@ class MVX_Workboard extends Component {
         data_selector_question = data_ques['selector_choice'];
         data_ques.selector = row => <div dangerouslySetInnerHTML={{ __html: row[data_selector_question] }}></div>;
 
-
         data_ques.cell ? data_ques.cell = (row) => <div className="mvx-vendor-action-icon">
 
           <div onClick={(e) => this.handle_question_delete(e, row.id, row.question_product_id, 'verified')} id={row.id}><i className="mvx-font icon-approve"></i></div>
           <div onClick={(e) => this.handle_question_delete(e, row.id, row.question_product_id, 'rejected')} id={row.id}><i className="mvx-font icon-no"></i></div>
 
         </div> : '';
-
 
         this.state.columns_questions_new[index_ques] = data_ques
         set_for_dynamic_column_question = this.state.columns_questions_new;
@@ -1223,10 +1123,8 @@ class MVX_Workboard extends Component {
         this.setState({
           columns_knowledgebase_new: set_for_dynamic_column_know,
         });
-      }
-      )
+      })
     }
-
 
     // Display table column and row slection
     if (this.state.columns_store_review.length == 0 && new URLSearchParams(window.location.hash).get("name") == 'store-review') {
@@ -1236,12 +1134,9 @@ class MVX_Workboard extends Component {
         data_store_review_selector = data_store_review_content['selector_choice'];
         data_store_review_content.selector = row => <div dangerouslySetInnerHTML={{ __html: row[data_store_review_selector] }}></div>;
 
-
         data_store_review_content.cell ? data_store_review_content.cell = (row) => <div className="mvx-vendor-action-icon">
-
           <a href={row.link}><i className="mvx-font icon-edit"></i></a>
           <div onClick={() => this.handleReviewDismiss(row.id)} id={row.id}><i className="mvx-font icon-no"></i></div>
-
         </div> : '';
 
         this.state.columns_store_review[index_store_review] = data_store_review_content
@@ -1249,10 +1144,8 @@ class MVX_Workboard extends Component {
         this.setState({
           columns_store_review: set_for_dynamic_column_store_review,
         });
-      }
-      )
+      })
     }
-
 
     // Display table column and row slection
     if (this.state.columns_report_abuse.length == 0 && new URLSearchParams(window.location.hash).get("name") == 'report-abuse') {
@@ -1272,8 +1165,7 @@ class MVX_Workboard extends Component {
         this.setState({
           columns_report_abuse: set_for_dynamic_column_store_review,
         });
-      }
-      )
+      })
     }
 
     return (
@@ -1349,11 +1241,6 @@ class MVX_Workboard extends Component {
               {/* Pending Vendor's product approval end */}
 
 
-
-
-
-
-
               {/* Pending Vendor approval work done */}
               <div className="mvx-todo-status-check">
 
@@ -1372,7 +1259,6 @@ class MVX_Workboard extends Component {
 
 
                 <div className="mvx-product-box-sec">
-
                   {
                     this.state.list_of_pending_vendor.length > 0 ? this.state.list_of_pending_vendor.map((pending_data, pending_index) => (
 
@@ -1421,12 +1307,6 @@ class MVX_Workboard extends Component {
               </div>
               {/* Pending Vendor approval end */}
 
-
-
-
-
-
-
               {/* Pending Vendor's coupon approval work done */}
               <div className="mvx-todo-status-check">
 
@@ -1442,8 +1322,6 @@ class MVX_Workboard extends Component {
                     <Select placeholder="Bulk Action" options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'coupon_approval')} />
                   </div>
                 </div>
-
-
 
                 <div className="mvx-product-box-sec">
 
@@ -1487,9 +1365,6 @@ class MVX_Workboard extends Component {
                           </div>
                         </div>
                       </div>
-
-
-
                     )
                     )
                       : this.state.pending_coupon_loding_end ? <div className='mvx-col-100 mb-30'>No Coupon Found</div> : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
@@ -1498,10 +1373,6 @@ class MVX_Workboard extends Component {
                 </div>
               </div>
               {/* Pending Vendor's coupon approval end */}
-
-
-
-
 
 
               {/* Pending tranasction approval work done */}
@@ -1519,7 +1390,6 @@ class MVX_Workboard extends Component {
                     <Select placeholder="Bulk Action" options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'transaction_approval')} />
                   </div>
                 </div>
-
 
                 <div className="mvx-product-box-sec">
 
@@ -1571,10 +1441,6 @@ class MVX_Workboard extends Component {
                           </div>
                         </div>
                       </div>
-
-
-
-
                     )
                     )
                       : this.state.pending_transaction_loding_end ? <div className='mvx-col-100 mb-30'>No Transaction Found</div> : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
@@ -1583,12 +1449,6 @@ class MVX_Workboard extends Component {
                 </div>
               </div>
               {/* Pending tranasction approval end */}
-
-
-
-
-
-
 
 
               {/* Pending question approval work done */}
@@ -1606,7 +1466,6 @@ class MVX_Workboard extends Component {
                     <Select placeholder="Bulk Action" options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'question_approval')} />
                   </div>
                 </div>
-
 
 
                 <div className="mvx-product-box-sec">
@@ -1658,7 +1517,6 @@ class MVX_Workboard extends Component {
                         </div>
                       </div>
 
-
                     )
                     )
                       : this.state.pending_question_loding_end ? <div className='mvx-col-100 mb-30'>No Question Found</div> : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
@@ -1667,11 +1525,6 @@ class MVX_Workboard extends Component {
                 </div>
               </div>
               {/* Pending question approval end */}
-
-
-
-
-
 
             </div>
 
@@ -1732,11 +1585,11 @@ class MVX_Workboard extends Component {
                             <li className='mvx-multistatus-item'>
                               <div className="mvx-multistatus-check-all" onClick={(e) => this.handle_post_retrive_status(e, 'all', 'announcement')}>All({this.state.display_all_announcement.length})</div>
                             </li>
-                            <li class="mvx-multistatus-item mvx-divider"></li>
+                            <li className="mvx-multistatus-item mvx-divider"></li>
                             <li className='mvx-multistatus-item'>
                               <div className="mvx-multistatus-check-approve" onClick={(e) => this.handle_post_retrive_status(e, 'publish', 'announcement')}>Published ({this.state.display_published_announcement.length})</div>
                             </li>
-                            <li class="mvx-multistatus-item mvx-divider"></li>
+                            <li className="mvx-multistatus-item mvx-divider"></li>
                             <li className='mvx-multistatus-item'>
                               <div className="mvx-multistatus-check-pending status-active" onClick={(e) => this.handle_post_retrive_status(e, 'pending', 'announcement')}>Pending ({this.state.display_pending_announcement.length})</div>
                             </li>
@@ -1834,12 +1687,12 @@ class MVX_Workboard extends Component {
                               <li className='mvx-multistatus-item'>
                                 <div className="mvx-multistatus-check-all" onClick={(e) => this.handle_post_retrive_status(e, 'all', 'knowladgebase')}>All({this.state.display_all_knowladgebase.length})</div>
                               </li>
-                              <li class="mvx-multistatus-item mvx-divider"></li>
-                              <li class="mvx-multistatus-item">
+                              <li className="mvx-multistatus-item mvx-divider"></li>
+                              <li className="mvx-multistatus-item">
                                 <div className="mvx-multistatus-check-approve" onClick={(e) => this.handle_post_retrive_status(e, 'publish', 'knowladgebase')}>Published({this.state.display_publish_knowladgebase.length})</div>
                               </li>
-                              <li class="mvx-multistatus-item mvx-divider"></li>
-                              <li class="mvx-multistatus-item">
+                              <li className="mvx-multistatus-item mvx-divider"></li>
+                              <li className="mvx-multistatus-item">
                                 <div className="mvx-multistatus-check-pending status-active" onClick={(e) => this.handle_post_retrive_status(e, 'pending', 'knowladgebase')}>Pending ({this.state.display_pending_knowladgebase.length})</div>
                               </li>
                             </ul>
@@ -1892,7 +1745,7 @@ class MVX_Workboard extends Component {
                       <div className="mvx-multistatus-sec">
                         <ul className='mvx-multistatus-ul'>
                           <li className='mvx-multistatus-item'>
-                            <div class="mvx-multistatus-check-all">All ({this.state.list_of_store_review.length})</div>
+                            <div className="mvx-multistatus-check-all">All ({this.state.list_of_store_review.length})</div>
                           </li>
                           <li clasName='mvx-multistatus-item mvx-divider'></li>
                         </ul>
@@ -1975,22 +1828,22 @@ class MVX_Workboard extends Component {
 
                       <div className="mvx-module-grid">
 
-                        <div class="mvx-search-and-multistatus-wrap">
-                          <div class="mvx-multistatus-sec">
-                            <ul class="mvx-multistatus-ul">
-                              <li class="mvx-multistatus-item">
-                                <div class="mvx-multistatus-check-all">All ({this.state.list_of_publish_question.length})</div>
+                        <div className="mvx-search-and-multistatus-wrap">
+                          <div className="mvx-multistatus-sec">
+                            <ul className="mvx-multistatus-ul">
+                              <li className="mvx-multistatus-item">
+                                <div className="mvx-multistatus-check-all">All ({this.state.list_of_publish_question.length})</div>
                               </li>
 
-                              <li class="mvx-multistatus-item mvx-divider"></li>
+                              <li className="mvx-multistatus-item mvx-divider"></li>
 
-                              <li class="mvx-multistatus-item">
-                                <div class="mvx-multistatus-check-pending status-active">Pending ({this.state.list_of_pending_question.length})</div>
+                              <li className="mvx-multistatus-item">
+                                <div className="mvx-multistatus-check-pending status-active">Pending ({this.state.list_of_pending_question.length})</div>
                               </li>
 
                             </ul>
                           </div>
-                          <div class="mvx-searchbar-sec">
+                          <div className="mvx-searchbar-sec">
                             <div className='mvx-header-search-section'>
                               <label><i className='mvx-font icon-search'></i></label>
                               <input type="text" placeholder="Search Question" name="search" onChange={(e) => this.handle_question_search(e)} />

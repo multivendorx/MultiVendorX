@@ -8,9 +8,6 @@ import {
   BrowserRouter as Router,
   Link,
   useLocation,
-  withRouter,
-  useParams,
-  NavLink
 } from "react-router-dom";
 
 import DynamicForm from "../../../DynamicForm";

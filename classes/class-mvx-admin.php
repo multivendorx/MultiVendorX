@@ -299,11 +299,33 @@ class MVX_Admin {
 
 
         $global_string = array(
-            'close'             =>  __('Close', 'multivendorx'),
-            'edit'              =>  __('Edit', 'multivendorx'),
-            'download_csv'      =>  __('Download CSV', 'multivendorx'),
-            'confirm_delete'    =>  __('Confirm delete?', 'multivendorx'),
-            'save_changes'      =>  __('Save Changes', 'multivendorx'),
+            'close'                 =>  __('Close', 'multivendorx'),
+            'edit'                  =>  __('Edit', 'multivendorx'),
+            'download_csv'          =>  __('Download CSV', 'multivendorx'),
+            'confirm_delete'        =>  __('Confirm delete?', 'multivendorx'),
+            'save_changes'          =>  __('Save Changes', 'multivendorx'),
+            'confirm_dismiss'       =>  __('Are you sure to dismiss?', 'multivendorx'),
+            'confirm_approve'       =>  __('Are you sure to approve?', 'multivendorx'),
+            'multivendorx_text'     =>  __('MultivendorX', 'multivendorx'),
+            'multivendorx_url'      =>  'https://multivendorx.com/',
+        );
+
+        $module_page_string = array(
+            'module1'             =>  __('Module', 'multivendorx'),
+            'module2'             =>  __('Customize your marketplace site by enabling the module that you prefer', 'multivendorx'),
+            'module3'             =>  __('Total Modules :', 'multivendorx'),
+            'module4'             =>  __('Active', 'multivendorx'),
+            'module5'             =>  __('Inactive', 'multivendorx'),
+            'module6'             =>  __('Search modules', 'multivendorx'),
+            'module7'             =>  __('Search by Category', 'multivendorx'),
+            'module8'             =>  __('Requires:', 'multivendorx'),
+            'module9'             =>  __('Warning !!', 'multivendorx'),
+            'module10'             =>  __('Please active required first to use', 'multivendorx'),
+            'module11'             =>  __('module', 'multivendorx'),
+            'module12'             =>  __('Cancel', 'multivendorx'),
+            'module13'             =>  __('Upgrade To Pro', 'multivendorx'),
+            'module14'             =>  __('To use this paid module, Please visit', 'multivendorx'),
+            'module15'             =>  __('Site', 'multivendorx'),
         );
 
         $commission_page_string     =   array(
@@ -425,7 +447,6 @@ class MVX_Admin {
             'registration23'                  =>  __('This section is available for developers who might want to mark the labels they create.', 'multivendorx'),
             'registration24'                  =>  __('', 'multivendorx'),
             'registration25'                  =>  __('Require', 'multivendorx'),
-
             'registration26'                  =>  __('To get', 'multivendorx'),
             'registration27'                  =>  __('reCAPTCHA', 'multivendorx'),
             'registration28'                  =>  __('script, register your site with google account', 'multivendorx'),
@@ -1000,6 +1021,7 @@ class MVX_Admin {
             'status_and_tools_string'       =>  $status_and_tools_string,
             'settings_page_string'          =>  $settings_page_string,
             'global_string'                 =>  $global_string,
+            'module_page_string'            =>  $module_page_string,
             'report_product_header'         =>  $report_product_header,
             'report_vendor_header'          =>  $report_vendor_header,
             'report_page_string'            =>  $report_page_string,

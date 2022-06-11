@@ -1353,9 +1353,6 @@ textarea, input[type=text], select, input, .default-input {
             }
             & .mvx-white-box-body {
                 margin: 50px 0 1rem 0;
-                // & .mvx-row {
-                //     padding-bottom: 10px;
-                // }
                 & img {
                     border-radius: $border-radius;
                     margin-right: 10px;
@@ -2794,59 +2791,6 @@ margin-top: 10px;
             width: auto;
             display: inline-block;
             float: left;
-        }
-        & .mvx-row-sm {
-            flex-wrap: wrap;
-            & .mvx-col-50 {
-                width: 48%;
-                margin: 0 16px 0 0;
-                position: relative;
-                background-color: $fill-color;
-                border: $border;
-                border-radius: $border-radius;
-                height: 300px;
-                & a {
-                    position: absolute;
-                    bottom: 0;
-                    background: #fbfafc;
-                    right: 0;
-                    left: 0;
-                    padding: 16px 32px;
-                    color: #65438f;
-                    display: block;
-                    text-decoration: none;
-                    border-radius: $border-radius;
-                    & span::before {
-                        transform: rotate(0deg);
-                    }
-                }
-            }
-            & .mvx-support-forum {
-                margin: 0 0 0 0 !important;
-            }
-            & .mvx-quick-link-sec {
-                width: 100%;
-                margin: 16px 0 0 0;
-                & .row-link > li {
-                    display: inline-block;
-                    padding: 8px 0px;
-                    background-color: #fff;
-                    margin: 4px;
-                    & a {
-                        color: $paragraph-color;
-                    }
-                }
-            }
-            & .doc_forum_bg {
-                background-image: url(../../images/doc_forum_bg.png);
-                background-repeat: no-repeat;
-                background-position: top right;
-            }
-            & .sup_forum_bg {
-                background-image: url(../../images/sup_forum_bg.png);
-                background-repeat: no-repeat;
-                background-position: top left;
-            }
         }
     }
     & .mvx-upgrade-to-pro-wrapper {
