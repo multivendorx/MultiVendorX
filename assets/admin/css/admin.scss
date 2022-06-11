@@ -1244,31 +1244,21 @@ textarea, input[type=text], select, input, .default-input {
     border: $border;
 }
 .mvx-form-vendor-register {
-    & .mvx-top-part-registartion-from{
-        & .mvx-registration-content {
-            & .mvx-form-registration-group {
-                padding: 2rem;
-                background-color: #f7f6f9;
-                border-radius: 0.4rem;
-                margin: 0.7rem 0;
-                border: 0.0625rem solid #d4d1d9;
-                & .mvx-untitle-content {
-                    margin: 0 0 8px 0;
-                    & div {
-                        padding: 8px 0 16px 0;
-                    }
-                }
-                & input {
-                    height: 40px;
-                }
-                & input[type=checkbox] {
-                    height: 16px !important;
-                }
-                & .mvx-registration-from-description {
-                    & div {
-                        padding: 8px 0 16px 0;
-                    }
-                }
+    & .mvx-top-part-registartion-from {
+        padding: 2rem;
+        background-color: #f7f6f9;
+        border-radius: 0.4rem;
+        margin: 0.7rem 0;
+        border: 0.0625rem solid #d4d1d9;
+        & input {
+            height: 40px;
+        }
+        & input[type=checkbox] {
+            height: 16px !important;
+        }
+        & .mvx-registration-from-content-and-description {
+            & div {
+                padding: 8px 0 16px 0;
             }
         }
     }
@@ -1363,9 +1353,6 @@ textarea, input[type=text], select, input, .default-input {
             }
             & .mvx-white-box-body {
                 margin: 50px 0 1rem 0;
-                // & .mvx-row {
-                //     padding-bottom: 10px;
-                // }
                 & img {
                     border-radius: $border-radius;
                     margin-right: 10px;
@@ -2804,59 +2791,6 @@ margin-top: 10px;
             width: auto;
             display: inline-block;
             float: left;
-        }
-        & .mvx-row-sm {
-            flex-wrap: wrap;
-            & .mvx-col-50 {
-                width: 48%;
-                margin: 0 16px 0 0;
-                position: relative;
-                background-color: $fill-color;
-                border: $border;
-                border-radius: $border-radius;
-                height: 300px;
-                & a {
-                    position: absolute;
-                    bottom: 0;
-                    background: #fbfafc;
-                    right: 0;
-                    left: 0;
-                    padding: 16px 32px;
-                    color: #65438f;
-                    display: block;
-                    text-decoration: none;
-                    border-radius: $border-radius;
-                    & span::before {
-                        transform: rotate(0deg);
-                    }
-                }
-            }
-            & .mvx-support-forum {
-                margin: 0 0 0 0 !important;
-            }
-            & .mvx-quick-link-sec {
-                width: 100%;
-                margin: 16px 0 0 0;
-                & .row-link > li {
-                    display: inline-block;
-                    padding: 8px 0px;
-                    background-color: #fff;
-                    margin: 4px;
-                    & a {
-                        color: $paragraph-color;
-                    }
-                }
-            }
-            & .doc_forum_bg {
-                background-image: url(../../images/doc_forum_bg.png);
-                background-repeat: no-repeat;
-                background-position: top right;
-            }
-            & .sup_forum_bg {
-                background-image: url(../../images/sup_forum_bg.png);
-                background-repeat: no-repeat;
-                background-position: top left;
-            }
         }
     }
     & .mvx-upgrade-to-pro-wrapper {

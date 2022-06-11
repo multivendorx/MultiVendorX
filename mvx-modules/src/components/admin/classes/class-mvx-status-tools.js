@@ -6,22 +6,16 @@ import PuffLoader from "react-spinners/PuffLoader";
 
 import {
   BrowserRouter as Router,
-  Link,
   useLocation,
-  withRouter,
-  useParams,
-  NavLink
 } from "react-router-dom";
 
 import TabSection from './class-mvx-page-tab';
-
 const override = css`
   display: block;
   margin: 0 auto;
   border-color: green;
 `;
-
-class App extends Component {
+class MVX_Status_Tools extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -109,163 +103,95 @@ class App extends Component {
 
 Child({ name }) {
   return (
-        name = !name ? appLocalizer.mvx_all_backend_tab_list['status-tools'][0]['modulename'] : name,
-        name == 'version-control' ?
-          <div className="mvx-status-tools-content">
-            <form>
-              <header>
-                <h3>Rollback to Previous Version</h3>
-              </header>
-              <p>If you are facing issues after an update, you can reinstall a previous version with this tool</p>
-              <p className="description warning"><strong>Warning Previous versions may not be secure or stable. Proceed with caution and always create a backup<span className="warning"></span></strong></p>
+    name = !name ? appLocalizer.mvx_all_backend_tab_list['status-tools'][0]['modulename'] : name,
+      name == 'version-control' ? '' :
 
-            <table className="form-table">
-              <tbody>
-                <tr>
-                <th scope="row"><label>Your Version</label></th>
-                  <td>
-                  
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            </form>
+        name == appLocalizer.mvx_all_backend_tab_list['status-tools'][0]['modulename'] ?
+          <div className="mvx-status-database-tools-content">
+            {appLocalizer.status_and_tools_string['database-tools'].map((list_tools, index_tools) => (
+              <div className="mvx-vendor-transients">
+                <div className="mvx-text-with-line-wrapper">
+                  <div className="mvx-report-text"><span>{list_tools.headline_text}</span></div>
+                </div>
+                <div className="mvx-vendor-transients-description">
+                  {list_tools.description_text}
+                </div>
+                <div className="mvx-vendor-transients-button">
+                  <button type="button" className="btn border-btn" onClick={(e) => this.handle_tools_triggers(e, list_tools.key)}>{list_tools.name}</button>
+                </div>
+              </div>
+            ))}
           </div>
-
-            :
-
-            name == appLocalizer.mvx_all_backend_tab_list['status-tools'][0]['modulename'] ?
-
-            <div className="mvx-status-database-tools-content">
-              <div className="mvx-vendor-transients">
-                <div className="mvx-text-with-line-wrapper">
-                  <div className="mvx-report-text w-100 mr-0"><span> WCMp vendors transients</span></div>
-                </div>
-                <div className="mvx-vendor-transients-description">
-                  This tool will clear all WCMp vendors transients cache.
-                </div>
-                <div className="mvx-vendor-transients-button">
-                  <button type="button" className="btn border-btn" onClick={(e) => this.handle_tools_triggers(e, 'transients')}>Clear transients</button>
-                </div>
-              </div>
-
-              <div className="mvx-vendor-transients">
-                <div className="mvx-text-with-line-wrapper">
-                  <div className="mvx-report-text w-100 mr-0"><span>Reset visitors stats table</span></div>
-                </div>
-                
-                <div className="mvx-vendor-transients-description">
-                  This tool will clear ALL the table data of WCMp visitors stats.
-                </div>
-                <div className="mvx-vendor-transients-button">
-                  <button type="button" className="btn border-btn" onClick={(e) => this.handle_tools_triggers(e, 'visitor')}>Reset Database</button>
-                </div>
-              </div>
-
-              <div className="mvx-vendor-transients">
-                <div className="mvx-text-with-line-wrapper">
-                  <div className="mvx-report-text w-100 mr-0"><span>Force WCMp order migrate</span></div>
-                </div>
-                
-                <div className="mvx-vendor-transients-description">
-                  This will regenerate all vendors older orders to individual orders
-                </div>
-                <div className="mvx-vendor-transients-button">
-                  <button type="button" className="btn border-btn" onClick={(e) => this.handle_tools_triggers(e, 'migrate_order')}>Order Migrate</button>
-                </div>
-              </div>
-
-              <div className="mvx-vendor-transients">
-                <div className="mvx-text-with-line-wrapper">
-                  <div className="mvx-report-text w-100 mr-0"><span> Multivendor Migration</span></div>
-                </div>
-                
-                <div className="mvx-vendor-transients-description">
-                  This will migrate older marketplace details
-                </div>
-                <div className="mvx-vendor-transients-button">
-                  <button type="button" className="btn border-btn" onClick={(e) => this.handle_tools_triggers(e, 'migrate')}>Multivendor migrate</button>
-                </div>
-              </div>
-            </div>
-
-            :
-
-            name == appLocalizer.mvx_all_backend_tab_list['status-tools'][1]['modulename'] ?
-            
-            <div className="mvx-status-tools-content">
+        :
+        name == appLocalizer.mvx_all_backend_tab_list['status-tools'][1]['modulename'] ?
+          <div className="mvx-status-tools-content">
             <header>
-              <h3>System Info</h3>
+              <h3>{appLocalizer.status_and_tools_string['system-info']}</h3>
             </header>
 
             {this.state.list_of_system_info_copy_data ? 
             <div className="site-health-copy-buttons">
               <div className="copy-button-wrapper">
                 <button type="button" className="btn border-btn copy-button" data-clipboard-text={this.state.list_of_system_info_copy_data}>
-                  Copy System Info to Clipboard
+                  {appLocalizer.status_and_tools_string['copy-system-info']}
                 </button>
-                <span className="success hidden" aria-hidden="true">Copied!</span>
+                <span className="success hidden" aria-hidden="true">{appLocalizer.status_and_tools_string['copied']}</span>
               </div>
             </div>
             : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} /> }
 
-              { Object.entries(this.state.list_of_system_info).length > 0 ?
-                Object.entries(this.state.list_of_system_info).map((list_data, index_data) => (
-                  <div id="health-check-debug" className="health-check-accordion mb-24">
-                    <h3 className="health-check-accordion-heading">
-                      <button aria-expanded={this.state.store_index_data.length > 0 && this.state.store_index_data[index_data] == 'false' ? "false" : "true" } className="health-check-accordion-trigger" aria-controls={`health-check-accordion-block-${list_data[0]}`} type="button" onClick={(e) => this.open_closed_system_info(e, list_data[0], index_data)}>
-                        <span className="title">
-                        
-                          {list_data[1].label}
-                            {list_data[1].show_count ?  <span>({ Object.entries(list_data[1]['fields']).length  })</span> : ''}
+            { Object.entries(this.state.list_of_system_info).length > 0 ?
+              Object.entries(this.state.list_of_system_info).map((list_data, index_data) => (
+                <div id="health-check-debug" className="health-check-accordion">
+                  <h3 className="health-check-accordion-heading">
+                    <button aria-expanded={this.state.store_index_data.length > 0 && this.state.store_index_data[index_data] == 'false' ? "false" : "true" } className="health-check-accordion-trigger" aria-controls={`health-check-accordion-block-${list_data[0]}`} type="button" onClick={(e) => this.open_closed_system_info(e, list_data[0], index_data)}>
+                      <span className="title">
+                        {list_data[1].label}
+                        {list_data[1].show_count ?  <span>({ Object.entries(list_data[1]['fields']).length  })</span> : ''}
+                      </span>
+                      <span className="icon" />
+                    </button>
+                  </h3>
 
-                        </span>
-                        <span className="icon" />
-                      </button>
-                    </h3>
-
-                    <div id={`health-check-accordion-block-${list_data[0]}`} className="health-check-accordion-panel" hidden={this.state.store_index_data.length > 0 && this.state.store_index_data[index_data] == 'false' ? "hidden" : '' }>
-                      
-                    {list_data[1]['description'] ? list_data[1]['description'] : ''}
-
-                    <table className="widefat striped health-check-table" role="presentation">
-                      <tbody>
-                      {
-                        Object.entries(list_data[1]['fields']).map((list_data1, index_data1) => (
-                            <tr>
-                              <td>{list_data1[1]['label']}</td><td>{list_data1[1]['value']}</td>
-                            </tr>
-                        ))
-                        
-                      }
-                      </tbody>
-                    </table>
-                    </div>
+                  <div id={`health-check-accordion-block-${list_data[0]}`} className="health-check-accordion-panel" hidden={this.state.store_index_data.length > 0 && this.state.store_index_data[index_data] == 'false' ? "hidden" : '' }>
+                  {list_data[1]['description'] ? list_data[1]['description'] : ''}
+                  <table className="widefat striped health-check-table" role="presentation">
+                    <tbody>
+                    {
+                      Object.entries(list_data[1]['fields']).map((list_data1, index_data1) => (
+                        <tr>
+                          <td>{list_data1[1]['label']}</td><td>{list_data1[1]['value']}</td>
+                        </tr>
+                      ))
+                    }
+                    </tbody>
+                  </table>
                   </div>
-                )) : ''
-              }
-
-              <header className='mt-24'>
-                <h3>Error Log</h3>
-              </header>
-
-              <p className="description">
-                If you have enabled, errors will be stored in a log file. Here you can find the last 100 lines in reversed order so that you or the Rank Math support team can view it easily. The file cannot be edited here
-              </p>
-
-              <div className="site-health-copy-buttons">
-                <div className="copy-button-wrapper">
-                  <button type="button" className="btn border-btn copy-button" data-clipboard-text={appLocalizer.errors_log}>
-                    Copy Log to Clipboard
-                  </button>
-                  <span className="success hidden" aria-hidden="true">Copied!</span>
                 </div>
+              )) : ''
+            }
+
+            <header className='mt-24'>
+              <h3>{appLocalizer.status_and_tools_string['error-log']}</h3>
+            </header>
+
+            <p>
+              {appLocalizer.status_and_tools_string['copied-text']}
+            </p>
+
+            <div className="site-health-copy-buttons">
+              <div className="copy-button-wrapper">
+                <button type="button" className="btn border-btn copy-button" data-clipboard-text={appLocalizer.errors_log}>
+                  {appLocalizer.status_and_tools_string['copy-log-clipboard']}
+                </button>
+                <span className="success hidden" aria-hidden="true">{appLocalizer.status_and_tools_string['copied']}</span>
               </div>
-              <textarea name="name" rows="16" cols="80" className="code large-text rank-math-code-box" disabled="disabled" id="rank-math-status-error-log">{appLocalizer.errors_log}</textarea>
             </div>
-            : ''
-  );
-}
+            <textarea name="name" rows="16" cols="80" disabled="disabled">{appLocalizer.errors_log}</textarea>
+          </div>
+        : ''
+    );
+  }
 
   render() {
     return (
@@ -275,4 +201,4 @@ Child({ name }) {
     );
   }
 }
-export default App;
+export default MVX_Status_Tools;

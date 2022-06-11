@@ -34,21 +34,12 @@ class MVX_Module_Listing extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      error: null,
       isLoaded: false,
       items: [],
-      checkedState: [],
-      module_ids: [],
       open_model: false,
       open_model_dynamic: [],
-      isLoading: true,
-      loading: true,
-      module_tabs: [],
-      tabIndex: 0,
-      query: null,
       total_number_of_module: 0,
     };
-    this.query = null;
     // when click on checkbox
     this.handleOnChange = this.handleOnChange.bind(this);
     // popup close for paid module
@@ -56,20 +47,11 @@ class MVX_Module_Listing extends Component {
     // popup close for required plugin inactive popup
     this.handleClose_dynamic = this.handleClose_dynamic.bind(this);
     // search select module trigger
-    this.handleselectmodule = this.handleselectmodule.bind(this);
-
-    this.setTabIndex = this.setTabIndex.bind(this);
-
     this.QueryParamsDemo = this.QueryParamsDemo.bind(this);
-
     this.useQuery = this.useQuery.bind(this);
-
     this.handleModuleSearch = this.handleModuleSearch.bind(this);
-
     this.handleModuleSearchByCategory = this.handleModuleSearchByCategory.bind(this);
-
     this.mvx_search_different_module_status = this.mvx_search_different_module_status.bind(this);
-
   }
 
   mvx_search_different_module_status(e, status) {
@@ -123,27 +105,6 @@ class MVX_Module_Listing extends Component {
     }
   }
 
-  setTabIndex(e) {
-    console.log(e);
-
-    this.setState({
-      tabIndex: e
-    });
-  }
-
-  // search select module trigger
-  handleselectmodule(e) {
-    this.setState({ isLoaded: true })
-    axios({
-      url: `${appLocalizer.apiUrl}/mvx_module/v1/module_lists?module_id=${e.value}`
-    })
-      .then(response => {
-        this.setState({
-          items: response.data,
-          isLoaded: false
-        });
-      })
-  }
   // popup close for paid module
   handleClose(e) {
     this.setState({
@@ -180,10 +141,7 @@ class MVX_Module_Listing extends Component {
           is_checked: event.target.checked
         }
       })
-        .then((res) => {
-          console.log('success');
-        });
-
+      .then((res) => {});
     }
   }
 
@@ -201,7 +159,6 @@ class MVX_Module_Listing extends Component {
       console.log(error);
     });
 
-
     // fetch total number of modules 
     axios.get(
       `${appLocalizer.apiUrl}/mvx_module/v1/modules_count`
@@ -211,7 +168,6 @@ class MVX_Module_Listing extends Component {
           total_number_of_module: response.data,
         });
       })
-
   }
 
   useQuery() {
@@ -225,24 +181,23 @@ class MVX_Module_Listing extends Component {
         <div className="mvx-container">
           <div className="mvx-middle-container-wrapper">
             <div className="mvx-tab-description-start">
-              <div className="mvx-tab-name">Module</div>
+              <div className="mvx-tab-name">{appLocalizer.module_page_string.module1}</div>
               <p>
-                Customize your marketplace site by enabling the module that you
-                prefer.
+                {appLocalizer.module_page_string.module2}
               </p>
             </div>
 
             <div className="mvx-search-and-multistatus-wrap">
               <div className="mvx-multistatus-sec mvx-module-left-sec">
-                <ul className="mvx-multistatus-ul mvx-row">
+                <ul className="mvx-multistatus-ul">
                   <li className="mvx-multistatus-item mvx-totalmodule-text">
                     <div
-                      className="mvx-total-module-name-and-count mvx-d-inline-flex"
+                      className="mvx-total-module-name-and-count"
                       onClick={(e) =>
                         this.mvx_search_different_module_status(e, "all")
                       }
                     >
-                      <div className="mvx-total-modules-name">Total Modules :</div>
+                      <div className="mvx-total-modules-name">{appLocalizer.module_page_string.module3}</div>
                       <div className="mvx-total-modules-count">
                         {this.state.total_number_of_module}
                       </div>
@@ -251,44 +206,42 @@ class MVX_Module_Listing extends Component {
                   <li className="mvx-multistatus-item mvx-divider"></li>
                   <li className="mvx-multistatus-item">
                     <Button
-                      className="default-text pa-0"
                       onClick={(e) =>
                         this.mvx_search_different_module_status(e, "active")
                       }
                     >
-                      Active
+                      {appLocalizer.module_page_string.module4}
                     </Button>
                   </li>
-                  <li className="mvx-multistatus-item mvx-divider pa-0"></li>
+                  <li className="mvx-multistatus-item mvx-divider"></li>
                   <li className="mvx-multistatus-item">
                     <Button
-                      className="default-text"
                       onClick={(e) =>
                         this.mvx_search_different_module_status(e, "inactive")
                       }
                     >
-                      Inactive
+                      {appLocalizer.module_page_string.module5}
                     </Button>
                   </li>
                 </ul>
               </div>
-              <div className="mvx-searchbar-sec mvx-module-right-sec">
+              <div className="mvx-searchbar-sec">
                 <div className='mvx-header-search-section'>
                   <label><i className='mvx-font icon-search'></i></label>
                   <input
                     type="text"
                     onChange={(e) => this.handleModuleSearch(e)}
-                    placeholder="Search modules"
+                    placeholder={appLocalizer.module_page_string.module6}
                   />
                 </div>
               </div>
             </div>
 
-            <div className="mvx-wrap-bulk-all-date mb-25">
-              <div className="mvx-wrap-bulk-action mvx-row mvx-row-sm-8">
+            <div className="mvx-wrap-bulk-all-date">
+              <div className="mvx-wrap-bulk-action">
                 <div className="mvx-col-auto mvx-search-category">
                   <Select
-                    placeholder="Search by Category"
+                    placeholder={appLocalizer.module_page_string.module7}
                     options={appLocalizer.select_module_category_option}
                     isClearable={true}
                     className="mvx-module-section-list-data"
@@ -298,8 +251,7 @@ class MVX_Module_Listing extends Component {
               </div>
             </div>
 
-            <div className="mvx-module-section-ui module-listing dashboard-wrapper">
-              <div>
+            <div className="mvx-module-section-ui">
                 {this.state.items.length == 0 ? (
                   <PuffLoader
                     css={override}
@@ -309,10 +261,10 @@ class MVX_Module_Listing extends Component {
                   />
                 ) : (
                   this.state.items.map((student1, index1) => (
-                    <div className="mvx-module-list-start mb-25">
+                    <div className="mvx-module-list-start">
                       <div className="mvx-module-list-container">
                         <div className="mvx-text-with-line-wrapper">
-                          <div className="mvx-report-text w-100 mr-0">
+                          <div className="mvx-report-text">
                             <span>{student1.label}</span>
                           </div>
                         </div>
@@ -330,23 +282,21 @@ class MVX_Module_Listing extends Component {
                                 </div>
 
                                 <header>
-                                  <div className="mvx-module-list-label-plan-action-swap">
-                                    <div className="mvx-module-list-label-text">
-                                      {student.name}
-                                      {student.plan == "pro" ? (
-                                        <span className="mvx-module-section-pro-badge">
-                                          {appLocalizer.pro_text}
-                                        </span>
-                                      ) : (
-                                        ""
-                                      )}
-                                    </div>
+                                  <div className="mvx-module-list-label-text">
+                                    {student.name}
+                                    {student.plan == "pro" ? (
+                                      <span className="mvx-module-section-pro-badge">
+                                        {appLocalizer.pro_text}
+                                      </span>
+                                    ) : (
+                                      ""
+                                    )}
                                   </div>
                                   <p>{student.description}</p>
                                 </header>
                                 {student.required_plugin_list ? (
                                   <div className="mvx-module-require-name">
-                                    Requires:
+                                    {appLocalizer.module_page_string.module8}
                                   </div>
                                 ) : (
                                   ""
@@ -431,13 +381,13 @@ class MVX_Module_Listing extends Component {
                                 >
                                   <DialogTitle id="form-dialog-title">
                                     <div className="mvx-module-dialog-title">
-                                      Warning !!
+                                      {appLocalizer.module_page_string.module9}
                                     </div>
                                   </DialogTitle>
                                   <DialogContent>
                                     <DialogContentText>
                                       <div className="mvx-module-dialog-content">
-                                        Please active required first to use{" "}
+                                        {appLocalizer.module_page_string.module10}{" "}
                                         {student.name} module.
                                       </div>
                                     </DialogContentText>
@@ -447,7 +397,7 @@ class MVX_Module_Listing extends Component {
                                       onClick={this.handleClose_dynamic}
                                       color="primary"
                                     >
-                                      Cancel
+                                      {appLocalizer.module_page_string.module12}
                                     </Button>
                                   </DialogActions>
                                 </Dialog>
@@ -459,7 +409,6 @@ class MVX_Module_Listing extends Component {
                     </div>
                   ))
                 )}
-              </div>
             </div>
 
             <Dialog
@@ -468,19 +417,19 @@ class MVX_Module_Listing extends Component {
               aria-labelledby="form-dialog-title"
             >
               <DialogTitle id="form-dialog-title">
-                <div className="mvx-module-dialog-title">Upgrade To Pro</div>
+                <div className="mvx-module-dialog-title">{appLocalizer.module_page_string.module13}</div>
               </DialogTitle>
               <DialogContent>
                 <DialogContentText>
                   <div className="mvx-module-dialog-content">
-                    To use this paid module, Please visit{" "}
-                    <a href="https://multivendorx.com/">MultivendorX</a> Site.
+                    {appLocalizer.module_page_string.module14}{" "}
+                    <a href={appLocalizer.global_string.multivendorx_url}>{appLocalizer.global_string.multivendorx_text}</a> {appLocalizer.module_page_string.module15}.
                   </div>
                 </DialogContentText>
               </DialogContent>
               <DialogActions>
                 <Button onClick={this.handleClose} color="primary">
-                  Cancel
+                  {appLocalizer.module_page_string.module12}
                 </Button>
               </DialogActions>
             </Dialog>

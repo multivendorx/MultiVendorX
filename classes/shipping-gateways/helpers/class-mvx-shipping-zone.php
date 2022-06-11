@@ -79,7 +79,7 @@ class MVX_Shipping_Zone {
             array(
                 'method_id' => esc_sql($data['method_id']),
                 'zone_id'   => esc_sql($data['zone_id']),
-                'vendor_id' => $vendor_id ? $vendor_id : apply_filters( 'wcmp_current_vendor_id', esc_sql(get_current_user_id()) )
+                'vendor_id' => $vendor_id ? $vendor_id : apply_filters( 'mvx_current_vendor_id', esc_sql(get_current_user_id()) )
             ),
             array(
                 '%s',

@@ -1248,7 +1248,7 @@ textarea, input[type=text], select, input, .default-input {
   border: 1px solid #d4d1d9;
 }
 
-.mvx-form-vendor-register .mvx-top-part-registartion-from .mvx-registration-content .mvx-form-registration-group {
+.mvx-form-vendor-register .mvx-top-part-registartion-from {
   padding: 2rem;
   background-color: #f7f6f9;
   border-radius: 0.4rem;
@@ -1256,23 +1256,15 @@ textarea, input[type=text], select, input, .default-input {
   border: 0.0625rem solid #d4d1d9;
 }
 
-.mvx-form-vendor-register .mvx-top-part-registartion-from .mvx-registration-content .mvx-form-registration-group .mvx-untitle-content {
-  margin: 0 0 8px 0;
-}
-
-.mvx-form-vendor-register .mvx-top-part-registartion-from .mvx-registration-content .mvx-form-registration-group .mvx-untitle-content div {
-  padding: 8px 0 16px 0;
-}
-
-.mvx-form-vendor-register .mvx-top-part-registartion-from .mvx-registration-content .mvx-form-registration-group input {
+.mvx-form-vendor-register .mvx-top-part-registartion-from input {
   height: 40px;
 }
 
-.mvx-form-vendor-register .mvx-top-part-registartion-from .mvx-registration-content .mvx-form-registration-group input[type=checkbox] {
+.mvx-form-vendor-register .mvx-top-part-registartion-from input[type=checkbox] {
   height: 16px !important;
 }
 
-.mvx-form-vendor-register .mvx-top-part-registartion-from .mvx-registration-content .mvx-form-registration-group .mvx-registration-from-description div {
+.mvx-form-vendor-register .mvx-top-part-registartion-from .mvx-registration-from-content-and-description div {
   padding: 8px 0 16px 0;
 }
 
@@ -3361,71 +3353,6 @@ input:focus {
   width: auto;
   display: inline-block;
   float: left;
-}
-
-.mvx-dashboard .mvx-box-content .mvx-row-sm {
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
-
-.mvx-dashboard .mvx-box-content .mvx-row-sm .mvx-col-50 {
-  width: 48%;
-  margin: 0 16px 0 0;
-  position: relative;
-  background-color: #fdfdfe;
-  border: 1px solid #d4d1d9;
-  border-radius: 4px;
-  height: 300px;
-}
-
-.mvx-dashboard .mvx-box-content .mvx-row-sm .mvx-col-50 a {
-  position: absolute;
-  bottom: 0;
-  background: #fbfafc;
-  right: 0;
-  left: 0;
-  padding: 16px 32px;
-  color: #65438f;
-  display: block;
-  text-decoration: none;
-  border-radius: 4px;
-}
-
-.mvx-dashboard .mvx-box-content .mvx-row-sm .mvx-col-50 a span::before {
-  -webkit-transform: rotate(0deg);
-          transform: rotate(0deg);
-}
-
-.mvx-dashboard .mvx-box-content .mvx-row-sm .mvx-support-forum {
-  margin: 0 0 0 0 !important;
-}
-
-.mvx-dashboard .mvx-box-content .mvx-row-sm .mvx-quick-link-sec {
-  width: 100%;
-  margin: 16px 0 0 0;
-}
-
-.mvx-dashboard .mvx-box-content .mvx-row-sm .mvx-quick-link-sec .row-link > li {
-  display: inline-block;
-  padding: 8px 0px;
-  background-color: #fff;
-  margin: 4px;
-}
-
-.mvx-dashboard .mvx-box-content .mvx-row-sm .mvx-quick-link-sec .row-link > li a {
-  color: #5e5d60;
-}
-
-.mvx-dashboard .mvx-box-content .mvx-row-sm .doc_forum_bg {
-  background-image: url(../../images/doc_forum_bg.png);
-  background-repeat: no-repeat;
-  background-position: top right;
-}
-
-.mvx-dashboard .mvx-box-content .mvx-row-sm .sup_forum_bg {
-  background-image: url(../../images/sup_forum_bg.png);
-  background-repeat: no-repeat;
-  background-position: top left;
 }
 
 .mvx-dashboard .mvx-upgrade-to-pro-wrapper {

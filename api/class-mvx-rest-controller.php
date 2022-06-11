@@ -3974,7 +3974,7 @@ class MVX_REST_API {
         if ($value == 'mark_paid') {
             $MVX->postcommission->mvx_mark_commission_paid($commission_list);
         } else if ($value == 'export') {
-            /*$commissions_data = array();
+            $commissions_data = array();
             $currency = get_woocommerce_currency();
             foreach ($commission_list as $commission) {
                 $commission_data = $MVX->postcommission->get_commission($commission);
@@ -3996,7 +3996,7 @@ class MVX_REST_API {
                     'Status'        =>  $commission_staus
                 ), $commission_data);
             }
-            return rest_ensure_response($commissions_data);*/
+            return rest_ensure_response($commissions_data);
         }
         return $this->mvx_find_specific_commission();
     }
