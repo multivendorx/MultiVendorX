@@ -1119,18 +1119,18 @@ class MVX_REST_API {
         }
 
         $mvx = [
-            'label'  => esc_html__( 'MultiVendorX', 'rank-math' ),
+            'label'  => esc_html__( 'MultiVendorX', 'multivendorx' ),
             'fields' => [
                 'version'          => [
-                    'label' => esc_html__( 'Version', 'rank-math' ),
+                    'label' => esc_html__( 'Version', 'multivendorx' ),
                     'value' => $MVX->version,
                 ],
                 'plugin_plan'      => [
-                    'label' => esc_html__( 'Plugin subscription plan', 'rank-math' ),
+                    'label' => esc_html__( 'Plugin subscription plan', 'multivendorx' ),
                     'value' => apply_filters('mvx_current_subscription_plan', __('Free', 'multivendorx') ),
                 ],
                 'active_modules'   => [
-                    'label' => esc_html__( 'Active modules', 'rank-math' ),
+                    'label' => esc_html__( 'Active modules', 'multivendorx' ),
                     'value' => implode(", ", $list_modules),
                 ]
             ],

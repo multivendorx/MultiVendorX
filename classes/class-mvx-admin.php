@@ -462,25 +462,25 @@ class MVX_Admin {
                 array(
                     'name'              =>  __('Clear transients', 'multivendorx'),
                     'key'               =>  'transients',
-                    'headline_text'     =>  __('MVX vendors transients', ' multivendorx'),
+                    'headline_text'     =>  __('MVX vendors transients', 'multivendorx'),
                     'description_text'  =>  __('This tool will clear all MVX vendors transients cache', 'multivendorx')
                 ),
                 array(
                     'name'              =>  __('Reset Database', 'multivendorx'),
                     'key'               =>  'visitor',
-                    'headline_text'     =>  __('Reset visitors stats table', ' multivendorx'),
+                    'headline_text'     =>  __('Reset visitors stats table', 'multivendorx'),
                     'description_text'  =>  __('This tool will clear ALL the table data of MVX visitors stats.', 'multivendorx')
                 ),
                 array(
                     'name'              =>  __('Order Migrate', 'multivendorx'),
                     'key'               =>  'migrate_order',
-                    'headline_text'     =>  __('Force MVX order migrate', ' multivendorx'),
+                    'headline_text'     =>  __('Force MVX order migrate', 'multivendorx'),
                     'description_text'  =>  __('This will regenerate all vendors older orders to individual orders', 'multivendorx')
                 ),
                 array(
                     'name'              =>  __('Multivendor migrate', 'multivendorx'),
                     'key'               =>  'migrate',
-                    'headline_text'     =>  __('Multivendor Migration', ' multivendorx'),
+                    'headline_text'     =>  __('Multivendor Migration', 'multivendorx'),
                     'description_text'  =>  __('This will migrate older marketplace details', 'multivendorx')
                 ),
             ),

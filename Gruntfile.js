@@ -177,7 +177,7 @@ module.exports = function (grunt) {
             },
             dist: {
                 options: {
-                    potFilename: 'dc-woocommerce-multi-vendor.pot',
+                    potFilename: 'multivendorx.pot',
                     exclude: [
                         'tmp/.*'
                     ]
@@ -239,19 +239,19 @@ module.exports = function (grunt) {
     });
 
     // Load NPM tasks to be used here
-    grunt.loadNpmTasks('grunt-sass');
+/*    grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-rtlcss');
     grunt.loadNpmTasks('grunt-postcss');
-    grunt.loadNpmTasks('grunt-stylelint');
+    grunt.loadNpmTasks('grunt-stylelint');*/
     grunt.loadNpmTasks('grunt-wp-i18n');
     grunt.loadNpmTasks('grunt-checktextdomain');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
+/*    grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
-    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-watch');*/
 
     // Register tasks
-    grunt.registerTask('default', [
+/*    grunt.registerTask('default', [
         'js',
         'css',
         'i18n'
@@ -273,7 +273,7 @@ module.exports = function (grunt) {
     // Only an alias to 'default' task.
     grunt.registerTask('dev', [
         'default'
-    ]);
+    ]);*/
 
     grunt.registerTask('i18n', [
         'checktextdomain',

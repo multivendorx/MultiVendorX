@@ -6766,36 +6766,36 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'key'       => 'payment_schedule',
                     'type'      => 'radio',
                     'depend_checkbox'    => 'choose_payment_mode_automatic_disbursal',
-                    'label'     => __( 'Set Schedule', 'mvx-live-chat' ),
+                    'label'     => __( 'Set Schedule', 'multivendorx' ),
                     'options' => array(
                         array(
                             'name'  => 'payment_schedule',
                             'key' => 'weekly',
-                            'label' => __('Weekly', 'mvx-live-chat'),
+                            'label' => __('Weekly', 'multivendorx'),
                             'value' => 'weekly'
                         ),
                         array(
                             'name'  => 'payment_schedule',
                             'key' => 'daily',
-                            'label' => __('Daily', 'mvx-live-chat'),
+                            'label' => __('Daily', 'multivendorx'),
                             'value' => 'daily'
                         ),
                         array(
                             'name'  => 'payment_schedule',
                             'key' => 'monthly',
-                            'label' => __('Monthly', 'mvx-live-chat'),
+                            'label' => __('Monthly', 'multivendorx'),
                             'value' => 'monthly'
                         ),
                         array(
                             'name'  => 'payment_schedule',
                             'key' => 'fortnightly',
-                            'label' => __('Fortnightly', 'mvx-live-chat'),
+                            'label' => __('Fortnightly', 'multivendorx'),
                             'value' => 'fortnightly'
                         ),
                         array(
                             'name'  => 'payment_schedule',
                             'key' => 'hourly',
-                            'label' => __('Hourly', 'mvx-live-chat'),
+                            'label' => __('Hourly', 'multivendorx'),
                             'value' => 'hourly'
                         )
                     ),

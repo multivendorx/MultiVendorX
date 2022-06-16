@@ -66,7 +66,7 @@ $is_start_with_full_rating = apply_filters('mvx_is_start_with_full_rating', fals
                                                     <option value="2"><?php esc_html_e('Not that bad', 'multivendorx'); ?></option>
                                                     <option value="1"><?php esc_html_e('Very Poor', 'multivendorx'); ?></option>
                                                 </select>
-                                                <span><span class="rating_text <?php echo $mvx_review_category ?>"><?php if( $is_start_with_full_rating ) { echo '5'; } else { echo '0'; } ?></span>.0 <?php esc_html_e( $mvx_review_category, 'wc-multivendor-marketplace' ); ?></span>
+                                                <span><span class="rating_text <?php echo $mvx_review_category ?>"><?php if( $is_start_with_full_rating ) { echo '5'; } else { echo '0'; } ?></span>.0 <?php esc_html_e( $mvx_review_category, 'multivendorx' ); ?></span>
                                                 <input type="hidden" class="rating_value" name="mvx_store_review_category[<?php echo $mvx_review_cat_key; ?>]" value="<?php if( $is_start_with_full_rating ) { echo '5'; } else { echo '0'; } ?>" />
                                             </div>
                                             <?php } ?>

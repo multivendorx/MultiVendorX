@@ -523,7 +523,7 @@ if (!class_exists('MVX_WP_Fields')) {
                     if( $attribute == 'required' ) { 
                         if( !isset( $field['custom_attributes']['required_message'] ) ) {
                             if( !isset( $field['label'] ) ) $field['label'] = str_replace( '_', ' ', ucfirst( $field['id'] ) );
-                            $custom_attributes[] = 'data-required_message="' . esc_attr( $field['label'] ) . ': ' . __( 'This field is required.', 'wc-frontend-manager' ) . '"';
+                            $custom_attributes[] = 'data-required_message="' . esc_attr( $field['label'] ) . ': ' . __( 'This field is required.', 'multivendorx' ) . '"';
                         }
                         $field['label'] .= '<span class="required">*</span>';
                     }
