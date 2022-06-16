@@ -1,62 +1,11 @@
 {
-  "name": "dc-woocommerce-multi-vendor",
-  "version": "3.0.5",
-  "description": "Multivendor X - The most user recommended multivendor marketplace plugin for WooCommerce.",
-  "main": "Gruntfile.js",
   "devDependencies": {
-    "autoprefixer": "^8.1.0",
-    "grunt": "^1.3.0",
     "grunt-checktextdomain": "^1.0.1",
-    "grunt-contrib-clean": "^1.1.0",
-    "grunt-contrib-concat": "^1.0.1",
-    "grunt-contrib-cssmin": "^2.2.1",
-    "grunt-contrib-jshint": "^1.1.0",
-    "grunt-contrib-uglify": "^3.3.0",
-    "grunt-contrib-watch": "^1.0.0",
-    "grunt-phpcs": "^0.4.0",
-    "grunt-postcss": "^0.9.0",
-    "grunt-rtlcss": "^2.0.1",
-    "grunt-sass": "^2.1.0",
-    "grunt-shell": "^2.1.0",
-    "grunt-stylelint": "^0.9.0",
-    "grunt-wp-i18n": "^1.0.2"
+    "grunt-contrib-cssmin": "^4.0.0",
+    "grunt-uncss": "^0.10.1",
+    "grunt-wp-i18n": "^1.0.3"
   },
-  "scripts": {
-    "test": "grunt"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/dualcube/dc-woocommerce-multi-vendor/"
-  },
-  "keywords": [
-    "multi",
-    "vendor",
-    "marketplace",
-    "woocommerce",
-    "multivendor",
-    "marketplace",
-    "multi",
-    "seller",
-    "store",
-    "product",
-    "vendors",
-    "best",
-    "marketplace",
-    "plugin",
-    "multi",
-    "seller",
-    "one",
-    "product",
-    "multi",
-    "seller",
-    "woocommerce",
-    "vendors",
-    "ebay",
-    "etsy",
-    "amazon",
-    "commission",
-    "rate"
-  ],
-  "author": "Multivendor X",
-  "license": "GPL-3.0+"
+  "dependencies": {
+    "autoprefixer": "^10.4.7"
+  }
 }

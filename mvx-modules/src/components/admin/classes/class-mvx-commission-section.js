@@ -44,9 +44,7 @@ class MVX_Backend_Commission extends Component {
       show_vendor_name: [],
       commisson_bulk_choose: [],
       commissiondata: [],
-
     };
-
     this.handleSelectRowsChange = this.handleSelectRowsChange.bind(this);
     this.handlecommissionsearch = this.handlecommissionsearch.bind(this);
     this.handlecommissionwork = this.handlecommissionwork.bind(this);
@@ -55,12 +53,9 @@ class MVX_Backend_Commission extends Component {
     this.handle_commission_live_search = this.handle_commission_live_search.bind(this);
     this.handlecommission_paid = this.handlecommission_paid.bind(this);
     this.handle_commission_status_check = this.handle_commission_status_check.bind(this);
-
   }
 
-
   handle_commission_status_check(e, type) {
-
     if (type == 'paid') {
       // paid status
       axios.get(
@@ -465,7 +460,7 @@ class MVX_Backend_Commission extends Component {
           <div className="mvx-middle-container-wrapper">
             <div className="woocommerce-order-data">
 
-              <div className="mvx-datatable-text">Edit Commission</div>
+              <div className="mvx-datatable-text">{appLocalizer.commission_page_string.edit_commission}</div>
 
               {/* Commission Details Start */}
               <div className="mvx-commission-details-section">
@@ -521,7 +516,7 @@ class MVX_Backend_Commission extends Component {
                             {appLocalizer.commission_page_string.commission_status}:{" "}
                           </p>
                           <Select
-                            placeholder="Status"
+                            placeholder={appLocalizer.commission_page_string.status}
                             options={appLocalizer.commission_status_list_action}
                             defaultValue={this.state.get_commission_id_status}
                             className="mvx-module-section-nav-child-data"
@@ -1345,7 +1340,7 @@ class MVX_Backend_Commission extends Component {
             <div className="mvx-searchbar-sec">
               <div className='mvx-header-search-section'>
                 <label><i className='mvx-font icon-search'></i></label>
-                <input type="text" placeholder="Search Commissions" name="search" onChange={this.handle_commission_live_search}/>
+                <input type="text" placeholder={appLocalizer.commission_page_string.search_commission} onChange={this.handle_commission_live_search}/>
               </div>
             </div>
           </div>

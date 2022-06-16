@@ -277,7 +277,7 @@ final class MVX {
     public function load_plugin_textdomain() {
         $locale = is_admin() && function_exists('get_user_locale') ? get_user_locale() : get_locale();
         $locale = apply_filters('plugin_locale', $locale, 'multivendorx');
-        load_textdomain('multivendorx', WP_LANG_DIR . '/dc-woocommerce-multi-vendor/dc-woocommerce-multi-vendor-' . $locale . '.mo');
+        load_textdomain('multivendorx', WP_LANG_DIR . '/dc-woocommerce-multi-vendor/multivendorx-' . $locale . '.mo');
         load_plugin_textdomain('multivendorx', false, plugin_basename(dirname(dirname(__FILE__))) . '/languages');
     }
 
@@ -554,7 +554,7 @@ final class MVX {
 			'deleteShippingMethodConfirmation'	=> __( 'Are you absolutely sure to delete this shipping method?', 'multivendorx' ),
                     ),
                     'everywhere_else_option'  => __( 'Everywhere Else', 'multivendorx' ),
-                    'multiblock_delete_confirm' => __( "Are you sure and want to delete this 'Block'?\nYou can't undo this action ...", "dc-woocommerce-multi-vendor" ),
+                    'multiblock_delete_confirm' => __( "Are you sure and want to delete this 'Block'?\nYou can't undo this action ...", "multivendorx" ),
                     'mvx_multiblick_addnew_help' => __( 'Add New Block', 'multivendorx' ),
                     'mvx_multiblick_remove_help' => __( 'Remove Block', 'multivendorx' ),
                 );

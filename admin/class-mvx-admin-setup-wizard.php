@@ -682,7 +682,7 @@ class MVX_Admin_Setup_Wizard {
         </div>
         
         <div class="woocommerce-message woocommerce-tracker">
-            <p><?php esc_html_e("Your marketplace is ready. It's time to bring some sellers on your platform and start your journey. We wish you all the success for your business, you will be great!", "dc-woocommerce-multi-vendor") ?></p>
+            <p><?php esc_html_e("Your marketplace is ready. It's time to bring some sellers on your platform and start your journey. We wish you all the success for your business, you will be great!", "multivendorx") ?></p>
         </div>
         <div class="wc-setup-next-steps">
             <div class="wc-setup-next-steps-first">
