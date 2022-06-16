@@ -735,7 +735,7 @@ class MVX_Product {
         }
         $html .= '<tr valign="top"><td scope="row"><label id="vendor-label" for="' . esc_attr('vendor') . '">' . __("Vendor", 'multivendorx') . '</label></td><td>';
         if (!$current_user_is_vendor) {
-            $html .= '<select name="' . esc_attr('choose_vendor') . '" data-placeholder="'. esc_attr("Choose vendor", "dc-woocommerce-multi-vendor").'" id="' . esc_attr('choose_vendor_ajax') . '" class="mvx_select_vendor" style="width:300px;" >' . $option . '</select>';
+            $html .= '<select name="' . esc_attr('choose_vendor') . '" data-placeholder="'. esc_attr("Choose vendor", "multivendorx").'" id="' . esc_attr('choose_vendor_ajax') . '" class="mvx_select_vendor" style="width:300px;" >' . $option . '</select>';
             $html .= '<p class="description">' . 'choose vendor' . '</p>';
         } else {
             $html .= '<label id="vendor-label" for="' . esc_attr('vendor') . '">' . $vendor->page_title . '</label>';

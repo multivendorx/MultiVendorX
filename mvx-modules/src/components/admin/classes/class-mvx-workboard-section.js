@@ -1177,14 +1177,14 @@ class MVX_Workboard extends Component {
 
                 <div className="mvx-text-with-line-wrapper">
                   <div className="mvx-report-text">
-                    <span>Pending Product Approval</span>
+                    <span>{appLocalizer.workboard_string.workboard1}</span>
                   </div>
                   <div className="mvx-select-all-bulk-wrap">
                     <div className="mvx-select-all-checkbox">
                       <input type="checkbox" className="mvx-select-all" checked={this.state.pending_parent_product_check} onChange={(e) => this.handle_parent_todo_checkbox_chenage(e)} />
-                      <span className="mvx-select-all-text">Select All</span>
+                      <span className="mvx-select-all-text">{appLocalizer.global_string.select_all}</span>
                     </div>
-                    <Select placeholder="Bulk Action" options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'product_approval')} />
+                    <Select placeholder={appLocalizer.global_string.bulk_action} options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'product_approval')} />
                   </div>
                 </div>
 
@@ -1196,7 +1196,7 @@ class MVX_Workboard extends Component {
                       <div className='mvx-all-product-box'>
                         <div className='mvx-off-white-box'>
                           <div className='mvx-white-box-header'>
-                            Pending Vendor Product
+                            {appLocalizer.workboard_string.workboard2}
                             <div className='pull-right'>
                               <input type="checkbox" className="mvx-workboard-checkbox" checked={this.state.pending_product_check[pending_index]} onChange={(e) => this.handle_todo_checkbox_chenage(e, pending_data.id, pending_index)} />
                             </div>
@@ -1208,11 +1208,11 @@ class MVX_Workboard extends Component {
                               </div>
                             </div>
                             <div className='mvx-vendor-row mvx-box-content name-txt'>
-                              <div className='mvx-product-title'>Vendor Name:</div>
+                              <div className='mvx-product-title'>{appLocalizer.workboard_string.workboard8}:</div>
                               <div className='mvx-product-name'><a href={pending_data.vendor_link}>{pending_data.vendor}</a></div>
                             </div>
                             <div className='mvx-product-row mvx-box-content name-txt'>
-                              <div className='mvx-product-title'>Product Name:</div>
+                              <div className='mvx-product-title'>{appLocalizer.workboard_string.workboard3}:</div>
                               <div className='mvx-product-name'><a href={pending_data.product_url}>{pending_data.product}</a></div>
                             </div>
                           </div>
@@ -1220,7 +1220,7 @@ class MVX_Workboard extends Component {
                             <div className='pull-left'>
                               <a href={pending_data.product_url} className="link-icon"><i className="mvx-font icon-edit"></i></a>
                               <div className="link-icon"><i className="mvx-font icon-approve" onClick={(e) => this.handle_product_request_by_vendors(e, pending_data.id, pending_data.vendor_id, 'approve')}></i></div>
-                              <div className="link-icon"><i className="mvx-font icon-close" onClick={(e) => this.handle_product_request_by_vendors(e, pending_data.id, pending_data.vendor_id, 'dismiss')}></i><p className='mvxicon-hover-text'>Shop</p></div>
+                              <div className="link-icon"><i className="mvx-font icon-close" onClick={(e) => this.handle_product_request_by_vendors(e, pending_data.id, pending_data.vendor_id, 'dismiss')}></i><p className='mvxicon-hover-text'>{appLocalizer.workboard_string.workboard4}</p></div>
                             </div>
 
                             <div className="pull-right">
@@ -1233,7 +1233,7 @@ class MVX_Workboard extends Component {
 
                     )
                     )
-                      : this.state.pending_product_loding_end ? <div className='mvx-col-100 mb-30'>No Product Found</div> : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
+                      : this.state.pending_product_loding_end ? <div>{appLocalizer.workboard_string.workboard5}</div> : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
                   }
 
                 </div>
@@ -1246,14 +1246,14 @@ class MVX_Workboard extends Component {
 
                 <div className="mvx-text-with-line-wrapper">
                   <div className="mvx-report-text">
-                    <span>Pending Vendor Approval</span>
+                    <span>{appLocalizer.workboard_string.workboard6}</span>
                   </div>
                   <div className="mvx-select-all-bulk-wrap">
                     <div className="mvx-select-all-checkbox">
                       <input type="checkbox" className="mvx-select-all" checked={this.state.pending_parent_user_check} onChange={(e) => this.handle_parent_user_todo_checkbox_chenage(e)} />
-                      <span className="mvx-select-all-text">Select All</span>
+                      <span className="mvx-select-all-text">{appLocalizer.global_string.select_all}</span>
                     </div>
-                    <Select placeholder="Bulk Action" options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'user_approval')} />
+                    <Select placeholder={appLocalizer.global_string.bulk_action} options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'user_approval')} />
                   </div>
                 </div>
 
@@ -1265,7 +1265,7 @@ class MVX_Workboard extends Component {
                       <div className='mvx-all-product-box'>
                         <div className='mvx-off-white-box'>
                           <div className='mvx-white-box-header'>
-                            Pending User
+                            {appLocalizer.workboard_string.workboard7}
                             <div className='pull-right'>
                               <input type="checkbox" className="mvx-workboard-checkbox" checked={this.state.pending_user_check[pending_index]} onChange={(e) => this.handle_todo_user_chenage(e, pending_data.id, pending_index)} />
                             </div>
@@ -1277,10 +1277,9 @@ class MVX_Workboard extends Component {
                               </div>
                             </div>
                             <div className='mvx-vendor-row mvx-box-content name-txt'>
-                              <div className='mvx-product-title'>Vendor Name:</div>
+                              <div className='mvx-product-title'>{appLocalizer.workboard_string.workboard8}:</div>
                               <div className='mvx-product-name'><a href={pending_data.vendor_link}>{pending_data.vendor_name}</a></div>
                             </div>
-
 
                           </div>
                           <div className='mvx-white-box-footer'>
@@ -1300,7 +1299,7 @@ class MVX_Workboard extends Component {
 
                     )
                     )
-                      : this.state.pending_user_loding_end ? <div className='mvx-col-100 mb-30'>No Vendor Found</div> : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
+                      : this.state.pending_user_loding_end ? <div>{appLocalizer.workboard_string.workboard9}</div> : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
                   }
 
                 </div>
@@ -1312,14 +1311,14 @@ class MVX_Workboard extends Component {
 
                 <div className="mvx-text-with-line-wrapper">
                   <div className="mvx-report-text">
-                    <span>Pending Coupon</span>
+                    <span>{appLocalizer.workboard_string.workboard10}</span>
                   </div>
                   <div className="mvx-select-all-bulk-wrap">
                     <div className="mvx-select-all-checkbox">
                       <input type="checkbox" className="mvx-select-all" checked={this.state.pending_parent_coupon_check} onChange={(e) => this.handle_parent_coupon_todo_checkbox_chenage(e)} />
-                      <span className="mvx-select-all-text">Select All</span>
+                      <span className="mvx-select-all-text">{appLocalizer.global_string.select_all}</span>
                     </div>
-                    <Select placeholder="Bulk Action" options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'coupon_approval')} />
+                    <Select placeholder={appLocalizer.global_string.bulk_action} options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'coupon_approval')} />
                   </div>
                 </div>
 
@@ -1331,7 +1330,7 @@ class MVX_Workboard extends Component {
                       <div className='mvx-all-product-box'>
                         <div className='mvx-off-white-box'>
                           <div className='mvx-white-box-header'>
-                            Pending coupon
+                            {appLocalizer.workboard_string.workboard10}
                             <div className='pull-right'>
                               <input type="checkbox" className="mvx-workboard-checkbox" checked={this.state.pending_coupon_check[pending_index]} onChange={(e) => this.handle_todo_coupon_chenage(e, pending_data.id, pending_index)} />
                             </div>
@@ -1343,11 +1342,11 @@ class MVX_Workboard extends Component {
                               </div>
                             </div>
                             <div className='mvx-vendor-row mvx-box-content name-txt'>
-                              <div className='mvx-product-title'>Vendor Name:</div>
+                              <div className='mvx-product-title'>{appLocalizer.workboard_string.workboard8}:</div>
                               <div className='mvx-product-name'><a href={pending_data.vendor_link}>{pending_data.vendor}</a></div>
                             </div>
                             <div className='mvx-product-row mvx-box-content name-txt'>
-                              <div className='mvx-product-title'>Coupon Name:</div>
+                              <div className='mvx-product-title'>{appLocalizer.workboard_string.workboard11}:</div>
                               <div className='mvx-product-name'><a href={pending_data.coupon_url}>{pending_data.coupon}</a></div>
                             </div>
 
@@ -1367,7 +1366,7 @@ class MVX_Workboard extends Component {
                       </div>
                     )
                     )
-                      : this.state.pending_coupon_loding_end ? <div className='mvx-col-100 mb-30'>No Coupon Found</div> : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
+                      : this.state.pending_coupon_loding_end ? <div>{appLocalizer.workboard_string.workboard12}</div> : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
                   }
 
                 </div>
@@ -1380,14 +1379,14 @@ class MVX_Workboard extends Component {
 
                 <div className="mvx-text-with-line-wrapper">
                   <div className="mvx-report-text">
-                    <span>Pending Transaction</span>
+                    <span>{appLocalizer.workboard_string.workboard13}</span>
                   </div>
                   <div className="mvx-select-all-bulk-wrap">
                     <div className="mvx-select-all-checkbox">
                       <input type="checkbox" className="mvx-select-all" checked={this.state.pending_parent_transaction_check} onChange={(e) => this.handle_parent_transaction_todo_checkbox_chenage(e)} />
-                      <span className="mvx-select-all-text">Select All</span>
+                      <span className="mvx-select-all-text">{appLocalizer.global_string.select_all}</span>
                     </div>
-                    <Select placeholder="Bulk Action" options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'transaction_approval')} />
+                    <Select placeholder={appLocalizer.global_string.bulk_action} options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'transaction_approval')} />
                   </div>
                 </div>
 
@@ -1399,7 +1398,7 @@ class MVX_Workboard extends Component {
                       <div className='mvx-all-product-box'>
                         <div className='mvx-off-white-box'>
                           <div className='mvx-white-box-header'>
-                            Pending Transaction
+                            {appLocalizer.workboard_string.workboard13}
                             <div className='pull-right'>
                               <input type="checkbox" className="mvx-workboard-checkbox" checked={this.state.pending_transaction_check[pending_index]} onChange={(e) => this.handle_todo_transaction_chenage(e, pending_data.id, pending_index)} />
                             </div>
@@ -1407,22 +1406,22 @@ class MVX_Workboard extends Component {
                           <div className='mvx-white-box-body'>
                             
                             <div className='mvx-vendor-row mvx-box-content name-txt'>
-                              <div className='mvx-product-title'>Vendor Name:</div>
+                              <div className='mvx-product-title'>{appLocalizer.workboard_string.workboard8}:</div>
                               <div className='mvx-product-name'><a href="">{pending_data.vendor}</a></div>
                             </div>
 
                             <div className='mvx-vendor-row mvx-box-content name-txt'>
-                              <div className='mvx-product-title'>Commission:</div>
+                              <div className='mvx-product-title'>{appLocalizer.workboard_string.workboard15}:</div>
                               <div className='mvx-product-name'><a href="">{pending_data.commission}</a></div>
                             </div>
 
                             <div className='mvx-vendor-row mvx-box-content name-txt'>
-                              <div className='mvx-product-title'>Amount:</div>
+                              <div className='mvx-product-title'>{appLocalizer.workboard_string.workboard16}:</div>
                               <div className='mvx-product-name'><a href="">{pending_data.amount}</a></div>
                             </div>
 
                             <div className='mvx-vendor-row mvx-box-content name-txt'>
-                              <div className='mvx-product-title'>Account Detail:</div>
+                              <div className='mvx-product-title'>{appLocalizer.workboard_string.workboard17}:</div>
                               <p ></p>
                               <div className='mvx-product-name' dangerouslySetInnerHTML={{ __html: pending_data.account_details }}></div>
                             </div>
@@ -1443,7 +1442,7 @@ class MVX_Workboard extends Component {
                       </div>
                     )
                     )
-                      : this.state.pending_transaction_loding_end ? <div className='mvx-col-100 mb-30'>No Transaction Found</div> : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
+                      : this.state.pending_transaction_loding_end ? <div>{appLocalizer.workboard_string.workboard18}</div> : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
                   }
 
                 </div>
@@ -1456,14 +1455,14 @@ class MVX_Workboard extends Component {
 
                 <div className="mvx-text-with-line-wrapper">
                   <div className="mvx-report-text">
-                    <span>Pending Question Approval</span>
+                    <span>{appLocalizer.workboard_string.workboard19}</span>
                   </div>
                   <div className="mvx-select-all-bulk-wrap">
                     <div className="mvx-select-all-checkbox">
                       <input type="checkbox" className="mvx-select-all" checked={this.state.pending_parent_question_check} onChange={(e) => this.handle_parent_question_todo_checkbox_chenage(e)} />
-                      <span className="mvx-select-all-text">Select All</span>
+                      <span className="mvx-select-all-text">{appLocalizer.global_string.select_all}</span>
                     </div>
-                    <Select placeholder="Bulk Action" options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'question_approval')} />
+                    <Select placeholder={appLocalizer.global_string.bulk_action} options={appLocalizer.task_board_bulk_status} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handle_task_board_bulk_chenage(e, 'question_approval')} />
                   </div>
                 </div>
 
@@ -1476,7 +1475,7 @@ class MVX_Workboard extends Component {
                       <div className='mvx-all-product-box'>
                         <div className='mvx-off-white-box'>
                           <div className='mvx-white-box-header'>
-                            Pending Question
+                            {appLocalizer.workboard_string.workboard20}
                             <div className='pull-right'>
                               <input type="checkbox" className="mvx-workboard-checkbox" checked={this.state.pending_question_check[pending_index]} onChange={(e) => this.handle_todo_question_checkbox_chenage(e, pending_data.id, pending_index)} />
                             </div>
@@ -1488,16 +1487,16 @@ class MVX_Workboard extends Component {
                               </div>
                             </div>
                             <div className='mvx-vendor-row mvx-box-content name-txt'>
-                              <div className='mvx-product-title'>Question by:</div>
+                              <div className='mvx-product-title'>{appLocalizer.workboard_string.workboard21}:</div>
                               <div className='mvx-product-name'><a href={pending_data.vendor_link}>{pending_data.question_by_name}</a></div>
                             </div>
                             <div className='mvx-product-row mvx-box-content name-txt'>
-                              <div className='mvx-product-title'>Product Name:</div>
+                              <div className='mvx-product-title'>{appLocalizer.workboard_string.workboard22}:</div>
                               <div className='mvx-product-name'><a href={pending_data.product_url}>{pending_data.product_name}</a></div>
                             </div>
 
                             <div className='mvx-product-row mvx-box-content name-txt'>
-                              <div className='mvx-product-title'>Question details:</div>
+                              <div className='mvx-product-title'>{appLocalizer.workboard_string.workboard23}:</div>
                               <div className='mvx-product-name'><a href={pending_data.product_url}>{pending_data.question_details}</a></div>
                             </div>
 
@@ -1519,7 +1518,7 @@ class MVX_Workboard extends Component {
 
                     )
                     )
-                      : this.state.pending_question_loding_end ? <div className='mvx-col-100 mb-30'>No Question Found</div> : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
+                      : this.state.pending_question_loding_end ? <div>{appLocalizer.workboard_string.workboard24}</div> : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} />
                   }
 
                 </div>
@@ -1535,11 +1534,11 @@ class MVX_Workboard extends Component {
 
                 {get_current_name && get_current_name.get("create") == 'announcement' || get_current_name.get("AnnouncementID") ?
                 <div className="mvx-back-btn">
-                  <Link className="btn" to={`?page=mvx#&submenu=work-board&name=announcement`}><i className="mvx-font icon-back"></i>Back</Link>
+                  <Link className="btn" to={`?page=mvx#&submenu=work-board&name=announcement`}><i className="mvx-font icon-back"></i>{appLocalizer.global_string.back}</Link>
                 </div>
                 :
                 <div className="mvx-table-text-and-add-wrap mvx-addbtn">
-                  <Link className="btn" to={`?page=mvx#&submenu=work-board&name=announcement&create=announcement`}><i className="mvx-font icon-add"></i>Add Announcement</Link>
+                  <Link className="btn" to={`?page=mvx#&submenu=work-board&name=announcement&create=announcement`}><i className="mvx-font icon-add"></i>{appLocalizer.workboard_string.workboard25}</Link>
                 </div>
                 }  
 
@@ -1553,7 +1552,7 @@ class MVX_Workboard extends Component {
                       method="post"
                       modulename="create_announcement"
                       url="mvx_module/v1/create_announcement"
-                      submit_title="Publish"
+                      submit_title={appLocalizer.workboard_string.publish}
                     />
                   :
 
@@ -1575,7 +1574,6 @@ class MVX_Workboard extends Component {
 
                     :
 
-
                     <div className="mvx-knowladgebase-different-funtionality">
 
                       <div className="mvx-search-and-multistatus-wrap mvx-row mvx-align-items-center mvx-justify-content-between mb-15">
@@ -1583,15 +1581,15 @@ class MVX_Workboard extends Component {
                         <div className='mvx-multistatus-sec'>
                           <ul className='mvx-multistatus-ul mvx-row'>
                             <li className='mvx-multistatus-item'>
-                              <div className="mvx-multistatus-check-all" onClick={(e) => this.handle_post_retrive_status(e, 'all', 'announcement')}>All({this.state.display_all_announcement.length})</div>
+                              <div className="mvx-multistatus-check-all" onClick={(e) => this.handle_post_retrive_status(e, 'all', 'announcement')}>{appLocalizer.global_string.all}({this.state.display_all_announcement.length})</div>
                             </li>
                             <li className="mvx-multistatus-item mvx-divider"></li>
                             <li className='mvx-multistatus-item'>
-                              <div className="mvx-multistatus-check-approve" onClick={(e) => this.handle_post_retrive_status(e, 'publish', 'announcement')}>Published ({this.state.display_published_announcement.length})</div>
+                              <div className="mvx-multistatus-check-approve" onClick={(e) => this.handle_post_retrive_status(e, 'publish', 'announcement')}>{appLocalizer.global_string.published} ({this.state.display_published_announcement.length})</div>
                             </li>
                             <li className="mvx-multistatus-item mvx-divider"></li>
                             <li className='mvx-multistatus-item'>
-                              <div className="mvx-multistatus-check-pending status-active" onClick={(e) => this.handle_post_retrive_status(e, 'pending', 'announcement')}>Pending ({this.state.display_pending_announcement.length})</div>
+                              <div className="mvx-multistatus-check-pending status-active" onClick={(e) => this.handle_post_retrive_status(e, 'pending', 'announcement')}>{appLocalizer.global_string.pending} ({this.state.display_pending_announcement.length})</div>
                             </li>
                           </ul>
                         </div>
@@ -1599,7 +1597,7 @@ class MVX_Workboard extends Component {
                         <div className='mvx-searchbar-sec'>
                           <div className='mvx-header-search-section'>
                               <label><i className='mvx-font icon-search'></i></label>
-                              <input type="text" placeholder="Search Announcement" onChange={(e) => this.handle_post_bulk_status(e, 'announcement')} />
+                              <input type="text" placeholder={appLocalizer.workboard_string.workboard26} onChange={(e) => this.handle_post_bulk_status(e, 'announcement')} />
                           </div>
                         </div>
 
@@ -1608,10 +1606,10 @@ class MVX_Workboard extends Component {
                       <div className='mvx-wrap-bulk-all-date-sec'>
                         <div className="mvx-wrap-bulk-all-date">
                           <div className='mvx-bulk-action-sec'>
-                            <Select placeholder="Bulk actions" options={appLocalizer.post_bulk_status} isClearable={true} className="mvx-module-section-list-data" onChange={(e) => this.handle_work_board_chenage(e, 'announcement')} />
+                            <Select placeholder={appLocalizer.global_string.bulk_action} options={appLocalizer.post_bulk_status} isClearable={true} className="mvx-module-section-list-data" onChange={(e) => this.handle_work_board_chenage(e, 'announcement')} />
                           </div>
                           <div className='mvx-all-dates-sec'>
-                            <Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_work_board_chenage} />
+                            <Select placeholder={appLocalizer.global_string.all_dates} options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_work_board_chenage} />
                           </div>
                         </div>
                       </div>
@@ -1640,11 +1638,11 @@ class MVX_Workboard extends Component {
 
                   {get_current_name && get_current_name.get("create") == 'knowladgebase' || get_current_name.get("knowladgebaseID") ?
                     <div className="mvx-back-btn">
-                      <Link className="btn" to={`?page=mvx#&submenu=work-board&name=knowladgebase`}><i className="mvx-font icon-back"></i>Back</Link>
+                      <Link className="btn" to={`?page=mvx#&submenu=work-board&name=knowladgebase`}><i className="mvx-font icon-back"></i>{appLocalizer.global_string.back}</Link>
                     </div>
                     :
                     <div className="mvx-table-text-and-add-wrap mvx-addbtn">
-                      <Link className="btn" to={`?page=mvx#&submenu=work-board&name=knowladgebase&create=knowladgebase`}><i className="mvx-font icon-add"></i>Add Knowladgebase</Link>
+                      <Link className="btn" to={`?page=mvx#&submenu=work-board&name=knowladgebase&create=knowladgebase`}><i className="mvx-font icon-add"></i>{appLocalizer.workboard_string.workboard27}</Link>
                     </div>
                   }
 
@@ -1657,7 +1655,7 @@ class MVX_Workboard extends Component {
                         method="post"
                         modulename="create_knowladgebase"
                         url="mvx_module/v1/create_knowladgebase"
-                        submit_title="Publish"
+                        submit_title={appLocalizer.global_string.publish}
                       />
                     :
 
@@ -1685,15 +1683,15 @@ class MVX_Workboard extends Component {
                           <div className='mvx-multistatus-sec'>
                             <ul className='mvx-multistatus-ul mvx-row'>
                               <li className='mvx-multistatus-item'>
-                                <div className="mvx-multistatus-check-all" onClick={(e) => this.handle_post_retrive_status(e, 'all', 'knowladgebase')}>All({this.state.display_all_knowladgebase.length})</div>
+                                <div className="mvx-multistatus-check-all" onClick={(e) => this.handle_post_retrive_status(e, 'all', 'knowladgebase')}>{appLocalizer.global_string.all}({this.state.display_all_knowladgebase.length})</div>
                               </li>
                               <li className="mvx-multistatus-item mvx-divider"></li>
                               <li className="mvx-multistatus-item">
-                                <div className="mvx-multistatus-check-approve" onClick={(e) => this.handle_post_retrive_status(e, 'publish', 'knowladgebase')}>Published({this.state.display_publish_knowladgebase.length})</div>
+                                <div className="mvx-multistatus-check-approve" onClick={(e) => this.handle_post_retrive_status(e, 'publish', 'knowladgebase')}>{appLocalizer.global_string.published}({this.state.display_publish_knowladgebase.length})</div>
                               </li>
                               <li className="mvx-multistatus-item mvx-divider"></li>
                               <li className="mvx-multistatus-item">
-                                <div className="mvx-multistatus-check-pending status-active" onClick={(e) => this.handle_post_retrive_status(e, 'pending', 'knowladgebase')}>Pending ({this.state.display_pending_knowladgebase.length})</div>
+                                <div className="mvx-multistatus-check-pending status-active" onClick={(e) => this.handle_post_retrive_status(e, 'pending', 'knowladgebase')}>{appLocalizer.global_string.pending} ({this.state.display_pending_knowladgebase.length})</div>
                               </li>
                             </ul>
                           </div>
@@ -1701,7 +1699,7 @@ class MVX_Workboard extends Component {
                           <div className='mvx-searchbar-sec'>
                           <div className='mvx-header-search-section'>
                               <label><i className='mvx-font icon-search'></i></label>
-                              <input type="text" placeholder="Search Knowledgebase" onChange={(e) => this.handle_post_bulk_status(e, 'knowladgebase')} />
+                              <input type="text" placeholder={appLocalizer.workboard_string.workboard28} onChange={(e) => this.handle_post_bulk_status(e, 'knowladgebase')} />
                             </div>
                           </div>
                         </div>
@@ -1709,14 +1707,13 @@ class MVX_Workboard extends Component {
                         <div className='mvx-wrap-bulk-all-date-sec'>
                           <div className="mvx-wrap-bulk-all-date">
                             <div className='mvx-bulk-action-sec'>
-                              <Select placeholder="Bulk actions" options={appLocalizer.post_bulk_status} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_post_bulk_status} />
+                              <Select placeholder={appLocalizer.global_string.bulk_action} options={appLocalizer.post_bulk_status} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_post_bulk_status} />
                             </div>
                             <div className='mvx-all-dates-sec'>
-                              <Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_work_board_chenage} />
+                              <Select placeholder={appLocalizer.global_string.all_dates} options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_work_board_chenage} />
                             </div>
                           </div>
                         </div>
-
 
                         <div className="mvx-backend-datatable-wrapper">
                           {this.state.columns_knowledgebase_new && this.state.columns_knowledgebase_new.length > 0 ?
@@ -1745,11 +1742,11 @@ class MVX_Workboard extends Component {
                       <div className="mvx-multistatus-sec">
                         <ul className='mvx-multistatus-ul'>
                           <li className='mvx-multistatus-item'>
-                            <div className="mvx-multistatus-check-all">All ({this.state.list_of_store_review.length})</div>
+                            <div className="mvx-multistatus-check-all">{appLocalizer.global_string.all} ({this.state.list_of_store_review.length})</div>
                           </li>
                           <li clasName='mvx-multistatus-item mvx-divider'></li>
                         </ul>
-                        {/* <div className="mvx-multistatus-check-all">All ({this.state.list_of_store_review.length})</div> */}
+                        {/* <div className="mvx-multistatus-check-all">{appLocalizer.global_string.all} ({this.state.list_of_store_review.length})</div> */}
                         {/*<div className="mvx-multistatus-check-approve" onClick={this.handle_post_retrive_status}>| Approve (10)</div>
                             <div className="mvx-multistatus-check-pending status-active">| Pending (10)</div>*/}
                       </div>
@@ -1758,7 +1755,7 @@ class MVX_Workboard extends Component {
                       <div className="mvx-searchbar-sec">
                         <div className='mvx-header-search-section'>
                           <label><i className='mvx-font icon-search'></i></label>
-                          <input type="text" placeholder="Search Review" name="search" onChange={(e) => this.handle_search_vendor_review(e)} />
+                          <input type="text" placeholder={appLocalizer.workboard_string.workboard8} onChange={(e) => this.handle_search_vendor_review(e)} />
                         </div>
                       </div>
                     </div>
@@ -1767,12 +1764,12 @@ class MVX_Workboard extends Component {
                     <div className="mvx-wrap-bulk-all-date-sec">
                       <div className="mvx-wrap-bulk-all-date">
                         <div className='mvx-bulk-action-sec'>
-                          <Select placeholder="Bulk actions" options={appLocalizer.select_option_delete} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_review_bulk_status} />
+                          <Select placeholder={appLocalizer.global_string.bulk_action} options={appLocalizer.select_option_delete} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_review_bulk_status} />
                         </div>
                       </div>
 
                       {/*<div className="mvx-wrap-date-action">
-                        <Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_work_board_chenage} />
+                        <Select placeholder={appLocalizer.global_string.all_dates} options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_work_board_chenage} />
                       </div>*/}
                     </div>
 
@@ -1797,15 +1794,15 @@ class MVX_Workboard extends Component {
 
                       <div className="mvx-wrap-bulk-all-date">
                         {/*<div className="mvx-wrap-bulk-action">
-                          <Select placeholder="Bulk actions" options={appLocalizer.select_option_delete} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_review_bulk_status} />
+                          <Select placeholder={appLocalizer.global_string.bulk_action} options={appLocalizer.select_option_delete} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_review_bulk_status} />
                         </div>*/}
 
                         <div className="mvx-wrap-bulk-action">
-                          <Select placeholder="Filter by vendor" options={this.state.show_vendor_name} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_vendor_search_abuse} />
+                          <Select placeholder={appLocalizer.workboard_string.workboard30} options={this.state.show_vendor_name} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_vendor_search_abuse} />
                         </div>
 
                         <div className="mvx-wrap-bulk-action">
-                          <Select placeholder="Filter by product" options={this.state.product_list_option} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_product_search_abuse} />
+                          <Select placeholder={appLocalizer.workboard_string.workboard31} options={this.state.product_list_option} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_product_search_abuse} />
                         </div>
                       </div>
 
@@ -1832,13 +1829,13 @@ class MVX_Workboard extends Component {
                           <div className="mvx-multistatus-sec">
                             <ul className="mvx-multistatus-ul">
                               <li className="mvx-multistatus-item">
-                                <div className="mvx-multistatus-check-all">All ({this.state.list_of_publish_question.length})</div>
+                                <div className="mvx-multistatus-check-all">{appLocalizer.global_string.all} ({this.state.list_of_publish_question.length})</div>
                               </li>
 
                               <li className="mvx-multistatus-item mvx-divider"></li>
 
                               <li className="mvx-multistatus-item">
-                                <div className="mvx-multistatus-check-pending status-active">Pending ({this.state.list_of_pending_question.length})</div>
+                                <div className="mvx-multistatus-check-pending status-active">{appLocalizer.global_string.pending} ({this.state.list_of_pending_question.length})</div>
                               </li>
 
                             </ul>
@@ -1846,7 +1843,7 @@ class MVX_Workboard extends Component {
                           <div className="mvx-searchbar-sec">
                             <div className='mvx-header-search-section'>
                               <label><i className='mvx-font icon-search'></i></label>
-                              <input type="text" placeholder="Search Question" name="search" onChange={(e) => this.handle_question_search(e)} />
+                              <input type="text" placeholder={appLocalizer.workboard_string.workboard32} onChange={(e) => this.handle_question_search(e)} />
                             </div>
                           </div>
                         </div>
@@ -1854,20 +1851,20 @@ class MVX_Workboard extends Component {
 
                         {/*<div className="mvx-wrap-bulk-all-date">
                           <div className="mvx-wrap-bulk-action">
-                            <Select placeholder="Bulk actions" options={appLocalizer.post_bulk_status} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_post_bulk_status} />
+                            <Select placeholder={appLocalizer.global_string.bulk_action} options={appLocalizer.post_bulk_status} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_post_bulk_status} />
                           </div>
                           <div className="mvx-wrap-date-action">
-                            <Select placeholder="All Dates" options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_work_board_chenage} />
+                            <Select placeholder={appLocalizer.global_string.all_dates} options={this.state.details_vendor} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_work_board_chenage} />
                           </div>
                         </div>*/}
 
                         <div className="mvx-wrap-bulk-all-date">
                           <div className="mvx-wrap-bulk-action">
-                            <Select placeholder="Search status" options={appLocalizer.question_selection_wordpboard} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_question_bulk_status_change} />
+                            <Select placeholder={appLocalizer.workboard_string.workboard33} options={appLocalizer.question_selection_wordpboard} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_question_bulk_status_change} />
                           </div>
 
                           <div className="mvx-wrap-bulk-action">
-                            <Select placeholder="Search product status" isMulti options={appLocalizer.question_product_selection_wordpboard} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_question_bulk_status_change} />
+                            <Select placeholder={appLocalizer.workboard_string.workboard34} isMulti options={appLocalizer.question_product_selection_wordpboard} isClearable={true} className="mvx-module-section-list-data" onChange={this.handle_question_bulk_status_change} />
                           </div>
                         </div>
 

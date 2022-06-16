@@ -48,93 +48,91 @@ class App extends Component {
       vendor_loading: false,
       columns_product: [
         {
-            name: <div className="mvx-datatable-header-text">Product Title</div>,
+            name: <div className="mvx-datatable-header-text">{appLocalizer.analytics_page_string.analytics10}</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.title}}></div>,
             sortable: true,
         },
         {
-            name: <div className="mvx-datatable-header-text">Admin Earning</div>,
+            name: <div className="mvx-datatable-header-text">{appLocalizer.analytics_page_string.analytics11}</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.admin_earning}}></div>,
             sortable: true,
         },
         {
-            name: <div className="mvx-datatable-header-text">Vendor Earning</div>,
+            name: <div className="mvx-datatable-header-text">{appLocalizer.analytics_page_string.analytics12}</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.vendor_earning}}></div>,
             sortable: true,
         },
         {
-            name: <div className="mvx-datatable-header-text">Gross Sales</div>,
+            name: <div className="mvx-datatable-header-text">{appLocalizer.analytics_page_string.analytics13}</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.gross}}></div>,
             sortable: true,
         }
       ],
       columns_vendor: [
         {
-            name: <div className="mvx-datatable-header-text">Vendor Name</div>,
+            name: <div className="mvx-datatable-header-text">{appLocalizer.analytics_page_string.analytics14}</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.title}}></div>,
             sortable: true,
         },
         {
-            name: <div className="mvx-datatable-header-text">Admin Earning</div>,
+            name: <div className="mvx-datatable-header-text">{appLocalizer.analytics_page_string.analytics11}</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.admin_earning}}></div>,
             sortable: true,
         },
         {
-            name: <div className="mvx-datatable-header-text">Vendor Earning</div>,
+            name: <div className="mvx-datatable-header-text">{appLocalizer.analytics_page_string.analytics12}</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.vendor_earning}}></div>,
             sortable: true,
         },
         {
-            name: <div className="mvx-datatable-header-text">Gross Sales</div>,
+            name: <div className="mvx-datatable-header-text">{appLocalizer.analytics_page_string.analytics13}</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.gross}}></div>,
             sortable: true,
         }
       ],
       columns_commission: [
         {
-            name: <div className="mvx-datatable-header-text">Commission ID</div>,
+            name: <div className="mvx-datatable-header-text">{appLocalizer.analytics_page_string.analytics15}</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.commission_id}}></div>,
             sortable: true,
         },
         {
-            name: <div className="mvx-datatable-header-text">Order ID</div>,
+            name: <div className="mvx-datatable-header-text">{appLocalizer.analytics_page_string.analytics16}</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.order_id}}></div>,
             sortable: true,
         },
         {
-            name: <div className="mvx-datatable-header-text">Product</div>,
+            name: <div className="mvx-datatable-header-text">{appLocalizer.analytics_page_string.analytics17}</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.product}}></div>,
             sortable: true,
         },
         {
-            name: <div className="mvx-datatable-header-text">Vendor</div>,
+            name: <div className="mvx-datatable-header-text">{appLocalizer.analytics_page_string.analytics6}</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.vendor}}></div>,
             sortable: true,
         },
         {
-            name: <div className="mvx-datatable-header-text">Amount</div>,
+            name: <div className="mvx-datatable-header-text">{appLocalizer.analytics_page_string.analytics18}</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.amount}}></div>,
             sortable: true,
         },
         {
-            name: <div className="mvx-datatable-header-text">Net Earning</div>,
+            name: <div className="mvx-datatable-header-text">{appLocalizer.analytics_page_string.analytics19}</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.net_earning}}></div>,
             sortable: true,
         },
         {
-            name: <div className="mvx-datatable-header-text">Status</div>,
+            name: <div className="mvx-datatable-header-text">{appLocalizer.analytics_page_string.analytics20}</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.status}}></div>,
             sortable: true,
         },
         {
-            name: <div className="mvx-datatable-header-text">Date</div>,
+            name: <div className="mvx-datatable-header-text">{appLocalizer.analytics_page_string.analytics9}</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.date}}></div>,
             sortable: true,
         },
       ],
-      datacommission: [
-
-      ],
+      datacommission: [],
       details_vendor: [],
       dataproductchart: [],
       details_product: [],
@@ -145,37 +143,37 @@ class App extends Component {
       vendor_report_chart_data: [],
       columns_transaction: [
         {
-            name: <div className="mvx-datatable-header-text">Status</div>,
+            name: <div className="mvx-datatable-header-text">{appLocalizer.analytics_page_string.analytics20}</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.status}}></div>,
             sortable: true,
         },
         {
-            name: <div className="mvx-datatable-header-text">Date</div>,
+            name: <div className="mvx-datatable-header-text">{appLocalizer.analytics_page_string.analytics9}</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.date}}></div>,
             sortable: true,
         },
         {
-            name: <div className="mvx-datatable-header-text">Type</div>,
+            name: <div className="mvx-datatable-header-text">{appLocalizer.analytics_page_string.analytics21}</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.type}}></div>,
             sortable: true,
         },
         {
-            name: <div className="mvx-datatable-header-text">Reference ID</div>,
+            name: <div className="mvx-datatable-header-text">{appLocalizer.analytics_page_string.analytics22}</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.reference_id}}></div>,
             sortable: true,
         },
         {
-            name: <div className="mvx-datatable-header-text">Credit</div>,
+            name: <div className="mvx-datatable-header-text">{appLocalizer.analytics_page_string.analytics23}</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.Credit}}></div>,
             sortable: true,
         },
         {
-            name: <div className="mvx-datatable-header-text">Debit</div>,
+            name: <div className="mvx-datatable-header-text">{appLocalizer.analytics_page_string.analytics24}</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.Debit}}></div>,
             sortable: true,
         },
         {
-            name: <div className="mvx-datatable-header-text">Balance</div>,
+            name: <div className="mvx-datatable-header-text">{appLocalizer.analytics_page_string.analytics25}</div>,
             selector: row => <div dangerouslySetInnerHTML={{__html: row.balance}}></div>,
             sortable: true,
         },
@@ -395,7 +393,7 @@ Child({ name }) {
           
             <div className="mvx-report-start-content">
               <div className="mvx-wrapper-date-picker mb-30">
-                <div className="mvx-date-range">Date range:</div>
+                <div className="mvx-date-range">{appLocalizer.analytics_page_string.analytics1}:</div>
                 <div className="mvx-report-datepicker"><DateRangePicker onChange={(e) => this.handleupdatereport(e)} /></div>
               </div>
 
@@ -473,7 +471,7 @@ Child({ name }) {
                               <YAxis tickFormatter={this.state.formatter} />
                               <Tooltip />
                               <Legend />
-                              <Line type="monotone" dataKey="Net Sales" stroke="red" activeDot={{ r: 8 }} />
+                              <Line type="monotone" dataKey={appLocalizer.analytics_page_string.analytics2} stroke="red" activeDot={{ r: 8 }} />
                             </LineChart>
                           </ResponsiveContainer>
                           :
@@ -490,11 +488,11 @@ Child({ name }) {
                               }}
                               >
                               <CartesianGrid strokeDasharray="3 3" />
-                              <XAxis dataKey="Date" />
+                              <XAxis dataKey={appLocalizer.analytics_page_string.analytics9} />
                               <YAxis tickFormatter={this.state.formatter} />
                               <Tooltip />
                               <Legend />
-                              <Bar dataKey="Net Sales" fill="red"  />
+                              <Bar dataKey={appLocalizer.analytics_page_string.analytics2} fill="red"  />
                             </BarChart>
                           </ResponsiveContainer>
                         }
@@ -514,7 +512,7 @@ Child({ name }) {
               </div>
 
               <div className="mvx-analytic-details-wrap">
-                <div className="mvx-commission-order-details-text">Vendor Details</div>
+                <div className="mvx-commission-order-details-text">{appLocalizer.analytics_page_string.analytics8}</div>
                 <div className="mvx-backend-datatable-wrapper default-table">
                 {this.state.vendor_loading ?
                   <DataTable
@@ -535,7 +533,7 @@ Child({ name }) {
               </div>
 
               <div className="mvx-analytic-details-wrap">
-                <div className="mvx-commission-order-details-text">Commission Details</div>
+                <div className="mvx-commission-order-details-text">{appLocalizer.analytics_page_string.analytics7}</div>
                 <div className="mvx-backend-datatable-wrapper default-table">
                 {this.state.vendor_loading ?
                   <DataTable
@@ -566,11 +564,11 @@ Child({ name }) {
 
               <div className="mvx-date-and-show-wrapper justify-between mb-25">
                 <div className="mvx-wrapper-date-picker">
-                  <div className="mvx-date-range">Date range:</div>
+                  <div className="mvx-date-range">{appLocalizer.analytics_page_string.analytics1}:</div>
                   <div className="mvx-report-datepicker"><DateRangePicker onChange={(e) => this.handleupdatereport(e)} /></div>
                 </div>
                 <div className="mvx-vendor-wrapper-show-specific">
-                  <div className="mvx-date-range">Show:</div>
+                  <div className="mvx-date-range">{appLocalizer.analytics_page_string.analytics3}:</div>
                   <Select placeholder={appLocalizer.report_page_string.choose_vendor} options={this.state.details_vendor} isClearable={true} className="mvx-module-vendor-section-nav-child-data" onChange={(e) => this.handlevendorsearch(e)} />
                 </div>
               </div>
@@ -628,16 +626,16 @@ Child({ name }) {
                     }}
                     >
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="Date" />
+                    <XAxis dataKey={appLocalizer.analytics_page_string.analytics9} />
                     <YAxis tickFormatter={this.state.formatter} />
                     <Tooltip />
                     <Legend />
-                    <Line dataKey="Net Sales" stroke="red" activeDot={{ r: 8 }} />
+                    <Line dataKey={appLocalizer.analytics_page_string.analytics2} stroke="red" activeDot={{ r: 8 }} />
 
-                    <Line dataKey="Order Count"
+                    <Line dataKey={appLocalizer.analytics_page_string.analytics4}
                           stroke="black" activeDot={{ r: 8 }} />
                       
-                    <Line dataKey="Item Sold"
+                    <Line dataKey={appLocalizer.analytics_page_string.analytics5}
                           stroke="green" activeDot={{ r: 8 }} />
 
                   </LineChart>
@@ -658,16 +656,16 @@ Child({ name }) {
                     }}
                     >
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="Date" />
+                    <XAxis dataKey={appLocalizer.analytics_page_string.analytics9} />
                     <YAxis tickFormatter={this.state.formatter} />
                     <Tooltip />
                     <Legend />
-                    <Bar dataKey="Net Sales" fill="red"  />
+                    <Bar dataKey={appLocalizer.analytics_page_string.analytics2} fill="red"  />
 
-                    <Bar dataKey="Order Count"
+                    <Bar dataKey={appLocalizer.analytics_page_string.analytics4}
                     fill="black"  />
 
-                    <Bar dataKey="Item Sold"
+                    <Bar dataKey={appLocalizer.analytics_page_string.analytics5}
                     fill="green"  />
 
                   </BarChart>
@@ -681,7 +679,7 @@ Child({ name }) {
             <div className="mvx-report-csv-and-chart">
               {this.state.report_overview_data.vendor && this.state.report_overview_data.vendor.vendor_report_datatable ? 
                 <div className="mvx-text-with-line-wrapper svg-line">
-                  <div className="mvx-report-text"><span>Vendor</span></div>
+                  <div className="mvx-report-text"><span>{appLocalizer.analytics_page_string.analytics6}</span></div>
                   <div className="mvx-select-all-bulk-wrap">
                     <CSVLink data={this.state.vendor_report_chart_data} headers={appLocalizer.report_vendor_header} filename={"Report_vendor.csv"} className="button-csv-primary"><i className="mvx-font icon-download"></i>{appLocalizer.report_page_string.download_csv}</CSVLink> 
                   </div>
@@ -707,12 +705,12 @@ Child({ name }) {
 
                 <div className="mvx-date-and-show-wrapper justify-between mb-25">
                   <div className="mvx-wrapper-date-picker">
-                    <div className="mvx-date-range">Date range:</div>
+                    <div className="mvx-date-range">{appLocalizer.analytics_page_string.analytics1}:</div>
                     <div className="mvx-report-datepicker"><DateRangePicker onChange={(e) => this.handleupdatereport(e)} /></div>
                   </div>
                 
                   <div className="mvx-product-wrapper-show-specific mvx-vendor-wrapper-show-specific">
-                    <div className="mvx-date-range">Show:</div>
+                    <div className="mvx-date-range">{appLocalizer.analytics_page_string.analytics3}:</div>
                     <Select placeholder={appLocalizer.report_page_string.choose_product} options={this.state.details_product} isClearable={true} className="mvx-module-section-nav-child-data" onChange={(e) => this.handleproductsearch(e)} />
                   </div>
                 </div>
@@ -767,16 +765,16 @@ Child({ name }) {
                       }}
                       >
                       <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="Date" />
+                      <XAxis dataKey={appLocalizer.analytics_page_string.analytics9} />
                       <YAxis tickFormatter={this.state.formatter} />
                       <Tooltip />
                       <Legend />
-                      <Line dataKey="Net Sales" stroke="red" activeDot={{ r: 8 }} />
+                      <Line dataKey={appLocalizer.analytics_page_string.analytics2} stroke="red" activeDot={{ r: 8 }} />
 
-                      <Line dataKey="Order Count"
+                      <Line dataKey={appLocalizer.analytics_page_string.analytics4}
                             stroke="black" activeDot={{ r: 8 }} />
                         
-                      <Line dataKey="Item Sold"
+                      <Line dataKey={appLocalizer.analytics_page_string.analytics5}
                             stroke="green" activeDot={{ r: 8 }} />
 
                     </LineChart>
@@ -795,13 +793,13 @@ Child({ name }) {
                       }}
                       >
                       <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="Date" />
+                      <XAxis dataKey={appLocalizer.analytics_page_string.analytics9} />
                       <YAxis tickFormatter={this.state.formatter} />
                       <Tooltip />
                       <Legend />
-                      <Bar dataKey="Net Sales" fill="red"  />
-                      <Bar dataKey="Order Count" fill="black"  />
-                      <Bar dataKey="Item Sold" fill="green"  />
+                      <Bar dataKey={appLocalizer.analytics_page_string.analytics2} fill="red"  />
+                      <Bar dataKey={appLocalizer.analytics_page_string.analytics4} fill="black"  />
+                      <Bar dataKey={appLocalizer.analytics_page_string.analytics5} fill="green"  />
                     </BarChart>
                   </ResponsiveContainer>
                 }
@@ -838,7 +836,7 @@ Child({ name }) {
               <div className="mvx-report-start-content">
                 <div className="mvx-date-and-show-wrapper justify-between mb-25">
                   <div className="mvx-wrapper-date-picker">
-                    <div className="mvx-date-range">Date range:</div>
+                    <div className="mvx-date-range">{appLocalizer.analytics_page_string.analytics1}:</div>
                     <div className="mvx-report-datepicker"><DateRangePicker onChange={(e) => this.handleupdatereport(e)} /></div>
                   </div>
                 

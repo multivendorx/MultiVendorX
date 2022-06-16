@@ -1770,7 +1770,7 @@ class MVX_Commission {
         </select>
         <?php
         // By Commission vendor
-        $vendor_dd_html = '<select name="commission_vendor" id="dropdown_commission_vendor"><option value="">'.__("Show All Vendors", "dc-woocommerce-multi-vendor").'</option>';
+        $vendor_dd_html = '<select name="commission_vendor" id="dropdown_commission_vendor"><option value="">'.__("Show All Vendors", "multivendorx").'</option>';
         $vendors = get_mvx_vendors();
         if($vendors) :
             foreach ($vendors as $vendor) {

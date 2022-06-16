@@ -11,7 +11,7 @@
  * WC requires at least: 3.0
  * WC tested up to: 6.1.0
  *
- * Text Domain: dc-woocommerce-multi-vendor
+ * Text Domain: multivendorx
  * Domain Path: /languages/
  */
 if (!class_exists('WC_Dependencies_Product_Vendor')) {
