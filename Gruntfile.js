@@ -8,8 +8,9 @@ module.exports = function (grunt) {
         dirs: {
             admin_css: 'assets/admin/css',
             admin_js: 'assets/admin/js',
-            frontend_css: 'assets/frontend/css',
-            frontend_js: 'assets/frontend/js'
+            //frontend_css: 'assets/frontend/css',
+            frontend_js: 'assets/frontend/js',
+            admin_backend_js: 'mvx-modules/src/components/admin/classes',
         },
 
         // JavaScript linting with JSHint.
@@ -69,6 +70,18 @@ module.exports = function (grunt) {
                             '!*.min.js'
                         ],
                         dest: '<%= dirs.frontend_js %>/',
+                        ext: '.min.js'
+                    }]
+            },
+            new_backend: {
+                files: [{
+                        expand: true,
+                        cwd: '<%= dirs.admin_backend_js %>/',
+                        src: [
+                            '*.js',
+                            '!*.min.js'
+                        ],
+                        dest: '<%= dirs.admin_backend_js %>/',
                         ext: '.min.js'
                     }]
             }
@@ -235,23 +248,28 @@ module.exports = function (grunt) {
                     '<%= dirs.frontend_css %>/*.css'
                 ]
             }
-        }
+        },
     });
 
     // Load NPM tasks to be used here
-/*    grunt.loadNpmTasks('grunt-sass');
-    grunt.loadNpmTasks('grunt-rtlcss');
+    /*grunt.loadNpmTasks('grunt-sass');
+    
     grunt.loadNpmTasks('grunt-postcss');
     grunt.loadNpmTasks('grunt-stylelint');*/
     grunt.loadNpmTasks('grunt-wp-i18n');
     grunt.loadNpmTasks('grunt-checktextdomain');
-/*    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
+
+    grunt.loadNpmTasks('grunt-uncss');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-rtlcss');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+
+    /*grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');*/
 
     // Register tasks
-/*    grunt.registerTask('default', [
+    /*grunt.registerTask('default', [
         'js',
         'css',
         'i18n'
@@ -274,6 +292,14 @@ module.exports = function (grunt) {
     grunt.registerTask('dev', [
         'default'
     ]);*/
+
+    grunt.registerTask('js', [
+        //'uglify:admin',
+        //'uglify:frontend'
+        'uglify:new_backend'
+    ]);
+
+    grunt.registerTask('css_all', ['cssmin', 'rtlcss']);
 
     grunt.registerTask('i18n', [
         'checktextdomain',
