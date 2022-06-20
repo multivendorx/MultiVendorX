@@ -253,6 +253,7 @@ class MVX_Admin {
         );
 
         // select product list
+        $question_product_selection_wordpboard = '';
         $product_query = new WP_Query(array('posts_per_page' => -1, 'post_type' => 'product', 'post_status' => 'publish'));
         if ($product_query->get_posts()) {
             $question_product_selection_wordpboard = mvx_convert_select_structure($product_query->get_posts());
@@ -315,7 +316,11 @@ class MVX_Admin {
             'publish'               =>  __('Publish', 'multivendorx'),
             'all'                   =>  __('All', 'multivendorx'),
             'published'             =>  __('Published', 'multivendorx'),
-            'pending'               =>  __('Pending', 'multivendorx')
+            'pending'               =>  __('Pending', 'multivendorx'),
+            'save'                  =>  __('Save', 'multivendorx'),
+            'saving'                =>  __('Saving..', 'multivendorx'),
+            'open_uploader'         =>  __('Open Uploader', 'multivendorx'),
+            'favorite_color'         =>  __('Select your favorite color', 'multivendorx'),
         );
 
         $workboard_string = array(

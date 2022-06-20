@@ -1300,9 +1300,9 @@ class MVX_Backend_Commission extends Component {
             </div>
           </div>
 
-          <div className="mvx-search-and-multistatus-wrap mvx-row mvx-align-items-center mvx-justify-content-between mb-15">
+          <div className="mvx-search-and-multistatus-wrap">
             <div className="mvx-multistatus-sec">
-              <ul className="mvx-multistatus-ul mvx-row">
+              <ul className="mvx-multistatus-ul">
                 <li class="mvx-multistatus-item">
                   <div
                     className="mvx-multistatus-check-all"

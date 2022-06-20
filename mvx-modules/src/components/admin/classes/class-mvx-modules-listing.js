@@ -34,7 +34,6 @@ class MVX_Module_Listing extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoaded: false,
       items: [],
       open_model: false,
       open_model_dynamic: [],
@@ -47,8 +46,6 @@ class MVX_Module_Listing extends Component {
     // popup close for required plugin inactive popup
     this.handleClose_dynamic = this.handleClose_dynamic.bind(this);
     // search select module trigger
-    this.QueryParamsDemo = this.QueryParamsDemo.bind(this);
-    this.useQuery = this.useQuery.bind(this);
     this.handleModuleSearch = this.handleModuleSearch.bind(this);
     this.handleModuleSearchByCategory = this.handleModuleSearchByCategory.bind(this);
     this.mvx_search_different_module_status = this.mvx_search_different_module_status.bind(this);
@@ -75,7 +72,6 @@ class MVX_Module_Listing extends Component {
       .then(response => {
         this.setState({
           items: response.data,
-          isLoaded: false
         });
       })
   }
@@ -96,7 +92,6 @@ class MVX_Module_Listing extends Component {
         fetch(`${appLocalizer.apiUrl}/mvx_module/v1/module_lists?module_id=all`).then(res => res.json()),
       ]).then(([product, settings, module_ids, module_tabs]) => {
         this.setState({
-          isLoaded: false,
           items: product,
         });
       }).catch((error) => {
@@ -146,13 +141,11 @@ class MVX_Module_Listing extends Component {
   }
 
   componentDidMount() {
-    this.setState({ isLoaded: true })
     // fetch all modules, checkbox values, select list values
     Promise.all([
       fetch(`${appLocalizer.apiUrl}/mvx_module/v1/module_lists?module_id=all`).then(res => res.json()),
     ]).then(([product, settings, module_ids, module_tabs]) => {
       this.setState({
-        isLoaded: false,
         items: product,
       });
     }).catch((error) => {
@@ -170,11 +163,7 @@ class MVX_Module_Listing extends Component {
       })
   }
 
-  useQuery() {
-    return new URLSearchParams(useLocation().hash);
-  }
-
-  QueryParamsDemo() {
+  render() {
     return (
       <div className="mvx-general-wrapper mvx-modules">
         <HeaderSection />
@@ -439,15 +428,6 @@ class MVX_Module_Listing extends Component {
         </div>
       </div>
 
-    );
-  }
-
-
-  render() {
-    return (
-      <Router>
-        <this.QueryParamsDemo />
-      </Router>
     );
   }
 }

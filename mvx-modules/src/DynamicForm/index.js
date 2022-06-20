@@ -10,22 +10,16 @@ export default class DynamicForm extends React.Component {
       from_loading: false,
       statedrop: [],
       errordisplay: '',
-      store_data_array: []
     };
 
     this.runUploader = this.runUploader.bind(this);
     this.handlenestedAddClick = this.handlenestedAddClick.bind(this);
     this.handlenestedchildAddClick = this.handlenestedchildAddClick.bind(this);
-
     this.removenestedchildOption = this.removenestedchildOption.bind(this);
     this.removenestedField = this.removenestedField.bind(this);
-
     this.onnestedChange = this.onnestedChange.bind(this);
-
     this.onSelectDeselectChange = this.onSelectDeselectChange.bind(this);
-
     this.onMultiChange = this.onMultiChange.bind(this);
-
     this.handle_Vendor_active_suspend = this.handle_Vendor_active_suspend.bind(this);
   }
 
@@ -68,11 +62,8 @@ export default class DynamicForm extends React.Component {
   }
 
   onnestedChange(e, target, index, filedsdetails, nestedchild, childindex, selectarray, m) {
-
     let itemsnested = m['database_value'];
-
     var country_list_array = new Array();
-
     if (nestedchild == 'childnested') {
       if (filedsdetails.type == 'checkbox') {
         itemsnested[index].nested_datas[childindex][filedsdetails.key] = e.target.checked;
@@ -103,64 +94,40 @@ export default class DynamicForm extends React.Component {
         itemsnested[index][filedsdetails.key] = e.target.value;
       }
     }
-
-    /*this.setState({
-      //[m['database_value']]: itemsnested
-    });*/
-
     if (this.props.submitbutton && this.props.submitbutton == 'false') {
       setTimeout(() => {
         this.onSubmit('');
       }, 10)
     }
-
-
-
-    //console.log(m);
-    //console.log(JSON.parse(appLocalizer.countries.replace( /&quot;/g, '"' )));
-
     this.setState(
       {
         [target]: itemsnested
       },
       () => { }
     );
-    // if(this.props.submitbutton && this.props.submitbutton == 'false') {
-    //   this.onSubmit('');
-    // }
   }
 
   onMultiChange(e, o, m, target, indexp) {
-
     var new_arraydata = this.state[target] ? this.state[target] : [];
-
     m.options.map((om, index) => {
-
       new_arraydata[index] = { key: om.key, value: o.key == om.key ? e.target.value : (this.state[target][index] && this.state[target][index]['value'] ? this.state[target][index]['value'] : '') }; //o.key == om.key ? e.target.value : ( this.state[target][indexp] ? this.state[target][indexp] : '');
-
     })
 
     this.setState({
       [target]: new_arraydata
     });
 
-
     if (this.props.submitbutton && this.props.submitbutton == 'false') {
       setTimeout(() => {
         this.onSubmit('');
       }, 10)
     }
-
   }
 
   removenestedchildOption(e, indexparent, index, m) {
     let itemsnested = m['database_value'];
     itemsnested[indexparent].nested_datas.splice(index, 1);
-    /*this.setState({
-      [m['database_value']]: m['database_value']
-    });*/
     this.state[m.key] = itemsnested;
-
     if (this.props.submitbutton && this.props.submitbutton == 'false') {
       setTimeout(() => {
         this.onSubmit('');
@@ -169,7 +136,6 @@ export default class DynamicForm extends React.Component {
   }
 
   handlenestedchildAddClick(e, m, indexop) {
-
     var child_nested_array = {};
     if (m['type'] == 'nested') {
       m['child_options'].map((keyn, indexn) => {
@@ -183,9 +149,6 @@ export default class DynamicForm extends React.Component {
 
     var count = m['database_value'][indexop].nested_datas.length + 1;
     m['database_value'][indexop].nested_datas.push(child_nested_array);
-
-    //console.log(m['database_value']);
-    //return false;
 
     this.setState({
       [m['database_value']]: m['database_value']
@@ -201,12 +164,7 @@ export default class DynamicForm extends React.Component {
   removenestedField(e, index, m) {
     let itemsnested = m['database_value'];
     itemsnested.splice(index, 1);
-    /*this.setState({
-      [m['database_value']]: m['database_value']
-    });*/
-
     this.state[m.key] = itemsnested;
-
     if (this.props.submitbutton && this.props.submitbutton == 'false') {
       setTimeout(() => {
         this.onSubmit('');
@@ -228,25 +186,10 @@ export default class DynamicForm extends React.Component {
         parent_nested_array['nested_datas'] = child_nested_array;
       });
     }
-
-    /*    console.log(parent_nested_array);
-        console.log({value: 'option' + count, label: 'Option ' + count, selected: false, nested_datas: [{}]});
-        return false;*/
-    //var count = this.state.nestedarray.options.length + 1;
-
     m['database_value'].push(parent_nested_array);
-
     this.setState({
       [m['database_value']]: m['database_value']
     });
-
-    /*this.setState({ 
-      nestedarray: true 
-    });*/
-
-    //this.state.nestedarray
-    //console.log(this.state.nestedarray.options.length);
-
     if (this.props.submitbutton && this.props.submitbutton == 'false') {
       setTimeout(() => {
         this.onSubmit('');
@@ -266,7 +209,6 @@ export default class DynamicForm extends React.Component {
       },
       multiple: false, // Set to true to allow multiple files to be selected
     })
-
     var self = this; // copy the reference
     frame.on('select', function () {
       // Get media attachment details from the frame state
@@ -280,36 +222,25 @@ export default class DynamicForm extends React.Component {
           self.onSubmit('');
         }, 10)
       }
-
     });
     // Finally, open the modal on click
     frame.open()
-
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    //console.log("gds:p:s", nextProps.defaultValues, prevState);
-
     let derivedState = {};
-
     if (
       nextProps.defaultValues &&
       nextProps.defaultValues.id !== prevState.id
     ) {
-      //   Object.keys(prevState).forEach(k => {
-      //     derivedState[k] = "";
-      //   });
       return {
         ...nextProps.defaultValues
       };
     }
-
-    //console.log("no state change");
     return null;
   }
 
   onSubmit = e => {
-
     // block to refresh pages
     let prop_submitbutton = this.props.submitbutton && this.props.submitbutton == 'false' ? '' : 'true';
     if (prop_submitbutton) {
@@ -317,12 +248,6 @@ export default class DynamicForm extends React.Component {
     }
 
     this.setState({ from_loading: true });
-    /*this.props.model.map(key => {
-      if (key['type'] == 'wpeditor') {
-        this.state[key['key']] = wp.editor.getContent(key['key']);
-      }
-    });*/
-    console.log(this.state);
     axios({
       method: this.props.method,
       url: appLocalizer.apiUrl + '/' + this.props.url,
@@ -335,191 +260,26 @@ export default class DynamicForm extends React.Component {
       }
     })
       .then((res) => {
-
-        this.setState({ from_loading: false });
-
-        this.setState({ errordisplay: res.data.error });
-
-
+        this.setState({ from_loading: false, errordisplay: res.data.error });
         setTimeout(() => {
           this.setState({ errordisplay: '' });
         }, 2000)
-
         if (res.data.redirect_link) {
           window.location.href = res.data.redirect_link;
         }
-
       });
   };
 
   componentDidMount() {
-
     this.props.model.map(m => {
       this.setState({
         [m['key']]: m['database_value']
       });
-
-
-      if (m['type'] == 'wpeditor') {
-
-
-
-        /*setInterval(() => {
-          this.onSubmit('');
-        }, 5000)
-        */
-
-        // add wp editor from textarea
-        /*wp.editor.initialize(m['key'], {
-          mediaButtons: true,
-          tinymce: {
-            wpautop  : true,
-            theme    : 'modern',
-            skin     : 'lightgray',
-            language : 'en',
-            formats  : {
-              alignleft  : [
-              { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li', styles: { textAlign: 'left' } },
-              { selector: 'img,table,dl.wp-caption', classes: 'alignleft' }
-              ],
-              aligncenter: [
-              { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li', styles: { textAlign: 'center' } },
-              { selector: 'img,table,dl.wp-caption', classes: 'aligncenter' }
-              ],
-              alignright : [
-              { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li', styles: { textAlign: 'right' } },
-              { selector: 'img,table,dl.wp-caption', classes: 'alignright' }
-              ],
-              strikethrough: { inline: 'del' }
-            },
-            relative_urls       : true,
-            remove_script_host  : true,
-            convert_urls        : true,
-            browser_spellcheck  : true,
-            fix_list_elements   : true,
-            entities            : '38,amp,60,lt,62,gt',
-            entity_encoding     : 'raw',
-            keep_styles         : true,
-            paste_webkit_styles : 'font-weight font-style color',
-            preview_styles      : 'font-family font-size font-weight font-style text-decoration text-transform',
-            tabfocus_elements   : ':prev,:next',
-            plugins    : 'charmap,hr,media,paste,tabfocus,textcolor,fullscreen,wordpress,wpeditimage,wpgallery,wplink,wpdialogs,wpview',
-            resize     : 'vertical',
-            menubar    : true,
-            indent     : true,
-            toolbar1   : 'bold,italic,strikethrough,bullist,numlist,blockquote,hr,alignleft,aligncenter,alignright,link,unlink,wp_more,spellchecker,fullscreen,wp_adv',
-            toolbar2   : 'formatselect,underline,alignjustify,forecolor,pastetext,removeformat,charmap,outdent,indent,undo,redo,wp_help',
-            toolbar3   : '',
-            toolbar4   : '',
-            body_class : 'id post-type-post post-status-publish post-format-standard',
-            wpeditimage_disable_captions: true,
-            wpeditimage_html5_captions  : true
-
-          },
-          quicktags: true
-        });*/
-      }
-
-      /* var parent_nested_array = new Array({});
-       var child_nested_array = new Array({});
-       if(m['type'] == 'nested') {
-         
-         m['child_options'].map((keyn, indexn) => {
-           child_nested_array[0][keyn['id']] = '';
-         });
- 
-         m['parent_options'].map((keyn, indexn) => {
-           if (keyn['type'] == 'checkbox') {
-             parent_nested_array[0][keyn['id']] = false;
-           } else {
-             parent_nested_array[0][keyn['id']] = '';
-           }
-           parent_nested_array[0]['nested_datas'] = child_nested_array;
-         });
- 
-       }*/
-
-      /*let ggggggggg = this.state.nestedarray.options;
-      ggggggggg = parent_nested_array;
-      this.setState({
-        ggggggggg
-      });
-      console.log(ggggggggg);*/
-
     });
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-
-
-
-    this.props.model.map(m => {
-
-      if (m['type'] == 'wpeditor') {
-        // add wp editor from textarea
-        if (this.state.store_data_array.length == 0) {
-          wp.editor.initialize(m['key'], {
-            mediaButtons: true,
-            tinymce: {
-              wpautop: true,
-              theme: 'modern',
-              skin: 'lightgray',
-              language: 'en',
-              formats: {
-                alignleft: [
-                  { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li', styles: { textAlign: 'left' } },
-                  { selector: 'img,table,dl.wp-caption', classes: 'alignleft' }
-                ],
-                aligncenter: [
-                  { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li', styles: { textAlign: 'center' } },
-                  { selector: 'img,table,dl.wp-caption', classes: 'aligncenter' }
-                ],
-                alignright: [
-                  { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li', styles: { textAlign: 'right' } },
-                  { selector: 'img,table,dl.wp-caption', classes: 'alignright' }
-                ],
-                strikethrough: { inline: 'del' }
-              },
-              relative_urls: true,
-              remove_script_host: true,
-              convert_urls: true,
-              browser_spellcheck: true,
-              fix_list_elements: true,
-              entities: '38,amp,60,lt,62,gt',
-              entity_encoding: 'raw',
-              keep_styles: true,
-              paste_webkit_styles: 'font-weight font-style color',
-              preview_styles: 'font-family font-size font-weight font-style text-decoration text-transform',
-              tabfocus_elements: ':prev,:next',
-              plugins: 'charmap,hr,media,paste,tabfocus,textcolor,fullscreen,wordpress,wpeditimage,wpgallery,wplink,wpdialogs,wpview',
-              resize: 'vertical',
-              menubar: true,
-              indent: true,
-              toolbar1: 'bold,italic,strikethrough,bullist,numlist,blockquote,hr,alignleft,aligncenter,alignright,link,unlink,wp_more,spellchecker,fullscreen,wp_adv',
-              toolbar2: 'formatselect,underline,alignjustify,forecolor,pastetext,removeformat,charmap,outdent,indent,undo,redo,wp_help',
-              toolbar3: '',
-              toolbar4: '',
-              body_class: 'id post-type-post post-status-publish post-format-standard',
-              wpeditimage_disable_captions: true,
-              wpeditimage_html5_captions: true
-
-            },
-            quicktags: true
-          });
-
-          this.setState({
-            store_data_array: ['abc']
-          });
-        }
-      }
-
-    });
-
   }
 
   onChange = (e, key, type = "single", from_type = '', array_values = []) => {
     if (type === "single") {
-
       if (from_type === "select") {
         this.setState(
           {
@@ -527,9 +287,7 @@ export default class DynamicForm extends React.Component {
           },
           () => { }
         );
-
       } else if (from_type && from_type === "country" || from_type === "state") {
-
         this.setState(
           {
             [key]: array_values[e.index]
@@ -546,7 +304,6 @@ export default class DynamicForm extends React.Component {
             statedrop: country_list_array
           }
         );
-
       } else if (from_type === "multi-select") {
         this.setState(
           {
@@ -562,7 +319,6 @@ export default class DynamicForm extends React.Component {
           () => { }
         );
       }
-
     } else {
       // Array of values (e.g. checkbox): TODO: Optimization needed.
       let found = this.state[key]
@@ -577,29 +333,20 @@ export default class DynamicForm extends React.Component {
           [key]: data
         });
       } else {
-        // console.log("found", key, this.state[key]);
-        // this.setState({
-        //   [key]: [e.target.value, ...this.state[key]]
-        // });
         let others = this.state[key] ? [...this.state[key]] : [];
         this.setState({
           [key]: [e.target.value, ...others]
         });
       }
     }
-
     if (this.props.submitbutton && this.props.submitbutton == 'false') {
       setTimeout(() => {
         this.onSubmit('');
       }, 10)
     }
-
   };
 
   renderForm = () => {
-
-    //console.log(this.state.nestedarray.options);
-
     let model = this.props.model;
     let defaultValues = this.props.defaultValues;
     let formUI = model.map((m, index) => {
@@ -611,6 +358,7 @@ export default class DynamicForm extends React.Component {
       let placeholder = m.placeholder;
       let limit = m.limit;
       let selected = m.selected;
+      let input = '';
 
       let target = key;
       value = this.state[target] || "";
@@ -645,23 +393,6 @@ export default class DynamicForm extends React.Component {
 
       if (m.depend && !this.state[m.depend]) { return false; }
 
-
-      let input = '';
-
-      /*let input = (
-        <input
-          {...props}
-          className="mvx-setting-form-input"
-          type={type}
-          key={key}
-          name={name}
-          value={value}
-          onChange={e => {
-            this.onChange(e, target);
-          }}
-        />
-      );*/
-
       if (type == "text" || "url" || "password" || "email" || "number") {
         input = (
           <div className="mvx-settings-basic-input-class">
@@ -686,7 +417,7 @@ export default class DynamicForm extends React.Component {
       if (type == "color") {
         input = (
           <div className="mvx-settings-color-picker-parent-class">
-            <label for="favcolor">Select your favorite color:</label>
+            <label for="favcolor">{appLocalizer.global_string.favorite_color}:</label>
             <input
               {...props}
               className="mvx-setting-color-picker"
@@ -714,7 +445,6 @@ export default class DynamicForm extends React.Component {
         );
       }
 
-
       if (type == "button") {
         input = (
           <div className="mvx-form-button-group">
@@ -729,16 +459,12 @@ export default class DynamicForm extends React.Component {
         );
       }
 
-
       if (type == "multi_number") {
         input = (
           <div className="mvx-settings-basic-input-class">
-
             <div className="mvx-settings-basic-child-wrap">
               {
-
                 m.options.map((o, index) => {
-
                   return (
                     <div className="mvx-settings-basic-input-child-class">
                       <React.Fragment key={"cfr" + o.key}>
@@ -758,9 +484,7 @@ export default class DynamicForm extends React.Component {
                           />
                         </div>
                       </React.Fragment>
-
                     </div>
-
                   );
                 })
               }
@@ -769,7 +493,6 @@ export default class DynamicForm extends React.Component {
           </div>
         )
       }
-
 
       if (type == "label") {
         input = (
@@ -785,7 +508,6 @@ export default class DynamicForm extends React.Component {
           <div className="mvx-setting-section-divider">&nbsp;</div>
         );
       }
-
 
       if (type == "blocktext") {
         input = (
@@ -820,7 +542,6 @@ export default class DynamicForm extends React.Component {
           </table>
         </div>;
       }
-
 
       if (type == "normalfile") {
         input = (
@@ -933,8 +654,6 @@ export default class DynamicForm extends React.Component {
         </div>;
       }
 
-
-
       if (type == "radio_select") {
         input = m.options.map(o => {
           let checked = o.value == value;
@@ -986,26 +705,14 @@ export default class DynamicForm extends React.Component {
                     }}
                   />
                   <label key={"ll" + o.key} for={`mvx-radio-color-under-${o.key}`}>{o.label}
-
                     <p className="color-palette">
                       {
-                        o.color.map((color1, indexc) =>
-                        (
+                        o.color.map((color1, indexc) => (
                           <div style={{ backgroundColor: color1 }}>&nbsp;</div>
-                        )
-                        )
-                      }
+                      ))}
                     </p>
-
                   </label>
                 </div>
-
-
-
-
-
-
-
               </div>
             </React.Fragment>
           );
@@ -1045,7 +752,6 @@ export default class DynamicForm extends React.Component {
         input = m.options.map((o, index) => {
           multiarray[index] = { value: o.value, label: o.label, index: index };
         });
-
         input = (
           <div className="mvx-settings-from-multi-select">
             <Select className={key}
@@ -1084,7 +790,6 @@ export default class DynamicForm extends React.Component {
         );
       }
 
-
       if (type == "separator") {
         input = (
           <div class="mvx_regi_form_box">
@@ -1096,7 +801,6 @@ export default class DynamicForm extends React.Component {
 
       if (type == "file") {
         input = (
-
           <div className="mvx-setting-file-uploader-class">
             <input
               {...props}
@@ -1113,7 +817,7 @@ export default class DynamicForm extends React.Component {
             <button {...props} className="mvx-upload-button-class" type='button' onClick={e => {
               this.runUploader(e, target, index);
             }} >
-              Open Uploader
+              {appLocalizer.global_string.open_uploader}
             </button>
             {m.desc ? <p className="mvx-settings-metabox-description" dangerouslySetInnerHTML={{ __html: m.desc }}></p> : ''}
           </div>
@@ -1140,9 +844,7 @@ export default class DynamicForm extends React.Component {
             {m.desc ? <p className="mvx-settings-metabox-description" dangerouslySetInnerHTML={{ __html: m.desc }}></p> : ''}
           </div>
         );
-
       }
-
 
       if (type == "country") {
         let countryselectdrop = [];
@@ -1241,7 +943,6 @@ export default class DynamicForm extends React.Component {
                       />
                       : ''}
 
-
                     {
                       op.type == 'select' ?
                         op.options.map((selectdata, index) => {
@@ -1259,8 +960,6 @@ export default class DynamicForm extends React.Component {
                         </Select>
                         : ''
                     }
-
-
 
                     {
                       op.type == 'select2nd' ?
@@ -1280,7 +979,6 @@ export default class DynamicForm extends React.Component {
                         : ''
                     }
 
-
                     {
                       op.type == 'country' ?
                         op.options.map((selectdata, index) => {
@@ -1298,7 +996,6 @@ export default class DynamicForm extends React.Component {
                         </Select>
                         : ''
                     }
-
 
                   </div>
                 )}
@@ -1339,8 +1036,8 @@ export default class DynamicForm extends React.Component {
                                     this.onnestedChange(e, target, indexop, opnjj, 'childnested', indexchildop, '', m);
                                   }}
                                 />
-                                : ''}
-
+                                : ''
+                              }
 
                               {
                                 opnjj.type == 'select' ?
@@ -1362,8 +1059,6 @@ export default class DynamicForm extends React.Component {
                                   : ''
                               }
 
-
-
                               {
                                 opnjj.type == 'state' ?
                                   opnjj.options.map((okkkk, index) => {
@@ -1381,8 +1076,6 @@ export default class DynamicForm extends React.Component {
                                   </Select>
                                   : ''
                               }
-
-
                             </div>
                           </div>
                         )}
@@ -1421,9 +1114,7 @@ export default class DynamicForm extends React.Component {
           <div className={m.right_content ? 'mvx-checkbox-list-side-by-side' : m.parent_class ? "mvx-checkbox-list-side-by-side" : ''}>
 
             {m.select_deselect ? <div className="mvx-select-deselect-trigger" onClick={e => { this.onSelectDeselectChange(e, m); }}>Select / Deselect All</div> : ''}
-
             {
-
               m.options.map(o => {
                 //let checked = o.value == value;
                 let checked = false;
@@ -1464,16 +1155,14 @@ export default class DynamicForm extends React.Component {
         )
       }
 
-
-
       if (type == "checkbox_select") {
         input = (
           <div className="mvx-select-deselect-checkbox-content">
 
             <div className="mvx-select-de-box-and-checkbox">
-              <div className="mvx-select-deselect-checkbox-content-trigger ">{m.select_deselect ? <div className="mvx-select-deselect-trigger text-bold mb-15" onClick={e => { this.onSelectDeselectChange(e, m); }}>Select / Deselect All</div> : ''}</div>
+              <div className="mvx-select-deselect-checkbox-content-trigger ">{m.select_deselect ? <div className="mvx-select-deselect-trigger" onClick={e => { this.onSelectDeselectChange(e, m); }}>Select / Deselect All</div> : ''}</div>
 
-              <div className="mvx-select-deselect-checkbox-label-marge mvx-row row-gap-10">
+              <div className="mvx-select-deselect-checkbox-label-marge">
                 {
 
                   m.options.map(o => {
@@ -1517,8 +1206,6 @@ export default class DynamicForm extends React.Component {
         )
       }
 
-
-
       return (
           m.type == 'section' || m.label == 'no_label' ? input :
           <div key={"g" + key} className="mvx-form-group">
@@ -1535,12 +1222,10 @@ export default class DynamicForm extends React.Component {
   };
 
   render() {
-    let title = this.props.title || "Dynamic Form";
     let prop_submitbutton = this.props.submitbutton && this.props.submitbutton == 'false' ? '' : 'true';
     return (
       <div className="mvx-dynamic-fields-wrapper">
         {this.state.errordisplay ? <div className="mvx-notic-display-title"><i className="mvx-font icon-yes mr-6"></i>{this.state.errordisplay}</div> : ''}
-        {/*<div className="mvx-notic-display-title">Setting Saved</div>*/}
         <form
           className="mvx-dynamic-form"
           onSubmit={e => {
@@ -1556,12 +1241,11 @@ export default class DynamicForm extends React.Component {
                   style={{ marginRight: "5px" }}
                 />
               )}
-                {this.state.from_loading && <span>Saving..</span>}
-                {!this.state.from_loading && <span>{this.props.submit_title ? this.props.submit_title : 'Save'}</span>}</button>
+                {this.state.from_loading && <span>{appLocalizer.global_string.saving}</span>}
+                {!this.state.from_loading && <span>{this.props.submit_title ? this.props.submit_title : appLocalizer.global_string.save}</span>}</button>
             </div>
             : ''}
         </form>
-
       </div>
     );
   }
