@@ -119,13 +119,13 @@ global $MVX;
             <div class="pull-left product-title-inner full-1080"> 
                 <p class="pro-title">
                     <label><?php esc_html_e('Product Title', 'multivendorx'); ?>: </label>
-                    <strong class="editable-content"><?php echo isset($_POST['post_title']) ? wc_clean($_POST['post_title']) : $product_object->get_title( 'edit' ); ?></strong>
+                    <strong class="editable-content"><?php echo isset($_POST['post_title']) ? wc_clean($_POST['post_title']) : htmlspecialchars($product_object->get_title( 'edit' )); ?></strong>
                     <?php if( (!$self->is_spmv() && $is_update) || !apply_filters('mvx_singleproductmultiseller_edit_product_title_disabled', true) ) : ?>
                     <button type="button" class="editable-content-button"><i class="mvx-font ico-edit-pencil-icon" title="<?php esc_attr_e('Edit', 'multivendorx'); ?>"></i> <!--span>edit</span--></button>
                     <?php endif; ?>
                     <span class="editing-content">
-                        <input type="text" class="form-control" name="post_title" id="post_title" value="<?php echo $product_object->get_title( 'edit' ); ?>"<?php if ( $self->is_spmv() && apply_filters('mvx_singleproductmultiseller_edit_product_title_disabled', true) ) echo ' readonly="readonly"'; ?>>
-                        <input type="hidden" name="original_post_title" value="<?php echo $product_object->get_title( 'edit' ); ?>">
+                        <input type="text" class="form-control" name="post_title" id="post_title" value="<?php echo htmlspecialchars($product_object->get_title( 'edit' )); ?>"<?php if ( $self->is_spmv() && apply_filters('mvx_singleproductmultiseller_edit_product_title_disabled', true) ) echo ' readonly="readonly"'; ?>>
+                        <input type="hidden" name="original_post_title" value="<?php echo htmlspecialchars($product_object->get_title( 'edit' )); ?>">
                         <input type="hidden" name="post_ID" value="<?php echo $self->get_the_id(); ?>">
                         <input type="hidden" name="is_update" value="<?php esc_attr( $is_update ); ?>">
                         <input type="hidden" name="original_post_status" value="<?php esc_attr( get_post_status( $post ) ); ?>">
