@@ -2334,6 +2334,9 @@ class MVX_REST_API {
             $vendor_youtube_profile = get_user_meta($user->data->ID, '_vendor_youtube', true) ? get_user_meta($user->data->ID, '_vendor_youtube', true) : '';
             $vendor_instagram_profile = get_user_meta($user->data->ID, '_vendor_instagram', true) ? get_user_meta($user->data->ID, '_vendor_instagram', true) : '';
 
+            $store_lat = get_user_meta($user->data->ID, '_store_lat', true) ? get_user_meta($user->data->ID, '_store_lat', true) : '';
+            $store_lng = get_user_meta($user->data->ID, '_store_lng', true) ? get_user_meta($user->data->ID, '_store_lng', true) : '';
+
             if (empty($tzstring)) { // Create a UTC+- zone if no timezone string exists
                 $check_zone_info = false;
                 if (0 == $current_offset) {
@@ -2550,12 +2553,15 @@ class MVX_REST_API {
                 ),
                 'database_value' => isset($tzstring) ? $tzstring : '', 
             ],
-            /*[
+            [
                 'label' => __('Vendor Map', 'multivendorx'),
-                'type' => 'map', 
+                'type' => 'google_map', 
                 'key' => 'vendor_store_map',
+                'center'    =>  array('lat' => isset($store_lat) ? $store_lat : '', 'lng' => isset($store_lng) ? $store_lng : '' ),
+                'store_lat' =>  isset($store_lat) ? $store_lat : '',
+                'store_lng' =>  isset($store_lng) ? $store_lng : '',
                 'database_value' => '', 
-            ],*/
+            ],
         ];
 
 

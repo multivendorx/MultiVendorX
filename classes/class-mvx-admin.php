@@ -1034,7 +1034,9 @@ class MVX_Admin {
         wp_localize_script( 'mvx-modules-build-frontend', 'appLocalizer', apply_filters('mvx_module_complete_settings', [
             'apiUrl' => home_url( '/wp-json' ),
             'nonce' => wp_create_nonce( 'wp_rest' ),
+            'marker_icon' => $MVX->plugin_url . 'assets/images/store-marker.png',
             'mvx_logo' => $MVX->plugin_url.'assets/images/dclogo.png',
+            'google_api'    =>  get_mvx_global_settings('google_api_key'),
             'multivendor_logo' => $MVX->plugin_url.'assets/images/multivendorX.png',
             'knowledgebase' => 'https://multivendorx.com/knowledgebase/',
             'knowledgebase_title' => __('MVX knowledge Base', 'multivendorx'),
