@@ -1004,8 +1004,6 @@ class MVX_Admin {
             )
         );
         // word board section end
-
-
         $select_module_category_option = array(
             array(
                 'value' => 'payment',
@@ -1032,41 +1030,6 @@ class MVX_Admin {
                 'label' => __('Third Party Compartibility', 'multivendorx')
             )
         );
-
-
-
-        // all modules localize datas
-        /*$modules_control = array(
-            'category-list' =>  array(
-                array(
-                    'value' => 'payment',
-                    'label' => __('Payment', 'multivendorx')
-                ),
-                array(
-                    'value' => 'shipping',
-                    'label' => __('Shipping', 'multivendorx')
-                ),
-                array(
-                    'value' => 'vendor_store_boosters',
-                    'label' => __('Vendor Store Boosters', 'multivendorx')
-                ),
-                array(
-                    'value' => 'notifictaion',
-                    'label' => __('Notifictaion', 'multivendorx')
-                ),
-                array(
-                    'value' => 'marketplace_products',
-                    'label' => __('Marketplace Products', 'multivendorx')
-                ),
-                array(
-                    'value' => 'third_party_compartibility',
-                    'label' => __('Third Party Compartibility', 'multivendorx')
-                )
-            )
-
-        );*/
-
-
 
         wp_localize_script( 'mvx-modules-build-frontend', 'appLocalizer', apply_filters('mvx_module_complete_settings', [
             'apiUrl' => home_url( '/wp-json' ),
