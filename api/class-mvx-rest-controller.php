@@ -744,6 +744,23 @@ class MVX_REST_API {
             'callback' => array( $this, 'mvx_list_of_all_tabs' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
+
+        register_rest_route( 'mvx_module/v1', '/update_vendor_store', [
+            'methods' => WP_REST_Server::EDITABLE,
+            'callback' => array( $this, 'mvx_update_vendor_store' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+    }
+
+    public function mvx_update_vendor_store($request) {
+        $vendor_id = $request->get_param('vendor_id') ? absint( $request->get_param('vendor_id') ) : 0;
+        $lat = $request->get_param('lat') ? ( $request->get_param('lat') ) : 0;
+        $lng = $request->get_param('lng') ? ( $request->get_param('lng') ) : 0;
+        $places = $request->get_param('places') ? ( $request->get_param('places') ) : 0;
+        
+        mvx_update_user_meta($vendor_id, '_store_location', wc_clean($places));
+        mvx_update_user_meta($vendor_id, '_store_lat', wc_clean($lat));
+        mvx_update_user_meta($vendor_id, '_store_lng', wc_clean($lng));
     }
 
     public function mvx_list_of_all_tabs() {
@@ -2555,11 +2572,11 @@ class MVX_REST_API {
             ],
             [
                 'label' => __('Vendor Map', 'multivendorx'),
-                'type' => 'google_map', 
+                'type' => 'google_map',
                 'key' => 'vendor_store_map',
-                'center'    =>  array('lat' => isset($store_lat) ? $store_lat : '', 'lng' => isset($store_lng) ? $store_lng : '' ),
-                'store_lat' =>  isset($store_lat) ? $store_lat : '',
-                'store_lng' =>  isset($store_lng) ? $store_lng : '',
+                'center'    =>  array('lat' => isset($store_lat) ? floatval($store_lat) : '', 'lng' => isset($store_lng) ? floatval($store_lng) : '' ),
+                'store_lat' =>  isset($store_lat) ? floatval($store_lat) : '',
+                'store_lng' =>  isset($store_lng) ? floatval($store_lng) : '',
                 'database_value' => '', 
             ],
         ];

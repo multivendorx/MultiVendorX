@@ -1037,6 +1037,7 @@ class MVX_Admin {
             'marker_icon' => $MVX->plugin_url . 'assets/images/store-marker.png',
             'mvx_logo' => $MVX->plugin_url.'assets/images/dclogo.png',
             'google_api'    =>  get_mvx_global_settings('google_api_key'),
+            'location_provider'    =>  get_mvx_global_settings('choose_map_api'),
             'multivendor_logo' => $MVX->plugin_url.'assets/images/multivendorX.png',
             'knowledgebase' => 'https://multivendorx.com/knowledgebase/',
             'knowledgebase_title' => __('MVX knowledge Base', 'multivendorx'),

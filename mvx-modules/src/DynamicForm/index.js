@@ -9,6 +9,7 @@ const Wrapper = styled.main`
   width: 100%;
   height: 100%;
 `;
+import mapboxgl from 'mapbox-gl';
 const AnyReactComponent = ({ text }) => <img src={text} width="38" height="50"/>;
 export default class DynamicForm extends React.Component {
   state = {};
@@ -270,7 +271,7 @@ export default class DynamicForm extends React.Component {
     if (prop_submitbutton) {
       e.preventDefault();
     }
-
+    
     this.setState({ from_loading: true });
     axios({
       method: this.props.method,
@@ -871,21 +872,19 @@ export default class DynamicForm extends React.Component {
       }
 
       if (type == "google_map") {
-
         const {
             places, mapApiLoaded, mapInstance, mapApi,
         } = this.state;
-        console.log(this.state.center);
+
         input = (
+        appLocalizer.location_provider.value && appLocalizer.location_provider.value == 'google_map_set' ?
           <Wrapper>
                 {mapApiLoaded && (
-                    <div>
-                        <AutoComplete map={mapInstance} mapApi={mapApi} addplace={this.addPlace} />
-                    </div>
+                  <AutoComplete map={mapInstance} mapApi={mapApi} addplace={(e) => this.addPlace(e, target)} />
                 )}
                 <div style={{ height: '50vh', width: '50%' }}>
                     <GoogleMapReact
-                        center={this.state.center}
+                        center={m.center}
                         zoom={this.state.zoom}
                         draggable={this.state.draggable}
                         onChange={this._onChange}
@@ -908,13 +907,13 @@ export default class DynamicForm extends React.Component {
                     />
                     </GoogleMapReact>
                 </div>
-                <div className="info-wrapper">
-                    <div className="map-details">Latitude: <span>{this.state.lat}</span>, Longitude: <span>{this.state.lng}</span></div>
-                    <div className="map-details">Zoom: <span>{this.state.zoom}</span></div>
-                    <div className="map-details">Address: <span>{this.state.address}</span></div>
-                </div>
-            </Wrapper >
+            </Wrapper>
+            : 
+
+            <div id='map' style={{ height: '50vh', width: '50%' }}></div>
         );
+
+
       }
 
       if (type == "country") {
@@ -1335,13 +1334,27 @@ export default class DynamicForm extends React.Component {
         this._generateAddress();
     };
 
-    addPlace = (place) => {
+    addPlace = (place, target) => {
+        var place_data = [{place: place.formatted_address, lat: place.geometry.location.lat(), lng: place.geometry.location.lng()}];
         this.setState({
             places: [place],
             lat: place.geometry.location.lat(),
-            lng: place.geometry.location.lng()
+            lng: place.geometry.location.lng(),
+            [target]: (place_data)
         });
         this._generateAddress()
+
+        axios({
+          method: 'post',
+          url: `${appLocalizer.apiUrl}/mvx_module/v1/update_vendor_store`,
+          data: {
+            places: place_data,
+            lat: place.geometry.location.lat(),
+            lng: place.geometry.location.lng(),
+            vendor_id: this.props.vendor_id
+          }
+        })
+        .then((responce) => {});
     };
 
     _generateAddress() {
