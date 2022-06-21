@@ -211,7 +211,7 @@ class MVX_Admin {
         wp_enqueue_editor();
         wp_enqueue_script( 'mce-view' );
         $MVX->library->load_upload_lib();
-
+        $MVX->library->load_mapbox_api();
         wp_enqueue_style( 'site-health' );
         wp_enqueue_script( 'site-health' );
 
@@ -460,6 +460,7 @@ class MVX_Admin {
             'method_title'  =>  __('Method Title', 'multivendorx'),
             'approve'  =>  __('Approve', 'multivendorx'),
             'reject'  =>  __('Reject', 'multivendorx'),
+            'enter_location'  =>  __('Enter a location', 'multivendorx'),
         );
 
         $status_and_tools_string = array(
@@ -1030,13 +1031,14 @@ class MVX_Admin {
                 'label' => __('Third Party Compartibility', 'multivendorx')
             )
         );
-
+        
         wp_localize_script( 'mvx-modules-build-frontend', 'appLocalizer', apply_filters('mvx_module_complete_settings', [
             'apiUrl' => home_url( '/wp-json' ),
             'nonce' => wp_create_nonce( 'wp_rest' ),
             'marker_icon' => $MVX->plugin_url . 'assets/images/store-marker.png',
             'mvx_logo' => $MVX->plugin_url.'assets/images/dclogo.png',
             'google_api'    =>  get_mvx_global_settings('google_api_key'),
+            'mapbox_api'    =>  get_mvx_global_settings('mapbox_api_key'),
             'location_provider'    =>  get_mvx_global_settings('choose_map_api'),
             'multivendor_logo' => $MVX->plugin_url.'assets/images/multivendorX.png',
             'knowledgebase' => 'https://multivendorx.com/knowledgebase/',

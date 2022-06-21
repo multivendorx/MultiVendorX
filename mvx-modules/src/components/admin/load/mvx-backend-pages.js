@@ -1,6 +1,5 @@
 import React from 'react';
 import Settings from '../classes/class-mvx-main-landing';
-
 function App() {
     return(
         <React.Fragment>

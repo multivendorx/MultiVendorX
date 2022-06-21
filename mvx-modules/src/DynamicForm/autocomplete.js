@@ -1,22 +1,9 @@
-// Autocomplete.js
 import React, { Component } from 'react';
-import styled from 'styled-components';
-
-const Wrapper = styled.div`
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 20px;
-  text-align:center;
-`;
-
 class AutoComplete extends Component {
     constructor(props) {
         super(props);
         this.clearSearchBox = this.clearSearchBox.bind(this);
     }
-
     componentDidMount({ map, mapApi } = this.props) {
         const options = {
             // restrict your search to a specific type of result
@@ -38,7 +25,6 @@ class AutoComplete extends Component {
 
     onPlaceChanged = ({ map, addplace } = this.props) => {
         const place = this.autoComplete.getPlace();
-
         if (!place.geometry) return;
         if (place.geometry.viewport) {
             map.fitBounds(place.geometry.viewport);
@@ -46,30 +32,24 @@ class AutoComplete extends Component {
             map.setCenter(place.geometry.location);
             map.setZoom(17);
         }
-
         addplace(place);
         this.searchInput.blur();
     };
-
     clearSearchBox() {
         this.searchInput.value = '';
     }
-
     render() {
         return (
-            <Wrapper>
-                <input
-                    className="search-input"
-                    ref={(ref) => {
-                        this.searchInput = ref;
-                    }}
-                    type="text"
-                    onFocus={this.clearSearchBox}
-                    placeholder="Enter a location"
-                />
-            </Wrapper>
+            <input
+                className="search-input"
+                ref={(ref) => {
+                    this.searchInput = ref;
+                }}
+                type="text"
+                onFocus={this.clearSearchBox}
+                placeholder={appLocalizer.vendor_page_string.enter_location}
+            />
         );
     }
 }
-
 export default AutoComplete;

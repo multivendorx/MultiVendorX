@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
 import axios from 'axios';
 import Select from 'react-select';
 import PuffLoader from "react-spinners/PuffLoader";

@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
 import axios from 'axios';
 import Select from 'react-select';
 import DataTable from 'react-data-table-component';
 import PuffLoader from "react-spinners/PuffLoader";
 import { css } from "@emotion/react";
-
-import FilterComponent from 'react-data-table-component';
 
 import {
   BrowserRouter as Router,
@@ -19,7 +16,6 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
 import Button from '@material-ui/core/Button';
 import DynamicForm from "../../../DynamicForm";
 import HeaderSection from './class-mvx-page-header';
@@ -31,7 +27,6 @@ const override = css`
   margin: 0 auto;
   border-color: green;
 `;
-
 class MVX_Backend_Vendor extends React.Component {
   constructor(props) {
     super(props);

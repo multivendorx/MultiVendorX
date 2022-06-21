@@ -1,15 +1,9 @@
 import React from "react";
 import Select from 'react-select';
 import axios from 'axios';
-
 import GoogleMapReact from 'google-map-react';
-import styled from 'styled-components';
 import AutoComplete from './autocomplete';
-const Wrapper = styled.main`
-  width: 100%;
-  height: 100%;
-`;
-import mapboxgl from 'mapbox-gl';
+
 const AnyReactComponent = ({ text }) => <img src={text} width="38" height="50"/>;
 export default class DynamicForm extends React.Component {
   state = {};
@@ -19,8 +13,8 @@ export default class DynamicForm extends React.Component {
       from_loading: false,
       statedrop: [],
       errordisplay: '',
-
-
+      vendor_lat: '',
+      vendor_lng: '',
       mapApiLoaded: false,
       mapInstance: null,
       mapApi: null,
@@ -31,10 +25,7 @@ export default class DynamicForm extends React.Component {
       draggable: true,
       lat: null,
       lng: null,
-      center: {
-        lat: 22.5726,
-        lng: 88.3639
-      },
+      center: '',
     };
 
     this.runUploader = this.runUploader.bind(this);
@@ -271,8 +262,9 @@ export default class DynamicForm extends React.Component {
     if (prop_submitbutton) {
       e.preventDefault();
     }
-    
     this.setState({ from_loading: true });
+    delete this.state.mapApi;
+    delete this.state.mapInstance;
     axios({
       method: this.props.method,
       url: appLocalizer.apiUrl + '/' + this.props.url,
@@ -301,6 +293,40 @@ export default class DynamicForm extends React.Component {
         [m['key']]: m['database_value']
       });
     });
+    // mapbox work
+    if (this.props.modulename == 'vendor-store' && appLocalizer.location_provider.value && appLocalizer.location_provider.value == 'mapbox_api_set') {
+      var this_data = this;
+      mapboxgl.accessToken = appLocalizer.mapbox_api;
+      var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [this.state.vendor_lat, this.state.vendor_lng],
+        zoom: this.state.zoom
+      });
+      var geocoder = new MapboxGeocoder({
+          accessToken: mapboxgl.accessToken,
+          marker: {
+              color: 'red'
+          },
+          mapboxgl: mapboxgl
+      });
+      map.on('load', function() {
+          geocoder.on('result', function(ev) {
+            axios({
+              method: 'post',
+              url: `${appLocalizer.apiUrl}/mvx_module/v1/update_vendor_store`,
+              data: {
+                places: ev.result.place_name,
+                lat: ev.result.center[0],
+                lng: ev.result.center[1],
+                vendor_id: this_data.props.vendor_id
+              }
+            })
+            .then((responce) => {});
+          });
+      });
+      map.addControl(geocoder);
+    }
   }
 
   onChange = (e, key, type = "single", from_type = '', array_values = []) => {
@@ -876,9 +902,12 @@ export default class DynamicForm extends React.Component {
             places, mapApiLoaded, mapInstance, mapApi,
         } = this.state;
 
+        this.state.vendor_lat = m.store_lat;
+        this.state.vendor_lng = m.store_lng;
+
         input = (
         appLocalizer.location_provider.value && appLocalizer.location_provider.value == 'google_map_set' ?
-          <Wrapper>
+          <div>
                 {mapApiLoaded && (
                   <AutoComplete map={mapInstance} mapApi={mapApi} addplace={(e) => this.addPlace(e, target)} />
                 )}
@@ -891,7 +920,6 @@ export default class DynamicForm extends React.Component {
                         onChildMouseDown={this.onMarkerInteraction}
                         onChildMouseUp={this.onMarkerInteractionMouseUp}
                         onChildMouseMove={this.onMarkerInteraction}
-                        onChildClick={() => console.log('child click')}
                         onClick={this._onClick}
                         bootstrapURLKeys={{
                             key: appLocalizer.google_api,
@@ -907,7 +935,7 @@ export default class DynamicForm extends React.Component {
                     />
                     </GoogleMapReact>
                 </div>
-            </Wrapper>
+            </div>
             : 
 
             <div id='map' style={{ height: '50vh', width: '50%' }}></div>
@@ -1336,12 +1364,6 @@ export default class DynamicForm extends React.Component {
 
     addPlace = (place, target) => {
         var place_data = [{place: place.formatted_address, lat: place.geometry.location.lat(), lng: place.geometry.location.lng()}];
-        this.setState({
-            places: [place],
-            lat: place.geometry.location.lat(),
-            lng: place.geometry.location.lng(),
-            [target]: (place_data)
-        });
         this._generateAddress()
 
         axios({
@@ -1393,7 +1415,6 @@ export default class DynamicForm extends React.Component {
             });
         }
     }
-
 
   render() {
     let prop_submitbutton = this.props.submitbutton && this.props.submitbutton == 'false' ? '' : 'true';

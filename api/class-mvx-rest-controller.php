@@ -754,10 +754,9 @@ class MVX_REST_API {
 
     public function mvx_update_vendor_store($request) {
         $vendor_id = $request->get_param('vendor_id') ? absint( $request->get_param('vendor_id') ) : 0;
-        $lat = $request->get_param('lat') ? ( $request->get_param('lat') ) : 0;
-        $lng = $request->get_param('lng') ? ( $request->get_param('lng') ) : 0;
-        $places = $request->get_param('places') ? ( $request->get_param('places') ) : 0;
-        
+        $lat = $request->get_param('lat') ? $request->get_param('lat') : 0;
+        $lng = $request->get_param('lng') ? $request->get_param('lng') : 0;
+        $places = $request->get_param('places') ? $request->get_param('places') : '';
         mvx_update_user_meta($vendor_id, '_store_location', wc_clean($places));
         mvx_update_user_meta($vendor_id, '_store_lat', wc_clean($lat));
         mvx_update_user_meta($vendor_id, '_store_lng', wc_clean($lng));
