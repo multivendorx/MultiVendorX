@@ -4638,8 +4638,6 @@ if (!function_exists('mvx_vendor_distance_by_shipping_settings')) {
             "mvx_byd_default_cost" => array('label' => __('Default Cost', 'multivendorx'), 'name' => 'mvx_shipping_by_distance[_default_cost]', 'placeholder' => '0.00', 'type' => 'text', 'class' => 'col-md-6 col-sm-9', 'label_class' => 'mvx_title mvx_ele mvx_store_shipping_distance_fields', 'value' => isset($mvx_shipping_by_distance['_default_cost']) ? $mvx_shipping_by_distance['_default_cost'] : '' ),
 
             "mvx_byd_max_distance" => array('label' => __('Max Distance (km)', 'multivendorx'), 'name' => 'mvx_shipping_by_distance[_max_distance]', 'placeholder' => __('No Limit', 'multivendorx'), 'type' => 'text', 'class' => 'col-md-6 col-sm-9', 'label_class' => 'mvx_title mvx_ele mvx_store_shipping_distance_fields', 'value' => isset($mvx_shipping_by_distance['_max_distance']) ? $mvx_shipping_by_distance['_max_distance'] : '' ),
-            //"mvx_byd_enable_local_pickup" => array('label' => __('Enable Local Pickup', 'multivendorx'), 'name' => 'mvx_shipping_by_distance[_enable_local_pickup]', 'type' => 'checkbox', 'class' => 'mvx-checkbox mvx_ele mvx_store_shipping_distance_fields', 'label_class' => 'mvx_title checkbox_title checkbox-title mvx_ele mvx_store_shipping_distance_fields', 'value' => 'yes', 'dfvalue' => isset($mvx_shipping_by_distance['_enable_local_pickup']) ? 'yes' : '' ),
-
             "mvx_byd_local_pickup_cost" => array('label' => __('Local Pickup Cost', 'multivendorx'), 'name' => 'mvx_shipping_by_distance[_local_pickup_cost]', 'placeholder' => '0.00', 'type' => 'text', 'class' => 'col-md-6 col-sm-9', 'label_class' => 'mvx_title mvx_ele mvx_store_shipping_distance_fields', 'value' => isset($mvx_shipping_by_distance['_local_pickup_cost']) ? $mvx_shipping_by_distance['_local_pickup_cost'] : '' ),
         ) ) );
 
@@ -4726,7 +4724,6 @@ if (!function_exists('mvx_vendor_shipping_by_country_settings')) {
                 "mvx_additional_product" => array('label' => __('Per Product Additional Price', 'multivendorx'), 'name' => 'mvx_shipping_by_country[_mvx_additional_product]', 'placeholder' => '0.00', 'type' => 'text', 'class' => 'col-md-6 col-sm-9', 'label_class' => 'mvx_title mvx_ele', 'value' => isset($mvx_shipping_by_country['_mvx_additional_product']) ? $mvx_shipping_by_country['_mvx_additional_product'] : '', 'hints' => __('If a customer buys more than one type product from your store, first product of the every second type will be charged with this price', 'multivendorx') ),
                 "mvx_additional_qty" => array('label' => __('Per Qty Additional Price', 'multivendorx'), 'name' => 'mvx_shipping_by_country[_mvx_additional_qty]', 'placeholder' => '0.00', 'type' => 'text', 'class' => 'col-md-6 col-sm-9', 'label_class' => 'mvx_title mvx_ele', 'value' => isset($mvx_shipping_by_country['_mvx_additional_qty']) ? $mvx_shipping_by_country['_mvx_additional_qty'] : '', 'hints' => __('Every second product of same type will be charged with this price', 'multivendorx') ),
                 "mvx_byc_free_shipping_amount" => array('label' => __('Free Shipping Minimum Order Amount', 'multivendorx'), 'name' => 'mvx_shipping_by_country[_free_shipping_amount]', 'placeholder' => __( 'NO Free Shipping', 'multivendorx'), 'type' => 'text', 'class' => 'col-md-6 col-sm-9', 'label_class' => 'mvx_title mvx_ele', 'value' => isset($mvx_shipping_by_country['_free_shipping_amount']) ? $mvx_shipping_by_country['_free_shipping_amount'] : '', 'hints' => __('Free shipping will be available if order amount more than this. Leave empty to disable Free Shipping.', 'multivendorx') ),
-                //"mvx_byc_enable_local_pickup" => array('label' => __('Enable Local Pickup', 'multivendorx'), 'name' => 'mvx_shipping_by_country[_enable_local_pickup]', 'type' => 'checkbox', 'class' => 'mvx-checkbox mvx_ele', 'label_class' => 'mvx_title checkbox_title checkbox-title mvx_ele', 'value' => 'yes', 'dfvalue' => isset($mvx_shipping_by_country['_enable_local_pickup']) ? 'yes' : '' ),
                 "mvx_byc_local_pickup_cost" => array('label' => __('Local Pickup Cost', 'multivendorx'), 'name' => 'mvx_shipping_by_country[_local_pickup_cost]', 'placeholder' => '0.00', 'type' => 'text', 'class' => 'col-md-6 col-sm-9', 'label_class' => 'mvx_title mvx_ele', 'value' => isset($mvx_shipping_by_country['_local_pickup_cost']) ? $mvx_shipping_by_country['_local_pickup_cost'] : '' ),
             ) )
         );
@@ -8346,10 +8343,7 @@ if (!function_exists('mvx_list_all_modules')) {
                 if (isset($parent_module_value['options']) && !empty($parent_module_value['options'])) {
                     foreach ($parent_module_value['options'] as $module_key => $module_value) {
                         $mvx_all_modules[$parent_module_key]['options'][$module_key]['is_active'] = is_current_module_active($module_value['id']);
-                        //$mvx_all_modules[$parent_module_key]['options'][$module_key]['thumbnail_dir'] = file_exists($thumbnail_path . '/'.$module_value['id'].'.png') ? $thumbnail_dir . '/'. $module_value['id'].'.png' : '';
-
                         $mvx_all_modules[$parent_module_key]['options'][$module_key]['thumbnail_dir'] = 'module-' . $module_value['id'];
-
                         if (isset($mvx_all_modules[$parent_module_key]['options'][$module_key]['required_plugin_list']) && !empty($mvx_all_modules[$parent_module_key]['options'][$module_key]['required_plugin_list'])) {
 
                             foreach ($mvx_all_modules[$parent_module_key]['options'][$module_key]['required_plugin_list'] as $req_key => $req_value) {
@@ -8385,15 +8379,22 @@ if (!function_exists('is_mvx_shipping_module_active')) {
 }
 
 if (!function_exists('mvx_convert_select_structure')) {
-    function mvx_convert_select_structure($data_fileds = array(), $csv = false) {
+    function mvx_convert_select_structure($data_fileds = array(), $csv = false, $object = false) {
         $is_csv = $csv ? 'key' : 'value';
         $datafileds_initialize_array = [];
         if ($data_fileds) {
             foreach($data_fileds as $fileds_key => $fileds_value) {
-                $datafileds_initialize_array[] = array(
-                    $is_csv => $csv ? $fileds_value : $fileds_key,
-                    'label' => $fileds_value
-                );
+                if ($object) {
+                    $datafileds_initialize_array[] = array(
+                        'value' => $fileds_value->ID,
+                        'label' => $fileds_value->post_title
+                    );
+                } else {
+                    $datafileds_initialize_array[] = array(
+                        $is_csv => $csv ? $fileds_value : $fileds_key,
+                        'label' => $fileds_value
+                    );
+                }
             }
         }
         return $datafileds_initialize_array;

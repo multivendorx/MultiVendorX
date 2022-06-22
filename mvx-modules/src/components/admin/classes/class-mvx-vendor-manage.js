@@ -54,61 +54,37 @@ class MVX_Backend_Vendor extends React.Component {
       datafollowers: [],
       data_zone_in_shipping: [],
       list_vendor_roles_data: [],
-
       open_model: false,
       datafollowers_loader: false,
       vendor_loading: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
-
     this.QueryParamsDemo = this.QueryParamsDemo.bind(this);
-
     this.useQuery = this.useQuery.bind(this);
-
     this.Child = this.Child.bind(this);
-
     this.Childparent = this.Childparent.bind(this);
-
     this.handlevendorsearch = this.handlevendorsearch.bind(this);
-
     this.handleClose = this.handleClose.bind(this);
-
     this.handlechildClose = this.handlechildClose.bind(this);
-
     this.handleaddshipping_method = this.handleaddshipping_method.bind(this);
-
     this.onChangeshipping = this.onChangeshipping.bind(this);
-
     this.handle_different_shipping_add = this.handle_different_shipping_add.bind(this);
-
     this.handle_different_shipping_delete = this.handle_different_shipping_delete.bind(this);
-
     this.handleOnChange = this.handleOnChange.bind(this);
-
     this.toggle_shipping_method = this.toggle_shipping_method.bind(this);
-
     this.update_post_code = this.update_post_code.bind(this);
-
     this.onChangeshippingoption = this.onChangeshippingoption.bind(this);
-
     this.handledeletevendor = this.handledeletevendor.bind(this);
-
     this.handleVendorDismiss = this.handleVendorDismiss.bind(this);
-
     this.handlevendoractionsearch = this.handlevendoractionsearch.bind(this);
-
     this.different_vendor_status = this.different_vendor_status.bind(this);
-
     this.handleEyeIcon = this.handleEyeIcon.bind(this);
-
     this.handleClose_dynamic = this.handleClose_dynamic.bind(this);
-
     this.handle_rejected_vendor_description = this.handle_rejected_vendor_description.bind(this);
     this.handle_Vendor_Approve = this.handle_Vendor_Approve.bind(this);
     this.handle_Vendor_Reject = this.handle_Vendor_Reject.bind(this);
     this.handle_Vendor_Edit = this.handle_Vendor_Edit.bind(this);
-
   }
 
   handle_rejected_vendor_description(e, vendorid, reload = '') {
@@ -184,7 +160,6 @@ class MVX_Backend_Vendor extends React.Component {
   }
 
   different_vendor_status(e, type) {
-
     if (type == 'approve') {
       axios.get(
         `${appLocalizer.apiUrl}/mvx_module/v1/all_vendors`, {
@@ -226,9 +201,7 @@ class MVX_Backend_Vendor extends React.Component {
         });
       })
     }
-
   }
-
 
   handlevendoractionsearch(e) {
     if (e) {
@@ -299,9 +272,7 @@ class MVX_Backend_Vendor extends React.Component {
         vendor_id: vendor_id,
       }
     })
-    .then((responce) => {
-      console.log('success');
-    });
+    .then((responce) => {});
   }
 
   update_post_code(e, zone_id, vendor_id, type) {
@@ -326,9 +297,7 @@ class MVX_Backend_Vendor extends React.Component {
         type: type
       }
     })
-    .then((responce) => {
-      console.log('success');
-    });
+    .then((responce) => {});
   }
 
   toggle_shipping_method(e, instance_id, zone_id, vendor_id) {
@@ -342,9 +311,7 @@ class MVX_Backend_Vendor extends React.Component {
         zone_id: zone_id
       }
     })
-    .then((responce) => {
-      console.log('success');
-    });
+    .then((responce) => {});
 
     var params = {
       vendor_id: vendor_id,
@@ -358,11 +325,9 @@ class MVX_Backend_Vendor extends React.Component {
         data_zone_in_shipping: response.data,
       });
     })
-
   }
 
   handleOnChange(e, getdata, zoneid, vendorid, type) {
-
     if (type == 'title') {
       getdata['title'] = e.target.value;
       getdata['settings']['title'] = e.target.value;
@@ -375,11 +340,8 @@ class MVX_Backend_Vendor extends React.Component {
     }
 
     getdata['zone_id'] = zoneid;
-
     getdata['vendor_id'] = vendorid;
-
     getdata['method_id'] = getdata['id'];
-
     getdata['instance_id'] = getdata['instance_id'];
 
     axios({
@@ -392,10 +354,7 @@ class MVX_Backend_Vendor extends React.Component {
         zoneid: zoneid
       }
     })
-    .then((responce) => {
-      console.log('success');
-    });
-
+    .then((responce) => {});
   }
 
   handle_different_shipping_add(e, data, index) {
@@ -441,9 +400,7 @@ class MVX_Backend_Vendor extends React.Component {
     .then((responce) => {
       location.reload();
     });
-
   }
-
 
   handleaddshipping_method(e) {
     this.setState({
@@ -500,8 +457,8 @@ class MVX_Backend_Vendor extends React.Component {
         data_ann.selector = row => <div dangerouslySetInnerHTML={{ __html: row[data_selector] }}></div>;
 
         data_ann.last_action == 'last_action_trigger' ? data_ann.cell = (row) => <div className="mvx-vendor-action-icon">
-          <div><a href={row.link_shop}><i className="mvx-font icon-shop"></i><p className='mvxicon-hover-text'>Shop</p></a></div>
-          <div><a href={row.link}><i className="mvx-font icon-edit"></i><p className='mvxicon-hover-text'>Edit</p></a></div>
+          <div><a href={row.link_shop}><i className="mvx-font icon-shop"></i><p className='mvxicon-hover-text'>{appLocalizer.global_string.shop}</p></a></div>
+          <div><a href={row.link}><i className="mvx-font icon-edit"></i><p className='mvxicon-hover-text'>{appLocalizer.global_string.edit}</p></a></div>
           <div onClick={() => this.handleVendorDismiss(row.ID)} id={row.ID}><i className="mvx-font icon-no"></i><p className='mvxicon-hover-text'>Close</p></div>
         </div> : '';
 
@@ -518,8 +475,6 @@ class MVX_Backend_Vendor extends React.Component {
       )
     }
     // Display vendor list table column and row slection end
-
-
 
     {/* column list followers start */}
     if (this.useQuery().get("name") == 'vendor-followers') {
@@ -611,26 +566,26 @@ class MVX_Backend_Vendor extends React.Component {
             ) : (
               <div className="mvx-middle-container-wrapper">
                 <div className="mvx-page-title">
-                  <p>Vendors</p>
+                  <p>{appLocalizer.vendor_page_string.vendors}</p>
                   <div className="mvx-addbtn">
                     <Link
                       to={`?page=mvx#&submenu=vendor&name=add-new`}
-                      className="btn default-btn ml-12"
+                      className="btn default-btn"
                     >
-                      <i className="mvx-font icon-add"></i>Add Vendor
+                      <i className="mvx-font icon-add"></i>{appLocalizer.vendor_page_string.add_vendor}
                     </Link>
                   </div>
                 </div>
 
-                <div className="mvx-search-and-multistatus-wrap mvx-row mvx-align-items-center mvx-justify-content-between mb-15 mvx-approved-pending-reject">
+                <div className="mvx-search-and-multistatus-wrap">
                   <div className="mvx-multistatus-sec">
-                    <ul className="mvx-multistatus-ul mvx-row">
+                    <ul className="mvx-multistatus-ul">
                       <li className="mvx-multistatus-item">
                         <div
                           className="mvx-multistatus-check-all"
                           onClick={(e) => this.different_vendor_status(e, "all")}
                         >
-                          All ({this.state.data_all_vendor.length})
+                          {appLocalizer.global_string.all} ({this.state.data_all_vendor.length})
                         </div>
                       </li>
                       <li className="mvx-multistatus-item mvx-divider"></li>
@@ -639,7 +594,7 @@ class MVX_Backend_Vendor extends React.Component {
                           className="mvx-multistatus-check-approve"
                           onClick={(e) => this.different_vendor_status(e, "approve")}
                         >
-                          Approve ({this.state.data_approve_vendor.length})
+                          {appLocalizer.vendor_page_string.approve} ({this.state.data_approve_vendor.length})
                         </div>
                       </li>
                       <li className="mvx-multistatus-item mvx-divider"></li>
@@ -648,7 +603,7 @@ class MVX_Backend_Vendor extends React.Component {
                           className="mvx-multistatus-check-pending status-active"
                           onClick={(e) => this.different_vendor_status(e, "pending")}
                         >
-                          Pending ({this.state.data_pending_vendor.length})
+                          {appLocalizer.global_string.pending} ({this.state.data_pending_vendor.length})
                         </div>
                       </li>
                       <li className="mvx-multistatus-item mvx-divider"></li>
@@ -657,7 +612,7 @@ class MVX_Backend_Vendor extends React.Component {
                           className="mvx-multistatus-check-rejected"
                           onClick={(e) => this.different_vendor_status(e, "rejected")}
                         >
-                          Rejected ({this.state.data_rejected_vendor.length})
+                          {appLocalizer.vendor_page_string.reject} ({this.state.data_rejected_vendor.length})
                         </div>
                       </li>
                     </ul>
@@ -667,8 +622,7 @@ class MVX_Backend_Vendor extends React.Component {
                       <label><i className='mvx-font icon-search'></i></label>
                       <input
                         type="text"
-                        placeholder="Search Vendors"
-                        name="search"
+                        placeholder={appLocalizer.vendor_page_string.search_vendor}
                         onChange={this.handlevendorsearch}
                       />
                     </div>
@@ -678,7 +632,7 @@ class MVX_Backend_Vendor extends React.Component {
                 <div className="mvx-wrap-bulk-all-date">
                   <div className="mvx-bulk-action-sec">
                     <Select
-                      placeholder="Bulk actions"
+                      placeholder={appLocalizer.global_string.bulk_action}
                       options={appLocalizer.select_option_delete}
                       isClearable={true}
                       className="mvx-module-section-list-data"
@@ -688,7 +642,7 @@ class MVX_Backend_Vendor extends React.Component {
                 </div>
 
                 <div className="responsive-table">
-                  <div className="mvx-backend-datatable-wrapper vendor-table-wapper default-table">
+                  <div className="mvx-backend-datatable-wrapper">
                     {this.state.columns_vendor_list &&
                     this.state.columns_vendor_list.length > 0 &&
                     this.state.vendor_loading ? (
@@ -730,7 +684,7 @@ class MVX_Backend_Vendor extends React.Component {
                           <DialogContentText>
                             <div className="mvx-module-dialog-content">
                               <div className="mvx-email-content-and-value-wrap">
-                                <div className="mvx-content-email">Email :</div>
+                                <div className="mvx-content-email">{appLocalizer.vendor_page_string.email} :</div>
                                 <div className="mvx-content-email-value">
                                   {data8.email}
                                 </div>
@@ -738,7 +692,7 @@ class MVX_Backend_Vendor extends React.Component {
 
                               <div className="mvx-vendor-textarea-content">
                                 <textarea
-                                  placeholder="Describe yourself here..."
+                                  placeholder={appLocalizer.vendor_page_string.describe_yourself}
                                   onChange={(e) =>
                                     this.handle_rejected_vendor_description(
                                       e,
@@ -754,21 +708,21 @@ class MVX_Backend_Vendor extends React.Component {
                                   onClick={() => this.handle_Vendor_Approve(data8.ID)}
                                   color="primary"
                                 >
-                                  Approve
+                                  {appLocalizer.vendor_page_string.approve}
                                 </Button>
                                 <Button
                                   className="btn red-btn button-large"
                                   onClick={() => this.handle_Vendor_Reject(data8.ID)}
                                   color="primary"
                                 >
-                                  Reject
+                                  {appLocalizer.vendor_page_string.reject}
                                 </Button>
                                 <Button
                                   className="btn border-btn button-large"
                                   onClick={() => this.handle_Vendor_Edit(data8)}
                                   color="primary"
                                 >
-                                  Edit Vendor
+                                  {appLocalizer.vendor_page_string.edit_vendor}
                                 </Button>
                               </div>
                             </div>
@@ -806,26 +760,23 @@ class MVX_Backend_Vendor extends React.Component {
           <DynamicForm
             key={`dynamic-form-add-new`}
             className="mvx-vendor-add-new"
-            title="Add new vendor"
             model={appLocalizer.settings_fields['add-new']}
             method="post"
             location={useLocation().search}
             modulename="vendor_add_personal"
             url="mvx_module/v1/create_vendor"
-            submit_title="Add New"
+            submit_title={appLocalizer.vendor_page_string.add_new}
           />
           : ''}
       </div>
     );
   }
 
-
   Child({ name }) {
 
     if (!this.useQuery().get("zone_id")) {
       this.state.data_zone_in_shipping = [];
     }
-
 
     if (name.get("ID") && name.get("ID") != this.state.set_tab_name_id) {
       this.state.data_setting_fileds = [];
@@ -844,7 +795,6 @@ class MVX_Backend_Vendor extends React.Component {
       })
     }
 
-
     if (name.get("ID") && name.get("name") != this.state.set_tab_name) {
       axios.get(
         `${appLocalizer.apiUrl}/mvx_module/v1/list_of_all_tab_based_settings_field`, {
@@ -860,7 +810,6 @@ class MVX_Backend_Vendor extends React.Component {
         }
       })
 
-
       if (this.useQuery().get("ID") && this.useQuery().get("name") == 'vendor-followers') {
           this.state.datafollowers_loader = false;
         axios.get(
@@ -875,7 +824,6 @@ class MVX_Backend_Vendor extends React.Component {
         })
       }
 
-      
       if (name.get("name") == "vendor-application") {
         axios.get(
         `${appLocalizer.apiUrl}/mvx_module/v1/list_vendor_application_data`, {
@@ -925,7 +873,6 @@ class MVX_Backend_Vendor extends React.Component {
         `${appLocalizer.apiUrl}/mvx_module/v1/specific_vendor_shipping_zone`, { params }
       )
       .then(response => {
-
         var add_module_false = response.data.vendor_shipping_methods ? new Array(Object.keys(response.data.vendor_shipping_methods).length).fill(false) : '';
         if (response.data && this.state.data_zone_in_shipping.length == 0) {
           this.setState({
@@ -959,21 +906,21 @@ class MVX_Backend_Vendor extends React.Component {
                   <div className="mvx-vendor-modal-main">
                     <textarea
                       className="pending-vendor-note form-control"
-                      placeholder="Optional note for acceptance / rejection"
+                      placeholder={appLocalizer.vendor_page_string.optional_note}
                       onChange={(e) => this.handle_rejected_vendor_description(e, name.get("ID"), 'reload')}
                     />
                     <div id="wc-backbone-modal-dialog">
                       
                       <Button
                         onClick={() => this.handle_Vendor_Approve(name.get("ID") , 'reload')}
-                        className="button button-primary mvx-action-button vendor-approve-btn mvx-primary-btn"
+                        className="button button-primary"
                       >
                       {appLocalizer.vendor_page_string.approve}
                       </Button>
 
                       <Button
                         onClick={() => this.handle_Vendor_Reject(name.get("ID"), 'reload')}
-                        className="button button-primary mvx-action-button vendor-reject-btn pull-right"
+                        className="button button-primary vendor-reject-btn pull-right"
                       >
                       {appLocalizer.vendor_page_string.approve}
                       </Button>
@@ -1002,10 +949,10 @@ class MVX_Backend_Vendor extends React.Component {
                       <table className="form-table mvx-shipping-zone-settings wc-shipping-zone-settings">
                         <tbody>
                           <tr>
-                            <th scope="row" className="titledesc">
+                            <th scope="row">
                               <label>{appLocalizer.vendor_page_string.zone_name}</label>
                             </th>
-                            <td className="forminp">
+                            <td>
                               {this.state.data_zone_in_shipping.zones
                                 ? this.state.data_zone_in_shipping.zones.data
                                     .zone_name
@@ -1014,10 +961,10 @@ class MVX_Backend_Vendor extends React.Component {
                           </tr>
 
                           <tr>
-                            <th scope="row" className="titledesc">
-                              <label htmlFor>{appLocalizer.vendor_page_string.zone_region}</label>
+                            <th scope="row">
+                              <label>{appLocalizer.vendor_page_string.zone_region}</label>
                             </th>
-                            <td className="forminp">
+                            <td>
                               {this.state.data_zone_in_shipping.zones
                                 ? this.state.data_zone_in_shipping.zones
                                     .formatted_zone_location
@@ -1027,11 +974,11 @@ class MVX_Backend_Vendor extends React.Component {
 
                           <tr></tr>
 
-                          <tr className="hide_if_zone_not_limited">
-                            <th scope="row" className="titledesc">
-                              <label htmlFor>{appLocalizer.vendor_page_string.specific_state}</label>
+                          <tr>
+                            <th scope="row">
+                              <label>{appLocalizer.vendor_page_string.specific_state}</label>
                             </th>
-                            <td className="forminp">
+                            <td>
                               <Select
                                 value={
                                   this.state.data_zone_in_shipping
@@ -1056,13 +1003,12 @@ class MVX_Backend_Vendor extends React.Component {
                             </td>
                           </tr>
 
-                          <tr className="hide_if_zone_not_limited">
-                            <th className="titledesc">
-                              <label htmlFor>{appLocalizer.vendor_page_string.postcode}</label>
+                          <tr>
+                            <th>
+                              <label>{appLocalizer.vendor_page_string.postcode}</label>
                             </th>
                             <td className="mvx-settings-basic-input-class">
                               <input
-                                id="select_zone_postcodes"
                                 className="mvx-setting-form-input"
                                 type="text"
                                 defaultValue={
@@ -1082,11 +1028,11 @@ class MVX_Backend_Vendor extends React.Component {
                           </tr>
 
                           <tr>
-                            <th className="titledesc">
+                            <th>
                               <label>{appLocalizer.vendor_page_string.shipping_methods}</label>
                             </th>
-                            <td className>
-                              <table className="mvx-shipping-zone-methods wc-shipping-zone-methods widefat">
+                            <td>
+                              <table className="mvx-shipping-zone-methods">
                                 <thead>
                                   <tr>
                                     <th className="mvx-title wc-shipping-zone-method-title">
@@ -1201,7 +1147,7 @@ class MVX_Backend_Vendor extends React.Component {
                                               {data[1].id &&
                                               data[1].id == "flat_rate" ? (
                                                 <div className="mvx-vendor-shipping-method-details">
-                                                  <label className="control-label col-sm-3 col-md-3">
+                                                  <label>
                                                     {appLocalizer.vendor_page_string.method_title}
                                                   </label>
                                                   <input
@@ -1218,11 +1164,10 @@ class MVX_Backend_Vendor extends React.Component {
                                                     }
                                                   />
 
-                                                  <label className="control-label col-sm-3 col-md-3">
+                                                  <label>
                                                     {appLocalizer.vendor_page_string.cost}
                                                   </label>
                                                   <input
-                                                    id="method_cost_fr"
                                                     className="form-control"
                                                     type="number"
                                                     defaultValue={
@@ -1262,7 +1207,7 @@ class MVX_Backend_Vendor extends React.Component {
                                                 </div>
                                               ) : data[1].id == "local_pickup" ? (
                                                 <div>
-                                                  <label className="control-label col-sm-3 col-md-3">
+                                                  <label>
                                                     {appLocalizer.vendor_page_string.method_title}
                                                   </label>
                                                   <input
@@ -1279,11 +1224,10 @@ class MVX_Backend_Vendor extends React.Component {
                                                     }
                                                   />
 
-                                                  <label className="control-label col-sm-3 col-md-3">
+                                                  <label>
                                                     {appLocalizer.vendor_page_string.cost}
                                                   </label>
                                                   <input
-                                                    id="method_cost_fr"
                                                     className="form-control"
                                                     type="number"
                                                     defaultValue={
@@ -1315,7 +1259,7 @@ class MVX_Backend_Vendor extends React.Component {
                                                       )
                                                     }
                                                   >
-                                                    <option value="none">None</option>
+                                                    <option value="none">{appLocalizer.vendor_page_string.none}</option>
                                                     <option value="taxable">
                                                       {appLocalizer.vendor_page_string.taxable}
                                                     </option>
@@ -1323,7 +1267,7 @@ class MVX_Backend_Vendor extends React.Component {
                                                 </div>
                                               ) : data[1].id == "free_shipping" ? (
                                                 <div>
-                                                  <label className="control-label col-sm-3 col-md-3">
+                                                  <label>
                                                     {appLocalizer.vendor_page_string.method_title}
                                                   </label>
                                                   <input
@@ -1340,11 +1284,10 @@ class MVX_Backend_Vendor extends React.Component {
                                                     }
                                                   />
 
-                                                  <label className="control-label col-sm-3 col-md-3">
+                                                  <label>
                                                     {appLocalizer.vendor_page_string.cost}
                                                   </label>
                                                   <input
-                                                    id="method_cost_fr"
                                                     className="form-control"
                                                     type="number"
                                                     defaultValue={
@@ -1438,8 +1381,7 @@ class MVX_Backend_Vendor extends React.Component {
                         loading={true}
                       />
                   ) : (
-                    <div>
-                      {this.state.data_setting_fileds.shipping_options ? (
+                    this.state.data_setting_fileds.shipping_options ? (
                         <div>
                           <Select
                             className="shipping_choice"
@@ -1467,7 +1409,6 @@ class MVX_Backend_Vendor extends React.Component {
                             "distance_by_shipping" ? (
                             <DynamicForm
                               key={`dynamic-form`}
-                              className="class"
                               title="distance wise shipping"
                               model={
                                 this.state.data_setting_fileds["distance-shipping"]
@@ -1482,7 +1423,6 @@ class MVX_Backend_Vendor extends React.Component {
                             "shipping_by_country" ? (
                             <DynamicForm
                               key={`dynamic-form`}
-                              className="class"
                               title="country wise shipping"
                               model={
                                 this.state.data_setting_fileds["country-shipping"]
@@ -1499,8 +1439,7 @@ class MVX_Backend_Vendor extends React.Component {
                         </div>
                       ) : (
                         ""
-                      )}
-                    </div>
+                      )
                   )
                 ) : (
                   this.state.data_setting_fileds &&

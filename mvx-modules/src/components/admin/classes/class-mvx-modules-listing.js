@@ -226,17 +226,13 @@ class MVX_Module_Listing extends Component {
             </div>
 
             <div className="mvx-wrap-bulk-all-date">
-              <div className="mvx-wrap-bulk-action">
-                <div className="mvx-col-auto mvx-search-category">
-                  <Select
-                    placeholder={appLocalizer.module_page_string.module7}
-                    options={appLocalizer.select_module_category_option}
-                    isClearable={true}
-                    className="mvx-module-section-list-data"
-                    onChange={(e) => this.handleModuleSearchByCategory(e)}
-                  />
-                </div>
-              </div>
+                <Select
+                  placeholder={appLocalizer.module_page_string.module7}
+                  options={appLocalizer.select_module_category_option}
+                  isClearable={true}
+                  className="mvx-wrap-bulk-action"
+                  onChange={(e) => this.handleModuleSearchByCategory(e)}
+                />
             </div>
 
             <div className="mvx-module-section-ui">
