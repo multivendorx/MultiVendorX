@@ -1495,10 +1495,6 @@ textarea, input[type=text], select, input, .default-input {
   left: 10.8125rem;
 }
 
-.mvx-col-auto.mvx-module-left-sec {
-  margin-left: 0;
-}
-
 .mvx-totalmodule-text .mvx-total-module-name-and-count {
   display: -webkit-box;
   display: -ms-flexbox;

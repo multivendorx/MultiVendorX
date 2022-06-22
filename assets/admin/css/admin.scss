@@ -1429,9 +1429,6 @@ textarea, input[type=text], select, input, .default-input {
     }
 }
 
-.mvx-col-auto.mvx-module-left-sec {
-    margin-left: 0;
-}
 .mvx-totalmodule-text {
     & .mvx-total-module-name-and-count {
         @include flexprops(center);
@@ -2327,8 +2324,7 @@ margin-top: 10px;
         padding-top: 32px;
         & .site-health-copy-buttons {
             margin: 0;
-            & .copy-button-wrapper {
-                margin: 0;
+
                 & button{
                     background-color: transparent;
                     border: $border !important;
@@ -2338,7 +2334,6 @@ margin-top: 10px;
                     padding: 0 16px;
                 }
     
-            }
             & .copy-button-wrapper:hover {
                 margin: 0;
                 & button{
