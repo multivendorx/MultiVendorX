@@ -32,12 +32,13 @@ class MVX_Dashboard extends Component {
     return (
       <div className="mvx-general-wrapper mvx-dashboard">
         <HeaderSection />
-          <div className="mvx-sub-container">
-              <div className="mv-dashboard-top-heading">Welcome to MultiVendorX</div>
+          <div className="mvx-sub-container mvx-container">
+            <div className="mvx-middle-container-wrapper">
+              <div className="mvx-dashboard-top-heading">Welcome to MultiVendorX</div>
               <div className='mvx-slider-content-main-wrapper'>
                 
                 <div className="mvx-dashboard-slider">
-                  <div className="mv-dashboard-top-icon">
+                  <div className="mvx-dashboard-top-icon">
                     <span>Pro</span>
                   </div>
                   <div className="mvx-pro-txt">
@@ -53,7 +54,7 @@ class MVX_Dashboard extends Component {
                 </div>
 
                 <div className="mvx-dashboard-slider mvx-flex-content">
-                  <div className="mv-dashboard-top-icon">
+                  <div className="mvx-dashboard-top-icon">
                     <span>Pro</span>
                   </div>
                   <div className="mvx-pro-txt">
@@ -69,7 +70,7 @@ class MVX_Dashboard extends Component {
                 </div>
 
                 <div className="mvx-dashboard-slider mvx-flex-content">
-                  <div className="mv-dashboard-top-icon">
+                  <div className="mvx-dashboard-top-icon">
                     <span>Pro</span>
                   </div>
                   <div className="mvx-pro-txt">
@@ -85,7 +86,7 @@ class MVX_Dashboard extends Component {
                 </div>
 
                 <div className="mvx-dashboard-slider mvx-flex-content">
-                  <div className="mv-dashboard-top-icon">
+                  <div className="mvx-dashboard-top-icon">
                     <span>Pro</span>
                   </div>
                   <div className="mvx-pro-txt">
@@ -112,11 +113,11 @@ class MVX_Dashboard extends Component {
 
               </div>
 
-
+              <div className='mvx-setup-documentation'>
               <div className="mvx-setup-marketing-white-box">
                 <h3 className="mvx-block-title">This is what you get</h3>
                 <ul className="mvx-table-ul">
-                  <li className="mv-align-items-center hover-border-box">
+                  <li className="mvx-align-items-center hover-border-box">
                     <div className="mvx-allign-li-txt">
                       <span>
                         <i className="mvx-font icon-chart-line" />
@@ -129,7 +130,7 @@ class MVX_Dashboard extends Component {
                       </a>
                     </div>
                   </li>
-                  <li className="mv-align-items-center hover-border-box">
+                  <li className="mvx-align-items-center hover-border-box">
                     <div className="mvx-allign-li-txt">
                       <span>
                         <i className="mvx-font icon-chart-line" />
@@ -142,7 +143,7 @@ class MVX_Dashboard extends Component {
                       </a>
                     </div>
                   </li>
-                  <li className="mv-align-items-center hover-border-box">
+                  <li className="mvx-align-items-center hover-border-box">
                     <div className="mvx-allign-li-txt">
                       <span>
                         <i className="mvx-font icon-chart-line" />
@@ -155,7 +156,7 @@ class MVX_Dashboard extends Component {
                       </a>
                     </div>
                   </li>
-                  <li className="mv-align-items-center hover-border-box">
+                  <li className="mvx-align-items-center hover-border-box">
                     <div className="mvx-allign-li-txt">
                       <span>
                         <i className="mvx-font icon-chart-line" />
@@ -168,7 +169,7 @@ class MVX_Dashboard extends Component {
                       </a>
                     </div>
                   </li>
-                  <li className="mv-align-items-center hover-border-box">
+                  <li className="mvx-align-items-center hover-border-box">
                     <div className="mvx-allign-li-txt">
                       <span>
                         <i className="mvx-font icon-chart-line" />
@@ -181,7 +182,7 @@ class MVX_Dashboard extends Component {
                       </a>
                     </div>
                   </li>
-                  <li className="mv-align-items-center hover-border-box">
+                  <li className="mvx-align-items-center hover-border-box">
                     <div className="mvx-allign-li-txt">
                       <span>
                         <i className="mvx-font icon-chart-line" />
@@ -196,43 +197,43 @@ class MVX_Dashboard extends Component {
                   </li>
                 </ul>
               </div>
-          </div>
+              <div className='mvx-documentation-quick-link'>
+                <div className='mvx-forum'>
+                  <div className='mvx-documentation-support-forum'>
+                  <figure>
+                    <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAA1CAYAAAAHz2g0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyVpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDYuMC1jMDAyIDc5LjE2NDQ2MCwgMjAyMC8wNS8xMi0xNjowNDoxNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDIxLjIgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUVBRjlCQjVCQjBDMTFFQ0I3QkI4MjI5RkQ5MzZDQkQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUVBRjlCQjZCQjBDMTFFQ0I3QkI4MjI5RkQ5MzZDQkQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRUFGOUJCM0JCMEMxMUVDQjdCQjgyMjlGRDkzNkNCRCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRUFGOUJCNEJCMEMxMUVDQjdCQjgyMjlGRDkzNkNCRCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PntVzLAAAARMSURBVHja7FpbSBRhFJ7d1ktJRaVWhoUpIhaZZoldqJeghyKSeoskqaAeggo0kDIiCJSohx66oBCR0EMPEQkmUUmZYqVgZHZDIcvKLm5WlqZ9R8/YadrZ2dGd3VnYAx//v2f/mTnffzvnvzgUH6SitMaFZC6QAmQxEoE5nJqRt8CARveN9e3AI+AB8BjoLShc6/VlDi9GU5IJlAAbleDIHWAf0KRHxKFjfByS68BSLy93Ay+BH1yj77xUUoJGNwWYyvmJQKwBkTpgPUh8NiQA43OQ1GvUD4EyoIEN7cPLhvxVzdzaTiCSu+Uy4CCwSFM0F9+t1yWAF2VyH1TlBrAdeGPUF/0tTIrGVzkgP74attT+RwAPUJN2Ay5W7QbOBNpwHSK7gLNCPRt2danNpha6IIzfbwfjSdiGc8AOoa6BzY5RApAkMdPQgDllB+M1JMp5YiFZCGRLAiWifL4/B6ifSewUqqPDBNhJ5bOyE3ih2FfI2TVxfh1sj6QWmC8KlNmp6+i0QqlQJRKBDKG4q9hf5DSfSgQWC8WrECAgPX6yk2cgVXpDgMB3kV9ABOYJxUAIEOgX+XSX5k/D6RMjPwpJNbl0g1rKw6CrtmIgwwY3B4SznB5GuZGkGRhPMomcoYWtoEal011jeLgFOAnkeCnTy3G8VdLJXT/WNYYmHORYyRZCXShOsAo5IQLRnB8MVQIhLWECYQLjFJeYhXxdo0YguaIJAv0hrcAGTNO/fPQDowSiTX4olT5kQWUm8jKxzmwLmJU24CKwxs8EbgONY+lCZj0xRazbwoM4TCBMIEzAH+IOVQLqeUIPTaPvgXg7Wsm7hunAKl4BJvNaOFX6gW4mEGMjw6chKQYO+OLIutUFsg0Mpy3zvWY2BGgMvBYvcAbReDpeqtUYT5u5BcrIsRMFkUQwSvz/kVrguVDQS/qCZHyL6NsUkeYBVdqtfpQd1BJoE4rJgSbA3eamMJ7Oh5fD8K86j8gWeEpdpl0oEoLQe/YAKzn/BMjyYrycQkmaiUCHUOQGuPbpYPE0/6Qol45R+w0ekxtqjUSgSygK+cAvUFIk8ltgvNuA8LCNchXn5J2286xIkk7C4tqfIAh8Aq768Bjd11jC+cu0/FSnzROiUKV6hGmxpIlYrNjoYJFtuiRUh2QwRzPRLc4Tw8MB6EpyvFX50HWKxGC/pk7/Tl4mUrJJ+XvAcQQosbglskW+y6DmKaw4LnzEVvUowCnWuj2if6kkGvGCFItaI03k+z3VOkAnqPeBY3IWkoPd020VuiHSoNlueaaM3Fap49CDLij9Hs+RLL5zjxyWiMmG2EnNBFbwbCNvqwywg/tn50LvvhB55ApgswmbyIN/8KCncP2nRkcnOGY2xmh80pHVF+0fRje2aFqlawj5QYrxKrn7tJq6seWBTAT7Bxp4GUwsXtTmDA+PxfgQotOApHPfHu6mFNA1c9rBe1Be5Y8AAwCQ3DTWJBG/vwAAAABJRU5ErkJggg==' />
+                  </figure>
+                  <figcaption>
+                    <h2>Documentation Forum</h2>
+                    <div>
+                      <p>Further Clarification Visit Our</p>
+                      <p>Document Forum</p>
+                    </div>
+                    <a href="#">
+                      Visit Documentation Forum{" "}
+                      <span className="mvx-font icon-down-arrow" />
+                    </a>
+                  </figcaption>
+                  </div>
 
-            <div className='mvx-documentation-quick-link'>
-              <div className='mvx-documentation-forum'>
-                <figure>
-                  <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAA1CAYAAAAHz2g0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyVpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDYuMC1jMDAyIDc5LjE2NDQ2MCwgMjAyMC8wNS8xMi0xNjowNDoxNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDIxLjIgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUVBRjlCQjVCQjBDMTFFQ0I3QkI4MjI5RkQ5MzZDQkQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUVBRjlCQjZCQjBDMTFFQ0I3QkI4MjI5RkQ5MzZDQkQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRUFGOUJCM0JCMEMxMUVDQjdCQjgyMjlGRDkzNkNCRCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRUFGOUJCNEJCMEMxMUVDQjdCQjgyMjlGRDkzNkNCRCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PntVzLAAAARMSURBVHja7FpbSBRhFJ7d1ktJRaVWhoUpIhaZZoldqJeghyKSeoskqaAeggo0kDIiCJSohx66oBCR0EMPEQkmUUmZYqVgZHZDIcvKLm5WlqZ9R8/YadrZ2dGd3VnYAx//v2f/mTnffzvnvzgUH6SitMaFZC6QAmQxEoE5nJqRt8CARveN9e3AI+AB8BjoLShc6/VlDi9GU5IJlAAbleDIHWAf0KRHxKFjfByS68BSLy93Ay+BH1yj77xUUoJGNwWYyvmJQKwBkTpgPUh8NiQA43OQ1GvUD4EyoIEN7cPLhvxVzdzaTiCSu+Uy4CCwSFM0F9+t1yWAF2VyH1TlBrAdeGPUF/0tTIrGVzkgP74attT+RwAPUJN2Ay5W7QbOBNpwHSK7gLNCPRt2danNpha6IIzfbwfjSdiGc8AOoa6BzY5RApAkMdPQgDllB+M1JMp5YiFZCGRLAiWifL4/B6ifSewUqqPDBNhJ5bOyE3ih2FfI2TVxfh1sj6QWmC8KlNmp6+i0QqlQJRKBDKG4q9hf5DSfSgQWC8WrECAgPX6yk2cgVXpDgMB3kV9ABOYJxUAIEOgX+XSX5k/D6RMjPwpJNbl0g1rKw6CrtmIgwwY3B4SznB5GuZGkGRhPMomcoYWtoEal011jeLgFOAnkeCnTy3G8VdLJXT/WNYYmHORYyRZCXShOsAo5IQLRnB8MVQIhLWECYQLjFJeYhXxdo0YguaIJAv0hrcAGTNO/fPQDowSiTX4olT5kQWUm8jKxzmwLmJU24CKwxs8EbgONY+lCZj0xRazbwoM4TCBMIEzAH+IOVQLqeUIPTaPvgXg7Wsm7hunAKl4BJvNaOFX6gW4mEGMjw6chKQYO+OLIutUFsg0Mpy3zvWY2BGgMvBYvcAbReDpeqtUYT5u5BcrIsRMFkUQwSvz/kVrguVDQS/qCZHyL6NsUkeYBVdqtfpQd1BJoE4rJgSbA3eamMJ7Oh5fD8K86j8gWeEpdpl0oEoLQe/YAKzn/BMjyYrycQkmaiUCHUOQGuPbpYPE0/6Qol45R+w0ekxtqjUSgSygK+cAvUFIk8ltgvNuA8LCNchXn5J2286xIkk7C4tqfIAh8Aq768Bjd11jC+cu0/FSnzROiUKV6hGmxpIlYrNjoYJFtuiRUh2QwRzPRLc4Tw8MB6EpyvFX50HWKxGC/pk7/Tl4mUrJJ+XvAcQQosbglskW+y6DmKaw4LnzEVvUowCnWuj2if6kkGvGCFItaI03k+z3VOkAnqPeBY3IWkoPd020VuiHSoNlueaaM3Fap49CDLij9Hs+RLL5zjxyWiMmG2EnNBFbwbCNvqwywg/tn50LvvhB55ApgswmbyIN/8KCncP2nRkcnOGY2xmh80pHVF+0fRje2aFqlawj5QYrxKrn7tJq6seWBTAT7Bxp4GUwsXtTmDA+PxfgQotOApHPfHu6mFNA1c9rBe1Be5Y8AAwCQ3DTWJBG/vwAAAABJRU5ErkJggg==' />
-                </figure>
-                <figcaption>
-                  <h2>Documentation Forum</h2>
-                  <p>
-                    Further Clarification Visit Our <br />
-                    Document Forum
-                  </p>
-                  <a href="#">
-                    Visit Documentation Forum{" "}
-                    <span className="mvx-font icon-down-arrow" />
-                  </a>
-                </figcaption>
-              </div>
 
-
-              <div className='mvx-support-forum'>
-                <figure>
-                  <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAA1CAYAAAAHz2g0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyVpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDYuMC1jMDAyIDc5LjE2NDQ2MCwgMjAyMC8wNS8xMi0xNjowNDoxNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDIxLjIgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUVBRjlCQjVCQjBDMTFFQ0I3QkI4MjI5RkQ5MzZDQkQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUVBRjlCQjZCQjBDMTFFQ0I3QkI4MjI5RkQ5MzZDQkQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRUFGOUJCM0JCMEMxMUVDQjdCQjgyMjlGRDkzNkNCRCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRUFGOUJCNEJCMEMxMUVDQjdCQjgyMjlGRDkzNkNCRCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PntVzLAAAARMSURBVHja7FpbSBRhFJ7d1ktJRaVWhoUpIhaZZoldqJeghyKSeoskqaAeggo0kDIiCJSohx66oBCR0EMPEQkmUUmZYqVgZHZDIcvKLm5WlqZ9R8/YadrZ2dGd3VnYAx//v2f/mTnffzvnvzgUH6SitMaFZC6QAmQxEoE5nJqRt8CARveN9e3AI+AB8BjoLShc6/VlDi9GU5IJlAAbleDIHWAf0KRHxKFjfByS68BSLy93Ay+BH1yj77xUUoJGNwWYyvmJQKwBkTpgPUh8NiQA43OQ1GvUD4EyoIEN7cPLhvxVzdzaTiCSu+Uy4CCwSFM0F9+t1yWAF2VyH1TlBrAdeGPUF/0tTIrGVzkgP74attT+RwAPUJN2Ay5W7QbOBNpwHSK7gLNCPRt2danNpha6IIzfbwfjSdiGc8AOoa6BzY5RApAkMdPQgDllB+M1JMp5YiFZCGRLAiWifL4/B6ifSewUqqPDBNhJ5bOyE3ih2FfI2TVxfh1sj6QWmC8KlNmp6+i0QqlQJRKBDKG4q9hf5DSfSgQWC8WrECAgPX6yk2cgVXpDgMB3kV9ABOYJxUAIEOgX+XSX5k/D6RMjPwpJNbl0g1rKw6CrtmIgwwY3B4SznB5GuZGkGRhPMomcoYWtoEal011jeLgFOAnkeCnTy3G8VdLJXT/WNYYmHORYyRZCXShOsAo5IQLRnB8MVQIhLWECYQLjFJeYhXxdo0YguaIJAv0hrcAGTNO/fPQDowSiTX4olT5kQWUm8jKxzmwLmJU24CKwxs8EbgONY+lCZj0xRazbwoM4TCBMIEzAH+IOVQLqeUIPTaPvgXg7Wsm7hunAKl4BJvNaOFX6gW4mEGMjw6chKQYO+OLIutUFsg0Mpy3zvWY2BGgMvBYvcAbReDpeqtUYT5u5BcrIsRMFkUQwSvz/kVrguVDQS/qCZHyL6NsUkeYBVdqtfpQd1BJoE4rJgSbA3eamMJ7Oh5fD8K86j8gWeEpdpl0oEoLQe/YAKzn/BMjyYrycQkmaiUCHUOQGuPbpYPE0/6Qol45R+w0ekxtqjUSgSygK+cAvUFIk8ltgvNuA8LCNchXn5J2286xIkk7C4tqfIAh8Aq768Bjd11jC+cu0/FSnzROiUKV6hGmxpIlYrNjoYJFtuiRUh2QwRzPRLc4Tw8MB6EpyvFX50HWKxGC/pk7/Tl4mUrJJ+XvAcQQosbglskW+y6DmKaw4LnzEVvUowCnWuj2if6kkGvGCFItaI03k+z3VOkAnqPeBY3IWkoPd020VuiHSoNlueaaM3Fap49CDLij9Hs+RLL5zjxyWiMmG2EnNBFbwbCNvqwywg/tn50LvvhB55ApgswmbyIN/8KCncP2nRkcnOGY2xmh80pHVF+0fRje2aFqlawj5QYrxKrn7tJq6seWBTAT7Bxp4GUwsXtTmDA+PxfgQotOApHPfHu6mFNA1c9rBe1Be5Y8AAwCQ3DTWJBG/vwAAAABJRU5ErkJggg==' />
-                </figure>
-                <figcaption>
-                  <h2>Support Forum</h2>
-                  <p>
-                    Further Clarification Visit Our <br />
-                    Document Forum
-                  </p>
-                  <a href="#">
-                    Join Support Forum{" "}
-                    <span className="mvx-font icon-down-arrow" />
-                  </a>
-                </figcaption>
-              </div>
+                  <div className='mvx-documentation-support-forum'>
+                    <figure>
+                      <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAA1CAYAAAAHz2g0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyVpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDYuMC1jMDAyIDc5LjE2NDQ2MCwgMjAyMC8wNS8xMi0xNjowNDoxNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDIxLjIgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUVBRjlCQjVCQjBDMTFFQ0I3QkI4MjI5RkQ5MzZDQkQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUVBRjlCQjZCQjBDMTFFQ0I3QkI4MjI5RkQ5MzZDQkQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRUFGOUJCM0JCMEMxMUVDQjdCQjgyMjlGRDkzNkNCRCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRUFGOUJCNEJCMEMxMUVDQjdCQjgyMjlGRDkzNkNCRCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PntVzLAAAARMSURBVHja7FpbSBRhFJ7d1ktJRaVWhoUpIhaZZoldqJeghyKSeoskqaAeggo0kDIiCJSohx66oBCR0EMPEQkmUUmZYqVgZHZDIcvKLm5WlqZ9R8/YadrZ2dGd3VnYAx//v2f/mTnffzvnvzgUH6SitMaFZC6QAmQxEoE5nJqRt8CARveN9e3AI+AB8BjoLShc6/VlDi9GU5IJlAAbleDIHWAf0KRHxKFjfByS68BSLy93Ay+BH1yj77xUUoJGNwWYyvmJQKwBkTpgPUh8NiQA43OQ1GvUD4EyoIEN7cPLhvxVzdzaTiCSu+Uy4CCwSFM0F9+t1yWAF2VyH1TlBrAdeGPUF/0tTIrGVzkgP74attT+RwAPUJN2Ay5W7QbOBNpwHSK7gLNCPRt2danNpha6IIzfbwfjSdiGc8AOoa6BzY5RApAkMdPQgDllB+M1JMp5YiFZCGRLAiWifL4/B6ifSewUqqPDBNhJ5bOyE3ih2FfI2TVxfh1sj6QWmC8KlNmp6+i0QqlQJRKBDKG4q9hf5DSfSgQWC8WrECAgPX6yk2cgVXpDgMB3kV9ABOYJxUAIEOgX+XSX5k/D6RMjPwpJNbl0g1rKw6CrtmIgwwY3B4SznB5GuZGkGRhPMomcoYWtoEal011jeLgFOAnkeCnTy3G8VdLJXT/WNYYmHORYyRZCXShOsAo5IQLRnB8MVQIhLWECYQLjFJeYhXxdo0YguaIJAv0hrcAGTNO/fPQDowSiTX4olT5kQWUm8jKxzmwLmJU24CKwxs8EbgONY+lCZj0xRazbwoM4TCBMIEzAH+IOVQLqeUIPTaPvgXg7Wsm7hunAKl4BJvNaOFX6gW4mEGMjw6chKQYO+OLIutUFsg0Mpy3zvWY2BGgMvBYvcAbReDpeqtUYT5u5BcrIsRMFkUQwSvz/kVrguVDQS/qCZHyL6NsUkeYBVdqtfpQd1BJoE4rJgSbA3eamMJ7Oh5fD8K86j8gWeEpdpl0oEoLQe/YAKzn/BMjyYrycQkmaiUCHUOQGuPbpYPE0/6Qol45R+w0ekxtqjUSgSygK+cAvUFIk8ltgvNuA8LCNchXn5J2286xIkk7C4tqfIAh8Aq768Bjd11jC+cu0/FSnzROiUKV6hGmxpIlYrNjoYJFtuiRUh2QwRzPRLc4Tw8MB6EpyvFX50HWKxGC/pk7/Tl4mUrJJ+XvAcQQosbglskW+y6DmKaw4LnzEVvUowCnWuj2if6kkGvGCFItaI03k+z3VOkAnqPeBY3IWkoPd020VuiHSoNlueaaM3Fap49CDLij9Hs+RLL5zjxyWiMmG2EnNBFbwbCNvqwywg/tn50LvvhB55ApgswmbyIN/8KCncP2nRkcnOGY2xmh80pHVF+0fRje2aFqlawj5QYrxKrn7tJq6seWBTAT7Bxp4GUwsXtTmDA+PxfgQotOApHPfHu6mFNA1c9rBe1Be5Y8AAwCQ3DTWJBG/vwAAAABJRU5ErkJggg==' />
+                    </figure>
+                    <figcaption>
+                      <h2>Support Forum</h2>
+                      <div>
+                        <p>Further Clarification Visit Our</p>
+                        <p>Support Forum</p>
+                      </div>
+                      <a href="#">
+                        Join Support Forum{" "}
+                        <span className="mvx-font icon-down-arrow" />
+                      </a>
+                    </figcaption>
+                  </div>
+                </div>
 
 
               <div className='mvx-quick-link-sec'>
@@ -282,10 +283,11 @@ class MVX_Dashboard extends Component {
               </div>
 
             </div>
+            </div>
 
 
             <div className='mvx-upgrade-pro-section'>
-              <div className="mvx-pro-title"><div className="mv-dashboard-top-icon"><span>Pro</span></div></div>
+              <div className="mvx-pro-title"><div className="mvx-dashboard-top-icon"><span>Pro</span></div></div>
               <h2>Get more by Switching to Pro</h2>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
               <a href="#" className="btn red-btn">Upgrade to Pro</a>
@@ -490,11 +492,15 @@ class MVX_Dashboard extends Component {
 
 
             <div className="mvx-upgrade-pro-section">
-              <div className="mv-dashboard-top-icon"><span>Pro</span></div>
+              <div className="mvx-dashboard-top-icon"><span>Pro</span></div>
               <h2>Get to Go?</h2>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
               <a href="#" className="btn red-btn">Upgrade to Pro</a>
             </div>
+            </div>
+          </div>
+
+            
 
         </div>
     );

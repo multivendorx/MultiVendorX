@@ -26,7 +26,7 @@ class MVX_Header extends Component {
     return (
       <div className="mvx-header-wapper">
         <div className="mvx-header-nav-left-section">
-          <div className="mvx-header-section-nav-child-data">
+          <div className="mvx-header-section-nav-child-logo">
             <img src={appLocalizer.mvx_logo} className="mvx-section-img-fluid mvx-logo-img" />
           </div>
           <div className="mvx-header-section-nav-child-data mvx-logo-title">
