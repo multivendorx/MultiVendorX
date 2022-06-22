@@ -4638,8 +4638,6 @@ if (!function_exists('mvx_vendor_distance_by_shipping_settings')) {
             "mvx_byd_default_cost" => array('label' => __('Default Cost', 'multivendorx'), 'name' => 'mvx_shipping_by_distance[_default_cost]', 'placeholder' => '0.00', 'type' => 'text', 'class' => 'col-md-6 col-sm-9', 'label_class' => 'mvx_title mvx_ele mvx_store_shipping_distance_fields', 'value' => isset($mvx_shipping_by_distance['_default_cost']) ? $mvx_shipping_by_distance['_default_cost'] : '' ),
 
             "mvx_byd_max_distance" => array('label' => __('Max Distance (km)', 'multivendorx'), 'name' => 'mvx_shipping_by_distance[_max_distance]', 'placeholder' => __('No Limit', 'multivendorx'), 'type' => 'text', 'class' => 'col-md-6 col-sm-9', 'label_class' => 'mvx_title mvx_ele mvx_store_shipping_distance_fields', 'value' => isset($mvx_shipping_by_distance['_max_distance']) ? $mvx_shipping_by_distance['_max_distance'] : '' ),
-            //"mvx_byd_enable_local_pickup" => array('label' => __('Enable Local Pickup', 'multivendorx'), 'name' => 'mvx_shipping_by_distance[_enable_local_pickup]', 'type' => 'checkbox', 'class' => 'mvx-checkbox mvx_ele mvx_store_shipping_distance_fields', 'label_class' => 'mvx_title checkbox_title checkbox-title mvx_ele mvx_store_shipping_distance_fields', 'value' => 'yes', 'dfvalue' => isset($mvx_shipping_by_distance['_enable_local_pickup']) ? 'yes' : '' ),
-
             "mvx_byd_local_pickup_cost" => array('label' => __('Local Pickup Cost', 'multivendorx'), 'name' => 'mvx_shipping_by_distance[_local_pickup_cost]', 'placeholder' => '0.00', 'type' => 'text', 'class' => 'col-md-6 col-sm-9', 'label_class' => 'mvx_title mvx_ele mvx_store_shipping_distance_fields', 'value' => isset($mvx_shipping_by_distance['_local_pickup_cost']) ? $mvx_shipping_by_distance['_local_pickup_cost'] : '' ),
         ) ) );
 
@@ -4726,7 +4724,6 @@ if (!function_exists('mvx_vendor_shipping_by_country_settings')) {
                 "mvx_additional_product" => array('label' => __('Per Product Additional Price', 'multivendorx'), 'name' => 'mvx_shipping_by_country[_mvx_additional_product]', 'placeholder' => '0.00', 'type' => 'text', 'class' => 'col-md-6 col-sm-9', 'label_class' => 'mvx_title mvx_ele', 'value' => isset($mvx_shipping_by_country['_mvx_additional_product']) ? $mvx_shipping_by_country['_mvx_additional_product'] : '', 'hints' => __('If a customer buys more than one type product from your store, first product of the every second type will be charged with this price', 'multivendorx') ),
                 "mvx_additional_qty" => array('label' => __('Per Qty Additional Price', 'multivendorx'), 'name' => 'mvx_shipping_by_country[_mvx_additional_qty]', 'placeholder' => '0.00', 'type' => 'text', 'class' => 'col-md-6 col-sm-9', 'label_class' => 'mvx_title mvx_ele', 'value' => isset($mvx_shipping_by_country['_mvx_additional_qty']) ? $mvx_shipping_by_country['_mvx_additional_qty'] : '', 'hints' => __('Every second product of same type will be charged with this price', 'multivendorx') ),
                 "mvx_byc_free_shipping_amount" => array('label' => __('Free Shipping Minimum Order Amount', 'multivendorx'), 'name' => 'mvx_shipping_by_country[_free_shipping_amount]', 'placeholder' => __( 'NO Free Shipping', 'multivendorx'), 'type' => 'text', 'class' => 'col-md-6 col-sm-9', 'label_class' => 'mvx_title mvx_ele', 'value' => isset($mvx_shipping_by_country['_free_shipping_amount']) ? $mvx_shipping_by_country['_free_shipping_amount'] : '', 'hints' => __('Free shipping will be available if order amount more than this. Leave empty to disable Free Shipping.', 'multivendorx') ),
-                //"mvx_byc_enable_local_pickup" => array('label' => __('Enable Local Pickup', 'multivendorx'), 'name' => 'mvx_shipping_by_country[_enable_local_pickup]', 'type' => 'checkbox', 'class' => 'mvx-checkbox mvx_ele', 'label_class' => 'mvx_title checkbox_title checkbox-title mvx_ele', 'value' => 'yes', 'dfvalue' => isset($mvx_shipping_by_country['_enable_local_pickup']) ? 'yes' : '' ),
                 "mvx_byc_local_pickup_cost" => array('label' => __('Local Pickup Cost', 'multivendorx'), 'name' => 'mvx_shipping_by_country[_local_pickup_cost]', 'placeholder' => '0.00', 'type' => 'text', 'class' => 'col-md-6 col-sm-9', 'label_class' => 'mvx_title mvx_ele', 'value' => isset($mvx_shipping_by_country['_local_pickup_cost']) ? $mvx_shipping_by_country['_local_pickup_cost'] : '' ),
             ) )
         );
@@ -5547,42 +5544,6 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 ],
             ],
             'products'  =>  [
-                /*[
-                    'key'    => 'product_types',
-                    'label'   => __( 'Product Types', 'multivendorx' ),
-                    'class'     => 'mvx-toggle-checkbox',
-                    'parent_class'  => 'mvx-toggle-checkbox-header',
-                    'type'    => 'checkbox_select',
-                    'select_deselect'   =>  true,
-                    'desc' => __('Choose your preferred product type. To learn more read about MultiVendorX Products', 'multivendorx'),
-                    'options' => array(
-                        array(
-                            'key'=> "simple",
-                            'label'=> __('Simple', 'multivendorx'),
-                            'hints'=>   __('Simple', 'multivendorx'),
-                            'value'=> "simple"
-                        ),
-                        array(
-                            'key'=> "variable",
-                            'label'=> __('Variable', 'multivendorx'),
-                            'hints'=>   __('Variable', 'multivendorx'),
-                            'value'=> "variable"
-                        ),
-                        array(
-                            'key'=> "external",
-                            'label'=> __('External', 'multivendorx'),
-                            'hints'=>   __('External', 'multivendorx'),
-                            'value'=> "external"
-                        ),
-                        array(
-                            'key'=> "grouped",
-                            'label'=> __('Grouped', 'multivendorx'),
-                            'hints'=>   __('Grouped', 'multivendorx'),
-                            'value'=> "grouped"
-                        )
-                    ),
-                    'database_value' => array(),
-                ],*/
                 [
                     'key'    => 'type_options',
                     'label'   => __( 'Type options', 'multivendorx' ),
@@ -6230,65 +6191,6 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'options' => end($gateway_charge_fixed_percent_value),
                     'database_value' => '',
                 ],
-
-                /*[
-                    'key'       => 'masspay_percentage_gateway_charge',
-                    'type'      => 'number',
-                    'label'     => __( '', 'multivendorx' ),
-                    'placeholder' => __( 'In Percentage', 'multivendorx' ),
-                    'desc'  => __('PayPal Masspay (Stop Waiting and Pay Vendors Immediately with PayPal Real-Time Split Payment using <a href="https://wc-marketplace.com/product/mvx-paypal-marketplace/">MVX PayPal Marketplace</a>. Please visit our site)', 'multivendorx'),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'masspay_fixed_gateway_charge',
-                    'type'      => 'number',
-                    'label'     => __( '', 'multivendorx' ),
-                    'placeholder' => __( 'In Fixed', 'multivendorx' ),
-                    'desc'  => __('PayPal Masspay (Stop Waiting and Pay Vendors Immediately with PayPal Real-Time Split Payment using <a href="https://wc-marketplace.com/product/mvx-paypal-marketplace/">MVX PayPal Marketplace</a>. Please visit our site)', 'multivendorx'),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'payout_percentage_gateway_charge',
-                    'type'      => 'number',
-                    'label'     => __( '', 'multivendorx' ),
-                    'placeholder' => __( 'In Percentage', 'multivendorx' ),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'payout_fixed_gateway_charge',
-                    'type'      => 'number',
-                    'label'     => __( '', 'multivendorx' ),
-                    'placeholder' => __( 'In Fixed', 'multivendorx' ),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'stripe_percentage_gateway_charge',
-                    'type'      => 'number',
-                    'label'     => __( '', 'multivendorx' ),
-                    'placeholder' => __( 'In Percentage', 'multivendorx' ),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'stripe_fixed_gateway_charge',
-                    'type'      => 'number',
-                    'label'     => __( '', 'multivendorx' ),
-                    'placeholder' => __( 'In Fixed', 'multivendorx' ),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'bank_percentage_gateway_charge',
-                    'type'      => 'number',
-                    'label'     => __( '', 'multivendorx' ),
-                    'placeholder' => __( 'In Percentage', 'multivendorx' ),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'bank_fixed_gateway_charge',
-                    'type'      => 'number',
-                    'label'     => __( '', 'multivendorx' ),
-                    'placeholder' => __( 'In Fixed', 'multivendorx' ),
-                    'database_value' => '',
-                ],*/
             ],
             'dashbaord-pages'   => [
                
@@ -6309,125 +6211,6 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'database_value' => '',
                 ],
             ],
-            /*'store-management'   => [
-                [
-                    'key'    => 'is_enable_store_sidebar',
-                    'label'   => __( 'Enable Store Sidebar', 'multivendorx' ),
-                    'class'     => 'mvx-toggle-checkbox',
-                    'type'    => 'checkbox',
-                    'hints' => __('If unchecked vendor will have access to backend', 'multivendorx'),
-                    'options' => array(
-                        array(
-                            'key'=> "is_enable_store_sidebar",
-                            'label'=> __('Uncheck this to disable vendor store sidebar..', 'multivendorx'),
-                            'value'=> "is_enable_store_sidebar"
-                        ),
-                    ),
-                    'database_value' => array(),
-                ],
-                [
-                    'key'       => 'store_sidebar_position',
-                    'type'      => 'select',
-                    'label'     => __( 'Store Sidebar Position', 'multivendorx' ),
-                    'desc'      => __( 'If you are not sure where to add widget, just go to admin <a href=".admin_url("widgets.php")." terget="_blank">widget</a> section and add your preferred widgets to <b>vendor store sidebar</b>.', 'multivendorx' ),
-                    'options' => array(
-                        array(
-                            'key'=> "left",
-                            'label'=> __('At Left', 'multivendorx'),
-                            'value'=> __('At Left', 'multivendorx'),
-                        ),
-                        array(
-                            'key'=> "right",
-                            'label'=> __('At Right', 'multivendorx'),
-                            'value'=> __('At Right', 'multivendorx'),
-                        ),
-                    ),
-                    'database_value' => '',
-                ],
-
-                [
-                    'key'    => 'store_follow_enabled',
-                    'label'   => __( 'Enable Store Follow', 'multivendorx' ),
-                    'class'     => 'mvx-toggle-checkbox',
-                    'type'    => 'checkbox',
-                    'hints' => __('If unchecked vendor will have access to backend', 'multivendorx'),
-                    'options' => array(
-                        array(
-                            'key'=> "store_follow_enabled",
-                            'label'=> __('Checked this to enable store follow.', 'multivendorx'),
-                            'value'=> "store_follow_enabled"
-                        ),
-                    ),
-                    'database_value' => array(),
-                ],
-
-                [
-                    'key'    => 'store_follow_section',
-                    'label'   => __( '', 'multivendorx' ),
-                    'type'    => 'section',
-                    'database_value' => array(),
-                ],
-
-                [
-                    'key'    => 'store_follow_enabled',
-                    'label'   => __( 'Enable Store Follow', 'multivendorx' ),
-                    'class'     => 'mvx-toggle-checkbox',
-                    'parent_class'  => 'mvx-toggle-checkbox-header',
-                    'type'    => 'checkbox',
-                    'hints' => __('Checked this to enable store follow..', 'multivendorx'),
-                    'options' => array(
-                        array(
-                            'key'=> "store_follow_enabled",
-                            'label'=> __('store follow 1', 'multivendorx'),
-                            'hints'=>   __('store details', 'multivendorx'),
-                            'value'=> "store_follow_enabled"
-                        ),
-                        array(
-                            'key'=> "store_follow_enabled1",
-                            'label'=> __('store follow 2', 'multivendorx'),
-                            'hints'=>   __('store details', 'multivendorx'),
-                            'value'=> "store_follow_enabled1"
-                        ),
-                        array(
-                            'key'=> "store_follow_enabled2",
-                            'label'=> __('store follow 3', 'multivendorx'),
-                            'hints'=>   __('store details', 'multivendorx'),
-                            'value'=> "store_follow_enabled2"
-                        ),
-                        array(
-                            'key'=> "store_follow_enabled3",
-                            'label'=> __('store follow 4', 'multivendorx'),
-                            'hints'=>   __('store details', 'multivendorx'),
-                            'value'=> "store_follow_enabled3"
-                        ),
-                        array(
-                            'key'=> "store_follow_enabled4",
-                            'label'=> __('store follow 5', 'multivendorx'),
-                            'hints'=>   __('store details', 'multivendorx'),
-                            'value'=> "store_follow_enabled4"
-                        ),
-                        array(
-                            'key'=> "store_follow_enabled5",
-                            'label'=> __('store follow 6', 'multivendorx'),
-                            'hints'=>   __('store details', 'multivendorx'),
-                            'value'=> "store_follow_enabled5"
-                        ),
-                        array(
-                            'key'=> "store_follow_enabled6",
-                            'label'=> __('store follow 7', 'multivendorx'),
-                            'hints'=>   __('store details', 'multivendorx'),
-                            'value'=> "store_follow_enabled6"
-                        ),
-                        array(
-                            'key'=> "store_follow_enabled7",
-                            'label'=> __('store follow 8', 'multivendorx'),
-                            'hints'=>   __('store details', 'multivendorx'),
-                            'value'=> "store_follow_enabled7"
-                        ),
-                    ),
-                    'database_value' => array(),
-                ],
-            ],*/
             'product-settings'  => [
                 [
                     'key'       => 'type_options',
@@ -6631,31 +6414,6 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'database_value' => '',
                 ],
             ],
-            'tast-list' => [
-
-            ],
-            'store-review'  => [
-
-            ],
-            'report-abuse'  => [
-
-            ],
-
-            'admin-overview'  => [
-
-            ],
-
-            'vendor'  => [
-
-            ],
-
-            'product'  => [
-
-            ],
-            'transaction-history'  => [
-
-            ],
-
             'policy'  => [
                 [
                     'key'       => 'store-policy',
@@ -7303,12 +7061,6 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 ],
                 
             ],
-            'activity-reminder' =>  [],
-            'announcement'  =>  [],
-            'knowladgebase' =>  [],
-            'store_review'  =>  [],
-            'report-abuse'  =>  [],
-            'question-ans'  =>  [],
         ];
 
         return apply_filters('mvx_settings_fields_details', $settings_fields);
@@ -7793,9 +7545,7 @@ if (!function_exists('mvx_list_all_modules')) {
         $thumbnail_path = $MVX->plugin_path.'assets/images/modules';
         require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
         $mvx_pro_is_active = is_plugin_active('mvx-pro/mvx-pro.php') ? true : false;
-            
-        $mvx_pro_is_active = is_plugin_active('mvx-pro/mvx-pro.php') ? true :false;
-        
+                    
         $mvx_all_modules   =   [
             [
                 'label' =>  __('Marketplace Types', 'multivendorx'),
@@ -8352,7 +8102,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'id'           => 'store-analytics',
                         'name'         => __( 'Store Analytics', 'multivendorx' ),
                         'description'  => __( 'Gives vendors detailed store report & connect to google analytics', 'multivendorx' ),
-                        'plan'         => 'pro',
+                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
                         'required_plugin_list' => array(
                             array(
                                 'plugin_name'   => __('MultivendorX Pro', 'multivendorx'),
@@ -8367,7 +8117,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'id'           => 'store-seo',
                         'name'         => __( 'Store SEO  ', 'multivendorx' ),
                         'description'  => __( 'Lets vendors manage their store SEOs using Rank Math and Yoast SEO', 'multivendorx' ),
-                        'plan'         => 'pro',
+                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
                         'required_plugin_list' => array(
                             array(
                                 'plugin_name'   => __('MultivendorX Pro', 'multivendorx'),
@@ -8593,10 +8343,7 @@ if (!function_exists('mvx_list_all_modules')) {
                 if (isset($parent_module_value['options']) && !empty($parent_module_value['options'])) {
                     foreach ($parent_module_value['options'] as $module_key => $module_value) {
                         $mvx_all_modules[$parent_module_key]['options'][$module_key]['is_active'] = is_current_module_active($module_value['id']);
-                        //$mvx_all_modules[$parent_module_key]['options'][$module_key]['thumbnail_dir'] = file_exists($thumbnail_path . '/'.$module_value['id'].'.png') ? $thumbnail_dir . '/'. $module_value['id'].'.png' : '';
-
                         $mvx_all_modules[$parent_module_key]['options'][$module_key]['thumbnail_dir'] = 'module-' . $module_value['id'];
-
                         if (isset($mvx_all_modules[$parent_module_key]['options'][$module_key]['required_plugin_list']) && !empty($mvx_all_modules[$parent_module_key]['options'][$module_key]['required_plugin_list'])) {
 
                             foreach ($mvx_all_modules[$parent_module_key]['options'][$module_key]['required_plugin_list'] as $req_key => $req_value) {
@@ -8632,15 +8379,22 @@ if (!function_exists('is_mvx_shipping_module_active')) {
 }
 
 if (!function_exists('mvx_convert_select_structure')) {
-    function mvx_convert_select_structure($data_fileds = array(), $csv = false) {
+    function mvx_convert_select_structure($data_fileds = array(), $csv = false, $object = false) {
         $is_csv = $csv ? 'key' : 'value';
         $datafileds_initialize_array = [];
         if ($data_fileds) {
             foreach($data_fileds as $fileds_key => $fileds_value) {
-                $datafileds_initialize_array[] = array(
-                    $is_csv => $csv ? $fileds_value : $fileds_key,
-                    'label' => $fileds_value
-                );
+                if ($object) {
+                    $datafileds_initialize_array[] = array(
+                        'value' => $fileds_value->ID,
+                        'label' => $fileds_value->post_title
+                    );
+                } else {
+                    $datafileds_initialize_array[] = array(
+                        $is_csv => $csv ? $fileds_value : $fileds_key,
+                        'label' => $fileds_value
+                    );
+                }
             }
         }
         return $datafileds_initialize_array;

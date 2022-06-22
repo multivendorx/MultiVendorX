@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
 import axios from 'axios';
 import { css } from "@emotion/react";
 import PuffLoader from "react-spinners/PuffLoader";
@@ -131,12 +130,10 @@ Child({ name }) {
 
             {this.state.list_of_system_info_copy_data ? 
             <div className="site-health-copy-buttons">
-              <div className="copy-button-wrapper">
-                <button type="button" className="btn border-btn copy-button" data-clipboard-text={this.state.list_of_system_info_copy_data}>
-                  {appLocalizer.status_and_tools_string['copy-system-info']}
-                </button>
-                <span className="success hidden" aria-hidden="true">{appLocalizer.status_and_tools_string['copied']}</span>
-              </div>
+              <button type="button" className="btn border-btn copy-button" data-clipboard-text={this.state.list_of_system_info_copy_data}>
+                {appLocalizer.status_and_tools_string['copy-system-info']}
+              </button>
+              <span className="success hidden" aria-hidden="true">{appLocalizer.status_and_tools_string['copied']}</span>
             </div>
             : <PuffLoader css={override} color={"#cd0000"} size={100} loading={true} /> }
 
@@ -171,7 +168,7 @@ Child({ name }) {
               )) : ''
             }
 
-            <header className='mt-24'>
+            <header>
               <h3>{appLocalizer.status_and_tools_string['error-log']}</h3>
             </header>
 
@@ -180,12 +177,10 @@ Child({ name }) {
             </p>
 
             <div className="site-health-copy-buttons">
-              <div className="copy-button-wrapper">
-                <button type="button" className="btn border-btn copy-button" data-clipboard-text={appLocalizer.errors_log}>
-                  {appLocalizer.status_and_tools_string['copy-log-clipboard']}
-                </button>
-                <span className="success hidden" aria-hidden="true">{appLocalizer.status_and_tools_string['copied']}</span>
-              </div>
+              <button type="button" className="btn border-btn copy-button" data-clipboard-text={appLocalizer.errors_log}>
+                {appLocalizer.status_and_tools_string['copy-log-clipboard']}
+              </button>
+              <span className="success hidden" aria-hidden="true">{appLocalizer.status_and_tools_string['copied']}</span>
             </div>
             <textarea name="name" rows="16" cols="80" disabled="disabled">{appLocalizer.errors_log}</textarea>
           </div>

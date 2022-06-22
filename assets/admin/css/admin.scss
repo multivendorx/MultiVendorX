@@ -1336,7 +1336,6 @@ textarea, input[type=text], select, input, .default-input {
         border: $border;
         border-radius: $border-radius;
         margin-right: 8px;
-        & .mvx-off-white-box {
             padding: 16px;
             margin-right: 10px;
             & .mvx-white-box-header {
@@ -1368,7 +1367,6 @@ textarea, input[type=text], select, input, .default-input {
                     }
                 }
             }
-        }
         & .mvx-white-box-footer {
             position: absolute;
             bottom: 0;
@@ -1431,17 +1429,12 @@ textarea, input[type=text], select, input, .default-input {
     }
 }
 
-.mvx-col-auto.mvx-module-left-sec {
-    margin-left: 0;
-}
 .mvx-totalmodule-text {
     & .mvx-total-module-name-and-count {
         @include flexprops(center);
     }
 }
-.mvx-search-category {
-    margin-left: 0;
-}
+
 .mvx-module-option-row {
     @include boxcss;
 }
@@ -2050,7 +2043,6 @@ margin-top: 10px;
 .mvx-search-and-multistatus-wrap {
     padding: 32px 0;
     @include flexprops(center);
-    & .mvx-multistatus-sec {
         & .mvx-multistatus-ul {
             margin: 0;
             @include flexprops(center);
@@ -2068,7 +2060,6 @@ margin-top: 10px;
                 height: 16px !important;
             }
         }
-    }
 }
 .mvx-wrap-bulk-all-date {
     @include flexprops(center);
@@ -2333,8 +2324,7 @@ margin-top: 10px;
         padding-top: 32px;
         & .site-health-copy-buttons {
             margin: 0;
-            & .copy-button-wrapper {
-                margin: 0;
+
                 & button{
                     background-color: transparent;
                     border: $border !important;
@@ -2344,7 +2334,6 @@ margin-top: 10px;
                     padding: 0 16px;
                 }
     
-            }
             & .copy-button-wrapper:hover {
                 margin: 0;
                 & button{

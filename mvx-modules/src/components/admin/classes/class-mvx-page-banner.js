@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
 
 class MVX_Banner_Adv extends Component {
   render() {

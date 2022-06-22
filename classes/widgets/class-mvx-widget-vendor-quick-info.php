@@ -99,7 +99,8 @@ class DC_Widget_Quick_Info_Widget extends WP_Widget {
                 'instance' => $instance,
                 'vendor' => isset($vendor) ? $vendor : false,
                 'current_user' => wp_get_current_user(),
-                'widget' => $this
+                'widget' => $this,
+                'post'  =>  is_singular('product') ? $post : ''
             );
 
             // Before widget (defined by themes)

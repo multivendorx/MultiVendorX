@@ -112,15 +112,22 @@ class MVX_User {
      */
     public function mvx_vendor_login($redirect, $user) {
         if (!isset($_POST['mvx-login-vendor'])) {
+            $chekout_page_name = apply_filters('woocomerce_checkout_page_name_from_url', 'checkout');
             if (is_array($user->roles)) {
+                if (get_option( 'woocommerce_enable_checkout_login_reminder' ) == 'yes' && isset($_SERVER['REQUEST_URI']) && false !== strpos( $_SERVER['REQUEST_URI'], $chekout_page_name )) {
+                    return $redirect;
+                }
                 if (in_array('dc_vendor', $user->roles)) {
                     if(is_mvx_vendor_completed_store_setup($user)){
                         $redirect = get_permalink(mvx_vendor_dashboard_page_id());
-                    }else{
+                    } else {
                         $redirect = get_permalink(mvx_vendor_dashboard_page_id()).'?page=vendor-store-setup';
                     }
                 }
             } else if ($user->roles == 'dc_vendor') {
+                if (get_option( 'woocommerce_enable_checkout_login_reminder' ) == 'yes' && isset($_SERVER['REQUEST_URI']) && false !== strpos( $_SERVER['REQUEST_URI'], $chekout_page_name )) {
+                    return $redirect;
+                }
                 $redirect = get_permalink(mvx_vendor_dashboard_page_id());
             }
         }

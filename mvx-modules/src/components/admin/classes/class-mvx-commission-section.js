@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
 import axios from 'axios';
 import Select from 'react-select';
 import PuffLoader from "react-spinners/PuffLoader";
@@ -1300,9 +1299,9 @@ class MVX_Backend_Commission extends Component {
             </div>
           </div>
 
-          <div className="mvx-search-and-multistatus-wrap mvx-row mvx-align-items-center mvx-justify-content-between mb-15">
+          <div className="mvx-search-and-multistatus-wrap">
             <div className="mvx-multistatus-sec">
-              <ul className="mvx-multistatus-ul mvx-row">
+              <ul className="mvx-multistatus-ul">
                 <li class="mvx-multistatus-item">
                   <div
                     className="mvx-multistatus-check-all"
@@ -1347,39 +1346,33 @@ class MVX_Backend_Commission extends Component {
 
           <div className="mvx-wrap-bulk-all-date">
             <div className="mvx-wrap-bulk-action mvx-wrap-bulk-all-date">
-              <div className="mvx-col-auto">
                 <Select
                   placeholder={
                     appLocalizer.commission_page_string.show_commission_status
                   }
                   options={this.state.show_commission_status}
                   isClearable={true}
-                  className="mvx-module-section-nav-child-data"
+                  className="mvx-wrap-bulk-action"
                   onChange={(e) =>
                     this.handlecommissionsearch(e, "searchstatus")
                   }
                 />
-              </div>
-              <div className="mvx-col-auto">
                 <Select
                   placeholder={
                     appLocalizer.commission_page_string.show_all_vendor
                   }
                   options={this.state.show_vendor_name}
                   isClearable={true}
-                  className="mvx-module-section-nav-child-data"
+                  className="mvx-wrap-bulk-action"
                   onChange={(e) => this.handlecommissionsearch(e, "showvendor")}
                 />
-              </div>
-              <div className="mvx-col-auto">
                 <Select
                   placeholder={appLocalizer.commission_page_string.bulk_action}
                   options={appLocalizer.commission_bulk_list_option}
                   isClearable={true}
-                  className="mvx-module-section-nav-child-data"
+                  className="mvx-wrap-bulk-action"
                   onChange={(e) => this.handlecommissionwork(e)}
                 />
-              </div>
             </div>
           </div>
 

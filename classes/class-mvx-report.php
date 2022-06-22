@@ -22,7 +22,6 @@ class MVX_Report {
     }
     
     public function woocommerce_reports_get_order_report_data_args( $args ) {
-        if( is_user_mvx_vendor( get_current_user_id() ) ) return $args;
         if ( isset($args['parent_order_status']) && in_array('refunded', $args['parent_order_status'])  ) {
         	return $args;
         } elseif (isset($args['group_by']) && $args['group_by'] == 'refund_id') {

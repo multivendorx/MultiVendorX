@@ -1073,14 +1073,7 @@
   "resolved" "https://registry.npmjs.org/@emotion/hash/-/hash-0.8.0.tgz"
   "version" "0.8.0"
 
-"@emotion/is-prop-valid@^0.8.8":
-  "integrity" "sha512-u5WtneEAr5IDG2Wv65yhunPSMLIpuKsbuOktRojfrEiEvRyC85LgPMZI63cr7NUqT8ZIGdSVg8ZKGxIug4lXcA=="
-  "resolved" "https://registry.npmjs.org/@emotion/is-prop-valid/-/is-prop-valid-0.8.8.tgz"
-  "version" "0.8.8"
-  dependencies:
-    "@emotion/memoize" "0.7.4"
-
-"@emotion/is-prop-valid@^1.1.1":
+"@emotion/is-prop-valid@^1.1.0", "@emotion/is-prop-valid@^1.1.1":
   "integrity" "sha512-bW1Tos67CZkOURLc0OalnfxtSXQJMrAMV0jZTVGJUPSOd4qgjF3+tTD5CwJM13PHA8cltGW1WGbbvV9NpvUZPw=="
   "resolved" "https://registry.npmjs.org/@emotion/is-prop-valid/-/is-prop-valid-1.1.1.tgz"
   "version" "1.1.1"
@@ -1091,11 +1084,6 @@
   "integrity" "sha512-igX9a37DR2ZPGYtV6suZ6whr8pTFtyHL3K/oLUotxpSVO2ASaprmAe2Dkq7tBo7CRY7MMDrAa9nuQP9/YG8FxQ=="
   "resolved" "https://registry.npmjs.org/@emotion/memoize/-/memoize-0.7.5.tgz"
   "version" "0.7.5"
-
-"@emotion/memoize@0.7.4":
-  "integrity" "sha512-Ja/Vfqe3HpuzRsG1oBtWTHk2PGZ7GR+2Vz5iYGelAw8dx32K0y7PjVuxK6z1nMpZOqAFsRUPCkK1YjJ56qJlgw=="
-  "resolved" "https://registry.npmjs.org/@emotion/memoize/-/memoize-0.7.4.tgz"
-  "version" "0.7.4"
 
 "@emotion/react@^11.0.0-rc.0", "@emotion/react@^11.1.1", "@emotion/react@^11.1.4", "@emotion/react@^11.7.1":
   "integrity" "sha512-DV2Xe3yhkF1yT4uAUoJcYL1AmrnO5SVsdfvu+fBuS7IbByDeTVx9+wFmvx9Idzv7/78+9Mgx2Hcmr7Fex3tIyw=="
@@ -1180,6 +1168,13 @@
     "js-yaml" "^3.13.1"
     "minimatch" "^3.0.4"
     "strip-json-comments" "^3.1.1"
+
+"@googlemaps/js-api-loader@^1.7.0":
+  "integrity" "sha512-6iIb+qpGgQpgIHmIFO44WhE1rDUxPVHuezNFL30wRJnkvhwFm94tD291UvNg9L05hLDSoL16jd0lbqqmdy4C5g=="
+  "resolved" "https://registry.npmjs.org/@googlemaps/js-api-loader/-/js-api-loader-1.14.3.tgz"
+  "version" "1.14.3"
+  dependencies:
+    "fast-deep-equal" "^3.1.3"
 
 "@hapi/hoek@^9.0.0":
   "integrity" "sha512-gfta+H8aziZsm8pZa0vj04KO6biEiisppNgA1kbJvFrrWu9Vm7eaUEy76DIxsuTaWvti5fkJVhllWc6ZTE+Mdw=="
@@ -1398,6 +1393,11 @@
   "integrity" "sha512-zMM9Ds+SawiUkakS7y94Ymqx+S0ORzpG3frZirN3l+UlXUmSUR7hF4wxCVqW+ei94JzV5kt0uXBcoOEAuiydrw=="
   "resolved" "https://registry.npmjs.org/@juggle/resize-observer/-/resize-observer-3.3.1.tgz"
   "version" "3.3.1"
+
+"@mapbox/point-geometry@^0.1.0":
+  "integrity" "sha512-6j56HdLTwWGO0fJPlrZtdU/B13q8Uwmo18Ck2GnGgN9PCFyKTZ3UbXeEdRFh18i9XQ92eH2VdtpJHpBD3aripQ=="
+  "resolved" "https://registry.npmjs.org/@mapbox/point-geometry/-/point-geometry-0.1.0.tgz"
+  "version" "0.1.0"
 
 "@material-ui/core@^4.12.3":
   "integrity" "sha512-sdpgI/PL56QVsEJldwEe4FFaFTLUqN+rd7sSZiRCdx2E/C7z5yK0y/khAWVBH24tXwto7I1hCzNWfJGZIYJKnw=="
@@ -4784,7 +4784,7 @@
   "resolved" "https://registry.npmjs.org/esutils/-/esutils-2.0.3.tgz"
   "version" "2.0.3"
 
-"eventemitter3@^4.0.1":
+"eventemitter3@^4.0.1", "eventemitter3@^4.0.4":
   "integrity" "sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw=="
   "resolved" "https://registry.npmjs.org/eventemitter3/-/eventemitter3-4.0.7.tgz"
   "version" "4.0.7"
@@ -5464,6 +5464,16 @@
   "version" "4.3.0"
   dependencies:
     "minimist" "^1.2.5"
+
+"google-map-react@^2.1.10":
+  "integrity" "sha512-cqW2EcygYqF26inp5liM/pAcCwOGXB9LW32oGwf931Iuq8tnasCpyEtq87G+RyQCKCo2P8/QyV+MGHuc7r9AEg=="
+  "resolved" "https://registry.npmjs.org/google-map-react/-/google-map-react-2.1.10.tgz"
+  "version" "2.1.10"
+  dependencies:
+    "@googlemaps/js-api-loader" "^1.7.0"
+    "@mapbox/point-geometry" "^0.1.0"
+    "eventemitter3" "^4.0.4"
+    "prop-types" "^15.7.2"
 
 "graceful-fs@^4.1.2", "graceful-fs@^4.1.6", "graceful-fs@^4.2.0", "graceful-fs@^4.2.4":
   "integrity" "sha512-qkIilPUYcNhJpd33n0GBXTB1MMPp14TxEsEs0pTrsSVucApsYzW5V+Q8Qxhik6KU3evy+qkAAowTByymK0avdg=="
@@ -10064,13 +10074,13 @@
   "version" "0.1.0"
 
 "styled-components@>= 2", "styled-components@>= 4":
-  "integrity" "sha512-++4iHwBM7ZN+x6DtPPWkCI4vdtwumQ+inA/DdAsqYd4SVgUKJie5vXyzotA00ttcFdQkCng7zc6grwlfIfw+lw=="
-  "resolved" "https://registry.npmjs.org/styled-components/-/styled-components-5.3.3.tgz"
-  "version" "5.3.3"
+  "integrity" "sha512-ndETJ9RKaaL6q41B69WudeqLzOpY1A/ET/glXkNZ2T7dPjPqpPCXXQjDFYZWwNnE5co0wX+gTCqx9mfxTmSIPg=="
+  "resolved" "https://registry.npmjs.org/styled-components/-/styled-components-5.3.5.tgz"
+  "version" "5.3.5"
   dependencies:
     "@babel/helper-module-imports" "^7.0.0"
     "@babel/traverse" "^7.4.5"
-    "@emotion/is-prop-valid" "^0.8.8"
+    "@emotion/is-prop-valid" "^1.1.0"
     "@emotion/stylis" "^0.8.4"
     "@emotion/unitless" "^0.7.4"
     "babel-plugin-styled-components" ">= 1.12.0"
