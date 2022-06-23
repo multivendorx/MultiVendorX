@@ -8,8 +8,7 @@ import {
   Link,
   useLocation,
 } from "react-router-dom";
-
-import { DateRangePicker } from 'rsuite';
+import DateRangePicker from 'rsuite/DateRangePicker';
 import DataTable from 'react-data-table-component';
 import TabSection from './class-mvx-page-tab';
 import {
@@ -23,9 +22,7 @@ import {
     BarChart,
     Bar
 } from 'recharts';
-
 import { CSVLink } from "react-csv";
-
 const override = css`
   display: block;
   margin: 0 auto;
