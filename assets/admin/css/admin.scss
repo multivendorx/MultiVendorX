@@ -726,7 +726,7 @@
     @include flexprops(start);
     justify-content: space-between;
     .mvx-setup-marketing-white-box{
-      background-color: $fill-color;
+      background-color: #fbfafc;
       border: $border;
       border-radius: $border-radius;
       padding: 3.2rem;
@@ -736,10 +736,11 @@
         font-weight: 400;
       }
       .mvx-table-ul{
+        background-color: $fill-color;
         .mvx-align-items-center{
           @include flexprops(start);
           justify-content: space-between;
-          padding: 3.2rem;
+          padding: 2.4rem 3.2rem;
           .mvx-allign-li-txt{
             span{
                 color: #9f8ab9;
@@ -762,7 +763,7 @@
           &:hover{
             border: 0.1rem solid #65438f;
             border-radius: $border-radius;
-            padding: 3.2rem;
+            padding: 2.4rem 3.2rem;
           }
         }
       }
@@ -770,8 +771,11 @@
     .mvx-documentation-quick-link{
       width: 60%;
       padding-left: 2.4rem;
+      flex-direction: column;
+      display: flex;
+      flex-wrap: wrap;
       .mvx-forum{
-        @include flexprops(center);
+        @include flexprops(start);
         justify-content: space-between;
         .mvx-documentation-support-forum{
           @include flexprops(center);
@@ -800,10 +804,29 @@
         background-color: $fill-color;
         border: $border;
         border-radius: $border-radius;
-        padding: 3.2rem 6.4rem;
-        margin-top: 3.2rem;
-        ul{
-            @include flexprops(center);
+        padding: 2.4rem 6.4rem 0.8rem 6.4rem;
+        .row-link{
+          @include flexprops(center);
+          justify-content: space-between;
+          padding-top: 1.6rem;
+          li{
+            a{
+              @include flexprops(center);
+              flex-direction: column;
+              &:hover{
+                text-decoration: none;
+              }
+              p{
+                font-size: 1.6rem;
+                color: #000;
+              }
+            }
+          }
+          .add-new{
+            border: 0.1rem solid #65438f;
+            border-radius: $border-radius;
+            padding: 1.6rem;
+          }
         }
       }
     }

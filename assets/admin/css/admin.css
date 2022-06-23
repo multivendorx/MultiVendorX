@@ -807,7 +807,7 @@ a:focus {
 }
 
 .mvx-setup-documentation .mvx-setup-marketing-white-box {
-  background-color: #fdfdfe;
+  background-color: #fbfafc;
   border: 0.1rem solid #d4d1d9;
   border-radius: 0.4rem;
   padding: 3.2rem;
@@ -817,6 +817,10 @@ a:focus {
 .mvx-setup-documentation .mvx-setup-marketing-white-box .mvx-block-title {
   font-size: 1.8rem;
   font-weight: 400;
+}
+
+.mvx-setup-documentation .mvx-setup-marketing-white-box .mvx-table-ul {
+  background-color: #fdfdfe;
 }
 
 .mvx-setup-documentation .mvx-setup-marketing-white-box .mvx-table-ul .mvx-align-items-center {
@@ -829,7 +833,7 @@ a:focus {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 3.2rem;
+  padding: 2.4rem 3.2rem;
 }
 
 .mvx-setup-documentation .mvx-setup-marketing-white-box .mvx-table-ul .mvx-align-items-center .mvx-allign-li-txt span {
@@ -853,21 +857,30 @@ a:focus {
 .mvx-setup-documentation .mvx-setup-marketing-white-box .mvx-table-ul .mvx-align-items-center:hover {
   border: 0.1rem solid #65438f;
   border-radius: 0.4rem;
-  padding: 3.2rem;
+  padding: 2.4rem 3.2rem;
 }
 
 .mvx-setup-documentation .mvx-documentation-quick-link {
   width: 60%;
   padding-left: 2.4rem;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .mvx-setup-documentation .mvx-documentation-quick-link .mvx-forum {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -927,17 +940,48 @@ a:focus {
   background-color: #fdfdfe;
   border: 0.1rem solid #d4d1d9;
   border-radius: 0.4rem;
-  padding: 3.2rem 6.4rem;
-  margin-top: 3.2rem;
+  padding: 2.4rem 6.4rem 0.8rem 6.4rem;
 }
 
-.mvx-setup-documentation .mvx-documentation-quick-link .mvx-quick-link-sec ul {
+.mvx-setup-documentation .mvx-documentation-quick-link .mvx-quick-link-sec .row-link {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-top: 1.6rem;
+}
+
+.mvx-setup-documentation .mvx-documentation-quick-link .mvx-quick-link-sec .row-link li a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.mvx-setup-documentation .mvx-documentation-quick-link .mvx-quick-link-sec .row-link li a:hover {
+  text-decoration: none;
+}
+
+.mvx-setup-documentation .mvx-documentation-quick-link .mvx-quick-link-sec .row-link li a p {
+  font-size: 1.6rem;
+  color: #000;
+}
+
+.mvx-setup-documentation .mvx-documentation-quick-link .mvx-quick-link-sec .row-link .add-new {
+  border: 0.1rem solid #65438f;
+  border-radius: 0.4rem;
+  padding: 1.6rem;
 }
 
 textarea, input[type=text], select, input, .default-input {
