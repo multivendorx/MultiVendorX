@@ -1,3 +1,4 @@
+/* global appLocalizer */
 import React, { Component } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
@@ -85,28 +86,32 @@ class MVX_Settings extends Component {
 
 	onlebelchange(e, index, label, childindex) {
 		let save_value;
-		if (label == 'required' || label == 'muliple' || label == 'selected') {
+		if (
+			label === 'required' ||
+			label === 'muliple' ||
+			label === 'selected'
+		) {
 			save_value = e.target.checked;
 		} else {
 			save_value = e.target.value;
 		}
 		const items = this.state.mvx_registration_fileds_list;
 
-		if (label == 'select_option') {
+		if (label === 'select_option') {
 			items[index].options[childindex].label = save_value;
-		} else if (label == 'selected_radio_box') {
+		} else if (label === 'selected_radio_box') {
 			items[index].options[childindex].selected = save_value;
 			items[index].options.map((number, indexs) => {
 				if (childindex !== indexs) {
 					items[index].options[indexs].selected = false;
 				}
 			});
-		} else if (label == 'selected_box') {
+		} else if (label === 'selected_box') {
 			items[index].options[childindex].selected = e.target.checked;
-		} else if (label == 'select_option1') {
+		} else if (label === 'select_option1') {
 			items[index].options[childindex].value = save_value;
 		}
-		if (label == 'selected') {
+		if (label === 'selected') {
 			items[index].fileType[childindex][label] = save_value;
 		} else {
 			items[index][label] = save_value;
@@ -183,18 +188,18 @@ class MVX_Settings extends Component {
 	// active metabox hide or show
 	handleActiveClick(e, index, label) {
 		const new_items = this.state.mvx_registration_fileds_list;
-		if (label == 'parent') {
+		if (label === 'parent') {
 			new_items[0].hidden = true;
 			new_items.map((data_active, index_active) => {
-				if (index == 0) {
+				if (index === 0) {
 				} else {
 					new_items[index_active].hidden = false;
 				}
 			});
-		} else if (label == 'sub') {
+		} else if (label === 'sub') {
 			new_items.map((data_active, index_active) => {
-				if (index == 0) {
-				} else if (index_active == index) {
+				if (index === 0) {
+				} else if (index_active === index) {
 					new_items[index].hidden = true;
 				} else {
 					new_items[index_active].hidden = false;
@@ -211,14 +216,14 @@ class MVX_Settings extends Component {
 	// select button trigger
 	OnRegistrationSelectChange(e, index, types) {
 		const new_items = this.state.mvx_registration_fileds_list;
-		if (types == 'select_drop') {
+		if (types === 'select_drop') {
 			new_items[index].type = e.target.value;
-			if (new_items[index].options.length == 0) {
+			if (new_items[index].options.length === 0) {
 				if (
-					e.target.value == 'checkboxes' ||
-					e.target.value == 'multi-select' ||
-					e.target.value == 'radio' ||
-					e.target.value == 'dropdown'
+					e.target.value === 'checkboxes' ||
+					e.target.value === 'multi-select' ||
+					e.target.value === 'radio' ||
+					e.target.value === 'dropdown'
 				) {
 					const count = new_items[index].options.length + 1;
 					new_items[index].options.push({
@@ -226,7 +231,7 @@ class MVX_Settings extends Component {
 						label: 'Option ' + count,
 						selected: false,
 					});
-				} else if (e.target.value == 'attachment') {
+				} else if (e.target.value === 'attachment') {
 					new_items[index].fileType.push(
 						{
 							value: 'application/pdf',
@@ -256,13 +261,13 @@ class MVX_Settings extends Component {
 					);
 				}
 			}
-		} else if (types == 'label') {
+		} else if (types === 'label') {
 			new_items[index].label = e.target.value;
-		} else if (types == 'parent_label') {
+		} else if (types === 'parent_label') {
 			new_items[0].label = e.target.value;
-		} else if (types == 'parent_description') {
+		} else if (types === 'parent_description') {
 			new_items[0].description = e.target.value;
-		} else if (types == 'require') {
+		} else if (types === 'require') {
 			new_items[index].required = e.target.checked;
 		}
 		this.setState({
@@ -364,8 +369,8 @@ class MVX_Settings extends Component {
 		return appLocalizer.mvx_all_backend_tab_list[
 			'marketplace-general-settings'
 		].map((data, index) =>
-			data.modulename == name ? (
-				data.modulename == 'registration' ? (
+			data.modulename === name ? (
+				data.modulename === 'registration' ? (
 					<div className="mvx-form-vendor-register">
 						{this.state.mvx_registration_fileds_list.length > 0 ? (
 							<div

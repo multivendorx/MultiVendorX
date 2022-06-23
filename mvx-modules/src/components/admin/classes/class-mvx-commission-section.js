@@ -1,3 +1,4 @@
+/* global appLocalizer */
 import React, { Component } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
@@ -55,7 +56,7 @@ class MVX_Backend_Commission extends Component {
 	}
 
 	handle_commission_status_check(e, type) {
-		if (type == 'paid') {
+		if (type === 'paid') {
 			// paid status
 			axios
 				.get(
@@ -71,7 +72,7 @@ class MVX_Backend_Commission extends Component {
 				});
 		}
 
-		if (type == 'unpaid') {
+		if (type === 'unpaid') {
 			// unpaid status
 			axios
 				.get(
@@ -87,7 +88,7 @@ class MVX_Backend_Commission extends Component {
 				});
 		}
 
-		if (type == 'all') {
+		if (type === 'all') {
 			axios({
 				url: `${appLocalizer.apiUrl}/mvx_module/v1/all_commission`,
 			}).then((response) => {
@@ -130,7 +131,7 @@ class MVX_Backend_Commission extends Component {
 	}
 
 	handleCommisssionDismiss(e) {
-		if (confirm(appLocalizer.global_string.confirm_delete) == true) {
+		if (confirm(appLocalizer.global_string.confirm_delete) === true) {
 			axios({
 				method: 'post',
 				url: `${appLocalizer.apiUrl}/mvx_module/v1/commission_delete`,
@@ -373,7 +374,7 @@ class MVX_Backend_Commission extends Component {
 
 		// Display table column and row slection
 		if (
-			this.state.columns_commission_list.length == 0 &&
+			this.state.columns_commission_list.length === 0 &&
 			new URLSearchParams(window.location.hash).get('submenu') ==
 				'commission'
 		) {
@@ -448,7 +449,7 @@ class MVX_Backend_Commission extends Component {
 	}
 
 	handlecommissionsearch(e, status) {
-		if (status == 'searchstatus') {
+		if (status === 'searchstatus') {
 			if (e) {
 				axios
 					.get(
@@ -471,7 +472,7 @@ class MVX_Backend_Commission extends Component {
 					});
 				});
 			}
-		} else if (status == 'showvendor') {
+		} else if (status === 'showvendor') {
 			if (e) {
 				axios
 					.get(

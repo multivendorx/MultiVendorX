@@ -1,3 +1,4 @@
+/* global appLocalizer */
 import React, { Component } from 'react';
 class AutoComplete extends Component {
 	constructor(props) {

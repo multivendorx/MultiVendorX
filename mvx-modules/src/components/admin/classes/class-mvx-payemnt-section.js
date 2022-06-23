@@ -1,9 +1,10 @@
+/* global appLocalizer */
 import React, { Component } from 'react';
 import axios from 'axios';
 import { css } from '@emotion/react';
 import PuffLoader from 'react-spinners/PuffLoader';
 
-import { BrowserRouter as Router, Link, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, useLocation } from 'react-router-dom';
 
 import DynamicForm from '../../../DynamicForm';
 import TabSection from './class-mvx-page-tab';
@@ -74,7 +75,7 @@ class App extends Component {
 			? appLocalizer.mvx_all_backend_tab_list['marketplace-payments'].map(
 					(data, index) => (
 						(name = !name ? 'paypal_masspay' : name),
-						data.modulename == name ? (
+						data.modulename === name ? (
 							Object.keys(this.state.list_of_module_data).length >
 							0 ? (
 								<DynamicForm

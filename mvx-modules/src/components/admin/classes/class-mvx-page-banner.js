@@ -1,5 +1,5 @@
+/* global appLocalizer */
 import React, { Component } from 'react';
-
 class MVX_Banner_Adv extends Component {
 	render() {
 		return (

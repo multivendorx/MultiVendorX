@@ -1,3 +1,4 @@
+/* global appLocalizer */
 import React from 'react';
 import Select from 'react-select';
 import axios from 'axios';
@@ -72,7 +73,7 @@ export default class DynamicForm extends React.Component {
 			});
 		}
 
-		if (this.props.submitbutton && this.props.submitbutton == 'false') {
+		if (this.props.submitbutton && this.props.submitbutton === 'false') {
 			setTimeout(() => {
 				this.onSubmit('');
 			}, 10);
@@ -91,27 +92,27 @@ export default class DynamicForm extends React.Component {
 	) {
 		const itemsnested = m.database_value;
 		const country_list_array = new Array();
-		if (nestedchild == 'childnested') {
-			if (filedsdetails.type == 'checkbox') {
+		if (nestedchild === 'childnested') {
+			if (filedsdetails.type === 'checkbox') {
 				itemsnested[index].nested_datas[childindex][filedsdetails.key] =
 					e.target.checked;
-			} else if (filedsdetails.type == 'select') {
+			} else if (filedsdetails.type === 'select') {
 				itemsnested[index].nested_datas[childindex][filedsdetails.key] =
 					selectarray[e.index];
-			} else if (filedsdetails.type == 'state') {
+			} else if (filedsdetails.type === 'state') {
 				itemsnested[index].nested_datas[childindex][filedsdetails.key] =
 					selectarray[e.index];
 			} else {
 				itemsnested[index].nested_datas[childindex][filedsdetails.key] =
 					e.target.value;
 			}
-		} else if (filedsdetails.type == 'checkbox') {
+		} else if (filedsdetails.type === 'checkbox') {
 			itemsnested[index][filedsdetails.key] = e.target.checked;
-		} else if (filedsdetails.type == 'select') {
+		} else if (filedsdetails.type === 'select') {
 			itemsnested[index][filedsdetails.key] = selectarray[e.index];
-		} else if (filedsdetails.type == 'select2nd') {
+		} else if (filedsdetails.type === 'select2nd') {
 			itemsnested[index][filedsdetails.key] = selectarray[e.index];
-		} else if (filedsdetails.type == 'country') {
+		} else if (filedsdetails.type === 'country') {
 			itemsnested[index][filedsdetails.key] = selectarray[e.index];
 			const statefromcountrycode = JSON.parse(
 				appLocalizer.countries.replace(/&quot;/g, '"')
@@ -127,7 +128,7 @@ export default class DynamicForm extends React.Component {
 		} else {
 			itemsnested[index][filedsdetails.key] = e.target.value;
 		}
-		if (this.props.submitbutton && this.props.submitbutton == 'false') {
+		if (this.props.submitbutton && this.props.submitbutton === 'false') {
 			setTimeout(() => {
 				this.onSubmit('');
 			}, 10);
@@ -146,20 +147,20 @@ export default class DynamicForm extends React.Component {
 			new_arraydata[index] = {
 				key: om.key,
 				value:
-					o.key == om.key
+					o.key === om.key
 						? e.target.value
 						: this.state[target][index] &&
 						  this.state[target][index].value
 						? this.state[target][index].value
 						: '',
-			}; //o.key == om.key ? e.target.value : ( this.state[target][indexp] ? this.state[target][indexp] : '');
+			}; //o.key === om.key ? e.target.value : ( this.state[target][indexp] ? this.state[target][indexp] : '');
 		});
 
 		this.setState({
 			[target]: new_arraydata,
 		});
 
-		if (this.props.submitbutton && this.props.submitbutton == 'false') {
+		if (this.props.submitbutton && this.props.submitbutton === 'false') {
 			setTimeout(() => {
 				this.onSubmit('');
 			}, 10);
@@ -170,7 +171,7 @@ export default class DynamicForm extends React.Component {
 		const itemsnested = m.database_value;
 		itemsnested[indexparent].nested_datas.splice(index, 1);
 		this.state[m.key] = itemsnested;
-		if (this.props.submitbutton && this.props.submitbutton == 'false') {
+		if (this.props.submitbutton && this.props.submitbutton === 'false') {
 			setTimeout(() => {
 				this.onSubmit('');
 			}, 10);
@@ -179,9 +180,9 @@ export default class DynamicForm extends React.Component {
 
 	handlenestedchildAddClick(e, m, indexop) {
 		const child_nested_array = {};
-		if (m.type == 'nested') {
+		if (m.type === 'nested') {
 			m.child_options.map((keyn, indexn) => {
-				if (keyn.type == 'checkbox') {
+				if (keyn.type === 'checkbox') {
 					child_nested_array[keyn.key] = false;
 				} else {
 					child_nested_array[keyn.key] = '';
@@ -196,7 +197,7 @@ export default class DynamicForm extends React.Component {
 			[m.database_value]: m.database_value,
 		});
 
-		if (this.props.submitbutton && this.props.submitbutton == 'false') {
+		if (this.props.submitbutton && this.props.submitbutton === 'false') {
 			setTimeout(() => {
 				this.onSubmit('');
 			}, 10);
@@ -207,7 +208,7 @@ export default class DynamicForm extends React.Component {
 		const itemsnested = m.database_value;
 		itemsnested.splice(index, 1);
 		this.state[m.key] = itemsnested;
-		if (this.props.submitbutton && this.props.submitbutton == 'false') {
+		if (this.props.submitbutton && this.props.submitbutton === 'false') {
 			setTimeout(() => {
 				this.onSubmit('');
 			}, 10);
@@ -218,9 +219,9 @@ export default class DynamicForm extends React.Component {
 		//parent_options
 		const parent_nested_array = {};
 		const child_nested_array = new Array({});
-		if (m.type == 'nested') {
+		if (m.type === 'nested') {
 			m.parent_options.map((keyn, indexn) => {
-				if (keyn.type == 'checkbox') {
+				if (keyn.type === 'checkbox') {
 					parent_nested_array[keyn.key] = false;
 				} else {
 					parent_nested_array[keyn.key] = '';
@@ -232,7 +233,7 @@ export default class DynamicForm extends React.Component {
 		this.setState({
 			[m.database_value]: m.database_value,
 		});
-		if (this.props.submitbutton && this.props.submitbutton == 'false') {
+		if (this.props.submitbutton && this.props.submitbutton === 'false') {
 			setTimeout(() => {
 				this.onSubmit('');
 			}, 10);
@@ -259,7 +260,10 @@ export default class DynamicForm extends React.Component {
 				[target]: attachment.url,
 			});
 
-			if (self.props.submitbutton && self.props.submitbutton == 'false') {
+			if (
+				self.props.submitbutton &&
+				self.props.submitbutton === 'false'
+			) {
 				setTimeout(() => {
 					self.onSubmit('');
 				}, 10);
@@ -285,7 +289,7 @@ export default class DynamicForm extends React.Component {
 	onSubmit = (e) => {
 		// block to refresh pages
 		const prop_submitbutton =
-			this.props.submitbutton && this.props.submitbutton == 'false'
+			this.props.submitbutton && this.props.submitbutton === 'false'
 				? ''
 				: 'true';
 		if (prop_submitbutton) {
@@ -330,9 +334,9 @@ export default class DynamicForm extends React.Component {
 		});
 		// mapbox work
 		if (
-			this.props.modulename == 'vendor-store' &&
+			this.props.modulename === 'vendor-store' &&
 			appLocalizer.location_provider.value &&
-			appLocalizer.location_provider.value == 'mapbox_api_set'
+			appLocalizer.location_provider.value === 'mapbox_api_set'
 		) {
 			const this_data = this;
 			mapboxgl.accessToken = appLocalizer.mapbox_api;
@@ -434,7 +438,7 @@ export default class DynamicForm extends React.Component {
 				});
 			}
 		}
-		if (this.props.submitbutton && this.props.submitbutton == 'false') {
+		if (this.props.submitbutton && this.props.submitbutton === 'false') {
 			setTimeout(() => {
 				this.onSubmit('');
 			}, 10);
@@ -458,7 +462,10 @@ export default class DynamicForm extends React.Component {
 			const target = key;
 			value = this.state[target] || '';
 
-			if (m.restricted_page && m.restricted_page == this.props.location) {
+			if (
+				m.restricted_page &&
+				m.restricted_page === this.props.location
+			) {
 				return false;
 			}
 
@@ -492,7 +499,7 @@ export default class DynamicForm extends React.Component {
 			if (
 				m.depend_checkbox &&
 				this.state[m.depend_checkbox] &&
-				this.state[m.depend_checkbox].length == 0
+				this.state[m.depend_checkbox].length === 0
 			) {
 				return false;
 			}
@@ -510,7 +517,7 @@ export default class DynamicForm extends React.Component {
 				return false;
 			}
 
-			if (type == 'text' || 'url' || 'password' || 'email' || 'number') {
+			if (type === 'text' || 'url' || 'password' || 'email' || 'number') {
 				input = (
 					<div className="mvx-settings-basic-input-class">
 						<input
@@ -538,7 +545,7 @@ export default class DynamicForm extends React.Component {
 				);
 			}
 
-			if (type == 'color') {
+			if (type === 'color') {
 				input = (
 					<div className="mvx-settings-color-picker-parent-class">
 						<label htmlFor="favcolor">
@@ -568,7 +575,7 @@ export default class DynamicForm extends React.Component {
 				);
 			}
 
-			if (type == 'map') {
+			if (type === 'map') {
 				input = (
 					<div className="mvx-settings-basic-input-class">
 						<input
@@ -595,7 +602,7 @@ export default class DynamicForm extends React.Component {
 				);
 			}
 
-			if (type == 'button') {
+			if (type === 'button') {
 				input = (
 					<div className="mvx-form-button-group">
 						<label className="mvx-settings-form-label"></label>
@@ -630,7 +637,7 @@ export default class DynamicForm extends React.Component {
 				);
 			}
 
-			if (type == 'multi_number') {
+			if (type === 'multi_number') {
 				input = (
 					<div className="mvx-settings-basic-input-class">
 						<div className="mvx-settings-basic-child-wrap">
@@ -684,7 +691,7 @@ export default class DynamicForm extends React.Component {
 				);
 			}
 
-			if (type == 'label') {
+			if (type === 'label') {
 				input = (
 					<div className="mvx-form-group-only-label">
 						<label
@@ -698,13 +705,13 @@ export default class DynamicForm extends React.Component {
 				);
 			}
 
-			if (type == 'section') {
+			if (type === 'section') {
 				input = (
 					<div className="mvx-setting-section-divider">&nbsp;</div>
 				);
 			}
 
-			if (type == 'blocktext') {
+			if (type === 'blocktext') {
 				input = (
 					<div className="mvx-blocktext-class">
 						{m.blocktext ? (
@@ -721,7 +728,7 @@ export default class DynamicForm extends React.Component {
 				);
 			}
 
-			if (type == 'table') {
+			if (type === 'table') {
 				const inputlabels = m.label_options.map((ol) => {
 					return <th className="mvx-settings-th-wrap">{ol}</th>;
 				});
@@ -755,7 +762,7 @@ export default class DynamicForm extends React.Component {
 				);
 			}
 
-			if (type == 'normalfile') {
+			if (type === 'normalfile') {
 				input = (
 					<input
 						{...props}
@@ -771,17 +778,17 @@ export default class DynamicForm extends React.Component {
 				);
 			}
 
-			if (type == 'recaptcha') {
+			if (type === 'recaptcha') {
 				const recaptcha_type = m.recaptchatype;
 				const sitekey = m.sitekey;
 				const secretkey = m.secretkey;
 				const script_url =
-					recaptcha_type == 'v3'
+					recaptcha_type === 'v3'
 						? 'https://www.google.com/recaptcha/api.js?render=' +
 						  sitekey
 						: 'https://www.google.com/recaptcha/api.js';
 
-				if (recaptcha_type == 'v3') {
+				if (recaptcha_type === 'v3') {
 					grecaptcha.ready(function () {
 						grecaptcha
 							.execute(sitekey, {
@@ -816,7 +823,7 @@ export default class DynamicForm extends React.Component {
 							value="recaptcha"
 						/>
 
-						{recaptcha_type == 'v3' ? (
+						{recaptcha_type === 'v3' ? (
 							<div>
 								<input
 									type="hidden"
@@ -846,9 +853,9 @@ export default class DynamicForm extends React.Component {
 				);
 			}
 
-			if (type == 'radio') {
+			if (type === 'radio') {
 				input = m.options.map((o) => {
-					const checked = o.value == value;
+					const checked = o.value === value;
 					return (
 						<React.Fragment key={'fr' + o.key}>
 							<input
@@ -882,9 +889,9 @@ export default class DynamicForm extends React.Component {
 				);
 			}
 
-			if (type == 'toggle_rectangle') {
+			if (type === 'toggle_rectangle') {
 				input = m.options.map((o) => {
-					const checked = o.value == value;
+					const checked = o.value === value;
 					return (
 						<React.Fragment key={'fr' + o.key}>
 							<li>
@@ -928,9 +935,9 @@ export default class DynamicForm extends React.Component {
 				);
 			}
 
-			if (type == 'radio_select') {
+			if (type === 'radio_select') {
 				input = m.options.map((o) => {
-					const checked = o.value == value;
+					const checked = o.value === value;
 					return (
 						<React.Fragment key={'fr' + o.key}>
 							<div
@@ -984,9 +991,9 @@ export default class DynamicForm extends React.Component {
 				);
 			}
 
-			if (type == 'radio_color') {
+			if (type === 'radio_color') {
 				input = m.options.map((o) => {
-					const checked = o.value == value;
+					const checked = o.value === value;
 					return (
 						<React.Fragment key={'fr' + o.key}>
 							<div
@@ -1045,7 +1052,7 @@ export default class DynamicForm extends React.Component {
 				);
 			}
 
-			if (type == 'select') {
+			if (type === 'select') {
 				const options_data = [];
 				const defaultselect = [];
 				input = m.options.map((o, index) => {
@@ -1090,7 +1097,7 @@ export default class DynamicForm extends React.Component {
 				);
 			}
 
-			if (type == 'multi-select') {
+			if (type === 'multi-select') {
 				const multiarray = [];
 				input = m.options.map((o, index) => {
 					multiarray[index] = {
@@ -1128,7 +1135,7 @@ export default class DynamicForm extends React.Component {
 				);
 			}
 
-			if (type == 'textarea') {
+			if (type === 'textarea') {
 				input = (
 					<div className="mvx-setting-from-textarea">
 						<textarea
@@ -1157,7 +1164,7 @@ export default class DynamicForm extends React.Component {
 				);
 			}
 
-			if (type == 'separator') {
+			if (type === 'separator') {
 				input = (
 					<div className="mvx_regi_form_box">
 						<div className="clearboth"></div>
@@ -1166,7 +1173,7 @@ export default class DynamicForm extends React.Component {
 				);
 			}
 
-			if (type == 'file') {
+			if (type === 'file') {
 				input = (
 					<div className="mvx-setting-file-uploader-class">
 						<input
@@ -1207,7 +1214,7 @@ export default class DynamicForm extends React.Component {
 				);
 			}
 
-			if (type == 'wpeditor') {
+			if (type === 'wpeditor') {
 				input = (
 					<div className={m.class}>
 						<textarea
@@ -1235,7 +1242,7 @@ export default class DynamicForm extends React.Component {
 				);
 			}
 
-			if (type == 'google_map') {
+			if (type === 'google_map') {
 				const { places, mapApiLoaded, mapInstance, mapApi } =
 					this.state;
 
@@ -1244,7 +1251,8 @@ export default class DynamicForm extends React.Component {
 
 				input =
 					appLocalizer.location_provider.value &&
-					appLocalizer.location_provider.value == 'google_map_set' ? (
+					appLocalizer.location_provider.value ===
+						'google_map_set' ? (
 						<div>
 							{mapApiLoaded && (
 								<AutoComplete
@@ -1290,7 +1298,7 @@ export default class DynamicForm extends React.Component {
 					);
 			}
 
-			if (type == 'country') {
+			if (type === 'country') {
 				const countryselectdrop = [];
 				input = m.options.map((selectdata, index) => {
 					countryselectdrop[index] = {
@@ -1329,7 +1337,7 @@ export default class DynamicForm extends React.Component {
 				);
 			}
 
-			if (type == 'state') {
+			if (type === 'state') {
 				const stateselectdrop = [];
 				input =
 					this.state.statedrop.length > 0
@@ -1371,7 +1379,7 @@ export default class DynamicForm extends React.Component {
 				);
 			}
 
-			if (type == 'nested') {
+			if (type === 'nested') {
 				const carsnew = [];
 				const parentseectoption = [];
 				const parentseectoption2 = [];
@@ -1392,7 +1400,7 @@ export default class DynamicForm extends React.Component {
 													></p>
 												</label>
 
-												{op.type == 'text' ? (
+												{op.type === 'text' ? (
 													<input
 														{...props}
 														className="mvx-setting-form-input"
@@ -1415,7 +1423,7 @@ export default class DynamicForm extends React.Component {
 													''
 												)}
 
-												{op.type == 'number' ? (
+												{op.type === 'number' ? (
 													<input
 														{...props}
 														className="mvx-setting-form-input"
@@ -1438,7 +1446,7 @@ export default class DynamicForm extends React.Component {
 													''
 												)}
 
-												{op.type == 'checkbox' ? (
+												{op.type === 'checkbox' ? (
 													<input
 														{...props}
 														className="mvx-setting-form-input"
@@ -1463,7 +1471,7 @@ export default class DynamicForm extends React.Component {
 												)}
 
 												{
-													(op.type == 'select'
+													(op.type === 'select'
 														? op.options.map(
 																(
 																	selectdata,
@@ -1479,7 +1487,7 @@ export default class DynamicForm extends React.Component {
 																}
 														  )
 														: '',
-													op.type == 'select' ? (
+													op.type === 'select' ? (
 														<Select
 															className="mvx-setting-form-input"
 															value={o[op.key]}
@@ -1505,7 +1513,7 @@ export default class DynamicForm extends React.Component {
 												}
 
 												{
-													(op.type == 'select2nd'
+													(op.type === 'select2nd'
 														? op.options.map(
 																(
 																	selectdata,
@@ -1521,7 +1529,7 @@ export default class DynamicForm extends React.Component {
 																}
 														  )
 														: '',
-													op.type == 'select2nd' ? (
+													op.type === 'select2nd' ? (
 														<Select
 															className="mvx-setting-form-input"
 															value={o[op.key]}
@@ -1547,7 +1555,7 @@ export default class DynamicForm extends React.Component {
 												}
 
 												{
-													(op.type == 'country'
+													(op.type === 'country'
 														? op.options.map(
 																(
 																	selectdata,
@@ -1564,7 +1572,7 @@ export default class DynamicForm extends React.Component {
 																}
 														  )
 														: '',
-													op.type == 'country' ? (
+													op.type === 'country' ? (
 														<Select
 															className="mvx-setting-form-input"
 															value={o[op.key]}
@@ -1891,7 +1899,7 @@ export default class DynamicForm extends React.Component {
 				);
 			}
 
-			if (type == 'checkbox') {
+			if (type === 'checkbox') {
 				input = (
 					<div
 						className={
@@ -1915,7 +1923,7 @@ export default class DynamicForm extends React.Component {
 							''
 						)}
 						{m.options.map((o) => {
-							//let checked = o.value == value;
+							//let checked = o.value === value;
 							let checked = false;
 							if (value && value.length > 0) {
 								checked =
@@ -1999,7 +2007,7 @@ export default class DynamicForm extends React.Component {
 				);
 			}
 
-			if (type == 'checkbox_select') {
+			if (type === 'checkbox_select') {
 				input = (
 					<div className="mvx-select-deselect-checkbox-content">
 						<div className="mvx-select-de-box-and-checkbox">
@@ -2020,7 +2028,7 @@ export default class DynamicForm extends React.Component {
 
 							<div className="mvx-select-deselect-checkbox-label-marge">
 								{m.options.map((o) => {
-									//let checked = o.value == value;
+									//let checked = o.value === value;
 									let checked = false;
 									if (value && value.length > 0) {
 										checked =
@@ -2079,7 +2087,7 @@ export default class DynamicForm extends React.Component {
 				);
 			}
 
-			return m.type == 'section' || m.label == 'no_label' ? (
+			return m.type === 'section' || m.label === 'no_label' ? (
 				input
 			) : (
 				<div key={'g' + key} className="mvx-form-group">
@@ -2203,7 +2211,7 @@ export default class DynamicForm extends React.Component {
 
 	render() {
 		const prop_submitbutton =
-			this.props.submitbutton && this.props.submitbutton == 'false'
+			this.props.submitbutton && this.props.submitbutton === 'false'
 				? ''
 				: 'true';
 		return (

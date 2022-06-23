@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import HeaderSection from './class-mvx-page-header';
-
 class MVX_Dashboard extends Component {
 	render() {
 		return (

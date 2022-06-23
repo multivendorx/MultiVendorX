@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-
 import { BrowserRouter as Router, useLocation } from 'react-router-dom';
-
 import VendorManage from './class-mvx-vendor-manage';
 import WorkBoard from './class-mvx-workboard-section';
 import PaymentSettings from './class-mvx-payemnt-section';
@@ -48,7 +46,7 @@ class Mvx_Backend_Endpoints_Load extends Component {
 				// if user enter page=mvx
 				if (
 					$(el).parent().hasClass('wp-first-item') &&
-					currentPath == 'admin.php?page=mvx'
+					currentPath === 'admin.php?page=mvx'
 				) {
 					$(el).parent().addClass('current');
 				}
@@ -57,7 +55,7 @@ class Mvx_Backend_Endpoints_Load extends Component {
 		// call every endpoint by checking from url #
 		if (
 			new URLSearchParams(useLocation().hash).get('submenu') &&
-			new URLSearchParams(useLocation().hash).get('submenu') == 'vendor'
+			new URLSearchParams(useLocation().hash).get('submenu') === 'vendor'
 		) {
 			return <VendorManage />;
 		} else if (
@@ -68,12 +66,13 @@ class Mvx_Backend_Endpoints_Load extends Component {
 			return <CommissionSettings />;
 		} else if (
 			new URLSearchParams(useLocation().hash).get('submenu') &&
-			new URLSearchParams(useLocation().hash).get('submenu') == 'settings'
+			new URLSearchParams(useLocation().hash).get('submenu') ===
+				'settings'
 		) {
 			return <GESettings />;
 		} else if (
 			new URLSearchParams(useLocation().hash).get('submenu') &&
-			new URLSearchParams(useLocation().hash).get('submenu') == 'payment'
+			new URLSearchParams(useLocation().hash).get('submenu') === 'payment'
 		) {
 			return <PaymentSettings />;
 		} else if (
@@ -96,7 +95,7 @@ class Mvx_Backend_Endpoints_Load extends Component {
 			return <StatusTools />;
 		} else if (
 			new URLSearchParams(useLocation().hash).get('submenu') &&
-			new URLSearchParams(useLocation().hash).get('submenu') == 'modules'
+			new URLSearchParams(useLocation().hash).get('submenu') === 'modules'
 		) {
 			return <Modules />;
 		}

@@ -1,6 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
-
+import { BrowserRouter as Link } from 'react-router-dom';
 import HeaderSection from './class-mvx-page-header';
 import BannerSection from './class-mvx-page-banner';
 
@@ -23,7 +22,7 @@ export default class TabSection extends React.Component {
 			: query_name;
 
 		const TabUI = model.map((m, index) => {
-			return query_name_modified == m.modulename ? (
+			return query_name_modified === m.modulename ? (
 				<div className="mvx-tab-description-start">
 					<div className="mvx-tab-name">{m.tablabel}</div>
 					<p>{m.description}</p>
@@ -45,7 +44,7 @@ export default class TabSection extends React.Component {
 						}`}
 					>
 						{this.props.tab_description &&
-						this.props.tab_description == 'no'
+						this.props.tab_description === 'no'
 							? ''
 							: TabUI}
 						<div className="mvx-middle-child-container">
@@ -57,7 +56,7 @@ export default class TabSection extends React.Component {
 										return m.link ? (
 											<li
 												className={
-													query_name_modified ==
+													query_name_modified ===
 													m.modulename
 														? 'active-current-tab'
 														: ''
@@ -77,7 +76,7 @@ export default class TabSection extends React.Component {
 										) : (
 											<li
 												className={
-													query_name_modified ==
+													query_name_modified ===
 													m.modulename
 														? 'active-current-tab'
 														: ''

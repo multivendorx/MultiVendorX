@@ -16,7 +16,6 @@
     "@wordpress/prettier-config": "^1.4.0",
     "@wordpress/scripts": "^18.1.0"
   },
-  "prettier": "@wordpress/prettier-config",
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",

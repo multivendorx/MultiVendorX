@@ -1,9 +1,9 @@
+/* global appLocalizer */
 import React, { Component } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
 import PuffLoader from 'react-spinners/PuffLoader';
 import { css } from '@emotion/react';
-
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -122,7 +122,7 @@ class MVX_Module_Listing extends Component {
 		sub_index,
 		module_id
 	) {
-		if (plan == 'pro') {
+		if (plan === 'pro') {
 			this.setState({
 				open_model: true,
 			});
@@ -268,7 +268,7 @@ class MVX_Module_Listing extends Component {
 							/>
 						</div>
 
-						{this.state.items.length == 0 ? (
+						{this.state.items.length === 0 ? (
 							<PuffLoader
 								css={override}
 								color={'#cd0000'}
@@ -305,7 +305,7 @@ class MVX_Module_Listing extends Component {
 																	{
 																		student.name
 																	}
-																	{student.plan ==
+																	{student.plan ===
 																	'pro' ? (
 																		<span className="mvx-module-section-pro-badge">
 																			{

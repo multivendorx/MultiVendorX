@@ -1,11 +1,10 @@
+/* global appLocalizer */
 import React, { Component } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
 import PuffLoader from 'react-spinners/PuffLoader';
 import { css } from '@emotion/react';
-
 import { BrowserRouter as Router, Link, useLocation } from 'react-router-dom';
-
 import DynamicForm from '../../../DynamicForm';
 import DataTable from 'react-data-table-component';
 import TabSection from './class-mvx-page-tab';
@@ -16,7 +15,7 @@ const override = css`
 	border-color: green;
 `;
 
-class MVX_Workboard extends Component {
+class MVXworkboard extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -69,69 +68,63 @@ class MVX_Workboard extends Component {
 		this.QueryParamsDemo = this.QueryParamsDemo.bind(this);
 		this.useQuery = this.useQuery.bind(this);
 		this.Child = this.Child.bind(this);
-		this.handle_post_retrive_status =
-			this.handle_post_retrive_status.bind(this);
-		this.handle_post_bulk_status = this.handle_post_bulk_status.bind(this);
+		this.handlePostRetriveStatus = this.handlePostRetriveStatus.bind(this);
+		this.handlePostBulkStatus = this.handlePostBulkStatus.bind(this);
 		this.onSelectedRowsChange = this.onSelectedRowsChange.bind(this);
-		this.handle_work_board_chenage =
-			this.handle_work_board_chenage.bind(this);
+		this.handleWorkBoardChenage = this.handleWorkBoardChenage.bind(this);
 		this.handlePostDismiss = this.handlePostDismiss.bind(this);
 		// pending product todo action
-		this.handle_product_request_by_vendors =
-			this.handle_product_request_by_vendors.bind(this);
+		this.handleProductRequestByVendors =
+			this.handleProductRequestByVendors.bind(this);
 		// trigger questions
-		this.handle_question_request_by_vendors =
-			this.handle_question_request_by_vendors.bind(this);
+		this.handleQuestionRequestByVendors =
+			this.handleQuestionRequestByVendors.bind(this);
 		// trigger counpon todo
-		this.handle_coupon_request_by_vendors =
-			this.handle_coupon_request_by_vendors.bind(this);
+		this.handleCouponRequestByVendors =
+			this.handleCouponRequestByVendors.bind(this);
 		//trigger todo user
-		this.handle_user_request_by_vendors =
-			this.handle_user_request_by_vendors.bind(this);
+		this.handleUserRequestByVendors =
+			this.handleUserRequestByVendors.bind(this);
 		// individual checkbox trigger
-		this.handle_todo_checkbox_chenage =
-			this.handle_todo_checkbox_chenage.bind(this);
-		this.handle_todo_user_chenage =
-			this.handle_todo_user_chenage.bind(this);
-		this.handle_todo_coupon_chenage =
-			this.handle_todo_coupon_chenage.bind(this);
-		this.handle_todo_transaction_chenage =
-			this.handle_todo_transaction_chenage.bind(this);
-		this.handle_todo_question_checkbox_chenage =
-			this.handle_todo_question_checkbox_chenage.bind(this);
-		this.handle_task_board_bulk_chenage =
-			this.handle_task_board_bulk_chenage.bind(this);
-		this.handle_parent_todo_checkbox_chenage =
-			this.handle_parent_todo_checkbox_chenage.bind(this);
-		this.handle_parent_user_todo_checkbox_chenage =
-			this.handle_parent_user_todo_checkbox_chenage.bind(this);
-		this.handle_parent_coupon_todo_checkbox_chenage =
-			this.handle_parent_coupon_todo_checkbox_chenage.bind(this);
-		this.handle_parent_transaction_todo_checkbox_chenage =
-			this.handle_parent_transaction_todo_checkbox_chenage.bind(this);
-		this.handle_parent_question_todo_checkbox_chenage =
-			this.handle_parent_question_todo_checkbox_chenage.bind(this);
-		this.handle_question_search = this.handle_question_search.bind(this);
+		this.handleTodoCheckboxChenage =
+			this.handleTodoCheckboxChenage.bind(this);
+		this.handleTodoUserChenage = this.handleTodoUserChenage.bind(this);
+		this.handleTodoCouponChenage = this.handleTodoCouponChenage.bind(this);
+		this.handleTodoTransactionChenage =
+			this.handleTodoTransactionChenage.bind(this);
+		this.handleTodoQuestionCheckboxChenage =
+			this.handleTodoQuestionCheckboxChenage.bind(this);
+		this.handleTaskBoardBulkChenage =
+			this.handleTaskBoardBulkChenage.bind(this);
+		this.handleParentTodoCheckboxChenage =
+			this.handleParentTodoCheckboxChenage.bind(this);
+		this.handleParentUserTodoCheckboxChenage =
+			this.handleParentUserTodoCheckboxChenage.bind(this);
+		this.handleParentCouponTodoCheckboxChenage =
+			this.handleParentCouponTodoCheckboxChenage.bind(this);
+		this.handleParentTransactionTodoCheckboxChenage =
+			this.handleParentTransactionTodoCheckboxChenage.bind(this);
+		this.handleParentQuestionTodoCheckboxChenage =
+			this.handleParentQuestionTodoCheckboxChenage.bind(this);
+		this.handleQuestionSearch = this.handleQuestionSearch.bind(this);
 		this.handleReviewDismiss = this.handleReviewDismiss.bind(this);
-		this.handle_review_bulk_status =
-			this.handle_review_bulk_status.bind(this);
+		this.handleReviewBulkStatus = this.handleReviewBulkStatus.bind(this);
 		this.handleselectreviews = this.handleselectreviews.bind(this);
-		this.handle_search_vendor_review =
-			this.handle_search_vendor_review.bind(this);
+		this.handleSearchVendorReview =
+			this.handleSearchVendorReview.bind(this);
 		this.handleselectabuse = this.handleselectabuse.bind(this);
-		this.handle_vendor_search_abuse =
-			this.handle_vendor_search_abuse.bind(this);
-		this.handle_product_search_abuse =
-			this.handle_product_search_abuse.bind(this);
+		this.handleVendorSearchAbuse = this.handleVendorSearchAbuse.bind(this);
+		this.handleProductSearchAbuse =
+			this.handleProductSearchAbuse.bind(this);
 		this.handleAbuseDismiss = this.handleAbuseDismiss.bind(this);
-		this.handle_question_delete = this.handle_question_delete.bind(this);
-		this.handle_transaction_request_by_vendors =
-			this.handle_transaction_request_by_vendors.bind(this);
-		this.handle_question_bulk_status_change =
-			this.handle_question_bulk_status_change.bind(this);
+		this.handleQuestionDelete = this.handleQuestionDelete.bind(this);
+		this.handleTransactionRequestByVendors =
+			this.handleTransactionRequestByVendors.bind(this);
+		this.handleQuestionBulkStatusChange =
+			this.handleQuestionBulkStatusChange.bind(this);
 	}
 
-	handle_question_bulk_status_change(e) {
+	handleQuestionBulkStatusChange(e) {
 		if (e) {
 			axios({
 				method: 'post',
@@ -161,20 +154,15 @@ class MVX_Workboard extends Component {
 		}
 	}
 
-	handle_transaction_request_by_vendors(
-		e,
-		transaction_id,
-		vendor_id,
-		status
-	) {
-		if (status == 'dismiss') {
+	handleTransactionRequestByVendors(e, transactionId, vendorId, status) {
+		if (status === 'dismiss') {
 			if (confirm(appLocalizer.global_string.confirm_dismiss)) {
 				axios({
 					method: 'post',
 					url: `${appLocalizer.apiUrl}/mvx_module/v1/approve_dismiss_pending_transaction`,
 					data: {
-						transaction_id,
-						vendor_id,
+						transactionId,
+						vendorId,
 						status,
 					},
 				}).then((responce) => {
@@ -188,8 +176,8 @@ class MVX_Workboard extends Component {
 				method: 'post',
 				url: `${appLocalizer.apiUrl}/mvx_module/v1/approve_dismiss_pending_transaction`,
 				data: {
-					transaction_id,
-					vendor_id,
+					transactionId,
+					vendorId,
 					status,
 				},
 			}).then((responce) => {
@@ -200,15 +188,15 @@ class MVX_Workboard extends Component {
 		}
 	}
 
-	handle_question_delete(e, question_id, product_id, type) {
-		if (type == 'rejected') {
+	handleQuestionDelete(e, questionId, productId, type) {
+		if (type === 'rejected') {
 			if (confirm(appLocalizer.global_string.confirm_dismiss)) {
 				axios({
 					method: 'post',
 					url: `${appLocalizer.apiUrl}/mvx_module/v1/approve_dismiss_pending_question`,
 					data: {
-						question_id,
-						product_id,
+						questionId,
+						productId,
 						type,
 					},
 				}).then((responce) => {
@@ -222,8 +210,8 @@ class MVX_Workboard extends Component {
 				method: 'post',
 				url: `${appLocalizer.apiUrl}/mvx_module/v1/approve_dismiss_pending_question`,
 				data: {
-					question_id,
-					product_id,
+					questionId,
+					productId,
 					type,
 				},
 			}).then((responce) => {
@@ -246,13 +234,13 @@ class MVX_Workboard extends Component {
 				},
 			}).then((responce) => {
 				this.setState({
-					list_of_report_abuse: response.data,
+					list_of_report_abuse: responce.data,
 				});
 			});
 		}
 	}
 
-	handle_vendor_search_abuse(e) {
+	handleVendorSearchAbuse(e) {
 		if (e) {
 			axios
 				.get(
@@ -279,7 +267,7 @@ class MVX_Workboard extends Component {
 		}
 	}
 
-	handle_product_search_abuse(e) {
+	handleProductSearchAbuse(e) {
 		if (e) {
 			axios
 				.get(
@@ -312,7 +300,7 @@ class MVX_Workboard extends Component {
 		});
 	}
 
-	handle_search_vendor_review(e) {
+	handleSearchVendorReview(e) {
 		axios({
 			method: 'post',
 			url: `${appLocalizer.apiUrl}/mvx_module/v1/search_review`,
@@ -326,7 +314,7 @@ class MVX_Workboard extends Component {
 		});
 	}
 
-	handle_review_bulk_status(e) {
+	handleReviewBulkStatus() {
 		if (confirm(appLocalizer.global_string.confirm_delete)) {
 			axios({
 				method: 'post',
@@ -364,7 +352,7 @@ class MVX_Workboard extends Component {
 		}
 	}
 
-	handle_question_search(e) {
+	handleQuestionSearch(e) {
 		axios({
 			method: 'post',
 			url: `${appLocalizer.apiUrl}/mvx_module/v1/search_question_ans`,
@@ -378,8 +366,8 @@ class MVX_Workboard extends Component {
 		});
 	}
 
-	handle_task_board_bulk_chenage(e, type) {
-		if (type == 'product_approval') {
+	handleTaskBoardBulkChenage(e, type) {
+		if (type === 'product_approval') {
 			axios({
 				method: 'post',
 				url: `${appLocalizer.apiUrl}/mvx_module/v1/bulk_todo_pending_product`,
@@ -393,7 +381,7 @@ class MVX_Workboard extends Component {
 					list_of_pending_vendor_product: responce.data,
 				});
 			});
-		} else if (type == 'user_approval') {
+		} else if (type === 'user_approval') {
 			axios({
 				method: 'post',
 				url: `${appLocalizer.apiUrl}/mvx_module/v1/bulk_todo_pending_product`,
@@ -407,7 +395,7 @@ class MVX_Workboard extends Component {
 					list_of_pending_vendor_product: responce.data,
 				});
 			});
-		} else if (type == 'coupon_approval') {
+		} else if (type === 'coupon_approval') {
 			axios({
 				method: 'post',
 				url: `${appLocalizer.apiUrl}/mvx_module/v1/bulk_todo_pending_product`,
@@ -421,7 +409,7 @@ class MVX_Workboard extends Component {
 					list_of_pending_vendor_product: responce.data,
 				});
 			});
-		} else if (type == 'transaction_approval') {
+		} else if (type === 'transaction_approval') {
 			axios({
 				method: 'post',
 				url: `${appLocalizer.apiUrl}/mvx_module/v1/bulk_todo_pending_product`,
@@ -435,7 +423,7 @@ class MVX_Workboard extends Component {
 					list_of_pending_transaction: responce.data,
 				});
 			});
-		} else if (type == 'question_approval') {
+		} else if (type === 'question_approval') {
 			axios({
 				method: 'post',
 				url: `${appLocalizer.apiUrl}/mvx_module/v1/bulk_todo_pending_product`,
@@ -452,10 +440,7 @@ class MVX_Workboard extends Component {
 		}
 	}
 
-	/**
-	 * @param  e
-	 */
-	handle_parent_todo_checkbox_chenage(e) {
+	handleParentTodoCheckboxChenage(e) {
 		if (e.target.checked) {
 			this.setState({
 				pending_parent_product_check: true,
@@ -473,7 +458,7 @@ class MVX_Workboard extends Component {
 		}
 	}
 
-	handle_parent_user_todo_checkbox_chenage(e) {
+	handleParentUserTodoCheckboxChenage(e) {
 		if (e.target.checked) {
 			this.setState({
 				pending_parent_user_check: true,
@@ -491,7 +476,7 @@ class MVX_Workboard extends Component {
 		}
 	}
 
-	handle_parent_coupon_todo_checkbox_chenage(e) {
+	handleParentCouponTodoCheckboxChenage(e) {
 		if (e.target.checked) {
 			this.setState({
 				pending_parent_coupon_check: true,
@@ -509,7 +494,7 @@ class MVX_Workboard extends Component {
 		}
 	}
 
-	handle_parent_transaction_todo_checkbox_chenage(e) {
+	handleParentTransactionTodoCheckboxChenage(e) {
 		if (e.target.checked) {
 			this.setState({
 				pending_parent_transaction_check: true,
@@ -527,7 +512,7 @@ class MVX_Workboard extends Component {
 		}
 	}
 
-	handle_parent_question_todo_checkbox_chenage(e) {
+	handleParentQuestionTodoCheckboxChenage(e) {
 		if (e.target.checked) {
 			this.setState({
 				pending_parent_question_check: true,
@@ -545,13 +530,8 @@ class MVX_Workboard extends Component {
 		}
 	}
 
-	/**
-	 * @param  e
-	 * @param  id
-	 * @param  position
-	 */
 	// individual checkbox trigger
-	handle_todo_checkbox_chenage(e, id, position) {
+	handleTodoCheckboxChenage(e, id, position) {
 		const updatedCheckedState = this.state.pending_product_check.map(
 			(item, index) => (index === position ? !item : item)
 		);
@@ -561,7 +541,7 @@ class MVX_Workboard extends Component {
 		});
 	}
 
-	handle_todo_user_chenage(e, id, position) {
+	handleTodoUserChenage(e, id, position) {
 		const updatedCheckedState = this.state.pending_user_check.map(
 			(item, index) => (index === position ? !item : item)
 		);
@@ -571,7 +551,7 @@ class MVX_Workboard extends Component {
 		});
 	}
 
-	handle_todo_coupon_chenage(e, id, position) {
+	handleTodoCouponChenage(e, id, position) {
 		const updatedCheckedState = this.state.pending_coupon_check.map(
 			(item, index) => (index === position ? !item : item)
 		);
@@ -581,7 +561,7 @@ class MVX_Workboard extends Component {
 		});
 	}
 
-	handle_todo_transaction_chenage(e, id, position) {
+	handleTodoTransactionChenage(e, id, position) {
 		const updatedCheckedState = this.state.pending_transaction_check.map(
 			(item, index) => (index === position ? !item : item)
 		);
@@ -591,7 +571,7 @@ class MVX_Workboard extends Component {
 		});
 	}
 
-	handle_todo_question_checkbox_chenage(e, id, position) {
+	handleTodoQuestionCheckboxChenage(e, id, position) {
 		const updatedCheckedState = this.state.pending_question_check.map(
 			(item, index) => (index === position ? !item : item)
 		);
@@ -601,13 +581,13 @@ class MVX_Workboard extends Component {
 		});
 	}
 
-	handle_question_request_by_vendors(e, question_id, product_id, type) {
+	handleQuestionRequestByVendors(e, questionId, productId, type) {
 		axios({
 			method: 'post',
 			url: `${appLocalizer.apiUrl}/mvx_module/v1/approve_dismiss_pending_question`,
 			data: {
-				question_id,
-				product_id,
+				questionId,
+				productId,
 				type,
 			},
 		}).then((responce) => {
@@ -617,7 +597,7 @@ class MVX_Workboard extends Component {
 		});
 	}
 
-	handle_coupon_request_by_vendors(e, id, type) {
+	handleCouponRequestByVendors(e, id, type) {
 		axios({
 			method: 'post',
 			url: `${appLocalizer.apiUrl}/mvx_module/v1/dismiss_and_approve_vendor_coupon`,
@@ -632,8 +612,8 @@ class MVX_Workboard extends Component {
 		});
 	}
 
-	handle_user_request_by_vendors(e, id, type) {
-		if (type == 'dismiss') {
+	handleUserRequestByVendors(e, id, type) {
+		if (type === 'dismiss') {
 			if (confirm(appLocalizer.global_string.confirm_dismiss)) {
 				axios({
 					method: 'post',
@@ -647,7 +627,7 @@ class MVX_Workboard extends Component {
 					});
 				});
 			}
-		} else if (type == 'approve') {
+		} else if (type === 'approve') {
 			if (confirm(appLocalizer.global_string.confirm_approve)) {
 				axios({
 					method: 'post',
@@ -664,16 +644,16 @@ class MVX_Workboard extends Component {
 		}
 	}
 
-	handle_product_request_by_vendors(e, product_id, vendor_id, type) {
-		if (type == 'dismiss') {
+	handleProductRequestByVendors(e, productId, vendorId, type) {
+		if (type === 'dismiss') {
 			if (confirm(appLocalizer.global_string.confirm_dismiss)) {
 				axios({
 					method: 'post',
 					url: `${appLocalizer.apiUrl}/mvx_module/v1/dismiss_requested_vendors_query`,
 					data: {
-						product_id,
+						productId,
 						type,
-						vendor_id,
+						vendorId,
 					},
 				}).then((responce) => {
 					this.setState({
@@ -681,15 +661,15 @@ class MVX_Workboard extends Component {
 					});
 				});
 			}
-		} else if (type == 'approve') {
+		} else if (type === 'approve') {
 			if (confirm(appLocalizer.global_string.confirm_approve)) {
 				axios({
 					method: 'post',
 					url: `${appLocalizer.apiUrl}/mvx_module/v1/approve_product`,
 					data: {
-						product_id,
+						productId,
 						type,
-						vendor_id,
+						vendorId,
 					},
 				}).then((responce) => {
 					this.setState({
@@ -717,8 +697,8 @@ class MVX_Workboard extends Component {
 		}
 	}
 
-	handle_work_board_chenage(e, type) {
-		if (type == 'announcement' && e) {
+	handleWorkBoardChenage(e, type) {
+		if (type === 'announcement' && e) {
 			axios({
 				method: 'post',
 				url: `${appLocalizer.apiUrl}/mvx_module/v1/update_custom_post_status`,
@@ -726,7 +706,7 @@ class MVX_Workboard extends Component {
 					ids: this.state.bulkselectlist,
 					value: e.value,
 				},
-			}).then((responce) => {});
+			}).then(() => {});
 		}
 	}
 
@@ -736,8 +716,8 @@ class MVX_Workboard extends Component {
 		});
 	}
 
-	handle_post_retrive_status(e, status, type) {
-		if (type == 'announcement') {
+	handlePostRetriveStatus(e, status, type) {
+		if (type === 'announcement') {
 			axios
 				.get(
 					`${appLocalizer.apiUrl}/mvx_module/v1/display_announcement`,
@@ -750,7 +730,7 @@ class MVX_Workboard extends Component {
 						display_announcement: response.data,
 					});
 				});
-		} else if (type == 'knowladgebase') {
+		} else if (type === 'knowladgebase') {
 			axios
 				.get(
 					`${appLocalizer.apiUrl}/mvx_module/v1/display_list_knowladgebase`,
@@ -766,8 +746,8 @@ class MVX_Workboard extends Component {
 		}
 	}
 
-	handle_post_bulk_status(e, type) {
-		if (type == 'announcement') {
+	handlePostBulkStatus(e, type) {
+		if (type === 'announcement') {
 			axios({
 				method: 'post',
 				url: `${appLocalizer.apiUrl}/mvx_module/v1/search_announcement`,
@@ -780,7 +760,7 @@ class MVX_Workboard extends Component {
 					display_announcement: responce.data,
 				});
 			});
-		} else if (type == 'knowladgebase') {
+		} else if (type === 'knowladgebase') {
 			axios({
 				method: 'post',
 				url: `${appLocalizer.apiUrl}/mvx_module/v1/search_knowledgebase`,
@@ -897,12 +877,12 @@ class MVX_Workboard extends Component {
 				`${appLocalizer.apiUrl}/mvx_module/v1/list_of_pending_question`
 			)
 			.then((response) => {
-				const all_pending_data_checkbox = new Array(
+				const allPendingDataCheckbox = new Array(
 					response.data.length
 				).fill(false);
 				this.setState({
 					list_of_pending_question: response.data,
-					pending_question_check: all_pending_data_checkbox,
+					pending_question_check: allPendingDataCheckbox,
 					pending_question_loding_end: true,
 				});
 			});
@@ -952,13 +932,13 @@ class MVX_Workboard extends Component {
 		axios
 			.get(`${appLocalizer.apiUrl}/mvx_module/v1/list_of_pending_vendor`)
 			.then((response) => {
-				const all_pending_data_checkbox = new Array(
+				const allPendingDataCheckbox = new Array(
 					response.data.length
 				).fill(false);
 				this.setState({
 					list_of_pending_vendor: response.data,
 					pending_user_loding_end: true,
-					pending_user_check: all_pending_data_checkbox,
+					pending_user_check: allPendingDataCheckbox,
 				});
 			});
 
@@ -967,14 +947,14 @@ class MVX_Workboard extends Component {
 				`${appLocalizer.apiUrl}/mvx_module/v1/list_of_pending_vendor_product`
 			)
 			.then((response) => {
-				const all_pending_product_checkbox = new Array(
+				const allPendingProductCheckbox = new Array(
 					response.data.length
 				).fill(false);
 
 				this.setState({
 					list_of_pending_vendor_product: response.data,
 					pending_product_loding_end: true,
-					pending_product_check: all_pending_product_checkbox,
+					pending_product_check: allPendingProductCheckbox,
 				});
 			});
 
@@ -1031,7 +1011,7 @@ class MVX_Workboard extends Component {
 	QueryParamsDemo() {
 		// update announcement table when clock on announcement tab
 		if (
-			new URLSearchParams(window.location.hash).get('name') ==
+			new URLSearchParams(window.location.hash).get('name') ===
 			'announcement'
 		) {
 			axios
@@ -1046,7 +1026,7 @@ class MVX_Workboard extends Component {
 
 		// update knowledgebase table when clock on knowledgebase tab
 		if (
-			new URLSearchParams(window.location.hash).get('name') ==
+			new URLSearchParams(window.location.hash).get('name') ===
 			'knowladgebase'
 		) {
 			axios
@@ -1105,7 +1085,7 @@ class MVX_Workboard extends Component {
 				.then((response) => {
 					if (
 						response.data &&
-						this.state.edit_announcement_fileds.length == 0
+						this.state.edit_announcement_fileds.length === 0
 					) {
 						this.setState({
 							edit_announcement_fileds: response.data,
@@ -1128,7 +1108,7 @@ class MVX_Workboard extends Component {
 				.then((response) => {
 					if (
 						response.data &&
-						this.state.edit_knowledgebase_fileds.length == 0
+						this.state.edit_knowledgebase_fileds.length === 0
 					) {
 						this.setState({
 							edit_knowledgebase_fileds: response.data,
@@ -1139,8 +1119,8 @@ class MVX_Workboard extends Component {
 
 		// Display table column and row slection
 		if (
-			this.state.columns_announcement_new.length == 0 &&
-			new URLSearchParams(window.location.hash).get('name') ==
+			this.state.columns_announcement_new.length === 0 &&
+			new URLSearchParams(window.location.hash).get('name') ===
 				'announcement'
 		) {
 			appLocalizer.columns_announcement.map((data_ann, index_ann) => {
@@ -1182,8 +1162,8 @@ class MVX_Workboard extends Component {
 
 		// Display table column and row slection for questions
 		if (
-			this.state.columns_questions_new.length == 0 &&
-			new URLSearchParams(window.location.hash).get('name') ==
+			this.state.columns_questions_new.length === 0 &&
+			new URLSearchParams(window.location.hash).get('name') ===
 				'question-ans'
 		) {
 			appLocalizer.columns_questions.map((data_ques, index_ques) => {
@@ -1203,7 +1183,7 @@ class MVX_Workboard extends Component {
 							<div className="mvx-vendor-action-icon">
 								<div
 									onClick={(e) =>
-										this.handle_question_delete(
+										this.handleQuestionDelete(
 											e,
 											row.id,
 											row.question_product_id,
@@ -1216,7 +1196,7 @@ class MVX_Workboard extends Component {
 								</div>
 								<div
 									onClick={(e) =>
-										this.handle_question_delete(
+										this.handleQuestionDelete(
 											e,
 											row.id,
 											row.question_product_id,
@@ -1243,8 +1223,8 @@ class MVX_Workboard extends Component {
 
 		// Display table column and row slection
 		if (
-			this.state.columns_knowledgebase_new.length == 0 &&
-			new URLSearchParams(window.location.hash).get('name') ==
+			this.state.columns_knowledgebase_new.length === 0 &&
+			new URLSearchParams(window.location.hash).get('name') ===
 				'knowladgebase'
 		) {
 			appLocalizer.columns_knowledgebase.map(
@@ -1295,8 +1275,8 @@ class MVX_Workboard extends Component {
 
 		// Display table column and row slection
 		if (
-			this.state.columns_store_review.length == 0 &&
-			new URLSearchParams(window.location.hash).get('name') ==
+			this.state.columns_store_review.length === 0 &&
+			new URLSearchParams(window.location.hash).get('name') ===
 				'store-review'
 		) {
 			appLocalizer.columns_store_review.map(
@@ -1345,8 +1325,8 @@ class MVX_Workboard extends Component {
 
 		// Display table column and row slection
 		if (
-			this.state.columns_report_abuse.length == 0 &&
-			new URLSearchParams(window.location.hash).get('name') ==
+			this.state.columns_report_abuse.length === 0 &&
+			new URLSearchParams(window.location.hash).get('name') ===
 				'report-abuse'
 		) {
 			appLocalizer.columns_report_abuse.map(
@@ -1394,7 +1374,7 @@ class MVX_Workboard extends Component {
 			);
 		}
 
-		return name == 'activity-reminder' ? (
+		return name === 'activity-reminder' ? (
 			<div className="mvx-module-grid">
 				{/* Pending Vendor's product approval work done */}
 				<div className="mvx-todo-status-check">
@@ -1413,9 +1393,7 @@ class MVX_Workboard extends Component {
 										this.state.pending_parent_product_check
 									}
 									onChange={(e) =>
-										this.handle_parent_todo_checkbox_chenage(
-											e
-										)
+										this.handleParentTodoCheckboxChenage(e)
 									}
 								/>
 								<span className="mvx-select-all-text">
@@ -1429,7 +1407,7 @@ class MVX_Workboard extends Component {
 								options={appLocalizer.task_board_bulk_status}
 								isClearable={true}
 								onChange={(e) =>
-									this.handle_task_board_bulk_chenage(
+									this.handleTaskBoardBulkChenage(
 										e,
 										'product_approval'
 									)
@@ -1460,7 +1438,7 @@ class MVX_Workboard extends Component {
 														]
 													}
 													onChange={(e) =>
-														this.handle_todo_checkbox_chenage(
+														this.handleTodoCheckboxChenage(
 															e,
 															pending_data.id,
 															pending_index
@@ -1530,7 +1508,7 @@ class MVX_Workboard extends Component {
 													<i
 														className="mvx-font icon-approve"
 														onClick={(e) =>
-															this.handle_product_request_by_vendors(
+															this.handleProductRequestByVendors(
 																e,
 																pending_data.id,
 																pending_data.vendor_id,
@@ -1543,7 +1521,7 @@ class MVX_Workboard extends Component {
 													<i
 														className="mvx-font icon-close"
 														onClick={(e) =>
-															this.handle_product_request_by_vendors(
+															this.handleProductRequestByVendors(
 																e,
 																pending_data.id,
 																pending_data.vendor_id,
@@ -1597,7 +1575,7 @@ class MVX_Workboard extends Component {
 										this.state.pending_parent_user_check
 									}
 									onChange={(e) =>
-										this.handle_parent_user_todo_checkbox_chenage(
+										this.handleParentUserTodoCheckboxChenage(
 											e
 										)
 									}
@@ -1613,7 +1591,7 @@ class MVX_Workboard extends Component {
 								options={appLocalizer.task_board_bulk_status}
 								isClearable={true}
 								onChange={(e) =>
-									this.handle_task_board_bulk_chenage(
+									this.handleTaskBoardBulkChenage(
 										e,
 										'user_approval'
 									)
@@ -1643,7 +1621,7 @@ class MVX_Workboard extends Component {
 														]
 													}
 													onChange={(e) =>
-														this.handle_todo_user_chenage(
+														this.handleTodoUserChenage(
 															e,
 															pending_data.id,
 															pending_index
@@ -1696,7 +1674,7 @@ class MVX_Workboard extends Component {
 													<i
 														className="mvx-font icon-approve"
 														onClick={(e) =>
-															this.handle_user_request_by_vendors(
+															this.handleUserRequestByVendors(
 																e,
 																pending_data.id,
 																'approve'
@@ -1708,7 +1686,7 @@ class MVX_Workboard extends Component {
 													<i
 														className="mvx-font icon-close"
 														onClick={(e) =>
-															this.handle_user_request_by_vendors(
+															this.handleUserRequestByVendors(
 																e,
 																pending_data.id,
 																'dismiss'
@@ -1754,7 +1732,7 @@ class MVX_Workboard extends Component {
 										this.state.pending_parent_coupon_check
 									}
 									onChange={(e) =>
-										this.handle_parent_coupon_todo_checkbox_chenage(
+										this.handleParentCouponTodoCheckboxChenage(
 											e
 										)
 									}
@@ -1770,7 +1748,7 @@ class MVX_Workboard extends Component {
 								options={appLocalizer.task_board_bulk_status}
 								isClearable={true}
 								onChange={(e) =>
-									this.handle_task_board_bulk_chenage(
+									this.handleTaskBoardBulkChenage(
 										e,
 										'coupon_approval'
 									)
@@ -1800,7 +1778,7 @@ class MVX_Workboard extends Component {
 														]
 													}
 													onChange={(e) =>
-														this.handle_todo_coupon_chenage(
+														this.handleTodoCouponChenage(
 															e,
 															pending_data.id,
 															pending_index
@@ -1868,7 +1846,7 @@ class MVX_Workboard extends Component {
 													<i
 														className="mvx-font icon-approve"
 														onClick={(e) =>
-															this.handle_coupon_request_by_vendors(
+															this.handleCouponRequestByVendors(
 																e,
 																pending_data.id,
 																'approve'
@@ -1880,7 +1858,7 @@ class MVX_Workboard extends Component {
 													<i
 														className="mvx-font icon-close"
 														onClick={(e) =>
-															this.handle_coupon_request_by_vendors(
+															this.handleCouponRequestByVendors(
 																e,
 																pending_data.id,
 																'dismiss'
@@ -1927,7 +1905,7 @@ class MVX_Workboard extends Component {
 											.pending_parent_transaction_check
 									}
 									onChange={(e) =>
-										this.handle_parent_transaction_todo_checkbox_chenage(
+										this.handleParentTransactionTodoCheckboxChenage(
 											e
 										)
 									}
@@ -1943,7 +1921,7 @@ class MVX_Workboard extends Component {
 								options={appLocalizer.task_board_bulk_status}
 								isClearable={true}
 								onChange={(e) =>
-									this.handle_task_board_bulk_chenage(
+									this.handleTaskBoardBulkChenage(
 										e,
 										'transaction_approval'
 									)
@@ -1973,7 +1951,7 @@ class MVX_Workboard extends Component {
 														]
 													}
 													onChange={(e) =>
-														this.handle_todo_transaction_chenage(
+														this.handleTodoTransactionChenage(
 															e,
 															pending_data.id,
 															pending_index
@@ -2056,7 +2034,7 @@ class MVX_Workboard extends Component {
 													<i
 														className="mvx-font icon-approve"
 														onClick={(e) =>
-															this.handle_transaction_request_by_vendors(
+															this.handleTransactionRequestByVendors(
 																e,
 																pending_data.id,
 																pending_data.vendor_id,
@@ -2069,7 +2047,7 @@ class MVX_Workboard extends Component {
 													<i
 														className="mvx-font icon-close"
 														onClick={(e) =>
-															this.handle_transaction_request_by_vendors(
+															this.handleTransactionRequestByVendors(
 																e,
 																pending_data.id,
 																pending_data.vendor_id,
@@ -2116,7 +2094,7 @@ class MVX_Workboard extends Component {
 										this.state.pending_parent_question_check
 									}
 									onChange={(e) =>
-										this.handle_parent_question_todo_checkbox_chenage(
+										this.handleParentQuestionTodoCheckboxChenage(
 											e
 										)
 									}
@@ -2132,7 +2110,7 @@ class MVX_Workboard extends Component {
 								options={appLocalizer.task_board_bulk_status}
 								isClearable={true}
 								onChange={(e) =>
-									this.handle_task_board_bulk_chenage(
+									this.handleTaskBoardBulkChenage(
 										e,
 										'question_approval'
 									)
@@ -2162,7 +2140,7 @@ class MVX_Workboard extends Component {
 														]
 													}
 													onChange={(e) =>
-														this.handle_todo_question_checkbox_chenage(
+														this.handleTodoQuestionCheckboxChenage(
 															e,
 															pending_data.id,
 															pending_index
@@ -2258,7 +2236,7 @@ class MVX_Workboard extends Component {
 													<i
 														className="mvx-font icon-approve"
 														onClick={(e) =>
-															this.handle_question_request_by_vendors(
+															this.handleQuestionRequestByVendors(
 																e,
 																pending_data.id,
 																pending_data.question_product_id,
@@ -2271,7 +2249,7 @@ class MVX_Workboard extends Component {
 													<i
 														className="mvx-font icon-close"
 														onClick={(e) =>
-															this.handle_question_request_by_vendors(
+															this.handleQuestionRequestByVendors(
 																e,
 																pending_data.id,
 																pending_data.question_product_id,
@@ -2301,10 +2279,10 @@ class MVX_Workboard extends Component {
 				</div>
 				{/* Pending question approval end */}
 			</div>
-		) : name == 'announcement' ? (
+		) : name === 'announcement' ? (
 			<div className="mvx-module-grid">
 				{(get_current_name &&
-					get_current_name.get('create') == 'announcement') ||
+					get_current_name.get('create') === 'announcement') ||
 				get_current_name.get('AnnouncementID') ? (
 					<div className="mvx-back-btn">
 						<Link
@@ -2328,7 +2306,7 @@ class MVX_Workboard extends Component {
 				)}
 
 				{get_current_name &&
-				get_current_name.get('create') == 'announcement' ? (
+				get_current_name.get('create') === 'announcement' ? (
 					<DynamicForm
 						key={`dynamic-form-announcement-add-new`}
 						className="mvx-announcement-add-new"
@@ -2375,7 +2353,7 @@ class MVX_Workboard extends Component {
 									<div
 										className="mvx-multistatus-check-all"
 										onClick={(e) =>
-											this.handle_post_retrive_status(
+											this.handlePostRetriveStatus(
 												e,
 												'all',
 												'announcement'
@@ -2395,7 +2373,7 @@ class MVX_Workboard extends Component {
 									<div
 										className="mvx-multistatus-check-approve"
 										onClick={(e) =>
-											this.handle_post_retrive_status(
+											this.handlePostRetriveStatus(
 												e,
 												'publish',
 												'announcement'
@@ -2416,7 +2394,7 @@ class MVX_Workboard extends Component {
 									<div
 										className="mvx-multistatus-check-pending status-active"
 										onClick={(e) =>
-											this.handle_post_retrive_status(
+											this.handlePostRetriveStatus(
 												e,
 												'pending',
 												'announcement'
@@ -2445,7 +2423,7 @@ class MVX_Workboard extends Component {
 											.workboard26
 									}
 									onChange={(e) =>
-										this.handle_post_bulk_status(
+										this.handlePostBulkStatus(
 											e,
 											'announcement'
 										)
@@ -2462,7 +2440,7 @@ class MVX_Workboard extends Component {
 								options={appLocalizer.post_bulk_status}
 								isClearable={true}
 								onChange={(e) =>
-									this.handle_work_board_chenage(
+									this.handleWorkBoardChenage(
 										e,
 										'announcement'
 									)
@@ -2474,7 +2452,7 @@ class MVX_Workboard extends Component {
 								}
 								options={this.state.details_vendor}
 								isClearable={true}
-								onChange={this.handle_work_board_chenage}
+								onChange={this.handleWorkBoardChenage}
 							/>
 						</div>
 
@@ -2499,10 +2477,10 @@ class MVX_Workboard extends Component {
 					</div>
 				)}
 			</div>
-		) : name == 'knowladgebase' ? (
+		) : name === 'knowladgebase' ? (
 			<div className="mvx-module-grid">
 				{(get_current_name &&
-					get_current_name.get('create') == 'knowladgebase') ||
+					get_current_name.get('create') === 'knowladgebase') ||
 				get_current_name.get('knowladgebaseID') ? (
 					<div className="mvx-back-btn">
 						<Link
@@ -2525,7 +2503,7 @@ class MVX_Workboard extends Component {
 					</div>
 				)}
 				{get_current_name &&
-				get_current_name.get('create') == 'knowladgebase' ? (
+				get_current_name.get('create') === 'knowladgebase' ? (
 					<DynamicForm
 						key={`dynamic-form-knowladgebase-add-new`}
 						className="mvx-knowladgebase-add-new"
@@ -2574,7 +2552,7 @@ class MVX_Workboard extends Component {
 									<div
 										className="mvx-multistatus-check-all"
 										onClick={(e) =>
-											this.handle_post_retrive_status(
+											this.handlePostRetriveStatus(
 												e,
 												'all',
 												'knowladgebase'
@@ -2594,7 +2572,7 @@ class MVX_Workboard extends Component {
 									<div
 										className="mvx-multistatus-check-approve"
 										onClick={(e) =>
-											this.handle_post_retrive_status(
+											this.handlePostRetriveStatus(
 												e,
 												'publish',
 												'knowladgebase'
@@ -2615,7 +2593,7 @@ class MVX_Workboard extends Component {
 									<div
 										className="mvx-multistatus-check-pending status-active"
 										onClick={(e) =>
-											this.handle_post_retrive_status(
+											this.handlePostRetriveStatus(
 												e,
 												'pending',
 												'knowladgebase'
@@ -2644,7 +2622,7 @@ class MVX_Workboard extends Component {
 											.workboard28
 									}
 									onChange={(e) =>
-										this.handle_post_bulk_status(
+										this.handlePostBulkStatus(
 											e,
 											'knowladgebase'
 										)
@@ -2661,7 +2639,7 @@ class MVX_Workboard extends Component {
 								options={appLocalizer.post_bulk_status}
 								isClearable={true}
 								className="mvx-wrap-bulk-action"
-								onChange={this.handle_post_bulk_status}
+								onChange={this.handlePostBulkStatus}
 							/>
 							<Select
 								placeholder={
@@ -2670,7 +2648,7 @@ class MVX_Workboard extends Component {
 								options={this.state.details_vendor}
 								isClearable={true}
 								className="mvx-wrap-bulk-action"
-								onChange={this.handle_work_board_chenage}
+								onChange={this.handleWorkBoardChenage}
 							/>
 						</div>
 
@@ -2695,7 +2673,7 @@ class MVX_Workboard extends Component {
 					</div>
 				)}
 			</div>
-		) : name == 'store-review' ? (
+		) : name === 'store-review' ? (
 			<div className="mvx-module-grid">
 				<div className="mvx-search-and-multistatus-wrap">
 					<ul className="mvx-multistatus-ul">
@@ -2716,9 +2694,7 @@ class MVX_Workboard extends Component {
 							placeholder={
 								appLocalizer.workboard_string.workboard8
 							}
-							onChange={(e) =>
-								this.handle_search_vendor_review(e)
-							}
+							onChange={(e) => this.handleSearchVendorReview(e)}
 						/>
 					</div>
 				</div>
@@ -2728,7 +2704,7 @@ class MVX_Workboard extends Component {
 						options={appLocalizer.select_option_delete}
 						isClearable={true}
 						className="mvx-wrap-bulk-action"
-						onChange={this.handle_review_bulk_status}
+						onChange={this.handleReviewBulkStatus}
 					/>
 				</div>
 				<div className="mvx-backend-datatable-wrapper">
@@ -2746,7 +2722,7 @@ class MVX_Workboard extends Component {
 					)}
 				</div>
 			</div>
-		) : name == 'report-abuse' ? (
+		) : name === 'report-abuse' ? (
 			<div className="mvx-module-grid">
 				<div className="mvx-wrap-bulk-all-date">
 					<Select
@@ -2754,14 +2730,14 @@ class MVX_Workboard extends Component {
 						options={this.state.show_vendor_name}
 						isClearable={true}
 						className="mvx-wrap-bulk-action"
-						onChange={this.handle_vendor_search_abuse}
+						onChange={this.handleVendorSearchAbuse}
 					/>
 					<Select
 						placeholder={appLocalizer.workboard_string.workboard31}
 						options={this.state.product_list_option}
 						isClearable={true}
 						className="mvx-wrap-bulk-action"
-						onChange={this.handle_product_search_abuse}
+						onChange={this.handleProductSearchAbuse}
 					/>
 				</div>
 				<div className="mvx-backend-datatable-wrapper">
@@ -2779,7 +2755,7 @@ class MVX_Workboard extends Component {
 					)}
 				</div>
 			</div>
-		) : name == 'question-ans' ? (
+		) : name === 'question-ans' ? (
 			<div className="mvx-module-grid">
 				<div className="mvx-search-and-multistatus-wrap">
 					<ul className="mvx-multistatus-ul">
@@ -2807,7 +2783,7 @@ class MVX_Workboard extends Component {
 							placeholder={
 								appLocalizer.workboard_string.workboard32
 							}
-							onChange={(e) => this.handle_question_search(e)}
+							onChange={(e) => this.handleQuestionSearch(e)}
 						/>
 					</div>
 				</div>
@@ -2818,7 +2794,7 @@ class MVX_Workboard extends Component {
 						options={appLocalizer.question_selection_wordpboard}
 						isClearable={true}
 						className="mvx-wrap-bulk-action"
-						onChange={this.handle_question_bulk_status_change}
+						onChange={this.handleQuestionBulkStatusChange}
 					/>
 					<Select
 						placeholder={appLocalizer.workboard_string.workboard34}
@@ -2828,7 +2804,7 @@ class MVX_Workboard extends Component {
 						}
 						isClearable={true}
 						className="mvx-wrap-bulk-action"
-						onChange={this.handle_question_bulk_status_change}
+						onChange={this.handleQuestionBulkStatusChange}
 					/>
 				</div>
 
@@ -2859,4 +2835,4 @@ class MVX_Workboard extends Component {
 		);
 	}
 }
-export default MVX_Workboard;
+export default MVXworkboard;

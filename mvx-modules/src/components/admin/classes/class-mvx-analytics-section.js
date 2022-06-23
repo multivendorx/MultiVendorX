@@ -1,3 +1,4 @@
+/* global appLocalizer */
 import React, { Component } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
@@ -914,7 +915,7 @@ class App extends Component {
 
 							<div className="mvx-chart-graph-visible">
 								{!this.useQuery().get('type') ||
-								this.useQuery().get('type') == 'line' ? (
+								this.useQuery().get('type') === 'line' ? (
 									<ResponsiveContainer
 										width="100%"
 										height="100%"
@@ -1211,7 +1212,7 @@ class App extends Component {
 
 							<div className="mvx-chart-graph-visible">
 								{!this.useQuery().get('type') ||
-								this.useQuery().get('type') == 'line' ? (
+								this.useQuery().get('type') === 'line' ? (
 									<ResponsiveContainer aspect={3}>
 										<LineChart
 											data={

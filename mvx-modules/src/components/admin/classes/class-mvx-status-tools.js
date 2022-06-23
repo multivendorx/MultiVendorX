@@ -1,10 +1,9 @@
+/* global appLocalizer */
 import React, { Component } from 'react';
 import axios from 'axios';
 import { css } from '@emotion/react';
 import PuffLoader from 'react-spinners/PuffLoader';
-
 import { BrowserRouter as Router, useLocation } from 'react-router-dom';
-
 import TabSection from './class-mvx-page-tab';
 const override = css`
 	display: block;
@@ -31,7 +30,7 @@ class MVX_Status_Tools extends Component {
 		const set_index_data = this.state.store_index_data;
 
 		set_index_data[parent_index] =
-			set_index_data[parent_index] == 'false' ? 'true' : 'false';
+			set_index_data[parent_index] === 'false' ? 'true' : 'false';
 
 		this.setState({
 			store_index_data: set_index_data,
@@ -101,9 +100,9 @@ class MVX_Status_Tools extends Component {
 				? appLocalizer.mvx_all_backend_tab_list['status-tools'][0]
 						.modulename
 				: name),
-			name == 'version-control' ? (
+			name === 'version-control' ? (
 				''
-			) : name ==
+			) : name ===
 			  appLocalizer.mvx_all_backend_tab_list['status-tools'][0]
 					.modulename ? (
 				<div className="mvx-status-database-tools-content">
@@ -136,7 +135,7 @@ class MVX_Status_Tools extends Component {
 						)
 					)}
 				</div>
-			) : name ==
+			) : name ===
 			  appLocalizer.mvx_all_backend_tab_list['status-tools'][1]
 					.modulename ? (
 				<div className="mvx-status-tools-content">
@@ -192,7 +191,7 @@ class MVX_Status_Tools extends Component {
 														.length > 0 &&
 													this.state.store_index_data[
 														index_data
-													] == 'false'
+													] === 'false'
 														? 'false'
 														: 'true'
 												}
@@ -236,7 +235,7 @@ class MVX_Status_Tools extends Component {
 													.length > 0 &&
 												this.state.store_index_data[
 													index_data
-												] == 'false'
+												] === 'false'
 													? 'hidden'
 													: ''
 											}
