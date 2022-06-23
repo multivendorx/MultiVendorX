@@ -23,14 +23,14 @@
     transition: all 0.3s;
     padding: 1.1rem 1.6rem;
     border-radius: $border-radius;
-    line-height: 10rem;
+    // line-height: 10rem;
     font-size: 1.4rem;
     cursor: pointer;
     font-weight: 500;
-    color: #fff;
+    color: #fbfafc;
     &:hover{
         text-decoration: none;
-        color: #fff;
+        color: #fbfafc;
     }
   }
   @mixin add-announcement-btn {
@@ -701,12 +701,14 @@
               font-size: 2.4rem;
               background: #9f8ab9;
               border-radius: $border-radius;
-              color: #fff;
+              color: #fbfafc;
               padding: 1.2rem;
               font-weight: 400;
             }
             .mvx-pro-txt{
               padding-left: 2.4rem;
+              @include flexprops(start);
+              flex-direction: column;
               h2{
                 font-size: 1.8rem;
                 font-weight: 400;
@@ -714,6 +716,7 @@
               p{
                 font-size: 1.4rem;
                 font-weight: 100;
+                padding-bottom: 2.4rem;
               }
             }
           }
@@ -722,7 +725,7 @@
   }
   
   .mvx-setup-documentation{
-    padding-top: 10rem;
+    padding: 10.8rem 0;
     @include flexprops(start);
     justify-content: space-between;
     .mvx-setup-marketing-white-box{
@@ -830,6 +833,42 @@
         }
       }
     }
+  }
+  .mvx-upgrade-pro-section{
+    padding: 8.8rem 0;
+    @include flexprops(center);
+    flex-direction: column;
+    .mvx-dashboard-top-icon{
+      border-radius: 0.8rem;
+      padding: 1.6rem;
+      background-image: linear-gradient(to right, #3f1473, #5b1674, #721a75, #862174, #992b74, #a53072, #b13570, #bc3c6e, #c53e68, #ce4162, #d5455b, #db4b54);
+      span{
+        font-size: 4rem;
+        color: #f9f8fb;
+        font-weight: 500;
+      }
+    }
+    h2{
+      font-size: 2.8rem;
+      padding: 6.4rem 0 0.8rem;
+    }
+    p{
+      font-size: 1.4rem;
+      padding-bottom: 3.2rem;
+    }
+  }
+
+  .mvx-text-center{
+    display: grid;
+    place-items: center;
+    padding: 10.8rem 0;
+  }
+
+  .mvx-upgrade-pro-bg{
+    background-color: $fill-color;
+    border: $border;
+    border-radius: $border-radius;
+    margin-bottom: 10.8rem;
   }
   
   textarea, input[type=text], select, input, .default-input {

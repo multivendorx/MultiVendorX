@@ -774,13 +774,23 @@ a:focus {
   font-size: 2.4rem;
   background: #9f8ab9;
   border-radius: 0.4rem;
-  color: #fff;
+  color: #fbfafc;
   padding: 1.2rem;
   font-weight: 400;
 }
 
 .mvx-container .mvx-middle-container-wrapper .mvx-slider-content-main-wrapper .mvx-dashboard-slider .mvx-pro-txt {
   padding-left: 2.4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .mvx-container .mvx-middle-container-wrapper .mvx-slider-content-main-wrapper .mvx-dashboard-slider .mvx-pro-txt h2 {
@@ -791,10 +801,11 @@ a:focus {
 .mvx-container .mvx-middle-container-wrapper .mvx-slider-content-main-wrapper .mvx-dashboard-slider .mvx-pro-txt p {
   font-size: 1.4rem;
   font-weight: 100;
+  padding-bottom: 2.4rem;
 }
 
 .mvx-setup-documentation {
-  padding-top: 10rem;
+  padding: 10.8rem 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -984,6 +995,57 @@ a:focus {
   padding: 1.6rem;
 }
 
+.mvx-upgrade-pro-section {
+  padding: 8.8rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.mvx-upgrade-pro-section .mvx-dashboard-top-icon {
+  border-radius: 0.8rem;
+  padding: 1.6rem;
+  background-image: -webkit-gradient(linear, left top, right top, from(#3f1473), color-stop(#5b1674), color-stop(#721a75), color-stop(#862174), color-stop(#992b74), color-stop(#a53072), color-stop(#b13570), color-stop(#bc3c6e), color-stop(#c53e68), color-stop(#ce4162), color-stop(#d5455b), to(#db4b54));
+  background-image: linear-gradient(to right, #3f1473, #5b1674, #721a75, #862174, #992b74, #a53072, #b13570, #bc3c6e, #c53e68, #ce4162, #d5455b, #db4b54);
+}
+
+.mvx-upgrade-pro-section .mvx-dashboard-top-icon span {
+  font-size: 4rem;
+  color: #f9f8fb;
+  font-weight: 500;
+}
+
+.mvx-upgrade-pro-section h2 {
+  font-size: 2.8rem;
+  padding: 6.4rem 0 0.8rem;
+}
+
+.mvx-upgrade-pro-section p {
+  font-size: 1.4rem;
+  padding-bottom: 3.2rem;
+}
+
+.mvx-text-center {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  padding: 10.8rem 0;
+}
+
+.mvx-upgrade-pro-bg {
+  background-color: #fdfdfe;
+  border: 0.1rem solid #d4d1d9;
+  border-radius: 0.4rem;
+  margin-bottom: 10.8rem;
+}
+
 textarea, input[type=text], select, input, .default-input {
   color: #8e8b91;
   font-size: 1.4rem;
@@ -1101,16 +1163,15 @@ input[type=text]:focus {
   transition: all 0.3s;
   padding: 1.1rem 1.6rem;
   border-radius: 0.4rem;
-  line-height: 10rem;
   font-size: 1.4rem;
   cursor: pointer;
   font-weight: 500;
-  color: #fff;
+  color: #fbfafc;
 }
 
 .btn:hover {
   text-decoration: none;
-  color: #fff;
+  color: #fbfafc;
 }
 
 .mvx-backend-datatable-wrapper .rdt_Pagination {

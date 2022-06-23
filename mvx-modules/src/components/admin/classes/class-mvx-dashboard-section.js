@@ -288,7 +288,7 @@ class MVX_Dashboard extends Component {
 
 
             <div className='mvx-upgrade-pro-section'>
-              <div className="mvx-pro-title"><div className="mvx-dashboard-top-icon"><span>Pro</span></div></div>
+              <div className="mvx-dashboard-top-icon"><span>Pro</span></div>
               <h2>Get more by Switching to Pro</h2>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
               <a href="#" className="btn red-btn">Upgrade to Pro</a>
@@ -492,9 +492,9 @@ class MVX_Dashboard extends Component {
             </div>
 
 
-            <div className="mvx-upgrade-pro-section">
+            <div className="mvx-upgrade-pro-section mvx-upgrade-pro-bg">
               <div className="mvx-dashboard-top-icon"><span>Pro</span></div>
-              <h2>Get to Go?</h2>
+              <h2>Ready to Go?</h2>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
               <a href="#" className="btn red-btn">Upgrade to Pro</a>
             </div>
