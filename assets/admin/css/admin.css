@@ -1,30 +1,16 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  font-size: 62.5%;
-}
-
 /* fonts */
 @font-face {
-  font-family: 'mvx-admin-font';
+  font-family: "mvx-admin-font";
   src: url("../fonts/mvx-admin-font.eot?411a7m");
   src: url("../fonts/mvx-admin-font.eot?411a7m#iefix") format("embedded-opentype"), url("../fonts/mvx-admin-font.ttf?411a7m") format("truetype"), url("../fonts/mvx-admin-font.woff?411a7m") format("woff"), url("../fonts/mvx-admin-font.svg?411a7m#ico1") format("svg");
   font-weight: normal;
   font-style: normal;
 }
-
-/* map */
-/* vendor badge */
-/* map box */
-/* responsive */
 /* icon */
-[class^="icon-"],
+[class^=icon-],
 [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'mvx-admin-font' !important;
+  font-family: "mvx-admin-font" !important;
   speak: never;
   font-style: normal;
   font-weight: normal;
@@ -391,18 +377,16 @@ a:focus {
 
 /*********** Modules section *********************/
 @font-face {
-  font-family: 'mvx-module';
+  font-family: "mvx-module";
   src: url("../fonts/modules/mvx-module.eot?ayxl59");
   src: url("../fonts/modules/mvx-module.eot?ayxl59#iefix") format("embedded-opentype"), url("../fonts/modules/mvx-module.ttf?ayxl59") format("truetype"), url("../fonts/modules/mvx-module.woff?ayxl59") format("woff"), url("../fonts/modules/mvx-module.svg?ayxl59#mvx-module") format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
-
-[class^="module-"],
-[class*=" module-"] {
+[class^=module-], [class*=" module-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'mvx-module' !important;
+  font-family: "mvx-module" !important;
   speak: never;
   font-style: normal;
   font-weight: normal;
@@ -644,54 +628,36 @@ a:focus {
 
 /*icon end*/
 .mvx-header-wapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   padding: 0.8rem 2.4rem;
   border-bottom: 0.1rem solid #d4d1d9;
   background-color: #fdfdfe;
   position: relative;
 }
-
 .mvx-header-wapper .mvx-header-nav-right-section {
   margin-left: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
-
 .mvx-header-wapper .mvx-header-nav-right-section .nav-child-right {
   padding: 0.8rem;
   background-color: #f8ecf0;
   border-radius: 0.4rem;
   margin-left: 2.4rem;
 }
-
 .mvx-header-wapper .mvx-header-nav-left-section {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
-
 .mvx-header-wapper .mvx-header-nav-left-section .mvx-logo-img {
   padding-right: 1.2rem;
 }
-
 .mvx-header-wapper .mvx-header-nav-left-section .mvx-logo-title {
   font-size: 1.8rem;
   font-weight: 500;
   padding-left: 1.2rem;
 }
-
 .mvx-header-wapper .mvx-header-nav-left-section .mvx-header-section-nav-child-logo::after {
   position: absolute;
   content: "";
@@ -701,25 +667,19 @@ a:focus {
 }
 
 .mvx-header-search-section {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   padding-left: 1.4rem;
   border: 0.1rem solid #d4d1d9;
   border-radius: 0.4rem;
   background-color: transparent;
   color: #8e8b91;
 }
-
 .mvx-header-search-section input {
   line-height: 2.4;
   border: none;
   background-color: transparent;
 }
-
 .mvx-header-search-section input:focus {
   background-color: transparent;
 }
@@ -734,6 +694,12 @@ a:focus {
   color: #fdfdfe;
 }
 
+.color-btn {
+  background-color: #65438f;
+  line-height: 0;
+  padding: 0.8rem 2.4rem;
+}
+
 .border-btn {
   color: #000;
   line-height: 0;
@@ -742,47 +708,33 @@ a:focus {
 }
 
 .mvx-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: start;
+  align-items: start;
   background-color: #f2eff5;
   padding: 2.4rem;
 }
-
 .mvx-container .mvx-sidebar {
   padding-left: 2.4rem;
 }
-
 .mvx-container .mvx-middle-container-wrapper {
   width: 100%;
 }
-
 .mvx-container .mvx-middle-container-wrapper .mvx-dashboard-top-heading {
   font-size: 2.4rem;
   padding: 2.4rem 0;
   font-weight: 500;
   text-align: center;
 }
-
 .mvx-container .mvx-middle-container-wrapper .mvx-slider-content-main-wrapper {
   background-color: #fdfdfe;
   border: 0.1rem solid #d4d1d9;
   border-radius: 0.4rem;
   padding: 3.2rem;
 }
-
 .mvx-container .mvx-middle-container-wrapper .mvx-slider-content-main-wrapper .mvx-dashboard-slider {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: start;
+  align-items: start;
 }
-
 .mvx-container .mvx-middle-container-wrapper .mvx-slider-content-main-wrapper .mvx-dashboard-slider .mvx-dashboard-top-icon {
   font-size: 2.4rem;
   background: #9f8ab9;
@@ -791,34 +743,78 @@ a:focus {
   padding: 1.2rem;
   font-weight: 400;
 }
-
 .mvx-container .mvx-middle-container-wrapper .mvx-slider-content-main-wrapper .mvx-dashboard-slider .mvx-pro-txt {
   padding-left: 2.4rem;
 }
-
 .mvx-container .mvx-middle-container-wrapper .mvx-slider-content-main-wrapper .mvx-dashboard-slider .mvx-pro-txt h2 {
   font-size: 1.8rem;
   font-weight: 400;
 }
-
 .mvx-container .mvx-middle-container-wrapper .mvx-slider-content-main-wrapper .mvx-dashboard-slider .mvx-pro-txt p {
   font-size: 1.4rem;
   font-weight: 100;
 }
-
-.mvx-setup-documentation {
-  padding-top: 10rem;
+.mvx-container .mvx-tab-description-start {
+  text-align: center;
+  background-color: #fdfdfe;
+  border-radius: 0.4rem;
+  margin: 0 0 0.4rem 0.4rem;
+  border: 0.1rem solid #d4d1d9;
+  padding: 0.4rem;
+}
+.mvx-container .mvx-tab-name {
+  color: #181718;
+  line-height: 1.25rem;
+  padding-bottom: 1.2rem;
+}
+.mvx-container .mvx-current-tab-lists {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: start;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: 0 0 0.4rem 0.4rem;
+}
+.mvx-container .mvx-current-tab-lists li {
+  padding: 16px 24px;
+  border: 1px solid #d4d1d9;
+  display: block;
+  width: auto;
+  cursor: pointer;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  background: #f7f6f9;
+}
+.mvx-container .mvx-current-tab-lists li a {
+  line-height: 20px;
+  color: #181718;
+  text-decoration: none;
+}
+.mvx-container .mvx-current-tab-lists li a i {
+  padding-right: 8px;
+}
+.mvx-container .mvx-vertical-tabs .mvx-current-tab-lists {
+  float: left;
+  display: block;
+}
+.mvx-container .mvx-current-tab-lists li:last-child {
+  border-bottom: 1px solid #d4d1d9;
+}
+.mvx-container .mvx-current-tab-lists li:nth-child(4) {
+  border-radius: 0;
+}
+.mvx-container .mvx-current-tab-lists .active-current-tab {
+  border-right: 1px solid #f7f6f9;
+  background-color: #fdfdfe;
 }
 
+.mvx-setup-documentation {
+  padding-top: 10rem;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+}
 .mvx-setup-documentation .mvx-setup-marketing-white-box {
   background-color: #fdfdfe;
   border: 0.1rem solid #d4d1d9;
@@ -826,106 +822,57 @@ a:focus {
   padding: 3.2rem;
   width: 40%;
 }
-
 .mvx-setup-documentation .mvx-setup-marketing-white-box .mvx-block-title {
   font-size: 1.8rem;
   font-weight: 400;
 }
-
 .mvx-setup-documentation .mvx-setup-marketing-white-box .mvx-table-ul .mvx-align-items-center {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: start;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  align-items: start;
+  justify-content: space-between;
   padding: 3.2rem;
 }
-
 .mvx-setup-documentation .mvx-setup-marketing-white-box .mvx-table-ul .mvx-align-items-center .mvx-allign-li-txt span {
   color: #9f8ab9;
   padding-right: 2.4rem;
 }
-
-.mvx-setup-documentation .mvx-setup-marketing-white-box .mvx-table-ul .mvx-align-items-center .li-action .color-btn {
-  background-color: #65438f;
-  line-height: 0;
-  padding: 0.8rem 2.4rem;
-}
-
 .mvx-setup-documentation .mvx-setup-marketing-white-box .mvx-table-ul .mvx-align-items-center:hover {
   border: 0.1rem solid #65438f;
   border-radius: 0.4rem;
   padding: 3.2rem;
 }
-
 .mvx-setup-documentation .mvx-documentation-quick-link {
   width: 60%;
   padding-left: 2.4rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  align-items: center;
+  justify-content: space-between;
 }
-
 .mvx-setup-documentation .mvx-documentation-quick-link .mvx-documentation-support-forum {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  align-items: center;
+  flex-direction: column;
   background-color: #fdfdfe;
   width: 49%;
   padding: 6.4rem 0 3.2rem 0;
   border: 0.1rem solid #d4d1d9;
   border-radius: 0.4rem;
 }
-
 .mvx-setup-documentation .mvx-documentation-quick-link .mvx-documentation-support-forum figcaption {
   padding-top: 2.4rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  align-items: center;
+  flex-direction: column;
 }
-
 .mvx-setup-documentation .mvx-documentation-quick-link .mvx-documentation-support-forum figcaption div {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  align-items: center;
+  flex-direction: column;
   padding: 2.4rem 0 3.2rem;
 }
-
 .mvx-setup-documentation .mvx-documentation-quick-link .mvx-documentation-support-forum figcaption a:hover {
   text-decoration: none;
 }
-
 .mvx-setup-documentation .mvx-documentation-quick-link .mvx-quick-link-sec {
   background-color: #fdfdfe;
   border: 0.1rem solid #d4d1d9;
@@ -933,47 +880,14 @@ a:focus {
   padding: 3.2rem 6.4rem;
   margin-top: 3.2rem;
 }
-
 .mvx-setup-documentation .mvx-documentation-quick-link .mvx-quick-link-sec ul {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
 
 textarea, input[type=text], select, input, .default-input {
   color: #8e8b91;
   font-size: 1.4rem;
-}
-
-.mvx-addbtn {
-  background: #3f1473;
-  border-radius: 0.4rem;
-}
-
-.mvx-addbtn a {
-  color: #fdfdfe;
-}
-
-.mvx-addbtn a:hover {
-  color: #fdfdfe;
-  text-decoration: none;
-}
-
-.mvx-addbtn a i {
-  padding-right: 0.5rem;
-  font-size: 1.2rem;
-}
-
-.mvx-addbtn a:hover {
-  color: #fdfdfe;
-  text-decoration: none;
-}
-
-.mvx_addbtn_commission {
-  margin-left: auto;
 }
 
 .mvx-backend-datatable-wrapper {
@@ -982,8 +896,7 @@ textarea, input[type=text], select, input, .default-input {
 }
 
 input[type=text]:focus {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
 
 /** Start Settings Page Css **/
@@ -992,32 +905,19 @@ input[type=text]:focus {
 }
 
 .mvx-search-and-multistatus-wrap {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  align-items: center;
+  justify-content: space-between;
 }
-
 .mvx-search-and-multistatus-wrap .mvx-multistatus-ul {
   margin: 2rem 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
-
 .mvx-search-and-multistatus-wrap .mvx-multistatus-ul .mvx-multistatus-item {
   margin: 0;
   font-size: 1.3rem;
 }
-
 .mvx-search-and-multistatus-wrap .mvx-multistatus-ul .mvx-divider {
   width: 0.1rem;
   background-color: #181718;
@@ -1026,24 +926,15 @@ input[type=text]:focus {
 }
 
 .mvx-wrap-bulk-all-date {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
 
 /** Vendor Page Css **/
 .mvx-vendor .mvx-page-title {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
-
 .mvx-vendor .mvx-page-title p {
   font-size: 2.4rem;
   color: #181718;
@@ -1052,86 +943,67 @@ input[type=text]:focus {
 }
 
 .mvx-btn {
-  -webkit-transition: all 0.3s;
   transition: all 0.3s;
-  padding: 1.1rem 1.6rem;
-  border-radius: 0.4rem;
-  line-height: 10rem;
-  font-size: 1.4rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.2rem;
+  line-height: 0.8rem;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 400;
   color: #fff;
 }
-
 .mvx-btn:hover {
   text-decoration: none;
-  color: #fff;
 }
 
+/** datatable for all pages **/
 .mvx-backend-datatable-wrapper .rdt_Pagination {
   background: transparent;
   border: none;
   margin: 2.4rem 0;
 }
-
 .mvx-backend-datatable-wrapper .rdt_Pagination .fQmYxz {
   border: 0.1rem solid #d4d1d9;
   border-radius: 0.4rem;
   margin-left: 1rem;
   padding: 0 0.8rem;
 }
-
 .mvx-backend-datatable-wrapper .rdt_Pagination .fQmYxz .fWWeYy {
   background: none;
 }
-
 .mvx-backend-datatable-wrapper .rdt_Pagination .fQmYxz .fWWeYy:focus {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
-
 .mvx-backend-datatable-wrapper .rdt_Pagination .fQmYxz svg {
   top: 0.3rem;
   right: 0.8rem;
   color: #181718;
 }
-
 .mvx-backend-datatable-wrapper .rdt_Pagination .fQmYxz:hover {
   border: 0.1rem solid #3f1473;
 }
-
 .mvx-backend-datatable-wrapper .rdt_Pagination .kNbUsB .gPLhoV {
   border: 0.1rem solid #d4d1d9;
   border-radius: 0.4rem;
   margin-left: 1rem;
   width: 4rem;
   height: 3.2rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
-
 .mvx-backend-datatable-wrapper .rdt_Pagination .kNbUsB .gPLhoV svg {
   width: 2rem;
 }
-
 .mvx-backend-datatable-wrapper .rdt_Pagination .kNbUsB .gPLhoV:hover {
   border: 0.1rem solid #3f1473;
 }
-
 .mvx-backend-datatable-wrapper .rdt_Table {
   background: transparent;
 }
-
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableHead .rdt_TableHeadRow {
   border: 0.1rem solid #d4d1d9;
   margin-bottom: 0.4rem;
   border-radius: 0.4rem;
 }
-
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow {
   border: 0.1rem solid #d4d1d9;
   border-radius: 0.4rem;
@@ -1139,153 +1011,99 @@ input[type=text]:focus {
   min-height: 5rem;
   position: relative;
 }
-
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
-
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon div {
   margin-right: 1rem;
 }
-
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon div .mvxicon-hover-text {
   display: none;
 }
-
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon div:hover .mvxicon-hover-text {
   display: block;
   position: absolute;
   top: 0;
   right: 1rem;
 }
-
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon a {
   display: block;
   margin-right: 1rem;
-  -webkit-transition: ease 1s;
   transition: ease 1s;
 }
-
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon i {
   color: #3f1473;
 }
-
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow a {
   color: #3f1473;
   font-weight: 500;
 }
-
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow a:hover {
   text-decoration: none;
 }
-
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .fvAeSn img {
   border-radius: 0.4rem;
   margin-right: 1rem;
 }
-
-.mvx-backend-datatable-wrapper .rdt_Table input[type="checkbox"] {
+.mvx-backend-datatable-wrapper .rdt_Table input[type=checkbox] {
   border: 0.1rem solid #3f1473;
 }
 
-/** Pop Up **/
+/** list vendor page Pop Up **/
 .MuiDialog-paperScrollPaper .MuiDialogTitle-root {
   position: relative;
 }
-
 .MuiDialog-paperScrollPaper .MuiDialogTitle-root h2 {
   font-weight: 600;
 }
-
 .MuiDialog-paperScrollPaper .MuiDialogTitle-root h2 .mvx-module-dialog-title {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  align-items: center;
+  justify-content: space-between;
 }
-
 .MuiDialog-paperScrollPaper .MuiDialogTitle-root h2 .mvx-module-dialog-title i {
   font-size: 1.6rem;
 }
-
 .MuiDialog-paperScrollPaper .MuiDialogTitle-root .mvx-vendor-icon-name img {
   border-radius: 0.4rem;
   width: 3rem;
   height: 3rem;
   margin-right: 1rem;
 }
-
 .MuiDialog-paperScrollPaper .MuiDialogTitle-root .mvx-vendor-icon-name a {
   color: #181718;
   font-size: 1.6rem;
   text-decoration: none;
 }
-
 .MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content {
   width: 35rem;
   color: #5e5d60;
 }
-
 .MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content a {
   color: #5e5d60;
 }
-
 .MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-email-content-and-value-wrap {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   font-size: 1.6rem;
 }
-
 .MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-email-content-and-value-wrap .mvx-content-email {
   padding-right: 0.8rem;
 }
-
 .MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-textarea-content textarea {
   width: 100%;
   border: 0.1rem solid #d4d1d9;
   margin: 1rem 0;
   font-size: 1.4rem;
 }
-
-.MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-textarea-content textarea::-webkit-input-placeholder {
-  font-size: 1.4rem;
-}
-
-.MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-textarea-content textarea:-ms-input-placeholder {
-  font-size: 1.4rem;
-}
-
-.MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-textarea-content textarea::-ms-input-placeholder {
-  font-size: 1.4rem;
-}
-
 .MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-textarea-content textarea::placeholder {
   font-size: 1.4rem;
 }
-
 .MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-multi-action-buttons {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  align-items: center;
+  justify-content: space-between;
 }
+
 /*# sourceMappingURL=admin.css.map */
