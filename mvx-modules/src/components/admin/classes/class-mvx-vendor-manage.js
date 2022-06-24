@@ -11,7 +11,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Button from '@material-ui/core/Button';
+//import Button from '@material-ui/core/Button';
 import DynamicForm from '../../../DynamicForm';
 import HeaderSection from './class-mvx-page-header';
 import BannerSection from './class-mvx-page-banner';
@@ -620,7 +620,7 @@ class MVXBackendVendor extends React.Component {
 		) : (
 			<div className="mvx-general-wrapper mvx-vendor">
 				<HeaderSection />
-				<div className="mvx-container mvx-vendor-page-container">
+				<div className="mvx-container">
 					{!user_query.get('ID') ? (
 						user_query.get('name') === 'add-new' ? (
 							''
@@ -633,168 +633,160 @@ class MVXBackendVendor extends React.Component {
 												.vendors
 										}
 									</p>
-									<div className="mvx-addbtn">
-										<Link
-											to={`?page=mvx#&submenu=vendor&name=add-new`}
-											className="btn default-btn"
-										>
-											<i className="mvx-font icon-add"></i>
-											{
-												appLocalizer.vendor_page_string
-													.add_vendor
-											}
-										</Link>
-									</div>
+									<Link
+										to={`?page=mvx#&submenu=vendor&name=add-new`}
+										className="mvx-btn btn-purple"
+									>
+										<i className="mvx-font icon-add"></i>
+										{
+											appLocalizer.vendor_page_string
+												.add_vendor
+										}
+									</Link>
 								</div>
 
 								<div className="mvx-search-and-multistatus-wrap">
-									<div className="mvx-multistatus-sec">
-										<ul className="mvx-multistatus-ul">
-											<li className="mvx-multistatus-item">
-												<div
-													className="mvx-multistatus-check-all"
-													onClick={(e) =>
-														this.different_vendor_status(
-															e,
-															'all'
-														)
-													}
-												>
-													{
-														appLocalizer
-															.global_string.all
-													}{' '}
-													(
-													{
-														this.state
-															.data_all_vendor
-															.length
-													}
+									<ul className="mvx-multistatus-ul">
+										<li className="mvx-multistatus-item">
+											<div
+												className="mvx-multistatus-check-all"
+												onClick={(e) =>
+													this.different_vendor_status(
+														e,
+														'all'
 													)
-												</div>
-											</li>
-											<li className="mvx-multistatus-item mvx-divider"></li>
-											<li className="mvx-multistatus-item">
-												<div
-													className="mvx-multistatus-check-approve"
-													onClick={(e) =>
-														this.different_vendor_status(
-															e,
-															'approve'
-														)
-													}
-												>
-													{
-														appLocalizer
-															.vendor_page_string
-															.approve
-													}{' '}
-													(
-													{
-														this.state
-															.data_approve_vendor
-															.length
-													}
+												}
+											>
+												{
+													appLocalizer
+														.global_string.all
+												}{' '}
+												(
+												{
+													this.state
+														.data_all_vendor
+														.length
+												}
+												)
+											</div>
+										</li>
+										<li className="mvx-multistatus-item mvx-divider"></li>
+										<li className="mvx-multistatus-item">
+											<div
+												className="mvx-multistatus-check-approve"
+												onClick={(e) =>
+													this.different_vendor_status(
+														e,
+														'approve'
 													)
-												</div>
-											</li>
-											<li className="mvx-multistatus-item mvx-divider"></li>
-											<li className="mvx-multistatus-item">
-												<div
-													className="mvx-multistatus-check-pending status-active"
-													onClick={(e) =>
-														this.different_vendor_status(
-															e,
-															'pending'
-														)
-													}
-												>
-													{
-														appLocalizer
-															.global_string
-															.pending
-													}{' '}
-													(
-													{
-														this.state
-															.data_pending_vendor
-															.length
-													}
-													)
-												</div>
-											</li>
-											<li className="mvx-multistatus-item mvx-divider"></li>
-											<li className="mvx-multistatus-item">
-												<div
-													className="mvx-multistatus-check-rejected"
-													onClick={(e) =>
-														this.different_vendor_status(
-															e,
-															'rejected'
-														)
-													}
-												>
-													{
-														appLocalizer
-															.vendor_page_string
-															.reject
-													}{' '}
-													(
-													{
-														this.state
-															.data_rejected_vendor
-															.length
-													}
-													)
-												</div>
-											</li>
-										</ul>
-									</div>
-									<div className="mvx-searchbar-sec">
-										<div className="mvx-header-search-section">
-											<label>
-												<i className="mvx-font icon-search"></i>
-											</label>
-											<input
-												type="text"
-												placeholder={
+												}
+											>
+												{
 													appLocalizer
 														.vendor_page_string
-														.search_vendor
+														.approve
+												}{' '}
+												(
+												{
+													this.state
+														.data_approve_vendor
+														.length
 												}
-												onChange={
-													this.handlevendorsearch
+												)
+											</div>
+										</li>
+										<li className="mvx-multistatus-item mvx-divider"></li>
+										<li className="mvx-multistatus-item">
+											<div
+												className="mvx-multistatus-check-pending status-active"
+												onClick={(e) =>
+													this.different_vendor_status(
+														e,
+														'pending'
+													)
 												}
-											/>
-										</div>
-									</div>
-								</div>
-
-								<div className="mvx-wrap-bulk-all-date">
-									<div className="mvx-bulk-action-sec">
-										<Select
+											>
+												{
+													appLocalizer
+														.global_string
+														.pending
+												}{' '}
+												(
+												{
+													this.state
+														.data_pending_vendor
+														.length
+												}
+												)
+											</div>
+										</li>
+										<li className="mvx-multistatus-item mvx-divider"></li>
+										<li className="mvx-multistatus-item">
+											<div
+												className="mvx-multistatus-check-rejected"
+												onClick={(e) =>
+													this.different_vendor_status(
+														e,
+														'rejected'
+													)
+												}
+											>
+												{
+													appLocalizer
+														.vendor_page_string
+														.reject
+												}{' '}
+												(
+												{
+													this.state
+														.data_rejected_vendor
+														.length
+												}
+												)
+											</div>
+										</li>
+									</ul>
+									<div className="mvx-header-search-section">
+										<label>
+											<i className="mvx-font icon-search"></i>
+										</label>
+										<input
+											type="text"
 											placeholder={
-												appLocalizer.global_string
-													.bulk_action
+												appLocalizer
+													.vendor_page_string
+													.search_vendor
 											}
-											options={
-												appLocalizer.select_option_delete
-											}
-											isClearable={true}
-											className="mvx-module-section-list-data"
 											onChange={
-												this.handlevendoractionsearch
+												this.handlevendorsearch
 											}
 										/>
 									</div>
 								</div>
 
-								<div className="responsive-table">
-									<div className="mvx-backend-datatable-wrapper">
-										{this.state.columns_vendor_list &&
-										this.state.columns_vendor_list.length >
-											0 &&
-										this.state.vendor_loading ? (
+								<div className="mvx-wrap-bulk-all-date">
+									<Select
+										placeholder={
+											appLocalizer.global_string
+												.bulk_action
+										}
+										options={
+											appLocalizer.select_option_delete
+										}
+										isClearable={true}
+										className="mvx-wrap-bulk-action"
+										onChange={
+											this.handlevendoractionsearch
+										}
+									/>
+								</div>
+
+								
+									{this.state.columns_vendor_list &&
+									this.state.columns_vendor_list.length >
+										0 &&
+									this.state.vendor_loading ? (
+										<div className="mvx-backend-datatable-wrapper">
 											<DataTable
 												columns={
 													this.state
@@ -807,139 +799,139 @@ class MVXBackendVendor extends React.Component {
 												}
 												pagination
 											/>
-										) : (
-											<PuffLoader
-												css={override}
-												color={'#cd0000'}
-												size={100}
-												loading={true}
-											/>
-										)}
+										</div>
+									) : (
+										<PuffLoader
+											css={override}
+											color={'#cd0000'}
+											size={100}
+											loading={true}
+										/>
+									)}
 
-										{this.state.datavendor.map(
-											(data8, index8) => (
-												<Dialog
-													open={
-														this.state
-															.open_vendor_model_dynamic[
-															data8.ID
-														]
-													}
-													onClose={
-														this.handleClose_dynamic
-													}
-													aria-labelledby="form-dialog-title"
-												>
-													<DialogTitle id="form-dialog-title">
-														<div className="mvx-module-dialog-title">
-															<div
-																className="mvx-vendor-title"
-																dangerouslySetInnerHTML={{
-																	__html: data8.name,
-																}}
-															></div>
-															<i
-																className="mvx-font icon-no"
-																onClick={
-																	this
-																		.handleClose_dynamic
-																}
-															></i>
-														</div>
-													</DialogTitle>
-													<DialogContent>
-														<DialogContentText>
-															<div className="mvx-module-dialog-content">
-																<div className="mvx-email-content-and-value-wrap">
-																	<div className="mvx-content-email">
-																		{
-																			appLocalizer
-																				.vendor_page_string
-																				.email
-																		}{' '}
-																		:
-																	</div>
-																	<div className="mvx-content-email-value">
-																		{
-																			data8.email
-																		}
-																	</div>
+									{this.state.datavendor.map(
+										(data8, index8) => (
+											<Dialog
+												open={
+													this.state
+														.open_vendor_model_dynamic[
+														data8.ID
+													]
+												}
+												onClose={
+													this.handleClose_dynamic
+												}
+												aria-labelledby="form-dialog-title"
+											>
+												<DialogTitle id="form-dialog-title">
+													<div className="mvx-module-dialog-title">
+														<div
+															className="mvx-vendor-title"
+															dangerouslySetInnerHTML={{
+																__html: data8.name,
+															}}
+														></div>
+														<i
+															className="mvx-font icon-no"
+															onClick={
+																this
+																	.handleClose_dynamic
+															}
+														></i>
+													</div>
+												</DialogTitle>
+												<DialogContent>
+													<DialogContentText>
+														<div className="mvx-module-dialog-content">
+															<div className="mvx-email-content-and-value-wrap">
+																<div className="mvx-content-email">
+																	{
+																		appLocalizer
+																			.vendor_page_string
+																			.email
+																	}{' '}
+																	:
 																</div>
-
-																<div className="mvx-vendor-textarea-content">
-																	<textarea
-																		placeholder={
-																			appLocalizer
-																				.vendor_page_string
-																				.describe_yourself
-																		}
-																		onChange={(
-																			e
-																		) =>
-																			this.handle_rejected_vendor_description(
-																				e,
-																				data8.ID
-																			)
-																		}
-																	></textarea>
-																</div>
-
-																<div className="mvx-vendor-multi-action-buttons">
-																	<Button
-																		className="btn purple-btn button-large"
-																		onClick={() =>
-																			this.handle_Vendor_Approve(
-																				data8.ID
-																			)
-																		}
-																		color="primary"
-																	>
-																		{
-																			appLocalizer
-																				.vendor_page_string
-																				.approve
-																		}
-																	</Button>
-																	<Button
-																		className="btn red-btn button-large"
-																		onClick={() =>
-																			this.handle_Vendor_Reject(
-																				data8.ID
-																			)
-																		}
-																		color="primary"
-																	>
-																		{
-																			appLocalizer
-																				.vendor_page_string
-																				.reject
-																		}
-																	</Button>
-																	<Button
-																		className="btn border-btn button-large"
-																		onClick={() =>
-																			this.handle_Vendor_Edit(
-																				data8
-																			)
-																		}
-																		color="primary"
-																	>
-																		{
-																			appLocalizer
-																				.vendor_page_string
-																				.edit_vendor
-																		}
-																	</Button>
+																<div className="mvx-content-email-value">
+																	{
+																		data8.email
+																	}
 																</div>
 															</div>
-														</DialogContentText>
-													</DialogContent>
-													<DialogActions></DialogActions>
-												</Dialog>
-											)
-										)}
-									</div>
-								</div>
+
+															<div className="mvx-vendor-textarea-content">
+																<textarea
+																	placeholder={
+																		appLocalizer
+																			.vendor_page_string
+																			.describe_yourself
+																	}
+																	onChange={(
+																		e
+																	) =>
+																		this.handle_rejected_vendor_description(
+																			e,
+																			data8.ID
+																		)
+																	}
+																></textarea>
+															</div>
+
+															<div className="mvx-vendor-multi-action-buttons">
+																<button
+																	className="mvx-btn btn-purple"
+																	onClick={() =>
+																		this.handle_Vendor_Approve(
+																			data8.ID
+																		)
+																	}
+																	color="primary"
+																>
+																	{
+																		appLocalizer
+																			.vendor_page_string
+																			.approve
+																	}
+																</button>
+																<button
+																	className="mvx-btn btn-red"
+																	onClick={() =>
+																		this.handle_Vendor_Reject(
+																			data8.ID
+																		)
+																	}
+																	color="primary"
+																>
+																	{
+																		appLocalizer
+																			.vendor_page_string
+																			.reject
+																	}
+																</button>
+																<button
+																	className="mvx-btn border-btn"
+																	onClick={() =>
+																		this.handle_Vendor_Edit(
+																			data8
+																		)
+																	}
+																	color="primary"
+																>
+																	{
+																		appLocalizer
+																			.vendor_page_string
+																			.edit_vendor
+																	}
+																</button>
+															</div>
+														</div>
+													</DialogContentText>
+												</DialogContent>
+												<DialogActions></DialogActions>
+											</Dialog>
+										)
+									)}
+								
 							</div>
 						)
 					) : (
@@ -955,11 +947,9 @@ class MVXBackendVendor extends React.Component {
 	Childparent({ name }) {
 		return (
 			<div className="mvx-dynamic-form-content">
-				<div className="mvx-back-btn">
-					<Link className="btn" to={`?page=mvx#&submenu=vendor`}>
-						<i className="mvx-font icon-back"></i>Back
-					</Link>
-				</div>
+				<Link className="mvx-back-btn" to={`?page=mvx#&submenu=vendor`}>
+					<i className="mvx-font icon-back"></i>Back
+				</Link>
 				{name ? (
 					<DynamicForm
 						key={`dynamic-form-add-new`}
@@ -1168,35 +1158,35 @@ class MVXBackendVendor extends React.Component {
 										}
 									/>
 									<div id="wc-backbone-modal-dialog">
-										<Button
+										<button
 											onClick={() =>
 												this.handle_Vendor_Approve(
 													name.get('ID'),
 													'reload'
 												)
 											}
-											className="button button-primary"
+											className="mvx-btn btn-purple"
 										>
 											{
 												appLocalizer.vendor_page_string
 													.approve
 											}
-										</Button>
+										</button>
 
-										<Button
+										<button
 											onClick={() =>
 												this.handle_Vendor_Reject(
 													name.get('ID'),
 													'reload'
 												)
 											}
-											className="button button-primary vendor-reject-btn pull-right"
+											className="mvx-btn btn-purple"
 										>
 											{
 												appLocalizer.vendor_page_string
-													.approve
+													.reject
 											}
-										</Button>
+										</button>
 									</div>
 								</div>
 							) : (
@@ -1205,14 +1195,16 @@ class MVXBackendVendor extends React.Component {
 						</div>
 					) : name.get('name') === 'vendor-followers' ? (
 						this.state.datafollowers_loader ? (
-							<DataTable
-								columns={
-									this.state.columns_vendor_followers_list
-								}
-								data={this.state.datafollowers}
-								selectableRows
-								pagination
-							/>
+							<div className="mvx-backend-datatable-wrapper">
+								<DataTable
+									columns={
+										this.state.columns_vendor_followers_list
+									}
+									data={this.state.datafollowers}
+									selectableRows
+									pagination
+								/>
+							</div>
 						) : (
 							<PuffLoader
 								css={override}
@@ -1398,7 +1390,7 @@ class MVXBackendVendor extends React.Component {
 														<tfoot>
 															<tr>
 																<td>
-																	<Button
+																	<button
 																		onClick={(
 																			e
 																		) =>
@@ -1406,14 +1398,14 @@ class MVXBackendVendor extends React.Component {
 																				e
 																			)
 																		}
-																		className="button mvx-shipping-zone-show-method wc-shipping-zone-add-method"
+																		className="mvx-btn btn-purple"
 																	>
 																		{
 																			appLocalizer
 																				.vendor_page_string
 																				.shipping_methods
 																		}
-																	</Button>
+																	</button>
 																</td>
 															</tr>
 														</tfoot>
@@ -1483,7 +1475,7 @@ class MVXBackendVendor extends React.Component {
 																			<td>
 																				<div className="mvx-actions">
 																					<span className="edit">
-																						<Button
+																						<button
 																							onClick={(
 																								e
 																							) =>
@@ -1493,17 +1485,17 @@ class MVXBackendVendor extends React.Component {
 																									index
 																								)
 																							}
-																							className="button mvx-shipping-zone-show-method wc-shipping-zone-add-method"
+																							className="mvx-btn btn-purple"
 																						>
 																							{
 																								appLocalizer
 																									.vendor_page_string
 																									.edit
 																							}
-																						</Button>
+																						</button>
 																					</span>
 																					<span className="delete">
-																						<Button
+																						<button
 																							onClick={(
 																								e
 																							) =>
@@ -1519,14 +1511,14 @@ class MVXBackendVendor extends React.Component {
 																									)
 																								)
 																							}
-																							className="button mvx-shipping-zone-show-method wc-shipping-zone-add-method"
+																							className="mvx-btn btn-purple"
 																						>
 																							{
 																								appLocalizer
 																									.vendor_page_string
 																									.delete
 																							}
-																						</Button>
+																						</button>
 																					</span>
 																				</div>
 																			</td>
@@ -1837,19 +1829,19 @@ class MVXBackendVendor extends React.Component {
 																					</DialogContentText>
 																				</DialogContent>
 																				<DialogActions>
-																					<Button
+																					<button
 																						onClick={
 																							this
 																								.handlechildClose
 																						}
-																						color="primary"
+																						className="mvx-btn btn-purple"
 																					>
 																						{
 																							appLocalizer
 																								.global_string
 																								.save_changes
 																						}
-																					</Button>
+																					</button>
 																				</DialogActions>
 																			</Dialog>
 																		</tr>
@@ -1921,16 +1913,16 @@ class MVXBackendVendor extends React.Component {
 											</DialogContentText>
 										</DialogContent>
 										<DialogActions>
-											<Button
+											<button
 												onClick={this.handleClose}
-												color="primary"
+												className="mvx-btn btn-purple"
 											>
 												{
 													appLocalizer
 														.vendor_page_string
 														.add_shipping_methods
 												}
-											</Button>
+											</button>
 										</DialogActions>
 									</Dialog>
 								</div>
@@ -1967,15 +1959,17 @@ class MVXBackendVendor extends React.Component {
 									this.state.columns_vendor_zone_list &&
 									this.state.columns_vendor_zone_list.length >
 										0 ? (
-										<DataTable
-											columns={
-												this.state
-													.columns_vendor_zone_list
-											}
-											data={this.state.data_zone_shipping}
-											selectableRows
-											pagination
-										/>
+										<div className="mvx-backend-datatable-wrapper">
+											<DataTable
+												columns={
+													this.state
+														.columns_vendor_zone_list
+												}
+												data={this.state.data_zone_shipping}
+												selectableRows
+												pagination
+											/>
+										</div>
 									) : (
 										''
 									)

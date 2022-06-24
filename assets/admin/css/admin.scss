@@ -671,9 +671,28 @@
   }
   // header end
   // dashboard start
-  .red-btn{
+
+  //color button work
+  .btn-red{
     background-color: #e35047;
   }
+  .btn-purple {
+    background-color: #3f1473;
+    border: none;
+    color: $fill-color;
+  }
+  .color-btn{
+    background-color: #65438f;
+    line-height: 0;
+    padding: 0.8rem 2.4rem;
+  }
+
+  .border-btn{
+    color: #000;
+    line-height: 0;
+    border: 0.1rem solid #65438f;
+    padding: 0.8rem 1.2rem;
+}
   
   .mvx-container {
     @include flexprops(start);
@@ -744,19 +763,6 @@
             span{
                 color: #9f8ab9;
                 padding-right: 2.4rem;
-            }
-          }
-          .li-action{
-            .color-btn{
-              background-color: #65438f;
-              line-height: 0;
-              padding: 0.8rem 2.4rem;
-            }
-            .border-btn{
-                color: #000;
-                line-height: 0;
-                border: 0.1rem solid #65438f;
-                padding: 0.8rem 1.2rem;
             }
           }
           &:hover{
@@ -840,29 +846,24 @@
   .mvx-search-and-multistatus-wrap {
       @include flexprops(center);
       justify-content: space-between;
-      .mvx-multistatus-sec {
-          .mvx-multistatus-ul {
-              margin: 2rem 0;
-              @include flexprops(center);
-              .mvx-multistatus-item {
-                  margin: 0;
-                  font-size: 1.3rem;
-              }
-              .mvx-divider {
-                  width: 0.1rem;
-                  background-color: #181718;
-                  margin: 0 0.8rem;
-                  height: 1.6rem;
-              }
-          }
-      }
+        .mvx-multistatus-ul {
+            margin: 2rem 0;
+            @include flexprops(center);
+            .mvx-multistatus-item {
+                margin: 0;
+                font-size: 1.3rem;
+            }
+            .mvx-divider {
+                width: 0.1rem;
+                background-color: #181718;
+                margin: 0 0.8rem;
+                height: 1.6rem;
+            }
+        }
   }
   
   .mvx-wrap-bulk-all-date {
       @include flexprops(center);
-      & .mvx-bulk-action-sec {
-          margin-right: 0.7rem;
-      }
   }
   
   /** Vendor Page Css **/
@@ -878,7 +879,7 @@
     }
   }
   
-  .btn {
+  .mvx-btn {
     @include button;
   }
   
@@ -886,6 +887,7 @@
   //     position: relative;
   // }
   
+  /** datatable for all pages **/
   .mvx-backend-datatable-wrapper {
     .rdt_Pagination{
       background: transparent;
@@ -989,7 +991,7 @@
       }
     }
   }
-  /** Pop Up **/
+  /** list vendor page Pop Up **/
   .MuiDialog-paperScrollPaper {
     .MuiDialogTitle-root {
       position: relative;
@@ -1045,21 +1047,6 @@
         .mvx-vendor-multi-action-buttons {
           @include flexprops(center);
           justify-content: space-between;
-          .MuiButton-textPrimary {
-            border: $border;
-            border-radius: $border-radius;
-            color: $paragraph-color;
-          }
-          .purple-btn {
-            background-color: #3f1473;
-            border: none;
-            color: $fill-color;
-          }
-          .red-btn {
-            background-color: #e35047;
-            border: none;
-            color: $fill-color;
-          }
         }
       }
     }

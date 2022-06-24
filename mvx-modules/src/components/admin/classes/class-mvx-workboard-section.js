@@ -1379,10 +1379,8 @@ class MVXworkboard extends Component {
 				{/* Pending Vendor's product approval work done */}
 				<div className="mvx-todo-status-check">
 					<div className="mvx-text-with-line-wrapper">
-						<div className="mvx-report-text">
-							<span>
-								{appLocalizer.workboard_string.workboard1}
-							</span>
+						<div className="mvx-text-with-right-side-line">
+							{appLocalizer.workboard_string.workboard1}
 						</div>
 						<div className="mvx-select-all-bulk-wrap">
 							<div className="mvx-select-all-checkbox">
@@ -1406,6 +1404,7 @@ class MVXworkboard extends Component {
 								}
 								options={appLocalizer.task_board_bulk_status}
 								isClearable={true}
+								className="mvx-wrap-bulk-action"
 								onChange={(e) =>
 									this.handleTaskBoardBulkChenage(
 										e,
@@ -1561,10 +1560,8 @@ class MVXworkboard extends Component {
 				{/* Pending Vendor approval work done */}
 				<div className="mvx-todo-status-check">
 					<div className="mvx-text-with-line-wrapper">
-						<div className="mvx-report-text">
-							<span>
-								{appLocalizer.workboard_string.workboard6}
-							</span>
+						<div className="mvx-text-with-right-side-line">
+							{appLocalizer.workboard_string.workboard6}
 						</div>
 						<div className="mvx-select-all-bulk-wrap">
 							<div className="mvx-select-all-checkbox">
@@ -1589,6 +1586,7 @@ class MVXworkboard extends Component {
 									appLocalizer.global_string.bulk_action
 								}
 								options={appLocalizer.task_board_bulk_status}
+								className="mvx-wrap-bulk-action"
 								isClearable={true}
 								onChange={(e) =>
 									this.handleTaskBoardBulkChenage(
@@ -1718,10 +1716,8 @@ class MVXworkboard extends Component {
 				{/* Pending Vendor's coupon approval work done */}
 				<div className="mvx-todo-status-check">
 					<div className="mvx-text-with-line-wrapper">
-						<div className="mvx-report-text">
-							<span>
-								{appLocalizer.workboard_string.workboard10}
-							</span>
+						<div className="mvx-text-with-right-side-line">
+							{appLocalizer.workboard_string.workboard10}
 						</div>
 						<div className="mvx-select-all-bulk-wrap">
 							<div className="mvx-select-all-checkbox">
@@ -1746,6 +1742,7 @@ class MVXworkboard extends Component {
 									appLocalizer.global_string.bulk_action
 								}
 								options={appLocalizer.task_board_bulk_status}
+								className="mvx-wrap-bulk-action"
 								isClearable={true}
 								onChange={(e) =>
 									this.handleTaskBoardBulkChenage(
@@ -1890,10 +1887,8 @@ class MVXworkboard extends Component {
 				{/* Pending tranasction approval work done */}
 				<div className="mvx-todo-status-check">
 					<div className="mvx-text-with-line-wrapper">
-						<div className="mvx-report-text">
-							<span>
-								{appLocalizer.workboard_string.workboard13}
-							</span>
+						<div className="mvx-text-with-right-side-line">
+							{appLocalizer.workboard_string.workboard13}
 						</div>
 						<div className="mvx-select-all-bulk-wrap">
 							<div className="mvx-select-all-checkbox">
@@ -1920,6 +1915,7 @@ class MVXworkboard extends Component {
 								}
 								options={appLocalizer.task_board_bulk_status}
 								isClearable={true}
+								className="mvx-wrap-bulk-action"
 								onChange={(e) =>
 									this.handleTaskBoardBulkChenage(
 										e,
@@ -2080,10 +2076,8 @@ class MVXworkboard extends Component {
 				{/* Pending question approval work done */}
 				<div className="mvx-todo-status-check">
 					<div className="mvx-text-with-line-wrapper">
-						<div className="mvx-report-text">
-							<span>
-								{appLocalizer.workboard_string.workboard19}
-							</span>
+						<div className="mvx-text-with-right-side-line">
+							{appLocalizer.workboard_string.workboard19}
 						</div>
 						<div className="mvx-select-all-bulk-wrap">
 							<div className="mvx-select-all-checkbox">
@@ -2109,6 +2103,7 @@ class MVXworkboard extends Component {
 								}
 								options={appLocalizer.task_board_bulk_status}
 								isClearable={true}
+								className="mvx-wrap-bulk-action"
 								onChange={(e) =>
 									this.handleTaskBoardBulkChenage(
 										e,
@@ -2284,25 +2279,21 @@ class MVXworkboard extends Component {
 				{(get_current_name &&
 					get_current_name.get('create') === 'announcement') ||
 				get_current_name.get('AnnouncementID') ? (
-					<div className="mvx-back-btn">
-						<Link
-							className="btn"
-							to={`?page=mvx#&submenu=work-board&name=announcement`}
-						>
-							<i className="mvx-font icon-back"></i>
-							{appLocalizer.global_string.back}
-						</Link>
-					</div>
+					<Link
+						className="mvx-back-btn"
+						to={`?page=mvx#&submenu=work-board&name=announcement`}
+					>
+						<i className="mvx-font icon-back"></i>
+						{appLocalizer.global_string.back}
+					</Link>
 				) : (
-					<div className="mvx-table-text-and-add-wrap mvx-addbtn">
-						<Link
-							className="btn"
-							to={`?page=mvx#&submenu=work-board&name=announcement&create=announcement`}
-						>
-							<i className="mvx-font icon-add"></i>
-							{appLocalizer.workboard_string.workboard25}
-						</Link>
-					</div>
+					<Link
+						className="mvx-btn btn-purple"
+						to={`?page=mvx#&submenu=work-board&name=announcement&create=announcement`}
+					>
+						<i className="mvx-font icon-add"></i>
+						{appLocalizer.workboard_string.workboard25}
+					</Link>
 				)}
 
 				{get_current_name &&
@@ -2412,7 +2403,7 @@ class MVXworkboard extends Component {
 								</li>
 							</ul>
 
-							<div className="mvx-header-search-section mvx-searchbar-sec">
+							<div className="mvx-header-search-section">
 								<label>
 									<i className="mvx-font icon-search"></i>
 								</label>
@@ -2439,6 +2430,7 @@ class MVXworkboard extends Component {
 								}
 								options={appLocalizer.post_bulk_status}
 								isClearable={true}
+								className="mvx-wrap-bulk-action"
 								onChange={(e) =>
 									this.handleWorkBoardChenage(
 										e,
@@ -2450,15 +2442,16 @@ class MVXworkboard extends Component {
 								placeholder={
 									appLocalizer.global_string.all_dates
 								}
+								className="mvx-wrap-bulk-action"
 								options={this.state.details_vendor}
 								isClearable={true}
 								onChange={this.handleWorkBoardChenage}
 							/>
 						</div>
 
-						<div className="mvx-backend-datatable-wrapper">
-							{this.state.columns_announcement_new &&
-							this.state.columns_announcement_new.length > 0 ? (
+						{this.state.columns_announcement_new &&
+						this.state.columns_announcement_new.length > 0 ? (
+							<div className="mvx-backend-datatable-wrapper">
 								<DataTable
 									columns={
 										this.state.columns_announcement_new
@@ -2470,10 +2463,11 @@ class MVXworkboard extends Component {
 									}
 									pagination
 								/>
-							) : (
-								''
-							)}
-						</div>
+							</div>
+						) : (
+							''
+						)}
+						
 					</div>
 				)}
 			</div>
@@ -2482,25 +2476,21 @@ class MVXworkboard extends Component {
 				{(get_current_name &&
 					get_current_name.get('create') === 'knowladgebase') ||
 				get_current_name.get('knowladgebaseID') ? (
-					<div className="mvx-back-btn">
-						<Link
-							className="btn"
-							to={`?page=mvx#&submenu=work-board&name=knowladgebase`}
-						>
-							<i className="mvx-font icon-back"></i>
-							{appLocalizer.global_string.back}
-						</Link>
-					</div>
+					<Link
+						className="mvx-back-btn"
+						to={`?page=mvx#&submenu=work-board&name=knowladgebase`}
+					>
+						<i className="mvx-font icon-back"></i>
+						{appLocalizer.global_string.back}
+					</Link>
 				) : (
-					<div className="mvx-table-text-and-add-wrap mvx-addbtn">
-						<Link
-							className="btn"
-							to={`?page=mvx#&submenu=work-board&name=knowladgebase&create=knowladgebase`}
-						>
-							<i className="mvx-font icon-add"></i>
-							{appLocalizer.workboard_string.workboard27}
-						</Link>
-					</div>
+					<Link
+						className="mvx-btn btn-purple"
+						to={`?page=mvx#&submenu=work-board&name=knowladgebase&create=knowladgebase`}
+					>
+						<i className="mvx-font icon-add"></i>
+						{appLocalizer.workboard_string.workboard27}
+					</Link>
 				)}
 				{get_current_name &&
 				get_current_name.get('create') === 'knowladgebase' ? (
@@ -2611,7 +2601,7 @@ class MVXworkboard extends Component {
 								</li>
 							</ul>
 
-							<div className="mvx-header-search-section mvx-searchbar-sec">
+							<div className="mvx-header-search-section">
 								<label>
 									<i className="mvx-font icon-search"></i>
 								</label>
@@ -2652,9 +2642,9 @@ class MVXworkboard extends Component {
 							/>
 						</div>
 
-						<div className="mvx-backend-datatable-wrapper">
-							{this.state.columns_knowledgebase_new &&
-							this.state.columns_knowledgebase_new.length > 0 ? (
+						{this.state.columns_knowledgebase_new &&
+						this.state.columns_knowledgebase_new.length > 0 ? (
+							<div className="mvx-backend-datatable-wrapper">
 								<DataTable
 									columns={
 										this.state.columns_knowledgebase_new
@@ -2666,10 +2656,11 @@ class MVXworkboard extends Component {
 									}
 									pagination
 								/>
-							) : (
-								''
-							)}
-						</div>
+							</div>
+						) : (
+							''
+						)}
+						
 					</div>
 				)}
 			</div>
@@ -2685,7 +2676,7 @@ class MVXworkboard extends Component {
 						</li>
 						<li clasName="mvx-multistatus-item mvx-divider"></li>
 					</ul>
-					<div className="mvx-header-search-section mvx-searchbar-sec">
+					<div className="mvx-header-search-section">
 						<label>
 							<i className="mvx-font icon-search"></i>
 						</label>
@@ -2707,9 +2698,10 @@ class MVXworkboard extends Component {
 						onChange={this.handleReviewBulkStatus}
 					/>
 				</div>
-				<div className="mvx-backend-datatable-wrapper">
-					{this.state.columns_store_review &&
-					this.state.columns_store_review.length > 0 ? (
+				
+				{this.state.columns_store_review &&
+				this.state.columns_store_review.length > 0 ? (
+					<div className="mvx-backend-datatable-wrapper">
 						<DataTable
 							columns={this.state.columns_store_review}
 							data={this.state.list_of_store_review}
@@ -2717,10 +2709,11 @@ class MVXworkboard extends Component {
 							onSelectedRowsChange={this.handleselectreviews}
 							pagination
 						/>
-					) : (
-						''
-					)}
-				</div>
+					</div>
+				) : (
+					''
+				)}
+				
 			</div>
 		) : name === 'report-abuse' ? (
 			<div className="mvx-module-grid">
@@ -2740,9 +2733,10 @@ class MVXworkboard extends Component {
 						onChange={this.handleProductSearchAbuse}
 					/>
 				</div>
-				<div className="mvx-backend-datatable-wrapper">
-					{this.state.columns_report_abuse &&
-					this.state.columns_report_abuse.length > 0 ? (
+				
+				{this.state.columns_report_abuse &&
+				this.state.columns_report_abuse.length > 0 ? (
+					<div className="mvx-backend-datatable-wrapper">
 						<DataTable
 							columns={this.state.columns_report_abuse}
 							data={this.state.list_of_report_abuse}
@@ -2750,10 +2744,11 @@ class MVXworkboard extends Component {
 							onSelectedRowsChange={this.handleselectabuse}
 							pagination
 						/>
-					) : (
-						''
-					)}
-				</div>
+					</div>
+				) : (
+					''
+				)}
+				
 			</div>
 		) : name === 'question-ans' ? (
 			<div className="mvx-module-grid">
@@ -2774,7 +2769,7 @@ class MVXworkboard extends Component {
 						</li>
 					</ul>
 
-					<div className="mvx-header-search-section mvx-searchbar-sec">
+					<div className="mvx-header-search-section">
 						<label>
 							<i className="mvx-font icon-search"></i>
 						</label>
@@ -2808,19 +2803,19 @@ class MVXworkboard extends Component {
 					/>
 				</div>
 
-				<div className="mvx-backend-datatable-wrapper">
-					{this.state.columns_questions_new &&
-					this.state.columns_questions_new.length > 0 ? (
+				{this.state.columns_questions_new &&
+				this.state.columns_questions_new.length > 0 ? (
+					<div className="mvx-backend-datatable-wrapper">
 						<DataTable
 							columns={this.state.columns_questions_new}
 							data={this.state.list_of_publish_question}
 							selectableRows
 							pagination
 						/>
-					) : (
-						''
-					)}
-				</div>
+					</div>
+				) : (
+					''
+				)}
 			</div>
 		) : (
 			''

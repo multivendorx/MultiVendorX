@@ -18,7 +18,6 @@ class MVX_Status_Tools extends Component {
 			list_of_system_info_copy_data: '',
 			store_index_data: [],
 		};
-
 		this.QueryParamsDemo = this.QueryParamsDemo.bind(this);
 		this.useQuery = this.useQuery.bind(this);
 		this.Child = this.Child.bind(this);
@@ -28,7 +27,6 @@ class MVX_Status_Tools extends Component {
 
 	open_closed_system_info(e, index, parent_index) {
 		const set_index_data = this.state.store_index_data;
-
 		set_index_data[parent_index] =
 			set_index_data[parent_index] === 'false' ? 'true' : 'false';
 
@@ -110,8 +108,8 @@ class MVX_Status_Tools extends Component {
 						(list_tools, index_tools) => (
 							<div className="mvx-vendor-transients">
 								<div className="mvx-text-with-line-wrapper">
-									<div className="mvx-report-text">
-										<span>{list_tools.headline_text}</span>
+									<div className="mvx-text-with-right-side-line">
+										{list_tools.headline_text}
 									</div>
 								</div>
 								<div className="mvx-vendor-transients-description">
@@ -120,7 +118,7 @@ class MVX_Status_Tools extends Component {
 								<div className="mvx-vendor-transients-button">
 									<button
 										type="button"
-										className="btn border-btn"
+										className="mvx-btn btn-purple"
 										onClick={(e) =>
 											this.handle_tools_triggers(
 												e,
@@ -153,7 +151,7 @@ class MVX_Status_Tools extends Component {
 						<div className="site-health-copy-buttons">
 							<button
 								type="button"
-								className="btn border-btn copy-button"
+								className="mvx-btn btn-purple copy-button"
 								data-clipboard-text={
 									this.state.list_of_system_info_copy_data
 								}
@@ -290,7 +288,7 @@ class MVX_Status_Tools extends Component {
 					<div className="site-health-copy-buttons">
 						<button
 							type="button"
-							className="btn border-btn copy-button"
+							className="mvx-btn btn-purple copy-button"
 							data-clipboard-text={appLocalizer.errors_log}
 						>
 							{

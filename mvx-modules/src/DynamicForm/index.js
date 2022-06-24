@@ -1194,7 +1194,7 @@ export default class DynamicForm extends React.Component {
 						/>
 						<button
 							{...props}
-							className="mvx-upload-button-class"
+							className="mvx-btn btn-purple"
 							type="button"
 							onClick={(e) => {
 								this.runUploader(e, target, index);
@@ -2234,7 +2234,7 @@ export default class DynamicForm extends React.Component {
 					{prop_submitbutton ? (
 						<div className="mvx-form-actions">
 							<button
-								className="button-secondary"
+								className="mvx-btn btn-purple"
 								disabled={this.state.from_loading}
 								type="submit"
 							>

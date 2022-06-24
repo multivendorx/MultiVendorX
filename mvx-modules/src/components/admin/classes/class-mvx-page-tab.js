@@ -1,5 +1,8 @@
 import React from 'react';
-import { BrowserRouter as Link } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Link,
+} from "react-router-dom";
 import HeaderSection from './class-mvx-page-header';
 import BannerSection from './class-mvx-page-banner';
 
@@ -20,7 +23,6 @@ export default class TabSection extends React.Component {
 		const query_name_modified = this.props.vendor
 			? query_name.get('name')
 			: query_name;
-
 		const TabUI = model.map((m, index) => {
 			return query_name_modified === m.modulename ? (
 				<div className="mvx-tab-description-start">

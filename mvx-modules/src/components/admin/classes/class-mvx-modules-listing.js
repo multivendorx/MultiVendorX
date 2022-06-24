@@ -42,7 +42,7 @@ class MVX_Module_Listing extends Component {
 			this.mvx_search_different_module_status.bind(this);
 	}
 
-	mvx_search_different_module_status(e, status) {
+	mvx_search_different_module_status(status) {
 		// multiple module status
 		axios
 			.get(
@@ -98,13 +98,13 @@ class MVX_Module_Listing extends Component {
 	}
 
 	// popup close for paid module
-	handleClose(e) {
+	handleClose() {
 		this.setState({
 			open_model: false,
 		});
 	}
 	// popup close for required plugin inactive popup
-	handleClose_dynamic(e) {
+	handleClose_dynamic() {
 		const add_module_false = new Array(this.state.items.length).fill(false);
 		this.setState({
 			open_model_dynamic: add_module_false,
@@ -184,12 +184,11 @@ class MVX_Module_Listing extends Component {
 
 						<div className="mvx-search-and-multistatus-wrap">
 							<ul className="mvx-multistatus-ul">
-								<li className="mvx-multistatus-item mvx-totalmodule-text">
+								<li className="mvx-multistatus-item">
 									<div
 										className="mvx-total-module-name-and-count"
 										onClick={(e) =>
 											this.mvx_search_different_module_status(
-												e,
 												'all'
 											)
 										}
@@ -210,7 +209,6 @@ class MVX_Module_Listing extends Component {
 									<Button
 										onClick={(e) =>
 											this.mvx_search_different_module_status(
-												e,
 												'active'
 											)
 										}
@@ -226,7 +224,6 @@ class MVX_Module_Listing extends Component {
 									<Button
 										onClick={(e) =>
 											this.mvx_search_different_module_status(
-												e,
 												'inactive'
 											)
 										}
@@ -238,7 +235,7 @@ class MVX_Module_Listing extends Component {
 									</Button>
 								</li>
 							</ul>
-							<div className="mvx-header-search-section mvx-searchbar-sec">
+							<div className="mvx-header-search-section">
 								<label>
 									<i className="mvx-font icon-search"></i>
 								</label>
@@ -279,8 +276,8 @@ class MVX_Module_Listing extends Component {
 							this.state.items.map((student1, index1) => (
 								<div className="mvx-module-list-start">
 									<div className="mvx-module-list-container">
-										<div className="mvx-report-text">
-											<span>{student1.label}</span>
+										<div className="mvx-text-with-right-side-line">
+											{student1.label}
 										</div>
 
 										<div className="mvx-module-option-row">
@@ -371,14 +368,14 @@ class MVX_Module_Listing extends Component {
 																		)
 																	)}
 															</ul>
-															<div className="mvx-module-current-status wp-clearfix">
+															<div className="mvx-module-current-status">
 																{student.is_active &&
 																student.mod_link ? (
 																	<a
 																		href={
 																			student.mod_link
 																		}
-																		className="button button-secondary mvx-module-url-button"
+																		className="mvx-btn btn-purple"
 																	>
 																		{
 																			appLocalizer.settings_text
@@ -391,7 +388,7 @@ class MVX_Module_Listing extends Component {
 																	href={
 																		student.doc_link
 																	}
-																	className="button button-secondary mvx-module-url-button"
+																	className="mvx-btn btn-purple"
 																>
 																	{
 																		appLocalizer.documentation_text

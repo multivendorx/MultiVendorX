@@ -560,10 +560,8 @@ class App extends Component {
 					</div>
 
 					<div className="mvx-report-performance-content">
-						<div className="mvx-report-text">
-							<span>
-								{appLocalizer.report_page_string.performance}
-							</span>
+						<div className="mvx-text-with-right-side-line">
+							{appLocalizer.report_page_string.performance}
 						</div>
 
 						{this.state.vendor_loading ? (
@@ -614,13 +612,11 @@ class App extends Component {
 						<div className="mvx-charts-graph-content">
 							<div className="mvx-chart-text-and-bar-line-wrap">
 								<div className="mvx-text-with-line-wrapper chart-line">
-									<div className="mvx-report-text">
-										<span>
-											{
-												appLocalizer.report_page_string
-													.charts
-											}
-										</span>
+									<div className="mvx-text-with-right-side-line">
+										{
+											appLocalizer.report_page_string
+												.charts
+										}
 									</div>
 									<div className="mvx-select-all-bulk-wrap">
 										<div className="mvx-analytics-overview-link">
@@ -644,7 +640,7 @@ class App extends Component {
 
 							<div className="mvx-content-two-graph-wrap">
 								<div className="mvx-header-and-graph-wrap">
-									<div className="mvx-commission-order-details-text">
+									<div className="mvx-box-background-white-wrapper">
 										{
 											appLocalizer.analytics_page_string
 												.analytics2
@@ -745,14 +741,12 @@ class App extends Component {
 					)}
 
 					<div className="mvx-report-leaderboard-content">
-						<div className="mvx-report-text mvx-text-with-line-wrapper">
-							<span>
-								{appLocalizer.report_page_string.leaderboards}
-							</span>
+						<div className="mvx-text-with-right-side-line">
+							{appLocalizer.report_page_string.leaderboards}
 						</div>
 
 						<div className="mvx-analytic-details-wrap">
-							<div className="mvx-commission-order-details-text">
+							<div className="mvx-box-background-white-wrapper">
 								{appLocalizer.analytics_page_string.analytics8}
 							</div>
 							{this.state.vendor_loading ? (
@@ -783,7 +777,7 @@ class App extends Component {
 						</div>
 
 						<div className="mvx-analytic-details-wrap">
-							<div className="mvx-commission-order-details-text">
+							<div className="mvx-box-background-white-wrapper">
 								{appLocalizer.analytics_page_string.analytics7}
 							</div>
 
@@ -833,17 +827,15 @@ class App extends Component {
 								}
 								options={this.state.details_vendor}
 								isClearable={true}
-								className="mvx-module-vendor-section-nav-child-data"
+								className="mvx-wrap-bulk-action"
 								onChange={(e) => this.handlevendorsearch(e)}
 							/>
 						</div>
 					</div>
 
 					<div className="mvx-report-performance-content">
-						<div className="mvx-report-text mvx-text-with-line-wrapper">
-							<span>
-								{appLocalizer.report_page_string.performance}
-							</span>
+						<div className="mvx-text-with-right-side-line">
+							{appLocalizer.report_page_string.performance}
 						</div>
 
 						<div className="mvx-wrapper-performance-content">
@@ -886,13 +878,11 @@ class App extends Component {
 						<div className="mvx-charts-graph-content">
 							<div className="mvx-chart-text-and-bar-line-wrap">
 								<div className="mvx-text-with-line-wrapper chart-line">
-									<div className="mvx-report-text">
-										<span>
-											{
-												appLocalizer.report_page_string
-													.charts
-											}
-										</span>
+									<div className="mvx-text-with-right-side-line">
+										{
+											appLocalizer.report_page_string
+												.charts
+										}
 									</div>
 									<div className="mvx-select-all-bulk-wrap">
 										<div className="mvx-bar-chart">
@@ -1056,32 +1046,28 @@ class App extends Component {
 						this.state.report_overview_data.vendor
 							.vendor_report_datatable ? (
 							<div className="mvx-text-with-line-wrapper">
-								<div className="mvx-report-text">
-									<span>
-										{
-											appLocalizer.analytics_page_string
-												.analytics6
-										}
-									</span>
+								<div className="mvx-text-with-right-side-line">
+									{
+										appLocalizer.analytics_page_string
+											.analytics6
+									}
 								</div>
-								<div className="mvx-select-all-bulk-wrap">
-									<CSVLink
-										data={
-											this.state.vendor_report_chart_data
-										}
-										headers={
-											appLocalizer.report_vendor_header
-										}
-										filename={'Report_vendor.csv'}
-										className="button-csv-primary"
-									>
-										<i className="mvx-font icon-download"></i>
-										{
-											appLocalizer.report_page_string
-												.download_csv
-										}
-									</CSVLink>
-								</div>
+								<CSVLink
+									data={
+										this.state.vendor_report_chart_data
+									}
+									headers={
+										appLocalizer.report_vendor_header
+									}
+									filename={'Report_vendor.csv'}
+									className="mvx-btn btn-purple"
+								>
+									<i className="mvx-font icon-download"></i>
+									{
+										appLocalizer.report_page_string
+											.download_csv
+									}
+								</CSVLink>
 							</div>
 						) : (
 							''
@@ -1131,22 +1117,18 @@ class App extends Component {
 								}
 								options={this.state.details_product}
 								isClearable={true}
-								className="mvx-module-section-nav-child-data"
+								className="mvx-wrap-bulk-action"
 								onChange={(e) => this.handleproductsearch(e)}
 							/>
 						</div>
 					</div>
 
 					<div className="mvx-report-performance-content">
-						<div className="mvx-text-with-line-wrapper">
-							<div className="mvx-report-text">
-								<span>
-									{
-										appLocalizer.report_page_string
-											.performance
-									}
-								</span>
-							</div>
+						<div className="mvx-text-with-right-side-line">
+							{
+								appLocalizer.report_page_string
+									.performance
+							}
 						</div>
 
 						<div className="mvx-wrapper-performance-content">
@@ -1182,30 +1164,26 @@ class App extends Component {
 					this.state.report_overview_data.product.sales_data_chart ? (
 						<div className="mvx-charts-graph-content">
 							<div className="mvx-chart-text-and-bar-line-wrap">
-								<div className="mvx-text-with-line-wrapper chart-line">
-									<div className="mvx-report-text">
-										<span>
-											{
-												appLocalizer.report_page_string
-													.charts
-											}
-										</span>
+								<div className="mvx-text-with-right-side-line">
+									{
+										appLocalizer.report_page_string
+											.charts
+									}
+								</div>
+								<div className="mvx-select-all-bulk-wrap">
+									<div className="mvx-bar-chart">
+										<Link
+											to={`?page=mvx#&submenu=analytics&name=product&type=bar`}
+										>
+											<i className="mvx-font icon-chart-bar"></i>
+										</Link>
 									</div>
-									<div className="mvx-select-all-bulk-wrap">
-										<div className="mvx-bar-chart">
-											<Link
-												to={`?page=mvx#&submenu=analytics&name=product&type=bar`}
-											>
-												<i className="mvx-font icon-chart-bar"></i>
-											</Link>
-										</div>
-										<div className="mvx-line-chart">
-											<Link
-												to={`?page=mvx#&submenu=analytics&name=product&type=line`}
-											>
-												<i className="mvx-font icon-chart-line"></i>
-											</Link>
-										</div>
+									<div className="mvx-line-chart">
+										<Link
+											to={`?page=mvx#&submenu=analytics&name=product&type=line`}
+										>
+											<i className="mvx-font icon-chart-line"></i>
+										</Link>
 									</div>
 								</div>
 							</div>
@@ -1345,32 +1323,28 @@ class App extends Component {
 						this.state.report_overview_data.product
 							.product_report_datatable ? (
 							<div className="mvx-text-with-line-wrapper">
-								<div className="mvx-report-text">
-									<span>
-										{
-											appLocalizer.analytics_page_string
-												.analytics26
-										}
-									</span>
+								<div className="mvx-text-with-right-side-line">
+									{
+										appLocalizer.analytics_page_string
+											.analytics26
+									}
 								</div>
-								<div className="mvx-select-all-bulk-wrap">
-									<CSVLink
-										data={
-											this.state.product_report_chart_data
-										}
-										headers={
-											appLocalizer.report_product_header
-										}
-										filename={'Report_product.csv'}
-										className="button-csv-primary"
-									>
-										<i className="mvx-font icon-download"></i>
-										{
-											appLocalizer.report_page_string
-												.download_csv
-										}
-									</CSVLink>
-								</div>
+								<CSVLink
+									data={
+										this.state.product_report_chart_data
+									}
+									headers={
+										appLocalizer.report_product_header
+									}
+									filename={'Report_product.csv'}
+									className="mvx-btn btn-purple"
+								>
+									<i className="mvx-font icon-download"></i>
+									{
+										appLocalizer.report_page_string
+											.download_csv
+									}
+								</CSVLink>
 							</div>
 						) : (
 							''
@@ -1410,7 +1384,7 @@ class App extends Component {
 							</div>
 						</div>
 
-						<div className="mvx-transaction-wrapper-show-specific mvx-vendor-wrapper-show-specific">
+						<div className="mvx-transaction-wrapper-show-specific">
 							<div className="mvx-date-range">
 								{appLocalizer.report_page_string.vendor_select}
 							</div>
@@ -1421,7 +1395,7 @@ class App extends Component {
 								}
 								options={this.state.details_vendor}
 								isClearable={true}
-								className="mvx-module-section-nav-child-data"
+								className="mvx-wrap-bulk-action"
 								onChange={(e) => this.handlevendorsearch(e)}
 							/>
 						</div>

@@ -510,7 +510,7 @@ class MVX_Backend_Commission extends Component {
 						<div className="mvx-container mvx-edit-commission-container">
 							<div className="mvx-middle-container-wrapper">
 								<div className="woocommerce-order-data">
-									<div className="mvx-datatable-text">
+									<div className="mvx-page-title">
 										{
 											appLocalizer.commission_page_string
 												.edit_commission
@@ -621,7 +621,7 @@ class MVX_Backend_Commission extends Component {
 																			.state
 																			.get_commission_id_status
 																	}
-																	className="mvx-module-section-nav-child-data"
+																	className="mvx-wrap-bulk-action"
 																	onChange={(
 																		e
 																	) =>
@@ -780,7 +780,7 @@ class MVX_Backend_Commission extends Component {
 										{/* Commission order and others details start*/}
 										<div className="mvx-order-details-wrap">
 											{/* Commission order details start*/}
-											<div className="mvx-commission-order-details-text">
+											<div className="mvx-box-background-white-wrapper">
 												{
 													appLocalizer
 														.commission_page_string
@@ -1163,7 +1163,7 @@ class MVX_Backend_Commission extends Component {
 
 											{this.state.commission_details
 												.shipping_items_details ? (
-												<div className="mvx-commission-order-details-text">
+												<div className="mvx-box-background-white-wrapper">
 													{
 														appLocalizer
 															.commission_page_string
@@ -1713,7 +1713,7 @@ class MVX_Backend_Commission extends Component {
 										data={this.state.commissiondata}
 										headers={appLocalizer.commission_header}
 										filename={'Commissions.csv'}
-										className="button-commission-secondary btn default-btn"
+										className="mvx-btn btn-purple"
 									>
 										<i className="mvx-font icon-download"></i>
 										{
@@ -1725,160 +1725,154 @@ class MVX_Backend_Commission extends Component {
 							</div>
 
 							<div className="mvx-search-and-multistatus-wrap">
-								<div className="mvx-multistatus-sec">
-									<ul className="mvx-multistatus-ul">
-										<li className="mvx-multistatus-item">
-											<div
-												className="mvx-multistatus-check-all"
-												onClick={(e) =>
-													this.handle_commission_status_check(
-														e,
-														'all'
-													)
-												}
-											>
-												{
-													appLocalizer
-														.commission_page_string
-														.all
-												}{' '}
-												(
-												{
-													this.state
-														.mvx_all_commission_list
-														.length
-												}
+								<ul className="mvx-multistatus-ul">
+									<li className="mvx-multistatus-item">
+										<div
+											className="mvx-multistatus-check-all"
+											onClick={(e) =>
+												this.handle_commission_status_check(
+													e,
+													'all'
 												)
-											</div>
-										</li>
-										<li className="mvx-multistatus-item mvx-divider"></li>
-										<li className="mvx-multistatus-item">
-											<div
-												className="mvx-multistatus-check-paid status-active"
-												onClick={(e) =>
-													this.handle_commission_status_check(
-														e,
-														'paid'
-													)
-												}
-											>
-												{
-													appLocalizer
-														.commission_page_string
-														.paid
-												}{' '}
-												(
-												{
-													this.state
-														.data_paid_commission
-														.length
-												}
-												)
-											</div>
-										</li>
-										<li className="mvx-multistatus-item mvx-divider"></li>
-										<li className="mvx-multistatus-item">
-											<div
-												className="mvx-multistatus-check-unpaid"
-												onClick={(e) =>
-													this.handle_commission_status_check(
-														e,
-														'unpaid'
-													)
-												}
-											>
-												{
-													appLocalizer
-														.commission_page_string
-														.unpaid
-												}{' '}
-												(
-												{
-													this.state
-														.data_unpaid_commission
-														.length
-												}
-												)
-											</div>
-										</li>
-									</ul>
-								</div>
-								<div className="mvx-searchbar-sec">
-									<div className="mvx-header-search-section">
-										<label>
-											<i className="mvx-font icon-search"></i>
-										</label>
-										<input
-											type="text"
-											placeholder={
+											}
+										>
+											{
 												appLocalizer
 													.commission_page_string
-													.search_commission
+													.all
+											}{' '}
+											(
+											{
+												this.state
+													.mvx_all_commission_list
+													.length
 											}
-											onChange={
-												this
-													.handle_commission_live_search
+											)
+										</div>
+									</li>
+									<li className="mvx-multistatus-item mvx-divider"></li>
+									<li className="mvx-multistatus-item">
+										<div
+											className="mvx-multistatus-check-paid status-active"
+											onClick={(e) =>
+												this.handle_commission_status_check(
+													e,
+													'paid'
+												)
 											}
-										/>
-									</div>
+										>
+											{
+												appLocalizer
+													.commission_page_string
+													.paid
+											}{' '}
+											(
+											{
+												this.state
+													.data_paid_commission
+													.length
+											}
+											)
+										</div>
+									</li>
+									<li className="mvx-multistatus-item mvx-divider"></li>
+									<li className="mvx-multistatus-item">
+										<div
+											className="mvx-multistatus-check-unpaid"
+											onClick={(e) =>
+												this.handle_commission_status_check(
+													e,
+													'unpaid'
+												)
+											}
+										>
+											{
+												appLocalizer
+													.commission_page_string
+													.unpaid
+											}{' '}
+											(
+											{
+												this.state
+													.data_unpaid_commission
+													.length
+											}
+											)
+										</div>
+									</li>
+								</ul>
+								<div className="mvx-header-search-section">
+									<label>
+										<i className="mvx-font icon-search"></i>
+									</label>
+									<input
+										type="text"
+										placeholder={
+											appLocalizer
+												.commission_page_string
+												.search_commission
+										}
+										onChange={
+											this
+												.handle_commission_live_search
+										}
+									/>
 								</div>
 							</div>
 
 							<div className="mvx-wrap-bulk-all-date">
-								<div className="mvx-wrap-bulk-action mvx-wrap-bulk-all-date">
-									<Select
-										placeholder={
-											appLocalizer.commission_page_string
-												.show_commission_status
-										}
-										options={
-											this.state.show_commission_status
-										}
-										isClearable={true}
-										className="mvx-wrap-bulk-action"
-										onChange={(e) =>
-											this.handlecommissionsearch(
-												e,
-												'searchstatus'
-											)
-										}
-									/>
-									<Select
-										placeholder={
-											appLocalizer.commission_page_string
-												.show_all_vendor
-										}
-										options={this.state.show_vendor_name}
-										isClearable={true}
-										className="mvx-wrap-bulk-action"
-										onChange={(e) =>
-											this.handlecommissionsearch(
-												e,
-												'showvendor'
-											)
-										}
-									/>
-									<Select
-										placeholder={
-											appLocalizer.commission_page_string
-												.bulk_action
-										}
-										options={
-											appLocalizer.commission_bulk_list_option
-										}
-										isClearable={true}
-										className="mvx-wrap-bulk-action"
-										onChange={(e) =>
-											this.handlecommissionwork(e)
-										}
-									/>
-								</div>
+								<Select
+									placeholder={
+										appLocalizer.commission_page_string
+											.show_commission_status
+									}
+									options={
+										this.state.show_commission_status
+									}
+									isClearable={true}
+									className="mvx-wrap-bulk-action"
+									onChange={(e) =>
+										this.handlecommissionsearch(
+											e,
+											'searchstatus'
+										)
+									}
+								/>
+								<Select
+									placeholder={
+										appLocalizer.commission_page_string
+											.show_all_vendor
+									}
+									options={this.state.show_vendor_name}
+									isClearable={true}
+									className="mvx-wrap-bulk-action"
+									onChange={(e) =>
+										this.handlecommissionsearch(
+											e,
+											'showvendor'
+										)
+									}
+								/>
+								<Select
+									placeholder={
+										appLocalizer.commission_page_string
+											.bulk_action
+									}
+									options={
+										appLocalizer.commission_bulk_list_option
+									}
+									isClearable={true}
+									className="mvx-wrap-bulk-action"
+									onChange={(e) =>
+										this.handlecommissionwork(e)
+									}
+								/>
 							</div>
-
-							<div className="mvx-backend-datatable-wrapper">
-								{this.state.columns_commission_list &&
-								this.state.columns_commission_list.length > 0 &&
-								this.state.commission_loading ? (
+							
+							{this.state.columns_commission_list &&
+							this.state.columns_commission_list.length > 0 &&
+							this.state.commission_loading ? (
+								<div className="mvx-backend-datatable-wrapper">
 									<DataTable
 										columns={
 											this.state.columns_commission_list
@@ -1890,15 +1884,16 @@ class MVX_Backend_Commission extends Component {
 										}
 										pagination
 									/>
-								) : (
-									<PuffLoader
-										css={override}
-										color={'#cd0000'}
-										size={100}
-										loading={true}
-									/>
-								)}
-							</div>
+								</div>
+							) : (
+								<PuffLoader
+									css={override}
+									color={'#cd0000'}
+									size={100}
+									loading={true}
+								/>
+							)}
+							
 						</div>
 
 						<BannerSection />

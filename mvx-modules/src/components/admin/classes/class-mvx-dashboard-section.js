@@ -21,7 +21,7 @@ class MVX_Dashboard extends Component {
 										Lorem ipsum dolor sit amet, consectetur
 										adipisicing elit, sed do eiusmod tempor.
 									</p>
-									<a href="#" className="btn red-btn">
+									<a href="#" className="mvx-btn btn-red">
 										Active License
 									</a>
 								</div>
@@ -39,7 +39,7 @@ class MVX_Dashboard extends Component {
 										Lorem ipsum dolor sit amet, consectetur
 										adipisicing elit, sed do eiusmod tempor.
 									</p>
-									<a href="#" className="btn red-btn">
+									<a href="#" className="mvx-btn btn-red">
 										Active License
 									</a>
 								</div>
@@ -57,7 +57,7 @@ class MVX_Dashboard extends Component {
 										Lorem ipsum dolor sit amet, consectetur
 										adipisicing elit, sed do eiusmod tempor.
 									</p>
-									<a href="#" className="btn red-btn">
+									<a href="#" className="mvx-btn btn-red">
 										Active License
 									</a>
 								</div>
@@ -75,7 +75,7 @@ class MVX_Dashboard extends Component {
 										Lorem ipsum dolor sit amet, consectetur
 										adipisicing elit, sed do eiusmod tempor.
 									</p>
-									<a href="#" className="btn red-btn">
+									<a href="#" className="mvx-btn btn-red">
 										Active License
 									</a>
 								</div>
@@ -108,7 +108,7 @@ class MVX_Dashboard extends Component {
 										<div className="li-action">
 											<a
 												href="#"
-												className="btn color-btn"
+												className="mvx-btn btn-purple"
 											>
 												<i className="mvx-font icon-yes" />
 											</a>
@@ -124,7 +124,7 @@ class MVX_Dashboard extends Component {
 										<div className="li-action">
 											<a
 												href="#"
-												className="btn color-btn"
+												className="mvx-btn btn-purple"
 											>
 												<i className="mvx-font icon-yes" />
 											</a>
@@ -140,7 +140,7 @@ class MVX_Dashboard extends Component {
 										<div className="li-action">
 											<a
 												href="#"
-												className="btn color-btn"
+												className="mvx-btn btn-purple"
 											>
 												<i className="mvx-font icon-yes" />
 											</a>
@@ -156,7 +156,7 @@ class MVX_Dashboard extends Component {
 										<div className="li-action">
 											<a
 												href="#"
-												className="btn color-btn"
+												className="mvx-btn btn-purple"
 											>
 												<i className="mvx-font icon-yes" />
 											</a>
@@ -172,7 +172,7 @@ class MVX_Dashboard extends Component {
 										<div className="li-action">
 											<a
 												href="#"
-												className="btn border-btn"
+												className="mvx-btn border-btn"
 											>
 												Setup
 											</a>
@@ -188,7 +188,7 @@ class MVX_Dashboard extends Component {
 										<div className="li-action">
 											<a
 												href="#"
-												className="btn color-btn"
+												className="mvx-btn btn-purple"
 											>
 												<i className="mvx-font icon-yes" />
 											</a>
@@ -295,7 +295,7 @@ class MVX_Dashboard extends Component {
 								adipisicing elit, sed do eiusmod tempor
 								incididunt.
 							</p>
-							<a href="#" className="btn red-btn">
+							<a href="#" className="mvx-btn btn-red">
 								Upgrade to Pro
 							</a>
 						</div>
@@ -395,7 +395,7 @@ class MVX_Dashboard extends Component {
 										<li>
 											<a
 												href="#"
-												className="btn border-btn no-background"
+												className="mvx-btn border-btn"
 											>
 												Buy Now
 											</a>
@@ -439,7 +439,7 @@ class MVX_Dashboard extends Component {
 											</div>
 										</li>
 										<li>
-											<a href="#" className="btn red-btn">
+											<a href="#" className="mvx-btn btn-red">
 												Buy Now
 											</a>
 										</li>
@@ -481,7 +481,7 @@ class MVX_Dashboard extends Component {
 										<li>
 											<a
 												href="#"
-												className="btn border-btn no-background"
+												className="mvx-btn border-btn"
 											>
 												Buy Now
 											</a>
@@ -525,7 +525,7 @@ class MVX_Dashboard extends Component {
 								adipisicing elit, sed do eiusmod tempor
 								incididunt.
 							</p>
-							<a href="#" className="btn red-btn">
+							<a href="#" className="mvx-btn btn-red">
 								Upgrade to Pro
 							</a>
 						</div>
