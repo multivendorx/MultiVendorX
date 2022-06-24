@@ -1738,8 +1738,7 @@ class MVX_Backend_Commission extends Component {
 										>
 											{
 												appLocalizer
-													.commission_page_string
-													.all
+													.commission_page_string.all
 											}{' '}
 											(
 											{
@@ -1763,13 +1762,11 @@ class MVX_Backend_Commission extends Component {
 										>
 											{
 												appLocalizer
-													.commission_page_string
-													.paid
+													.commission_page_string.paid
 											}{' '}
 											(
 											{
-												this.state
-													.data_paid_commission
+												this.state.data_paid_commission
 													.length
 											}
 											)
@@ -1808,13 +1805,11 @@ class MVX_Backend_Commission extends Component {
 									<input
 										type="text"
 										placeholder={
-											appLocalizer
-												.commission_page_string
+											appLocalizer.commission_page_string
 												.search_commission
 										}
 										onChange={
-											this
-												.handle_commission_live_search
+											this.handle_commission_live_search
 										}
 									/>
 								</div>
@@ -1826,9 +1821,7 @@ class MVX_Backend_Commission extends Component {
 										appLocalizer.commission_page_string
 											.show_commission_status
 									}
-									options={
-										this.state.show_commission_status
-									}
+									options={this.state.show_commission_status}
 									isClearable={true}
 									className="mvx-wrap-bulk-action"
 									onChange={(e) =>
@@ -1868,7 +1861,7 @@ class MVX_Backend_Commission extends Component {
 									}
 								/>
 							</div>
-							
+
 							{this.state.columns_commission_list &&
 							this.state.columns_commission_list.length > 0 &&
 							this.state.commission_loading ? (
@@ -1893,7 +1886,6 @@ class MVX_Backend_Commission extends Component {
 									loading={true}
 								/>
 							)}
-							
 						</div>
 
 						<BannerSection />

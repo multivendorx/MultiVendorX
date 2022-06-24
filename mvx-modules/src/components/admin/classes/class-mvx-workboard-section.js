@@ -2467,7 +2467,6 @@ class MVXworkboard extends Component {
 						) : (
 							''
 						)}
-						
 					</div>
 				)}
 			</div>
@@ -2660,7 +2659,6 @@ class MVXworkboard extends Component {
 						) : (
 							''
 						)}
-						
 					</div>
 				)}
 			</div>
@@ -2698,7 +2696,7 @@ class MVXworkboard extends Component {
 						onChange={this.handleReviewBulkStatus}
 					/>
 				</div>
-				
+
 				{this.state.columns_store_review &&
 				this.state.columns_store_review.length > 0 ? (
 					<div className="mvx-backend-datatable-wrapper">
@@ -2713,7 +2711,6 @@ class MVXworkboard extends Component {
 				) : (
 					''
 				)}
-				
 			</div>
 		) : name === 'report-abuse' ? (
 			<div className="mvx-module-grid">
@@ -2733,7 +2730,7 @@ class MVXworkboard extends Component {
 						onChange={this.handleProductSearchAbuse}
 					/>
 				</div>
-				
+
 				{this.state.columns_report_abuse &&
 				this.state.columns_report_abuse.length > 0 ? (
 					<div className="mvx-backend-datatable-wrapper">
@@ -2748,7 +2745,6 @@ class MVXworkboard extends Component {
 				) : (
 					''
 				)}
-				
 			</div>
 		) : name === 'question-ans' ? (
 			<div className="mvx-module-grid">

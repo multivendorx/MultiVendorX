@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Link,
-} from "react-router-dom";
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 import HeaderSection from './class-mvx-page-header';
 import BannerSection from './class-mvx-page-banner';
 

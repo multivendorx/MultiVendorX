@@ -613,10 +613,7 @@ class App extends Component {
 							<div className="mvx-chart-text-and-bar-line-wrap">
 								<div className="mvx-text-with-line-wrapper chart-line">
 									<div className="mvx-text-with-right-side-line">
-										{
-											appLocalizer.report_page_string
-												.charts
-										}
+										{appLocalizer.report_page_string.charts}
 									</div>
 									<div className="mvx-select-all-bulk-wrap">
 										<div className="mvx-analytics-overview-link">
@@ -879,10 +876,7 @@ class App extends Component {
 							<div className="mvx-chart-text-and-bar-line-wrap">
 								<div className="mvx-text-with-line-wrapper chart-line">
 									<div className="mvx-text-with-right-side-line">
-										{
-											appLocalizer.report_page_string
-												.charts
-										}
+										{appLocalizer.report_page_string.charts}
 									</div>
 									<div className="mvx-select-all-bulk-wrap">
 										<div className="mvx-bar-chart">
@@ -1053,12 +1047,8 @@ class App extends Component {
 									}
 								</div>
 								<CSVLink
-									data={
-										this.state.vendor_report_chart_data
-									}
-									headers={
-										appLocalizer.report_vendor_header
-									}
+									data={this.state.vendor_report_chart_data}
+									headers={appLocalizer.report_vendor_header}
 									filename={'Report_vendor.csv'}
 									className="mvx-btn btn-purple"
 								>
@@ -1125,10 +1115,7 @@ class App extends Component {
 
 					<div className="mvx-report-performance-content">
 						<div className="mvx-text-with-right-side-line">
-							{
-								appLocalizer.report_page_string
-									.performance
-							}
+							{appLocalizer.report_page_string.performance}
 						</div>
 
 						<div className="mvx-wrapper-performance-content">
@@ -1165,10 +1152,7 @@ class App extends Component {
 						<div className="mvx-charts-graph-content">
 							<div className="mvx-chart-text-and-bar-line-wrap">
 								<div className="mvx-text-with-right-side-line">
-									{
-										appLocalizer.report_page_string
-											.charts
-									}
+									{appLocalizer.report_page_string.charts}
 								</div>
 								<div className="mvx-select-all-bulk-wrap">
 									<div className="mvx-bar-chart">
@@ -1330,12 +1314,8 @@ class App extends Component {
 									}
 								</div>
 								<CSVLink
-									data={
-										this.state.product_report_chart_data
-									}
-									headers={
-										appLocalizer.report_product_header
-									}
+									data={this.state.product_report_chart_data}
+									headers={appLocalizer.report_product_header}
 									filename={'Report_product.csv'}
 									className="mvx-btn btn-purple"
 								>

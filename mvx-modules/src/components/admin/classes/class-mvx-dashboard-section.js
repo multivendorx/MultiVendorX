@@ -439,7 +439,10 @@ class MVX_Dashboard extends Component {
 											</div>
 										</li>
 										<li>
-											<a href="#" className="mvx-btn btn-red">
+											<a
+												href="#"
+												className="mvx-btn btn-red"
+											>
 												Buy Now
 											</a>
 										</li>
