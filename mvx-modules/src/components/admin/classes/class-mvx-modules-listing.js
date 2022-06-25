@@ -375,7 +375,7 @@ class MVX_Module_Listing extends Component {
 																		href={
 																			student.mod_link
 																		}
-																		className="mvx-btn btn-purple"
+																		className="mvx-btn btn-border"
 																	>
 																		{
 																			appLocalizer.settings_text
@@ -388,7 +388,7 @@ class MVX_Module_Listing extends Component {
 																	href={
 																		student.doc_link
 																	}
-																	className="mvx-btn btn-purple"
+																	className="mvx-btn btn-border"
 																>
 																	{
 																		appLocalizer.documentation_text

@@ -1,1053 +1,1153 @@
-*{
-    margin: 0;
-    padding: 0;
-  }
-  
-  html{
-    font-size: 62.5%;
-  }
-  
-  $base-color : #f2eff5;
-  $boder-color : #d4d1d9;
-  $border : 0.1rem solid #d4d1d9;
-  $title-color : #181718;
-  $paragraph-color : #5e5d60;
-  $border-radius :  0.4rem;
-  $fill-color : #fdfdfe;
-  $theme-color: #3f1473;
-  @mixin flexprops($align) {
-    display: flex;
-    align-items: $align;
-  }
-  @mixin button {
-    transition: all 0.3s;
-    padding: 1.1rem 1.6rem;
-    border-radius: $border-radius;
-    line-height: 10rem;
-    font-size: 1.4rem;
-    cursor: pointer;
-    font-weight: 500;
-    color: #fff;
-    &:hover{
-        text-decoration: none;
-        color: #fff;
-    }
-  }
-  @mixin add-announcement-btn {
-    background: #3f1473;
-    border-radius: $border-radius;
-    a {
-        color: #fdfdfe;
-        &:hover {
-            color: $fill-color;
-            text-decoration: none;
-        }
-        i {
-            padding-right: 0.5rem;
-            font-size: 1.2rem;
-        }
-    }
-  }
-  @mixin input {
-    padding-left: 1.4rem;
-    border: $border;
-    border-radius: $border-radius;
-  }
-  
-  /* fonts */
-  @font-face {
-      font-family: 'mvx-admin-font';
-      src: url('../fonts/mvx-admin-font.eot?411a7m');
-      src: url('../fonts/mvx-admin-font.eot?411a7m#iefix') format('embedded-opentype'),
-          url('../fonts/mvx-admin-font.ttf?411a7m') format('truetype'),
-          url('../fonts/mvx-admin-font.woff?411a7m') format('woff'),
-          url('../fonts/mvx-admin-font.svg?411a7m#ico1') format('svg');
-      font-weight: normal;
-      font-style: normal;
-  }
-  
-  /* map */
-  /* vendor badge */
-  /* map box */
-  /* responsive */
-  
-  /* icon */
-  [class^="icon-"],
-  [class*=" icon-"] {
-      /* use !important to prevent issues with browser extensions that change fonts */
-      font-family: 'mvx-admin-font' !important;
-      speak: never;
-      font-style: normal;
-      font-weight: normal;
-      font-variant: normal;
-      text-transform: none;
-      line-height: 1;
-  
-      /* Better Font Rendering =========== */
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-  }
-  
-  a:focus {
-      -webkit-box-shadow: none;
-      box-shadow: none;
-  }
-  
-  .icon-add:before {
-      content: "\e900";
-    }
-    .icon-approve:before {
-      content: "\e901";
-    }
-    .icon-close:before {
-      content: "\e902";
-    }
-    .icon-down-arrow:before {
-      content: "\e903";
-    }
-    .icon-download:before {
-      content: "\e904";
-    }
-    .icon-edit:before {
-      content: "\e905";
-    }
-    .icon-knowledge-topbar:before {
-      content: "\e906";
-    }
-    .icon-no:before {
-      content: "\e907";
-    }
-    .icon-search:before {
-      content: "\e908";
-    }
-    .icon-select-checkbox:before {
-      content: "\e909";
-    }
-    .icon-yes:before {
-      content: "\e90a";
-    }
-    .icon-tab-activity-reminder:before {
-      content: "\e90b";
-    }
-    .icon-tab-announcement:before {
-      content: "\e90c";
-    }
-    .icon-tab-commissions:before {
-      content: "\e90d";
-    }
-    .icon-tab-disbursement:before {
-      content: "\e90e";
-    }
-    .icon-tab-general:before {
-      content: "\e90f";
-    }
-    .icon-tab-help:before {
-      content: "\e910";
-    }
-    .icon-tab-knowladgebase:before {
-      content: "\e911";
-    }
-    .icon-tab-migration:before {
-      content: "\e912";
-    }
-    .icon-tab-policy:before {
-      content: "\e913";
-    }
-    .icon-tab-products:before {
-      content: "\e914";
-    }
-    .icon-tab-products-capability:before {
-      content: "\e915";
-    }
-    .icon-tab-question-and-answer:before {
-      content: "\e916";
-    }
-    .icon-tab-refunds:before {
-      content: "\e917";
-    }
-    .icon-tab-registration-form:before {
-      content: "\e918";
-    }
-    .icon-tab-report-abuse:before {
-      content: "\e919";
-    }
-    .icon-tab-reviews-and-rating:before {
-      content: "\e91a";
-    }
-    .icon-tab-seller-dashbaord:before {
-      content: "\e91b";
-    }
-    .icon-tab-setup-widget:before {
-      content: "\e91c";
-    }
-    .icon-tab-social:before {
-      content: "\e91d";
-    }
-    .icon-tab-SPMV:before {
-      content: "\e91e";
-    }
-    .icon-tab-store:before {
-      content: "\e91f";
-    }
-    .icon-tab-store-review:before {
-      content: "\e920";
-    }
-    .icon-vendor-application:before {
-      content: "\e921";
-    }
-    .icon-vendor-follower:before {
-      content: "\e922";
-    }
-    .icon-vendor-payment:before {
-      content: "\e923";
-    }
-    .icon-vendor-personal:before {
-      content: "\e924";
-    }
-    .icon-vendor-policy:before {
-      content: "\e925";
-    }
-    .icon-vendor-shipping:before {
-      content: "\e926";
-    }
-    .icon-vendor-social:before {
-      content: "\e927";
-    }
-    .icon-vendor-store:before {
-      content: "\e928";
-    }
-    .icon-tab-vendor:before {
-      content: "\e929";
-    }
-    .icon-tab-overview:before {
-      content: "\e92a";
-    }
-    .icon-tab-product-02:before {
-      content: "\e92b";
-    }
-    .icon-tab-transaction-history:before {
-      content: "\e92c";
-    }
-    .icon-tab-paypal-payout:before {
-      content: "\e92d";
-    }
-    .icon-tab-paypal-masspay:before {
-      content: "\e92e";
-    }
-    .icon-tab-stripe-connect:before {
-      content: "\e92f";
-    }
-    .icon-chart-bar:before {
-      content: "\e930";
-    }
-    .icon-chart-line:before {
-      content: "\e931";
-    }
-    .icon-dismiss:before {
-      content: "\e932";
-    }
-    .icon-down-arrow-02:before {
-      content: "\e933";
-    }
-    .icon-information:before {
-      content: "\e934";
-    }
-    .icon-vendor-form-add:before {
-      content: "\e935";
-    }
-    .icon-vendor-form-copy:before {
-      content: "\e936";
-    }
-    .icon-vendor-form-delete:before {
-      content: "\e937";
-    }
-    .icon-tab-version-control:before {
-      content: "\e938";
-    }
-    .icon-tab-system-status:before {
-      content: "\e939";
-    }
-    .icon-tab-database-tools:before {
-      content: "\e93a";
-    }
-    .icon-form-url:before {
-      content: "\e93b";
-    }
-    .icon-form-textbox:before {
-      content: "\e93c";
-    }
-    .icon-form-textarea:before {
-      content: "\e93d";
-    }
-    .icon-form-store-description:before {
-      content: "\e93e";
-    }
-    .icon-form-state:before {
-      content: "\e93f";
-    }
-    .icon-form-section:before {
-      content: "\e941";
-    }
-    .icon-form-recaptcha:before {
-      content: "\e942";
-    }
-    .icon-form-radio:before {
-      content: "\e943";
-    }
-    .icon-form-postcode:before {
-      content: "\e944";
-    }
-    .icon-form-phone:before {
-      content: "\e945";
-    }
-    .icon-form-paypal-email:before {
-      content: "\e946";
-    }
-    .icon-form-multi-select:before {
-      content: "\e947";
-    }
-    .icon-form-dropdown:before {
-      content: "\e948";
-    }
-    .icon-form-checkboxes:before {
-      content: "\e949";
-    }
-    .icon-form-city:before {
-      content: "\e94a";
-    }
-    .icon-form-country:before {
-      content: "\e94b";
-    }
-    .icon-form-attachment:before {
-      content: "\e94c";
-    }
-    .icon-form-address01:before {
-      content: "\e94d";
-    }
-    .icon-form-address02:before {
-      content: "\e94e";
-    }
-    .icon-form-email:before {
-      content: "\e94f";
-    }
-    .icon-eye-preview:before {
-      content: "\e950";
-    }
-    .icon-back:before {
-      content: "\e940";
-    }
-    .icon-left-arrow:before {
-      content: "\e951";
-    }
-    .icon-right-arrow:before {
-      content: "\e952";
-    }
-    .icon-link-right-arrow:before {
-      content: "\e953";
-    }
-    .icon-documentation-forum:before {
-      content: "\e954";
-    }
-    .icon-shop:before {
-      content: "\e955";
-    }
-    .icon-support-forum:before {
-      content: "\e956";
-    }
-    
-  
-  /*********** Modules section *********************/
-  
-  @font-face {
-      font-family: 'mvx-module';
-      src: url('../fonts/modules/mvx-module.eot?ayxl59');
-      src: url('../fonts/modules/mvx-module.eot?ayxl59#iefix') format('embedded-opentype'),
-          url('../fonts/modules/mvx-module.ttf?ayxl59') format('truetype'),
-          url('../fonts/modules/mvx-module.woff?ayxl59') format('woff'),
-          url('../fonts/modules/mvx-module.svg?ayxl59#mvx-module') format('svg');
-      font-weight: normal;
-      font-style: normal;
-      font-display: block;
-  }
-  
-  [class^="module-"],
-  [class*=" module-"] {
-      /* use !important to prevent issues with browser extensions that change fonts */
-      font-family: 'mvx-module' !important;
-      speak: never;
-      font-style: normal;
-      font-weight: normal;
-      font-variant: normal;
-      text-transform: none;
-      line-height: 1;
-  
-      /* Better Font Rendering =========== */
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-  }
-  
-  .module-accommodation:before {
-      content: "\e900";
-  }
-  
-  .module-advance-custom-field:before {
-      content: "\e901";
-  }
-  
-  .module-announcement:before {
-      content: "\e902";
-  }
-  
-  .module-auction:before {
-      content: "\e903";
-  }
-  
-  .module-bank-payment:before {
-      content: "\e904";
-  }
-  
-  .module-booking:before {
-      content: "\e905";
-  }
-  
-  .module-buddypress:before {
-      content: "\e906";
-  }
-  
-  .module-bundle:before {
-      content: "\e907";
-  }
-  
-  .module-business-hours:before {
-      content: "\e908";
-  }
-  
-  .module-country-shipping:before {
-      content: "\e909";
-  }
-  
-  .module-customer-support:before {
-      content: "\e90a";
-  }
-  
-  .module-distance-shipping:before {
-      content: "\e90b";
-  }
-  
-  .module-elementor:before {
-      content: "\e90c";
-  }
-  
-  .module-external:before {
-      content: "\e90d";
-  }
-  
-  .module-follow-store:before {
-      content: "\e90e";
-  }
-  
-  .module-geo-my-wp:before {
-      content: "\e911";
-  }
-  
-  .module-grouped:before {
-      content: "\e912";
-  }
-  
-  .module-identity-verification:before {
-      content: "\e913";
-  }
-  
-  .module-import-export:before {
-      content: "\e914";
-  }
-  
-  .module-invoice:before {
-      content: "\e915";
-  }
-  
-  .module-knowladgebase:before {
-      content: "\e916";
-  }
-  
-  .module-live-chat:before {
-      content: "\e917";
-  }
-  
-  .module-mangopay:before {
-      content: "\e918";
-  }
-  
-  .module-marketplace-membership:before {
-      content: "\e919";
-  }
-  
-  .module-marketplace-refund:before {
-      content: "\e91a";
-  }
-  
-  .module-messaging:before {
-      content: "\e91b";
-  }
-  
-  .module-paypal-marketplace:before {
-      content: "\e91c";
-  }
-  
-  .module-paypal-masspay:before {
-      content: "\e91d";
-  }
-  
-  .module-paypal-payout:before {
-      content: "\e91e";
-  }
-  
-  .module-per-product-shipping:before {
-      content: "\e91f";
-  }
-  
-  .module-product-addon:before {
-      content: "\e920";
-  }
-  
-  .module-razorpay:before {
-      content: "\e921";
-  }
-  
-  .module-rental:before {
-      content: "\e922";
-  }
-  
-  .module-report-abuse:before {
-      content: "\e923";
-  }
-  
-  .module-return-and-warrenty:before {
-      content: "\e924";
-  }
-  
-  .module-simple:before {
-      content: "\e925";
-  }
-  
-  .module-spmv:before {
-      content: "\e926";
-  }
-  
-  .module-staff-manager:before {
-      content: "\e927";
-  }
-  
-  .module-store-analytics:before {
-      content: "\e928";
-  }
-  
-  .module-store-location:before {
-      content: "\e929";
-  }
-  
-  .module-store-policy:before {
-      content: "\e92a";
-  }
-  
-  .module-store-review:before {
-      content: "\e90f";
-  }
-  
-  .module-store-seo:before {
-      content: "\e92d";
-  }
-  
-  .module-stripe-connect:before {
-      content: "\e92e";
-  }
-  
-  .module-stripe-marketplace:before {
-      content: "\e92f";
-  }
-  
-  .module-subscription:before {
-      content: "\e930";
-  }
-  
-  .module-toolset-types:before {
-      content: "\e931";
-  }
-  
-  .module-vacation:before {
-      content: "\e932";
-  }
-  
-  .module-variable:before {
-      content: "\e933";
-  }
-  
-  .module-vendor-shipping:before {
-      content: "\e934";
-  }
-  
-  .module-weight-shipping:before {
-      content: "\e935";
-  }
-  
-  .module-wholesale:before {
-      content: "\e936";
-  }
-  
-  .module-wp-affiliate:before {
-      content: "\e937";
-  }
-  
-  .module-wpml:before {
-      content: "\e938";
-  }
-  
-  .module-zone-shipping:before {
-      content: "\e939";
-  }
-  
-  .module-store-inventory:before {
-      content: "\e910";
-  }
-  
-  .module-appointment:before {
-      content: "\e92b";
-  }
-  
-  /*icon end*/
-  // header start
-  
-  .mvx-header-wapper {
-      @include flexprops(center);
-      padding: 0.8rem 2.4rem;
-      border-bottom: $border;
-      background-color: $fill-color;
-      position: relative;
-  
-      .mvx-header-nav-right-section {
-          margin-left: auto;
-          @include flexprops(center);
-          .nav-child-right {
-            padding: 0.8rem;
-            background-color: #f8ecf0;
-            border-radius: $border-radius;
-            margin-left: 2.4rem;
-          }
-      }
-      .mvx-header-nav-left-section {
-        @include flexprops(center);
-  
-        .mvx-logo-img {
-          padding-right: 1.2rem;
-        }
-        .mvx-logo-title {
-          font-size: 1.8rem;
-          font-weight: 500;
-          padding-left: 1.2rem;
-        }
-        .mvx-header-section-nav-child-logo::after{
-          position: absolute;
-          content: "";
-          border-right: $border;
-          height: 100%;
-          top: 0%;
-        }
-      }
-  }
-  
-  .mvx-header-search-section {
-      @include flexprops(center);
-      @include input;
-      background-color: transparent;
-      color: #8e8b91;
-      input {
-          line-height: 2.4;
-          border: none;
-          background-color: transparent;
-          &:focus{
-              background-color: transparent;
-          }
-      }
-  }
-  // header end
-  // dashboard start
+$base-color : #f2eff5;
+$boder-color : #d4d1d9;
+$border : 0.1rem solid #d4d1d9;
+$title-color : #181718;
+$paragraph-color : #5e5d60;
+$border-radius :  0.4rem;
+$button-border-radius :  0.2rem;
+$fill-color : #fdfdfe;
+$theme-color: #3f1473;
 
-  //color button work
-  .btn-red{
-    background-color: #e35047;
+@mixin flexprops($align) {
+  display: flex;
+  align-items: $align;
+}
+@mixin button {
+  transition: all 0.3s;
+  padding: 0.6rem 0.8rem;
+  border-radius: $button-border-radius;
+  line-height: .8rem;
+  cursor: pointer;
+  font-weight: 400;
+  color: #fff;
+  &:hover{
+    text-decoration: none;
   }
-  .btn-purple {
-    background-color: #3f1473;
-    border: none;
-    color: $fill-color;
+}
+@mixin mvx-addbtn {
+  background: #3f1473;
+  border-radius: $border-radius;
+  a {
+      color: #fdfdfe;
+      &:hover {
+          color: $fill-color;
+          text-decoration: none;
+      }
+      i {
+          padding-right: 0.5rem;
+          font-size: 1.2rem;
+      }
   }
-  .color-btn{
-    background-color: #65438f;
-    line-height: 0;
-    padding: 0.8rem 2.4rem;
-  }
+}
+@mixin input {
+  padding-left: 1.4rem;
+  border: $border;
+  border-radius: $border-radius;
+}
 
-  .border-btn{
-    color: #000;
-    line-height: 0;
-    border: 0.1rem solid #65438f;
-    padding: 0.8rem 1.2rem;
+/* fonts */
+@font-face {
+    font-family: 'mvx-admin-font';
+    src: url('../fonts/mvx-admin-font.eot?411a7m');
+    src: url('../fonts/mvx-admin-font.eot?411a7m#iefix') format('embedded-opentype'),
+        url('../fonts/mvx-admin-font.ttf?411a7m') format('truetype'),
+        url('../fonts/mvx-admin-font.woff?411a7m') format('woff'),
+        url('../fonts/mvx-admin-font.svg?411a7m#ico1') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
   
-  .mvx-container {
-    @include flexprops(start);
-    background-color: $base-color;
-    padding: 2.4rem;
-    .mvx-sidebar {
-        padding-left: 2.4rem;
-    }
-    .mvx-middle-container-wrapper {
-        width: 100%;
-        .mvx-dashboard-top-heading{
-          font-size: 2.4rem;
-          padding: 2.4rem 0;
-          font-weight: 500;
-          text-align: center;
-        }
-        .mvx-slider-content-main-wrapper{
-          background-color: $fill-color;
-          border: $border;
-          border-radius: $border-radius;
-          padding: 3.2rem;
-          .mvx-dashboard-slider {
-            @include flexprops(start);
-            .mvx-dashboard-top-icon{
-              font-size: 2.4rem;
-              background: #9f8ab9;
-              border-radius: $border-radius;
-              color: #fff;
-              padding: 1.2rem;
-              font-weight: 400;
-            }
-            .mvx-pro-txt{
-              padding-left: 2.4rem;
-              h2{
-                font-size: 1.8rem;
-                font-weight: 400;
-              }
-              p{
-                font-size: 1.4rem;
-                font-weight: 100;
-              }
-            }
-          }
-        }
+/* icon */
+[class^="icon-"],
+[class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'mvx-admin-font' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+  
+.icon-add:before {
+  content: "\e900";
+}
+.icon-approve:before {
+  content: "\e901";
+}
+.icon-close:before {
+  content: "\e902";
+}
+.icon-down-arrow:before {
+  content: "\e903";
+}
+.icon-download:before {
+  content: "\e904";
+}
+.icon-edit:before {
+  content: "\e905";
+}
+.icon-knowledge-topbar:before {
+  content: "\e906";
+}
+.icon-no:before {
+  content: "\e907";
+}
+.icon-search:before {
+  content: "\e908";
+}
+.icon-select-checkbox:before {
+  content: "\e909";
+}
+.icon-yes:before {
+  content: "\e90a";
+}
+.icon-tab-activity-reminder:before {
+  content: "\e90b";
+}
+.icon-tab-announcement:before {
+  content: "\e90c";
+}
+.icon-tab-commissions:before {
+  content: "\e90d";
+}
+.icon-tab-disbursement:before {
+  content: "\e90e";
+}
+.icon-tab-general:before {
+  content: "\e90f";
+}
+.icon-tab-help:before {
+  content: "\e910";
+}
+.icon-tab-knowladgebase:before {
+  content: "\e911";
+}
+.icon-tab-migration:before {
+  content: "\e912";
+}
+.icon-tab-policy:before {
+  content: "\e913";
+}
+.icon-tab-products:before {
+  content: "\e914";
+}
+.icon-tab-products-capability:before {
+  content: "\e915";
+}
+.icon-tab-question-and-answer:before {
+  content: "\e916";
+}
+.icon-tab-refunds:before {
+  content: "\e917";
+}
+.icon-tab-registration-form:before {
+  content: "\e918";
+}
+.icon-tab-report-abuse:before {
+  content: "\e919";
+}
+.icon-tab-reviews-and-rating:before {
+  content: "\e91a";
+}
+.icon-tab-seller-dashbaord:before {
+  content: "\e91b";
+}
+.icon-tab-setup-widget:before {
+  content: "\e91c";
+}
+.icon-tab-social:before {
+  content: "\e91d";
+}
+.icon-tab-SPMV:before {
+  content: "\e91e";
+}
+.icon-tab-store:before {
+  content: "\e91f";
+}
+.icon-tab-store-review:before {
+  content: "\e920";
+}
+.icon-vendor-application:before {
+  content: "\e921";
+}
+.icon-vendor-follower:before {
+  content: "\e922";
+}
+.icon-vendor-payment:before {
+  content: "\e923";
+}
+.icon-vendor-personal:before {
+  content: "\e924";
+}
+.icon-vendor-policy:before {
+  content: "\e925";
+}
+.icon-vendor-shipping:before {
+  content: "\e926";
+}
+.icon-vendor-social:before {
+  content: "\e927";
+}
+.icon-vendor-store:before {
+  content: "\e928";
+}
+.icon-tab-vendor:before {
+  content: "\e929";
+}
+.icon-tab-overview:before {
+  content: "\e92a";
+}
+.icon-tab-product-02:before {
+  content: "\e92b";
+}
+.icon-tab-transaction-history:before {
+  content: "\e92c";
+}
+.icon-tab-paypal-payout:before {
+  content: "\e92d";
+}
+.icon-tab-paypal-masspay:before {
+  content: "\e92e";
+}
+.icon-tab-stripe-connect:before {
+  content: "\e92f";
+}
+.icon-chart-bar:before {
+  content: "\e930";
+}
+.icon-chart-line:before {
+  content: "\e931";
+}
+.icon-dismiss:before {
+  content: "\e932";
+}
+.icon-down-arrow-02:before {
+  content: "\e933";
+}
+.icon-information:before {
+  content: "\e934";
+}
+.icon-vendor-form-add:before {
+  content: "\e935";
+}
+.icon-vendor-form-copy:before {
+  content: "\e936";
+}
+.icon-vendor-form-delete:before {
+  content: "\e937";
+}
+.icon-tab-version-control:before {
+  content: "\e938";
+}
+.icon-tab-system-status:before {
+  content: "\e939";
+}
+.icon-tab-database-tools:before {
+  content: "\e93a";
+}
+.icon-form-url:before {
+  content: "\e93b";
+}
+.icon-form-textbox:before {
+  content: "\e93c";
+}
+.icon-form-textarea:before {
+  content: "\e93d";
+}
+.icon-form-store-description:before {
+  content: "\e93e";
+}
+.icon-form-state:before {
+  content: "\e93f";
+}
+.icon-form-section:before {
+  content: "\e941";
+}
+.icon-form-recaptcha:before {
+  content: "\e942";
+}
+.icon-form-radio:before {
+  content: "\e943";
+}
+.icon-form-postcode:before {
+  content: "\e944";
+}
+.icon-form-phone:before {
+  content: "\e945";
+}
+.icon-form-paypal-email:before {
+  content: "\e946";
+}
+.icon-form-multi-select:before {
+  content: "\e947";
+}
+.icon-form-dropdown:before {
+  content: "\e948";
+}
+.icon-form-checkboxes:before {
+  content: "\e949";
+}
+.icon-form-city:before {
+  content: "\e94a";
+}
+.icon-form-country:before {
+  content: "\e94b";
+}
+.icon-form-attachment:before {
+  content: "\e94c";
+}
+.icon-form-address01:before {
+  content: "\e94d";
+}
+.icon-form-address02:before {
+  content: "\e94e";
+}
+.icon-form-email:before {
+  content: "\e94f";
+}
+.icon-eye-preview:before {
+  content: "\e950";
+}
+.icon-back:before {
+  content: "\e940";
+}
+.icon-left-arrow:before {
+  content: "\e951";
+}
+.icon-right-arrow:before {
+  content: "\e952";
+}
+.icon-link-right-arrow:before {
+  content: "\e953";
+}
+.icon-documentation-forum:before {
+  content: "\e954";
+}
+.icon-shop:before {
+  content: "\e955";
+}
+.icon-support-forum:before {
+  content: "\e956";
+}
+
+/*********** Modules section *********************/
+  
+@font-face {
+  font-family: 'mvx-module';
+  src: url('../fonts/modules/mvx-module.eot?ayxl59');
+  src: url('../fonts/modules/mvx-module.eot?ayxl59#iefix') format('embedded-opentype'),
+        url('../fonts/modules/mvx-module.ttf?ayxl59') format('truetype'),
+        url('../fonts/modules/mvx-module.woff?ayxl59') format('woff'),
+        url('../fonts/modules/mvx-module.svg?ayxl59#mvx-module') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+  
+[class^="module-"], [class*=" module-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'mvx-module' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+  
+.module-accommodation:before {
+  content: "\e900";
+}
+  
+.module-advance-custom-field:before {
+    content: "\e901";
+}
+
+.module-announcement:before {
+    content: "\e902";
+}
+
+.module-auction:before {
+    content: "\e903";
+}
+
+.module-bank-payment:before {
+    content: "\e904";
+}
+
+.module-booking:before {
+    content: "\e905";
+}
+
+.module-buddypress:before {
+    content: "\e906";
+}
+
+.module-bundle:before {
+    content: "\e907";
+}
+
+.module-business-hours:before {
+    content: "\e908";
+}
+
+.module-country-shipping:before {
+    content: "\e909";
+}
+
+.module-customer-support:before {
+    content: "\e90a";
+}
+
+.module-distance-shipping:before {
+    content: "\e90b";
+}
+
+.module-elementor:before {
+    content: "\e90c";
+}
+
+.module-external:before {
+    content: "\e90d";
+}
+
+.module-follow-store:before {
+    content: "\e90e";
+}
+
+.module-geo-my-wp:before {
+    content: "\e911";
+}
+
+.module-grouped:before {
+    content: "\e912";
+}
+
+.module-identity-verification:before {
+    content: "\e913";
+}
+
+.module-import-export:before {
+    content: "\e914";
+}
+
+.module-invoice:before {
+    content: "\e915";
+}
+
+.module-knowladgebase:before {
+    content: "\e916";
+}
+
+.module-live-chat:before {
+    content: "\e917";
+}
+
+.module-mangopay:before {
+    content: "\e918";
+}
+
+.module-marketplace-membership:before {
+    content: "\e919";
+}
+
+.module-marketplace-refund:before {
+    content: "\e91a";
+}
+
+.module-messaging:before {
+    content: "\e91b";
+}
+
+.module-paypal-marketplace:before {
+    content: "\e91c";
+}
+
+.module-paypal-masspay:before {
+    content: "\e91d";
+}
+
+.module-paypal-payout:before {
+    content: "\e91e";
+}
+
+.module-per-product-shipping:before {
+    content: "\e91f";
+}
+
+.module-product-addon:before {
+    content: "\e920";
+}
+
+.module-razorpay:before {
+    content: "\e921";
+}
+
+.module-rental:before {
+    content: "\e922";
+}
+
+.module-report-abuse:before {
+    content: "\e923";
+}
+
+.module-return-and-warrenty:before {
+    content: "\e924";
+}
+
+.module-simple:before {
+    content: "\e925";
+}
+
+.module-spmv:before {
+    content: "\e926";
+}
+
+.module-staff-manager:before {
+    content: "\e927";
+}
+
+.module-store-analytics:before {
+    content: "\e928";
+}
+
+.module-store-location:before {
+    content: "\e929";
+}
+
+.module-store-policy:before {
+    content: "\e92a";
+}
+
+.module-store-review:before {
+    content: "\e90f";
+}
+
+.module-store-seo:before {
+    content: "\e92d";
+}
+
+.module-stripe-connect:before {
+    content: "\e92e";
+}
+
+.module-stripe-marketplace:before {
+    content: "\e92f";
+}
+
+.module-subscription:before {
+    content: "\e930";
+}
+
+.module-toolset-types:before {
+    content: "\e931";
+}
+
+.module-vacation:before {
+    content: "\e932";
+}
+
+.module-variable:before {
+    content: "\e933";
+}
+
+.module-vendor-shipping:before {
+    content: "\e934";
+}
+
+.module-weight-shipping:before {
+    content: "\e935";
+}
+
+.module-wholesale:before {
+    content: "\e936";
+}
+
+.module-wp-affiliate:before {
+    content: "\e937";
+}
+
+.module-wpml:before {
+    content: "\e938";
+}
+
+.module-zone-shipping:before {
+    content: "\e939";
+}
+
+.module-store-inventory:before {
+    content: "\e910";
+}
+
+.module-appointment:before {
+    content: "\e92b";
+}
+/*icon end*/
+ 
+// Start - Common CSS
+
+textarea, input[type=text], select, input, .default-input {
+  color: #8e8b91;
+  font-size: 1rem;
+}
+
+h1 {
+  font-size: 24px;
+}
+h2 {
+  font-size: 20px;
+}
+h3 {
+  font-size: 18px;
+}
+h4 {
+  font-size: 16px;
+}
+h5 {
+  font-size: 14px;
+}
+h6  {
+  font-size: 12px;
+}
+p {
+  font-size: 14px;
+}
+code{
+  background-color: #181718;
+}
+img{
+  border-radius: 4px;
+}
+li{
+  color: #181718;
+}
+ul{
+
+}
+fieldset{
+
+}
+form{
+}
+label{
+
+}
+table{
+  color: #181718;
+  background-color: #fdfdfe;
+}
+tr{
+  height: 52px;
+}
+th{
+  height: 52px;
+}
+td {
+    border: none;
+    font-size: inherit;
+    line-height: inherit;
+    margin: 0;
+    padding: 0;
+    text-align: inherit;
+}
+
+blockquote::before,
+blockquote::after {
+    content: "";
+}
+  
+.mvx-backend-datatable-wrapper {
+  padding: 2.4rem 0;
+  border-radius: $border-radius;
+}
+  
+input[type=text]:focus {
+  box-shadow: none;
+}
+
+.btn-red {
+  background-color: #e35047;
+  &:hover{
+    background-color: #e6635b;
+  }
+}
+.btn-purple {
+  background-color: #65438f;
+  border: none;
+  color: #f9f8fb;
+  &:hover{
+    background-color: #795b9d;
+  }
+}
+.btn-border {
+  color: #181718;
+  line-height: 0;
+  border: 0.1rem solid #d4d1d9;
+  padding: 0.8rem 1.2rem;
+  &:hover{
+    background-color: #65438f;
+  }
+}
+.mvx-btn {
+  @include button;
+}
+
+// Start - Header
+.mvx-header-wapper {
+  @include flexprops(center);
+  padding: 0.4rem 1.2rem;
+  border-bottom: $border;
+  background-color: $fill-color;
+  position: relative;
+
+  .mvx-header-nav-right-section {
+    margin-left: auto;
+    @include flexprops(center);
+    .nav-child-right {
+      padding: 0.4rem;
+      background-color: #f8ecf0;
+      border-radius: $border-radius;
+      margin-left: 1.2rem;
     }
   }
+  .mvx-header-nav-left-section {
+    @include flexprops(center);
+
+    .mvx-logo-img {
+      padding-right: 0.8rem;
+    }
+    .mvx-logo-title {
+      font-size: 1.2rem;
+      font-weight: 500;
+      padding-left: 0.8rem;
+    }
+    .mvx-header-section-nav-child-logo::after{
+      position: absolute;
+      content: "";
+      border-right: $border;
+      height: 100%;
+      top: 0%;
+    }
+  }
+  .mvx-header-search-section {
+    @include flexprops(center);
+    @include input;
+    background-color: transparent;
+    color: #8e8b91;
+    input {
+      line-height: 2.4;
+      border: none;
+      background-color: transparent;
+      &:focus{
+        background-color: transparent;
+      }
+    }
+  }
+}
+
+// Start - Main Container
+.mvx-container {
+  @include flexprops(start);
+  background-color: $base-color;
+  padding: 2.4rem;
+
+  .mvx-sidebar {
+    padding-left: 1.2rem;
+  }
   
-  .mvx-setup-documentation{
-    padding-top: 10rem;
+  .mvx-tab-description-start {
+    text-align: center;
+    background-color: $fill-color;
+    border-radius: $border-radius;
+    margin: 0 0 0.4rem 0.4rem;
+    border: $border;
+    padding: 0.4rem;
+  }
+
+  .mvx-tab-name {
+    color: #181718;
+    line-height: 1.25rem;
+    padding-bottom: 1.2rem;
+  }
+
+  .mvx-current-tab-lists {
     @include flexprops(start);
-    justify-content: space-between;
-    .mvx-setup-marketing-white-box{
+    align-items: center;
+    margin: 0 0 0.4rem 0.4rem;
+    li {
+      padding: 0.8rem 1.0rem;
+      border: 0.1rem solid #d4d1d9;
+      display: block;
+      width: auto;
+      cursor: pointer;
+      -webkit-transition: 0.3s;
+      transition: 0.3s;
+      background: #f9f8fb;
+      a {
+        line-height: 1.0rem;
+        color: #181718;
+        text-decoration: none;
+        i {
+          padding-right: 0.4rem;
+        }
+      }
+    }
+    li:last-child {
+      border-bottom: 0.1rem solid #d4d1d9;
+    }
+    .active-current-tab {
+      border-right: 0.1rem solid #f7f6f9;
+      background-color: #fdfdfe;
+    }
+  }
+
+  .mvx-vertical-tabs {
+    .mvx-current-tab-lists{
+      float: left;
+      display: block;
+    }
+  }
+
+  .mvx-page-title {
+    @include flexprops(center);
+    p {
+      font-size: 2.4rem;
+      color: $title-color;
+      margin-right: 0.7rem;
+      font-weight: 600;
+    }
+  }
+
+  .mvx-middle-container-wrapper{
+    width: 100%;
+    margin-right: 1rem;
+    min-width: 60%;
+  }
+
+  // Start - Dashboard
+  .mvx-left-container {
+    width: 100%;
+
+    .mvx-dashboard-top-heading{
+      font-size: 2.4rem;
+      padding: 2.4rem 0;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .mvx-slider-content-main-wrapper {
       background-color: $fill-color;
       border: $border;
       border-radius: $border-radius;
       padding: 3.2rem;
-      width: 40%;
-      .mvx-block-title{
-        font-size: 1.8rem;
-        font-weight: 400;
-      }
-      .mvx-table-ul{
-        .mvx-align-items-center{
-          @include flexprops(start);
-          justify-content: space-between;
-          padding: 3.2rem;
-          .mvx-allign-li-txt{
-            span{
-                color: #9f8ab9;
-                padding-right: 2.4rem;
-            }
+  
+      .mvx-dashboard-slider {
+        @include flexprops(start);
+    
+        .mvx-dashboard-top-icon{
+          font-size: 2.4rem;
+          background: #9f8ab9;
+          border-radius: $border-radius;
+          color: #fff;
+          padding: 1.2rem;
+          font-weight: 400;
+        }
+
+        .mvx-pro-txt{
+          padding-left: 2.4rem;
+          h2 {
+            font-size: 1.8rem;
+            font-weight: 400;
           }
-          &:hover{
-            border: 0.1rem solid #65438f;
-            border-radius: $border-radius;
-            padding: 3.2rem;
+          p {
+            font-size: 1.4rem;
+            font-weight: 100;
           }
         }
       }
     }
-    .mvx-documentation-quick-link{
-      width: 60%;
-      padding-left: 2.4rem;
+  }
+
+  // Start - Settings Page
+  .mvx-search-and-multistatus-wrap {
+    @include flexprops(center);
+    justify-content: space-between;
+      .mvx-multistatus-ul {
+        margin: 2rem 0;
         @include flexprops(center);
+        .mvx-multistatus-item {
+          margin: 0;
+          font-size: 1.3rem;
+        }
+        .mvx-divider {
+          width: 0.1rem;
+          background-color: #181718;
+          margin: 0 0.8rem;
+          height: 1.6rem;
+        }
+      }
+  }
+    
+  .mvx-wrap-bulk-all-date {
+    @include flexprops(center);
+  }
+}
+
+// Start - Setup Widget
+.mvx-setup-documentation {
+  padding-top: 10rem;
+  @include flexprops(start);
+  justify-content: space-between;
+  .mvx-setup-marketing-white-box{
+    background-color: $fill-color;
+    border: $border;
+    border-radius: $border-radius;
+    padding: 3.2rem;
+    width: 40%;
+    .mvx-block-title{
+      font-size: 1.8rem;
+      font-weight: 400;
+    }
+    .mvx-table-ul{
+      .mvx-align-items-center{
+        @include flexprops(start);
         justify-content: space-between;
-        .mvx-documentation-support-forum{
+        padding: 3.2rem;
+        .mvx-allign-li-txt{
+          span{
+              color: #9f8ab9;
+              padding-right: 2.4rem;
+          }
+        }
+        &:hover{
+          border: 0.1rem solid #65438f;
+          border-radius: $border-radius;
+          padding: 3.2rem;
+        }
+      }
+    }
+  }
+  .mvx-documentation-quick-link{
+    width: 60%;
+    padding-left: 2.4rem;
+    @include flexprops(center);
+    justify-content: space-between;
+    .mvx-documentation-support-forum{
+      @include flexprops(center);
+      flex-direction: column;
+      background-color: $fill-color;
+      width: 49%;
+      padding: 6.4rem 0 3.2rem 0;
+      border: $border;
+      border-radius: $border-radius;
+      figcaption{
+      padding-top: 2.4rem;
+        @include flexprops(center);
+        flex-direction: column;
+        div{
           @include flexprops(center);
           flex-direction: column;
-          background-color: $fill-color;
-          width: 49%;
-          padding: 6.4rem 0 3.2rem 0;
-          border: $border;
-          border-radius: $border-radius;
-          figcaption{
-            padding-top: 2.4rem;
-            @include flexprops(center);
-            flex-direction: column;
-            div{
-              @include flexprops(center);
-              flex-direction: column;
-              padding: 2.4rem 0 3.2rem;
-            }
-            a:hover{
-              text-decoration: none;
-            }
-          }
+          padding: 2.4rem 0 3.2rem;
         }
-      .mvx-quick-link-sec{
-        background-color: $fill-color;
-        border: $border;
-        border-radius: $border-radius;
-        padding: 3.2rem 6.4rem;
-        margin-top: 3.2rem;
-        ul{
-            @include flexprops(center);
-        }
-      }
-    }
-  }
-  
-  textarea, input[type=text], select, input, .default-input {
-      color: #8e8b91;
-      font-size: 1.4rem;
-  }
-  
-  .mvx-addbtn {
-      @include add-announcement-btn;
-      & a:hover {
-          color: $fill-color;
+        a:hover{
           text-decoration: none;
-      }
-  }
-  .mvx_addbtn_commission{
-      margin-left: auto;
-  }
-  .mvx-backend-datatable-wrapper {
-      padding: 2.4rem 0;
-      border-radius: $border-radius;
-  }
-  
-  input[type=text]:focus {
-      box-shadow: none;
-  }
-  
-  /** Start Settings Page Css **/
-  
-  .mvx-general-wrapper {
-      margin-left: -2rem;
-  }
-  
-  .mvx-search-and-multistatus-wrap {
-      @include flexprops(center);
-      justify-content: space-between;
-        .mvx-multistatus-ul {
-            margin: 2rem 0;
-            @include flexprops(center);
-            .mvx-multistatus-item {
-                margin: 0;
-                font-size: 1.3rem;
-            }
-            .mvx-divider {
-                width: 0.1rem;
-                background-color: #181718;
-                margin: 0 0.8rem;
-                height: 1.6rem;
-            }
         }
-  }
-  
-  .mvx-wrap-bulk-all-date {
-      @include flexprops(center);
-  }
-  
-  /** Vendor Page Css **/
-  .mvx-vendor {
-    .mvx-page-title {
-      @include flexprops(center);
-      p {
-        font-size: 2.4rem;
-        color: $title-color;
-        margin-right: 0.7rem;
-        font-weight: 600;
+      }
+    }
+    .mvx-quick-link-sec{
+      background-color: $fill-color;
+      border: $border;
+      border-radius: $border-radius;
+      padding: 3.2rem 6.4rem;
+      margin-top: 3.2rem;
+      ul{
+          @include flexprops(center);
       }
     }
   }
-  
-  .mvx-btn {
-    @include button;
-  }
-  
-  // .mvx-admin-dashboard {
-  //     position: relative;
-  // }
-  
-  /** datatable for all pages **/
-  .mvx-backend-datatable-wrapper {
-    .rdt_Pagination{
-      background: transparent;
-      border: none;
-      margin: 2.4rem 0;
-      .fQmYxz {
+}
+
+// Start - Datatable
+.mvx-backend-datatable-wrapper {
+  .rdt_Pagination{
+    background: transparent;
+    border: none;
+    margin: 2.4rem 0;
+    .fQmYxz {
+      border: $border;
+      border-radius: $border-radius;
+      margin-left: 1rem;
+      padding: 0 0.8rem;
+      .fWWeYy {
+        background: none;
+        &:focus{
+          box-shadow: none;
+        }
+      }
+      svg {
+        top: 0.3rem;
+        right: 0.8rem;
+        color: $title-color;
+      }
+      &:hover{
+        border: 0.1rem solid $theme-color;
+      }
+    }
+    .kNbUsB {
+      .gPLhoV {
         border: $border;
         border-radius: $border-radius;
         margin-left: 1rem;
-        padding: 0 0.8rem;
-        .fWWeYy {
-          background: none;
-          &:focus{
-            box-shadow: none;
-          }
-        }
+        width: 4rem;
+        height: 3.2rem;
+        @include flexprops(center);
         svg {
-          top: 0.3rem;
-          right: 0.8rem;
-          color: $title-color;
+            width: 2rem;
         }
         &:hover{
           border: 0.1rem solid $theme-color;
         }
       }
-      .kNbUsB {
-        .gPLhoV {
+    }
+  }
+  .rdt_Table {
+    background: transparent;
+    .rdt_TableHead {
+      .rdt_TableHeadRow {
           border: $border;
+          margin-bottom: 0.4rem;
           border-radius: $border-radius;
-          margin-left: 1rem;
-          width: 4rem;
-          height: 3.2rem;
-          @include flexprops(center);
-          svg {
-              width: 2rem;
+      }
+    }
+    .rdt_TableBody {
+      .rdt_TableRow {
+        border: $border;
+        border-radius: $border-radius;
+        margin-bottom: 0.2rem;
+        min-height: 3rem;
+        position: relative;
+        .rdt_TableCell {
+          .mvx-vendor-action-icon {
+            @include flexprops(center);
+            div {
+              margin-right: 0.4rem;
+              .mvxicon-hover-text {
+                display: none;
+              }
+              &:hover .mvxicon-hover-text{
+                display: block;
+                position: absolute;
+                top: 0;
+                right: 0.4rem;
+              }
+            }
+            a {
+                display: block;
+                margin-right: 0.4rem;
+                transition: ease 1s;
+            }
+            i {
+                color: #3f1473;
+            }
           }
+        }
+        a {
+          color: #3f1473;
+          font-weight: 500;
           &:hover{
-            border: 0.1rem solid $theme-color;
+            text-decoration: none;
           }
         }
-      }
-    }
-    .rdt_Table {
-      background: transparent;
-      .rdt_TableHead {
-        .rdt_TableHeadRow {
-            border: $border;
-            margin-bottom: 0.4rem;
+        .mvx-vendor-icon-name {
+          img {
             border-radius: $border-radius;
-        }
-      }
-      .rdt_TableBody {
-        .rdt_TableRow {
-          border: $border;
-          border-radius: $border-radius;
-          margin-bottom: 0.2rem;
-          min-height: 5rem;
-          position: relative;
-          .rdt_TableCell {
-            .mvx-vendor-action-icon {
-              @include flexprops(center);
-              div {
-                margin-right: 1rem;
-                .mvxicon-hover-text {
-                  display: none;
-                }
-                &:hover .mvxicon-hover-text{
-                  display: block;
-                  position: absolute;
-                  top: 0;
-                  right: 1rem;
-                }
-              }
-              a {
-                  display: block;
-                  margin-right: 1rem;
-                  transition: ease 1s;
-              }
-              i {
-                  color: #3f1473;
-              }
-            }
-          }
-          a {
-            color: #3f1473;
-            font-weight: 500;
-            &:hover{
-              text-decoration: none;
-            }
-          }
-          .fvAeSn {
-            img {
-              border-radius: $border-radius;
-              margin-right: 1rem;
-            }
+            margin-right: 0.4rem;
           }
         }
+        .jfrgbA {
+          padding-left: 0.3rem;
+          padding-right: 0.3rem;
+        }
       }
-      input[type="checkbox"] {
-        border: 0.1rem solid $theme-color;
-      }
+    }
+    input[type="checkbox"] {
+      border: 0.1rem solid $theme-color;
     }
   }
-  /** list vendor page Pop Up **/
-  .MuiDialog-paperScrollPaper {
-    .MuiDialogTitle-root {
-      position: relative;
-      h2 {
-        font-weight: 600;
-        .mvx-module-dialog-title{
-          @include flexprops(center);
-          justify-content: space-between;
-          i {
-            font-size: 1.6rem;
-          }
+}
+
+// Start - List Vendor Page Pop Up
+.MuiDialog-paperScrollPaper {
+  .MuiDialogTitle-root {
+    position: relative;
+    h2 {
+      font-weight: 600;
+      .mvx-module-dialog-title{
+        @include flexprops(center);
+        justify-content: space-between;
+        i {
+          font-size: 1.6rem;
         }
       }
-      .mvx-vendor-icon-name {
-        img {
-          border-radius: $border-radius;
-          width: 3rem;
-          height: 3rem;
-          margin-right: 1rem;
-        }
-        a {
-          color: $title-color;
-          font-size: 1.6rem;
-          text-decoration: none;
-        }
-        }
     }
-    .MuiDialogContent-root {
-      .mvx-module-dialog-content {
-        width: 35rem;
+    .mvx-vendor-icon-name {
+      img {
+        border-radius: $border-radius;
+        width: 3rem;
+        height: 3rem;
+        margin-right: 1rem;
+      }
+      a {
+        color: $title-color;
+        font-size: 1.6rem;
+        text-decoration: none;
+      }
+      }
+  }
+  .MuiDialogContent-root {
+    .mvx-module-dialog-content {
+      width: 35rem;
+      color: $paragraph-color;
+      a {
         color: $paragraph-color;
-        a {
-          color: $paragraph-color;
+      }
+      .mvx-email-content-and-value-wrap{
+        @include flexprops(center);
+        font-size: 1.6rem;
+        & .mvx-content-email {
+            padding-right: 0.8rem;
         }
-        .mvx-email-content-and-value-wrap{
-          @include flexprops(center);
-          font-size: 1.6rem;
-          & .mvx-content-email {
-              padding-right: 0.8rem;
-          }
-        }
-        .mvx-vendor-textarea-content {
-          textarea {
-            width: 100%;
-            border: $border;
-            margin: 1rem 0;
+      }
+      .mvx-vendor-textarea-content {
+        textarea {
+          width: 100%;
+          border: $border;
+          margin: 1rem 0;
+          font-size: 1.4rem;
+          &::placeholder{
             font-size: 1.4rem;
-            &::placeholder{
-              font-size: 1.4rem;
-            }
           }
         }
-        .mvx-vendor-multi-action-buttons {
-          @include flexprops(center);
-          justify-content: space-between;
-        }
+      }
+      .mvx-vendor-multi-action-buttons {
+        @include flexprops(center);
+        justify-content: space-between;
       }
     }
   }
+}

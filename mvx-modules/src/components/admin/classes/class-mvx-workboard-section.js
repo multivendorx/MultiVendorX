@@ -2306,7 +2306,7 @@ class MVXworkboard extends Component {
 						method="post"
 						modulename="create_announcement"
 						url="mvx_module/v1/create_announcement"
-						submit_title={appLocalizer.workboard_string.publish}
+						submit_title={appLocalizer.global_string.publish}
 					/>
 				) : get_current_name.get('AnnouncementID') ? (
 					this.state.edit_announcement_fileds &&

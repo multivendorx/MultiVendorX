@@ -118,7 +118,7 @@ class MVX_Status_Tools extends Component {
 								<div className="mvx-vendor-transients-button">
 									<button
 										type="button"
-										className="mvx-btn btn-purple"
+										className="mvx-btn btn-border"
 										onClick={(e) =>
 											this.handle_tools_triggers(
 												e,
@@ -151,7 +151,7 @@ class MVX_Status_Tools extends Component {
 						<div className="site-health-copy-buttons">
 							<button
 								type="button"
-								className="mvx-btn btn-purple copy-button"
+								className="mvx-btn btn-border copy-button"
 								data-clipboard-text={
 									this.state.list_of_system_info_copy_data
 								}
@@ -288,7 +288,7 @@ class MVX_Status_Tools extends Component {
 					<div className="site-health-copy-buttons">
 						<button
 							type="button"
-							className="mvx-btn btn-purple copy-button"
+							className="mvx-btn btn-border copy-button"
 							data-clipboard-text={appLocalizer.errors_log}
 						>
 							{

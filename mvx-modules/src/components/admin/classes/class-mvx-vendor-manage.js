@@ -888,7 +888,7 @@ class MVXBackendVendor extends React.Component {
 															}
 														</button>
 														<button
-															className="mvx-btn border-btn"
+															className="mvx-btn btn-border"
 															onClick={() =>
 																this.handle_Vendor_Edit(
 																	data8

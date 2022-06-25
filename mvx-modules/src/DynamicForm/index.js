@@ -2234,7 +2234,7 @@ export default class DynamicForm extends React.Component {
 					{prop_submitbutton ? (
 						<div className="mvx-form-actions">
 							<button
-								className="mvx-btn btn-purple"
+								className="mvx-btn btn-red"
 								disabled={this.state.from_loading}
 								type="submit"
 							>
