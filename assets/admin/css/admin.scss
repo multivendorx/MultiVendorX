@@ -24,7 +24,6 @@ $theme-color: #3f1473;
     text-decoration: none;
   }
 }
-
 @mixin mvx-addbtn {
   background: #3f1473;
   border-radius: $border-radius;
@@ -599,487 +598,482 @@ a:focus {
     content: "\e92b";
 }
 /*icon end*/
-  
-// header start
-.mvx-header-wapper {
-    @include flexprops(center);
-    padding: 0.8rem 2.4rem;
-    border-bottom: $border;
-    background-color: $fill-color;
-    position: relative;
+ 
+// Start - Common CSS
 
-    .mvx-header-nav-right-section {
-      margin-left: auto;
-      @include flexprops(center);
-      .nav-child-right {
-        padding: 0.8rem;
-        background-color: #f8ecf0;
-        border-radius: $border-radius;
-        margin-left: 2.4rem;
-      }
-    }
-    .mvx-header-nav-left-section {
-      @include flexprops(center);
-
-      .mvx-logo-img {
-        padding-right: 1.2rem;
-      }
-      .mvx-logo-title {
-        font-size: 1.8rem;
-        font-weight: 500;
-        padding-left: 1.2rem;
-      }
-      .mvx-header-section-nav-child-logo::after{
-        position: absolute;
-        content: "";
-        border-right: $border;
-        height: 100%;
-        top: 0%;
-      }
-    }
-  }
-  
-  .mvx-header-search-section {
-      @include flexprops(center);
-      @include input;
-      background-color: transparent;
-      color: #8e8b91;
-      input {
-          line-height: 2.4;
-          border: none;
-          background-color: transparent;
-          &:focus{
-              background-color: transparent;
-          }
-      }
-  }
-  // header end
-  // dashboard start
-
-  //color button work
-  .btn-red{
-    background-color: #e35047;
-  }
-  .btn-purple {
-    background-color: #3f1473;
-    border: none;
-    color: $fill-color;
-  }
-  .color-btn{
-    background-color: #65438f;
-    line-height: 0;
-    padding: 0.8rem 2.4rem;
-  }
-
-  .border-btn{
-    color: #000;
-    line-height: 0;
-    border: 0.1rem solid #65438f;
-    padding: 0.8rem 1.2rem;
+textarea, input[type=text], select, input, .default-input {
+  color: #8e8b91;
+  font-size: 1rem;
 }
   
-  .mvx-container {
-    @include flexprops(start);
-    background-color: $base-color;
-    padding: 2.4rem;
-    .mvx-sidebar {
-        padding-left: 2.4rem;
-    }
-    .mvx-middle-container-wrapper {
-        width: 100%;
-        .mvx-dashboard-top-heading{
-          font-size: 2.4rem;
-          padding: 2.4rem 0;
-          font-weight: 500;
-          text-align: center;
-        }
-        .mvx-slider-content-main-wrapper{
-          background-color: $fill-color;
-          border: $border;
-          border-radius: $border-radius;
-          padding: 3.2rem;
-          .mvx-dashboard-slider {
-            @include flexprops(start);
-            .mvx-dashboard-top-icon{
-              font-size: 2.4rem;
-              background: #9f8ab9;
-              border-radius: $border-radius;
-              color: #fff;
-              padding: 1.2rem;
-              font-weight: 400;
-            }
-            .mvx-pro-txt{
-              padding-left: 2.4rem;
-              h2{
-                font-size: 1.8rem;
-                font-weight: 400;
-              }
-              p{
-                font-size: 1.4rem;
-                font-weight: 100;
-              }
-            }
-          }
-        }
-    }
+.mvx-backend-datatable-wrapper {
+  padding: 2.4rem 0;
+  border-radius: $border-radius;
+}
+  
+input[type=text]:focus {
+  box-shadow: none;
+}
 
-    .mvx-tab-description-start {
-      text-align: center;
-      background-color: $fill-color;
-      border-radius: $border-radius;
-      margin: 0 0 0.4rem 0.4rem;
-      border: $border;
+.btn-red {
+  background-color: #e35047;
+}
+.btn-purple {
+  background-color: #3f1473;
+  border: none;
+  color: $fill-color;
+}
+.border-btn {
+  color: #000;
+  line-height: 0;
+  border: 0.1rem solid #65438f;
+  padding: 0.8rem 1.2rem;
+}
+.mvx-btn {
+  @include button;
+}
+
+// Start - Header
+.mvx-header-wapper {
+  @include flexprops(center);
+  padding: 0.4rem 1.2rem;
+  border-bottom: $border;
+  background-color: $fill-color;
+  position: relative;
+
+  .mvx-header-nav-right-section {
+    margin-left: auto;
+    @include flexprops(center);
+    .nav-child-right {
       padding: 0.4rem;
+      background-color: #f8ecf0;
+      border-radius: $border-radius;
+      margin-left: 1.2rem;
     }
+  }
+  .mvx-header-nav-left-section {
+    @include flexprops(center);
 
-    .mvx-tab-name {
-      color: #181718;
-      line-height: 1.25rem;
-      padding-bottom: 1.2rem;
+    .mvx-logo-img {
+      padding-right: 0.8rem;
     }
+    .mvx-logo-title {
+      font-size: 1.2rem;
+      font-weight: 500;
+      padding-left: 0.8rem;
+    }
+    .mvx-header-section-nav-child-logo::after{
+      position: absolute;
+      content: "";
+      border-right: $border;
+      height: 100%;
+      top: 0%;
+    }
+  }
+  .mvx-header-search-section {
+    @include flexprops(center);
+    @include input;
+    background-color: transparent;
+    color: #8e8b91;
+    input {
+      line-height: 2.4;
+      border: none;
+      background-color: transparent;
+      &:focus{
+        background-color: transparent;
+      }
+    }
+  }
+}
 
-    .mvx-current-tab-lists {
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      align-items: center;
-      margin: 0 0 0.4rem 0.4rem;
-      li {
-        padding: 16px 24px;
-        border: 1px solid #d4d1d9;
-        display: block;
-        width: auto;
-        cursor: pointer;
-        -webkit-transition: 0.3s;
-        transition: 0.3s;
-        background: #f7f6f9;
-        a {
-          line-height: 20px;
-          color: #181718;
-          text-decoration: none;
-          i {
-            padding-right: 8px;
-          }
+// Start - Main Container
+.mvx-container {
+  @include flexprops(start);
+  background-color: $base-color;
+  padding: 2.4rem;
+
+  .mvx-sidebar {
+    padding-left: 1.2rem;
+  }
+  
+  .mvx-tab-description-start {
+    text-align: center;
+    background-color: $fill-color;
+    border-radius: $border-radius;
+    margin: 0 0 0.4rem 0.4rem;
+    border: $border;
+    padding: 0.4rem;
+  }
+
+  .mvx-tab-name {
+    color: #181718;
+    line-height: 1.25rem;
+    padding-bottom: 1.2rem;
+  }
+
+  .mvx-current-tab-lists {
+    @include flexprops(start);
+    align-items: center;
+    margin: 0 0 0.4rem 0.4rem;
+    li {
+      padding: 0.8rem 1.0rem;
+      border: 0.1rem solid #d4d1d9;
+      display: block;
+      width: auto;
+      cursor: pointer;
+      -webkit-transition: 0.3s;
+      transition: 0.3s;
+      background: #f7f6f9;
+      a {
+        line-height: 1.0rem;
+        color: #181718;
+        text-decoration: none;
+        i {
+          padding-right: 0.4rem;
         }
       }
     }
-
-    .mvx-vertical-tabs .mvx-current-tab-lists{
-      float: left;
-      display: block;
+    li:last-child {
+      border-bottom: 0.1rem solid #d4d1d9;
     }
-
-    .mvx-current-tab-lists li:last-child {
-      border-bottom: 1px solid #d4d1d9;
-    }
-
-    .mvx-current-tab-lists li:nth-child(4) {
-      border-radius: 0;
-    }
-
-    .mvx-current-tab-lists .active-current-tab {
-      border-right: 1px solid #f7f6f9;
+    .active-current-tab {
+      border-right: 0.1rem solid #f7f6f9;
       background-color: #fdfdfe;
     }
   }
-  
-  .mvx-setup-documentation{
-    padding-top: 10rem;
-    @include flexprops(start);
-    justify-content: space-between;
-    .mvx-setup-marketing-white-box{
+
+  .mvx-vertical-tabs {
+    .mvx-current-tab-lists{
+      float: left;
+      display: block;
+    }
+  }
+
+  .mvx-page-title {
+    @include flexprops(center);
+    p {
+      font-size: 2.4rem;
+      color: $title-color;
+      margin-right: 0.7rem;
+      font-weight: 600;
+    }
+  }
+
+  .mvx-middle-container-wrapper{
+    width: 100%;
+    margin-right: 1rem;
+    min-width: 60%;
+  }
+
+  // Start - Dashboard
+  .mvx-main-dashboard-wrapper {
+    width: 100%;
+
+    .mvx-dashboard-top-heading{
+      font-size: 2.4rem;
+      padding: 2.4rem 0;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .mvx-slider-content-main-wrapper {
       background-color: $fill-color;
       border: $border;
       border-radius: $border-radius;
       padding: 3.2rem;
-      width: 40%;
-      .mvx-block-title{
-        font-size: 1.8rem;
-        font-weight: 400;
-      }
-      .mvx-table-ul{
-        .mvx-align-items-center{
-          @include flexprops(start);
-          justify-content: space-between;
-          padding: 3.2rem;
-          .mvx-allign-li-txt{
-            span{
-                color: #9f8ab9;
-                padding-right: 2.4rem;
-            }
+  
+      .mvx-dashboard-slider {
+        @include flexprops(start);
+    
+        .mvx-dashboard-top-icon{
+          font-size: 2.4rem;
+          background: #9f8ab9;
+          border-radius: $border-radius;
+          color: #fff;
+          padding: 1.2rem;
+          font-weight: 400;
+        }
+
+        .mvx-pro-txt{
+          padding-left: 2.4rem;
+          h2 {
+            font-size: 1.8rem;
+            font-weight: 400;
           }
-          &:hover{
-            border: 0.1rem solid #65438f;
-            border-radius: $border-radius;
-            padding: 3.2rem;
+          p {
+            font-size: 1.4rem;
+            font-weight: 100;
           }
         }
       }
     }
-    .mvx-documentation-quick-link{
-      width: 60%;
-      padding-left: 2.4rem;
+  }
+
+  // Start - Settings Page
+  .mvx-search-and-multistatus-wrap {
+    @include flexprops(center);
+    justify-content: space-between;
+      .mvx-multistatus-ul {
+        margin: 2rem 0;
         @include flexprops(center);
+        .mvx-multistatus-item {
+          margin: 0;
+          font-size: 1.3rem;
+        }
+        .mvx-divider {
+          width: 0.1rem;
+          background-color: #181718;
+          margin: 0 0.8rem;
+          height: 1.6rem;
+        }
+      }
+  }
+    
+  .mvx-wrap-bulk-all-date {
+    @include flexprops(center);
+  }
+}
+
+// Start - Setup Widget
+.mvx-setup-documentation {
+  padding-top: 10rem;
+  @include flexprops(start);
+  justify-content: space-between;
+  .mvx-setup-marketing-white-box{
+    background-color: $fill-color;
+    border: $border;
+    border-radius: $border-radius;
+    padding: 3.2rem;
+    width: 40%;
+    .mvx-block-title{
+      font-size: 1.8rem;
+      font-weight: 400;
+    }
+    .mvx-table-ul{
+      .mvx-align-items-center{
+        @include flexprops(start);
         justify-content: space-between;
-        .mvx-documentation-support-forum{
+        padding: 3.2rem;
+        .mvx-allign-li-txt{
+          span{
+              color: #9f8ab9;
+              padding-right: 2.4rem;
+          }
+        }
+        &:hover{
+          border: 0.1rem solid #65438f;
+          border-radius: $border-radius;
+          padding: 3.2rem;
+        }
+      }
+    }
+  }
+  .mvx-documentation-quick-link{
+    width: 60%;
+    padding-left: 2.4rem;
+    @include flexprops(center);
+    justify-content: space-between;
+    .mvx-documentation-support-forum{
+      @include flexprops(center);
+      flex-direction: column;
+      background-color: $fill-color;
+      width: 49%;
+      padding: 6.4rem 0 3.2rem 0;
+      border: $border;
+      border-radius: $border-radius;
+      figcaption{
+      padding-top: 2.4rem;
+        @include flexprops(center);
+        flex-direction: column;
+        div{
           @include flexprops(center);
           flex-direction: column;
-          background-color: $fill-color;
-          width: 49%;
-          padding: 6.4rem 0 3.2rem 0;
-          border: $border;
-          border-radius: $border-radius;
-          figcaption{
-            padding-top: 2.4rem;
-            @include flexprops(center);
-            flex-direction: column;
-            div{
-              @include flexprops(center);
-              flex-direction: column;
-              padding: 2.4rem 0 3.2rem;
-            }
-            a:hover{
-              text-decoration: none;
-            }
-          }
+          padding: 2.4rem 0 3.2rem;
         }
-      .mvx-quick-link-sec{
-        background-color: $fill-color;
-        border: $border;
-        border-radius: $border-radius;
-        padding: 3.2rem 6.4rem;
-        margin-top: 3.2rem;
-        ul{
-            @include flexprops(center);
+        a:hover{
+          text-decoration: none;
         }
       }
     }
+    .mvx-quick-link-sec{
+      background-color: $fill-color;
+      border: $border;
+      border-radius: $border-radius;
+      padding: 3.2rem 6.4rem;
+      margin-top: 3.2rem;
+      ul{
+          @include flexprops(center);
+      }
+    }
   }
-  
-  textarea, input[type=text], select, input, .default-input {
-      color: #8e8b91;
-      font-size: 1.4rem;
-  }
-  
-  .mvx-backend-datatable-wrapper {
-    padding: 2.4rem 0;
-    border-radius: $border-radius;
-  }
-  
-  input[type=text]:focus {
-      box-shadow: none;
-  }
-  
-  /** Start Settings Page Css **/
-  
-  .mvx-general-wrapper {
-      margin-left: -2rem;
-  }
-  
-  .mvx-search-and-multistatus-wrap {
-      @include flexprops(center);
-      justify-content: space-between;
-        .mvx-multistatus-ul {
-            margin: 2rem 0;
-            @include flexprops(center);
-            .mvx-multistatus-item {
-                margin: 0;
-                font-size: 1.3rem;
-            }
-            .mvx-divider {
-                width: 0.1rem;
-                background-color: #181718;
-                margin: 0 0.8rem;
-                height: 1.6rem;
-            }
+}
+
+// Start - Datatable
+.mvx-backend-datatable-wrapper {
+  .rdt_Pagination{
+    background: transparent;
+    border: none;
+    margin: 2.4rem 0;
+    .fQmYxz {
+      border: $border;
+      border-radius: $border-radius;
+      margin-left: 1rem;
+      padding: 0 0.8rem;
+      .fWWeYy {
+        background: none;
+        &:focus{
+          box-shadow: none;
         }
-  }
-  
-  .mvx-wrap-bulk-all-date {
-      @include flexprops(center);
-  }
-  
-  /** Vendor Page Css **/
-  .mvx-vendor {
-    .mvx-page-title {
-      @include flexprops(center);
-      p {
-        font-size: 2.4rem;
+      }
+      svg {
+        top: 0.3rem;
+        right: 0.8rem;
         color: $title-color;
-        margin-right: 0.7rem;
-        font-weight: 600;
+      }
+      &:hover{
+        border: 0.1rem solid $theme-color;
       }
     }
-  }
-  
-  .mvx-btn {
-    @include button;
-  }
-  
-  
-  /** datatable for all pages **/
-  .mvx-backend-datatable-wrapper {
-    .rdt_Pagination{
-      background: transparent;
-      border: none;
-      margin: 2.4rem 0;
-      .fQmYxz {
+    .kNbUsB {
+      .gPLhoV {
         border: $border;
         border-radius: $border-radius;
         margin-left: 1rem;
-        padding: 0 0.8rem;
-        .fWWeYy {
-          background: none;
-          &:focus{
-            box-shadow: none;
-          }
-        }
+        width: 4rem;
+        height: 3.2rem;
+        @include flexprops(center);
         svg {
-          top: 0.3rem;
-          right: 0.8rem;
-          color: $title-color;
+            width: 2rem;
         }
         &:hover{
           border: 0.1rem solid $theme-color;
         }
       }
-      .kNbUsB {
-        .gPLhoV {
+    }
+  }
+  .rdt_Table {
+    background: transparent;
+    .rdt_TableHead {
+      .rdt_TableHeadRow {
           border: $border;
+          margin-bottom: 0.4rem;
           border-radius: $border-radius;
-          margin-left: 1rem;
-          width: 4rem;
-          height: 3.2rem;
-          @include flexprops(center);
-          svg {
-              width: 2rem;
+      }
+    }
+    .rdt_TableBody {
+      .rdt_TableRow {
+        border: $border;
+        border-radius: $border-radius;
+        margin-bottom: 0.2rem;
+        min-height: 3rem;
+        position: relative;
+        .rdt_TableCell {
+          .mvx-vendor-action-icon {
+            @include flexprops(center);
+            div {
+              margin-right: 0.4rem;
+              .mvxicon-hover-text {
+                display: none;
+              }
+              &:hover .mvxicon-hover-text{
+                display: block;
+                position: absolute;
+                top: 0;
+                right: 0.4rem;
+              }
+            }
+            a {
+                display: block;
+                margin-right: 0.4rem;
+                transition: ease 1s;
+            }
+            i {
+                color: #3f1473;
+            }
           }
+        }
+        a {
+          color: #3f1473;
+          font-weight: 500;
           &:hover{
-            border: 0.1rem solid $theme-color;
+            text-decoration: none;
           }
         }
-      }
-    }
-    .rdt_Table {
-      background: transparent;
-      .rdt_TableHead {
-        .rdt_TableHeadRow {
-            border: $border;
-            margin-bottom: 0.4rem;
+        .mvx-vendor-icon-name {
+          img {
             border-radius: $border-radius;
-        }
-      }
-      .rdt_TableBody {
-        .rdt_TableRow {
-          border: $border;
-          border-radius: $border-radius;
-          margin-bottom: 0.2rem;
-          min-height: 5rem;
-          position: relative;
-          .rdt_TableCell {
-            .mvx-vendor-action-icon {
-              @include flexprops(center);
-              div {
-                margin-right: 1rem;
-                .mvxicon-hover-text {
-                  display: none;
-                }
-                &:hover .mvxicon-hover-text{
-                  display: block;
-                  position: absolute;
-                  top: 0;
-                  right: 1rem;
-                }
-              }
-              a {
-                  display: block;
-                  margin-right: 1rem;
-                  transition: ease 1s;
-              }
-              i {
-                  color: #3f1473;
-              }
-            }
-          }
-          a {
-            color: #3f1473;
-            font-weight: 500;
-            &:hover{
-              text-decoration: none;
-            }
-          }
-          .fvAeSn {
-            img {
-              border-radius: $border-radius;
-              margin-right: 1rem;
-            }
+            margin-right: 0.4rem;
           }
         }
+        .jfrgbA {
+          padding-left: 0.3rem;
+          padding-right: 0.3rem;
+        }
       }
-      input[type="checkbox"] {
-        border: 0.1rem solid $theme-color;
-      }
+    }
+    input[type="checkbox"] {
+      border: 0.1rem solid $theme-color;
     }
   }
-  /** list vendor page Pop Up **/
-  .MuiDialog-paperScrollPaper {
-    .MuiDialogTitle-root {
-      position: relative;
-      h2 {
-        font-weight: 600;
-        .mvx-module-dialog-title{
-          @include flexprops(center);
-          justify-content: space-between;
-          i {
-            font-size: 1.6rem;
-          }
+}
+
+// Start - List Vendor Page Pop Up
+.MuiDialog-paperScrollPaper {
+  .MuiDialogTitle-root {
+    position: relative;
+    h2 {
+      font-weight: 600;
+      .mvx-module-dialog-title{
+        @include flexprops(center);
+        justify-content: space-between;
+        i {
+          font-size: 1.6rem;
         }
       }
-      .mvx-vendor-icon-name {
-        img {
-          border-radius: $border-radius;
-          width: 3rem;
-          height: 3rem;
-          margin-right: 1rem;
-        }
-        a {
-          color: $title-color;
-          font-size: 1.6rem;
-          text-decoration: none;
-        }
-        }
     }
-    .MuiDialogContent-root {
-      .mvx-module-dialog-content {
-        width: 35rem;
+    .mvx-vendor-icon-name {
+      img {
+        border-radius: $border-radius;
+        width: 3rem;
+        height: 3rem;
+        margin-right: 1rem;
+      }
+      a {
+        color: $title-color;
+        font-size: 1.6rem;
+        text-decoration: none;
+      }
+      }
+  }
+  .MuiDialogContent-root {
+    .mvx-module-dialog-content {
+      width: 35rem;
+      color: $paragraph-color;
+      a {
         color: $paragraph-color;
-        a {
-          color: $paragraph-color;
+      }
+      .mvx-email-content-and-value-wrap{
+        @include flexprops(center);
+        font-size: 1.6rem;
+        & .mvx-content-email {
+            padding-right: 0.8rem;
         }
-        .mvx-email-content-and-value-wrap{
-          @include flexprops(center);
-          font-size: 1.6rem;
-          & .mvx-content-email {
-              padding-right: 0.8rem;
-          }
-        }
-        .mvx-vendor-textarea-content {
-          textarea {
-            width: 100%;
-            border: $border;
-            margin: 1rem 0;
+      }
+      .mvx-vendor-textarea-content {
+        textarea {
+          width: 100%;
+          border: $border;
+          margin: 1rem 0;
+          font-size: 1.4rem;
+          &::placeholder{
             font-size: 1.4rem;
-            &::placeholder{
-              font-size: 1.4rem;
-            }
           }
         }
-        .mvx-vendor-multi-action-buttons {
-          @include flexprops(center);
-          justify-content: space-between;
-        }
+      }
+      .mvx-vendor-multi-action-buttons {
+        @include flexprops(center);
+        justify-content: space-between;
       }
     }
   }
+}

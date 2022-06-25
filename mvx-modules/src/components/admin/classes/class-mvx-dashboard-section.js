@@ -6,7 +6,7 @@ class MVX_Dashboard extends Component {
 			<div className="mvx-general-wrapper mvx-dashboard">
 				<HeaderSection />
 				<div className="mvx-sub-container mvx-container">
-					<div className="mvx-middle-container-wrapper">
+					<div className="mvx-main-dashboard-wrapper">
 						<div className="mvx-dashboard-top-heading">
 							Welcome to MultiVendorX
 						</div>
