@@ -8,6 +8,7 @@ class MVX_Settings {
     public function __construct() {
         // Admin menu
         add_action( 'admin_menu', array( $this, 'add_settings_page' ), 100 );
+        add_filter( 'admin_body_class', array( $this, 'mvx_add_loading_classes' ) );
     }
 
     /**
@@ -42,6 +43,15 @@ class MVX_Settings {
 
             add_submenu_page( null, __( 'Transaction Details', 'multivendorx' ), __( 'Transaction Details', 'multivendorx' ), 'manage_woocommerce', 'mvx-transaction-details', array( $this, 'mvx_transaction_details' ) );
         }
+    }
+
+    public function mvx_add_loading_classes( $classes ) {
+        $screen = get_current_screen();
+        $page_details = array('toplevel_page_mvx');
+        if ( in_array($screen->id, $page_details)) {
+            $classes .= ' mvx-page';
+        }
+        return $classes;
     }
 
     public function mvx_modules_callback() {

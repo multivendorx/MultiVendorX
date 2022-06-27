@@ -2351,10 +2351,10 @@
     "@wordpress/base-styles" "^4.0.1"
     "autoprefixer" "^10.2.5"
 
-"@wordpress/prettier-config@^1.1.1":
-  "integrity" "sha512-qjpBK5KB2ieCLv+1fGNKRW4urf5tFN1eUn3Qy+JINxNwAx6Jj9uhfXA4AldCSnD+WkzsN2UgBvgAj5/SWwzRZQ=="
-  "resolved" "https://registry.npmjs.org/@wordpress/prettier-config/-/prettier-config-1.1.1.tgz"
-  "version" "1.1.1"
+"@wordpress/prettier-config@^1.1.1", "@wordpress/prettier-config@^1.4.0":
+  "integrity" "sha512-uvrgUAhRnOvIysXjcXH9VDsrKLqH9r3BfdGoy+WFLSHFnTfdMhW7bdDQXl4F4UIUuefUwGi+ZvT/rChg9zoBkQ=="
+  "resolved" "https://registry.npmjs.org/@wordpress/prettier-config/-/prettier-config-1.4.0.tgz"
+  "version" "1.4.0"
 
 "@wordpress/scripts@^18.1.0":
   "integrity" "sha512-hSRGfnRpGyr3Ec//XfMDCoC3M85nX+KyNAqIBJpLAIYo/gs5x9Gw2fX9ac4ts+hx9VIa7d0RmH5+Gqsxupzp+g=="
@@ -8597,7 +8597,7 @@
   dependencies:
     "fast-diff" "^1.1.2"
 
-"prettier@>=1.13.0":
+"prettier@>=1.13.0", "prettier@>=2":
   "integrity" "sha512-9fbDAXSBcc6Bs1mZrDYb3XKzDLm4EXXL9sC1LqKP5rZkT6KRr/rf9amVUcODVXgguK/isJz0d0hP72WeaKWsvA=="
   "version" "2.4.1"
 
