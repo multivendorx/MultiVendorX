@@ -81,7 +81,7 @@ class MVX_Dashboard extends Component {
 								</div>
 							</div>
 
-							<div className="border-block">
+							<div className="message-banner-sliding">
 								<a href="#" className="p-prev">
 									<i className="mvx-font icon-left-arrow" />
 								</a>
@@ -90,6 +90,7 @@ class MVX_Dashboard extends Component {
 									<i className="mvx-font icon-right-arrow" />
 								</a>
 							</div>
+							<div class="clear"></div>
 						</div>
 
 						<div className="mvx-setup-documentation">
