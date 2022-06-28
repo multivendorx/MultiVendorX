@@ -1368,7 +1368,7 @@ Class MVX_Admin_Dashboard {
         update_user_meta($vendor_user_id, '_mvx_shipping_by_distance_rates', array_values($mvx_shipping_by_distance_rates));
 
         $mvx_shipping_by_distance = isset($_POST['mvx_shipping_by_distance']) ? array_filter( array_map( 'wc_clean', $_POST['mvx_shipping_by_distance'] ) ) : '';
-        update_user_meta($vendor_user_id, '_mvx_shipping_by_distance', array_values($mvx_shipping_by_distance));
+        update_user_meta($vendor_user_id, '_mvx_shipping_by_distance', $mvx_shipping_by_distance);
 
         $vendor_shipping_options = isset($_POST['shippping-options']) ? wc_clean($_POST['shippping-options']) : '';
         update_user_meta($vendor_user_id, 'vendor_shipping_options', $vendor_shipping_options);
