@@ -39,6 +39,63 @@ $theme-color: #3f1473;
       }
   }
 }
+@mixin toggle-btn {
+    input[type=checkbox]{
+        height: 0;
+        width: 0;
+        visibility: hidden;
+        display: none;
+    }
+    
+    label {
+        cursor: pointer;
+        width: 3.3rem;
+        height: 1.5rem;
+        background: transparent;
+        display: block;
+        border-radius: 8rem;
+        position: relative;
+        border: 0.06rem solid #3f1473;
+    }
+    label:before {
+        content: '';
+        position: absolute;
+        top: 0.38rem;
+        left: 0.5rem;
+        width: 0.17rem;
+        height: 0.57rem;
+        background: #fff;
+        -webkit-transition: 0.3s;
+        transition: 0.3s;
+    }
+    label:after {
+        content: '';
+        position: absolute;
+        top: 4px;
+        left: 5px;
+        width: 14px;
+        height: 14px;
+        background: #3f1473;
+        border-radius: 90px;
+        transition: 0.3s;
+        z-index: 999;
+    }
+    
+    input:checked + label {
+        background: #3f1473;
+    }
+    
+    input:checked + label:after {
+        left: calc(100% - 5px);
+        transform: translateX(-100%);
+        background-color: #fdfdfe;
+    }
+    
+    label:active:after {
+        width: 20px;
+    }
+}
+
 @mixin input {
   padding-left: 1.4rem;
   border: $border;
@@ -600,10 +657,13 @@ a:focus {
 /*icon end*/
  
 // Start - Common CSS
-
 textarea, input[type=text], select, input, .default-input {
-  color: #8e8b91;
-  font-size: 1rem;
+    border-radius: 0.25rem;
+    width: 100%;
+    padding: 0rem 0.9375rem;
+    color: #8e8b91;
+    font-size: 1rem;
+    border: $border;
 }
 
 h1 {
@@ -628,7 +688,7 @@ p {
   font-size: 14px;
 }
 code{
-  background-color: #181718;
+  //background-color: #181718;
 }
 img{
   border-radius: 4px;
@@ -670,15 +730,39 @@ blockquote::before,
 blockquote::after {
     content: "";
 }
+
+.mvx-page #wpcontent {
+  padding: 0rem;
+}
   
 .mvx-backend-datatable-wrapper {
   padding: 2.4rem 0;
   border-radius: $border-radius;
 }
-  
+input {
+  height: 2.6rem;
+}
+
+input[type="radio"], input[type="checkbox"] {
+    width: 1rem;
+    height: 1rem;
+}
+
+input[type=radio]:checked::before {
+    font-family: 'mvx-admin-font' !important;
+    margin: 0;
+    content: '\e909';
+    color: #FFF;
+    font-size: 10px;
+    line-height: 16px;
+    background-color: #65438f !important;
+}
+
 input[type=text]:focus {
   box-shadow: none;
 }
+
+
 
 .btn-red {
   background-color: #e35047;
@@ -710,7 +794,7 @@ input[type=text]:focus {
 // Start - Header
 .mvx-header-wapper {
   @include flexprops(center);
-  padding: 0.4rem 1.2rem;
+  padding: 1rem 1.2rem;
   border-bottom: $border;
   background-color: $fill-color;
   position: relative;
@@ -732,7 +816,7 @@ input[type=text]:focus {
       padding-right: 0.8rem;
     }
     .mvx-logo-title {
-      font-size: 1.2rem;
+      font-size: 2rem;
       font-weight: 500;
       padding-left: 0.8rem;
     }
@@ -774,14 +858,15 @@ input[type=text]:focus {
     text-align: center;
     background-color: $fill-color;
     border-radius: $border-radius;
-    margin: 0 0 0.4rem 0.4rem;
+    margin: 0 0 2rem 0;
     border: $border;
-    padding: 0.4rem;
+    padding: 1.2rem;
   }
 
   .mvx-tab-name {
     color: #181718;
-    line-height: 1.25rem;
+    font-size: 1.25rem;
+    font-weight: 600;
     padding-bottom: 1.2rem;
   }
 
@@ -820,6 +905,347 @@ input[type=text]:focus {
     .mvx-current-tab-lists{
       float: left;
       display: block;
+      width: 22%;
+      height: auto;
+      & li {
+        border: 1px solid #d4d1d9;
+        transition: 0.3s;
+        padding: 1rem 1.2rem;
+        margin-bottom: 0;
+        border-bottom: 0;
+        & a {
+          display: flex;
+          align-items: center;
+          & i {
+            padding-right: 8px;
+          }
+        }
+      }
+      & li:last-child {
+        border-bottom: $border;
+      }
+      & .active-current-tab {
+        border-right: 0rem;
+        background-color: $fill-color;
+      }
+    }
+
+    & .mvx-tab-content {
+      padding: 24px;
+      border: 1px solid #d4d1d9;
+      float: left;
+      width: 75.8%;
+      height: auto;
+      margin-top: 0;
+      border-radius: 0px 4px 4px 0px;
+      border-left: 0;
+      background-color: $fill-color;
+      & .mvx-dynamic-form {
+        & .mvx-form-group {
+          @include flexprops(start);
+          padding: 1.6rem 0;
+          & .mvx-settings-form-label {
+            margin-right: 20px;
+            & p {
+              font-size: 1rem;
+              color: $title-color;
+              width: 200px;
+            }
+          }
+          & .mvx-settings-input-content {
+            width: 100%;
+            & .mvx-toggle-checkbox-content {
+              margin-bottom: 10px;
+            }
+            & .mvx-settings-basic-input-class {
+              & .mvx-settings-basic-child-wrap {
+                & .mvx-settings-basic-input-child-class {
+                  margin: 0 0 16px 0;
+                }
+              }
+            }
+          }
+          .mvx-settings-metabox-description {
+            margin-top: 10px;
+          }
+
+          .mvx-setting-file-uploader-class {
+            .mvx-btn {
+              display: block;
+              margin: 1rem 0 0 0;
+            }
+          }
+          
+        }
+        & .mvx-form-button-group {
+          & .mvx-settings-basic-input-class {
+            & .default-btn {
+              height: 40px;
+              background-color: #3f1473;
+              width: 20%;
+              color: $fill-color;
+          }
+          }
+        }
+      }
+      .mvx-form-group-radio-color {
+        @include flexprops(center);
+        flex-wrap: wrap;
+        & .mvx-settings-radio-color {
+          margin: 8px;
+          width: calc(50% - 16px);
+          padding: 0.5rem;
+          box-sizing: border-box;
+          border: 1px solid transparent;
+          border-radius: $border-radius;
+          transition: all 0.3s;
+          & .color-palette  {
+            width: 100%;
+            border-spacing: 0;
+            border-collapse: collapse;
+            @include flexprops(center);
+            margin-top: 5px;
+            & div {
+              width: 25%;
+            }
+          }
+        }
+      }
+      .mvx-form-group-radio-color {
+        @include flexprops(center);
+        flex-wrap: wrap;
+        & .mvx-settings-radio-color {
+          margin: 8px;
+          width: calc(50% - 16px);
+          padding: 0.5rem;
+          box-sizing: border-box;
+          border: 1px solid transparent;
+          border-radius: $border-radius;
+          transition: all 0.3s;
+          & .color-palette  {
+            width: 100%;
+            border-spacing: 0;
+            border-collapse: collapse;
+            @include flexprops(center);
+            margin-top: 5px;
+            & div {
+              width: 25%;
+            }
+          }
+        }
+      }
+      .mvx-radioselect-class {
+        margin-bottom: 24px;
+        padding: 1rem;
+        border-radius: $border-radius;
+        font-weight: 600;
+        background-color: #ece8f1;
+        position: relative;
+        transition: .4s all ease-in-out;
+        & .mvx-setting-form-input {
+          display: none;
+        }
+        & .mvx-radio-select-under-label-class::before {
+          background-color: #3f1473;
+          color: #f8f9fb;
+          content: "\f15e";
+          padding: 4px;
+          font-family: 'dashicons';
+          position: absolute;
+          bottom: 24px;
+          right: 24px;
+          width: 16px;
+          height: 16px;
+          line-height: 16px;
+          border-radius: 2px;
+        }
+        & .mvx-radio-select-under-label-class {
+          & .mvx-radioselect-overlay-text {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: #3f147363;
+            color: #f9f8fb;
+            opacity: 0;
+            @include flexprops(center);
+            justify-content: center;
+            padding: 0.5rem;
+            border-radius: $border-radius;
+          }
+          :hover {
+            & .mvx-radioselect-overlay-text {
+              opacity: 1;
+            }
+          }
+        }
+        & .mvx-section-img-fluid {
+          width: 100%;
+        }
+      }
+      & .mvx-multi-nested-class {
+        & .mvx-boarder-parent {
+          & .mvx-boarder-parent-loop {
+            width: 100%
+          }
+          @include flexprops(center);
+          & .horizontal-class {
+          margin: 16px 0 0 16px;
+            & .button-controls a {
+              background: #3f1473 !important;
+              border: none;
+            }
+          }
+        }
+      }
+      .mvx-toggle-rectangle-merge {
+        & ul {
+          position: relative;
+          padding: 0 0.4rem;
+          border: $border;
+          border-radius: 0.125rem;
+          @include flexprops(center);
+          overflow: hidden;
+          width: fit-content;
+          margin: 0;
+          & input:checked + label {
+            background: #3f1473;
+            color: $fill-color;
+          }
+          & li {
+            list-style-type: none;
+            padding: 1rem 0.1rem;
+            margin: 0;
+            & input {
+                display: none;
+            }
+            & label {
+              color: $title-color;
+              font-size: 1rem;
+              font-weight: 500;
+              line-height: 1;
+              text-align: center;
+              padding: 0.5rem 1rem;
+              border-radius: 0.125rem;
+              border: 0.06rem solid #d4d1d9;
+              -webkit-transition: all 0.1s ease-in-out;
+              transition: all 0.1s ease-in-out;
+            }
+          }
+        }
+      }
+      & .mvx-toggle-checkbox {
+        width: 16px;
+        height: 16px;
+      }
+      .mvx-toggle-checkbox-content {
+    margin-left: auto;
+    position: relative;
+    @include toggle-btn;
+}
+.mvx-toggle-checkbox-content::after {
+    content: '';
+    position: absolute;
+    top: 0.55rem;
+    left: 2.3rem;
+    width: 0.25rem;
+    height: 0.25rem;
+    border: 0.0625rem solid #3f1473;
+    border-radius: 8rem;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    z-index: 0;
+}
+
+& .mvx-select-deselect-checkbox-content {
+        & .mvx-select-de-box-and-checkbox {
+            & .mvx-select-deselect-checkbox-label-marge {
+                @include flexprops(center);
+                flex-wrap: wrap;
+                & .mvx-wrap-checkbox-and-label {
+                    @include flexprops(center);
+                    margin: 10px 0 10px 0;
+                    & .mvx-normal-checkbox-content {
+                        & .mvx-toggle-checkbox {
+                            width: 16px !important;
+                            height: 16px !important;
+                        }
+                    }
+                    & .mvx-normal-checkbox-label {
+                        & .mvx-settings-metabox-description {
+                            margin: 0px;
+                        }
+                    }
+                }
+                & .mvx-col-50 {
+                    width: 50%;
+
+                }
+            }
+        }
+    }
+
+    .mvx-form-vendor-register {
+    & .mvx-top-part-registartion-from{
+        & .mvx-registration-content {
+            & .mvx-form-registration-group {
+                padding: 2rem;
+                background-color: #f7f6f9;
+                border-radius: 0.4rem;
+                margin: 0.7rem 0;
+                border: 0.0625rem solid #d4d1d9;
+                & .mvx-untitle-content {
+                    margin: 0 0 8px 0;
+                }
+                & input {
+                    height: 40px;
+                }
+            }
+        }
+    }
+}
+
+.mvx-form-vendor-register .mvx-option-part {
+    padding: 2rem;
+    background-color: #f7f6f9;
+    border-radius: 0.25rem;
+    margin: 0.7rem 0;
+    position: relative;
+    padding-bottom: 4.375rem;
+    overflow: hidden;
+    border: 0.0625rem solid #d4d1d9;
+    & .mvx-question-input-items {
+        width: 100%;
+        margin: 0 8px 0 0;
+    }
+    & .mvx-vendor-form-input-field-container {
+        margin: 0 0 8px 0;
+    }
+    & .mvx-footer-icon-form {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 16px;
+        @include flexprops(center);
+        & .mvx-perple-txt {
+            margin-left: auto;
+            & input[type="checkbox"] {
+                height: 15px !important;
+                width: 15px;
+            }
+        }
+        & .mvx-font {
+            color: #3f1473;
+            margin: 0 8px 0 0;
+        }
+    }
+    & input, select {
+        height: 40px;
+    }
+}
+
     }
   }
 
@@ -845,20 +1271,29 @@ input[type=text]:focus {
 
     .mvx-dashboard-top-heading{
       font-size: 2.4rem;
-      padding: 2.4rem 0;
+      margin: 0 0 3rem 0;
       font-weight: 500;
       text-align: center;
     }
 
     .mvx-slider-content-main-wrapper {
+      background-image: url(../../images/dashboard-top-bg.png), url(../../images/dashboard-top-bg2.png);
+      background-size: auto 100%, 4.125rem auto;
+      background-position: left top, top right;
+      background-repeat: no-repeat, no-repeat;
       background-color: $fill-color;
       border: $border;
       border-radius: $border-radius;
       padding: 3.2rem;
-  
+      display: flex;
+      align-items: center;
+
       .mvx-dashboard-slider {
         @include flexprops(start);
-    
+        display: none;
+        float: left;
+        width: 80%;
+
         .mvx-dashboard-top-icon{
           font-size: 2.4rem;
           background: #9f8ab9;
@@ -866,21 +1301,126 @@ input[type=text]:focus {
           color: #fff;
           padding: 1.2rem;
           font-weight: 400;
+          width: 6rem;
+          height: 6rem;
+          display: table;
+        }
+
+        .mv-dashboard-top-icon span {
+          vertical-align: middle;
+          display: table-cell;
         }
 
         .mvx-pro-txt{
+          width: calc(100% - 4.2rem);
+          height: auto;
+          min-height: 0.4rem;
+          float: left;
           padding-left: 2.4rem;
-          h2 {
-            font-size: 1.8rem;
-            font-weight: 400;
-          }
           p {
-            font-size: 1.4rem;
-            font-weight: 100;
+            margin: 0 0 2rem 0;
           }
         }
       }
+      .mvx-dashboard-slider:nth-child(1) {
+        display: flex;
+      }
+      .message-banner-sliding {
+        width: auto;
+        float: left;
+        display: flex;
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+        border-radius: 0.25rem;
+        border: #d4d1d9 0.0625rem solid;
+        a {
+          width: 1.875rem;
+          display: block;
+          text-decoration: none;
+          font-size: 1rem;
+          color: #3d3c3e;
+          line-height: 1.875rem;
+        }
+        span {
+          font-size: 1rem;
+          color: #3d3c3e;
+          line-height: 1.875rem;
+          text-align: center;
+        }
+      }
     }
+
+    .mvx-setup-documentation {
+      padding-top: 4rem;
+      @include flexprops(start);
+      justify-content: space-between;
+      .mvx-setup-marketing-white-box{
+        background-color: $fill-color;
+        border: $border;
+        border-radius: $border-radius;
+        padding: 2rem;
+        width: 40%;
+        .mvx-block-title{
+          font-size: 1.8rem;
+          font-weight: 400;
+        }
+        .mvx-table-ul{
+          .mvx-align-items-center{
+            @include flexprops(start);
+            justify-content: space-between;
+            padding: 2rem;
+            .mvx-allign-li-txt{
+              span{
+                  color: #9f8ab9;
+                  padding-right: 2.4rem;
+              }
+            }
+            &:hover{
+              border: 0.1rem solid #65438f;
+              border-radius: $border-radius;
+            }
+          }
+        }
+      }
+      .mvx-documentation-quick-link{
+        width: 60%;
+        padding-left: 2.4rem;
+        @include flexprops(center);
+        justify-content: space-between;
+        .mvx-documentation-support-forum{
+          @include flexprops(center);
+          flex-direction: column;
+          background-color: $fill-color;
+          width: 49%;
+          padding: 6.4rem 0 3.2rem 0;
+          border: $border;
+          border-radius: $border-radius;
+          figcaption{
+          padding-top: 2.4rem;
+            @include flexprops(center);
+            flex-direction: column;
+            div{
+              @include flexprops(center);
+              flex-direction: column;
+              padding: 2.4rem 0 3.2rem;
+            }
+            a:hover{
+              text-decoration: none;
+            }
+          }
+        }
+        .mvx-quick-link-sec{
+          background-color: $fill-color;
+      border: $border;
+      border-radius: $border-radius;
+      padding: 3.2rem 6.4rem;
+      margin-top: 3.2rem;
+      ul{
+          @include flexprops(center);
+      }
+    }
+  }
+}
   }
 
   // Start - Settings Page
@@ -909,78 +1449,6 @@ input[type=text]:focus {
 }
 
 // Start - Setup Widget
-.mvx-setup-documentation {
-  padding-top: 10rem;
-  @include flexprops(start);
-  justify-content: space-between;
-  .mvx-setup-marketing-white-box{
-    background-color: $fill-color;
-    border: $border;
-    border-radius: $border-radius;
-    padding: 3.2rem;
-    width: 40%;
-    .mvx-block-title{
-      font-size: 1.8rem;
-      font-weight: 400;
-    }
-    .mvx-table-ul{
-      .mvx-align-items-center{
-        @include flexprops(start);
-        justify-content: space-between;
-        padding: 3.2rem;
-        .mvx-allign-li-txt{
-          span{
-              color: #9f8ab9;
-              padding-right: 2.4rem;
-          }
-        }
-        &:hover{
-          border: 0.1rem solid #65438f;
-          border-radius: $border-radius;
-          padding: 3.2rem;
-        }
-      }
-    }
-  }
-  .mvx-documentation-quick-link{
-    width: 60%;
-    padding-left: 2.4rem;
-    @include flexprops(center);
-    justify-content: space-between;
-    .mvx-documentation-support-forum{
-      @include flexprops(center);
-      flex-direction: column;
-      background-color: $fill-color;
-      width: 49%;
-      padding: 6.4rem 0 3.2rem 0;
-      border: $border;
-      border-radius: $border-radius;
-      figcaption{
-      padding-top: 2.4rem;
-        @include flexprops(center);
-        flex-direction: column;
-        div{
-          @include flexprops(center);
-          flex-direction: column;
-          padding: 2.4rem 0 3.2rem;
-        }
-        a:hover{
-          text-decoration: none;
-        }
-      }
-    }
-    .mvx-quick-link-sec{
-      background-color: $fill-color;
-      border: $border;
-      border-radius: $border-radius;
-      padding: 3.2rem 6.4rem;
-      margin-top: 3.2rem;
-      ul{
-          @include flexprops(center);
-      }
-    }
-  }
-}
 
 // Start - Datatable
 .mvx-backend-datatable-wrapper {

@@ -1,6 +1,33 @@
 import React, { Component } from 'react';
 import HeaderSection from './class-mvx-page-header';
 class MVX_Dashboard extends Component {
+
+	componentDidMount() {
+		var $ = jQuery;
+		var cs = 1;
+		var cm = 4;
+		$(document).on("click", ".p-prev", function (event) {
+		  event.preventDefault();
+		  if (cs > 1) {
+		    $('.mvx-dashboard-slider').hide();
+		    cs--;
+		    //alert(cs);
+		    $('.mvx-dashboard-slider:nth-child(' + cs + ')').show();
+		    $('.message-banner-sliding span').html(cs + ' of 4');
+		  }
+		});
+		$(document).on("click", ".p-next", function (event) {
+		  event.preventDefault();
+		  //alert(cs);
+		  if (cs < cm) {
+		    $('.mvx-dashboard-slider').hide();
+		    cs++;
+		    //alert(cs);
+		    $('.mvx-dashboard-slider:nth-child(' + cs + ')').show();
+		    $('.message-banner-sliding span').html(cs + ' of 4');
+		  }
+		});
+	}
 	render() {
 		return (
 			<div className="mvx-general-wrapper mvx-dashboard">
@@ -81,7 +108,7 @@ class MVX_Dashboard extends Component {
 								</div>
 							</div>
 
-							<div className="border-block">
+							<div className="message-banner-sliding">
 								<a href="#" className="p-prev">
 									<i className="mvx-font icon-left-arrow" />
 								</a>
@@ -91,7 +118,7 @@ class MVX_Dashboard extends Component {
 								</a>
 							</div>
 						</div>
-
+						<div class="clear"></div>
 						<div className="mvx-setup-documentation">
 							<div className="mvx-setup-marketing-white-box">
 								<h3 className="mvx-block-title">
