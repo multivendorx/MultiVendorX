@@ -24,6 +24,7 @@ namespace Stripe\Issuing;
  * @property \Stripe\StripeObject $metadata Set of <a href="https://stripe.com/docs/api/metadata">key-value pairs</a> that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
  * @property string $status Current status of the dispute.
  * @property string|\Stripe\Issuing\Transaction $transaction The transaction being disputed.
+ * @property null|\Stripe\StripeObject $treasury <a href="https://stripe.com/docs/api/treasury">Treasury</a> details related to this dispute if it was created on a [FinancialAccount](/docs/api/treasury/financial_accounts
  */
 class Dispute extends \Stripe\ApiResource
 {
@@ -40,7 +41,7 @@ class Dispute extends \Stripe\ApiResource
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return Dispute the submited dispute
+     * @return \Stripe\Issuing\Dispute the submited dispute
      */
     public function submit($params = null, $opts = null)
     {

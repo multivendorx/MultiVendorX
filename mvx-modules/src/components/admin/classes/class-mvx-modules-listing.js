@@ -193,15 +193,15 @@ class MVX_Module_Listing extends Component {
 											)
 										}
 									>
-										<div className="mvx-total-modules-name">
+										<span className="mvx-total-modules-name">
 											{
 												appLocalizer.module_page_string
 													.module3
 											}
-										</div>
-										<div className="mvx-total-modules-count">
+										</span>
+										<span className="mvx-total-modules-count">
 											{this.state.total_number_of_module}
-										</div>
+										</span>
 									</div>
 								</li>
 								<li className="mvx-multistatus-item mvx-divider"></li>

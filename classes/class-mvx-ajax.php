@@ -333,12 +333,13 @@ class MVX_Ajax {
                 $actions = apply_filters('mvx_my_account_my_orders_actions', $actions, $order->get_id());
                 $action_html = '';
                 foreach ($actions as $key => $action) {
+                    $target = isset($action['target']) ? $action['target'] : '';
                     if ($key == 'mark_ship' && !in_array($vendor->id, $is_shipped)) {
                         $action_html .= '<a href="javascript:void(0)" title="' . $mark_ship_title . '" onclick="mvxMarkeAsShip(this,' . $order->get_id() . ')"><i class="mvx-font ' . $action['icon'] . '"></i></a> ';
                     } else if ($key == 'mark_ship') {
                         $action_html .= '<i title="' . $mark_ship_title . '" class="mvx-font ' . $action['icon'] . '"></i> ';
                     } else {
-                        $action_html .= '<a href="' . $action['url'] . '" target="'. isset($action['target']) ? $action['target'] : '' .'" title="' . $action['title'] . '"><i class="mvx-font ' . $action['icon'] . '"></i></a> ';
+                        $action_html .= '<a href="' . $action['url'] . '" target="'. $target .'" title="' . $action['title'] . '"><i class="mvx-font ' . $action['icon'] . '"></i></a> ';
                     }
                 }
                 $data[] = apply_filters('mvx_datatable_order_list_row_data', array(
