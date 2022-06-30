@@ -73,10 +73,10 @@ $theme-color: #3f1473;
         position: absolute;
         top: 4px;
         left: 5px;
-        width: 14px;
-        height: 14px;
+        width: 0.875rem;
+        height: 0.875rem;
         background: #3f1473;
-        border-radius: 90px;
+        border-radius: 90rem;
         transition: 0.3s;
         z-index: 999;
     }
@@ -92,7 +92,7 @@ $theme-color: #3f1473;
     }
     
     label:active:after {
-        width: 20px;
+        width: 20rem;
     }
 }
 
@@ -101,12 +101,12 @@ $theme-color: #3f1473;
     flex-wrap: wrap;
     & .mvx-module-section-options-list {
         width: 32.6%;
-        // flex: 1 0 calc(33.33% - 10px);
+        // flex: 1 0 calc(33.33% - 0.625rem);
         background: #fdfdfe;
         padding: 24px;
-        margin: 12px 6px 0px 0;
+        margin: 0.75rem 6px 0rem 0;
         text-align: center;
-        height: 400px;
+        height: 25rem;
         border: $border;
         border-radius: $border-radius;
         position: relative;
@@ -117,14 +117,14 @@ $theme-color: #3f1473;
     
 }
 @mixin moduleicon {
-    width: 56px;
-    height: 56px;
+    width: 3.5rem;
+    height: 3.5rem;
     margin: auto;
     line-height: 66px;
     background: rgb(63,20,115);
     background: linear-gradient(138deg, rgba(63,20,115,1) 0%, rgba(175,59,116,1) 50%, rgba(219,75,84,1) 100%);
     border-radius: $border-radius;
-    margin-bottom: 16px;
+    margin-bottom: 1rem;
     & i {
         font-size: 24px;
         color: #fdfdfe;
@@ -132,8 +132,8 @@ $theme-color: #3f1473;
 }
 
 @mixin datepicker {
-    width: 280px;
-    height: 50px;
+    width: 17.5rem;
+    height: 3.5rem;
     background-color: #fdfdfe;
     margin-left: auto;
 }
@@ -717,25 +717,25 @@ textarea, input[type=text], select, input, .default-input {
 }
 
 h1 {
-  font-size: 24px;
+  font-size: 1.5rem;
 }
 h2 {
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 h3 {
-  font-size: 18px;
+  font-size: 1.5rem;
 }
 h4 {
-  font-size: 16px;
+  font-size: 1rem;
 }
 h5 {
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 h6  {
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 p {
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 code{
   //background-color: #181718;
@@ -803,8 +803,8 @@ input[type=radio]:checked::before {
     margin: 0;
     content: '\e909';
     color: #FFF;
-    font-size: 10px;
-    line-height: 16px;
+    font-size: 0.625rem;
+    line-height: 1rem;
     background-color: #65438f !important;
 }
 
@@ -846,7 +846,7 @@ input[type=text]:focus {
   background-color: $fill-color;
   & label {
     top: 11px;
-    left: 18px;
+    left: 1.5rem;
     border: none;
     & i {
         color: #8e8b91;
@@ -942,7 +942,23 @@ input[type=text]:focus {
       margin-right: 0.625rem;
   }
   .mvx-text-with-line-wrapper {
-    padding: 32px 0 16px 0;
+    padding: 1rem 0;
+    position: relative ;
+    @include flexprops(center);
+  }
+
+  .mvx-select-all-bulk-wrap {
+    margin-left: auto;
+    @include flexprops(start);
+    & .mvx-analytics-overview-link:first-child {
+        
+    }
+    & a {
+        color: $paragraph-color;
+    }
+    & a:first-child {
+        margin-right: .5rem;
+    }
   }
 
   .mvx-current-tab-lists {
@@ -979,8 +995,8 @@ input[type=text]:focus {
   }
 
   & .mvx-toggle-checkbox {
-    width: 16px;
-    height: 16px;
+    width: 1rem;
+    height: 1rem;
   }
   .mvx-toggle-checkbox-content {
     margin-left: auto;
@@ -1032,7 +1048,7 @@ input[type=text]:focus {
           display: flex;
           align-items: center;
           & i {
-            padding-right: 8px;
+            padding-right: .5rem;
           }
         }
       }
@@ -1052,7 +1068,7 @@ input[type=text]:focus {
       width: 75.8%;
       height: auto;
       margin-top: 0;
-      border-radius: 0px 4px 4px 0px;
+      border-radius: 0rem 4px 4px 0rem;
       border-left: 0;
       background-color: $fill-color;
       & .mvx-dynamic-form {
@@ -1060,28 +1076,28 @@ input[type=text]:focus {
           @include flexprops(start);
           padding: 1.6rem 0;
           & .mvx-settings-form-label {
-            margin-right: 20px;
+            margin-right: 1.25rem;
             & p {
               font-size: 1rem;
               color: $title-color;
-              width: 200px;
+              width: 12.5rem;
             }
           }
           & .mvx-settings-input-content {
             width: 100%;
             & .mvx-toggle-checkbox-content {
-              margin-bottom: 10px;
+              margin-bottom: 0.625rem;
             }
             & .mvx-settings-basic-input-class {
               & .mvx-settings-basic-child-wrap {
                 & .mvx-settings-basic-input-child-class {
-                  margin: 0 0 16px 0;
+                  margin: 0 0 1rem 0;
                 }
               }
             }
           }
           .mvx-settings-metabox-description {
-            margin-top: 10px;
+            margin-top: 0.625rem;
           }
 
           .mvx-setting-file-uploader-class {
@@ -1095,7 +1111,7 @@ input[type=text]:focus {
         & .mvx-form-button-group {
           & .mvx-settings-basic-input-class {
             & .default-btn {
-              height: 40px;
+              height: 2.5rem;
               background-color: #3f1473;
               width: 20%;
               color: $fill-color;
@@ -1107,8 +1123,8 @@ input[type=text]:focus {
         @include flexprops(center);
         flex-wrap: wrap;
         & .mvx-settings-radio-color {
-          margin: 8px;
-          width: calc(50% - 16px);
+          margin: .5rem;
+          width: calc(50% - 1rem);
           padding: 0.5rem;
           box-sizing: border-box;
           border: 1px solid transparent;
@@ -1130,8 +1146,8 @@ input[type=text]:focus {
         @include flexprops(center);
         flex-wrap: wrap;
         & .mvx-settings-radio-color {
-          margin: 8px;
-          width: calc(50% - 16px);
+          margin: .5rem;
+          width: calc(50% - 1rem);
           padding: 0.5rem;
           box-sizing: border-box;
           border: 1px solid transparent;
@@ -1169,9 +1185,9 @@ input[type=text]:focus {
           position: absolute;
           bottom: 24px;
           right: 24px;
-          width: 16px;
-          height: 16px;
-          line-height: 16px;
+          width: 1rem;
+          height: 1rem;
+          line-height: 1rem;
           border-radius: 2px;
         }
         & .mvx-radio-select-under-label-class {
@@ -1206,7 +1222,7 @@ input[type=text]:focus {
           }
           @include flexprops(center);
           & .horizontal-class {
-          margin: 16px 0 0 16px;
+          margin: 1rem 0 0 1rem;
             & .button-controls a {
               background: #3f1473 !important;
               border: none;
@@ -1257,16 +1273,16 @@ input[type=text]:focus {
             flex-wrap: wrap;
             & .mvx-wrap-checkbox-and-label {
               @include flexprops(center);
-              margin: 10px 0 10px 0;
+              margin: 0.625rem 0 0.625rem 0;
               & .mvx-normal-checkbox-content {
                 & .mvx-toggle-checkbox {
-                  width: 16px !important;
-                  height: 16px !important;
+                  width: 1rem !important;
+                  height: 1rem !important;
                 }
               }
               & .mvx-normal-checkbox-label {
                 & .mvx-settings-metabox-description {
-                  margin: 0px;
+                  margin: 0rem;
                 }
               }
             }
@@ -1287,10 +1303,10 @@ input[type=text]:focus {
               margin: 0.7rem 0;
               border: 0.0625rem solid #d4d1d9;
               & .mvx-untitle-content {
-                margin: 0 0 8px 0;
+                margin: 0 0 .5rem 0;
               }
               & input {
-                height: 40px;
+                height: 2.5rem;
               }
             }
           }
@@ -1308,17 +1324,17 @@ input[type=text]:focus {
         border: 0.0625rem solid #d4d1d9;
         & .mvx-question-input-items {
             width: 100%;
-            margin: 0 8px 0 0;
+            margin: 0 .5rem 0 0;
         }
         & .mvx-vendor-form-input-field-container {
-          margin: 0 0 8px 0;
+          margin: 0 0 .5rem 0;
         }
         & .mvx-footer-icon-form {
           position: absolute;
           bottom: 0;
           left: 0;
           right: 0;
-          padding: 16px;
+          padding: 1rem;
           @include flexprops(center);
           & .mvx-perple-txt {
             margin-left: auto;
@@ -1329,11 +1345,11 @@ input[type=text]:focus {
           }
           & .mvx-font {
             color: #3f1473;
-            margin: 0 8px 0 0;
+            margin: 0 .5rem 0 0;
           }
         }
         & input, select {
-          height: 40px;
+          height: 2.5rem;
         }
       }
     }
@@ -1345,78 +1361,83 @@ input[type=text]:focus {
       padding-left: 1.2rem;
       padding-right: 24px;
       border-radius: $border-radius;
-          border: $border;
-          & .mvx-charts-graph-content {
-            padding: 34px 0;
+      border: $border;
+
+      // Start - Analytics
+      .mvx-date-and-show-wrapper {
+          @include flexprops(center);
+      }
+      & .mvx-charts-graph-content {
+        padding: 2rem 0;
+      }
+      & .mvx-report-datepicker {
+        @include datepicker;
+        padding: 0.625rem 1rem;
+        border-radius: $border-radius;
+        @include border;
+        & .rs-picker-toggle-wrapper {
+          height: 1.875rem;
+          & .rs-btn {
+            border: none;
+            background: transparent;
+            padding: 0;
+            height: 1.875rem;
           }
-          & .mvx-report-datepicker {
-            @include datepicker;
-            padding: 10px 16px;
-            border-radius: $border-radius;
-            @include border;
-            & .rs-picker-toggle-wrapper {
-              height: 1.875rem;
-              & .rs-btn {
-                border: none;
-                background: transparent;
-                padding: 0;
-                height: 30px;
-              }
-              & input {
-                background-color: transparent;
-                border: none;
-                width: 246px;
-                line-height: 32px;
-              }
-              & input::placeholder {
-                text-transform: uppercase;
-              }
-              & svg {
-                margin-top: 0px;
-                @include iconcolor;
-              }
-            }
+          & input {
+            background-color: transparent;
+            border: none;
+            width: 246px;
+            line-height: 2rem;
           }
-          & .mvx-wrapper-date-picker {
-            padding: 34px 0;
+          & input::placeholder {
+            text-transform: uppercase;
           }
-          & .mvx-date-range {
-            font-size: 0.875rem;
-            padding-bottom: 10px;
-            color: $title-color;
-            width: 280px;
-            margin-left: auto;
-          }
-          & .mvx-wrapper-performance-content {
-            @include flexprops(center);
-            border: $border;
-            & .mvx-performance-wrapper-content {
-              width: 100%;
-              height: 114px;
-              border-right: $border;
-              padding: 12px;
-              position: relative;
-              background: #fdfdfe;
-              & .mvx-percent-show {
-                position: absolute;
-                right: 22px;
-                bottom: 40px;
-                background-color: #f0f0f0;
-                padding: 6px;
-                border-radius: $border-radius;
-              }
-              & .mvx-labels {
-                font-size: 0.75rem;
-                color: $title-color;
-              }
-              & .mvx-price-display {
-                padding-top: 48px;
-                font-size: 1.25rem;
-              }
-            }
+          & svg {
+            margin-top: 0rem;
+            @include iconcolor;
           }
         }
       }
+      & .mvx-wrapper-date-picker {
+        padding: 2rem 0;
+      }
+      & .mvx-date-range {
+        font-size: 0.875rem;
+        padding-bottom: 0.625rem;
+        color: $title-color;
+        width: 17.5rem;
+        margin-left: auto;
+      }
+      & .mvx-wrapper-performance-content {
+        @include flexprops(center);
+        border: $border;
+        & .mvx-performance-wrapper-content {
+          width: 100%;
+          height: 10.875rem;
+          border-right: $border;
+          padding: 0.75rem;
+          position: relative;
+          background: #fdfdfe;
+          & .mvx-percent-show {
+            position: absolute;
+            right: 22px;
+            bottom: 2.5rem;
+            background-color: #f0f0f0;
+            padding: 6px;
+            border-radius: $border-radius;
+          }
+          & .mvx-labels {
+            font-size: 0.75rem;
+            color: $title-color;
+          }
+          & .mvx-price-display {
+            padding-top: 4.5rem;
+            font-size: 1.25rem;
+          }
+        }
+      }
+    }
+  }
 
   .mvx-page-title {
     @include flexprops(center);
@@ -1639,10 +1660,10 @@ input[type=text]:focus {
         right: 1.5rem;
         background: #3f1473;
         color: #fdfdfe;
-        padding: 4px 0px;
-        border-radius: 10px;
+        padding: 4px 0rem;
+        border-radius: 0.625rem;
         font-size: 0.8rem;
-        width: 40px;
+        width: 2.5rem;
         text-align: center;
         height: 15px;
         line-height: 6px;
@@ -1663,7 +1684,7 @@ input[type=text]:focus {
         line-height: 1.2rem;
         text-align: left;
         & .inactive-plugin-class {
-          border-radius: 50px;
+          border-radius: 50rem;
           width: 1.25rem;
           height: 1.25rem;
           line-height: 1rem;
@@ -1684,12 +1705,106 @@ input[type=text]:focus {
   }
   .mvx-module-current-status {
     position: absolute;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
+    bottom: 0rem;
+    left: 0rem;
+    right: 0rem;
     background: #faf8fb;
-    padding: 16px;
+    padding: 1rem;
     @include flexprops(center);
+  }
+}
+
+// Start - Activity Reminder
+.mvx-activity-reminder {
+  & .mvx-middle-container-wrapper {
+    width: 100%;
+  }
+  & .mvx-text-with-line-wrapper::after {
+    content: "";
+    position: absolute;
+    width: 55%;
+    height: 0.0625rem;
+    background-color: #d4d1d9;
+    top: 3.4rem;
+    left: 15.8125rem;
+  }
+  .mvx-text-with-right-side-line:after {
+    width: 0;
+  }
+}
+
+.mvx-product-box-sec {
+  @include flexprops(center);
+  .mvx-all-product-box {
+    position: relative;
+    width: 18.75rem;
+    height: 15.625rem;
+    background: $fill-color;
+    border: $border;
+    border-radius: $border-radius;
+    margin-right: .5rem;
+    padding: 1rem;
+    & .mvx-white-box-header {
+      @include flexprops(center);
+      position: absolute;
+      top: 0rem;
+      background: #d4d1d9;
+      left: 0;
+      width: 100%;
+      padding: 1rem;
+      & .pull-right {
+        margin-left: auto;
+      }
+    }
+    & .mvx-white-box-body {
+      margin: 3.125rem 0 1rem 0;
+      & img {
+        border-radius: $border-radius;
+        margin-right: 0.625rem;
+      }
+      & .mvx-box-content {
+        @include flexprops(center);
+        margin-bottom: .5rem;
+        & .mvx-product-name {
+          margin-left: .5rem;
+          & a {
+            color: $paragraph-color;
+          }
+        }
+      }
+    }
+    & .mvx-white-box-footer {
+      position: absolute;
+      bottom: 0;
+      padding: .5rem 1rem;
+      left: 0;
+      width: 100%;
+      border-top: $border;
+      & .pull-left, .pull-right {
+        @include flexprops(center);
+        & .link-icon {
+          display: block;
+          color: #3f1473;
+          margin-right: 4px;
+          background: #ece8f1;
+          padding: 6px 0.625rem;
+          border-radius: $border-radius;
+        }
+        & .link-icon:hover {
+          & .mvxicon-hover-text{
+            display: block;
+          }
+        }
+        & .mvxicon-hover-text{
+          position: absolute;
+          border-radius: $border-radius;
+          background: #ece8f1;
+          margin: 0.2rem;
+          padding: 0.2rem 0.4rem;
+          display: none;
+        }
+      }
+    }
   }
 }
 
