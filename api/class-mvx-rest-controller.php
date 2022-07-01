@@ -750,6 +750,336 @@ class MVX_REST_API {
             'callback' => array( $this, 'mvx_update_vendor_store' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
+
+
+        register_rest_route( 'mvx_module/v1', '/list_of_work_board_content', [
+            'methods' => WP_REST_Server::READABLE,
+            'callback' => array( $this, 'mvx_list_of_work_board_content' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
+        register_rest_route( 'mvx_module/v1', '/task_board_icons_triggers', [
+            'methods' => WP_REST_Server::EDITABLE,
+            'callback' => array( $this, 'mvx_task_board_icons_triggers' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
+    }
+
+    public function mvx_list_of_work_board_content() {
+        $todo_list = $get_pending_product_list = $get_pending_vendor_list = $get_pending_coupon_list = $get_pending_transaction_list = $get_pending_question_list = [];
+        /**
+         * pending product list
+         */
+        if ($this->mvx_list_of_pending_vendor_product()->data) {
+            foreach ($this->mvx_list_of_pending_vendor_product()->data as $key => $value) {
+                $get_pending_product_list[] = array(
+                    'list_datas'    =>  array(
+                        array(
+                            'label' =>  __('Vendor Name', 'multivendorx'),
+                            'value' =>  $value['vendor']
+                        ),
+                        array(
+                            'label' =>  __('Product Name', 'multivendorx'),
+                            'value' =>  $value['product']
+                        )
+                    ),
+                    'left_icons'    =>  array(
+                        array(
+                            'key'   =>  'edit',
+                            'link'  =>  $value['product_url']
+                        ),
+                        array(
+                            'key'   =>  'approve_product',
+                            'value'  =>  $value,
+                            'icon'  =>  'icon-approve'
+                        ),
+                        array(
+                            'key'   =>  'dismiss_product',
+                            'value'  =>  $value,
+                            'icon'  =>  'icon-close'
+                        )
+                    )
+                );
+            }
+        }
+
+        /**
+         * pending vendor list
+         */
+        if ($this->mvx_list_of_pending_vendor()->data) {
+            foreach ($this->mvx_list_of_pending_vendor()->data as $key => $value) {
+                $get_pending_vendor_list[] = array(
+                    'list_datas'    =>  array(
+                        array(
+                            'label' =>  __('Vendor Name', 'multivendorx'),
+                            'value' =>  $value['vendor_name']
+                        )
+                    ),
+                    'left_icons'    =>  array(
+                        array(
+                            'key'   =>  'edit',
+                            'link'  =>  $value['vendor_link']
+                        ),
+                        array(
+                            'key'   =>  'approve_vendor',
+                            'value'  =>  $value,
+                            'icon'  =>  'icon-approve'
+                        ),
+                        array(
+                            'key'   =>  'dismiss_vendor',
+                            'value'  =>  $value,
+                            'icon'  =>  'icon-close'
+                        )
+                    )
+                );
+            }
+        }
+
+        /**
+         * pending coupon list
+         */
+        if ($this->mvx_list_of_pending_vendor_coupon()->data) {
+            foreach ($this->mvx_list_of_pending_vendor_coupon()->data as $key => $value) {
+                $get_pending_coupon_list[] = array(
+                    'list_datas'    =>  array(
+                        array(
+                            'label' =>  __('Vendor Name', 'multivendorx'),
+                            'value' =>  $value['vendor']
+                        ),
+                        array(
+                            'label' =>  __('Coupon Name', 'multivendorx'),
+                            'value' =>  $value['coupon']
+                        )
+                    ),
+                    'left_icons'    =>  array(
+                        array(
+                            'key'   =>  'edit',
+                            'link'  =>  $value['coupon_url']
+                        ),
+                        array(
+                            'key'   =>  'approve_coupon',
+                            'value'  =>  $value,
+                            'icon'  =>  'icon-approve'
+                        ),
+                        array(
+                            'key'   =>  'dismiss_coupon',
+                            'value'  =>  $value,
+                            'icon'  =>  'icon-close'
+                        )
+                    )
+                );
+            }
+        }
+
+        /**
+         * pending transaction list
+         */
+        if ($this->mvx_list_of_pending_transaction()->data) {
+            foreach ($this->mvx_list_of_pending_transaction()->data as $key => $value) {
+                $get_pending_transaction_list[] = array(
+                    'list_datas'    =>  array(
+                        array(
+                            'label' =>  __('Vendor Name', 'multivendorx'),
+                            'value' =>  $value['vendor']
+                        ),
+                        array(
+                            'label' =>  __('Amount', 'multivendorx'),
+                            'value' =>  $value['amount']
+                        ),
+                        array(
+                            'label' =>  __('Account Detail', 'multivendorx'),
+                            'value' =>  $value['account_details']
+                        )
+                    ),
+                    'left_icons'    =>  array(
+                        array(
+                            'key'   =>  'approve_transaction',
+                            'value'  =>  $value,
+                            'icon'  =>  'icon-approve'
+                        ),
+                        array(
+                            'key'   =>  'dismiss_transaction',
+                            'value'  =>  $value,
+                            'icon'  =>  'icon-close'
+                        )
+                    )
+                );
+            }
+        }
+
+        /**
+         * pending question list
+         */
+        if ($this->mvx_list_of_pending_question('', '')->data) {
+            foreach ($this->mvx_list_of_pending_question('', '')->data as $key => $value) {
+                $get_pending_question_list[] = array(
+                    'list_datas'    =>  array(
+                        array(
+                            'label' =>  __('Question by', 'multivendorx'),
+                            'value' =>  $value['question_by']
+                        ),
+                        array(
+                            'label' =>  __('Product Name', 'multivendorx'),
+                            'value' =>  $value['product_name']
+                        ),
+                        array(
+                            'label' =>  __('Question details', 'multivendorx'),
+                            'value' =>  $value['question_details']
+                        )
+                    ),
+                    'left_icons'    =>  array(
+                        array(
+                            'key'   =>  'approve_question',
+                            'value'  =>  $value,
+                            'icon'  =>  'icon-approve'
+                        ),
+                        array(
+                            'key'   =>  'dismiss_question',
+                            'value'  =>  $value,
+                            'icon'  =>  'icon-close'
+                        )
+                    )
+                );
+            }
+        }
+
+        $todo_list = [
+            array(
+                'header'    =>  __('Pending Vendor Product', 'multivendorx'),
+                'content'   =>  $get_pending_product_list
+            ),
+            array(
+                'header'    =>  __('Pending Vendor', 'multivendorx'),
+                'content'   =>  $get_pending_vendor_list
+            ),
+            array(
+                'header'    =>  __('Pending Coupon', 'multivendorx'),
+                'content'   =>  $get_pending_coupon_list
+            ),
+            array(
+                'header'    =>  __('Pending Transaction', 'multivendorx'),
+                'content'   =>  $get_pending_transaction_list
+            ),
+            array(
+                'header'    =>  __('Pending Question', 'multivendorx'),
+                'content'   =>  $get_pending_question_list
+            )
+        ];
+        return rest_ensure_response($todo_list);
+    }
+
+    public function mvx_task_board_icons_triggers($request) {
+        $value = $request->get_param('value') ? $request->get_param('value') : '';
+        $key = $request->get_param('key') ? $request->get_param('key') : '';
+        if ($key == 'dismiss_product') {
+            $product_id = $value['id'];
+            $vendor_id = $value['vendor_id'];
+            $post = get_post($product_id);
+            $reason = '';
+            $vendor = get_mvx_vendor($vendor_id);
+            $email_vendor = WC()->mailer()->emails['WC_Email_Vendor_Product_Rejected'];
+            $email_vendor->trigger($product_id, $post, $vendor, $reason);
+            update_post_meta($product_id, '_dismiss_to_do_list', 'true');
+            $comment_id = MVX_Product::add_product_note($product_id, $reason, get_current_user_id());
+            update_post_meta($product_id, '_comment_dismiss', absint($comment_id));
+            add_comment_meta($comment_id, '_author_id', get_current_user_id());
+        } elseif ($key == 'approve_product') {
+            $product_id = $value['id'];
+            $post_update = array(
+                'ID'            => $product_id,
+                'post_status'   => 'publish',
+            );
+            wp_update_post( $post_update );
+        } elseif ($key == 'approve_vendor') {
+            $vendor_id = $value['id'];
+            if ($vendor_id) {
+                $user = new WP_User(absint($vendor_id));
+                $user->set_role('dc_vendor');
+                $user_dtl = get_userdata(absint($vendor_id));
+                $email = WC()->mailer()->emails['WC_Email_Approved_New_Vendor_Account'];
+                $email->trigger($vendor_id, $user_dtl->user_pass);
+            }
+        } elseif ($key == 'dismiss_vendor') {
+            $vendor_id = $value['id'];
+            update_user_meta($vendor_id, '_dismiss_to_do_list', 'true');
+        } elseif ($key == 'approve_coupon') {
+            $coupon_id = $value['id'];
+            $post_update = array(
+                'ID'            => $coupon_id,
+                'post_status'   => 'publish',
+            );
+            wp_update_post( $post_update );
+        } elseif ($key == 'dismiss_coupon') {
+            $coupon_id = $value['id'];
+            update_post_meta($coupon_id, '_dismiss_to_do_list', 'true');
+        } elseif ($key == 'approve_transaction') {
+            $transaction_id = $value['id'];
+            $vendor_id = $value['vendor_id'];
+            $vendor = get_mvx_vendor_by_term( $vendor_id );
+            update_post_meta($transaction_id, 'paid_date', date("Y-m-d H:i:s"));
+            $commission_detail = get_post_meta($transaction_id, 'commission_detail', true);
+            if ($commission_detail && is_array($commission_detail)) {
+                foreach ($commission_detail as $commission_id) {
+                    mvx_paid_commission_status($commission_id);
+                    $withdrawal_total = MVX_Commission::commission_totals($commission_id, 'edit');
+                    $order_id = get_post_meta( $commission_id, '_commission_order_id', true );
+                    $args = array(
+                        'meta_query' => array(
+                            array(
+                                'key' => '_commission_vendor',
+                                'value' => absint($vendor->term_id),
+                                'compare' => '='
+                            ),
+                        ),
+                    );
+                    $unpaid_commission_total = MVX_Commission::get_commissions_total_data( $args, $vendor->id );
+                    $data = array(
+                        'vendor_id'     => $vendor->id,
+                        'order_id'      => $order_id,
+                        'ref_id'        => $transaction_id,
+                        'ref_type'      => 'withdrawal',
+                        'ref_info'      => sprintf(__('Withdrawal generated for Commission &ndash; #%s', 'multivendorx'), $commission_id),
+                        'ref_status'    => 'completed',
+                        'ref_updated'   => date('Y-m-d H:i:s', current_time('timestamp')),
+                        'debit'         => $withdrawal_total,
+                        'balance'       => $unpaid_commission_total['total'],
+                    );
+                    $data_store = $MVX->ledger->load_ledger_data_store();
+                    $ledger_id = $data_store->create($data);
+                }
+                $email_admin = WC()->mailer()->emails['WC_Email_Vendor_Commission_Transactions'];
+                $email_admin->trigger($transaction_id, $vendor_id);
+                update_post_meta($transaction_id, '_dismiss_to_do_list', 'true');
+                wp_update_post(array('ID' => $transaction_id, 'post_status' => 'mvx_completed'));
+                do_action( 'mvx_todo_done_pending_transaction', $transaction_id, $vendor );
+            }
+        } elseif ($key == 'dismiss_transaction') {
+            $transaction_id = $value['id'];
+            $vendor_id = $value['vendor_id'];
+            update_post_meta($transaction_id, '_dismiss_to_do_list', 'true');
+            wp_update_post(array('ID' => $transaction_id, 'post_status' => 'mvx_canceled'));
+        } elseif ($key == 'approve_question') {
+            $product_id = $value['question_product_id'];
+            $question_id = $value['id'];
+            $data = array();
+            if (!empty($product_id)) {
+                $vendor = get_mvx_product_vendors(absint($product_id));
+                $data['status'] = 'verified';
+                $MVX->product_qna->updateQuestion( $question_id, $data );
+                $questions = $MVX->product_qna->get_Vendor_Questions($vendor);
+                set_transient('mvx_customer_qna_for_vendor_' . $vendor->id, $questions);
+            }
+        } elseif ($key == 'dismiss_question') {
+            $product_id = $value['question_product_id'];
+            $question_id = $value['id'];
+            if (!empty($product_id)) {
+                $vendor = get_mvx_product_vendors(absint($product_id));
+                $MVX->product_qna->deleteQuestion( $question_id );
+                delete_transient('mvx_customer_qna_for_vendor_' . $vendor->id);
+            }
+        }
+        return $this->mvx_list_of_work_board_content();
     }
 
     public function mvx_update_vendor_store($request) {

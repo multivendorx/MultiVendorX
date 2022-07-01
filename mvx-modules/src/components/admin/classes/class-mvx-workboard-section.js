@@ -63,6 +63,7 @@ class MVXworkboard extends Component {
 			pending_coupon_loding_end: false,
 			pending_question_loding_end: false,
 			list_of_all_tabs: [],
+			list_of_work_board_content: []
 		};
 
 		this.QueryParamsDemo = this.QueryParamsDemo.bind(this);
@@ -1002,6 +1003,15 @@ class MVXworkboard extends Component {
 				list_of_all_tabs: response.data,
 			});
 		});
+
+		// list of workboard data
+		axios({
+			url: `${appLocalizer.apiUrl}/mvx_module/v1/list_of_work_board_content`,
+		}).then((response) => {
+			this.setState({
+				list_of_work_board_content: response.data,
+			});
+		});
 	}
 
 	useQuery() {
@@ -1061,6 +1071,9 @@ class MVXworkboard extends Component {
 	}
 
 	Child({ name }) {
+
+		//console.log(this.state.list_of_work_board_content);
+
 		const get_current_name = this.useQuery();
 
 		if (!get_current_name.get('AnnouncementID')) {
@@ -1375,905 +1388,122 @@ class MVXworkboard extends Component {
 		}
 
 		return name === 'activity-reminder' ? (
-			<div className="mvx-module-grid">
-				{/* Pending Vendor's product approval work done */}
-				<div className="mvx-todo-status-check">
-					<div className="mvx-text-with-line-wrapper">
-						<div className="mvx-text-with-right-side-line">
-							{appLocalizer.workboard_string.workboard1}
-						</div>
-						<div className="mvx-select-all-bulk-wrap">
-							<div className="mvx-select-all-checkbox">
-								<input
-									type="checkbox"
-									className="mvx-select-all"
-									checked={
-										this.state.pending_parent_product_check
-									}
-									onChange={(e) =>
-										this.handleParentTodoCheckboxChenage(e)
-									}
-								/>
-								<span className="mvx-select-all-text">
-									{appLocalizer.global_string.select_all}
-								</span>
-							</div>
-							<Select
-								placeholder={
-									appLocalizer.global_string.bulk_action
-								}
-								options={appLocalizer.task_board_bulk_status}
-								isClearable={true}
-								className="mvx-wrap-bulk-action"
-								onChange={(e) =>
-									this.handleTaskBoardBulkChenage(
-										e,
-										'product_approval'
-									)
-								}
-							/>
-						</div>
-					</div>
 
-					<div className="mvx-product-box-sec">
-						{this.state.list_of_pending_vendor_product.length >
-						0 ? (
-							this.state.list_of_pending_vendor_product.map(
-								(pending_data, pending_index) => (
+			this.state.list_of_work_board_content.map(
+				(taskboard_data, taskboard_index) => (
+					<div className="mvx-todo-status-check">
+						<div className="mvx-text-with-line-wrapper">
+							<div className="mvx-text-with-right-side-line">
+								{taskboard_data.header}
+							</div>
+							<div className="mvx-select-all-bulk-wrap">
+								<div className="mvx-select-all-checkbox">
+									<input
+										type="checkbox"
+										className="mvx-select-all"
+									/>
+									<span className="mvx-select-all-text">
+										{appLocalizer.global_string.select_all}
+									</span>
+								</div>
+								<Select
+									placeholder={
+										appLocalizer.global_string.bulk_action
+									}
+									options={appLocalizer.task_board_bulk_status}
+									isClearable={true}
+									className="mvx-wrap-bulk-action"
+								/>
+							</div>
+						</div>
+						<div className="mvx-product-box-sec">
+							{taskboard_data.content.map(
+								(task_lists_data, task_lists_index) => (
 									<div className="mvx-all-product-box">
 										<div className="mvx-white-box-header">
-											{
-												appLocalizer.workboard_string
-													.workboard2
-											}
+											{taskboard_data.header}
 											<div className="pull-right">
 												<input
 													type="checkbox"
 													className="mvx-workboard-checkbox"
-													checked={
-														this.state
-															.pending_product_check[
-															pending_index
-														]
-													}
-													onChange={(e) =>
-														this.handleTodoCheckboxChenage(
-															e,
-															pending_data.id,
-															pending_index
-														)
-													}
+													
 												/>
+
 											</div>
 										</div>
+
 										<div className="mvx-white-box-body">
-											<div className="mvx-box-content">
-												<p
-													dangerouslySetInnerHTML={{
-														__html: pending_data.product_src,
-													}}
-												></p>
-											</div>
-											<div className="mvx-box-content">
-												<div className="mvx-product-title">
-													{
-														appLocalizer
-															.workboard_string
-															.workboard8
-													}
-													:
-												</div>
-												<div className="mvx-product-name">
-													<a
-														href={
-															pending_data.vendor_link
+										{
+											task_lists_data.list_datas.map((task_child_data, task_child_index) => (
+												<div className="mvx-box-content">
+													<div className="mvx-product-title">
+														{
+															task_child_data.label
 														}
-													>
-														{pending_data.vendor}
-													</a>
+														:
+													</div>
+
+													<div className="mvx-product-name">
+														<p
+															dangerouslySetInnerHTML={{
+																__html: task_child_data.value,
+															}}
+														></p>
+													</div>
 												</div>
-											</div>
-											<div className="mvx-product-row mvx-box-content">
-												<div className="mvx-product-title">
-													{
-														appLocalizer
-															.workboard_string
-															.workboard3
-													}
-													:
-												</div>
-												<div className="mvx-product-name">
-													<a
-														href={
-															pending_data.product_url
-														}
-													>
-														{pending_data.product}
-													</a>
-												</div>
-											</div>
+											))
+										}
 										</div>
 										<div className="mvx-white-box-footer">
 											<div className="pull-left">
-												<a
-													href={
-														pending_data.product_url
-													}
-													className="link-icon"
-												>
-													<i className="mvx-font icon-edit"></i>
-												</a>
-												<div className="link-icon">
-													<i
-														className="mvx-font icon-approve"
-														onClick={(e) =>
-															this.handleProductRequestByVendors(
-																e,
-																pending_data.id,
-																pending_data.vendor_id,
-																'approve'
-															)
-														}
-													></i>
-												</div>
-												<div className="link-icon">
-													<i
-														className="mvx-font icon-close"
-														onClick={(e) =>
-															this.handleProductRequestByVendors(
-																e,
-																pending_data.id,
-																pending_data.vendor_id,
-																'dismiss'
-															)
-														}
-													></i>
-													<p className="mvxicon-hover-text">
-														{
-															appLocalizer
-																.workboard_string
-																.workboard4
-														}
-													</p>
-												</div>
+												{
+													task_lists_data.left_icons ? task_lists_data.left_icons.map((icons_data, icons_index) => (
+														icons_data.key == 'edit' ?
+															<a
+																href={
+																	icons_data.link
+																}
+																className="link-icon"
+															>
+																<i className="mvx-font icon-edit"></i>
+															</a>
+														: 
+
+														<div className="link-icon">
+															<i
+																className={`mvx-font ${icons_data.icon}`}
+																onClick={(e) =>
+																	(
+																		axios({
+																			method: 'post',
+																			url: `${appLocalizer.apiUrl}/mvx_module/v1/task_board_icons_triggers`,
+																			data: {
+																				value: icons_data.value,
+																				key: icons_data.key
+																			},
+																		}).then((responce) => {
+																			this.setState({
+																				list_of_work_board_content: responce.data,
+																			});
+																		})
+																	)
+																}
+															></i>
+														</div>
+
+													)) : ''
+												}
 											</div>
 										</div>
-									</div>
-								)
-							)
-						) : this.state.pending_product_loding_end ? (
-							<div>
-								{appLocalizer.workboard_string.workboard5}
-							</div>
-						) : (
-							<PuffLoader
-								css={override}
-								color={'#cd0000'}
-								size={100}
-								loading={true}
-							/>
-						)}
-					</div>
-				</div>
-				{/* Pending Vendor's product approval end */}
 
-				{/* Pending Vendor approval work done */}
-				<div className="mvx-todo-status-check">
-					<div className="mvx-text-with-line-wrapper">
-						<div className="mvx-text-with-right-side-line">
-							{appLocalizer.workboard_string.workboard6}
-						</div>
-						<div className="mvx-select-all-bulk-wrap">
-							<div className="mvx-select-all-checkbox">
-								<input
-									type="checkbox"
-									className="mvx-select-all"
-									checked={
-										this.state.pending_parent_user_check
-									}
-									onChange={(e) =>
-										this.handleParentUserTodoCheckboxChenage(
-											e
-										)
-									}
-								/>
-								<span className="mvx-select-all-text">
-									{appLocalizer.global_string.select_all}
-								</span>
-							</div>
-							<Select
-								placeholder={
-									appLocalizer.global_string.bulk_action
-								}
-								options={appLocalizer.task_board_bulk_status}
-								className="mvx-wrap-bulk-action"
-								isClearable={true}
-								onChange={(e) =>
-									this.handleTaskBoardBulkChenage(
-										e,
-										'user_approval'
-									)
-								}
-							/>
+									</div>	
+								))
+							}
 						</div>
 					</div>
+				)
+			)
 
-					<div className="mvx-product-box-sec">
-						{this.state.list_of_pending_vendor.length > 0 ? (
-							this.state.list_of_pending_vendor.map(
-								(pending_data, pending_index) => (
-									<div className="mvx-all-product-box">
-										<div className="mvx-white-box-header">
-											{
-												appLocalizer.workboard_string
-													.workboard7
-											}
-											<div className="pull-right">
-												<input
-													type="checkbox"
-													className="mvx-workboard-checkbox"
-													checked={
-														this.state
-															.pending_user_check[
-															pending_index
-														]
-													}
-													onChange={(e) =>
-														this.handleTodoUserChenage(
-															e,
-															pending_data.id,
-															pending_index
-														)
-													}
-												/>
-											</div>
-										</div>
-										<div className="mvx-white-box-body">
-											<div className="mvx-box-content">
-												<p
-													dangerouslySetInnerHTML={{
-														__html: pending_data.vendor,
-													}}
-												></p>
-											</div>
-											<div className="mvx-box-content">
-												<div className="mvx-product-title">
-													{
-														appLocalizer
-															.workboard_string
-															.workboard8
-													}
-													:
-												</div>
-												<div className="mvx-product-name">
-													<a
-														href={
-															pending_data.vendor_link
-														}
-													>
-														{
-															pending_data.vendor_name
-														}
-													</a>
-												</div>
-											</div>
-										</div>
-										<div className="mvx-white-box-footer">
-											<div className="pull-left">
-												<a
-													href={
-														pending_data.vendor_link
-													}
-													className="link-icon"
-												>
-													<i className="mvx-font icon-edit"></i>
-												</a>
-												<div className="link-icon">
-													<i
-														className="mvx-font icon-approve"
-														onClick={(e) =>
-															this.handleUserRequestByVendors(
-																e,
-																pending_data.id,
-																'approve'
-															)
-														}
-													></i>
-												</div>
-												<div className="mvx-left-icon link-icon">
-													<i
-														className="mvx-font icon-close"
-														onClick={(e) =>
-															this.handleUserRequestByVendors(
-																e,
-																pending_data.id,
-																'dismiss'
-															)
-														}
-													></i>
-												</div>
-											</div>
-										</div>
-									</div>
-								)
-							)
-						) : this.state.pending_user_loding_end ? (
-							<div>
-								{appLocalizer.workboard_string.workboard9}
-							</div>
-						) : (
-							<PuffLoader
-								css={override}
-								color={'#cd0000'}
-								size={100}
-								loading={true}
-							/>
-						)}
-					</div>
-				</div>
-				{/* Pending Vendor approval end */}
-
-				{/* Pending Vendor's coupon approval work done */}
-				<div className="mvx-todo-status-check">
-					<div className="mvx-text-with-line-wrapper">
-						<div className="mvx-text-with-right-side-line">
-							{appLocalizer.workboard_string.workboard10}
-						</div>
-						<div className="mvx-select-all-bulk-wrap">
-							<div className="mvx-select-all-checkbox">
-								<input
-									type="checkbox"
-									className="mvx-select-all"
-									checked={
-										this.state.pending_parent_coupon_check
-									}
-									onChange={(e) =>
-										this.handleParentCouponTodoCheckboxChenage(
-											e
-										)
-									}
-								/>
-								<span className="mvx-select-all-text">
-									{appLocalizer.global_string.select_all}
-								</span>
-							</div>
-							<Select
-								placeholder={
-									appLocalizer.global_string.bulk_action
-								}
-								options={appLocalizer.task_board_bulk_status}
-								className="mvx-wrap-bulk-action"
-								isClearable={true}
-								onChange={(e) =>
-									this.handleTaskBoardBulkChenage(
-										e,
-										'coupon_approval'
-									)
-								}
-							/>
-						</div>
-					</div>
-
-					<div className="mvx-product-box-sec">
-						{this.state.list_of_pending_vendor_coupon.length > 0 ? (
-							this.state.list_of_pending_vendor_coupon.map(
-								(pending_data, pending_index) => (
-									<div className="mvx-all-product-box">
-										<div className="mvx-white-box-header">
-											{
-												appLocalizer.workboard_string
-													.workboard10
-											}
-											<div className="pull-right">
-												<input
-													type="checkbox"
-													className="mvx-workboard-checkbox"
-													checked={
-														this.state
-															.pending_coupon_check[
-															pending_index
-														]
-													}
-													onChange={(e) =>
-														this.handleTodoCouponChenage(
-															e,
-															pending_data.id,
-															pending_index
-														)
-													}
-												/>
-											</div>
-										</div>
-										<div className="mvx-white-box-body">
-											<div className="mvx-box-content">
-												<span className="blue-txt">
-													{pending_data.coupon}
-												</span>
-											</div>
-											<div className="mvx-box-content">
-												<div className="mvx-product-title">
-													{
-														appLocalizer
-															.workboard_string
-															.workboard8
-													}
-													:
-												</div>
-												<div className="mvx-product-name">
-													<a
-														href={
-															pending_data.vendor_link
-														}
-													>
-														{pending_data.vendor}
-													</a>
-												</div>
-											</div>
-											<div className="mvx-product-row mvx-box-content">
-												<div className="mvx-product-title">
-													{
-														appLocalizer
-															.workboard_string
-															.workboard11
-													}
-													:
-												</div>
-												<div className="mvx-product-name">
-													<a
-														href={
-															pending_data.coupon_url
-														}
-													>
-														{pending_data.coupon}
-													</a>
-												</div>
-											</div>
-										</div>
-										<div className="mvx-white-box-footer">
-											<div className="pull-left">
-												<a
-													href={
-														pending_data.coupon_url
-													}
-													className="link-icon"
-												>
-													<i className="mvx-font icon-edit"></i>
-												</a>
-												<div className="mvx-left-icon link-icon">
-													<i
-														className="mvx-font icon-approve"
-														onClick={(e) =>
-															this.handleCouponRequestByVendors(
-																e,
-																pending_data.id,
-																'approve'
-															)
-														}
-													></i>
-												</div>
-												<div className="mvx-left-icon link-icon">
-													<i
-														className="mvx-font icon-close"
-														onClick={(e) =>
-															this.handleCouponRequestByVendors(
-																e,
-																pending_data.id,
-																'dismiss'
-															)
-														}
-													></i>
-												</div>
-											</div>
-										</div>
-									</div>
-								)
-							)
-						) : this.state.pending_coupon_loding_end ? (
-							<div>
-								{appLocalizer.workboard_string.workboard12}
-							</div>
-						) : (
-							<PuffLoader
-								css={override}
-								color={'#cd0000'}
-								size={100}
-								loading={true}
-							/>
-						)}
-					</div>
-				</div>
-				{/* Pending Vendor's coupon approval end */}
-
-				{/* Pending tranasction approval work done */}
-				<div className="mvx-todo-status-check">
-					<div className="mvx-text-with-line-wrapper">
-						<div className="mvx-text-with-right-side-line">
-							{appLocalizer.workboard_string.workboard13}
-						</div>
-						<div className="mvx-select-all-bulk-wrap">
-							<div className="mvx-select-all-checkbox">
-								<input
-									type="checkbox"
-									className="mvx-select-all"
-									checked={
-										this.state
-											.pending_parent_transaction_check
-									}
-									onChange={(e) =>
-										this.handleParentTransactionTodoCheckboxChenage(
-											e
-										)
-									}
-								/>
-								<span className="mvx-select-all-text">
-									{appLocalizer.global_string.select_all}
-								</span>
-							</div>
-							<Select
-								placeholder={
-									appLocalizer.global_string.bulk_action
-								}
-								options={appLocalizer.task_board_bulk_status}
-								isClearable={true}
-								className="mvx-wrap-bulk-action"
-								onChange={(e) =>
-									this.handleTaskBoardBulkChenage(
-										e,
-										'transaction_approval'
-									)
-								}
-							/>
-						</div>
-					</div>
-
-					<div className="mvx-product-box-sec">
-						{this.state.list_of_pending_transaction.length > 0 ? (
-							this.state.list_of_pending_transaction.map(
-								(pending_data, pending_index) => (
-									<div className="mvx-all-product-box">
-										<div className="mvx-white-box-header">
-											{
-												appLocalizer.workboard_string
-													.workboard13
-											}
-											<div className="pull-right">
-												<input
-													type="checkbox"
-													className="mvx-workboard-checkbox"
-													checked={
-														this.state
-															.pending_transaction_check[
-															pending_index
-														]
-													}
-													onChange={(e) =>
-														this.handleTodoTransactionChenage(
-															e,
-															pending_data.id,
-															pending_index
-														)
-													}
-												/>
-											</div>
-										</div>
-										<div className="mvx-white-box-body">
-											<div className="mvx-box-content">
-												<div className="mvx-product-title">
-													{
-														appLocalizer
-															.workboard_string
-															.workboard8
-													}
-													:
-												</div>
-												<div className="mvx-product-name">
-													<a href="">
-														{pending_data.vendor}
-													</a>
-												</div>
-											</div>
-
-											<div className="mvx-box-content">
-												<div className="mvx-product-title">
-													{
-														appLocalizer
-															.workboard_string
-															.workboard15
-													}
-													:
-												</div>
-												<div className="mvx-product-name">
-													<a href="">
-														{
-															pending_data.commission
-														}
-													</a>
-												</div>
-											</div>
-
-											<div className="mvx-box-content">
-												<div className="mvx-product-title">
-													{
-														appLocalizer
-															.workboard_string
-															.workboard16
-													}
-													:
-												</div>
-												<div className="mvx-product-name">
-													<a href="">
-														{pending_data.amount}
-													</a>
-												</div>
-											</div>
-
-											<div className="mvx-box-content">
-												<div className="mvx-product-title">
-													{
-														appLocalizer
-															.workboard_string
-															.workboard17
-													}
-													:
-												</div>
-												<div
-													className="mvx-product-name"
-													dangerouslySetInnerHTML={{
-														__html: pending_data.account_details,
-													}}
-												></div>
-											</div>
-										</div>
-										<div className="mvx-white-box-footer">
-											<div className="pull-left">
-												<div className="mvx-left-icon link-icon">
-													<i
-														className="mvx-font icon-approve"
-														onClick={(e) =>
-															this.handleTransactionRequestByVendors(
-																e,
-																pending_data.id,
-																pending_data.vendor_id,
-																'transaction_done'
-															)
-														}
-													></i>
-												</div>
-												<div className="mvx-left-icon link-icon">
-													<i
-														className="mvx-font icon-close"
-														onClick={(e) =>
-															this.handleTransactionRequestByVendors(
-																e,
-																pending_data.id,
-																pending_data.vendor_id,
-																'dismiss'
-															)
-														}
-													></i>
-												</div>
-											</div>
-										</div>
-									</div>
-								)
-							)
-						) : this.state.pending_transaction_loding_end ? (
-							<div>
-								{appLocalizer.workboard_string.workboard18}
-							</div>
-						) : (
-							<PuffLoader
-								css={override}
-								color={'#cd0000'}
-								size={100}
-								loading={true}
-							/>
-						)}
-					</div>
-				</div>
-				{/* Pending tranasction approval end */}
-
-				{/* Pending question approval work done */}
-				<div className="mvx-todo-status-check">
-					<div className="mvx-text-with-line-wrapper">
-						<div className="mvx-text-with-right-side-line">
-							{appLocalizer.workboard_string.workboard19}
-						</div>
-						<div className="mvx-select-all-bulk-wrap">
-							<div className="mvx-select-all-checkbox">
-								<input
-									type="checkbox"
-									className="mvx-select-all"
-									checked={
-										this.state.pending_parent_question_check
-									}
-									onChange={(e) =>
-										this.handleParentQuestionTodoCheckboxChenage(
-											e
-										)
-									}
-								/>
-								<span className="mvx-select-all-text">
-									{appLocalizer.global_string.select_all}
-								</span>
-							</div>
-							<Select
-								placeholder={
-									appLocalizer.global_string.bulk_action
-								}
-								options={appLocalizer.task_board_bulk_status}
-								isClearable={true}
-								className="mvx-wrap-bulk-action"
-								onChange={(e) =>
-									this.handleTaskBoardBulkChenage(
-										e,
-										'question_approval'
-									)
-								}
-							/>
-						</div>
-					</div>
-
-					<div className="mvx-product-box-sec">
-						{this.state.list_of_pending_question.length > 0 ? (
-							this.state.list_of_pending_question.map(
-								(pending_data, pending_index) => (
-									<div className="mvx-all-product-box">
-										<div className="mvx-white-box-header">
-											{
-												appLocalizer.workboard_string
-													.workboard20
-											}
-											<div className="pull-right">
-												<input
-													type="checkbox"
-													className="mvx-workboard-checkbox"
-													checked={
-														this.state
-															.pending_question_check[
-															pending_index
-														]
-													}
-													onChange={(e) =>
-														this.handleTodoQuestionCheckboxChenage(
-															e,
-															pending_data.id,
-															pending_index
-														)
-													}
-												/>
-											</div>
-										</div>
-										<div className="mvx-white-box-body">
-											<div className="mvx-box-content">
-												<p
-													dangerouslySetInnerHTML={{
-														__html: pending_data.question_by,
-													}}
-												></p>
-											</div>
-											<div className="mvx-box-content">
-												<div className="mvx-product-title">
-													{
-														appLocalizer
-															.workboard_string
-															.workboard21
-													}
-													:
-												</div>
-												<div className="mvx-product-name">
-													<a
-														href={
-															pending_data.vendor_link
-														}
-													>
-														{
-															pending_data.question_by_name
-														}
-													</a>
-												</div>
-											</div>
-											<div className="mvx-product-row mvx-box-content">
-												<div className="mvx-product-title">
-													{
-														appLocalizer
-															.workboard_string
-															.workboard22
-													}
-													:
-												</div>
-												<div className="mvx-product-name">
-													<a
-														href={
-															pending_data.product_url
-														}
-													>
-														{
-															pending_data.product_name
-														}
-													</a>
-												</div>
-											</div>
-
-											<div className="mvx-product-row mvx-box-content">
-												<div className="mvx-product-title">
-													{
-														appLocalizer
-															.workboard_string
-															.workboard23
-													}
-													:
-												</div>
-												<div className="mvx-product-name">
-													<a
-														href={
-															pending_data.product_url
-														}
-													>
-														{
-															pending_data.question_details
-														}
-													</a>
-												</div>
-											</div>
-										</div>
-										<div className="mvx-white-box-footer">
-											<div className="pull-left">
-												<a
-													href={
-														pending_data.product_url
-													}
-													className="link-icon"
-												>
-													<i className="mvx-font icon-edit"></i>
-												</a>
-												<div className="mvx-left-icon link-icon">
-													<i
-														className="mvx-font icon-approve"
-														onClick={(e) =>
-															this.handleQuestionRequestByVendors(
-																e,
-																pending_data.id,
-																pending_data.question_product_id,
-																'verified'
-															)
-														}
-													></i>
-												</div>
-												<div className="mvx-left-icon link-icon">
-													<i
-														className="mvx-font icon-close"
-														onClick={(e) =>
-															this.handleQuestionRequestByVendors(
-																e,
-																pending_data.id,
-																pending_data.question_product_id,
-																'rejected'
-															)
-														}
-													></i>
-												</div>
-											</div>
-										</div>
-									</div>
-								)
-							)
-						) : this.state.pending_question_loding_end ? (
-							<div>
-								{appLocalizer.workboard_string.workboard24}
-							</div>
-						) : (
-							<PuffLoader
-								css={override}
-								color={'#cd0000'}
-								size={100}
-								loading={true}
-							/>
-						)}
-					</div>
-				</div>
-				{/* Pending question approval end */}
-			</div>
 		) : name === 'announcement' ? (
 			<div className="mvx-module-grid">
 				{(get_current_name &&

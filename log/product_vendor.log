@@ -1,0 +1,30 @@
+{"TIMESTAMP":"2022-06-30T12:26:19Z","CORRELATIONID":"ac9bd48718bac","ACK":"Failure","VERSION":"124.0","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
+-------------------------------------
+{"TIMESTAMP":"2022-06-30T15:15:33Z","CORRELATIONID":"ef9ead548e278","ACK":"Failure","VERSION":"5.4","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
+-------------------------------------
+{"TIMESTAMP":"2022-06-30T15:25:18Z","CORRELATIONID":"c89045602f700","ACK":"Failure","VERSION":"74.0","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
+-------------------------------------
+{"TIMESTAMP":"2022-06-30T16:25:14Z","CORRELATIONID":"facee13c12af","ACK":"Failure","VERSION":"2.3","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
+-------------------------------------
+{"TIMESTAMP":"2022-07-01T04:31:43Z","CORRELATIONID":"ee937d90134d4","ACK":"Failure","VERSION":"91.0","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
+-------------------------------------
+{"TIMESTAMP":"2022-07-01T05:26:12Z","CORRELATIONID":"840650b30e1ef","ACK":"Failure","VERSION":"91.0","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
+-------------------------------------
+{"TIMESTAMP":"2022-07-01T06:26:37Z","CORRELATIONID":"8a194a6196df8","ACK":"Failure","VERSION":"94.0","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
+-------------------------------------
+{"TIMESTAMP":"2022-07-01T07:25:11Z","CORRELATIONID":"bf1f2285da07d","ACK":"Failure","VERSION":"72.0","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
+-------------------------------------
+{"TIMESTAMP":"2022-07-01T08:26:09Z","CORRELATIONID":"6f6f5b77a4a9","ACK":"Failure","VERSION":"60.0","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
+-------------------------------------
+{"TIMESTAMP":"2022-07-01T10:16:35Z","CORRELATIONID":"188fdf2a23d03","ACK":"Failure","VERSION":"64.0","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
+-------------------------------------
+{"TIMESTAMP":"2022-07-01T10:26:26Z","CORRELATIONID":"879570269b9fc","ACK":"Failure","VERSION":"56.0","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
+-------------------------------------
+{"TIMESTAMP":"2022-07-01T11:25:36Z","CORRELATIONID":"5981a1b3adde1","ACK":"Failure","VERSION":"124.0","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
+-------------------------------------
+{"TIMESTAMP":"2022-07-01T12:25:07Z","CORRELATIONID":"665dbe7f37abc","ACK":"Failure","VERSION":"56.0","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
+-------------------------------------
+{"TIMESTAMP":"2022-07-01T13:33:36Z","CORRELATIONID":"89b2f693d3ca2","ACK":"Failure","VERSION":"91.0","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
+-------------------------------------
+{"TIMESTAMP":"2022-07-01T14:25:27Z","CORRELATIONID":"9e70ff3b443c","ACK":"Failure","VERSION":"2.3","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
+-------------------------------------
