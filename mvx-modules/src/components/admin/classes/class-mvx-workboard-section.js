@@ -63,7 +63,10 @@ class MVXworkboard extends Component {
 			pending_coupon_loding_end: false,
 			pending_question_loding_end: false,
 			list_of_all_tabs: [],
-			list_of_work_board_content: []
+			list_of_work_board_content: [],
+
+
+			pending_individual_checkbox: []
 		};
 
 		this.QueryParamsDemo = this.QueryParamsDemo.bind(this);
@@ -368,95 +371,34 @@ class MVXworkboard extends Component {
 	}
 
 	handleTaskBoardBulkChenage(e, type) {
-		if (type === 'product_approval') {
-			axios({
-				method: 'post',
-				url: `${appLocalizer.apiUrl}/mvx_module/v1/bulk_todo_pending_product`,
-				data: {
-					product_list: this.state.pending_product_check,
-					value: e.value,
-					type,
-				},
-			}).then((responce) => {
-				this.setState({
-					list_of_pending_vendor_product: responce.data,
-				});
+		axios({
+			method: 'post',
+			url: `${appLocalizer.apiUrl}/mvx_module/v1/bulk_todo_pending_product`,
+			data: {
+				data_list: this.state.pending_individual_checkbox[type],
+				value: e.value,
+				type: type,
+			},
+		}).then((responce) => {
+			this.setState({
+				list_of_work_board_content: responce.data
 			});
-		} else if (type === 'user_approval') {
-			axios({
-				method: 'post',
-				url: `${appLocalizer.apiUrl}/mvx_module/v1/bulk_todo_pending_product`,
-				data: {
-					user_list: this.state.pending_user_check,
-					value: e.value,
-					type,
-				},
-			}).then((responce) => {
-				this.setState({
-					list_of_pending_vendor_product: responce.data,
-				});
-			});
-		} else if (type === 'coupon_approval') {
-			axios({
-				method: 'post',
-				url: `${appLocalizer.apiUrl}/mvx_module/v1/bulk_todo_pending_product`,
-				data: {
-					coupon_list: this.state.pending_coupon_check,
-					value: e.value,
-					type,
-				},
-			}).then((responce) => {
-				this.setState({
-					list_of_pending_vendor_product: responce.data,
-				});
-			});
-		} else if (type === 'transaction_approval') {
-			axios({
-				method: 'post',
-				url: `${appLocalizer.apiUrl}/mvx_module/v1/bulk_todo_pending_product`,
-				data: {
-					transaction_list: this.state.pending_transaction_check,
-					value: e.value,
-					type,
-				},
-			}).then((responce) => {
-				this.setState({
-					list_of_pending_transaction: responce.data,
-				});
-			});
-		} else if (type === 'question_approval') {
-			axios({
-				method: 'post',
-				url: `${appLocalizer.apiUrl}/mvx_module/v1/bulk_todo_pending_product`,
-				data: {
-					product_list: this.state.pending_question_check,
-					value: e.value,
-					type,
-				},
-			}).then((responce) => {
-				this.setState({
-					list_of_pending_question: responce.data,
-				});
-			});
-		}
+		});
 	}
 
-	handleParentTodoCheckboxChenage(e) {
+	handleParentTodoCheckboxChenage(e, data_key) {
 		if (e.target.checked) {
-			this.setState({
-				pending_parent_product_check: true,
-				pending_product_check: new Array(
-					this.state.pending_product_check.length
-				).fill(true),
-			});
+			this.state.pending_individual_checkbox[data_key] = new Array(
+				this.state.pending_individual_checkbox[data_key].length
+			).fill(true);
 		} else {
-			this.setState({
-				pending_parent_product_check: false,
-				pending_product_check: new Array(
-					this.state.pending_product_check.length
-				).fill(false),
-			});
+			this.state.pending_individual_checkbox[data_key] = new Array(
+				this.state.pending_individual_checkbox[data_key].length
+			).fill(false);
 		}
+		this.setState({
+			pending_individual_checkbox: this.state.pending_individual_checkbox
+		});
 	}
 
 	handleParentUserTodoCheckboxChenage(e) {
@@ -532,13 +474,23 @@ class MVXworkboard extends Component {
 	}
 
 	// individual checkbox trigger
-	handleTodoCheckboxChenage(e, id, position) {
-		const updatedCheckedState = this.state.pending_product_check.map(
+	handleTodoCheckboxChenage(e, data_key, position) {
+		/*const updatedCheckedState = this.state.pending_product_check.map(
 			(item, index) => (index === position ? !item : item)
 		);
 
 		this.setState({
 			pending_product_check: updatedCheckedState,
+		});*/
+
+
+
+
+		this.state.pending_individual_checkbox[data_key] = this.state.pending_individual_checkbox[data_key].map(
+			(item, index) => (index === position ? !item : item)
+		);
+		this.setState({
+			pending_individual_checkbox: this.state.pending_individual_checkbox,
 		});
 	}
 
@@ -1008,6 +960,22 @@ class MVXworkboard extends Component {
 		axios({
 			url: `${appLocalizer.apiUrl}/mvx_module/v1/list_of_work_board_content`,
 		}).then((response) => {
+
+			/*const allPendingProductCheckbox = new Array(
+					response.data.length
+				).fill(false);*/
+
+			response.data.map((data_parent, index_parent) => {
+				//data_parent.content.map((data_sub_parent, index_sub_parent) => {
+					//data_sub_parent.list_datas.map((data_child, index_child) => (
+						//console.log(data_sub_parent)
+						this.state.pending_individual_checkbox[data_parent.key] = new Array(
+							data_parent.content.length
+						).fill(false)
+					//))
+				//})
+			})
+			//console.log(this.state.pending_individual_checkbox)
 			this.setState({
 				list_of_work_board_content: response.data,
 			});
@@ -1401,6 +1369,9 @@ class MVXworkboard extends Component {
 									<input
 										type="checkbox"
 										className="mvx-select-all"
+										onChange={(e) =>
+											this.handleParentTodoCheckboxChenage(e, taskboard_data.key)
+										}
 									/>
 									<span className="mvx-select-all-text">
 										{appLocalizer.global_string.select_all}
@@ -1413,6 +1384,12 @@ class MVXworkboard extends Component {
 									options={appLocalizer.task_board_bulk_status}
 									isClearable={true}
 									className="mvx-wrap-bulk-action"
+									onChange={(e) =>
+										this.handleTaskBoardBulkChenage(
+											e,
+											taskboard_data.key
+										)
+									}
 								/>
 							</div>
 						</div>
@@ -1426,7 +1403,16 @@ class MVXworkboard extends Component {
 												<input
 													type="checkbox"
 													className="mvx-workboard-checkbox"
-													
+													checked={
+														this.state.pending_individual_checkbox[taskboard_data.key][task_lists_index]
+													}
+													onChange={(e) =>
+														this.handleTodoCheckboxChenage(
+															e,
+															taskboard_data.key,
+															task_lists_index
+														)
+													}
 												/>
 
 											</div>

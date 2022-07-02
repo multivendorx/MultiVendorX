@@ -946,22 +946,27 @@ class MVX_REST_API {
 
         $todo_list = [
             array(
+                'key'       =>  'pending_product',
                 'header'    =>  __('Pending Vendor Product', 'multivendorx'),
                 'content'   =>  $get_pending_product_list
             ),
             array(
+                'key'       =>  'pending_vendor',
                 'header'    =>  __('Pending Vendor', 'multivendorx'),
                 'content'   =>  $get_pending_vendor_list
             ),
             array(
+                'key'       =>  'pending_coupon',
                 'header'    =>  __('Pending Coupon', 'multivendorx'),
                 'content'   =>  $get_pending_coupon_list
             ),
             array(
+                'key'       =>  'pending_transaction',
                 'header'    =>  __('Pending Transaction', 'multivendorx'),
                 'content'   =>  $get_pending_transaction_list
             ),
             array(
+                'key'       =>  'pending_question',
                 'header'    =>  __('Pending Question', 'multivendorx'),
                 'content'   =>  $get_pending_question_list
             )
@@ -1721,34 +1726,29 @@ class MVX_REST_API {
     }
 
     public function mvx_bulk_todo_pending_product($request) {
-
-        $product_list = $request && $request->get_param('product_list') ? $request->get_param('product_list') : 0;
-        $value = $request && $request->get_param('value') ? $request->get_param('value') : 0;
-        $type = $request && $request->get_param('type') ? $request->get_param('type') : 0;
-
-        if ($type == "product_approval") {
-            $get_product_list = [];
+        $data_list = $request && $request->get_param('data_list') ? $request->get_param('data_list') : '';
+        $select_option_value = $request && $request->get_param('value') ? $request->get_param('value') : '';
+        $type = $request && $request->get_param('type') ? $request->get_param('type') : '';
+        $get_product_list = $get_users_list = $get_coupon_list = $get_transaction_list = $get_pending_questions_list = [];
+        print_r($data_list);die;
+        if ($type == "pending_product") {
+            
             if ($this->mvx_list_of_pending_vendor_product()->data) {
                 foreach ($this->mvx_list_of_pending_vendor_product()->data as $key => $value) {
-                    if ($product_list[$key]) {
+                    if ($data_list[$key]) {
                         $get_product_list[] = $value['id'];
                     }
                 }
             }
-
-            if ($value == "approve") {
-                if ($get_product_list) {
-                    foreach ($get_product_list as $product_key => $product_id) {
+            if ($get_product_list) {
+                foreach ($get_product_list as $product_key => $product_id) {
+                    if ($select_option_value == "approve") {
                         $post_update = array(
                             'ID'            => $product_id,
                             'post_status'   => 'publish',
                         );
                         wp_update_post( $post_update );
-                    }
-                }
-            } else {
-                if ($get_product_list) {
-                    foreach ($get_product_list as $product_key => $product_id) {
+                    } else {
                         $post = get_post($product_id);
                         $reason = '';
                         $vendor = get_mvx_product_vendors($product_id);
@@ -1761,21 +1761,19 @@ class MVX_REST_API {
                     }
                 }
             }
-            
-            return $this->mvx_list_of_pending_vendor_product();
-        } elseif ($type == "user_approval") {
-            $user_list = $request && $request->get_param('user_list') ? $request->get_param('user_list') : 0;
 
-            $get_users_list = [];
+            
+        } elseif ($type == "pending_vendor") {
+
             if ($this->mvx_list_of_pending_vendor()->data) {
                 foreach ($this->mvx_list_of_pending_vendor()->data as $key => $value) {
-                    if ($user_list[$key]) {
+                    if ($data_list[$key]) {
                         $get_users_list[] = $value['id'];
                     }
                 }
             }
 
-            if ($value == "approve") {
+            if ($select_option_value == "approve") {
                 if ($get_users_list) {
                     foreach ($get_users_list as $vendor_key => $vendor_id) {
                         $user = new WP_User(absint($vendor_id));
@@ -1792,20 +1790,18 @@ class MVX_REST_API {
                     }
                 }
             }
-            return $this->mvx_list_of_pending_vendor();
             
-        } elseif ($type == "coupon_approval") {
-            $coupon_list = $request && $request->get_param('coupon_list') ? $request->get_param('coupon_list') : 0;
-            $get_coupon_list = [];
+        } elseif ($type == "pending_coupon") {
+
             if ($this->mvx_list_of_pending_vendor_coupon()->data) {
                 foreach ($this->mvx_list_of_pending_vendor_coupon()->data as $key => $value) {
-                    if ($coupon_list[$key]) {
+                    if ($data_list[$key]) {
                         $get_coupon_list[] = $value['id'];
                     }
                 }
             }
 
-            if ($value == "approve") {
+            if ($select_option_value == "approve") {
                 if ($get_coupon_list) {
                     foreach ($get_coupon_list as $coupon_key => $coupon_id) {
                         $post_update = array(
@@ -1823,20 +1819,18 @@ class MVX_REST_API {
                 }
             }
 
-            return $this->mvx_list_of_pending_vendor_coupon();
 
-        } elseif ($type == "transaction_approval") {
-            $transaction_list = $request && $request->get_param('transaction_list') ? $request->get_param('transaction_list') : 0;
-            $get_transaction_list = [];
+        } elseif ($type == "pending_transaction") {
+
             if ($this->mvx_list_of_pending_transaction()->data) {
                 foreach ($this->mvx_list_of_pending_transaction()->data as $key => $value) {
-                    if ($transaction_list[$key]) {
+                    if ($data_list[$key]) {
                         $get_transaction_list[] = array('transaction_id'    =>  $value['id'], 'vendor_id'    =>    $value['vendor_id']);
                     }
                 }
             }
 
-            if ($value == "approve") {
+            if ($select_option_value == "approve") {
                 if ($get_transaction_list) {
                     foreach ($get_transaction_list as $transaction_key => $transaction_id) {
                         $vendor = get_mvx_vendor_by_term( $transaction_id['vendor_id'] );
@@ -1887,17 +1881,12 @@ class MVX_REST_API {
                     }
                 }
             }
-            return $this->mvx_list_of_pending_transaction();
 
-        } elseif ($type == "question_approval") {
-            $product_list = $request && $request->get_param('product_list') ? $request->get_param('product_list') : 0;
-            $value = $request && $request->get_param('value') ? $request->get_param('value') : 0;
-            $type = $request && $request->get_param('type') ? $request->get_param('type') : 0;
+        } elseif ($type == "pending_question") {
 
-            $get_pending_questions_list = [];
             if ($this->mvx_list_of_pending_question('', '')->data) {
                 foreach ($this->mvx_list_of_pending_question('', '')->data as $key => $value_p) {
-                    if ($product_list[$key]) {
+                    if ($data_list[$key]) {
                         $get_pending_questions_list[] = array(
                             'question_id'   => $value_p['id'],
                             'product_id'    => $value_p['question_product_id']
@@ -1908,27 +1897,25 @@ class MVX_REST_API {
 
             if ($get_pending_questions_list) {
                 foreach ($get_pending_questions_list as $q_key => $q_value) {
-
                     $product_id     = $q_value['product_id'] ? $q_value['product_id'] : 0;
                     $question_id    = $q_value['question_id'] ? $q_value['question_id'] : 0;
                     $data = array();
                     if (!empty($product_id)) {
                         $vendor = get_mvx_product_vendors(absint($product_id));
-                        if ($value == 'rejected') {
+                        if ($select_option_value == 'rejected') {
                             $MVX->product_qna->deleteQuestion( $question_id );
                             delete_transient('mvx_customer_qna_for_vendor_' . $vendor->id);
                         } else {
-                            $data['status'] = $value;
+                            $data['status'] = $select_option_value;
                             $MVX->product_qna->updateQuestion( $question_id, $data );
                             $questions = $MVX->product_qna->get_Vendor_Questions($vendor);
                             set_transient('mvx_customer_qna_for_vendor_' . $vendor->id, $questions);
                         }
                     }
-
                 }
             }
-            return $this->mvx_list_of_pending_question('', '');
         }
+        return $this->mvx_list_of_work_board_content();
     }
 
     public function mvx_dismiss_and_approve_vendor_product_questions($request) {
