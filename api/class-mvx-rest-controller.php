@@ -4730,7 +4730,7 @@ class MVX_REST_API {
             $zone_id = $zones['data']['id'];
             $zone_locations = $zones['data']['zone_locations'];
 
-            $zone_location_types = array_column(array_map('mvx_convert_to_array', $zone_locations), 'type', 'code');
+            $zone_location_types = array_column(array_map('mvx_convert_normal_string_to_array', $zone_locations), 'type', 'code');
 
             $selected_continent_codes = array_keys($zone_location_types, 'continent');
 
