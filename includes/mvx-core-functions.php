@@ -3725,9 +3725,9 @@ if (!function_exists('mvx_get_shipping_methods')) {
 
 }
 
-if (!function_exists('mvx_convert_to_array')) {
+if (!function_exists('mvx_convert_normal_string_to_array')) {
 
-    function mvx_convert_to_array($a) {
+    function mvx_convert_normal_string_to_array($a) {
         return (array) $a;
     }
 
