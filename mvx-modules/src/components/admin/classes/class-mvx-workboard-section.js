@@ -19,7 +19,6 @@ class MVXworkboard extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			product_list_option: '',
 			bulkselectlist: [],
 			bulkselectreviewlist: [],
 			show_vendor_name: '',
@@ -566,15 +565,6 @@ class MVXworkboard extends Component {
 			});
 		});
 
-		// product list
-		axios({
-			url: `${appLocalizer.apiUrl}/mvx_module/v1/product_list_option`,
-		}).then((response) => {
-			this.setState({
-				product_list_option: response.data,
-			});
-		});
-
 		// tab list
 		axios({
 			url: `${appLocalizer.apiUrl}/mvx_module/v1/list_of_all_tabs`,
@@ -605,6 +595,7 @@ class MVXworkboard extends Component {
 	}
 
 	QueryParamsDemo() {
+		const use_query = this.useQuery();
 		// update announcement table when clock on announcement tab
 		if (
 			new URLSearchParams(window.location.hash).get('name') ===
@@ -634,8 +625,6 @@ class MVXworkboard extends Component {
 				});
 		}
 		// update knowledgebase table end
-
-		const use_query = this.useQuery();
 		return Object.keys(this.state.list_of_all_tabs).length > 0 ? (
 			<TabSection
 				model={this.state.list_of_all_tabs['marketplace-workboard']}
@@ -711,7 +700,7 @@ class MVXworkboard extends Component {
 				});
 		}
 
-		// Display table column and row slection
+		{/** Display table column and row slection **/}
 		if (
 			this.state.columns_announcement_new.length === 0 &&
 			new URLSearchParams(window.location.hash).get('name') ===
@@ -815,7 +804,7 @@ class MVXworkboard extends Component {
 		}
 		// Display table column and row slection for questions
 
-		// Display table column and row slection
+		// Display table column and row slection knowladgebase
 		if (
 			this.state.columns_knowledgebase_new.length === 0 &&
 			new URLSearchParams(window.location.hash).get('name') ===
@@ -867,7 +856,7 @@ class MVXworkboard extends Component {
 			);
 		}
 
-		// Display table column and row slection
+		// Display table column and row slection store review
 		if (
 			this.state.columns_store_review.length === 0 &&
 			new URLSearchParams(window.location.hash).get('name') ===
@@ -917,7 +906,7 @@ class MVXworkboard extends Component {
 			);
 		}
 
-		// Display table column and row slection
+		// Display table column and row slection report abuse
 		if (
 			this.state.columns_report_abuse.length === 0 &&
 			new URLSearchParams(window.location.hash).get('name') ===
@@ -1553,7 +1542,9 @@ class MVXworkboard extends Component {
 					/>
 					<Select
 						placeholder={appLocalizer.workboard_string.workboard31}
-						options={this.state.product_list_option}
+						options={
+							appLocalizer.question_product_selection_wordpboard
+						}
 						isClearable={true}
 						className="mvx-wrap-bulk-action"
 						onChange={this.handleProductSearchAbuse}
@@ -1616,7 +1607,7 @@ class MVXworkboard extends Component {
 						onChange={this.handleQuestionBulkStatusChange}
 					/>
 					<Select
-						placeholder={appLocalizer.workboard_string.workboard34}
+						placeholder={appLocalizer.workboard_string.workboard31}
 						isMulti
 						options={
 							appLocalizer.question_product_selection_wordpboard

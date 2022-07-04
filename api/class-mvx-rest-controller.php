@@ -226,18 +226,6 @@ class MVX_REST_API {
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
 
-        register_rest_route( 'mvx_module/v1', '/save_front_registration', [
-            'methods' => WP_REST_Server::EDITABLE,
-            'callback' => array( $this, 'mvx_front_registration' ),
-            'permission_callback' => array( $this, 'save_settings_permission' )
-        ] );
-
-        register_rest_route( 'mvx_module/v1', '/vendor_details', [
-            'methods' => WP_REST_Server::READABLE,
-            'callback' => array( $this, 'mvx_vendor_details' ),
-            'permission_callback' => array( $this, 'save_settings_permission' )
-        ] );
-
         register_rest_route( 'mvx_module/v1', '/all_vendors', [
             'methods' => WP_REST_Server::READABLE,
             'callback' => array( $this, 'mvx_all_vendor_details' ),
@@ -265,12 +253,6 @@ class MVX_REST_API {
         register_rest_route( 'mvx_module/v1', '/vendor_list_search', [
             'methods' => WP_REST_Server::READABLE,
             'callback' => array( $this, 'mvx_vendor_list_search' ),
-            'permission_callback' => array( $this, 'save_settings_permission' )
-        ] );
-
-        register_rest_route( 'mvx_module/v1', '/product_list_option', [
-            'methods' => WP_REST_Server::READABLE,
-            'callback' => array( $this, 'mvx_product_list_option' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
 
@@ -636,7 +618,6 @@ class MVX_REST_API {
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
 
-
         //search question and aswear
         register_rest_route( 'mvx_module/v1', '/search_question_ans', [
             'methods' => WP_REST_Server::EDITABLE,
@@ -750,7 +731,6 @@ class MVX_REST_API {
             'callback' => array( $this, 'mvx_update_vendor_store' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
 
         register_rest_route( 'mvx_module/v1', '/list_of_work_board_content', [
             'methods' => WP_REST_Server::READABLE,
@@ -944,7 +924,7 @@ class MVX_REST_API {
             }
         }
 
-        $todo_list = [
+        $todo_list = apply_filters('mvx_task_board_listing_modules', [
             array(
                 'key'       =>  'pending_product',
                 'header'    =>  __('Pending Vendor Product', 'multivendorx'),
@@ -970,7 +950,7 @@ class MVX_REST_API {
                 'header'    =>  __('Pending Question', 'multivendorx'),
                 'content'   =>  $get_pending_question_list
             )
-        ];
+        ]);
         return rest_ensure_response($todo_list);
     }
 
@@ -1084,6 +1064,7 @@ class MVX_REST_API {
                 delete_transient('mvx_customer_qna_for_vendor_' . $vendor->id);
             }
         }
+        do_action('mvx_task_board_icons_triggers_action', $key, $value);
         return $this->mvx_list_of_work_board_content();
     }
 
@@ -4857,21 +4838,6 @@ class MVX_REST_API {
         return rest_ensure_response($option_lists);
     }
 
-    public function mvx_product_list_option() {
-        $option_lists[] = array('value' => 'all', 'label' => __('All Product', 'multivendorx'));
-        $products = get_posts( array( 'post_type' => 'product', 'posts_per_page' => -1, 'fields' => 'ids' ) );
-        if ($products) {
-            foreach($products as $product_id) {
-                $product = wc_get_product($product_id);
-                $option_lists[] = array(
-                    'value' => sanitize_text_field($product_id),
-                    'label' => $product->get_name()
-                );
-            }
-        }
-        return rest_ensure_response($option_lists);
-    }
-
     public function mvx_specific_search_vendor($request) {
         $vendor_name = $request->get_param('vendor_id') ? $request->get_param('vendor_id') : 0;
         $search_vendor = [];
@@ -5146,13 +5112,6 @@ class MVX_REST_API {
         die;
     }
 
-    public function mvx_vendor_details($request) {
-        $vendor_id = $request->get_param( 'vendor_id' );
-        $uniquename = $request->get_param( 'uniquename' );
-        return 
-        print_r($uniquename);die;
-    }
-    
     public function mvx_all_vendor_details($request) {
         $role = $request && $request->get_param('role') ? $request->get_param('role') : 0;
         return $this->mvx_list_all_vendor('', $role);
@@ -5219,45 +5178,6 @@ class MVX_REST_API {
             ), $user);
         }
         return rest_ensure_response($user_list);
-    }
-
-    public function mvx_front_registration($request) {
-        global $MVX;
-        $all_details = array();
-        $get_managements_data = $request->get_param( 'model' );
-
-        $email = isset($get_managements_data['mvx_vendor_fields_email']) && !empty($get_managements_data['mvx_vendor_fields_email']) ? $get_managements_data['mvx_vendor_fields_email'] : '';
-        $username = isset($get_managements_data['mvx_vendor_fields_username']) && !empty($get_managements_data['mvx_vendor_fields_username']) ? $get_managements_data['mvx_vendor_fields_username'] : '';
-        $password = isset($get_managements_data['mvx_vendor_fields_password']) && !empty($get_managements_data['mvx_vendor_fields_password']) ? $get_managements_data['mvx_vendor_fields_password'] : '';
-
-        $user = wc_create_new_customer( sanitize_email( $email ), wc_clean( $username ), $password );
-        if ($user) {
-
-            wp_set_current_user( $user );
-            wp_set_auth_cookie( $user, true );
-
-            $is_approve_manually = get_mvx_global_settings('approve_vendor');
-            if (!is_user_mvx_vendor($user)) {
-                if ($is_approve_manually == 'manually') {
-                    $userdeta = new WP_User(absint($user));
-                    $userdeta->set_role('dc_pending_vendor');
-                } else {
-                    $userdeta = new WP_User(absint($user));
-                    $userdeta->set_role('dc_vendor');
-                }
-            }
-
-            $MVX->user->mvx_customer_new_account($user);
-            $redirect_to = apply_filters( 'mvx_user_apply_vendor_redirect_url', get_permalink( mvx_vendor_dashboard_page_id() ) );
-
-            $all_details['redirect_link']   =   $redirect_to;
-            return $all_details; 
-            die;
-        }
-
-        $all_details['error']   =   '';
-        return $all_details; 
-        die;
     }
 
     public function mvx_save_registration_forms($request) {
@@ -5343,14 +5263,14 @@ class MVX_REST_API {
     }
 
     public function mvx_get_module_lists_keys() {
-        $option_lists[] = array('value' => 'all', 'label' => __('All Modules', 'multivendorx'));
+        /*$option_lists[] = array('value' => 'all', 'label' => __('All Modules', 'multivendorx'));
         foreach (mvx_list_all_modules() as $key => $value) {
             $option_lists[] = array(
                 'value' => sanitize_text_field($value['id']),
                 'label' => sanitize_text_field($value['name'])
             );
         }
-        return rest_ensure_response( $option_lists );
+        return rest_ensure_response( $option_lists );*/
     }
 
     public function save_checkbox_module($request) {
