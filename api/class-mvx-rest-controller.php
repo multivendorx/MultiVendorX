@@ -2779,6 +2779,12 @@ class MVX_REST_API {
                 'database_value' => array(),
             ],
             [
+                'key'    => 'vendor_vacation_calender',
+                'label'   => __( 'Calender', 'multivendorx' ),
+                'type'    => 'calender',
+                'database_value' => '',
+            ],
+            [
                 'key'       => 'vendor_active_suspend_button',
                 'label'     => 'no_label',
                 'type'      => 'button',

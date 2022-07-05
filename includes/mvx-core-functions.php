@@ -7071,35 +7071,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
 if (!function_exists('mvx_admin_backend_tab_settings')) {
     function mvx_admin_backend_tab_settings() {
         global $MVX;
-        $dashboard_page_endpoint = [
-            /*[
-                'icon'          =>  'ico-store-icon',
-                'modulename'       =>  'modules',
-                'tablabel'      =>  __('Modules', 'multivendorx'),
-                'description'   =>  __('', 'multivendorx'),
-            ],*/
-            [
-                'icon'          =>  'ico-store-icon',
-                'modulename'       =>  'help',
-                'tablabel'      =>  __('Help', 'multivendorx'),
-                'description'   =>  __('Default description', 'multivendorx'),
-            ],
-            [
-                'icon'          =>  'ico-store-icon',
-                'modulename'       =>  'setup-widget',
-                'tablabel'      =>  __('Setup Widget', 'multivendorx'),
-                'link'          =>  admin_url( 'index.php?page=mvx-setup' ),
-                'description'   =>  __('Default description', 'multivendorx'),
-            ],
-            [
-                'icon'          =>  'ico-store-icon',
-                'modulename'       =>  'migration',
-                'tablabel'      =>  __('Migration', 'multivendorx'),
-                'link'          =>  admin_url('index.php?page=mvx-migrator'),
-                'description'   =>  __('Default description', 'multivendorx'),
-            ],
-        ];
-
+        
         $general_settings_page_endpoint = array(
             array(
                 'tablabel'       =>  __('General', 'multivendorx'),
@@ -7481,7 +7453,6 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
         }
 
         $mvx_all_backend_tab_list = apply_filters('mvx_multi_tab_array_list', array(
-            'dashboard-page'                    => $dashboard_page_endpoint,
             'marketplace-advance-settings'      => $advance_page_endpoint,
             'marketplace-analytics'             => $analytics_page_endpoint,
             'status-tools'                      => array_values($status_tools),
@@ -7652,6 +7623,11 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'plugin_name'   => __('WooCommerce Accommodation & Booking', 'multivendorx'),
                                 'plugin_link'   => 'https://woocommerce.com/products/woocommerce-accommodation-bookings/',
                                 'is_active' => is_plugin_active('woocommerce-bookings/woocommerce-bookings.php') && is_plugin_active('woocommerce-accommodation-bookings/woocommerce-accommodation-bookings.php') ? true : false,
+                            ),
+                            array(
+                                'plugin_name'   => __('WooCommerce Booking', 'multivendorx'),
+                                'plugin_link'   => 'https://woocommerce.com/products/woocommerce-bookings/',
+                                'is_active' => is_plugin_active('woocommerce-bookings/woocommerce-bookings.php') ? true :false,
                             ),
                             array(
                                 'plugin_name'   => __('MultivendorX Pro', 'multivendorx'),

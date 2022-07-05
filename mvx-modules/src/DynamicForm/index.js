@@ -4,6 +4,7 @@ import Select from 'react-select';
 import axios from 'axios';
 import GoogleMapReact from 'google-map-react';
 import AutoComplete from './autocomplete';
+import { Calendar } from "react-multi-date-picker"
 
 const AnyReactComponent = ({ text }) => (
 	<img src={text} width="38" height="50" />
@@ -410,6 +411,16 @@ export default class DynamicForm extends React.Component {
 					},
 					() => {}
 				);
+			} else if (from_type === 'calender') {
+
+/*				const today = new Date()
+				const tomorrow = new Date()
+				console.log(new Date())
+				tomorrow.setDate(tomorrow.getDate() + 1);*/
+				
+				this.setState({
+					[key]: e
+				});
 			} else {
 				this.setState(
 					{
@@ -574,6 +585,22 @@ export default class DynamicForm extends React.Component {
 					</div>
 				);
 			}
+
+			if (type === 'calender') {
+				console.log(value);
+				input = (
+					<div className="mvx-settings-calender">
+						<Calendar
+						multiple
+						value={value}
+						onChange={(e) => {
+							this.onChange(e, target, 'single', type);
+						}}
+					    />
+					</div>
+				);
+			}
+
 
 			if (type === 'map') {
 				input = (
