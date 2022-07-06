@@ -413,13 +413,15 @@ export default class DynamicForm extends React.Component {
 				);
 			} else if (from_type === 'calender') {
 
+				//console.log(e.join(",\n"))
+
 /*				const today = new Date()
 				const tomorrow = new Date()
 				console.log(new Date())
 				tomorrow.setDate(tomorrow.getDate() + 1);*/
 				
 				this.setState({
-					[key]: e
+					[key]: e.join(",")
 				});
 			} else {
 				this.setState(
@@ -587,12 +589,13 @@ export default class DynamicForm extends React.Component {
 			}
 
 			if (type === 'calender') {
-				console.log(value);
+				console.log(this.state[target] ? this.state[target].split(",") : '');
 				input = (
 					<div className="mvx-settings-calender">
 						<Calendar
+						className="teal"
 						multiple
-						value={value}
+						value={this.state[target] ? this.state[target].split(",") : ''}
 						onChange={(e) => {
 							this.onChange(e, target, 'single', type);
 						}}
@@ -600,7 +603,6 @@ export default class DynamicForm extends React.Component {
 					</div>
 				);
 			}
-
 
 			if (type === 'map') {
 				input = (
