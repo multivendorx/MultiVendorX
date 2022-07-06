@@ -412,14 +412,6 @@ export default class DynamicForm extends React.Component {
 					() => {}
 				);
 			} else if (from_type === 'calender') {
-
-				//console.log(e.join(",\n"))
-
-/*				const today = new Date()
-				const tomorrow = new Date()
-				console.log(new Date())
-				tomorrow.setDate(tomorrow.getDate() + 1);*/
-				
 				this.setState({
 					[key]: e.join(",")
 				});
