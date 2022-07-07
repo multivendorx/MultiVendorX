@@ -2709,7 +2709,6 @@ class MVX_REST_API {
         $settings_fields_data['shipping_options']  = $shipping_options_list;
 
         $is_block = get_user_meta($vendor_id, '_vendor_turn_off', true);
-
         $settings_fields_data['vendor-personal'] =   [
             [
                 'key'       => 'user_login',
@@ -5104,7 +5103,7 @@ class MVX_REST_API {
         if (isset($model['_store_lng']) && !empty($model['_store_lng'])) {
             mvx_update_user_meta($user_id, '_store_lng', wc_clean($model['_store_lng']));
         }
-
+        
         do_action('mvx_vendor_details_update', $model, $vendor);
 
         $all_details['error'] = 'Settings saving ...';
