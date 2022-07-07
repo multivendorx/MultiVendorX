@@ -180,7 +180,7 @@ function wcmp_approve_vendor($request) {
 
 
 function mvx_reject_vendor($request) {
-    wc_deprecated_function( 'mvx_reject_vendor($request)', '4.0.0', 'mvx_reject_vendor($request)');
+    wc_deprecated_function( 'mvx_reject_vendor', '4.0.0', 'mvx_reject_vendor');
     return mvx_reject_vendor($request);
 }
 function mvx_dismiss_vendor($request) {
@@ -198,4 +198,68 @@ function wcmp_dismiss_and_approve_vendor_coupon($request) {
 function wcmp_approve_vendor($request) {
     wc_deprecated_function( 'wcmp_approve_vendor', '4.0.0', 'mvx_approve_vendor');
     return mvx_approve_vendor($request);
+}
+function wcmp_reject_vendor($request) {
+    wc_deprecated_function( 'wcmp_reject_vendor', '4.0.0', 'mvx_reject_vendor');
+    return mvx_reject_vendor($request);
+}
+function wcmp_dismiss_vendor($request) {
+    wc_deprecated_function( 'wcmp_dismiss_vendor', '4.0.0', 'mvx_dismiss_vendor');
+    return mvx_dismiss_vendor($request);
+}
+function wcmp_dismiss_requested_vendors_query($request) {
+    wc_deprecated_function( 'wcmp_dismiss_requested_vendors_query', '4.0.0', 'mvx_dismiss_requested_vendors_query');
+    return mvx_dismiss_requested_vendors_query($request);
+}
+function wcmp_approve_product($request) {
+    wc_deprecated_function( 'wcmp_approve_product', '4.0.0', 'mvx_approve_product');
+    return mvx_approve_product($request);
+}
+function wcmp_update_custom_post_status($request) {
+    wc_deprecated_function( 'wcmp_update_custom_post_status', '4.0.0', 'mvx_delete_post_details');
+    return mvx_delete_post_details($request);
+}
+
+
+function wcmp_search_announcement($request) {
+    wc_deprecated_function( 'wcmp_search_announcement', '4.0.0', 'mvx_search_announcement');
+    return mvx_search_announcement($request);
+}
+function wcmp_search_knowledgebase($request) {
+    wc_deprecated_function( 'wcmp_search_knowledgebase', '4.0.0', 'mvx_search_knowledgebase');
+    return mvx_search_knowledgebase($request);
+}
+function wcmp_list_of_store_review() {
+    wc_deprecated_function( 'wcmp_list_of_store_review', '4.0.0', 'mvx_list_of_store_review');
+    return mvx_list_of_store_review();
+}
+function wcmp_list_of_pending_vendor_product() {
+    wc_deprecated_function( 'wcmp_list_of_pending_vendor_product', '4.0.0', 'mvx_list_of_pending_vendor_product');
+    return mvx_list_of_pending_vendor_product();
+}
+function wcmp_list_of_pending_vendor() {
+    wc_deprecated_function( 'wcmp_list_of_pending_vendor', '4.0.0', 'mvx_list_of_pending_vendor');
+    return mvx_list_of_pending_vendor();
+}
+
+
+function wcmp_list_of_pending_vendor_coupon() {
+    wc_deprecated_function( 'wcmp_list_of_pending_vendor_coupon', '4.0.0', 'mvx_list_of_pending_vendor_coupon');
+    return mvx_list_of_pending_vendor_coupon();
+}
+function wcmp_list_of_pending_transaction() {
+    wc_deprecated_function( 'wcmp_list_of_pending_transaction', '4.0.0', 'mvx_list_of_pending_transaction');
+    return mvx_list_of_pending_transaction();
+}
+function wcmp_list_of_pending_question($request, $extra_status = '') {
+    wc_deprecated_function( 'wcmp_list_of_pending_question', '4.0.0', 'mvx_list_of_pending_question');
+    return mvx_list_of_pending_question($request, $extra_status = '');
+}
+function wcmp_create_knowladgebase($request) {
+    wc_deprecated_function( 'wcmp_create_knowladgebase', '4.0.0', 'mvx_create_knowladgebase');
+    return mvx_create_knowladgebase($request);
+}
+function wcmp_display_list_knowladgebase($request) {
+    wc_deprecated_function( 'wcmp_display_list_knowladgebase', '4.0.0', 'mvx_display_list_knowladgebase');
+    return mvx_display_list_knowladgebase($request);
 }
