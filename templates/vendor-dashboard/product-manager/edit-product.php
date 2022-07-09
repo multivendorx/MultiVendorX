@@ -23,7 +23,7 @@ $get_product_data_tabs = $self->get_product_data_tabs();
 $product_fields_data = get_mvx_global_settings('products_fields') ? get_mvx_global_settings('products_fields') : array();
 $other_tabs = apply_filters('mvx_product_extra_tabs_added', array('shipping', 'variations'));
 foreach ($get_product_data_tabs as $key_tabs => $value_tabs) {
-    if (is_array($other_tabs) && in_array($key_tabs, $other_tabs) ) continue;
+    if (is_array($other_tabs) && in_array($key_tabs, $other_tabs)) continue;
     if (!in_array($key_tabs, $product_fields_data)) {
         unset($get_product_data_tabs[$key_tabs]);
     }
