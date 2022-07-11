@@ -118,7 +118,6 @@ class MVX_Dashboard extends Component {
 								</a>
 							</div>
 						</div>
-						<div class="clear"></div>
 						<div className="mvx-setup-documentation">
 							<div className="mvx-setup-marketing-white-box">
 								<h3 className="mvx-block-title">
@@ -223,89 +222,91 @@ class MVX_Dashboard extends Component {
 									</li>
 								</ul>
 							</div>
-							<div className="mvx-documentation-quick-link">
-								<div className="mvx-documentation-support-forum">
-									<figure>
-										<i className="mvx-font icon-documentation-forum" />
-									</figure>
-									<figcaption>
-										<h2>Documentation Forum</h2>
-										<div>
-											<p>
-												Further Clarification Visit Our
-											</p>
-											<p>Document Forum</p>
-										</div>
-										<a href="#">
-											Visit Documentation Forum{' '}
-											<span className="mvx-font icon-link-right-arrow" />
-										</a>
-									</figcaption>
-								</div>
+							<div className="mvx-documentation-quick-link-wrapper">
+								<div class="mvx-documentation-quick-link">
+									<div className="mvx-documentation-support-forum">
+										<figure>
+											<i className="mvx-font icon-documentation-forum" />
+										</figure>
+										<figcaption>
+											<h2>Documentation Forum</h2>
+											<div>
+												<p>
+													Further Clarification Visit Our
+												</p>
+												<p>Document Forum</p>
+											</div>
+											<a href="#">
+												Visit Documentation Forum{' '}
+												<span className="mvx-font icon-link-right-arrow" />
+											</a>
+										</figcaption>
+									</div>
 
-								<div className="mvx-documentation-support-forum">
-									<figure>
-										<i className="mvx-font icon-support-forum" />
-									</figure>
-									<figcaption>
-										<h2>Support Forum</h2>
-										<div>
-											<p>
-												Further Clarification Visit Our
-											</p>
-											<p>Support Forum</p>
-										</div>
-										<a href="#">
-											Join Support Forum{' '}
-											<span className="mvx-font icon-link-right-arrow" />
-										</a>
-									</figcaption>
-								</div>
+									<div className="mvx-documentation-support-forum">
+										<figure>
+											<i className="mvx-font icon-support-forum" />
+										</figure>
+										<figcaption>
+											<h2>Support Forum</h2>
+											<div>
+												<p>
+													Further Clarification Visit Our
+												</p>
+												<p>Support Forum</p>
+											</div>
+											<a href="#">
+												Join Support Forum{' '}
+												<span className="mvx-font icon-link-right-arrow" />
+											</a>
+										</figcaption>
+									</div>
 
-								<div className="mvx-quick-link-sec">
-									<h3 className="block-title">Quick Link</h3>
-									<ul className="row-link">
-										<li>
-											<a href="#">
-												<figure>
-													<i className="mvx-font icon-vendor-personal" />
-												</figure>
-												Add Vendor
-											</a>
-										</li>
-										<li>
-											<a href="#">
-												<figure>
-													<i className="mvx-font icon-vendor-personal" />
-												</figure>
-												Commission
-											</a>
-										</li>
-										<li>
-											<a href="#">
-												<figure>
-													<i className="mvx-font icon-vendor-personal" />
-												</figure>
-												Add Product
-											</a>
-										</li>
-										<li>
-											<a href="#">
-												<figure>
-													<i className="mvx-font icon-vendor-personal" />
-												</figure>
-												Payment
-											</a>
-										</li>
-										<li>
-											<a href="#">
-												<figure>
-													<i className="mvx-font icon-vendor-personal" />
-												</figure>
-												Add New
-											</a>
-										</li>
-									</ul>
+									<div className="mvx-quick-link-sec">
+										<h3 className="block-title">Quick Link</h3>
+										<ul className="row-link">
+											<li>
+												<a href="#">
+													<figure>
+														<i className="mvx-font icon-vendor-personal" />
+													</figure>
+													Add Vendor
+												</a>
+											</li>
+											<li>
+												<a href="#">
+													<figure>
+														<i className="mvx-font icon-vendor-personal" />
+													</figure>
+													Commission
+												</a>
+											</li>
+											<li>
+												<a href="#">
+													<figure>
+														<i className="mvx-font icon-vendor-personal" />
+													</figure>
+													Add Product
+												</a>
+											</li>
+											<li>
+												<a href="#">
+													<figure>
+														<i className="mvx-font icon-vendor-personal" />
+													</figure>
+													Payment
+												</a>
+											</li>
+											<li>
+												<a href="#">
+													<figure>
+														<i className="mvx-font icon-vendor-personal" />
+													</figure>
+													Add New
+												</a>
+											</li>
+										</ul>
+									</div>
 								</div>
 							</div>
 						</div>
