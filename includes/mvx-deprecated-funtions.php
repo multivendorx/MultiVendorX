@@ -89,24 +89,24 @@ function wcmp_list_of_bulk_change_status_question($request) {
     wc_deprecated_function( 'wcmp_list_of_bulk_change_status_question', '4.0.0', 'mvx_list_of_bulk_change_status_question');
     return mvx_list_of_bulk_change_status_question($request);
 }
-function mvx_list_vendor_roles_data($request) {
-    wc_deprecated_function( 'mvx_list_vendor_roles_data', '4.0.0', 'mvx_list_vendor_roles_data');
+function wcmp_list_vendor_roles_data($request) {
+    wc_deprecated_function( 'wcmp_list_vendor_roles_data', '4.0.0', 'mvx_list_vendor_roles_data');
     return mvx_list_vendor_roles_data($request);
 }
-function mvx_list_vendor_application_data($request) {
-    wc_deprecated_function( 'mvx_list_vendor_application_data', '4.0.0', 'mvx_list_vendor_application_data');
+function wcmp_list_vendor_application_data($request) {
+    wc_deprecated_function( 'wcmp_list_vendor_application_data', '4.0.0', 'mvx_list_vendor_application_data');
     return mvx_list_vendor_application_data($request);
 }
-function mvx_active_suspend_vendor($request) {
-    wc_deprecated_function( 'mvx_active_suspend_vendor', '4.0.0', 'mvx_active_suspend_vendor');
+function wcmp_active_suspend_vendor($request) {
+    wc_deprecated_function( 'wcmp_active_suspend_vendor', '4.0.0', 'mvx_active_suspend_vendor');
     return mvx_active_suspend_vendor($request);
 }
-function mvx_get_as_per_module_status($request) {
-    wc_deprecated_function( 'mvx_get_as_per_module_status', '4.0.0', 'mvx_get_as_per_module_status');
+function wcmp_get_as_per_module_status($request) {
+    wc_deprecated_function( 'wcmp_get_as_per_module_status', '4.0.0', 'mvx_get_as_per_module_status');
     return mvx_get_as_per_module_status($request);
 }
-function mvx_modules_count() {
-    wc_deprecated_function( 'mvx_modules_count', '4.0.0', 'mvx_modules_count');
+function wcmp_modules_count() {
+    wc_deprecated_function( 'wcmp_modules_count', '4.0.0', 'mvx_modules_count');
     return mvx_modules_count();
 }
 function wcmp_fetch_all_modules_data() {
@@ -171,12 +171,12 @@ function wcmp_approve_vendor($request) {
 }
 
 
-function mvx_reject_vendor($request) {
-    wc_deprecated_function( 'mvx_reject_vendor', '4.0.0', 'mvx_reject_vendor');
+function wcmp_reject_vendor($request) {
+    wc_deprecated_function( 'wcmp_reject_vendor', '4.0.0', 'mvx_reject_vendor');
     return mvx_reject_vendor($request);
 }
-function mvx_dismiss_vendor($request) {
-    wc_deprecated_function( 'mvx_dismiss_vendor', '4.0.0', 'mvx_dismiss_vendor');
+function wcmp_dismiss_vendor($request) {
+    wc_deprecated_function( 'wcmp_dismiss_vendor', '4.0.0', 'mvx_dismiss_vendor');
     return mvx_bulk_todo_pending_product($request);
 }
 
@@ -240,9 +240,6 @@ function wcmp_display_list_knowladgebase($request) {
     wc_deprecated_function( 'wcmp_display_list_knowladgebase', '4.0.0', 'mvx_display_list_knowladgebase');
     return mvx_display_list_knowladgebase($request);
 }
-
-
-
 function wcmp_update_knowladgebase_display($request) {
     wc_deprecated_function( 'wcmp_update_knowladgebase_display', '4.0.0', 'mvx_update_knowladgebase_display');
     return mvx_update_knowladgebase_display($request);
@@ -263,8 +260,6 @@ function wcmp_create_announcement($request) {
     wc_deprecated_function( 'wcmp_create_announcement', '4.0.0', 'mvx_create_announcement');
     return mvx_create_announcement($request);
 }
-
-
 function wcmp_display_announcement($request) {
     wc_deprecated_function( 'wcmp_display_announcement', '4.0.0', 'mvx_display_announcement');
     return mvx_display_announcement($request);
@@ -287,46 +282,69 @@ function wcmp_update_commission_status($request) {
 }
 
 
-function mvx_get_commission_id_status($request) {
-    wc_deprecated_function( 'mvx_get_commission_id_status', '4.0.0', 'mvx_get_commission_id_status');
+function wcmp_get_commission_id_status($request) {
+    wc_deprecated_function( 'wcmp_get_commission_id_status', '4.0.0', 'mvx_get_commission_id_status');
     return mvx_get_commission_id_status($request);
 }
-function mvx_details_specific_commission($request) {
-    wc_deprecated_function( 'mvx_details_specific_commission', '4.0.0', 'mvx_details_specific_commission');
+function wcmp_details_specific_commission($request) {
+    wc_deprecated_function( 'wcmp_details_specific_commission', '4.0.0', 'mvx_details_specific_commission');
     return mvx_details_specific_commission($request);
 }
-function mvx_commission_delete($request) {
-    wc_deprecated_function( 'mvx_commission_delete', '4.0.0', 'mvx_commission_delete');
+function wcmp_commission_delete($request) {
+    wc_deprecated_function( 'wcmp_commission_delete', '4.0.0', 'mvx_commission_delete');
     return mvx_commission_delete($request);
 }
-function mvx_update_specific_vendor_shipping_option($request) {
-    wc_deprecated_function( 'mvx_update_specific_vendor_shipping_option', '4.0.0', 'mvx_update_specific_vendor_shipping_option');
+function wcmp_update_specific_vendor_shipping_option($request) {
+    wc_deprecated_function( 'wcmp_update_specific_vendor_shipping_option', '4.0.0', 'mvx_update_specific_vendor_shipping_option');
     return mvx_update_specific_vendor_shipping_option($request);
 }
-function mvx_export_csv_for_report_product_chart($request) {
-    wc_deprecated_function( 'mvx_export_csv_for_report_product_chart', '4.0.0', 'mvx_export_csv_for_report_product_chart');
+function wcmp_export_csv_for_report_product_chart($request) {
+    wc_deprecated_function( 'wcmp_export_csv_for_report_product_chart', '4.0.0', 'mvx_export_csv_for_report_product_chart');
     return mvx_export_csv_for_report_product_chart($request);
 }
-
-
-function mvx_show_commission_status_list() {
-    wc_deprecated_function( 'mvx_show_commission_status_list', '4.0.0', 'mvx_show_commission_status_list');
+function wcmp_show_commission_status_list() {
+    wc_deprecated_function( 'wcmp_show_commission_status_list', '4.0.0', 'mvx_show_commission_status_list');
     return mvx_show_commission_status_list();
 }
-function mvx_search_specific_commission($request) {
-    wc_deprecated_function( 'mvx_search_specific_commission', '4.0.0', 'mvx_search_specific_commission');
+function wcmp_search_specific_commission($request) {
+    wc_deprecated_function( 'wcmp_search_specific_commission', '4.0.0', 'mvx_search_specific_commission');
     return mvx_search_specific_commission($request);
 }
-function mvx_all_commission_details($request) {
-    wc_deprecated_function( 'mvx_all_commission_details', '4.0.0', 'mvx_all_commission_details');
+function wcmp_all_commission_details($request) {
+    wc_deprecated_function( 'wcmp_all_commission_details', '4.0.0', 'mvx_all_commission_details');
     return mvx_all_commission_details($request);
 }
+<<<<<<< Updated upstream
 function mvx_find_specific_commission($commission_ids = array(), $status = '', $vendor_name = '') {
     wc_deprecated_function( 'mvx_find_specific_commission', '4.0.0', 'mvx_find_specific_commission');
+=======
+function wcmp_find_specific_commission($commission_ids = array(), $status = '', $vendor_name = '') {
+    wc_deprecated_function( 'wcmp_find_specific_commission', '4.0.0', 'mvx_find_specific_commission');
+>>>>>>> Stashed changes
     return mvx_find_specific_commission($commission_ids = array(), $status = '', $vendor_name = '');
 }
-function mvx_commission_list_search($request) {
-    wc_deprecated_function( 'mvx_commission_list_search', '4.0.0', 'mvx_commission_list_search');
+function wcmp_commission_list_search($request) {
+    wc_deprecated_function( 'wcmp_commission_list_search', '4.0.0', 'mvx_commission_list_search');
     return mvx_commission_list_search($request);
+}
+function wcmp_update_post_code($request) {
+    wc_deprecated_function( 'wcmp_update_post_code', '4.0.0', 'mvx_update_post_code');
+    return mvx_update_post_code($request);
+}
+function wcmp_toggle_shipping_method($request) {
+    wc_deprecated_function( 'wcmp_toggle_shipping_method', '4.0.0', 'mvx_toggle_shipping_method');
+    return mvx_toggle_shipping_method($request);
+}
+function wcmp_delete_shipping_method($request) {
+    wc_deprecated_function( 'wcmp_delete_shipping_method', '4.0.0', 'mvx_delete_shipping_method');
+    return mvx_delete_shipping_method($request);
+}
+function wcmp_update_vendor_shipping_method($request) {
+    wc_deprecated_function( 'wcmp_update_vendor_shipping_method', '4.0.0', 'mvx_update_vendor_shipping_method');
+    return mvx_update_vendor_shipping_method($request);
+}
+function wcmp_add_shipping_option() {
+    wc_deprecated_function( 'wcmp_add_shipping_option', '4.0.0', 'mvx_add_shipping_option');
+    return mvx_add_shipping_option();
 }
 
