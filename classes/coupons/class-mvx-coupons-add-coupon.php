@@ -33,7 +33,7 @@ class MVX_Coupons_Add_Coupon {
         }
 
         if ( ! $this->no_cap ) {
-            do_action( 'mvx_afm_after_add_coupon_endpoint_load', $this->coupon_id, $this->coupon_object, $this->post_object );
+            do_action( 'mvx_frontend_after_add_coupon_endpoint_load', $this->coupon_id, $this->coupon_object, $this->post_object );
         }
         
     }

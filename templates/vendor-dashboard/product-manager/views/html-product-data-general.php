@@ -175,6 +175,6 @@ global $MVX;
                 </div>  
             </div>
         <?php endif; ?>
-        <?php do_action( 'mvx_afm_after_general_product_data', $post->ID, $product_object, $post ); ?>
+        <?php do_action( 'mvx_frontend_after_general_product_data', $post->ID, $product_object, $post ); ?>
     </div>
 </div>

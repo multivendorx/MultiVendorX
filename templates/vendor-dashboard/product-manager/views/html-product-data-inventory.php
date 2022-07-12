@@ -24,7 +24,7 @@ defined( 'ABSPATH' ) || exit;
                 </div>
             </div> 
         <?php endif; ?>
-        <?php do_action( 'mvx_afm_product_options_sku', $post->ID, $product_object, $post ); ?>
+        <?php do_action( 'mvx_frontend_product_options_sku', $post->ID, $product_object, $post ); ?>
         <?php if ( apply_filters( 'mvx_can_vendor_manage_stock', 'yes' === get_option( 'woocommerce_manage_stock' ) ) ) : ?> 
             <?php
             $manage_stock_visibility = apply_filters( 'inventory_tab_manage_stock_section', array( 'simple', 'variable' ) );
