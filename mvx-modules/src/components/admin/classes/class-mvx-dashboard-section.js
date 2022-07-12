@@ -11,18 +11,15 @@ class MVX_Dashboard extends Component {
 		  if (cs > 1) {
 		    $('.mvx-dashboard-slider').hide();
 		    cs--;
-		    //alert(cs);
 		    $('.mvx-dashboard-slider:nth-child(' + cs + ')').show();
 		    $('.message-banner-sliding span').html(cs + ' of 4');
 		  }
 		});
 		$(document).on("click", ".p-next", function (event) {
 		  event.preventDefault();
-		  //alert(cs);
 		  if (cs < cm) {
 		    $('.mvx-dashboard-slider').hide();
 		    cs++;
-		    //alert(cs);
 		    $('.mvx-dashboard-slider:nth-child(' + cs + ')').show();
 		    $('.message-banner-sliding span').html(cs + ' of 4');
 		  }
