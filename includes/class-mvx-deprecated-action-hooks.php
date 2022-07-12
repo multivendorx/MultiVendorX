@@ -213,7 +213,7 @@ class MVX_Deprecated_Action_Hooks extends WC_Deprecated_Hooks {
          'before_mvx_vendor_dashboard_coupon_list_table'  => 'before_mvx_vendor_dashboard_coupon_list_table',
          'after_mvx_vendor_dashboard_coupon_list_table'  => 'after_wcmp_vendor_dashboard_coupon_list_table',
          'mvx_afm_before_general_coupon_data'  => 'wcmp_afm_before_general_coupon_data',
-         'mvx_afm_after_general_coupon_data'  => 'wcmp_afm_after_general_coupon_data',
+         'mvx_frontend_after_general_coupon_data'  => 'wcmp_afm_after_general_coupon_data',
          'before_mvx_vendor_dashboard_coupon_list_table'  => 'before_mvx_vendor_dashboard_coupon_list_table',
          'after_mvx_vendor_dashboard_coupon_list_table'  => 'after_wcmp_vendor_dashboard_coupon_list_table',
          'mvx_afm_before_general_coupon_data'  => 'wcmp_afm_before_general_coupon_data',

@@ -69,6 +69,6 @@ defined( 'ABSPATH' ) || exit;
                 </div>
             </div>
         </div>
-        <?php do_action( 'mvx_afm_after_general_coupon_data', $post->ID, $coupon ); ?>
+        <?php do_action( 'mvx_frontend_after_general_coupon_data', $post->ID, $coupon ); ?>
     </div>
 </div>
