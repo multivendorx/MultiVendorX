@@ -790,12 +790,12 @@ class MVX_REST_API {
         if ($this->mvx_list_of_pending_vendor()->data) {
             foreach ($this->mvx_list_of_pending_vendor()->data as $key => $value) {
                 $get_pending_vendor_list[] = array(
-                    'list_datas'    =>  array(
+                    'list_datas'    => apply_filters('mvx_pending_vendor_todo_content', array(
                         array(
                             'label' =>  __('Vendor Name', 'multivendorx'),
                             'value' =>  $value['vendor_name']
                         )
-                    ),
+                    ), $value),
                     'left_icons'    =>  array(
                         array(
                             'key'   =>  'edit',
@@ -5160,7 +5160,7 @@ class MVX_REST_API {
 
             $product_count = sprintf('<a href="%1$s">' . $product_count . '</a>', admin_url('edit.php?post_type=product&dc_vendor_shop=' . $vendor->page_title));
 
-            $user_list[] = apply_filters('mvx_list_table_vendors_columns_data', array(
+            $user_list[] = apply_filters('mvx_vendor_list_table_columns_data', array(
                 'ID'            => $user->data->ID,
                 'name'          => $name_display,
                 'sample_title'  => $user->data->display_name,

@@ -12,7 +12,6 @@ function wcmp_delete_woocomerce_transient_redirect_to_mvx_setup( ) {
     wc_deprecated_function( 'wcmp_delete_woocomerce_transient_redirect_to_mvx_setup )', '4.0.0', 'mvx_delete_woocomerce_transient_redirect_to_mvx_setup');
     return mvx_delete_woocomerce_transient_redirect_to_mvx_setup();
 }
-
 function wcmp_admin_notice() {
     wc_deprecated_function( 'wcmp_admin_notice', '4.0.0', 'mvx_admin_notice');
     return mvx_admin_notice();
@@ -29,8 +28,6 @@ function wcmp_setup_store() {
     wc_deprecated_function( 'wcmp_setup_store', '4.0.0', 'mvx_setup_store');
     return mvx_setup_store();
 }
-
-
 function wcmp_setup_commission( ) {
     wc_deprecated_function( 'wcmp_setup_commission )', '4.0.0', 'mvx_setup_commission');
     return mvx_setup_commission();
@@ -56,7 +53,6 @@ function wcmp_migration_introduction( ) {
     wc_deprecated_function( 'wcmp_migration_introduction )', '4.0.0', 'mvx_migration_introduction');
     return mvx_migration_introduction();
 }
-
 function wcmp_setup_commission_save() {
     wc_deprecated_function( 'wcmp_setup_commission_save', '4.0.0', 'mvx_setup_commission_save');
     return mvx_setup_commission_save();
@@ -73,8 +69,6 @@ function wcmp_migration_store_process() {
     wc_deprecated_function( 'wcmp_migration_store_process', '4.0.0', 'mvx_migration_store_process');
     return mvx_migration_store_process();
 }
-
-
 function wcmp_approve_dismiss_pending_transaction($request){
     wc_deprecated_function( 'wcmp_approve_dismiss_pending_transaction', '4.0.0', 'mvx_approve_dismiss_pending_transaction');
     return mvx_approve_dismiss_pending_transaction($request);
@@ -135,8 +129,6 @@ function wcmp_find_module_name_by_id($module_id = '') {
     wc_deprecated_function( 'wcmp_find_module_name_by_id', '4.0.0', 'mvx_find_module_name_by_id');
     return mvx_find_module_name_by_id($module_id = '');
 }
-
-
 function wcmp_system_info_copy_data() {
     wc_deprecated_function( 'wcmp_system_info_copy_data', '4.0.0', 'mvx_system_info_copy_data');
     return mvx_system_info_copy_data();
@@ -187,18 +179,7 @@ function mvx_dismiss_vendor($request) {
     wc_deprecated_function( 'mvx_dismiss_vendor', '4.0.0', 'mvx_dismiss_vendor');
     return mvx_bulk_todo_pending_product($request);
 }
-function wcmp_dismiss_and_approve_vendor_product_questions($request) {
-    wc_deprecated_function( 'wcmp_dismiss_and_approve_vendor_product_questions', '4.0.0', 'mvx_dismiss_and_approve_vendor_product_questions');
-    return mvx_dismiss_and_approve_vendor_product_questions($request);
-}
-function wcmp_dismiss_and_approve_vendor_coupon($request) {
-    wc_deprecated_function( 'wcmp_dismiss_and_approve_vendor_coupon', '4.0.0', 'mvx_dismiss_and_approve_vendor_coupon');
-    return mvx_dismiss_and_approve_vendor_coupon($request);
-}
-function wcmp_approve_vendor($request) {
-    wc_deprecated_function( 'wcmp_approve_vendor', '4.0.0', 'mvx_approve_vendor');
-    return mvx_approve_vendor($request);
-}
+
 function wcmp_reject_vendor($request) {
     wc_deprecated_function( 'wcmp_reject_vendor', '4.0.0', 'mvx_reject_vendor');
     return mvx_reject_vendor($request);
@@ -342,7 +323,7 @@ function mvx_all_commission_details($request) {
 }
 function mvx_find_specific_commission($commission_ids = array(), $status = '', $vendor_name = '') {
     wc_deprecated_function( 'mvx_find_specific_commission', '4.0.0', 'mvx_find_specific_commission');
-    return mvx_find_specific_commission($commission_ids = array(), $status = '', $vendor_name = ''t);
+    return mvx_find_specific_commission($commission_ids = array(), $status = '', $vendor_name = '');
 }
 function mvx_commission_list_search($request) {
     wc_deprecated_function( 'mvx_commission_list_search', '4.0.0', 'mvx_commission_list_search');
