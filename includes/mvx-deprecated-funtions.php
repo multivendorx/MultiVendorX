@@ -395,45 +395,174 @@ function mvx_specific_search_vendor($request) {
 }
 
 
-function mvx_all_vendor_followers($request) {
-    wc_deprecated_function( 'mvx_all_vendor_followers', '4.0.0', 'mvx_all_vendor_followers');
+function wcmp_all_vendor_followers($request) {
+    wc_deprecated_function( 'wcmp_all_vendor_followers', '4.0.0', 'mvx_all_vendor_followers');
     return mvx_all_vendor_followers($request);
 }
-function mvx_create_vendor($request) {
-    wc_deprecated_function( 'mvx_create_vendor', '4.0.0', 'mvx_create_vendor');
+function wcmp_create_vendor($request) {
+    wc_deprecated_function( 'wcmp_create_vendor', '4.0.0', 'mvx_create_vendor');
     return mvx_create_vendor($request);
 }
-function mvx_update_vendor($request) {
-    wc_deprecated_function( 'mvx_update_vendor', '4.0.0', 'mvx_update_vendor');
+function wcmp_update_vendor($request) {
+    wc_deprecated_function( 'wcmp_update_vendor', '4.0.0', 'mvx_update_vendor');
     return mvx_update_vendor($request);
 }
-function mvx_vendor_details($request) {
-    wc_deprecated_function( 'mvx_vendor_details', '4.0.0', 'mvx_vendor_details');
+function wcmp_vendor_details($request) {
+    wc_deprecated_function( 'wcmp_vendor_details', '4.0.0', 'mvx_vendor_details');
     return mvx_vendor_details($request);
 }
-function mvx_all_vendor_details($request) {
-    wc_deprecated_function( 'mvx_all_vendor_details', '4.0.0', 'mvx_all_vendor_details');
+function wcmp_all_vendor_details($request) {
+    wc_deprecated_function( 'wcmp_all_vendor_details', '4.0.0', 'mvx_all_vendor_details');
     return mvx_all_vendor_details($request);
 }
-
-
-function mvx_list_all_vendor($specific_id = array(), $role = '') {
-    wc_deprecated_function( 'mvx_list_all_vendor', '4.0.0', 'mvx_list_all_vendor');
+function wcmp_list_all_vendor($specific_id = array(), $role = '') {
+    wc_deprecated_function( 'wcmp_list_all_vendor', '4.0.0', 'mvx_list_all_vendor');
     return mvx_list_all_vendor($specific_id = array(), $role = '');
 }
-function mvx_front_registration($request) {
-    wc_deprecated_function( 'mvx_front_registration', '4.0.0', 'mvx_front_registration');
+function wcmp_front_registration($request) {
+    wc_deprecated_function( 'wcmp_front_registration', '4.0.0', 'mvx_front_registration');
     return mvx_front_registration($request);
 }
-function mvx_save_registration_forms($request) {
-    wc_deprecated_function( 'mvx_save_registration_forms', '4.0.0', 'mvx_save_registration_forms');
+function wcmp_save_registration_forms($request) {
+    wc_deprecated_function( 'wcmp_save_registration_forms', '4.0.0', 'mvx_save_registration_forms');
     return mvx_save_registration_forms($request);
 }
-function mvx_get_registration_forms_data() {
-    wc_deprecated_function( 'mvx_get_registration_forms_data', '4.0.0', 'mvx_get_registration_forms_data');
+function wcmp_get_registration_forms_data() {
+    wc_deprecated_function( 'wcmp_get_registration_forms_data', '4.0.0', 'mvx_get_registration_forms_data');
     return mvx_get_registration_forms_data();
 }
-function mvx_save_dashpages($req) {
-    wc_deprecated_function( 'mvx_save_dashpages', '4.0.0', 'mvx_save_dashpages');
+function wcmp_save_dashpages($req) {
+    wc_deprecated_function( 'wcmp_save_dashpages', '4.0.0', 'mvx_save_dashpages');
     return mvx_save_dashpages($req);
+}
+
+function save_settings_permission() {
+    wc_deprecated_function( 'save_settings_permission', '4.0.0', 'mvx_list_all_vendor');
+    return mvx_list_all_vendor();
+}
+function mvx_get_module_lists_keys() {
+    wc_deprecated_function( 'mvx_get_module_lists_keys', '4.0.0', 'mvx_front_registration');
+    return mvx_front_registration();
+}
+function get_mvx_vendor_policies($vendor = 0) {
+    wc_deprecated_function( 'get_mvx_vendor_policies', '4.0.0', 'mvx_save_registration_forms');
+    return mvx_save_registration_forms($vendor = 0);
+}
+function mvx_product_vendor_plugin_create_page($slug, $option, $page_title = '', $page_content = '', $post_parent = 0) {
+    wc_deprecated_function( 'mvx_product_vendor_plugin_create_page', '4.0.0', 'mvx_get_registration_forms_data');
+    return mvx_get_registration_forms_data($slug, $option, $page_title = '', $page_content = '', $post_parent = 0);
+}
+function mvx_product_vendor_plugin_create_pages() {
+    wc_deprecated_function( 'mvx_product_vendor_plugin_create_pages', '4.0.0', 'mvx_save_dashpages');
+    return mvx_save_dashpages();
+}
+function wcmp_get_module_lists_keys() {
+    wc_deprecated_function( 'wcmp_get_module_lists_keys', '4.0.0', 'mvx_front_registration');
+    return mvx_front_registration();
+}
+function get_wcmp_vendor_policies($vendor = 0) {
+    wc_deprecated_function( 'get_wcmp_vendor_policies', '4.0.0', 'mvx_save_registration_forms');
+    return mvx_save_registration_forms($vendor = 0);
+}
+function wcmp_product_vendor_plugin_create_page($slug, $option, $page_title = '', $page_content = '', $post_parent = 0) {
+    wc_deprecated_function( 'wcmp_product_vendor_plugin_create_page', '4.0.0', 'mvx_get_registration_forms_data');
+    return mvx_get_registration_forms_data($slug, $option, $page_title = '', $page_content = '', $post_parent = 0);
+}
+function wcmp_product_vendor_plugin_create_pages() {
+    wc_deprecated_function( 'wcmp_product_vendor_plugin_create_pages', '4.0.0', 'mvx_save_dashpages');
+    return mvx_save_dashpages();
+}
+function wcmp_plugin_tables_install() {
+    wc_deprecated_function( 'wcmp_plugin_tables_install', '4.0.0', 'mvx_plugin_tables_install');
+    return mvx_plugin_tables_install();
+}
+function do_wcmp_migrate() {
+    wc_deprecated_function( 'do_wcmp_migrate', '4.0.0', 'do_mvx_migrate');
+    return do_mvx_migrate();
+}
+function get_wcmp_vendor_settings($key = '', $tab = '', $default = false) {
+    wc_deprecated_function( 'get_wcmp_vendor_settings', '4.0.0', 'get_mvx_vendor_settings');
+    return get_mvx_vendor_settings($key = '', $tab = '', $default = false);
+}
+function get_wcmp_global_settings($key = '', $default = false) {
+    wc_deprecated_function( 'get_wcmp_global_settings', '4.0.0', 'get_mvx_global_settings');
+    return get_mvx_global_settings($key = '', $default = false);
+}
+function get_wcmp_older_global_settings($name = '', $default = false) {
+    wc_deprecated_function( 'get_wcmp_older_global_settings', '4.0.0', 'get_mvx_older_global_settings');
+    return get_mvx_older_global_settings($name = '', $default = false);
+}
+function update_wcmp_vendor_settings($key = '', $value = '', $tab = '') {
+    wc_deprecated_function( 'update_wcmp_vendor_settings', '4.0.0', 'update_mvx_vendor_settings');
+    return update_mvx_vendor_settings($key = '', $value = '', $tab = '');
+}
+function delete_wcmp_vendor_settings($name = '', $tab = '', $subtab = '') {
+    wc_deprecated_function( 'delete_wcmp_vendor_settings', '4.0.0', 'delete_mvx_vendor_settings');
+    return delete_mvx_vendor_settings($name = '', $tab = '', $subtab = '');
+}
+function wcmp_get_settings_value($key = array(), $default = 'false') {
+    wc_deprecated_function( 'wcmp_get_settings_value', '4.0.0', 'mvx_get_settings_value');
+    return mvx_get_settings_value($key = array(), $default = 'false');
+}
+function is_user_wcmp_pending_vendor($user) {
+    wc_deprecated_function( 'is_user_wcmp_pending_vendor', '4.0.0', 'is_user_mvx_pending_vendor');
+    return is_user_mvx_pending_vendor($user);
+}
+function is_user_wcmp_rejected_vendor($user) {
+    wc_deprecated_function( 'is_user_wcmp_rejected_vendor', '4.0.0', 'is_user_mvx_rejected_vendor');
+    return is_user_mvx_rejected_vendor($user);
+}
+function wcmp_get_default_commission_amount() {
+    wc_deprecated_function( 'wcmp_get_default_commission_amount', '4.0.0', 'mvx_get_default_commission_amount');
+    return mvx_get_default_commission_amount();
+}
+function wcmp_is_product_type_avaliable($type = '') {
+    wc_deprecated_function( 'wcmp_is_product_type_avaliable', '4.0.0', 'mvx_is_product_type_avaliable');
+    return mvx_is_product_type_avaliable($type = '');
+}
+function get_wcmp_vendor_by_term($term_id) {
+    wc_deprecated_function( 'get_wcmp_vendor_by_term', '4.0.0', 'get_mvx_vendor_by_term');
+    return get_mvx_vendor_by_term($term_id);
+}
+function get_wcmp_vendor_by_store_url($store_url) {
+    wc_deprecated_function( 'get_wcmp_vendor_by_store_url', '4.0.0', 'get_mvx_vendor_by_store_url');
+    return get_mvx_vendor_by_store_url($store_url);
+}
+function get_wcmp_product_vendors($product_id = 0) {
+    wc_deprecated_function( 'get_wcmp_product_vendors', '4.0.0', 'get_mvx_product_vendors');
+    return get_mvx_product_vendors($product_id = 0);
+}
+function wcmp_vendor_dashboard_page_id($language_code = '', $url = false) {
+    wc_deprecated_function( 'wcmp_vendor_dashboard_page_id', '4.0.0', 'mvx_vendor_dashboard_page_id');
+    return mvx_vendor_dashboard_page_id($language_code = '', $url = false);
+}
+function wcmp_vendor_registration_page_id() {
+    wc_deprecated_function( 'wcmp_vendor_registration_page_id', '4.0.0', 'mvx_vendor_registration_page_id');
+    return mvx_vendor_registration_page_id();
+}
+
+
+function wcmp_get_all_blocked_vendors() {
+    wc_deprecated_function( 'wcmp_get_all_blocked_vendors', '4.0.0', 'mvx_get_all_blocked_vendors');
+    return mvx_get_all_blocked_vendors();
+}
+function wcmp_get_vendors_due_from_order($order) {
+    wc_deprecated_function( 'wcmp_get_vendors_due_from_order', '4.0.0', 'mvx_get_vendors_due_from_order');
+    return mvx_get_vendors_due_from_order($order);
+}
+function get_wcmp_vendor_order_amount($args = array(), $vendor_id = false, $check_caps = true) {
+    wc_deprecated_function( 'get_wcmp_vendor_order_amount', '4.0.0', 'get_mvx_vendor_order_amount');
+    return get_mvx_vendor_order_amount($args = array(), $vendor_id = false, $check_caps = true);
+}
+function wcmp_get_vendors_form_order($order) {
+    wc_deprecated_function( 'wcmp_get_vendors_form_order', '4.0.0', 'mvx_get_vendors_form_order');
+    return mvx_get_vendors_form_order($order);
+}
+function wcmp_check_if_another_vendor_plugin_exits() {
+    wc_deprecated_function( 'wcmp_check_if_another_vendor_plugin_exits', '4.0.0', 'mvx_check_if_another_vendor_plugin_exits');
+    return mvx_check_if_another_vendor_plugin_exits();
+}
+function wcmp_paid_commission_status($commission_id) {
+    wc_deprecated_function( 'wcmp_paid_commission_status', '4.0.0', 'mvx_paid_commission_status');
+    return mvx_paid_commission_status($commission_id);
 }
