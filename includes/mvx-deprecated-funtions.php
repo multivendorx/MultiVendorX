@@ -180,14 +180,6 @@ function wcmp_dismiss_vendor($request) {
     return mvx_bulk_todo_pending_product($request);
 }
 
-function wcmp_reject_vendor($request) {
-    wc_deprecated_function( 'wcmp_reject_vendor', '4.0.0', 'mvx_reject_vendor');
-    return mvx_reject_vendor($request);
-}
-function wcmp_dismiss_vendor($request) {
-    wc_deprecated_function( 'wcmp_dismiss_vendor', '4.0.0', 'mvx_dismiss_vendor');
-    return mvx_dismiss_vendor($request);
-}
 function wcmp_dismiss_requested_vendors_query($request) {
     wc_deprecated_function( 'wcmp_dismiss_requested_vendors_query', '4.0.0', 'mvx_dismiss_requested_vendors_query');
     return mvx_dismiss_requested_vendors_query($request);
@@ -314,15 +306,7 @@ function wcmp_all_commission_details($request) {
     wc_deprecated_function( 'wcmp_all_commission_details', '4.0.0', 'mvx_all_commission_details');
     return mvx_all_commission_details($request);
 }
-<<<<<<< Updated upstream
-function mvx_find_specific_commission($commission_ids = array(), $status = '', $vendor_name = '') {
-    wc_deprecated_function( 'mvx_find_specific_commission', '4.0.0', 'mvx_find_specific_commission');
-=======
-function wcmp_find_specific_commission($commission_ids = array(), $status = '', $vendor_name = '') {
-    wc_deprecated_function( 'wcmp_find_specific_commission', '4.0.0', 'mvx_find_specific_commission');
->>>>>>> Stashed changes
-    return mvx_find_specific_commission($commission_ids = array(), $status = '', $vendor_name = '');
-}
+
 function wcmp_commission_list_search($request) {
     wc_deprecated_function( 'wcmp_commission_list_search', '4.0.0', 'mvx_commission_list_search');
     return mvx_commission_list_search($request);
@@ -357,18 +341,6 @@ function mvx_add_vendor_shipping_method($request) {
 function mvx_backend_add_shipping_method($zone_id, $method_id, $vendor_id) {
     wc_deprecated_function( 'mvx_backend_add_shipping_method', '4.0.0', 'mvx_backend_add_shipping_method');
     return mvx_backend_add_shipping_method($zone_id, $method_id, $vendor_id);
-}
-function wcmp_delete_shipping_method($request) {
-    wc_deprecated_function( 'wcmp_delete_shipping_method', '4.0.0', 'mvx_delete_shipping_method');
-    return mvx_delete_shipping_method($request);
-}
-function wcmp_update_vendor_shipping_method($request) {
-    wc_deprecated_function( 'wcmp_update_vendor_shipping_method', '4.0.0', 'mvx_update_vendor_shipping_method');
-    return mvx_update_vendor_shipping_method($request);
-}
-function wcmp_add_shipping_option() {
-    wc_deprecated_function( 'wcmp_add_shipping_option', '4.0.0', 'mvx_add_shipping_option');
-    return mvx_add_shipping_option();
 }
 
 
