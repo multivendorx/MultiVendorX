@@ -50,17 +50,10 @@ export default class TabSection extends React.Component {
 							{this.props.no_tabs ? (
 								''
 							) : (
-								<ul className="mvx-current-tab-lists">
+								<div className="mvx-current-tab-lists">
 									{model.map((m, index) => {
 										return m.link ? (
-											<li
-												className={
-													query_name_modified ===
-													m.modulename
-														? 'active-current-tab'
-														: ''
-												}
-											>
+											
 												<a href={m.link}>
 													{m.icon ? (
 														<i
@@ -71,17 +64,18 @@ export default class TabSection extends React.Component {
 													)}
 													{m.tablabel}
 												</a>
-											</li>
+											
 										) : (
-											<li
-												className={
+											
+												<Link
+
+													className={
 													query_name_modified ===
 													m.modulename
 														? 'active-current-tab'
 														: ''
 												}
-											>
-												<Link
+
 													to={
 														this.props.vendor
 															? `?page=mvx#&submenu=${
@@ -103,10 +97,10 @@ export default class TabSection extends React.Component {
 													)}
 													{m.tablabel}
 												</Link>
-											</li>
+											
 										);
 									})}
-								</ul>
+								</div>
 							)}
 							<div className="mvx-tab-content">
 								{this.props.default_vendor_funtion ? (

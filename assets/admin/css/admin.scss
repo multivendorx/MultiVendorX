@@ -1031,22 +1031,21 @@ input[type=text]:focus {
       display: block;
       width: 22%;
       height: auto;
-      & li {
+      & a {
         background-color: #f7f6f9;
         border: 0.063rem solid $boder-color;
         transition: 0.3s;
         padding: 1rem 1.2rem;
         margin-bottom: 0;
         border-bottom: 0;
-        & a {
-          display: flex;
-          align-items: center;
-          & i {
-            padding-right: .5rem;
-          }
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        & i {
+          padding-right: .5rem;
         }
       }
-      & li:last-child {
+      & a:last-child {
         border-bottom: $border;
       }
       & .active-current-tab {
@@ -1325,7 +1324,7 @@ input[type=text]:focus {
       @include flexprops(start);
       align-items: center;
       margin: 0;
-      li {
+      a {
         padding: 0.8rem 1rem;
         border: $border;
         display: block;
@@ -1336,8 +1335,9 @@ input[type=text]:focus {
         background: $fill-color;
         margin: 0;
         border-right: 0;
+        text-decoration: none;
       }
-      li:last-child {
+      a:last-child {
         border-right: $border;
       }
       .active-current-tab {

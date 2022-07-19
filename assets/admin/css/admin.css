@@ -1088,7 +1088,7 @@ input[type=text]:focus {
   height: auto;
 }
 
-.mvx-container .mvx-vertical-tabs .mvx-current-tab-lists li {
+.mvx-container .mvx-vertical-tabs .mvx-current-tab-lists a {
   background-color: #f7f6f9;
   border: 0.063rem solid #d4d1d9;
   -webkit-transition: 0.3s;
@@ -1096,22 +1096,20 @@ input[type=text]:focus {
   padding: 1rem 1.2rem;
   margin-bottom: 0;
   border-bottom: 0;
-}
-
-.mvx-container .mvx-vertical-tabs .mvx-current-tab-lists li a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  text-decoration: none;
 }
 
-.mvx-container .mvx-vertical-tabs .mvx-current-tab-lists li a i {
+.mvx-container .mvx-vertical-tabs .mvx-current-tab-lists a i {
   padding-right: .5rem;
 }
 
-.mvx-container .mvx-vertical-tabs .mvx-current-tab-lists li:last-child {
+.mvx-container .mvx-vertical-tabs .mvx-current-tab-lists a:last-child {
   border-bottom: 0.063rem solid #d4d1d9;
 }
 
@@ -1456,7 +1454,7 @@ input[type=text]:focus {
   margin: 0;
 }
 
-.mvx-container .mvx-horizontal-tabs .mvx-current-tab-lists li {
+.mvx-container .mvx-horizontal-tabs .mvx-current-tab-lists a {
   padding: 0.8rem 1rem;
   border: 0.063rem solid #d4d1d9;
   display: block;
@@ -1467,9 +1465,10 @@ input[type=text]:focus {
   background: #fdfdfe;
   margin: 0;
   border-right: 0;
+  text-decoration: none;
 }
 
-.mvx-container .mvx-horizontal-tabs .mvx-current-tab-lists li:last-child {
+.mvx-container .mvx-horizontal-tabs .mvx-current-tab-lists a:last-child {
   border-right: 0.063rem solid #d4d1d9;
 }
 

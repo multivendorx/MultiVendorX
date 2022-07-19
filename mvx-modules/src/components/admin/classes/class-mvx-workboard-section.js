@@ -1047,14 +1047,14 @@ class MVXworkboard extends Component {
 												{
 													task_lists_data.left_icons ? task_lists_data.left_icons.map((icons_data, icons_index) => (
 														icons_data.key == 'edit' ?
-															<a
-																href={
-																	icons_data.link
-																}
-																className="link-icon"
-															>
+
+															<div className="link-icon" onClick={(e) =>
+																	(
+																		location.href = icons_data.link
+																	)
+																}>
 																<i className="mvx-font icon-edit"></i>
-															</a>
+															</div>
 														: 
 
 														<div className="link-icon">
@@ -1169,7 +1169,7 @@ class MVXworkboard extends Component {
 											)
 										}
 									>
-										{appLocalizer.global_string.all}(
+										{appLocalizer.global_string.all} (
 										{
 											this.state.display_all_announcement
 												.length
@@ -1366,7 +1366,7 @@ class MVXworkboard extends Component {
 											)
 										}
 									>
-										{appLocalizer.global_string.all}(
+										{appLocalizer.global_string.all} (
 										{
 											this.state.display_all_knowladgebase
 												.length
