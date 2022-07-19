@@ -37,7 +37,7 @@ defined( 'ABSPATH' ) || exit;
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="toolbar pull-right">
+                <div class="toolbar float-right">
                     <span class="expand-close">
                         <a href="#" class="expand_all"><?php esc_html_e( 'Expand', 'multivendorx' ); ?></a> / <a href="#" class="close_all"><?php esc_html_e( 'Close', 'multivendorx' ); ?></a>
                     </span>
@@ -69,7 +69,7 @@ defined( 'ABSPATH' ) || exit;
         </div> 
         <div class="button-group">
             <button type="button" class="btn btn-default save_attributes button-primary"><?php esc_html_e( 'Save attributes', 'multivendorx' ); ?></button>
-            <div class="toolbar pull-right">
+            <div class="toolbar float-right">
                 <span class="expand-close">
                     <a href="#" class="expand_all"><?php esc_html_e( 'Expand', 'multivendorx' ); ?></a> / <a href="#" class="close_all"><?php esc_html_e( 'Close', 'multivendorx' ); ?></a>
                 </span>

@@ -5282,6 +5282,7 @@ class MVX_REST_API {
             unset($active_module_list[array_search($module_id, $active_module_list)]);
         }
         mvx_update_option( 'mvx_all_active_module_list', $active_module_list );
+        do_action('mvx_after_module_active', $module_id, $is_checked, $active_module_list);
         return rest_ensure_response( 'success' );
     }
 }
