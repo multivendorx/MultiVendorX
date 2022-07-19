@@ -17,7 +17,13 @@ class MVX_Settings {
     public function add_settings_page() {
         global $submenu;
         $slug = 'mvx';
-        $dashboard = add_menu_page( __( 'MultiVendorX', 'multivendorx' ), __( 'MultiVendorX', 'multivendorx' ), 'manage_woocommerce', $slug, [ $this, 'mvx_modules_callback' ],  'data:image/svg+xml;base64,' . base64_encode( '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 auto 20"><g fill="#9EA3A8" fill-rule="nonzero"><path class="cls-1" d="M8.64,0h-1A2.25,2.25,0,0,0,5.37,2.24v.93l.39.09v-1A1.86,1.86,0,0,1,7.62.38h1A1.86,1.86,0,0,1,10.5,2.24V3.63l.39,0V2.24A2.25,2.25,0,0,0,8.64,0Z" transform="translate(-1.14)"/><path class="cls-1" d="M13.44,3.54c-7.37,1.89-10.46-2-12,.39-.86,1.34.2,6.09,1,10.4A10.21,10.21,0,0,0,8,16a10.06,10.06,0,0,0,5.8-1.82C14.91,9.87,15.63,3,13.44,3.54ZM5.38,8.26V7.9H5.9v.53H5.38ZM4.5,7.08h.22V7.3H4.5Zm-1.42.31h.48v.48H3.08ZM4,8.63H3.47V8.12H4Zm.06-.74H3.79V7.63h.26Zm.2-.59H3.89V6.94h.36Zm.09.24h.55V8.1H4.34Zm7.07,5.54H10.9v-.51h.51Zm-.25-.78v-.25h.25v.25Zm-1.82-.91,1.12,1.32H10v.76h.77V13l.63.75H9.45L8.2,12.38,7,13.78H5l2-2.39L5.32,9.34V8.81H4.87l-.41-.48h.71v.3h.94v-.3h.23L8.2,10.41l2.23-2.55a1.81,1.81,0,0,1,1.34-.61h1.15Zm1.15,1V12h.4v.4Zm.08.5v.42h-.43v-.42ZM4.68,9.45V9h.43v.42Z" transform="translate(-1.14)"/></g></svg>' ), 50 );
+        $dashboard = add_menu_page( __( 'MultiVendorX', 'multivendorx' ), __( 'MultiVendorX', 'multivendorx' ), 'manage_woocommerce', $slug, [ $this, 'mvx_modules_callback' ],  'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><g fill="#a7aaad" fill-rule="nonzero"><path d="M10.8,0H9.5C8,0,6.7,1.3,6.7,2.8V4C6.9,4,7,4,7.2,4.1V2.8c0-1.3,1-2.3,2.3-2.3h1.3
+        c1.3,0,2.3,1,2.3,2.3v1.7c0.2,0,0.3,0,0.5,0V2.8C13.6,1.3,12.3,0,10.8,0z"/><path d="M16.8,4.4C7.6,6.8,3.7,1.9,1.8,4.9c-1.1,1.7,0.3,7.6,1.2,13c2,1.3,4.4,2.1,7,2.1
+        c2.7,0,5.2-0.8,7.3-2.3C18.6,12.3,19.5,3.7,16.8,4.4z M6.7,10.3V9.9h0.7v0.4v0.2H6.7V10.3z M5.6,8.9h0.3v0.3H5.6V8.9z M3.9,9.2h0.6
+        v0.6H3.9V9.2z M5,10.8H4.3v-0.6H5V10.8z M5.1,9.9H4.7V9.5h0.3V9.9z M5.3,9.1H4.9V8.7h0.5V9.1z M5.4,9.4h0.7v0.7H5.4V9.4z
+         M14.3,16.3h-0.6v-0.6h0.6V16.3z M13.9,15.4v-0.3h0.3v0.3H13.9z M11.7,14.2l1.4,1.6h-0.6v1h1v-0.6l0.8,0.9h-2.4l-1.6-1.7l-1.6,1.7
+        H6.3l2.5-3l-2.2-2.6V11H6.1l-0.5-0.6h0.9v0.4h1.2v-0.4h0.3l2.3,2.6L13,9.8c0.4-0.5,1-0.8,1.7-0.8h1.4L11.7,14.2z M13.1,15.5V15h0.5
+        v0.5H13.1z M13.2,16.1v0.5h-0.5v-0.5H13.2z M5.9,11.8v-0.5h0.2h0.3v0.3v0.2H5.9z"/></g></svg>'), 50 );
 
         if ( current_user_can( 'manage_woocommerce' ) ) {
 
