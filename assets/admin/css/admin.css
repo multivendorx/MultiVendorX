@@ -17,7 +17,7 @@
   font-weight: normal;
   font-variant: normal;
   text-transform: none;
-  line-height: 1;
+  line-height: 1.5;
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -634,7 +634,7 @@ textarea, input[type=text], select, input, .default-input {
   line-height: 2.375rem;
 }
 
-.css-furbww-Bt input[type=text] {
+.css-furbww-Bt input[type=text], .css-1mfkewb-Ur input[type=text] {
   margin: -0.125rem 0.25rem !important;
 }
 
@@ -736,49 +736,6 @@ input[type=text]:focus {
           box-shadow: none;
 }
 
-.btn-red {
-  background-color: #e35047;
-}
-
-.btn-red:hover {
-  background-color: #e6635b;
-}
-
-.btn-purple {
-  background-color: #65438f;
-  border: none;
-  color: #f9f8fb;
-}
-
-.btn-purple:hover {
-  background-color: #795b9d;
-}
-
-.btn-border {
-  color: #181718;
-  line-height: 0;
-  border: 0.063rem solid #d4d1d9;
-  padding: 0.8rem 1.2rem;
-}
-
-.btn-border:hover {
-  background-color: #65438f;
-}
-
-.mvx-btn {
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  padding: 0.6rem 0.8rem;
-  border-radius: 0.25rem;
-  line-height: .8rem;
-  cursor: pointer;
-  color: #fff;
-}
-
-.mvx-btn:hover {
-  text-decoration: none;
-}
-
 .mvx-header-search-section {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -836,7 +793,7 @@ input[type=text]:focus {
 }
 
 .mvx-header-wapper .mvx-header-nav-right-section .nav-child-right {
-  padding: 0.625rem;
+  padding: 0.625rem 0.75rem;
   background-color: #f8ecf0;
   border-radius: 0.25rem;
   margin-left: 1.5rem;
@@ -858,6 +815,7 @@ input[type=text]:focus {
 .mvx-header-wapper .mvx-header-nav-left-section .mvx-logo-title {
   font-size: 1.2rem;
   padding-left: 0.75rem;
+  font-weight: 500;
 }
 
 .mvx-header-wapper .mvx-header-nav-left-section .mvx-header-section-nav-child-data:first-child::after {
@@ -899,6 +857,45 @@ input[type=text]:focus {
   text-decoration: none;
 }
 
+.mvx-container .btn-red {
+  background-color: #e35047;
+}
+
+.mvx-container .btn-red:hover {
+  background-color: #e6635b;
+}
+
+.mvx-container .btn-purple {
+  background-color: #65438f;
+  border: none;
+}
+
+.mvx-container .btn-purple:hover {
+  background-color: #795b9d;
+}
+
+.mvx-container .btn-border {
+  border: 0.063rem solid #d4d1d9;
+}
+
+.mvx-container .mvx-btn {
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.25rem;
+  line-height: .8rem;
+  cursor: pointer;
+  color: #fff;
+}
+
+.mvx-container .mvx-btn:hover {
+  text-decoration: none;
+}
+
+.mvx-container .mvx-btn:hover {
+  color: #f9f8fb;
+}
+
 .mvx-container .mvx-sidebar {
   padding-left: 1.2rem;
 }
@@ -926,13 +923,14 @@ input[type=text]:focus {
   border-radius: 0.25rem;
   margin: 0 0 2rem 0;
   border: 0.063rem solid #d4d1d9;
-  padding: 1.5rem;
+  padding: 2rem;
 }
 
 .mvx-container .mvx-tab-name {
   color: #181718;
   font-size: 1.25rem;
-  padding-bottom: .75rem;
+  font-weight: 500;
+  padding-bottom: 0.5rem;
 }
 
 .mvx-container .mvx-middle-container-wrapper {
@@ -941,18 +939,16 @@ input[type=text]:focus {
 }
 
 .mvx-container .mvx-select-all-checkbox {
-  width: 7.5rem;
-  height: 2.75rem;
   background-color: #fdfdfe;
   border: 0.063rem solid #d4d1d9;
   border-radius: 0.25rem;
   text-align: center;
-  line-height: 2.625rem;
-  margin-right: 0.625rem;
+  margin-right: 0.75rem;
+  padding: 0.563rem 1rem;
 }
 
 .mvx-container .mvx-text-with-line-wrapper {
-  padding: 1rem 0;
+  padding: 2rem 0;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -960,6 +956,15 @@ input[type=text]:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.mvx-container .mvx-text-with-line-wrapper::after {
+  content: "";
+  position: absolute;
+  width: 55%;
+  height: 0.0625rem;
+  background-color: #d4d1d9;
+  left: 15rem;
 }
 
 .mvx-container .mvx-select-all-bulk-wrap {
@@ -1001,7 +1006,7 @@ input[type=text]:focus {
   display: block;
   border-radius: 8rem;
   position: relative;
-  border: 0.06rem solid #3f1473;
+  border: 0.06rem solid #65438f;
 }
 
 .mvx-container .mvx-toggle-checkbox-content label:before {
@@ -1023,7 +1028,7 @@ input[type=text]:focus {
   left: 0.313rem;
   width: 0.875rem;
   height: 0.875rem;
-  background: #3f1473;
+  background: #65438f;
   border-radius: 90rem;
   -webkit-transition: 0.3s;
   transition: 0.3s;
@@ -1031,7 +1036,7 @@ input[type=text]:focus {
 }
 
 .mvx-container .mvx-toggle-checkbox-content input:checked + label {
-  background: #3f1473;
+  background: #65438f;
 }
 
 .mvx-container .mvx-toggle-checkbox-content input:checked + label:after {
@@ -1052,7 +1057,7 @@ input[type=text]:focus {
   left: 2.3rem;
   width: 0.25rem;
   height: 0.25rem;
-  border: 0.0625rem solid #3f1473;
+  border: 0.0625rem solid #65438f;
   border-radius: 8rem;
   -webkit-transition: 0.3s;
   transition: 0.3s;
@@ -1066,19 +1071,9 @@ input[type=text]:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin: 2rem 0.2rem;
-  font-size: 1.125rem;
+  font-size: 1rem;
+  font-weight: 500;
   color: #181718;
-}
-
-.mvx-container .mvx-text-with-right-side-line::after {
-  content: "";
-  position: relative;
-  width: 80%;
-  height: 0.063rem;
-  background-color: #d4d1d9;
-  top: 0.25rem;
-  left: 1.5rem;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-current-tab-lists {
@@ -1089,6 +1084,12 @@ input[type=text]:focus {
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-current-tab-lists a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   background-color: #f7f6f9;
   border: 0.063rem solid #d4d1d9;
   -webkit-transition: 0.3s;
@@ -1096,12 +1097,6 @@ input[type=text]:focus {
   padding: 1rem 1.2rem;
   margin-bottom: 0;
   border-bottom: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   text-decoration: none;
 }
 
@@ -1109,7 +1104,7 @@ input[type=text]:focus {
   padding-right: .5rem;
 }
 
-.mvx-container .mvx-vertical-tabs .mvx-current-tab-lists a:last-child {
+.mvx-container .mvx-vertical-tabs .mvx-current-tab-lists li:last-child {
   border-bottom: 0.063rem solid #d4d1d9;
 }
 
@@ -1172,7 +1167,7 @@ input[type=text]:focus {
 
 .mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-dynamic-form .mvx-form-button-group .mvx-settings-basic-input-class .default-btn {
   height: 2.5rem;
-  background-color: #3f1473;
+  background-color: #65438f;
   width: 20%;
   color: #fdfdfe;
 }
@@ -1220,7 +1215,7 @@ input[type=text]:focus {
   margin-bottom: 1.5rem;
   padding: 1rem;
   border-radius: 0.25rem;
-  background-color: #ece8f1;
+  background-color: #f9f8fb;
   position: relative;
   -webkit-transition: .4s all ease-in-out;
   transition: .4s all ease-in-out;
@@ -1231,7 +1226,7 @@ input[type=text]:focus {
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-radioselect-class .mvx-radio-select-under-label-class::before {
-  background-color: #3f1473;
+  background-color: #65438f;
   color: #f8f9fb;
   content: "\f15e";
   padding: 0.25rem;
@@ -1251,7 +1246,7 @@ input[type=text]:focus {
   height: 100%;
   top: 0;
   left: 0;
-  background-color: #3f1473;
+  background-color: #65438f;
   color: #f9f8fb;
   opacity: 0;
   display: -webkit-box;
@@ -1293,7 +1288,7 @@ input[type=text]:focus {
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-multi-nested-class .mvx-boarder-parent .horizontal-class .button-controls a {
-  background: #3f1473 !important;
+  background: #65438f !important;
   border: none;
 }
 
@@ -1316,9 +1311,9 @@ input[type=text]:focus {
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-toggle-rectangle-merge ul input:checked + label {
-  background: #3f1473;
+  background: #65438f;
   color: #fdfdfe;
-  border-color: #3f1473;
+  border-color: #65438f;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-toggle-rectangle-merge ul li {
@@ -1433,7 +1428,7 @@ input[type=text]:focus {
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-footer-icon-form .mvx-font {
-  color: #3f1473;
+  color: #65438f;
   margin: 0 0.5rem 0 0;
 }
 
@@ -1473,16 +1468,17 @@ input[type=text]:focus {
 }
 
 .mvx-container .mvx-horizontal-tabs .mvx-current-tab-lists .active-current-tab {
-  border-bottom: 0.063rem solid #f7f6f9;
-  background-color: #f7f6f9;
+  border-bottom: 0.063rem solid #f9f8fb;
+  background-color: #f9f8fb;
 }
 
 .mvx-container .mvx-horizontal-tabs .mvx-tab-content {
-  background: #f7f6f9;
-  padding-left: 1.2rem;
+  background: #f9f8fb;
+  padding: 2rem;
   padding-right: 1.5rem;
   border: 0.063rem solid #d4d1d9;
-  margin-top: -.063rem;
+  margin-top: -.073rem;
+  border-radius: 0rem 0.25rem 0.25rem 0.25rem;
 }
 
 .mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-date-and-show-wrapper {
@@ -2038,7 +2034,7 @@ input[type=text]:focus {
   position: absolute;
   top: 1.5rem;
   right: 1.5rem;
-  background: #3f1473;
+  background: #65438f;
   color: #fdfdfe;
   padding: 0.25rem 0rem;
   border-radius: 0.625rem;
@@ -2099,24 +2095,6 @@ input[type=text]:focus {
           align-items: center;
 }
 
-.mvx-activity-reminder .mvx-middle-container-wrapper {
-  width: 100%;
-}
-
-.mvx-activity-reminder .mvx-text-with-line-wrapper::after {
-  content: "";
-  position: absolute;
-  width: 55%;
-  height: 0.0625rem;
-  background-color: #d4d1d9;
-  top: 3.4rem;
-  left: 15.8125rem;
-}
-
-.mvx-activity-reminder .mvx-text-with-right-side-line:after {
-  width: 0;
-}
-
 .mvx-product-box-sec {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2134,7 +2112,6 @@ input[type=text]:focus {
   border: 0.063rem solid #d4d1d9;
   border-radius: 0.25rem;
   margin-right: .5rem;
-  padding: 1rem;
 }
 
 .mvx-product-box-sec .mvx-all-product-box .mvx-white-box-header {
@@ -2144,12 +2121,11 @@ input[type=text]:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  position: absolute;
-  top: 0rem;
-  background: #d4d1d9;
-  left: 0;
   width: 100%;
   padding: 1rem;
+  background: #f7f6f9;
+  border-radius: 0.25rem 0.25rem 0 0;
+  font-weight: 500;
 }
 
 .mvx-product-box-sec .mvx-all-product-box .mvx-white-box-header .pull-right {
@@ -2157,7 +2133,7 @@ input[type=text]:focus {
 }
 
 .mvx-product-box-sec .mvx-all-product-box .mvx-white-box-body {
-  margin: 3.125rem 0 1rem 0;
+  margin: 1rem;
 }
 
 .mvx-product-box-sec .mvx-all-product-box .mvx-white-box-body img {
@@ -2199,9 +2175,9 @@ input[type=text]:focus {
 
 .mvx-product-box-sec .mvx-all-product-box .mvx-white-box-footer .pull-left .link-icon, .mvx-product-box-sec .mvx-all-product-box .mvx-white-box-footer .pull-right .link-icon {
   display: block;
-  color: #3f1473;
+  color: #65438f;
   margin-right: 0.25rem;
-  background: #ece8f1;
+  background: #f9f8fb;
   padding: 0.375rem 0.625rem;
   border-radius: 0.25rem;
 }
@@ -2213,7 +2189,7 @@ input[type=text]:focus {
 .mvx-product-box-sec .mvx-all-product-box .mvx-white-box-footer .pull-left .mvxicon-hover-text, .mvx-product-box-sec .mvx-all-product-box .mvx-white-box-footer .pull-right .mvxicon-hover-text {
   position: absolute;
   border-radius: 0.25rem;
-  background: #ece8f1;
+  background: #f9f8fb;
   margin: 0.2rem;
   padding: 0.2rem 0.4rem;
   display: none;
@@ -2248,7 +2224,7 @@ input[type=text]:focus {
 }
 
 .mvx-backend-datatable-wrapper .rdt_Pagination .gnaqej:hover {
-  border: 0.063rem solid #3f1473;
+  border: 0.063rem solid #65438f;
 }
 
 .mvx-backend-datatable-wrapper .rdt_Pagination .jMMJgk .bvxQGL {
@@ -2270,7 +2246,7 @@ input[type=text]:focus {
 }
 
 .mvx-backend-datatable-wrapper .rdt_Pagination .jMMJgk .bvxQGL:hover {
-  border: 0.063rem solid #3f1473;
+  border: 0.063rem solid #65438f;
 }
 
 .mvx-backend-datatable-wrapper .rdt_Table {
@@ -2323,7 +2299,7 @@ input[type=text]:focus {
 }
 
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon i {
-  color: #3f1473;
+  color: #65438f;
 }
 
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .mvx-vendor-icon-name img {
@@ -2337,7 +2313,7 @@ input[type=text]:focus {
 }
 
 .mvx-backend-datatable-wrapper .rdt_Table input[type="checkbox"] {
-  border: 0.063rem solid #3f1473;
+  border: 0.063rem solid #65438f;
 }
 
 .MuiDialog-paperScrollPaper .MuiDialogTitle-root {
