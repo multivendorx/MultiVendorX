@@ -1004,7 +1004,7 @@ class MVX_Admin {
             'apiUrl' => home_url( '/wp-json' ),
             'nonce' => wp_create_nonce( 'wp_rest' ),
             'marker_icon' => $MVX->plugin_url . 'assets/images/store-marker.png',
-            'mvx_logo' => $MVX->plugin_url.'assets/images/dclogo.png',
+            'mvx_logo' => $MVX->plugin_url.'assets/images/dclogo.svg',
             'google_api'    =>  get_mvx_global_settings('google_api_key'),
             'mapbox_api'    =>  get_mvx_global_settings('mapbox_api_key'),
             'location_provider'    =>  get_mvx_global_settings('choose_map_api'),
