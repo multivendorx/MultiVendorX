@@ -16,9 +16,8 @@ $section-background:#fbfafc;
 }
 @mixin button {
   transition: all 0.3s;
-  // padding: 0.6rem 0.8rem;
   border-radius: $button-border-radius;
-  line-height: .8rem;
+  padding: 0.66rem 1.5rem;
   cursor: pointer;
   &:hover{
     text-decoration: none;
@@ -119,7 +118,7 @@ $section-background:#fbfafc;
     width: 3.5rem;
     height: 3.5rem;
     margin: auto;
-    line-height: 4.125rem;
+    line-height: 4.125;
     background: rgb(63,20,115);
     background: linear-gradient(138deg, rgba(63,20,115,1) 0%, rgba(175,59,116,1) 50%, rgba(219,75,84,1) 100%);
     border-radius: $border-radius;
@@ -709,7 +708,7 @@ textarea, input[type=text], select, input, .default-input {
     color: #8e8b91;
     font-size: 1rem;
     border: $border;
-    line-height: 2.375rem;
+    line-height: 2.375;
 }
 
 .css-furbww-Bt, .css-1mfkewb-Ur  {
@@ -725,7 +724,7 @@ h2 {
   font-size: 1.25rem;
 }
 h3 {
-  font-size: 1.5rem;
+  font-size: 1.125rem;
 }
 h4 {
   font-size: 1rem;
@@ -752,15 +751,12 @@ li{
   color: $title-color;
 }
 ul{
-
 }
 fieldset{
-
 }
 form{
 }
 label{
-
 }
 table{
   color: $title-color;
@@ -780,26 +776,21 @@ td {
     padding: 0;
     text-align: inherit;
 }
-
 blockquote::before,
 blockquote::after {
     content: "";
 }
-
 .mvx-page #wpcontent {
   padding: 0rem;
 }
-  
 .mvx-backend-datatable-wrapper {
   padding: 2.4rem 0;
   border-radius: $border-radius;
 }
-
 input[type="radio"], input[type="checkbox"] {
     width: 1rem;
     height: 1rem;
 }
-
 input[type=radio]:checked::before {
     font-family: 'mvx-admin-font' !important;
     margin: -.05rem;
@@ -880,22 +871,23 @@ input[type=text]:focus {
 .mvx-container {
   @include flexprops(start);
   background-color: $base-color;
-  padding: 2rem 1.5rem;
-
+  padding: 3rem 1.5rem;
+  i {
+    padding-right: 0.5rem;
+  }
   a {
-    color: $paragraph-color;
+    color: unset;
     line-height: 1rem;
     text-decoration: none;
-    i {
-      padding-right: 0.5rem;
-    }
-    focus {
+    
+    &:focus {
       -webkit-box-shadow: none;
       box-shadow: none;
+      text-decoration: none;
     }
     &:hover{
-      color: $paragraph-color;
       text-decoration: none;
+      color: unset;
     }
   }
 
@@ -903,20 +895,20 @@ input[type=text]:focus {
   .btn-red {
     background-color: #e35047;
     color: #f9f8fb;
-    padding: 0.813rem 1.5rem !important;
-    font-size: 1rem;
     &:hover{
       background-color: #e6635b;
+      color: #f9f8fb;
     }
   }
 
   .btn-purple {
     background-color: #65438f;
+    padding: 0.66rem 1.5rem;
     border: none;
-    padding: 6px 22px !important;
     color: #f9f8fb;
     &:hover{
       background-color: #795b9d;
+      color: #f9f8fb;
     }
   }
   .btn-border {
@@ -926,11 +918,22 @@ input[type=text]:focus {
       border-color: #181718 ;
     }
   }
+  a.mvx-btn.chckbx-purple {
+    background-color: #65438f;
+    border: none;
+    padding: 0.375rem 1.375rem;
+    color: #f9f8fb;
+    i{
+      padding: 0;
+    }
+}
+a.mvx-btn.chckbx-border{
+  border: 0.06rem solid $boder-color;
+  padding: 0.375rem 0.51rem;
+
+}
   .mvx-btn {
     @include button;
-    &:hover{
-      color: #f9f8fb;
-    }
   }
 
 
@@ -954,6 +957,11 @@ input[type=text]:focus {
     border-radius: 50%;
     padding: 0.1rem;
   }
+   .mvx-vertical-tabs{
+  .mvx-tab-description-start {
+    background-color: $header-background;
+  }
+   }
   .mvx-tab-description-start {
     text-align: center;
     background-color: $fill-color;
@@ -993,7 +1001,7 @@ input[type=text]:focus {
     width: 55%;
     height: 0.0625rem;
     background-color: $boder-color;
-    left: 15rem;
+    left: 13rem;
   }
 
   .mvx-select-all-bulk-wrap {
@@ -1028,10 +1036,14 @@ input[type=text]:focus {
   }
 
   .mvx-text-with-right-side-line {
-    @include flexprops(center);
+    // @include flexprops(center);
     font-size: 1rem;
     font-weight: 500;
     color: $title-color;
+    position: relative;
+    &::after{
+   
+    }
   }
   .mvx-vertical-tabs {
     .mvx-current-tab-lists{
@@ -1466,9 +1478,11 @@ input[type=text]:focus {
     width: 100%;
 
     .mvx-dashboard-top-heading{
-      font-size: 1.6rem;
-      margin: 0 0 3rem 0;
+      font-size: 1.5rem;
+      margin: 0 0 2rem 0;
       text-align: center;
+      font-weight: 500;
+      color: $title-color;
     }
 
     .mvx-slider-content-main-wrapper {
@@ -1479,12 +1493,19 @@ input[type=text]:focus {
       background-color: $fill-color;
       border: $border;
       border-radius: $border-radius;
-      padding: 3.2rem;
+      padding: 2rem;
       display: flex;
       align-items: center;
       .mvx-dashboard-slider {
-        @include flexprops(start);
+        width: 70%;
         display: none;
+        &:nth-child(1){
+        display: block;
+        }
+        .mvx-dashboard-slider-cmp-wrap{
+          @include flexprops(start);
+          width: 100%;
+        }
         .mvx-dashboard-top-icon{
           font-size: 1.5rem;
           background: #9f8ab9;
@@ -1506,9 +1527,6 @@ input[type=text]:focus {
             margin: 0 0 2rem 0;
           }
         }
-      }
-      .mvx-dashboard-slider:nth-child(1) {
-        display: flex;
       }
       .message-banner-sliding {
         @include flexprops(start);
@@ -1537,15 +1555,12 @@ input[type=text]:focus {
         background-color: $fill-color;
         border: $border;
         border-radius: $border-radius;
-        padding: 2rem;
+        padding: 2rem 2rem 3rem;
         width: 50%;
-        height: 33.125rem;
-        overflow-y: hidden;
         & .mvx-documentation-quick-link {
             width: 100%;
         }
         & .mvx-block-title {
-            font-size: 1.5rem;
             color: $title-color;
             margin: 0 0 1.5625rem 0;
         }
@@ -1554,9 +1569,18 @@ input[type=text]:focus {
             padding: 0rem;
             margin: 0rem;
             list-style: none;
+            height: 27.25rem;
+            overflow-y: scroll;
+                &::-webkit-scrollbar {
+                  width: 0.25rem;
+                }
+                &::-webkit-scrollbar-thumb {
+                  background: $header-background; 
+                  border-radius: .6rem;
+                }
         }
         & .mvx-table-ul > li {
-            @include flexprops(start);
+            @include flexprops(center);
             flex-wrap: wrap;
             box-sizing: border-box;
             padding: 0.9375rem 1.875rem;
@@ -1599,7 +1623,7 @@ input[type=text]:focus {
       }
       .mvx-documentation-quick-link-wrapper{
         width: 50%;
-        padding-left: 2.4rem;
+        padding-left: 1.5rem;
         justify-content: space-between;
         .mvx-documentation-quick-link{
           @include flexprops(start);
@@ -1613,31 +1637,30 @@ input[type=text]:focus {
           background: url(../../images/forum-shrt-2.png) top left no-repeat;
         }
         .mvx-documentation-support-forum{
-          @include flexprops(center);
-          flex-direction: column;
-          // background-color: $fill-color;
+          text-align: center;
           width: 49%;
-          padding: 0.42rem 0 3rem;
+          padding:4.25rem 0 3rem;
           border: $border;
           border-radius: $border-radius;
           background-size: cover;
           position: relative;
+          figure{
+           font-size: 3.188rem;
+           margin: 0;
+           @include iconcolor();
+          }
           figcaption{
-            padding-top: 2.4rem;
-            @include flexprops(center);
-            flex-direction: column;
             div{
-              @include flexprops(center);
-              flex-direction: column;
-              padding: 2rem 0 3.4rem;
+              padding: 1rem 2rem 3.4rem;
             }
             a{
+           @include iconcolor();
               background-color: $section-background;
               position: absolute;
               bottom: 0;
               left: 0;
               width: 100%;
-              padding: 1rem;
+              padding: 1.313rem;
               text-align: center;
             }
             a:hover{
@@ -1649,20 +1672,25 @@ input[type=text]:focus {
           background-color: $section-background;
           border: $border;
           border-radius: $border-radius;
-          padding: 1.8rem;
-          margin-top: 0.813rem;
-          width: 100%;
-          overflow-x: auto;
-          &::-webkit-scrollbar{
-            display: none;
-          }
-          ul{
+          padding: 2rem;
+          margin-top: 0.75rem;
+        width: 100%;
+          ul.row-link{
             @include flexprops(center);
+            padding-top: 1rem;
+            overflow-x: scroll;
+                          &::-webkit-scrollbar {
+                            height: 0.25rem;
+                          }
+                          &::-webkit-scrollbar-thumb {
+                            background: $theme-color; 
+                            border-radius: .6rem;
+                          }
             li{
               background-color: $fill-color;
               text-align: center;
               margin: 0 0.3rem;
-              border-radius: 0.125rem;
+              border-radius: 0.25rem;
               padding: 1rem 0;
               border: 1px solid $fill-color;
               a{
@@ -1679,30 +1707,34 @@ input[type=text]:focus {
     }
 .mvx-upgrade-pro-section{
   padding: 6rem 0;
-    h2{
-      font-size: 1.75rem;
-      padding: 3.125rem 0 1rem;
+    h1{
+      padding: 3rem 0 0.8rem;
       color:$title-color;
     }
     p{
-      padding-bottom: 2.5rem;
+      padding-bottom: 3rem;
     }
 }
 .pro-bg{
   background: url(../../images/pro-bg.png) center no-repeat;
-  background-size: contain;
+  background-size: cover;
+  border: 0.06rem solid $boder-color;
+  border-radius: 0.25rem;
 }
 
 .mvx-text-center{
       text-align: center;
       padding: 6rem 0;
-
+      .mvx-money-header-wrap h1{
+    padding-bottom: 1rem;
+  }
     ul.mvx-compare-table-holder {
     display: flex;
     background-color: #fbfafc;
     border: 0.06rem solid $boder-color;
+    border-right: none;
     width: 85%;
-    margin: 4.313rem auto;
+    margin: 4.313rem auto 0;
     position: relative;
     .mvx-show-compare:last-child{
       position: absolute;
@@ -1716,16 +1748,21 @@ input[type=text]:focus {
       padding: 1rem 2rem;
     }
      li.mvx-compare-table-row{
-      padding: 2rem;
+      padding: 2rem 2rem 3rem;
       width: 34.33%;
           &:first-child{
             text-align: left;
              border-right: 0.06rem solid $boder-color;
           } 
           ul li{
-            padding: 0.875rem;
+            padding: 0.65rem;
             margin: 0;
-           
+            .red{
+              color: #e78087;
+            }
+            .blue{
+              color: #795b9e;
+            }
             &:first-child{
               background: linear-gradient(-28deg, #3f1473 0%, #af3b74 50%, #db4b54 100%);
               -webkit-background-clip: text;
@@ -1740,7 +1777,8 @@ input[type=text]:focus {
         .mvx-recomend{
           position: relative;
           background: #fff;
-          margin: -1.5rem;
+          margin: -2rem 0;
+          padding:3.45rem !important;// to align the last part
           box-shadow: 0rem 0rem 0.9375rem 0.0625rem #0000001a;
           border-radius: 0.25rem;
           z-index: 99;
@@ -1756,26 +1794,24 @@ input[type=text]:focus {
               }
   
             }
-      
   }
- 
   .mvx-gra-txt{
     background-image:  -webkit-linear-gradient(288deg, #4e1a74 14%, #d64959 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
   h2{
-    font-size: 1.5rem;
     padding: 0 0 1rem;
   }
   .mvx-money-table-holder{
       display: flex;
       align-items: center;
-      width: 94%;
+      width: 85%;
       margin: 4.313rem auto;
       .mvx-spr-sever-rcmnd{
         padding: 2rem 0;
         transform: scale(1.01);
+        background-color: $fill-color !important; //to color middle price coloumn
         box-shadow: 0rem 0rem 0.9375rem 0.0625rem #0000001a;
         position: relative;
         .mvx-recommend-tag{
@@ -1794,15 +1830,27 @@ input[type=text]:focus {
         border-radius: 0.25rem;
         border: 0.06rem solid $boder-color;
         width: 34%;
-        margin: 0;
+        padding: 2rem;
         &:nth-child(2){
           border: none;
+        padding: 4rem 2rem;
         }
         .mvx-btn{
           width: 100%;
+          margin: 1rem 0;
         }
+        .mvx-price-component {
+          text-align: left;
+          p{
+            padding: 0.3rem 0;
+            color:$paragraph-color;
+          }
+          a{
+            color: $theme-color;
+          }
+          }
         ul li{
-          padding:0.6rem;
+          padding: 0.63869rem;
           &:first-child{
             font-size: 1.5rem;
             font-weight: 500;
@@ -1810,6 +1858,20 @@ input[type=text]:focus {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
           }
+          .m-price {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            h1{
+              font-size: 2rem;
+              color:$title-color;
+            }
+            s{
+              color: #8e8b91;
+              font-size: 1rem;
+            }
+        }
         }
       }
      
@@ -1817,11 +1879,7 @@ input[type=text]:focus {
 }
 
     .mvx-upgrade-pro-section {
-      @include flexprops(center);
-      width: 100%;
-      justify-content: center;
-      flex-direction: column;
-
+  text-align: center;
       .mvx-dashboard-top-icon {
         border-radius: 1rem;
         text-align: center;
@@ -1830,7 +1888,9 @@ input[type=text]:focus {
         padding: 1rem;
         width: 6rem;
         height: 6rem;
+        margin: auto;
         background: #4e1a74;
+        box-shadow: 0px 18px 44px 0px #3f14731f;
         background: -webkit-gradient(left top, right bottom, color-stop(0%, #4e1a74), color-stop(100%, #d64959));
         background: linear-gradient(135deg, #4e1a74 0%, #d64959 100%);
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4e1a74', endColorstr='#d64959',  GradientType=1);
@@ -1850,7 +1910,7 @@ input[type=text]:focus {
         font-size: 1rem;
       }
       .mvx-divider {
-        width: 0.1rem;
+        width: 0.051rem;
         background-color: $title-color;
         margin: 0 0.4rem;
         height: 1rem;
@@ -1903,7 +1963,9 @@ input[type=text]:focus {
     & .mvx-module-require-name {
       text-align: left;
       font-size: 1rem;
-      margin: 1.25rem 0 1.25rem 0;
+      margin: 1.25rem 0 0.5rem 0;
+      padding: 0.5rem;
+      border-top: 0.06rem solid $boder-color;
     }
     & ul {
       & li {
@@ -1937,6 +1999,9 @@ input[type=text]:focus {
     background: #faf8fb;
     padding: 1rem;
     @include flexprops(center);
+    .mvx-btn{
+      margin-right:0.5rem; 
+    }
   }
 }
 
@@ -2114,7 +2179,26 @@ input[type=text]:focus {
     }
   }
 }
-
+//start - workboard page
+.css-14dclt2-Input{
+  margin: 0 !important; //bulk action input button
+}
+.mvx-wrap-bulk-action.css-b62m3t-container {
+  margin: 0 1rem 0 0;
+}
+.mvx-form-group {
+  display: flex;
+  margin: 1rem 0;
+  label.mvx-settings-form-label {
+    width: 30%;
+}
+.mvx-settings-input-content {
+  width: 70%;
+}
+}
+.mvx-form-actions {
+  text-align: right;
+}
 // Start - List Vendor Page Pop Up
 .MuiDialog-paperScrollPaper {
   .MuiDialogTitle-root {

@@ -36,29 +36,33 @@ class MVX_Dashboard extends Component {
                         </div>
                         <div className="mvx-slider-content-main-wrapper">
                             <div className="mvx-dashboard-slider">
+                                <div className='mvx-dashboard-slider-cmp-wrap'>
                                 <div className="mvx-dashboard-top-icon">
                                     <span>Pro</span>
                                 </div>
                                 <div className="mvx-pro-txt">
-                                    <h2>Activate MultiVendorX Pro License</h2>
+                                    <h3>Activate MultiVendorX Pro License</h3>
                                     <p>
                                         Lorem ipsum dolor sit amet, consectetur
                                         adipisicing elit, sed do eiusmod tempor.
                                     </p>
                                     <a href="#" className="mvx-btn btn-red">
-                                        Active License
-                                    </a>
+                                    Active License
+                            </a>
+                                </div>
                                 </div>
                             </div>
 
                             <div className="mvx-dashboard-slider mvx-flex-content">
+                            <div className="mvx-dashboard-slider-cmp-wrap">
+
                                 <div className="mvx-dashboard-top-icon">
                                     <span>Pro</span>
                                 </div>
                                 <div className="mvx-pro-txt">
-                                    <h2>
+                                    <h3>
                                         02 Activate MultiVendorX Pro License
-                                    </h2>
+                                    </h3>
                                     <p>
                                         Lorem ipsum dolor sit amet, consectetur
                                         adipisicing elit, sed do eiusmod tempor.
@@ -68,15 +72,17 @@ class MVX_Dashboard extends Component {
                                     </a>
                                 </div>
                             </div>
+                            </div>
 
                             <div className="mvx-dashboard-slider mvx-flex-content">
+                            <div className="mvx-dashboard-slider-cmp-wrap">
                                 <div className="mvx-dashboard-top-icon">
                                     <span>Pro</span>
                                 </div>
                                 <div className="mvx-pro-txt">
-                                    <h2>
+                                    <h3>
                                         03 Activate MultiVendorX Pro License
-                                    </h2>
+                                    </h3>
                                     <p>
                                         Lorem ipsum dolor sit amet, consectetur
                                         adipisicing elit, sed do eiusmod tempor.
@@ -84,24 +90,26 @@ class MVX_Dashboard extends Component {
                                     <a href="#" className="mvx-btn btn-red">
                                         Active License
                                     </a>
+                                </div>
                                 </div>
                             </div>
 
                             <div className="mvx-dashboard-slider mvx-flex-content">
+                            <div className="mvx-dashboard-slider-cmp-wrap">
                                 <div className="mvx-dashboard-top-icon">
                                     <span>Pro</span>
                                 </div>
                                 <div className="mvx-pro-txt">
-                                    <h2>
+                                    <h3>
                                         04 Activate MultiVendorX Pro License
-                                    </h2>
+                                    </h3>
                                     <p>
                                         Lorem ipsum dolor sit amet, consectetur
                                         adipisicing elit, sed do eiusmod tempor.
                                     </p>
-                                    <a href="#" className="mvx-btn btn-red">
-                                        Active License
+                                    <a href="#" className="mvx-btn btn-red">    Active License
                                     </a>
+                                </div>
                                 </div>
                             </div>
 
@@ -117,9 +125,9 @@ class MVX_Dashboard extends Component {
                         </div>
                         <div className="mvx-setup-documentation">
                             <div className="mvx-setup-marketing-white-box">
-                                <h3 className="mvx-block-title">
+                                <h2 className="mvx-block-title">
                                     This is what you get
-                                </h3>
+                                </h2>
                                 <ul className="mvx-table-ul">
                                     <li className="mvx-align-items-center hover-border-box">
                                         <div className="mvx-allign-li-txt">
@@ -131,7 +139,7 @@ class MVX_Dashboard extends Component {
                                         <div className="li-action">
                                             <a
                                                 href="#"
-                                                className="mvx-btn btn-purple"
+                                                className="mvx-btn chckbx-purple"
                                             >
                                                 <i className="mvx-font icon-yes" />
                                             </a>
@@ -147,7 +155,7 @@ class MVX_Dashboard extends Component {
                                         <div className="li-action">
                                             <a
                                                 href="#"
-                                                className="mvx-btn btn-purple"
+                                                className="mvx-btn chckbx-purple"
                                             >
                                                 <i className="mvx-font icon-yes" />
                                             </a>
@@ -163,7 +171,7 @@ class MVX_Dashboard extends Component {
                                         <div className="li-action">
                                             <a
                                                 href="#"
-                                                className="mvx-btn btn-purple"
+                                                className="mvx-btn chckbx-purple"
                                             >
                                                 <i className="mvx-font icon-yes" />
                                             </a>
@@ -179,7 +187,7 @@ class MVX_Dashboard extends Component {
                                         <div className="li-action">
                                             <a
                                                 href="#"
-                                                className="mvx-btn btn-purple"
+                                                className="mvx-btn chckbx-purple"
                                             >
                                                 <i className="mvx-font icon-yes" />
                                             </a>
@@ -195,7 +203,56 @@ class MVX_Dashboard extends Component {
                                         <div className="li-action">
                                             <a
                                                 href="#"
-                                                className="mvx-btn btn-border"
+                                                className="mvx-btn chckbx-purple"
+                                            >
+                                                <i className="mvx-font icon-yes" />
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li className="mvx-align-items-center hover-border-box">
+                                        <div className="mvx-allign-li-txt">
+                                            <span>
+                                                <i className="mvx-font icon-chart-line" />
+                                            </span>{' '}
+                                            Set up marketing tools
+                                        </div>
+                                        <div className="li-action">
+                                            <a
+                                                href="#"
+                                                className="mvx-btn chckbx-purple"
+                                            >
+                                                <i className="mvx-font icon-yes" />
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li className="mvx-align-items-center hover-border-box">
+                                        <div className="mvx-allign-li-txt">
+                                            <span>
+                                                <i className="mvx-font icon-chart-line" />
+                                            </span>{' '}
+                                            Set up marketing tools
+                                        </div>
+                                        <div className="li-action">
+                                            <a
+                                                href="#"
+                                                className="mvx-btn chckbx-purple"
+                                            >
+                                                <i className="mvx-font icon-yes" />
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li className="mvx-align-items-center hover-border-box">
+                                        <div className="mvx-allign-li-txt">
+                                            <span>
+                                                <i className="mvx-font icon-chart-line" />
+                                            </span>{' '}
+                                            Set up marketing tools
+                                            <p>2 minutes</p>
+                                        </div>
+                                        <div className="li-action">
+                                            <a
+                                                href="#"
+                                                className="mvx-btn chckbx-border"
                                             >
                                                 Setup
                                             </a>
@@ -211,7 +268,7 @@ class MVX_Dashboard extends Component {
                                         <div className="li-action">
                                             <a
                                                 href="#"
-                                                className="mvx-btn btn-purple"
+                                                className="mvx-btn chckbx-purple"
                                             >
                                                 <i className="mvx-font icon-yes" />
                                             </a>
@@ -229,9 +286,8 @@ class MVX_Dashboard extends Component {
                                             <h2>Documentation Forum</h2>
                                             <div>
                                                 <p>
-                                                    Further Clarification Visit Our
+                                                    Further Clarification Visit Our Document Forum
                                                 </p>
-                                                <p>Document Forum</p>
                                             </div>
                                             <a href="#">
                                                 Visit Documentation Forum{' '}
@@ -248,9 +304,8 @@ class MVX_Dashboard extends Component {
                                             <h2>Support Forum</h2>
                                             <div>
                                                 <p>
-                                                    Further Clarification Visit Our
+                                                    Further Clarification Visit Our Support Forum
                                                 </p>
-                                                <p>Support Forum</p>
                                             </div>
                                             <a href="#">
                                                 Join Support Forum{' '}
@@ -314,7 +369,7 @@ class MVX_Dashboard extends Component {
                                     <span>Pro</span>
                                 </div>
                             </div>
-                            <h2>Get more by Switching to Pro</h2>
+                            <h1>Get more by Switching to Pro</h1>
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur
                                 adipisicing elit, sed do eiusmod tempor
@@ -326,9 +381,9 @@ class MVX_Dashboard extends Component {
                         </div>
 
                         <div className="mvx-text-center">
-                            <h2>
+                            <h1>
                                 Here Is What You Get In Pro Compared to Free
-                            </h2>
+                            </h1>
                             <ul className="mvx-compare-table-holder">
                                 <li className="mvx-compare-table-row">
                                     <ul>
@@ -339,7 +394,10 @@ class MVX_Dashboard extends Component {
                                         <li>Premium</li>
                                         <li>Modules</li>
                                         <li>Support</li>
-                                        
+                                        <li>2 Premium Modules</li>
+                                        <li>Store Widgets</li>
+                                        <li>Premium</li>
+                                        <li>Modules</li>
                                     </ul>
                                 </li>
 
@@ -360,7 +418,17 @@ class MVX_Dashboard extends Component {
                                         <li>
                                             <i className="mvx-font icon-no red" />
                                         </li>
-                                        <li />
+                                        <li>
+                                            <i className="mvx-font icon-no red" />
+                                        </li>
+                                        <li>
+                                            <i className="mvx-font icon-no red" />
+                                        </li>
+                                        <li>Five Venders</li>
+                                        <li>
+                                            <i className="mvx-font icon-yes blue" />
+                                        </li>
+                                        
                                     </ul>
                                 </li>
 
@@ -378,12 +446,22 @@ class MVX_Dashboard extends Component {
                                             <i className="mvx-font icon-no red" />
                                         </li>
                                         <li>Five Venders</li>
+                                    
                                         <li>
-                                            <i className="mvx-font icon-yes blue" />
+                                            <i className="mvx-font icon-no red" />
+                                        </li>
+                                        <li>Ticket Based Support</li>
+                                        <li>
+                                            <i className="mvx-font icon-no red" />
                                         </li>
                                         <li>
                                             <i className="mvx-font icon-no red" />
                                         </li>
+                                        <li>Five Venders</li>
+                                        <li>
+                                            <i className="mvx-font icon-yes blue" />
+                                        </li>
+                                    
                                         <li />
                                     </ul>
                                 </li>
@@ -395,62 +473,66 @@ class MVX_Dashboard extends Component {
                                                 Show More
                                             </a>+
                                         </li>
+                                        
                             </ul>
 
                         </div>
 
                         <div className="mvx-text-center">
-                            <h2>
+                            <div className='mvx-money-header-wrap'>
+                            <h1>
                                 <span className="mvx-gra-txt">30 Days</span>{' '}
                                 Money-Back Guarantee
-                            </h2>
+                            </h1> 
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur
                                 adipisicing elit, sed do eiusmod tempor
                                 incididunt.
                             </p>
-
+                            </div>
                             <ul className="mvx-money-table-holder">
                                 <li className='mvx-money-table-coloumn' >
                                     <ul>
                                         <li>Yearly</li>
                                         <li>
                                             <div className="m-price">
-                                                $399 <sub>/ $599</sub>
+                                                <h1>$399 </h1> &nbsp;<p><s>/$599</s> </p>
                                             </div>
                                         </li>
-                                        <li>
+                                        <li className="mvx-btn btn-border">
                                             <a
                                                 href="#"
-                                                className="mvx-btn btn-border"
                                             >
                                                 Buy Now
                                             </a>
                                         </li>
-                                        <li>
-                                            <span className="mvx-font icon-form-radio" />{' '}
-                                            10 Sites
-                                        </li>
-                                        <li>
-                                            <span className="mvx-font icon-form-radio" />{' '}
-                                            50+ Modules
-                                        </li>
-                                        <li>
-                                            <span className="mvx-font icon-form-radio" />{' '}
-                                            Unlimited Support{' '}
-                                        </li>
-                                        <li>
-                                            <span className="mvx-font icon-form-radio" />{' '}
-                                            Lifetime Updates
-                                        </li>
-                                        <li>
-                                            <a href="#" className="show-link">
-                                                <span>
-                                                    <i className="mvx-font icon-down-arrow-02" />
-                                                </span>{' '}
-                                                Show More
-                                            </a>
-                                        </li>
+                                        <div className='mvx-price-component'>
+                                                
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    10 Sites
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    50+ Modules
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-form-radio" />{' '}
+                                                    Unlimited Support{' '}
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    Lifetime Updates
+                                                </p>
+                                                <p/>
+                                                        <a href="#" className="show-link">
+                                                    <span>
+                                                        <i className="mvx-font icon-down-arrow-02" />
+                                                    </span>{' '}
+                                                    Show More
+                                                    </a>
+                                        </div>
+                                        
                                     </ul>
                                 </li>
 
@@ -462,41 +544,43 @@ class MVX_Dashboard extends Component {
                                         <li>Lifetime</li>
                                         <li>
                                             <div className="m-price">
-                                                $499 <sub>/ $599</sub>
+                                                <h1>$499 </h1> &nbsp;<p><s>/$599</s> </p>
                                             </div>
                                         </li>
-                                        <li>
+                                        <li className="mvx-btn btn-red">
                                             <a
                                                 href="#"
-                                                className="mvx-btn btn-red"
                                             >
                                                 Buy Now
                                             </a>
                                         </li>
-                                        <li>
-                                            <span className="mvx-font icon-form-radio" />{' '}
-                                            10 Sites
-                                        </li>
-                                        <li>
-                                            <span className="mvx-font icon-form-radio" />{' '}
-                                            50+ Modules
-                                        </li>
-                                        <li>
-                                            <span className="mvx-font icon-form-radio" />{' '}
-                                            Unlimited Support{' '}
-                                        </li>
-                                        <li>
-                                            <span className="mvx-font icon-form-radio" />{' '}
-                                            Lifetime Updates
-                                        </li>
-                                        <li>
-                                            <a href="#" className="show-link">
-                                                <span>
-                                                    <i className="mvx-font icon-down-arrow-02" />
-                                                </span>{' '}
-                                                Show More
-                                            </a>
-                                        </li>
+                                        <div className='mvx-price-component'>
+                                                
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    10 Sites
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    50+ Modules
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-form-radio" />{' '}
+                                                    Unlimited Support{' '}
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    Lifetime Updates
+                                                </p>
+                                                <p/>
+                                                        <a href="#" className="show-link">
+                                                    <span>
+                                                        <i className="mvx-font icon-down-arrow-02" />
+                                                    </span>{' '}
+                                                    Show More
+                                                    </a>
+                                        </div>
+                                    
                                     </ul>
                                 </li>
 
@@ -505,41 +589,43 @@ class MVX_Dashboard extends Component {
                                         <li>Monthly</li>
                                         <li>
                                             <div className="m-price">
-                                                $299 <sub>/ $599</sub>
+                                                <h1>$299 </h1>&nbsp;<p><s>/$599</s> </p>
                                             </div>
                                         </li>
-                                        <li>
+                                        <li className="mvx-btn btn-border">
                                             <a
                                                 href="#"
-                                                className="mvx-btn btn-border"
                                             >
                                                 Buy Now
                                             </a>
                                         </li>
-                                        <li>
-                                            <span className="mvx-font icon-form-radio" />{' '}
-                                            10 Sites
-                                        </li>
-                                        <li>
-                                            <span className="mvx-font icon-form-radio" />{' '}
-                                            50+ Modules
-                                        </li>
-                                        <li>
-                                            <span className="mvx-font icon-form-radio" />{' '}
-                                            Unlimited Support{' '}
-                                        </li>
-                                        <li>
-                                            <span className="mvx-font icon-form-radio" />{' '}
-                                            Lifetime Updates
-                                        </li>
-                                        <li>
-                                            <a href="#" className="show-link">
-                                                <span>
-                                                    <i className="mvx-font icon-down-arrow-02" />
-                                                </span>{' '}
-                                                Show More
-                                            </a>
-                                        </li>
+                                        <div className='mvx-price-component'>
+                                                
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    10 Sites
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    50+ Modules
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-form-radio" />{' '}
+                                                    Unlimited Support{' '}
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    Lifetime Updates
+                                                </p>
+                                                <p/>
+                                                        <a href="#" className="show-link">
+                                                    <span>
+                                                        <i className="mvx-font icon-down-arrow-02" />
+                                                    </span>{' '}
+                                                    Show More
+                                                    </a>
+                                        </div>
+                                        
                                     </ul>
                                 </li>
                             </ul>
@@ -549,7 +635,7 @@ class MVX_Dashboard extends Component {
                             <div className="mvx-dashboard-top-icon">
                                 <span>Pro</span>
                             </div>
-                            <h2>Get to Go?</h2>
+                            <h1>Get to Go?</h1>
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur
                                 adipisicing elit, sed do eiusmod tempor
