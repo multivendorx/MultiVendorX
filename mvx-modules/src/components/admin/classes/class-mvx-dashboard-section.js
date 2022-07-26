@@ -139,7 +139,7 @@ class MVX_Dashboard extends Component {
                                         <div className="li-action">
                                             <a
                                                 href="#"
-                                                className="mvx-btn chckbx-purple"
+                                                className="chckbx-purple"
                                             >
                                                 <i className="mvx-font icon-yes" />
                                             </a>
@@ -155,7 +155,7 @@ class MVX_Dashboard extends Component {
                                         <div className="li-action">
                                             <a
                                                 href="#"
-                                                className="mvx-btn chckbx-purple"
+                                                className="chckbx-purple"
                                             >
                                                 <i className="mvx-font icon-yes" />
                                             </a>
@@ -171,7 +171,7 @@ class MVX_Dashboard extends Component {
                                         <div className="li-action">
                                             <a
                                                 href="#"
-                                                className="mvx-btn chckbx-purple"
+                                                className="chckbx-purple"
                                             >
                                                 <i className="mvx-font icon-yes" />
                                             </a>
@@ -187,7 +187,7 @@ class MVX_Dashboard extends Component {
                                         <div className="li-action">
                                             <a
                                                 href="#"
-                                                className="mvx-btn chckbx-purple"
+                                                className="chckbx-purple"
                                             >
                                                 <i className="mvx-font icon-yes" />
                                             </a>
@@ -203,7 +203,7 @@ class MVX_Dashboard extends Component {
                                         <div className="li-action">
                                             <a
                                                 href="#"
-                                                className="mvx-btn chckbx-purple"
+                                                className="chckbx-purple"
                                             >
                                                 <i className="mvx-font icon-yes" />
                                             </a>
@@ -219,7 +219,7 @@ class MVX_Dashboard extends Component {
                                         <div className="li-action">
                                             <a
                                                 href="#"
-                                                className="mvx-btn chckbx-purple"
+                                                className="chckbx-purple"
                                             >
                                                 <i className="mvx-font icon-yes" />
                                             </a>
@@ -235,7 +235,7 @@ class MVX_Dashboard extends Component {
                                         <div className="li-action">
                                             <a
                                                 href="#"
-                                                className="mvx-btn chckbx-purple"
+                                                className="chckbx-purple"
                                             >
                                                 <i className="mvx-font icon-yes" />
                                             </a>
@@ -252,7 +252,7 @@ class MVX_Dashboard extends Component {
                                         <div className="li-action">
                                             <a
                                                 href="#"
-                                                className="mvx-btn chckbx-border"
+                                                className="chckbx-border"
                                             >
                                                 Setup
                                             </a>
@@ -268,7 +268,7 @@ class MVX_Dashboard extends Component {
                                         <div className="li-action">
                                             <a
                                                 href="#"
-                                                className="mvx-btn chckbx-purple"
+                                                className="chckbx-purple"
                                             >
                                                 <i className="mvx-font icon-yes" />
                                             </a>
@@ -471,7 +471,7 @@ class MVX_Dashboard extends Component {
                                                     <i className="mvx-font icon-down-arrow-02" />
                                                 </span>{' '}
                                                 Show More
-                                            </a>+
+                                            </a>
                                         </li>
                                         
                             </ul>

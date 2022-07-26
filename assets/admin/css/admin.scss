@@ -900,7 +900,6 @@ input[type=text]:focus {
       color: #f9f8fb;
     }
   }
-
   .btn-purple {
     background-color: #65438f;
     padding: 0.66rem 1.5rem;
@@ -918,25 +917,24 @@ input[type=text]:focus {
       border-color: #181718 ;
     }
   }
-  a.mvx-btn.chckbx-purple {
+  .chckbx-purple {
     background-color: #65438f;
     border: none;
+    border-radius: $border-radius;
     padding: 0.375rem 1.375rem;
     color: #f9f8fb;
     i{
       padding: 0;
     }
 }
-a.mvx-btn.chckbx-border{
+.chckbx-border{
   border: 0.06rem solid $boder-color;
   padding: 0.375rem 0.51rem;
-
+  border-radius: $border-radius;
 }
   .mvx-btn {
     @include button;
   }
-
-
   .mvx-sidebar {
     padding-left: 1.2rem;
   }
@@ -957,11 +955,6 @@ a.mvx-btn.chckbx-border{
     border-radius: 50%;
     padding: 0.1rem;
   }
-   .mvx-vertical-tabs{
-  .mvx-tab-description-start {
-    background-color: $header-background;
-  }
-   }
   .mvx-tab-description-start {
     text-align: center;
     background-color: $fill-color;
@@ -991,19 +984,9 @@ a.mvx-btn.chckbx-border{
   }
   .mvx-text-with-line-wrapper {
     padding: 2rem 0;
-    position: relative ;
     @include flexprops(center);
+    
   }
-
-  & .mvx-text-with-line-wrapper::after {
-    content: "";
-    position: absolute;
-    width: 55%;
-    height: 0.0625rem;
-    background-color: $boder-color;
-    left: 13rem;
-  }
-
   .mvx-select-all-bulk-wrap {
     margin-left: auto;
     @include flexprops(start);
@@ -1039,23 +1022,37 @@ a.mvx-btn.chckbx-border{
     // @include flexprops(center);
     font-size: 1rem;
     font-weight: 500;
-    color: $title-color;
-    position: relative;
-    &::after{
-   
-    }
+    color:$title-color;
+    width: 71%;
+    padding: 1rem 0;
+    display: table;
+    line-height: 0.01;
+    table-layout: auto;
+    white-space: nowrap;
+          &::after {
+            content: "";
+            width: 85%;
+            display: table-cell;
+            border-top: 0.06rem solid #d4d1d9;
+        }
+      
   }
   .mvx-vertical-tabs {
+    & .mvx-tab-description-start {
+      background-color: $header-background;
+    }
     .mvx-current-tab-lists{
       float: left;
       display: block;
+      border-bottom: 0.06rem solid $boder-color;
+      margin-right: -0.06rem;
       width: 22%;
       height: auto;
         & a {
           display: flex;
           align-items: center;
           background-color: $header-background;
-          border: 0.063rem solid $boder-color;
+          border: $border;
           transition: 0.3s;
           padding: 1rem 1.2rem;
           margin-bottom: 0;
@@ -1068,13 +1065,18 @@ a.mvx-btn.chckbx-border{
             padding-right: .5rem;
           }
         }
-
-      & li:last-child {
-        border-bottom: $border;
-      }
       & .active-current-tab {
-        border-right: 0rem;
         background-color: $fill-color;
+        position: relative;
+        &:after{
+          content: '';
+          height: 100%;
+          width: 0.16rem;
+          background-color: $fill-color;
+          right: -3px;
+          top: 0;
+          position: absolute;
+        }
       }
     }
 
@@ -1085,7 +1087,6 @@ a.mvx-btn.chckbx-border{
       width: 78%;
       height: auto;
       min-height: 50rem;
-      border-left: 0;
       background-color: $fill-color;
       & .mvx-dynamic-form {
         & .mvx-form-group {
@@ -1454,9 +1455,9 @@ a.mvx-btn.chckbx-border{
           & .mvx-labels {
             font-size: 0.75rem;
             color: $title-color;
+            white-space: nowrap;
           }
           & .mvx-price-display {
-            padding-top: 3rem;
             font-size: 1.25rem;
           }
         }
@@ -1470,6 +1471,9 @@ a.mvx-btn.chckbx-border{
       font-size: 1.5rem;
       color: $title-color;
       margin-right: 0.7rem;
+    }
+    .pull-right{
+      margin-left: auto;
     }
   }
 
@@ -1562,14 +1566,14 @@ a.mvx-btn.chckbx-border{
         }
         & .mvx-block-title {
             color: $title-color;
-            margin: 0 0 1.5625rem 0;
+            margin: 0 0 1rem 0;
         }
         & .mvx-table-ul {
             width: 100%;
             padding: 0rem;
             margin: 0rem;
             list-style: none;
-            height: 27.25rem;
+            height: 26.7rem;
             overflow-y: scroll;
                 &::-webkit-scrollbar {
                   width: 0.25rem;
@@ -1599,6 +1603,10 @@ a.mvx-btn.chckbx-border{
             max-width: 100%;
             font-size: 1rem;
             color: $paragraph-color;
+            p{
+              font-size: 0.75rem;
+              color: $boder-color;
+            }
         }
         & .li-action {
             flex-basis: 0;
@@ -1639,7 +1647,7 @@ a.mvx-btn.chckbx-border{
         .mvx-documentation-support-forum{
           text-align: center;
           width: 49%;
-          padding:4.25rem 0 3rem;
+          padding:3.2rem 0 3rem;
           border: $border;
           border-radius: $border-radius;
           background-size: cover;
@@ -1675,17 +1683,18 @@ a.mvx-btn.chckbx-border{
           padding: 2rem;
           margin-top: 0.75rem;
         width: 100%;
+        min-height: 14rem;
           ul.row-link{
             @include flexprops(center);
             padding-top: 1rem;
             overflow-x: scroll;
                           &::-webkit-scrollbar {
-                            height: 0.25rem;
+                            height: 0rem;
                           }
-                          &::-webkit-scrollbar-thumb {
-                            background: $theme-color; 
-                            border-radius: .6rem;
-                          }
+                          // &::-webkit-scrollbar-thumb {
+                          //   background: $theme-color; 
+                          //   border-radius: .6rem;
+                          // }
             li{
               background-color: $fill-color;
               text-align: center;
@@ -1712,7 +1721,7 @@ a.mvx-btn.chckbx-border{
       color:$title-color;
     }
     p{
-      padding-bottom: 3rem;
+      padding-bottom: 2.5rem;
     }
 }
 .pro-bg{
@@ -1841,6 +1850,7 @@ a.mvx-btn.chckbx-border{
         }
         .mvx-price-component {
           text-align: left;
+          padding-top: 0.58rem;
           p{
             padding: 0.3rem 0;
             color:$paragraph-color;
@@ -1882,6 +1892,7 @@ a.mvx-btn.chckbx-border{
   text-align: center;
       .mvx-dashboard-top-icon {
         border-radius: 1rem;
+        line-height: 1.5;
         text-align: center;
         color: #fff;
         font-size: 2.5rem;
@@ -1902,12 +1913,13 @@ a.mvx-btn.chckbx-border{
   .mvx-search-and-multistatus-wrap {
     @include flexprops(center);
     justify-content: space-between;
+    padding: 1rem 0;
     .mvx-multistatus-ul {
       margin: 1.2rem 0;
       @include flexprops(center);
       .mvx-multistatus-item {
         margin: 0;
-        font-size: 1rem;
+        font-size: 0.875rem;
       }
       .mvx-divider {
         width: 0.051rem;
@@ -1920,6 +1932,7 @@ a.mvx-btn.chckbx-border{
 
   .mvx-wrap-bulk-all-date {
     @include flexprops(center);
+    padding-bottom: 1rem;
   }
 
   // Start - Module Page
@@ -1940,16 +1953,21 @@ a.mvx-btn.chckbx-border{
   .mvx-module-settings-box {
     & .mvx-module-icon {
         @include moduleicon;
+       i{
+        padding: 0;
+        line-height: 2.3;
+       }
     }
     & .mvx-module-list-label-text {
       color: $title-color;
-      font-size: 1rem;
-      padding-bottom: 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    padding-bottom: 0.5rem;
       & .mvx-module-section-pro-badge {
         position: absolute;
         top: 1.5rem;
         right: 1.5rem;
-        background: $theme-color;
+        background: #9f8ab9;
         color: $fill-color;
         padding: 0.25rem 0rem;
         border-radius: 0.625rem;
@@ -1958,14 +1976,16 @@ a.mvx-btn.chckbx-border{
         text-align: center;
         height: 1rem;
         line-height: 0.375rem;
+        text-transform: capitalize;
       }
     }
     & .mvx-module-require-name {
       text-align: left;
-      font-size: 1rem;
-      margin: 1.25rem 0 0.5rem 0;
       padding: 0.5rem;
       border-top: 0.06rem solid $boder-color;
+      font-weight: 500;
+      font-size: .875rem;
+      margin: 1.5rem 0 1rem 0;
     }
     & ul {
       & li {
@@ -1977,14 +1997,14 @@ a.mvx-btn.chckbx-border{
         text-align: left;
         & .inactive-plugin-class {
           border-radius: 50rem;
-          width: 1.25rem;
-          height: 1.25rem;
-          line-height: 1rem;
-          margin-right: 0.625rem;
+          width: 1rem;
+          line-height: 1;
+          height: 1rem;
+          margin-right: 0.5rem;
           text-align: center;
-          background: #fff0f1;
+          background: #fefbfc;
           & .icon-no {
-            font-size: 0.5rem;
+            font-size: 0.438rem;
             color: #e35047;
           }
         }
@@ -1997,7 +2017,8 @@ a.mvx-btn.chckbx-border{
     left: 0rem;
     right: 0rem;
     background: #faf8fb;
-    padding: 1rem;
+    background: #f9f8fb;
+    padding: 0.5rem 1rem;
     @include flexprops(center);
     .mvx-btn{
       margin-right:0.5rem; 
@@ -2008,24 +2029,29 @@ a.mvx-btn.chckbx-border{
 // Start - Activity Reminder
 .mvx-product-box-sec {
   @include flexprops(center);
+  flex-wrap: nowrap;
   .mvx-all-product-box {
     position: relative;
     width: 18.75rem;
-    height: 15.625rem;
+    height: 17.625rem;
     background: $fill-color;
     border: $border;
     border-radius: $border-radius;
-    margin-right: .5rem;
+    margin: .5rem;
     & .mvx-white-box-header {
       @include flexprops(center);
       width: 100%;
       padding: 1rem;
       background: $header-background;
       border-radius: 0.25rem 0.25rem 0 0;
+      border-bottom: $border;
       font-weight: 500;
       & .pull-right {
         margin-left: auto;
       }
+    }
+    & i{
+      padding: 0;
     }
     & .mvx-white-box-body {
       margin: 1rem;
@@ -2034,10 +2060,14 @@ a.mvx-btn.chckbx-border{
         margin-right: 0.625rem;
       }
       & .mvx-box-content {
-        @include flexprops(center);
+        @include flexprops(start);
         margin-bottom: .5rem;
+        .mvx-product-title{
+          width: 40%;
+        }
         & .mvx-product-name {
           margin-left: .5rem;
+          width: 50%;
         }
       }
     }
@@ -2184,7 +2214,7 @@ a.mvx-btn.chckbx-border{
   margin: 0 !important; //bulk action input button
 }
 .mvx-wrap-bulk-action.css-b62m3t-container {
-  margin: 0 1rem 0 0;
+  margin: 0 0.25rem 0 0;
 }
 .mvx-form-group {
   display: flex;
@@ -2199,6 +2229,76 @@ a.mvx-btn.chckbx-border{
 .mvx-form-actions {
   text-align: right;
 }
+//start - edit commission page
+.woocommerce-order-data .mvx-page-title{
+  font-size: 1.5rem;
+  color: $title-color;
+  padding: 1.5rem 0;
+  font-weight: 500;
+}
+.mvx-commission-details-section{
+  background-color: $section-background;
+  border: $border;
+  padding: 1rem;
+  .woocommerce-order-data-heading{
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: $title-color;
+    padding: 0 0 2rem;
+  }
+    .mvx-edit-commission-status-wrapper{
+      @include flexprops(start);
+      justify-content: space-between;
+      .mvx-commission-wrap-vendor-order-status, .mvx-commission-wrap-amount-shipping-tax{
+        width: 34%;
+      }
+       .commission-details-data-value, .mvx-commission-amount, .mvx-commission-status-wrap, .woocommerce-order-data-meta.order_number{
+        @include flexprops(center);
+        padding: 0.5rem 0;
+        margin: 0;
+        .mvx-commission-label-class {
+          width: 60%;
+      }
+      }
+    }
+}
+.mvx-order-details-vendor-details-wrap{
+  @include flexprops(start);
+  justify-content: space-between;
+  .mvx-order-details-wrap, .mvx-vendor-notes-details-wrap{
+    width: 48%;
+    .mvx-box-background-white-wrapper, .mvx-commission-vendor-details-class, .mvx-commission-notes-details-class{
+      font-size: 1rem;
+      border: $border;
+      background-color: $fill-color;
+      padding: 1rem;
+      margin: 1.5rem 0 0.5rem;
+      border-radius: $border-radius;
+    }
+    .mvx-order-details-wrap{
+      table{
+        position: relative;
+       tr th{
+          position: absolute;
+          background-color: $boder-color;
+        }
+      }
+    }
+    .mvx-child-vendor-details, .mvx_commision_note_clm{
+      background-color: $fill-color;
+      border: $border;
+      border-radius: $border-radius;
+      margin: 0 0 0.5rem;
+      padding: 1rem;
+      .commission-details-data-value{
+        @include flexprops(center);
+
+      }
+    }
+
+  }
+
+} 
 // Start - List Vendor Page Pop Up
 .MuiDialog-paperScrollPaper {
   .MuiDialogTitle-root {
