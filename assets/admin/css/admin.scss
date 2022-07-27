@@ -15,9 +15,9 @@ $section-background:#fbfafc;
   align-items: $align;
 }
 @mixin button {
-  transition: all 0.3s;
+  transition: all 0.3s ease;
   border-radius: $button-border-radius;
-  padding: 0.66rem 1.5rem;
+  padding: 0.66rem 1rem;
   cursor: pointer;
   &:hover{
     text-decoration: none;
@@ -793,18 +793,32 @@ input[type="radio"], input[type="checkbox"] {
 }
 input[type=radio]:checked::before {
     font-family: 'mvx-admin-font' !important;
-    margin: -.05rem;
+    margin: 0;
     content: '\e909';
     color: #FFF;
     font-size: 0.625rem;
-    line-height: 1rem;
+    line-height: 1.1rem;
     background-color: #65438f !important;
     height: 1rem;
     width: 1rem;
 }
-
 input[type=text]:focus {
   box-shadow: none;
+}
+input[type=checkbox]:checked::before {
+  font-family: 'mvx-admin-font' !important;
+  content: '\e909';
+  color: #FFF;
+  font-size: 0.625rem;
+  line-height: 1rem;
+  background-color: #65438f !important;
+  height: 1rem;
+  width: 1rem;
+  border-radius: $border-radius;
+  margin: 0;
+}
+input[type=checkbox]:checked input[type=checkbox] {
+  opacity: 0;
 }
 
 // Start - Header
@@ -827,6 +841,27 @@ input[type=text]:focus {
       background-color: transparent;
     }
   }
+  .mvx-search-content {
+    background: $section-background;
+    border: $border;
+    z-index: 99;
+    padding: 0.5rem;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    overflow-y: auto;
+    width: 50%;
+    height: 20rem;
+    &::-webkit-scrollbar{
+      display: none;
+    }
+    .mvx-header-search-content-wrapper{
+      a{
+        color: $boder-color;
+        padding: 0.5rem 0;
+      }
+    }
+}
 }
 .mvx-header-wapper {
   @include flexprops(center);
@@ -890,7 +925,13 @@ input[type=text]:focus {
       color: unset;
     }
   }
-
+  a.mvx-back-btn {
+    color: $title-color;
+    text-decoration: none;
+    border: $border;
+    padding: 0.594rem 1rem;
+    border-radius: $border-radius;
+}
 
   .btn-red {
     background-color: #e35047;
@@ -902,7 +943,6 @@ input[type=text]:focus {
   }
   .btn-purple {
     background-color: #65438f;
-    padding: 0.66rem 1.5rem;
     border: none;
     color: #f9f8fb;
     &:hover{
@@ -979,13 +1019,13 @@ input[type=text]:focus {
     border: $border;
     border-radius: $border-radius;
     text-align: center;
-    margin-right: 0.75rem;
+    margin-right: 0.5rem;
     padding: 0.563rem 1rem;
   }
-  .mvx-text-with-line-wrapper {
+  .mvx-text-with-line-wrapper, .mvx-chart-text-and-bar-line-wrap {
     padding: 2rem 0;
     @include flexprops(center);
-    
+    justify-content: space-between;
   }
   .mvx-select-all-bulk-wrap {
     margin-left: auto;
@@ -1019,21 +1059,20 @@ input[type=text]:focus {
   }
 
   .mvx-text-with-right-side-line {
-    // @include flexprops(center);
     font-size: 1rem;
     font-weight: 500;
     color:$title-color;
-    width: 71%;
     padding: 1rem 0;
-    display: table;
-    line-height: 0.01;
-    table-layout: auto;
-    white-space: nowrap;
+    position: relative;
+    display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-rows: 1rem 0;
+  grid-gap: 1rem;
           &::after {
-            content: "";
-            width: 85%;
-            display: table-cell;
-            border-top: 0.06rem solid #d4d1d9;
+            content: " ";
+            display: block;
+            border-bottom: 2px solid #ccc;
+            background-color:$paragraph-color;
         }
       
   }
@@ -1166,14 +1205,6 @@ input[type=text]:focus {
         position: relative;
         transition: .4s all ease-in-out;
         & .mvx-setting-form-input {
-          display: none;
-        }
-        & .mvx-radio-select-under-label-class::before {
-          background-color: $theme-color;
-          color: #f8f9fb;
-          content: "\f15e";
-          padding: 0.25rem;
-          font-family: 'dashicons';
           position: absolute;
           bottom: 1.5rem;
           right: 1.5rem;
@@ -1181,7 +1212,10 @@ input[type=text]:focus {
           height: 1rem;
           line-height: 1rem;
           border-radius: 0.125rem;
-        }
+          &:checked::before{
+            border-radius: 0;
+          }
+      }
         & .mvx-radio-select-under-label-class {
           & .mvx-radioselect-overlay-text {
             position: absolute;
@@ -1197,9 +1231,9 @@ input[type=text]:focus {
             padding: 0.5rem;
             border-radius: $border-radius;
           }
-          :hover {
+         &:hover {
             & .mvx-radioselect-overlay-text {
-              opacity: 1;
+              opacity: 0.6;
             }
           }
         }
@@ -1210,7 +1244,11 @@ input[type=text]:focus {
       & .mvx-multi-nested-class {
         & .mvx-boarder-parent {
           & .mvx-boarder-parent-loop {
-            width: 100%
+            width: 100%;
+            @include flexprops(center);
+            label.mvx-setting-form-label {
+              padding-right: 0.5rem;
+          }
           }
           @include flexprops(center);
           & .horizontal-class {
@@ -1442,10 +1480,13 @@ input[type=text]:focus {
           height: 7.125rem;
           border-right: $border;
           padding: 0.75rem;
-          position: relative;
           background: $fill-color;
+          .mvx-wrap-price-and-percent{
+            @include flexprops(center);
+            padding: 1rem 0;
+            justify-content: space-between;
+          }
           & .mvx-percent-show {
-            position: absolute;
             right: 1.375rem;
             bottom: 2.5rem;
             background-color: #f0f0f0;
@@ -1852,7 +1893,7 @@ input[type=text]:focus {
           text-align: left;
           padding-top: 0.58rem;
           p{
-            padding: 0.3rem 0;
+            padding: 0.5rem 0;
             color:$paragraph-color;
           }
           a{
@@ -1863,6 +1904,7 @@ input[type=text]:focus {
           padding: 0.63869rem;
           &:first-child{
             font-size: 1.5rem;
+            padding-top: 0.25rem;
             font-weight: 500;
             background: linear-gradient(-28deg, #3f1473 0%, #af3b74 50%, #db4b54 100%);
     -webkit-background-clip: text;
@@ -1910,10 +1952,27 @@ input[type=text]:focus {
   }
 
   // Start - Settings Page
+  .mvx-setting-section-divider{
+    background-color: $boder-color;
+    height: 0.06rem;
+    margin: 2rem 0
+  }
+.mvx-select-deselect-trigger {
+  border:$border;
+  border-radius: $border-radius;
+  width: fit-content;
+  padding: 0.66rem 1rem;
+  transition: all 0.3s;
+  cursor: pointer;
+  &:hover{
+    border-color: $title-color;
+  }
+}
   .mvx-search-and-multistatus-wrap {
     @include flexprops(center);
     justify-content: space-between;
     padding: 1rem 0;
+  
     .mvx-multistatus-ul {
       margin: 1.2rem 0;
       @include flexprops(center);
@@ -2107,7 +2166,85 @@ input[type=text]:focus {
 }
 
 // Start - Setup Widget
+.wc-setup{
+border: 0;
+h1#wc-logo{
+  border: 0;
+   img{
+  height: 2.5rem;
+}
+}
+.woocommerce-message{
+  padding: 0 0 3rem;
+  margin: 0;
+  p{
+    text-align: center;
+    margin: 0;
+  }
+}
+}
+.wc-setup-content{
+  text-align: center;
+  margin-bottom:2rem;
+   .wc-setup-next-steps{
+    @include flexprops(start);
+    flex-direction: row-reverse;
+    text-align: left;
+    padding: 3rem 0 0;
+   }
+}
+table.form-table {
+  background: none;
+  td{
+    @include flexprops(start);
+    column-gap: 1rem;
+  }
+  th, td{
+    text-align: left;
+  }
+}
+.red-btn, .button-primary{
+  background-color: #e35047 !important;
+  border: 0.06rem solid #e35047 !important;
+  color: $fill-color !important;
+  &:hover{
+    border: 0.06rem solid #e26f76 !important;
+    background-color: #e26f76 !important;
+    color: $fill-color !important;
+  }
+}
+ .wc-setup-actions {
+  @include flexprops(start);
+  justify-content: center;
+  a:first-child{
+    border: $border;
+    color: $boder-color;
+  }
+  .button.button-large{
+    padding: 0.5rem 6rem;
+    line-height: 1.5;
+    min-width: unset;
+  }
+  }
 
+.select2-container--open .select2-dropdown{
+  left: 1.25rem;
+}
+.mvx-all-done-page-header-sec{
+  @include flexprops(start);
+  justify-content: center;
+  column-gap: 1rem;
+  .mvx-title{
+    font-size: 2rem;
+  }
+ 
+}
+
+.woocommerce-tracker{
+  border-bottom: $border;
+  border-width: 0 0 0.06rem 0;
+  border-radius: 0;
+}
 // Start - Datatable
 .mvx-backend-datatable-wrapper {
   .rdt_Pagination{
@@ -2138,7 +2275,7 @@ input[type=text]:focus {
       .bvxQGL {
         border: $border;
         border-radius: $border-radius;
-        margin-left: 1rem;
+        margin-left: 0.25rem;
         width: 2.5rem;
         height: 2rem;
         @include flexprops(center);
@@ -2217,14 +2354,9 @@ input[type=text]:focus {
   margin: 0 0.25rem 0 0;
 }
 .mvx-form-group {
-  display: flex;
+  @include flexprops(start);
+ justify-content: space-between;
   margin: 1rem 0;
-  label.mvx-settings-form-label {
-    width: 30%;
-}
-.mvx-settings-input-content {
-  width: 70%;
-}
 }
 .mvx-form-actions {
   text-align: right;
@@ -2239,6 +2371,7 @@ input[type=text]:focus {
 .mvx-commission-details-section{
   background-color: $section-background;
   border: $border;
+  border-radius: $border-radius;
   padding: 1rem;
   .woocommerce-order-data-heading{
     font-size: 1.125rem;
@@ -2256,7 +2389,10 @@ input[type=text]:focus {
         @include flexprops(center);
         padding: 0.5rem 0;
         margin: 0;
-        .mvx-commission-label-class {
+        .commission-status-hide-and-show-wrap{
+          @include flexprops(start);
+        }
+        .mvx-commission-label-class,  .mvx-commission-label-class {
           width: 60%;
       }
       }
@@ -2275,15 +2411,30 @@ input[type=text]:focus {
       margin: 1.5rem 0 0.5rem;
       border-radius: $border-radius;
     }
-    .mvx-order-details-wrap{
-      table{
-        position: relative;
-       tr th{
-          position: absolute;
-          background-color: $boder-color;
+    .mvx-commission-order-data.woocommerce_order_items_wrapper.wc-order-items-editable{
+      border-radius: $border-radius;
+    }
+    table{
+      border: $border;
+      thead{
+        background-color: #f4f1f7;
+        color: $paragraph-color;
+        text-align: left;
+        th{
+          padding: 1rem 0 1rem 1rem;
+        }
+      }
+      tbody{
+        td{
+          padding: 1rem 0 1rem 1rem;
+        }
+        td.thumb{
+          @include flexprops(start);
+          justify-content: space-between;
         }
       }
     }
+  
     .mvx-child-vendor-details, .mvx_commision_note_clm{
       background-color: $fill-color;
       border: $border;
@@ -2292,7 +2443,9 @@ input[type=text]:focus {
       padding: 1rem;
       .commission-details-data-value{
         @include flexprops(center);
-
+        .mvx-commission-label-class{
+          width: 30%;
+        }
       }
     }
 

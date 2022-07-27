@@ -562,7 +562,7 @@ class MVX_Admin_Setup_Wizard {
                     <th scope="row"><label for="mvx_disbursal_mode_vendor"><?php esc_html_e('Withdrawal Request', 'multivendorx'); ?></label></th>
                     <td>
                         <?php
-                        $mvx_disbursal_mode_vendor = $disbursement_settings['withdrawal_request'] ? 'Enable' : '';
+                        $mvx_disbursal_mode_vendor = isset($disbursement_settings['withdrawal_request']) ? 'Enable' : '';
                         ?>
                         <input type="checkbox" <?php checked($mvx_disbursal_mode_vendor, 'Enable'); ?> id="mvx_disbursal_mode_vendor" name="mvx_disbursal_mode_vendor" class="input-checkbox" value="Enable" />
                         <p class="description"><?php esc_html_e('Vendors can request for commission withdrawal.', 'multivendorx') ?></p>
@@ -942,12 +942,6 @@ class MVX_Admin_Setup_Wizard {
                 'label' => __('Stripe Connect', 'multivendorx'),
                 'description' => __('', 'multivendorx'),
                 //'repo-slug' => 'marketplace-stripe-gateway',
-                'class' => ''
-            ),
-            'paypal_adaptive' => array(
-                'label' => __('PayPal Adaptive', 'multivendorx'),
-                'description' => __('', 'multivendorx'),
-                'repo-slug' => 'mvx-paypal-adaptive-gateway',
                 'class' => ''
             )
         );
