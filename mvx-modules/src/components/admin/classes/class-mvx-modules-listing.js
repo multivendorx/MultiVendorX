@@ -150,7 +150,7 @@ class MVX_Module_Listing extends Component {
 	componentDidMount() {
 		Promise.all([
 			fetch(
-				`${appLocalizer.apiUrl}/mvx_module/v1/module_lists?module_id=all`
+				new URLSearchParams(window.location.hash).get('name') ? `${appLocalizer.apiUrl}/mvx_module/v1/module_lists?module_id=${new URLSearchParams(window.location.hash).get('name')}` : `${appLocalizer.apiUrl}/mvx_module/v1/module_lists?module_id=all`
 			).then((res) => res.json()),
 		])
 			.then(([product]) => {
@@ -274,7 +274,7 @@ class MVX_Module_Listing extends Component {
 							/>
 						) : (
 							this.state.items.map((student1, index1) => (
-								<div className="mvx-module-list-start">
+								<div id={student1.label.split(" ")} className="mvx-module-list-start">
 									<div className="mvx-module-list-container">
 										<div className="mvx-text-with-right-side-line">
 											{student1.label}

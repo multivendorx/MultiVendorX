@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import HeaderSection from './class-mvx-page-header';
 class MVX_Dashboard extends Component {
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            money_back_show_more_lifetime: false,
+            money_back_show_more_yearly: false,
+            money_back_show_more_monthly: false,
+            money_back_show_more_compared : false,
+        };
+    }
     componentDidMount() {
         var $ = jQuery;
         var cs = 1;
@@ -398,6 +406,10 @@ class MVX_Dashboard extends Component {
                                         <li>Store Widgets</li>
                                         <li>Premium</li>
                                         <li>Modules</li>
+                                        {this.state.money_back_show_more_compared ?
+                                            <li>Modules</li>
+                                            : ''
+                                        }
                                     </ul>
                                 </li>
 
@@ -428,6 +440,13 @@ class MVX_Dashboard extends Component {
                                         <li>
                                             <i className="mvx-font icon-yes blue" />
                                         </li>
+
+                                        {this.state.money_back_show_more_compared ?
+                                            <li>
+                                                <i className="mvx-font icon-yes blue" />
+                                            </li>
+                                            : ''
+                                        }
                                         
                                     </ul>
                                 </li>
@@ -461,17 +480,47 @@ class MVX_Dashboard extends Component {
                                         <li>
                                             <i className="mvx-font icon-yes blue" />
                                         </li>
-                                    
-                                        <li />
+
+
+                                        {this.state.money_back_show_more_compared ?
+                                            <li>
+                                                <i className="mvx-font icon-yes blue" />
+                                            </li>
+                                            : ''
+                                        }
                                     </ul>
                                 </li>
                                 <li className='mvx-show-compare'>
-                                            <a href="#">
-                                                <span>
-                                                    <i className="mvx-font icon-down-arrow-02" />
-                                                </span>{' '}
-                                                Show More
-                                            </a>
+                                            {this.state.money_back_show_more_compared ?
+
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_compared: false
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        <i className="mvx-font icon-down-arrow-02" />
+                                                    </span>{' '}
+                                                    Show Less
+                                                </a>
+
+                                                :
+
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_compared: true
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        <i className="mvx-font icon-down-arrow-02" />
+                                                    </span>{' '}
+                                                    Show More
+                                                </a>
+                                            }
                                         </li>
                                         
                             </ul>
@@ -507,7 +556,7 @@ class MVX_Dashboard extends Component {
                                             </a>
                                         </li>
                                         <div className='mvx-price-component'>
-                                                
+                                            <span>        
                                                 <p>
                                                     <i className="mvx-font icon-documentation-forum" />{' '}
                                                     10 Sites
@@ -524,13 +573,59 @@ class MVX_Dashboard extends Component {
                                                     <i className="mvx-font icon-documentation-forum" />{' '}
                                                     Lifetime Updates
                                                 </p>
-                                                <p/>
-                                                        <a href="#" className="show-link">
+                                                        
+                                            </span>
+                                            {this.state.money_back_show_more_yearly ?
+                                                <span>    
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        10 Sites
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        50+ Modules
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-form-radio" />{' '}
+                                                        Unlimited Support{' '}
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        Lifetime Updates
+                                                    </p>
+                                                </span>
+                                            : ''}
+
+                                            {this.state.money_back_show_more_yearly ?
+
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_yearly: false
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        <i className="mvx-font icon-down-arrow-02" />
+                                                    </span>{' '}
+                                                    Show Less
+                                                </a>
+
+                                                :
+
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_yearly: true
+                                                                    })
+                                                                )
+                                                            }>
                                                     <span>
                                                         <i className="mvx-font icon-down-arrow-02" />
                                                     </span>{' '}
                                                     Show More
-                                                    </a>
+                                                </a>
+                                            }
                                         </div>
                                         
                                     </ul>
@@ -555,7 +650,7 @@ class MVX_Dashboard extends Component {
                                             </a>
                                         </li>
                                         <div className='mvx-price-component'>
-                                                
+                                            <span>    
                                                 <p>
                                                     <i className="mvx-font icon-documentation-forum" />{' '}
                                                     10 Sites
@@ -572,13 +667,59 @@ class MVX_Dashboard extends Component {
                                                     <i className="mvx-font icon-documentation-forum" />{' '}
                                                     Lifetime Updates
                                                 </p>
-                                                <p/>
-                                                        <a href="#" className="show-link">
+                                            </span>
+
+                                            {this.state.money_back_show_more_lifetime ?
+                                                <span>    
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        10 Sites
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        50+ Modules
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-form-radio" />{' '}
+                                                        Unlimited Support{' '}
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        Lifetime Updates
+                                                    </p>
+                                                </span>
+                                            : ''}
+
+                                            {this.state.money_back_show_more_lifetime ?
+
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_lifetime: false
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        <i className="mvx-font icon-down-arrow-02" />
+                                                    </span>{' '}
+                                                    Show Less
+                                                </a>
+
+                                                :
+
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_lifetime: true
+                                                                    })
+                                                                )
+                                                            }>
                                                     <span>
                                                         <i className="mvx-font icon-down-arrow-02" />
                                                     </span>{' '}
                                                     Show More
-                                                    </a>
+                                                </a>
+                                            }
                                         </div>
                                     
                                     </ul>
@@ -600,7 +741,8 @@ class MVX_Dashboard extends Component {
                                             </a>
                                         </li>
                                         <div className='mvx-price-component'>
-                                                
+                                            
+                                            <span>
                                                 <p>
                                                     <i className="mvx-font icon-documentation-forum" />{' '}
                                                     10 Sites
@@ -617,13 +759,59 @@ class MVX_Dashboard extends Component {
                                                     <i className="mvx-font icon-documentation-forum" />{' '}
                                                     Lifetime Updates
                                                 </p>
-                                                <p/>
-                                                        <a href="#" className="show-link">
+                                            </span>
+
+                                            {this.state.money_back_show_more_monthly ?
+                                                <span>    
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        10 Sites
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        50+ Modules
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-form-radio" />{' '}
+                                                        Unlimited Support{' '}
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        Lifetime Updates
+                                                    </p>
+                                                </span>
+                                            : ''}
+
+                                            {this.state.money_back_show_more_monthly ?
+
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_monthly: false
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        <i className="mvx-font icon-down-arrow-02" />
+                                                    </span>{' '}
+                                                    Show Less
+                                                </a>
+
+                                                :
+
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_monthly: true
+                                                                    })
+                                                                )
+                                                            }>
                                                     <span>
                                                         <i className="mvx-font icon-down-arrow-02" />
                                                     </span>{' '}
                                                     Show More
-                                                    </a>
+                                                </a>
+                                            }
                                         </div>
                                         
                                     </ul>

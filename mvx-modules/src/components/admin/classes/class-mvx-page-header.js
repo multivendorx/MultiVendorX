@@ -57,7 +57,12 @@ class MVX_Header extends Component {
 								{this.state.fetch_all_settings_for_searching.map(
 									(data, index) => (
 										<div className="mvx-header-search-content-wrapper">
-											<a href={data.link}>
+											<a onClick={(e) =>
+												(
+													window.location.href = data.link
+													
+												)
+											}>
 												<div className="mvx-header-search-contetnt-label">
 													{data.label}
 												</div>
