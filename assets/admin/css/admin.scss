@@ -15,10 +15,9 @@ $section-background:#fbfafc;
   align-items: $align;
 }
 @mixin button {
-  transition: all 0.3s;
-  // padding: 0.6rem 0.8rem;
+  transition: all 0.3s ease;
   border-radius: $button-border-radius;
-  line-height: .8rem;
+  padding: 0.66rem 1rem;
   cursor: pointer;
   &:hover{
     text-decoration: none;
@@ -39,6 +38,14 @@ $section-background:#fbfafc;
       }
   }
 }
+@mixin commission-heading {
+  font-size: 1rem;
+  border: $border;
+  background-color: $fill-color;
+  padding: 1rem;
+  margin: 1.5rem 0 0.5rem;
+  border-radius: $border-radius;
+}
 @mixin toggle-btn {
     input[type=checkbox]{
         height: 0;
@@ -55,7 +62,7 @@ $section-background:#fbfafc;
         display: block;
         border-radius: 8rem;
         position: relative;
-        border: 0.06rem solid $theme-color;
+        border: 0.125rem solid $theme-color;
     }
     label:before {
         content: '';
@@ -71,7 +78,7 @@ $section-background:#fbfafc;
     label:after {
         content: '';
         position: absolute;
-        top: 0.25rem;
+        top: 0.188rem;
         left: 0.313rem;
         width: 0.875rem;
         height: 0.875rem;
@@ -109,6 +116,7 @@ $section-background:#fbfafc;
         border: $border;
         border-radius: $border-radius;
         position: relative;
+        min-width: 20rem;
     }
     & .mvx-module-section-options-list:nth-child(3) {
         margin-right: 0;
@@ -119,7 +127,7 @@ $section-background:#fbfafc;
     width: 3.5rem;
     height: 3.5rem;
     margin: auto;
-    line-height: 4.125rem;
+    line-height: 4.125;
     background: rgb(63,20,115);
     background: linear-gradient(138deg, rgba(63,20,115,1) 0%, rgba(175,59,116,1) 50%, rgba(219,75,84,1) 100%);
     border-radius: $border-radius;
@@ -150,6 +158,30 @@ $section-background:#fbfafc;
   border: $border;
   border-radius: $border-radius;
   height: 2.5rem;
+}
+@mixin red-btn {
+  background-color: #e35047;
+  color: #f9f8fb;
+  &:hover{
+    background-color: #e6635b;
+    color: #f9f8fb;
+  }
+}
+@mixin purple-btn {
+  background-color: #65438f;
+  border: none;
+  color: #f9f8fb;
+  &:hover{
+    background-color: #795b9d;
+    color: #f9f8fb;
+  }
+}
+@mixin border-btn {
+  border: $border;
+  color: $title-color;
+  &:hover{
+    border-color: #181718 ;
+  }
 }
 
 /* fonts */
@@ -702,14 +734,14 @@ $section-background:#fbfafc;
 /*icon end*/
  
 // Start - Common CSS
-textarea, input[type=text], select, input, .default-input {
+textarea, input[type=text], input[type=url], select, input, .default-input {
     border-radius: 0.25rem;
     width: 100%;
     padding: 0rem 0.75rem;
     color: #8e8b91;
     font-size: 1rem;
     border: $border;
-    line-height: 2.375rem;
+    line-height: 2.375;
 }
 
 .css-furbww-Bt, .css-1mfkewb-Ur  {
@@ -725,7 +757,7 @@ h2 {
   font-size: 1.25rem;
 }
 h3 {
-  font-size: 1.5rem;
+  font-size: 1.125rem;
 }
 h4 {
   font-size: 1rem;
@@ -752,15 +784,12 @@ li{
   color: $title-color;
 }
 ul{
-
 }
 fieldset{
-
 }
 form{
 }
 label{
-
 }
 table{
   color: $title-color;
@@ -780,40 +809,49 @@ td {
     padding: 0;
     text-align: inherit;
 }
-
 blockquote::before,
 blockquote::after {
     content: "";
 }
-
 .mvx-page #wpcontent {
   padding: 0rem;
 }
-  
 .mvx-backend-datatable-wrapper {
   padding: 2.4rem 0;
   border-radius: $border-radius;
 }
-
 input[type="radio"], input[type="checkbox"] {
     width: 1rem;
     height: 1rem;
 }
-
 input[type=radio]:checked::before {
     font-family: 'mvx-admin-font' !important;
-    margin: -.05rem;
+    margin: 0;
     content: '\e909';
     color: #FFF;
     font-size: 0.625rem;
-    line-height: 1rem;
+    line-height: 1.1rem;
     background-color: #65438f !important;
     height: 1rem;
     width: 1rem;
 }
-
 input[type=text]:focus {
   box-shadow: none;
+}
+input[type=checkbox]:checked::before {
+  font-family: 'mvx-admin-font' !important;
+  content: '\e909';
+  color: #FFF;
+  font-size: 0.625rem;
+  line-height: 1rem;
+  background-color: #65438f !important;
+  height: 1rem;
+  width: 1rem;
+  border-radius: $border-radius;
+  margin: 0;
+}
+input[type=checkbox]:checked input[type=checkbox] {
+  opacity: 0;
 }
 
 // Start - Header
@@ -836,6 +874,27 @@ input[type=text]:focus {
       background-color: transparent;
     }
   }
+  .mvx-search-content {
+    background: $section-background;
+    border: $border;
+    z-index: 99;
+    padding: 0.5rem;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    overflow-y: auto;
+    width: 50%;
+    height: 20rem;
+    &::-webkit-scrollbar{
+      display: none;
+    }
+    .mvx-header-search-content-wrapper{
+      a{
+        color: $boder-color;
+        padding: 0.5rem 0;
+      }
+    }
+}
 }
 .mvx-header-wapper {
   @include flexprops(center);
@@ -881,59 +940,67 @@ input[type=text]:focus {
   @include flexprops(start);
   background-color: $base-color;
   padding: 2rem 1.5rem;
-
+  i {
+    padding-right: 0.5rem;
+  }
   a {
-    color: $paragraph-color;
+    color: unset;
     line-height: 1rem;
     text-decoration: none;
-    i {
-      padding-right: 0.5rem;
+    &:active{
+      color: unset;
     }
-    focus {
+    &:focus {
       -webkit-box-shadow: none;
       box-shadow: none;
-    }
-    &:hover{
-      color: $paragraph-color;
       text-decoration: none;
     }
-  }
-
-
-  .btn-red {
-    background-color: #e35047;
-    color: #f9f8fb;
-    padding: 0.813rem 1.5rem !important;
-    font-size: 1rem;
     &:hover{
-      background-color: #e6635b;
+      text-decoration: none;
+      color: unset;
     }
   }
-
+  a.mvx-back-btn {
+    color: $title-color;
+    vertical-align: middle;
+    text-decoration: none;
+    border: $border;
+    padding: 0.594rem 1rem;
+    border-radius: $border-radius;
+}
+ 
+  .btn-red {
+   @include red-btn();
+  }
+  
   .btn-purple {
+   @include purple-btn();
+  }
+  .btn-border {
+   @include border-btn();
+  }
+  .chckbx-purple {
     background-color: #65438f;
     border: none;
-    padding: 6px 22px !important;
-    color: #f9f8fb;
+    border-radius: $border-radius;
+    padding: 0.375rem 1.375rem;
     &:hover{
       background-color: #795b9d;
     }
-  }
-  .btn-border {
-    border: $border;
-    color: $title-color;
-    &:hover{
-      border-color: #181718 ;
+    i{
+      padding: 0;
+    color: #f9f8fb;
     }
-  }
+}
+.chckbx-border{
+  border: 0.06rem solid $boder-color;
+  padding: 0.375rem 0.51rem;
+  border-radius: $border-radius;
+}
   .mvx-btn {
     @include button;
-    &:hover{
-      color: #f9f8fb;
-    }
+    vertical-align: middle;
   }
-
-
   .mvx-sidebar {
     padding-left: 1.2rem;
   }
@@ -978,24 +1045,16 @@ input[type=text]:focus {
     border: $border;
     border-radius: $border-radius;
     text-align: center;
-    margin-right: 0.75rem;
+    margin-right: 0.5rem;
     padding: 0.563rem 1rem;
+    white-space: nowrap;
   }
-  .mvx-text-with-line-wrapper {
+  .mvx-text-with-line-wrapper, .mvx-chart-text-and-bar-line-wrap {
     padding: 2rem 0;
-    position: relative ;
     @include flexprops(center);
+    justify-content: space-between;
+    column-gap: 0.5rem;
   }
-
-  & .mvx-text-with-line-wrapper::after {
-    content: "";
-    position: absolute;
-    width: 55%;
-    height: 0.0625rem;
-    background-color: $boder-color;
-    left: 15rem;
-  }
-
   .mvx-select-all-bulk-wrap {
     margin-left: auto;
     @include flexprops(start);
@@ -1026,24 +1085,40 @@ input[type=text]:focus {
     transition: 0.3s;
     z-index: 0;
   }
-
+.mvx-text-with-right-side-line-wrapper{
+  @include flexprops(center);
+  column-gap: 0.5rem;
+  }
   .mvx-text-with-right-side-line {
-    @include flexprops(center);
     font-size: 1rem;
     font-weight: 500;
-    color: $title-color;
+    color:$title-color;
+    padding: 1rem 0;
+    white-space: nowrap;
   }
+  .mvx-text-with-line-wrapper, .mvx-chart-text-and-bar-line-wrap{
+    width: 100%;
+}
+hr{
+  width: 100%;
+  margin: 0;
+}
   .mvx-vertical-tabs {
+    & .mvx-tab-description-start {
+      background-color: $header-background;
+    }
     .mvx-current-tab-lists{
       float: left;
       display: block;
+      border-bottom: 0.06rem solid $boder-color;
+      margin-right: -0.06rem;
       width: 22%;
       height: auto;
         & a {
           display: flex;
           align-items: center;
           background-color: $header-background;
-          border: 0.063rem solid $boder-color;
+          border: $border;
           transition: 0.3s;
           padding: 1rem 1.2rem;
           margin-bottom: 0;
@@ -1056,13 +1131,18 @@ input[type=text]:focus {
             padding-right: .5rem;
           }
         }
-
-      & li:last-child {
-        border-bottom: $border;
-      }
       & .active-current-tab {
-        border-right: 0rem;
         background-color: $fill-color;
+        position: relative;
+        &:after{
+          content: '';
+          height: 100%;
+          width: 0.16rem;
+          background-color: $fill-color;
+          right: -3px;
+          top: 0;
+          position: absolute;
+        }
       }
     }
 
@@ -1073,7 +1153,6 @@ input[type=text]:focus {
       width: 78%;
       height: auto;
       min-height: 50rem;
-      border-left: 0;
       background-color: $fill-color;
       & .mvx-dynamic-form {
         & .mvx-form-group {
@@ -1119,6 +1198,7 @@ input[type=text]:focus {
               background-color: $theme-color;
               width: 20%;
               color: $fill-color;
+               float: right;
           }
           }
         }
@@ -1126,6 +1206,16 @@ input[type=text]:focus {
       .mvx-form-group-radio-color {
         @include flexprops(center);
         flex-wrap: wrap;
+        .radio-color-active{
+          .mvx-merge-radio-color-input-label {
+            border: 0.12rem solid $theme-color;
+            padding: 0.5rem;
+            border-radius: $border-radius;
+            input[type=radio]:checked::before{
+              margin: -0.06rem;
+            }
+        }
+        }
         & .mvx-settings-radio-color {
           margin: 0.5rem 1rem 0.5rem 0;
           width: calc(50% - 1rem);
@@ -1153,14 +1243,6 @@ input[type=text]:focus {
         position: relative;
         transition: .4s all ease-in-out;
         & .mvx-setting-form-input {
-          display: none;
-        }
-        & .mvx-radio-select-under-label-class::before {
-          background-color: $theme-color;
-          color: #f8f9fb;
-          content: "\f15e";
-          padding: 0.25rem;
-          font-family: 'dashicons';
           position: absolute;
           bottom: 1.5rem;
           right: 1.5rem;
@@ -1168,7 +1250,10 @@ input[type=text]:focus {
           height: 1rem;
           line-height: 1rem;
           border-radius: 0.125rem;
-        }
+          &:checked::before{
+            border-radius: 0;
+          }
+      }
         & .mvx-radio-select-under-label-class {
           & .mvx-radioselect-overlay-text {
             position: absolute;
@@ -1184,9 +1269,9 @@ input[type=text]:focus {
             padding: 0.5rem;
             border-radius: $border-radius;
           }
-          :hover {
+         &:hover {
             & .mvx-radioselect-overlay-text {
-              opacity: 1;
+              opacity: 0.6;
             }
           }
         }
@@ -1197,7 +1282,11 @@ input[type=text]:focus {
       & .mvx-multi-nested-class {
         & .mvx-boarder-parent {
           & .mvx-boarder-parent-loop {
-            width: 100%
+            width: 100%;
+            @include flexprops(center);
+            label.mvx-setting-form-label {
+              padding-right: 0.5rem;
+          }
           }
           @include flexprops(center);
           & .horizontal-class {
@@ -1288,8 +1377,11 @@ input[type=text]:focus {
           }
         }
       }
+      .mvx-top-part-registartion-from {
+        padding-bottom: 2rem;
+      }
 
-      .mvx-form-vendor-register .mvx-option-part {
+      .mvx-form-vendor-register .mvx-option-part, .mvx-top-part-registartion-from  {
         padding: 2rem;
         background-color: $header-background;
         border-radius: 0.25rem;
@@ -1373,8 +1465,25 @@ input[type=text]:focus {
       .mvx-date-and-show-wrapper {
           @include flexprops(center);
       }
+      .mvx-analytic-details-wrap {
+        .mvx-backend-datatable-wrapper{
+          padding: 0;
+        }
+      .mvx-box-background-white-wrapper{
+        @include commission-heading();
+      }
+    }
       & .mvx-charts-graph-content {
         padding: 2rem 0;
+        .mvx-header-and-graph-wrap{
+          background-color: $fill-color;
+          border: $border;
+          & .mvx-box-background-white-wrapper{
+            padding: 1rem 0.8rem;
+            border-bottom: $border;
+            color: $title-color;
+          }
+        }
       }
       & .mvx-report-datepicker {
         @include datepicker;
@@ -1429,10 +1538,16 @@ input[type=text]:focus {
           height: 7.125rem;
           border-right: $border;
           padding: 0.75rem;
-          position: relative;
           background: $fill-color;
+          &:last-child{
+            border: 0;
+          }
+          .mvx-wrap-price-and-percent{
+            @include flexprops(center);
+            padding: 1rem 0;
+            justify-content: space-between;
+          }
           & .mvx-percent-show {
-            position: absolute;
             right: 1.375rem;
             bottom: 2.5rem;
             background-color: #f0f0f0;
@@ -1442,9 +1557,9 @@ input[type=text]:focus {
           & .mvx-labels {
             font-size: 0.75rem;
             color: $title-color;
+            white-space: nowrap;
           }
           & .mvx-price-display {
-            padding-top: 3rem;
             font-size: 1.25rem;
           }
         }
@@ -1459,6 +1574,9 @@ input[type=text]:focus {
       color: $title-color;
       margin-right: 0.7rem;
     }
+    .pull-right{
+      margin-left: auto;
+    }
   }
 
   // Start - Dashboard
@@ -1466,9 +1584,11 @@ input[type=text]:focus {
     width: 100%;
 
     .mvx-dashboard-top-heading{
-      font-size: 1.6rem;
-      margin: 0 0 3rem 0;
+      font-size: 1.5rem;
+      margin: 0 0 2rem 0;
       text-align: center;
+      font-weight: 500;
+      color: $title-color;
     }
 
     .mvx-slider-content-main-wrapper {
@@ -1479,18 +1599,28 @@ input[type=text]:focus {
       background-color: $fill-color;
       border: $border;
       border-radius: $border-radius;
-      padding: 3.2rem;
+      padding: 2rem;
       display: flex;
       align-items: center;
       .mvx-dashboard-slider {
-        @include flexprops(start);
+        width: 70%;
         display: none;
+        &:nth-child(1){
+        display: block;
+        }
+        .mvx-dashboard-slider-cmp-wrap{
+          @include flexprops(start);
+          width: 100%;
+        }
         .mvx-dashboard-top-icon{
           font-size: 1.5rem;
           background: #9f8ab9;
-          border-radius: $border-radius;
+          border-radius: 0.25rem;
           color: #fff;
           padding: 0.9rem;
+          height: 4rem;
+          line-height: 2rem;
+          width: 4rem;
         }
         .mv-dashboard-top-icon span {
           vertical-align: middle;
@@ -1501,14 +1631,12 @@ input[type=text]:focus {
           height: auto;
           min-height: 0.4rem;
           float: left;
+          line-height: 1.5;
           padding-left: 2.4rem;
           p {
-            margin: 0 0 2rem 0;
+            margin: 0.5rem 0 2.5rem 0;
           }
         }
-      }
-      .mvx-dashboard-slider:nth-child(1) {
-        display: flex;
       }
       .message-banner-sliding {
         @include flexprops(start);
@@ -1537,26 +1665,32 @@ input[type=text]:focus {
         background-color: $fill-color;
         border: $border;
         border-radius: $border-radius;
-        padding: 2rem;
+        padding: 2rem 2rem 3rem;
         width: 50%;
-        height: 33.125rem;
-        overflow-y: hidden;
         & .mvx-documentation-quick-link {
             width: 100%;
         }
         & .mvx-block-title {
-            font-size: 1.5rem;
             color: $title-color;
-            margin: 0 0 1.5625rem 0;
+            margin: 0 0 1rem 0;
         }
         & .mvx-table-ul {
             width: 100%;
             padding: 0rem;
             margin: 0rem;
             list-style: none;
+            height: 26.7rem;
+            overflow-y: scroll;
+                &::-webkit-scrollbar {
+                  width: 0.25rem;
+                }
+                &::-webkit-scrollbar-thumb {
+                  background: $header-background; 
+                  border-radius: .6rem;
+                }
         }
         & .mvx-table-ul > li {
-            @include flexprops(start);
+            @include flexprops(center);
             flex-wrap: wrap;
             box-sizing: border-box;
             padding: 0.9375rem 1.875rem;
@@ -1575,6 +1709,10 @@ input[type=text]:focus {
             max-width: 100%;
             font-size: 1rem;
             color: $paragraph-color;
+            p{
+              font-size: 0.75rem;
+              color: $boder-color;
+            }
         }
         & .li-action {
             flex-basis: 0;
@@ -1599,7 +1737,7 @@ input[type=text]:focus {
       }
       .mvx-documentation-quick-link-wrapper{
         width: 50%;
-        padding-left: 2.4rem;
+        padding-left: 1.5rem;
         justify-content: space-between;
         .mvx-documentation-quick-link{
           @include flexprops(start);
@@ -1613,32 +1751,33 @@ input[type=text]:focus {
           background: url(../../images/forum-shrt-2.png) top left no-repeat;
         }
         .mvx-documentation-support-forum{
-          @include flexprops(center);
-          flex-direction: column;
-          // background-color: $fill-color;
+          text-align: center;
           width: 49%;
-          padding: 0.42rem 0 3rem;
+          padding:3.2rem 0 3rem;
           border: $border;
           border-radius: $border-radius;
           background-size: cover;
           position: relative;
+          figure{
+           font-size: 3.188rem;
+           margin: 0;
+           @include iconcolor();
+          }
           figcaption{
-            padding-top: 2.4rem;
-            @include flexprops(center);
-            flex-direction: column;
             div{
-              @include flexprops(center);
-              flex-direction: column;
-              padding: 2rem 0 3.4rem;
+              padding: 1rem 2rem 3.4rem;
             }
             a{
+           @include iconcolor();
+           @include flexprops(start);
+           justify-content: center;
+           column-gap: 0.5rem;
               background-color: $section-background;
               position: absolute;
               bottom: 0;
               left: 0;
               width: 100%;
-              padding: 1rem;
-              text-align: center;
+              padding: 1.313rem;
             }
             a:hover{
               text-decoration: none;
@@ -1649,20 +1788,26 @@ input[type=text]:focus {
           background-color: $section-background;
           border: $border;
           border-radius: $border-radius;
-          padding: 1.8rem;
-          margin-top: 0.813rem;
-          width: 100%;
-          overflow-x: auto;
-          &::-webkit-scrollbar{
-            display: none;
-          }
-          ul{
+          padding: 2rem;
+          margin-top: 0.75rem;
+        width: 100%;
+        min-height: 14rem;
+          ul.row-link{
             @include flexprops(center);
+            padding-top: 1rem;
+            overflow-x: scroll;
+                          &::-webkit-scrollbar {
+                            height: 0rem;
+                          }
+                          // &::-webkit-scrollbar-thumb {
+                          //   background: $theme-color; 
+                          //   border-radius: .6rem;
+                          // }
             li{
               background-color: $fill-color;
               text-align: center;
               margin: 0 0.3rem;
-              border-radius: 0.125rem;
+              border-radius: 0.25rem;
               padding: 1rem 0;
               border: 1px solid $fill-color;
               a{
@@ -1679,30 +1824,34 @@ input[type=text]:focus {
     }
 .mvx-upgrade-pro-section{
   padding: 6rem 0;
-    h2{
-      font-size: 1.75rem;
-      padding: 3.125rem 0 1rem;
+    h1{
+      padding: 3rem 0 1rem;
       color:$title-color;
     }
     p{
-      padding-bottom: 2.5rem;
+      padding-bottom: 3rem;
     }
 }
 .pro-bg{
   background: url(../../images/pro-bg.png) center no-repeat;
-  background-size: contain;
+  background-size: cover;
+  border: 0.06rem solid $boder-color;
+  border-radius: 0.25rem;
 }
 
 .mvx-text-center{
       text-align: center;
       padding: 6rem 0;
-
+      .mvx-money-header-wrap h1{
+    padding-bottom: 1rem;
+  }
     ul.mvx-compare-table-holder {
     display: flex;
     background-color: #fbfafc;
     border: 0.06rem solid $boder-color;
+    border-right: none;
     width: 85%;
-    margin: 4.313rem auto;
+    margin: 4.313rem auto 0;
     position: relative;
     .mvx-show-compare:last-child{
       position: absolute;
@@ -1716,16 +1865,21 @@ input[type=text]:focus {
       padding: 1rem 2rem;
     }
      li.mvx-compare-table-row{
-      padding: 2rem;
+      padding: 2rem 2rem 3rem;
       width: 34.33%;
           &:first-child{
             text-align: left;
              border-right: 0.06rem solid $boder-color;
           } 
           ul li{
-            padding: 0.875rem;
+            padding: 0.65rem;
             margin: 0;
-           
+            .red{
+              color: #e78087;
+            }
+            .blue{
+              color: #795b9e;
+            }
             &:first-child{
               background: linear-gradient(-28deg, #3f1473 0%, #af3b74 50%, #db4b54 100%);
               -webkit-background-clip: text;
@@ -1740,7 +1894,8 @@ input[type=text]:focus {
         .mvx-recomend{
           position: relative;
           background: #fff;
-          margin: -1.5rem;
+          margin: -2rem 0;
+          padding:3.45rem !important;// to align the last part
           box-shadow: 0rem 0rem 0.9375rem 0.0625rem #0000001a;
           border-radius: 0.25rem;
           z-index: 99;
@@ -1756,26 +1911,24 @@ input[type=text]:focus {
               }
   
             }
-      
   }
- 
   .mvx-gra-txt{
     background-image:  -webkit-linear-gradient(288deg, #4e1a74 14%, #d64959 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
   h2{
-    font-size: 1.5rem;
     padding: 0 0 1rem;
   }
   .mvx-money-table-holder{
       display: flex;
       align-items: center;
-      width: 94%;
+      width: 85%;
       margin: 4.313rem auto;
       .mvx-spr-sever-rcmnd{
         padding: 2rem 0;
         transform: scale(1.01);
+        background-color: $fill-color !important; //to color middle price coloumn
         box-shadow: 0rem 0rem 0.9375rem 0.0625rem #0000001a;
         position: relative;
         .mvx-recommend-tag{
@@ -1794,22 +1947,50 @@ input[type=text]:focus {
         border-radius: 0.25rem;
         border: 0.06rem solid $boder-color;
         width: 34%;
-        margin: 0;
+        padding: 2rem;
         &:nth-child(2){
           border: none;
+        padding: 4rem 2rem;
         }
         .mvx-btn{
           width: 100%;
+          margin: 1rem 0;
         }
+        .mvx-price-component {
+          text-align: left;
+          padding-top: 0.58rem;
+          p{
+            padding: 0.5rem 0;
+            color:$paragraph-color;
+          }
+          a{
+            color: $theme-color;
+          }
+          }
         ul li{
-          padding:0.6rem;
+          padding: 0.63869rem;
           &:first-child{
             font-size: 1.5rem;
+            padding-top: 0.25rem;
             font-weight: 500;
             background: linear-gradient(-28deg, #3f1473 0%, #af3b74 50%, #db4b54 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
           }
+          .m-price {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            h1{
+              font-size: 2rem;
+              color:$title-color;
+            }
+            s{
+              color: #8e8b91;
+              font-size: 1rem;
+            }
+        }
         }
       }
      
@@ -1817,20 +1998,19 @@ input[type=text]:focus {
 }
 
     .mvx-upgrade-pro-section {
-      @include flexprops(center);
-      width: 100%;
-      justify-content: center;
-      flex-direction: column;
-
+  text-align: center;
       .mvx-dashboard-top-icon {
         border-radius: 1rem;
+        line-height: 1.5;
         text-align: center;
         color: #fff;
         font-size: 2.5rem;
         padding: 1rem;
         width: 6rem;
         height: 6rem;
+        margin: auto;
         background: #4e1a74;
+        box-shadow: 0px 18px 44px 0px #3f14731f;
         background: -webkit-gradient(left top, right bottom, color-stop(0%, #4e1a74), color-stop(100%, #d64959));
         background: linear-gradient(135deg, #4e1a74 0%, #d64959 100%);
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4e1a74', endColorstr='#d64959',  GradientType=1);
@@ -1839,18 +2019,36 @@ input[type=text]:focus {
   }
 
   // Start - Settings Page
+  .mvx-setting-section-divider{
+    background-color: $boder-color;
+    height: 0.06rem;
+    margin: 2rem 0
+  }
+.mvx-select-deselect-trigger {
+  border:$border;
+  border-radius: $border-radius;
+  width: fit-content;
+  padding: 0.66rem 1rem;
+  transition: all 0.3s;
+  cursor: pointer;
+  &:hover{
+    border-color: $title-color;
+  }
+}
   .mvx-search-and-multistatus-wrap {
     @include flexprops(center);
     justify-content: space-between;
+    padding: 1rem 0;
+  
     .mvx-multistatus-ul {
       margin: 1.2rem 0;
       @include flexprops(center);
       .mvx-multistatus-item {
         margin: 0;
-        font-size: 1rem;
+        font-size: 0.875rem;
       }
       .mvx-divider {
-        width: 0.1rem;
+        width: 0.051rem;
         background-color: $title-color;
         margin: 0 0.4rem;
         height: 1rem;
@@ -1860,6 +2058,7 @@ input[type=text]:focus {
 
   .mvx-wrap-bulk-all-date {
     @include flexprops(center);
+    padding-bottom: 1rem;
   }
 
   // Start - Module Page
@@ -1880,30 +2079,37 @@ input[type=text]:focus {
   .mvx-module-settings-box {
     & .mvx-module-icon {
         @include moduleicon;
+       i{
+        padding: 0;
+        line-height: 2.3;
+       }
     }
     & .mvx-module-list-label-text {
       color: $title-color;
-      font-size: 1rem;
-      padding-bottom: 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    padding-bottom: 0.5rem;
       & .mvx-module-section-pro-badge {
         position: absolute;
         top: 1.5rem;
         right: 1.5rem;
-        background: $theme-color;
+        background: #9f8ab9;
         color: $fill-color;
-        padding: 0.25rem 0rem;
+        padding: 0.25rem 0.75rem;
         border-radius: 0.625rem;
         font-size: 0.8rem;
-        width: 2.5rem;
         text-align: center;
-        height: 1rem;
-        line-height: 0.375rem;
+        line-height: 0.7rem;
+        text-transform: capitalize;
       }
     }
     & .mvx-module-require-name {
       text-align: left;
-      font-size: 1rem;
-      margin: 1.25rem 0 1.25rem 0;
+      padding: 0.5rem;
+      border-top: 0.06rem solid #f9f8fb;
+      font-weight: 500;
+      font-size: .875rem;
+      margin: 1.5rem 0 1rem 0;
     }
     & ul {
       & li {
@@ -1915,14 +2121,14 @@ input[type=text]:focus {
         text-align: left;
         & .inactive-plugin-class {
           border-radius: 50rem;
-          width: 1.25rem;
-          height: 1.25rem;
-          line-height: 1rem;
-          margin-right: 0.625rem;
+          width: 1rem;
+          line-height: 1;
+          height: 1rem;
+          margin-right: 0.5rem;
           text-align: center;
-          background: #fff0f1;
+          background: #fefbfc;
           & .icon-no {
-            font-size: 0.5rem;
+            font-size: 0.438rem;
             color: #e35047;
           }
         }
@@ -1935,22 +2141,29 @@ input[type=text]:focus {
     left: 0rem;
     right: 0rem;
     background: #faf8fb;
-    padding: 1rem;
+    background: #f9f8fb;
+    padding: 0.5rem 1rem;
     @include flexprops(center);
+    .mvx-btn{
+      margin-right:0.5rem; 
+    }
   }
 }
+
+
 
 // Start - Activity Reminder
 .mvx-product-box-sec {
   @include flexprops(center);
+  flex-wrap: nowrap;
   .mvx-all-product-box {
     position: relative;
     width: 18.75rem;
-    height: 15.625rem;
+    height: 17.625rem;
     background: $fill-color;
     border: $border;
     border-radius: $border-radius;
-    margin-right: .5rem;
+    margin: .5rem;
     & .mvx-white-box-header {
       @include flexprops(center);
       width: 100%;
@@ -1962,6 +2175,9 @@ input[type=text]:focus {
         margin-left: auto;
       }
     }
+    & i{
+      padding: 0;
+    }
     & .mvx-white-box-body {
       margin: 1rem;
       & img {
@@ -1969,10 +2185,14 @@ input[type=text]:focus {
         margin-right: 0.625rem;
       }
       & .mvx-box-content {
-        @include flexprops(center);
+        @include flexprops(start);
         margin-bottom: .5rem;
+        .mvx-product-title{
+          width: 40%;
+        }
         & .mvx-product-name {
           margin-left: .5rem;
+          width: 50%;
         }
       }
     }
@@ -2012,13 +2232,107 @@ input[type=text]:focus {
 }
 
 // Start - Setup Widget
+.wc-setup{
+border: 0;
+h1#wc-logo{
+    border: 0;
+    img{
+    height: 5rem;
+  }
+}
+.woocommerce-message{
+  padding: 0 0 3rem;
+  margin: 0;
+  p{
+    text-align: center;
+    margin: 0;
+  }
+}
+}
+.wc-setup-content{
+  text-align: center;
+  margin-bottom:2rem;
+   .wc-setup-next-steps{
+    @include flexprops(start);
+    flex-direction: row-reverse;
+    text-align: left;
+    padding: 3rem 0 0;
+   }
+}
+table.form-table {
+  background: none;
+  td{
+    @include flexprops(start);
+    column-gap: 1rem;
+  }
+  th, td{
+    text-align: left;
+  }
+}
+.red-btn, .button-primary{
+  background-color: #e35047 !important;
+  border: 0.06rem solid #e35047 !important;
+  color: $fill-color !important;
+  &:hover{
+    border: 0.06rem solid #e26f76 !important;
+    background-color: #e26f76 !important;
+    color: $fill-color !important;
+  }
+}
+ .wc-setup-actions {
+  @include flexprops(start);
+  justify-content: center;
+  a:first-child{
+    border: $border;
+    color: $boder-color;
+  }
+  .button.button-large{
+    padding: 0.5rem 6rem;
+    line-height: 1.5;
+    min-width: unset;
+  }
+  }
 
+.select2-container--open .select2-dropdown{
+  left: 1.25rem;
+}
+.mvx-vendor-transients{
+  padding: 0.5rem 0;
+  .mvx-vendor-transients-description{
+    padding: 0 0 0.5rem;
+  }
+   .mvx-text-with-line-wrapper{
+  padding: 0;
+}
+}
+.mvx-all-done-page-header-sec{
+  @include flexprops(start);
+  justify-content: center;
+  column-gap: 1rem;
+  .mvx-title{
+    font-size: 2rem;
+  }
+}
+div#health-check-debug {
+  margin: 0.5rem 0;
+  border-radius: $border-radius;
+}
+.woocommerce-tracker{
+  border-bottom: $border;
+  border-width: 0 0 0.06rem 0;
+  border-radius: 0;
+}
+.mvx-vendor-transients-button, .site-health-copy-buttons{ 
+  .btn-border{
+  color: $theme-color;
+  line-height: 1.2;
+}}
 // Start - Datatable
 .mvx-backend-datatable-wrapper {
   .rdt_Pagination{
     background: transparent;
     border: none;
-    margin: 2.4rem 0;
+    margin: 2rem 0;
     .gnaqej {
       border: $border;
       border-radius: $border-radius;
@@ -2043,7 +2357,7 @@ input[type=text]:focus {
       .bvxQGL {
         border: $border;
         border-radius: $border-radius;
-        margin-left: 1rem;
+        margin-left: 0.25rem;
         width: 2.5rem;
         height: 2rem;
         @include flexprops(center);
@@ -2056,6 +2370,18 @@ input[type=text]:focus {
       }
     }
   }
+  .sc-dmRaPn{
+    &::-webkit-scrollbar{
+      height: 1rem;
+    }
+    &::-webkit-scrollbar-thumb{
+      background-color: $theme-color;
+      height: 0.25rem;
+    }
+    &::-webkit-scrollbar-button{
+      background-color: #5e5d60;
+    }
+  }
   .rdt_Table {
     background: transparent;
     .rdt_TableHead {
@@ -2063,6 +2389,7 @@ input[type=text]:focus {
           border: $border;
           margin-bottom: 0.4rem;
           border-radius: $border-radius;
+          font-size: 0.875rem;
       }
     }
     .rdt_TableBody {
@@ -2071,6 +2398,7 @@ input[type=text]:focus {
         border-radius: $border-radius;
         margin-bottom: 0.2rem;
         min-height: 3rem;
+        font-size: 0.813rem;
         position: relative;
         .rdt_TableCell {
           .mvx-vendor-action-icon {
@@ -2114,17 +2442,133 @@ input[type=text]:focus {
     }
   }
 }
+//start - workboard page
+.css-14dclt2-Input{
+  margin: 0 !important; //bulk action input button
+}
+.mvx-wrap-bulk-action.css-b62m3t-container {
+  margin: 0 0.25rem 0 0;
+}
+.mvx-module-grid{
+  .mvx-form-group {
+    @include flexprops(start);
+    margin: 1rem 0;
+    .mvx-settings-form-label{
+      width: 15%;
+    }
+    .mvx-settings-input-content{
+      width: 90%;
+    }
+  }
+}
 
-// Start - List Vendor Page Pop Up
+.mvx-form-actions {
+  text-align: right;
+}
+//start - edit commission page
+.woocommerce-order-data .mvx-page-title{
+  font-size: 1.5rem;
+  color: $title-color;
+  padding: 1.5rem 0;
+  font-weight: 500;
+}
+.mvx-commission-details-section{
+  background-color: $section-background;
+  border: $border;
+  border-radius: $border-radius;
+  padding: 1rem;
+  .woocommerce-order-data-heading{
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: $title-color;
+    padding: 0 0 2rem;
+  }
+    .mvx-edit-commission-status-wrapper{
+      @include flexprops(start);
+      justify-content: space-between;
+      .mvx-commission-wrap-vendor-order-status, .mvx-commission-wrap-amount-shipping-tax{
+        width: 34%;
+      }
+       .commission-details-data-value, .mvx-commission-amount, .mvx-commission-status-wrap, .woocommerce-order-data-meta.order_number{
+        @include flexprops(center);
+        padding: 0.5rem 0;
+        margin: 0;
+        .commission-status-hide-and-show-wrap{
+          @include flexprops(start);
+        }
+        .mvx-commission-label-class,  .mvx-commission-label-class {
+          width: 60%;
+      }
+      }
+    }
+}
+.mvx-order-details-vendor-details-wrap{
+  @include flexprops(start);
+  justify-content: space-between;
+  .mvx-order-details-wrap, .mvx-vendor-notes-details-wrap{
+    width: 48%;
+    .mvx-box-background-white-wrapper, .mvx-commission-vendor-details-class, .mvx-commission-notes-details-class{
+      @include commission-heading();
+    }
+    
+    .mvx-commission-order-data.woocommerce_order_items_wrapper.wc-order-items-editable{
+      border-radius: $border-radius;
+    }
+    table{
+      border: $border;
+      thead{
+        background-color: #f4f1f7;
+        color: $paragraph-color;
+        text-align: left;
+        th{
+          padding: 1rem 0 1rem 1rem;
+        }
+      }
+      tbody{
+        td{
+          padding: 1rem 0 1rem 1rem;
+        }
+        td.thumb{
+          @include flexprops(start);
+          justify-content: space-between;
+        }
+      }
+    }
+  
+    .mvx-child-vendor-details, .mvx_commision_note_clm{
+      background-color: $fill-color;
+      border: $border;
+      border-radius: $border-radius;
+      margin: 0 0 0.5rem;
+      padding: 1rem;
+      .commission-details-data-value{
+        @include flexprops(center);
+        .mvx-commission-label-class{
+          width: 30%;
+        }
+      }
+    }
+
+  }
+
+} 
+// Start - List Vendor Page Pop Up   //popup - set
 .MuiDialog-paperScrollPaper {
+  min-width:20.563rem;
+  overflow: hidden;
   .MuiDialogTitle-root {
     position: relative;
+    overflow: hidden;
     h2 {
       .mvx-module-dialog-title{
         @include flexprops(center);
         justify-content: space-between;
+        color: $title-color;
+        .mvx-vendor-title a{
+          color: $theme-color;
+        }
         i {
-          font-size: 1.6rem;
+          font-size: 0.8rem;
         }
       }
     }
@@ -2139,11 +2583,13 @@ input[type=text]:focus {
   }
   .MuiDialogContent-root {
     .mvx-module-dialog-content {
-      width: 35rem;
       color: $paragraph-color;
+      a{
+      color: $paragraph-color;
+      }
       .mvx-email-content-and-value-wrap{
         @include flexprops(center);
-        font-size: 1.6rem;
+        font-size: 0.8rem;
         & .mvx-content-email {
             padding-right: 0.8rem;
         }
@@ -2153,15 +2599,29 @@ input[type=text]:focus {
           width: 100%;
           border: $border;
           margin: 1rem 0;
-          font-size: 1.4rem;
+          font-size: 0.8rem;
           &::placeholder{
-            font-size: 1.4rem;
+            padding: 0.5rem;
+            font-size: 0.8rem;
           }
         }
       }
       .mvx-vendor-multi-action-buttons {
         @include flexprops(center);
-        justify-content: space-between;
+        justify-content: center;
+        column-gap: 0.5rem;
+        .mvx-btn.btn-purple{
+          @include purple-btn();
+          @include button();
+        }
+        .mvx-btn.btn-red{
+          @include red-btn();
+          @include button();
+        }
+        .mvx-btn.btn-border{
+          @include border-btn();
+          @include button();
+        }
       }
     }
   }
