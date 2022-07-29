@@ -326,7 +326,7 @@ class MVX_Dashboard extends Component {
                                         <h3 className="block-title">Quick Link</h3>
                                         <ul className="row-link">
                                             <li>
-                                                <a href="#">
+                                                <a href={`?page=mvx#&submenu=vendor&name=add-new`}>
                                                     <figure>
                                                         <i className="mvx-font icon-vendor-personal" />
                                                     </figure>
@@ -334,7 +334,7 @@ class MVX_Dashboard extends Component {
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="#">
+                                                <a href={`?page=mvx#&submenu=commission`}>
                                                     <figure>
                                                         <i className="mvx-font icon-vendor-personal" />
                                                     </figure>

@@ -33,6 +33,8 @@ class MVX_Header extends Component {
 						<img
 							src={appLocalizer.mvx_logo}
 							className="mvx-section-img-fluid mvx-logo-img"
+							width="50px"
+							height="50px"
 						/>
 					</div>
 					<div className="mvx-header-section-nav-child-data mvx-logo-title">
