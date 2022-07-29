@@ -111,6 +111,8 @@ class MVX_Status_Tools extends Component {
 									<div className="mvx-text-with-right-side-line">
 										{list_tools.headline_text}
 									</div>
+									<hr role="presentation"></hr>
+
 								</div>
 								<div className="mvx-vendor-transients-description">
 									{list_tools.description_text}
@@ -303,7 +305,7 @@ class MVX_Status_Tools extends Component {
 					</div>
 					<textarea
 						name="name"
-						rows="16"
+						rows="10"
 						cols="80"
 						disabled="disabled"
 					>
