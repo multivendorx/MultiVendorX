@@ -1690,6 +1690,23 @@ class MVX_REST_API {
             )
         );
 
+
+        /*$all_fields_data['others_fileds_section5'] = array(
+            array(
+                'label' =>  __('knowledgebasessssssssssss', 'multivendorx'),
+                'desc'  =>  __('knowledgebase Submenu page', 'multivendorx'),
+                'link_redirect' =>  'true',
+                'link'  =>  admin_url('admin.php?page=mvx#&submenu=dashboard')
+            )
+        );*/
+
+        $add_modules_details = mvx_list_all_modules();
+        foreach ($add_modules_details as $key_parent => $value_parent) {
+            foreach ($value_parent['options'] as $key_child => $value_child) {
+                $all_fields_data['others_fileds_section5'][] =  array( 'id' => $value_child['id'], 'label' => $value_child['name'], 'desc' => $value_child['description'], 'link' => admin_url('admin.php?page=mvx#&submenu=modules&name='.$value_child['id'].''));
+            }
+        }
+
         if ($value) {
             foreach ($all_fields_data as $key_fields => $value_fields) {
                 foreach ($value_fields as $key_list => $value_list) {
@@ -1697,6 +1714,7 @@ class MVX_REST_API {
                         $list_of_titles[] = array(
                             'label' =>  $value_list['label'],
                             'desc'  =>  ($value_list['desc']) ? $value_list['desc'] : '',
+                            'link_redirect'  =>  ($value_list['link_redirect']) ? $value_list['link_redirect'] : '',
                             'link'  =>  $value_list['link'] ? $value_list['link'] : (stripos($key_fields, 'payment-') !== false ? admin_url('admin.php?page=mvx#&submenu=payment&name='. $key_fields .'') : admin_url('admin.php?page=mvx#&submenu=settings&name='. $key_fields .''))
                         );
                     }
@@ -5215,8 +5233,8 @@ class MVX_REST_API {
         return true;
     }
 
-    public function wcp_get_module_lists($request) {
-        $module_id = $request->get_param( 'module_id' ) ? $request->get_param( 'module_id' ) : '';
+    public function wcp_get_module_lists($request, $by_id = '') {
+        $module_id = $request->get_param( 'module_id' ) ? $request->get_param( 'module_id' ) : 'all';
         $all_module_lists = mvx_list_all_modules();
 
         if ($module_id && $module_id == 'all') {
@@ -5225,8 +5243,14 @@ class MVX_REST_API {
             $get_searchable_data = $set_2nd_search_item_data = $set_3rd_search_item_data = [];
             foreach ($all_module_lists as $key_parent => $value_parent) {
                 foreach ($value_parent['options'] as $key_child => $value_child) {
-                    if (stripos($value_child['name'], $module_id) !== false) {
-                        $get_searchable_data[] = array('id' => $value_child['id'], 'label' => $value_parent['label'], 'parent_key' => $key_parent, 'child_option_key' => $key_child);
+                    if (!empty($by_id)) {
+                        if (stripos($value_child['id'], $module_id) !== false) {
+                            $get_searchable_data[] = array('id' => $value_child['id'], 'label' => $value_parent['label'], 'parent_key' => $key_parent, 'child_option_key' => $key_child);
+                        }
+                    } else {
+                        if (stripos($value_child['name'], $module_id) !== false) {
+                            $get_searchable_data[] = array('id' => $value_child['id'], 'label' => $value_parent['label'], 'parent_key' => $key_parent, 'child_option_key' => $key_child);
+                        }
                     }
                 }
             }

@@ -560,10 +560,13 @@ class App extends Component {
 					</div>
 
 					<div className="mvx-report-performance-content">
+					<div className="mvx-text-with-right-side-line-wrapper">
+
 						<div className="mvx-text-with-right-side-line">
 							{appLocalizer.report_page_string.performance}
 						</div>
-
+						<hr role="presentation"></hr>
+						</div>
 						{this.state.vendor_loading ? (
 							<div className="mvx-wrapper-performance-content">
 								{this.state.report_overview_data.admin_overview
@@ -615,6 +618,8 @@ class App extends Component {
 									<div className="mvx-text-with-right-side-line">
 										{appLocalizer.report_page_string.charts}
 									</div>
+							<hr role="presentation"></hr>
+
 									<div className="mvx-select-all-bulk-wrap">
 										<div className="mvx-analytics-overview-link">
 											<Link
@@ -738,9 +743,12 @@ class App extends Component {
 					)}
 
 					<div className="mvx-report-leaderboard-content">
+					<div className="mvx-text-with-right-side-line-wrapper">
 						<div className="mvx-text-with-right-side-line">
 							{appLocalizer.report_page_string.leaderboards}
 						</div>
+						<hr role="presentation"></hr>
+					</div>
 
 						<div className="mvx-analytic-details-wrap">
 							<div className="mvx-box-background-white-wrapper">
@@ -831,8 +839,11 @@ class App extends Component {
 					</div>
 
 					<div className="mvx-report-performance-content">
+					<div className="mvx-text-with-right-side-line-wrapper">
 						<div className="mvx-text-with-right-side-line">
 							{appLocalizer.report_page_string.performance}
+						</div>
+						<hr role="presentation"></hr>
 						</div>
 
 						<div className="mvx-wrapper-performance-content">
@@ -878,6 +889,8 @@ class App extends Component {
 									<div className="mvx-text-with-right-side-line">
 										{appLocalizer.report_page_string.charts}
 									</div>
+						<hr role="presentation"></hr>
+
 									<div className="mvx-select-all-bulk-wrap">
 										<div className="mvx-bar-chart">
 											<Link
@@ -1046,6 +1059,8 @@ class App extends Component {
 											.analytics6
 									}
 								</div>
+						<hr role="presentation"></hr>
+
 								<CSVLink
 									data={this.state.vendor_report_chart_data}
 									headers={appLocalizer.report_vendor_header}
@@ -1114,9 +1129,12 @@ class App extends Component {
 					</div>
 
 					<div className="mvx-report-performance-content">
+					<div className="mvx-text-with-right-side-line-wrapper">
 						<div className="mvx-text-with-right-side-line">
 							{appLocalizer.report_page_string.performance}
 						</div>
+						<hr role="presentation"></hr>
+									</div>
 
 						<div className="mvx-wrapper-performance-content">
 							{this.state.report_overview_data.admin_overview
@@ -1154,6 +1172,8 @@ class App extends Component {
 								<div className="mvx-text-with-right-side-line">
 									{appLocalizer.report_page_string.charts}
 								</div>
+						<hr role="presentation"></hr>
+
 								<div className="mvx-select-all-bulk-wrap">
 									<div className="mvx-bar-chart">
 										<Link
@@ -1313,6 +1333,8 @@ class App extends Component {
 											.analytics26
 									}
 								</div>
+						<hr role="presentation"></hr>
+
 								<CSVLink
 									data={this.state.product_report_chart_data}
 									headers={appLocalizer.report_product_header}

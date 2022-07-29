@@ -963,9 +963,13 @@ class MVXworkboard extends Component {
 				(taskboard_data, taskboard_index) => (
 					<div className="mvx-todo-status-check">
 						<div className="mvx-text-with-line-wrapper">
+
 							<div className="mvx-text-with-right-side-line">
 								{taskboard_data.header}
 							</div>
+							<hr role="presentation"></hr>
+
+								
 							<div className="mvx-select-all-bulk-wrap">
 								<div className="mvx-select-all-checkbox">
 									<input

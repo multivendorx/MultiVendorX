@@ -474,6 +474,13 @@ $section-background:#fbfafc;
 .icon-support-forum:before {
   content: "\e956";
 }
+.icon-up-round-arrow:before {
+  content: "\e957";
+}
+.icon-down-round-arrow:before {
+  content: "\e958";
+}
+
 
 /*********** Modules section *********************/
   
@@ -947,9 +954,13 @@ input[type=checkbox]:checked input[type=checkbox] {
     color: unset;
     line-height: 1rem;
     text-decoration: none;
+<<<<<<< HEAD
     &:active{
       color: unset;
     }
+=======
+    
+>>>>>>> upstream/main
     &:focus {
       -webkit-box-shadow: none;
       box-shadow: none;
@@ -1053,7 +1064,10 @@ input[type=checkbox]:checked input[type=checkbox] {
     padding: 2rem 0;
     @include flexprops(center);
     justify-content: space-between;
+<<<<<<< HEAD
     column-gap: 0.5rem;
+=======
+>>>>>>> upstream/main
   }
   .mvx-select-all-bulk-wrap {
     margin-left: auto;
@@ -1088,6 +1102,12 @@ input[type=checkbox]:checked input[type=checkbox] {
 .mvx-text-with-right-side-line-wrapper{
   @include flexprops(center);
   column-gap: 0.5rem;
+<<<<<<< HEAD
+=======
+    hr{
+      width: 80%;
+    }
+>>>>>>> upstream/main
   }
   .mvx-text-with-right-side-line {
     font-size: 1rem;
@@ -1098,10 +1118,16 @@ input[type=checkbox]:checked input[type=checkbox] {
   }
   .mvx-text-with-line-wrapper, .mvx-chart-text-and-bar-line-wrap{
     width: 100%;
+<<<<<<< HEAD
 }
 hr{
   width: 100%;
   margin: 0;
+=======
+   hr{
+    width: 65%;
+  }
+>>>>>>> upstream/main
 }
   .mvx-vertical-tabs {
     & .mvx-tab-description-start {
@@ -1539,9 +1565,12 @@ hr{
           border-right: $border;
           padding: 0.75rem;
           background: $fill-color;
+<<<<<<< HEAD
           &:last-child{
             border: 0;
           }
+=======
+>>>>>>> upstream/main
           .mvx-wrap-price-and-percent{
             @include flexprops(center);
             padding: 1rem 0;
@@ -2235,10 +2264,17 @@ hr{
 .wc-setup{
 border: 0;
 h1#wc-logo{
+<<<<<<< HEAD
     border: 0;
     img{
     height: 5rem;
   }
+=======
+  border: 0;
+   img{
+  height: 5rem;
+}
+>>>>>>> upstream/main
 }
 .woocommerce-message{
   padding: 0 0 3rem;
@@ -2296,6 +2332,7 @@ table.form-table {
 .select2-container--open .select2-dropdown{
   left: 1.25rem;
 }
+<<<<<<< HEAD
 .mvx-vendor-transients{
   padding: 0.5rem 0;
   .mvx-vendor-transients-description{
@@ -2305,6 +2342,8 @@ table.form-table {
   padding: 0;
 }
 }
+=======
+>>>>>>> upstream/main
 .mvx-all-done-page-header-sec{
   @include flexprops(start);
   justify-content: center;
@@ -2312,21 +2351,34 @@ table.form-table {
   .mvx-title{
     font-size: 2rem;
   }
+<<<<<<< HEAD
 }
 div#health-check-debug {
   margin: 0.5rem 0;
   border-radius: $border-radius;
 }
+=======
+ 
+}
+div#health-check-debug {
+  margin: 1rem 0;
+  border-radius: $border-radius;
+}
+
+>>>>>>> upstream/main
 .woocommerce-tracker{
   border-bottom: $border;
   border-width: 0 0 0.06rem 0;
   border-radius: 0;
 }
+<<<<<<< HEAD
 .mvx-vendor-transients-button, .site-health-copy-buttons{ 
   .btn-border{
   color: $theme-color;
   line-height: 1.2;
 }}
+=======
+>>>>>>> upstream/main
 // Start - Datatable
 .mvx-backend-datatable-wrapper {
   .rdt_Pagination{
@@ -2508,9 +2560,19 @@ div#health-check-debug {
   .mvx-order-details-wrap, .mvx-vendor-notes-details-wrap{
     width: 48%;
     .mvx-box-background-white-wrapper, .mvx-commission-vendor-details-class, .mvx-commission-notes-details-class{
+<<<<<<< HEAD
       @include commission-heading();
     }
     
+=======
+      font-size: 1rem;
+      border: $border;
+      background-color: $fill-color;
+      padding: 1rem;
+      margin: 1.5rem 0 0.5rem;
+      border-radius: $border-radius;
+    }
+>>>>>>> upstream/main
     .mvx-commission-order-data.woocommerce_order_items_wrapper.wc-order-items-editable{
       border-radius: $border-radius;
     }

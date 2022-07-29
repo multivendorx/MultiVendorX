@@ -6,9 +6,9 @@ if (!defined('ABSPATH')) {
 /**
  * MVX Admin Class
  *
- * @version		2.2.0
- * @package		MVX
- * @author 		Multivendor X
+ * @version     2.2.0
+ * @package     MVX
+ * @author      Multivendor X
  */
 class MVX_Admin {
 
@@ -1014,7 +1014,7 @@ class MVX_Admin {
             'search_module' =>  __('Search Modules', 'multivendorx'),
             'marketplace_text' => __('MultiVendorX', 'multivendorx'),
             'search_module_placeholder' => __('Search Modules', 'multivendorx'),
-            'pro_text' => __('PRO', 'multivendorx'),
+            'pro_text' => __('Pro', 'multivendorx'),
             'documentation_extra_text' => __('For more info, please check the', 'multivendorx'),
             'documentation_text' => __('DOC', 'multivendorx'),
             'settings_text' => __('Settings', 'multivendorx'),

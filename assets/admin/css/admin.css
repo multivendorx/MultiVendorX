@@ -371,6 +371,14 @@
   content: "\e956";
 }
 
+.icon-up-round-arrow:before {
+  content: "\e957";
+}
+
+.icon-down-round-arrow:before {
+  content: "\e958";
+}
+
 /*********** Modules section *********************/
 @font-face {
   font-family: 'mvx-module';
@@ -886,10 +894,13 @@ input[type=checkbox]:checked input[type=checkbox] {
   text-decoration: none;
 }
 
+<<<<<<< HEAD
 .mvx-container a:active {
   color: unset;
 }
 
+=======
+>>>>>>> upstream/main
 .mvx-container a:focus {
   -webkit-box-shadow: none;
   box-shadow: none;
@@ -1038,8 +1049,11 @@ input[type=checkbox]:checked input[type=checkbox] {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+<<<<<<< HEAD
   -webkit-column-gap: 0.5rem;
           column-gap: 0.5rem;
+=======
+>>>>>>> upstream/main
 }
 
 .mvx-container .mvx-select-all-bulk-wrap {
@@ -1150,6 +1164,13 @@ input[type=checkbox]:checked input[type=checkbox] {
           column-gap: 0.5rem;
 }
 
+<<<<<<< HEAD
+=======
+.mvx-container .mvx-text-with-right-side-line-wrapper hr {
+  width: 80%;
+}
+
+>>>>>>> upstream/main
 .mvx-container .mvx-text-with-right-side-line {
   font-size: 1rem;
   font-weight: 500;
@@ -1162,9 +1183,14 @@ input[type=checkbox]:checked input[type=checkbox] {
   width: 100%;
 }
 
+<<<<<<< HEAD
 .mvx-container hr {
   width: 100%;
   margin: 0;
+=======
+.mvx-container .mvx-text-with-line-wrapper hr, .mvx-container .mvx-chart-text-and-bar-line-wrap hr {
+  width: 65%;
+>>>>>>> upstream/main
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-tab-description-start {
@@ -1738,10 +1764,13 @@ input[type=checkbox]:checked input[type=checkbox] {
   background: #fdfdfe;
 }
 
+<<<<<<< HEAD
 .mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-wrapper-performance-content .mvx-performance-wrapper-content:last-child {
   border: 0;
 }
 
+=======
+>>>>>>> upstream/main
 .mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-wrapper-performance-content .mvx-performance-wrapper-content .mvx-wrap-price-and-percent {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2788,6 +2817,7 @@ table.form-table th, table.form-table td {
   left: 1.25rem;
 }
 
+<<<<<<< HEAD
 .mvx-vendor-transients {
   padding: 0.5rem 0;
 }
@@ -2800,6 +2830,8 @@ table.form-table th, table.form-table td {
   padding: 0;
 }
 
+=======
+>>>>>>> upstream/main
 .mvx-all-done-page-header-sec {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2819,7 +2851,11 @@ table.form-table th, table.form-table td {
 }
 
 div#health-check-debug {
+<<<<<<< HEAD
   margin: 0.5rem 0;
+=======
+  margin: 1rem 0;
+>>>>>>> upstream/main
   border-radius: 0.25rem;
 }
 
@@ -2829,11 +2865,14 @@ div#health-check-debug {
   border-radius: 0;
 }
 
+<<<<<<< HEAD
 .mvx-vendor-transients-button .btn-border, .site-health-copy-buttons .btn-border {
   color: #65438f;
   line-height: 1.2;
 }
 
+=======
+>>>>>>> upstream/main
 .mvx-backend-datatable-wrapper .rdt_Pagination {
   background: transparent;
   border: none;
