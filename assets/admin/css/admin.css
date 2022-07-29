@@ -371,14 +371,6 @@
   content: "\e956";
 }
 
-.icon-up-round-arrow:before {
-  content: "\e957";
-}
-
-.icon-down-round-arrow:before {
-  content: "\e958";
-}
-
 /*********** Modules section *********************/
 @font-face {
   font-family: 'mvx-module';
@@ -894,6 +886,10 @@ input[type=checkbox]:checked input[type=checkbox] {
   text-decoration: none;
 }
 
+.mvx-container a:active {
+  color: unset;
+}
+
 .mvx-container a:focus {
   -webkit-box-shadow: none;
   box-shadow: none;
@@ -1042,6 +1038,8 @@ input[type=checkbox]:checked input[type=checkbox] {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-column-gap: 0.5rem;
+          column-gap: 0.5rem;
 }
 
 .mvx-container .mvx-select-all-bulk-wrap {
@@ -1152,10 +1150,6 @@ input[type=checkbox]:checked input[type=checkbox] {
           column-gap: 0.5rem;
 }
 
-.mvx-container .mvx-text-with-right-side-line-wrapper hr {
-  width: 80%;
-}
-
 .mvx-container .mvx-text-with-right-side-line {
   font-size: 1rem;
   font-weight: 500;
@@ -1168,8 +1162,9 @@ input[type=checkbox]:checked input[type=checkbox] {
   width: 100%;
 }
 
-.mvx-container .mvx-text-with-line-wrapper hr, .mvx-container .mvx-chart-text-and-bar-line-wrap hr {
-  width: 65%;
+.mvx-container hr {
+  width: 100%;
+  margin: 0;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-tab-description-start {
@@ -1627,8 +1622,32 @@ input[type=checkbox]:checked input[type=checkbox] {
           align-items: center;
 }
 
+.mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-analytic-details-wrap .mvx-backend-datatable-wrapper {
+  padding: 0;
+}
+
+.mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-analytic-details-wrap .mvx-box-background-white-wrapper {
+  font-size: 1rem;
+  border: 0.063rem solid #d4d1d9;
+  background-color: #fdfdfe;
+  padding: 1rem;
+  margin: 1.5rem 0 0.5rem;
+  border-radius: 0.25rem;
+}
+
 .mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-charts-graph-content {
   padding: 2rem 0;
+}
+
+.mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-charts-graph-content .mvx-header-and-graph-wrap {
+  background-color: #fdfdfe;
+  border: 0.063rem solid #d4d1d9;
+}
+
+.mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-charts-graph-content .mvx-header-and-graph-wrap .mvx-box-background-white-wrapper {
+  padding: 1rem 0.8rem;
+  border-bottom: 0.063rem solid #d4d1d9;
+  color: #181718;
 }
 
 .mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-report-datepicker {
@@ -1717,6 +1736,10 @@ input[type=checkbox]:checked input[type=checkbox] {
   border-right: 0.063rem solid #d4d1d9;
   padding: 0.75rem;
   background: #fdfdfe;
+}
+
+.mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-wrapper-performance-content .mvx-performance-wrapper-content:last-child {
+  border: 0;
 }
 
 .mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-wrapper-performance-content .mvx-performance-wrapper-content .mvx-wrap-price-and-percent {
@@ -2765,6 +2788,18 @@ table.form-table th, table.form-table td {
   left: 1.25rem;
 }
 
+.mvx-vendor-transients {
+  padding: 0.5rem 0;
+}
+
+.mvx-vendor-transients .mvx-vendor-transients-description {
+  padding: 0 0 0.5rem;
+}
+
+.mvx-vendor-transients .mvx-text-with-line-wrapper {
+  padding: 0;
+}
+
 .mvx-all-done-page-header-sec {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2784,7 +2819,7 @@ table.form-table th, table.form-table td {
 }
 
 div#health-check-debug {
-  margin: 1rem 0;
+  margin: 0.5rem 0;
   border-radius: 0.25rem;
 }
 
@@ -2792,6 +2827,11 @@ div#health-check-debug {
   border-bottom: 0.063rem solid #d4d1d9;
   border-width: 0 0 0.06rem 0;
   border-radius: 0;
+}
+
+.mvx-vendor-transients-button .btn-border, .site-health-copy-buttons .btn-border {
+  color: #65438f;
+  line-height: 1.2;
 }
 
 .mvx-backend-datatable-wrapper .rdt_Pagination {
@@ -2846,6 +2886,19 @@ div#health-check-debug {
 
 .mvx-backend-datatable-wrapper .rdt_Pagination .jMMJgk .bvxQGL:hover {
   border: 0.063rem solid #65438f;
+}
+
+.mvx-backend-datatable-wrapper .sc-dmRaPn::-webkit-scrollbar {
+  height: 0.5rem;
+}
+
+.mvx-backend-datatable-wrapper .sc-dmRaPn::-webkit-scrollbar-thumb {
+  background-color: #65438f;
+  border-radius: 0.25rem;
+}
+
+.mvx-backend-datatable-wrapper .sc-dmRaPn::-webkit-scrollbar-button {
+  background-color: #5e5d60;
 }
 
 .mvx-backend-datatable-wrapper .rdt_Table {

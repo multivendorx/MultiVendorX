@@ -38,6 +38,14 @@ $section-background:#fbfafc;
       }
   }
 }
+@mixin commission-heading {
+  font-size: 1rem;
+  border: $border;
+  background-color: $fill-color;
+  padding: 1rem;
+  margin: 1.5rem 0 0.5rem;
+  border-radius: $border-radius;
+}
 @mixin toggle-btn {
     input[type=checkbox]{
         height: 0;
@@ -466,13 +474,6 @@ $section-background:#fbfafc;
 .icon-support-forum:before {
   content: "\e956";
 }
-.icon-up-round-arrow:before {
-  content: "\e957";
-}
-.icon-down-round-arrow:before {
-  content: "\e958";
-}
-
 
 /*********** Modules section *********************/
   
@@ -946,7 +947,9 @@ input[type=checkbox]:checked input[type=checkbox] {
     color: unset;
     line-height: 1rem;
     text-decoration: none;
-    
+    &:active{
+      color: unset;
+    }
     &:focus {
       -webkit-box-shadow: none;
       box-shadow: none;
@@ -1050,6 +1053,7 @@ input[type=checkbox]:checked input[type=checkbox] {
     padding: 2rem 0;
     @include flexprops(center);
     justify-content: space-between;
+    column-gap: 0.5rem;
   }
   .mvx-select-all-bulk-wrap {
     margin-left: auto;
@@ -1084,9 +1088,6 @@ input[type=checkbox]:checked input[type=checkbox] {
 .mvx-text-with-right-side-line-wrapper{
   @include flexprops(center);
   column-gap: 0.5rem;
-    hr{
-      width: 80%;
-    }
   }
   .mvx-text-with-right-side-line {
     font-size: 1rem;
@@ -1097,9 +1098,10 @@ input[type=checkbox]:checked input[type=checkbox] {
   }
   .mvx-text-with-line-wrapper, .mvx-chart-text-and-bar-line-wrap{
     width: 100%;
-   hr{
-    width: 65%;
-  }
+}
+hr{
+  width: 100%;
+  margin: 0;
 }
   .mvx-vertical-tabs {
     & .mvx-tab-description-start {
@@ -1463,8 +1465,25 @@ input[type=checkbox]:checked input[type=checkbox] {
       .mvx-date-and-show-wrapper {
           @include flexprops(center);
       }
+      .mvx-analytic-details-wrap {
+        .mvx-backend-datatable-wrapper{
+          padding: 0;
+        }
+      .mvx-box-background-white-wrapper{
+        @include commission-heading();
+      }
+    }
       & .mvx-charts-graph-content {
         padding: 2rem 0;
+        .mvx-header-and-graph-wrap{
+          background-color: $fill-color;
+          border: $border;
+          & .mvx-box-background-white-wrapper{
+            padding: 1rem 0.8rem;
+            border-bottom: $border;
+            color: $title-color;
+          }
+        }
       }
       & .mvx-report-datepicker {
         @include datepicker;
@@ -1520,6 +1539,9 @@ input[type=checkbox]:checked input[type=checkbox] {
           border-right: $border;
           padding: 0.75rem;
           background: $fill-color;
+          &:last-child{
+            border: 0;
+          }
           .mvx-wrap-price-and-percent{
             @include flexprops(center);
             padding: 1rem 0;
@@ -2213,10 +2235,10 @@ input[type=checkbox]:checked input[type=checkbox] {
 .wc-setup{
 border: 0;
 h1#wc-logo{
-  border: 0;
-   img{
-  height: 5rem;
-}
+    border: 0;
+    img{
+    height: 5rem;
+  }
 }
 .woocommerce-message{
   padding: 0 0 3rem;
@@ -2274,6 +2296,15 @@ table.form-table {
 .select2-container--open .select2-dropdown{
   left: 1.25rem;
 }
+.mvx-vendor-transients{
+  padding: 0.5rem 0;
+  .mvx-vendor-transients-description{
+    padding: 0 0 0.5rem;
+  }
+   .mvx-text-with-line-wrapper{
+  padding: 0;
+}
+}
 .mvx-all-done-page-header-sec{
   @include flexprops(start);
   justify-content: center;
@@ -2281,18 +2312,21 @@ table.form-table {
   .mvx-title{
     font-size: 2rem;
   }
- 
 }
 div#health-check-debug {
-  margin: 1rem 0;
+  margin: 0.5rem 0;
   border-radius: $border-radius;
 }
-
 .woocommerce-tracker{
   border-bottom: $border;
   border-width: 0 0 0.06rem 0;
   border-radius: 0;
 }
+.mvx-vendor-transients-button, .site-health-copy-buttons{ 
+  .btn-border{
+  color: $theme-color;
+  line-height: 1.2;
+}}
 // Start - Datatable
 .mvx-backend-datatable-wrapper {
   .rdt_Pagination{
@@ -2334,6 +2368,20 @@ div#health-check-debug {
           border: 0.063rem solid $theme-color;
         }
       }
+    }
+  }
+  .sc-dmRaPn{
+    &::-webkit-scrollbar{
+      height: 0.5rem;
+      
+    }
+    &::-webkit-scrollbar-thumb{
+      background-color: $theme-color;
+      border-radius: $border-radius;
+    }
+    &::-webkit-scrollbar-button{
+      background-color: #5e5d60;
+      
     }
   }
   .rdt_Table {
@@ -2462,13 +2510,9 @@ div#health-check-debug {
   .mvx-order-details-wrap, .mvx-vendor-notes-details-wrap{
     width: 48%;
     .mvx-box-background-white-wrapper, .mvx-commission-vendor-details-class, .mvx-commission-notes-details-class{
-      font-size: 1rem;
-      border: $border;
-      background-color: $fill-color;
-      padding: 1rem;
-      margin: 1.5rem 0 0.5rem;
-      border-radius: $border-radius;
+      @include commission-heading();
     }
+    
     .mvx-commission-order-data.woocommerce_order_items_wrapper.wc-order-items-editable{
       border-radius: $border-radius;
     }
