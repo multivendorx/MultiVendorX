@@ -923,7 +923,7 @@ class MVXBackendVendor extends React.Component {
 
 	Childparent({ name }) {
 		return (
-			<div className="mvx-dynamic-form-content">
+			<div className="-content">
 				<Link className="mvx-back-btn" to={`?page=mvx#&submenu=vendor`}>
 					<i className="mvx-font icon-back"></i>Back
 				</Link>

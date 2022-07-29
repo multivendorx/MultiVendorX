@@ -1769,7 +1769,7 @@ class MVX_Backend_Commission extends Component {
 												this.state.data_paid_commission
 													.length
 											}
-											)
+											) 
 										</div>
 									</li>
 									<li className="mvx-multistatus-item mvx-divider"></li>

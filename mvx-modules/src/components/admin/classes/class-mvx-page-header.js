@@ -33,8 +33,6 @@ class MVX_Header extends Component {
 						<img
 							src={appLocalizer.mvx_logo}
 							className="mvx-section-img-fluid mvx-logo-img"
-							width="50px"
-							height="50px"
 						/>
 					</div>
 					<div className="mvx-header-section-nav-child-data mvx-logo-title">
@@ -59,12 +57,7 @@ class MVX_Header extends Component {
 								{this.state.fetch_all_settings_for_searching.map(
 									(data, index) => (
 										<div className="mvx-header-search-content-wrapper">
-											<a onClick={(e) =>
-												(
-													window.location.href = data.link
-													
-												)
-											}>
+											<a href={data.link}>
 												<div className="mvx-header-search-contetnt-label">
 													{data.label}
 												</div>

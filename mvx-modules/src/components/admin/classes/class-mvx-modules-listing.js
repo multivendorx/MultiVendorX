@@ -150,7 +150,7 @@ class MVX_Module_Listing extends Component {
 	componentDidMount() {
 		Promise.all([
 			fetch(
-				new URLSearchParams(window.location.hash).get('name') ? `${appLocalizer.apiUrl}/mvx_module/v1/module_lists?module_id=${new URLSearchParams(window.location.hash).get('name')}` : `${appLocalizer.apiUrl}/mvx_module/v1/module_lists?module_id=all`
+				`${appLocalizer.apiUrl}/mvx_module/v1/module_lists?module_id=all`
 			).then((res) => res.json()),
 		])
 			.then(([product]) => {

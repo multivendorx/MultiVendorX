@@ -1182,12 +1182,10 @@ html {
 }
 
 a {
-    color: #1675e0;
     text-decoration: none;
 }
 a:focus,
 a:hover {
-    color: #0a5dc2;
 }
 a:active,
 a:focus,
@@ -1195,7 +1193,6 @@ a:hover {
     text-decoration: underline;
 }
 a:active {
-    color: #004299;
 }
 a:focus {
     outline: 0;
@@ -1665,7 +1662,6 @@ dd {
     cursor: pointer;
     -webkit-transition: color 0.3s linear;
     transition: color 0.3s linear;
-    color: #1675e0;
     text-decoration: none;
 }
 .rs-breadcrumb-item > a:focus,
