@@ -54,7 +54,7 @@ $section-background:#fbfafc;
         display: block;
         border-radius: 8rem;
         position: relative;
-        border: 0.06rem solid $theme-color;
+        border: 0.125rem solid $theme-color;
     }
     label:before {
         content: '';
@@ -70,7 +70,7 @@ $section-background:#fbfafc;
     label:after {
         content: '';
         position: absolute;
-        top: 0.25rem;
+        top: 0.188rem;
         left: 0.313rem;
         width: 0.875rem;
         height: 0.875rem;
@@ -108,6 +108,7 @@ $section-background:#fbfafc;
         border: $border;
         border-radius: $border-radius;
         position: relative;
+        min-width: 20rem;
     }
     & .mvx-module-section-options-list:nth-child(3) {
         margin-right: 0;
@@ -149,6 +150,30 @@ $section-background:#fbfafc;
   border: $border;
   border-radius: $border-radius;
   height: 2.5rem;
+}
+@mixin red-btn {
+  background-color: #e35047;
+  color: #f9f8fb;
+  &:hover{
+    background-color: #e6635b;
+    color: #f9f8fb;
+  }
+}
+@mixin purple-btn {
+  background-color: #65438f;
+  border: none;
+  color: #f9f8fb;
+  &:hover{
+    background-color: #795b9d;
+    color: #f9f8fb;
+  }
+}
+@mixin border-btn {
+  border: $border;
+  color: $title-color;
+  &:hover{
+    border-color: #181718 ;
+  }
 }
 
 /* fonts */
@@ -441,6 +466,13 @@ $section-background:#fbfafc;
 .icon-support-forum:before {
   content: "\e956";
 }
+.icon-up-round-arrow:before {
+  content: "\e957";
+}
+.icon-down-round-arrow:before {
+  content: "\e958";
+}
+
 
 /*********** Modules section *********************/
   
@@ -701,7 +733,7 @@ $section-background:#fbfafc;
 /*icon end*/
  
 // Start - Common CSS
-textarea, input[type=text], select, input, .default-input {
+textarea, input[type=text], input[type=url], select, input, .default-input {
     border-radius: 0.25rem;
     width: 100%;
     padding: 0rem 0.75rem;
@@ -906,7 +938,7 @@ input[type=checkbox]:checked input[type=checkbox] {
 .mvx-container {
   @include flexprops(start);
   background-color: $base-color;
-  padding: 3rem 1.5rem;
+  padding: 2rem 1.5rem;
   i {
     padding-right: 0.5rem;
   }
@@ -927,44 +959,34 @@ input[type=checkbox]:checked input[type=checkbox] {
   }
   a.mvx-back-btn {
     color: $title-color;
+    vertical-align: middle;
     text-decoration: none;
     border: $border;
     padding: 0.594rem 1rem;
     border-radius: $border-radius;
 }
-
+ 
   .btn-red {
-    background-color: #e35047;
-    color: #f9f8fb;
-    &:hover{
-      background-color: #e6635b;
-      color: #f9f8fb;
-    }
+   @include red-btn();
   }
+  
   .btn-purple {
-    background-color: #65438f;
-    border: none;
-    color: #f9f8fb;
-    &:hover{
-      background-color: #795b9d;
-      color: #f9f8fb;
-    }
+   @include purple-btn();
   }
   .btn-border {
-    border: $border;
-    color: $title-color;
-    &:hover{
-      border-color: #181718 ;
-    }
+   @include border-btn();
   }
   .chckbx-purple {
     background-color: #65438f;
     border: none;
     border-radius: $border-radius;
     padding: 0.375rem 1.375rem;
-    color: #f9f8fb;
+    &:hover{
+      background-color: #795b9d;
+    }
     i{
       padding: 0;
+    color: #f9f8fb;
     }
 }
 .chckbx-border{
@@ -974,6 +996,7 @@ input[type=checkbox]:checked input[type=checkbox] {
 }
   .mvx-btn {
     @include button;
+    vertical-align: middle;
   }
   .mvx-sidebar {
     padding-left: 1.2rem;
@@ -1021,6 +1044,7 @@ input[type=checkbox]:checked input[type=checkbox] {
     text-align: center;
     margin-right: 0.5rem;
     padding: 0.563rem 1rem;
+    white-space: nowrap;
   }
   .mvx-text-with-line-wrapper, .mvx-chart-text-and-bar-line-wrap {
     padding: 2rem 0;
@@ -1057,25 +1081,26 @@ input[type=checkbox]:checked input[type=checkbox] {
     transition: 0.3s;
     z-index: 0;
   }
-
+.mvx-text-with-right-side-line-wrapper{
+  @include flexprops(center);
+  column-gap: 0.5rem;
+    hr{
+      width: 80%;
+    }
+  }
   .mvx-text-with-right-side-line {
     font-size: 1rem;
     font-weight: 500;
     color:$title-color;
     padding: 1rem 0;
-    position: relative;
-    display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  grid-template-rows: 1rem 0;
-  grid-gap: 1rem;
-          &::after {
-            content: " ";
-            display: block;
-            border-bottom: 2px solid #ccc;
-            background-color:$paragraph-color;
-        }
-      
+    white-space: nowrap;
   }
+  .mvx-text-with-line-wrapper, .mvx-chart-text-and-bar-line-wrap{
+    width: 100%;
+   hr{
+    width: 65%;
+  }
+}
   .mvx-vertical-tabs {
     & .mvx-tab-description-start {
       background-color: $header-background;
@@ -1171,6 +1196,7 @@ input[type=checkbox]:checked input[type=checkbox] {
               background-color: $theme-color;
               width: 20%;
               color: $fill-color;
+               float: right;
           }
           }
         }
@@ -1178,6 +1204,16 @@ input[type=checkbox]:checked input[type=checkbox] {
       .mvx-form-group-radio-color {
         @include flexprops(center);
         flex-wrap: wrap;
+        .radio-color-active{
+          .mvx-merge-radio-color-input-label {
+            border: 0.12rem solid $theme-color;
+            padding: 0.5rem;
+            border-radius: $border-radius;
+            input[type=radio]:checked::before{
+              margin: -0.06rem;
+            }
+        }
+        }
         & .mvx-settings-radio-color {
           margin: 0.5rem 1rem 0.5rem 0;
           width: calc(50% - 1rem);
@@ -1339,8 +1375,11 @@ input[type=checkbox]:checked input[type=checkbox] {
           }
         }
       }
+      .mvx-top-part-registartion-from {
+        padding-bottom: 2rem;
+      }
 
-      .mvx-form-vendor-register .mvx-option-part {
+      .mvx-form-vendor-register .mvx-option-part, .mvx-top-part-registartion-from  {
         padding: 2rem;
         background-color: $header-background;
         border-radius: 0.25rem;
@@ -1554,9 +1593,12 @@ input[type=checkbox]:checked input[type=checkbox] {
         .mvx-dashboard-top-icon{
           font-size: 1.5rem;
           background: #9f8ab9;
-          border-radius: $border-radius;
+          border-radius: 0.25rem;
           color: #fff;
           padding: 0.9rem;
+          height: 4rem;
+          line-height: 2rem;
+          width: 4rem;
         }
         .mv-dashboard-top-icon span {
           vertical-align: middle;
@@ -1567,9 +1609,10 @@ input[type=checkbox]:checked input[type=checkbox] {
           height: auto;
           min-height: 0.4rem;
           float: left;
+          line-height: 1.5;
           padding-left: 2.4rem;
           p {
-            margin: 0 0 2rem 0;
+            margin: 0.5rem 0 2.5rem 0;
           }
         }
       }
@@ -1704,13 +1747,15 @@ input[type=checkbox]:checked input[type=checkbox] {
             }
             a{
            @include iconcolor();
+           @include flexprops(start);
+           justify-content: center;
+           column-gap: 0.5rem;
               background-color: $section-background;
               position: absolute;
               bottom: 0;
               left: 0;
               width: 100%;
               padding: 1.313rem;
-              text-align: center;
             }
             a:hover{
               text-decoration: none;
@@ -1758,11 +1803,11 @@ input[type=checkbox]:checked input[type=checkbox] {
 .mvx-upgrade-pro-section{
   padding: 6rem 0;
     h1{
-      padding: 3rem 0 0.8rem;
+      padding: 3rem 0 1rem;
       color:$title-color;
     }
     p{
-      padding-bottom: 2.5rem;
+      padding-bottom: 3rem;
     }
 }
 .pro-bg{
@@ -2028,20 +2073,18 @@ input[type=checkbox]:checked input[type=checkbox] {
         right: 1.5rem;
         background: #9f8ab9;
         color: $fill-color;
-        padding: 0.25rem 0rem;
+        padding: 0.25rem 0.75rem;
         border-radius: 0.625rem;
         font-size: 0.8rem;
-        width: 2.5rem;
         text-align: center;
-        height: 1rem;
-        line-height: 0.375rem;
+        line-height: 0.7rem;
         text-transform: capitalize;
       }
     }
     & .mvx-module-require-name {
       text-align: left;
       padding: 0.5rem;
-      border-top: 0.06rem solid $boder-color;
+      border-top: 0.06rem solid #f9f8fb;
       font-weight: 500;
       font-size: .875rem;
       margin: 1.5rem 0 1rem 0;
@@ -2085,6 +2128,8 @@ input[type=checkbox]:checked input[type=checkbox] {
   }
 }
 
+
+
 // Start - Activity Reminder
 .mvx-product-box-sec {
   @include flexprops(center);
@@ -2103,7 +2148,6 @@ input[type=checkbox]:checked input[type=checkbox] {
       padding: 1rem;
       background: $header-background;
       border-radius: 0.25rem 0.25rem 0 0;
-      border-bottom: $border;
       font-weight: 500;
       & .pull-right {
         margin-left: auto;
@@ -2171,7 +2215,7 @@ border: 0;
 h1#wc-logo{
   border: 0;
    img{
-  height: 2.5rem;
+  height: 5rem;
 }
 }
 .woocommerce-message{
@@ -2239,6 +2283,10 @@ table.form-table {
   }
  
 }
+div#health-check-debug {
+  margin: 1rem 0;
+  border-radius: $border-radius;
+}
 
 .woocommerce-tracker{
   border-bottom: $border;
@@ -2250,7 +2298,7 @@ table.form-table {
   .rdt_Pagination{
     background: transparent;
     border: none;
-    margin: 2.4rem 0;
+    margin: 2rem 0;
     .gnaqej {
       border: $border;
       border-radius: $border-radius;
@@ -2295,6 +2343,7 @@ table.form-table {
           border: $border;
           margin-bottom: 0.4rem;
           border-radius: $border-radius;
+          font-size: 0.875rem;
       }
     }
     .rdt_TableBody {
@@ -2303,6 +2352,7 @@ table.form-table {
         border-radius: $border-radius;
         margin-bottom: 0.2rem;
         min-height: 3rem;
+        font-size: 0.813rem;
         position: relative;
         .rdt_TableCell {
           .mvx-vendor-action-icon {
@@ -2353,11 +2403,19 @@ table.form-table {
 .mvx-wrap-bulk-action.css-b62m3t-container {
   margin: 0 0.25rem 0 0;
 }
-.mvx-form-group {
-  @include flexprops(start);
- justify-content: space-between;
-  margin: 1rem 0;
+.mvx-module-grid{
+  .mvx-form-group {
+    @include flexprops(start);
+    margin: 1rem 0;
+    .mvx-settings-form-label{
+      width: 15%;
+    }
+    .mvx-settings-input-content{
+      width: 90%;
+    }
+  }
 }
+
 .mvx-form-actions {
   text-align: right;
 }
@@ -2452,16 +2510,23 @@ table.form-table {
   }
 
 } 
-// Start - List Vendor Page Pop Up
+// Start - List Vendor Page Pop Up   //popup - set
 .MuiDialog-paperScrollPaper {
+  min-width:20.563rem;
+  overflow: hidden;
   .MuiDialogTitle-root {
     position: relative;
+    overflow: hidden;
     h2 {
       .mvx-module-dialog-title{
         @include flexprops(center);
         justify-content: space-between;
+        color: $title-color;
+        .mvx-vendor-title a{
+          color: $theme-color;
+        }
         i {
-          font-size: 1.6rem;
+          font-size: 0.8rem;
         }
       }
     }
@@ -2476,11 +2541,13 @@ table.form-table {
   }
   .MuiDialogContent-root {
     .mvx-module-dialog-content {
-      width: 35rem;
       color: $paragraph-color;
+      a{
+      color: $paragraph-color;
+      }
       .mvx-email-content-and-value-wrap{
         @include flexprops(center);
-        font-size: 1.6rem;
+        font-size: 0.8rem;
         & .mvx-content-email {
             padding-right: 0.8rem;
         }
@@ -2490,15 +2557,29 @@ table.form-table {
           width: 100%;
           border: $border;
           margin: 1rem 0;
-          font-size: 1.4rem;
+          font-size: 0.8rem;
           &::placeholder{
-            font-size: 1.4rem;
+            padding: 0.5rem;
+            font-size: 0.8rem;
           }
         }
       }
       .mvx-vendor-multi-action-buttons {
         @include flexprops(center);
-        justify-content: space-between;
+        justify-content: center;
+        column-gap: 0.5rem;
+        .mvx-btn.btn-purple{
+          @include purple-btn();
+          @include button();
+        }
+        .mvx-btn.btn-red{
+          @include red-btn();
+          @include button();
+        }
+        .mvx-btn.btn-border{
+          @include border-btn();
+          @include button();
+        }
       }
     }
   }

@@ -501,7 +501,7 @@ class MVX_Dashboard extends Component {
                                                                 )
                                                             }>
                                                     <span>
-                                                        <i className="mvx-font icon-down-arrow-02" />
+                                                        <i className="mvx-font icon-up-round-arrow" />
                                                     </span>{' '}
                                                     Show Less
                                                 </a>
@@ -606,7 +606,7 @@ class MVX_Dashboard extends Component {
                                                                 )
                                                             }>
                                                     <span>
-                                                        <i className="mvx-font icon-down-arrow-02" />
+                                                        <i className="mvx-font icon-up-round-arrow" />
                                                     </span>{' '}
                                                     Show Less
                                                 </a>
@@ -700,7 +700,7 @@ class MVX_Dashboard extends Component {
                                                                 )
                                                             }>
                                                     <span>
-                                                        <i className="mvx-font icon-down-arrow-02" />
+                                                        <i className="mvx-font icon-up-round-arrow" />
                                                     </span>{' '}
                                                     Show Less
                                                 </a>
@@ -792,7 +792,7 @@ class MVX_Dashboard extends Component {
                                                                 )
                                                             }>
                                                     <span>
-                                                        <i className="mvx-font icon-down-arrow-02" />
+                                                        <i className="mvx-font icon-up-round-arrow" />
                                                     </span>{' '}
                                                     Show Less
                                                 </a>

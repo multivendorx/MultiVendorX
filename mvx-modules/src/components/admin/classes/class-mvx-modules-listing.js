@@ -274,12 +274,17 @@ class MVX_Module_Listing extends Component {
 							/>
 						) : (
 							this.state.items.map((student1, index1) => (
-								<div id={student1.label.split(" ")} className="mvx-module-list-start">
+								<div className="mvx-module-list-start">
 									<div className="mvx-module-list-container">
+									<div className="mvx-text-with-right-side-line-wrapper">
+
 										<div className="mvx-text-with-right-side-line">
 											{student1.label}
 										</div>
-
+										
+										<hr role="presentation"></hr>
+									</div>
+									
 										<div className="mvx-module-option-row">
 											{student1.options.map(
 												(student, index) => (

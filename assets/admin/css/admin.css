@@ -371,6 +371,14 @@
   content: "\e956";
 }
 
+.icon-up-round-arrow:before {
+  content: "\e957";
+}
+
+.icon-down-round-arrow:before {
+  content: "\e958";
+}
+
 /*********** Modules section *********************/
 @font-face {
   font-family: 'mvx-module';
@@ -624,7 +632,7 @@
 }
 
 /*icon end*/
-textarea, input[type=text], select, input, .default-input {
+textarea, input[type=text], input[type=url], select, input, .default-input {
   border-radius: 0.25rem;
   width: 100%;
   padding: 0rem 0.75rem;
@@ -873,7 +881,7 @@ input[type=checkbox]:checked input[type=checkbox] {
       -ms-flex-align: start;
           align-items: start;
   background-color: #f2eff5;
-  padding: 3rem 1.5rem;
+  padding: 2rem 1.5rem;
 }
 
 .mvx-container i {
@@ -899,6 +907,7 @@ input[type=checkbox]:checked input[type=checkbox] {
 
 .mvx-container a.mvx-back-btn {
   color: #181718;
+  vertical-align: middle;
   text-decoration: none;
   border: 0.063rem solid #d4d1d9;
   padding: 0.594rem 1rem;
@@ -940,11 +949,15 @@ input[type=checkbox]:checked input[type=checkbox] {
   border: none;
   border-radius: 0.25rem;
   padding: 0.375rem 1.375rem;
-  color: #f9f8fb;
+}
+
+.mvx-container .chckbx-purple:hover {
+  background-color: #795b9d;
 }
 
 .mvx-container .chckbx-purple i {
   padding: 0;
+  color: #f9f8fb;
 }
 
 .mvx-container .chckbx-border {
@@ -959,6 +972,7 @@ input[type=checkbox]:checked input[type=checkbox] {
   border-radius: 0.25rem;
   padding: 0.66rem 1rem;
   cursor: pointer;
+  vertical-align: middle;
 }
 
 .mvx-container .mvx-btn:hover {
@@ -1014,6 +1028,7 @@ input[type=checkbox]:checked input[type=checkbox] {
   text-align: center;
   margin-right: 0.5rem;
   padding: 0.563rem 1rem;
+  white-space: nowrap;
 }
 
 .mvx-container .mvx-text-with-line-wrapper, .mvx-container .mvx-chart-text-and-bar-line-wrap {
@@ -1068,7 +1083,7 @@ input[type=checkbox]:checked input[type=checkbox] {
   display: block;
   border-radius: 8rem;
   position: relative;
-  border: 0.06rem solid #65438f;
+  border: 0.125rem solid #65438f;
 }
 
 .mvx-container .mvx-toggle-checkbox-content label:before {
@@ -1086,7 +1101,7 @@ input[type=checkbox]:checked input[type=checkbox] {
 .mvx-container .mvx-toggle-checkbox-content label:after {
   content: '';
   position: absolute;
-  top: 0.25rem;
+  top: 0.188rem;
   left: 0.313rem;
   width: 0.875rem;
   height: 0.875rem;
@@ -1126,26 +1141,35 @@ input[type=checkbox]:checked input[type=checkbox] {
   z-index: 0;
 }
 
+.mvx-container .mvx-text-with-right-side-line-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-column-gap: 0.5rem;
+          column-gap: 0.5rem;
+}
+
+.mvx-container .mvx-text-with-right-side-line-wrapper hr {
+  width: 80%;
+}
+
 .mvx-container .mvx-text-with-right-side-line {
   font-size: 1rem;
   font-weight: 500;
   color: #181718;
   padding: 1rem 0;
-  position: relative;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr auto 1fr;
-      grid-template-columns: 1fr auto 1fr;
-  -ms-grid-rows: 1rem 0;
-      grid-template-rows: 1rem 0;
-  grid-gap: 1rem;
+  white-space: nowrap;
 }
 
-.mvx-container .mvx-text-with-right-side-line::after {
-  content: " ";
-  display: block;
-  border-bottom: 2px solid #ccc;
-  background-color: #5e5d60;
+.mvx-container .mvx-text-with-line-wrapper, .mvx-container .mvx-chart-text-and-bar-line-wrap {
+  width: 100%;
+}
+
+.mvx-container .mvx-text-with-line-wrapper hr, .mvx-container .mvx-chart-text-and-bar-line-wrap hr {
+  width: 65%;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-tab-description-start {
@@ -1258,6 +1282,7 @@ input[type=checkbox]:checked input[type=checkbox] {
   background-color: #65438f;
   width: 20%;
   color: #fdfdfe;
+  float: right;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-form-group-radio-color {
@@ -1269,6 +1294,16 @@ input[type=checkbox]:checked input[type=checkbox] {
           align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+}
+
+.mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-form-group-radio-color .radio-color-active .mvx-merge-radio-color-input-label {
+  border: 0.12rem solid #65438f;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-form-group-radio-color .radio-color-active .mvx-merge-radio-color-input-label input[type=radio]:checked::before {
+  margin: -0.06rem;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-form-group-radio-color .mvx-settings-radio-color {
@@ -1477,7 +1512,11 @@ input[type=checkbox]:checked input[type=checkbox] {
   margin: 0 0 .5rem 0;
 }
 
-.mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-form-vendor-register .mvx-option-part {
+.mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-top-part-registartion-from {
+  padding-bottom: 2rem;
+}
+
+.mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-form-vendor-register .mvx-option-part, .mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-top-part-registartion-from {
   padding: 2rem;
   background-color: #f7f6f9;
   border-radius: 0.25rem;
@@ -1488,16 +1527,16 @@ input[type=checkbox]:checked input[type=checkbox] {
   border: 0.0625rem solid #d4d1d9;
 }
 
-.mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-question-input-items {
+.mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-question-input-items, .mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-top-part-registartion-from .mvx-question-input-items {
   width: 100%;
   margin: 0 .5rem 0 0;
 }
 
-.mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container {
+.mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container, .mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container {
   margin: 0 0 .5rem 0;
 }
 
-.mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-footer-icon-form {
+.mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-footer-icon-form, .mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-top-part-registartion-from .mvx-footer-icon-form {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -1511,21 +1550,21 @@ input[type=checkbox]:checked input[type=checkbox] {
           align-items: center;
 }
 
-.mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-footer-icon-form .mvx-perple-txt {
+.mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-footer-icon-form .mvx-perple-txt, .mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-top-part-registartion-from .mvx-footer-icon-form .mvx-perple-txt {
   margin-left: auto;
 }
 
-.mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-footer-icon-form .mvx-perple-txt input[type="checkbox"] {
+.mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-footer-icon-form .mvx-perple-txt input[type="checkbox"], .mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-top-part-registartion-from .mvx-footer-icon-form .mvx-perple-txt input[type="checkbox"] {
   height: 1rem;
   width: 1rem;
 }
 
-.mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-footer-icon-form .mvx-font {
+.mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-footer-icon-form .mvx-font, .mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-top-part-registartion-from .mvx-footer-icon-form .mvx-font {
   color: #65438f;
   margin: 0 0.5rem 0 0;
 }
 
-.mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-form-vendor-register .mvx-option-part input, .mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-form-vendor-register .mvx-option-part select {
+.mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-form-vendor-register .mvx-option-part input, .mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-form-vendor-register .mvx-option-part select, .mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-top-part-registartion-from input, .mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-top-part-registartion-from select {
   height: 2.5rem;
 }
 
@@ -1784,6 +1823,9 @@ input[type=checkbox]:checked input[type=checkbox] {
   border-radius: 0.25rem;
   color: #fff;
   padding: 0.9rem;
+  height: 4rem;
+  line-height: 2rem;
+  width: 4rem;
 }
 
 .mvx-container .mvx-left-container .mvx-slider-content-main-wrapper .mvx-dashboard-slider .mv-dashboard-top-icon span {
@@ -1796,11 +1838,12 @@ input[type=checkbox]:checked input[type=checkbox] {
   height: auto;
   min-height: 0.4rem;
   float: left;
+  line-height: 1.5;
   padding-left: 2.4rem;
 }
 
 .mvx-container .mvx-left-container .mvx-slider-content-main-wrapper .mvx-dashboard-slider .mvx-pro-txt p {
-  margin: 0 0 2rem 0;
+  margin: 0.5rem 0 2.5rem 0;
 }
 
 .mvx-container .mvx-left-container .mvx-slider-content-main-wrapper .message-banner-sliding {
@@ -1993,13 +2036,23 @@ input[type=checkbox]:checked input[type=checkbox] {
 
 .mvx-container .mvx-left-container .mvx-setup-documentation .mvx-documentation-quick-link-wrapper .mvx-documentation-support-forum figcaption a {
   color: #9e8abb;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-column-gap: 0.5rem;
+          column-gap: 0.5rem;
   background-color: #fbfafc;
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
   padding: 1.313rem;
-  text-align: center;
 }
 
 .mvx-container .mvx-left-container .mvx-setup-documentation .mvx-documentation-quick-link-wrapper .mvx-documentation-support-forum figcaption a:hover {
@@ -2055,12 +2108,12 @@ input[type=checkbox]:checked input[type=checkbox] {
 }
 
 .mvx-container .mvx-left-container .mvx-upgrade-pro-section h1 {
-  padding: 3rem 0 0.8rem;
+  padding: 3rem 0 1rem;
   color: #181718;
 }
 
 .mvx-container .mvx-left-container .mvx-upgrade-pro-section p {
-  padding-bottom: 2.5rem;
+  padding-bottom: 3rem;
 }
 
 .mvx-container .mvx-left-container .pro-bg {
@@ -2394,6 +2447,7 @@ input[type=checkbox]:checked input[type=checkbox] {
   border: 0.063rem solid #d4d1d9;
   border-radius: 0.25rem;
   position: relative;
+  min-width: 20rem;
 }
 
 .mvx-container .mvx-module-option-row .mvx-module-section-options-list:nth-child(3) {
@@ -2434,20 +2488,18 @@ input[type=checkbox]:checked input[type=checkbox] {
   right: 1.5rem;
   background: #9f8ab9;
   color: #fdfdfe;
-  padding: 0.25rem 0rem;
+  padding: 0.25rem 0.75rem;
   border-radius: 0.625rem;
   font-size: 0.8rem;
-  width: 2.5rem;
   text-align: center;
-  height: 1rem;
-  line-height: 0.375rem;
+  line-height: 0.7rem;
   text-transform: capitalize;
 }
 
 .mvx-container .mvx-module-settings-box .mvx-module-require-name {
   text-align: left;
   padding: 0.5rem;
-  border-top: 0.06rem solid #d4d1d9;
+  border-top: 0.06rem solid #f9f8fb;
   font-weight: 500;
   font-size: .875rem;
   margin: 1.5rem 0 1rem 0;
@@ -2534,7 +2586,6 @@ input[type=checkbox]:checked input[type=checkbox] {
   padding: 1rem;
   background: #f7f6f9;
   border-radius: 0.25rem 0.25rem 0 0;
-  border-bottom: 0.063rem solid #d4d1d9;
   font-weight: 500;
 }
 
@@ -2623,7 +2674,7 @@ input[type=checkbox]:checked input[type=checkbox] {
 }
 
 .wc-setup h1#wc-logo img {
-  height: 2.5rem;
+  height: 5rem;
 }
 
 .wc-setup .woocommerce-message {
@@ -2732,6 +2783,11 @@ table.form-table th, table.form-table td {
   font-size: 2rem;
 }
 
+div#health-check-debug {
+  margin: 1rem 0;
+  border-radius: 0.25rem;
+}
+
 .woocommerce-tracker {
   border-bottom: 0.063rem solid #d4d1d9;
   border-width: 0 0 0.06rem 0;
@@ -2741,7 +2797,7 @@ table.form-table th, table.form-table td {
 .mvx-backend-datatable-wrapper .rdt_Pagination {
   background: transparent;
   border: none;
-  margin: 2.4rem 0;
+  margin: 2rem 0;
 }
 
 .mvx-backend-datatable-wrapper .rdt_Pagination .gnaqej {
@@ -2800,6 +2856,7 @@ table.form-table th, table.form-table td {
   border: 0.063rem solid #d4d1d9;
   margin-bottom: 0.4rem;
   border-radius: 0.25rem;
+  font-size: 0.875rem;
 }
 
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow {
@@ -2807,6 +2864,7 @@ table.form-table th, table.form-table td {
   border-radius: 0.25rem;
   margin-bottom: 0.2rem;
   min-height: 3rem;
+  font-size: 0.813rem;
   position: relative;
 }
 
@@ -2867,17 +2925,22 @@ table.form-table th, table.form-table td {
   margin: 0 0.25rem 0 0;
 }
 
-.mvx-form-group {
+.mvx-module-grid .mvx-form-group {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: start;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
   margin: 1rem 0;
+}
+
+.mvx-module-grid .mvx-form-group .mvx-settings-form-label {
+  width: 15%;
+}
+
+.mvx-module-grid .mvx-form-group .mvx-settings-input-content {
+  width: 90%;
 }
 
 .mvx-form-actions {
@@ -3025,8 +3088,14 @@ table.form-table th, table.form-table td {
   width: 30%;
 }
 
+.MuiDialog-paperScrollPaper {
+  min-width: 20.563rem;
+  overflow: hidden;
+}
+
 .MuiDialog-paperScrollPaper .MuiDialogTitle-root {
   position: relative;
+  overflow: hidden;
 }
 
 .MuiDialog-paperScrollPaper .MuiDialogTitle-root h2 .mvx-module-dialog-title {
@@ -3039,10 +3108,15 @@ table.form-table th, table.form-table td {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  color: #181718;
+}
+
+.MuiDialog-paperScrollPaper .MuiDialogTitle-root h2 .mvx-module-dialog-title .mvx-vendor-title a {
+  color: #65438f;
 }
 
 .MuiDialog-paperScrollPaper .MuiDialogTitle-root h2 .mvx-module-dialog-title i {
-  font-size: 1.6rem;
+  font-size: 0.8rem;
 }
 
 .MuiDialog-paperScrollPaper .MuiDialogTitle-root .mvx-vendor-icon-name img {
@@ -3053,7 +3127,10 @@ table.form-table th, table.form-table td {
 }
 
 .MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content {
-  width: 35rem;
+  color: #5e5d60;
+}
+
+.MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content a {
   color: #5e5d60;
 }
 
@@ -3064,7 +3141,7 @@ table.form-table th, table.form-table td {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-size: 1.6rem;
+  font-size: 0.8rem;
 }
 
 .MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-email-content-and-value-wrap .mvx-content-email {
@@ -3075,23 +3152,27 @@ table.form-table th, table.form-table td {
   width: 100%;
   border: 0.063rem solid #d4d1d9;
   margin: 1rem 0;
-  font-size: 1.4rem;
+  font-size: 0.8rem;
 }
 
 .MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-textarea-content textarea::-webkit-input-placeholder {
-  font-size: 1.4rem;
+  padding: 0.5rem;
+  font-size: 0.8rem;
 }
 
 .MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-textarea-content textarea:-ms-input-placeholder {
-  font-size: 1.4rem;
+  padding: 0.5rem;
+  font-size: 0.8rem;
 }
 
 .MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-textarea-content textarea::-ms-input-placeholder {
-  font-size: 1.4rem;
+  padding: 0.5rem;
+  font-size: 0.8rem;
 }
 
 .MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-textarea-content textarea::placeholder {
-  font-size: 1.4rem;
+  padding: 0.5rem;
+  font-size: 0.8rem;
 }
 
 .MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-multi-action-buttons {
@@ -3101,8 +3182,67 @@ table.form-table th, table.form-table td {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-column-gap: 0.5rem;
+          column-gap: 0.5rem;
+}
+
+.MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-multi-action-buttons .mvx-btn.btn-purple {
+  background-color: #65438f;
+  border: none;
+  color: #f9f8fb;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  border-radius: 0.25rem;
+  padding: 0.66rem 1rem;
+  cursor: pointer;
+}
+
+.MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-multi-action-buttons .mvx-btn.btn-purple:hover {
+  background-color: #795b9d;
+  color: #f9f8fb;
+}
+
+.MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-multi-action-buttons .mvx-btn.btn-purple:hover {
+  text-decoration: none;
+}
+
+.MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-multi-action-buttons .mvx-btn.btn-red {
+  background-color: #e35047;
+  color: #f9f8fb;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  border-radius: 0.25rem;
+  padding: 0.66rem 1rem;
+  cursor: pointer;
+}
+
+.MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-multi-action-buttons .mvx-btn.btn-red:hover {
+  background-color: #e6635b;
+  color: #f9f8fb;
+}
+
+.MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-multi-action-buttons .mvx-btn.btn-red:hover {
+  text-decoration: none;
+}
+
+.MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-multi-action-buttons .mvx-btn.btn-border {
+  border: 0.063rem solid #d4d1d9;
+  color: #181718;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  border-radius: 0.25rem;
+  padding: 0.66rem 1rem;
+  cursor: pointer;
+}
+
+.MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-multi-action-buttons .mvx-btn.btn-border:hover {
+  border-color: #181718;
+}
+
+.MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-multi-action-buttons .mvx-btn.btn-border:hover {
+  text-decoration: none;
 }
 /*# sourceMappingURL=admin.css.map */

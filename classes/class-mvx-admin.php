@@ -6,9 +6,9 @@ if (!defined('ABSPATH')) {
 /**
  * MVX Admin Class
  *
- * @version		2.2.0
- * @package		MVX
- * @author 		Multivendor X
+ * @version     2.2.0
+ * @package     MVX
+ * @author      Multivendor X
  */
 class MVX_Admin {
 
@@ -1004,7 +1004,7 @@ class MVX_Admin {
             'apiUrl' => home_url( '/wp-json' ),
             'nonce' => wp_create_nonce( 'wp_rest' ),
             'marker_icon' => $MVX->plugin_url . 'assets/images/store-marker.png',
-            'mvx_logo' => $MVX->plugin_url.'assets/images/dclogo.svg',
+            'mvx_logo' => $MVX->plugin_url.'assets/images/dclogo.png',
             'google_api'    =>  get_mvx_global_settings('google_api_key'),
             'mapbox_api'    =>  get_mvx_global_settings('mapbox_api_key'),
             'location_provider'    =>  get_mvx_global_settings('choose_map_api'),
@@ -1014,7 +1014,7 @@ class MVX_Admin {
             'search_module' =>  __('Search Modules', 'multivendorx'),
             'marketplace_text' => __('MultiVendorX', 'multivendorx'),
             'search_module_placeholder' => __('Search Modules', 'multivendorx'),
-            'pro_text' => __('PRO', 'multivendorx'),
+            'pro_text' => __('Pro', 'multivendorx'),
             'documentation_extra_text' => __('For more info, please check the', 'multivendorx'),
             'documentation_text' => __('DOC', 'multivendorx'),
             'settings_text' => __('Settings', 'multivendorx'),
