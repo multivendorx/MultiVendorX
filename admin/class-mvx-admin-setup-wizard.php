@@ -529,6 +529,7 @@ class MVX_Admin_Setup_Wizard {
                                 $is_enable_gateway = mvx_is_module_active($gateway_id) ? 'Enable' : '';
                                 ?>
                                 <input type="checkbox" <?php checked($is_enable_gateway, 'Enable') ?> name="payment_method_<?php echo esc_attr($gateway_id); ?>" class="input-checkbox" value="Enable" />
+                                <label htmlFor={`mvx-toggle-switch-${student.id}`}></label>
                             </span>
                         </div>
                     </li>
@@ -676,7 +677,7 @@ class MVX_Admin_Setup_Wizard {
         
         <div class="mvx-all-done-page-header-sec">
             <i className="mvx-font icon-yes"></i></a>
-            <h1 class="mvx-title"><?php esc_html_e('Yay! All done!', 'multivendorx'); ?></h1>
+            <h1 class="mvx-title"><?php esc_html_e('Yay! ', 'multivendorx'); ?></h1>
             <a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo site_url(); ?>" data-text="Hey Guys! Our new marketplace is now live and ready to be ransacked! Check it out at" data-via="wc_marketplace" data-size="large">Tweet</a>
             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
         </div>
