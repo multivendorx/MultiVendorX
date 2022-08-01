@@ -942,6 +942,7 @@ class MVXBackendVendor extends React.Component {
 					''
 				)}
 			</div>
+			
 		);
 	}
 

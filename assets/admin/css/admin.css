@@ -727,16 +727,25 @@ input[type="radio"], input[type="checkbox"] {
   height: 1rem;
 }
 
+input:checked:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+input:checked {
+  border: 0;
+}
+
 input[type=radio]:checked::before {
   font-family: 'mvx-admin-font' !important;
-  margin: 0;
+  margin: 0rem;
   content: '\e909';
   color: #FFF;
   font-size: 0.625rem;
-  line-height: 1.1rem;
   background-color: #65438f !important;
-  height: 1rem;
-  width: 1rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  line-height: 1.2rem;
 }
 
 input[type=text]:focus {
@@ -772,6 +781,7 @@ input[type=checkbox]:checked input[type=checkbox] {
   border: 0.063rem solid #d4d1d9;
   border-radius: 0.25rem;
   height: 2.5rem;
+  position: relative;
   background-color: #fdfdfe;
 }
 
@@ -798,12 +808,11 @@ input[type=checkbox]:checked input[type=checkbox] {
   background: #fbfafc;
   border: 0.063rem solid #d4d1d9;
   z-index: 99;
-  padding: 0.5rem;
   position: absolute;
-  top: 100%;
+  top: 108%;
   right: 0;
   overflow-y: auto;
-  width: 50%;
+  width: 100%;
   height: 20rem;
 }
 
@@ -811,9 +820,13 @@ input[type=checkbox]:checked input[type=checkbox] {
   display: none;
 }
 
+.mvx-header-search-section .mvx-search-content .mvx-header-search-content-wrapper {
+  padding: 0.5rem;
+  border-bottom: 0.06rem solid #d4d1d9;
+}
+
 .mvx-header-search-section .mvx-search-content .mvx-header-search-content-wrapper a {
   color: #d4d1d9;
-  padding: 0.5rem 0;
 }
 
 .mvx-header-wapper {
@@ -880,6 +893,8 @@ input[type=checkbox]:checked input[type=checkbox] {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: start;
+  -webkit-column-gap: 1.2rem;
+          column-gap: 1.2rem;
   background-color: #f2eff5;
   padding: 2rem 1.5rem;
 }
@@ -909,12 +924,26 @@ input[type=checkbox]:checked input[type=checkbox] {
   color: unset;
 }
 
-.mvx-container a.mvx-back-btn {
+.mvx-container .mvx-module-grid .mvx-dynamic-fields-wrapper {
+  padding-top: 1rem;
+  margin-top: 2rem;
+}
+
+.mvx-container .mvx-module-grid a.mvx-back-btn {
   color: #181718;
   vertical-align: middle;
   text-decoration: none;
   border: 0.063rem solid #d4d1d9;
-  padding: 0.594rem 1rem;
+  padding: 0.5rem 1rem 0.5rem 0.6rem;
+  border-radius: 0.25rem;
+}
+
+.mvx-container .mvx-dynamic-form-content a.mvx-back-btn {
+  color: #181718;
+  vertical-align: middle;
+  text-decoration: none;
+  border: 0.063rem solid #d4d1d9;
+  padding: 0.5rem 1rem 0.5rem 0.6rem;
   border-radius: 0.25rem;
 }
 
@@ -977,14 +1006,11 @@ input[type=checkbox]:checked input[type=checkbox] {
   padding: 0.66rem 1rem;
   cursor: pointer;
   vertical-align: middle;
+  white-space: nowrap;
 }
 
 .mvx-container .mvx-btn:hover {
   text-decoration: none;
-}
-
-.mvx-container .mvx-sidebar {
-  padding-left: 1.2rem;
 }
 
 .mvx-container .mvx-notic-display-title {
@@ -1258,7 +1284,7 @@ input[type=checkbox]:checked input[type=checkbox] {
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-dynamic-form .mvx-form-group .mvx-settings-form-label p {
-  font-size: 1rem;
+  font-size: 0.875rem;
   color: #181718;
   width: 12.5rem;
 }
@@ -1304,13 +1330,13 @@ input[type=checkbox]:checked input[type=checkbox] {
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-form-group-radio-color .radio-color-active .mvx-merge-radio-color-input-label {
-  border: 0.12rem solid #65438f;
   padding: 0.5rem;
+  border-color: #65438f !important;
   border-radius: 0.25rem;
 }
 
-.mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-form-group-radio-color .radio-color-active .mvx-merge-radio-color-input-label input[type=radio]:checked::before {
-  margin: -0.06rem;
+.mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-form-group-radio-color .radio-color-active .mvx-merge-radio-color-input-label label {
+  margin-left: 0.5rem;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-form-group-radio-color .mvx-settings-radio-color {
@@ -1322,6 +1348,11 @@ input[type=checkbox]:checked input[type=checkbox] {
   border-radius: 0.25rem;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
+}
+
+.mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-form-group-radio-color .mvx-settings-radio-color .mvx-merge-radio-color-input-label {
+  padding: 0.5rem;
+  border: 0.12rem solid transparent;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-form-group-radio-color .mvx-settings-radio-color .color-palette {
@@ -1355,14 +1386,16 @@ input[type=checkbox]:checked input[type=checkbox] {
   position: absolute;
   bottom: 1.5rem;
   right: 1.5rem;
-  width: 1rem;
-  height: 1rem;
-  line-height: 1rem;
   border-radius: 0.125rem;
+  opacity: 0;
+}
+
+.mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-radioselect-class .mvx-setting-form-input:checked {
+  opacity: 1;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-radioselect-class .mvx-setting-form-input:checked::before {
-  border-radius: 0;
+  border-radius: 0.25rem;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-radioselect-class .mvx-radio-select-under-label-class .mvx-radioselect-overlay-text {
@@ -1623,10 +1656,6 @@ input[type=checkbox]:checked input[type=checkbox] {
   line-height: 2.375;
 }
 
-.mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-form-vendor-register .mvx-option-part select slot:hover, .mvx-container .mvx-vertical-tabs .mvx-tab-content .mvx-top-part-registartion-from select slot:hover {
-  background-color: #65438f;
-}
-
 .mvx-container .mvx-horizontal-tabs .mvx-current-tab-lists {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1676,8 +1705,7 @@ input[type=checkbox]:checked input[type=checkbox] {
 
 .mvx-container .mvx-horizontal-tabs .mvx-tab-content {
   background: #f9f8fb;
-  padding: 2rem;
-  padding-right: 1.5rem;
+  padding: 2.5rem 1.5rem;
   border: 0.063rem solid #d4d1d9;
   margin-top: -.073rem;
   border-radius: 0rem 0.25rem 0.25rem 0.25rem;
@@ -2441,7 +2469,7 @@ input[type=checkbox]:checked input[type=checkbox] {
 .mvx-container .mvx-setting-section-divider {
   background-color: #d4d1d9;
   height: 0.06rem;
-  margin: 2rem 0;
+  margin: 2rem 0 1.5rem;
 }
 
 .mvx-container .mvx-select-deselect-trigger {
@@ -2534,13 +2562,13 @@ input[type=checkbox]:checked input[type=checkbox] {
   width: 32.6%;
   background: #fdfdfe;
   padding: 1.5rem;
-  margin: 0.75rem 0.375rem 0rem 0;
+  margin: 0.375rem 0.375rem 0rem 0;
   text-align: center;
   height: 25rem;
   border: 0.063rem solid #d4d1d9;
   border-radius: 0.25rem;
   position: relative;
-  min-width: 20rem;
+  min-width: 15rem;
 }
 
 .mvx-container .mvx-module-option-row .mvx-module-section-options-list:nth-child(3) {
@@ -2829,6 +2857,21 @@ input[type=checkbox]:checked input[type=checkbox] {
   width: 1.25rem;
 }
 
+.wc-setup-steps li::before {
+  border: 0.125rem solid #ccc;
+  border-radius: 100%;
+  width: 0.5rem;
+  height: 0.5rem;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  left: 50%;
+  bottom: -0.313rem;
+}
+
+.wc-setup-steps li {
+  border-width: 0.125rem;
+}
+
 .wc-setup {
   border: 0;
 }
@@ -2853,7 +2896,12 @@ input[type=checkbox]:checked input[type=checkbox] {
 
 .wc-setup-content {
   text-align: center;
-  margin-bottom: 3rem;
+  margin: 1.5rem 0 3rem;
+  padding: 3rem;
+}
+
+.wc-setup-content h1 {
+  padding: 0 0 1rem;
 }
 
 .wc-setup-content .wc-setup-next-steps {
@@ -2886,9 +2934,9 @@ table.form-table td {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-column-gap: 1rem;
           column-gap: 1rem;
   -ms-flex-wrap: wrap;
@@ -2898,6 +2946,7 @@ table.form-table td {
 table.form-table td label {
   width: 40%;
   padding: 0.25rem 0;
+  white-space: nowrap;
 }
 
 table.form-table th, table.form-table td {
@@ -2944,6 +2993,7 @@ table.form-table th, table.form-table td {
 
 .wc-setup-steps li.done, .wc-setup-steps li.active {
   border-color: #d4d1d9;
+  color: #65438f;
 }
 
 .wc-setup-steps li.done::before, .wc-setup-steps li.active::before {
@@ -2987,7 +3037,12 @@ table.form-table th, table.form-table td {
 
 div#health-check-debug {
   margin: 0.5rem 0;
+  border: 0;
+}
+
+div#health-check-debug h3 button {
   border-radius: 0.25rem;
+  border: 0.063rem solid #d4d1d9;
 }
 
 .mvx-status-tools-content header {
@@ -3003,6 +3058,7 @@ div#health-check-debug {
 .mvx-vendor-transients-button .btn-border, .site-health-copy-buttons .btn-border {
   color: #65438f;
   line-height: 1.2;
+  background: transparent;
 }
 
 .mvx-backend-datatable-wrapper .rdt_Pagination {
@@ -3064,12 +3120,8 @@ div#health-check-debug {
 }
 
 .mvx-backend-datatable-wrapper .sc-dmRaPn::-webkit-scrollbar-thumb {
-  background-color: #65438f;
+  background-color: #d4d1d9;
   border-radius: 0.25rem;
-}
-
-.mvx-backend-datatable-wrapper .sc-dmRaPn::-webkit-scrollbar-button {
-  background-color: #5e5d60;
 }
 
 .mvx-backend-datatable-wrapper .rdt_Table {
@@ -3081,6 +3133,7 @@ div#health-check-debug {
   margin-bottom: 0.4rem;
   border-radius: 0.25rem;
   font-size: 0.875rem;
+  background-color: #fdfdfe;
 }
 
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow {
@@ -3088,8 +3141,13 @@ div#health-check-debug {
   border-radius: 0.25rem;
   margin-bottom: 0.2rem;
   min-height: 3rem;
+  background-color: #fdfdfe;
   font-size: 0.813rem;
   position: relative;
+}
+
+.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell img {
+  margin: 0 0.5rem 0 0;
 }
 
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon {
@@ -3133,8 +3191,7 @@ div#health-check-debug {
 }
 
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .jfrgbA {
-  padding-left: 0.3rem;
-  padding-right: 0.3rem;
+  padding: 0 1rem;
 }
 
 .mvx-backend-datatable-wrapper .rdt_Table input[type="checkbox"] {
@@ -3150,6 +3207,14 @@ div#health-check-debug {
   min-width: 8.5rem;
 }
 
+.mvx-wrap-bulk-action.css-b62m3t-container .css-1s2u09g-control {
+  background-color: #fdfdfe;
+}
+
+.mvx-wrap-bulk-action.css-b62m3t-container .css-1pahdxg-control:hover {
+  border: 0;
+}
+
 .mvx-module-grid .mvx-form-group {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3157,7 +3222,7 @@ div#health-check-debug {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: start;
-  margin: 1rem 0;
+  padding: 1rem 0;
 }
 
 .mvx-module-grid .mvx-form-group .mvx-settings-form-label {
@@ -3378,26 +3443,7 @@ div#health-check-debug {
   border: 0.063rem solid #d4d1d9;
   margin: 1rem 0;
   font-size: 0.8rem;
-}
-
-.MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-textarea-content textarea::-webkit-input-placeholder {
   padding: 0.5rem;
-  font-size: 0.8rem;
-}
-
-.MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-textarea-content textarea:-ms-input-placeholder {
-  padding: 0.5rem;
-  font-size: 0.8rem;
-}
-
-.MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-textarea-content textarea::-ms-input-placeholder {
-  padding: 0.5rem;
-  font-size: 0.8rem;
-}
-
-.MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-textarea-content textarea::placeholder {
-  padding: 0.5rem;
-  font-size: 0.8rem;
 }
 
 .MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-multi-action-buttons {
@@ -3423,6 +3469,7 @@ div#health-check-debug {
   border-radius: 0.25rem;
   padding: 0.66rem 1rem;
   cursor: pointer;
+  font-size: 0.75rem;
 }
 
 .MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-multi-action-buttons .mvx-btn.btn-purple:hover {
@@ -3442,6 +3489,7 @@ div#health-check-debug {
   border-radius: 0.25rem;
   padding: 0.66rem 1rem;
   cursor: pointer;
+  font-size: 0.75rem;
 }
 
 .MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-multi-action-buttons .mvx-btn.btn-red:hover {
@@ -3461,6 +3509,8 @@ div#health-check-debug {
   border-radius: 0.25rem;
   padding: 0.66rem 1rem;
   cursor: pointer;
+  background: transparent;
+  font-size: 0.75rem;
 }
 
 .MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-multi-action-buttons .mvx-btn.btn-border:hover {
@@ -3469,5 +3519,19 @@ div#health-check-debug {
 
 .MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-multi-action-buttons .mvx-btn.btn-border:hover {
   text-decoration: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .mvx-container {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .mvx-container .mvx-middle-container-wrapper {
+    width: 100%;
+  }
+  .mvx-container .mvx-sidebar {
+    width: 100%;
+    margin: 1.5rem 0 0;
+  }
 }
 /*# sourceMappingURL=admin.css.map */

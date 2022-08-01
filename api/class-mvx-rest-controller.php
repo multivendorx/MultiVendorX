@@ -3251,11 +3251,8 @@ class MVX_REST_API {
         $settings_fields_data['vendor-shipping'] =   [];
 
         $settings_fields_data['vendor-followers'] =   [];
-
-        //$settings_fields_data['vendor_personal'] =   [];
-
         
-        return rest_ensure_response($settings_fields_data);
+        return rest_ensure_response(apply_filters('mvx_vendors_tab_routes', $settings_fields_data, $vendor_id));
     }
 
     public function mvx_create_announcement($request) {

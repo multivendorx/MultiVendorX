@@ -46,6 +46,15 @@ $section-background:#fbfafc;
   margin: 1.5rem 0 0.5rem;
   border-radius: $border-radius;
 }
+@mixin back-btn {
+  color: $title-color;
+  vertical-align: middle;
+  text-decoration: none;
+  border: $border;
+  padding: 0.5rem 1rem 0.5rem 0.6rem;
+  border-radius: $border-radius;
+  
+ }
 @mixin toggle-btn {
     input[type=checkbox]{
         height: 0;
@@ -120,13 +129,13 @@ $section-background:#fbfafc;
         width: 32.6%;
         background: $fill-color;
         padding: 1.5rem;
-        margin: 0.75rem 0.375rem 0rem 0;
+        margin: 0.375rem 0.375rem 0rem 0;
         text-align: center;
         height: 25rem;
         border: $border;
         border-radius: $border-radius;
         position: relative;
-        min-width: 20rem;
+        min-width: 15rem;
     }
     & .mvx-module-section-options-list:nth-child(3) {
         margin-right: 0;
@@ -835,16 +844,22 @@ input[type="radio"], input[type="checkbox"] {
     width: 1rem;
     height: 1rem;
 }
+input:checked:focus{
+  box-shadow: none;
+}
+input:checked{
+  border: 0;
+}
 input[type=radio]:checked::before {
     font-family: 'mvx-admin-font' !important;
-    margin: 0;
+    margin: 0rem;
     content: '\e909';
     color: #FFF;
     font-size: 0.625rem;
-    line-height: 1.1rem;
     background-color: #65438f !important;
-    height: 1rem;
-    width: 1rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    line-height: 1.2rem;
 }
 input[type=text]:focus {
   box-shadow: none;
@@ -869,6 +884,7 @@ input[type=checkbox]:checked input[type=checkbox] {
 .mvx-header-search-section {
   @include flexprops(center);
   @include input;
+  position:relative;
   background-color: $fill-color;
   & label {
     top: 0.75rem;
@@ -889,20 +905,20 @@ input[type=checkbox]:checked input[type=checkbox] {
     background: $section-background;
     border: $border;
     z-index: 99;
-    padding: 0.5rem;
     position: absolute;
-    top: 100%;
+    top: 108%;
     right: 0;
     overflow-y: auto;
-    width: 50%;
+    width: 100%;
     height: 20rem;
     &::-webkit-scrollbar{
       display: none;
     }
     .mvx-header-search-content-wrapper{
+        padding: 0.5rem;
+        border-bottom: 0.06rem solid $boder-color;
       a{
         color: $boder-color;
-        padding: 0.5rem 0;
       }
     }
 }
@@ -949,6 +965,7 @@ input[type=checkbox]:checked input[type=checkbox] {
 // Start - Main Container
 .mvx-container {
   @include flexprops(start);
+  column-gap:1.2rem;
   background-color: $base-color;
   padding: 2rem 1.5rem;
   i {
@@ -971,15 +988,21 @@ input[type=checkbox]:checked input[type=checkbox] {
       color: unset;
     }
   }
+  .mvx-module-grid{
+    .mvx-dynamic-fields-wrapper {
+      padding-top: 1rem;
+      margin-top: 2rem;
+  }
   a.mvx-back-btn {
-    color: $title-color;
-    vertical-align: middle;
-    text-decoration: none;
-    border: $border;
-    padding: 0.594rem 1rem;
-    border-radius: $border-radius;
+   @include back-btn();
 }
- 
+  }
+  .mvx-dynamic-form-content{
+    a.mvx-back-btn {
+      @include back-btn();
+   }
+  }
+
   .btn-red {
    @include red-btn();
   }
@@ -1011,11 +1034,9 @@ input[type=checkbox]:checked input[type=checkbox] {
   .mvx-btn {
     @include button;
     vertical-align: middle;
+    white-space:nowrap;
   }
-  .mvx-sidebar {
-    padding-left: 1.2rem;
-  }
-  
+ 
   .mvx-notic-display-title {
     background-color: #b74f82;
     color: #f9f8fb;
@@ -1173,7 +1194,7 @@ hr{
           & .mvx-settings-form-label {
             margin-right: 1.25rem;
             & p {
-              font-size: 1rem;
+              font-size: 0.875rem;
               color: $title-color;
               width: 12.5rem;
             }
@@ -1220,13 +1241,13 @@ hr{
         flex-wrap: wrap;
         .radio-color-active{
           .mvx-merge-radio-color-input-label {
-            border: 0.12rem solid $theme-color;
             padding: 0.5rem;
+            border-color: $theme-color !important;
             border-radius: $border-radius;
-            input[type=radio]:checked::before{
-              margin: -0.06rem;
+            label{
+              margin-left: 0.5rem;
             }
-        }
+          }
         }
         & .mvx-settings-radio-color {
           margin: 0.5rem 1rem 0.5rem 0;
@@ -1235,6 +1256,10 @@ hr{
           border: 0.063rem solid transparent;
           border-radius: $border-radius;
           transition: all 0.3s;
+          .mvx-merge-radio-color-input-label {
+            padding: 0.5rem;
+            border: 0.12rem solid transparent;
+          }
           & .color-palette  {
             width: 100%;
             border-spacing: 0;
@@ -1258,12 +1283,13 @@ hr{
           position: absolute;
           bottom: 1.5rem;
           right: 1.5rem;
-          width: 1rem;
-          height: 1rem;
-          line-height: 1rem;
           border-radius: 0.125rem;
+          opacity:0;
+          &:checked{
+            opacity: 1;
+          }
           &:checked::before{
-            border-radius: 0;
+            border-radius: $border-radius;
           }
       }
         & .mvx-radio-select-under-label-class {
@@ -1455,11 +1481,6 @@ hr{
           &  select {
             height: 2.5rem;
             @include select-input();
-            slot{
-              &:hover{
-                background-color: $theme-color;
-              }
-            }
           }
       }
     }
@@ -1502,8 +1523,7 @@ hr{
 
     & .mvx-tab-content {
       background: #f9f8fb;
-      padding: 2rem;
-      padding-right: 1.5rem;
+      padding: 2.5rem 1.5rem;
       border: $border;
       margin-top: -.073rem;
       border-radius: 0rem 0.25rem 0.25rem 0.25rem;
@@ -2069,7 +2089,7 @@ hr{
   .mvx-setting-section-divider{
     background-color: $boder-color;
     height: 0.06rem;
-    margin: 2rem 0
+    margin: 2rem 0 1.5rem;
   }
 .mvx-select-deselect-trigger {
   border:$border;
@@ -2289,6 +2309,18 @@ hr{
     border: 0;
 }
 }
+.wc-setup-steps li::before{
+  border: 0.125rem solid #ccc;
+  border-radius: 100%;
+  width: 0.5rem;
+  height: 0.5rem;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  bottom: -0.313rem;
+}
+.wc-setup-steps li{
+  border-width:0.125rem;
+}
 .wc-setup{
 border: 0;
 h1#wc-logo{
@@ -2308,7 +2340,11 @@ h1#wc-logo{
 }
 .wc-setup-content{
   text-align: center;
-  margin-bottom:3rem;
+  margin: 1.5rem 0 3rem;
+  padding: 3rem;
+  h1{
+    padding:0 0 1rem;
+  }
    .wc-setup-next-steps{
     @include flexprops(start);
     flex-direction: row-reverse;
@@ -2322,12 +2358,13 @@ table.form-table {
     flex-direction: column;
   }
   td{
-    @include flexprops(start);
+    @include flexprops(center);
     column-gap: 1rem;
     flex-wrap: wrap;
     label{
       width: 40%;
       padding: 0.25rem 0;
+      white-space:nowrap;
     }
   }
   th, td{
@@ -2362,6 +2399,7 @@ table.form-table {
   }
   .wc-setup-steps li.done, .wc-setup-steps li.active{
     border-color: $boder-color;
+    color:$theme-color;
     &::before{
       border-color:$boder-color;
       background-color: $boder-color;
@@ -2389,7 +2427,11 @@ table.form-table {
 }
 div#health-check-debug {
   margin: 0.5rem 0;
+  border: 0;
+  h3 button{
   border-radius: $border-radius;
+  border: $border;
+  }
 }
 .mvx-status-tools-content header{
   margin-top: 1.5rem;
@@ -2403,6 +2445,7 @@ div#health-check-debug {
   .btn-border{
   color: $theme-color;
   line-height: 1.2;
+  background:transparent;
 }
 }
 // Start - Datatable
@@ -2454,13 +2497,10 @@ div#health-check-debug {
       
     }
     &::-webkit-scrollbar-thumb{
-      background-color: $theme-color;
+      background-color: $boder-color;
       border-radius: $border-radius;
     }
-    &::-webkit-scrollbar-button{
-      background-color: #5e5d60;
-      
-    }
+    
   }
   .rdt_Table {
     background: transparent;
@@ -2470,6 +2510,7 @@ div#health-check-debug {
           margin-bottom: 0.4rem;
           border-radius: $border-radius;
           font-size: 0.875rem;
+          background-color:$fill-color;
       }
     }
     .rdt_TableBody {
@@ -2478,9 +2519,13 @@ div#health-check-debug {
         border-radius: $border-radius;
         margin-bottom: 0.2rem;
         min-height: 3rem;
+        background-color:$fill-color;
         font-size: 0.813rem;
         position: relative;
         .rdt_TableCell {
+          img{
+            margin: 0 0.5rem 0 0;
+          }
           .mvx-vendor-action-icon {
             @include flexprops(center);
             div {
@@ -2512,8 +2557,7 @@ div#health-check-debug {
           }
         }
         .jfrgbA {
-          padding-left: 0.3rem;
-          padding-right: 0.3rem;
+         padding:0 1rem;
         }
       }
     }
@@ -2529,11 +2573,22 @@ div#health-check-debug {
 .mvx-wrap-bulk-action.css-b62m3t-container {
   margin: 0 0.25rem 0 0;
   min-width: 8.5rem;
+  .css-1s2u09g-control{
+    background-color:$fill-color;
+  }
+  .css-1pahdxg-control{ 
+    &:hover{
+      border: 0;
+    }
+  }
+  .css-26l3qy-menu{
+    
+  }
 }
 .mvx-module-grid{
   .mvx-form-group {
     @include flexprops(start);
-    margin: 1rem 0;
+    padding: 1rem 0;
     .mvx-settings-form-label{
       width: 15%;
     }
@@ -2629,7 +2684,6 @@ div#health-check-debug {
         }
       }
     }
-
   }
 
 } 
@@ -2681,10 +2735,7 @@ div#health-check-debug {
           border: $border;
           margin: 1rem 0;
           font-size: 0.8rem;
-          &::placeholder{
-            padding: 0.5rem;
-            font-size: 0.8rem;
-          }
+          padding: 0.5rem;
         }
       }
       .mvx-vendor-multi-action-buttons {
@@ -2694,16 +2745,36 @@ div#health-check-debug {
         .mvx-btn.btn-purple{
           @include purple-btn();
           @include button();
+          font-size: 0.75rem
         }
         .mvx-btn.btn-red{
           @include red-btn();
           @include button();
+          font-size: 0.75rem
         }
         .mvx-btn.btn-border{
           @include border-btn();
           @include button();
+          background:transparent;
+          font-size: 0.75rem
         }
       }
     }
+  }
+}
+//responsive code are here
+
+@media only screen and (max-width: 768px) {
+  //all pages
+    .mvx-container{
+      flex-wrap: wrap;
+    .mvx-middle-container-wrapper{
+      width: 100%;
+    }
+    .mvx-sidebar {
+      width:100%;
+      margin: 1.5rem 0 0 ;
+    }
+
   }
 }

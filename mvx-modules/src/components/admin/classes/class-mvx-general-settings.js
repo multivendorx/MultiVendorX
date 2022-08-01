@@ -511,7 +511,7 @@ class MVX_Settings extends Component {
 
 															{registration_json_value.hidden ? (
 																<div className="mvx-question-input-items">
-																	<select
+																	<select className="mvx-font"
 																		value={
 																			registration_json_value.type
 																		}
@@ -536,7 +536,10 @@ class MVX_Settings extends Component {
 																					value={
 																						question_content.value
 																					}
+																					className="mvx-font"
 																				>
+																					
+
 																					{
 																						question_content.label
 																					}

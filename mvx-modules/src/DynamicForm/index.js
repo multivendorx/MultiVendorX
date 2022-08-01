@@ -607,8 +607,8 @@ export default class DynamicForm extends React.Component {
 						/>
 						<div
 							id="store-maps"
-							className="store-maps"
-							className="mvx-gmap"
+							className="store-maps, mvx-gmap"
+							// className=""
 							style={{ width: '100%', height: '300px' }}
 						></div>
 						{m.desc ? (
@@ -626,6 +626,7 @@ export default class DynamicForm extends React.Component {
 			if (type === 'button') {
 				input = (
 					<div className="mvx-form-button-group">
+						<div className="mvx-setting-section-divider">&nbsp;</div>
 						<label className="mvx-settings-form-label"></label>
 						<div className="mvx-settings-input-content">
 							<div className="mvx-settings-basic-input-class">
@@ -2245,26 +2246,34 @@ export default class DynamicForm extends React.Component {
 				) : (
 					''
 				)}
+
 				<form
 					className="mvx-dynamic-form"
 					onSubmit={(e) => {
 						this.onSubmit(e);
 					}}
 				>
+
 					{this.renderForm()}
 					{prop_submitbutton ? (
+						
 						<div className="mvx-form-actions">
+					<div className="mvx-setting-section-divider">&nbsp;</div>
+
 							<button
 								className="mvx-btn btn-red"
 								disabled={this.state.from_loading}
 								type="submit"
 							>
+
 								{this.state.from_loading && (
 									<i
 										className="mvx-font icon-approve"
 										style={{ marginRight: '5px' }}
 									/>
+									
 								)}
+
 								{this.state.from_loading && (
 									<span>
 										{appLocalizer.global_string.saving}
