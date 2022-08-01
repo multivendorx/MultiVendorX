@@ -669,7 +669,7 @@ class MVX_Dashboard extends Component {
                                                 </p>
                                             </span>
 
-                                            {this.state.money_back_show_more_lifetime ?
+                                            {this.state.money_back_show_more_yearly ?
                                                 <span>    
                                                     <p>
                                                         <i className="mvx-font icon-documentation-forum" />{' '}
@@ -690,36 +690,6 @@ class MVX_Dashboard extends Component {
                                                 </span>
                                             : ''}
 
-                                            {this.state.money_back_show_more_lifetime ?
-
-                                                <a className="show-link" onClick={(e) =>
-                                                                (
-                                                                    this.setState({
-                                                                        money_back_show_more_lifetime: false
-                                                                    })
-                                                                )
-                                                            }>
-                                                    <span>
-                                                        <i className="mvx-font icon-up-round-arrow" />
-                                                    </span>{' '}
-                                                    Show Less
-                                                </a>
-
-                                                :
-
-                                                <a className="show-link" onClick={(e) =>
-                                                                (
-                                                                    this.setState({
-                                                                        money_back_show_more_lifetime: true
-                                                                    })
-                                                                )
-                                                            }>
-                                                    <span>
-                                                        <i className="mvx-font icon-down-arrow-02" />
-                                                    </span>{' '}
-                                                    Show More
-                                                </a>
-                                            }
                                         </div>
                                     
                                     </ul>
@@ -761,7 +731,7 @@ class MVX_Dashboard extends Component {
                                                 </p>
                                             </span>
 
-                                            {this.state.money_back_show_more_monthly ?
+                                            {this.state.money_back_show_more_yearly ?
                                                 <span>    
                                                     <p>
                                                         <i className="mvx-font icon-documentation-forum" />{' '}
@@ -782,36 +752,6 @@ class MVX_Dashboard extends Component {
                                                 </span>
                                             : ''}
 
-                                            {this.state.money_back_show_more_monthly ?
-
-                                                <a className="show-link" onClick={(e) =>
-                                                                (
-                                                                    this.setState({
-                                                                        money_back_show_more_monthly: false
-                                                                    })
-                                                                )
-                                                            }>
-                                                    <span>
-                                                        <i className="mvx-font icon-up-round-arrow" />
-                                                    </span>{' '}
-                                                    Show Less
-                                                </a>
-
-                                                :
-
-                                                <a className="show-link" onClick={(e) =>
-                                                                (
-                                                                    this.setState({
-                                                                        money_back_show_more_monthly: true
-                                                                    })
-                                                                )
-                                                            }>
-                                                    <span>
-                                                        <i className="mvx-font icon-down-arrow-02" />
-                                                    </span>{' '}
-                                                    Show More
-                                                </a>
-                                            }
                                         </div>
                                         
                                     </ul>
