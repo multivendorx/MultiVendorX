@@ -506,107 +506,107 @@ class MVX_Admin {
             'registration29'                  =>  __('Register', 'multivendorx'),
             'question-format'                 => array(
                 array(
-                    'icon'  =>  '&#xe900;',
+                    'icon'  =>  'icon-yes',
                     'value' => 'select_question_type',
                     'label' =>  __('Select question type', 'multivendorx')
                 ),
                 array(
-                    'icon'  =>  '&#xe900;',
+                    'icon'  =>  'icon-form-textbox',
                     'value' => 'textbox',
                     'label' =>  __('Textbox', 'multivendorx')
                 ),
                 array(
-                    'icon'  =>  '&#xe900;',
+                    'icon'  =>  'icon-form-email',
                     'value' => 'email',
                     'label' =>  __('Email', 'multivendorx')
                 ),
                 array(
-                    'icon'  =>  '&#xe900;',
+                    'icon'  =>  'icon-form-url',
                     'value' => 'url',
                     'label' =>  __('Url', 'multivendorx')
                 ),
                 array(
-                    'icon'  =>  '&#xe900;',
+                    'icon'  =>  'icon-form-textarea',
                     'value' => 'textarea',
                     'label' =>  __('Textarea', 'multivendorx')
                 ),
                 array(
-                    'icon'  =>  '&#xe900;',
+                    'icon'  =>  'icon-form-checkboxes',
                     'value' => 'checkboxes',
                     'label' =>  __('Checkboxes', 'multivendorx')
                 ),
                 array(
-                    'icon'  =>  '&#xe900;',
+                    'icon'  =>  'icon-form-multi-select',
                     'value' => 'multi-select',
                     'label' =>  __('Multi Select', 'multivendorx')
                 ),
                 array(
-                    'icon'  =>  '&#xe900;',
+                    'icon'  =>  'icon-form-radio',
                     'value' => 'radio',
                     'label' =>  __('Radio', 'multivendorx')
                 ),
                 array(
-                    'icon'  =>  '&#xe900;',
+                    'icon'  =>  'icon-form-dropdown',
                     'value' => 'dropdown',
                     'label' =>  __('Dropdown', 'multivendorx')
                 ),
                 array(
-                    'icon'  =>  '&#xe900;',
+                    'icon'  =>  'icon-form-recaptcha',
                     'value' => 'recapta',
                     'label' =>  __('Recapta', 'multivendorx')
                 ),
                 array(
-                    'icon'  =>  '&#xe900;',
+                    'icon'  =>  'icon-form-attachment',
                     'value' => 'attachment',
                     'label' =>  __('Attachment', 'multivendorx')
                 ),
                 array(
-                    'icon'  =>  '&#xe900;',
+                    'icon'  =>  'icon-form-section',
                     'value' => 'section',
                     'label' =>  __('Section', 'multivendorx')
                 ),
                 array(
-                    'icon'  =>  '&#xe900;',
+                    'icon'  =>  'icon-form-store-description',
                     'value' => 'vendor_description',
                     'label' =>  __('Store Description', 'multivendorx')
                 ),
                 array(
-                    'icon'  =>  '&#xe900;',
+                    'icon'  =>  'icon-form-address01',
                     'value' => 'vendor_address_1',
                     'label' =>  __('Address 1', 'multivendorx')
                 ),
                 array(
-                    'icon'  =>  '&#xe900;',
+                    'icon'  =>  'icon-form-address02',
                     'value' => 'vendor_address_2',
                     'label' =>  __('Address 2', 'multivendorx')
                 ),
                 array(
-                    'icon'  =>  '&#xe900;',
+                    'icon'  =>  'icon-form-phone',
                     'value' => 'vendor_phone',
                     'label' =>  __('Phone', 'multivendorx')
                 ),
                 array(
-                    'icon'  =>  '&#xe900;',
+                    'icon'  =>  'icon-form-country',
                     'value' => 'vendor_country',
                     'label' =>  __('Country', 'multivendorx')
                 ),
                 array(
-                    'icon'  =>  '&#xe900;',
+                    'icon'  =>  'icon-form-state',
                     'value' => 'vendor_state',
                     'label' =>  __('State', 'multivendorx')
                 ),
                 array(
-                    'icon'  =>  '&#xe900;',
+                    'icon'  =>  'icon-form-city',
                     'value' => 'vendor_city',
                     'label' =>  __('City', 'multivendorx')
                 ),
                 array(
-                    'icon'  =>  '&#xe900;',
+                    'icon'  =>  'icon-form-postcode',
                     'value' => 'vendor_postcode',
                     'label' =>  __('Postcode', 'multivendorx')
                 ),
                 array(
-                    'icon'  =>  '&#xe900;',
+                    'icon'  =>  'icon-form-paypal-email',
                     'value' => 'vendor_paypal_email',
                     'label' =>  __('PayPal Email', 'multivendorx')
                 )

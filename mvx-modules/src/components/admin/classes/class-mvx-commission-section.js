@@ -1707,7 +1707,9 @@ class MVX_Backend_Commission extends Component {
 					<div className="mvx-container">
 						<div className="mvx-middle-container-wrapper">
 							<div className="mvx-page-title">
+								<p>
 								{appLocalizer.commission_page_string.commission}
+								</p>
 								<div className="pull-right">
 									<CSVLink
 										data={this.state.commissiondata}

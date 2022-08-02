@@ -23,6 +23,10 @@ class MVX_Settings extends Component {
 			list_of_module_data: [],
 			set_tab_name: '',
 			list_of_all_tabs: [],
+			registration_global_select_dropdown_open: false,
+			registration_global_select_dropdown_value: '',
+			registration_global_select_dropdown_label: '',
+			registration_global_select_dropdown_icon: ''
 		};
 
 		this.QueryParamsDemo = this.QueryParamsDemo.bind(this);
@@ -217,13 +221,24 @@ class MVX_Settings extends Component {
 	OnRegistrationSelectChange(e, index, types) {
 		const new_items = this.state.mvx_registration_fileds_list;
 		if (types === 'select_drop') {
-			new_items[index].type = e.target.value;
+
+			this.setState({
+				registration_global_select_dropdown_value: e.value,
+	            registration_global_select_dropdown_label: e.label,
+	            registration_global_select_dropdown_icon: e.icon,
+	            registration_global_select_dropdown_open: false
+			});
+
+			new_items[index].type = e.value;
+			new_items[index].typelabel = e.label;
+			new_items[index].typeicon = e.icon;
+			
 			if (new_items[index].options.length === 0) {
 				if (
-					e.target.value === 'checkboxes' ||
-					e.target.value === 'multi-select' ||
-					e.target.value === 'radio' ||
-					e.target.value === 'dropdown'
+					e.value === 'checkboxes' ||
+					e.value === 'multi-select' ||
+					e.value === 'radio' ||
+					e.value === 'dropdown'
 				) {
 					const count = new_items[index].options.length + 1;
 					new_items[index].options.push({
@@ -231,7 +246,7 @@ class MVX_Settings extends Component {
 						label: 'Option ' + count,
 						selected: false,
 					});
-				} else if (e.target.value === 'attachment') {
+				} else if (e.value === 'attachment') {
 					new_items[index].fileType.push(
 						{
 							value: 'application/pdf',
@@ -511,42 +526,48 @@ class MVX_Settings extends Component {
 
 															{registration_json_value.hidden ? (
 																<div className="mvx-question-input-items">
-																	<select className="mvx-font"
-																		value={
-																			registration_json_value.type
-																		}
-																		onChange={(
-																			e
-																		) => {
-																			this.OnRegistrationSelectChange(
-																				e,
-																				registration_json_index,
-																				'select_drop'
-																			);
-																		}}
-																	>
-																		{appLocalizer.settings_page_string[
-																			'question-format'
-																		].map(
-																			(
-																				question_content,
-																				question_index
-																			) => (
-																				<option
-																					value={
-																						question_content.value
-																					}
-																					className="mvx-font"
-																				>
-																					
+																	
+																	<div className="dropdown">
+																		<div className="mvx-registration-select" onClick={(e) =>
+			                                                                (
+			                                                                    this.setState({
+			                                                                        registration_global_select_dropdown_open: true
+			                                                                    })
+			                                                                )
+			                                                            } >
+																		<span>{this.state.registration_global_select_dropdown_label ? <><i className={`mvx-font ${this.state.registration_global_select_dropdown_icon}`} />{this.state.registration_global_select_dropdown_label}</> : registration_json_value.typelabel ? <><i className={`mvx-font ${registration_json_value.typeicon}`} />{registration_json_value.typelabel}</> : 'Select an option'}</span>
+																		  <i className="mvx-font icon-down-arrow"/>
+																		</div>
+																		{this.state.registration_global_select_dropdown_open ?
+																			<div className="registration-dropdown-menu">
 
-																					{
-																						question_content.label
-																					}
-																				</option>
-																			)
-																		)}
-																	</select>
+																				{appLocalizer.settings_page_string[
+																					'question-format'
+																				].map(
+																					(
+																						question_content,
+																						question_index
+																					) => (
+																						<div 
+
+							                                                            onClick={(
+																							e
+																						) => {
+																							this.OnRegistrationSelectChange(
+																								question_content,
+																								registration_json_index,
+																								'select_drop'
+																							);
+																						}}
+
+
+							                                                            ><i className={`mvx-font ${question_content.icon}`} />{question_content.label}</div>
+																					)
+																				)}
+																			</div>
+																		: ''}
+																	</div>
+
 																	<div className="mvx-registration-fileds-description">
 																		{
 																			appLocalizer

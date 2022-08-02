@@ -581,13 +581,12 @@ export default class DynamicForm extends React.Component {
 			}
 
 			if (type === 'calender') {
-				console.log(this.state[target] ? this.state[target].split(",") : '');
 				input = (
 					<div className="mvx-settings-calender">
 						<Calendar
 						className="teal"
 						multiple
-						value={this.state[target] ? this.state[target].split(",") : ''}
+						value={this.state[target] && this.state[target].length >  0 ? this.state[target].split(",") : ''}
 						onChange={(e) => {
 							this.onChange(e, target, 'single', type);
 						}}
