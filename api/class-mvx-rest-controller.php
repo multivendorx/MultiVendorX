@@ -2884,7 +2884,9 @@ class MVX_REST_API {
                 ),
                 'database_value' => isset($tzstring) ? $tzstring : '', 
             ],
-            [
+        ];
+        if (mvx_is_module_active('store-location') && get_mvx_vendor_settings('enable_store_map_for_vendor', 'store')) {
+            $settings_fields_data['vendor-store'][] =   [
                 'label' => __('Vendor Map', 'multivendorx'),
                 'type' => 'google_map',
                 'key' => 'vendor_store_map',
@@ -2892,9 +2894,8 @@ class MVX_REST_API {
                 'store_lat' =>  isset($store_lat) ? floatval($store_lat) : '',
                 'store_lng' =>  isset($store_lng) ? floatval($store_lng) : '',
                 'database_value' => '', 
-            ],
-        ];
-
+            ];
+        }
 
         $settings_fields_data['vendor-social'] =   [
             [

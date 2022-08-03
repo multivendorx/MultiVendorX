@@ -585,6 +585,7 @@ export default class DynamicForm extends React.Component {
 					<div className="mvx-settings-calender">
 						<Calendar
 						className="teal"
+						format="DD/MM/YYYY"
 						multiple
 						value={this.state[target] && this.state[target].length >  0 ? this.state[target].split(",") : ''}
 						onChange={(e) => {
@@ -1266,7 +1267,6 @@ export default class DynamicForm extends React.Component {
 			if (type === 'google_map') {
 				const { places, mapApiLoaded, mapInstance, mapApi } =
 					this.state;
-
 				this.state.vendor_lat = m.store_lat;
 				this.state.vendor_lng = m.store_lng;
 
@@ -1276,11 +1276,13 @@ export default class DynamicForm extends React.Component {
 						'google_map_set' ? (
 						<div>
 							{mapApiLoaded && (
+								mapInstance ?
 								<AutoComplete
 									map={mapInstance}
 									mapApi={mapApi}
 									addplace={(e) => this.addPlace(e, target)}
 								/>
+								: ''
 							)}
 							<div style={{ height: '50vh', width: '50%' }}>
 								<GoogleMapReact
