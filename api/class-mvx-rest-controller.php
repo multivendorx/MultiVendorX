@@ -183,15 +183,16 @@ class MVX_REST_API {
     }
 
     public function mvx_rest_routes_react_module() {
+        // module page checkbox update/true/false
         register_rest_route( 'mvx_module/v1', '/checkbox_update', [
             'methods' => WP_REST_Server::EDITABLE,
             'callback' => array( $this, 'save_checkbox_module' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
+        // list of modules block
         register_rest_route( 'mvx_module/v1', '/module_lists', [
             'methods' => WP_REST_Server::READABLE,
-            'callback' => array( $this, 'wcp_get_module_lists' ),
+            'callback' => array( $this, 'mvx_get_module_lists' ),
             'permission_callback' => array( $this, 'save_settings_permission' ),
             'args'     => [
                 'module_id' => [
@@ -200,164 +201,145 @@ class MVX_REST_API {
                 ],
             ],
         ] );
-
-        register_rest_route( 'mvx_module/v1', '/module_lists/module_ids', [
-            'methods' => WP_REST_Server::READABLE,
-            'callback' => array( $this, 'mvx_get_module_lists_keys' ),
-            'permission_callback' => array( $this, 'save_settings_permission' ),
-        ] );
-
-
+        // save settings page data on database
         register_rest_route( 'mvx_module/v1', '/save_dashpages', [
             'methods' => WP_REST_Server::EDITABLE,
             'callback' => array( $this, 'mvx_save_dashpages' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
+        // save registration fileds data from settings page
         register_rest_route( 'mvx_module/v1', '/save_registration', [
             'methods' => WP_REST_Server::EDITABLE,
             'callback' => array( $this, 'mvx_save_registration_forms' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
+        // fetch registration fileds data from settings page
         register_rest_route( 'mvx_module/v1', '/get_registration', [
             'methods' => WP_REST_Server::READABLE,
             'callback' => array( $this, 'mvx_get_registration_forms_data' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
+        // list of vendors on vendor tab section
         register_rest_route( 'mvx_module/v1', '/all_vendors', [
             'methods' => WP_REST_Server::READABLE,
             'callback' => array( $this, 'mvx_all_vendor_details' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
+        // create vendor
         register_rest_route( 'mvx_module/v1', '/create_vendor', [
             'methods' => WP_REST_Server::EDITABLE,
             'callback' => array( $this, 'mvx_create_vendor' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
+        // update vendor
         register_rest_route( 'mvx_module/v1', '/update_vendor', [
             'methods' => WP_REST_Server::EDITABLE,
             'callback' => array( $this, 'mvx_update_vendor' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
+        // all vendor followers
         register_rest_route( 'mvx_module/v1', '/all_vendor_followers', [
             'methods' => WP_REST_Server::READABLE,
             'callback' => array( $this, 'mvx_all_vendor_followers' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
+        // list of vendors
         register_rest_route( 'mvx_module/v1', '/vendor_list_search', [
             'methods' => WP_REST_Server::READABLE,
             'callback' => array( $this, 'mvx_vendor_list_search' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
+        // search specific vendor
         register_rest_route( 'mvx_module/v1', '/specific_search_vendor', [
             'methods' => WP_REST_Server::READABLE,
             'callback' => array( $this, 'mvx_specific_search_vendor' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
+        // fetch a specific vendor shipping
         register_rest_route( 'mvx_module/v1', '/specific_vendor_shipping', [
             'methods' => WP_REST_Server::READABLE,
             'callback' => array( $this, 'mvx_specific_vendor_shipping' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
+        // fetch a specific vendor shipping zero
         register_rest_route( 'mvx_module/v1', '/specific_vendor_shipping_zone', [
             'methods' => WP_REST_Server::READABLE,
             'callback' => array( $this, 'mvx_specific_vendor_shipping_zone' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
+        // add new shipping options
         register_rest_route( 'mvx_module/v1', '/add_shipping_option', [
             'methods' => WP_REST_Server::READABLE,
             'callback' => array( $this, 'mvx_add_shipping_option' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
+        // add new shipping method
         register_rest_route( 'mvx_module/v1', '/add_vendor_shipping_method', [
             'methods' => WP_REST_Server::EDITABLE,
             'callback' => array( $this, 'mvx_add_vendor_shipping_method' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
+        // Update vendor shipping method
         register_rest_route( 'mvx_module/v1', '/update_vendor_shipping_method', [
             'methods' => WP_REST_Server::EDITABLE,
             'callback' => array( $this, 'mvx_update_vendor_shipping_method' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
+        // Delete vendor shipping method
         register_rest_route( 'mvx_module/v1', '/delete_shipping_method', [
             'methods' => WP_REST_Server::EDITABLE,
             'callback' => array( $this, 'mvx_delete_shipping_method' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
+        // Toggle checkbox vendor shipping method
         register_rest_route( 'mvx_module/v1', '/toggle_shipping_method', [
             'methods' => WP_REST_Server::EDITABLE,
             'callback' => array( $this, 'mvx_toggle_shipping_method' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
+        // update shipping post code
         register_rest_route( 'mvx_module/v1', '/update_post_code', [
             'methods' => WP_REST_Server::EDITABLE,
             'callback' => array( $this, 'mvx_update_post_code' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
+        // list of commissions
         register_rest_route( 'mvx_module/v1', '/all_commission', [
             'methods' => WP_REST_Server::READABLE,
             'callback' => array( $this, 'mvx_all_commission_details' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
-        register_rest_route( 'mvx_module/v1', '/commission_list_search', [
-            'methods' => WP_REST_Server::READABLE,
-            'callback' => array( $this, 'mvx_commission_list_search' ),
-            'permission_callback' => array( $this, 'save_settings_permission' )
-        ] );
-
+        // search specific commission by id
         register_rest_route( 'mvx_module/v1', '/search_specific_commission', [
             'methods' => WP_REST_Server::READABLE,
             'callback' => array( $this, 'mvx_search_specific_commission' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
-        register_rest_route( 'mvx_module/v1', '/show_commission_status_list', [
-            'methods' => WP_REST_Server::READABLE,
-            'callback' => array( $this, 'mvx_show_commission_status_list' ),
-            'permission_callback' => array( $this, 'save_settings_permission' )
-        ] );
-        
+        // display commission as choosen from status option
         register_rest_route( 'mvx_module/v1', '/show_commission_from_status_list', [
             'methods' => WP_REST_Server::READABLE,
             'callback' => array( $this, 'mvx_show_commission_from_status_list' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
+        // list all vendor name
         register_rest_route( 'mvx_module/v1', '/show_vendor_name', [
             'methods' => WP_REST_Server::READABLE,
             'callback' => array( $this, 'mvx_show_vendor_name' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
-        register_rest_route( 'mvx_module/v1', '/show_vendor_name_from_list', [
+        // Search commission as per vendor name 
+        register_rest_route( 'mvx_module/v1', '/search_commissions_as_per_vendor_name', [
             'methods' => WP_REST_Server::READABLE,
-            'callback' => array( $this, 'mvx_show_vendor_name_from_list' ),
+            'callback' => array( $this, 'mvx_search_commissions_as_per_vendor_name' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
+        // commission paid and download csv from bulk actions
         register_rest_route( 'mvx_module/v1', '/update_commission_bulk', [
             'methods' => WP_REST_Server::EDITABLE,
             'callback' => array( $this, 'mvx_update_commission_bulk' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
+        
         register_rest_route( 'mvx_module/v1', '/export_csv_for_report_product_chart', [
             'methods' => WP_REST_Server::EDITABLE,
             'callback' => array( $this, 'mvx_export_csv_for_report_product_chart' ),
@@ -3968,7 +3950,6 @@ class MVX_REST_API {
     }
 
     public function mvx_details_specific_commission($request) {
-        //$payment_details = array();
         global $MVX;
         $commission_id = $request->get_param('commission_id') ? ($request->get_param('commission_id')) : 0;
         $commission_order_id = get_post_meta($commission_id, '_commission_order_id', true);
@@ -3988,8 +3969,7 @@ class MVX_REST_API {
 
         $commission_amount =  get_post_meta( $commission_id, '_commission_amount', true );
 
-
-        $meta_list = $meta_list_associate_vendor = array();
+        $meta_list = $meta_list_associate_vendor = $shipping_items_meta_details = $line_items_meta_details = array();
 
         if ( $vendor ) {
             /* translators: %s: associated vendor */
@@ -4003,7 +3983,7 @@ class MVX_REST_API {
 
         /* translators: %s: Commission status */
         $status = MVX_Commission::get_status($commission_id, 'edit');
-        $status_html = '';
+        $line_items_details = $shipping_items_details = $status_html = $tax_data = '';
         if ($status == 'paid') {
             $status_html .= '<p class="commission-status-paid">'.MVX_Commission::get_status($commission_id).'</p>';
         } else {
@@ -4020,8 +4000,6 @@ class MVX_REST_API {
 
 
         $line_items = $order->get_items(apply_filters('mvx_admin_commission_order_item_types', 'line_item'));
-        $line_items_details = $shipping_items_details = '';
-        $line_items_meta_details = [];
         $hidden_order_itemmeta = apply_filters(
                 'mvx_admin_commission_hidden_order_itemmeta', array(
                 '_qty',
@@ -4094,15 +4072,13 @@ class MVX_REST_API {
 
         $line_items_shipping = $order->get_items('shipping');
         $shipping_methods = WC()->shipping() ? WC()->shipping->load_shipping_methods() : array();
-        $shipping_items_meta_details  =   [];
         $refunded = $order->get_total_refunded_for_item($item_id, 'shipping');
 
-        $get_total_shipping_refunded = $order->get_total_shipping_refunded();
+        $get_total_shipping_refunded = $order->get_total_shipping_refunded() ? $order->get_total_shipping_refunded() : 0;
 
         if ($line_items_shipping) {
 
             foreach ($line_items_shipping as $item_id => $item) {
-
                 $hidden_order_itemmeta = apply_filters(
                     'mvx_admin_commission_hidden_order_itemmeta', array(
                         '_qty',
@@ -4127,8 +4103,6 @@ class MVX_REST_API {
                         $shipping_items_meta_details[]  =   array(
                             'display_key'   =>  wp_kses_post($meta->display_key),
                             'display_value' =>  wp_kses_post(force_balance_tags($meta->display_value)),
-                            
-
                         );
                     }
                 }
@@ -4140,14 +4114,9 @@ class MVX_REST_API {
                     'shipping_price'    =>  wc_price($item->get_total(), array('currency' => $order->get_currency())),
                     'refunded_shipping' =>  $refunded ? '<small class="refunded">-' . wc_price($refunded, array('currency' => $order->get_currency())) . '</small>' : ''
                 );
-
             }
         }
 
-
-
-
-        $tax_data   =   '';
         if (wc_tax_enabled()) {
             foreach ($order->get_tax_totals() as $code => $tax) {
                 $get_total_tax_refunded_by_rate_id = $order->get_total_tax_refunded_by_rate_id($tax->rate_id);
@@ -4177,13 +4146,6 @@ class MVX_REST_API {
         }
 
         $order_edit_link = sprintf('post.php?post=%s&action=edit', $commission_order_id);
-
-
-        // shipping method
-        $shipping_methods = WC()->shipping() ? WC()->shipping->load_shipping_methods() : array();
-
-
-
 
         $payment_details = array(
             'commission_id' => $commission_id,
@@ -4219,7 +4181,7 @@ class MVX_REST_API {
             'commission_total_include_tax'  =>  get_post_meta($commission_id, '_commission_total_include_tax', true),
             'formated_commission_total' =>  $vendor_order->get_formatted_commission_total(),
             'get_total_shipping_refunded'   =>  $get_total_shipping_refunded,
-            'refund_shipping_display'    =>  '<del>' . strip_tags(wc_price($order->get_shipping_total(), array('currency' => $order->get_currency()))) . '</del> <ins>' . wc_price($order->get_shipping_total() - $get_total_shipping_refunded, array('currency' => $order->get_currency())) . '</ins>',
+            'refund_shipping_display'    => $order->get_shipping_total() ? '<del>' . strip_tags(wc_price($order->get_shipping_total(), array('currency' => $order->get_currency()))) . '</del> <ins>' . wc_price($order->get_shipping_total() - $get_total_shipping_refunded, array('currency' => $order->get_currency())) . '</ins>' : '',
             'else_shipping' =>  wc_price($order->get_shipping_total(), array('currency' => $order->get_currency())),
             'tax_data'  =>  $tax_data,
             'commission_total'  =>  $commission_total,
@@ -4337,7 +4299,6 @@ class MVX_REST_API {
     }
 
     public function mvx_show_vendor_name() {
-        //$option_lists[] = array('value' => 'all', 'label' => __('Show All Commission', 'multivendorx'));
         $option_lists = [];
         $vendors = get_mvx_vendors();
         if ($vendors) {
@@ -4351,7 +4312,7 @@ class MVX_REST_API {
         return rest_ensure_response($option_lists);
     }
 
-    public function mvx_show_vendor_name_from_list($request) {
+    public function mvx_search_commissions_as_per_vendor_name($request) {
         $vendor_name = $request->get_param('vendor_name') ? ($request->get_param('vendor_name')) : 0;
         return $this->mvx_find_specific_commission( array(), '',  $vendor_name);
     }
@@ -4359,21 +4320,6 @@ class MVX_REST_API {
     public function mvx_show_commission_from_status_list($request) {
         $commission_status = $request->get_param('commission_status') ? ($request->get_param('commission_status')) : 0;
         return $this->mvx_find_specific_commission( array(), $commission_status );
-    }
-
-    public function mvx_show_commission_status_list() {
-        $option_lists[] = array('value' => 'all', 'label' => __('Show All Commission', 'multivendorx'));
-        $commission_statuses = mvx_get_commission_statuses(); 
-
-        if ($commission_statuses) {
-            foreach($commission_statuses as $commission_key => $commission_value) {
-                $option_lists[] = array(
-                    'value' => $commission_key,
-                    'label' => $commission_value
-                );
-            }
-        }
-        return rest_ensure_response($option_lists);
     }
 
     public function mvx_search_specific_commission($request) {
@@ -4508,28 +4454,6 @@ class MVX_REST_API {
         }
 
         return rest_ensure_response($commission_list);
-    }
-
-    public function mvx_commission_list_search() {
-        $option_lists[] = array('value' => 'all', 'label' => __('All commission', 'multivendorx'));
-         $args = array(
-            'post_type' => 'dc_commission',
-            'post_status' => array('publish', 'private'),
-            'posts_per_page' => -1,
-            'fields' => 'ids',
-        );
-        $commissions = new WP_Query( $args );
-        $commissions_list = $commissions->get_posts();
-
-        if ($commissions_list) {
-            foreach($commissions_list as $commission_value) {
-                $option_lists[] = array(
-                    'value' => $commission_value,
-                    'label' => $commission_value
-                );
-            }
-        }
-        return rest_ensure_response($option_lists);
     }
 
     public function mvx_update_post_code($request) {
@@ -4914,10 +4838,9 @@ class MVX_REST_API {
         if ($redirect_to) {
             $all_details['redirect_link']   =   $redirect_to;
         }
-        $all_details['error'] =   $message;
+        $all_details['error'] = $message;
         return $all_details;
         die();
-
     }
 
     public function mvx_update_vendor($request) {
@@ -5222,16 +5145,12 @@ class MVX_REST_API {
         if ($modulename == 'products_capability') {
             $MVX->vendor_caps->update_mvx_vendor_role_capability();
         }
-        $all_details['error'] = 'Settings Saved';
+        $all_details['error'] = __('Settings Saved', 'multivendorx');
         return $all_details;
         die;
     }
 
-    public function save_settings_permission() {
-        return true;
-    }
-
-    public function wcp_get_module_lists($request, $by_id = '') {
+    public function mvx_get_module_lists($request, $by_id = '') {
         $module_id = $request->get_param( 'module_id' ) ? $request->get_param( 'module_id' ) : 'all';
         $all_module_lists = mvx_list_all_modules();
 
@@ -5256,13 +5175,13 @@ class MVX_REST_API {
             foreach ($get_searchable_data as $key1 => $value1) {
                 $list_include = wp_list_pluck($set_2nd_search_item_data, 'label');
                 if (in_array($value1['label'], $list_include)) {
-                    $fdsgdsgsdgsd[] = $all_module_lists[$value1['parent_key']]['options'][$value1['child_option_key']];
+                    $list_of_datas_module_stack[] = $all_module_lists[$value1['parent_key']]['options'][$value1['child_option_key']];
                 } else {
-                    $fdsgdsgsdgsd = array($all_module_lists[$value1['parent_key']]['options'][$value1['child_option_key']]);
+                    $list_of_datas_module_stack = array($all_module_lists[$value1['parent_key']]['options'][$value1['child_option_key']]);
                 }
                 $set_2nd_search_item_data[] = array(
                     'label' => $value1['label'],
-                    'options' => $fdsgdsgsdgsd
+                    'options' => $list_of_datas_module_stack
                 );
             }
 
@@ -5283,17 +5202,6 @@ class MVX_REST_API {
         return rest_ensure_response( $response );
     }
 
-    public function mvx_get_module_lists_keys() {
-        /*$option_lists[] = array('value' => 'all', 'label' => __('All Modules', 'multivendorx'));
-        foreach (mvx_list_all_modules() as $key => $value) {
-            $option_lists[] = array(
-                'value' => sanitize_text_field($value['id']),
-                'label' => sanitize_text_field($value['name'])
-            );
-        }
-        return rest_ensure_response( $option_lists );*/
-    }
-
     public function save_checkbox_module($request) {
         $module_id = $request['module_id'];
         $is_checked = $request['is_checked'];
@@ -5306,5 +5214,9 @@ class MVX_REST_API {
         mvx_update_option( 'mvx_all_active_module_list', $active_module_list );
         do_action('mvx_after_module_active', $module_id, $is_checked, $active_module_list);
         return rest_ensure_response( 'success' );
+    }
+
+    public function save_settings_permission() {
+        return true;
     }
 }

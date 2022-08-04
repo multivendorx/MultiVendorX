@@ -1194,7 +1194,6 @@ class MVX_Admin {
      * @since 3.0.2
      */
     public function regenerate_order_commissions($order) {
-        global $wpdb, $MVX;
         if ( !wp_get_post_parent_id( $order->get_id() ) ) {
             return;
         }

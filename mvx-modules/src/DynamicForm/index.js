@@ -34,15 +34,13 @@ export default class DynamicForm extends React.Component {
 
 		this.runUploader = this.runUploader.bind(this);
 		this.handlenestedAddClick = this.handlenestedAddClick.bind(this);
-		this.handlenestedchildAddClick =
-			this.handlenestedchildAddClick.bind(this);
+		this.handlenestedchildAddClick = this.handlenestedchildAddClick.bind(this);
 		this.removenestedchildOption = this.removenestedchildOption.bind(this);
 		this.removenestedField = this.removenestedField.bind(this);
 		this.onnestedChange = this.onnestedChange.bind(this);
 		this.onSelectDeselectChange = this.onSelectDeselectChange.bind(this);
 		this.onMultiChange = this.onMultiChange.bind(this);
-		this.handle_Vendor_active_suspend =
-			this.handle_Vendor_active_suspend.bind(this);
+		this.handle_Vendor_active_suspend = this.handle_Vendor_active_suspend.bind(this);
 	}
 
 	handle_Vendor_active_suspend(e, api, status, vendor_id) {
@@ -154,7 +152,7 @@ export default class DynamicForm extends React.Component {
 						  this.state[target][index].value
 						? this.state[target][index].value
 						: '',
-			}; //o.key === om.key ? e.target.value : ( this.state[target][indexp] ? this.state[target][indexp] : '');
+			};
 		});
 
 		this.setState({
@@ -478,7 +476,6 @@ export default class DynamicForm extends React.Component {
 			if (!m.key) {
 				return false;
 			}
-			//console.log(this.state['chat_provider']);
 
 			// for select selection
 			if (
@@ -2051,7 +2048,6 @@ export default class DynamicForm extends React.Component {
 
 							<div className="mvx-select-deselect-checkbox-label-marge">
 								{m.options.map((o) => {
-									//let checked = o.value === value;
 									let checked = false;
 									if (value && value.length > 0) {
 										checked =
@@ -2241,7 +2237,7 @@ export default class DynamicForm extends React.Component {
 			<div className="mvx-dynamic-fields-wrapper">
 				{this.state.errordisplay ? (
 					<div className="mvx-notic-display-title">
-						<i className="mvx-font icon-yes mr-6"></i>
+						<i className="mvx-font icon-yes"></i>
 						{this.state.errordisplay}
 					</div>
 				) : (
@@ -2259,8 +2255,7 @@ export default class DynamicForm extends React.Component {
 					{prop_submitbutton ? (
 						
 						<div className="mvx-form-actions">
-					<div className="mvx-setting-section-divider">&nbsp;</div>
-
+							<div className="mvx-setting-section-divider">&nbsp;</div>
 							<button
 								className="mvx-btn btn-red"
 								disabled={this.state.from_loading}

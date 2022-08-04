@@ -36,7 +36,6 @@ class App extends Component {
 			datacommission: [],
 			details_vendor: [],
 			dataproductchart: [],
-			details_product: [],
 			store_date: '',
 			store_product_select: '',
 			store_vendor_select: '',
@@ -498,15 +497,7 @@ class App extends Component {
 				details_vendor: response.data,
 			});
 		});
-
-		axios({
-			url: `${appLocalizer.apiUrl}/mvx_module/v1/product_list_option`,
-		}).then((response) => {
-			this.setState({
-				details_product: response.data,
-			});
-		});
-
+		
 		axios({
 			url: `${appLocalizer.apiUrl}/mvx_module/v1/all_commission`,
 		}).then((response) => {
@@ -1120,7 +1111,7 @@ class App extends Component {
 									appLocalizer.report_page_string
 										.choose_product
 								}
-								options={this.state.details_product}
+								options={appLocalizer.question_product_selection_wordpboard}
 								isClearable={true}
 								className="mvx-wrap-bulk-action"
 								onChange={(e) => this.handleproductsearch(e)}

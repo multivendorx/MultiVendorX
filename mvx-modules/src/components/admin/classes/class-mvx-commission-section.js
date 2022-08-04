@@ -4,11 +4,8 @@ import axios from 'axios';
 import Select from 'react-select';
 import PuffLoader from 'react-spinners/PuffLoader';
 import { css } from '@emotion/react';
-
 import DataTable from 'react-data-table-component';
-
 import { BrowserRouter as Router, Link } from 'react-router-dom';
-
 import { CSVLink } from 'react-csv';
 import HeaderSection from './class-mvx-page-header';
 import BannerSection from './class-mvx-page-banner';
@@ -36,8 +33,6 @@ class MVX_Backend_Commission extends Component {
 			data_unpaid_commission: [],
 			data_refunded_commission: [],
 			data_partial_refunded_commission: [],
-			details_commission: [],
-			show_commission_status: [],
 			show_vendor_name: [],
 			commisson_bulk_choose: [],
 			commissiondata: [],
@@ -318,23 +313,6 @@ class MVX_Backend_Commission extends Component {
 				});
 			});
 
-		axios({
-			url: `${appLocalizer.apiUrl}/mvx_module/v1/commission_list_search`,
-		}).then((response) => {
-			this.setState({
-				details_commission: response.data,
-			});
-		});
-
-		// show commision status
-		axios({
-			url: `${appLocalizer.apiUrl}/mvx_module/v1/show_commission_status_list`,
-		}).then((response) => {
-			this.setState({
-				show_commission_status: response.data,
-			});
-		});
-
 		// get vendor name on select
 		axios({
 			url: `${appLocalizer.apiUrl}/mvx_module/v1/show_vendor_name`,
@@ -476,7 +454,7 @@ class MVX_Backend_Commission extends Component {
 			if (e) {
 				axios
 					.get(
-						`${appLocalizer.apiUrl}/mvx_module/v1/show_vendor_name_from_list`,
+						`${appLocalizer.apiUrl}/mvx_module/v1/search_commissions_as_per_vendor_name`,
 						{
 							params: { vendor_name: e.value },
 						}
@@ -1823,7 +1801,7 @@ class MVX_Backend_Commission extends Component {
 										appLocalizer.commission_page_string
 											.show_commission_status
 									}
-									options={this.state.show_commission_status}
+									options={appLocalizer.commission_status_list_action}
 									isClearable={true}
 									className="mvx-wrap-bulk-action"
 									onChange={(e) =>
