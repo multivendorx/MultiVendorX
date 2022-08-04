@@ -1949,6 +1949,7 @@ function get_wcmp_vendor_policies($vendor = 0) {
 function get_wcmp_vendor_settings($name = '', $tab = '', $subtab = '', $default = false) {
 	wc_deprecated_function('get_wcmp_vendor_settings', '4.0.0', 'get_mvx_vendor_settings');
 	return get_mvx_vendor_settings($name = '', $tab = '', $subtab = '', $default = false);
+<<<<<<< HEAD
 }
 
 function get_wcmp_global_settings($name = '', $default = false) {
@@ -1956,6 +1957,15 @@ function get_wcmp_global_settings($name = '', $default = false) {
 	return get_mvx_global_settings($name = '', $default = false);
 }
 
+=======
+}
+
+function get_wcmp_global_settings($name = '', $default = false) {
+	wc_deprecated_function('get_wcmp_global_settings', '4.0.0', 'get_mvx_global_settings');
+	return get_mvx_global_settings($name = '', $default = false);
+}
+
+>>>>>>> 0c7c662de977727d2ec51b1cd1897e4985ea7a74
 function get_wcmp_vendors($args = array(), $return = 'object') {
 	wc_deprecated_function('get_wcmp_vendors', '4.0.0', 'get_mvx_vendors');
 	return get_mvx_vendors($args = array(), $return = 'object');
@@ -2020,6 +2030,7 @@ function get_wcmp_spmv_products_map_data($map_id = '') {
 function get_wcmp_spmv_excluded_products_map_data() {
 	wc_deprecated_function('get_wcmp_spmv_excluded_products_map_data', '4.0.0', 'get_mvx_spmv_excluded_products_map_data');
 	return get_mvx_spmv_excluded_products_map_data();
+<<<<<<< HEAD
 }
 
 function get_wcmp_different_terms_hierarchy( $term_list = array(), $taxonomy = 'product_cat' ) {
@@ -2116,3 +2127,101 @@ function is_user_wcmp_vendor($user) {
 	wc_deprecated_function('s_user_wcmp_vendor', '4.0.0', 's_user_mvx_vendor');
 	return is_user_mvx_vendor($user);
 }
+=======
+}
+
+function get_wcmp_different_terms_hierarchy( $term_list = array(), $taxonomy = 'product_cat' ) {
+	wc_deprecated_function('get_wcmp_different_terms_hierarchy', '4.0.0', 'get_mvx_different_terms_hierarchy');
+	return get_mvx_different_terms_hierarchy( $term_list = array(), $taxonomy = 'product_cat' );
+}
+
+function get_wcmp_default_payment_gateways() {
+	wc_deprecated_function('get_wcmp_default_payment_gateways', '4.0.0', 'get_mvx_default_payment_gateways');
+	return get_mvx_default_payment_gateways();
+}
+
+function get_wcmp_available_payment_gateways() {
+	wc_deprecated_function('get_wcmp_available_payment_gateways', '4.0.0', 'get_mvx_available_payment_gateways');
+	return get_mvx_available_payment_gateways();
+}
+
+function get_wcmp_ledger_types() {
+	wc_deprecated_function('get_wcmp_ledger_types', '4.0.0', 'get_mvx_ledger_types');
+	return get_mvx_ledger_types();
+}
+
+function get_wcmp_more_spmv_products( $product_id = 0 ) {
+	wc_deprecated_function('get_wcmp_more_spmv_products', '4.0.0', 'get_mvx_more_spmv_products');
+	return get_mvx_more_spmv_products( $product_id = 0 );
+}
+
+function get_wcmp_suborders( $order_id, $args = array(), $object = true ) {
+	wc_deprecated_function('get_wcmp_suborders', '4.0.0', 'get_mvx_suborders');
+	return get_mvx_suborders( $order_id, $args = array(), $object = true );
+}
+
+function get_wcmp_order_by_commission( $commission_id ) {
+	wc_deprecated_function('get_wcmp_order_by_commission', '4.0.0', 'get_mvx_order_by_commission');
+	return get_mvx_order_by_commission( $commission_id );
+}
+
+function get_wcmp_store_data( $prop = null ) {
+	wc_deprecated_function('get_wcmp_store_data', '4.0.0', 'get_mvx_store_data');
+	return get_mvx_store_data( $prop = null );
+}
+
+function is_wcmp_tab_has_subtab( $tab = 'general' ) {
+	wc_deprecated_function('s_wcmp_tab_has_subtab', '4.0.0', 's_mvx_tab_has_subtab');
+	return is_mvx_tab_has_subtab( $tab = 'general' );
+}
+
+function is_wcmp_endpoint_url($endpoint = false) {
+	wc_deprecated_function('s_wcmp_endpoint_url', '4.0.0', 's_mvx_endpoint_url');
+	return is_mvx_endpoint_url($endpoint = false);
+}
+
+function is_wcmp_version_less_3_4_0() {
+	wc_deprecated_function('s_wcmp_version_less_3_4_0', '4.0.0', 's_mvx_version_less_3_4_0');
+	return is_mvx_version_less_3_4_0();
+}
+
+function is_wcmp_vendor_completed_store_setup( $user ) {
+	wc_deprecated_function('s_wcmp_vendor_completed_store_setup', '4.0.0', 's_mvx_vendor_completed_store_setup');
+	return is_mvx_vendor_completed_store_setup( $user );
+}
+
+function is_wcmp_vendor_order( $order, $current_vendor = false ) {
+	wc_deprecated_function('s_wcmp_vendor_order', '4.0.0', 's_mvx_vendor_order');
+	return is_mvx_vendor_order( $order, $current_vendor = false );
+}
+
+function is_wcmp_table_rate_shipping_enable($is_shipping_enable, $is_enable) {
+	wc_deprecated_function('s_wcmp_table_rate_shipping_enable', '4.0.0', 's_mvx_table_rate_shipping_enable');
+	return is_mvx_table_rate_shipping_enable($is_shipping_enable, $is_enable);
+}
+
+function update_wcmp_vendor_settings($name = '', $value = '', $tab = '', $subtab = '') {
+	wc_deprecated_function('pdate_wcmp_vendor_settings', '4.0.0', 'pdate_mvx_vendor_settings');
+	return update_mvx_vendor_settings($name = '', $value = '', $tab = '', $subtab = '');
+}
+
+function delete_wcmp_vendor_settings($name = '', $tab = '', $subtab = '') {
+	wc_deprecated_function('delete_wcmp_vendor_settings', '4.0.0', 'delete_mvx_vendor_settings');
+	return delete_mvx_vendor_settings($name = '', $tab = '', $subtab = '');
+}
+
+function is_user_wcmp_pending_vendor($user) {
+	wc_deprecated_function('s_user_wcmp_pending_vendor', '4.0.0', 's_user_mvx_pending_vendor');
+	return is_user_mvx_pending_vendor($user);
+}
+
+function is_user_wcmp_rejected_vendor($user) {
+	wc_deprecated_function('s_user_wcmp_rejected_vendor', '4.0.0', 's_user_mvx_rejected_vendor');
+	return is_user_mvx_rejected_vendor($user);
+}
+
+function is_user_wcmp_vendor($user) {
+	wc_deprecated_function('s_user_wcmp_vendor', '4.0.0', 's_user_mvx_vendor');
+	return is_user_mvx_vendor($user);
+}
+>>>>>>> 0c7c662de977727d2ec51b1cd1897e4985ea7a74
