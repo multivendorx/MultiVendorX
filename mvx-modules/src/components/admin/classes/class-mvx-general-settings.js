@@ -539,7 +539,7 @@ class MVX_Settings extends Component {
 																		  <i className="mvx-font icon-down-arrow"/>
 																		</div>
 																		{this.state.registration_global_select_dropdown_open ?
-																			<div className="registration-dropdown-menu">
+																			<div className="mvx-registration-dropdown-menu">
 
 																				{appLocalizer.settings_page_string[
 																					'question-format'

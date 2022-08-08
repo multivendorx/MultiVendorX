@@ -371,10 +371,8 @@ class MVX_Backend_Commission extends Component {
 							<div className="mvx-vendor-action-icon">
 								<div>
 									<a href={row.link}>
-										<i className="mvx-font icon-edit"></i>
-										<p className="mvxicon-hover-text">
-											{appLocalizer.global_string.edit}
-										</p>
+										<i className="mvx-font icon-edit" title="Edit"></i>
+										
 									</a>
 								</div>
 
@@ -384,10 +382,8 @@ class MVX_Backend_Commission extends Component {
 									}
 									id={row.id}
 								>
-									<i className="mvx-font icon-no"></i>
-									<p className="mvxicon-hover-text">
-										{appLocalizer.global_string.close}
-									</p>
+									<i className="mvx-font icon-no" title="Close"></i>
+							
 								</div>
 							</div>
 					  ))
@@ -1347,6 +1343,9 @@ class MVX_Backend_Commission extends Component {
 												<table className="mvx-order-totals">
 													<tbody>
 														<tr>
+														<td/>
+														<td/>
+														<td/>	
 															<td className="mvx-order-label-td">
 																{this.state
 																	.commission_details
@@ -1364,7 +1363,6 @@ class MVX_Backend_Commission extends Component {
 																}
 																:
 															</td>
-															<td width="1%" />
 															<td className="total">
 																<div
 																	dangerouslySetInnerHTML={{
@@ -1381,6 +1379,9 @@ class MVX_Backend_Commission extends Component {
 															.commission_details
 															.get_shipping_method ? (
 															<tr>
+																<td/>
+																<td/>
+																<td/>
 																<td className="mvx-order-label-td">
 																	{
 																		appLocalizer
@@ -1389,7 +1390,6 @@ class MVX_Backend_Commission extends Component {
 																	}
 																	:
 																</td>
-																<td width="1%" />
 																<td className="total">
 																	<div
 																		dangerouslySetInnerHTML={{
@@ -1433,6 +1433,9 @@ class MVX_Backend_Commission extends Component {
 																		index
 																	) => (
 																		<tr>
+																			<td/>
+																			<td/>
+																			<td/>
 																			<td className="mvx-order-label-td">
 																				<div
 																					dangerouslySetInnerHTML={{
@@ -1440,7 +1443,6 @@ class MVX_Backend_Commission extends Component {
 																					}}
 																				></div>
 																			</td>
-																			<td width="1%" />
 																			<td className="total">
 																				<div
 																					dangerouslySetInnerHTML={{
@@ -1458,6 +1460,9 @@ class MVX_Backend_Commission extends Component {
 															: ''}
 
 														<tr>
+															<td/>
+															<td/>
+															<td/>
 															<td className="mvx-order-label-td">
 																**
 																{
@@ -1467,7 +1472,6 @@ class MVX_Backend_Commission extends Component {
 																}
 																:
 															</td>
-															<td width="1%" />
 															<td className="total">
 																<div
 																	dangerouslySetInnerHTML={{

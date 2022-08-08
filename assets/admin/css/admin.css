@@ -924,11 +924,6 @@ input[type=checkbox]:checked input[type=checkbox] {
   color: unset;
 }
 
-.mvx-container .mvx-module-grid .mvx-dynamic-fields-wrapper, .mvx-container .mvx-tab-content .mvx-dynamic-fields-wrapper {
-  padding-top: 1rem;
-  margin-top: 2rem;
-}
-
 .mvx-container .mvx-module-grid a.mvx-back-btn, .mvx-container .mvx-tab-content a.mvx-back-btn {
   color: #181718;
   vertical-align: middle;
@@ -945,6 +940,24 @@ input[type=checkbox]:checked input[type=checkbox] {
   border: 0.063rem solid #d4d1d9;
   padding: 0.5rem 1rem 0.5rem 0.6rem;
   border-radius: 0.25rem;
+}
+
+.mvx-container p.mvx-settings-metabox-description-code {
+  padding: 0.5rem 1rem;
+  background: #5e5d60;
+  border-radius: 0.25rem;
+  position: relative;
+}
+
+.mvx-container p.mvx-settings-metabox-description-code:before {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 0;
+  width: 0.25rem;
+  border-radius: 0.25rem;
+  background-color: #65438f;
+  height: 100%;
 }
 
 .mvx-container .btn-red {
@@ -1223,7 +1236,6 @@ input[type=checkbox]:checked input[type=checkbox] {
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-current-tab-lists {
   border-bottom: 0.06rem solid #d4d1d9;
   margin-right: -0.06rem;
-  width: 22%;
   height: auto;
 }
 
@@ -1261,9 +1273,9 @@ input[type=checkbox]:checked input[type=checkbox] {
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-current-tab-lists .active-current-tab:after {
   content: '';
   height: 100%;
-  width: 0.16rem;
+  width: 0.076rem;
   background-color: #fdfdfe;
-  right: -0.188rem;
+  right: -0.07rem;
   top: 0;
   position: absolute;
 }
@@ -1271,7 +1283,6 @@ input[type=checkbox]:checked input[type=checkbox] {
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content {
   padding: 2.5rem;
   border: 0.063rem solid #d4d1d9;
-  width: 78%;
   height: auto;
   min-height: 50rem;
   background-color: #fdfdfe;
@@ -1284,21 +1295,24 @@ input[type=checkbox]:checked input[type=checkbox] {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-column-gap: 0.5rem;
+          column-gap: 0.5rem;
   padding: 1rem 0;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form .mvx-form-group .mvx-settings-form-label {
-  margin-right: 1.25rem;
+  width: 25%;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form .mvx-form-group .mvx-settings-form-label p {
   font-size: 0.875rem;
   color: #181718;
-  width: 12.5rem;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form .mvx-form-group .mvx-settings-input-content {
-  width: 100%;
+  width: 70%;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form .mvx-form-group .mvx-settings-input-content .mvx-toggle-checkbox-content {
@@ -1437,6 +1451,8 @@ input[type=checkbox]:checked input[type=checkbox] {
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-multi-nested-class .mvx-boarder-parent {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1455,16 +1471,25 @@ input[type=checkbox]:checked input[type=checkbox] {
           align-items: center;
 }
 
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-multi-nested-class .mvx-boarder-parent .mvx-boarder-parent-loop .mvx-setting-form-input.css-b62m3t-container {
+  width: 100%;
+}
+
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-multi-nested-class .mvx-boarder-parent .mvx-boarder-parent-loop label.mvx-setting-form-label {
   padding-right: 0.5rem;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-multi-nested-class .mvx-boarder-parent .horizontal-class {
   margin: 1rem 0 0 1rem;
+  width: 100%;
 }
 
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-multi-nested-class .mvx-boarder-parent .horizontal-class .button-controls a {
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-multi-nested-class .mvx-boarder-parent .horizontal-class .button-controls a, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-multi-nested-class .mvx-boarder-parent .horizontal-class .button-secondary {
   background: #65438f !important;
+  border-color: #65438f !important;
+  margin: 0.25rem 0;
+  float: right;
+  color: #fdfdfe;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-toggle-rectangle-merge ul {
@@ -1558,19 +1583,29 @@ input[type=checkbox]:checked input[type=checkbox] {
   border: 0.0625rem solid #65438f !important;
 }
 
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-left-line-active {
+  padding-bottom: 4.75rem !important;
+}
+
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from {
   padding: 2rem;
-  background-color: #f7f6f9;
   border-radius: 0.25rem;
-  padding-bottom: 4.75rem;
   margin: 0.7rem 0;
   position: relative;
   overflow: hidden;
-  border: 0.0625rem solid #d4d1d9;
+  border: 0.0625rem solid transparent;
 }
 
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part input[placeholder="Registration form title"]:focus, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part input[placeholder="Registration form title"]:hover, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from input[placeholder="Registration form title"]:focus, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from input[placeholder="Registration form title"]:hover {
-  font-size: 1.3rem;
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part input[placeholder="Registration form title"], .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from input[placeholder="Registration form title"] {
+  font-size: 1.5rem;
+}
+
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part input.default-input[placeholder="Question title"], .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from input.default-input[placeholder="Question title"] {
+  font-size: 1rem;
+}
+
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part input, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from input {
+  font-size: 0.875rem;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-form-group, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-form-group {
@@ -1580,6 +1615,8 @@ input[type=checkbox]:checked input[type=checkbox] {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-question-input-items, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-question-input-items {
@@ -1607,7 +1644,7 @@ input[type=checkbox]:checked input[type=checkbox] {
   padding: 1rem 0;
 }
 
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container ul li input[type="radio"], .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container ul li input[type="radio"] {
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container ul li input[type="radio"], .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container ul li input[type="checkbox"], .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container ul li input[type="radio"], .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container ul li input[type="checkbox"] {
   margin-top: -3.5rem;
 }
 
@@ -1664,6 +1701,21 @@ input[type=checkbox]:checked input[type=checkbox] {
   font-size: 1rem;
   border: 0.063rem solid #d4d1d9;
   line-height: 2.375;
+}
+
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-option-part:hover::before {
+  opacity: 1;
+}
+
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-option-part::before {
+  opacity: 0;
+  position: absolute;
+  content: "\e93e";
+  font-family: 'mvx-admin-font';
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 
 .mvx-container .mvx-horizontal-tabs .mvx-current-tab-lists {
@@ -2533,6 +2585,8 @@ input[type=checkbox]:checked input[type=checkbox] {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   padding-bottom: 1rem;
 }
 
@@ -2557,6 +2611,7 @@ input[type=checkbox]:checked input[type=checkbox] {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  gap: 0.375rem;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
@@ -2565,7 +2620,6 @@ input[type=checkbox]:checked input[type=checkbox] {
   width: 32.6%;
   background: #fdfdfe;
   padding: 1.5rem;
-  margin: 0.375rem 0.375rem 0rem 0;
   text-align: center;
   height: 25rem;
   border: 0.063rem solid #d4d1d9;
@@ -2574,8 +2628,10 @@ input[type=checkbox]:checked input[type=checkbox] {
   min-width: 15rem;
 }
 
-.mvx-container .mvx-module-option-row .mvx-module-section-options-list:nth-child(3) {
-  margin-right: 0;
+.mvx-container .mvx-module-option-row .mvx-module-section-options-list:nth-child(3n+0) {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 
 .mvx-container .mvx-module-settings-box .mvx-module-icon {
@@ -3077,11 +3133,26 @@ div#health-check-debug h3 button {
   color: #e35047;
 }
 
+.approved-vendor {
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  background-color: #fff1f1;
+  color: #e35047;
+}
+
+.rejected-vendor {
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  background-color: #fff1f1;
+  color: #e35047;
+}
+
 .commission-status-unpaid {
   padding: 0.25rem;
   border-radius: 0.25rem;
   background-color: #fff1f1;
   color: #e35047;
+  margin: 0 0.5rem 0 1rem;
 }
 
 .mvx-backend-datatable-wrapper .rdt_Pagination {
@@ -3094,11 +3165,14 @@ div#health-check-debug h3 button {
   border: 0.063rem solid #d4d1d9;
   border-radius: 0.25rem;
   margin-left: 1rem;
-  padding: 0 0.4rem;
+  padding: 0 0.4rem 0 0;
 }
 
 .mvx-backend-datatable-wrapper .rdt_Pagination .gnaqej .kJrhuj {
   background: none;
+  padding: 0 1.5rem;
+  min-height: 2rem;
+  max-width: 1.5rem;
 }
 
 .mvx-backend-datatable-wrapper .rdt_Pagination .gnaqej .kJrhuj:focus {
@@ -3180,32 +3254,17 @@ div#health-check-debug h3 button {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-column-gap: 0.25rem;
+          column-gap: 0.25rem;
 }
 
-.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon div {
-  margin-right: 0.4rem;
+.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon div i {
+  padding: 0.5rem;
+  border-radius: 50%;
 }
 
-.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon div .mvxicon-hover-text {
-  display: none;
-}
-
-.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon div:hover .mvxicon-hover-text {
-  display: block;
-  position: absolute;
-  top: 0;
-  right: 0.4rem;
-}
-
-.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon a {
-  display: block;
-  margin-right: 0.4rem;
-  -webkit-transition: ease 1s;
-  transition: ease 1s;
-}
-
-.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon i {
-  color: #65438f;
+.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon div i:hover {
+  background: #65438f1c;
 }
 
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .mvx-vendor-icon-name img {
@@ -3226,7 +3285,7 @@ div#health-check-debug h3 button {
 }
 
 .mvx-wrap-bulk-action.css-b62m3t-container {
-  margin: 0 0.25rem 0 0;
+  margin: 0.25rem 0.25rem 0 0;
   min-width: 8.5rem;
 }
 
@@ -3245,15 +3304,17 @@ div#health-check-debug h3 button {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   padding: 1rem 0;
 }
 
 .mvx-module-grid .mvx-form-group .mvx-settings-form-label {
-  width: 15%;
+  width: 25%;
 }
 
 .mvx-module-grid .mvx-form-group .mvx-settings-input-content {
-  width: 90%;
+  width: 65%;
 }
 
 .mvx-form-actions {
@@ -3293,10 +3354,6 @@ div#health-check-debug h3 button {
           justify-content: space-between;
 }
 
-.mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-wrap-vendor-order-status, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-wrap-amount-shipping-tax {
-  width: 34%;
-}
-
 .mvx-commission-details-section .mvx-edit-commission-status-wrapper .commission-details-data-value, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-amount, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-status-wrap, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .woocommerce-order-data-meta.order_number {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3331,6 +3388,8 @@ div#health-check-debug h3 button {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap {
@@ -3350,42 +3409,68 @@ div#health-check-debug h3 button {
   border-radius: 0.25rem;
 }
 
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table {
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table.woocommerce_order_items, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table.woocommerce_order_items {
   border: 0.063rem solid #d4d1d9;
 }
 
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table thead, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table thead {
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table.woocommerce_order_items thead, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table.woocommerce_order_items thead {
   background-color: #f4f1f7;
   color: #5e5d60;
   text-align: left;
 }
 
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table thead th, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table thead th {
-  padding: 1rem 0 1rem 1rem;
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table.woocommerce_order_items thead th, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table.woocommerce_order_items thead th {
+  padding: 1rem 0.75rem;
 }
 
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table tbody td, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table tbody td {
-  padding: 1rem 0 1rem 1rem;
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table.woocommerce_order_items tbody td, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table.woocommerce_order_items tbody td {
+  padding: 1rem 0.75rem;
 }
 
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table tbody td.thumb, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table tbody td.thumb {
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table.woocommerce_order_items tbody td.thumb, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table.woocommerce_order_items tbody td.thumb {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-column-gap: 0.5rem;
+          column-gap: 0.5rem;
+}
+
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table.mvx-order-totals, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table.mvx-order-totals {
+  border: 0.063rem solid #d4d1d9;
+  background: #fbfafc;
+}
+
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table.mvx-order-totals tr, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table.mvx-order-totals tr {
+  height: auto;
+}
+
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table.mvx-order-totals tr:last-child, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table.mvx-order-totals tr:last-child {
+  font-weight: 600;
+  height: 2rem;
+  border-top: 0.063rem solid #d4d1d9;
+}
+
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table.mvx-order-totals tr td, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table.mvx-order-totals tr td {
+  text-align: right;
+  padding: 0.25rem 0.5rem;
 }
 
 .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-child-vendor-details, .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx_commision_note_clm, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-child-vendor-details, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx_commision_note_clm {
   background-color: #fdfdfe;
   border: 0.063rem solid #d4d1d9;
-  border-radius: 0.25rem;
-  margin: 0 0 0.5rem;
+  border-bottom: 0;
   padding: 1rem;
+}
+
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-child-vendor-details:last-child, .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx_commision_note_clm:last-child, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-child-vendor-details:last-child, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx_commision_note_clm:last-child {
+  border-bottom: 0.063rem solid #d4d1d9;
+  border-radius: 0 0 0.25rem 0.25rem;
 }
 
 .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-child-vendor-details .commission-details-data-value, .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx_commision_note_clm .commission-details-data-value, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-child-vendor-details .commission-details-data-value, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx_commision_note_clm .commission-details-data-value {
@@ -3398,7 +3483,7 @@ div#health-check-debug h3 button {
 }
 
 .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-child-vendor-details .commission-details-data-value .mvx-commission-label-class, .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx_commision_note_clm .commission-details-data-value .mvx-commission-label-class, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-child-vendor-details .commission-details-data-value .mvx-commission-label-class, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx_commision_note_clm .commission-details-data-value .mvx-commission-label-class {
-  width: 30%;
+  width: 35%;
 }
 
 .mvx-add-new .mvx-container .mvx-vertical-tabs .mvx-tab-content {
@@ -3497,6 +3582,7 @@ div#health-check-debug h3 button {
   padding: 0.66rem 1rem;
   cursor: pointer;
   font-size: 0.75rem;
+  padding: 0.5rem 1.5rem;
 }
 
 .MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-multi-action-buttons .mvx-btn.btn-purple:hover {
@@ -3517,6 +3603,7 @@ div#health-check-debug h3 button {
   padding: 0.66rem 1rem;
   cursor: pointer;
   font-size: 0.75rem;
+  padding: 0.5rem 1.5rem;
 }
 
 .MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-multi-action-buttons .mvx-btn.btn-red:hover {
@@ -3538,6 +3625,7 @@ div#health-check-debug h3 button {
   cursor: pointer;
   background: transparent;
   font-size: 0.75rem;
+  padding: 0.5rem 1.5rem;
 }
 
 .MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-multi-action-buttons .mvx-btn.btn-border:hover {
@@ -3548,102 +3636,114 @@ div#health-check-debug h3 button {
   text-decoration: none;
 }
 
+.mvx-registration-content .mvx-form-group {
+  -ms-flex-wrap: nowrap !important;
+      flex-wrap: nowrap !important;
+}
+
+.mvx-registration-content .mvx-form-group .dropdown {
+  position: relative;
+}
+
+.mvx-registration-content .mvx-form-group .dropdown .mvx-registration-select {
+  border-radius: 0.25rem;
+  width: 100%;
+  padding: 0rem 0.75rem;
+  color: #8e8b91;
+  font-size: 1rem;
+  border: 0.063rem solid #d4d1d9;
+  line-height: 2.375;
+  background-color: #fdfdfe;
+  color: #181718;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.mvx-registration-content .mvx-form-group .dropdown .mvx-registration-dropdown-menu {
+  position: absolute;
+  top: -1.5rem;
+  left: 0;
+  width: 100%;
+  height: 20rem;
+  background: #fdfdfe;
+  border: 0.063rem solid #d4d1d9;
+  overflow-y: scroll;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  z-index: 99;
+}
+
+.mvx-registration-content .mvx-form-group .dropdown .mvx-registration-dropdown-menu div {
+  padding: 0.25rem;
+}
+
+.mvx-registration-content .mvx-form-group .dropdown .mvx-registration-dropdown-menu div:hover {
+  background-color: #5e5d60;
+  color: #fdfdfe;
+}
+
+@media only screen and (min-width: 767px) {
+  .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-wrap-vendor-order-status, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-wrap-amount-shipping-tax {
+    width: 34%;
+  }
+  .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap {
+    width: 48%;
+  }
+  .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-current-tab-lists {
+    width: 22%;
+  }
+  .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content {
+    width: 78%;
+  }
+}
+
+@media only screen and (max-width: 668px) {
+  .mvx-header-wapper .mvx-header-nav-left-section .mvx-logo-title {
+    display: none;
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .mvx-container {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
   .mvx-container .mvx-middle-container-wrapper {
     width: 100%;
   }
   .mvx-container .mvx-sidebar {
-    width: 100%;
     margin: 1.5rem 0 0;
   }
   .mvx-middle-child-container .mvx-current-tab-lists, .mvx-middle-child-container .mvx-tab-content {
     width: 100%;
   }
-}
-
-/*Styling Selectbox*/
-.dropdown {
-  width: 300px;
-  display: inline-block;
-  background-color: #fff;
-  border-radius: 5px;
-  -webkit-box-shadow: 0 0 2px #cccccc;
-          box-shadow: 0 0 2px #cccccc;
-  -webkit-transition: all .5s ease;
-  transition: all .5s ease;
-  position: relative;
-  font-size: 14px;
-  color: #474747;
-  height: 100%;
-  verticle-align: middle;
-  margin: 100px;
-  text-align: left;
-  position: relative;
-}
-
-.dropdown .mvx-registration-select {
-  cursor: pointer;
-  display: block;
-  padding: 10px;
-}
-
-.dropdown .mvx-registration-select > i {
-  font-size: 13px;
-  color: #888;
-  cursor: pointer;
-  -webkit-transition: all .3s ease-in-out;
-  transition: all .3s ease-in-out;
-  float: right;
-  line-height: 20px;
-}
-
-.dropdown:hover {
-  -webkit-box-shadow: 0 0 4px #cccccc;
-          box-shadow: 0 0 4px #cccccc;
-}
-
-.dropdown.active:hover,
-.dropdown.active {
-  -webkit-box-shadow: 0 0 4px #cccccc;
-          box-shadow: 0 0 4px #cccccc;
-  border-radius: 5px 5px 0 0;
-  background-color: #f8f8f8;
-}
-
-.dropdown .dropdown-menu {
-  position: absolute;
-  background-color: #fff;
-  width: 100%;
-  left: 0;
-  top: -3rem;
-  margin-top: 1px;
-  -webkit-box-shadow: 0 1px 2px #cccccc;
-          box-shadow: 0 1px 2px #cccccc;
-  border-radius: 0 1px 5px 5px;
-  overflow: hidden;
-  display: none;
-  max-height: 144px;
-  overflow-y: auto;
-  z-index: 9;
-}
-
-.dropdown .dropdown-menu li {
-  padding: 10px;
-  -webkit-transition: all .2s ease-in-out;
-  transition: all .2s ease-in-out;
-  cursor: pointer;
-}
-
-.dropdown .dropdown-menu {
-  padding: 0;
-  list-style: none;
-}
-
-.dropdown .dropdown-menu li:hover {
-  background-color: #f2f2f2;
+  .mvx-module-section-options-list {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+  }
+  .mvx-edit-commission-status-wrapper {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .mvx-edit-commission-status-wrapper .mvx-commission-wrap-vendor-order-status, .mvx-edit-commission-status-wrapper .mvx-commission-wrap-amount-shipping-tax {
+    width: 100%;
+  }
+  .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap {
+    width: 100%;
+  }
+  .mvx-settings-form-label, .mvx-settings-input-content {
+    width: 100% !important;
+  }
 }
 /*# sourceMappingURL=admin.css.map */

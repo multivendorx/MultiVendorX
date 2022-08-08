@@ -464,18 +464,18 @@ class MVXBackendVendor extends React.Component {
 							<div className="mvx-vendor-action-icon">
 								<div>
 									<a href={row.link_shop}>
-										<i className="mvx-font icon-shop"></i>
-										<p className="mvxicon-hover-text">
+										<i className="mvx-font icon-shop" title="shop"></i>
+										{/* <p className="mvxicon-hover-text">
 											{appLocalizer.global_string.shop}
-										</p>
+										</p> */}
 									</a>
 								</div>
 								<div>
 									<a href={row.link}>
-										<i className="mvx-font icon-edit"></i>
-										<p className="mvxicon-hover-text">
+										<i className="mvx-font icon-edit" title="Edit"></i>
+										{/* <p className="mvxicon-hover-text">
 											{appLocalizer.global_string.edit}
-										</p>
+										</p> */}
 									</a>
 								</div>
 								<div
@@ -484,8 +484,8 @@ class MVXBackendVendor extends React.Component {
 									}
 									id={row.ID}
 								>
-									<i className="mvx-font icon-no"></i>
-									<p className="mvxicon-hover-text">Close</p>
+									<i className="mvx-font icon-no" title="Close"></i>
+									{/* <p className="mvxicon-hover-text">Close</p> */}
 								</div>
 							</div>
 					  ))
