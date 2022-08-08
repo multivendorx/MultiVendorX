@@ -46,9 +46,6 @@ class MVX_Ajax {
         add_action('wp_ajax_nopriv_mvx_dismiss_dashboard_announcements', array($this, 'mvx_dismiss_dashboard_message'));
 
         if (mvx_is_module_active('spmv') && get_mvx_vendor_settings('is_singleproductmultiseller', 'spmv_pages')) {
-            // Product auto suggestion
-            add_action('wp_ajax_mvx_auto_search_product', array($this, 'mvx_auto_suggesion_product'));
-            add_action('wp_ajax_nopriv_mvx_auto_search_product', array($this, 'mvx_auto_suggesion_product'));
             // Product duplicate
             add_action('wp_ajax_mvx_copy_to_new_draft', array($this, 'mvx_copy_to_new_draft'));
             add_action('wp_ajax_nopriv_mvx_copy_to_new_draft', array($this, 'mvx_copy_to_new_draft'));
@@ -58,6 +55,11 @@ class MVX_Ajax {
             add_action('wp_ajax_nopriv_single_product_multiple_vendors_sorting', array($this, 'single_product_multiple_vendors_sorting'));
 
             add_action('wp_ajax_mvx_create_duplicate_product', array(&$this, 'mvx_create_duplicate_product'));
+        }
+        if (mvx_is_module_active('spmv')) {
+            // Product auto suggestion
+            add_action('wp_ajax_mvx_auto_search_product', array($this, 'mvx_auto_suggesion_product'));
+            add_action('wp_ajax_nopriv_mvx_auto_search_product', array($this, 'mvx_auto_suggesion_product'));
         }
         add_action('wp_ajax_mvx_add_review_rating_vendor', array($this, 'mvx_add_review_rating_vendor'));
         add_action('wp_ajax_nopriv_mvx_add_review_rating_vendor', array($this, 'mvx_add_review_rating_vendor'));

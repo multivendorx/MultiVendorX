@@ -15,7 +15,7 @@ $section-background:#fbfafc;
   align-items: $align;
 }
 @mixin staus {
-  padding: 0.25rem;
+  padding: 5.5px 0.5rem;
   border-radius: $border-radius;
 }
 @mixin button {
@@ -1671,7 +1671,7 @@ hr{
       }
     }
     .mvx-setup-documentation {
-      padding: 4rem 0 6rem;
+      padding: 4rem 0;
       @include flexprops(start);
       justify-content: space-between;
       .mvx-setup-marketing-white-box{
@@ -1828,7 +1828,6 @@ hr{
       }
     }
 .mvx-upgrade-pro-section{
-  padding: 6rem 0;
     h1{
       padding: 3rem 0 1rem;
       color:$title-color;
@@ -1846,10 +1845,13 @@ hr{
 
 .mvx-text-center{
       text-align: center;
-      padding: 6rem 0;
+      padding: 4rem 0;
       .mvx-money-header-wrap h1{
     padding-bottom: 1rem;
   }
+  .mvx-show-compare {
+    padding: 4.5rem 0 0;
+}
     ul.mvx-compare-table-holder {
     display: flex;
     background-color: #fbfafc;
@@ -1857,24 +1859,13 @@ hr{
     border-right: none;
     width: 85%;
     margin: 4.313rem auto 0;
-    position: relative;
-    .mvx-show-compare:last-child{
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background-color: #fbfafc;
-      margin: 0;
-      border-top: 0.06rem solid $boder-color;
-      text-align: left;
-      padding: 1rem 2rem;
-    }
      li.mvx-compare-table-row{
-      padding: 2rem 2rem 3rem;
+      padding: 2rem 2rem 0;
       width: 34.33%;
           &:first-child{
             text-align: left;
              border-right: 0.06rem solid $boder-color;
+             margin: 0;
           } 
           ul li{
             padding: 0.65rem;
@@ -1929,7 +1920,7 @@ hr{
       display: flex;
       align-items: center;
       width: 85%;
-      margin: 4.313rem auto;
+      margin: 4.313rem auto 2rem;
       .mvx-spr-sever-rcmnd{
         padding: 2rem 0;
         transform: scale(1.01);
@@ -2003,6 +1994,7 @@ hr{
 }
     .mvx-upgrade-pro-section {
   text-align: center;
+  padding: 4rem 0;
       .mvx-dashboard-top-icon {
         border-radius: 1rem;
         line-height: 1.5;

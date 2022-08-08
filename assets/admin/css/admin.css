@@ -2047,7 +2047,7 @@ input[type=checkbox]:checked input[type=checkbox] {
 }
 
 .mvx-container .mvx-left-container .mvx-setup-documentation {
-  padding: 4rem 0 6rem;
+  padding: 4rem 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2271,10 +2271,6 @@ input[type=checkbox]:checked input[type=checkbox] {
   transition: .4s all ease-in-out;
 }
 
-.mvx-container .mvx-left-container .mvx-upgrade-pro-section {
-  padding: 6rem 0;
-}
-
 .mvx-container .mvx-left-container .mvx-upgrade-pro-section h1 {
   padding: 3rem 0 1rem;
   color: #181718;
@@ -2293,11 +2289,15 @@ input[type=checkbox]:checked input[type=checkbox] {
 
 .mvx-container .mvx-left-container .mvx-text-center {
   text-align: center;
-  padding: 6rem 0;
+  padding: 4rem 0;
 }
 
 .mvx-container .mvx-left-container .mvx-text-center .mvx-money-header-wrap h1 {
   padding-bottom: 1rem;
+}
+
+.mvx-container .mvx-left-container .mvx-text-center .mvx-show-compare {
+  padding: 4.5rem 0 0;
 }
 
 .mvx-container .mvx-left-container .mvx-text-center ul.mvx-compare-table-holder {
@@ -2309,29 +2309,17 @@ input[type=checkbox]:checked input[type=checkbox] {
   border-right: none;
   width: 85%;
   margin: 4.313rem auto 0;
-  position: relative;
-}
-
-.mvx-container .mvx-left-container .mvx-text-center ul.mvx-compare-table-holder .mvx-show-compare:last-child {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: #fbfafc;
-  margin: 0;
-  border-top: 0.06rem solid #d4d1d9;
-  text-align: left;
-  padding: 1rem 2rem;
 }
 
 .mvx-container .mvx-left-container .mvx-text-center ul.mvx-compare-table-holder li.mvx-compare-table-row {
-  padding: 2rem 2rem 3rem;
+  padding: 2rem 2rem 0;
   width: 34.33%;
 }
 
 .mvx-container .mvx-left-container .mvx-text-center ul.mvx-compare-table-holder li.mvx-compare-table-row:first-child {
   text-align: left;
   border-right: 0.06rem solid #d4d1d9;
+  margin: 0;
 }
 
 .mvx-container .mvx-left-container .mvx-text-center ul.mvx-compare-table-holder li.mvx-compare-table-row ul li {
@@ -2398,7 +2386,7 @@ input[type=checkbox]:checked input[type=checkbox] {
       -ms-flex-align: center;
           align-items: center;
   width: 85%;
-  margin: 4.313rem auto;
+  margin: 4.313rem auto 2rem;
 }
 
 .mvx-container .mvx-left-container .mvx-text-center .mvx-money-table-holder .mvx-spr-sever-rcmnd {
@@ -2493,6 +2481,7 @@ input[type=checkbox]:checked input[type=checkbox] {
 
 .mvx-container .mvx-left-container .mvx-upgrade-pro-section {
   text-align: center;
+  padding: 4rem 0;
 }
 
 .mvx-container .mvx-left-container .mvx-upgrade-pro-section .mvx-dashboard-top-icon {
@@ -3125,41 +3114,41 @@ div#health-check-debug h3 button {
 
 .pending-vendor {
   background: #f3f0f9;
-  padding: 0.25rem;
+  padding: 5.5px 0.5rem;
   border-radius: 0.25rem;
   color: #65438f;
 }
 
 .suspended-vendor {
-  padding: 0.25rem;
+  padding: 5.5px 0.5rem;
   border-radius: 0.25rem;
   background-color: #fff1f1;
   color: #e35047;
 }
 
 .approved-vendor {
-  padding: 0.25rem;
+  padding: 5.5px 0.5rem;
   border-radius: 0.25rem;
   background-color: #fff1f1;
   color: #e35047;
 }
 
 .rejected-vendor {
-  padding: 0.25rem;
+  padding: 5.5px 0.5rem;
   border-radius: 0.25rem;
   background-color: #fff1f1;
   color: #e35047;
 }
 
 .commission-status-unpaid {
-  padding: 0.25rem;
+  padding: 5.5px 0.5rem;
   border-radius: 0.25rem;
   background-color: #fff1f1;
   color: #e35047;
 }
 
 .commission-status-paid {
-  padding: 0.25rem;
+  padding: 5.5px 0.5rem;
   border-radius: 0.25rem;
   background-color: #fff1f1;
   color: #e35047;

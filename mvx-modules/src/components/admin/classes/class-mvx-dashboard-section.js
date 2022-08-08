@@ -490,10 +490,13 @@ class MVX_Dashboard extends Component {
                                         }
                                     </ul>
                                 </li>
-                                <li className='mvx-show-compare'>
+                               
+                                        
+                            </ul>
+                            <div className='mvx-show-compare'>
                                             {this.state.money_back_show_more_compared ?
 
-                                                <a className="show-link" onClick={(e) =>
+                                                <a className="show-link btn-border mvx-btn" onClick={(e) =>
                                                                 (
                                                                     this.setState({
                                                                         money_back_show_more_compared: false
@@ -508,7 +511,7 @@ class MVX_Dashboard extends Component {
 
                                                 :
 
-                                                <a className="show-link" onClick={(e) =>
+                                                <a className="show-link btn-border mvx-btn" onClick={(e) =>
                                                                 (
                                                                     this.setState({
                                                                         money_back_show_more_compared: true
@@ -521,10 +524,7 @@ class MVX_Dashboard extends Component {
                                                     Show More
                                                 </a>
                                             }
-                                        </li>
-                                        
-                            </ul>
-
+                                        </div>
                         </div>
 
                         <div className="mvx-text-center">
@@ -660,36 +660,7 @@ class MVX_Dashboard extends Component {
                                                     </p>
                                                 </span>
                                             : ''}
- {this.state.money_back_show_more_yearly ?
-
-<a className="show-link" onClick={(e) =>
-                (
-                    this.setState({
-                        money_back_show_more_yearly: false
-                    })
-                )
-            }>
-    <span>
-        <i className="mvx-font icon-up-round-arrow" />
-    </span>{' '}
-    Show Less
-</a>
-
-:
-
-<a className="show-link" onClick={(e) =>
-                (
-                    this.setState({
-                        money_back_show_more_yearly: true
-                    })
-                )
-            }>
-    <span>
-        <i className="mvx-font icon-down-round-arrow" />
-    </span>{' '}
-    Show More
-</a>
-}
+                                           
                                         </div>
                                     
                                     </ul>
@@ -757,6 +728,40 @@ class MVX_Dashboard extends Component {
                                     </ul>
                                 </li>
                             </ul>
+                                           
+                                         <div className='show-btn-wrapper'>
+                                             {this.state.money_back_show_more_yearly ?
+
+                                                <a className="show-link btn-border mvx-btn" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_yearly: false
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        <i className="mvx-font icon-up-round-arrow" />
+                                                    </span>{' '}
+                                                    Show Less
+                                                </a>
+
+                                                :
+
+                                                <a className="show-link btn-border mvx-btn" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_yearly: true
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        <i className="mvx-font icon-down-round-arrow" />
+                                                    </span>{' '}
+                                                    Show More
+                                                </a>
+                                                }
+                                        </div>
+
                         </div>
 
                         <div className="mvx-upgrade-pro-section pro-bg">

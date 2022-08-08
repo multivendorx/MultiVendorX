@@ -1086,6 +1086,16 @@ class MVX_Admin {
             wp_enqueue_style('mvx_admin_css', $MVX->plugin_url . 'assets/admin/css/admin' . $suffix . '.css', array(), $MVX->version);
             wp_enqueue_style('mvx_admin_rsuite_css', $MVX->plugin_url . 'assets/admin/css/rsuite-default' . '.min' . '.css', array(), $MVX->version);
         }
+        
+        //backend spmv
+        if (mvx_is_module_active('spmv')) {
+            wp_register_script('mvx_admin_product_auto_search_js', $MVX->plugin_url . 'assets/admin/js/admin-product-auto-search' . $suffix . '.js', array('jquery'), $MVX->version, true);
+            wp_enqueue_script('mvx_admin_product_auto_search_js');
+            wp_localize_script('mvx_admin_product_auto_search_js', 'mvx_admin_product_auto_search_js_params', array(
+                'ajax_url' => admin_url('admin-ajax.php'),
+                'search_products_nonce' => wp_create_nonce('search-products'),
+            ));
+        }
 
         // hide media list view access for vendor
         $user = wp_get_current_user();
