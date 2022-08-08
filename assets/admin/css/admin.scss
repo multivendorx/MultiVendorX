@@ -14,6 +14,10 @@ $section-background:#fbfafc;
   display: flex;
   align-items: $align;
 }
+@mixin staus {
+  padding: 0.25rem;
+  border-radius: $border-radius;
+}
 @mixin button {
   transition: all 0.3s ease;
   border-radius: $button-border-radius;
@@ -46,6 +50,15 @@ $section-background:#fbfafc;
   margin: 1.5rem 0 0.5rem;
   border-radius: $border-radius;
 }
+@mixin back-btn {
+  color: $title-color;
+  vertical-align: middle;
+  text-decoration: none;
+  border: $border;
+  padding: 0.5rem 1rem 0.5rem 0.6rem;
+  border-radius: $border-radius;
+  
+ }
 @mixin toggle-btn {
     input[type=checkbox]{
         height: 0;
@@ -53,7 +66,6 @@ $section-background:#fbfafc;
         visibility: hidden;
         display: none;
     }
-    
     label {
         cursor: pointer;
         width: 3.3rem;
@@ -67,7 +79,8 @@ $section-background:#fbfafc;
     label:before {
         content: '';
         position: absolute;
-        top: 0.38rem;
+        top: 50%;
+        transform: translateY(-50%);
         left: 0.5rem;
         width: 0.17rem;
         height: 0.57rem;
@@ -78,7 +91,8 @@ $section-background:#fbfafc;
     label:after {
         content: '';
         position: absolute;
-        top: 0.188rem;
+        top: 50%;
+        transform: translateY(-50%);
         left: 0.313rem;
         width: 0.875rem;
         height: 0.875rem;
@@ -87,41 +101,45 @@ $section-background:#fbfafc;
         transition: 0.3s;
         z-index: 999;
     }
-    
     input:checked + label {
         background: $theme-color;
     }
-    
     input:checked + label:after {
-        left: calc(100% - 0.313rem);
-        transform: translateX(-100%);
+      left: calc(100% - 1.313rem);
+      transform: translatey(-50%);
         background-color: $fill-color;
     }
-    
     label:active:after {
         width: 1.25rem;
     }
 }
-
+@mixin select-input {
+  border-radius: 0.25rem;
+  width: 100%;
+  padding: 0rem 0.75rem;
+  color: #8e8b91;
+  font-size: 0.875rem;
+  border: $border;
+  line-height: 2.375;
+}
 @mixin boxcss {
     display: flex;
+    gap: 0.375rem;
     flex-wrap: wrap;
     & .mvx-module-section-options-list {
         width: 32.6%;
         background: $fill-color;
         padding: 1.5rem;
-        margin: 0.75rem 0.375rem 0rem 0;
         text-align: center;
         height: 25rem;
         border: $border;
         border-radius: $border-radius;
         position: relative;
-        min-width: 20rem;
+        min-width: 15rem;
     }
-    & .mvx-module-section-options-list:nth-child(3) {
-        margin-right: 0;
+    & .mvx-module-section-options-list:nth-child(3n+0) {
+      flex:1;
     }
-    
 }
 @mixin moduleicon {
     width: 3.5rem;
@@ -137,22 +155,18 @@ $section-background:#fbfafc;
         color: $fill-color;
     }
 }
-
 @mixin datepicker {
     width: 17.5rem;
     height: 3.125rem;
     background-color: $fill-color;
     margin-left: auto;
 }
-
 @mixin border {
     border: 0.063rem solid #d4d1d9;
 }
-
 @mixin iconcolor {
     color: #9e8abb;
 }
-
 @mixin input {
   padding-left: 0.8rem;
   border: $border;
@@ -183,304 +197,301 @@ $section-background:#fbfafc;
     border-color: #181718 ;
   }
 }
-
 /* fonts */
 @font-face {
-    font-family: 'mvx-admin-font';
-    src: url('../fonts/mvx-admin-font.eot?411a7m');
-    src: url('../fonts/mvx-admin-font.eot?411a7m#iefix') format('embedded-opentype'),
-        url('../fonts/mvx-admin-font.ttf?411a7m') format('truetype'),
-        url('../fonts/mvx-admin-font.woff?411a7m') format('woff'),
-        url('../fonts/mvx-admin-font.svg?411a7m#ico1') format('svg');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'mvx-admin-font';
+  src: url('../fonts/mvx-admin-font.eot?411a7m');
+  src: url('../fonts/mvx-admin-font.eot?411a7m#iefix') format('embedded-opentype'),
+      url('../fonts/mvx-admin-font.ttf?411a7m') format('truetype'),
+      url('../fonts/mvx-admin-font.woff?411a7m') format('woff'),
+      url('../fonts/mvx-admin-font.svg?411a7m#ico1') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
-  
+
 /* icon */
 [class^="icon-"],
 [class*=" icon-"] {
-    /* use !important to prevent issues with browser extensions that change fonts */
-    font-family: 'mvx-admin-font' !important;
-    speak: never;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1.5;
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'mvx-admin-font' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1.5;
 
-    /* Better Font Rendering =========== */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-  
 .icon-add:before {
-  content: "\e900";
+content: "\e900";
 }
 .icon-approve:before {
-  content: "\e901";
+content: "\e901";
 }
 .icon-close:before {
-  content: "\e902";
+content: "\e902";
 }
 .icon-down-arrow:before {
-  content: "\e903";
+content: "\e903";
 }
 .icon-download:before {
-  content: "\e904";
+content: "\e904";
 }
 .icon-edit:before {
-  content: "\e905";
+content: "\e905";
 }
 .icon-knowledge-topbar:before {
-  content: "\e906";
+content: "\e906";
 }
 .icon-no:before {
-  content: "\e907";
+content: "\e907";
 }
 .icon-search:before {
-  content: "\e908";
+content: "\e908";
 }
 .icon-select-checkbox:before {
-  content: "\e909";
+content: "\e909";
 }
 .icon-yes:before {
-  content: "\e90a";
+content: "\e90a";
 }
 .icon-tab-activity-reminder:before {
-  content: "\e90b";
+content: "\e90b";
 }
 .icon-tab-announcement:before {
-  content: "\e90c";
+content: "\e90c";
 }
 .icon-tab-commissions:before {
-  content: "\e90d";
+content: "\e90d";
 }
 .icon-tab-disbursement:before {
-  content: "\e90e";
+content: "\e90e";
 }
 .icon-tab-general:before {
-  content: "\e90f";
+content: "\e90f";
 }
 .icon-tab-help:before {
-  content: "\e910";
+content: "\e910";
 }
 .icon-tab-knowladgebase:before {
-  content: "\e911";
+content: "\e911";
 }
 .icon-tab-migration:before {
-  content: "\e912";
+content: "\e912";
 }
 .icon-tab-policy:before {
-  content: "\e913";
+content: "\e913";
 }
 .icon-tab-products:before {
-  content: "\e914";
+content: "\e914";
 }
 .icon-tab-products-capability:before {
-  content: "\e915";
+content: "\e915";
 }
 .icon-tab-question-and-answer:before {
-  content: "\e916";
+content: "\e916";
 }
 .icon-tab-refunds:before {
-  content: "\e917";
+content: "\e917";
 }
 .icon-tab-registration-form:before {
-  content: "\e918";
+content: "\e918";
 }
 .icon-tab-report-abuse:before {
-  content: "\e919";
+content: "\e919";
 }
 .icon-tab-reviews-and-rating:before {
-  content: "\e91a";
+content: "\e91a";
 }
 .icon-tab-seller-dashbaord:before {
-  content: "\e91b";
+content: "\e91b";
 }
 .icon-tab-setup-widget:before {
-  content: "\e91c";
+content: "\e91c";
 }
 .icon-tab-social:before {
-  content: "\e91d";
+content: "\e91d";
 }
 .icon-tab-SPMV:before {
-  content: "\e91e";
+content: "\e91e";
 }
 .icon-tab-store:before {
-  content: "\e91f";
+content: "\e91f";
 }
 .icon-tab-store-review:before {
-  content: "\e920";
+content: "\e920";
 }
 .icon-vendor-application:before {
-  content: "\e921";
+content: "\e921";
 }
 .icon-vendor-follower:before {
-  content: "\e922";
+content: "\e922";
 }
 .icon-vendor-payment:before {
-  content: "\e923";
+content: "\e923";
 }
 .icon-vendor-personal:before {
-  content: "\e924";
+content: "\e924";
 }
 .icon-vendor-policy:before {
-  content: "\e925";
+content: "\e925";
 }
 .icon-vendor-shipping:before {
-  content: "\e926";
+content: "\e926";
 }
 .icon-vendor-social:before {
-  content: "\e927";
+content: "\e927";
 }
 .icon-vendor-store:before {
-  content: "\e928";
+content: "\e928";
 }
 .icon-tab-vendor:before {
-  content: "\e929";
+content: "\e929";
 }
 .icon-tab-overview:before {
-  content: "\e92a";
+content: "\e92a";
 }
 .icon-tab-product-02:before {
-  content: "\e92b";
+content: "\e92b";
 }
 .icon-tab-transaction-history:before {
-  content: "\e92c";
+content: "\e92c";
 }
 .icon-tab-paypal-payout:before {
-  content: "\e92d";
+content: "\e92d";
 }
 .icon-tab-paypal-masspay:before {
-  content: "\e92e";
+content: "\e92e";
 }
 .icon-tab-stripe-connect:before {
-  content: "\e92f";
+content: "\e92f";
 }
 .icon-chart-bar:before {
-  content: "\e930";
+content: "\e930";
 }
 .icon-chart-line:before {
-  content: "\e931";
+content: "\e931";
 }
 .icon-dismiss:before {
-  content: "\e932";
+content: "\e932";
 }
 .icon-down-arrow-02:before {
-  content: "\e933";
+content: "\e933";
 }
 .icon-information:before {
-  content: "\e934";
+content: "\e934";
 }
 .icon-vendor-form-add:before {
-  content: "\e935";
+content: "\e935";
 }
 .icon-vendor-form-copy:before {
-  content: "\e936";
+content: "\e936";
 }
 .icon-vendor-form-delete:before {
-  content: "\e937";
+content: "\e937";
 }
 .icon-tab-version-control:before {
-  content: "\e938";
+content: "\e938";
 }
 .icon-tab-system-status:before {
-  content: "\e939";
+content: "\e939";
 }
 .icon-tab-database-tools:before {
-  content: "\e93a";
+content: "\e93a";
 }
 .icon-form-url:before {
-  content: "\e93b";
+content: "\e93b";
 }
 .icon-form-textbox:before {
-  content: "\e93c";
+content: "\e93c";
 }
 .icon-form-textarea:before {
-  content: "\e93d";
+content: "\e93d";
 }
 .icon-form-store-description:before {
-  content: "\e93e";
+content: "\e93e";
 }
 .icon-form-state:before {
-  content: "\e93f";
+content: "\e93f";
 }
 .icon-form-section:before {
-  content: "\e941";
+content: "\e941";
 }
 .icon-form-recaptcha:before {
-  content: "\e942";
+content: "\e942";
 }
 .icon-form-radio:before {
-  content: "\e943";
+content: "\e943";
 }
 .icon-form-postcode:before {
-  content: "\e944";
+content: "\e944";
 }
 .icon-form-phone:before {
-  content: "\e945";
+content: "\e945";
 }
 .icon-form-paypal-email:before {
-  content: "\e946";
+content: "\e946";
 }
 .icon-form-multi-select:before {
-  content: "\e947";
+content: "\e947";
 }
 .icon-form-dropdown:before {
-  content: "\e948";
+content: "\e948";
 }
 .icon-form-checkboxes:before {
-  content: "\e949";
+content: "\e949";
 }
 .icon-form-city:before {
-  content: "\e94a";
+content: "\e94a";
 }
 .icon-form-country:before {
-  content: "\e94b";
+content: "\e94b";
 }
 .icon-form-attachment:before {
-  content: "\e94c";
+content: "\e94c";
 }
 .icon-form-address01:before {
-  content: "\e94d";
+content: "\e94d";
 }
 .icon-form-address02:before {
-  content: "\e94e";
+content: "\e94e";
 }
 .icon-form-email:before {
-  content: "\e94f";
+content: "\e94f";
 }
 .icon-eye-preview:before {
-  content: "\e950";
+content: "\e950";
 }
 .icon-back:before {
-  content: "\e940";
+content: "\e940";
 }
 .icon-left-arrow:before {
-  content: "\e951";
+content: "\e951";
 }
 .icon-right-arrow:before {
-  content: "\e952";
+content: "\e952";
 }
 .icon-link-right-arrow:before {
-  content: "\e953";
+content: "\e953";
 }
 .icon-documentation-forum:before {
-  content: "\e954";
+content: "\e954";
 }
 .icon-shop:before {
-  content: "\e955";
+content: "\e955";
 }
 .icon-support-forum:before {
-  content: "\e956";
+content: "\e956";
 }
 .icon-up-round-arrow:before {
-  content: "\e957";
+content: "\e957";
 }
 .icon-down-round-arrow:before {
-  content: "\e958";
+content: "\e958";
 }
-
 
 /*********** Modules section *********************/
   
@@ -510,211 +521,159 @@ $section-background:#fbfafc;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-  
 .module-accommodation:before {
   content: "\e900";
-}
-  
+}  
 .module-advance-custom-field:before {
     content: "\e901";
 }
-
 .module-announcement:before {
     content: "\e902";
 }
-
 .module-auction:before {
     content: "\e903";
 }
-
 .module-bank-payment:before {
     content: "\e904";
 }
-
 .module-booking:before {
     content: "\e905";
 }
-
 .module-buddypress:before {
     content: "\e906";
 }
-
 .module-bundle:before {
     content: "\e907";
 }
-
 .module-business-hours:before {
     content: "\e908";
 }
-
 .module-country-shipping:before {
     content: "\e909";
 }
-
 .module-customer-support:before {
     content: "\e90a";
 }
-
 .module-distance-shipping:before {
     content: "\e90b";
 }
-
 .module-elementor:before {
     content: "\e90c";
 }
-
 .module-external:before {
     content: "\e90d";
 }
-
 .module-follow-store:before {
     content: "\e90e";
 }
-
 .module-geo-my-wp:before {
     content: "\e911";
 }
-
 .module-grouped:before {
     content: "\e912";
 }
-
 .module-identity-verification:before {
     content: "\e913";
 }
-
 .module-import-export:before {
     content: "\e914";
 }
-
 .module-invoice:before {
     content: "\e915";
 }
-
 .module-knowladgebase:before {
     content: "\e916";
 }
-
 .module-live-chat:before {
     content: "\e917";
 }
-
 .module-mangopay:before {
     content: "\e918";
 }
-
 .module-marketplace-membership:before {
     content: "\e919";
 }
-
 .module-marketplace-refund:before {
     content: "\e91a";
 }
-
 .module-messaging:before {
     content: "\e91b";
 }
-
 .module-paypal-marketplace:before {
     content: "\e91c";
 }
-
 .module-paypal-masspay:before {
     content: "\e91d";
 }
-
 .module-paypal-payout:before {
     content: "\e91e";
 }
-
 .module-per-product-shipping:before {
     content: "\e91f";
 }
-
 .module-product-addon:before {
     content: "\e920";
 }
-
 .module-razorpay:before {
     content: "\e921";
 }
-
 .module-rental:before {
     content: "\e922";
 }
-
 .module-report-abuse:before {
     content: "\e923";
 }
-
 .module-return-and-warrenty:before {
     content: "\e924";
 }
-
 .module-simple:before {
     content: "\e925";
 }
-
 .module-spmv:before {
     content: "\e926";
 }
-
 .module-staff-manager:before {
     content: "\e927";
 }
-
 .module-store-analytics:before {
     content: "\e928";
 }
-
 .module-store-location:before {
     content: "\e929";
 }
-
 .module-store-policy:before {
     content: "\e92a";
 }
-
 .module-store-review:before {
     content: "\e90f";
 }
-
 .module-store-seo:before {
     content: "\e92d";
 }
-
 .module-stripe-connect:before {
     content: "\e92e";
 }
-
 .module-stripe-marketplace:before {
     content: "\e92f";
 }
-
 .module-subscription:before {
     content: "\e930";
 }
-
 .module-toolset-types:before {
     content: "\e931";
 }
-
 .module-vacation:before {
     content: "\e932";
 }
-
 .module-variable:before {
     content: "\e933";
 }
-
 .module-vendor-shipping:before {
     content: "\e934";
 }
-
 .module-weight-shipping:before {
     content: "\e935";
 }
-
 .module-wholesale:before {
     content: "\e936";
 }
@@ -726,37 +685,26 @@ $section-background:#fbfafc;
 .module-wpml:before {
     content: "\e938";
 }
-
 .module-zone-shipping:before {
     content: "\e939";
 }
-
 .module-store-inventory:before {
     content: "\e910";
 }
-
 .module-appointment:before {
     content: "\e92b";
 }
 /*icon end*/
  
 // Start - Common CSS
-textarea, input[type=text], input[type=url], select, input, .default-input {
-    border-radius: 0.25rem;
-    width: 100%;
-    padding: 0rem 0.75rem;
-    color: #8e8b91;
-    font-size: 1rem;
-    border: $border;
-    line-height: 2.375;
+textarea, input[type=text], input[type=url], input[type=email], input[type=number], select, input, .default-input,  input[type=password] {
+  @include select-input();
 }
-
 .css-furbww-Bt, .css-1mfkewb-Ur  {
   input[type=text] {
-    margin: -0.125rem 0.25rem !important;
+    margin: -0.125rem 0.25rem !important; //form input all 
   }
 }
-
 h1 {
   font-size: 1.5rem;
 }
@@ -781,22 +729,11 @@ p {
 body {
   font-weight: 400;
 }
-code{
-  //background-color: $title-color;
-}
 img{
   border-radius: 0.25rem;
 }
 li{
   color: $title-color;
-}
-ul{
-}
-fieldset{
-}
-form{
-}
-label{
 }
 table{
   color: $title-color;
@@ -831,27 +768,33 @@ input[type="radio"], input[type="checkbox"] {
     width: 1rem;
     height: 1rem;
 }
+input:checked:focus{
+  box-shadow: none;
+}
+input:checked{
+  border: 0;
+}
 input[type=radio]:checked::before {
-    font-family: 'mvx-admin-font' !important;
-    margin: 0;
+    font-family: 'mvx-admin-font' !important;//redio btn style
+    margin: 0rem;
     content: '\e909';
     color: #FFF;
     font-size: 0.625rem;
-    line-height: 1.1rem;
-    background-color: #65438f !important;
-    height: 1rem;
-    width: 1rem;
+    background-color: #65438f !important;//redio btn style
+    width: 1.2rem;
+    height: 1.2rem;
+    line-height: 1.2rem;
 }
 input[type=text]:focus {
   box-shadow: none;
 }
 input[type=checkbox]:checked::before {
-  font-family: 'mvx-admin-font' !important;
+  font-family: 'mvx-admin-font' !important;// checkbox icon style
   content: '\e909';
   color: #FFF;
   font-size: 0.625rem;
   line-height: 1rem;
-  background-color: #65438f !important;
+  background-color: #65438f !important;// checkbox icon style
   height: 1rem;
   width: 1rem;
   border-radius: $border-radius;
@@ -865,6 +808,7 @@ input[type=checkbox]:checked input[type=checkbox] {
 .mvx-header-search-section {
   @include flexprops(center);
   @include input;
+  position:relative;
   background-color: $fill-color;
   & label {
     top: 0.75rem;
@@ -885,20 +829,23 @@ input[type=checkbox]:checked input[type=checkbox] {
     background: $section-background;
     border: $border;
     z-index: 99;
-    padding: 0.5rem;
     position: absolute;
-    top: 100%;
+    top: 108%;
     right: 0;
     overflow-y: auto;
-    width: 50%;
+    width: 100%;
     height: 20rem;
     &::-webkit-scrollbar{
       display: none;
     }
     .mvx-header-search-content-wrapper{
+        padding: 0.5rem;
+        border-bottom: 0.06rem solid $boder-color;
       a{
-        color: $boder-color;
-        padding: 0.5rem 0;
+        color: $title-color;
+        &:hover{
+          text-decoration: none;
+        }
       }
     }
 }
@@ -909,7 +856,6 @@ input[type=checkbox]:checked input[type=checkbox] {
   border-bottom: $border;
   background-color: $fill-color;
   position: relative;
-
   .mvx-header-nav-right-section {
     margin-left: auto;
     @include flexprops(center);
@@ -922,7 +868,6 @@ input[type=checkbox]:checked input[type=checkbox] {
   }
   .mvx-header-nav-left-section {
     @include flexprops(center);
-
     .mvx-logo-img {
       padding-right: 0.75rem;
     }
@@ -931,7 +876,6 @@ input[type=checkbox]:checked input[type=checkbox] {
       padding-left: 0.75rem;
       font-weight: 500;
     }
-
     .mvx-header-section-nav-child-data:first-child::after{
       position: absolute;
       content: "";
@@ -945,6 +889,7 @@ input[type=checkbox]:checked input[type=checkbox] {
 // Start - Main Container
 .mvx-container {
   @include flexprops(start);
+  column-gap:1.2rem;
   background-color: $base-color;
   padding: 2rem 1.5rem;
   i {
@@ -967,20 +912,39 @@ input[type=checkbox]:checked input[type=checkbox] {
       color: unset;
     }
   }
+  .mvx-module-grid, .mvx-dynamic-form-content{
+   .mvx-back-btn-wrapper{
+    padding: 0 0 3rem;
+   }
   a.mvx-back-btn {
-    color: $title-color;
-    vertical-align: middle;
-    text-decoration: none;
-    border: $border;
-    padding: 0.594rem 1rem;
-    border-radius: $border-radius;
+   @include back-btn();
 }
- 
+  }
+  .mvx-dynamic-form-content{
+    a.mvx-back-btn {
+      @include back-btn();
+   }
+  }
+  p.mvx-settings-metabox-description-code {
+    padding: 0.5rem 1rem;
+    background: #5e5d6047;
+    border-radius:$border-radius;
+    position:relative;
+    &:before{
+      position:absolute;
+      content:"";
+      left: 0;
+      top: 0;
+      width: 0.25rem;
+      border-radius:0.25rem;
+      background-color: #65438f;
+      height: 100%;
+    }
+}
   .btn-red {
    @include red-btn();
   }
-  
-  .btn-purple {
+    .btn-purple {
    @include purple-btn();
   }
   .btn-border {
@@ -1007,11 +971,8 @@ input[type=checkbox]:checked input[type=checkbox] {
   .mvx-btn {
     @include button;
     vertical-align: middle;
+    white-space:nowrap;
   }
-  .mvx-sidebar {
-    padding-left: 1.2rem;
-  }
-  
   .mvx-notic-display-title {
     background-color: #b74f82;
     color: #f9f8fb;
@@ -1022,7 +983,6 @@ input[type=checkbox]:checked input[type=checkbox] {
     right: 1rem;
     z-index: 9999;
   }
-
   .mvx-notic-display-title span {
     background-color: #cf89ac;
     border-radius: 50%;
@@ -1036,7 +996,6 @@ input[type=checkbox]:checked input[type=checkbox] {
     border: $border;
     padding: 2rem;
   }
-
   .mvx-tab-name {
     color: $title-color;
     font-size: 1.25rem;
@@ -1056,11 +1015,11 @@ input[type=checkbox]:checked input[type=checkbox] {
     padding: 0.563rem 1rem;
     white-space: nowrap;
   }
-  .mvx-text-with-line-wrapper, .mvx-chart-text-and-bar-line-wrap {
-    padding: 2rem 0;
+  .mvx-text-with-line-wrapper, .mvx-chart-text-and-bar-line-wrap, .mvx-text-with-right-side-line-wrapper {
+    padding: 2rem 0 1rem;
     @include flexprops(center);
-    justify-content: space-between;
-    column-gap: 0.5rem;
+    justify-content:space-between;
+    gap: 0.5rem;
   }
   .mvx-select-all-bulk-wrap {
     margin-left: auto;
@@ -1079,7 +1038,8 @@ input[type=checkbox]:checked input[type=checkbox] {
     position: relative;
     @include toggle-btn;
   }
-  .mvx-toggle-checkbox-content::after {
+  .mvx-toggle-checkbox-content, span.wc-wizard-service-toggle{
+     &::after {
     content: '';
     position: absolute;
     top: 0.55rem;
@@ -1088,19 +1048,14 @@ input[type=checkbox]:checked input[type=checkbox] {
     height: 0.25rem;
     border: 0.0625rem solid $theme-color;
     border-radius: 8rem;
-    -webkit-transition: 0.3s;
     transition: 0.3s;
     z-index: 0;
   }
-.mvx-text-with-right-side-line-wrapper{
-  @include flexprops(center);
-  column-gap: 0.5rem;
-  }
+}
   .mvx-text-with-right-side-line {
     font-size: 1rem;
     font-weight: 500;
     color:$title-color;
-    padding: 1rem 0;
     white-space: nowrap;
   }
   .mvx-text-with-line-wrapper, .mvx-chart-text-and-bar-line-wrap{
@@ -1114,12 +1069,12 @@ hr{
     & .mvx-tab-description-start {
       background-color: $header-background;
     }
+    .mvx-middle-child-container{
+      @include flexprops(start);
+      flex-wrap:wrap;
     .mvx-current-tab-lists{
-      float: left;
-      display: block;
       border-bottom: 0.06rem solid $boder-color;
       margin-right: -0.06rem;
-      width: 22%;
       height: auto;
         & a {
           display: flex;
@@ -1144,37 +1099,35 @@ hr{
         &:after{
           content: '';
           height: 100%;
-          width: 0.16rem;
+          width: 0.076rem;
           background-color: $fill-color;
-          right: -3px;
+          right: -0.07rem;
           top: 0;
           position: absolute;
         }
       }
     }
-
     & .mvx-tab-content {
-      padding: 1.5rem;
+      padding: 2.5rem;
       border: 0.063rem solid $boder-color;
-      float: left;
-      width: 78%;
       height: auto;
       min-height: 50rem;
       background-color: $fill-color;
       & .mvx-dynamic-form {
         & .mvx-form-group {
           @include flexprops(start);
+            flex-wrap: wrap;
+            column-gap: 0.5rem;
           padding: 1rem 0;
           & .mvx-settings-form-label {
-            margin-right: 1.25rem;
+            width: 28%;
             & p {
-              font-size: 1rem;
+              font-size: 0.875rem;
               color: $title-color;
-              width: 12.5rem;
             }
           }
           & .mvx-settings-input-content {
-            width: 100%;
+            width: 70%;
             & .mvx-toggle-checkbox-content {
               margin-bottom: 0.625rem;
             }
@@ -1189,14 +1142,12 @@ hr{
           .mvx-settings-metabox-description {
             margin-top: 0.625rem;
           }
-
           .mvx-setting-file-uploader-class {
             .mvx-btn {
               display: block;
               margin: 1rem 0 0 0;
             }
           }
-          
         }
         & .mvx-form-button-group {
           & .mvx-settings-basic-input-class {
@@ -1215,13 +1166,13 @@ hr{
         flex-wrap: wrap;
         .radio-color-active{
           .mvx-merge-radio-color-input-label {
-            border: 0.12rem solid $theme-color;
             padding: 0.5rem;
+            border-color: $theme-color !important;
             border-radius: $border-radius;
-            input[type=radio]:checked::before{
-              margin: -0.06rem;
+            label{
+              margin-left: 0.5rem;
             }
-        }
+          }
         }
         & .mvx-settings-radio-color {
           margin: 0.5rem 1rem 0.5rem 0;
@@ -1230,6 +1181,10 @@ hr{
           border: 0.063rem solid transparent;
           border-radius: $border-radius;
           transition: all 0.3s;
+          .mvx-merge-radio-color-input-label {
+            padding: 0.5rem;
+            border: 0.12rem solid transparent;
+          }
           & .color-palette  {
             width: 100%;
             border-spacing: 0;
@@ -1253,12 +1208,13 @@ hr{
           position: absolute;
           bottom: 1.5rem;
           right: 1.5rem;
-          width: 1rem;
-          height: 1rem;
-          line-height: 1rem;
           border-radius: 0.125rem;
+          opacity:0;
+          &:checked{
+            opacity: 1;
+          }
           &:checked::before{
-            border-radius: 0;
+            border-radius: $border-radius;
           }
       }
         & .mvx-radio-select-under-label-class {
@@ -1288,9 +1244,14 @@ hr{
       }
       & .mvx-multi-nested-class {
         & .mvx-boarder-parent {
+          flex-wrap:wrap;
+          gap:0.5rem;
           & .mvx-boarder-parent-loop {
             width: 100%;
             @include flexprops(center);
+            .mvx-setting-form-input.css-b62m3t-container{
+              width:100%;
+            }
             label.mvx-setting-form-label {
               padding-right: 0.5rem;
           }
@@ -1298,9 +1259,13 @@ hr{
           @include flexprops(center);
           & .horizontal-class {
           margin: 1rem 0 0 1rem;
-            & .button-controls a {
-              background: $theme-color !important;
-              border: none;
+          width: 100%;
+            & .button-controls a, .button-secondary {
+              background: transparent!important;// multi nested add button
+              border-color:$title-color !important;// multi nested add button;
+              margin:0.25rem 0;
+              float:right;
+              color: $title-color !important;// multi nested add button;
             }
           }
         }
@@ -1349,12 +1314,6 @@ hr{
             & .mvx-wrap-checkbox-and-label {
               @include flexprops(center);
               margin: 0.625rem 0 0.625rem 0;
-              & .mvx-normal-checkbox-content {
-                & .mvx-toggle-checkbox {
-                  width: 1rem !important;
-                  height: 1rem !important;
-                }
-              }
               & .mvx-normal-checkbox-label {
                 & .mvx-settings-metabox-description {
                   margin: 0rem;
@@ -1367,7 +1326,6 @@ hr{
           }
         }
       }
-
       .mvx-form-vendor-register {
         & .mvx-top-part-registartion-from{
           & .mvx-registration-content {
@@ -1384,58 +1342,116 @@ hr{
           }
         }
       }
-      .mvx-top-part-registartion-from {
-        padding-bottom: 2rem;
+      .mvx-form-left-line-active{
+        border: 0.0625rem solid $theme-color!important;//to show active form option
       }
-
+      .mvx-form-left-line-active{
+        padding-bottom: 4.75rem !important;// to adjust form bottom
+      }
       .mvx-form-vendor-register .mvx-option-part, .mvx-top-part-registartion-from  {
         padding: 2rem;
-        background-color: $header-background;
         border-radius: 0.25rem;
         margin: 0.7rem 0;
         position: relative;
-        padding-bottom: 4.375rem;
         overflow: hidden;
-        border: 0.0625rem solid $boder-color;
+        border: 0.0625rem solid transparent;
+        input[placeholder="Registration form title"]{
+          font-size: 1.5rem;
+        }
+        input.default-input[placeholder="Question title"]{
+          font-size: 1rem
+        }
+        input{
+          font-size: 0.875rem;
+        }
+        & .mvx-form-group{
+          @include flexprops(start);
+          flex-wrap: wrap;
+        }
         & .mvx-question-input-items {
             width: 100%;
             margin: 0 .5rem 0 0;
         }
         & .mvx-vendor-form-input-field-container {
           margin: 0 0 .5rem 0;
-        }
-        & .mvx-footer-icon-form {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          padding: 1rem;
-          @include flexprops(center);
-          & .mvx-perple-txt {
-            margin-left: auto;
-            & input[type="checkbox"] {
-              height: 1rem;
-              width: 1rem;
+          & label{
+            padding:0 0 0.5rem;
+          }
+          ul li{
+            @include flexprops(center);
+            column-gap: 0.8rem;
+            padding: 1rem 0;
+            input[type="radio"], input[type="checkbox"]{
+              margin-top: -3.5rem;
+          }
+          }
+          a.purple-btn{
+            color: $theme-color;
+            cursor: pointer;
+            &:hover{
+              text-decoration: underline;
             }
           }
-          & .mvx-font {
-            color: $theme-color;
-            margin: 0 0.5rem 0 0;
+        }
+        .mvx-registration-fileds-description{
+          padding: 0.5rem 0;
+          font-size: 0.75rem;
+        }      
+          & .mvx-footer-icon-form {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                border-top: $border;
+                padding: 1rem;
+                @include flexprops(center);
+                    & .mvx-perple-txt {
+                      margin-left: auto;
+                        & input[type="checkbox"] {
+                          height: 1rem;
+                          width: 1rem;
+                        }
+                    }
+                  & .mvx-font {
+                    color: $theme-color;
+                    padding: 0 0.5rem;
+                    font-size: 1.2rem;
+                  }
+              }
+          &  select {
+            height: 2.5rem;
+            @include select-input();
           }
+      }
+      .mvx-option-part{
+        &:hover::before{
+          opacity: 1;
         }
-        & input, select {
-          height: 2.5rem;
+        &::before{
+          opacity:0;
+          position: absolute;
+          content: "\e93e";
+          font-family: 'mvx-admin-font';
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%)
         }
+       
       }
     }
   }
-
+  }
   .mvx-horizontal-tabs {
     .mvx-current-tab-lists {
       @include flexprops(start);
       align-items: center;
       margin: 0;
+      overflow-x:scroll ;
+      &::-webkit-scrollbar{
+        height: 0;
+      }
       a {
+        white-space: nowrap;
         padding: 0.8rem 1rem;
         border: $border;
         display: block;
@@ -1459,11 +1475,9 @@ hr{
         background-color: #f9f8fb;
       }
     }
-
     & .mvx-tab-content {
       background: #f9f8fb;
-      padding: 2rem;
-      padding-right: 1.5rem;
+      padding: 2.5rem 1.5rem;
       border: $border;
       margin-top: -.073rem;
       border-radius: 0rem 0.25rem 0.25rem 0.25rem;
@@ -1471,6 +1485,9 @@ hr{
       // Start - Analytics
       .mvx-date-and-show-wrapper {
           @include flexprops(center);
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap:0.5rem;
       }
       .mvx-analytic-details-wrap {
         .mvx-backend-datatable-wrapper{
@@ -1482,14 +1499,15 @@ hr{
     }
       & .mvx-charts-graph-content {
         padding: 2rem 0;
-        .mvx-header-and-graph-wrap{
+        .mvx-box-background-white-wrapper{
+          padding: 1rem 0.8rem;
+          border: $border;
+          color: $title-color;
+        }
+        .mvx-box-background-white-wrapper, .mvx-chart-graph-visible{
           background-color: $fill-color;
           border: $border;
-          & .mvx-box-background-white-wrapper{
-            padding: 1rem 0.8rem;
-            border-bottom: $border;
-            color: $title-color;
-          }
+          margin-top:-0.06rem;
         }
       }
       & .mvx-report-datepicker {
@@ -1524,12 +1542,6 @@ hr{
           }
         }
       }
-      & .mvx-wrapper-date-picker {
-        padding: 2rem 0;
-      }
-      & .mvx-vendor-wrapper-show-specific {
-        margin-left: auto;
-      }
       & .mvx-date-range {
         font-size: 0.875rem;
         padding-bottom: 0.625rem;
@@ -1539,16 +1551,13 @@ hr{
       }
       & .mvx-wrapper-performance-content {
         @include flexprops(center);
-        border: $border;
         & .mvx-performance-wrapper-content {
           width: 100%;
           height: 7.125rem;
-          border-right: $border;
+          border: $border;
+          margin: -0.06rem;
           padding: 0.75rem;
           background: $fill-color;
-          &:last-child{
-            border: 0;
-          }
           .mvx-wrap-price-and-percent{
             @include flexprops(center);
             padding: 1rem 0;
@@ -1573,7 +1582,6 @@ hr{
       }
     }
   }
-
   .mvx-page-title {
     @include flexprops(center);
     p {
@@ -1582,14 +1590,14 @@ hr{
       margin-right: 0.7rem;
     }
     .pull-right{
-      margin-left: auto;
+      margin: 0.4rem 0 0 auto;
     }
   }
+
 
   // Start - Dashboard
   .mvx-left-container {
     width: 100%;
-
     .mvx-dashboard-top-heading{
       font-size: 1.5rem;
       margin: 0 0 2rem 0;
@@ -1597,7 +1605,6 @@ hr{
       font-weight: 500;
       color: $title-color;
     }
-
     .mvx-slider-content-main-wrapper {
       background-image: url(../../images/dashboard-top-bg.png), url(../../images/dashboard-top-bg2.png);
       background-size: auto 100%, 4.125rem auto;
@@ -1663,7 +1670,6 @@ hr{
         }
       }
     }
-
     .mvx-setup-documentation {
       padding: 4rem 0 6rem;
       @include flexprops(start);
@@ -1705,10 +1711,10 @@ hr{
             margin: 0.1875rem 0;
             border-radius: 0.25rem;
             text-align: left;
-            border: 1px solid #fff;
+            border: 0.06rem solid #fff;
         }
         & .mvx-table-ul > li:hover {
-            border: 1px solid #65438f;
+            border: 0.06rem solid #65438f;
         }
         & .mvx-allign-li-txt {
             flex-basis: 0;
@@ -1726,12 +1732,6 @@ hr{
             flex-grow: 1;
             max-width: 4rem;
             margin-left: auto;
-           
-            & .border-btn {
-                width: 64px !important;
-                text-align: center !important;
-                padding: 4px 12px !important;
-            }
         }
         & .mvx-allign-li-txt span {
             color: #9f8ab9;
@@ -1739,7 +1739,7 @@ hr{
             margin-right: 1.5rem;
             width: auto;
             display: inline-block;
-            float: left;
+            float:left;
         }
       }
       .mvx-documentation-quick-link-wrapper{
@@ -1803,25 +1803,23 @@ hr{
             @include flexprops(center);
             padding-top: 1rem;
             overflow-x: scroll;
-                          &::-webkit-scrollbar {
-                            height: 0rem;
-                          }
-                          // &::-webkit-scrollbar-thumb {
-                          //   background: $theme-color; 
-                          //   border-radius: .6rem;
-                          // }
+
+            &::-webkit-scrollbar {
+               height: 0rem;
+              }
+
             li{
               background-color: $fill-color;
               text-align: center;
               margin: 0 0.3rem;
               border-radius: 0.25rem;
               padding: 1rem 0;
-              border: 1px solid $fill-color;
+              border: 0.06rem solid $fill-color;
               a{
                 white-space: nowrap;
               }
               &:hover{
-                border: 1px solid #4e1a74;
+                border: 0.06rem solid #4e1a74;
                 transition: .4s all ease-in-out;
               }
             }
@@ -2003,7 +2001,6 @@ hr{
      
   }
 }
-
     .mvx-upgrade-pro-section {
   text-align: center;
       .mvx-dashboard-top-icon {
@@ -2017,7 +2014,7 @@ hr{
         height: 6rem;
         margin: auto;
         background: #4e1a74;
-        box-shadow: 0px 18px 44px 0px #3f14731f;
+        box-shadow: 0rem 1.125rem 2.75rem 0rem #3f14731f;
         background: -webkit-gradient(left top, right bottom, color-stop(0%, #4e1a74), color-stop(100%, #d64959));
         background: linear-gradient(135deg, #4e1a74 0%, #d64959 100%);
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4e1a74', endColorstr='#d64959',  GradientType=1);
@@ -2028,8 +2025,8 @@ hr{
   // Start - Settings Page
   .mvx-setting-section-divider{
     background-color: $boder-color;
-    height: 0.06rem;
-    margin: 2rem 0
+    height: 0.05rem;
+    margin: 2rem 0 1.5rem;
   }
 .mvx-select-deselect-trigger {
   border:$border;
@@ -2046,9 +2043,11 @@ hr{
     @include flexprops(center);
     justify-content: space-between;
     padding: 1rem 0;
+    flex-wrap:wrap;
   
     .mvx-multistatus-ul {
       margin: 1.2rem 0;
+      cursor: pointer;
       @include flexprops(center);
       .mvx-multistatus-item {
         margin: 0;
@@ -2062,12 +2061,12 @@ hr{
       }
     }
   }
-
   .mvx-wrap-bulk-all-date {
     @include flexprops(center);
+    gap:0.5rem 0.5rem;
+    flex-wrap:wrap;
     padding-bottom: 1rem;
   }
-
   // Start - Module Page
   .mvx-col-auto.mvx-module-left-sec {
     margin-left: 0;
@@ -2157,12 +2156,10 @@ hr{
   }
 }
 
-
-
 // Start - Activity Reminder
 .mvx-product-box-sec {
   @include flexprops(center);
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   .mvx-all-product-box {
     position: relative;
     width: 18.75rem;
@@ -2179,7 +2176,7 @@ hr{
       border-radius: 0.25rem 0.25rem 0 0;
       font-weight: 500;
       & .pull-right {
-        margin-left: auto;
+        margin: 0.4rem 0 0 auto;
       }
     }
     & i{
@@ -2237,14 +2234,35 @@ hr{
     }
   }
 }
-
 // Start - Setup Widget
+.wc-wizard-service-enable {
+  span.wc-wizard-service-toggle{
+  position: relative;
+  @include toggle-btn;
+  display: block;
+  height: 0;
+    width: 0;
+    border: 0;
+}
+}
+.wc-setup-steps li::before{
+  border: 0.125rem solid #ccc;
+  border-radius: 100%;
+  width: 0.5rem;
+  height: 0.5rem;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  bottom: -0.313rem;
+}
+.wc-setup-steps li{
+  border-width:0.125rem;
+}
 .wc-setup{
 border: 0;
 h1#wc-logo{
     border: 0;
     img{
-    height: 5rem;
+    height: 3rem;
   }
 }
 .woocommerce-message{
@@ -2258,7 +2276,11 @@ h1#wc-logo{
 }
 .wc-setup-content{
   text-align: center;
-  margin-bottom:2rem;
+  margin: 1.5rem 0 3rem;
+  padding: 3rem;
+  h1{
+    padding:0 0 1rem;
+  }
    .wc-setup-next-steps{
     @include flexprops(start);
     flex-direction: row-reverse;
@@ -2268,38 +2290,62 @@ h1#wc-logo{
 }
 table.form-table {
   background: none;
+  td.mvx-store-setup{
+    flex-direction: column;
+  }
   td{
-    @include flexprops(start);
+    @include flexprops(center);
     column-gap: 1rem;
+    flex-wrap: wrap;
+    label{
+      width: 40%;
+      padding: 0.25rem 0;
+      white-space:nowrap;
+    }
   }
   th, td{
     text-align: left;
+    height:min-content;
   }
 }
 .red-btn, .button-primary{
-  background-color: #e35047 !important;
-  border: 0.06rem solid #e35047 !important;
-  color: $fill-color !important;
+  background-color: #e35047 !important;// to crack the load-css
+  border: 0.06rem solid #e35047 !important;// to crack the load-css
+  color: $fill-color !important;// to crack the load-css
+  text-shadow: none!important;// to crack the load-css
   &:hover{
-    border: 0.06rem solid #e26f76 !important;
-    background-color: #e26f76 !important;
-    color: $fill-color !important;
+    border: 0.06rem solid #e26f76 !important;// to crack the load-css
+    background-color: #e26f76 !important;// to crack the load-css
+    color: $fill-color !important;// to crack the load-css
   }
 }
  .wc-setup-actions {
   @include flexprops(start);
   justify-content: center;
+  flex-wrap: wrap;
+  overflow:hidden;
+  gap: 0.5rem;
   a:first-child{
     border: $border;
     color: $boder-color;
   }
   .button.button-large{
-    padding: 0.5rem 6rem;
+    padding: 0.5rem;
+    margin: 0;
     line-height: 1.5;
-    min-width: unset;
+    width: 15rem;
+    background: transparent;
+    color: $title-color;
   }
   }
-
+  .wc-setup-steps li.done, .wc-setup-steps li.active{
+    border-color: $boder-color;
+    color:$theme-color;
+    &::before{
+      border-color:$boder-color;
+      background-color: $boder-color;
+    }
+  }
 .select2-container--open .select2-dropdown{
   left: 1.25rem;
 }
@@ -2322,7 +2368,14 @@ table.form-table {
 }
 div#health-check-debug {
   margin: 0.5rem 0;
+  border: 0;
+  h3 button{
   border-radius: $border-radius;
+  border: $border;
+  }
+}
+.mvx-status-tools-content header{
+  margin-top: 1.5rem;
 }
 .woocommerce-tracker{
   border-bottom: $border;
@@ -2331,10 +2384,41 @@ div#health-check-debug {
 }
 .mvx-vendor-transients-button, .site-health-copy-buttons{ 
   .btn-border{
-  color: $theme-color;
   line-height: 1.2;
-}}
+  background:transparent;
+}
+}
 // Start - Datatable
+.pending-vendor {
+  background: #f3f0f9;
+ @include staus();
+ color:$theme-color;
+}
+.suspended-vendor{
+  @include staus();
+  background-color: #fff1f1;
+  color: #e35047;
+}
+.approved-vendor{
+  @include staus();
+  background-color: #fff1f1;
+  color: #e35047;
+}
+.rejected-vendor{
+  @include staus();
+  background-color: #fff1f1;
+  color: #e35047;
+}
+.commission-status-unpaid{
+  @include staus();
+  background-color: #fff1f1;
+  color: #e35047;
+}
+.commission-status-paid{
+  @include staus();
+  background-color: #fff1f1;
+  color: #e35047;
+}
 .mvx-backend-datatable-wrapper {
   .rdt_Pagination{
     background: transparent;
@@ -2344,9 +2428,12 @@ div#health-check-debug {
       border: $border;
       border-radius: $border-radius;
       margin-left: 1rem;
-      padding: 0 0.4rem;
+      padding: 0 0.4rem 0 0;
       .kJrhuj {
         background: none;
+        padding: 0 1.5rem;
+        min-height: 2rem;
+        max-width: 1.5rem;
         &:focus{
           box-shadow: none;
         }
@@ -2359,9 +2446,8 @@ div#health-check-debug {
       &:hover{
         border: 0.063rem solid $theme-color;
       }
-    }
-    .jMMJgk {
-      .bvxQGL {
+    }     
+      .jMMJgk .bvxQGL {
         border: $border;
         border-radius: $border-radius;
         margin-left: 0.25rem;
@@ -2375,20 +2461,14 @@ div#health-check-debug {
           border: 0.063rem solid $theme-color;
         }
       }
-    }
   }
   .sc-dmRaPn{
     &::-webkit-scrollbar{
       height: 0.5rem;
-      
     }
     &::-webkit-scrollbar-thumb{
-      background-color: $theme-color;
+      background-color: $boder-color;
       border-radius: $border-radius;
-    }
-    &::-webkit-scrollbar-button{
-      background-color: #5e5d60;
-      
     }
   }
   .rdt_Table {
@@ -2399,6 +2479,7 @@ div#health-check-debug {
           margin-bottom: 0.4rem;
           border-radius: $border-radius;
           font-size: 0.875rem;
+          background-color:$fill-color;
       }
     }
     .rdt_TableBody {
@@ -2407,30 +2488,24 @@ div#health-check-debug {
         border-radius: $border-radius;
         margin-bottom: 0.2rem;
         min-height: 3rem;
+        background-color:$fill-color;
         font-size: 0.813rem;
         position: relative;
         .rdt_TableCell {
+          img{
+            margin: 0 0.5rem 0 0;
+          }
           .mvx-vendor-action-icon {
             @include flexprops(center);
-            div {
-              margin-right: 0.4rem;
-              .mvxicon-hover-text {
-                display: none;
+            column-gap:0.25rem;
+            div, a{
+              i{
+                padding:0.5rem;
+                border-radius: 50%;
+              &:hover {
+                background:#65438f1c;
               }
-              &:hover .mvxicon-hover-text{
-                display: block;
-                position: absolute;
-                top: 0;
-                right: 0.4rem;
               }
-            }
-            a {
-                display: block;
-                margin-right: 0.4rem;
-                transition: ease 1s;
-            }
-            i {
-                color: $theme-color;
             }
           }
         }
@@ -2441,8 +2516,7 @@ div#health-check-debug {
           }
         }
         .jfrgbA {
-          padding-left: 0.3rem;
-          padding-right: 0.3rem;
+         padding:0 1rem;
         }
       }
     }
@@ -2452,25 +2526,34 @@ div#health-check-debug {
   }
 }
 //start - workboard page
-.css-14dclt2-Input{
+.mvx-wrap-bulk-action.css-b62m3t-container {
+  min-width: 8.5rem;
+  .css-1s2u09g-control{
+    background-color:$fill-color;
+  }
+  .css-14dclt2-Input {
+    max-height: 2.125rem;
   margin: 0 !important; //bulk action input button
 }
-.mvx-wrap-bulk-action.css-b62m3t-container {
-  margin: 0 0.25rem 0 0;
+  .css-1pahdxg-control{ 
+    &:hover{
+      border: 0;
+    }
+  }
 }
 .mvx-module-grid{
   .mvx-form-group {
     @include flexprops(start);
-    margin: 1rem 0;
+    flex-wrap: wrap;
+    padding: 1rem 0;
     .mvx-settings-form-label{
-      width: 15%;
+      width: 28%;
     }
     .mvx-settings-input-content{
-      width: 90%;
+      width: 65%;
     }
   }
 }
-
 .mvx-form-actions {
   text-align: right;
 }
@@ -2478,7 +2561,7 @@ div#health-check-debug {
 .woocommerce-order-data .mvx-page-title{
   font-size: 1.5rem;
   color: $title-color;
-  padding: 1.5rem 0;
+  padding: 0 0 1.5rem 0;
   font-weight: 500;
 }
 .mvx-commission-details-section{
@@ -2495,15 +2578,19 @@ div#health-check-debug {
     .mvx-edit-commission-status-wrapper{
       @include flexprops(start);
       justify-content: space-between;
-      .mvx-commission-wrap-vendor-order-status, .mvx-commission-wrap-amount-shipping-tax{
-        width: 34%;
+      .woocommerce-order-data-meta.order_number{
+        @include flexprops(center);
+        p:last-child{
+          margin:0 1rem;
+        }
       }
-       .commission-details-data-value, .mvx-commission-amount, .mvx-commission-status-wrap, .woocommerce-order-data-meta.order_number{
+       .commission-details-data-value, .mvx-commission-amount, .mvx-commission-status-wrap{
         @include flexprops(center);
         padding: 0.5rem 0;
         margin: 0;
         .commission-status-hide-and-show-wrap{
           @include flexprops(start);
+          gap:0.5rem;
         }
         .mvx-commission-label-class,  .mvx-commission-label-class {
           width: 60%;
@@ -2514,54 +2601,73 @@ div#health-check-debug {
 .mvx-order-details-vendor-details-wrap{
   @include flexprops(start);
   justify-content: space-between;
+  flex-wrap: wrap;
   .mvx-order-details-wrap, .mvx-vendor-notes-details-wrap{
     width: 48%;
     .mvx-box-background-white-wrapper, .mvx-commission-vendor-details-class, .mvx-commission-notes-details-class{
       @include commission-heading();
     }
-    
     .mvx-commission-order-data.woocommerce_order_items_wrapper.wc-order-items-editable{
       border-radius: $border-radius;
     }
-    table{
+    table.woocommerce_order_items{
       border: $border;
       thead{
         background-color: #f4f1f7;
         color: $paragraph-color;
         text-align: left;
         th{
-          padding: 1rem 0 1rem 1rem;
+          padding: 1rem 0.75rem;
         }
       }
       tbody{
         td{
-          padding: 1rem 0 1rem 1rem;
+          padding: 1rem 0.75rem;
         }
         td.thumb{
-          @include flexprops(start);
+          @include flexprops(center);
           justify-content: space-between;
+          column-gap: 0.5rem;
         }
       }
     }
-  
+    table.mvx-order-totals{
+      border: $border;
+      background:$section-background;
+      tr{
+        height: auto;
+        &:last-child{
+          font-weight:600;
+          height: 2rem;
+          border-top:$border;          }
+        td{
+          text-align: right;
+          padding: 0.25rem 0.75rem;
+        }
+      }
+    }
     .mvx-child-vendor-details, .mvx_commision_note_clm{
       background-color: $fill-color;
       border: $border;
-      border-radius: $border-radius;
-      margin: 0 0 0.5rem;
+      border-bottom: 0;
       padding: 1rem;
+      &:last-child{
+        border-bottom:$border;
+        border-radius:0 0 0.25rem 0.25rem; 
+      }
       .commission-details-data-value{
         @include flexprops(center);
         .mvx-commission-label-class{
-          width: 30%;
+          width: 35%;
         }
       }
     }
-
   }
-
 } 
 // Start - List Vendor Page Pop Up   //popup - set
+.mvx-add-new .mvx-container .mvx-vertical-tabs .mvx-tab-content{
+  width: 100% !important;// set add vendor content 
+}
 .MuiDialog-paperScrollPaper {
   min-width:20.563rem;
   overflow: hidden;
@@ -2609,10 +2715,7 @@ div#health-check-debug {
           border: $border;
           margin: 1rem 0;
           font-size: 0.8rem;
-          &::placeholder{
-            padding: 0.5rem;
-            font-size: 0.8rem;
-          }
+          padding: 0.5rem;
         }
       }
       .mvx-vendor-multi-action-buttons {
@@ -2622,16 +2725,131 @@ div#health-check-debug {
         .mvx-btn.btn-purple{
           @include purple-btn();
           @include button();
+          font-size: 0.75rem;
+          padding: 0.5rem 1.5rem;
         }
         .mvx-btn.btn-red{
           @include red-btn();
           @include button();
+          font-size: 0.75rem;
+          padding: 0.5rem 1.5rem;
         }
         .mvx-btn.btn-border{
           @include border-btn();
           @include button();
+          background:transparent;
+          font-size: 0.75rem;
+          padding: 0.5rem 1.5rem;
         }
       }
+    }
+  }
+}
+.mvx-registration-content{
+  .mvx-form-group{
+    flex-wrap: nowrap !important;
+    .dropdown{
+      position: relative;
+          .mvx-registration-select{
+            @include select-input();
+            background-color:$fill-color;
+            color: $title-color;
+            @include flexprops(center);
+            justify-content:space-between;
+          }
+    .mvx-registration-dropdown-menu{
+      position:absolute;
+      top:-1.5rem;
+      left:0;
+      width: 100%;
+      height:20rem;
+      background:$fill-color;
+      border:$border;
+      overflow-y: scroll;
+      border-radius: $border-radius;
+      padding: 0.5rem;
+      z-index: 99;
+      div{
+        padding:0.25rem;
+        &:hover{
+          background-color: $paragraph-color;
+          color: $fill-color;
+        }
+      }
+    }
+  }
+  }
+}
+//responsive code are here
+@media only screen and (min-width: 767px) {
+.mvx-commission-details-section{
+  .mvx-edit-commission-status-wrapper{
+    .mvx-commission-wrap-vendor-order-status, .mvx-commission-wrap-amount-shipping-tax{
+      width: 34%;
+    }
+  }
+  }
+  .mvx-order-details-vendor-details-wrap{
+    .mvx-order-details-wrap, .mvx-vendor-notes-details-wrap{
+      width: 48%;}
+}
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container{ 
+  .mvx-current-tab-lists{
+    width:22%
+  }
+  .mvx-tab-content{
+  width:78%;
+}}
+}
+@media only screen and (max-width: 668px) {
+  .mvx-header-wapper .mvx-header-nav-left-section .mvx-logo-title{
+    display:none;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  //all pages
+    .mvx-container{
+      flex-wrap: wrap;
+      justify-content: center;
+    .mvx-middle-container-wrapper{
+      width: 100%;
+    }
+    .mvx-sidebar {
+      margin: 1.5rem 0 0 ;
+    }
+  }
+  .mvx-middle-child-container{
+    .mvx-current-tab-lists, .mvx-tab-content{
+      width: 100%;
+    }
+  }
+  .mvx-module-section-options-list{
+    flex: 1;
+  }
+  .mvx-edit-commission-status-wrapper{
+    flex-wrap:wrap;
+    .mvx-commission-wrap-vendor-order-status, .mvx-commission-wrap-amount-shipping-tax{
+      width: 100%;
+    }
+  }
+  .mvx-order-details-vendor-details-wrap{
+    .mvx-order-details-wrap, .mvx-vendor-notes-details-wrap{
+      width: 100%;}
+}
+  .mvx-settings-form-label, .mvx-settings-input-content{
+            width: 100% !important;
+          }
+          .mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-wrapper-performance-content{
+            flex-wrap:wrap;
+          }
+          span.sc-bZkfAO.sc-kLLXSd.lmGpws.OHwJB, span.sc-bZkfAO.sc-ikZpkk.lmGpws.kBhHpT {
+            display: none;
+        }
+  .mvx-text-with-line-wrapper, .mvx-chart-text-and-bar-line-wrap {
+    flex-wrap:wrap;
+    hr{
+      display: none;
     }
   }
 }
