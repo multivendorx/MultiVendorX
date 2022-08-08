@@ -720,7 +720,7 @@ class MVXworkboard extends Component {
 					? (data_ann.cell = (row) => (
 							<div className="mvx-vendor-action-icon">
 								<a href={row.link}>
-									<i className="mvx-font icon-edit"></i>
+									<i className="mvx-font icon-edit" title='Edit'></i>
 								</a>
 								<div
 									onClick={() =>
@@ -728,7 +728,7 @@ class MVXworkboard extends Component {
 									}
 									id={row.id}
 								>
-									<i className="mvx-font icon-no"></i>
+									<i className="mvx-font icon-no" title='close'></i>
 								</div>
 							</div>
 					  ))
@@ -788,7 +788,7 @@ class MVXworkboard extends Component {
 									}
 									id={row.id}
 								>
-									<i className="mvx-font icon-no"></i>
+									<i className="mvx-font icon-no" title='close'></i>
 								</div>
 							</div>
 					  ))
@@ -828,7 +828,7 @@ class MVXworkboard extends Component {
 						? (data_anno_knowl.cell = (row) => (
 								<div className="mvx-vendor-action-icon">
 									<a href={row.link}>
-										<i className="mvx-font icon-edit"></i>
+										<i className="mvx-font icon-edit" title="Edit"></i>
 									</a>
 									<div
 										onClick={() =>
@@ -839,7 +839,7 @@ class MVXworkboard extends Component {
 										}
 										id={row.id}
 									>
-										<i className="mvx-font icon-no"></i>
+										<i className="mvx-font icon-no" title='close'></i>
 									</div>
 								</div>
 						  ))
@@ -880,7 +880,7 @@ class MVXworkboard extends Component {
 						? (data_store_review_content.cell = (row) => (
 								<div className="mvx-vendor-action-icon">
 									<a href={row.link}>
-										<i className="mvx-font icon-edit"></i>
+										<i className="mvx-font icon-edit" title='Edit'></i>
 									</a>
 									<div
 										onClick={() =>
@@ -888,7 +888,7 @@ class MVXworkboard extends Component {
 										}
 										id={row.id}
 									>
-										<i className="mvx-font icon-no"></i>
+										<i className="mvx-font icon-no" title='close'></i>
 									</div>
 								</div>
 						  ))
@@ -939,7 +939,7 @@ class MVXworkboard extends Component {
 										}
 										id={row.reason}
 									>
-										<i className="mvx-font icon-no"></i>
+										<i className="mvx-font icon-no" title='close'></i>
 									</div>
 								</div>
 						  ))
@@ -1057,7 +1057,7 @@ class MVXworkboard extends Component {
 																		location.href = icons_data.link
 																	)
 																}>
-																<i className="mvx-font icon-edit"></i>
+																<i className="mvx-font icon-edit" title='Edit' ></i>
 															</div>
 														: 
 
@@ -1098,6 +1098,7 @@ class MVXworkboard extends Component {
 
 		) : name === 'announcement' ? (
 			<div className="mvx-module-grid">
+				<div className='mvx-back-btn-wrapper'>
 				{(get_current_name &&
 					get_current_name.get('create') === 'announcement') ||
 				get_current_name.get('AnnouncementID') ? (
@@ -1117,7 +1118,7 @@ class MVXworkboard extends Component {
 						{appLocalizer.workboard_string.workboard25}
 					</Link>
 				)}
-
+			</div>
 				{get_current_name &&
 				get_current_name.get('create') === 'announcement' ? (
 					<DynamicForm
@@ -1294,6 +1295,7 @@ class MVXworkboard extends Component {
 			</div>
 		) : name === 'knowladgebase' ? (
 			<div className="mvx-module-grid">
+				<div className='mvx-back-btn-wrapper'>
 				{(get_current_name &&
 					get_current_name.get('create') === 'knowladgebase') ||
 				get_current_name.get('knowladgebaseID') ? (
@@ -1313,6 +1315,7 @@ class MVXworkboard extends Component {
 						{appLocalizer.workboard_string.workboard27}
 					</Link>
 				)}
+				</div>
 				{get_current_name &&
 				get_current_name.get('create') === 'knowladgebase' ? (
 					<DynamicForm

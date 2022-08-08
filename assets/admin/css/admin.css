@@ -637,7 +637,7 @@ textarea, input[type=text], input[type=url], input[type=email], input[type=numbe
   width: 100%;
   padding: 0rem 0.75rem;
   color: #8e8b91;
-  font-size: 1rem;
+  font-size: 0.875rem;
   border: 0.063rem solid #d4d1d9;
   line-height: 2.375;
 }
@@ -826,7 +826,11 @@ input[type=checkbox]:checked input[type=checkbox] {
 }
 
 .mvx-header-search-section .mvx-search-content .mvx-header-search-content-wrapper a {
-  color: #d4d1d9;
+  color: #181718;
+}
+
+.mvx-header-search-section .mvx-search-content .mvx-header-search-content-wrapper a:hover {
+  text-decoration: none;
 }
 
 .mvx-header-wapper {
@@ -924,7 +928,11 @@ input[type=checkbox]:checked input[type=checkbox] {
   color: unset;
 }
 
-.mvx-container .mvx-module-grid a.mvx-back-btn, .mvx-container .mvx-tab-content a.mvx-back-btn {
+.mvx-container .mvx-module-grid .mvx-back-btn-wrapper, .mvx-container .mvx-dynamic-form-content .mvx-back-btn-wrapper {
+  padding: 0 0 3rem;
+}
+
+.mvx-container .mvx-module-grid a.mvx-back-btn, .mvx-container .mvx-dynamic-form-content a.mvx-back-btn {
   color: #181718;
   vertical-align: middle;
   text-decoration: none;
@@ -944,7 +952,7 @@ input[type=checkbox]:checked input[type=checkbox] {
 
 .mvx-container p.mvx-settings-metabox-description-code {
   padding: 0.5rem 1rem;
-  background: #5e5d60;
+  background: #5e5d6047;
   border-radius: 0.25rem;
   position: relative;
 }
@@ -1074,8 +1082,8 @@ input[type=checkbox]:checked input[type=checkbox] {
   white-space: nowrap;
 }
 
-.mvx-container .mvx-text-with-line-wrapper, .mvx-container .mvx-chart-text-and-bar-line-wrap {
-  padding: 2rem 0;
+.mvx-container .mvx-text-with-line-wrapper, .mvx-container .mvx-chart-text-and-bar-line-wrap, .mvx-container .mvx-text-with-right-side-line-wrapper {
+  padding: 2rem 0 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1085,8 +1093,7 @@ input[type=checkbox]:checked input[type=checkbox] {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  -webkit-column-gap: 0.5rem;
-          column-gap: 0.5rem;
+  gap: 0.5rem;
 }
 
 .mvx-container .mvx-select-all-bulk-wrap {
@@ -1190,22 +1197,10 @@ input[type=checkbox]:checked input[type=checkbox] {
   z-index: 0;
 }
 
-.mvx-container .mvx-text-with-right-side-line-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-column-gap: 0.5rem;
-          column-gap: 0.5rem;
-}
-
 .mvx-container .mvx-text-with-right-side-line {
   font-size: 1rem;
   font-weight: 500;
   color: #181718;
-  padding: 1rem 0;
   white-space: nowrap;
 }
 
@@ -1303,7 +1298,7 @@ input[type=checkbox]:checked input[type=checkbox] {
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form .mvx-form-group .mvx-settings-form-label {
-  width: 25%;
+  width: 28%;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form .mvx-form-group .mvx-settings-form-label p {
@@ -1453,6 +1448,7 @@ input[type=checkbox]:checked input[type=checkbox] {
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-multi-nested-class .mvx-boarder-parent {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  gap: 0.5rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1485,11 +1481,11 @@ input[type=checkbox]:checked input[type=checkbox] {
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-multi-nested-class .mvx-boarder-parent .horizontal-class .button-controls a, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-multi-nested-class .mvx-boarder-parent .horizontal-class .button-secondary {
-  background: #65438f !important;
-  border-color: #65438f !important;
+  background: transparent !important;
+  border-color: #181718 !important;
   margin: 0.25rem 0;
   float: right;
-  color: #fdfdfe;
+  color: #181718 !important;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-toggle-rectangle-merge ul {
@@ -1698,7 +1694,7 @@ input[type=checkbox]:checked input[type=checkbox] {
   width: 100%;
   padding: 0rem 0.75rem;
   color: #8e8b91;
-  font-size: 1rem;
+  font-size: 0.875rem;
   border: 0.063rem solid #d4d1d9;
   line-height: 2.375;
 }
@@ -1780,6 +1776,12 @@ input[type=checkbox]:checked input[type=checkbox] {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-analytic-details-wrap .mvx-backend-datatable-wrapper {
@@ -1799,15 +1801,16 @@ input[type=checkbox]:checked input[type=checkbox] {
   padding: 2rem 0;
 }
 
-.mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-charts-graph-content .mvx-header-and-graph-wrap {
-  background-color: #fdfdfe;
+.mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-charts-graph-content .mvx-box-background-white-wrapper {
+  padding: 1rem 0.8rem;
   border: 0.063rem solid #d4d1d9;
+  color: #181718;
 }
 
-.mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-charts-graph-content .mvx-header-and-graph-wrap .mvx-box-background-white-wrapper {
-  padding: 1rem 0.8rem;
-  border-bottom: 0.063rem solid #d4d1d9;
-  color: #181718;
+.mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-charts-graph-content .mvx-box-background-white-wrapper, .mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-charts-graph-content .mvx-chart-graph-visible {
+  background-color: #fdfdfe;
+  border: 0.063rem solid #d4d1d9;
+  margin-top: -0.06rem;
 }
 
 .mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-report-datepicker {
@@ -1864,10 +1867,6 @@ input[type=checkbox]:checked input[type=checkbox] {
   top: 0.313rem;
 }
 
-.mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-vendor-wrapper-show-specific {
-  margin-left: auto;
-}
-
 .mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-date-range {
   font-size: 0.875rem;
   padding-bottom: 0.625rem;
@@ -1883,19 +1882,15 @@ input[type=checkbox]:checked input[type=checkbox] {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border: 0.063rem solid #d4d1d9;
 }
 
 .mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-wrapper-performance-content .mvx-performance-wrapper-content {
   width: 100%;
   height: 7.125rem;
-  border-right: 0.063rem solid #d4d1d9;
+  border: 0.063rem solid #d4d1d9;
+  margin: -0.06rem;
   padding: 0.75rem;
   background: #fdfdfe;
-}
-
-.mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-wrapper-performance-content .mvx-performance-wrapper-content:last-child {
-  border: 0;
 }
 
 .mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-wrapper-performance-content .mvx-performance-wrapper-content .mvx-wrap-price-and-percent {
@@ -2520,7 +2515,7 @@ input[type=checkbox]:checked input[type=checkbox] {
 
 .mvx-container .mvx-setting-section-divider {
   background-color: #d4d1d9;
-  height: 0.06rem;
+  height: 0.05rem;
   margin: 2rem 0 1.5rem;
 }
 
@@ -2585,6 +2580,7 @@ input[type=checkbox]:checked input[type=checkbox] {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  gap: 0.5rem 0.5rem;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   padding-bottom: 1rem;
@@ -2741,8 +2737,8 @@ input[type=checkbox]:checked input[type=checkbox] {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .mvx-product-box-sec .mvx-all-product-box {
@@ -3010,6 +3006,9 @@ table.form-table td label {
 
 table.form-table th, table.form-table td {
   text-align: left;
+  height: -webkit-min-content;
+  height: -moz-min-content;
+  height: min-content;
 }
 
 .red-btn, .button-primary {
@@ -3035,6 +3034,10 @@ table.form-table th, table.form-table td {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  overflow: hidden;
+  gap: 0.5rem;
 }
 
 .wc-setup-actions a:first-child {
@@ -3043,9 +3046,10 @@ table.form-table th, table.form-table td {
 }
 
 .wc-setup-actions .button.button-large {
-  padding: 0.5rem 6rem;
+  padding: 0.5rem;
+  margin: 0;
   line-height: 1.5;
-  min-width: unset;
+  width: 15rem;
   background: transparent;
   color: #181718;
 }
@@ -3152,7 +3156,13 @@ div#health-check-debug h3 button {
   border-radius: 0.25rem;
   background-color: #fff1f1;
   color: #e35047;
-  margin: 0 0.5rem 0 1rem;
+}
+
+.commission-status-paid {
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  background-color: #fff1f1;
+  color: #e35047;
 }
 
 .mvx-backend-datatable-wrapper .rdt_Pagination {
@@ -3258,12 +3268,12 @@ div#health-check-debug h3 button {
           column-gap: 0.25rem;
 }
 
-.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon div i {
+.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon div i, .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon a i {
   padding: 0.5rem;
   border-radius: 50%;
 }
 
-.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon div i:hover {
+.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon div i:hover, .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon a i:hover {
   background: #65438f1c;
 }
 
@@ -3280,17 +3290,17 @@ div#health-check-debug h3 button {
   border: 0.063rem solid #65438f;
 }
 
-.css-14dclt2-Input {
-  margin: 0 !important;
-}
-
 .mvx-wrap-bulk-action.css-b62m3t-container {
-  margin: 0.25rem 0.25rem 0 0;
   min-width: 8.5rem;
 }
 
 .mvx-wrap-bulk-action.css-b62m3t-container .css-1s2u09g-control {
   background-color: #fdfdfe;
+}
+
+.mvx-wrap-bulk-action.css-b62m3t-container .css-14dclt2-Input {
+  max-height: 2.125rem;
+  margin: 0 !important;
 }
 
 .mvx-wrap-bulk-action.css-b62m3t-container .css-1pahdxg-control:hover {
@@ -3310,7 +3320,7 @@ div#health-check-debug h3 button {
 }
 
 .mvx-module-grid .mvx-form-group .mvx-settings-form-label {
-  width: 25%;
+  width: 28%;
 }
 
 .mvx-module-grid .mvx-form-group .mvx-settings-input-content {
@@ -3354,27 +3364,41 @@ div#health-check-debug h3 button {
           justify-content: space-between;
 }
 
-.mvx-commission-details-section .mvx-edit-commission-status-wrapper .commission-details-data-value, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-amount, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-status-wrap, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .woocommerce-order-data-meta.order_number {
+.mvx-commission-details-section .mvx-edit-commission-status-wrapper .woocommerce-order-data-meta.order_number {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 0.25rem 0;
+}
+
+.mvx-commission-details-section .mvx-edit-commission-status-wrapper .woocommerce-order-data-meta.order_number p:last-child {
+  margin: 0 1rem;
+}
+
+.mvx-commission-details-section .mvx-edit-commission-status-wrapper .commission-details-data-value, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-amount, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-status-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.5rem 0;
   margin: 0;
 }
 
-.mvx-commission-details-section .mvx-edit-commission-status-wrapper .commission-details-data-value .commission-status-hide-and-show-wrap, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-amount .commission-status-hide-and-show-wrap, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-status-wrap .commission-status-hide-and-show-wrap, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .woocommerce-order-data-meta.order_number .commission-status-hide-and-show-wrap {
+.mvx-commission-details-section .mvx-edit-commission-status-wrapper .commission-details-data-value .commission-status-hide-and-show-wrap, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-amount .commission-status-hide-and-show-wrap, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-status-wrap .commission-status-hide-and-show-wrap {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: start;
+  gap: 0.5rem;
 }
 
-.mvx-commission-details-section .mvx-edit-commission-status-wrapper .commission-details-data-value .mvx-commission-label-class, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .commission-details-data-value .mvx-commission-label-class, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-amount .mvx-commission-label-class, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-amount .mvx-commission-label-class, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-status-wrap .mvx-commission-label-class, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-status-wrap .mvx-commission-label-class, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .woocommerce-order-data-meta.order_number .mvx-commission-label-class, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .woocommerce-order-data-meta.order_number .mvx-commission-label-class {
+.mvx-commission-details-section .mvx-edit-commission-status-wrapper .commission-details-data-value .mvx-commission-label-class, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .commission-details-data-value .mvx-commission-label-class, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-amount .mvx-commission-label-class, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-amount .mvx-commission-label-class, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-status-wrap .mvx-commission-label-class, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-status-wrap .mvx-commission-label-class {
   width: 60%;
 }
 
@@ -3458,7 +3482,7 @@ div#health-check-debug h3 button {
 
 .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table.mvx-order-totals tr td, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table.mvx-order-totals tr td {
   text-align: right;
-  padding: 0.25rem 0.5rem;
+  padding: 0.25rem 0.75rem;
 }
 
 .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-child-vendor-details, .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx_commision_note_clm, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-child-vendor-details, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx_commision_note_clm {
@@ -3487,7 +3511,7 @@ div#health-check-debug h3 button {
 }
 
 .mvx-add-new .mvx-container .mvx-vertical-tabs .mvx-tab-content {
-  width: 100%;
+  width: 100% !important;
 }
 
 .MuiDialog-paperScrollPaper {
@@ -3650,7 +3674,7 @@ div#health-check-debug h3 button {
   width: 100%;
   padding: 0rem 0.75rem;
   color: #8e8b91;
-  font-size: 1rem;
+  font-size: 0.875rem;
   border: 0.063rem solid #d4d1d9;
   line-height: 2.375;
   background-color: #fdfdfe;
@@ -3744,6 +3768,20 @@ div#health-check-debug h3 button {
   }
   .mvx-settings-form-label, .mvx-settings-input-content {
     width: 100% !important;
+  }
+  .mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-wrapper-performance-content {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  span.sc-bZkfAO.sc-kLLXSd.lmGpws.OHwJB, span.sc-bZkfAO.sc-ikZpkk.lmGpws.kBhHpT {
+    display: none;
+  }
+  .mvx-text-with-line-wrapper, .mvx-chart-text-and-bar-line-wrap {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .mvx-text-with-line-wrapper hr, .mvx-chart-text-and-bar-line-wrap hr {
+    display: none;
   }
 }
 /*# sourceMappingURL=admin.css.map */

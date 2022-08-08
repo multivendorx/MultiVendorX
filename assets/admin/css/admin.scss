@@ -118,7 +118,7 @@ $section-background:#fbfafc;
   width: 100%;
   padding: 0rem 0.75rem;
   color: #8e8b91;
-  font-size: 1rem;
+  font-size: 0.875rem;
   border: $border;
   line-height: 2.375;
 }
@@ -842,7 +842,10 @@ input[type=checkbox]:checked input[type=checkbox] {
         padding: 0.5rem;
         border-bottom: 0.06rem solid $boder-color;
       a{
-        color: $boder-color;
+        color: $title-color;
+        &:hover{
+          text-decoration: none;
+        }
       }
     }
 }
@@ -909,11 +912,10 @@ input[type=checkbox]:checked input[type=checkbox] {
       color: unset;
     }
   }
-  .mvx-module-grid, .mvx-tab-content{
-    .mvx-dynamic-fields-wrapper {
-      // padding-top: 1rem;
-      // margin-top: 2rem;
-  }
+  .mvx-module-grid, .mvx-dynamic-form-content{
+   .mvx-back-btn-wrapper{
+    padding: 0 0 3rem;
+   }
   a.mvx-back-btn {
    @include back-btn();
 }
@@ -925,7 +927,7 @@ input[type=checkbox]:checked input[type=checkbox] {
   }
   p.mvx-settings-metabox-description-code {
     padding: 0.5rem 1rem;
-    background: $paragraph-color;
+    background: #5e5d6047;
     border-radius:$border-radius;
     position:relative;
     &:before{
@@ -994,7 +996,6 @@ input[type=checkbox]:checked input[type=checkbox] {
     border: $border;
     padding: 2rem;
   }
-
   .mvx-tab-name {
     color: $title-color;
     font-size: 1.25rem;
@@ -1014,11 +1015,11 @@ input[type=checkbox]:checked input[type=checkbox] {
     padding: 0.563rem 1rem;
     white-space: nowrap;
   }
-  .mvx-text-with-line-wrapper, .mvx-chart-text-and-bar-line-wrap {
-    padding: 2rem 0;
+  .mvx-text-with-line-wrapper, .mvx-chart-text-and-bar-line-wrap, .mvx-text-with-right-side-line-wrapper {
+    padding: 2rem 0 1rem;
     @include flexprops(center);
-    justify-content: space-between;
-    column-gap: 0.5rem;
+    justify-content:space-between;
+    gap: 0.5rem;
   }
   .mvx-select-all-bulk-wrap {
     margin-left: auto;
@@ -1051,15 +1052,10 @@ input[type=checkbox]:checked input[type=checkbox] {
     z-index: 0;
   }
 }
-.mvx-text-with-right-side-line-wrapper{
-  @include flexprops(center);
-  column-gap: 0.5rem;
-  }
   .mvx-text-with-right-side-line {
     font-size: 1rem;
     font-weight: 500;
     color:$title-color;
-    padding: 1rem 0;
     white-space: nowrap;
   }
   .mvx-text-with-line-wrapper, .mvx-chart-text-and-bar-line-wrap{
@@ -1124,7 +1120,7 @@ hr{
             column-gap: 0.5rem;
           padding: 1rem 0;
           & .mvx-settings-form-label {
-            width: 25%;
+            width: 28%;
             & p {
               font-size: 0.875rem;
               color: $title-color;
@@ -1249,6 +1245,7 @@ hr{
       & .mvx-multi-nested-class {
         & .mvx-boarder-parent {
           flex-wrap:wrap;
+          gap:0.5rem;
           & .mvx-boarder-parent-loop {
             width: 100%;
             @include flexprops(center);
@@ -1264,11 +1261,11 @@ hr{
           margin: 1rem 0 0 1rem;
           width: 100%;
             & .button-controls a, .button-secondary {
-              background: $theme-color !important;// multi nested add button
-              border-color:$theme-color!important;// multi nested add button;
+              background: transparent!important;// multi nested add button
+              border-color:$title-color !important;// multi nested add button;
               margin:0.25rem 0;
               float:right;
-              color:$fill-color;
+              color: $title-color !important;// multi nested add button;
             }
           }
         }
@@ -1488,6 +1485,9 @@ hr{
       // Start - Analytics
       .mvx-date-and-show-wrapper {
           @include flexprops(center);
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap:0.5rem;
       }
       .mvx-analytic-details-wrap {
         .mvx-backend-datatable-wrapper{
@@ -1499,14 +1499,15 @@ hr{
     }
       & .mvx-charts-graph-content {
         padding: 2rem 0;
-        .mvx-header-and-graph-wrap{
+        .mvx-box-background-white-wrapper{
+          padding: 1rem 0.8rem;
+          border: $border;
+          color: $title-color;
+        }
+        .mvx-box-background-white-wrapper, .mvx-chart-graph-visible{
           background-color: $fill-color;
           border: $border;
-          & .mvx-box-background-white-wrapper{
-            padding: 1rem 0.8rem;
-            border-bottom: $border;
-            color: $title-color;
-          }
+          margin-top:-0.06rem;
         }
       }
       & .mvx-report-datepicker {
@@ -1541,12 +1542,6 @@ hr{
           }
         }
       }
-      & .mvx-wrapper-date-picker {
-        // padding: 2rem 0;
-      }
-      & .mvx-vendor-wrapper-show-specific {
-        margin-left: auto;
-      }
       & .mvx-date-range {
         font-size: 0.875rem;
         padding-bottom: 0.625rem;
@@ -1556,16 +1551,13 @@ hr{
       }
       & .mvx-wrapper-performance-content {
         @include flexprops(center);
-        border: $border;
         & .mvx-performance-wrapper-content {
           width: 100%;
           height: 7.125rem;
-          border-right: $border;
+          border: $border;
+          margin: -0.06rem;
           padding: 0.75rem;
           background: $fill-color;
-          &:last-child{
-            border: 0;
-          }
           .mvx-wrap-price-and-percent{
             @include flexprops(center);
             padding: 1rem 0;
@@ -1747,7 +1739,7 @@ hr{
             margin-right: 1.5rem;
             width: auto;
             display: inline-block;
-            float: left;
+            float:left;
         }
       }
       .mvx-documentation-quick-link-wrapper{
@@ -1811,9 +1803,11 @@ hr{
             @include flexprops(center);
             padding-top: 1rem;
             overflow-x: scroll;
-                          &::-webkit-scrollbar {
-                            height: 0rem;
-                          }
+
+            &::-webkit-scrollbar {
+               height: 0rem;
+              }
+
             li{
               background-color: $fill-color;
               text-align: center;
@@ -1849,6 +1843,7 @@ hr{
   border: 0.06rem solid $boder-color;
   border-radius: 0.25rem;
 }
+
 .mvx-text-center{
       text-align: center;
       padding: 6rem 0;
@@ -2030,7 +2025,7 @@ hr{
   // Start - Settings Page
   .mvx-setting-section-divider{
     background-color: $boder-color;
-    height: 0.06rem;
+    height: 0.05rem;
     margin: 2rem 0 1.5rem;
   }
 .mvx-select-deselect-trigger {
@@ -2068,6 +2063,7 @@ hr{
   }
   .mvx-wrap-bulk-all-date {
     @include flexprops(center);
+    gap:0.5rem 0.5rem;
     flex-wrap:wrap;
     padding-bottom: 1rem;
   }
@@ -2163,7 +2159,7 @@ hr{
 // Start - Activity Reminder
 .mvx-product-box-sec {
   @include flexprops(center);
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   .mvx-all-product-box {
     position: relative;
     width: 18.75rem;
@@ -2309,6 +2305,7 @@ table.form-table {
   }
   th, td{
     text-align: left;
+    height:min-content;
   }
 }
 .red-btn, .button-primary{
@@ -2325,14 +2322,18 @@ table.form-table {
  .wc-setup-actions {
   @include flexprops(start);
   justify-content: center;
+  flex-wrap: wrap;
+  overflow:hidden;
+  gap: 0.5rem;
   a:first-child{
     border: $border;
     color: $boder-color;
   }
   .button.button-large{
-    padding: 0.5rem 6rem;
+    padding: 0.5rem;
+    margin: 0;
     line-height: 1.5;
-    min-width: unset;
+    width: 15rem;
     background: transparent;
     color: $title-color;
   }
@@ -2388,7 +2389,6 @@ div#health-check-debug {
 }
 }
 // Start - Datatable
-
 .pending-vendor {
   background: #f3f0f9;
  @include staus();
@@ -2413,7 +2413,11 @@ div#health-check-debug {
   @include staus();
   background-color: #fff1f1;
   color: #e35047;
-  margin: 0 0.5rem 0 1rem;
+}
+.commission-status-paid{
+  @include staus();
+  background-color: #fff1f1;
+  color: #e35047;
 }
 .mvx-backend-datatable-wrapper {
   .rdt_Pagination{
@@ -2494,7 +2498,7 @@ div#health-check-debug {
           .mvx-vendor-action-icon {
             @include flexprops(center);
             column-gap:0.25rem;
-            div {
+            div, a{
               i{
                 padding:0.5rem;
                 border-radius: 50%;
@@ -2522,15 +2526,15 @@ div#health-check-debug {
   }
 }
 //start - workboard page
-.css-14dclt2-Input{
-  margin: 0 !important; //bulk action input button
-}
 .mvx-wrap-bulk-action.css-b62m3t-container {
-  margin: 0.25rem 0.25rem 0 0;
   min-width: 8.5rem;
   .css-1s2u09g-control{
     background-color:$fill-color;
   }
+  .css-14dclt2-Input {
+    max-height: 2.125rem;
+  margin: 0 !important; //bulk action input button
+}
   .css-1pahdxg-control{ 
     &:hover{
       border: 0;
@@ -2543,7 +2547,7 @@ div#health-check-debug {
     flex-wrap: wrap;
     padding: 1rem 0;
     .mvx-settings-form-label{
-      width: 25%;
+      width: 28%;
     }
     .mvx-settings-input-content{
       width: 65%;
@@ -2574,13 +2578,19 @@ div#health-check-debug {
     .mvx-edit-commission-status-wrapper{
       @include flexprops(start);
       justify-content: space-between;
-    
-       .commission-details-data-value, .mvx-commission-amount, .mvx-commission-status-wrap, .woocommerce-order-data-meta.order_number{
+      .woocommerce-order-data-meta.order_number{
         @include flexprops(center);
-        padding: 0.25rem 0;
+        p:last-child{
+          margin:0 1rem;
+        }
+      }
+       .commission-details-data-value, .mvx-commission-amount, .mvx-commission-status-wrap{
+        @include flexprops(center);
+        padding: 0.5rem 0;
         margin: 0;
         .commission-status-hide-and-show-wrap{
           @include flexprops(start);
+          gap:0.5rem;
         }
         .mvx-commission-label-class,  .mvx-commission-label-class {
           width: 60%;
@@ -2632,7 +2642,7 @@ div#health-check-debug {
           border-top:$border;          }
         td{
           text-align: right;
-          padding: 0.25rem 0.5rem;
+          padding: 0.25rem 0.75rem;
         }
       }
     }
@@ -2656,7 +2666,7 @@ div#health-check-debug {
 } 
 // Start - List Vendor Page Pop Up   //popup - set
 .mvx-add-new .mvx-container .mvx-vertical-tabs .mvx-tab-content{
-  width: 100%;
+  width: 100% !important;// set add vendor content 
 }
 .MuiDialog-paperScrollPaper {
   min-width:20.563rem;
@@ -2799,7 +2809,6 @@ div#health-check-debug {
 
 @media only screen and (max-width: 768px) {
   //all pages
-  
     .mvx-container{
       flex-wrap: wrap;
       justify-content: center;
@@ -2831,5 +2840,16 @@ div#health-check-debug {
   .mvx-settings-form-label, .mvx-settings-input-content{
             width: 100% !important;
           }
-
+          .mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-wrapper-performance-content{
+            flex-wrap:wrap;
+          }
+          span.sc-bZkfAO.sc-kLLXSd.lmGpws.OHwJB, span.sc-bZkfAO.sc-ikZpkk.lmGpws.kBhHpT {
+            display: none;
+        }
+  .mvx-text-with-line-wrapper, .mvx-chart-text-and-bar-line-wrap {
+    flex-wrap:wrap;
+    hr{
+      display: none;
+    }
+  }
 }
