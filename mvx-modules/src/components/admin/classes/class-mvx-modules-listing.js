@@ -345,14 +345,8 @@ class MVX_Module_Listing extends Component {
 																			<li>
 																				{company.is_active ? (
 																					<div className="mvx-module-active-plugin-class">
-																						<img
-																							src={
-																								appLocalizer.right_logo
-																							}
-																							width="10"
-																							height="10"
-																							alt="Active"
-																						/>
+																					    <span className="mvx-font icon-yes"></span>
+
 																					</div>
 																				) : (
 																					<div className="inactive-plugin-class">

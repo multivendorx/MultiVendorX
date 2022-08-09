@@ -47,7 +47,7 @@ $section-background:#fbfafc;
   border: $border;
   background-color: $fill-color;
   padding: 1rem;
-  margin: 1.5rem 0 0.5rem;
+  margin: 1.5rem 0 0.25rem;
   border-radius: $border-radius;
 }
 @mixin back-btn {
@@ -157,7 +157,7 @@ $section-background:#fbfafc;
 }
 @mixin datepicker {
     width: 17.5rem;
-    height: 3.125rem;
+    height: 2.5rem;
     background-color: $fill-color;
     margin-left: auto;
 }
@@ -697,6 +697,9 @@ content: "\e958";
 /*icon end*/
  
 // Start - Common CSS
+textarea{
+  color:$title-color!important;// to cross load css in textarea**
+}
 textarea, input[type=text], input[type=url], input[type=email], input[type=number], select, input, .default-input,  input[type=password] {
   @include select-input();
 }
@@ -835,9 +838,13 @@ input[type=checkbox]:checked input[type=checkbox] {
     overflow-y: auto;
     width: 100%;
     height: 20rem;
-    &::-webkit-scrollbar{
-      display: none;
+    &::-webkit-scrollbar {
+      width: 0.25rem;
     }
+    &::-webkit-scrollbar-thumb {
+      background: $theme-color; 
+      border-radius: .6rem;
+    }  
     .mvx-header-search-content-wrapper{
         padding: 0.5rem;
         border-bottom: 0.06rem solid $boder-color;
@@ -1022,7 +1029,6 @@ input[type=checkbox]:checked input[type=checkbox] {
     gap: 0.5rem;
   }
   .mvx-select-all-bulk-wrap {
-    margin-left: auto;
     @include flexprops(start);
     & a:first-child {
         margin-right: .5rem;
@@ -1111,9 +1117,18 @@ hr{
       padding: 2.5rem;
       border: 0.063rem solid $boder-color;
       height: auto;
-      min-height: 50rem;
+      min-height: 60rem;
       background-color: $fill-color;
       & .mvx-dynamic-form {
+        tr, th{
+          height: 0;
+        }
+        td{
+          height: 3.75rem;
+        }
+        .mvx-form-button-group {
+          margin-top: 7rem;
+      }
         & .mvx-form-group {
           @include flexprops(start);
             flex-wrap: wrap;
@@ -1153,7 +1168,7 @@ hr{
           & .mvx-settings-basic-input-class {
             & .default-btn {
               height: 2.5rem;
-              background-color: $theme-color;
+              background-color: #e35047;
               width: 20%;
               color: $fill-color;
                float: right;
@@ -1246,26 +1261,41 @@ hr{
         & .mvx-boarder-parent {
           flex-wrap:wrap;
           gap:0.5rem;
+          position:relative;
+          label.mvx-setting-form-label {
+            width:25%;
+        } .mvx-setting-form-input{
+          width:65%;
+        }
+              .mvx-boarder-nested-child-start{
+                position:relative;
+                width:100%;
+              
+                .mvx-boarder-nested-child-loop{
+                  @include flexprops(center);
+                  gap:0.5rem;
+                  margin-bottom: 0.5rem;
+                }
+              }
           & .mvx-boarder-parent-loop {
             width: 100%;
             @include flexprops(center);
-            .mvx-setting-form-input.css-b62m3t-container{
-              width:100%;
-            }
-            label.mvx-setting-form-label {
-              padding-right: 0.5rem;
-          }
           }
           @include flexprops(center);
           & .horizontal-class {
-          margin: 1rem 0 0 1rem;
-          width: 100%;
+            position: absolute;
+            right: 0;
+            top: 0;
+            & .button-controls{
+              margin: 0;
+            }
             & .button-controls a, .button-secondary {
               background: transparent!important;// multi nested add button
               border-color:$title-color !important;// multi nested add button;
-              margin:0.25rem 0;
-              float:right;
+              margin:0.25rem 0 0;
               color: $title-color !important;// multi nested add button;
+              min-width: 1.875rem;
+              text-align:center;
             }
           }
         }
@@ -1512,16 +1542,14 @@ hr{
       }
       & .mvx-report-datepicker {
         @include datepicker;
-        padding: 0.625rem 1rem;
+         padding: 0.125rem 1rem;
         border-radius: $border-radius;
         @include border;
         & .rs-picker-toggle-wrapper {
-          height: 1.875rem;
           & .rs-btn {
             border: none;
             background: transparent;
             padding: 0;
-            height: 1.875rem;
           }
           & input {
             background-color: transparent;
@@ -1839,8 +1867,9 @@ hr{
 .pro-bg{
   background: url(../../images/pro-bg.png) center no-repeat;
   background-size: cover;
-  border: 0.06rem solid $boder-color;
+  border: solid #d4d1d9;
   border-radius: 0.25rem;
+  border-width: 0 0.06rem;
 }
 
 .mvx-text-center{
@@ -1849,6 +1878,14 @@ hr{
       .mvx-money-header-wrap h1{
     padding-bottom: 1rem;
   }
+  .show-money-btn-wrapper{
+    padding-bottom: 4rem;
+  a.show-link {
+    display: flex;
+    justify-content: center;
+    color: $theme-color;
+    cursor: pointer;
+}}
   .mvx-show-compare {
     padding: 4.5rem 0 0;
 }
@@ -1858,9 +1895,23 @@ hr{
     border: 0.06rem solid $boder-color;
     border-right: none;
     width: 85%;
-    margin: 4.313rem auto 0;
+    margin: 5.513rem auto 0;
+    position: relative;
+    li.mvx-show-compare {
+      position: absolute;
+      border-top: $border;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      background: #fbfafc;
+      cursor:pointer;
+      padding: 1rem 2rem!important;
+      a.show-link {
+      color: $theme-color;
+    }
+  }
      li.mvx-compare-table-row{
-      padding: 2rem 2rem 0;
+      padding: 2rem 2rem 3rem;
       width: 34.33%;
           &:first-child{
             text-align: left;
@@ -2024,7 +2075,8 @@ hr{
   border:$border;
   border-radius: $border-radius;
   width: fit-content;
-  padding: 0.66rem 1rem;
+  padding: 0.5rem 1rem;
+  margin-bottom:1rem;
   transition: all 0.3s;
   cursor: pointer;
   &:hover{
@@ -2129,6 +2181,10 @@ hr{
             font-size: 0.438rem;
             color: #e35047;
           }
+          & .icon-yes {
+            font-size: 0.438rem;
+            color: $theme-color;
+          }
         }
       }
     }
@@ -2151,15 +2207,15 @@ hr{
 // Start - Activity Reminder
 .mvx-product-box-sec {
   @include flexprops(center);
+  gap:0.5rem;
   flex-wrap: wrap;
   .mvx-all-product-box {
     position: relative;
-    width: 18.75rem;
-    height: 17.625rem;
+    min-width: 18.75rem;
+    min-height: 17.625rem;
     background: $fill-color;
     border: $border;
     border-radius: $border-radius;
-    margin: .5rem;
     & .mvx-white-box-header {
       @include flexprops(center);
       width: 100%;
@@ -2268,7 +2324,7 @@ h1#wc-logo{
 }
 .wc-setup-content{
   text-align: center;
-  margin: 1.5rem 0 3rem;
+  margin: 1rem 0 3rem;
   padding: 3rem;
   h1{
     padding:0 0 1rem;
@@ -2333,6 +2389,7 @@ table.form-table {
   .wc-setup-steps li.done, .wc-setup-steps li.active{
     border-color: $boder-color;
     color:$theme-color;
+    font-weight:400;
     &::before{
       border-color:$boder-color;
       background-color: $boder-color;
@@ -2344,7 +2401,7 @@ table.form-table {
 .mvx-vendor-transients{
   padding: 0.5rem 0;
   .mvx-vendor-transients-description{
-    padding: 0 0 0.5rem;
+    padding: 1rem 0 0.5rem;
   }
    .mvx-text-with-line-wrapper{
   padding: 0;
@@ -2493,7 +2550,7 @@ div#health-check-debug {
             div, a{
               i{
                 padding:0.5rem;
-                border-radius: 50%;
+                border-radius: $border-radius;
               &:hover {
                 background:#65438f1c;
               }
@@ -2518,15 +2575,16 @@ div#health-check-debug {
   }
 }
 //start - workboard page
+.css-14dclt2-Input {
+  max-height: 2.125rem;
+margin: 0 !important; //bulk action input button
+padding:0;
+}
 .mvx-wrap-bulk-action.css-b62m3t-container {
   min-width: 8.5rem;
   .css-1s2u09g-control{
     background-color:$fill-color;
   }
-  .css-14dclt2-Input {
-    max-height: 2.125rem;
-  margin: 0 !important; //bulk action input button
-}
   .css-1pahdxg-control{ 
     &:hover{
       border: 0;
@@ -2838,10 +2896,10 @@ div#health-check-debug {
           span.sc-bZkfAO.sc-kLLXSd.lmGpws.OHwJB, span.sc-bZkfAO.sc-ikZpkk.lmGpws.kBhHpT {
             display: none;
         }
-  .mvx-text-with-line-wrapper, .mvx-chart-text-and-bar-line-wrap {
-    flex-wrap:wrap;
-    hr{
-      display: none;
-    }
-  }
+      .mvx-text-with-line-wrapper, .mvx-chart-text-and-bar-line-wrap {
+        flex-wrap:wrap;
+        hr{
+          display: none;
+        }
+      }
 }

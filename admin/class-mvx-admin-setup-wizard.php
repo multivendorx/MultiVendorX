@@ -916,11 +916,11 @@ class MVX_Admin_Setup_Wizard {
         if ('next_steps' === $this->step) :
             ?>
             <a class="wc-return-to-dashboard" href="<?php echo esc_url(admin_url()); ?>"><?php esc_html_e('Return to the WordPress Dashboard', 'multivendorx'); ?></a>
-<?php endif; ?>
-    </body>
-</html>
-<?php
-}
+        <?php endif; ?>
+            </body>
+        </html>
+        <?php
+    }
 
     public function get_payment_methods() {
         $methods = array(
