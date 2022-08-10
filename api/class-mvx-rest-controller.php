@@ -2789,7 +2789,7 @@ class MVX_REST_API {
             ],
             
         ];
-
+        
         $settings_fields_data['vendor-store'] =   [
             [
                 'label' => __('Store Name *', 'multivendorx'),
@@ -5064,7 +5064,7 @@ class MVX_REST_API {
             $vendor = get_mvx_vendor($user->data->ID);
             $product_count = 0;
             $vendor_permalink = ''; 
-            $status = "";
+            $status = $status_text = "";
             if ($vendor) {
                 $vendor_products = $vendor->get_products_ids();
                 $vendor_permalink = $vendor->permalink;
@@ -5075,21 +5075,25 @@ class MVX_REST_API {
                 $is_block = get_user_meta($vendor->id, '_vendor_turn_off', true);
             
                 if ($is_block) {
+                    $status_text = "Suspended";
                     $status = "<p class='vendor-status suspended-vendor'>" . __('Suspended', 'multivendorx') . "</p>";
                 } else {
+                    $status_text = "Approved";
                     $status = "<p class='vendor-status approved-vendor'>" . __('Approved', 'multivendorx') . "</p>";
                 }
             } else if (in_array('dc_rejected_vendor', $user->roles)) {
+                $status_text = "Rejected";
                 $status = "<p class='vendor-status rejected-vendor'>" . __('Rejected', 'multivendorx') . "</p>";
             } else if (in_array('dc_pending_vendor', $user->roles)) {
+                $status_text = "Pending";
                 $status = "<p class='vendor-status pending-vendor'>" . __('Pending', 'multivendorx') . "</p>";
             }
 
             $vendor_profile_image = get_user_meta($user->data->ID, '_vendor_profile_image', true);
             if (isset($vendor_profile_image)) $image_info = wp_get_attachment_image_src( $vendor_profile_image , array(32, 32) );
             $final_image = isset($image_info[0]) ? $image_info[0] : get_avatar_url($user->data->ID, array('size' => 32));
-            
-            $name_display = "<div class='mvx-vendor-icon-name'><img src='". $final_image ."' width='20' height='20' ></img><a href='". sprintf('?page=%s&ID=%s&name=vendor-personal', 'mvx#&submenu=vendor', $user->data->ID) ."'>" . $user->data->display_name . "</a></div>";
+            $status_url = $status_text == 'Pending' ? 'vendor-application' : 'vendor-personal';
+            $name_display = "<div class='mvx-vendor-icon-name'><img src='". $final_image ."' width='20' height='20' ></img><a href='". sprintf('?page=%s&ID=%s&name=%s', 'mvx#&submenu=vendor', $user->data->ID, $status_url) ."'>" . $user->data->display_name . "</a></div>";
 
             $action_display = "
             <div class='mvx-vendor-action-icon'>

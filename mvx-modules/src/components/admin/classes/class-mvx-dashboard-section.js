@@ -599,10 +599,41 @@ class MVX_Dashboard extends Component {
 
                                            
                                         </div>
-                                        
+                                       
                                     </ul>
                                 </li>
+                                <div className='show-responsive-money-btn-wrapper'>
+                                             {this.state.money_back_show_more_yearly ?
 
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_yearly: false
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        <i className="mvx-font icon-eye-preview" />
+                                                    </span>{' '}
+                                                    See Less Details
+                                                </a>
+
+                                                :
+
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_yearly: true
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        <i className="mvx-font icon-eye-preview" />
+                                                    </span>{' '}
+                                                    See More Details
+                                                </a>
+                                                }
+                                        </div>
                                 <li className='mvx-spr-sever-rcmnd mvx-money-table-coloumn'>
                                     <span className="mvx-recommend-tag">
                                         Super saver
@@ -666,6 +697,38 @@ class MVX_Dashboard extends Component {
                                     
                                     </ul>
                                 </li>
+                                <div className='show-responsive-money-btn-wrapper'>
+                                             {this.state.money_back_show_more_yearly ?
+
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_yearly: false
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        <i className="mvx-font icon-eye-preview" />
+                                                    </span>{' '}
+                                                    See Less Details
+                                                </a>
+
+                                                :
+
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_yearly: true
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        <i className="mvx-font icon-eye-preview" />
+                                                    </span>{' '}
+                                                    See More Details
+                                                </a>
+                                                }
+                                        </div>
 
                                 <li  className='mvx-money-table-coloumn'>
                                     <ul>
@@ -725,9 +788,41 @@ class MVX_Dashboard extends Component {
                                             : ''}
 
                                         </div>
-                                        
+                                       
                                     </ul>
                                 </li>
+                                <div className='show-responsive-money-btn-wrapper'>
+                                             {this.state.money_back_show_more_yearly ?
+
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_yearly: false
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        <i className="mvx-font icon-eye-preview" />
+                                                    </span>{' '}
+                                                    See Less Details
+                                                </a>
+
+                                                :
+
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_yearly: true
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        <i className="mvx-font icon-eye-preview" />
+                                                    </span>{' '}
+                                                    See More Details
+                                                </a>
+                                                }
+                                        </div>
                             </ul>
                                            
                                          <div className='show-money-btn-wrapper'>
