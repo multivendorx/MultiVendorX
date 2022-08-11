@@ -180,3 +180,7 @@
 -------------------------------------
 {"TIMESTAMP":"2022-08-10T14:38:41Z","CORRELATIONID":"32317211b63b7","ACK":"Failure","VERSION":"2.3","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
 -------------------------------------
+[]
+-------------------------------------
+{"TIMESTAMP":"2022-08-11T04:39:17Z","CORRELATIONID":"e00831b3241f","ACK":"Failure","VERSION":"91.0","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
+-------------------------------------
