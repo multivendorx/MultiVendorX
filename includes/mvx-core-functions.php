@@ -7714,7 +7714,7 @@ if (!function_exists('mvx_list_all_modules')) {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=settings-identity-verification'),
                     ],
                 ]
             ],
@@ -7727,7 +7727,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'description'  => __( 'Lets multiple vendors sell the same products ', 'multivendorx' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=spmv-pages'),
                     ],
                     [
                         'id'           => 'import-export',
@@ -7742,7 +7742,6 @@ if (!function_exists('mvx_list_all_modules')) {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'store-inventory',
@@ -7996,7 +7995,6 @@ if (!function_exists('mvx_list_all_modules')) {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                 ]
             ],
@@ -8016,7 +8014,6 @@ if (!function_exists('mvx_list_all_modules')) {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=settings-identity-verification'),
                     ],
                     [
                         'id'           => 'staff-manager',
@@ -8031,7 +8028,6 @@ if (!function_exists('mvx_list_all_modules')) {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'wholesale',
