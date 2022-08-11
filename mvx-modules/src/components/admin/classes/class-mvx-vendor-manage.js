@@ -1137,6 +1137,8 @@ class MVXBackendVendor extends React.Component {
 											)
 										}
 									/>
+					<div className="mvx-setting-section-divider">&nbsp;</div>
+
 									<div id="wc-backbone-modal-dialog">
 										<button
 											onClick={() =>
@@ -1160,7 +1162,7 @@ class MVXBackendVendor extends React.Component {
 													'reload'
 												)
 											}
-											className="mvx-btn btn-purple"
+											className="mvx-btn btn-red"
 										>
 											{
 												appLocalizer.vendor_page_string

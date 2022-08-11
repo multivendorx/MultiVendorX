@@ -164,3 +164,19 @@
 -------------------------------------
 {"TIMESTAMP":"2022-08-09T13:00:35Z","CORRELATIONID":"2141555433f62","ACK":"Failure","VERSION":"56.0","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
 -------------------------------------
+{"TIMESTAMP":"2022-08-10T05:38:40Z","CORRELATIONID":"36cd41462314d","ACK":"Failure","VERSION":"72.0","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
+-------------------------------------
+{"TIMESTAMP":"2022-08-10T06:38:39Z","CORRELATIONID":"886f06a95413f","ACK":"Failure","VERSION":"91.0","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
+-------------------------------------
+{"TIMESTAMP":"2022-08-10T07:38:38Z","CORRELATIONID":"a9cc93a2ae888","ACK":"Failure","VERSION":"124.0","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
+-------------------------------------
+[]
+-------------------------------------
+{"TIMESTAMP":"2022-08-10T11:39:06Z","CORRELATIONID":"35727f7f4c640","ACK":"Failure","VERSION":"91.0","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
+-------------------------------------
+[]
+-------------------------------------
+{"TIMESTAMP":"2022-08-10T13:38:49Z","CORRELATIONID":"7895652ecde96","ACK":"Failure","VERSION":"72.0","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
+-------------------------------------
+{"TIMESTAMP":"2022-08-10T14:38:41Z","CORRELATIONID":"32317211b63b7","ACK":"Failure","VERSION":"2.3","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
+-------------------------------------

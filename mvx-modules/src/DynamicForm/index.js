@@ -877,6 +877,7 @@ export default class DynamicForm extends React.Component {
 					const checked = o.value === value;
 					return (
 						<React.Fragment key={'fr' + o.key}>
+							<div className='mvx-radio-input-label-wrap'>
 							<input
 								{...props}
 								className="mvx-setting-form-input"
@@ -890,6 +891,8 @@ export default class DynamicForm extends React.Component {
 								}}
 							/>
 							<label key={'ll' + o.key}>{o.label}</label>
+							</div>
+
 						</React.Fragment>
 					);
 				});
@@ -964,6 +967,7 @@ export default class DynamicForm extends React.Component {
 									checked ? 'radio-select-active' : ''
 								}`}
 							>
+
 								<input
 									{...props}
 									className="mvx-setting-form-input"
