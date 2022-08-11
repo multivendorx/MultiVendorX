@@ -7582,7 +7582,7 @@ if (!function_exists('mvx_list_all_modules')) {
                             array(
                                 'plugin_name'   => __('WooCommerce Booking', 'multivendorx'),
                                 'plugin_link'   => 'https://woocommerce.com/products/woocommerce-bookings/',
-                                'is_active' => is_plugin_active('edit.php?post_type=wc_booking&page=wc_bookings_settings') ? true :false,
+                                'is_active' => is_plugin_active('woocommerce-bookings/woocommerce-bookings.php') ? true :false,
                             ),
                             array(
                                 'plugin_name'   => __('MultivendorX Pro', 'multivendorx'),
@@ -7591,7 +7591,6 @@ if (!function_exists('mvx_list_all_modules')) {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'subscription',
@@ -7611,7 +7610,6 @@ if (!function_exists('mvx_list_all_modules')) {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
                         'id'           => 'accommodation',
@@ -7939,6 +7937,7 @@ if (!function_exists('mvx_list_all_modules')) {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=settings-vendor-invoice'),
                     ],
                     [
                         'id'           => 'marketplace-refund',
@@ -8017,7 +8016,7 @@ if (!function_exists('mvx_list_all_modules')) {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=settings-identity-verification'),
                     ],
                     [
                         'id'           => 'staff-manager',
@@ -8047,7 +8046,7 @@ if (!function_exists('mvx_list_all_modules')) {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=settings-wholesale'),
                     ],
                     [
                         'id'           => 'live-chat',
@@ -8062,7 +8061,7 @@ if (!function_exists('mvx_list_all_modules')) {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=settings-live-chat'),
                     ],
                 ]
             ],
@@ -8117,7 +8116,7 @@ if (!function_exists('mvx_list_all_modules')) {
                             ),
                         ),
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=settings-vendor-membership'),
                     ],
                 ]
             ],
