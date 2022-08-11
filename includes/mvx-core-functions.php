@@ -7582,7 +7582,7 @@ if (!function_exists('mvx_list_all_modules')) {
                             array(
                                 'plugin_name'   => __('WooCommerce Booking', 'multivendorx'),
                                 'plugin_link'   => 'https://woocommerce.com/products/woocommerce-bookings/',
-                                'is_active' => is_plugin_active('woocommerce-bookings/woocommerce-bookings.php') ? true :false,
+                                'is_active' => is_plugin_active('edit.php?post_type=wc_booking&page=wc_bookings_settings') ? true :false,
                             ),
                             array(
                                 'plugin_name'   => __('MultivendorX Pro', 'multivendorx'),
@@ -7596,7 +7596,7 @@ if (!function_exists('mvx_list_all_modules')) {
                     [
                         'id'           => 'subscription',
                         'name'         => __( 'Subscription', 'multivendorx' ),
-                        'description'  => __( 'Let customers subscribe to your products or services and pay weekly, monthly or yearly ', 'multivendorx' ),
+                        'description'  => __( 'Let customers subscribe to your products or services and pay weekly, monthly or yearly ', 'multivendorx' ),  
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
                         'required_plugin_list' => array(
                             array(
@@ -7685,7 +7685,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
                         'required_plugin_list' => array(
                             array(
-                                'plugin_name'   => __('AffiliateWP', 'multivendorx'),
+                                'plugin_name'   => __('Rental Pro', 'multivendorx'),
                                 'plugin_link'   => 'https://woocommerce.com/products/rental-products/',
                                 'is_active' => is_plugin_active('woocommerce-rental-and-booking/redq-rental-and-bookings.php') ? true : false,
                             ),
