@@ -710,7 +710,7 @@ textarea, input[type=text], input[type=url], input[type=email], input[type=numbe
 }
 h1 {
   font-size: 1.5rem;
-  line-height: 1.2;
+  line-height: 1.5;
 
 }
 h2 {
@@ -765,13 +765,18 @@ blockquote::after {
 .mvx-page #wpcontent {
   padding: 0rem;
 }
-.mvx-backend-datatable-wrapper {
+.mvx-transaction-history .mvx-backend-datatable-wrapper {
   padding: 2.4rem 0;
   border-radius: $border-radius;
+}
+input[type="checkbox"]{
+  border-radius: 0.125rem;
 }
 input[type="radio"], input[type="checkbox"] {
     width: 1rem;
     height: 1rem;
+    border-color: $boder-color;
+    background-color: $fill-color;
 }
 input:checked:focus{
   box-shadow: none;
@@ -802,8 +807,8 @@ input[type=checkbox]:checked::before {
   background-color: #65438f !important;// checkbox icon style
   height: 1rem;
   width: 1rem;
-  border-radius: $border-radius;
-  margin: 0;
+  border-radius: 0.125rem;
+  margin: -0.032rem;
 }
 input[type=checkbox]:checked input[type=checkbox] {
   opacity: 0;
@@ -811,7 +816,9 @@ input[type=checkbox]:checked input[type=checkbox] {
 // .css-26l3qy-manu{
 //   z-index: 99 !important;//select bulk input
 // }
-
+div#wpbody-content {
+  padding-bottom: 3.125rem;
+}
 // Start - Header
 .mvx-header-search-section {
   @include flexprops(center);
@@ -887,6 +894,7 @@ input[type=checkbox]:checked input[type=checkbox] {
       font-size: 1.2rem;
       padding-left: 0.75rem;
       font-weight: 500;
+      color: $title-color;
     }
     .mvx-header-section-nav-child-data:first-child::after{
       position: absolute;
@@ -925,9 +933,6 @@ input[type=checkbox]:checked input[type=checkbox] {
     }
   }
   .mvx-module-grid, .mvx-dynamic-form-content{
-   .mvx-back-btn-wrapper{
-    padding: 0 0 3rem;
-   }
   a.mvx-back-btn {
    @include back-btn();
 }
@@ -1097,6 +1102,7 @@ hr{
           margin-bottom: 0;
           border-bottom: 0;
           text-decoration: none;
+          color:$title-color;
           &:focus{
             box-shadow: none;
           }
@@ -1107,6 +1113,7 @@ hr{
       & .active-current-tab {
         background-color: $fill-color;
         position: relative;
+        color: #65438f;
         &:after{
           content: '';
           height: 100%;
@@ -1141,6 +1148,7 @@ hr{
           padding: 1rem 0;
           & .mvx-settings-form-label {
             width: 28%;
+            color: #181718;
             & p {
               font-size: 0.875rem;
               color: $title-color;
@@ -1169,6 +1177,7 @@ hr{
           }
           .mvx-settings-metabox-description {
             margin-top: 0.625rem;
+            color: #5e5d60;
           }
           .mvx-setting-file-uploader-class {
             .mvx-btn {
@@ -1520,6 +1529,7 @@ hr{
       .active-current-tab {
         border-bottom: 0.063rem solid #f9f8fb;
         background-color: #f9f8fb;
+        color: #65438f;
       }
     }
     & .mvx-tab-content {
@@ -1721,7 +1731,7 @@ hr{
       gap:1.5rem;
       justify-content: space-between;
       .mvx-setup-marketing-white-box{
-        background-color: $fill-color;
+        background-color: #fbfafc;
         border: $border;
         border-radius: $border-radius;
         padding: 2rem 2rem 3rem;
@@ -1767,6 +1777,9 @@ hr{
             max-width: 100%;
             font-size: 1rem;
             color: $paragraph-color;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
             p{
               font-size: 0.75rem;
               color: $boder-color;
@@ -1876,6 +1889,7 @@ hr{
     }
     p{
       padding-bottom: 3rem;
+      color: #5e5d60;
     }
 }
 .pro-bg{
@@ -1889,10 +1903,15 @@ hr{
 .mvx-text-center{
       text-align: center;
       padding: 4rem 0;
-      .mvx-money-header-wrap h1{
+      .mvx-money-header-wrap {
+        p{
+    color: $paragraph-color;
+        }
+        h1{
     padding-bottom: 0.75rem;
+    color: $title-color;
   }
-  
+}
   .show-money-btn-wrapper{
     padding-bottom: 4rem;
   a.show-link {
@@ -1909,7 +1928,6 @@ hr{
     background-color: #fbfafc;
     border: 0.06rem solid $boder-color;
     border-right: none;
-    width: 85%;
     margin: 5.513rem auto 0;
     position: relative;
     li.mvx-show-compare {
@@ -1966,8 +1984,6 @@ hr{
             transform: translateX(-50%);
             background-color: #9f8ab9;
             color: #f9f8fb;
-            padding: 0.15rem 1.75rem;
-            border-radius: 0 0 1rem 1rem;   
               }
   
             }
@@ -1986,10 +2002,8 @@ hr{
       width: 85%;
       margin: 4.313rem auto 2rem;
       .mvx-spr-sever-rcmnd{
-        padding: 2rem 0;
         transform: scale(1.01);
         background-color: $fill-color !important; //to color middle price coloumn
-        box-shadow: 0rem 0rem 0.9375rem 0.0625rem #0000001a;
         position: relative;
         .mvx-recommend-tag{
           position: absolute;
@@ -1999,18 +2013,13 @@ hr{
           background-color: #e26f76;
           color: #f9f8fb;
           padding: 0.15rem 1.75rem;
-          border-radius: 0 0 1rem 1rem; 
+          border-radius: 0 0 1rem 1rem;
         }
       }
       .mvx-money-table-coloumn{
         background-color: $section-background;
         border-radius: 0.25rem;
         border: 0.06rem solid $boder-color;
-        padding: 2rem;
-        &:nth-child(2){
-          border: none;
-        padding: 4rem 2rem;
-        }
         .mvx-btn{
           width: 100%;
           margin: 1rem 0;
@@ -2079,12 +2088,13 @@ hr{
 
   // Start - Settings Page
   .mvx-setting-section-divider{
-    background-color: $boder-color;
+    background-color: $base-color;
     height: 0.05rem;
     margin: 2rem 0 1.5rem;
   }
 .mvx-select-deselect-trigger {
   border:$border;
+  color:$title-color;
   border-radius: $border-radius;
   width: fit-content;
   padding: 0.5rem 1rem;
@@ -2098,11 +2108,11 @@ hr{
   .mvx-search-and-multistatus-wrap {
     @include flexprops(center);
     justify-content: space-between;
-    padding: 1rem 0;
+    padding: 2rem 0;
     flex-wrap:wrap;
   
     .mvx-multistatus-ul {
-      margin: 1.2rem 0;
+      margin: 0;
       cursor: pointer;
       @include flexprops(center);
       .mvx-multistatus-item {
@@ -2121,7 +2131,7 @@ hr{
     @include flexprops(center);
     gap:0.5rem 0.5rem;
     flex-wrap:wrap;
-    padding-bottom: 1rem;
+    padding-bottom: 1.5rem;
   }
   // Start - Module Page
   .mvx-col-auto.mvx-module-left-sec {
@@ -2174,6 +2184,8 @@ hr{
       margin: 1.5rem 0 1rem 0;
     }
     & ul {
+      overflow-y: auto;
+      height: 6rem;
       & li {
         @include flexprops(center);
         border: none;
@@ -2181,23 +2193,27 @@ hr{
         height: auto;
         line-height: 1.2rem;
         text-align: left;
-        & .inactive-plugin-class {
+        .inactive-plugin-class{ 
+          background: #fefbfc;
+         } .mvx-module-active-plugin-class{
+          background: #fbfafc;
+         }
+        & .inactive-plugin-class, .mvx-module-active-plugin-class{
           border-radius: 50rem;
           width: 1rem;
           line-height: 1;
           height: 1rem;
           margin-right: 0.5rem;
           text-align: center;
-          background: #fefbfc;
           & .icon-no {
             font-size: 0.438rem;
-            color: #e35047;
+            color: #e26f76;
           }
           & .icon-yes {
             font-size: 0.438rem;
-            color: $theme-color;
+            color: #9f8ab9;
           }
-        }
+        }          
       }
     }
   }
@@ -2206,7 +2222,6 @@ hr{
     bottom: 0rem;
     left: 0rem;
     right: 0rem;
-    background: #faf8fb;
     background: #f9f8fb;
     padding: 0.5rem 1rem;
     @include flexprops(center);
@@ -2235,6 +2250,7 @@ hr{
       background: $header-background;
       border-radius: 0.25rem 0.25rem 0 0;
       font-weight: 500;
+      border-bottom: $border;
       & .pull-right {
         margin: 0.4rem 0 0 auto;
       }
@@ -2244,6 +2260,8 @@ hr{
     }
     & .mvx-white-box-body {
       margin: 1rem;
+      height: 10rem;
+      overflow-y: auto;
       & img {
         border-radius: $border-radius;
         margin-right: 0.625rem;
@@ -2266,7 +2284,7 @@ hr{
       padding: .5rem 1rem;
       left: 0;
       width: 100%;
-      border-top: $border;
+      background: #f9f8fb;
       & .pull-left, .pull-right {
         @include flexprops(center);
         & .link-icon {
@@ -2541,11 +2559,13 @@ div#health-check-debug {
           border-radius: $border-radius;
           font-size: 0.875rem;
           background-color:$fill-color;
+          color:$title-color;
       }
     }
     .rdt_TableBody {
       .rdt_TableRow {
         border: $border;
+        color:$paragraph-color;
         border-radius: $border-radius;
         margin-bottom: 0.2rem;
         min-height: 3rem;
@@ -2603,16 +2623,24 @@ padding:0;
     }
   }
 }
+.mvx-announcement, .mvx-knowladgebase, .mvx-add-new{
+ .mvx-btn {
+  transition: none;
+}  .mvx-dynamic-fields-wrapper{
+  padding: 3rem 0 0;
+  }
+}
 .mvx-module-grid{
   .mvx-form-group {
     @include flexprops(start);
     flex-wrap: wrap;
     padding: 1rem 0;
     .mvx-settings-form-label{
-      width: 28%;
+      width: 15%;
+      color: #181718;
     }
     .mvx-settings-input-content{
-      width: 65%;
+      width:85%;
     }
   }
 }
@@ -2651,7 +2679,7 @@ padding:0;
         padding: 0.5rem 0;
         margin: 0;
         .commission-status-hide-and-show-wrap{
-          @include flexprops(start);
+          @include flexprops(center);
           gap:0.5rem;
         }
         .mvx-commission-label-class,  .mvx-commission-label-class {
@@ -2839,13 +2867,91 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary{
     }
   }
 }
-.mvx-vendor-modal-main{
-  div#wc-backbone-modal-dialog {
-    @include flexprops(center);
-    justify-content: end;
-    gap: 0.5rem;
-}
-}
+      //vendr application
+      .mvx-vendor-application-content{ 
+        h2{
+        border-bottom:$border;
+        color: $theme-color;
+        padding: 2rem 0 0.5rem;
+        margin: 0 0 1rem;
+        &:first-child{
+          padding: 0 0 0.5rem;
+        }
+      }
+      .mvx-form-field{
+        border: $border;
+        padding: 0.5rem;
+        border-radius:$border-radius;
+        margin: 0.5rem 0;
+      &>label{
+        color: $paragraph-color;
+        display: inline-block;
+        font-size: 0.875rem;
+        width: 40%;
+      }
+      }
+      .note-clm-wrap{
+        position:relative;
+        &:before{
+          position: absolute;
+          content: '';
+          width: 0.06rem;
+          height: 100%;
+          top: 0;
+          background-color:$boder-color;
+        }
+        .note-clm{
+          border: $border;
+          border-radius: $border-radius;
+          padding: 0.5rem;
+          margin: 0.5rem auto 0.5rem 1.5rem;
+          width:60%;
+          position: relative;
+          &:before{
+            position: absolute;
+            content: "";
+            width: 0.75rem;
+            height: 0.75rem;
+            background: $theme-color;
+            top: 1rem;
+            transform: translateX(-50%);
+            left: -1.5rem;
+            border-radius: 50%;
+          }
+          &:after{
+            position: absolute;
+            content: "";
+            width: 0.5rem;
+            height: 0.5rem;
+            background: #fdfdfe;
+            border: solid $boder-color;
+            border-width: 0 0 0.06rem 0.06rem;
+            transform: rotate(45deg);
+            top: 1rem;
+            left: -0.35rem;
+          }
+          p.note-description {
+            margin: 0 0 1rem;
+        }
+        p.note-meta {
+          margin: 0 0.75rem 0 0;
+          display: inline-block;
+          color: $boder-color;
+      }
+        }
+      }
+    }
+        .mvx-vendor-modal-main{
+          textarea.pending-vendor-note.form-control{
+            min-height: 7rem;
+            margin: 0 0 1rem;
+          }
+          div#wc-backbone-modal-dialog {
+            @include flexprops(center);
+            justify-content: space-between;
+            gap: 0.5rem;
+        }
+        }
 .mvx-registration-content{
   .mvx-form-group{
     flex-wrap: nowrap !important;
@@ -2883,7 +2989,11 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary{
 }
 //responsive code are here
 @media only screen and (min-width: 767px) {
-
+  .mvx-container .mvx-left-container .mvx-text-center .mvx-money-table-holder .mvx-money-table-coloumn:nth-child(2) {
+    border: none;
+    padding: 4rem 2rem;
+    box-shadow: 0rem 0rem 0.9375rem 0.0625rem #0000001a;
+}
   .mvx-setup-marketing-white-box, .mvx-documentation-quick-link-wrapper{
     width: 50%;
   }
@@ -2892,6 +3002,7 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary{
   }
   .mvx-money-table-coloumn{
     width: 34%;
+  padding: 2rem;
   }
   .mvx-dashboard-slider{
     width:70%;
@@ -2917,12 +3028,18 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary{
   .mvx-tab-content{
   width:78%;
 }}
+.mvx-compare-table-holder{
+  width: 85%;
 li.mvx-compare-table-row{
   padding: 2rem 2rem 3rem;
-  .mvx-recomend{
-    padding:3.45rem !important;// to align the last part
-  }
 }
+.mvx-recomend{
+  padding:3.85rem !important;// to align the last part
+  span.recommend-tag{
+    padding: 0.15rem 1.75rem;
+    border-radius: 0 0 1rem 1rem; 
+  }
+}}
 }
 @media only screen and (max-width: 668px) {
   .mvx-header-wapper .mvx-header-nav-left-section .mvx-logo-title{
@@ -2964,14 +3081,22 @@ li.mvx-compare-table-row{
   .show-money-btn-wrapper{
     display:none;
   }
+  .mvx-money-table-coloumn{
+    position: relative;
+    padding: 2rem 2rem 4rem;
   .show-responsive-money-btn-wrapper{
     display: block;
-    margin:auto;
+    text-align: center;
+    padding: 1rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #f9f8fb;
+    width: 100%;
     a.show-link{
-      padding-bottom:0.5rem;
       color:$theme-color;
     }
-  }
+  }}
  .mvx-middle-child-container{
     .mvx-current-tab-lists, .mvx-tab-content{
       width: 100%;
@@ -3005,17 +3130,23 @@ li.mvx-compare-table-row{
           display: none;
         }
       }
+      ul.mvx-compare-table-holder {
+        width: 100%;
       li.mvx-compare-table-row{
         padding: 2rem 0rem 3rem;
         ul li{
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
-          .mvx-recomend{
-            padding:3.45rem 0 !important;// to align the last part
-            overflow: hidden;
-          }
         }
-      
       }
+      .mvx-recomend{
+        padding:3.85rem 0 !important;// to align the last part
+        overflow: hidden;
+        span.recommend-tag{
+          padding: 0.129rem 0.25rem 0.25rem;
+          width: 86%;
+          border-radius: 0 0 0.75rem 0.75rem;
+        }
+      }}
 }

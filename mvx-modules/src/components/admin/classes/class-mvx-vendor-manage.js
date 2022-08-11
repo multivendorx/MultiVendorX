@@ -1137,23 +1137,9 @@ class MVXBackendVendor extends React.Component {
 											)
 										}
 									/>
-					<div className="mvx-setting-section-divider">&nbsp;</div>
 
 									<div id="wc-backbone-modal-dialog">
-										<button
-											onClick={() =>
-												this.handle_Vendor_Approve(
-													name.get('ID'),
-													'reload'
-												)
-											}
-											className="mvx-btn btn-purple"
-										>
-											{
-												appLocalizer.vendor_page_string
-													.approve
-											}
-										</button>
+										
 
 										<button
 											onClick={() =>
@@ -1167,6 +1153,20 @@ class MVXBackendVendor extends React.Component {
 											{
 												appLocalizer.vendor_page_string
 													.reject
+											}
+										</button>
+										<button
+											onClick={() =>
+												this.handle_Vendor_Approve(
+													name.get('ID'),
+													'reload'
+												)
+											}
+											className="mvx-btn btn-purple"
+										>
+											{
+												appLocalizer.vendor_page_string
+													.approve
 											}
 										</button>
 									</div>

@@ -775,7 +775,7 @@ class MVXworkboard extends Component {
 									}
 									id={row.id}
 								>
-									<i className="mvx-font icon-approve"></i>
+									<i className="mvx-font icon-approve" title='approve'></i>
 								</div>
 								<div
 									onClick={(e) =>
@@ -1047,17 +1047,17 @@ class MVXworkboard extends Component {
 										}
 										</div>
 										<div className="mvx-white-box-footer">
-											<div className="pull-left">
+											<div className="pull-right">
 												{
 													task_lists_data.left_icons ? task_lists_data.left_icons.map((icons_data, icons_index) => (
 														icons_data.key == 'edit' ?
 
-															<div className="link-icon" onClick={(e) =>
+															<div className="link-icon" title='Edit' onClick={(e) =>
 																	(
 																		location.href = icons_data.link
 																	)
 																}>
-																<i className="mvx-font icon-edit" title='Edit' ></i>
+																<i className="mvx-font icon-edit" ></i>
 															</div>
 														: 
 

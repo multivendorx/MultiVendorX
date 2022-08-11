@@ -127,6 +127,7 @@ class MVX_Module_Listing extends Component {
 				open_model: true,
 			});
 		} else if (!is_plugin_active) {
+			console.log('rrrrrrrrrrrrrrrrrr');
 		} else {
 			// If everything works fine then checkbox trigger
 			items[parent_index].options[sub_index].is_active =
@@ -414,7 +415,7 @@ class MVX_Module_Listing extends Component {
 																				e,
 																				index,
 																				student.plan,
-																				student.is_required_plugin_active,
+																				student.active_status,
 																				student.doc_id,
 																				this
 																					.state
