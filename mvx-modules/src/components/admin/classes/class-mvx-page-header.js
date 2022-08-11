@@ -74,6 +74,12 @@ class MVX_Header extends Component {
 														__html: data.desc,
 													}}
 												></p>
+												<p
+													className="mvx-header-search-contetnt-desc"
+													dangerouslySetInnerHTML={{
+														__html: data.details,
+													}}
+												></p>
 											</a>
 										</div>
 									)

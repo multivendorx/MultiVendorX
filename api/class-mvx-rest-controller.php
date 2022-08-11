@@ -1618,6 +1618,7 @@ class MVX_REST_API {
         $all_fields_data = mvx_admin_backend_settings_fields_details();
 
         $all_tab_fileds = mvx_admin_backend_tab_settings();
+        
         foreach ($all_tab_fileds as $key_fields_parent => $value_fields_parent) {
             foreach ($value_fields_parent as $key_list_parent => $value_list_parent) {
                 $all_fields_data['others_fileds'][] = array(
@@ -1672,16 +1673,6 @@ class MVX_REST_API {
             )
         );
 
-
-        /*$all_fields_data['others_fileds_section5'] = array(
-            array(
-                'label' =>  __('knowledgebasessssssssssss', 'multivendorx'),
-                'desc'  =>  __('knowledgebase Submenu page', 'multivendorx'),
-                'link_redirect' =>  'true',
-                'link'  =>  admin_url('admin.php?page=mvx#&submenu=dashboard')
-            )
-        );*/
-
         $add_modules_details = mvx_list_all_modules();
         foreach ($add_modules_details as $key_parent => $value_parent) {
             foreach ($value_parent['options'] as $key_child => $value_child) {
@@ -1692,12 +1683,15 @@ class MVX_REST_API {
         if ($value) {
             foreach ($all_fields_data as $key_fields => $value_fields) {
                 foreach ($value_fields as $key_list => $value_list) {
-                    if (stripos($value_list['label'], $value) !== false) {
+                    if (stripos($value_list['label'], $value) !== false && $value_list['label'] !== 'no_label') {
+                        $link  =  $value_list['link'] ? $value_list['link'] : (stripos($key_fields, 'payment-') !== false ? admin_url('admin.php?page=mvx#&submenu=payment&name='. $key_fields .'') : admin_url('admin.php?page=mvx#&submenu=settings&name='. $key_fields .''));
+                        $details_link = explode("=", $link);
                         $list_of_titles[] = array(
                             'label' =>  $value_list['label'],
                             'desc'  =>  ($value_list['desc']) ? $value_list['desc'] : '',
                             'link_redirect'  =>  ($value_list['link_redirect']) ? $value_list['link_redirect'] : '',
-                            'link'  =>  $value_list['link'] ? $value_list['link'] : (stripos($key_fields, 'payment-') !== false ? admin_url('admin.php?page=mvx#&submenu=payment&name='. $key_fields .'') : admin_url('admin.php?page=mvx#&submenu=settings&name='. $key_fields .''))
+                            'link'  =>  $value_list['link'] ? $value_list['link'] : (stripos($key_fields, 'payment-') !== false ? admin_url('admin.php?page=mvx#&submenu=payment&name='. $key_fields .'') : admin_url('admin.php?page=mvx#&submenu=settings&name='. $key_fields .'')),
+                            'details'   => isset($details_link[2]) ? '<h5>Under '. str_replace('-', ' ', str_replace("&name", "", $details_link[2])) . ' section</h5>' : ''
                         );
                     }
                 }
