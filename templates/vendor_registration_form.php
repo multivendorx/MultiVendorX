@@ -15,7 +15,6 @@ if (!empty($mvx_vendor_registration_form_data) && is_array($mvx_vendor_registrat
     $sep_count = 0;
     // load tooltip librery
     $MVX->library->load_qtip_lib();
-    //print_r($mvx_vendor_registration_form_data);die;
     foreach ($mvx_vendor_registration_form_data as $key => $value) {
         switch ($value['type']) {
             case 'separator':

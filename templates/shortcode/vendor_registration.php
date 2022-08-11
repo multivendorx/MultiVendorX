@@ -2,7 +2,8 @@
 <?php wc_print_notices(); ?>
 <div class="mvx_regi_main">
     <form class="register" role="form" method="post" enctype="multipart/form-data">
-        <h2 class="reg_header1"><?php echo apply_filters('mvx_vendor_registration_header_text',__('Vendor Registration Form','multivendorx')); ?></h2>
+        <?php $mvx_vendor_registration_form_data = mvx_get_option('mvx_new_vendor_registration_form_data'); ?>
+        <h2 class="reg_header1"><?php echo isset($mvx_vendor_registration_form_data[0]['label']) && !empty($mvx_vendor_registration_form_data[0]['label']) ? $mvx_vendor_registration_form_data[0]['label'] : apply_filters('mvx_vendor_registration_header_text',__('Vendor Registration Form','multivendorx')); ?></h2>
 
         <div class="mvx_regi_form_box">
             <?php if(!is_user_logged_in()) : 
