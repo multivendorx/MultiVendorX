@@ -749,17 +749,20 @@ class MVX_REST_API {
                     'left_icons'    =>  array(
                         array(
                             'key'   =>  'edit',
-                            'link'  =>  $value['product_url']
+                            'link'  =>  $value['product_url'],
+                            'title' =>  __('Edit', 'multivendorx')
                         ),
                         array(
                             'key'   =>  'approve_product',
                             'value'  =>  $value,
-                            'icon'  =>  'icon-approve'
+                            'icon'  =>  'icon-approve',
+                            'title' =>  __('Approve', 'multivendorx')
                         ),
                         array(
                             'key'   =>  'dismiss_product',
                             'value'  =>  $value,
-                            'icon'  =>  'icon-close'
+                            'icon'  =>  'icon-close',
+                            'title' =>  __('Edit', 'multivendorx')
                         )
                     )
                 );
@@ -781,17 +784,20 @@ class MVX_REST_API {
                     'left_icons'    =>  array(
                         array(
                             'key'   =>  'edit',
-                            'link'  =>  $value['vendor_link']
+                            'link'  =>  $value['vendor_link'],
+                            'title' =>  __('Edit', 'multivendorx')
                         ),
                         array(
                             'key'   =>  'approve_vendor',
                             'value'  =>  $value,
                             'icon'  =>  'icon-approve'
+                            'title' =>  __('Approve', 'multivendorx')
                         ),
                         array(
                             'key'   =>  'dismiss_vendor',
                             'value'  =>  $value,
-                            'icon'  =>  'icon-close'
+                            'icon'  =>  'icon-close',
+                            'title' =>  __('Close', 'multivendorx')
                         )
                     )
                 );
@@ -817,17 +823,20 @@ class MVX_REST_API {
                     'left_icons'    =>  array(
                         array(
                             'key'   =>  'edit',
-                            'link'  =>  $value['coupon_url']
+                            'link'  =>  $value['coupon_url'],
+                            'title' =>  __('Edit', 'multivendorx')
                         ),
                         array(
                             'key'   =>  'approve_coupon',
                             'value'  =>  $value,
-                            'icon'  =>  'icon-approve'
+                            'icon'  =>  'icon-approve',
+                            'title' =>  __('Approve', 'multivendorx')
                         ),
                         array(
                             'key'   =>  'dismiss_coupon',
                             'value'  =>  $value,
-                            'icon'  =>  'icon-close'
+                            'icon'  =>  'icon-close',
+                            'title' =>  __('Close', 'multivendorx')
                         )
                     )
                 );
@@ -858,12 +867,14 @@ class MVX_REST_API {
                         array(
                             'key'   =>  'approve_transaction',
                             'value'  =>  $value,
-                            'icon'  =>  'icon-approve'
+                            'icon'  =>  'icon-approve',
+                            'title' =>  __('Approve', 'multivendorx')
                         ),
                         array(
                             'key'   =>  'dismiss_transaction',
                             'value'  =>  $value,
-                            'icon'  =>  'icon-close'
+                            'icon'  =>  'icon-close',
+                            'title' =>  __('Close', 'multivendorx')
                         )
                     )
                 );
@@ -894,12 +905,14 @@ class MVX_REST_API {
                         array(
                             'key'   =>  'approve_question',
                             'value'  =>  $value,
-                            'icon'  =>  'icon-approve'
+                            'icon'  =>  'icon-approve',
+                            'title' =>  __('Approve', 'multivendorx')
                         ),
                         array(
                             'key'   =>  'dismiss_question',
                             'value'  =>  $value,
-                            'icon'  =>  'icon-close'
+                            'icon'  =>  'icon-close',
+                            'title' =>  __('Close', 'multivendorx')
                         )
                     )
                 );
