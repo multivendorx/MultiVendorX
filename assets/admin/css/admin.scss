@@ -9,11 +9,7 @@ $fill-color : #fdfdfe;
 $theme-color: #65438f;
 $header-background: #f7f6f9;
 $section-background:#fbfafc;
-<<<<<<< HEAD
 $code-back:#fdf9fb;
-=======
-$code-back:fdf9fb;
->>>>>>> 47502baf43758b8120ac34e35f836b053cc542d4
 $code-line:#dfb1c7;
 $purple-btn-hover:#795b9d;
 $font-white:#f9f8fb;
@@ -1278,11 +1274,8 @@ hr{
           .mvx-settings-metabox-description {
             margin-top: 0.625rem;
             color: $paragraph-color ;
-<<<<<<< HEAD
             font-style: italic;
             font-size: 0.75rem;
-=======
->>>>>>> 47502baf43758b8120ac34e35f836b053cc542d4
           }
           .mvx-setting-file-uploader-class {
             .mvx-btn {
@@ -2693,11 +2686,7 @@ div#health-check-debug {
                 border-radius: $border-radius;
                 color: $theme-color;
               &:hover {
-<<<<<<< HEAD
                 background:$font-white;
-=======
-                background:$theme-color;
->>>>>>> 47502baf43758b8120ac34e35f836b053cc542d4
               }
               }
             }
