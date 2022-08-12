@@ -9,6 +9,19 @@ $fill-color : #fdfdfe;
 $theme-color: #65438f;
 $header-background: #f7f6f9;
 $section-background:#fbfafc;
+$code-back:fdf9fb;
+$code-line:#dfb1c7;
+$purple-btn-hover:#795b9d;
+$font-white:#f9f8fb;
+$grey-icon:#8e8b91;
+$rejected-vendor-font:#fbedee;
+$rejected-vendor-back:#fefbfc;
+$approve-font-color:#522c81;
+$red-btn-back:#e35047;
+$red-icon:#e26f76;
+$code-font:#b74f82;
+$small-code-back:#fbf5f8;
+$blue-icon:#9f8ab9;
 
 @mixin flexprops($align) {
   display: flex;
@@ -84,7 +97,7 @@ $section-background:#fbfafc;
         left: 0.5rem;
         width: 0.17rem;
         height: 0.57rem;
-        background: #fff;
+        background: $fill-color;
         -webkit-transition: 0.3s;
         transition: 0.3s;
     }
@@ -117,7 +130,7 @@ $section-background:#fbfafc;
   border-radius: 0.25rem;
   width: 100%;
   padding: 0rem 0.75rem;
-  color: #8e8b91;
+  color: $grey-icon;
   font-size: 0.875rem;
   border: $border;
   line-height: 2.375;
@@ -152,7 +165,7 @@ $section-background:#fbfafc;
     margin-bottom: 1rem;
     & i {
         font-size: 1.5rem;
-        color: $fill-color;
+        color: $font-white;
     }
 }
 @mixin datepicker {
@@ -162,10 +175,10 @@ $section-background:#fbfafc;
     margin-left: auto;
 }
 @mixin border {
-    border: 0.063rem solid #d4d1d9;
+    border: 0.063rem solid $boder-color;
 }
 @mixin iconcolor {
-    color: #9e8abb;
+    color: $theme-color;
 }
 @mixin input {
   padding-left: 0.8rem;
@@ -174,27 +187,27 @@ $section-background:#fbfafc;
   height: 2.5rem;
 }
 @mixin red-btn {
-  background-color: #e35047;
-  color: #f9f8fb;
+  background-color: $red-btn-back;
+  color: $font-white;
   &:hover{
-    background-color: #e6635b;
-    color: #f9f8fb;
+    background-color: $red-btn-back;
+    color: $font-white;
   }
 }
 @mixin purple-btn {
-  background-color: #65438f;
+  background-color: $theme-color;
   border: none;
-  color: #f9f8fb;
+  color: $font-white;
   &:hover{
-    background-color: #795b9d;
-    color: #f9f8fb;
+    background-color: $purple-btn-hover;
+    color: $font-white;
   }
 }
 @mixin border-btn {
   border: $border;
   color: $title-color;
   &:hover{
-    border-color: #181718 ;
+    border-color: $title-color ;
   }
 }
 /* fonts */
@@ -762,6 +775,10 @@ blockquote::before,
 blockquote::after {
     content: "";
 }
+code {
+  background: $small-code-back;
+  color: $code-font;
+}
 .mvx-page #wpcontent {
   padding: 0rem;
 }
@@ -788,7 +805,7 @@ input[type=radio]:checked::before {
   font-family: 'mvx-admin-font' !important;//redio btn style
   margin: 0rem;
   content: '\e943';
-  color: #65438f ;
+  color: $theme-color ;
   font-size: 1.1rem;
   background-color:transparent !important;//redio btn style
   width: 1.2rem;
@@ -801,10 +818,10 @@ input[type=text]:focus {
 input[type=checkbox]:checked::before {
   font-family: 'mvx-admin-font' !important;// checkbox icon style
   content: '\e909';
-  color: #FFF;
+  color: $fill-color;
   font-size: 0.625rem;
   line-height: 1rem;
-  background-color: #65438f !important;// checkbox icon style
+  background-color: $theme-color !important;// checkbox icon style
   height: 1rem;
   width: 1rem;
   border-radius: 0.125rem;
@@ -830,7 +847,7 @@ div#wpbody-content {
     left: 1.5rem;
     border: none;
     & i {
-        color: #8e8b91;
+        color: $grey-icon;
     }
   }
   & input {
@@ -944,7 +961,7 @@ div#wpbody-content {
   }
   p.mvx-settings-metabox-description-code {
     padding: 0.5rem 1rem;
-    background: #5e5d601c;
+    background: $code-back;
     border-radius:$border-radius;
     position:relative;
     &:before{
@@ -954,7 +971,7 @@ div#wpbody-content {
       top: 0;
       width: 0.25rem;
       border-radius:0.25rem;
-      background-color: #65438f;
+      background-color: $code-line;
       height: 100%;
     }
 }
@@ -968,16 +985,16 @@ div#wpbody-content {
    @include border-btn();
   }
   .chckbx-purple {
-    background-color: #65438f;
+    background-color: $theme-color;
     border: none;
     border-radius: $border-radius;
     padding: 0.375rem 1.375rem;
     &:hover{
-      background-color: #795b9d;
+      background-color: $purple-btn-hover;
     }
     i{
       padding: 0;
-    color: #f9f8fb;
+    color: $font-white;
     }
 }
 .chckbx-border{
@@ -991,8 +1008,8 @@ div#wpbody-content {
     white-space:nowrap;
   }
   .mvx-notic-display-title {
-    background-color: #b74f82;
-    color: #f9f8fb;
+    background-color: $code-font;
+    color: $font-white;
     padding: 0.5rem 1rem;
     border-radius: 0.12rem;
     position: fixed;
@@ -1001,7 +1018,7 @@ div#wpbody-content {
     z-index: 9999;
   }
   .mvx-notic-display-title span {
-    background-color: #cf89ac;
+    background-color: $code-back;
     border-radius: 50%;
     padding: 0.1rem;
   }
@@ -1113,7 +1130,7 @@ hr{
       & .active-current-tab {
         background-color: $fill-color;
         position: relative;
-        color: #65438f;
+        color: $theme-color;
         &:after{
           content: '';
           height: 100%;
@@ -1148,7 +1165,7 @@ hr{
           padding: 1rem 0;
           & .mvx-settings-form-label {
             width: 28%;
-            color: #181718;
+            color: $title-color;
             & p {
               font-size: 0.875rem;
               color: $title-color;
@@ -1177,7 +1194,7 @@ hr{
           }
           .mvx-settings-metabox-description {
             margin-top: 0.625rem;
-            color: #5e5d60;
+            color: $paragraph-color ;
           }
           .mvx-setting-file-uploader-class {
             .mvx-btn {
@@ -1190,9 +1207,9 @@ hr{
           & .mvx-settings-basic-input-class {
             & .default-btn {
               height: 2.5rem;
-              background-color: #e35047;
+              background-color: $red-btn-back;
               width: 20%;
-              color: $fill-color;
+              color:$font-white;
                float: right;
           }
           }
@@ -1204,7 +1221,7 @@ hr{
         .radio-color-active{
           .mvx-merge-radio-color-input-label {
             padding: 0.5rem;
-            border-color: $theme-color !important;
+            border-color: $theme-color !important;// to set different redio in settings --- store
             border-radius: $border-radius;
             label{
               margin-left: 0.5rem;
@@ -1238,7 +1255,7 @@ hr{
         margin-bottom: 1.5rem;
         padding: 1rem;
         border-radius: $border-radius;
-        background-color: #f9f8fb;
+        background-color: $font-white;
         position: relative;
         transition: .4s all ease-in-out;
         & .mvx-setting-form-input {
@@ -1249,9 +1266,9 @@ hr{
           opacity:0;
           &:checked::before {
             content: '\e909';
-            color: #FFF;
+            color: $fill-color;
             font-size: 0.625rem;
-            background-color: #65438f !important;//redio btn style
+            background-color: $theme-color !important;//redio btn style
             border-radius: $border-radius;
         }
           &:checked{
@@ -1266,7 +1283,7 @@ hr{
             top: 0;
             left: 0;
             background-color: $theme-color;
-            color: #f9f8fb;
+            color: $font-white;
             opacity: 0;
             @include flexprops(center);
             justify-content: center;
@@ -1527,13 +1544,13 @@ hr{
         border-right: $border;
       }
       .active-current-tab {
-        border-bottom: 0.063rem solid #f9f8fb;
-        background-color: #f9f8fb;
-        color: #65438f;
+        border-bottom: 0.063rem solid $font-white;
+        background-color: $font-white;
+        color: $theme-color;
       }
     }
     & .mvx-tab-content {
-      background: #f9f8fb;
+      background: $font-white;
       padding: 2.5rem 1.5rem;
       border: $border;
       margin-top: -.073rem;
@@ -1621,7 +1638,7 @@ hr{
           & .mvx-percent-show {
             right: 1.375rem;
             bottom: 2.5rem;
-            background-color: #f0f0f0;
+            background-color: $fill-color;
             padding: 0.375rem;
             border-radius: $border-radius;
           }
@@ -1684,9 +1701,9 @@ hr{
         }
         .mvx-dashboard-top-icon{
           font-size: 1.5rem;
-          background: #9f8ab9;
+          background: $blue-icon;
           border-radius: 0.25rem;
-          color: #fff;
+          color: $fill-color;
           padding: 0.9rem;
           height: 4rem;
           line-height: 2rem;
@@ -1731,7 +1748,7 @@ hr{
       gap:1.5rem;
       justify-content: space-between;
       .mvx-setup-marketing-white-box{
-        background-color: #fbfafc;
+        background-color: $section-background;
         border: $border;
         border-radius: $border-radius;
         padding: 2rem 2rem 3rem;
@@ -1762,14 +1779,14 @@ hr{
             flex-wrap: wrap;
             box-sizing: border-box;
             padding: 0.9375rem 1.875rem;
-            background-color: #fff;
+            background-color: $fill-color;
             margin: 0.1875rem 0;
             border-radius: 0.25rem;
             text-align: left;
-            border: 0.06rem solid #fff;
+            border: 0.06rem solid $fill-color;
         }
         & .mvx-table-ul > li:hover {
-            border: 0.06rem solid #65438f;
+            border: 0.06rem solid $theme-color;
         }
         & .mvx-allign-li-txt {
             flex-basis: 0;
@@ -1792,7 +1809,7 @@ hr{
             margin-left: auto;
         }
         & .mvx-allign-li-txt span {
-            color: #9f8ab9;
+            color: $blue-icon;
             font-size: 1.125rem;
             margin-right: 1.5rem;
             width: auto;
@@ -1889,13 +1906,13 @@ hr{
     }
     p{
       padding-bottom: 3rem;
-      color: #5e5d60;
+      color: $paragraph-color ;
     }
 }
 .pro-bg{
   background: url(../../images/pro-bg.png) center no-repeat;
   background-size: cover;
-  border: solid #d4d1d9;
+  border: solid $boder-color;
   border-radius: 0.25rem;
   border-width: 0 0.06rem;
 }
@@ -1925,7 +1942,7 @@ hr{
 }
     ul.mvx-compare-table-holder {
     display: flex;
-    background-color: #fbfafc;
+    background-color: $section-background;
     border: 0.06rem solid $boder-color;
     border-right: none;
     margin: 5.513rem auto 0;
@@ -1936,9 +1953,9 @@ hr{
       width: 100%;
       bottom: 0;
       left: 0;
-      background: #fbfafc;
+      background: $section-background;
       cursor:pointer;
-      padding: 1rem 2rem!important;
+      padding: 1rem 2rem!important;//dashboard compare table pop
       a.show-link {
       color: $theme-color;
     }
@@ -1954,10 +1971,10 @@ hr{
             padding: 0.65rem;
             margin: 0;
             .red{
-              color: #e78087;
+              color:$red-icon;
             }
             .blue{
-              color: #795b9e;
+              color: $blue-icon;
             }
             &:first-child{
               background: linear-gradient(-28deg, #3f1473 0%, #af3b74 50%, #db4b54 100%);
@@ -1972,7 +1989,7 @@ hr{
         }
         .mvx-recomend{
           position: relative;
-          background: #fff;
+          background: $fill-color;
           margin: -2rem 0;
           box-shadow: 0rem 0rem 0.9375rem 0.0625rem #0000001a;
           border-radius: 0.25rem;
@@ -1982,8 +1999,8 @@ hr{
             top: 0;
             left: 50%;
             transform: translateX(-50%);
-            background-color: #9f8ab9;
-            color: #f9f8fb;
+            background-color: $blue-icon;
+            color: $font-white;
               }
   
             }
@@ -2010,8 +2027,8 @@ hr{
           top: 0;
           left: 50%;
           transform: translateX(-50%);
-          background-color: #e26f76;
-          color: #f9f8fb;
+          background-color: $red-icon;
+          color: $font-white;
           padding: 0.15rem 1.75rem;
           border-radius: 0 0 1rem 1rem;
         }
@@ -2055,7 +2072,7 @@ hr{
               color:$title-color;
             }
             s{
-              color: #8e8b91;
+              color: $grey-icon;
               font-size: 1rem;
             }
         }
@@ -2071,7 +2088,7 @@ hr{
         border-radius: 1rem;
         line-height: 1.5;
         text-align: center;
-        color: #fff;
+        color: $fill-color;
         font-size: 2.5rem;
         padding: 1rem;
         width: 6rem;
@@ -2165,7 +2182,7 @@ hr{
         position: absolute;
         top: 1.5rem;
         right: 1.5rem;
-        background: #9f8ab9;
+        background: $blue-icon;
         color: $fill-color;
         padding: 0.25rem 0.75rem;
         border-radius: 0.625rem;
@@ -2178,7 +2195,7 @@ hr{
     & .mvx-module-require-name {
       text-align: left;
       padding: 0.5rem;
-      border-top: 0.06rem solid #f9f8fb;
+      border-top: 0.06rem solid $font-white;
       font-weight: 500;
       font-size: .875rem;
       margin: 1.5rem 0 1rem 0;
@@ -2194,9 +2211,9 @@ hr{
         line-height: 1.2rem;
         text-align: left;
         .inactive-plugin-class{ 
-          background: #fefbfc;
+          background: $rejected-vendor-back;
          } .mvx-module-active-plugin-class{
-          background: #fbfafc;
+          background: $section-background;
          }
         & .inactive-plugin-class, .mvx-module-active-plugin-class{
           border-radius: 50rem;
@@ -2207,11 +2224,11 @@ hr{
           text-align: center;
           & .icon-no {
             font-size: 0.438rem;
-            color: #e26f76;
+            color: $red-icon;
           }
           & .icon-yes {
             font-size: 0.438rem;
-            color: #9f8ab9;
+            color: $blue-icon;
           }
         }          
       }
@@ -2222,7 +2239,7 @@ hr{
     bottom: 0rem;
     left: 0rem;
     right: 0rem;
-    background: #f9f8fb;
+    background: $font-white;
     padding: 0.5rem 1rem;
     @include flexprops(center);
     .mvx-btn{
@@ -2284,14 +2301,14 @@ hr{
       padding: .5rem 1rem;
       left: 0;
       width: 100%;
-      background: #f9f8fb;
+      background: $font-white;
       & .pull-left, .pull-right {
         @include flexprops(center);
         & .link-icon {
           display: block;
           color: $theme-color;
           margin-right: 0.25rem;
-          background: #f9f8fb;
+          background: $font-white;
           padding: 0.375rem 0.625rem;
           border-radius: $border-radius;
         }
@@ -2303,7 +2320,7 @@ hr{
         & .mvxicon-hover-text{
           position: absolute;
           border-radius: $border-radius;
-          background: #f9f8fb;
+          background: $font-white;
           margin: 0.2rem;
           padding: 0.2rem 0.4rem;
           display: none;
@@ -2324,7 +2341,7 @@ hr{
 }
 }
 .wc-setup-steps li::before{
-  border: 0.125rem solid #ccc;
+  border: 0.125rem solid $boder-color;
   border-radius: 100%;
   width: 0.5rem;
   height: 0.5rem;
@@ -2387,13 +2404,13 @@ table.form-table {
   }
 }
 .red-btn, .button-primary{
-  background-color: #e35047 !important;// to crack the load-css
-  border: 0.06rem solid #e35047 !important;// to crack the load-css
+  background-color: $red-btn-back !important;// to crack the load-css
+  border: 0.06rem solid $red-btn-back !important;// to crack the load-css
   color: $fill-color !important;// to crack the load-css
   text-shadow: none!important;// to crack the load-css
   &:hover{
-    border: 0.06rem solid #e26f76 !important;// to crack the load-css
-    background-color: #e26f76 !important;// to crack the load-css
+    border: 0.06rem solid $red-btn-back !important;// to crack the load-css
+    background-color: $red-btn-back !important;// to crack the load-css
     color: $fill-color !important;// to crack the load-css
   }
 }
@@ -2469,34 +2486,34 @@ div#health-check-debug {
 }
 // Start - Datatable
 .pending-vendor {
-  background: #f3f0f9;
+  background: #fdfbfc;
  @include staus();
- color:$theme-color;
+ color:$code-font;
 }
 .suspended-vendor{
+  background: #fdfbfc;
   @include staus();
-  background-color: #fff1f1;
-  color: #e35047;
+  color:$code-font;
 }
 .approved-vendor{
   @include staus();
-  background-color: #fff1f1;
-  color: #e35047;
+  background-color: $section-background;
+  color: $approve-font-color;
 }
 .rejected-vendor{
   @include staus();
-  background-color: #fff1f1;
-  color: #e35047;
+  background-color: $rejected-vendor-back;
+  color: $rejected-vendor-font;
 }
 .commission-status-unpaid{
   @include staus();
-  background-color: #fff1f1;
-  color: #e35047;
+  background-color: $rejected-vendor-back;
+  color: $rejected-vendor-font;
 }
 .commission-status-paid{
   @include staus();
-  background-color: #fff1f1;
-  color: #e35047;
+  background-color: $section-background;
+  color: $approve-font-color;
 }
 .mvx-backend-datatable-wrapper {
   .rdt_Pagination{
@@ -2584,7 +2601,7 @@ div#health-check-debug {
                 padding:0.5rem;
                 border-radius: $border-radius;
               &:hover {
-                background:#65438f1c;
+                background:$theme-color;
               }
               }
             }
@@ -2637,7 +2654,7 @@ padding:0;
     padding: 1rem 0;
     .mvx-settings-form-label{
       width: 15%;
-      color: #181718;
+      color: $title-color;
     }
     .mvx-settings-input-content{
       width:85%;
@@ -2703,7 +2720,7 @@ padding:0;
     table.woocommerce_order_items{
       border: $border;
       thead{
-        background-color: #f4f1f7;
+        background-color: $fill-color;
         color: $paragraph-color;
         text-align: left;
         th{
@@ -2764,7 +2781,7 @@ padding:0;
     position: absolute;
     left: 50%;
     transform: translatex(-50%);
-    width: 100% !important;
+    width: 100% !important;// gogle map canvas part set
     border-radius: $border-radius;
     top: 0;
 }
@@ -2923,7 +2940,7 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary{
             content: "";
             width: 0.5rem;
             height: 0.5rem;
-            background: #fdfdfe;
+            background: $fill-color;
             border: solid $boder-color;
             border-width: 0 0 0.06rem 0.06rem;
             transform: rotate(45deg);
@@ -2954,7 +2971,7 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary{
         }
 .mvx-registration-content{
   .mvx-form-group{
-    flex-wrap: nowrap !important;
+    flex-wrap: nowrap !important;// to align registration form content
     .dropdown{
       position: relative;
           .mvx-registration-select{
@@ -3091,7 +3108,7 @@ li.mvx-compare-table-row{
     position: absolute;
     bottom: 0;
     left: 0;
-    background-color: #f9f8fb;
+    background-color: $font-white;
     width: 100%;
     a.show-link{
       color:$theme-color;
@@ -3116,7 +3133,7 @@ li.mvx-compare-table-row{
       width: 100%;}
 }
   .mvx-settings-form-label, .mvx-settings-input-content{
-            width: 100% !important;
+            width: 100% !important;// to make input responsive
           }
           .mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-wrapper-performance-content{
             flex-wrap:wrap;
