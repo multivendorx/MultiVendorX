@@ -207,7 +207,7 @@ class MVX_Module_Listing extends Component {
 								</li>
 								<li className="mvx-multistatus-item mvx-divider"></li>
 								<li className="mvx-multistatus-item">
-									<Button
+									<button
 										onClick={(e) =>
 											this.mvx_search_different_module_status(
 												'active'
@@ -218,11 +218,11 @@ class MVX_Module_Listing extends Component {
 											appLocalizer.module_page_string
 												.module4
 										}
-									</Button>
+									</button>
 								</li>
 								<li className="mvx-multistatus-item mvx-divider"></li>
 								<li className="mvx-multistatus-item">
-									<Button
+									<button
 										onClick={(e) =>
 											this.mvx_search_different_module_status(
 												'inactive'
@@ -233,7 +233,7 @@ class MVX_Module_Listing extends Component {
 											appLocalizer.module_page_string
 												.module5
 										}
-									</Button>
+									</button>
 								</li>
 							</ul>
 							<div className="mvx-header-search-section">
@@ -394,7 +394,7 @@ class MVX_Module_Listing extends Component {
 																		appLocalizer.documentation_text
 																	}
 																</a>
-																<div className="mvx-toggle-checkbox-content">
+																<div className={`mvx-toggle-checkbox-content ${student.plan && student.plan == 'pro' ? 'disabled' : ''}`}>
 																	<input
 																		type="checkbox"
 																		className="mvx-toggle-checkbox"
@@ -408,6 +408,7 @@ class MVX_Module_Listing extends Component {
 																				? true
 																				: false
 																		}
+																		
 																		onChange={(
 																			e
 																		) =>
@@ -469,7 +470,7 @@ class MVX_Module_Listing extends Component {
 																	</DialogContentText>
 																</DialogContent>
 																<DialogActions>
-																	<Button
+																	<button
 																		onClick={
 																			this
 																				.handleClose_dynamic
@@ -481,7 +482,7 @@ class MVX_Module_Listing extends Component {
 																				.module_page_string
 																				.module12
 																		}
-																	</Button>
+																	</button>
 																</DialogActions>
 															</Dialog>
 														</div>
@@ -531,12 +532,12 @@ class MVX_Module_Listing extends Component {
 								</DialogContentText>
 							</DialogContent>
 							<DialogActions>
-								<Button
+								<button
 									onClick={this.handleClose}
 									color="primary"
 								>
 									{appLocalizer.module_page_string.module12}
-								</Button>
+								</button>
 							</DialogActions>
 						</Dialog>
 					</div>

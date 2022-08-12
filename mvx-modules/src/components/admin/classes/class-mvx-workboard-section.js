@@ -1061,7 +1061,7 @@ class MVXworkboard extends Component {
 															</div>
 														: 
 
-														<div className="link-icon">
+														<div className="link-icon" title={icons_data.title}>
 															<i
 																className={`mvx-font ${icons_data.icon}`}
 																onClick={(e) =>

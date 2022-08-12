@@ -612,7 +612,7 @@ class MVX_Dashboard extends Component {
                                                                 )
                                                             }>
                                                     <span>
-                                                        <i className="mvx-font icon-eye-preview" />
+                                                        <i className="mvx-font icon-eye-see-more" />
                                                     </span>{' '}
                                                     See Less Details
                                                 </a>
@@ -627,7 +627,7 @@ class MVX_Dashboard extends Component {
                                                                 )
                                                             }>
                                                     <span>
-                                                        <i className="mvx-font icon-eye-preview" />
+                                                        <i className="mvx-font icon-eye-see-more" />
                                                     </span>{' '}
                                                     See More Details
                                                 </a>
@@ -708,7 +708,7 @@ class MVX_Dashboard extends Component {
                                                                 )
                                                             }>
                                                     <span>
-                                                        <i className="mvx-font icon-eye-preview" />
+                                                        <i className="mvx-font icon-eye-see-more" />
                                                     </span>{' '}
                                                     See Less Details
                                                 </a>
@@ -723,7 +723,7 @@ class MVX_Dashboard extends Component {
                                                                 )
                                                             }>
                                                     <span>
-                                                        <i className="mvx-font icon-eye-preview" />
+                                                        <i className="mvx-font icon-eye-see-more" />
                                                     </span>{' '}
                                                     See More Details
                                                 </a>
@@ -803,7 +803,7 @@ class MVX_Dashboard extends Component {
                                                                 )
                                                             }>
                                                     <span>
-                                                        <i className="mvx-font icon-eye-preview" />
+                                                        <i className="mvx-font icon-eye-see-more" />
                                                     </span>{' '}
                                                     See Less Details
                                                 </a>
@@ -818,7 +818,7 @@ class MVX_Dashboard extends Component {
                                                                 )
                                                             }>
                                                     <span>
-                                                        <i className="mvx-font icon-eye-preview" />
+                                                        <i className="mvx-font icon-eye-see-more" />
                                                     </span>{' '}
                                                     See More Details
                                                 </a>
@@ -839,7 +839,7 @@ class MVX_Dashboard extends Component {
                                                                 )
                                                             }>
                                                     <span>
-                                                        <i className="mvx-font icon-eye-preview" />
+                                                        <i className="mvx-font icon-eye-see-more" />
                                                     </span>{' '}
                                                     See Less Details
                                                 </a>
@@ -854,7 +854,7 @@ class MVX_Dashboard extends Component {
                                                                 )
                                                             }>
                                                     <span>
-                                                        <i className="mvx-font icon-eye-preview" />
+                                                        <i className="mvx-font icon-eye-see-more" />
                                                     </span>{' '}
                                                     See More Details
                                                 </a>
