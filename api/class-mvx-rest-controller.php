@@ -790,7 +790,7 @@ class MVX_REST_API {
                         array(
                             'key'   =>  'approve_vendor',
                             'value'  =>  $value,
-                            'icon'  =>  'icon-approve'
+                            'icon'  =>  'icon-approve',
                             'title' =>  __('Approve', 'multivendorx')
                         ),
                         array(
