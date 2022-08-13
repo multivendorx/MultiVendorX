@@ -31,7 +31,6 @@ export default class DynamicForm extends React.Component {
 			lng: null,
 			center: '',
 		};
-
 		this.runUploader = this.runUploader.bind(this);
 		this.handlenestedAddClick = this.handlenestedAddClick.bind(this);
 		this.handlenestedchildAddClick = this.handlenestedchildAddClick.bind(this);
