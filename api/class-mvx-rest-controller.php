@@ -3328,7 +3328,8 @@ class MVX_REST_API {
         // get date value from datepicker
         $value = $request && $request->get_param('value') ? ($request->get_param('value')) : 0;
         $product = $request && $request->get_param('product') ? ($request->get_param('product')) : 0;
-        $selectvendor = $request && $request->get_param('vendor') ? ($request->get_param('vendor')) : 0;
+        $find_1st_vendor_from_rest = $this->mvx_vendor_list_search()->data ? $this->mvx_vendor_list_search()->data[0]['value'] : 0;
+        $selectvendor = $request && $request->get_param('vendor') ? ($request->get_param('vendor')) : $find_1st_vendor_from_rest;
 
         // Bydefault last 7 days
         $start_date    = strtotime( '-7 days', strtotime( 'midnight', current_time( 'timestamp' ) ) );
@@ -3348,7 +3349,6 @@ class MVX_REST_API {
         $overview_sales = $gross_sales = $vendor_earning = $overview_admin_earning = $pending_vendors = $overview_vendors = $products = $transactions = $report_product_net_sales = $total_item_sold = $report_vendor_net_sales = 0;
         $report_html = '';
         $product_number_stack = $total_orders_product_chart = $product_sales_data_chart = $product_item_sold_chart = $total_number_order_data_chart = $net_sales_data_chart = $total_sales = $banking_datas = array();
-
 
         // transaction history
         if ( $selectvendor ) {
@@ -4772,7 +4772,6 @@ class MVX_REST_API {
 
     public function mvx_vendor_list_search() {
         $user_list = array();
-        $option_lists[] = array('value' => 'all', 'label' => __('All Vendors', 'multivendorx'));
         $user_query = new WP_User_Query(array('role' => 'dc_vendor', 'orderby' => 'registered', 'order' => 'ASC'));
         $users = $user_query->get_results();
         foreach($users as $user) {
