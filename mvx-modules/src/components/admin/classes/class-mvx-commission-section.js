@@ -369,9 +369,9 @@ class MVX_Backend_Commission extends Component {
 				data_ann.cell
 					? (data_ann.cell = (row) => (
 							<div className="mvx-vendor-action-icon">
-								<div>
+								<div data-title="Edit">
 									<a href={row.link}>
-										<i className="mvx-font icon-edit" title="Edit"></i>
+										<i className="mvx-font icon-edit" ></i>
 										
 									</a>
 								</div>
@@ -381,8 +381,9 @@ class MVX_Backend_Commission extends Component {
 										this.handleCommisssionDismiss(row.id)
 									}
 									id={row.id}
+									data-title='close'
 								>
-									<i className="mvx-font icon-no" title="Close"></i>
+									<i className="mvx-font icon-no"></i>
 							
 								</div>
 							</div>

@@ -536,7 +536,7 @@ class MVX_Settings extends Component {
 			                                                                )
 			                                                            } >
 																		<span>{this.state.registration_global_select_dropdown_label ? <><i className={`mvx-font ${this.state.registration_global_select_dropdown_icon}`} />{this.state.registration_global_select_dropdown_label}</> : registration_json_value.typelabel ? <><i className={`mvx-font ${registration_json_value.typeicon}`} />{registration_json_value.typelabel}</> : 'Select an option'}</span>
-																		  <i className="mvx-font icon-down-arrow"/>
+																		  <i className="mvx-font icon-down-arrow-02"/>
 																		</div>
 																		{this.state.registration_global_select_dropdown_open ?
 																			<div className="mvx-registration-dropdown-menu">

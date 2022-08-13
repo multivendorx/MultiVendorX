@@ -720,7 +720,7 @@ class MVXworkboard extends Component {
 					? (data_ann.cell = (row) => (
 							<div className="mvx-vendor-action-icon">
 								<a href={row.link}>
-									<i className="mvx-font icon-edit" title='Edit'></i>
+									<i className="mvx-font icon-edit" data-title='Edit'></i>
 								</a>
 								<div
 									onClick={() =>
@@ -728,7 +728,7 @@ class MVXworkboard extends Component {
 									}
 									id={row.id}
 								>
-									<i className="mvx-font icon-no" title='close'></i>
+									<i className="mvx-font icon-no" data-title='close'></i>
 								</div>
 							</div>
 					  ))
@@ -775,7 +775,7 @@ class MVXworkboard extends Component {
 									}
 									id={row.id}
 								>
-									<i className="mvx-font icon-approve" title='approve'></i>
+									<i className="mvx-font icon-approve" data-title='approve'></i>
 								</div>
 								<div
 									onClick={(e) =>
@@ -788,7 +788,7 @@ class MVXworkboard extends Component {
 									}
 									id={row.id}
 								>
-									<i className="mvx-font icon-no" title='close'></i>
+									<i className="mvx-font icon-no" data-title='close'></i>
 								</div>
 							</div>
 					  ))
@@ -828,7 +828,7 @@ class MVXworkboard extends Component {
 						? (data_anno_knowl.cell = (row) => (
 								<div className="mvx-vendor-action-icon">
 									<a href={row.link}>
-										<i className="mvx-font icon-edit" title="Edit"></i>
+										<i className="mvx-font icon-edit" data-title="Edit"></i>
 									</a>
 									<div
 										onClick={() =>
@@ -839,7 +839,7 @@ class MVXworkboard extends Component {
 										}
 										id={row.id}
 									>
-										<i className="mvx-font icon-no" title='close'></i>
+										<i className="mvx-font icon-no" data-title='close'></i>
 									</div>
 								</div>
 						  ))
@@ -880,7 +880,7 @@ class MVXworkboard extends Component {
 						? (data_store_review_content.cell = (row) => (
 								<div className="mvx-vendor-action-icon">
 									<a href={row.link}>
-										<i className="mvx-font icon-edit" title='Edit'></i>
+										<i className="mvx-font icon-edit" data-title='Edit'></i>
 									</a>
 									<div
 										onClick={() =>
@@ -888,7 +888,7 @@ class MVXworkboard extends Component {
 										}
 										id={row.id}
 									>
-										<i className="mvx-font icon-no" title='close'></i>
+										<i className="mvx-font icon-no" data-title='close'></i>
 									</div>
 								</div>
 						  ))
@@ -939,7 +939,7 @@ class MVXworkboard extends Component {
 										}
 										id={row.reason}
 									>
-										<i className="mvx-font icon-no" title='close'></i>
+										<i className="mvx-font icon-no" data-title='close'></i>
 									</div>
 								</div>
 						  ))
@@ -1052,7 +1052,7 @@ class MVXworkboard extends Component {
 													task_lists_data.left_icons ? task_lists_data.left_icons.map((icons_data, icons_index) => (
 														icons_data.key == 'edit' ?
 
-															<div className="link-icon" title='Edit' onClick={(e) =>
+															<div className="link-icon" data-title='Edit' onClick={(e) =>
 																	(
 																		location.href = icons_data.link
 																	)
@@ -1061,7 +1061,7 @@ class MVXworkboard extends Component {
 															</div>
 														: 
 
-														<div className="link-icon" title={icons_data.title}>
+														<div className="link-icon" data-title={icons_data.title}>
 															<i
 																className={`mvx-font ${icons_data.icon}`}
 																onClick={(e) =>

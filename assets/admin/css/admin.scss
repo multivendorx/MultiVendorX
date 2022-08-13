@@ -224,7 +224,7 @@ $blue-icon:#9f8ab9;
 }
 @mixin datepicker {
     width: 17.5rem;
-    height: 2.5rem;
+    height:auto;
     background-color: $fill-color;
     margin-left: auto;
 }
@@ -846,6 +846,9 @@ code {
   background: $small-code-back;
   color: $code-font;
 }
+::-webkit-input-placeholder {
+  color: $grey-icon;
+}
 .mvx-page #wpcontent {
   padding: 0rem;
 }
@@ -975,7 +978,7 @@ div#wpbody-content {
       padding-right: 0.75rem;
     }
     .mvx-logo-title {
-      font-size: 1.2rem;
+      font-size: 1.125rem;
       padding-left: 0.75rem;
       font-weight: 500;
       color: $title-color;
@@ -1557,8 +1560,8 @@ hr{
                 bottom: 0;
                 left: 0;
                 right: 0;
-                border-top: $border;
                 padding: 1rem;
+                background-color:$font-white;
                 @include flexprops(center);
                     & .mvx-perple-txt {
                       margin-left: auto;
@@ -1743,14 +1746,13 @@ hr{
       margin: 0.4rem 0 0 auto;
     }
   }
-
-
+  
   // Start - Dashboard
   .mvx-left-container {
     width: 100%;
     .mvx-dashboard-top-heading{
       font-size: 1.5rem;
-      margin: 0 0 2rem 0;
+      margin: 1rem 0 2rem 0;
       text-align: center;
       font-weight: 500;
       color: $title-color;
@@ -1781,7 +1783,7 @@ hr{
           font-size: 1.5rem;
           background: $blue-icon;
           border-radius: 0.25rem;
-          color: $fill-color;
+          color: $font-white;
           padding: 0.9rem;
           height: 4rem;
           line-height: 2rem;
@@ -1810,9 +1812,12 @@ hr{
         border-radius: 0.25rem;
         border: $boder-color 0.0625rem solid;
         padding: 0 0.5rem;
+        i{
+          color: $theme-color;
+        }
         span {
           font-size: 1rem;
-          color: #3d3c3e;
+          color:$grey-icon;
           line-height: 1.875rem;
           text-align: center;
       padding: 0 1rem 0 0.5rem;
@@ -1877,7 +1882,7 @@ hr{
             text-overflow: ellipsis;
             p{
               font-size: 0.75rem;
-              color: $boder-color;
+              color: $grey-icon;
             }
         }
         & .li-action {
@@ -1919,7 +1924,7 @@ hr{
           figure{
            font-size: 3.188rem;
            margin: 0;
-           @include iconcolor();
+           color: $blue-icon;
           }
           figcaption{
             div{
@@ -1967,6 +1972,9 @@ hr{
               border: 0.06rem solid $fill-color;
               a{
                 white-space: nowrap;
+                i{
+                  color:$blue-icon;
+                }
               }
               &:hover{
                 border: 0.06rem solid #4e1a74;
@@ -2048,6 +2056,7 @@ hr{
           ul li{
             padding: 0.65rem;
             margin: 0;
+            color: $grey-icon;
             .red{
               color:$red-icon;
             }
@@ -2097,7 +2106,6 @@ hr{
       width: 85%;
       margin: 4.313rem auto 2rem;
       .mvx-spr-sever-rcmnd{
-        transform: scale(1.01);
         background-color: $fill-color !important; //to color middle price coloumn
         position: relative;
         .mvx-recommend-tag{
@@ -2115,6 +2123,14 @@ hr{
         background-color: $section-background;
         border-radius: 0.25rem;
         border: 0.06rem solid $boder-color;
+        &:first-child{
+          border-right: 0;
+          border-radius: 0.25rem 0 0 0.25rem;
+        }
+        &:nth-child(3){
+          border-left: 0;
+          border-radius:0 0.25rem 0.25rem 0;
+        }
         .mvx-btn{
           width: 100%;
           margin: 1rem 0;
@@ -3092,6 +3108,9 @@ padding:0;
       border-radius: $border-radius;
       padding: 0.5rem;
       z-index: 99;
+      ::-webkit-scrollbar{
+        width: 0.25rem;
+      }
       div{
         padding:0.25rem;
         &:hover{

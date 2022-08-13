@@ -739,6 +739,10 @@ code {
   color: #b74f82;
 }
 
+::-webkit-input-placeholder {
+  color: #8e8b91;
+}
+
 .mvx-page #wpcontent {
   padding: 0rem;
 }
@@ -918,7 +922,7 @@ div#wpbody-content {
 }
 
 .mvx-header-wapper .mvx-header-nav-left-section .mvx-logo-title {
-  font-size: 1.2rem;
+  font-size: 1.125rem;
   padding-left: 0.75rem;
   font-weight: 500;
   color: #181718;
@@ -1839,8 +1843,8 @@ div#wpbody-content {
   bottom: 0;
   left: 0;
   right: 0;
-  border-top: 0.063rem solid #d4d1d9;
   padding: 1rem;
+  background-color: #f9f8fb;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1987,7 +1991,7 @@ div#wpbody-content {
 
 .mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-report-datepicker {
   width: 17.5rem;
-  height: 2.5rem;
+  height: auto;
   background-color: #fdfdfe;
   margin-left: auto;
   padding: 0.125rem 1rem;
@@ -2116,7 +2120,7 @@ div#wpbody-content {
 
 .mvx-container .mvx-left-container .mvx-dashboard-top-heading {
   font-size: 1.5rem;
-  margin: 0 0 2rem 0;
+  margin: 1rem 0 2rem 0;
   text-align: center;
   font-weight: 500;
   color: #181718;
@@ -2165,7 +2169,7 @@ div#wpbody-content {
   font-size: 1.5rem;
   background: #9f8ab9;
   border-radius: 0.25rem;
-  color: #fdfdfe;
+  color: #f9f8fb;
   padding: 0.9rem;
   height: 4rem;
   line-height: 2rem;
@@ -2207,9 +2211,13 @@ div#wpbody-content {
   padding: 0 0.5rem;
 }
 
+.mvx-container .mvx-left-container .mvx-slider-content-main-wrapper .message-banner-sliding i {
+  color: #65438f;
+}
+
 .mvx-container .mvx-left-container .mvx-slider-content-main-wrapper .message-banner-sliding span {
   font-size: 1rem;
-  color: #3d3c3e;
+  color: #8e8b91;
   line-height: 1.875rem;
   text-align: center;
   padding: 0 1rem 0 0.5rem;
@@ -2302,7 +2310,7 @@ div#wpbody-content {
 
 .mvx-container .mvx-left-container .mvx-setup-documentation .mvx-setup-marketing-white-box .mvx-allign-li-txt p {
   font-size: 0.75rem;
-  color: #d4d1d9;
+  color: #8e8b91;
 }
 
 .mvx-container .mvx-left-container .mvx-setup-documentation .mvx-setup-marketing-white-box .li-action {
@@ -2365,7 +2373,7 @@ div#wpbody-content {
 .mvx-container .mvx-left-container .mvx-setup-documentation .mvx-documentation-quick-link-wrapper .mvx-documentation-support-forum figure {
   font-size: 3.188rem;
   margin: 0;
-  color: #65438f;
+  color: #9f8ab9;
 }
 
 .mvx-container .mvx-left-container .mvx-setup-documentation .mvx-documentation-quick-link-wrapper .mvx-documentation-support-forum figcaption div {
@@ -2432,6 +2440,10 @@ div#wpbody-content {
 
 .mvx-container .mvx-left-container .mvx-setup-documentation .mvx-documentation-quick-link-wrapper .mvx-quick-link-sec ul.row-link li a {
   white-space: nowrap;
+}
+
+.mvx-container .mvx-left-container .mvx-setup-documentation .mvx-documentation-quick-link-wrapper .mvx-quick-link-sec ul.row-link li a i {
+  color: #9f8ab9;
 }
 
 .mvx-container .mvx-left-container .mvx-setup-documentation .mvx-documentation-quick-link-wrapper .mvx-quick-link-sec ul.row-link li:hover {
@@ -2530,6 +2542,7 @@ div#wpbody-content {
 .mvx-container .mvx-left-container .mvx-text-center ul.mvx-compare-table-holder li.mvx-compare-table-row ul li {
   padding: 0.65rem;
   margin: 0;
+  color: #8e8b91;
 }
 
 .mvx-container .mvx-left-container .mvx-text-center ul.mvx-compare-table-holder li.mvx-compare-table-row ul li .red {
@@ -2592,8 +2605,6 @@ div#wpbody-content {
 }
 
 .mvx-container .mvx-left-container .mvx-text-center .mvx-money-table-holder .mvx-spr-sever-rcmnd {
-  -webkit-transform: scale(1.01);
-          transform: scale(1.01);
   background-color: #fdfdfe !important;
   position: relative;
 }
@@ -2614,6 +2625,16 @@ div#wpbody-content {
   background-color: #fbfafc;
   border-radius: 0.25rem;
   border: 0.06rem solid #d4d1d9;
+}
+
+.mvx-container .mvx-left-container .mvx-text-center .mvx-money-table-holder .mvx-money-table-coloumn:first-child {
+  border-right: 0;
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+
+.mvx-container .mvx-left-container .mvx-text-center .mvx-money-table-holder .mvx-money-table-coloumn:nth-child(3) {
+  border-left: 0;
+  border-radius: 0 0.25rem 0.25rem 0;
 }
 
 .mvx-container .mvx-left-container .mvx-text-center .mvx-money-table-holder .mvx-money-table-coloumn .mvx-btn {
@@ -4102,6 +4123,10 @@ div#health-check-debug h3 button {
   border-radius: 0.25rem;
   padding: 0.5rem;
   z-index: 99;
+}
+
+.mvx-registration-content .mvx-form-group .dropdown .mvx-registration-dropdown-menu ::-webkit-scrollbar {
+  width: 0.25rem;
 }
 
 .mvx-registration-content .mvx-form-group .dropdown .mvx-registration-dropdown-menu div {
