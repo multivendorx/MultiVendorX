@@ -775,9 +775,7 @@ $scroll-color:#ece8f1;
 /*icon end*/
  
 // Start - Common CSS
-textarea{
-  color:$title-color!important;// to cross load css in textarea**
-}
+
 textarea, input[type=text], input[type=url], input[type=email], input[type=number], select, input, .default-input,  input[type=password] {
   @include select-input();
 }
@@ -807,7 +805,6 @@ h1 {
   font-size: 1.5rem;
   line-height: 1.5;
   color:$title-color;
-
 }
 h2 {
   font-size: 1.25rem;
@@ -1263,19 +1260,22 @@ hr{
       }
         & .mvx-form-group {
           @include flexprops(start);
+          justify-content: space-between;
             flex-wrap: wrap;
             column-gap: 0.5rem;
           padding: 0.75rem 0;
           & .mvx-settings-form-label {
             width: 28%;
             color: $title-color;
+            word-wrap: break-word;
             & p {
               font-size: 0.875rem;
               color: $title-color;
             }
           }
           & .mvx-settings-input-content {
-            width: 70%;
+            width: 65%;
+            color: $paragraph-color;
             .mvx-settings-mvx-form-group-radio {
               display: flex;
               gap: 0.5rem;
@@ -1297,7 +1297,6 @@ hr{
           }
           .mvx-settings-metabox-description {
             margin-top: 0.625rem;
-            color: $paragraph-color ;
             font-style: italic;
             font-size: 0.75rem;
           }
@@ -1423,6 +1422,7 @@ hr{
                   @include flexprops(center);
                   gap:0.5rem;
                   margin-bottom: 0.5rem;
+                  width:95%;
                 }               
               }
               & .mvx-boarder-parent-loop {
@@ -1981,9 +1981,9 @@ hr{
         min-height: 14rem;
           ul.row-link{
             @include flexprops(center);
-            padding-top: 1rem;
+            padding: 1rem;
             overflow-x: scroll;
-
+            margin: 0;
             &::-webkit-scrollbar {
                height: 0rem;
               }
@@ -2075,6 +2075,9 @@ hr{
             text-align: left;
              border-right: 0.06rem solid $boder-color;
              margin: 0;
+           ul li{
+            color:$title-color;
+           }
           } 
           ul li{
             padding: 0.65rem;
@@ -2242,12 +2245,12 @@ hr{
       margin: 0;
       cursor: pointer;
       @include flexprops(center);
+      .mvx-multistatus-item.status-active {
+        color: $theme-color;
+    }
       .mvx-multistatus-item {
         margin: 0;
         font-size: 0.875rem;
-        .status-active {
-          color: $theme-color;
-      }
         button{
           padding:0;
         }
@@ -2372,7 +2375,7 @@ hr{
   flex-wrap: wrap;
   .mvx-all-product-box {
     position: relative;
-    min-width:18.75rem;
+    width:18.75rem;
     min-height: 17.625rem;
     background: $fill-color;
     border: $border;
@@ -2480,12 +2483,17 @@ h1#wc-logo{
     height: 3rem;
   }
 }
+h2{
+  color: $title-color;
+}
 .woocommerce-message{
   padding: 0 0 3rem;
   margin: 0;
+  color:$paragraph-color;
   p{
     text-align: center;
     margin: 0;
+    color:$paragraph-color; 
   }
 }
 }
@@ -2495,6 +2503,7 @@ h1#wc-logo{
   padding: 3rem;
   h1{
     padding:0 0 1rem;
+    color: $title-color;
   }
    .wc-setup-next-steps{
     @include flexprops(start);
@@ -2502,9 +2511,20 @@ h1#wc-logo{
     text-align: left;
     padding: 3rem 0 0;
    }
+   form.wc-wizard-payment-gateway-form{
+    .wc-wizard-service-name{
+      color: $title-color;
+    }
+    .wc-wizard-gateway-description p{
+    color:$paragraph-color;
+    }
+   }
 }
 table.form-table {
   background: none;
+  th{
+    color:$title-color;
+  }
   td.mvx-store-setup{
     flex-direction: column;
   }
@@ -2512,10 +2532,14 @@ table.form-table {
     @include flexprops(center);
     column-gap: 1rem;
     flex-wrap: wrap;
+    .description{
+    color: $paragraph-color !important;// to crack wc-set-up.css
+    }
     label{
       width: 40%;
       padding: 0.25rem 0;
       white-space:nowrap;
+      color:$paragraph-color ;
     }
   }
   th, td{
@@ -2569,6 +2593,7 @@ table.form-table {
   padding: 0.5rem 0;
   .mvx-vendor-transients-description{
     padding: 1rem 0 0.5rem;
+    color:$paragraph-color;
   }
    .mvx-text-with-line-wrapper{
   padding: 0;
@@ -2589,6 +2614,10 @@ div#health-check-debug {
   border-radius: $border-radius;
   border: $border;
   }
+}
+.mvx-general-wrapper.mvx-system-status textarea {
+  background: $title-color;
+  color: $font-white;
 }
 .mvx-status-tools-content header{
   margin-top: 1.5rem;
@@ -2759,7 +2788,7 @@ padding:0;
   color:$title-color!important; //bulk action input button
 }
 .mvx-wrap-bulk-action.css-b62m3t-container {
-  min-width: 8.5rem;
+  min-width: 8.7rem;
   .css-1s2u09g-control{
     background-color:$fill-color;
   }
@@ -2801,7 +2830,7 @@ padding:0;
   font-weight: 500;
 }
 .mvx-commission-details-section{
-  background-color: $section-background;
+  background-color: $fill-color;
   border: $border;
   border-radius: $border-radius;
   padding: 1rem;
@@ -2824,6 +2853,7 @@ padding:0;
         @include flexprops(center);
         padding: 0.5rem 0;
         margin: 0;
+        height: 2rem;
         .commission-status-hide-and-show-wrap{
           @include flexprops(center);
           gap:0.5rem;
@@ -2842,6 +2872,8 @@ padding:0;
     width: 48%;
     .mvx-box-background-white-wrapper, .mvx-commission-vendor-details-class, .mvx-commission-notes-details-class{
       @include commission-heading();
+      color: $title-color;
+      font-weight: 500;
     }
     .mvx-commission-order-data.woocommerce_order_items_wrapper.wc-order-items-editable{
       border-radius: $border-radius;
@@ -2849,7 +2881,7 @@ padding:0;
     table.woocommerce_order_items{
       border: $border;
       thead{
-        background-color: $fill-color;
+        background-color: $font-white;
         color: $paragraph-color;
         text-align: left;
         th{
@@ -2890,6 +2922,9 @@ padding:0;
       &:last-child{
         border-bottom:$border;
         border-radius:0 0 0.25rem 0.25rem; 
+      }
+      small{
+        color:$paragraph-color;
       }
       .commission-details-data-value{
         @include flexprops(center);

@@ -2474,12 +2474,12 @@ a.rs-btn {
     background-color: #65438f;
 }
 .rs-btn-primary.rs-btn-icon.rs-btn-icon-with-text > .rs-icon {
-    background: #2589f5;
+    background: #65438f;
 }
 .rs-btn-primary.rs-btn-focus,
 .rs-btn-primary:focus {
     color: #fff;
-    background-color: #2589f5;
+    background-color: #65438f;
 }
 .rs-btn-primary.rs-btn-focus.rs-btn-icon.rs-btn-icon-with-text > .rs-icon,
 .rs-btn-primary:focus.rs-btn-icon.rs-btn-icon-with-text > .rs-icon {
@@ -2489,7 +2489,7 @@ a.rs-btn {
     color: #fff;
 }
 .rs-btn-primary:not(.rs-btn-disabled):hover {
-    background-color: #2589f5;
+    background-color: #65438f;
 }
 .rs-btn-primary:not(.rs-btn-disabled):hover.rs-btn-icon.rs-btn-icon-with-text > .rs-icon {
     background:#65438f;
@@ -4736,7 +4736,7 @@ a.rs-btn {
 .rs-btn-group-justified > .rs-btn-ghost:focus:before,
 .rs-btn-group-justified > .rs-btn-ghost:hover:after,
 .rs-btn-group-justified > .rs-btn-ghost:hover:before {
-    background-color: #2589f5;
+    background-color: #65438f;
 }
 .rs-btn-group-justified > .rs-btn-ghost.rs-btn-active.rs-btn-focus:after,
 .rs-btn-group-justified > .rs-btn-ghost.rs-btn-active.rs-btn-focus:before,
@@ -5084,7 +5084,7 @@ a.rs-btn {
     position: relative;
 }
 .rs-calendar-table-cell-in-range:before {
-    background-color: #65438f69;
+    background-color: #f9f8fb;
 }
 .rs-calendar-month-dropdown-scroll div:focus {
     outline: none;
@@ -6167,14 +6167,14 @@ a.rs-btn {
     border-radius: 6px;
 }
 .rs-calendar-table-cell-content:hover {
-    background-color: #f2faff;
+    background-color: #f9f8fb;
 }
 .rs-calendar-table-cell-is-today .rs-calendar-table-cell-content {
     border: 1px solid#65438f;
     padding: 4px;
 }
 .rs-calendar-table-cell-selected .rs-calendar-table-cell-content {
-    color: #fff;
+    color: #fdfdfe;
     border-color: #65438f;
     background-color: #65438f;
 }
@@ -7280,7 +7280,7 @@ a.rs-btn {
     background-image: none;
 }
 .rs-picker-toolbar-right-btn-ok.rs-btn-icon.rs-btn-icon-with-text > .rs-icon {
-    background: #2589f5;
+    background: #65438f;
 }
 .rs-picker-toolbar-right-btn-ok.rs-btn-loading:active,
 .rs-picker-toolbar-right-btn-ok.rs-btn-loading:focus,
@@ -7293,7 +7293,7 @@ a.rs-btn {
 .rs-picker-toolbar-right-btn-ok.rs-btn-focus,
 .rs-picker-toolbar-right-btn-ok:focus {
     color: #fff;
-    background-color: #2589f5;
+    background-color: #65438f;
 }
 .rs-picker-toolbar-right-btn-ok.rs-btn-focus.rs-btn-icon.rs-btn-icon-with-text > .rs-icon,
 .rs-picker-toolbar-right-btn-ok:focus.rs-btn-icon.rs-btn-icon-with-text > .rs-icon {
@@ -7303,7 +7303,7 @@ a.rs-btn {
     color: #fff;
 }
 .rs-picker-toolbar-right-btn-ok:not(.rs-btn-disabled):hover {
-    background-color: #2589f5;
+    background-color: #65438f;
 }
 .rs-picker-toolbar-right-btn-ok:not(.rs-btn-disabled):hover.rs-btn-icon.rs-btn-icon-with-text > .rs-icon {
     background:#65438f;
@@ -9495,7 +9495,7 @@ textarea.rs-picker-search-input {
 .rs-navbar.rs-navbar-inverse .rs-navbar-nav .rs-dropdown .rs-dropdown-toggle:hover,
 .rs-navbar.rs-navbar-inverse .rs-navbar-nav .rs-nav-item > .rs-nav-item-content:focus,
 .rs-navbar.rs-navbar-inverse .rs-navbar-nav .rs-nav-item > .rs-nav-item-content:hover {
-    background-color: #2589f5;
+    background-color: #65438f;
 }
 .rs-navbar.rs-navbar-inverse .rs-navbar-nav .rs-dropdown .rs-dropdown-toggle:active,
 .rs-navbar.rs-navbar-inverse .rs-navbar-nav .rs-nav-item > .rs-nav-item-content:active {

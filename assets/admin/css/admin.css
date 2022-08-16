@@ -644,10 +644,6 @@
 }
 
 /*icon end*/
-textarea {
-  color: #181718 !important;
-}
-
 textarea, input[type=text], input[type=url], input[type=email], input[type=number], select, input, .default-input, input[type=password] {
   border-radius: 0.25rem;
   width: 100%;
@@ -1441,6 +1437,9 @@ div#wpbody-content {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   -webkit-column-gap: 0.5rem;
@@ -1451,6 +1450,7 @@ div#wpbody-content {
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form .mvx-form-group .mvx-settings-form-label {
   width: 28%;
   color: #181718;
+  word-wrap: break-word;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form .mvx-form-group .mvx-settings-form-label p {
@@ -1459,7 +1459,8 @@ div#wpbody-content {
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form .mvx-form-group .mvx-settings-input-content {
-  width: 70%;
+  width: 65%;
+  color: #5e5d60;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form .mvx-form-group .mvx-settings-input-content .mvx-settings-mvx-form-group-radio {
@@ -1485,7 +1486,6 @@ div#wpbody-content {
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form .mvx-form-group .mvx-settings-metabox-description {
   margin-top: 0.625rem;
-  color: #5e5d60;
   font-style: italic;
   font-size: 0.75rem;
 }
@@ -1652,6 +1652,7 @@ div#wpbody-content {
           align-items: center;
   gap: 0.5rem;
   margin-bottom: 0.5rem;
+  width: 95%;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-multi-nested-class .mvx-boarder-parent .mvx-boarder-parent-loop {
@@ -2448,8 +2449,9 @@ div#wpbody-content {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding-top: 1rem;
+  padding: 1rem;
   overflow-x: scroll;
+  margin: 0;
 }
 
 .mvx-container .mvx-left-container .mvx-setup-documentation .mvx-documentation-quick-link-wrapper .mvx-quick-link-sec ul.row-link::-webkit-scrollbar {
@@ -2563,6 +2565,10 @@ div#wpbody-content {
   text-align: left;
   border-right: 0.06rem solid #d4d1d9;
   margin: 0;
+}
+
+.mvx-container .mvx-left-container .mvx-text-center ul.mvx-compare-table-holder li.mvx-compare-table-row:first-child ul li {
+  color: #181718;
 }
 
 .mvx-container .mvx-left-container .mvx-text-center ul.mvx-compare-table-holder li.mvx-compare-table-row ul li {
@@ -2782,13 +2788,13 @@ div#wpbody-content {
           align-items: center;
 }
 
+.mvx-container .mvx-search-and-multistatus-wrap .mvx-multistatus-ul .mvx-multistatus-item.status-active {
+  color: #65438f;
+}
+
 .mvx-container .mvx-search-and-multistatus-wrap .mvx-multistatus-ul .mvx-multistatus-item {
   margin: 0;
   font-size: 0.875rem;
-}
-
-.mvx-container .mvx-search-and-multistatus-wrap .mvx-multistatus-ul .mvx-multistatus-item .status-active {
-  color: #65438f;
 }
 
 .mvx-container .mvx-search-and-multistatus-wrap .mvx-multistatus-ul .mvx-multistatus-item button {
@@ -2990,7 +2996,7 @@ div#wpbody-content {
 
 .mvx-product-box-sec .mvx-all-product-box {
   position: relative;
-  min-width: 18.75rem;
+  width: 18.75rem;
   min-height: 17.625rem;
   background: #fdfdfe;
   border: 0.063rem solid #d4d1d9;
@@ -3191,14 +3197,20 @@ div#wpbody-content {
   height: 3rem;
 }
 
+.wc-setup h2 {
+  color: #181718;
+}
+
 .wc-setup .woocommerce-message {
   padding: 0 0 3rem;
   margin: 0;
+  color: #5e5d60;
 }
 
 .wc-setup .woocommerce-message p {
   text-align: center;
   margin: 0;
+  color: #5e5d60;
 }
 
 .wc-setup-content {
@@ -3209,6 +3221,7 @@ div#wpbody-content {
 
 .wc-setup-content h1 {
   padding: 0 0 1rem;
+  color: #181718;
 }
 
 .wc-setup-content .wc-setup-next-steps {
@@ -3226,8 +3239,20 @@ div#wpbody-content {
   padding: 3rem 0 0;
 }
 
+.wc-setup-content form.wc-wizard-payment-gateway-form .wc-wizard-service-name {
+  color: #181718;
+}
+
+.wc-setup-content form.wc-wizard-payment-gateway-form .wc-wizard-gateway-description p {
+  color: #5e5d60;
+}
+
 table.form-table {
   background: none;
+}
+
+table.form-table th {
+  color: #181718;
 }
 
 table.form-table td.mvx-store-setup {
@@ -3250,10 +3275,15 @@ table.form-table td {
       flex-wrap: wrap;
 }
 
+table.form-table td .description {
+  color: #5e5d60 !important;
+}
+
 table.form-table td label {
   width: 40%;
   padding: 0.25rem 0;
   white-space: nowrap;
+  color: #5e5d60;
 }
 
 table.form-table th, table.form-table td {
@@ -3327,6 +3357,7 @@ table.form-table th, table.form-table td {
 
 .mvx-vendor-transients .mvx-vendor-transients-description {
   padding: 1rem 0 0.5rem;
+  color: #5e5d60;
 }
 
 .mvx-vendor-transients .mvx-text-with-line-wrapper {
@@ -3359,6 +3390,11 @@ div#health-check-debug {
 div#health-check-debug h3 button {
   border-radius: 0.25rem;
   border: 0.063rem solid #d4d1d9;
+}
+
+.mvx-general-wrapper.mvx-system-status textarea {
+  background: #181718;
+  color: #f9f8fb;
 }
 
 .mvx-status-tools-content header {
@@ -3565,7 +3601,7 @@ div#health-check-debug h3 button {
 }
 
 .mvx-wrap-bulk-action.css-b62m3t-container {
-  min-width: 8.5rem;
+  min-width: 8.7rem;
 }
 
 .mvx-wrap-bulk-action.css-b62m3t-container .css-1s2u09g-control {
@@ -3618,7 +3654,7 @@ div#health-check-debug h3 button {
 }
 
 .mvx-commission-details-section {
-  background-color: #fbfafc;
+  background-color: #fdfdfe;
   border: 0.063rem solid #d4d1d9;
   border-radius: 0.25rem;
   padding: 1rem;
@@ -3665,6 +3701,7 @@ div#health-check-debug h3 button {
           align-items: center;
   padding: 0.5rem 0;
   margin: 0;
+  height: 2rem;
 }
 
 .mvx-commission-details-section .mvx-edit-commission-status-wrapper .commission-details-data-value .commission-status-hide-and-show-wrap, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-amount .commission-status-hide-and-show-wrap, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-status-wrap .commission-status-hide-and-show-wrap {
@@ -3706,6 +3743,8 @@ div#health-check-debug h3 button {
   padding: 1rem;
   margin: 1.5rem 0 0.25rem;
   border-radius: 0.25rem;
+  color: #181718;
+  font-weight: 500;
 }
 
 .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-commission-order-data.woocommerce_order_items_wrapper.wc-order-items-editable, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-commission-order-data.woocommerce_order_items_wrapper.wc-order-items-editable {
@@ -3717,7 +3756,7 @@ div#health-check-debug h3 button {
 }
 
 .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table.woocommerce_order_items thead, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table.woocommerce_order_items thead {
-  background-color: #fdfdfe;
+  background-color: #f9f8fb;
   color: #5e5d60;
   text-align: left;
 }
@@ -3774,6 +3813,10 @@ div#health-check-debug h3 button {
 .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-child-vendor-details:last-child, .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx_commision_note_clm:last-child, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-child-vendor-details:last-child, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx_commision_note_clm:last-child {
   border-bottom: 0.063rem solid #d4d1d9;
   border-radius: 0 0 0.25rem 0.25rem;
+}
+
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-child-vendor-details small, .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx_commision_note_clm small, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-child-vendor-details small, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx_commision_note_clm small {
+  color: #5e5d60;
 }
 
 .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-child-vendor-details .commission-details-data-value, .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx_commision_note_clm .commission-details-data-value, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-child-vendor-details .commission-details-data-value, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx_commision_note_clm .commission-details-data-value {
