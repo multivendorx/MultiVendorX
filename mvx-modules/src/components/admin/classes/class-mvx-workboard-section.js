@@ -43,7 +43,13 @@ class MVXworkboard extends Component {
 			list_of_publish_question: [],
 			list_of_all_tabs: [],
 			list_of_work_board_content: [],
-			pending_individual_checkbox: []
+			pending_individual_checkbox: [],
+			workboard_list_announcement_status_all: false,
+			workboard_list_announcement_status_approve: false,
+			workboard_list_status_announcement_pending: false,
+			workboard_list_knowledgebase_status_all: false,
+			workboard_list_knowledgebase_status_publish: false,
+			workboard_list_knowledgebase_status_pending: false
 		};
 
 		this.QueryParamsDemo = this.QueryParamsDemo.bind(this);
@@ -357,6 +363,11 @@ class MVXworkboard extends Component {
 
 	handlePostRetriveStatus(e, status, type) {
 		if (type === 'announcement') {
+			this.setState({
+				workboard_list_announcement_status_all: status === 'all' ? true : false,
+				workboard_list_announcement_status_approve: status === 'publish' ? true : false,
+				workboard_list_status_announcement_pending: status === 'pending' ? true : false,
+			});
 			axios
 				.get(
 					`${appLocalizer.apiUrl}/mvx_module/v1/display_announcement`,
@@ -370,6 +381,11 @@ class MVXworkboard extends Component {
 					});
 				});
 		} else if (type === 'knowladgebase') {
+			this.setState({
+				workboard_list_knowledgebase_status_all: status === 'all' ? true : false,
+				workboard_list_knowledgebase_status_publish: status === 'publish' ? true : false,
+				workboard_list_knowledgebase_status_pending: status === 'pending' ? true : false,
+			});
 			axios
 				.get(
 					`${appLocalizer.apiUrl}/mvx_module/v1/display_list_knowladgebase`,
@@ -1169,7 +1185,7 @@ class MVXworkboard extends Component {
 					<div className="mvx-knowladgebase-different-funtionality">
 						<div className="mvx-search-and-multistatus-wrap">
 							<ul className="mvx-multistatus-ul">
-								<li className="mvx-multistatus-item">
+								<li className={`mvx-multistatus-item ${this.state.workboard_list_announcement_status_all ? 'status-active' : ''}`}>
 									<div
 										className="mvx-multistatus-check-all"
 										onClick={(e) =>
@@ -1189,7 +1205,7 @@ class MVXworkboard extends Component {
 									</div>
 								</li>
 								<li className="mvx-multistatus-item mvx-divider"></li>
-								<li className="mvx-multistatus-item">
+								<li className={`mvx-multistatus-item ${this.state.workboard_list_announcement_status_approve ? 'status-active' : ''}`}>
 									<div
 										className="mvx-multistatus-check-approve"
 										onClick={(e) =>
@@ -1210,7 +1226,7 @@ class MVXworkboard extends Component {
 									</div>
 								</li>
 								<li className="mvx-multistatus-item mvx-divider"></li>
-								<li className="mvx-multistatus-item">
+								<li className={`mvx-multistatus-item ${this.state.workboard_list_status_announcement_pending ? 'status-active' : ''}`}>
 									<div
 										className="mvx-multistatus-check-pending status-active"
 										onClick={(e) =>
@@ -1368,7 +1384,7 @@ class MVXworkboard extends Component {
 					<div className="mvx-knowladgebase-different-funtionality">
 						<div className="mvx-search-and-multistatus-wrap">
 							<ul className="mvx-multistatus-ul">
-								<li className="mvx-multistatus-item">
+								<li className={`mvx-multistatus-item ${this.state.workboard_list_knowledgebase_status_all ? 'status-active' : ''}`}>
 									<div
 										className="mvx-multistatus-check-all"
 										onClick={(e) =>
@@ -1388,7 +1404,7 @@ class MVXworkboard extends Component {
 									</div>
 								</li>
 								<li className="mvx-multistatus-item mvx-divider"></li>
-								<li className="mvx-multistatus-item">
+								<li className={`mvx-multistatus-item ${this.state.workboard_list_knowledgebase_status_publish ? 'status-active' : ''}`}>
 									<div
 										className="mvx-multistatus-check-approve"
 										onClick={(e) =>
@@ -1409,7 +1425,7 @@ class MVXworkboard extends Component {
 									</div>
 								</li>
 								<li className="mvx-multistatus-item mvx-divider"></li>
-								<li className="mvx-multistatus-item">
+								<li className={`mvx-multistatus-item ${this.state.workboard_list_knowledgebase_status_pending ? 'status-active' : ''}`}>
 									<div
 										className="mvx-multistatus-check-pending status-active"
 										onClick={(e) =>
@@ -1497,7 +1513,7 @@ class MVXworkboard extends Component {
 			<div className="mvx-module-grid">
 				<div className="mvx-search-and-multistatus-wrap">
 					<ul className="mvx-multistatus-ul">
-						<li className="mvx-multistatus-item">
+						<li className="mvx-multistatus-item status-active">
 							<div className="mvx-multistatus-check-all">
 								{appLocalizer.global_string.all} (
 								{this.state.list_of_store_review.length})

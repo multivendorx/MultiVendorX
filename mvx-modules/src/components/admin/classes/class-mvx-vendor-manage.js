@@ -52,6 +52,10 @@ class MVXBackendVendor extends React.Component {
 			open_model: false,
 			datafollowers_loader: false,
 			vendor_loading: false,
+			vendor_list_status_approve: false,
+			vendor_list_status_pending: false,
+			vendor_list_status_rejected: false,
+			vendor_list_status_all: false
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -158,6 +162,12 @@ class MVXBackendVendor extends React.Component {
 
 	different_vendor_status(e, type) {
 		if (type === 'approve') {
+			this.setState({
+				vendor_list_status_approve: true,
+				vendor_list_status_pending: false,
+				vendor_list_status_rejected: false,
+				vendor_list_status_all: false
+			});
 			axios
 				.get(`${appLocalizer.apiUrl}/mvx_module/v1/all_vendors`, {
 					params: { role: 'dc_vendor' },
@@ -168,6 +178,12 @@ class MVXBackendVendor extends React.Component {
 					});
 				});
 		} else if (type === 'pending') {
+			this.setState({
+				vendor_list_status_approve: false,
+				vendor_list_status_pending: true,
+				vendor_list_status_rejected: false,
+				vendor_list_status_all: false
+			});
 			axios
 				.get(`${appLocalizer.apiUrl}/mvx_module/v1/all_vendors`, {
 					params: { role: 'dc_pending_vendor' },
@@ -178,6 +194,12 @@ class MVXBackendVendor extends React.Component {
 					});
 				});
 		} else if (type === 'rejected') {
+			this.setState({
+				vendor_list_status_approve: false,
+				vendor_list_status_pending: false,
+				vendor_list_status_rejected: true,
+				vendor_list_status_all: false
+			});
 			axios
 				.get(`${appLocalizer.apiUrl}/mvx_module/v1/all_vendors`, {
 					params: { role: 'dc_rejected_vendor' },
@@ -188,6 +210,12 @@ class MVXBackendVendor extends React.Component {
 					});
 				});
 		} else if (type === 'all') {
+			this.setState({
+				vendor_list_status_approve: false,
+				vendor_list_status_pending: false,
+				vendor_list_status_rejected: false,
+				vendor_list_status_all: true
+			});
 			axios
 				.get(`${appLocalizer.apiUrl}/mvx_module/v1/all_vendors`, {
 					params: { role: '' },
@@ -648,7 +676,7 @@ class MVXBackendVendor extends React.Component {
 
 								<div className="mvx-search-and-multistatus-wrap">
 									<ul className="mvx-multistatus-ul">
-										<li className="mvx-multistatus-item">
+										<li className={`mvx-multistatus-item ${this.state.vendor_list_status_all ? 'status-active' : ''}`}>
 											<div
 												className="mvx-multistatus-check-all"
 												onClick={(e) =>
@@ -668,7 +696,7 @@ class MVXBackendVendor extends React.Component {
 											</div>
 										</li>
 										<li className="mvx-multistatus-item mvx-divider"></li>
-										<li className="mvx-multistatus-item">
+										<li className={`mvx-multistatus-item ${this.state.vendor_list_status_approve ? 'status-active' : ''}`}>
 											<div
 												className="mvx-multistatus-check-approve"
 												onClick={(e) =>
@@ -693,7 +721,7 @@ class MVXBackendVendor extends React.Component {
 											</div>
 										</li>
 										<li className="mvx-multistatus-item mvx-divider"></li>
-										<li className="mvx-multistatus-item">
+										<li className={`mvx-multistatus-item ${this.state.vendor_list_status_pending ? 'status-active' : ''}`}>
 											<div
 												className="mvx-multistatus-check-pending status-active"
 												onClick={(e) =>
@@ -717,7 +745,7 @@ class MVXBackendVendor extends React.Component {
 											</div>
 										</li>
 										<li className="mvx-multistatus-item mvx-divider"></li>
-										<li className="mvx-multistatus-item">
+										<li className={`mvx-multistatus-item ${this.state.vendor_list_status_rejected ? 'status-active' : ''}`}>
 											<div
 												className="mvx-multistatus-check-rejected"
 												onClick={(e) =>
