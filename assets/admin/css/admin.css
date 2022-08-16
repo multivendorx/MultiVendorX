@@ -662,6 +662,26 @@ textarea, input[type=text], input[type=url], input[type=email], input[type=numbe
   margin: -0.125rem 0.25rem !important;
 }
 
+[data-title] {
+  position: relative;
+  cursor: pointer;
+}
+
+[data-title]:hover::before {
+  content: attr(data-title);
+  position: absolute;
+  top: -1.75rem;
+  left: 50%;
+  -webkit-transform: translatex(-50%);
+          transform: translatex(-50%);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  background: #181718;
+  color: #f9f8fb;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
 h1 {
   font-size: 1.5rem;
   line-height: 1.5;
@@ -845,7 +865,7 @@ div#wpbody-content {
 }
 
 .mvx-header-search-section .mvx-search-content {
-  background: #fbfafc;
+  background: #fdfdfe;
   border: 0.063rem solid #d4d1d9;
   z-index: 99;
   position: absolute;
@@ -853,7 +873,7 @@ div#wpbody-content {
   right: 0;
   overflow-y: auto;
   width: 100%;
-  height: 20rem;
+  height: 16rem;
 }
 
 .mvx-header-search-section .mvx-search-content::-webkit-scrollbar {
@@ -861,7 +881,7 @@ div#wpbody-content {
 }
 
 .mvx-header-search-section .mvx-search-content::-webkit-scrollbar-thumb {
-  background: #65438f;
+  background: #ece8f1;
   border-radius: .6rem;
 }
 
@@ -1117,6 +1137,7 @@ div#wpbody-content {
 .mvx-container .mvx-select-all-checkbox {
   background-color: #fdfdfe;
   border: 0.063rem solid #d4d1d9;
+  color: #181718;
   border-radius: 0.25rem;
   text-align: center;
   margin-right: 0.5rem;
@@ -1319,6 +1340,7 @@ div#wpbody-content {
 .mvx-container hr {
   width: 100%;
   margin: 0;
+  color: #d4d1d9;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-tab-description-start {
@@ -1367,12 +1389,12 @@ div#wpbody-content {
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-current-tab-lists a i {
   padding-right: .5rem;
+  color: #9f8ab9;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-current-tab-lists .active-current-tab {
   background-color: #fdfdfe;
   position: relative;
-  color: #65438f;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-current-tab-lists .active-current-tab:after {
@@ -1735,7 +1757,7 @@ div#wpbody-content {
   margin: 0.625rem 0 0.625rem 0;
 }
 
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-select-deselect-checkbox-content .mvx-select-de-box-and-checkbox .mvx-select-deselect-checkbox-label-marge .mvx-wrap-checkbox-and-label .mvx-normal-checkbox-label .mvx-settings-metabox-description {
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-select-deselect-checkbox-content .mvx-select-de-box-and-checkbox .mvx-select-deselect-checkbox-label-marge .mvx-wrap-checkbox-and-label .mvx-normal-checkbox-label .mvx-settings-checkbox-description {
   margin: 0rem;
 }
 
@@ -1860,6 +1882,7 @@ div#wpbody-content {
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-footer-icon-form .mvx-perple-txt input[type="checkbox"], .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-footer-icon-form .mvx-perple-txt input[type="checkbox"] {
   height: 1rem;
   width: 1rem;
+  margin: 0 0.5rem 0.25rem;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-footer-icon-form .mvx-font, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-footer-icon-form .mvx-font {
@@ -1920,11 +1943,16 @@ div#wpbody-content {
   margin: 0;
   border-right: 0;
   text-decoration: none;
+  color: #181718;
 }
 
 .mvx-container .mvx-horizontal-tabs .mvx-current-tab-lists a:focus {
   -webkit-box-shadow: none;
           box-shadow: none;
+}
+
+.mvx-container .mvx-horizontal-tabs .mvx-current-tab-lists a i {
+  color: #9f8ab9;
 }
 
 .mvx-container .mvx-horizontal-tabs .mvx-current-tab-lists a:last-child {
@@ -1934,7 +1962,6 @@ div#wpbody-content {
 .mvx-container .mvx-horizontal-tabs .mvx-current-tab-lists .active-current-tab {
   border-bottom: 0.063rem solid #f9f8fb;
   background-color: #f9f8fb;
-  color: #65438f;
 }
 
 .mvx-container .mvx-horizontal-tabs .mvx-tab-content {
@@ -2267,8 +2294,8 @@ div#wpbody-content {
 }
 
 .mvx-container .mvx-left-container .mvx-setup-documentation .mvx-setup-marketing-white-box .mvx-table-ul::-webkit-scrollbar-thumb {
-  background: #f7f6f9;
-  border-radius: .6rem;
+  background: #ece8f1;
+  border-radius: 0.6rem;
 }
 
 .mvx-container .mvx-left-container .mvx-setup-documentation .mvx-setup-marketing-white-box .mvx-table-ul > li {
@@ -2301,7 +2328,7 @@ div#wpbody-content {
       -ms-flex-positive: 1;
           flex-grow: 1;
   max-width: 100%;
-  font-size: 1rem;
+  font-size: 0.875rem;
   color: #5e5d60;
   white-space: nowrap;
   overflow: hidden;
@@ -2465,9 +2492,8 @@ div#wpbody-content {
 .mvx-container .mvx-left-container .pro-bg {
   background: url(../../images/pro-bg.png) center no-repeat;
   background-size: cover;
-  border: solid #d4d1d9;
+  border: 0.06rem solid #d4d1d9;
   border-radius: 0.25rem;
-  border-width: 0 0.06rem;
 }
 
 .mvx-container .mvx-left-container .mvx-text-center {
@@ -2627,16 +2653,6 @@ div#wpbody-content {
   border: 0.06rem solid #d4d1d9;
 }
 
-.mvx-container .mvx-left-container .mvx-text-center .mvx-money-table-holder .mvx-money-table-coloumn:first-child {
-  border-right: 0;
-  border-radius: 0.25rem 0 0 0.25rem;
-}
-
-.mvx-container .mvx-left-container .mvx-text-center .mvx-money-table-holder .mvx-money-table-coloumn:nth-child(3) {
-  border-left: 0;
-  border-radius: 0 0.25rem 0.25rem 0;
-}
-
 .mvx-container .mvx-left-container .mvx-text-center .mvx-money-table-holder .mvx-money-table-coloumn .mvx-btn {
   width: 100%;
   margin: 1rem 0;
@@ -2701,7 +2717,7 @@ div#wpbody-content {
   border-radius: 1rem;
   line-height: 1.5;
   text-align: center;
-  color: #fdfdfe;
+  color: #f9f8fb;
   font-size: 2.5rem;
   padding: 1rem;
   width: 6rem;
@@ -2769,6 +2785,10 @@ div#wpbody-content {
 .mvx-container .mvx-search-and-multistatus-wrap .mvx-multistatus-ul .mvx-multistatus-item {
   margin: 0;
   font-size: 0.875rem;
+}
+
+.mvx-container .mvx-search-and-multistatus-wrap .mvx-multistatus-ul .mvx-multistatus-item .status-active {
+  color: #65438f;
 }
 
 .mvx-container .mvx-search-and-multistatus-wrap .mvx-multistatus-ul .mvx-multistatus-item button {
@@ -2884,6 +2904,7 @@ div#wpbody-content {
 .mvx-container .mvx-module-settings-box .mvx-module-require-name {
   text-align: left;
   padding: 0.5rem;
+  color: #181718;
   border-top: 0.06rem solid #f9f8fb;
   font-weight: 500;
   font-size: .875rem;
@@ -2988,7 +3009,8 @@ div#wpbody-content {
   background: #f7f6f9;
   border-radius: 0.25rem 0.25rem 0 0;
   font-weight: 500;
-  border-bottom: 0.063rem solid #d4d1d9;
+  border-bottom: 0.06rem solid #f2eff5;
+  color: #181718;
 }
 
 .mvx-product-box-sec .mvx-all-product-box .mvx-white-box-header .pull-right {
@@ -3022,11 +3044,13 @@ div#wpbody-content {
 
 .mvx-product-box-sec .mvx-all-product-box .mvx-white-box-body .mvx-box-content .mvx-product-title {
   width: 40%;
+  color: #181718;
 }
 
 .mvx-product-box-sec .mvx-all-product-box .mvx-white-box-body .mvx-box-content .mvx-product-name {
   margin-left: .5rem;
   width: 50%;
+  color: #5e5d60;
 }
 
 .mvx-product-box-sec .mvx-all-product-box .mvx-white-box-footer {
@@ -3401,6 +3425,7 @@ div#health-check-debug h3 button {
 .mvx-backend-datatable-wrapper .rdt_Pagination {
   background: transparent;
   border: none;
+  color: #5e5d60;
   margin: 2rem 0;
   min-height: 0;
 }
@@ -3414,6 +3439,7 @@ div#health-check-debug h3 button {
 
 .mvx-backend-datatable-wrapper .rdt_Pagination .gnaqej .kJrhuj {
   background: none;
+  color: #181718;
   padding: 0 1.5rem;
   min-height: 2rem;
   max-width: 1.5rem;
@@ -3461,7 +3487,7 @@ div#health-check-debug h3 button {
 }
 
 .mvx-backend-datatable-wrapper .sc-dmRaPn::-webkit-scrollbar-thumb {
-  background-color: #d4d1d9;
+  background-color: #ece8f1;
   border-radius: 0.25rem;
 }
 
@@ -3535,6 +3561,7 @@ div#health-check-debug h3 button {
 
 .css-14el2xx-placeholder {
   white-space: nowrap;
+  color: #181718 !important;
 }
 
 .mvx-wrap-bulk-action.css-b62m3t-container {
@@ -4139,6 +4166,14 @@ div#health-check-debug h3 button {
 }
 
 @media only screen and (min-width: 767px) {
+  .mvx-container .mvx-left-container .mvx-text-center .mvx-money-table-holder .mvx-money-table-coloumn:first-child {
+    border-right: 0;
+    border-radius: 0.25rem 0 0 0.25rem;
+  }
+  .mvx-container .mvx-left-container .mvx-text-center .mvx-money-table-holder .mvx-money-table-coloumn:nth-child(3) {
+    border-left: 0;
+    border-radius: 0 0.25rem 0.25rem 0;
+  }
   .mvx-container .mvx-left-container .mvx-text-center .mvx-money-table-holder .mvx-money-table-coloumn:nth-child(2) {
     border: none;
     padding: 4rem 2rem;

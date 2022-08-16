@@ -719,16 +719,17 @@ class MVXworkboard extends Component {
 				data_ann.cell
 					? (data_ann.cell = (row) => (
 							<div className="mvx-vendor-action-icon">
-								<a href={row.link}>
-									<i className="mvx-font icon-edit" data-title='Edit'></i>
+								<a href={row.link}  data-title='Edit'>
+									<i className="mvx-font icon-edit"></i>
 								</a>
 								<div
 									onClick={() =>
 										this.handlePostDismiss(row.id, row.type)
 									}
 									id={row.id}
+									data-title='close'
 								>
-									<i className="mvx-font icon-no" data-title='close'></i>
+									<i className="mvx-font icon-no"></i>
 								</div>
 							</div>
 					  ))
@@ -774,8 +775,9 @@ class MVXworkboard extends Component {
 										)
 									}
 									id={row.id}
+									data-title='approve'
 								>
-									<i className="mvx-font icon-approve" data-title='approve'></i>
+									<i className="mvx-font icon-approve"></i>
 								</div>
 								<div
 									onClick={(e) =>
@@ -787,8 +789,9 @@ class MVXworkboard extends Component {
 										)
 									}
 									id={row.id}
+									data-title='close'
 								>
-									<i className="mvx-font icon-no" data-title='close'></i>
+									<i className="mvx-font icon-no"></i>
 								</div>
 							</div>
 					  ))
@@ -827,8 +830,8 @@ class MVXworkboard extends Component {
 					data_anno_knowl.cell
 						? (data_anno_knowl.cell = (row) => (
 								<div className="mvx-vendor-action-icon">
-									<a href={row.link}>
-										<i className="mvx-font icon-edit" data-title="Edit"></i>
+									<a href={row.link} data-title="Edit">
+										<i className="mvx-font icon-edit" ></i>
 									</a>
 									<div
 										onClick={() =>
@@ -838,8 +841,9 @@ class MVXworkboard extends Component {
 											)
 										}
 										id={row.id}
+										data-title='close'
 									>
-										<i className="mvx-font icon-no" data-title='close'></i>
+										<i className="mvx-font icon-no"></i>
 									</div>
 								</div>
 						  ))
@@ -879,16 +883,17 @@ class MVXworkboard extends Component {
 					data_store_review_content.cell
 						? (data_store_review_content.cell = (row) => (
 								<div className="mvx-vendor-action-icon">
-									<a href={row.link}>
-										<i className="mvx-font icon-edit" data-title='Edit'></i>
+									<a href={row.link} data-title='Edit'>
+										<i className="mvx-font icon-edit"></i>
 									</a>
 									<div
 										onClick={() =>
 											this.handleReviewDismiss(row.id)
 										}
 										id={row.id}
+										data-title='close'
 									>
-										<i className="mvx-font icon-no" data-title='close'></i>
+										<i className="mvx-font icon-no"></i>
 									</div>
 								</div>
 						  ))
@@ -938,8 +943,9 @@ class MVXworkboard extends Component {
 											)
 										}
 										id={row.reason}
+										data-title='close'
 									>
-										<i className="mvx-font icon-no" data-title='close'></i>
+										<i className="mvx-font icon-no"></i>
 									</div>
 								</div>
 						  ))
