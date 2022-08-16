@@ -2033,7 +2033,7 @@ class MVX_REST_API {
         $search_announcement_renew = [];
         if ($all_announcement->data && !empty($all_announcement->data) && !empty($value)) {
             foreach ($all_announcement->data as $announce_key => $anounce_value) {
-                if (strpos($anounce_value['sample_title'], $value) !== false) {
+                if (stripos($anounce_value['sample_title'], $value) !== false) {
                     $search_announcement_renew[]    =   $all_announcement->data[$announce_key];
                 }
             }            
@@ -2051,7 +2051,7 @@ class MVX_REST_API {
         $search_knowledgebase_renew = [];
         if ($all_knowledgebase->data && !empty($all_knowledgebase->data) && !empty($value)) {
             foreach ($all_knowledgebase->data as $announce_key => $anounce_value) {
-                if (strpos($anounce_value['sample_title'], $value) !== false) {
+                if (stripos($anounce_value['sample_title'], $value) !== false) {
                     $search_knowledgebase_renew[]    =   $all_knowledgebase->data[$announce_key];
                 }
             }
@@ -4789,7 +4789,7 @@ class MVX_REST_API {
         $all_vendors = $this->mvx_list_all_vendor('');
         if ($all_vendors) {
             foreach ($all_vendors->data as $vendor_key => $vendor_value) {
-                if (strpos($vendor_value['sample_title'], $vendor_name) !== false) {
+                if (stripos($vendor_value['sample_title'], $vendor_name) !== false) {
                     $search_vendor[]    =   $all_vendors->data[$vendor_key];
                 }
             }
