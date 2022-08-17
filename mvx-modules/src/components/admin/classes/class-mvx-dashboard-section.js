@@ -142,7 +142,7 @@ class MVX_Dashboard extends Component {
                                             <span>
                                                 <i className="mvx-font icon-chart-line" />
                                             </span>{' '}
-                                            Set up marketing tools
+                                            Set up seller Registration Form Fields
                                         </div>
                                         <div className="li-action">
                                             <a
@@ -158,7 +158,7 @@ class MVX_Dashboard extends Component {
                                             <span>
                                                 <i className="mvx-font icon-chart-line" />
                                             </span>{' '}
-                                            Set up marketing tools
+                                            Set up payments
                                         </div>
                                         <div className="li-action">
                                             <a
@@ -174,7 +174,7 @@ class MVX_Dashboard extends Component {
                                             <span>
                                                 <i className="mvx-font icon-chart-line" />
                                             </span>{' '}
-                                            Set up marketing tools
+                                            Set up taxes
                                         </div>
                                         <div className="li-action">
                                             <a
@@ -190,7 +190,7 @@ class MVX_Dashboard extends Component {
                                             <span>
                                                 <i className="mvx-font icon-chart-line" />
                                             </span>{' '}
-                                            Set up marketing tools
+                                            Set up shipping
                                         </div>
                                         <div className="li-action">
                                             <a
@@ -206,7 +206,7 @@ class MVX_Dashboard extends Component {
                                             <span>
                                                 <i className="mvx-font icon-chart-line" />
                                             </span>{' '}
-                                            Set up marketing tools
+                                            Set up commissions
                                         </div>
                                         <div className="li-action">
                                             <a
@@ -222,7 +222,7 @@ class MVX_Dashboard extends Component {
                                             <span>
                                                 <i className="mvx-font icon-chart-line" />
                                             </span>{' '}
-                                            Set up marketing tools
+                                            Set up product capabilities
                                         </div>
                                         <div className="li-action">
                                             <a
@@ -238,7 +238,7 @@ class MVX_Dashboard extends Component {
                                             <span>
                                                 <i className="mvx-font icon-chart-line" />
                                             </span>{' '}
-                                            Set up marketing tools
+                                            Set up allowed product types
                                         </div>
                                         <div className="li-action">
                                             <a
