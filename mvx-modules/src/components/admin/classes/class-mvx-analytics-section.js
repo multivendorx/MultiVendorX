@@ -1381,16 +1381,19 @@ class App extends Component {
 							<div className="mvx-date-range">
 								{appLocalizer.report_page_string.vendor_select}
 							</div>
-							<Select
-								placeholder={
-									appLocalizer.report_page_string
-										.choose_vendor
-								}
-								options={this.state.details_vendor}
-								isClearable={true}
-								className="mvx-wrap-bulk-action"
-								onChange={(e) => this.handlevendorsearch(e)}
-							/>
+							{this.state.details_vendor.length > 0 ?
+								<Select
+									placeholder={
+										appLocalizer.report_page_string
+											.choose_vendor
+									}
+									defaultValue={this.state.details_vendor[0]}
+									options={this.state.details_vendor}
+									isClearable={true}
+									className="mvx-wrap-bulk-action"
+									onChange={(e) => this.handlevendorsearch(e)}
+								/>
+							: ''}
 						</div>	
 					</div>
 

@@ -8303,13 +8303,27 @@ if (!function_exists('mvx_list_all_modules')) {
                 ]
             ],
         ];
-
+        $is_required_plugin_active10 = true;
         if ($mvx_all_modules) {
             foreach ($mvx_all_modules as $parent_module_key => $parent_module_value) {
                 if (isset($parent_module_value['options']) && !empty($parent_module_value['options'])) {
                     foreach ($parent_module_value['options'] as $module_key => $module_value) {
                         $mvx_all_modules[$parent_module_key]['options'][$module_key]['is_active'] = is_current_module_active($module_value['id']);
                         $mvx_all_modules[$parent_module_key]['options'][$module_key]['thumbnail_dir'] = 'module-' . $module_value['id'];
+
+
+
+                        $mvx_all_modules[$parent_module_key]['options'][$module_key]['active_status'] = true;
+                        if (isset($mvx_all_modules[$parent_module_key]['options'][$module_key]['required_plugin_list']) && !empty($mvx_all_modules[$parent_module_key]['options'][$module_key]['required_plugin_list'])) {
+                            foreach ($mvx_all_modules[$parent_module_key]['options'][$module_key]['required_plugin_list'] as $req_key => $req_value) {
+                                if (!$req_value['is_active']) {
+                                    $is_required_plugin_active10 = false;
+                                }
+                            }
+                            $mvx_all_modules[$parent_module_key]['options'][$module_key]['active_status'] = $is_required_plugin_active10;
+                        }
+
+
                         if (isset($mvx_all_modules[$parent_module_key]['options'][$module_key]['required_plugin_list']) && !empty($mvx_all_modules[$parent_module_key]['options'][$module_key]['required_plugin_list'])) {
 
                             foreach ($mvx_all_modules[$parent_module_key]['options'][$module_key]['required_plugin_list'] as $req_key => $req_value) {

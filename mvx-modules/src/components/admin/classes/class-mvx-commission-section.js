@@ -36,6 +36,9 @@ class MVX_Backend_Commission extends Component {
 			show_vendor_name: [],
 			commisson_bulk_choose: [],
 			commissiondata: [],
+			commission_list_status_all: false,
+			commission_list_status_paid: false,
+			commission_list_status_unpaid: false
 		};
 		this.handleSelectRowsChange = this.handleSelectRowsChange.bind(this);
 		this.handlecommissionsearch = this.handlecommissionsearch.bind(this);
@@ -52,6 +55,12 @@ class MVX_Backend_Commission extends Component {
 
 	handle_commission_status_check(e, type) {
 		if (type === 'paid') {
+
+			this.setState({
+				commission_list_status_all: false,
+				commission_list_status_paid: true,
+				commission_list_status_unpaid: false
+			});
 			// paid status
 			axios
 				.get(
@@ -62,13 +71,18 @@ class MVX_Backend_Commission extends Component {
 				)
 				.then((response) => {
 					this.setState({
-						datacommission: response.data,
+						datacommission: response.data
 					});
 				});
 		}
 
 		if (type === 'unpaid') {
 			// unpaid status
+			this.setState({
+				commission_list_status_all: false,
+				commission_list_status_paid: false,
+				commission_list_status_unpaid: true
+			});
 			axios
 				.get(
 					`${appLocalizer.apiUrl}/mvx_module/v1/show_commission_from_status_list`,
@@ -84,6 +98,12 @@ class MVX_Backend_Commission extends Component {
 		}
 
 		if (type === 'all') {
+			this.setState({
+				commission_list_status_all: true,
+				commission_list_status_paid: false,
+				commission_list_status_unpaid: false
+			});
+
 			axios({
 				url: `${appLocalizer.apiUrl}/mvx_module/v1/all_commission`,
 			}).then((response) => {
@@ -369,9 +389,9 @@ class MVX_Backend_Commission extends Component {
 				data_ann.cell
 					? (data_ann.cell = (row) => (
 							<div className="mvx-vendor-action-icon">
-								<div>
+								<div data-title="Edit">
 									<a href={row.link}>
-										<i className="mvx-font icon-edit" title="Edit"></i>
+										<i className="mvx-font icon-edit" ></i>
 										
 									</a>
 								</div>
@@ -381,8 +401,9 @@ class MVX_Backend_Commission extends Component {
 										this.handleCommisssionDismiss(row.id)
 									}
 									id={row.id}
+									data-title='close'
 								>
-									<i className="mvx-font icon-no" title="Close"></i>
+									<i className="mvx-font icon-no"></i>
 							
 								</div>
 							</div>
@@ -1710,7 +1731,7 @@ class MVX_Backend_Commission extends Component {
 
 							<div className="mvx-search-and-multistatus-wrap">
 								<ul className="mvx-multistatus-ul">
-									<li className="mvx-multistatus-item">
+									<li className={`mvx-multistatus-item ${this.state.commission_list_status_all ? 'status-active' : ''}`}>
 										<div
 											className="mvx-multistatus-check-all"
 											onClick={(e) =>
@@ -1734,7 +1755,7 @@ class MVX_Backend_Commission extends Component {
 										</div>
 									</li>
 									<li className="mvx-multistatus-item mvx-divider"></li>
-									<li className="mvx-multistatus-item">
+									<li className={`mvx-multistatus-item ${this.state.commission_list_status_paid ? 'status-active' : ''}`}>
 										<div
 											className="mvx-multistatus-check-paid status-active"
 											onClick={(e) =>
@@ -1757,7 +1778,7 @@ class MVX_Backend_Commission extends Component {
 										</div>
 									</li>
 									<li className="mvx-multistatus-item mvx-divider"></li>
-									<li className="mvx-multistatus-item">
+									<li className={`mvx-multistatus-item ${this.state.commission_list_status_unpaid ? 'status-active' : ''}`}>
 										<div
 											className="mvx-multistatus-check-unpaid"
 											onClick={(e) =>

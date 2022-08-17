@@ -52,6 +52,10 @@ class MVXBackendVendor extends React.Component {
 			open_model: false,
 			datafollowers_loader: false,
 			vendor_loading: false,
+			vendor_list_status_approve: false,
+			vendor_list_status_pending: false,
+			vendor_list_status_rejected: false,
+			vendor_list_status_all: false
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -158,6 +162,12 @@ class MVXBackendVendor extends React.Component {
 
 	different_vendor_status(e, type) {
 		if (type === 'approve') {
+			this.setState({
+				vendor_list_status_approve: true,
+				vendor_list_status_pending: false,
+				vendor_list_status_rejected: false,
+				vendor_list_status_all: false
+			});
 			axios
 				.get(`${appLocalizer.apiUrl}/mvx_module/v1/all_vendors`, {
 					params: { role: 'dc_vendor' },
@@ -168,6 +178,12 @@ class MVXBackendVendor extends React.Component {
 					});
 				});
 		} else if (type === 'pending') {
+			this.setState({
+				vendor_list_status_approve: false,
+				vendor_list_status_pending: true,
+				vendor_list_status_rejected: false,
+				vendor_list_status_all: false
+			});
 			axios
 				.get(`${appLocalizer.apiUrl}/mvx_module/v1/all_vendors`, {
 					params: { role: 'dc_pending_vendor' },
@@ -178,6 +194,12 @@ class MVXBackendVendor extends React.Component {
 					});
 				});
 		} else if (type === 'rejected') {
+			this.setState({
+				vendor_list_status_approve: false,
+				vendor_list_status_pending: false,
+				vendor_list_status_rejected: true,
+				vendor_list_status_all: false
+			});
 			axios
 				.get(`${appLocalizer.apiUrl}/mvx_module/v1/all_vendors`, {
 					params: { role: 'dc_rejected_vendor' },
@@ -188,6 +210,12 @@ class MVXBackendVendor extends React.Component {
 					});
 				});
 		} else if (type === 'all') {
+			this.setState({
+				vendor_list_status_approve: false,
+				vendor_list_status_pending: false,
+				vendor_list_status_rejected: false,
+				vendor_list_status_all: true
+			});
 			axios
 				.get(`${appLocalizer.apiUrl}/mvx_module/v1/all_vendors`, {
 					params: { role: '' },
@@ -463,16 +491,16 @@ class MVXBackendVendor extends React.Component {
 					? (data_ann.cell = (row) => (
 							<div className="mvx-vendor-action-icon">
 								<div>
-									<a href={row.link_shop}>
-										<i className="mvx-font icon-shop" title="shop"></i>
+									<a href={row.link_shop} data-title="shop">
+										<i className="mvx-font icon-shop"></i>
 										{/* <p className="mvxicon-hover-text">
 											{appLocalizer.global_string.shop}
 										</p> */}
 									</a>
 								</div>
 								<div>
-									<a href={row.link}>
-										<i className="mvx-font icon-edit" title="Edit"></i>
+									<a href={row.link} data-title="Edit">
+										<i className="mvx-font icon-edit"></i>
 										{/* <p className="mvxicon-hover-text">
 											{appLocalizer.global_string.edit}
 										</p> */}
@@ -483,8 +511,9 @@ class MVXBackendVendor extends React.Component {
 										this.handleVendorDismiss(row.ID)
 									}
 									id={row.ID}
+									data-title="Close"
 								>
-									<i className="mvx-font icon-no" title="Close"></i>
+									<i className="mvx-font icon-no"></i>
 									{/* <p className="mvxicon-hover-text">Close</p> */}
 								</div>
 							</div>
@@ -647,7 +676,7 @@ class MVXBackendVendor extends React.Component {
 
 								<div className="mvx-search-and-multistatus-wrap">
 									<ul className="mvx-multistatus-ul">
-										<li className="mvx-multistatus-item">
+										<li className={`mvx-multistatus-item ${this.state.vendor_list_status_all ? 'status-active' : ''}`}>
 											<div
 												className="mvx-multistatus-check-all"
 												onClick={(e) =>
@@ -667,7 +696,7 @@ class MVXBackendVendor extends React.Component {
 											</div>
 										</li>
 										<li className="mvx-multistatus-item mvx-divider"></li>
-										<li className="mvx-multistatus-item">
+										<li className={`mvx-multistatus-item ${this.state.vendor_list_status_approve ? 'status-active' : ''}`}>
 											<div
 												className="mvx-multistatus-check-approve"
 												onClick={(e) =>
@@ -692,7 +721,7 @@ class MVXBackendVendor extends React.Component {
 											</div>
 										</li>
 										<li className="mvx-multistatus-item mvx-divider"></li>
-										<li className="mvx-multistatus-item">
+										<li className={`mvx-multistatus-item ${this.state.vendor_list_status_pending ? 'status-active' : ''}`}>
 											<div
 												className="mvx-multistatus-check-pending status-active"
 												onClick={(e) =>
@@ -716,7 +745,7 @@ class MVXBackendVendor extends React.Component {
 											</div>
 										</li>
 										<li className="mvx-multistatus-item mvx-divider"></li>
-										<li className="mvx-multistatus-item">
+										<li className={`mvx-multistatus-item ${this.state.vendor_list_status_rejected ? 'status-active' : ''}`}>
 											<div
 												className="mvx-multistatus-check-rejected"
 												onClick={(e) =>
@@ -1137,23 +1166,9 @@ class MVXBackendVendor extends React.Component {
 											)
 										}
 									/>
-					<div className="mvx-setting-section-divider">&nbsp;</div>
 
 									<div id="wc-backbone-modal-dialog">
-										<button
-											onClick={() =>
-												this.handle_Vendor_Approve(
-													name.get('ID'),
-													'reload'
-												)
-											}
-											className="mvx-btn btn-purple"
-										>
-											{
-												appLocalizer.vendor_page_string
-													.approve
-											}
-										</button>
+										
 
 										<button
 											onClick={() =>
@@ -1167,6 +1182,20 @@ class MVXBackendVendor extends React.Component {
 											{
 												appLocalizer.vendor_page_string
 													.reject
+											}
+										</button>
+										<button
+											onClick={() =>
+												this.handle_Vendor_Approve(
+													name.get('ID'),
+													'reload'
+												)
+											}
+											className="mvx-btn btn-purple"
+										>
+											{
+												appLocalizer.vendor_page_string
+													.approve
 											}
 										</button>
 									</div>

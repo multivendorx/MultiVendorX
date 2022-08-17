@@ -9,6 +9,20 @@ $fill-color : #fdfdfe;
 $theme-color: #65438f;
 $header-background: #f7f6f9;
 $section-background:#fbfafc;
+$code-back:#fdf9fb;
+$code-line:#dfb1c7;
+$purple-btn-hover:#795b9d;
+$font-white:#f9f8fb;
+$grey-icon:#8e8b91;
+$rejected-vendor-font:#fbedee;
+$rejected-vendor-back:#fefbfc;
+$approve-font-color:#522c81;
+$red-btn-back:#e35047;
+$red-icon:#e26f76;
+$code-font:#b74f82;
+$small-code-back:#fbf5f8;
+$blue-icon:#9f8ab9;
+$scroll-color:#ece8f1;
 
 @mixin flexprops($align) {
   display: flex;
@@ -59,6 +73,60 @@ $section-background:#fbfafc;
   border-radius: $border-radius;
   
  }
+ @mixin toggle-btn-disable {
+  input[type=checkbox]{
+      height: 0;
+      width: 0;
+      visibility: hidden;
+      display: none;
+  }
+  label {
+      cursor: pointer;
+      width: 3.3rem;
+      height: 1.5rem;
+      background: transparent;
+      display: block;
+      border-radius: 8rem;
+      position: relative;
+      border: 0.125rem solid $boder-color;
+  }
+  label:before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0.5rem;
+      width: 0.17rem;
+      height: 0.57rem;
+      background: $fill-color;
+      -webkit-transition: 0.3s;
+      transition: 0.3s;
+  }
+  label:after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0.313rem;
+      width: 0.875rem;
+      height: 0.875rem;
+      background: $boder-color;
+      border-radius: 90rem;
+      transition: 0.3s;
+      z-index: 1;
+  }
+  input:checked + label {
+      background: $theme-color;
+  }
+  input:checked + label:after {
+    left: calc(100% - 1.313rem);
+    transform: translatey(-50%);
+      background-color: $fill-color;
+  }
+  label:active:after {
+      width: 1.25rem;
+  }
+}
 @mixin toggle-btn {
     input[type=checkbox]{
         height: 0;
@@ -84,7 +152,7 @@ $section-background:#fbfafc;
         left: 0.5rem;
         width: 0.17rem;
         height: 0.57rem;
-        background: #fff;
+        background: $fill-color;
         -webkit-transition: 0.3s;
         transition: 0.3s;
     }
@@ -117,7 +185,7 @@ $section-background:#fbfafc;
   border-radius: 0.25rem;
   width: 100%;
   padding: 0rem 0.75rem;
-  color: #8e8b91;
+  color: $grey-icon;
   font-size: 0.875rem;
   border: $border;
   line-height: 2.375;
@@ -152,20 +220,20 @@ $section-background:#fbfafc;
     margin-bottom: 1rem;
     & i {
         font-size: 1.5rem;
-        color: $fill-color;
+        color: $font-white;
     }
 }
 @mixin datepicker {
     width: 17.5rem;
-    height: 2.5rem;
+    height:auto;
     background-color: $fill-color;
     margin-left: auto;
 }
 @mixin border {
-    border: 0.063rem solid #d4d1d9;
+    border: 0.063rem solid $boder-color;
 }
 @mixin iconcolor {
-    color: #9e8abb;
+    color: $theme-color;
 }
 @mixin input {
   padding-left: 0.8rem;
@@ -174,29 +242,30 @@ $section-background:#fbfafc;
   height: 2.5rem;
 }
 @mixin red-btn {
-  background-color: #e35047;
-  color: #f9f8fb;
+  background-color: $red-btn-back;
+  color: $font-white;
   &:hover{
-    background-color: #e6635b;
-    color: #f9f8fb;
+    background-color: $red-btn-back;
+    color: $font-white;
   }
 }
 @mixin purple-btn {
-  background-color: #65438f;
+  background-color: $theme-color;
   border: none;
-  color: #f9f8fb;
+  color: $font-white;
   &:hover{
-    background-color: #795b9d;
-    color: #f9f8fb;
+    background-color: $purple-btn-hover;
+    color: $font-white;
   }
 }
 @mixin border-btn {
   border: $border;
   color: $title-color;
   &:hover{
-    border-color: #181718 ;
+    border-color: $title-color ;
   }
 }
+
 /* fonts */
 @font-face {
   font-family: 'mvx-admin-font';
@@ -225,274 +294,283 @@ $section-background:#fbfafc;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 .icon-add:before {
-content: "\e900";
+  content: "\e900";
 }
 .icon-approve:before {
-content: "\e901";
+  content: "\e901";
 }
 .icon-close:before {
-content: "\e902";
+  content: "\e902";
 }
 .icon-down-arrow:before {
-content: "\e903";
+  content: "\e903";
 }
 .icon-download:before {
-content: "\e904";
+  content: "\e904";
 }
 .icon-edit:before {
-content: "\e905";
+  content: "\e905";
 }
 .icon-knowledge-topbar:before {
-content: "\e906";
+  content: "\e906";
 }
 .icon-no:before {
-content: "\e907";
+  content: "\e907";
 }
 .icon-search:before {
-content: "\e908";
+  content: "\e908";
 }
 .icon-select-checkbox:before {
-content: "\e909";
+  content: "\e909";
 }
 .icon-yes:before {
-content: "\e90a";
+  content: "\e90a";
 }
 .icon-tab-activity-reminder:before {
-content: "\e90b";
+  content: "\e90b";
 }
 .icon-tab-announcement:before {
-content: "\e90c";
+  content: "\e90c";
 }
 .icon-tab-commissions:before {
-content: "\e90d";
+  content: "\e90d";
 }
 .icon-tab-disbursement:before {
-content: "\e90e";
+  content: "\e90e";
 }
 .icon-tab-general:before {
-content: "\e90f";
+  content: "\e90f";
 }
 .icon-tab-help:before {
-content: "\e910";
+  content: "\e910";
 }
 .icon-tab-knowladgebase:before {
-content: "\e911";
+  content: "\e911";
 }
 .icon-tab-migration:before {
-content: "\e912";
+  content: "\e912";
 }
 .icon-tab-policy:before {
-content: "\e913";
+  content: "\e913";
 }
 .icon-tab-products:before {
-content: "\e914";
+  content: "\e914";
 }
 .icon-tab-products-capability:before {
-content: "\e915";
+  content: "\e915";
 }
 .icon-tab-question-and-answer:before {
-content: "\e916";
+  content: "\e916";
 }
 .icon-tab-refunds:before {
-content: "\e917";
+  content: "\e917";
 }
 .icon-tab-registration-form:before {
-content: "\e918";
+  content: "\e918";
 }
 .icon-tab-report-abuse:before {
-content: "\e919";
+  content: "\e919";
 }
 .icon-tab-reviews-and-rating:before {
-content: "\e91a";
+  content: "\e91a";
 }
 .icon-tab-seller-dashbaord:before {
-content: "\e91b";
+  content: "\e91b";
 }
 .icon-tab-setup-widget:before {
-content: "\e91c";
+  content: "\e91c";
 }
 .icon-tab-social:before {
-content: "\e91d";
+  content: "\e91d";
 }
 .icon-tab-SPMV:before {
-content: "\e91e";
+  content: "\e91e";
 }
 .icon-tab-store:before {
-content: "\e91f";
+  content: "\e91f";
 }
 .icon-tab-store-review:before {
-content: "\e920";
+  content: "\e920";
 }
 .icon-vendor-application:before {
-content: "\e921";
+  content: "\e921";
 }
 .icon-vendor-follower:before {
-content: "\e922";
+  content: "\e922";
 }
 .icon-vendor-payment:before {
-content: "\e923";
+  content: "\e923";
 }
 .icon-vendor-personal:before {
-content: "\e924";
+  content: "\e924";
 }
 .icon-vendor-policy:before {
-content: "\e925";
+  content: "\e925";
 }
 .icon-vendor-shipping:before {
-content: "\e926";
+  content: "\e926";
 }
 .icon-vendor-social:before {
-content: "\e927";
+  content: "\e927";
 }
 .icon-vendor-store:before {
-content: "\e928";
+  content: "\e928";
 }
 .icon-tab-vendor:before {
-content: "\e929";
+  content: "\e929";
 }
 .icon-tab-overview:before {
-content: "\e92a";
+  content: "\e92a";
 }
 .icon-tab-product-02:before {
-content: "\e92b";
+  content: "\e92b";
 }
 .icon-tab-transaction-history:before {
-content: "\e92c";
+  content: "\e92c";
 }
 .icon-tab-paypal-payout:before {
-content: "\e92d";
+  content: "\e92d";
 }
 .icon-tab-paypal-masspay:before {
-content: "\e92e";
+  content: "\e92e";
 }
 .icon-tab-stripe-connect:before {
-content: "\e92f";
+  content: "\e92f";
 }
 .icon-chart-bar:before {
-content: "\e930";
+  content: "\e930";
 }
 .icon-chart-line:before {
-content: "\e931";
+  content: "\e931";
 }
 .icon-dismiss:before {
-content: "\e932";
+  content: "\e932";
 }
 .icon-down-arrow-02:before {
-content: "\e933";
+  content: "\e933";
 }
 .icon-information:before {
-content: "\e934";
+  content: "\e934";
 }
 .icon-vendor-form-add:before {
-content: "\e935";
+  content: "\e935";
 }
 .icon-vendor-form-copy:before {
-content: "\e936";
+  content: "\e936";
 }
 .icon-vendor-form-delete:before {
-content: "\e937";
+  content: "\e937";
 }
 .icon-tab-version-control:before {
-content: "\e938";
+  content: "\e938";
 }
 .icon-tab-system-status:before {
-content: "\e939";
+  content: "\e939";
 }
 .icon-tab-database-tools:before {
-content: "\e93a";
+  content: "\e93a";
 }
 .icon-form-url:before {
-content: "\e93b";
+  content: "\e93b";
 }
 .icon-form-textbox:before {
-content: "\e93c";
+  content: "\e93c";
 }
 .icon-form-textarea:before {
-content: "\e93d";
+  content: "\e93d";
 }
 .icon-form-store-description:before {
-content: "\e93e";
+  content: "\e93e";
 }
 .icon-form-state:before {
-content: "\e93f";
+  content: "\e93f";
 }
 .icon-form-section:before {
-content: "\e941";
+  content: "\e941";
 }
 .icon-form-recaptcha:before {
-content: "\e942";
+  content: "\e942";
 }
 .icon-form-radio:before {
-content: "\e943";
+  content: "\e943";
 }
 .icon-form-postcode:before {
-content: "\e944";
+  content: "\e944";
 }
 .icon-form-phone:before {
-content: "\e945";
+  content: "\e945";
 }
 .icon-form-paypal-email:before {
-content: "\e946";
+  content: "\e946";
 }
 .icon-form-multi-select:before {
-content: "\e947";
+  content: "\e947";
 }
 .icon-form-dropdown:before {
-content: "\e948";
+  content: "\e948";
 }
 .icon-form-checkboxes:before {
-content: "\e949";
+  content: "\e949";
 }
 .icon-form-city:before {
-content: "\e94a";
+  content: "\e94a";
 }
 .icon-form-country:before {
-content: "\e94b";
+  content: "\e94b";
 }
 .icon-form-attachment:before {
-content: "\e94c";
+  content: "\e94c";
 }
 .icon-form-address01:before {
-content: "\e94d";
+  content: "\e94d";
 }
 .icon-form-address02:before {
-content: "\e94e";
+  content: "\e94e";
 }
 .icon-form-email:before {
-content: "\e94f";
+  content: "\e94f";
 }
 .icon-eye-preview:before {
-content: "\e950";
+  content: "\e950";
 }
 .icon-back:before {
-content: "\e940";
+  content: "\e940";
 }
 .icon-left-arrow:before {
-content: "\e951";
+  content: "\e951";
 }
 .icon-right-arrow:before {
-content: "\e952";
+  content: "\e952";
 }
 .icon-link-right-arrow:before {
-content: "\e953";
+  content: "\e953";
 }
 .icon-documentation-forum:before {
-content: "\e954";
+  content: "\e954";
 }
 .icon-shop:before {
-content: "\e955";
+  content: "\e955";
 }
 .icon-support-forum:before {
-content: "\e956";
+  content: "\e956";
 }
 .icon-up-round-arrow:before {
-content: "\e957";
+  content: "\e957";
 }
 .icon-down-round-arrow:before {
-content: "\e958";
+  content: "\e958";
 }
-
+.icon-select-question-type:before {
+  content: "\e959";
+}
+.icon-eye-see-more:before {
+  content: "\e95a";
+}
+.icon-drag-form:before {
+  content: "\e95b";
+}
 /*********** Modules section *********************/
   
 @font-face {
@@ -697,9 +775,7 @@ content: "\e958";
 /*icon end*/
  
 // Start - Common CSS
-textarea{
-  color:$title-color!important;// to cross load css in textarea**
-}
+
 textarea, input[type=text], input[type=url], input[type=email], input[type=number], select, input, .default-input,  input[type=password] {
   @include select-input();
 }
@@ -708,16 +784,35 @@ textarea, input[type=text], input[type=url], input[type=email], input[type=numbe
     margin: -0.125rem 0.25rem !important; //form input all 
   }
 }
+[data-title] {
+  position: relative;
+  cursor: pointer;
+}
+[data-title]:hover::before {
+  content: attr(data-title);
+  position: absolute;
+  top: -1.75rem;
+  left:50%;
+  transform:translatex(-50%);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  background: $title-color;
+  color: $font-white;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
 h1 {
   font-size: 1.5rem;
-  line-height: 1.2;
-
+  line-height: 1.5;
+  color:$title-color;
 }
 h2 {
   font-size: 1.25rem;
+  color:$title-color;
 }
 h3 {
   font-size: 1.125rem;
+  color:$title-color;
 }
 h4 {
   font-size: 1rem;
@@ -730,6 +825,7 @@ h6  {
 }
 p {
   font-size: 0.875rem;
+  color:$paragraph-color;
 }
 body {
   font-weight: 400;
@@ -762,16 +858,28 @@ blockquote::before,
 blockquote::after {
     content: "";
 }
+code {
+  background: $small-code-back;
+  color: $code-font;
+}
+::-webkit-input-placeholder {
+  color: $grey-icon;
+}
 .mvx-page #wpcontent {
   padding: 0rem;
 }
-.mvx-backend-datatable-wrapper {
+.mvx-transaction-history .mvx-backend-datatable-wrapper {
   padding: 2.4rem 0;
   border-radius: $border-radius;
+}
+input[type="checkbox"]{
+  border-radius: 0.125rem;
 }
 input[type="radio"], input[type="checkbox"] {
     width: 1rem;
     height: 1rem;
+    border-color: $boder-color;
+    background-color: $fill-color;
 }
 input:checked:focus{
   box-shadow: none;
@@ -783,7 +891,7 @@ input[type=radio]:checked::before {
   font-family: 'mvx-admin-font' !important;//redio btn style
   margin: 0rem;
   content: '\e943';
-  color: #65438f ;
+  color: $theme-color ;
   font-size: 1.1rem;
   background-color:transparent !important;//redio btn style
   width: 1.2rem;
@@ -796,14 +904,14 @@ input[type=text]:focus {
 input[type=checkbox]:checked::before {
   font-family: 'mvx-admin-font' !important;// checkbox icon style
   content: '\e909';
-  color: #FFF;
+  color: $fill-color;
   font-size: 0.625rem;
   line-height: 1rem;
-  background-color: #65438f !important;// checkbox icon style
+  background-color: $theme-color !important;// checkbox icon style
   height: 1rem;
   width: 1rem;
-  border-radius: $border-radius;
-  margin: 0;
+  border-radius: 0.125rem;
+  margin: -0.032rem;
 }
 input[type=checkbox]:checked input[type=checkbox] {
   opacity: 0;
@@ -811,7 +919,9 @@ input[type=checkbox]:checked input[type=checkbox] {
 // .css-26l3qy-manu{
 //   z-index: 99 !important;//select bulk input
 // }
-
+div#wpbody-content {
+  padding-bottom: 3.125rem;
+}
 // Start - Header
 .mvx-header-search-section {
   @include flexprops(center);
@@ -823,7 +933,7 @@ input[type=checkbox]:checked input[type=checkbox] {
     left: 1.5rem;
     border: none;
     & i {
-        color: #8e8b91;
+        color: $grey-icon;
     }
   }
   & input {
@@ -831,10 +941,11 @@ input[type=checkbox]:checked input[type=checkbox] {
     background-color: transparent;
     &:focus{
       background-color: transparent;
+      box-shadow: none;
     }
   }
   .mvx-search-content {
-    background: $section-background;
+    background: $fill-color;
     border: $border;
     z-index: 99;
     position: absolute;
@@ -842,12 +953,12 @@ input[type=checkbox]:checked input[type=checkbox] {
     right: 0;
     overflow-y: auto;
     width: 100%;
-    height: 20rem;
+    height: 16rem;
     &::-webkit-scrollbar {
       width: 0.25rem;
     }
     &::-webkit-scrollbar-thumb {
-      background: $theme-color; 
+      background: $scroll-color;
       border-radius: .6rem;
     }  
     .mvx-header-search-content-wrapper{
@@ -858,6 +969,20 @@ input[type=checkbox]:checked input[type=checkbox] {
         &:hover{
           text-decoration: none;
         }
+        .mvx-header-search-contetnt-label {
+          margin-bottom: 0.5rem;
+          background-color: $font-white;
+      }
+      p.mvx-header-search-contetnt-desc {
+     
+        h5{
+          color: $theme-color;
+          border: $border;
+          text-align: center;
+         border-radius: 0.25rem;
+         margin: 0.5rem 0;
+        }
+      }
       }
     }
 }
@@ -884,9 +1009,10 @@ input[type=checkbox]:checked input[type=checkbox] {
       padding-right: 0.75rem;
     }
     .mvx-logo-title {
-      font-size: 1.2rem;
+      font-size: 1.125rem;
       padding-left: 0.75rem;
       font-weight: 500;
+      color: $title-color;
     }
     .mvx-header-section-nav-child-data:first-child::after{
       position: absolute;
@@ -911,6 +1037,7 @@ input[type=checkbox]:checked input[type=checkbox] {
     color: unset;
     line-height: 1rem;
     text-decoration: none;
+    font-weight: 500;
     &:active{
       color: unset;
     }
@@ -925,9 +1052,6 @@ input[type=checkbox]:checked input[type=checkbox] {
     }
   }
   .mvx-module-grid, .mvx-dynamic-form-content{
-   .mvx-back-btn-wrapper{
-    padding: 0 0 3rem;
-   }
   a.mvx-back-btn {
    @include back-btn();
 }
@@ -939,7 +1063,7 @@ input[type=checkbox]:checked input[type=checkbox] {
   }
   p.mvx-settings-metabox-description-code {
     padding: 0.5rem 1rem;
-    background: #5e5d601c;
+    background: $code-back;
     border-radius:$border-radius;
     position:relative;
     &:before{
@@ -949,7 +1073,7 @@ input[type=checkbox]:checked input[type=checkbox] {
       top: 0;
       width: 0.25rem;
       border-radius:0.25rem;
-      background-color: #65438f;
+      background-color: $code-line;
       height: 100%;
     }
 }
@@ -963,16 +1087,16 @@ input[type=checkbox]:checked input[type=checkbox] {
    @include border-btn();
   }
   .chckbx-purple {
-    background-color: #65438f;
+    background-color: $theme-color;
     border: none;
     border-radius: $border-radius;
     padding: 0.375rem 1.375rem;
     &:hover{
-      background-color: #795b9d;
+      background-color: $purple-btn-hover;
     }
     i{
       padding: 0;
-    color: #f9f8fb;
+    color: $font-white;
     }
 }
 .chckbx-border{
@@ -986,8 +1110,8 @@ input[type=checkbox]:checked input[type=checkbox] {
     white-space:nowrap;
   }
   .mvx-notic-display-title {
-    background-color: #b74f82;
-    color: #f9f8fb;
+    background-color: $code-font;
+    color: $font-white;
     padding: 0.5rem 1rem;
     border-radius: 0.12rem;
     position: fixed;
@@ -996,7 +1120,7 @@ input[type=checkbox]:checked input[type=checkbox] {
     z-index: 9999;
   }
   .mvx-notic-display-title span {
-    background-color: #cf89ac;
+    background-color: $code-back;
     border-radius: 50%;
     padding: 0.1rem;
   }
@@ -1021,6 +1145,7 @@ input[type=checkbox]:checked input[type=checkbox] {
   .mvx-select-all-checkbox {
     background-color: $fill-color;
     border: $border;
+    color:$title-color;
     border-radius: $border-radius;
     text-align: center;
     margin-right: 0.5rem;
@@ -1049,6 +1174,12 @@ input[type=checkbox]:checked input[type=checkbox] {
     position: relative;
     @include toggle-btn;
   }
+  .mvx-toggle-checkbox-content.disabled{
+    @include toggle-btn-disable();
+    &::after {
+      border-color: $boder-color;
+    }
+  }
   .mvx-toggle-checkbox-content, span.wc-wizard-service-toggle{
      &::after {
     content: '';
@@ -1075,6 +1206,7 @@ input[type=checkbox]:checked input[type=checkbox] {
 hr{
   width: 100%;
   margin: 0;
+  color:$boder-color;
 }
   .mvx-vertical-tabs {
     & .mvx-tab-description-start {
@@ -1097,11 +1229,13 @@ hr{
           margin-bottom: 0;
           border-bottom: 0;
           text-decoration: none;
+          color:$title-color;
           &:focus{
             box-shadow: none;
           }
           & i {
             padding-right: .5rem;
+            color: $blue-icon;
           }
         }
       & .active-current-tab {
@@ -1115,6 +1249,7 @@ hr{
           right: -0.07rem;
           top: 0;
           position: absolute;
+          z-index:99;
         }
       }
     }
@@ -1124,6 +1259,7 @@ hr{
       height: auto;
       min-height: 60rem;
       background-color: $fill-color;
+      position:relative;
       & .mvx-dynamic-form {
         tr, th{
           height: 0;
@@ -1131,29 +1267,37 @@ hr{
         td{
           height: 3.75rem;
         }
-        .mvx-form-button-group {
-          margin-top: 7rem;
+        .mvx-form-button-group, .mvx-form-actions {
+          bottom:4%;
+          position: absolute;
+          width: 95%;
+          left: 50%;
+          transform: translateX(-50%);
       }
         & .mvx-form-group {
           @include flexprops(start);
+          justify-content: space-between;
             flex-wrap: wrap;
             column-gap: 0.5rem;
-          padding: 1rem 0;
+          padding: 0.75rem 0;
           & .mvx-settings-form-label {
             width: 28%;
+            color: $title-color;
+            word-wrap: break-word;
             & p {
               font-size: 0.875rem;
               color: $title-color;
             }
           }
           & .mvx-settings-input-content {
-            width: 70%;
+            width: 65%;
+            color: $paragraph-color;
             .mvx-settings-mvx-form-group-radio {
               display: flex;
               gap: 0.5rem;
               flex-wrap: wrap;
-              .mvx-radio-input-label-wrap {
-                width: 33%;
+              .mvx-radio-input-label-wrap input{
+                margin: 0 0.25rem 0 0;
             }
           }
             & .mvx-toggle-checkbox-content {
@@ -1169,6 +1313,8 @@ hr{
           }
           .mvx-settings-metabox-description {
             margin-top: 0.625rem;
+            font-style: italic;
+            font-size: 0.75rem;
           }
           .mvx-setting-file-uploader-class {
             .mvx-btn {
@@ -1181,9 +1327,9 @@ hr{
           & .mvx-settings-basic-input-class {
             & .default-btn {
               height: 2.5rem;
-              background-color: #e35047;
+              background-color: $red-btn-back;
               width: 20%;
-              color: $fill-color;
+              color:$font-white;
                float: right;
           }
           }
@@ -1195,7 +1341,7 @@ hr{
         .radio-color-active{
           .mvx-merge-radio-color-input-label {
             padding: 0.5rem;
-            border-color: $theme-color !important;
+            border-color: $theme-color !important;// to set different redio in settings --- store
             border-radius: $border-radius;
             label{
               margin-left: 0.5rem;
@@ -1229,7 +1375,7 @@ hr{
         margin-bottom: 1.5rem;
         padding: 1rem;
         border-radius: $border-radius;
-        background-color: #f9f8fb;
+        background-color: $font-white;
         position: relative;
         transition: .4s all ease-in-out;
         & .mvx-setting-form-input {
@@ -1240,9 +1386,9 @@ hr{
           opacity:0;
           &:checked::before {
             content: '\e909';
-            color: #FFF;
+            color: $fill-color;
             font-size: 0.625rem;
-            background-color: #65438f !important;//redio btn style
+            background-color: $theme-color !important;//redio btn style
             border-radius: $border-radius;
         }
           &:checked{
@@ -1257,7 +1403,7 @@ hr{
             top: 0;
             left: 0;
             background-color: $theme-color;
-            color: #f9f8fb;
+            color: $font-white;
             opacity: 0;
             @include flexprops(center);
             justify-content: center;
@@ -1276,30 +1422,32 @@ hr{
       }
       & .mvx-multi-nested-class {
         & .mvx-boarder-parent {
+          @include flexprops(center);
           flex-wrap:wrap;
           gap:0.5rem;
           position:relative;
           label.mvx-setting-form-label {
             width:25%;
         } .mvx-setting-form-input{
-          width:65%;
+          width:55%;
         }
               .mvx-boarder-nested-child-start{
                 position:relative;
                 width:100%;
-              
                 .mvx-boarder-nested-child-loop{
                   @include flexprops(center);
                   gap:0.5rem;
                   margin-bottom: 0.5rem;
-                }
+                  width:95%;
+                }               
               }
-          & .mvx-boarder-parent-loop {
-            width: 100%;
-            @include flexprops(center);
-          }
-          @include flexprops(center);
+              & .mvx-boarder-parent-loop {
+                width: 100%;
+                @include flexprops(center);
+              }
           & .horizontal-class {
+            @include flexprops(center);
+            gap: 0.5rem;
             position: absolute;
             right: 0;
             top: 0;
@@ -1309,7 +1457,7 @@ hr{
             & .button-controls a, .button-secondary {
               background: transparent!important;// multi nested add button
               border-color:$title-color !important;// multi nested add button;
-              margin:0.25rem 0 0;
+              margin:0 0 0.25rem;
               color: $title-color !important;// multi nested add button;
               min-width: 1.875rem;
               text-align:center;
@@ -1362,7 +1510,7 @@ hr{
               @include flexprops(center);
               margin: 0.625rem 0 0.625rem 0;
               & .mvx-normal-checkbox-label {
-                & .mvx-settings-metabox-description {
+                & .mvx-settings-checkbox-description {
                   margin: 0rem;
                 }
               }
@@ -1449,14 +1597,15 @@ hr{
                 bottom: 0;
                 left: 0;
                 right: 0;
-                border-top: $border;
                 padding: 1rem;
+                background-color:$font-white;
                 @include flexprops(center);
                     & .mvx-perple-txt {
                       margin-left: auto;
                         & input[type="checkbox"] {
                           height: 1rem;
                           width: 1rem;
+                          margin: 0 0.5rem 0.25rem;
                         }
                     }
                   & .mvx-font {
@@ -1471,13 +1620,9 @@ hr{
           }
       }
       .mvx-option-part{
-        &:hover::before{
-          opacity: 1;
-        }
         &::before{
-          opacity:0;
           position: absolute;
-          content: "\e93e";
+          content: "\e95b";
           font-family: 'mvx-admin-font';
           top: 0;
           left: 50%;
@@ -1510,20 +1655,24 @@ hr{
         margin: 0;
         border-right: 0;
         text-decoration: none;
+        color: $title-color;
         &:focus{
           box-shadow: none;
+        }
+        i{
+          color: $blue-icon;
         }
       }
       a:last-child {
         border-right: $border;
       }
       .active-current-tab {
-        border-bottom: 0.063rem solid #f9f8fb;
-        background-color: #f9f8fb;
+        border-bottom: 0.063rem solid $font-white;
+        background-color: $font-white;
       }
     }
     & .mvx-tab-content {
-      background: #f9f8fb;
+      background: $font-white;
       padding: 2.5rem 1.5rem;
       border: $border;
       margin-top: -.073rem;
@@ -1611,7 +1760,7 @@ hr{
           & .mvx-percent-show {
             right: 1.375rem;
             bottom: 2.5rem;
-            background-color: #f0f0f0;
+            background-color: $fill-color;
             padding: 0.375rem;
             border-radius: $border-radius;
           }
@@ -1638,14 +1787,13 @@ hr{
       margin: 0.4rem 0 0 auto;
     }
   }
-
-
+  
   // Start - Dashboard
   .mvx-left-container {
     width: 100%;
     .mvx-dashboard-top-heading{
       font-size: 1.5rem;
-      margin: 0 0 2rem 0;
+      margin: 1rem 0 2rem 0;
       text-align: center;
       font-weight: 500;
       color: $title-color;
@@ -1674,9 +1822,9 @@ hr{
         }
         .mvx-dashboard-top-icon{
           font-size: 1.5rem;
-          background: #9f8ab9;
+          background: $blue-icon;
           border-radius: 0.25rem;
-          color: #fff;
+          color: $font-white;
           padding: 0.9rem;
           height: 4rem;
           line-height: 2rem;
@@ -1705,9 +1853,12 @@ hr{
         border-radius: 0.25rem;
         border: $boder-color 0.0625rem solid;
         padding: 0 0.5rem;
+        i{
+          color: $theme-color;
+        }
         span {
           font-size: 1rem;
-          color: #3d3c3e;
+          color:$grey-icon;
           line-height: 1.875rem;
           text-align: center;
       padding: 0 1rem 0 0.5rem;
@@ -1721,7 +1872,7 @@ hr{
       gap:1.5rem;
       justify-content: space-between;
       .mvx-setup-marketing-white-box{
-        background-color: $fill-color;
+        background-color: $section-background;
         border: $border;
         border-radius: $border-radius;
         padding: 2rem 2rem 3rem;
@@ -1743,8 +1894,8 @@ hr{
                   width: 0.25rem;
                 }
                 &::-webkit-scrollbar-thumb {
-                  background: $header-background; 
-                  border-radius: .6rem;
+                  background: $scroll-color; 
+                  border-radius: 0.6rem;
                 }
         }
         & .mvx-table-ul > li {
@@ -1752,24 +1903,27 @@ hr{
             flex-wrap: wrap;
             box-sizing: border-box;
             padding: 0.9375rem 1.875rem;
-            background-color: #fff;
+            background-color: $fill-color;
             margin: 0.1875rem 0;
             border-radius: 0.25rem;
             text-align: left;
-            border: 0.06rem solid #fff;
+            border: 0.06rem solid $fill-color;
         }
         & .mvx-table-ul > li:hover {
-            border: 0.06rem solid #65438f;
+            border: 0.06rem solid $theme-color;
         }
         & .mvx-allign-li-txt {
             flex-basis: 0;
             flex-grow: 1;
             max-width: 100%;
-            font-size: 1rem;
+            font-size: 0.875rem;
             color: $paragraph-color;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
             p{
               font-size: 0.75rem;
-              color: $boder-color;
+              color: $grey-icon;
             }
         }
         & .li-action {
@@ -1779,7 +1933,7 @@ hr{
             margin-left: auto;
         }
         & .mvx-allign-li-txt span {
-            color: #9f8ab9;
+            color: $blue-icon;
             font-size: 1.125rem;
             margin-right: 1.5rem;
             width: auto;
@@ -1811,7 +1965,7 @@ hr{
           figure{
            font-size: 3.188rem;
            margin: 0;
-           @include iconcolor();
+           color: $blue-icon;
           }
           figcaption{
             div{
@@ -1843,9 +1997,9 @@ hr{
         min-height: 14rem;
           ul.row-link{
             @include flexprops(center);
-            padding-top: 1rem;
+            padding: 1rem;
             overflow-x: scroll;
-
+            margin: 0;
             &::-webkit-scrollbar {
                height: 0rem;
               }
@@ -1859,6 +2013,9 @@ hr{
               border: 0.06rem solid $fill-color;
               a{
                 white-space: nowrap;
+                i{
+                  color:$blue-icon;
+                }
               }
               &:hover{
                 border: 0.06rem solid #4e1a74;
@@ -1876,23 +2033,27 @@ hr{
     }
     p{
       padding-bottom: 3rem;
+      color: $paragraph-color ;
     }
 }
 .pro-bg{
   background: url(../../images/pro-bg.png) center no-repeat;
   background-size: cover;
-  border: solid #d4d1d9;
+  border:0.06rem solid $boder-color;
   border-radius: 0.25rem;
-  border-width: 0 0.06rem;
 }
-
 .mvx-text-center{
       text-align: center;
       padding: 4rem 0;
-      .mvx-money-header-wrap h1{
+      .mvx-money-header-wrap {
+        p{
+    color: $paragraph-color;
+        }
+        h1{
     padding-bottom: 0.75rem;
+    color: $title-color;
   }
-  
+}
   .show-money-btn-wrapper{
     padding-bottom: 4rem;
   a.show-link {
@@ -1906,10 +2067,9 @@ hr{
 }
     ul.mvx-compare-table-holder {
     display: flex;
-    background-color: #fbfafc;
+    background-color: $section-background;
     border: 0.06rem solid $boder-color;
     border-right: none;
-    width: 85%;
     margin: 5.513rem auto 0;
     position: relative;
     li.mvx-show-compare {
@@ -1918,9 +2078,9 @@ hr{
       width: 100%;
       bottom: 0;
       left: 0;
-      background: #fbfafc;
+      background: $section-background;
       cursor:pointer;
-      padding: 1rem 2rem!important;
+      padding: 1rem 2rem!important;//dashboard compare table pop
       a.show-link {
       color: $theme-color;
     }
@@ -1931,15 +2091,19 @@ hr{
             text-align: left;
              border-right: 0.06rem solid $boder-color;
              margin: 0;
+           ul li{
+            color:$title-color;
+           }
           } 
           ul li{
             padding: 0.65rem;
             margin: 0;
+            color: $grey-icon;
             .red{
-              color: #e78087;
+              color:$red-icon;
             }
             .blue{
-              color: #795b9e;
+              color: $blue-icon;
             }
             &:first-child{
               background: linear-gradient(-28deg, #3f1473 0%, #af3b74 50%, #db4b54 100%);
@@ -1954,7 +2118,7 @@ hr{
         }
         .mvx-recomend{
           position: relative;
-          background: #fff;
+          background: $fill-color;
           margin: -2rem 0;
           box-shadow: 0rem 0rem 0.9375rem 0.0625rem #0000001a;
           border-radius: 0.25rem;
@@ -1964,10 +2128,8 @@ hr{
             top: 0;
             left: 50%;
             transform: translateX(-50%);
-            background-color: #9f8ab9;
-            color: #f9f8fb;
-            padding: 0.15rem 1.75rem;
-            border-radius: 0 0 1rem 1rem;   
+            background-color: $blue-icon;
+            color: $font-white;
               }
   
             }
@@ -1986,31 +2148,23 @@ hr{
       width: 85%;
       margin: 4.313rem auto 2rem;
       .mvx-spr-sever-rcmnd{
-        padding: 2rem 0;
-        transform: scale(1.01);
         background-color: $fill-color !important; //to color middle price coloumn
-        box-shadow: 0rem 0rem 0.9375rem 0.0625rem #0000001a;
         position: relative;
         .mvx-recommend-tag{
           position: absolute;
           top: 0;
           left: 50%;
           transform: translateX(-50%);
-          background-color: #e26f76;
-          color: #f9f8fb;
+          background-color: $red-icon;
+          color: $font-white;
           padding: 0.15rem 1.75rem;
-          border-radius: 0 0 1rem 1rem; 
+          border-radius: 0 0 1rem 1rem;
         }
       }
       .mvx-money-table-coloumn{
         background-color: $section-background;
         border-radius: 0.25rem;
         border: 0.06rem solid $boder-color;
-        padding: 2rem;
-        &:nth-child(2){
-          border: none;
-        padding: 4rem 2rem;
-        }
         .mvx-btn{
           width: 100%;
           margin: 1rem 0;
@@ -2046,7 +2200,7 @@ hr{
               color:$title-color;
             }
             s{
-              color: #8e8b91;
+              color: $grey-icon;
               font-size: 1rem;
             }
         }
@@ -2062,7 +2216,7 @@ hr{
         border-radius: 1rem;
         line-height: 1.5;
         text-align: center;
-        color: #fff;
+        color: $font-white;
         font-size: 2.5rem;
         padding: 1rem;
         width: 6rem;
@@ -2079,12 +2233,13 @@ hr{
 
   // Start - Settings Page
   .mvx-setting-section-divider{
-    background-color: $boder-color;
+    background-color: $base-color;
     height: 0.05rem;
     margin: 2rem 0 1.5rem;
   }
 .mvx-select-deselect-trigger {
   border:$border;
+  color:$title-color;
   border-radius: $border-radius;
   width: fit-content;
   padding: 0.5rem 1rem;
@@ -2097,17 +2252,24 @@ hr{
 }
   .mvx-search-and-multistatus-wrap {
     @include flexprops(center);
+    gap:1rem;
     justify-content: space-between;
-    padding: 1rem 0;
+    padding: 2.5rem 0 2rem;
     flex-wrap:wrap;
   
     .mvx-multistatus-ul {
-      margin: 1.2rem 0;
+      margin: 0;
       cursor: pointer;
       @include flexprops(center);
+      .mvx-multistatus-item.status-active {
+        color: $theme-color;
+    }
       .mvx-multistatus-item {
         margin: 0;
         font-size: 0.875rem;
+        button{
+          padding:0;
+        }
       }
       .mvx-divider {
         width: 0.051rem;
@@ -2121,7 +2283,7 @@ hr{
     @include flexprops(center);
     gap:0.5rem 0.5rem;
     flex-wrap:wrap;
-    padding-bottom: 1rem;
+    padding-bottom: 0.5rem;
   }
   // Start - Module Page
   .mvx-col-auto.mvx-module-left-sec {
@@ -2155,7 +2317,7 @@ hr{
         position: absolute;
         top: 1.5rem;
         right: 1.5rem;
-        background: #9f8ab9;
+        background: $blue-icon;
         color: $fill-color;
         padding: 0.25rem 0.75rem;
         border-radius: 0.625rem;
@@ -2168,12 +2330,15 @@ hr{
     & .mvx-module-require-name {
       text-align: left;
       padding: 0.5rem;
-      border-top: 0.06rem solid #f9f8fb;
+      color: $title-color;
+      border-top: 0.06rem solid $font-white;
       font-weight: 500;
       font-size: .875rem;
       margin: 1.5rem 0 1rem 0;
     }
     & ul {
+      overflow-y: auto;
+      height: 6rem;
       & li {
         @include flexprops(center);
         border: none;
@@ -2181,23 +2346,27 @@ hr{
         height: auto;
         line-height: 1.2rem;
         text-align: left;
-        & .inactive-plugin-class {
+        .inactive-plugin-class{ 
+          background: $rejected-vendor-back;
+         } .mvx-module-active-plugin-class{
+          background: $section-background;
+         }
+        & .inactive-plugin-class, .mvx-module-active-plugin-class{
           border-radius: 50rem;
           width: 1rem;
           line-height: 1;
           height: 1rem;
           margin-right: 0.5rem;
           text-align: center;
-          background: #fefbfc;
           & .icon-no {
             font-size: 0.438rem;
-            color: #e35047;
+            color: $red-icon;
           }
           & .icon-yes {
             font-size: 0.438rem;
-            color: $theme-color;
+            color: $blue-icon;
           }
-        }
+        }          
       }
     }
   }
@@ -2206,8 +2375,7 @@ hr{
     bottom: 0rem;
     left: 0rem;
     right: 0rem;
-    background: #faf8fb;
-    background: #f9f8fb;
+    background: $font-white;
     padding: 0.5rem 1rem;
     @include flexprops(center);
     .mvx-btn{
@@ -2223,7 +2391,7 @@ hr{
   flex-wrap: wrap;
   .mvx-all-product-box {
     position: relative;
-    min-width: 18.75rem;
+    width:18.75rem;
     min-height: 17.625rem;
     background: $fill-color;
     border: $border;
@@ -2235,6 +2403,8 @@ hr{
       background: $header-background;
       border-radius: 0.25rem 0.25rem 0 0;
       font-weight: 500;
+      border-bottom: 0.06rem solid $base-color;
+      color:$title-color;
       & .pull-right {
         margin: 0.4rem 0 0 auto;
       }
@@ -2244,6 +2414,8 @@ hr{
     }
     & .mvx-white-box-body {
       margin: 1rem;
+      height: 10rem;
+      overflow-y: auto;
       & img {
         border-radius: $border-radius;
         margin-right: 0.625rem;
@@ -2253,10 +2425,12 @@ hr{
         margin-bottom: .5rem;
         .mvx-product-title{
           width: 40%;
+         color: $title-color;
         }
         & .mvx-product-name {
           margin-left: .5rem;
           width: 50%;
+          color: $paragraph-color;
         }
       }
     }
@@ -2266,14 +2440,14 @@ hr{
       padding: .5rem 1rem;
       left: 0;
       width: 100%;
-      border-top: $border;
+      background: $font-white;
       & .pull-left, .pull-right {
         @include flexprops(center);
         & .link-icon {
           display: block;
           color: $theme-color;
           margin-right: 0.25rem;
-          background: #f9f8fb;
+          background: $font-white;
           padding: 0.375rem 0.625rem;
           border-radius: $border-radius;
         }
@@ -2285,7 +2459,7 @@ hr{
         & .mvxicon-hover-text{
           position: absolute;
           border-radius: $border-radius;
-          background: #f9f8fb;
+          background: $font-white;
           margin: 0.2rem;
           padding: 0.2rem 0.4rem;
           display: none;
@@ -2306,7 +2480,7 @@ hr{
 }
 }
 .wc-setup-steps li::before{
-  border: 0.125rem solid #ccc;
+  border: 0.125rem solid $boder-color;
   border-radius: 100%;
   width: 0.5rem;
   height: 0.5rem;
@@ -2325,12 +2499,17 @@ h1#wc-logo{
     height: 3rem;
   }
 }
+h2{
+  color: $title-color;
+}
 .woocommerce-message{
   padding: 0 0 3rem;
   margin: 0;
+  color:$paragraph-color;
   p{
     text-align: center;
     margin: 0;
+    color:$paragraph-color; 
   }
 }
 }
@@ -2340,6 +2519,7 @@ h1#wc-logo{
   padding: 3rem;
   h1{
     padding:0 0 1rem;
+    color: $title-color;
   }
    .wc-setup-next-steps{
     @include flexprops(start);
@@ -2347,9 +2527,20 @@ h1#wc-logo{
     text-align: left;
     padding: 3rem 0 0;
    }
+   form.wc-wizard-payment-gateway-form{
+    .wc-wizard-service-name{
+      color: $title-color;
+    }
+    .wc-wizard-gateway-description p{
+    color:$paragraph-color;
+    }
+   }
 }
 table.form-table {
   background: none;
+  th{
+    color:$title-color;
+  }
   td.mvx-store-setup{
     flex-direction: column;
   }
@@ -2357,10 +2548,14 @@ table.form-table {
     @include flexprops(center);
     column-gap: 1rem;
     flex-wrap: wrap;
+    .description{
+    color: $paragraph-color !important;// to crack wc-set-up.css
+    }
     label{
       width: 40%;
       padding: 0.25rem 0;
       white-space:nowrap;
+      color:$paragraph-color ;
     }
   }
   th, td{
@@ -2369,13 +2564,13 @@ table.form-table {
   }
 }
 .red-btn, .button-primary{
-  background-color: #e35047 !important;// to crack the load-css
-  border: 0.06rem solid #e35047 !important;// to crack the load-css
+  background-color: $red-btn-back !important;// to crack the load-css
+  border: 0.06rem solid $red-btn-back !important;// to crack the load-css
   color: $fill-color !important;// to crack the load-css
   text-shadow: none!important;// to crack the load-css
   &:hover{
-    border: 0.06rem solid #e26f76 !important;// to crack the load-css
-    background-color: #e26f76 !important;// to crack the load-css
+    border: 0.06rem solid $red-btn-back !important;// to crack the load-css
+    background-color: $red-btn-back !important;// to crack the load-css
     color: $fill-color !important;// to crack the load-css
   }
 }
@@ -2414,6 +2609,7 @@ table.form-table {
   padding: 0.5rem 0;
   .mvx-vendor-transients-description{
     padding: 1rem 0 0.5rem;
+    color:$paragraph-color;
   }
    .mvx-text-with-line-wrapper{
   padding: 0;
@@ -2435,6 +2631,10 @@ div#health-check-debug {
   border: $border;
   }
 }
+.mvx-general-wrapper.mvx-system-status textarea {
+  background: $title-color;
+  color: $font-white;
+}
 .mvx-status-tools-content header{
   margin-top: 1.5rem;
 }
@@ -2451,40 +2651,43 @@ div#health-check-debug {
 }
 // Start - Datatable
 .pending-vendor {
-  background: #f3f0f9;
+  background: #fdfbfc;
  @include staus();
- color:$theme-color;
+ color:$code-font;
 }
 .suspended-vendor{
+  background: #fdfbfc;
   @include staus();
-  background-color: #fff1f1;
-  color: #e35047;
+  color:$code-font;
 }
 .approved-vendor{
   @include staus();
-  background-color: #fff1f1;
-  color: #e35047;
+  background-color: $section-background;
+  color: $approve-font-color;
 }
 .rejected-vendor{
   @include staus();
-  background-color: #fff1f1;
-  color: #e35047;
+  background-color: $rejected-vendor-back;
+  color: $rejected-vendor-font;
 }
 .commission-status-unpaid{
   @include staus();
-  background-color: #fff1f1;
-  color: #e35047;
+  background-color: $rejected-vendor-back;
+  color: $rejected-vendor-font;
 }
 .commission-status-paid{
   @include staus();
-  background-color: #fff1f1;
-  color: #e35047;
+  background-color: $section-background;
+  color: $approve-font-color;
 }
 .mvx-backend-datatable-wrapper {
+  margin-top: 1rem;
   .rdt_Pagination{
     background: transparent;
     border: none;
+    color: $paragraph-color;
     margin: 2rem 0;
+    min-height: 0;
     .gnaqej {
       border: $border;
       border-radius: $border-radius;
@@ -2492,6 +2695,7 @@ div#health-check-debug {
       padding: 0 0.4rem 0 0;
       .kJrhuj {
         background: none;
+        color:$title-color;
         padding: 0 1.5rem;
         min-height: 2rem;
         max-width: 1.5rem;
@@ -2528,7 +2732,7 @@ div#health-check-debug {
       height: 0.5rem;
     }
     &::-webkit-scrollbar-thumb{
-      background-color: $boder-color;
+      background-color: $scroll-color;
       border-radius: $border-radius;
     }
   }
@@ -2541,11 +2745,13 @@ div#health-check-debug {
           border-radius: $border-radius;
           font-size: 0.875rem;
           background-color:$fill-color;
+          color:$title-color;
       }
     }
     .rdt_TableBody {
       .rdt_TableRow {
         border: $border;
+        color:$paragraph-color;
         border-radius: $border-radius;
         margin-bottom: 0.2rem;
         min-height: 3rem;
@@ -2563,8 +2769,9 @@ div#health-check-debug {
               i{
                 padding:0.5rem;
                 border-radius: $border-radius;
+                color: $theme-color;
               &:hover {
-                background:#65438f1c;
+                background:$font-white;
               }
               }
             }
@@ -2592,8 +2799,12 @@ div#health-check-debug {
 margin: 0 !important; //bulk action input button
 padding:0;
 }
+.css-14el2xx-placeholder{
+  white-space: nowrap;
+  color:$title-color!important; //bulk action input button
+}
 .mvx-wrap-bulk-action.css-b62m3t-container {
-  min-width: 8.5rem;
+  min-width: 8.7rem;
   .css-1s2u09g-control{
     background-color:$fill-color;
   }
@@ -2603,16 +2814,24 @@ padding:0;
     }
   }
 }
+.mvx-announcement, .mvx-knowladgebase, .mvx-add-new{
+ .mvx-btn {
+  transition: none;
+}  .mvx-dynamic-fields-wrapper{
+  padding: 3rem 0 0;
+  }
+}
 .mvx-module-grid{
   .mvx-form-group {
     @include flexprops(start);
     flex-wrap: wrap;
-    padding: 1rem 0;
+    padding: 0.75rem 0;
     .mvx-settings-form-label{
-      width: 28%;
+      width: 15%;
+      color: $title-color;
     }
     .mvx-settings-input-content{
-      width: 65%;
+      width:85%;
     }
   }
 }
@@ -2627,7 +2846,7 @@ padding:0;
   font-weight: 500;
 }
 .mvx-commission-details-section{
-  background-color: $section-background;
+  background-color: $fill-color;
   border: $border;
   border-radius: $border-radius;
   padding: 1rem;
@@ -2650,8 +2869,9 @@ padding:0;
         @include flexprops(center);
         padding: 0.5rem 0;
         margin: 0;
+        height: 2rem;
         .commission-status-hide-and-show-wrap{
-          @include flexprops(start);
+          @include flexprops(center);
           gap:0.5rem;
         }
         .mvx-commission-label-class,  .mvx-commission-label-class {
@@ -2668,6 +2888,8 @@ padding:0;
     width: 48%;
     .mvx-box-background-white-wrapper, .mvx-commission-vendor-details-class, .mvx-commission-notes-details-class{
       @include commission-heading();
+      color: $title-color;
+      font-weight: 500;
     }
     .mvx-commission-order-data.woocommerce_order_items_wrapper.wc-order-items-editable{
       border-radius: $border-radius;
@@ -2675,7 +2897,7 @@ padding:0;
     table.woocommerce_order_items{
       border: $border;
       thead{
-        background-color: #f4f1f7;
+        background-color: $font-white;
         color: $paragraph-color;
         text-align: left;
         th{
@@ -2717,6 +2939,9 @@ padding:0;
         border-bottom:$border;
         border-radius:0 0 0.25rem 0.25rem; 
       }
+      small{
+        color:$paragraph-color;
+      }
       .commission-details-data-value{
         @include flexprops(center);
         .mvx-commission-label-class{
@@ -2736,7 +2961,7 @@ padding:0;
     position: absolute;
     left: 50%;
     transform: translatex(-50%);
-    width: 100% !important;
+    width: 100% !important;// gogle map canvas part set
     border-radius: $border-radius;
     top: 0;
 }
@@ -2750,20 +2975,24 @@ padding:0;
   }
 }
 }
-button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary{
-  @include button();
-  @include purple-btn();
-}
 .MuiDialogActions-root.MuiDialogActions-spacing {
   padding: 0;
+  button[color="primary"]{
+    @include button();
+    @include purple-btn();
+  }
 }
 .MuiDialog-paperScrollPaper {
   min-width:20.563rem;
   overflow: hidden;
-  padding:0.5rem;
+  padding:1rem 1.5rem;
+ .MuiDialogContent-root{
+    padding:1rem 0rem 2.5rem;
+  } 
   .MuiDialogTitle-root {
     position: relative;
     overflow: hidden;
+    padding:1.5rem 0rem 0;
     h2 {
       .mvx-module-dialog-title{
         @include flexprops(center);
@@ -2816,6 +3045,13 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary{
         @include flexprops(center);
         justify-content: center;
         column-gap: 0.5rem;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        padding: 1rem 0;
+        background: $font-white;
         .mvx-btn.btn-purple{
           @include purple-btn();
           @include button();
@@ -2839,16 +3075,94 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary{
     }
   }
 }
-.mvx-vendor-modal-main{
-  div#wc-backbone-modal-dialog {
-    @include flexprops(center);
-    justify-content: end;
-    gap: 0.5rem;
-}
-}
+      //vendr application
+      .mvx-vendor-application-content{ 
+        h2{
+        border-bottom:$border;
+        color: $theme-color;
+        padding: 2rem 0 0.5rem;
+        margin: 0 0 1rem;
+        &:first-child{
+          padding: 0 0 0.5rem;
+        }
+      }
+      .mvx-form-field{
+        border: $border;
+        padding: 0.5rem;
+        border-radius:$border-radius;
+        margin: 0.5rem 0;
+      &>label{
+        color: $paragraph-color;
+        display: inline-block;
+        font-size: 0.875rem;
+        width: 40%;
+      }
+      }
+      .note-clm-wrap{
+        position:relative;
+        &:before{
+          position: absolute;
+          content: '';
+          width: 0.06rem;
+          height: 100%;
+          top: 0;
+          background-color:$boder-color;
+        }
+        .note-clm{
+          border: $border;
+          border-radius: $border-radius;
+          padding: 0.5rem;
+          margin: 0.5rem auto 0.5rem 1.5rem;
+          width:60%;
+          position: relative;
+          &:before{
+            position: absolute;
+            content: "";
+            width: 0.75rem;
+            height: 0.75rem;
+            background: $theme-color;
+            top: 1rem;
+            transform: translateX(-50%);
+            left: -1.5rem;
+            border-radius: 50%;
+          }
+          &:after{
+            position: absolute;
+            content: "";
+            width: 0.5rem;
+            height: 0.5rem;
+            background: $fill-color;
+            border: solid $boder-color;
+            border-width: 0 0 0.06rem 0.06rem;
+            transform: rotate(45deg);
+            top: 1rem;
+            left: -0.35rem;
+          }
+          p.note-description {
+            margin: 0 0 1rem;
+        }
+        p.note-meta {
+          margin: 0 0.75rem 0 0;
+          display: inline-block;
+          color: $boder-color;
+      }
+        }
+      }
+    }
+        .mvx-vendor-modal-main{
+          textarea.pending-vendor-note.form-control{
+            min-height: 7rem;
+            margin: 0 0 1rem;
+          }
+          div#wc-backbone-modal-dialog {
+            @include flexprops(center);
+            justify-content: space-between;
+            gap: 0.5rem;
+        }
+        }
 .mvx-registration-content{
   .mvx-form-group{
-    flex-wrap: nowrap !important;
+    flex-wrap: nowrap !important;// to align registration form content
     .dropdown{
       position: relative;
           .mvx-registration-select{
@@ -2870,6 +3184,9 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary{
       border-radius: $border-radius;
       padding: 0.5rem;
       z-index: 99;
+      ::-webkit-scrollbar{
+        width: 0.25rem;
+      }
       div{
         padding:0.25rem;
         &:hover{
@@ -2881,9 +3198,25 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary{
   }
   }
 }
+// license - page start
+
 //responsive code are here
 @media only screen and (min-width: 767px) {
-
+.mvx-container .mvx-left-container .mvx-text-center .mvx-money-table-holder .mvx-money-table-coloumn{
+  &:first-child{
+    border-right: 0;
+    border-radius: 0.25rem 0 0 0.25rem;
+  }
+  &:nth-child(3){
+    border-left: 0;
+    border-radius:0 0.25rem 0.25rem 0;
+  }
+  &:nth-child(2) {
+    border: none;
+    padding: 4rem 2rem;
+    box-shadow: 0rem 0rem 0.9375rem 0.0625rem #0000001a;
+}
+}
   .mvx-setup-marketing-white-box, .mvx-documentation-quick-link-wrapper{
     width: 50%;
   }
@@ -2892,6 +3225,7 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary{
   }
   .mvx-money-table-coloumn{
     width: 34%;
+  padding: 2rem;
   }
   .mvx-dashboard-slider{
     width:70%;
@@ -2917,21 +3251,34 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary{
   .mvx-tab-content{
   width:78%;
 }}
+.mvx-compare-table-holder{
+  width: 85%;
 li.mvx-compare-table-row{
   padding: 2rem 2rem 3rem;
-  .mvx-recomend{
-    padding:3.45rem !important;// to align the last part
-  }
 }
+.mvx-recomend{
+  padding:3.85rem !important;// to align the last part
+  span.recommend-tag{
+    padding: 0.15rem 1.75rem;
+    border-radius: 0 0 1rem 1rem; 
+  }
+}}
 }
 @media only screen and (max-width: 668px) {
   .mvx-header-wapper .mvx-header-nav-left-section .mvx-logo-title{
     display:none;
   }
 }
-
+@media (min-width: 1300px) and (max-width: 1500px){
+  .mvx-product-box-sec .mvx-all-product-box{
+    width: 32.33%;
+  }
+}
 @media only screen and (max-width: 768px) {
   //all pages
+  .mvx-product-box-sec{
+    justify-content: center;
+  }
     .mvx-container{
       flex-wrap: wrap;
       justify-content: center;
@@ -2964,14 +3311,22 @@ li.mvx-compare-table-row{
   .show-money-btn-wrapper{
     display:none;
   }
+  .mvx-money-table-coloumn{
+    position: relative;
+    padding: 2rem 2rem 4rem;
   .show-responsive-money-btn-wrapper{
     display: block;
-    margin:auto;
+    text-align: center;
+    padding: 1rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: $font-white;
+    width: 100%;
     a.show-link{
-      padding-bottom:0.5rem;
       color:$theme-color;
     }
-  }
+  }}
  .mvx-middle-child-container{
     .mvx-current-tab-lists, .mvx-tab-content{
       width: 100%;
@@ -2991,7 +3346,7 @@ li.mvx-compare-table-row{
       width: 100%;}
 }
   .mvx-settings-form-label, .mvx-settings-input-content{
-            width: 100% !important;
+            width: 100% !important;// to make input responsive
           }
           .mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-wrapper-performance-content{
             flex-wrap:wrap;
@@ -3005,17 +3360,23 @@ li.mvx-compare-table-row{
           display: none;
         }
       }
+      ul.mvx-compare-table-holder {
+        width: 100%;
       li.mvx-compare-table-row{
         padding: 2rem 0rem 3rem;
         ul li{
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
-          .mvx-recomend{
-            padding:3.45rem 0 !important;// to align the last part
-            overflow: hidden;
-          }
         }
-      
       }
+      .mvx-recomend{
+        padding:3.85rem 0 !important;// to align the last part
+        overflow: hidden;
+        span.recommend-tag{
+          padding: 0.129rem 0.25rem 0.25rem;
+          width: 86%;
+          border-radius: 0 0 0.75rem 0.75rem;
+        }
+      }}
 }

@@ -749,17 +749,20 @@ class MVX_REST_API {
                     'left_icons'    =>  array(
                         array(
                             'key'   =>  'edit',
-                            'link'  =>  $value['product_url']
+                            'link'  =>  $value['product_url'],
+                            'title' =>  __('Edit', 'multivendorx')
                         ),
                         array(
                             'key'   =>  'approve_product',
                             'value'  =>  $value,
-                            'icon'  =>  'icon-approve'
+                            'icon'  =>  'icon-approve',
+                            'title' =>  __('Approve', 'multivendorx')
                         ),
                         array(
                             'key'   =>  'dismiss_product',
                             'value'  =>  $value,
-                            'icon'  =>  'icon-close'
+                            'icon'  =>  'icon-close',
+                            'title' =>  __('Edit', 'multivendorx')
                         )
                     )
                 );
@@ -781,17 +784,20 @@ class MVX_REST_API {
                     'left_icons'    =>  array(
                         array(
                             'key'   =>  'edit',
-                            'link'  =>  $value['vendor_link']
+                            'link'  =>  $value['vendor_link'],
+                            'title' =>  __('Edit', 'multivendorx')
                         ),
                         array(
                             'key'   =>  'approve_vendor',
                             'value'  =>  $value,
-                            'icon'  =>  'icon-approve'
+                            'icon'  =>  'icon-approve',
+                            'title' =>  __('Approve', 'multivendorx')
                         ),
                         array(
                             'key'   =>  'dismiss_vendor',
                             'value'  =>  $value,
-                            'icon'  =>  'icon-close'
+                            'icon'  =>  'icon-close',
+                            'title' =>  __('Close', 'multivendorx')
                         )
                     )
                 );
@@ -817,17 +823,20 @@ class MVX_REST_API {
                     'left_icons'    =>  array(
                         array(
                             'key'   =>  'edit',
-                            'link'  =>  $value['coupon_url']
+                            'link'  =>  $value['coupon_url'],
+                            'title' =>  __('Edit', 'multivendorx')
                         ),
                         array(
                             'key'   =>  'approve_coupon',
                             'value'  =>  $value,
-                            'icon'  =>  'icon-approve'
+                            'icon'  =>  'icon-approve',
+                            'title' =>  __('Approve', 'multivendorx')
                         ),
                         array(
                             'key'   =>  'dismiss_coupon',
                             'value'  =>  $value,
-                            'icon'  =>  'icon-close'
+                            'icon'  =>  'icon-close',
+                            'title' =>  __('Close', 'multivendorx')
                         )
                     )
                 );
@@ -858,12 +867,14 @@ class MVX_REST_API {
                         array(
                             'key'   =>  'approve_transaction',
                             'value'  =>  $value,
-                            'icon'  =>  'icon-approve'
+                            'icon'  =>  'icon-approve',
+                            'title' =>  __('Approve', 'multivendorx')
                         ),
                         array(
                             'key'   =>  'dismiss_transaction',
                             'value'  =>  $value,
-                            'icon'  =>  'icon-close'
+                            'icon'  =>  'icon-close',
+                            'title' =>  __('Close', 'multivendorx')
                         )
                     )
                 );
@@ -894,12 +905,14 @@ class MVX_REST_API {
                         array(
                             'key'   =>  'approve_question',
                             'value'  =>  $value,
-                            'icon'  =>  'icon-approve'
+                            'icon'  =>  'icon-approve',
+                            'title' =>  __('Approve', 'multivendorx')
                         ),
                         array(
                             'key'   =>  'dismiss_question',
                             'value'  =>  $value,
-                            'icon'  =>  'icon-close'
+                            'icon'  =>  'icon-close',
+                            'title' =>  __('Close', 'multivendorx')
                         )
                     )
                 );
@@ -1618,6 +1631,7 @@ class MVX_REST_API {
         $all_fields_data = mvx_admin_backend_settings_fields_details();
 
         $all_tab_fileds = mvx_admin_backend_tab_settings();
+        
         foreach ($all_tab_fileds as $key_fields_parent => $value_fields_parent) {
             foreach ($value_fields_parent as $key_list_parent => $value_list_parent) {
                 $all_fields_data['others_fileds'][] = array(
@@ -1672,16 +1686,6 @@ class MVX_REST_API {
             )
         );
 
-
-        /*$all_fields_data['others_fileds_section5'] = array(
-            array(
-                'label' =>  __('knowledgebasessssssssssss', 'multivendorx'),
-                'desc'  =>  __('knowledgebase Submenu page', 'multivendorx'),
-                'link_redirect' =>  'true',
-                'link'  =>  admin_url('admin.php?page=mvx#&submenu=dashboard')
-            )
-        );*/
-
         $add_modules_details = mvx_list_all_modules();
         foreach ($add_modules_details as $key_parent => $value_parent) {
             foreach ($value_parent['options'] as $key_child => $value_child) {
@@ -1692,12 +1696,15 @@ class MVX_REST_API {
         if ($value) {
             foreach ($all_fields_data as $key_fields => $value_fields) {
                 foreach ($value_fields as $key_list => $value_list) {
-                    if (stripos($value_list['label'], $value) !== false) {
+                    if (stripos($value_list['label'], $value) !== false && $value_list['label'] !== 'no_label') {
+                        $link  =  $value_list['link'] ? $value_list['link'] : (stripos($key_fields, 'payment-') !== false ? admin_url('admin.php?page=mvx#&submenu=payment&name='. $key_fields .'') : admin_url('admin.php?page=mvx#&submenu=settings&name='. $key_fields .''));
+                        $details_link = explode("=", $link);
                         $list_of_titles[] = array(
                             'label' =>  $value_list['label'],
                             'desc'  =>  ($value_list['desc']) ? $value_list['desc'] : '',
                             'link_redirect'  =>  ($value_list['link_redirect']) ? $value_list['link_redirect'] : '',
-                            'link'  =>  $value_list['link'] ? $value_list['link'] : (stripos($key_fields, 'payment-') !== false ? admin_url('admin.php?page=mvx#&submenu=payment&name='. $key_fields .'') : admin_url('admin.php?page=mvx#&submenu=settings&name='. $key_fields .''))
+                            'link'  =>  $value_list['link'] ? $value_list['link'] : (stripos($key_fields, 'payment-') !== false ? admin_url('admin.php?page=mvx#&submenu=payment&name='. $key_fields .'') : admin_url('admin.php?page=mvx#&submenu=settings&name='. $key_fields .'')),
+                            'details'   => isset($details_link[2]) ? '<h5>Under '. str_replace('-', ' ', str_replace("&name", "", $details_link[2])) . ' section</h5>' : ''
                         );
                     }
                 }
@@ -2026,7 +2033,7 @@ class MVX_REST_API {
         $search_announcement_renew = [];
         if ($all_announcement->data && !empty($all_announcement->data) && !empty($value)) {
             foreach ($all_announcement->data as $announce_key => $anounce_value) {
-                if (strpos($anounce_value['sample_title'], $value) !== false) {
+                if (stripos($anounce_value['sample_title'], $value) !== false) {
                     $search_announcement_renew[]    =   $all_announcement->data[$announce_key];
                 }
             }            
@@ -2044,7 +2051,7 @@ class MVX_REST_API {
         $search_knowledgebase_renew = [];
         if ($all_knowledgebase->data && !empty($all_knowledgebase->data) && !empty($value)) {
             foreach ($all_knowledgebase->data as $announce_key => $anounce_value) {
-                if (strpos($anounce_value['sample_title'], $value) !== false) {
+                if (stripos($anounce_value['sample_title'], $value) !== false) {
                     $search_knowledgebase_renew[]    =   $all_knowledgebase->data[$announce_key];
                 }
             }
@@ -3321,7 +3328,8 @@ class MVX_REST_API {
         // get date value from datepicker
         $value = $request && $request->get_param('value') ? ($request->get_param('value')) : 0;
         $product = $request && $request->get_param('product') ? ($request->get_param('product')) : 0;
-        $selectvendor = $request && $request->get_param('vendor') ? ($request->get_param('vendor')) : 0;
+        $find_1st_vendor_from_rest = $this->mvx_vendor_list_search()->data ? $this->mvx_vendor_list_search()->data[0]['value'] : 0;
+        $selectvendor = $request && $request->get_param('vendor') ? ($request->get_param('vendor')) : $find_1st_vendor_from_rest;
 
         // Bydefault last 7 days
         $start_date    = strtotime( '-7 days', strtotime( 'midnight', current_time( 'timestamp' ) ) );
@@ -3341,7 +3349,6 @@ class MVX_REST_API {
         $overview_sales = $gross_sales = $vendor_earning = $overview_admin_earning = $pending_vendors = $overview_vendors = $products = $transactions = $report_product_net_sales = $total_item_sold = $report_vendor_net_sales = 0;
         $report_html = '';
         $product_number_stack = $total_orders_product_chart = $product_sales_data_chart = $product_item_sold_chart = $total_number_order_data_chart = $net_sales_data_chart = $total_sales = $banking_datas = array();
-
 
         // transaction history
         if ( $selectvendor ) {
@@ -4765,7 +4772,6 @@ class MVX_REST_API {
 
     public function mvx_vendor_list_search() {
         $user_list = array();
-        $option_lists[] = array('value' => 'all', 'label' => __('All Vendors', 'multivendorx'));
         $user_query = new WP_User_Query(array('role' => 'dc_vendor', 'orderby' => 'registered', 'order' => 'ASC'));
         $users = $user_query->get_results();
         foreach($users as $user) {
@@ -4783,7 +4789,7 @@ class MVX_REST_API {
         $all_vendors = $this->mvx_list_all_vendor('');
         if ($all_vendors) {
             foreach ($all_vendors->data as $vendor_key => $vendor_value) {
-                if (strpos($vendor_value['sample_title'], $vendor_name) !== false) {
+                if (stripos($vendor_value['sample_title'], $vendor_name) !== false) {
                     $search_vendor[]    =   $all_vendors->data[$vendor_key];
                 }
             }

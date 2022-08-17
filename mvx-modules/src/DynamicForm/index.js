@@ -2084,7 +2084,7 @@ export default class DynamicForm extends React.Component {
 													</div>
 													<div className="mvx-normal-checkbox-label">
 														<p
-															className="mvx-settings-metabox-description pt-0"
+															className="mvx-settings-checkbox-description pt-0"
 															dangerouslySetInnerHTML={{
 																__html: o.label,
 															}}

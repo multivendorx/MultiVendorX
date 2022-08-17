@@ -601,8 +601,7 @@ class MVX_Dashboard extends Component {
                                         </div>
                                        
                                     </ul>
-                                </li>
-                                <div className='show-responsive-money-btn-wrapper'>
+                                    <div className='show-responsive-money-btn-wrapper'>
                                              {this.state.money_back_show_more_yearly ?
 
                                                 <a className="show-link" onClick={(e) =>
@@ -613,7 +612,7 @@ class MVX_Dashboard extends Component {
                                                                 )
                                                             }>
                                                     <span>
-                                                        <i className="mvx-font icon-eye-preview" />
+                                                        <i className="mvx-font icon-eye-see-more" />
                                                     </span>{' '}
                                                     See Less Details
                                                 </a>
@@ -628,12 +627,14 @@ class MVX_Dashboard extends Component {
                                                                 )
                                                             }>
                                                     <span>
-                                                        <i className="mvx-font icon-eye-preview" />
+                                                        <i className="mvx-font icon-eye-see-more" />
                                                     </span>{' '}
                                                     See More Details
                                                 </a>
                                                 }
                                         </div>
+                                </li>
+                               
                                 <li className='mvx-spr-sever-rcmnd mvx-money-table-coloumn'>
                                     <span className="mvx-recommend-tag">
                                         Super saver
@@ -696,8 +697,7 @@ class MVX_Dashboard extends Component {
                                         </div>
                                     
                                     </ul>
-                                </li>
-                                <div className='show-responsive-money-btn-wrapper'>
+                                    <div className='show-responsive-money-btn-wrapper'>
                                              {this.state.money_back_show_more_yearly ?
 
                                                 <a className="show-link" onClick={(e) =>
@@ -708,7 +708,7 @@ class MVX_Dashboard extends Component {
                                                                 )
                                                             }>
                                                     <span>
-                                                        <i className="mvx-font icon-eye-preview" />
+                                                        <i className="mvx-font icon-eye-see-more" />
                                                     </span>{' '}
                                                     See Less Details
                                                 </a>
@@ -723,12 +723,14 @@ class MVX_Dashboard extends Component {
                                                                 )
                                                             }>
                                                     <span>
-                                                        <i className="mvx-font icon-eye-preview" />
+                                                        <i className="mvx-font icon-eye-see-more" />
                                                     </span>{' '}
                                                     See More Details
                                                 </a>
                                                 }
                                         </div>
+                                </li>
+                            
 
                                 <li  className='mvx-money-table-coloumn'>
                                     <ul>
@@ -790,8 +792,7 @@ class MVX_Dashboard extends Component {
                                         </div>
                                        
                                     </ul>
-                                </li>
-                                <div className='show-responsive-money-btn-wrapper'>
+                                    <div className='show-responsive-money-btn-wrapper'>
                                              {this.state.money_back_show_more_yearly ?
 
                                                 <a className="show-link" onClick={(e) =>
@@ -802,7 +803,7 @@ class MVX_Dashboard extends Component {
                                                                 )
                                                             }>
                                                     <span>
-                                                        <i className="mvx-font icon-eye-preview" />
+                                                        <i className="mvx-font icon-eye-see-more" />
                                                     </span>{' '}
                                                     See Less Details
                                                 </a>
@@ -817,12 +818,14 @@ class MVX_Dashboard extends Component {
                                                                 )
                                                             }>
                                                     <span>
-                                                        <i className="mvx-font icon-eye-preview" />
+                                                        <i className="mvx-font icon-eye-see-more" />
                                                     </span>{' '}
                                                     See More Details
                                                 </a>
                                                 }
                                         </div>
+                                </li>
+                              
                             </ul>
                                            
                                          <div className='show-money-btn-wrapper'>
@@ -836,7 +839,7 @@ class MVX_Dashboard extends Component {
                                                                 )
                                                             }>
                                                     <span>
-                                                        <i className="mvx-font icon-eye-preview" />
+                                                        <i className="mvx-font icon-eye-see-more" />
                                                     </span>{' '}
                                                     See Less Details
                                                 </a>
@@ -851,7 +854,7 @@ class MVX_Dashboard extends Component {
                                                                 )
                                                             }>
                                                     <span>
-                                                        <i className="mvx-font icon-eye-preview" />
+                                                        <i className="mvx-font icon-eye-see-more" />
                                                     </span>{' '}
                                                     See More Details
                                                 </a>
