@@ -858,6 +858,8 @@ div#wpbody-content {
 
 .mvx-header-search-section input:focus {
   background-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 .mvx-header-search-section .mvx-search-content {
@@ -892,6 +894,19 @@ div#wpbody-content {
 
 .mvx-header-search-section .mvx-search-content .mvx-header-search-content-wrapper a:hover {
   text-decoration: none;
+}
+
+.mvx-header-search-section .mvx-search-content .mvx-header-search-content-wrapper a .mvx-header-search-contetnt-label {
+  margin-bottom: 0.5rem;
+  background-color: #f9f8fb;
+}
+
+.mvx-header-search-section .mvx-search-content .mvx-header-search-content-wrapper a p.mvx-header-search-contetnt-desc h5 {
+  color: #65438f;
+  border: 0.063rem solid #d4d1d9;
+  text-align: center;
+  border-radius: 0.25rem;
+  margin: 0.5rem 0;
 }
 
 .mvx-header-wapper {
@@ -973,6 +988,7 @@ div#wpbody-content {
   color: unset;
   line-height: 1rem;
   text-decoration: none;
+  font-weight: 500;
 }
 
 .mvx-container a:active {
@@ -4272,7 +4288,18 @@ div#health-check-debug h3 button {
   }
 }
 
+@media (min-width: 1300px) and (max-width: 1500px) {
+  .mvx-product-box-sec .mvx-all-product-box {
+    width: 32.33%;
+  }
+}
+
 @media only screen and (max-width: 768px) {
+  .mvx-product-box-sec {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
   .mvx-container {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;

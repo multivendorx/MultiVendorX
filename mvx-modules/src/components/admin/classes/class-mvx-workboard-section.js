@@ -1253,7 +1253,7 @@ class MVXworkboard extends Component {
 									<i className="mvx-font icon-search"></i>
 								</label>
 								<input
-									type="text"
+									type="search"
 									placeholder={
 										appLocalizer.workboard_string
 											.workboard26

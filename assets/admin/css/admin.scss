@@ -941,6 +941,7 @@ div#wpbody-content {
     background-color: transparent;
     &:focus{
       background-color: transparent;
+      box-shadow: none;
     }
   }
   .mvx-search-content {
@@ -968,6 +969,20 @@ div#wpbody-content {
         &:hover{
           text-decoration: none;
         }
+        .mvx-header-search-contetnt-label {
+          margin-bottom: 0.5rem;
+          background-color: $font-white;
+      }
+      p.mvx-header-search-contetnt-desc {
+     
+        h5{
+          color: $theme-color;
+          border: $border;
+          text-align: center;
+         border-radius: 0.25rem;
+         margin: 0.5rem 0;
+        }
+      }
       }
     }
 }
@@ -1022,6 +1037,7 @@ div#wpbody-content {
     color: unset;
     line-height: 1rem;
     text-decoration: none;
+    font-weight: 500;
     &:active{
       color: unset;
     }
@@ -3182,6 +3198,8 @@ padding:0;
   }
   }
 }
+// license - page start
+
 //responsive code are here
 @media only screen and (min-width: 767px) {
 .mvx-container .mvx-left-container .mvx-text-center .mvx-money-table-holder .mvx-money-table-coloumn{
@@ -3251,9 +3269,16 @@ li.mvx-compare-table-row{
     display:none;
   }
 }
-
+@media (min-width: 1300px) and (max-width: 1500px){
+  .mvx-product-box-sec .mvx-all-product-box{
+    width: 32.33%;
+  }
+}
 @media only screen and (max-width: 768px) {
   //all pages
+  .mvx-product-box-sec{
+    justify-content: center;
+  }
     .mvx-container{
       flex-wrap: wrap;
       justify-content: center;
