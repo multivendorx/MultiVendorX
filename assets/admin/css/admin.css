@@ -654,6 +654,12 @@ textarea, input[type=text], input[type=url], input[type=email], input[type=numbe
   line-height: 2.375;
 }
 
+input[type="checkbox"]:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border-color: #d4d1d9;
+}
+
 .css-furbww-Bt input[type=text], .css-1mfkewb-Ur input[type=text] {
   margin: -0.125rem 0.25rem !important;
 }
@@ -678,20 +684,22 @@ textarea, input[type=text], input[type=url], input[type=email], input[type=numbe
   white-space: nowrap;
 }
 
-h1 {
-  font-size: 1.5rem;
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
   line-height: 1.5;
   color: #181718;
 }
 
+h1 {
+  font-size: 1.5rem;
+}
+
 h2 {
   font-size: 1.25rem;
-  color: #181718;
 }
 
 h3 {
   font-size: 1.125rem;
-  color: #181718;
 }
 
 h4 {
@@ -884,12 +892,14 @@ div#wpbody-content {
 }
 
 .mvx-header-search-section .mvx-search-content .mvx-header-search-content-wrapper {
-  padding: 0.5rem;
+  padding: 0.75rem;
   border-bottom: 0.06rem solid #d4d1d9;
 }
 
 .mvx-header-search-section .mvx-search-content .mvx-header-search-content-wrapper a {
   color: #181718;
+  position: relative;
+  cursor: pointer;
 }
 
 .mvx-header-search-section .mvx-search-content .mvx-header-search-content-wrapper a:hover {
@@ -897,16 +907,21 @@ div#wpbody-content {
 }
 
 .mvx-header-search-section .mvx-search-content .mvx-header-search-content-wrapper a .mvx-header-search-contetnt-label {
-  margin-bottom: 0.5rem;
-  background-color: #f9f8fb;
+  margin: 1.75rem 0 0.25rem;
+  color: #181718;
+  font-weight: 500;
 }
 
 .mvx-header-search-section .mvx-search-content .mvx-header-search-content-wrapper a p.mvx-header-search-contetnt-desc h5 {
-  color: #65438f;
-  border: 0.063rem solid #d4d1d9;
-  text-align: center;
+  position: absolute;
+  padding: 0 0.25rem;
+  left: 0;
+  top: 0;
+  background-color: #fdf8f8;
+  color: #df5d65;
   border-radius: 0.25rem;
-  margin: 0.5rem 0;
+  font-size: 0.75rem;
+  font-weight: 400;
 }
 
 .mvx-header-wapper {
@@ -978,6 +993,7 @@ div#wpbody-content {
           column-gap: 1.2rem;
   background-color: #f2eff5;
   padding: 2rem 1.5rem;
+  min-height: 54rem;
 }
 
 .mvx-container i {
@@ -988,7 +1004,6 @@ div#wpbody-content {
   color: unset;
   line-height: 1rem;
   text-decoration: none;
-  font-weight: 500;
 }
 
 .mvx-container a:active {
@@ -1027,6 +1042,7 @@ div#wpbody-content {
 .mvx-container p.mvx-settings-metabox-description-code {
   padding: 0.5rem 1rem;
   background: #fdf9fb;
+  color: #b74f82;
   border-radius: 0.25rem;
   position: relative;
 }
@@ -1094,6 +1110,10 @@ div#wpbody-content {
   border-radius: 0.25rem;
 }
 
+.mvx-container .chckbx-border:hover {
+  background-color: #f9f8fb;
+}
+
 .mvx-container .mvx-btn {
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
@@ -1158,7 +1178,7 @@ div#wpbody-content {
 }
 
 .mvx-container .mvx-text-with-line-wrapper, .mvx-container .mvx-chart-text-and-bar-line-wrap, .mvx-container .mvx-text-with-right-side-line-wrapper {
-  padding: 2rem 0 1rem;
+  padding: 2rem 0 1.5rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1209,7 +1229,7 @@ div#wpbody-content {
   display: block;
   border-radius: 8rem;
   position: relative;
-  border: 0.125rem solid #65438f;
+  border: 0.125rem solid #d4d1d9;
 }
 
 .mvx-container .mvx-toggle-checkbox-content label:before {
@@ -1244,6 +1264,7 @@ div#wpbody-content {
 
 .mvx-container .mvx-toggle-checkbox-content input:checked + label {
   background: #65438f;
+  border: 0.125rem solid #65438f;
 }
 
 .mvx-container .mvx-toggle-checkbox-content input:checked + label:after {
@@ -1383,7 +1404,7 @@ div#wpbody-content {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-color: #f7f6f9;
+  background-color: #f9f8fb;
   border: 0.063rem solid #d4d1d9;
   -webkit-transition: 0.3s;
   transition: 0.3s;
@@ -1424,7 +1445,7 @@ div#wpbody-content {
   padding: 2.5rem;
   border: 0.063rem solid #d4d1d9;
   height: auto;
-  min-height: 60rem;
+  min-height: 63rem;
   background-color: #fdfdfe;
   position: relative;
 }
@@ -1438,12 +1459,17 @@ div#wpbody-content {
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form .mvx-form-button-group, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form .mvx-form-actions {
-  bottom: 4%;
+  bottom: 0;
   position: absolute;
-  width: 95%;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  width: 100%;
+  padding: 1rem;
+  right: 0;
+  background-color: #fbfafc;
+  border-top: 0.06rem solid #ece8f1;
+}
+
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form .mvx-form-button-group .mvx-setting-section-divider, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form .mvx-form-actions .mvx-setting-section-divider {
+  display: none;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form .mvx-form-group {
@@ -1979,14 +2005,16 @@ div#wpbody-content {
 .mvx-container .mvx-horizontal-tabs .mvx-current-tab-lists .active-current-tab {
   border-bottom: 0.063rem solid #f9f8fb;
   background-color: #f9f8fb;
+  z-index: 99;
 }
 
 .mvx-container .mvx-horizontal-tabs .mvx-tab-content {
   background: #f9f8fb;
-  padding: 2.5rem 1.5rem;
+  padding: 2.5rem 1.5rem 6rem;
   border: 0.063rem solid #d4d1d9;
   margin-top: -.073rem;
   border-radius: 0rem 0.25rem 0.25rem 0.25rem;
+  position: relative;
 }
 
 .mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-date-and-show-wrapper {
@@ -2345,7 +2373,7 @@ div#wpbody-content {
       -ms-flex-positive: 1;
           flex-grow: 1;
   max-width: 100%;
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: #5e5d60;
   white-space: nowrap;
   overflow: hidden;
@@ -2516,7 +2544,7 @@ div#wpbody-content {
 
 .mvx-container .mvx-left-container .mvx-text-center {
   text-align: center;
-  padding: 4rem 0;
+  padding: 4rem 0 5.4rem;
 }
 
 .mvx-container .mvx-left-container .mvx-text-center .mvx-money-header-wrap p {
@@ -2529,7 +2557,7 @@ div#wpbody-content {
 }
 
 .mvx-container .mvx-left-container .mvx-text-center .show-money-btn-wrapper {
-  padding-bottom: 4rem;
+  padding-bottom: 2.4rem;
 }
 
 .mvx-container .mvx-left-container .mvx-text-center .show-money-btn-wrapper a.show-link {
@@ -2584,13 +2612,13 @@ div#wpbody-content {
 }
 
 .mvx-container .mvx-left-container .mvx-text-center ul.mvx-compare-table-holder li.mvx-compare-table-row:first-child ul li {
-  color: #181718;
+  color: #8e8b91;
 }
 
 .mvx-container .mvx-left-container .mvx-text-center ul.mvx-compare-table-holder li.mvx-compare-table-row ul li {
   padding: 0.65rem;
   margin: 0;
-  color: #8e8b91;
+  color: #181718;
 }
 
 .mvx-container .mvx-left-container .mvx-text-center ul.mvx-compare-table-holder li.mvx-compare-table-row ul li .red {
@@ -2788,7 +2816,7 @@ div#wpbody-content {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 2.5rem 0 2rem;
+  padding: 2rem 0;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
@@ -2984,7 +3012,8 @@ div#wpbody-content {
   bottom: 0rem;
   left: 0rem;
   right: 0rem;
-  background: #f9f8fb;
+  background-color: #fbfafc;
+  border-top: 0.06rem solid #ece8f1;
   padding: 0.5rem 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3047,6 +3076,15 @@ div#wpbody-content {
   margin: 1rem;
   height: 10rem;
   overflow-y: auto;
+}
+
+.mvx-product-box-sec .mvx-all-product-box .mvx-white-box-body::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+.mvx-product-box-sec .mvx-all-product-box .mvx-white-box-body::-webkit-scrollbar-thumb {
+  background-color: #ece8f1;
+  border-radius: 0.25rem;
 }
 
 .mvx-product-box-sec .mvx-all-product-box .mvx-white-box-body img {
@@ -3138,7 +3176,7 @@ div#wpbody-content {
   display: block;
   border-radius: 8rem;
   position: relative;
-  border: 0.125rem solid #65438f;
+  border: 0.125rem solid #d4d1d9;
 }
 
 .wc-wizard-service-enable span.wc-wizard-service-toggle label:before {
@@ -3173,6 +3211,7 @@ div#wpbody-content {
 
 .wc-wizard-service-enable span.wc-wizard-service-toggle input:checked + label {
   background: #65438f;
+  border: 0.125rem solid #65438f;
 }
 
 .wc-wizard-service-enable span.wc-wizard-service-toggle input:checked + label:after {
@@ -3240,6 +3279,10 @@ div#wpbody-content {
   color: #181718;
 }
 
+.wc-setup-content p {
+  color: #5e5d60;
+}
+
 .wc-setup-content .wc-setup-next-steps {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3253,6 +3296,10 @@ div#wpbody-content {
           flex-direction: row-reverse;
   text-align: left;
   padding: 3rem 0 0;
+}
+
+.wc-setup-content .wc-setup-next-steps a {
+  color: #5e5d60;
 }
 
 .wc-setup-content form.wc-wizard-payment-gateway-form .wc-wizard-service-name {
@@ -3396,6 +3443,11 @@ table.form-table th, table.form-table td {
 
 .mvx-all-done-page-header-sec .mvx-title {
   font-size: 2rem;
+}
+
+.mvx-all-done-page-header-sec a#b {
+  background-color: #65438f;
+  border-radius: 0.25rem;
 }
 
 div#health-check-debug {
@@ -3660,6 +3712,17 @@ div#health-check-debug h3 button {
 
 .mvx-form-actions {
   text-align: right;
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  padding: 1rem;
+  right: 0;
+  background-color: #fbfafc;
+  border-top: 0.06rem solid #ece8f1;
+}
+
+.mvx-form-actions .mvx-setting-section-divider {
+  display: none;
 }
 
 .woocommerce-order-data .mvx-page-title {
@@ -3888,8 +3951,7 @@ div#health-check-debug h3 button {
   border-radius: 0.25rem;
   padding: 0.66rem 1rem;
   cursor: pointer;
-  background-color: #65438f;
-  border: none;
+  background-color: #e35047;
   color: #f9f8fb;
 }
 
@@ -3898,7 +3960,7 @@ div#health-check-debug h3 button {
 }
 
 .MuiDialogActions-root.MuiDialogActions-spacing button[color="primary"]:hover {
-  background-color: #795b9d;
+  background-color: #e35047;
   color: #f9f8fb;
 }
 
@@ -3909,13 +3971,13 @@ div#health-check-debug h3 button {
 }
 
 .MuiDialog-paperScrollPaper .MuiDialogContent-root {
-  padding: 1rem 0rem 2.5rem;
+  padding: 1.5rem 0rem 2.5rem;
 }
 
 .MuiDialog-paperScrollPaper .MuiDialogTitle-root {
   position: relative;
   overflow: hidden;
-  padding: 1.5rem 0rem 0;
+  padding: 0;
 }
 
 .MuiDialog-paperScrollPaper .MuiDialogTitle-root h2 .mvx-module-dialog-title {
@@ -3961,7 +4023,7 @@ div#health-check-debug h3 button {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   color: #5e5d60;
 }
 
@@ -3974,8 +4036,8 @@ div#health-check-debug h3 button {
   width: 100%;
   border: 0.063rem solid #d4d1d9;
   color: #d4d1d9;
-  margin: 1rem 0;
-  font-size: 0.8rem;
+  margin: 1.5rem 0 3rem;
+  font-size: 0.875rem;
   padding: 0.5rem;
 }
 
@@ -3997,8 +4059,9 @@ div#health-check-debug h3 button {
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
   width: 100%;
-  padding: 1rem 0;
-  background: #f9f8fb;
+  padding: 0.5rem 0 1.5rem;
+  background-color: #fbfafc;
+  border-top: 0.06rem solid #ece8f1;
 }
 
 .MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-multi-action-buttons .mvx-btn.btn-purple {
@@ -4010,8 +4073,7 @@ div#health-check-debug h3 button {
   border-radius: 0.25rem;
   padding: 0.66rem 1rem;
   cursor: pointer;
-  font-size: 0.75rem;
-  padding: 0.5rem 1.5rem;
+  font-size: 0.875rem;
 }
 
 .MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-multi-action-buttons .mvx-btn.btn-purple:hover {
@@ -4031,8 +4093,7 @@ div#health-check-debug h3 button {
   border-radius: 0.25rem;
   padding: 0.66rem 1rem;
   cursor: pointer;
-  font-size: 0.75rem;
-  padding: 0.5rem 1.5rem;
+  font-size: 0.875rem;
 }
 
 .MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-multi-action-buttons .mvx-btn.btn-red:hover {
@@ -4053,8 +4114,7 @@ div#health-check-debug h3 button {
   padding: 0.66rem 1rem;
   cursor: pointer;
   background: transparent;
-  font-size: 0.75rem;
-  padding: 0.5rem 1.5rem;
+  font-size: 0.875rem;
 }
 
 .MuiDialog-paperScrollPaper .MuiDialogContent-root .mvx-module-dialog-content .mvx-vendor-multi-action-buttons .mvx-btn.btn-border:hover {
@@ -4165,6 +4225,13 @@ div#health-check-debug h3 button {
       -ms-flex-pack: justify;
           justify-content: space-between;
   gap: 0.5rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  width: 100%;
+  background-color: #fbfafc;
+  border-top: 0.06rem solid #ece8f1;
 }
 
 .mvx-registration-content .mvx-form-group {

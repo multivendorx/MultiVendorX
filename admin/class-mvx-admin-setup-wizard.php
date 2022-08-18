@@ -677,7 +677,7 @@ class MVX_Admin_Setup_Wizard {
         
         <div class="mvx-all-done-page-header-sec">
             <i className="mvx-font icon-yes"></i></a>
-            <h1 class="mvx-title"><?php esc_html_e('Yay! ', 'multivendorx'); ?></h1>
+            <h1 class="mvx-title"><?php esc_html_e('Yay!All done! ', 'multivendorx'); ?></h1>
             <a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo site_url(); ?>" data-text="Hey Guys! Our new marketplace is now live and ready to be ransacked! Check it out at" data-via="wc_marketplace" data-size="large">Tweet</a>
             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
         </div>
