@@ -240,10 +240,7 @@ class MVX_Module_Listing extends Component {
 											{
 												appLocalizer.module_page_string
 													.module3
-											}
-										</span>
-										<span className="mvx-total-modules-count">
-											{this.state.total_number_of_module}
+											} ({this.state.total_number_of_module})
 										</span>
 									</div>
 								</li>
@@ -259,7 +256,7 @@ class MVX_Module_Listing extends Component {
 										{
 											appLocalizer.module_page_string
 												.module4
-										}({this.state.total_number_of_active_module})
+										} ({this.state.total_number_of_active_module})
 									</button>
 								</li>
 								<li className="mvx-multistatus-item mvx-divider"></li>
@@ -274,7 +271,7 @@ class MVX_Module_Listing extends Component {
 										{
 											appLocalizer.module_page_string
 												.module5
-										}({this.state.total_number_of_deactive_module})
+										} ({this.state.total_number_of_deactive_module})
 									</button>
 								</li>
 							</ul>

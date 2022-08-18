@@ -1121,7 +1121,7 @@ class MVX_Settings extends Component {
 																								}
 																							</div>
 																						</div>
-																						<div>
+																						<div className='mvx-close-icon' data-title='close'>
 																							<a
 																								onClick={(
 																									e

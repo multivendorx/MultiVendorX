@@ -654,7 +654,7 @@ textarea, input[type=text], input[type=url], input[type=email], input[type=numbe
   line-height: 2.375;
 }
 
-input[type="checkbox"]:focus {
+input[type="checkbox"]:focus, input[type="radio"]:focus {
   -webkit-box-shadow: none;
           box-shadow: none;
   border-color: #d4d1d9;
@@ -801,11 +801,11 @@ input[type=radio]:checked::before {
   margin: 0rem;
   content: '\e943';
   color: #65438f;
-  font-size: 1.1rem;
+  font-size: 1rem;
   background-color: transparent !important;
-  width: 1.2rem;
-  height: 1.2rem;
-  line-height: 1.2rem;
+  width: 1rem;
+  height: 1rem;
+  line-height: 1rem;
 }
 
 input[type=text]:focus {
@@ -1021,22 +1021,24 @@ div#wpbody-content {
   color: unset;
 }
 
-.mvx-container .mvx-module-grid a.mvx-back-btn, .mvx-container .mvx-dynamic-form-content a.mvx-back-btn {
+.mvx-container .mvx-module-grid .mvx-back-btn, .mvx-container .mvx-dynamic-form-content .mvx-back-btn {
   color: #181718;
   vertical-align: middle;
   text-decoration: none;
   border: 0.063rem solid #d4d1d9;
   padding: 0.5rem 1rem 0.5rem 0.6rem;
   border-radius: 0.25rem;
+  background: transparent;
 }
 
-.mvx-container .mvx-dynamic-form-content a.mvx-back-btn {
+.mvx-container .mvx-dynamic-form-content .mvx-back-btn {
   color: #181718;
   vertical-align: middle;
   text-decoration: none;
   border: 0.063rem solid #d4d1d9;
   padding: 0.5rem 1rem 0.5rem 0.6rem;
   border-radius: 0.25rem;
+  background: transparent;
 }
 
 .mvx-container p.mvx-settings-metabox-description-code {
@@ -1366,7 +1368,7 @@ div#wpbody-content {
   white-space: nowrap;
 }
 
-.mvx-container .mvx-text-with-line-wrapper, .mvx-container .mvx-chart-text-and-bar-line-wrap {
+.mvx-container .mvx-text-with-line-wrapper.chart-line {
   width: 100%;
 }
 
@@ -1560,10 +1562,6 @@ div#wpbody-content {
   padding: 0.5rem;
   border-color: #65438f !important;
   border-radius: 0.25rem;
-}
-
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-group-radio-color .radio-color-active .mvx-merge-radio-color-input-label label {
-  margin-left: 0.5rem;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-group-radio-color .mvx-settings-radio-color {
@@ -1885,7 +1883,7 @@ div#wpbody-content {
   padding: 1rem 0;
 }
 
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container ul li input[type="radio"], .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container ul li input[type="checkbox"], .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container ul li input[type="radio"], .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container ul li input[type="checkbox"] {
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container ul li input[type="radio"], .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container ul li input[type="checkbox"], .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container ul li .mvx-close-icon, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container ul li input[type="radio"], .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container ul li input[type="checkbox"], .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container ul li .mvx-close-icon {
   margin-top: -3.5rem;
 }
 
@@ -1909,7 +1907,8 @@ div#wpbody-content {
   left: 0;
   right: 0;
   padding: 1rem;
-  background-color: #f9f8fb;
+  background-color: #fbfafc;
+  border-top: 0.06rem solid #ece8f1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2839,6 +2838,7 @@ div#wpbody-content {
 .mvx-container .mvx-search-and-multistatus-wrap .mvx-multistatus-ul .mvx-multistatus-item {
   margin: 0;
   font-size: 0.875rem;
+  color: #5e5d60;
 }
 
 .mvx-container .mvx-search-and-multistatus-wrap .mvx-multistatus-ul .mvx-multistatus-item button {
@@ -2847,7 +2847,7 @@ div#wpbody-content {
 
 .mvx-container .mvx-search-and-multistatus-wrap .mvx-multistatus-ul .mvx-divider {
   width: 0.051rem;
-  background-color: #181718;
+  background-color: #5e5d60;
   margin: 0 0.4rem;
   height: 1rem;
 }
@@ -3225,6 +3225,29 @@ div#wpbody-content {
   width: 1.25rem;
 }
 
+.wc-setup-steps li.active {
+  border-image-slice: 1;
+  border-image-source: linear-gradient(-28deg, #3f1473 0%, #af3b74 50%, #db4b54 100%);
+  color: #3f1473;
+  font-weight: 400;
+}
+
+.wc-setup-steps li.active::before {
+  border-color: #65438f;
+  background-color: #65438f;
+}
+
+.wc-setup-steps li.done {
+  border-color: #e35047;
+  color: #65438f;
+  font-weight: 400;
+}
+
+.wc-setup-steps li.done::before {
+  border-color: #e35047;
+  background-color: #e35047;
+}
+
 .wc-setup-steps li::before {
   border: 0.125rem solid #d4d1d9;
   border-radius: 100%;
@@ -3234,6 +3257,8 @@ div#wpbody-content {
           transform: translate(-50%, -50%);
   left: 50%;
   bottom: -0.313rem;
+  -webkit-box-shadow: inset 0 0 0 0.125rem #fdfdfe;
+          box-shadow: inset 0 0 0 0.125rem #fdfdfe;
 }
 
 .wc-setup-steps li {
@@ -3399,27 +3424,17 @@ table.form-table th, table.form-table td {
   color: #181718;
 }
 
-.wc-setup-steps li.done, .wc-setup-steps li.active {
-  border-color: #d4d1d9;
-  color: #65438f;
-  font-weight: 400;
-}
-
-.wc-setup-steps li.done::before, .wc-setup-steps li.active::before {
-  border-color: #d4d1d9;
-  background-color: #d4d1d9;
-}
-
 .select2-container--open .select2-dropdown {
   left: 1.25rem;
 }
 
 .mvx-vendor-transients {
-  padding: 0.5rem 0;
+  padding: 1.5rem 0;
+  border-bottom: 0.06rem solid #ece8f1;
 }
 
 .mvx-vendor-transients .mvx-vendor-transients-description {
-  padding: 1rem 0 0.5rem;
+  padding: 1rem 0 0;
   color: #5e5d60;
 }
 
@@ -3450,14 +3465,44 @@ table.form-table th, table.form-table td {
   border-radius: 0.25rem;
 }
 
-div#health-check-debug {
-  margin: 0.5rem 0;
+div.health-check-accordion {
+  margin: 0.25rem 0;
   border: 0;
 }
 
-div#health-check-debug h3 button {
+div.health-check-accordion h3 button {
   border-radius: 0.25rem;
   border: 0.063rem solid #d4d1d9;
+  background-color: #fdfdfe;
+  color: #181718;
+}
+
+div.health-check-accordion h3 button:focus {
+  outline: 0;
+  border: 0.063rem solid #d4d1d9;
+  background-color: #fdfdfe;
+}
+
+div.health-check-accordion h3 button:hover {
+  background-color: #fdfdfe;
+}
+
+div.health-check-accordion .health-check-accordion-panel {
+  background-color: #fdfdfe;
+  color: #5e5d60;
+}
+
+div.health-check-accordion .health-check-accordion-panel table {
+  background-color: #fdfdfe;
+  border: 0.063rem solid #d4d1d9;
+}
+
+div.health-check-accordion .health-check-accordion-panel table tr:nth-child(odd) {
+  background-color: #f9f8fb;
+}
+
+div.health-check-accordion .health-check-accordion-panel table td {
+  color: #5e5d60;
 }
 
 .mvx-general-wrapper.mvx-system-status textarea {
@@ -3465,14 +3510,22 @@ div#health-check-debug h3 button {
   color: #f9f8fb;
 }
 
-.mvx-status-tools-content header {
-  margin-top: 1.5rem;
+.mvx-status-tools-content p {
+  padding-top: 1rem;
 }
 
 .woocommerce-tracker {
   border-bottom: 0.063rem solid #d4d1d9;
   border-width: 0 0 0.06rem 0;
   border-radius: 0;
+}
+
+.site-health-copy-buttons {
+  margin: 1rem 0 2rem;
+}
+
+.mvx-vendor-transients-button, .site-health-copy-buttons {
+  margin-top: 1rem;
 }
 
 .mvx-vendor-transients-button .btn-border, .site-health-copy-buttons .btn-border {
@@ -4305,6 +4358,16 @@ div#health-check-debug h3 button {
     padding: 4rem 2rem;
     -webkit-box-shadow: 0rem 0rem 0.9375rem 0.0625rem #0000001a;
             box-shadow: 0rem 0rem 0.9375rem 0.0625rem #0000001a;
+  }
+  .mvx-vendor-transients {
+    position: relative;
+  }
+  .mvx-vendor-transients .mvx-vendor-transients-button {
+    position: absolute;
+    top: 31%;
+    -webkit-transform: translatey(-50%);
+            transform: translatey(-50%);
+    right: 0;
   }
   .mvx-setup-marketing-white-box, .mvx-documentation-quick-link-wrapper {
     width: 50%;

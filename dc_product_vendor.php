@@ -101,3 +101,9 @@ function mvx_namespace_approve( $value ) {
 	
 	return $return;
 }
+add_action( 'woocommerce_subscription_renewal_payment_failed', 'subscription_work_for_vendor_order_creation', 10, 2);
+add_action( 'woocommerce_subscription_renewal_payment_complete', 'subscription_work_for_vendor_order_creation', 10, 2);
+function subscription_work_for_vendor_order_creation($subscription, $order) {
+    global $WCMp;
+    $WCMp->order->wcmp_manually_create_order_item_and_suborder($order->get_id(), '', true);
+}

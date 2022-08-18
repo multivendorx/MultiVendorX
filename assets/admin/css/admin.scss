@@ -780,7 +780,7 @@ $scroll-color:#ece8f1;
 textarea, input[type=text], input[type=url], input[type=email], input[type=number], select, input, .default-input,  input[type=password] {
   @include select-input();
 }
-input[type="checkbox"]:focus {
+input[type="checkbox"]:focus, input[type="radio"]:focus{
   box-shadow: none;
   border-color:$boder-color;
 }
@@ -898,11 +898,11 @@ input[type=radio]:checked::before {
   margin: 0rem;
   content: '\e943';
   color: $theme-color ;
-  font-size: 1.1rem;
+  font-size: 1rem;
   background-color:transparent !important;//redio btn style
-  width: 1.2rem;
-  height: 1.2rem;
-  line-height: 1.2rem;
+  width: 1rem;
+  height: 1rem;
+  line-height: 1rem;
 }
 input[type=text]:focus {
   box-shadow: none;
@@ -1064,13 +1064,15 @@ div#wpbody-content {
     }
   }
   .mvx-module-grid, .mvx-dynamic-form-content{
-  a.mvx-back-btn {
+  .mvx-back-btn {
    @include back-btn();
+   background:transparent;
 }
   }
   .mvx-dynamic-form-content{
-    a.mvx-back-btn {
+    .mvx-back-btn {
       @include back-btn();
+      background:transparent;
    }
   }
   p.mvx-settings-metabox-description-code {
@@ -1216,9 +1218,9 @@ div#wpbody-content {
     color:$title-color;
     white-space: nowrap;
   }
-  .mvx-text-with-line-wrapper, .mvx-chart-text-and-bar-line-wrap{
+  .mvx-text-with-line-wrapper.chart-line{
     width: 100%;
-}
+  }
 hr{
   width: 100%;
   margin: 0;
@@ -1364,9 +1366,6 @@ hr{
             padding: 0.5rem;
             border-color: $theme-color !important;// to set different redio in settings --- store
             border-radius: $border-radius;
-            label{
-              margin-left: 0.5rem;
-            }
           }
         }
         & .mvx-settings-radio-color {
@@ -1597,7 +1596,7 @@ hr{
             @include flexprops(center);
             column-gap: 0.8rem;
             padding: 1rem 0;
-            input[type="radio"], input[type="checkbox"]{
+            input[type="radio"], input[type="checkbox"], .mvx-close-icon{
               margin-top: -3.5rem;
           }
           }
@@ -1619,7 +1618,8 @@ hr{
                 left: 0;
                 right: 0;
                 padding: 1rem;
-                background-color:$font-white;
+                background-color: $section-background;
+                border-top: 0.06rem solid $scroll-color;
                 @include flexprops(center);
                     & .mvx-perple-txt {
                       margin-left: auto;
@@ -1810,7 +1810,6 @@ hr{
       margin: 0.4rem 0 0 auto;
     }
   }
-  
   // Start - Dashboard
   .mvx-left-container {
     width: 100%;
@@ -2289,13 +2288,14 @@ hr{
       .mvx-multistatus-item {
         margin: 0;
         font-size: 0.875rem;
+        color: $paragraph-color;
         button{
           padding:0;
         }
       }
       .mvx-divider {
         width: 0.051rem;
-        background-color: $title-color;
+        background-color: $paragraph-color;
         margin: 0 0.4rem;
         height: 1rem;
       }
@@ -2509,6 +2509,25 @@ hr{
     border: 0;
 }
 }
+.wc-setup-steps li.active{
+  border-image-slice: 1;
+  border-image-source: linear-gradient(-28deg, #3f1473 0%, #af3b74 50%, #db4b54 100%);
+  color:#3f1473;
+  font-weight:400;
+  &::before{
+    border-color:$theme-color;
+    background-color: $theme-color;
+  }
+}
+.wc-setup-steps li.done{
+  border-color:$red-btn-back;
+  color:$theme-color;
+  font-weight:400;
+  &::before{
+    border-color:$red-btn-back;
+    background-color: $red-btn-back;
+  }
+}
 .wc-setup-steps li::before{
   border: 0.125rem solid $boder-color;
   border-radius: 100%;
@@ -2517,6 +2536,7 @@ hr{
   transform: translate(-50%, -50%);
   left: 50%;
   bottom: -0.313rem;
+  box-shadow:inset 0 0 0 0.125rem $fill-color;
 }
 .wc-setup-steps li{
   border-width:0.125rem;
@@ -2629,22 +2649,15 @@ table.form-table {
     color: $title-color;
   }
   }
-  .wc-setup-steps li.done, .wc-setup-steps li.active{
-    border-color: $boder-color;
-    color:$theme-color;
-    font-weight:400;
-    &::before{
-      border-color:$boder-color;
-      background-color: $boder-color;
-    }
-  }
+  
 .select2-container--open .select2-dropdown{
   left: 1.25rem;
 }
 .mvx-vendor-transients{
-  padding: 0.5rem 0;
+  padding: 1.5rem 0;
+  border-bottom:0.06rem solid $scroll-color;
   .mvx-vendor-transients-description{
-    padding: 1rem 0 0.5rem;
+    padding: 1rem 0 0;
     color:$paragraph-color;
   }
    .mvx-text-with-line-wrapper{
@@ -2663,27 +2676,57 @@ table.form-table {
     border-radius: $border-radius;
   }
 }
-div#health-check-debug {
-  margin: 0.5rem 0;
+div.health-check-accordion{
+  margin: 0.25rem 0;
   border: 0;
   h3 button{
   border-radius: $border-radius;
   border: $border;
+  background-color: $fill-color;
+  color:$title-color;
+  &:focus{
+    outline: 0;
+    border: $border;
+  background-color: $fill-color;
   }
+  &:hover{
+  background-color: $fill-color;
+  }
+  }
+  .health-check-accordion-panel{
+  background-color: $fill-color;
+  color:$paragraph-color;
+  table{
+  background-color: $fill-color;
+  border:$border;
+  tr:nth-child(odd){
+    background-color: $font-white;
+  }
+  td{
+    color:$paragraph-color;
+  }
+}
+}
 }
 .mvx-general-wrapper.mvx-system-status textarea {
   background: $title-color;
   color: $font-white;
 }
-.mvx-status-tools-content header{
-  margin-top: 1.5rem;
+.mvx-status-tools-content{
+  p{
+    padding-top: 1rem;
+  }
 }
 .woocommerce-tracker{
   border-bottom: $border;
   border-width: 0 0 0.06rem 0;
   border-radius: 0;
 }
+.site-health-copy-buttons{
+  margin: 1rem 0 2rem;
+}
 .mvx-vendor-transients-button, .site-health-copy-buttons{ 
+  margin-top: 1rem;
   .btn-border{
   line-height: 1.2;
   background:transparent;
@@ -3272,6 +3315,14 @@ padding:0;
     box-shadow: 0rem 0rem 0.9375rem 0.0625rem #0000001a;
 }
 }
+.mvx-vendor-transients{
+  position: relative;
+& .mvx-vendor-transients-button {
+  position: absolute;
+  top: 31%;
+  transform: translatey(-50%);
+  right: 0;
+}}
   .mvx-setup-marketing-white-box, .mvx-documentation-quick-link-wrapper{
     width: 50%;
   }

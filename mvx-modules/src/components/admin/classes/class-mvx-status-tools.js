@@ -111,7 +111,6 @@ class MVX_Status_Tools extends Component {
 									<div className="mvx-text-with-right-side-line">
 										{list_tools.headline_text}
 									</div>
-									<hr role="presentation"></hr>
 
 								</div>
 								<div className="mvx-vendor-transients-description">
@@ -139,6 +138,7 @@ class MVX_Status_Tools extends Component {
 			  appLocalizer.mvx_all_backend_tab_list['status-tools'][1]
 					.modulename ? (
 				<div className="mvx-status-tools-content">
+				
 					<header>
 						<h3>
 							{
@@ -279,6 +279,7 @@ class MVX_Status_Tools extends Component {
 						  )
 						: ''}
 
+					<br/>
 					<header>
 						<h3>
 							{appLocalizer.status_and_tools_string['error-log']}
