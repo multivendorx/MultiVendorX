@@ -1270,6 +1270,7 @@ class MVX_REST_API {
 
     public function mvx_get_as_per_module_status($request) {
         $module_status = $request && $request->get_param('module_status') ? $request->get_param('module_status') : '';
+        $module_count = $request && $request->get_param('count') ? $request->get_param('count') : '';
         $active_modules = get_option('mvx_all_active_module_list', true);
 
         $all_module_lists = mvx_list_all_modules();
@@ -1290,7 +1291,9 @@ class MVX_REST_API {
                 }
             }
         }
-
+        if ($module_count) {
+            return rest_ensure_response( count($get_searchable_data) );
+        }
         foreach ($get_searchable_data as $key1 => $value1) {
             $list_include = wp_list_pluck($set_2nd_search_item_data, 'label');
             if (in_array($value1['label'], $list_include)) {

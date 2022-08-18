@@ -27,6 +27,11 @@ class MVX_Module_Listing extends Component {
 			open_model: false,
 			open_model_dynamic: [],
 			total_number_of_module: 0,
+			total_number_of_active_module: 0,
+			total_number_of_deactive_module: 0,
+			module_total_button: false,
+			module_active_button: false,
+			module_inactive_button: false,
 		};
 		// when click on checkbox
 		this.handleOnChange = this.handleOnChange.bind(this);
@@ -44,6 +49,13 @@ class MVX_Module_Listing extends Component {
 
 	mvx_search_different_module_status(status) {
 		// multiple module status
+
+		this.setState({
+			module_total_button: status === 'all' ? true : false,
+			module_active_button: status === 'active' ? true : false,
+			module_inactive_button: status === 'inactive' ? true : false,
+		});
+
 		axios
 			.get(
 				`${appLocalizer.apiUrl}/mvx_module/v1/get_as_per_module_status`,
@@ -168,6 +180,36 @@ class MVX_Module_Listing extends Component {
 					total_number_of_module: response.data,
 				});
 			});
+
+		// fetch total number of active modules
+		axios
+		.get(
+			`${appLocalizer.apiUrl}/mvx_module/v1/get_as_per_module_status`,
+			{
+				params: { module_status: 'active', count: 'yes' },
+			}
+		)
+		.then((response) => {
+			this.setState({
+				total_number_of_active_module: response.data,
+			});
+		});
+
+		// fetch total number of active modules
+		axios
+		.get(
+			`${appLocalizer.apiUrl}/mvx_module/v1/get_as_per_module_status`,
+			{
+				params: { module_status: 'deactive', count: 'yes' },
+			}
+		)
+		.then((response) => {
+			console.log(response.data);
+			this.setState({
+				total_number_of_deactive_module: response.data,
+			});
+		});
+
 	}
 
 	render() {
@@ -185,7 +227,7 @@ class MVX_Module_Listing extends Component {
 
 						<div className="mvx-search-and-multistatus-wrap">
 							<ul className="mvx-multistatus-ul">
-								<li className="mvx-multistatus-item">
+								<li className={`mvx-multistatus-item ${this.state.module_total_button ? 'status-active' : ''}`}>
 									<div
 										className="mvx-total-module-name-and-count"
 										onClick={(e) =>
@@ -206,7 +248,7 @@ class MVX_Module_Listing extends Component {
 									</div>
 								</li>
 								<li className="mvx-multistatus-item mvx-divider"></li>
-								<li className="mvx-multistatus-item">
+								<li className={`mvx-multistatus-item ${this.state.module_active_button ? 'status-active' : ''}`}>
 									<button
 										onClick={(e) =>
 											this.mvx_search_different_module_status(
@@ -217,11 +259,11 @@ class MVX_Module_Listing extends Component {
 										{
 											appLocalizer.module_page_string
 												.module4
-										}
+										}({this.state.total_number_of_active_module})
 									</button>
 								</li>
 								<li className="mvx-multistatus-item mvx-divider"></li>
-								<li className="mvx-multistatus-item">
+								<li className={`mvx-multistatus-item ${this.state.module_inactive_button ? 'status-active' : ''}`}>
 									<button
 										onClick={(e) =>
 											this.mvx_search_different_module_status(
@@ -232,7 +274,7 @@ class MVX_Module_Listing extends Component {
 										{
 											appLocalizer.module_page_string
 												.module5
-										}
+										}({this.state.total_number_of_deactive_module})
 									</button>
 								</li>
 							</ul>
