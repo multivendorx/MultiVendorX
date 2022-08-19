@@ -27,7 +27,7 @@ const override = css`
 	border-color: green;
 `;
 
-class App extends Component {
+class MVX_Analytics extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -605,11 +605,10 @@ class App extends Component {
 						.sales_data_chart ? (
 						<div className="mvx-charts-graph-content">
 							<div className="mvx-chart-text-and-bar-line-wrap">
-								<div className="mvx-text-with-line-wrapper chart-line">
 									<div className="mvx-text-with-right-side-line">
 										{appLocalizer.report_page_string.charts}
 									</div>
-							<hr role="presentation"></hr>
+										<hr role="presentation"></hr>
 
 									<div className="mvx-select-all-bulk-wrap">
 										<div className="mvx-analytics-overview-link">
@@ -627,7 +626,6 @@ class App extends Component {
 											</Link>
 										</div>
 									</div>
-								</div>
 								<div className="mvx-bar-and-line-wrap hide"></div>
 							</div>
 
@@ -876,11 +874,10 @@ class App extends Component {
 					this.state.report_overview_data.vendor.sales_data_chart ? (
 						<div className="mvx-charts-graph-content">
 							<div className="mvx-chart-text-and-bar-line-wrap">
-								<div className="mvx-text-with-line-wrapper chart-line">
 									<div className="mvx-text-with-right-side-line">
 										{appLocalizer.report_page_string.charts}
 									</div>
-						<hr role="presentation"></hr>
+										<hr role="presentation"></hr>
 
 									<div className="mvx-select-all-bulk-wrap">
 										<div className="mvx-bar-chart">
@@ -898,7 +895,6 @@ class App extends Component {
 											</Link>
 										</div>
 									</div>
-								</div>
 							</div>
 
 							<div className="mvx-chart-graph-visible">
@@ -1163,7 +1159,7 @@ class App extends Component {
 								<div className="mvx-text-with-right-side-line">
 									{appLocalizer.report_page_string.charts}
 								</div>
-						<hr role="presentation"></hr>
+								<hr role="presentation"></hr>
 
 								<div className="mvx-select-all-bulk-wrap">
 									<div className="mvx-bar-chart">
@@ -1425,4 +1421,4 @@ class App extends Component {
 		);
 	}
 }
-export default App;
+export default MVX_Analytics;

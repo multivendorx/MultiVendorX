@@ -2,9 +2,9 @@
 /**
  * Deprecated filter hooks
  *
- * @package WooCommerce\Abstracts
+ * @package MultivendorX\Abstracts
  * @since   4.0.0
- * @version 3.3.0
+ * @version 4.0.0
  */
 
 defined( 'ABSPATH' ) || exit;

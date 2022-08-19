@@ -1270,6 +1270,7 @@ class MVX_REST_API {
 
     public function mvx_get_as_per_module_status($request) {
         $module_status = $request && $request->get_param('module_status') ? $request->get_param('module_status') : '';
+        $module_count = $request && $request->get_param('count') ? $request->get_param('count') : '';
         $active_modules = get_option('mvx_all_active_module_list', true);
 
         $all_module_lists = mvx_list_all_modules();
@@ -1290,7 +1291,9 @@ class MVX_REST_API {
                 }
             }
         }
-
+        if ($module_count) {
+            return rest_ensure_response( count($get_searchable_data) );
+        }
         foreach ($get_searchable_data as $key1 => $value1) {
             $list_include = wp_list_pluck($set_2nd_search_item_data, 'label');
             if (in_array($value1['label'], $list_include)) {
@@ -5106,9 +5109,8 @@ class MVX_REST_API {
                 <i class='mvx-font icon-edit'></i>
                 <i class='mvx-font icon-close'></i>
             </div>";
-
             $product_count = sprintf('<a href="%1$s">' . $product_count . '</a>', admin_url('edit.php?post_type=product&dc_vendor_shop=' . $vendor->page_title));
-
+            $mail_to_email = sprintf('<a href="mailto:%1$s">' . $user->data->user_email . '</a>', $user->data->user_email);
             $user_list[] = apply_filters('mvx_vendor_list_table_columns_data', array(
                 'ID'            => $user->data->ID,
                 'name'          => $name_display,
@@ -5116,7 +5118,7 @@ class MVX_REST_API {
                 'link'          => sprintf('?page=%s&ID=%s&name=vendor-personal', 'mvx#&submenu=vendor', $user->data->ID),
                 'link_shop'     => $vendor->permalink,
                 'admin_link'    => admin_url('admin.php?page=mvx#&submenu=vendor&ID='. $user->data->ID .'&name=vendor-personal'),
-                'email'         => $user->data->user_email,
+                'email'         => $mail_to_email,
                 'registered'    => get_date_from_gmt( $user->data->user_registered ),
                 'products'      => $product_count,
                 'status'        => $status,

@@ -1124,21 +1124,25 @@ class MVXworkboard extends Component {
 				{(get_current_name &&
 					get_current_name.get('create') === 'announcement') ||
 				get_current_name.get('AnnouncementID') ? (
-					<Link
-						className="mvx-back-btn"
-						to={`?page=mvx#&submenu=work-board&name=announcement`}
-					>
+
+					<button className="mvx-back-btn" onClick={(e) =>
+						(
+							location.href = appLocalizer.announcement_back
+						)
+					}>
 						<i className="mvx-font icon-back"></i>
 						{appLocalizer.global_string.back}
-					</Link>
+					</button>
+
 				) : (
-					<Link
-						className="mvx-btn btn-purple"
-						to={`?page=mvx#&submenu=work-board&name=announcement&create=announcement`}
-					>
+					<button className="mvx-btn btn-purple" onClick={(e) =>
+						(
+							location.href = appLocalizer.add_announcement_link
+						)
+					}>
 						<i className="mvx-font icon-add"></i>
 						{appLocalizer.workboard_string.workboard25}
-					</Link>
+					</button>
 				)}
 			</div>
 				{get_current_name &&
@@ -1321,21 +1325,23 @@ class MVXworkboard extends Component {
 				{(get_current_name &&
 					get_current_name.get('create') === 'knowladgebase') ||
 				get_current_name.get('knowladgebaseID') ? (
-					<Link
-						className="mvx-back-btn"
-						to={`?page=mvx#&submenu=work-board&name=knowladgebase`}
-					>
+					<button className="mvx-back-btn" onClick={(e) =>
+						(
+							location.href = appLocalizer.knowladgebase_back
+						)
+					}>
 						<i className="mvx-font icon-back"></i>
 						{appLocalizer.global_string.back}
-					</Link>
+					</button>
 				) : (
-					<Link
-						className="mvx-btn btn-purple"
-						to={`?page=mvx#&submenu=work-board&name=knowladgebase&create=knowladgebase`}
-					>
+					<button className="mvx-btn btn-purple" onClick={(e) =>
+						(
+							location.href = appLocalizer.add_knowladgebase_link
+						)
+					}>
 						<i className="mvx-font icon-add"></i>
 						{appLocalizer.workboard_string.workboard27}
-					</Link>
+					</button>
 				)}
 				</div>
 				{get_current_name &&

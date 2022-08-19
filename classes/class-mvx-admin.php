@@ -1043,6 +1043,12 @@ class MVX_Admin {
             'admin_setup_widget_option' => admin_url( 'index.php?page=mvx-setup' ),
             'admin_migration_widget_option' => admin_url( 'index.php?page=mvx-setup' ),
             'multivendor_migration_link' => admin_url('index.php?page=mvx-migrator'),
+            'add_announcement_link' =>  admin_url('admin.php?page=mvx#&submenu=work-board&name=announcement&create=announcement'),
+            'announcement_back' =>  admin_url('admin.php?page=mvx#&submenu=work-board&name=announcement'),
+
+            'add_knowladgebase_link' =>  admin_url('admin.php?page=mvx#&submenu=work-board&name=knowladgebase&create=knowladgebase'),
+            'knowladgebase_back' =>  admin_url('admin.php?page=mvx#&submenu=work-board&name=knowladgebase'),
+
             'settings_fields' => apply_filters('mvx-settings-fileds-details', $settings_fields),
             'countries'                 => wp_json_encode( array_merge( WC()->countries->get_allowed_country_states(), WC()->countries->get_shipping_country_states() ) ),
             'mvx_all_backend_tab_list' => $mvx_all_backend_tab_list,
