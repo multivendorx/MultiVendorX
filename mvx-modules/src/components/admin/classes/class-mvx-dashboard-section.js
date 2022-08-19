@@ -294,7 +294,7 @@ class MVX_Dashboard extends Component {
                                             <h2>Documentation Forum</h2>
                                             <div>
                                                 <p>
-                                                    Further Clarification Visit Our Document Forum
+                                                    Learn your more about marketplace features and fuctions by accessing our knowlegbase 
                                                 </p>
                                             </div>
                                             <a href="#">
@@ -312,7 +312,7 @@ class MVX_Dashboard extends Component {
                                             <h2>Support Forum</h2>
                                             <div>
                                                 <p>
-                                                    Further Clarification Visit Our Support Forum
+                                                    Lost somewhere or have a query to make? Our support team more than happy to help.
                                                 </p>
                                             </div>
                                             <a href="#">
@@ -379,9 +379,7 @@ class MVX_Dashboard extends Component {
                             </div>
                             <h1>Get more by Switching to Pro</h1>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit, sed do eiusmod tempor
-                                incididunt.
+                                Stop waiting for new opportunity to grow your business instead pounce onto the pack of premium features.
                             </p>
                             <a href="#" className="mvx-btn btn-red">
                                 Upgrade to Pro
@@ -535,9 +533,7 @@ class MVX_Dashboard extends Component {
                                 Money-Back Guarantee
                             </h1> 
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit, sed do eiusmod tempor
-                                incididunt.
+                                Make an investment for a better marketplace by saying 'yes' to your desired plans.
                             </p>
                             </div>
                             <ul className="mvx-money-table-holder">
@@ -869,9 +865,7 @@ class MVX_Dashboard extends Component {
                             </div>
                             <h1>Get to Go?</h1>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit, sed do eiusmod tempor
-                                incididunt.
+                                Remember you are just one-click away from your newly optimised marketplace.
                             </p>
                             <a href="#" className="mvx-btn btn-red">
                                 Upgrade to Pro
