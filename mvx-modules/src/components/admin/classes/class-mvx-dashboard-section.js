@@ -49,10 +49,9 @@ class MVX_Dashboard extends Component {
                                     <span>Pro</span>
                                 </div>
                                 <div className="mvx-pro-txt">
-                                    <h3>Activate MultiVendorX Pro License</h3>
+                                    <h3>Upgrade to Pro</h3>
                                     <p>
-                                        Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing elit, sed do eiusmod tempor.
+                                        Activate your Pro License and gain access to better marketplace features 
                                     </p>
                                     <a href="#" className="mvx-btn btn-red">
                                     Active License
@@ -69,11 +68,10 @@ class MVX_Dashboard extends Component {
                                 </div>
                                 <div className="mvx-pro-txt">
                                     <h3>
-                                        02 Activate MultiVendorX Pro License
+                                        Dynamic Shipping
                                     </h3>
                                     <p>
-                                        Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing elit, sed do eiusmod tempor.
+                                        Grow your business accross the globe with multiple shipping options
                                     </p>
                                     <a href="#" className="mvx-btn btn-red">
                                         Active License
@@ -89,11 +87,10 @@ class MVX_Dashboard extends Component {
                                 </div>
                                 <div className="mvx-pro-txt">
                                     <h3>
-                                        03 Activate MultiVendorX Pro License
+                                        Live Chat
                                     </h3>
                                     <p>
-                                        Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing elit, sed do eiusmod tempor.
+                                        Build better relations with customers through live chat
                                     </p>
                                     <a href="#" className="mvx-btn btn-red">
                                         Active License
@@ -109,11 +106,10 @@ class MVX_Dashboard extends Component {
                                 </div>
                                 <div className="mvx-pro-txt">
                                     <h3>
-                                        04 Activate MultiVendorX Pro License
+                                        Marketplace Membership
                                     </h3>
                                     <p>
-                                        Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing elit, sed do eiusmod tempor.
+                                        Invite unlimited vendors to your marketplace by creating appealing membership packages
                                     </p>
                                     <a href="#" className="mvx-btn btn-red">    Active License
                                     </a>
@@ -342,7 +338,7 @@ class MVX_Dashboard extends Component {
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="#">
+                                                <a href={`post-new.php?post_type=product`}>
                                                     <figure>
                                                         <i className="mvx-font icon-vendor-personal" />
                                                     </figure>
@@ -350,19 +346,11 @@ class MVX_Dashboard extends Component {
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="#">
+                                                <a href={`?page=mvx#&submenu=payment`}>
                                                     <figure>
                                                         <i className="mvx-font icon-vendor-personal" />
                                                     </figure>
                                                     Payment
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <figure>
-                                                        <i className="mvx-font icon-vendor-personal" />
-                                                    </figure>
-                                                    Add New
                                                 </a>
                                             </li>
                                         </ul>

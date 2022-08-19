@@ -1144,7 +1144,7 @@ if (!function_exists('mvx_get_vendor_review_info')) {
                     'post__in' => wp_list_pluck($vendor->get_products_ids(), 'ID' ),
                     'author__not_in' => array($vendor->id)
                 ) );
-		$product_review_count = !empty($vendor->get_products_ids()) ? get_comments($args_default_for_product) : array();
+        $product_review_count = !empty($vendor->get_products_ids()) ? get_comments($args_default_for_product) : array();
                 if (!empty($product_review_count)) {
                     $comments = array_merge(get_comments($args), $product_review_count);
                 }
@@ -1152,11 +1152,11 @@ if (!function_exists('mvx_get_vendor_review_info')) {
             if ($comments && count($comments) > 0) {
                 foreach ($comments as $comment) {
                     $rating += floatval(get_comment_meta($comment->comment_ID, 'vendor_rating', true));
-		    if (get_mvx_vendor_settings('product_review_sync', 'review_management')) {
+            if (get_mvx_vendor_settings('product_review_sync', 'review_management')) {
                         $product_rating += floatval(get_comment_meta($comment->comment_ID, 'rating', true));
                     }
                 }
-		$rating = $rating + $product_rating;
+        $rating = $rating + $product_rating;
                 $rating_result_array['total_rating'] = count($comments);
                 $rating_result_array['avg_rating'] = $rating / count($comments);
             }
@@ -1522,7 +1522,7 @@ if (!function_exists('do_mvx_data_migrate')) {
                     `country` text NOT NULL,
                     `isp` text NOT NULL,
                     `timezone` varchar(255) NOT NULL,
-                    `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,				
+                    `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,             
                     PRIMARY KEY (`ID`),
                     CONSTRAINT visitor UNIQUE (vendor_id, session_id),
                     KEY vendor_id (vendor_id),
@@ -1577,15 +1577,15 @@ if (!function_exists('do_mvx_data_migrate')) {
                     $collate = $wpdb->get_charset_collate();
                 }
                 $create_table_query = "CREATE TABLE IF NOT EXISTS `{$wpdb->prefix}mvx_cust_answers` (
-		`ans_ID` bigint(20) NOT NULL AUTO_INCREMENT,
-		`ques_ID` BIGINT UNSIGNED NOT NULL DEFAULT '0',
+        `ans_ID` bigint(20) NOT NULL AUTO_INCREMENT,
+        `ques_ID` BIGINT UNSIGNED NOT NULL DEFAULT '0',
                 `ans_details` text NOT NULL,
-		`ans_by` BIGINT UNSIGNED NOT NULL DEFAULT '0',
-		`ans_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        `ans_by` BIGINT UNSIGNED NOT NULL DEFAULT '0',
+        `ans_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 `ans_vote` longtext NULL,
-		PRIMARY KEY (`ans_ID`),
+        PRIMARY KEY (`ans_ID`),
                 CONSTRAINT ques_id UNIQUE (ques_ID)
-		) $collate;";
+        ) $collate;";
                 $wpdb->query($wpdb->prepare("%s", $create_table_query));
             }
             if (version_compare($previous_plugin_version, '3.0.5', '<=')) {
@@ -3047,7 +3047,7 @@ if (!function_exists('mvx_get_vendor_list_map_store_data')) {
             $count = intval($rating_info['total_rating']);
             if ($count > 0) {
                 $rating_html = '<div itemprop="reviewRating" class="star-rating" style="float:none;">
-		<span style="width:' . (( $rating / 5 ) * 100) . '%"><strong itemprop="ratingValue">' . $rating . '</strong> </span>
+        <span style="width:' . (( $rating / 5 ) * 100) . '%"><strong itemprop="ratingValue">' . $rating . '</strong> </span>
                 </div>';
             } else {
                 $rating_html = __('No Rating Yet', 'multivendorx');

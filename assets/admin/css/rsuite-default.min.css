@@ -2471,7 +2471,7 @@ a.rs-btn {
 }
 .rs-btn-primary {
     color: #fff;
-    background-color: #65438f;
+    background-color: #e35047;
 }
 .rs-btn-primary.rs-btn-icon.rs-btn-icon-with-text > .rs-icon {
     background: #65438f;
@@ -2489,7 +2489,7 @@ a.rs-btn {
     color: #fff;
 }
 .rs-btn-primary:not(.rs-btn-disabled):hover {
-    background-color: #65438f;
+    background-color: #e35047;
 }
 .rs-btn-primary:not(.rs-btn-disabled):hover.rs-btn-icon.rs-btn-icon-with-text > .rs-icon {
     background:#65438f;
@@ -3145,7 +3145,7 @@ a.rs-btn {
 }
 .rs-btn-link:focus,
 .rs-btn-link:hover {
-    color: #0a5dc2;
+    color: #65438f;
     text-decoration: underline;
     background-color: transparent;
 }
@@ -4989,7 +4989,7 @@ a.rs-btn {
 .rs-calendar-panel .rs-calendar-table-cell-selected .rs-calendar-table-cell-content {
     background-color: transparent;
     color: inherit;
-    border: 1px solid #65438f;
+    border: 1px solid #d4d1d9;
     padding: 4px;
 }
 .rs-calendar-panel .rs-calendar-table-cell-day {
@@ -6170,13 +6170,13 @@ a.rs-btn {
     background-color: #f9f8fb;
 }
 .rs-calendar-table-cell-is-today .rs-calendar-table-cell-content {
-    border: 1px solid#65438f;
+    border: 1px solid #d4d1d9;
     padding: 4px;
 }
 .rs-calendar-table-cell-selected .rs-calendar-table-cell-content {
     color: #fdfdfe;
-    border-color: #65438f;
-    background-color: #65438f;
+    border-color: #9f8ab9;
+    background-color: #9f8ab9;
 }
 .rs-calendar-table-header-row .rs-calendar-table-cell-content {
     color: #8e8e93;
@@ -10009,6 +10009,7 @@ textarea.rs-picker-search-input {
 .rs-picker-has-value .rs-btn .rs-picker-toggle-value,
 .rs-picker-has-value .rs-picker-toggle .rs-picker-toggle-value {
     color:#65438f;
+    display: none;
 }
 .rs-picker-none {
     padding: 6px 12px 12px;
@@ -11227,6 +11228,7 @@ textarea.rs-picker-search-input {
     text-overflow: ellipsis;
     white-space: nowrap;
     width: 100%;
+    padding-left: 0.75rem;
 }
 .rs-picker-cleanable .rs-picker-toggle {
     padding-right: 44px;

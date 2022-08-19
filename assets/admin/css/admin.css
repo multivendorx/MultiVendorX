@@ -651,6 +651,7 @@ textarea, input[type=text], input[type=url], input[type=email], input[type=numbe
   color: #8e8b91;
   font-size: 0.875rem;
   border: 0.063rem solid #d4d1d9;
+  background-color: #fdfdfe;
   line-height: 2.375;
 }
 
@@ -761,6 +762,7 @@ blockquote::after {
 code {
   background: #fbf5f8;
   color: #b74f82;
+  font-style: normal;
 }
 
 ::-webkit-input-placeholder {
@@ -887,8 +889,8 @@ div#wpbody-content {
 }
 
 .mvx-header-search-section .mvx-search-content::-webkit-scrollbar-thumb {
-  background: #ece8f1;
-  border-radius: .6rem;
+  background-color: #ece8f1;
+  border-radius: 0.25rem;
 }
 
 .mvx-header-search-section .mvx-search-content .mvx-header-search-content-wrapper {
@@ -1043,6 +1045,7 @@ div#wpbody-content {
 
 .mvx-container p.mvx-settings-metabox-description-code {
   padding: 0.5rem 1rem;
+  margin: 0.5rem 0;
   background: #fdf9fb;
   color: #b74f82;
   border-radius: 0.25rem;
@@ -1204,6 +1207,10 @@ div#wpbody-content {
 
 .mvx-container .mvx-select-all-bulk-wrap a:first-child {
   margin-right: .5rem;
+}
+
+.mvx-container .mvx-select-all-bulk-wrap a {
+  color: #9f8ab9;
 }
 
 .mvx-container .mvx-toggle-checkbox {
@@ -1454,10 +1461,17 @@ div#wpbody-content {
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form tr, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form th {
   height: 0;
+  text-align: left;
+  padding-bottom: 0.5rem;
+}
+
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form th {
+  font-weight: 500;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form td {
   height: 3.75rem;
+  color: #5e5d60;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form .mvx-form-button-group, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form .mvx-form-actions {
@@ -1511,13 +1525,13 @@ div#wpbody-content {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  gap: 0.5rem;
+  gap: 1rem;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form .mvx-form-group .mvx-settings-input-content .mvx-settings-mvx-form-group-radio .mvx-radio-input-label-wrap input {
-  margin: 0 0.25rem 0 0;
+  margin: 0 0.5rem 0 0;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form .mvx-form-group .mvx-settings-input-content .mvx-toggle-checkbox-content {
@@ -1532,6 +1546,7 @@ div#wpbody-content {
   margin-top: 0.625rem;
   font-style: italic;
   font-size: 0.75rem;
+  color: #8e8b91;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form .mvx-form-group .mvx-setting-file-uploader-class .mvx-btn {
@@ -1560,8 +1575,6 @@ div#wpbody-content {
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-group-radio-color .radio-color-active .mvx-merge-radio-color-input-label {
   padding: 0.5rem;
-  border-color: #65438f !important;
-  border-radius: 0.25rem;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-group-radio-color .mvx-settings-radio-color {
@@ -1577,7 +1590,10 @@ div#wpbody-content {
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-group-radio-color .mvx-settings-radio-color .mvx-merge-radio-color-input-label {
   padding: 0.5rem;
-  border: 0.12rem solid transparent;
+}
+
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-group-radio-color .mvx-settings-radio-color:hover {
+  background: #f9f8fb;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-group-radio-color .mvx-settings-radio-color .color-palette {
@@ -1590,18 +1606,19 @@ div#wpbody-content {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-top: 0.313rem;
+  margin-top: 0.5rem;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-group-radio-color .mvx-settings-radio-color .color-palette div {
   width: 25%;
+  height: 0.875rem;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-radioselect-class {
   margin-bottom: 1.5rem;
   padding: 1rem;
   border-radius: 0.25rem;
-  background-color: #f9f8fb;
+  border: 0.06rem solid #f2eff5;
   position: relative;
   -webkit-transition: .4s all ease-in-out;
   transition: .4s all ease-in-out;
@@ -1609,10 +1626,16 @@ div#wpbody-content {
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-radioselect-class .mvx-setting-form-input {
   position: absolute;
-  bottom: 1.5rem;
-  right: 1.5rem;
+  top: 1.5rem;
+  right: 0.813rem;
   border-radius: 0.125rem;
   opacity: 0;
+}
+
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-radioselect-class .mvx-setting-form-input input:focus {
+  border: 0.063rem solid #d4d1d9;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-radioselect-class .mvx-setting-form-input:checked::before {
@@ -1633,7 +1656,7 @@ div#wpbody-content {
   height: 100%;
   top: 0;
   left: 0;
-  background-color: #65438f;
+  background-color: #795b9d;
   color: #f9f8fb;
   opacity: 0;
   display: -webkit-box;
@@ -1655,6 +1678,7 @@ div#wpbody-content {
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-radioselect-class .mvx-section-img-fluid {
   width: 100%;
+  margin-top: 0.5rem;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-multi-nested-class .mvx-boarder-parent {
@@ -1751,7 +1775,7 @@ div#wpbody-content {
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-toggle-rectangle-merge ul input:checked + label {
   background: #65438f;
-  color: #fdfdfe;
+  color: #f9f8fb;
   border-color: #65438f;
 }
 
@@ -1795,11 +1819,11 @@ div#wpbody-content {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin: 0.625rem 0 0.625rem 0;
+  margin: 0.5rem 0;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-select-deselect-checkbox-content .mvx-select-de-box-and-checkbox .mvx-select-deselect-checkbox-label-marge .mvx-wrap-checkbox-and-label .mvx-normal-checkbox-label .mvx-settings-checkbox-description {
-  margin: 0rem;
+  margin: 0rem 0 0 0.5rem;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-select-deselect-checkbox-content .mvx-select-de-box-and-checkbox .mvx-select-deselect-checkbox-label-marge .mvx-col-50 {
@@ -1897,8 +1921,10 @@ div#wpbody-content {
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-registration-fileds-description, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-registration-fileds-description {
-  padding: 0.5rem 0;
+  padding: 0.625rem 0 1.5rem;
+  font-style: italic;
   font-size: 0.75rem;
+  color: #8e8b91;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-footer-icon-form, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-footer-icon-form {
@@ -1941,6 +1967,7 @@ div#wpbody-content {
   color: #8e8b91;
   font-size: 0.875rem;
   border: 0.063rem solid #d4d1d9;
+  background-color: #fdfdfe;
   line-height: 2.375;
 }
 
@@ -2042,6 +2069,7 @@ div#wpbody-content {
   padding: 1rem;
   margin: 1.5rem 0 0.25rem;
   border-radius: 0.25rem;
+  margin-top: 0;
 }
 
 .mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-charts-graph-content {
@@ -2057,7 +2085,7 @@ div#wpbody-content {
 .mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-charts-graph-content .mvx-box-background-white-wrapper, .mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-charts-graph-content .mvx-chart-graph-visible {
   background-color: #fdfdfe;
   border: 0.063rem solid #d4d1d9;
-  margin-top: -0.06rem;
+  margin-bottom: 0.25rem;
 }
 
 .mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-report-datepicker {
@@ -2151,7 +2179,8 @@ div#wpbody-content {
 .mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-wrapper-performance-content .mvx-performance-wrapper-content .mvx-percent-show {
   right: 1.375rem;
   bottom: 2.5rem;
-  background-color: #fdfdfe;
+  background-color: #f9f8fb;
+  color: #5e5d60;
   padding: 0.375rem;
   border-radius: 0.25rem;
 }
@@ -2164,6 +2193,7 @@ div#wpbody-content {
 
 .mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-wrapper-performance-content .mvx-performance-wrapper-content .mvx-price-display {
   font-size: 1.25rem;
+  color: #181718;
 }
 
 .mvx-container .mvx-page-title {
@@ -2338,8 +2368,8 @@ div#wpbody-content {
 }
 
 .mvx-container .mvx-left-container .mvx-setup-documentation .mvx-setup-marketing-white-box .mvx-table-ul::-webkit-scrollbar-thumb {
-  background: #ece8f1;
-  border-radius: 0.6rem;
+  background-color: #ece8f1;
+  border-radius: 0.25rem;
 }
 
 .mvx-container .mvx-left-container .mvx-setup-documentation .mvx-setup-marketing-white-box .mvx-table-ul > li {
@@ -3120,6 +3150,7 @@ div#wpbody-content {
   left: 0;
   width: 100%;
   background: #f9f8fb;
+  border-top: 0.06rem solid #f2eff5;
 }
 
 .mvx-product-box-sec .mvx-all-product-box .mvx-white-box-footer .pull-left, .mvx-product-box-sec .mvx-all-product-box .mvx-white-box-footer .pull-right {
@@ -3225,27 +3256,15 @@ div#wpbody-content {
   width: 1.25rem;
 }
 
-.wc-setup-steps li.active {
-  border-image-slice: 1;
-  border-image-source: linear-gradient(-28deg, #3f1473 0%, #af3b74 50%, #db4b54 100%);
-  color: #3f1473;
+.wc-setup-steps li.done, .wc-setup-steps li.active {
+  border-color: #9f8ab9;
+  color: #9f8ab9;
   font-weight: 400;
 }
 
-.wc-setup-steps li.active::before {
-  border-color: #65438f;
-  background-color: #65438f;
-}
-
-.wc-setup-steps li.done {
-  border-color: #e35047;
-  color: #65438f;
-  font-weight: 400;
-}
-
-.wc-setup-steps li.done::before {
-  border-color: #e35047;
-  background-color: #e35047;
+.wc-setup-steps li.done::before, .wc-setup-steps li.active::before {
+  border-color: #9f8ab9;
+  background-color: #9f8ab9;
 }
 
 .wc-setup-steps li::before {
@@ -3277,7 +3296,7 @@ div#wpbody-content {
   height: 3rem;
 }
 
-.wc-setup h2 {
+.wc-setup h2, .wc-setup h3 {
   color: #181718;
 }
 
@@ -3293,19 +3312,62 @@ div#wpbody-content {
   color: #5e5d60;
 }
 
+a.wc-return-to-dashboard {
+  color: #65438f;
+  text-decoration: none;
+}
+
+a.wc-return-to-dashboard:hover {
+  text-decoration: underline;
+}
+
 .wc-setup-content {
   text-align: center;
   margin: 1rem 0 3rem;
   padding: 3rem;
+  border: 0.063rem solid #d4d1d9;
+  border-radius: 0.25rem;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 .wc-setup-content h1 {
-  padding: 0 0 1rem;
+  padding: 0 0 1.5rem;
   color: #181718;
+  margin: 0;
+}
+
+.wc-setup-content .mvx-setting-section-divider {
+  border-top: 0.06rem solid #f2eff5;
+  margin: 0 0 1rem;
+}
+
+.wc-setup-content a.twitter-button {
+  text-decoration: none;
+  background-color: #1d9bf0;
+  color: #fff;
+  padding: 0.1rem 0.75rem;
+  border-radius: 0.25rem;
+  margin: 0.7rem 0 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.5rem;
+}
+
+.wc-setup-content a.twitter-button:hover {
+  background-color: #0c7abf;
 }
 
 .wc-setup-content p {
   color: #5e5d60;
+}
+
+.wc-setup-content p strong {
+  font-weight: 500;
 }
 
 .wc-setup-content .wc-setup-next-steps {
@@ -3323,8 +3385,27 @@ div#wpbody-content {
   padding: 3rem 0 0;
 }
 
+.wc-setup-content .wc-setup-next-steps li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+}
+
+.wc-setup-content .wc-setup-next-steps i {
+  margin-right: 0.5rem;
+  color: #65438f;
+}
+
 .wc-setup-content .wc-setup-next-steps a {
-  color: #5e5d60;
+  color: #65438f;
+  text-decoration: none;
+}
+
+.wc-setup-content .wc-setup-next-steps a:hover {
+  text-decoration: underline;
 }
 
 .wc-setup-content form.wc-wizard-payment-gateway-form .wc-wizard-service-name {
@@ -3365,10 +3446,12 @@ table.form-table td {
 
 table.form-table td .description {
   color: #5e5d60 !important;
+  font-weight: 400;
+  margin-top: 0.75rem !important;
 }
 
 table.form-table td label {
-  width: 40%;
+  width: 30%;
   padding: 0.25rem 0;
   white-space: nowrap;
   color: #5e5d60;
@@ -3386,6 +3469,8 @@ table.form-table th, table.form-table td {
   border: 0.06rem solid #e35047 !important;
   color: #fdfdfe !important;
   text-shadow: none !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
 }
 
 .red-btn:hover, .button-primary:hover {
@@ -3408,6 +3493,7 @@ table.form-table th, table.form-table td {
       flex-wrap: wrap;
   overflow: hidden;
   gap: 0.5rem;
+  margin: 3rem 0 0 !important;
 }
 
 .wc-setup-actions a:first-child {
@@ -3506,8 +3592,8 @@ div.health-check-accordion .health-check-accordion-panel table td {
 }
 
 .mvx-general-wrapper.mvx-system-status textarea {
-  background: #181718;
-  color: #f9f8fb;
+  background: #5e5d60;
+  color: #d4d1d9;
 }
 
 .mvx-status-tools-content p {
@@ -3515,7 +3601,7 @@ div.health-check-accordion .health-check-accordion-panel table td {
 }
 
 .woocommerce-tracker {
-  border-bottom: 0.063rem solid #d4d1d9;
+  border-bottom: 0.06rem solid #f2eff5;
   border-width: 0 0 0.06rem 0;
   border-radius: 0;
 }
@@ -3558,14 +3644,14 @@ div.health-check-accordion .health-check-accordion-panel table td {
   padding: 5.5px 0.5rem;
   border-radius: 0.25rem;
   background-color: #fefbfc;
-  color: #fbedee;
+  color: #df5d65;
 }
 
 .commission-status-unpaid {
   padding: 5.5px 0.5rem;
   border-radius: 0.25rem;
   background-color: #fefbfc;
-  color: #fbedee;
+  color: #df5d65;
 }
 
 .commission-status-paid {
@@ -3575,15 +3661,11 @@ div.health-check-accordion .health-check-accordion-panel table td {
   color: #522c81;
 }
 
-.mvx-backend-datatable-wrapper {
-  margin-top: 1rem;
-}
-
 .mvx-backend-datatable-wrapper .rdt_Pagination {
   background: transparent;
   border: none;
   color: #5e5d60;
-  margin: 2rem 0;
+  margin: 2rem 0 3rem;
   min-height: 0;
 }
 
@@ -3648,6 +3730,11 @@ div.health-check-accordion .health-check-accordion-panel table td {
   border-radius: 0.25rem;
 }
 
+.mvx-backend-datatable-wrapper .sc-dmRaPn .sc-ivTmOn.fwKvpK {
+  background: #fdfdfe;
+  color: #5e5d60;
+}
+
 .mvx-backend-datatable-wrapper .rdt_Table {
   background: transparent;
 }
@@ -3674,6 +3761,14 @@ div.health-check-accordion .health-check-accordion-panel table td {
 
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell img {
   margin: 0 0.5rem 0 0;
+}
+
+.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell a {
+  color: #65438f;
+}
+
+.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell a:hover {
+  text-decoration: underline;
 }
 
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon {
@@ -3719,6 +3814,10 @@ div.health-check-accordion .health-check-accordion-panel table td {
 .css-14el2xx-placeholder {
   white-space: nowrap;
   color: #181718 !important;
+}
+
+.shipping_choice.css-b62m3t-container {
+  margin-bottom: 1rem;
 }
 
 .mvx-wrap-bulk-action.css-b62m3t-container {
@@ -3846,8 +3945,20 @@ div.health-check-accordion .health-check-accordion-panel table td {
   gap: 0.5rem;
 }
 
-.mvx-commission-details-section .mvx-edit-commission-status-wrapper .commission-details-data-value .mvx-commission-label-class, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .commission-details-data-value .mvx-commission-label-class, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-amount .mvx-commission-label-class, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-amount .mvx-commission-label-class, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-status-wrap .mvx-commission-label-class, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-status-wrap .mvx-commission-label-class {
+.mvx-commission-details-section .mvx-edit-commission-status-wrapper .commission-details-data-value .mvx-commission-label-class, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-amount .mvx-commission-label-class, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-status-wrap .mvx-commission-label-class {
   width: 60%;
+}
+
+.mvx-commission-details-section .mvx-edit-commission-status-wrapper .commission-details-data-value .mvx-commission-value-class, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-amount .mvx-commission-value-class, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-status-wrap .mvx-commission-value-class {
+  color: #181718;
+}
+
+.mvx-commission-details-section .mvx-edit-commission-status-wrapper .commission-details-data-value .mvx-commission-value-class a, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-amount .mvx-commission-value-class a, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-status-wrap .mvx-commission-value-class a {
+  color: #65438f;
+}
+
+.mvx-commission-details-section .mvx-edit-commission-status-wrapper .commission-details-data-value .mvx-commission-value-class a:hover, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-amount .mvx-commission-value-class a:hover, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-status-wrap .mvx-commission-value-class a:hover {
+  text-decoration: underline;
 }
 
 .mvx-order-details-vendor-details-wrap {
@@ -3925,14 +4036,14 @@ div.health-check-accordion .health-check-accordion-panel table td {
 }
 
 .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table.mvx-order-totals tr:last-child, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table.mvx-order-totals tr:last-child {
-  font-weight: 600;
-  height: 2rem;
-  border-top: 0.063rem solid #d4d1d9;
+  font-weight: 500;
+  height: 2.5rem;
+  border-top: 0.06rem solid #f2eff5;
 }
 
 .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table.mvx-order-totals tr td, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table.mvx-order-totals tr td {
   text-align: right;
-  padding: 0.25rem 0.75rem;
+  padding: 0.5rem 0.75rem;
 }
 
 .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-child-vendor-details, .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx_commision_note_clm, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-child-vendor-details, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx_commision_note_clm {
@@ -3947,8 +4058,20 @@ div.health-check-accordion .health-check-accordion-panel table td {
   border-radius: 0 0 0.25rem 0.25rem;
 }
 
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-child-vendor-details p, .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx_commision_note_clm p, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-child-vendor-details p, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx_commision_note_clm p {
+  color: #181718;
+}
+
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-child-vendor-details a, .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx_commision_note_clm a, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-child-vendor-details a, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx_commision_note_clm a {
+  color: #65438f;
+}
+
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-child-vendor-details a:hover, .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx_commision_note_clm a:hover, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-child-vendor-details a:hover, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx_commision_note_clm a:hover {
+  text-decoration: underline;
+}
+
 .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-child-vendor-details small, .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx_commision_note_clm small, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-child-vendor-details small, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx_commision_note_clm small {
-  color: #5e5d60;
+  color: #8e8b91;
 }
 
 .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-child-vendor-details .commission-details-data-value, .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx_commision_note_clm .commission-details-data-value, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-child-vendor-details .commission-details-data-value, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx_commision_note_clm .commission-details-data-value {
@@ -3958,10 +4081,23 @@ div.health-check-accordion .health-check-accordion-panel table td {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  padding: 0.5rem 0;
 }
 
 .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-child-vendor-details .commission-details-data-value .mvx-commission-label-class, .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx_commision_note_clm .commission-details-data-value .mvx-commission-label-class, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-child-vendor-details .commission-details-data-value .mvx-commission-label-class, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx_commision_note_clm .commission-details-data-value .mvx-commission-label-class {
   width: 35%;
+}
+
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-child-vendor-details .commission-details-data-value .mvx-commission-value-class, .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx_commision_note_clm .commission-details-data-value .mvx-commission-value-class, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-child-vendor-details .commission-details-data-value .mvx-commission-value-class, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx_commision_note_clm .commission-details-data-value .mvx-commission-value-class {
+  color: #181718;
+}
+
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-child-vendor-details .commission-details-data-value .mvx-commission-value-class a, .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx_commision_note_clm .commission-details-data-value .mvx-commission-value-class a, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-child-vendor-details .commission-details-data-value .mvx-commission-value-class a, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx_commision_note_clm .commission-details-data-value .mvx-commission-value-class a {
+  color: #65438f;
+}
+
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-child-vendor-details .commission-details-data-value .mvx-commission-value-class a:hover, .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx_commision_note_clm .commission-details-data-value .mvx-commission-value-class a:hover, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-child-vendor-details .commission-details-data-value .mvx-commission-value-class a:hover, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx_commision_note_clm .commission-details-data-value .mvx-commission-value-class a:hover {
+  text-decoration: underline;
 }
 
 .mvx-add-new .mvx-container .mvx-vertical-tabs .mvx-tab-content {
@@ -4181,6 +4317,7 @@ div.health-check-accordion .health-check-accordion-panel table td {
 .mvx-vendor-application-content h2 {
   border-bottom: 0.063rem solid #d4d1d9;
   color: #65438f;
+  font-size: 1rem;
   padding: 2rem 0 0.5rem;
   margin: 0 0 1rem;
 }
@@ -4190,9 +4327,7 @@ div.health-check-accordion .health-check-accordion-panel table td {
 }
 
 .mvx-vendor-application-content .mvx-form-field {
-  border: 0.063rem solid #d4d1d9;
   padding: 0.5rem;
-  border-radius: 0.25rem;
   margin: 0.5rem 0;
 }
 
@@ -4230,7 +4365,7 @@ div.health-check-accordion .health-check-accordion-panel table td {
   content: "";
   width: 0.75rem;
   height: 0.75rem;
-  background: #65438f;
+  background: #9f8ab9;
   top: 1rem;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
@@ -4265,6 +4400,8 @@ div.health-check-accordion .health-check-accordion-panel table td {
 .mvx-vendor-modal-main textarea.pending-vendor-note.form-control {
   min-height: 7rem;
   margin: 0 0 1rem;
+  padding: 0.5rem;
+  background: #fdfdfe;
 }
 
 .mvx-vendor-modal-main div#wc-backbone-modal-dialog {
@@ -4303,6 +4440,7 @@ div.health-check-accordion .health-check-accordion-panel table td {
   color: #8e8b91;
   font-size: 0.875rem;
   border: 0.063rem solid #d4d1d9;
+  background-color: #fdfdfe;
   line-height: 2.375;
   background-color: #fdfdfe;
   color: #181718;
@@ -4415,12 +4553,6 @@ div.health-check-accordion .health-check-accordion-panel table td {
 @media only screen and (max-width: 668px) {
   .mvx-header-wapper .mvx-header-nav-left-section .mvx-logo-title {
     display: none;
-  }
-}
-
-@media (min-width: 1300px) and (max-width: 1500px) {
-  .mvx-product-box-sec .mvx-all-product-box {
-    width: 32.33%;
   }
 }
 
