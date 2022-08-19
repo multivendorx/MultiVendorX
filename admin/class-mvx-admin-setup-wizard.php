@@ -387,6 +387,7 @@ class MVX_Admin_Setup_Wizard {
     public function mvx_setup_store() {
         ?>
         <h1><?php esc_html_e('Store setup', 'multivendorx'); ?></h1>
+        <div class="mvx-setting-section-divider">&nbsp;</div>
         <form method="post">
             <table class="form-table">
                 <tr>
@@ -424,6 +425,7 @@ class MVX_Admin_Setup_Wizard {
         $payment_settings = get_option('mvx_commissions_tab_settings');
         ?>
         <h1><?php esc_html_e('Commission Setup', 'multivendorx'); ?></h1>
+        <div class="mvx-setting-section-divider">&nbsp;</div>
         <form method="post">
             <table class="form-table">
                 <tr>
@@ -510,8 +512,9 @@ class MVX_Admin_Setup_Wizard {
         $gateways = $this->get_payment_methods();
         ?>
         <h1><?php esc_html_e('Payments', 'multivendorx'); ?></h1>
+        <div class="mvx-setting-section-divider">&nbsp;</div>
         <form method="post" class="wc-wizard-payment-gateway-form">
-            <p><?php esc_html_e('Allowed Payment Methods', 'multivendorx'); ?></p>
+            <h3 class='mvx-pay-heading'><?php esc_html_e('Allowed Payment Methods', 'multivendorx'); ?></h3>
             <ul class="wc-wizard-services wc-wizard-payment-gateways">
                         <?php foreach ($gateways as $gateway_id => $gateway): ?>
                     <li class="wc-wizard-service-item wc-wizard-gateway <?php echo esc_attr($gateway['class']); ?>">
@@ -586,6 +589,7 @@ class MVX_Admin_Setup_Wizard {
         $capabilities_settings = get_option('mvx_products_capability_tab_settings');
         ?>
         <h1><?php esc_html_e('Capability', 'multivendorx'); ?></h1>
+        <div class="mvx-setting-section-divider">&nbsp;</div>
         <form method="post">
             <table class="form-table">
                 <?php
@@ -677,8 +681,8 @@ class MVX_Admin_Setup_Wizard {
         
         <div class="mvx-all-done-page-header-sec">
             <i className="mvx-font icon-yes"></i></a>
-            <h1 class="mvx-title"><?php esc_html_e('Yay!All done! ', 'multivendorx'); ?></h1>
-            <a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo site_url(); ?>" data-text="Hey Guys! Our new marketplace is now live and ready to be ransacked! Check it out at" data-via="wc_marketplace" data-size="large">Tweet</a>
+            <h1 class="mvx-title"><?php esc_html_e('Yay! All done! ', 'multivendorx'); ?></h1>
+            <a href="https://twitter.com/share" class="twitter-button" data-url="<?php echo site_url(); ?>" data-text="Hey Guys! Our new marketplace is now live and ready to be ransacked! Check it out at" data-via="wc_marketplace" data-size="large"><i class="mvx-font icon-form-url"></i> Tweet</a>
             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
         </div>
         
@@ -689,15 +693,15 @@ class MVX_Admin_Setup_Wizard {
             <div class="wc-setup-next-steps-first">
                 <h2><?php esc_html_e( 'Next steps', 'multivendorx' ); ?></h2>
                 <ul>
-                    <li class="setup-product"><a class="button button-primary button-large" href="<?php echo esc_url( admin_url( 'admin.php?page=mvx-setting-admin&tab=vendor&tab_section=registration' ) ); ?>"><?php esc_html_e( 'Create your vendor registration form', 'multivendorx' ); ?></a></li>
+                    <li class="setup-product"><a class="button button-primary btn-red" href="<?php echo esc_url( admin_url( 'admin.php?page=mvx-setting-admin&tab=vendor&tab_section=registration' ) ); ?>"><?php esc_html_e( 'Create your vendor registration form', 'multivendorx' ); ?></a></li>
                 </ul>
             </div>
             <div class="wc-setup-next-steps-last">
                 <h2><?php _e( 'Learn more', 'multivendorx' ); ?></h2>
                 <ul>
-                    <li class="video-walkthrough"><a href="https://www.youtube.com/c/MultivendorX"><?php esc_html_e( 'Watch the tutorial videos', 'multivendorx' ); ?></a></li>
-                    <li class="newsletter"><a href="https://wc-marketplace.com/knowledgebase/mvx-setup-guide/?utm_source=mvx_plugin&utm_medium=setup_wizard&utm_campaign=new_installation&utm_content=documentation"><?php esc_html_e( 'Looking for help to get started', 'multivendorx' ); ?></a></li>
-                    <li class="learn-more"><a href="https://wc-marketplace.com/best-revenue-model-marketplace-part-one/?utm_source=mvx_plugin&utm_medium=setup_wizard&utm_campaign=new_installation&utm_content=blog"><?php esc_html_e( 'Learn more about revenue models', 'multivendorx' ); ?></a></li>
+                    <li> <i class="mvx-font icon-vendor-form-copy"></i><a href="https://www.youtube.com/c/MultivendorX"><?php esc_html_e( 'Watch the tutorial videos', 'multivendorx' ); ?></a></li>
+                    <li> <i class="mvx-font icon-vendor-form-copy"></i><a href="https://wc-marketplace.com/knowledgebase/mvx-setup-guide/?utm_source=mvx_plugin&utm_medium=setup_wizard&utm_campaign=new_installation&utm_content=documentation"><?php esc_html_e( 'Looking for help to get started', 'multivendorx' ); ?></a></li>
+                    <li> <i class="mvx-font icon-vendor-form-copy"></i><a href="https://wc-marketplace.com/best-revenue-model-marketplace-part-one/?utm_source=mvx_plugin&utm_medium=setup_wizard&utm_campaign=new_installation&utm_content=blog"><?php esc_html_e( 'Learn more about revenue models', 'multivendorx' ); ?></a></li>
                 </ul>
             </div>
         </div>

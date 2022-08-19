@@ -439,28 +439,28 @@ class MVX_Admin {
         $status_and_tools_string = array(
             'database-tools'    =>  array(
                 array(
-                    'name'              =>  __('Clear transients', 'multivendorx'),
+                    'name'              =>  __('Clear Transients', 'multivendorx'),
                     'key'               =>  'transients',
-                    'headline_text'     =>  __('MVX vendors transients', 'multivendorx'),
-                    'description_text'  =>  __('This tool will clear all MVX vendors transients cache', 'multivendorx')
+                    'headline_text'     =>  __('MultivendorX Vendors Transients', 'multivendorx'),
+                    'description_text'  =>  __('This button clears all vendor dashboards transient cache', 'multivendorx')
                 ),
                 array(
                     'name'              =>  __('Reset Database', 'multivendorx'),
                     'key'               =>  'visitor',
                     'headline_text'     =>  __('Reset visitors stats table', 'multivendorx'),
-                    'description_text'  =>  __('This tool will clear ALL the table data of MVX visitors stats.', 'multivendorx')
+                    'description_text'  =>  __('Use this tool to clear all the table data of MultivendorX visitors stats', 'multivendorx')
                 ),
                 array(
                     'name'              =>  __('Order Migrate', 'multivendorx'),
                     'key'               =>  'migrate_order',
-                    'headline_text'     =>  __('Force MVX order migrate', 'multivendorx'),
-                    'description_text'  =>  __('This will regenerate all vendors older orders to individual orders', 'multivendorx')
+                    'headline_text'     =>  __('Migrate Previous Marketplace Data', 'multivendorx'),
+                    'description_text'  =>  __('With this tool, you can create missing sub orders', 'multivendorx')
                 ),
                 array(
-                    'name'              =>  __('Multivendor migrate', 'multivendorx'),
+                    'name'              =>  __('Multivendor Migrate', 'multivendorx'),
                     'key'               =>  'migrate',
                     'headline_text'     =>  __('Multivendor Migration', 'multivendorx'),
-                    'description_text'  =>  __('This will migrate older marketplace details', 'multivendorx')
+                    'description_text'  =>  __('With this tool, you can transfer valuable data from your previous marketplace', 'multivendorx')
                 ),
             ),
             'system-info'   =>  __('System Info', 'multivendorx'),

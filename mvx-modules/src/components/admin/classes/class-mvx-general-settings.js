@@ -386,7 +386,13 @@ class MVX_Settings extends Component {
 		].map((data, index) =>
 			data.modulename === name ? (
 				data.modulename === 'registration' ? (
-					<div className="mvx-form-vendor-register">
+					<div className="mvx-form-vendor-register" onClick={(e) =>
+		                    (
+		                        this.setState({
+		                            registration_global_select_dropdown_open: false
+		                        })
+		                    )
+		                }>
 						{this.state.mvx_registration_fileds_list.length > 0 ? (
 							<div
 								className={`mvx-top-part-registartion-from ${
@@ -535,7 +541,7 @@ class MVX_Settings extends Component {
 			                                                                    })
 			                                                                )
 			                                                            } >
-																		<span>{this.state.registration_global_select_dropdown_label ? <><i className={`mvx-font ${this.state.registration_global_select_dropdown_icon}`} />{this.state.registration_global_select_dropdown_label}</> : registration_json_value.typelabel ? <><i className={`mvx-font ${registration_json_value.typeicon}`} />{registration_json_value.typelabel}</> : 'Select an option'}</span>
+																		<span>{registration_json_value.typelabel ? <><i className={`mvx-font ${registration_json_value.typeicon}`} />{registration_json_value.typelabel}</> : 'Select an option'}</span>
 																		  <i className="mvx-font icon-down-arrow-02"/>
 																		</div>
 																		{this.state.registration_global_select_dropdown_open ?

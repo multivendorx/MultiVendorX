@@ -49,10 +49,9 @@ class MVX_Dashboard extends Component {
                                     <span>Pro</span>
                                 </div>
                                 <div className="mvx-pro-txt">
-                                    <h3>Activate MultiVendorX Pro License</h3>
+                                    <h3>Upgrade to Pro</h3>
                                     <p>
-                                        Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing elit, sed do eiusmod tempor.
+                                        Activate your Pro License and gain access to better marketplace features 
                                     </p>
                                     <a href="#" className="mvx-btn btn-red">
                                     Active License
@@ -69,11 +68,10 @@ class MVX_Dashboard extends Component {
                                 </div>
                                 <div className="mvx-pro-txt">
                                     <h3>
-                                        02 Activate MultiVendorX Pro License
+                                        Dynamic Shipping
                                     </h3>
                                     <p>
-                                        Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing elit, sed do eiusmod tempor.
+                                        Grow your business accross the globe with multiple shipping options
                                     </p>
                                     <a href="#" className="mvx-btn btn-red">
                                         Active License
@@ -89,11 +87,10 @@ class MVX_Dashboard extends Component {
                                 </div>
                                 <div className="mvx-pro-txt">
                                     <h3>
-                                        03 Activate MultiVendorX Pro License
+                                        Live Chat
                                     </h3>
                                     <p>
-                                        Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing elit, sed do eiusmod tempor.
+                                        Build better relations with customers through live chat
                                     </p>
                                     <a href="#" className="mvx-btn btn-red">
                                         Active License
@@ -109,11 +106,10 @@ class MVX_Dashboard extends Component {
                                 </div>
                                 <div className="mvx-pro-txt">
                                     <h3>
-                                        04 Activate MultiVendorX Pro License
+                                        Marketplace Membership
                                     </h3>
                                     <p>
-                                        Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing elit, sed do eiusmod tempor.
+                                        Invite unlimited vendors to your marketplace by creating appealing membership packages
                                     </p>
                                     <a href="#" className="mvx-btn btn-red">    Active License
                                     </a>
@@ -142,7 +138,7 @@ class MVX_Dashboard extends Component {
                                             <span>
                                                 <i className="mvx-font icon-chart-line" />
                                             </span>{' '}
-                                            Set up marketing tools
+                                            Set up seller Registration Form Fields
                                         </div>
                                         <div className="li-action">
                                             <a
@@ -158,7 +154,7 @@ class MVX_Dashboard extends Component {
                                             <span>
                                                 <i className="mvx-font icon-chart-line" />
                                             </span>{' '}
-                                            Set up marketing tools
+                                            Set up payments
                                         </div>
                                         <div className="li-action">
                                             <a
@@ -174,7 +170,7 @@ class MVX_Dashboard extends Component {
                                             <span>
                                                 <i className="mvx-font icon-chart-line" />
                                             </span>{' '}
-                                            Set up marketing tools
+                                            Set up taxes
                                         </div>
                                         <div className="li-action">
                                             <a
@@ -190,7 +186,7 @@ class MVX_Dashboard extends Component {
                                             <span>
                                                 <i className="mvx-font icon-chart-line" />
                                             </span>{' '}
-                                            Set up marketing tools
+                                            Set up shipping
                                         </div>
                                         <div className="li-action">
                                             <a
@@ -206,7 +202,7 @@ class MVX_Dashboard extends Component {
                                             <span>
                                                 <i className="mvx-font icon-chart-line" />
                                             </span>{' '}
-                                            Set up marketing tools
+                                            Set up commissions
                                         </div>
                                         <div className="li-action">
                                             <a
@@ -222,7 +218,7 @@ class MVX_Dashboard extends Component {
                                             <span>
                                                 <i className="mvx-font icon-chart-line" />
                                             </span>{' '}
-                                            Set up marketing tools
+                                            Set up product capabilities
                                         </div>
                                         <div className="li-action">
                                             <a
@@ -238,7 +234,7 @@ class MVX_Dashboard extends Component {
                                             <span>
                                                 <i className="mvx-font icon-chart-line" />
                                             </span>{' '}
-                                            Set up marketing tools
+                                            Set up allowed product types
                                         </div>
                                         <div className="li-action">
                                             <a
@@ -294,7 +290,7 @@ class MVX_Dashboard extends Component {
                                             <h2>Documentation Forum</h2>
                                             <div>
                                                 <p>
-                                                    Further Clarification Visit Our Document Forum
+                                                    Learn your more about marketplace features and fuctions by accessing our knowlegbase 
                                                 </p>
                                             </div>
                                             <a href="#">
@@ -312,7 +308,7 @@ class MVX_Dashboard extends Component {
                                             <h2>Support Forum</h2>
                                             <div>
                                                 <p>
-                                                    Further Clarification Visit Our Support Forum
+                                                    Lost somewhere or have a query to make? Our support team more than happy to help.
                                                 </p>
                                             </div>
                                             <a href="#">
@@ -342,7 +338,7 @@ class MVX_Dashboard extends Component {
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="#">
+                                                <a href={`post-new.php?post_type=product`}>
                                                     <figure>
                                                         <i className="mvx-font icon-vendor-personal" />
                                                     </figure>
@@ -350,19 +346,11 @@ class MVX_Dashboard extends Component {
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="#">
+                                                <a href={`?page=mvx#&submenu=payment`}>
                                                     <figure>
                                                         <i className="mvx-font icon-vendor-personal" />
                                                     </figure>
                                                     Payment
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <figure>
-                                                        <i className="mvx-font icon-vendor-personal" />
-                                                    </figure>
-                                                    Add New
                                                 </a>
                                             </li>
                                         </ul>
@@ -379,9 +367,7 @@ class MVX_Dashboard extends Component {
                             </div>
                             <h1>Get more by Switching to Pro</h1>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit, sed do eiusmod tempor
-                                incididunt.
+                                Stop waiting for new opportunity to grow your business instead pounce onto the pack of premium features.
                             </p>
                             <a href="#" className="mvx-btn btn-red">
                                 Upgrade to Pro
@@ -535,9 +521,7 @@ class MVX_Dashboard extends Component {
                                 Money-Back Guarantee
                             </h1> 
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit, sed do eiusmod tempor
-                                incididunt.
+                                Make an investment for a better marketplace by saying 'yes' to your desired plans.
                             </p>
                             </div>
                             <ul className="mvx-money-table-holder">
@@ -869,9 +853,7 @@ class MVX_Dashboard extends Component {
                             </div>
                             <h1>Get to Go?</h1>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit, sed do eiusmod tempor
-                                incididunt.
+                                Remember you are just one-click away from your newly optimised marketplace.
                             </p>
                             <a href="#" className="mvx-btn btn-red">
                                 Upgrade to Pro
