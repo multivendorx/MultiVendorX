@@ -4,7 +4,7 @@
  *
  * Override this template by copying it to yourtheme/dc-product-vendor/shortcode/non_vendor_dashboard.php
  *
- * @author 		Multivendor X
+ * @author 		MultiVendorX
  * @package 	WCMm/Templates
  * @version   2.2.0
  */

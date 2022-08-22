@@ -4,9 +4,9 @@
  *
  * Handles MVX-API endpoint requests.
  *
- * @author   Multivendor X
+ * @author 		MultiVendorX
  * @category API
- * @package MultivendorX/API
+ * @package MultiVendorX/API
  * @since    3.1
  */
 

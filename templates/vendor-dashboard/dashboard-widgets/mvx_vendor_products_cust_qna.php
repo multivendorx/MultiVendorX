@@ -4,8 +4,8 @@
  * The template for displaying customer active questiona dashboard widget
  * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/dashboard-widgets/mvx_vendor_products_cust_qna.php
  *
- * @author 	Multivendor X
- * @package MultivendorX/Templates
+ * @author 		MultiVendorX
+ * @package MultiVendorX/Templates
  * @version   3.0.0
  */
 if (!defined('ABSPATH')) {

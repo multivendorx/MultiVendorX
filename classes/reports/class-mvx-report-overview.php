@@ -2,9 +2,9 @@
 /**
  * MVX Report Sales By Date
  *
- * @author      Multivendor X
+ * @author 		MultiVendorX
  * @category    Vendor
- * @package MultivendorX/Reports
+ * @package MultiVendorX/Reports
  * @version     2.2.0
  */
 if (!defined('ABSPATH')) {

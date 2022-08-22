@@ -3,7 +3,7 @@
 /**
  * Define Endpoints of MVX
  * @version 2.5.4
- * @author Multivendor X
+ * @author 		MultiVendorX
  */
 class MVX_Endpoints {
 

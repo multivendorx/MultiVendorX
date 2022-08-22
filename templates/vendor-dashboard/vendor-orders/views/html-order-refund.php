@@ -3,7 +3,7 @@
  * Show order refund
  *
  * @var object $refund The refund object.
- * @package MultivendorX\Admin
+ * @package MultiVendorX\Admin
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

@@ -3,8 +3,8 @@
 /**
  * Woocommerce Product Multivendor to MVX migration class 
  *
- * @author 		Multivendor X
- * @package MultivendorX/core
+ * @author 		MultiVendorX
+ * @package MultiVendorX/core
  * @version     3.6
  */
 

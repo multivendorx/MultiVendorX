@@ -5,8 +5,8 @@
  *
  * Override this template by copying it to yourtheme/dc-product-vendor/vendor_tab.php
  *
- * @author 		Multivendor X
- * @package 	dc-product-vendor/Templates
+ * @author 		MultiVendorX
+ * @package MultiVendorX/Templates
  * @version   2.2.0
  */
 global $MVX, $product;

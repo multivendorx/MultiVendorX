@@ -3,9 +3,9 @@
 /**
  * MVX Report Banking Overview
  *
- * @author      Multivendor X
+ * @author 		MultiVendorX
  * @category    Vendor
- * @package MultivendorX/Reports
+ * @package MultiVendorX/Reports
  * @version     3.5.0
  */
 if (!defined('ABSPATH')) {

@@ -3,7 +3,7 @@
  * MVX Marketplace Vendor Store Setup Class
  * 
  * @since  3.6
- * @author Multivendor X
+ * @author 		MultiVendorX
  */
 if (!defined('ABSPATH')) {
     exit;

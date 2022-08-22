@@ -7,8 +7,8 @@ if (!defined('ABSPATH'))
  * @class       MVX Transaction Class
  *
  * @version     2.2.0
- * @package MultivendorX
- * @author      Multivendor X
+ * @package MultiVendorX
+ * @author 		MultiVendorX
  */
 class mvx_transaction {
 

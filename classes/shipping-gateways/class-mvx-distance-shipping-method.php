@@ -4,7 +4,7 @@
  *
  * Plugin Shipping Gateway
  *
- * @author      Multivendor X
+ * @author 		MultiVendorX
  * @version     3.7
  */
 if (!defined('ABSPATH')) {

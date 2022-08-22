@@ -4,7 +4,7 @@
  *
  * Handles requests to the /coupons endpoint of WooCommerce.
  *
- * @package MultivendorX/API
+ * @package MultiVendorX/API
  * @since   3.1
  */
 

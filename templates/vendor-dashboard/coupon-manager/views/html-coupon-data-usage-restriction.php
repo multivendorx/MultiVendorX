@@ -13,8 +13,8 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @author      Multivendor X
- * @package MultivendorX/templates/vendor dashboard/coupon manager/views
+ * @author 		MultiVendorX
+ * @package MultiVendorX/templates/vendor dashboard/coupon manager/views
  * @version     3.3.0
  */
 defined( 'ABSPATH' ) || exit;

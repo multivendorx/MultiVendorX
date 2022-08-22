@@ -3,7 +3,7 @@
 /**
  * Description of MVX_Vendor_Hooks
  *
- * @author Multivendor X
+ * @author 		MultiVendorX
  */
 class MVX_Vendor_Hooks {
 

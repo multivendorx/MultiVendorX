@@ -2,7 +2,7 @@
 /**
  * MVX Edit Product setup
  *
- * @package MultivendorX/classes/products
+ * @package MultiVendorX/classes/products
  * @since    3.3.0
  */
 defined( 'ABSPATH' ) || exit;

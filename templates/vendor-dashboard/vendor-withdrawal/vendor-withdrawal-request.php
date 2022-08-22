@@ -4,8 +4,8 @@
  *
  * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/vendor-withdrawal/vendor-withdrawal-request.php
  *
- * @author 	Multivendor X
- * @package MultivendorX/Templates
+ * @author 		MultiVendorX
+ * @package MultiVendorX/Templates
  * @version   2.2.0
  */
 if (!defined('ABSPATH')) {

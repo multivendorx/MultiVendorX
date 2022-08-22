@@ -3,8 +3,8 @@
  * The template for displaying vendor dashboard
  * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/shop-front.php
  *
- * @author 	Multivendor X
- * @package MultivendorX/Templates
+ * @author 		MultiVendorX
+ * @package MultiVendorX/Templates
  * @version   2.4.5
  */
 if (!defined('ABSPATH')) {

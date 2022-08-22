@@ -5,7 +5,7 @@
  *
  * @version		2.2.0
  * @package		MultivendorX
- * @author 		Multivendor X
+ * @author 		MultiVendorX
  */
 class MVX_Frontend {
     public $custom_store_url = '';

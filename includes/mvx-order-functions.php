@@ -5,7 +5,7 @@
  *
  * Functions for order specific things.
  *
- * @package MultivendorX/Functions
+ * @package MultiVendorX/Functions
  * @version 3.4.0
  */
 

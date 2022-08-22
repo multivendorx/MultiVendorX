@@ -8,7 +8,7 @@ if (!defined('ABSPATH')) {
  *
  * @version		3.4.0
  * @package		MultivendorX
- * @author 		Multivendor X
+ * @author 		MultiVendorX
  */
 class mvx_vendor_order {
     

@@ -8,14 +8,14 @@ if (!defined('ABSPATH'))
  *
  * @version		2.2.0
  * @package		MultivendorX
- * @author 		Multivendor X
+ * @author 		MultiVendorX
  */
 class MVX_Template {
 
     public $template_url;
 
     public function __construct() {
-        $this->template_url = 'dc-product-vendor/';
+        $this->template_url = 'MultiVendorX/';
     }
 
     /**

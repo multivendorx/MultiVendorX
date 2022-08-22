@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) {
  *
  * Plugin install script which adds default pages, taxonomies, and database tables to WordPress. Runs on activation and upgrade.
  *
- * @author      Multivendor X
- * @package MultivendorX/Admin/Install
+ * @author 		MultiVendorX
+ * @package MultiVendorX/Admin/Install
  * @version    0.0.1
  */
 class MVX_Install {

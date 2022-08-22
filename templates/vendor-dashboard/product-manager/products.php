@@ -3,8 +3,8 @@
  * The template for displaying vendor products
  * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/product-manager/products.php
  *
- * @author 	Multivendor X
- * @package MultivendorX/Templates
+ * @author 		MultiVendorX
+ * @package MultiVendorX/Templates
  * @version   3.0.0
  */
 if (!defined('ABSPATH')) {

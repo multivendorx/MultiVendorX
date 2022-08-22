@@ -4,8 +4,8 @@
  *
  * Override this template by copying it to yourtheme/dc-product-vendor/emails/admin-widthdrawal-request.php
  *
- * @author 		Multivendor X
- * @package 	dc-product-vendor/Templates
+ * @author 		MultiVendorX
+ * @package MultiVendorX/Templates
  * @version   0.0.1
  */
 

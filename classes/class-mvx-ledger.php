@@ -9,7 +9,7 @@ if (!defined('ABSPATH')) {
  *
  * @version		3.4.0
  * @package		MultivendorX/Classes
- * @author 		Multivendor X
+ * @author 		MultiVendorX
  */
 class MVX_Ledger {
 

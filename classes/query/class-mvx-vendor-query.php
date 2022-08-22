@@ -2,7 +2,7 @@
 /**
  * MVX_Vendor_Query class
  *
- * @package MultivendorX
+ * @package MultiVendorX
  * @since 3.5.0
  */
 
