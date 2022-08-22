@@ -49,6 +49,8 @@ class MVXBackendVendor extends React.Component {
 			datafollowers: [],
 			data_zone_in_shipping: [],
 			list_vendor_roles_data: [],
+			vendors_tab: [],
+			current_url: '',
 			open_model: false,
 			datafollowers_loader: false,
 			vendor_loading: false,
@@ -466,9 +468,31 @@ class MVXBackendVendor extends React.Component {
 	}
 
 	QueryParamsDemo(e) {
+		// fetch all vendor tab
+		if (window.location.hash !== this.state.current_url && this.useQuery().get('ID')) {
+			axios
+			.get(
+				`${appLocalizer.apiUrl}/mvx_module/v1/find_individual_vendor_tabs`,
+				{
+					params: { vendor_id: this.useQuery().get('ID') },
+				}
+			)
+			.then((response) => {
+				if (response.data) {
+					this.setState({
+						vendors_tab: response.data,
+						current_url: window.location.hash
+					});
+				}
+			});
+		}
+
+
+
 		if (!this.useQuery().get('ID')) {
 			this.state.data_setting_fileds = [];
 			this.state.data_zone_shipping = [];
+			this.state.vendors_tab = [];
 		}
 
 		// Display vendor list table column and row slection
@@ -617,7 +641,6 @@ class MVXBackendVendor extends React.Component {
 				});
 			});
 		}
-
 		if (this.useQuery().get('ID')) {
 			this.state.datavendor = [];
 			this.state.vendor_loading = false;
@@ -626,14 +649,16 @@ class MVXBackendVendor extends React.Component {
 		const user_query = this.useQuery();
 
 		return user_query.get('ID') ? (
+		this.state.vendors_tab.length > 0 ? 
 			<TabSection
 				model={
-					appLocalizer.mvx_all_backend_tab_list['marketplace-vendors']
+					this.state.vendors_tab
 				}
 				query_name={user_query}
 				funtion_name={this}
 				vendor
 			/>
+			: ''
 		) : user_query.get('name') === 'add-new' ? (
 			<TabSection
 				model={
@@ -864,8 +889,7 @@ class MVXBackendVendor extends React.Component {
 															}{' '}
 															:
 														</div>
-														<div className="mvx-content-email-value">
-															{data8.email}
+														<div className="mvx-content-email-value" dangerouslySetInnerHTML={{ __html: data8.email }} >
 														</div>
 													</div>
 
@@ -1002,6 +1026,7 @@ class MVXBackendVendor extends React.Component {
 						});
 					}
 				});
+
 		}
 
 		if (name.get('ID') && name.get('name') != this.state.set_tab_name) {
@@ -1023,6 +1048,12 @@ class MVXBackendVendor extends React.Component {
 						});
 					}
 				});
+
+
+
+
+				
+
 
 			if (
 				this.useQuery().get('ID') &&
@@ -1167,9 +1198,7 @@ class MVXBackendVendor extends React.Component {
 										}
 									/>
 
-									<div id="wc-backbone-modal-dialog">
-										
-
+									<div>
 										<button
 											onClick={() =>
 												this.handle_Vendor_Reject(
@@ -2128,6 +2157,10 @@ class MVXBackendVendor extends React.Component {
 					list_vendor_application_data: response.data,
 				});
 			});
+
+		this.setState({
+			vendor_list_status_all: true
+		});
 	}
 
 	render() {
