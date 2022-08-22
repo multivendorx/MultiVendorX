@@ -7,7 +7,7 @@
  * This template can be overridden by copying it to yourtheme/dc-product-vendor/vendor-dashboard/vendor-orders/views/html-order-notes.php.
  * 
  * @author 	Multivendor X
- * @package 	MVX/templates/vendor dashboard/vendor orders/views
+ * @package MultivendorX/templates/vendor dashboard/vendor orders/views
  * @version     3.4.0
  */
 defined('ABSPATH') || exit;

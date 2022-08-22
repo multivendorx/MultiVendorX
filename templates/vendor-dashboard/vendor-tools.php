@@ -6,7 +6,7 @@
  * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/vendor-tools.php
  *
  * @author 	Multivendor X
- * @package 	MVX/Templates
+ * @package MultivendorX/Templates
  * @version   3.1.5
  */
 if (!defined('ABSPATH')) {

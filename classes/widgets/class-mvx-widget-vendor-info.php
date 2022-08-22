@@ -4,7 +4,7 @@
  *
  * @author    Multivendor X
  * @category  Widgets
- * @package   MVX/Widgets
+ * @package MultivendorX/Widgets
  * @version   2.2.0
  * @extends   WP_Widget
  */

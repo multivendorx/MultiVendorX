@@ -2,7 +2,7 @@
 /**
  * MVX Add coupon setup
  *
- * @package  MVX/classes/coupons
+ * @package MultivendorX/classes/coupons
  * @since    3.3.0
  */
 defined( 'ABSPATH' ) || exit;

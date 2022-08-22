@@ -4,7 +4,7 @@
  * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/coupon-manager/coupons.php
  *
  * @author 	Multivendor X
- * @package 	MVX/Templates
+ * @package MultivendorX/Templates
  * @version   3.0.0
  */
 if (!defined('ABSPATH')) {

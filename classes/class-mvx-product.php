@@ -6,7 +6,7 @@ if (!defined('ABSPATH'))
  * @class       MVX Product Class
  *
  * @version     2.2.0
- * @package     MVX
+ * @package MultivendorX
  * @author      Multivendor X
  */
 class MVX_Product {

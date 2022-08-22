@@ -4,7 +4,7 @@
  *
  * This template can be overridden by copying it to yourtheme/dc-product-vendor/shortcode/vendor-list/map.php
  *
- * @package MVX/Templates
+ * @package MultivendorX/Templates
  * @version 3.5.0
  */
 

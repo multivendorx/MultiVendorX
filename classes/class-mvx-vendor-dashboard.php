@@ -4,7 +4,7 @@
  *  MVXp Vendor Admin Dashboard - Vendor WP-Admin Dashboard Pages
  * 
  * @version	2.2.0
- * @package MVX
+ * @package MultivendorX
  * @author  Multivendor X
  */
 Class MVX_Admin_Dashboard {

@@ -4,7 +4,7 @@
  *
  * This template can be overridden by copying it to yourtheme/dc-product-vendor/shortcode/vendor-list/catalog-ordering.php
  *
- * @package MVX/Templates
+ * @package MultivendorX/Templates
  * @version 3.5.0
  */
 

@@ -4,7 +4,7 @@
  * MVX Frontend Class
  *
  * @version		2.2.0
- * @package		MVX
+ * @package		MultivendorX
  * @author 		Multivendor X
  */
 class MVX_Frontend {

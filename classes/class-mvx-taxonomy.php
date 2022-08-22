@@ -7,7 +7,7 @@ if (!defined('ABSPATH'))
  * @class 		MVX Taxonomy Class
  *
  * @version		2.2.0
- * @package		MVX
+ * @package		MultivendorX
  * @author 		Multivendor X
  */
 class MVX_Taxonomy {
@@ -37,7 +37,7 @@ class MVX_Taxonomy {
      *
      * @author Multivendor X
      * @access private
-     * @package MVX
+     * @package MultivendorX
      */
     public function register_post_taxonomy() {
         $labels = array(

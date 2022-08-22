@@ -13,7 +13,7 @@
  * the readme will list any important changes.
  *
  * @author 		Multivendor X
- * @package 	MVX/templates/vendor dashboard/product manager
+ * @package MultivendorX/templates/vendor dashboard/product manager
  * @version     3.3.0
  */
 defined( 'ABSPATH' ) || exit;

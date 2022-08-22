@@ -4,7 +4,7 @@
  * WCFM to MVX migration class 
  *
  * @author 		Multivendor X
- * @package 	mvx/core
+ * @package MultivendorX/core
  * @version   	3.6
  */
 

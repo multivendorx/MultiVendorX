@@ -6,7 +6,7 @@
  *
  * @author   Multivendor X
  * @category API
- * @package  MVX/API
+ * @package MultivendorX/API
  * @since    3.1
  */
 
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * REST API Vendors controller class.
  *
- * @package MVX/API
+ * @package MultivendorX/API
  */
 class MVX_REST_API_Vendors_Controller extends WC_REST_Controller {
 

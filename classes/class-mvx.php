@@ -4,7 +4,7 @@
  * MVX Main Class
  *
  * @version		2.2.0
- * @package		MVX
+ * @package		MultivendorX
  * @author 		Multivendor X
  */
 if (!defined('ABSPATH')) {
@@ -425,7 +425,7 @@ final class MVX {
      * Load vendor shipping
      * @since  3.2.2 
      * @access public
-     * @package MVX/Classes/Shipping
+     * @package MultivendorX/Classes/Shipping
     */
     public function load_vendor_shipping() {
         $this->load_class( 'shipping-gateway' );
@@ -445,7 +445,7 @@ final class MVX {
      * Load woo helper
      * @since  3.2.3
      * @access public
-     * @package MVX/Include/Woo_Helper
+     * @package MultivendorX/Include/Woo_Helper
     */
     public function load_woo_helper() {
         //common woo methods

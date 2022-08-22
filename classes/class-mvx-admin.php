@@ -7,7 +7,7 @@ if (!defined('ABSPATH')) {
  * MVX Admin Class
  *
  * @version     2.2.0
- * @package     MVX
+ * @package MultivendorX
  * @author      Multivendor X
  */
 class MVX_Admin {

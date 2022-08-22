@@ -5,7 +5,7 @@
  * Override this template by copying it to yourtheme/dc-product-vendor/archive_vendor_info.php
  *
  * @author      Multivendor X
- * @package     MVX/Templates
+ * @package MultivendorX/Templates
  * @version     3.7
  */
 global $MVX;

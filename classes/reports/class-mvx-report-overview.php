@@ -4,7 +4,7 @@
  *
  * @author      Multivendor X
  * @category    Vendor
- * @package     MVX/Reports
+ * @package MultivendorX/Reports
  * @version     2.2.0
  */
 if (!defined('ABSPATH')) {

@@ -14,7 +14,7 @@
  * the readme will list any important changes.
  *
  * @author      Multivendor X
- * @package     MVX/templates/vendor dashboard/coupon manager/views
+ * @package MultivendorX/templates/vendor dashboard/coupon manager/views
  * @version     3.3.0
  */
 defined( 'ABSPATH' ) || exit;

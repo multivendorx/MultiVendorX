@@ -8,7 +8,7 @@ if (!defined('ABSPATH')) {
  * @class 		MVX ledger Class
  *
  * @version		3.4.0
- * @package		MVX/Classes
+ * @package		MultivendorX/Classes
  * @author 		Multivendor X
  */
 class MVX_Ledger {

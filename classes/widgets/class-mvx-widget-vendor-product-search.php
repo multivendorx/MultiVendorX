@@ -4,7 +4,7 @@
  *
  * @author    Multivendor X
  * @category  Widgets
- * @package   MVX/Widgets
+ * @package MultivendorX/Widgets
  * @version   3.5.4
  * @extends   WC_Widget
  */

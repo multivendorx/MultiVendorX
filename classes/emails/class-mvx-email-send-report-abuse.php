@@ -13,7 +13,7 @@ if ( ! class_exists( 'WC_Email_Send_Report_Abuse' ) ) :
  *
  * @class 		WC_Email_Send_Report_Abuse
  * @version		3.3.7
- * @package		MVX/Classes/Emails
+ * @package		MultivendorX/Classes/Emails
  * @extends 	WC_Email
  *
  */

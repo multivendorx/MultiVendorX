@@ -7,7 +7,7 @@ if (!defined('ABSPATH'))
  * MVX Shipping Class
  *
  * @version		3.2.2
- * @package		MVX
+ * @package		MultivendorX
  * @author 		Multivendor X
  */
 class MVX_Shipping_Gateway {

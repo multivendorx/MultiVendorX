@@ -12,7 +12,7 @@ if (!class_exists('WC_Email_Customer_Refund_Request')) :
      *
      * @class 		WC_Email_Customer_Refund_Request
      * @version		3.5.0
-     * @package		MVX/Classes/Emails
+     * @package		MultivendorX/Classes/Emails
      * @author 		MVX
      * @extends 	WC_Email
      */

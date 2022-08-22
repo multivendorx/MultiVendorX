@@ -5,7 +5,7 @@
  * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/dashboard/vendor-dashboard-sales-item-header.php
  *
  * @author 		Multivendor X
- * @package 	MVX/Templates
+ * @package MultivendorX/Templates
  * @version   2.3.0
  */
 if (!defined('ABSPATH'))
