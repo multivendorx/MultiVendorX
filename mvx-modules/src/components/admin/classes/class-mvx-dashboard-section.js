@@ -383,15 +383,29 @@ class MVX_Dashboard extends Component {
                                     <ul>
                                         <li/>
                                         <li>Support</li>
-                                        <li>2 Premium Modules</li>
-                                        <li>Store Widgets</li>
-                                        <li>Premium</li>
                                         <li>Modules</li>
-                                        <li>Support</li>
-                                        <li>2 Premium Modules</li>
-                                        <li>Store Widgets</li>
-                                        <li>Premium</li>
-                                        <li>Modules</li>
+                                        <li>Product Types</li>
+                                        <li>Single Product Multivendor</li>
+                                        <li>Store Inventory</li>
+                                        <li>Import Export</li>
+                                        <li>Seller Identity Verification</li>
+                                        <li>Dynamic Shipping</li>
+                                        <li>Invoice Mangement</li>
+                                        <li>Refund Mangemnt</li>
+                                        <li>Customisable Commission</li>
+                                        <li>Multiple Payment Options</li>
+                                        <li>Store location</li>
+                                        <li>Review and Ratings</li>
+                                        <li>Business Hours</li>
+                                        <li>Vacation</li>
+                                        <li>Staff Manger</li>
+                                        <li>Wholesale Pricing</li>
+                                        <li>Live Chat</li>
+                                        <li>Marketplace Analytics</li>
+                                        <li>Coupon Management</li>
+                                        <li>Wholesale Pricing</li>
+                                        <li>Vendor Notificaton </li>
+                                        <li>Marketplace  Memberships</li>
                                         {this.state.money_back_show_more_compared ?
                                             <li>Modules</li>
                                             : ''
