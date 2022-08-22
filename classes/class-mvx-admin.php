@@ -447,7 +447,7 @@ class MVX_Admin {
                 array(
                     'name'              =>  __('Reset Database', 'multivendorx'),
                     'key'               =>  'visitor',
-                    'headline_text'     =>  __('Reset visitors stats table', 'multivendorx'),
+                    'headline_text'     =>  __('Reset Visitors Stats Table', 'multivendorx'),
                     'description_text'  =>  __('Use this tool to clear all the table data of MultivendorX visitors stats', 'multivendorx')
                 ),
                 array(
