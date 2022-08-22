@@ -928,7 +928,7 @@ class MVX_REST_API {
         $todo_list = apply_filters('mvx_task_board_listing_modules', [
             array(
                 'key'       =>  'pending_product',
-                'header'    =>  __('Pending Vendor Product', 'multivendorx'),
+                'header'    =>  __('Pending Product', 'multivendorx'),
                 'content'   =>  $get_pending_product_list
             ),
             array(
