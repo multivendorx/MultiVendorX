@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 if (!function_exists('get_mvx_vendor_settings')) {
 
@@ -5205,7 +5205,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'type'      => 'textarea',
                     'class'     =>  'mvx-setting-wpeditor-class',
                     'label'     => __( 'Vendor Setup wizard Introduction Message', 'multivendorx' ),
-                    'desc'      => __( "Type an message to introduce your vendor's to their dashboard", 'multivendorx' ),
+                    'desc'      => __( "Welcome vendors with creative onboard messages", 'multivendorx' ),
                     'database_value' => '',
                 ],
                 [
@@ -5375,7 +5375,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'key'       => 'mvx_vendor_dashboard_custom_css',
                     'type'      => 'textarea',
                     'label'     => __( 'Custom CSS', 'multivendorx' ),
-                    'desc'      => __( 'Apply custom CSS to change sashboard design', 'multivendorx' ),
+                    'desc'      => __( 'Apply custom CSS to change dashboard design', 'multivendorx' ),
                     'database_value' => '',
                 ],
             ],
@@ -5476,7 +5476,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'key'       => 'show_related_products',
                     'type'      => 'select',
                     'label'     => __( 'Related Product', 'multivendorx' ),
-                    'desc'      => __( 'Let customers view products related to the product visible.', 'multivendorx' ),
+                    'desc'      => __( 'Let customers view other products related to the product they are viewing..', 'multivendorx' ),
                     'options' => array(
                         array(
                             'key'=> "all_related",

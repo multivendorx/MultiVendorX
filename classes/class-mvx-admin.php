@@ -475,7 +475,7 @@ class MVX_Admin {
             'registration_form_title'       =>  __('Registration form title', 'multivendorx'),
             'registration_form_title_desc'  =>  __('Type the form title you want the vendor to see. eg registrazione del venditore', 'multivendorx'),
             'registration_form_desc'        =>  __('Registration form description', 'multivendorx'),
-            'registration1'                  =>  __('Add guidelines or valuable information applicable for registration.', 'multivendorx'),
+            'registration1'                  =>  __('Choose your desired question format', 'multivendorx'),
             'registration2'                  =>  __('Write questions applicable to your marketplace', 'multivendorx'),
             'registration3'                  =>  __('Select your preferred question format. Read doc to know more about each format.', 'multivendorx'),
             'registration4'                  =>  __('Placeholder', 'multivendorx'),
