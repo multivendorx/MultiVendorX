@@ -485,6 +485,37 @@ class MVXBackendVendor extends React.Component {
 					});
 				}
 			});
+			/****	pending vendor application status	****/
+			if (new URLSearchParams(window.location.hash).get('name') === 'vendor-application') {
+				axios
+				.get(
+					`${appLocalizer.apiUrl}/mvx_module/v1/list_vendor_application_data`,
+					{
+						params: { vendor_id: new URLSearchParams(window.location.hash).get('ID') },
+					}
+				)
+				.then((response) => {
+					this.setState({
+						list_vendor_application_data: response.data,
+						set_tab_name: new URLSearchParams(window.location.hash).get('name'),
+					});
+				});
+
+				axios
+				.get(
+					`${appLocalizer.apiUrl}/mvx_module/v1/list_vendor_roles_data`,
+					{
+						params: { vendor_id: new URLSearchParams(window.location.hash).get('ID') },
+					}
+				)
+				.then((response) => {
+					this.setState({
+						list_vendor_roles_data: response.data,
+						set_tab_name: new URLSearchParams(window.location.hash).get('name'),
+					});
+				});
+			}
+			/****	pending vendor application status end	****/
 		}
 
 
@@ -658,7 +689,12 @@ class MVXBackendVendor extends React.Component {
 				funtion_name={this}
 				vendor
 			/>
-			: ''
+			: <PuffLoader
+				css={override}
+				color={'#cd0000'}
+				size={100}
+				loading={true}
+			/>
 		) : user_query.get('name') === 'add-new' ? (
 			<TabSection
 				model={
@@ -1075,35 +1111,7 @@ class MVXBackendVendor extends React.Component {
 					});
 			}
 
-			if (name.get('name') === 'vendor-application') {
-				axios
-					.get(
-						`${appLocalizer.apiUrl}/mvx_module/v1/list_vendor_application_data`,
-						{
-							params: { vendor_id: name.get('ID') },
-						}
-					)
-					.then((response) => {
-						this.setState({
-							list_vendor_application_data: response.data,
-							set_tab_name: name.get('name'),
-						});
-					});
-
-				axios
-					.get(
-						`${appLocalizer.apiUrl}/mvx_module/v1/list_vendor_roles_data`,
-						{
-							params: { vendor_id: name.get('ID') },
-						}
-					)
-					.then((response) => {
-						this.setState({
-							list_vendor_roles_data: response.data,
-							set_tab_name: name.get('name'),
-						});
-					});
-			}
+			
 		}
 
 		if (name.get('name') === 'vendor-shipping') {
@@ -2140,24 +2148,7 @@ class MVXBackendVendor extends React.Component {
 			});
 		});
 
-		// fetch vendor application datavendor
-		axios
-			.get(
-				`${appLocalizer.apiUrl}/mvx_module/v1/list_vendor_application_data`,
-				{
-					params: {
-						vendor_id: new URLSearchParams(
-							window.location.hash
-						).get('ID'),
-					},
-				}
-			)
-			.then((response) => {
-				this.setState({
-					list_vendor_application_data: response.data,
-				});
-			});
-
+		// set vendor list section top label status
 		this.setState({
 			vendor_list_status_all: true
 		});
