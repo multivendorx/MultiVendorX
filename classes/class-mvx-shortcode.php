@@ -7,8 +7,8 @@ if (!defined('ABSPATH'))
  * @class 		MVX Shortcode Class
  *
  * @version	  2.2.0
- * @package		MVX
- * @author 		Multivendor X
+ * @package		MultivendorX
+ * @author 		MultiVendorX
  */
 class MVX_Shortcode {
 

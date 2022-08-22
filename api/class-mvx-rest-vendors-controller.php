@@ -4,9 +4,9 @@
  *
  * Handles requests to the /vendors endpoint.
  *
- * @author   Multivendor X
+ * @author 		MultiVendorX
  * @category API
- * @package  MVX/API
+ * @package MultiVendorX/API
  * @since    3.1
  */
 
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * REST API Vendors controller class.
  *
- * @package MVX/API
+ * @package MultiVendorX/API
  */
 class MVX_REST_API_Vendors_Controller extends WC_REST_Controller {
 

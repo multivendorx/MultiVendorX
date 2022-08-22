@@ -3,7 +3,7 @@
  * Setup Wizard Class
  * 
  * @since 2.7.7
- * @package MultivendorX
+ * @package MultiVendorX
  * @author MultivendorX
  */
 if (!defined('ABSPATH')) {

@@ -11,8 +11,8 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @author  Multivendor X
- * @package MVX/Templates
+ * @author 		MultiVendorX
+ * @package MultiVendorX/Templates
  * @version 3.0.0
  */
 if (!defined('ABSPATH')) {

@@ -13,7 +13,7 @@ if ( ! class_exists( 'WC_Email_Vendor_Contact_Widget' ) ) :
  *
  * @class 		WC_Email_Vendor_Contact_Widget
  * @version		3.3.2
- * @package		MVX/Classes/Emails
+ * @package		MultivendorX/Classes/Emails
  * @extends 	WC_Email
  *
  */

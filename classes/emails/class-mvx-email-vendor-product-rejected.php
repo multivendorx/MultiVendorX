@@ -12,7 +12,7 @@ if (!class_exists('WC_Email_Vendor_Product_Rejected')) :
      *
      * @class 		WC_Email_Vendor_Product_Rejected
      * @version		3.5.1
-     * @package		MVX/Classes/Emails
+     * @package		MultivendorX/Classes/Emails
      * @author 		WooThemes
      * @extends 	WC_Email
      */

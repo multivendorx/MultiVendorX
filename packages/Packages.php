@@ -2,7 +2,7 @@
 /**
  * Loads MVX packages from the /packages directory.
  *
- * @package MVX
+ * @package MultiVendorX
  */
 
 defined( 'ABSPATH' ) || exit;

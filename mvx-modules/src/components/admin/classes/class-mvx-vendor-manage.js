@@ -49,6 +49,8 @@ class MVXBackendVendor extends React.Component {
 			datafollowers: [],
 			data_zone_in_shipping: [],
 			list_vendor_roles_data: [],
+			vendors_tab: [],
+			current_url: '',
 			open_model: false,
 			datafollowers_loader: false,
 			vendor_loading: false,
@@ -466,9 +468,62 @@ class MVXBackendVendor extends React.Component {
 	}
 
 	QueryParamsDemo(e) {
+		// fetch all vendor tab
+		if (window.location.hash !== this.state.current_url && this.useQuery().get('ID')) {
+			axios
+			.get(
+				`${appLocalizer.apiUrl}/mvx_module/v1/find_individual_vendor_tabs`,
+				{
+					params: { vendor_id: this.useQuery().get('ID') },
+				}
+			)
+			.then((response) => {
+				if (response.data) {
+					this.setState({
+						vendors_tab: response.data,
+						current_url: window.location.hash
+					});
+				}
+			});
+			/****	pending vendor application status	****/
+			if (new URLSearchParams(window.location.hash).get('name') === 'vendor-application') {
+				axios
+				.get(
+					`${appLocalizer.apiUrl}/mvx_module/v1/list_vendor_application_data`,
+					{
+						params: { vendor_id: new URLSearchParams(window.location.hash).get('ID') },
+					}
+				)
+				.then((response) => {
+					this.setState({
+						list_vendor_application_data: response.data,
+						set_tab_name: new URLSearchParams(window.location.hash).get('name'),
+					});
+				});
+
+				axios
+				.get(
+					`${appLocalizer.apiUrl}/mvx_module/v1/list_vendor_roles_data`,
+					{
+						params: { vendor_id: new URLSearchParams(window.location.hash).get('ID') },
+					}
+				)
+				.then((response) => {
+					this.setState({
+						list_vendor_roles_data: response.data,
+						set_tab_name: new URLSearchParams(window.location.hash).get('name'),
+					});
+				});
+			}
+			/****	pending vendor application status end	****/
+		}
+
+
+
 		if (!this.useQuery().get('ID')) {
 			this.state.data_setting_fileds = [];
 			this.state.data_zone_shipping = [];
+			this.state.vendors_tab = [];
 		}
 
 		// Display vendor list table column and row slection
@@ -617,7 +672,6 @@ class MVXBackendVendor extends React.Component {
 				});
 			});
 		}
-
 		if (this.useQuery().get('ID')) {
 			this.state.datavendor = [];
 			this.state.vendor_loading = false;
@@ -626,13 +680,20 @@ class MVXBackendVendor extends React.Component {
 		const user_query = this.useQuery();
 
 		return user_query.get('ID') ? (
+		this.state.vendors_tab.length > 0 ? 
 			<TabSection
 				model={
-					appLocalizer.mvx_all_backend_tab_list['marketplace-vendors']
+					this.state.vendors_tab
 				}
 				query_name={user_query}
 				funtion_name={this}
 				vendor
+			/>
+			: <PuffLoader
+				css={override}
+				color={'#cd0000'}
+				size={100}
+				loading={true}
 			/>
 		) : user_query.get('name') === 'add-new' ? (
 			<TabSection
@@ -864,8 +925,7 @@ class MVXBackendVendor extends React.Component {
 															}{' '}
 															:
 														</div>
-														<div className="mvx-content-email-value">
-															{data8.email}
+														<div className="mvx-content-email-value" dangerouslySetInnerHTML={{ __html: data8.email }} >
 														</div>
 													</div>
 
@@ -1002,6 +1062,7 @@ class MVXBackendVendor extends React.Component {
 						});
 					}
 				});
+
 		}
 
 		if (name.get('ID') && name.get('name') != this.state.set_tab_name) {
@@ -1024,6 +1085,12 @@ class MVXBackendVendor extends React.Component {
 					}
 				});
 
+
+
+
+				
+
+
 			if (
 				this.useQuery().get('ID') &&
 				this.useQuery().get('name') === 'vendor-followers'
@@ -1044,35 +1111,7 @@ class MVXBackendVendor extends React.Component {
 					});
 			}
 
-			if (name.get('name') === 'vendor-application') {
-				axios
-					.get(
-						`${appLocalizer.apiUrl}/mvx_module/v1/list_vendor_application_data`,
-						{
-							params: { vendor_id: name.get('ID') },
-						}
-					)
-					.then((response) => {
-						this.setState({
-							list_vendor_application_data: response.data,
-							set_tab_name: name.get('name'),
-						});
-					});
-
-				axios
-					.get(
-						`${appLocalizer.apiUrl}/mvx_module/v1/list_vendor_roles_data`,
-						{
-							params: { vendor_id: name.get('ID') },
-						}
-					)
-					.then((response) => {
-						this.setState({
-							list_vendor_roles_data: response.data,
-							set_tab_name: name.get('name'),
-						});
-					});
-			}
+			
 		}
 
 		if (name.get('name') === 'vendor-shipping') {
@@ -1167,9 +1206,7 @@ class MVXBackendVendor extends React.Component {
 										}
 									/>
 
-									<div id="wc-backbone-modal-dialog">
-										
-
+									<div>
 										<button
 											onClick={() =>
 												this.handle_Vendor_Reject(
@@ -2111,23 +2148,10 @@ class MVXBackendVendor extends React.Component {
 			});
 		});
 
-		// fetch vendor application datavendor
-		axios
-			.get(
-				`${appLocalizer.apiUrl}/mvx_module/v1/list_vendor_application_data`,
-				{
-					params: {
-						vendor_id: new URLSearchParams(
-							window.location.hash
-						).get('ID'),
-					},
-				}
-			)
-			.then((response) => {
-				this.setState({
-					list_vendor_application_data: response.data,
-				});
-			});
+		// set vendor list section top label status
+		this.setState({
+			vendor_list_status_all: true
+		});
 	}
 
 	render() {

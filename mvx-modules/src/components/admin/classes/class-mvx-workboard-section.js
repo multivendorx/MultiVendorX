@@ -604,6 +604,11 @@ class MVXworkboard extends Component {
 				list_of_work_board_content: response.data,
 			});
 		});
+
+		this.setState({
+			workboard_list_knowledgebase_status_all: true,
+			workboard_list_announcement_status_all: true
+		});
 	}
 
 	useQuery() {

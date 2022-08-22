@@ -4,8 +4,8 @@
  * MVX Vendor Coupon Shortcode Class
  *
  * @version		2.2.0
- * @package		MVX/shortcode
- * @author 		Multivendor X
+ * @package		MultivendorX/shortcode
+ * @author 		MultiVendorX
  */
 class MVX_Vendor_Coupon_Shortcode {
 

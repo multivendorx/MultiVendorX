@@ -4,9 +4,9 @@
  *
  * Handles MVX-API endpoint requests.
  *
- * @author   Multivendor X
+ * @author 		MultiVendorX
  * @category API
- * @package  MVX/API
+ * @package MultiVendorX/API
  * @since    3.1
  */
 
@@ -726,6 +726,12 @@ class MVX_REST_API {
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
 
+        register_rest_route( 'mvx_module/v1', '/find_individual_vendor_tabs', [
+            'methods' => WP_REST_Server::READABLE,
+            'callback' => array( $this, 'mvx_find_individual_vendor_tabs' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
     }
 
     public function mvx_list_of_work_board_content() {
@@ -1191,7 +1197,7 @@ class MVX_REST_API {
 
         $vendor_application_data = get_user_meta(absint($vendor_id), 'mvx_vendor_fields', true);
         
-        $applcation_data_display .= '<h2>' . __('Vendor Application Data', 'multivendorx') . '</h2>';
+        $applcation_data_display .= '<h2 class="mvx-text-with-right-side-line-wrapper">' . __('Vendor Application Data', 'multivendorx') . '<hr></h2>';
         if (!empty($vendor_application_data) && is_array($vendor_application_data)) {
             foreach ($vendor_application_data as $key => $value) {
                 if ($value['type'] == 'recaptcha') continue;
@@ -1237,7 +1243,7 @@ class MVX_REST_API {
 
         $mvx_vendor_rejection_notes = unserialize( get_user_meta( absint($vendor_id), 'mvx_vendor_rejection_notes', true ) );
         if(is_array($mvx_vendor_rejection_notes) && count($mvx_vendor_rejection_notes) > 0) {
-            $applcation_data_display .= '<h2>' . __('Notes', 'multivendorx') . '</h2>';
+            $applcation_data_display .= '<h2 class="mvx-text-with-right-side-line-wrapper">' . __('Notes', 'multivendorx') . '<hr></h2>';
             $applcation_data_display .= '<div class="note-clm-wrap">';
             foreach($mvx_vendor_rejection_notes as $time => $notes) {
                 $author_info = get_userdata($notes['note_by']);
@@ -5226,6 +5232,85 @@ class MVX_REST_API {
         mvx_update_option( 'mvx_all_active_module_list', $active_module_list );
         do_action('mvx_after_module_active', $module_id, $is_checked, $active_module_list);
         return rest_ensure_response( 'success' );
+    }
+
+    public function mvx_find_individual_vendor_tabs($request) {
+        $vendor_id = $request->get_param( 'vendor_id' ) ? $request->get_param( 'vendor_id' ) : 0;
+        $user = get_user_by("ID", $vendor_id);
+
+        $marketplace_vendors = [];
+        $marketplace_vendors = array(
+            array(
+                'tablabel'      =>  __('Personal', 'multivendorx'),
+                'apiurl'        =>  'mvx_module/v1/update_vendor',
+                'icon'          =>  'icon-vendor-personal',
+                'submenu'       =>  'vendor',
+                'modulename'     =>  'vendor-personal'
+            ),
+            array(
+                'tablabel'      =>  __('Store', 'multivendorx'),
+                'apiurl'        =>  'mvx_module/v1/update_vendor',
+                'icon'          =>  'icon-vendor-store',
+                'submenu'       =>  'vendor',
+                'modulename'     =>  'vendor-store'
+            ),
+            array(
+                'tablabel'      =>  __('Social', 'multivendorx'),
+                'apiurl'        =>  'mvx_module/v1/update_vendor',
+                'icon'          =>  'icon-vendor-social',
+                'submenu'       =>  'vendor',
+                'modulename'     =>  'vendor-social'
+            ),
+            array(
+                'tablabel'      =>  __('Payment', 'multivendorx'),
+                'apiurl'        =>  'mvx_module/v1/update_vendor',
+                'icon'          =>  'icon-vendor-payment',
+                'submenu'       =>  'vendor',
+                'modulename'     =>  'vendor-payments'
+            ),
+            array(
+                'tablabel'      =>  __('Vendor Application', 'multivendorx'),
+                'apiurl'        =>  'mvx_module/v1/update_vendor',
+                'icon'          =>  'icon-vendor-application',
+                'submenu'       =>  'vendor',
+                'modulename'     =>  'vendor-application'
+            ),
+        );
+        if (in_array('dc_pending_vendor', $user->roles)) {
+            unset($marketplace_vendors[0], $marketplace_vendors[1], $marketplace_vendors[2], $marketplace_vendors[3]);
+        }
+        if (!in_array('dc_pending_vendor', $user->roles)) {
+            if (is_mvx_shipping_module_active()) {
+                $marketplace_vendors[] = array(
+                    'tablabel'      =>  __('Vendor Shipping', 'multivendorx'),
+                    'apiurl'        =>  'mvx_module/v1/update_vendor',
+                    'icon'          =>  'icon-vendor-shipping',
+                    'submenu'       =>  'vendor',
+                    'modulename'     =>  'vendor-shipping'
+                );
+            }
+
+            if (mvx_is_module_active('follow-store')) {
+                $marketplace_vendors[] = array(
+                    'tablabel'      =>  __('Vendor Followers', 'multivendorx'),
+                    'apiurl'        =>  'mvx_module/v1/update_vendor',
+                    'icon'          =>  'icon-vendor-follower',
+                    'submenu'       =>  'vendor',
+                    'modulename'     =>  'vendor-followers'
+                );
+            }
+
+            if (mvx_is_module_active('store-policy')) {
+                $marketplace_vendors[] = array(
+                    'tablabel'      =>  __('Vendor Policy', 'multivendorx'),
+                    'apiurl'        =>  'mvx_module/v1/update_vendor',
+                    'icon'          =>  'icon-vendor-policy',
+                    'submenu'       =>  'vendor',
+                    'modulename'     =>  'vendor-policy'
+                );
+            }
+        }
+        return rest_ensure_response(array_values($marketplace_vendors));
     }
 
     public function save_settings_permission() {

@@ -4,8 +4,8 @@
  * Add Downloadable file for each variations
   * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/product-manager/views/html-product-variation-download.php
  *
- * @author  Multivendor X
- * @package     MVX/Templates
+ * @author 		MultiVendorX
+ * @package MultiVendorX/Templates
  * @version   3.3.0
  */
 defined( 'ABSPATH' ) || exit;

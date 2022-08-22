@@ -6,7 +6,7 @@
  * This template can be overridden by copying it to yourtheme/dc-product-vendor/review/mvx-vendor-review.php.
  *
  * 
- * @author  Multivendor X
+ * @author 		MultiVendorX
  * @package dc-woocommerce-multi-vendor/Templates
  * @version 3.3.5
  */

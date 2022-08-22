@@ -7,8 +7,8 @@ if (!defined('ABSPATH')) {
  * @class       MVX User Class
  *
  * @version     2.2.0
- * @package     MVX
- * @author      Multivendor X
+ * @package MultiVendorX
+ * @author 		MultiVendorX
  */
 class MVX_User {
 

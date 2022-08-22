@@ -4,8 +4,8 @@
  * The template for displaying vendor stats reports dashboard widget
  * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/dashboard-widgets/mvx_vendor_stats_reports.php
  *
- * @author 	Multivendor X
- * @package 	MVX/Templates
+ * @author 		MultiVendorX
+ * @package MultiVendorX/Templates
  * @version   3.0.0
  */
 if (!defined('ABSPATH')) {

@@ -6,8 +6,8 @@
  *
  * This template can be overridden by copying it to yourtheme/dc-product-vendor/vendor-dashboard/vendor-orders/views/html-order-downloadable-permissions.php.
  * 
- * @author 	Multivendor X
- * @package 	MVX/templates/vendor dashboard/vendor orders/views
+ * @author 		MultiVendorX
+ * @package MultiVendorX/templates/vendor dashboard/vendor orders/views
  * @version     3.4.0
  */
 

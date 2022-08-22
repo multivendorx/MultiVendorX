@@ -3,7 +3,7 @@
 /**
  * MVX_Woo_Helper setup
  * this class contains all the WooCommerce helper methods
- * @package  MVX
+ * @package MultiVendorX
  * @since    3.2.3
  */
 defined( 'ABSPATH' ) || exit;

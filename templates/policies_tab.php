@@ -4,8 +4,8 @@
  *
  * Override this template by copying it to yourtheme/dc-product-vendor/policies_tab.php
  *
- * @author 		Multivendor X
- * @package 	dc-product-vendor/Templates
+ * @author 		MultiVendorX
+ * @package MultiVendorX/Templates
  * @version   2.3.0
  */
 global $product, $MVX, $post;

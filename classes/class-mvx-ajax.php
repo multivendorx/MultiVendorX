@@ -4,8 +4,8 @@
  * MVX Ajax Class
  *
  * @version     2.2.0
- * @package     MVX
- * @author      Multivendor X
+ * @package MultiVendorX
+ * @author 		MultiVendorX
  */
 class MVX_Ajax {
 

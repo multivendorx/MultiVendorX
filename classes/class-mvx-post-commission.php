@@ -6,8 +6,8 @@ if (!defined('ABSPATH'))
  * @class 		MVX Commission Post Class-
  *
  * @version		2.2.0
- * @package		MVX
- * @author 		Multivendor X
+ * @package		MultivendorX
+ * @author 		MultiVendorX
  */
 class MVX_Commission {
 

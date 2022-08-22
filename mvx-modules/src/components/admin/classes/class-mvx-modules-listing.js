@@ -210,6 +210,9 @@ class MVX_Module_Listing extends Component {
 			});
 		});
 
+		this.setState({
+			module_total_button: true
+		})
 	}
 
 	render() {

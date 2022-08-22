@@ -6,8 +6,8 @@ if (!defined('ABSPATH'))
  * @class 		MVX Product QNA-
  *
  * @version		3.0.0
- * @package		MVX
- * @author 		Multivendor X
+ * @package		MultivendorX
+ * @author 		MultiVendorX
  */
 class MVX_Product_QNA {
 

@@ -7,8 +7,8 @@ if (!defined('ABSPATH')) {
  * MVX Admin Class
  *
  * @version     2.2.0
- * @package     MVX
- * @author      Multivendor X
+ * @package MultiVendorX
+ * @author 		MultiVendorX
  */
 class MVX_Admin {
 
@@ -307,7 +307,7 @@ class MVX_Admin {
             'pending'               =>  __('Pending', 'multivendorx'),
             'save'                  =>  __('Save', 'multivendorx'),
             'saving'                =>  __('Saving..', 'multivendorx'),
-            'open_uploader'         =>  __('Open Uploader', 'multivendorx'),
+            'open_uploader'         =>  __('Upload Image', 'multivendorx'),
             'favorite_color'         =>  __('Select your favorite color', 'multivendorx'),
         );
 

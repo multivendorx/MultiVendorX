@@ -5,7 +5,7 @@
  *
  * Uninstalling Multivendor X deletes user roles, pages, tables, and options.
  *
- * @author      Multivendor X
+ * @author 		MultiVendorX
  * @version     3.0.0
  */
 if (!defined('WP_UNINSTALL_PLUGIN')) {

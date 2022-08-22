@@ -4,7 +4,7 @@
  *
  * Handles requests to the /products endpoint of WooCommerce.
  *
- * @package MVX/API
+ * @package MultiVendorX/API
  * @since   3.1
  */
 

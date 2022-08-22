@@ -4,8 +4,8 @@
  *
  * Override this template by copying it to yourtheme/dc-product-vendor/customer_support_details_to_buyer.php
  *
- * @author 		Multivendor X
- * @package 	MVX/Templates
+ * @author 		MultiVendorX
+ * @package MultiVendorX/Templates
  * @version   2.3.0
  */
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly

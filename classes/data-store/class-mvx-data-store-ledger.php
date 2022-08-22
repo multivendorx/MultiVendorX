@@ -2,7 +2,7 @@
 /**
  * Class MVX_Ledger_Data_Store file.
  *
- * @package MVX\Classes\Data Stores
+ * @package MultiVendorX\Classes\Data Stores
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

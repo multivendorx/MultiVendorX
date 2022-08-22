@@ -4,8 +4,8 @@
  *
  * Override this template by copying it to yourtheme/dc-product-vendor/shortcode/vendor_coupon.php
  *
- * @author 		Multivendor X
- * @package 	MVX/Templates
+ * @author 		MultiVendorX
+ * @package MultiVendorX/Templates
  * @version   2.2.0
  */
 

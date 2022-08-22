@@ -8,8 +8,8 @@ if (!defined('ABSPATH')) {
  * @class 		MVX Order Class
  *
  * @version		3.4.0
- * @package		MVX
- * @author 		Multivendor X
+ * @package		MultivendorX
+ * @author 		MultiVendorX
  */
 class MVX_Order {
 

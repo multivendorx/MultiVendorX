@@ -4,8 +4,8 @@
  *
  * Override this template by copying it to yourtheme/dc-product-vendor/widget/vendor-product-searchform.php
  *
- * @author 		Multivendor X
- * @package 	dc-product-vendor/Templates
+ * @author 		MultiVendorX
+ * @package MultiVendorX/Templates
  * @version     3.5.4
  */
 

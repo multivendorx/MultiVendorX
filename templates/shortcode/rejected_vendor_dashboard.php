@@ -4,8 +4,8 @@
  *
  * Override this template by copying it to yourtheme/dc-product-vendor/shortcode/rejected_vendor_dashboard.php
  *
- * @author 	Multivendor X
- * @package 	MVX/Templates
+ * @author 		MultiVendorX
+ * @package MultiVendorX/Templates
  * @version     3.1.0
  */
 if (!defined('ABSPATH')) {

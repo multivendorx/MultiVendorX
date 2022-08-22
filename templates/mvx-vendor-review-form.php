@@ -4,8 +4,8 @@
  *
  * Override this template by copying it to yourtheme/dc-product-vendor/mvx-vendor-review-form.php
  *
- * @author      Multivendor X
- * @package     MVX/Templates
+ * @author 		MultiVendorX
+ * @package MultiVendorX/Templates
  * @version     3.7
  */
 global $MVX, $wpdb;

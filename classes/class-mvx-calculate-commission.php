@@ -4,8 +4,8 @@
  * MVX Calculate Commission Class
  *
  * @version		2.2.0
- * @package		MVX
- * @author 		Multivendor X
+ * @package		MultivendorX
+ * @author 		MultiVendorX
  */
 class MVX_Calculate_Commission {
 
@@ -288,7 +288,7 @@ class MVX_Calculate_Commission {
     /**
      * Add action hook when an order is reversed
      *
-     * @author Multivendor X
+     * @author 		MultiVendorX
      * @return void
      */
     public function mvx_order_reverse_action() {
@@ -328,7 +328,7 @@ class MVX_Calculate_Commission {
     /**
      * Add action hook only when an order manually updated
      *
-     * @author Multivendor X
+     * @author 		MultiVendorX
      * @return void
      */
     public function mvx_order_complete_action() {

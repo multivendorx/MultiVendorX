@@ -4,8 +4,8 @@
  * MVX Vendor Registration Shortcode Class
  *
  * @version		2.4.3
- * @package		MVX/shortcode
- * @author 		Multivendor X
+ * @package		MultivendorX/shortcode
+ * @author 		MultiVendorX
  */
 class MVX_Vendor_Registration_Shortcode {
 

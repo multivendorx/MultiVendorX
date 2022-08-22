@@ -411,6 +411,7 @@ class MVX_Settings extends Component {
 								<div className="mvx-registration-from-content-and-description">
 									<input
 										type="text"
+										className="mvx-rgistration-form-title"
 										placeholder={
 											appLocalizer.settings_page_string
 												.registration_form_title
@@ -502,7 +503,7 @@ class MVX_Settings extends Component {
 															<div className="mvx-question-input-items">
 																<input
 																	type="text"
-																	className="default-input"
+																	className="default-input mvx-question-title"
 																	placeholder="Question title"
 																	value={
 																		registration_json_value.label
@@ -536,6 +537,7 @@ class MVX_Settings extends Component {
 																	<div className="dropdown">
 																		<div className="mvx-registration-select" onClick={(e) =>
 			                                                                (
+			                                                                	e.stopPropagation(),
 			                                                                    this.setState({
 			                                                                        registration_global_select_dropdown_open: true
 			                                                                    })

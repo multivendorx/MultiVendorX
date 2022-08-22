@@ -2,7 +2,7 @@
 /**
  * Deprecated action hooks
  *
- * @package MultivendorX\Abstracts
+ * @package MultiVendorX\Abstracts
  * @since   4.0.0
  * @version 4.0.0
  */

@@ -7,15 +7,15 @@ if (!defined('ABSPATH'))
  * @class 		MVX Template Class
  *
  * @version		2.2.0
- * @package		MVX
- * @author 		Multivendor X
+ * @package		MultivendorX
+ * @author 		MultiVendorX
  */
 class MVX_Template {
 
     public $template_url;
 
     public function __construct() {
-        $this->template_url = 'dc-product-vendor/';
+        $this->template_url = 'MultiVendorX/';
     }
 
     /**

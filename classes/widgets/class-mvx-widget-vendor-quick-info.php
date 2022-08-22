@@ -4,7 +4,7 @@
  *
  * @author    Multivendor X
  * @category  Widgets
- * @package   MVX/Widgets
+ * @package MultiVendorX/Widgets
  * @version   2.2.0
  * @extends   WP_Widget
  */
@@ -233,7 +233,7 @@ class DC_Widget_Quick_Info_Widget extends WP_Widget {
      *
      * @since 1.0
      * @return void
-     * @author Multivendor X
+     * @author 		MultiVendorX
      */
     function send_mail() {
         if ($this->check_form()) {

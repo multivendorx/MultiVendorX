@@ -417,7 +417,10 @@ class MVX_Backend_Commission extends Component {
 				});
 			});
 		}
-		// Display table column and row slection end
+
+		this.setState({
+			commission_list_status_all: true
+		});
 	}
 
 	handleSelectRowsChange(e) {

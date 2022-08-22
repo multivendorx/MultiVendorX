@@ -5,8 +5,8 @@
  *
   * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/product-manager/views/html-product-data-general.php
  *
- * @author  Multivendor X
- * @package     MVX/Templates
+ * @author 		MultiVendorX
+ * @package MultiVendorX/Templates
  * @version   3.3.0
  */
 defined( 'ABSPATH' ) || exit;

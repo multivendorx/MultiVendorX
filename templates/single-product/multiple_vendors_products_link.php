@@ -10,7 +10,7 @@
  * be bumped and the readme will list any important changes.
  *
  * 
- * @author  Multivendor X
+ * @author 		MultiVendorX
  * @package dc-woocommerce-multi-vendor/Templates
  * @version 2.3.4
  */
