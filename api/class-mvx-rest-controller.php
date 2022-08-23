@@ -641,7 +641,6 @@ class MVX_REST_API {
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
 
-
         register_rest_route( 'mvx_module/v1', '/report_abuse_details', [
             'methods' => WP_REST_Server::READABLE,
             'callback' => array( $this, 'mvx_report_abuse_details' ),
@@ -701,31 +700,31 @@ class MVX_REST_API {
             'callback' => array( $this, 'mvx_approve_dismiss_pending_transaction' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
+        // fetch all tabs
         register_rest_route( 'mvx_module/v1', '/list_of_all_tabs', [
             'methods' => WP_REST_Server::READABLE,
             'callback' => array( $this, 'mvx_list_of_all_tabs' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
+        // update vendor store data
         register_rest_route( 'mvx_module/v1', '/update_vendor_store', [
             'methods' => WP_REST_Server::EDITABLE,
             'callback' => array( $this, 'mvx_update_vendor_store' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
+        // taskboard datas display dynamicaly from array
         register_rest_route( 'mvx_module/v1', '/list_of_work_board_content', [
             'methods' => WP_REST_Server::READABLE,
             'callback' => array( $this, 'mvx_list_of_work_board_content' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
+        // taskboard section every icons working callback
         register_rest_route( 'mvx_module/v1', '/task_board_icons_triggers', [
             'methods' => WP_REST_Server::EDITABLE,
             'callback' => array( $this, 'mvx_task_board_icons_triggers' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
+        // fetch individual tab list
         register_rest_route( 'mvx_module/v1', '/find_individual_vendor_tabs', [
             'methods' => WP_REST_Server::READABLE,
             'callback' => array( $this, 'mvx_find_individual_vendor_tabs' ),
@@ -1256,8 +1255,10 @@ class MVX_REST_API {
     }
 
     public function mvx_active_suspend_vendor($request) {
+
         $status = $request && $request->get_param('status') ? $request->get_param('status') : '';
         $user_id = $request && $request->get_param('vendor_id') ? $request->get_param('vendor_id') : '';
+        $section = $request && $request->get_param('section') ? $request->get_param('section') : '';
         $user = new WP_User(absint($user_id));
         if ($status == 'activate') {
             if (is_user_mvx_vendor($user)) {
@@ -1271,6 +1272,10 @@ class MVX_REST_API {
                     $email_vendor_suspend->trigger($user_id);
                 }
             }
+        }
+
+        if ($section) {
+            return $this->mvx_list_all_vendor('');
         }
     }
 
@@ -5128,6 +5133,7 @@ class MVX_REST_API {
                 'registered'    => get_date_from_gmt( $user->data->user_registered ),
                 'products'      => $product_count,
                 'status'        => $status,
+                'status_raw_text'   =>  $status_text,
                 'permalink'     => $vendor_permalink,
                 'username'      => $user->data->user_login,
                 'action'        => $action_display 

@@ -1765,7 +1765,7 @@ Class MVX_Admin_Dashboard {
             ));
             $default_data['vendor_report_data'] = $vendor_report_data;
             $default_data['payment_mode'] = ucwords(str_replace('_', ' ', $vendor->payment_mode));
-            $MVX->template->get_template('vendor-dashboard/dashboard-widgets/mvx_vendor_stats_reports.php', $default_data);
+            $MVX->template->get_template('vendor-dashboard/dashboard-widgets/mvx-vendor-stats-reports.php', $default_data);
         }
 
         public function mvx_vendor_pending_shipping($args = array()) {
@@ -1789,12 +1789,12 @@ Class MVX_Admin_Dashboard {
                 'shipping_amount' => __('Charges', 'multivendorx'),
                 'action' => __('Action', 'multivendorx'),
             ));
-            $MVX->template->get_template('vendor-dashboard/dashboard-widgets/mvx_vendor_pending_shipping.php', array('default_headers' => $default_headers));
+            $MVX->template->get_template('vendor-dashboard/dashboard-widgets/mvx-vendor-pending-shipping.php', array('default_headers' => $default_headers));
         }
 
         public function mvx_customer_review() {
             global $MVX, $wpdb;
-            $MVX->template->get_template('vendor-dashboard/dashboard-widgets/mvx_customer_review.php');
+            $MVX->template->get_template('vendor-dashboard/dashboard-widgets/mvx-customer-review.php');
         }
 
         public function mvx_vendor_followers() {
@@ -1862,13 +1862,13 @@ Class MVX_Admin_Dashboard {
             $product_stats['trashed_products_count'] = $trashed_products_count;
             $product_stats['product_page_url'] = mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_products_endpoint', 'seller_dashbaord', 'products'));
 
-            $MVX->template->get_template('vendor-dashboard/dashboard-widgets/mvx_vendor_product_stats.php', $product_stats);
+            $MVX->template->get_template('vendor-dashboard/dashboard-widgets/mvx-vendor-product-stats.php', $product_stats);
             
         }
 
         public function mvx_vendor_product_sales_report() {
             global $MVX;
-            $MVX->template->get_template('vendor-dashboard/dashboard-widgets/mvx_vendor_product_sales_report.php');
+            $MVX->template->get_template('vendor-dashboard/dashboard-widgets/mvx-vendor-product-sales-report.php');
         }
         
         public function mvx_show_vendor_announcements( $cap ) {
@@ -1900,12 +1900,12 @@ Class MVX_Admin_Dashboard {
                 $total_amount = $total_amount + $details['total_amount'];
             }
             $total_amounts = isset($unpaid_commission_total['total']) ? $unpaid_commission_total['total'] : 0;
-            $MVX->template->get_template('vendor-dashboard/dashboard-widgets/mvx_vendor_transaction_details.php', apply_filters( 'mvx_widget_vendor_transaction_details_data', array('total_amount' => $total_amounts, 'transaction_display_array' => $transaction_display_array), $vendor, $requestData ) );
+            $MVX->template->get_template('vendor-dashboard/dashboard-widgets/mvx-vendor-transaction-details.php', apply_filters( 'mvx_widget_vendor_transaction_details_data', array('total_amount' => $total_amounts, 'transaction_display_array' => $transaction_display_array), $vendor, $requestData ) );
         }
 
         public function mvx_vendor_products_cust_qna() {
             global $MVX;
-            $MVX->template->get_template('vendor-dashboard/dashboard-widgets/mvx_vendor_products_cust_qna.php');
+            $MVX->template->get_template('vendor-dashboard/dashboard-widgets/mvx-vendor-products-cust-qna.php');
         }
 
         public function mvx_vendor_visitors_map() {
@@ -1917,7 +1917,7 @@ Class MVX_Admin_Dashboard {
             //wp_enqueue_script('mvx_gchart_loader', '//www.gstatic.com/charts/loader.js');
             wp_enqueue_script('mvx_visitor_map_data', $MVX->plugin_url . 'assets/frontend/js/mvx_vendor_map_widget_data.js', apply_filters('mvx_vendor_visitors_map_script_dependancies', array('jquery', 'mvx-vmap-world-script')));
             wp_localize_script('mvx_visitor_map_data', 'visitor_map_stats', apply_filters('mvx_vendor_visitors_map_script_data', $visitor_map_stats));
-            $MVX->template->get_template('vendor-dashboard/dashboard-widgets/mvx_vendor_visitors_map.php');
+            $MVX->template->get_template('vendor-dashboard/dashboard-widgets/mvx-vendor-visitors-map.php');
         }
 
         public function mvx_dashboard_setup_updater() {

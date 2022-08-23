@@ -261,7 +261,7 @@ final class MVX {
     function template_loader($template) {
         global $MVX;
         if (mvx_is_store_page()) {
-            $template = $this->template->store_locate_template('taxonomy-dc_vendor_shop.php');
+            $template = $this->template->store_locate_template('taxonomy-dc-vendor-shop.php');
         }
         return $template;
     }

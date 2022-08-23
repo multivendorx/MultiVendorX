@@ -2,7 +2,7 @@
 /**
  * Single Product Multiple vendors
  *
- * This template can be overridden by copying it to yourtheme/dc-product-vendor/single-product/multiple_vendors_products.php.
+ * This template can be overridden by copying it to yourtheme/dc-product-vendor/single-product/multiple-vendors-products.php.
  *
  * HOWEVER, on occasion MVX will need to update template files and you (the theme developer).
  * will need to copy the new files to your theme to maintain compatibility. We try to do this.
@@ -37,7 +37,7 @@ if (count($more_product_array) > 0) {
             <div style="clear:both;"></div>
         </div>			
         <?php
-        $MVX->template->get_template('single-product/multiple_vendors_products_body.php', array('more_product_array' => $more_product_array, 'sorting' => 'price'));
+        $MVX->template->get_template('single-product/multiple-vendors-products-body.php', array('more_product_array' => $more_product_array, 'sorting' => 'price'));
         ?>		
     </div>		
     <?php

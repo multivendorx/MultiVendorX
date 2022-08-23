@@ -37,7 +37,7 @@ class MVX_Admin {
         add_filter('mvx_current_vendor_id', array(&$this, 'mvx_vendor_shipping_admin_capability'));
         add_filter('mvx_dashboard_shipping_vendor', array(&$this, 'mvx_vendor_shipping_admin_capability'));
         add_filter('woocommerce_menu_order_count', array(&$this, 'woocommerce_admin_end_order_menu_count'));
-        if (!get_option('_is_dismiss_mvx40_notice', false) && current_user_can('manage_options')) {
+        if (!get_option('_is_dismiss_mvx4_0_notice', false) && current_user_can('manage_options')) {
             add_action('admin_notices', array(&$this, 'mvx_service_page_notice'));
         }
     }
@@ -425,6 +425,7 @@ class MVX_Admin {
             'taxable'  =>  __('Taxable', 'multivendorx'),
             'method_title'  =>  __('Method Title', 'multivendorx'),
             'approve'  =>  __('Approve', 'multivendorx'),
+            'suspend'  =>  __('Suspend', 'multivendorx'),
             'reject'  =>  __('Reject', 'multivendorx'),
             'enter_location'  =>  __('Enter a location', 'multivendorx'),
             'vendors'  =>  __('Vendors', 'multivendorx'),
@@ -432,7 +433,7 @@ class MVX_Admin {
             'search_vendor'  =>  __('Search Vendors', 'multivendorx'),
             'edit_vendor'  =>  __('Edit Vendor', 'multivendorx'),
             'add_new'  =>  __('Add New', 'multivendorx'),
-            'describe_yourself'  =>  __('Describe yourself here...', 'multivendorx'),
+            'describe_yourself'  =>  __('Send your rejection note to vendor.', 'multivendorx'),
             'optional_note'  =>  __('Optional note for acceptance / rejection', 'multivendorx'),
         );
 
@@ -707,14 +708,14 @@ class MVX_Admin {
         );
 
         $columns_vendor = array(
-            array(
+            /*array(
                 'name'      =>  __('Name', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "name",
-            ),
+            ),*/
             array(
-                'name'      =>  __('', 'multivendorx'),
+                'name'      =>  __('Name', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'cell'  =>  'cell',
@@ -729,12 +730,12 @@ class MVX_Admin {
                 'sortable'  =>  true,
                 'selector_choice'  => "email",
             ),
-            array(
+           /* array(
                 'name'      =>  __('Registered', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "registered",
-            ),
+            ),*/
             array(
                 'name'      =>  __('Products', 'multivendorx'),
                 'selector'  =>  '',

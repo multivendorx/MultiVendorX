@@ -1257,7 +1257,7 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/d
 * Fixed: Ajax Error.
 * Fixed: CSS issue.
 * Removed: Restriction of flat rate shipping.
-* Dev: Template update `taxonomy-dc_vendor_shop.php`, `single-product/multiple_vendors_products.php`.
+* Dev: Template update `taxonomy-dc-vendor-shop.php`, `single-product/multiple-vendors-products.php`.
 
 = 2.7.5 =
 * Added: Search vendor field in MVX Product Vendors List Widget.
