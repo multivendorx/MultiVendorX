@@ -29,7 +29,7 @@ $scroll-color:#ece8f1;
   align-items: $align;
 }
 @mixin staus {
-  padding: 5.5px 0.5rem;
+  padding: 0.344rem 0.5rem;
   border-radius: $border-radius;
 }
 @mixin button {
@@ -802,7 +802,7 @@ textarea{
 input[type="text"] {
   color: $title-color;
 }
-input[type="checkbox"]:focus, input[type="radio"]:focus{
+input[type="checkbox"]:focus, input[type="radio"]:focus, textarea:focus, input[type="text"]:focus, input[type=number]:focus{
   box-shadow: none;
   border-color:$boder-color;
 }
@@ -909,9 +909,6 @@ input[type="radio"], input[type="checkbox"] {
     height: 1rem;
     border-color: $boder-color;
     background-color: $fill-color;
-}
-input:checked:focus{
-  box-shadow: none;
 }
 input:checked{
   border: 0;
@@ -1145,7 +1142,7 @@ div#wpbody-content {
     }
   }
   .mvx-notic-display-title {
-    background-color: #cf89ac;
+    background-color: #bf6290;
     color: $font-white;
     padding: 0.5rem 1rem;
     border-radius: 0.12rem;
@@ -1154,8 +1151,9 @@ div#wpbody-content {
     right: 1rem;
     z-index: 9999;
     .mvx-font{
-      background-color: #d79dba;
+      background-color: #c7769e;
       padding: 0.25rem;
+      font-size:0.0.625rem;
       margin-right: 0.5rem;
       border-radius: 50%;
     }
@@ -1602,11 +1600,12 @@ hr{
         background-color: $font-white;
       }
       .mvx-top-part-registartion-from{
+        padding-top:0 !important;//registration form top gap manage
         ::placeholder{
           color: $title-color;
         }   }
       .mvx-form-vendor-register .mvx-option-part, .mvx-top-part-registartion-from  {
-        padding: 2rem;
+        padding: 1.5rem;
         border-radius: 0.25rem;
         margin: 0.7rem 0;
         position: relative;
@@ -1674,7 +1673,7 @@ hr{
                   & .mvx-font {
                     color: $theme-color;
                     padding: 0 0.5rem;
-                    font-size: 1.2rem;
+                    font-size: 1rem;
                   }
               }
           &  select {
@@ -1687,6 +1686,7 @@ hr{
           position: absolute;
           content: "\e95b";
           font-family: 'mvx-admin-font';
+          color: $blue-icon;
           top: 0;
           left: 50%;
           transform: translateX(-50%)
@@ -2017,7 +2017,7 @@ hr{
         .mvx-documentation-support-forum{
           text-align: center;
           padding:3.2rem 0 0;
-          // height:20rem;
+          height:20rem;
           border: $border;
           border-radius: $border-radius;
           background-size: cover;
@@ -2028,8 +2028,11 @@ hr{
            color: $blue-icon;
           }
           p{
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
             text-overflow: ellipsis;
-            height: 4rem;
           }
           figcaption{
             div{
@@ -2589,6 +2592,7 @@ h1, h2, h3{
 .wc-setup-content{
   text-align: center;
   margin: 1rem 0 3rem;
+  background-color: $fill-color;
   padding: 3rem;
   border: $border;
   border-radius: $border-radius;
@@ -2598,7 +2602,7 @@ h1, h2, h3{
     margin: 0;
   }
   .mvx-setting-section-divider {
-    border-top: 0.06rem solid #f2eff5;
+    border-top: 0.06rem solid $base-color;
     margin: 0 0 1rem;
 }
 a.twitter-button {
@@ -2661,6 +2665,7 @@ table.form-table {
       padding: 0.25rem 0;
       white-space:nowrap;
       color:$paragraph-color ;
+      font-weight:400;
     }
   }
   th, td{
@@ -3232,7 +3237,6 @@ padding:0;
         white-space:nowrap;
         font-size:1rem;
         padding: 2rem 0 0.5rem;
-        margin: 0 0 1rem;
         &:first-child{
           padding: 0 0 0.5rem;
         }
@@ -3246,7 +3250,9 @@ padding:0;
         font-size: 0.875rem;
         width: 40%;
       }
-      }
+      &>span{
+        color:$title-color;
+      } }
       .note-clm-wrap{
         position:relative;
         &:before{
@@ -3255,10 +3261,10 @@ padding:0;
           width: 0.06rem;
           height: 100%;
           top: 0;
-          background-color:$boder-color;
+          background-color:$base-color;
         }
         .note-clm{
-          border: $border;
+          border: 0.06rem solid $base-color;
           border-radius: $border-radius;
           padding: 0.5rem;
           margin: 0.5rem auto 0.5rem 1.5rem;
@@ -3281,19 +3287,20 @@ padding:0;
             width: 0.5rem;
             height: 0.5rem;
             background: $fill-color;
-            border: solid $boder-color;
+            border: solid $base-color;
             border-width: 0 0 0.06rem 0.06rem;
             transform: rotate(45deg);
             top: 1rem;
             left: -0.35rem;
           }
           p.note-description {
-            margin: 0 0 1rem;
+            margin: 0 0 0.5rem;
         }
         p.note-meta {
           margin: 0 0.75rem 0 0;
+          font-size:0.75rem;
           display: inline-block;
-          color: $boder-color;
+          color: $grey-icon;
       }
         }
       }
@@ -3301,7 +3308,7 @@ padding:0;
    .mvx-vendor-modal-main{
           textarea.pending-vendor-note.form-control{
             min-height: 7rem;
-            margin: 0 0 1rem;
+            margin: 2rem 0 1rem;
             padding: 0.5rem;
                 background: $fill-color;
           }
@@ -3319,7 +3326,6 @@ padding:0;
         }  }
 .mvx-registration-content{
   .mvx-form-group{
-    flex-wrap: nowrap !important;// to align registration form content
     .dropdown{
       position: relative;
           .mvx-registration-select{
@@ -3368,6 +3374,9 @@ padding:0;
     padding: 4rem 2rem;
     box-shadow: 0rem 0rem 0.9375rem 0.0625rem #0000001a;
 }}
+.mvx-registration-content .mvx-form-group{
+  flex-wrap: nowrap !important;// to align registration form content
+}
 .mvx-vendor-transients{
   position: relative;
 & .mvx-vendor-transients-button {

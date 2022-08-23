@@ -290,7 +290,7 @@ class MVX_Dashboard extends Component {
                                             <h2>Documentation Forum</h2>
                                             <div>
                                                 <p>
-                                                    Learn your more about marketplace features and fuctions by accessing our knowlegbase 
+                                                    Learn more about marketplace features and settings by accessing our documentation forum.
                                                 </p>
                                             </div>
                                             <a href="#">
@@ -308,7 +308,7 @@ class MVX_Dashboard extends Component {
                                             <h2>Support Forum</h2>
                                             <div>
                                                 <p>
-                                                    Lost somewhere or have a query to make? Our support team more than happy to help.
+                                                    Lost somewhere or have a query to make? Join us on our support forum and flag your issue.
                                                 </p>
                                             </div>
                                             <a href="#">
@@ -383,15 +383,29 @@ class MVX_Dashboard extends Component {
                                     <ul>
                                         <li/>
                                         <li>Support</li>
-                                        <li>2 Premium Modules</li>
-                                        <li>Store Widgets</li>
-                                        <li>Premium</li>
                                         <li>Modules</li>
-                                        <li>Support</li>
-                                        <li>2 Premium Modules</li>
-                                        <li>Store Widgets</li>
-                                        <li>Premium</li>
-                                        <li>Modules</li>
+                                        <li>Product Types</li>
+                                        <li>Single Product Multivendor</li>
+                                        <li>Store Inventory</li>
+                                        <li>Import Export</li>
+                                        <li>Seller Identity Verification</li>
+                                        <li>Dynamic Shipping</li>
+                                        <li>Invoice Mangement</li>
+                                        <li>Refund Mangemnt</li>
+                                        <li>Customisable Commission</li>
+                                        <li>Multiple Payment Options</li>
+                                        <li>Store location</li>
+                                        <li>Review and Ratings</li>
+                                        <li>Business Hours</li>
+                                        <li>Vacation</li>
+                                        <li>Staff Manger</li>
+                                        <li>Wholesale Pricing</li>
+                                        <li>Live Chat</li>
+                                        <li>Marketplace Analytics</li>
+                                        <li>Coupon Management</li>
+                                        <li>Wholesale Pricing</li>
+                                        <li>Vendor Notificaton </li>
+                                        <li>Marketplace  Memberships</li>
                                         {this.state.money_back_show_more_compared ?
                                             <li>Modules</li>
                                             : ''
@@ -851,7 +865,7 @@ class MVX_Dashboard extends Component {
                             <div className="mvx-dashboard-top-icon">
                                 <span>Pro</span>
                             </div>
-                            <h1>Get to Go?</h1>
+                            <h1>Ready to get started?</h1>
                             <p>
                                 Remember you are just one-click away from your newly optimised marketplace.
                             </p>

@@ -6100,7 +6100,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'options' => array(
                         array(
                             'key'=> "payment_gateway_charge",
-                            'label'=> __('If checked, you can set payment gateway charge to the vendor for commission disbursement.', 'multivendorx'),
+                            'label'=> __('', 'multivendorx'),
                             'value'=> "payment_gateway_charge"
                         )
                     ),
@@ -6111,7 +6111,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'depend_checkbox'   =>  'payment_gateway_charge',
                     'type'      => 'select',
                     'label'     => __( 'Who bear the gateway charges', 'multivendorx' ),
-                    'desc'      => __('You can decide who will bear the gateways charges incase of using any automatic payment', 'multivendorx'),
+                    'desc'      => __('When it comes to automated payments, you can decide who will be responsible for the gateway charges.', 'multivendorx'),
                     'options' => array(
                         array(
                             'key'=> "vendor",
@@ -6457,7 +6457,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'options' => array(
                         array(
                             'key'=> "commission_include_coupon",
-                            'label'=> __('Tap to let vendor bear the coupon discount charges created by them', 'multivendorx'),
+                            'label'=> __('Tap to let the vendors bear the coupon discount charges of the coupons created by them', 'multivendorx'),
                             'value'=> "commission_include_coupon"
                         )
                     ),
@@ -6786,7 +6786,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'key'       => 'refund_order_msg',
                     'type'      => 'textarea',
                     'label'     => __( 'Reasons For Refund', 'multivendorx' ),
-                    'desc'      => __( 'Add reasons for a refund. Use || to separate each reason. Options will appear as a radion button to customers', 'multivendorx' ),
+                    'desc'      => __( 'Add reasons for a refund. Use || to separate each reason. Options will appear as a radio button to customers', 'multivendorx' ),
                     'database_value' => '',
                 ],
             ],
@@ -8122,7 +8122,7 @@ if (!function_exists('mvx_list_all_modules')) {
                     [
                         'id'           => 'announcement',
                         'name'         => __( 'Announcement', 'multivendorx' ),
-                        'description'  => __( 'lets admin make important annoucements to vendors', 'multivendorx' ),
+                        'description'  => __( 'Lets admin broadcast important news to sellers', 'multivendorx' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
                     ],

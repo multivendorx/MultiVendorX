@@ -266,3 +266,7 @@
 -------------------------------------
 {"TIMESTAMP":"2022-08-22T14:39:06Z","CORRELATIONID":"f2840ebb067a","ACK":"Failure","VERSION":"204.0","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
 -------------------------------------
+{"TIMESTAMP":"2022-08-23T04:35:20Z","CORRELATIONID":"7a784d2760b7","ACK":"Failure","VERSION":"124.0","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
+-------------------------------------
+{"TIMESTAMP":"2022-08-23T04:39:08Z","CORRELATIONID":"bdb6efe82475f","ACK":"Failure","VERSION":"60.0","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
+-------------------------------------

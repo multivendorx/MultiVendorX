@@ -37,7 +37,7 @@ class MVX_Admin {
         add_filter('mvx_current_vendor_id', array(&$this, 'mvx_vendor_shipping_admin_capability'));
         add_filter('mvx_dashboard_shipping_vendor', array(&$this, 'mvx_vendor_shipping_admin_capability'));
         add_filter('woocommerce_menu_order_count', array(&$this, 'woocommerce_admin_end_order_menu_count'));
-        if (!get_option('_is_dismiss_mvx40_notice', false) && current_user_can('manage_options')) {
+        if (!get_option('_is_dismiss_mvx4_0_notice', false) && current_user_can('manage_options')) {
             add_action('admin_notices', array(&$this, 'mvx_service_page_notice'));
         }
     }
