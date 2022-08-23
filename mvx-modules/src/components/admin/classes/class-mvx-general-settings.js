@@ -588,7 +588,6 @@ class MVX_Settings extends Component {
 																''
 															)}
 														</div>
-														{registration_json_value.hidden ? (
 															<div>
 																{registration_json_value.type ==
 																	'textbox' ||
@@ -616,6 +615,7 @@ class MVX_Settings extends Component {
 																	'vendor_postcode' ||
 																registration_json_value.type ==
 																	'vendor_paypal_email' ? (
+																	registration_json_value.hidden ?
 																	<div className="mvx-basic-description">
 																		<div className="mvx-vendor-form-input-field-container">
 																			<input
@@ -677,12 +677,14 @@ class MVX_Settings extends Component {
 																			</div>
 																		</div>
 																	</div>
+																	: ''
 																) : (
 																	''
 																)}
 
 																{registration_json_value.type ==
 																'textarea' ? (
+																	registration_json_value.hidden ?
 																	<div className="mvx-vendor-form-input-field-container">
 																		<label>
 																			{
@@ -714,12 +716,14 @@ class MVX_Settings extends Component {
 																			}
 																		</div>
 																	</div>
+																	: ''
 																) : (
 																	''
 																)}
 
 																{registration_json_value.type ==
 																'attachment' ? (
+																	registration_json_value.hidden ?
 																	<div>
 																		<div className="mvx-vendor-form-input-field-container">
 																			<label>
@@ -830,12 +834,14 @@ class MVX_Settings extends Component {
 																			</div>
 																		</div>
 																	</div>
+																	: ''
 																) : (
 																	''
 																)}
 
 																{registration_json_value.type ==
 																'recapta' ? (
+																	registration_json_value.hidden ?
 																	<div>
 																		<div
 																			className="mvx-vendor-form-input-field-container"
@@ -1014,6 +1020,7 @@ class MVX_Settings extends Component {
 																			}
 																		</div>
 																	</div>
+																	: ''
 																) : (
 																	''
 																)}
@@ -1096,6 +1103,7 @@ class MVX_Settings extends Component {
 																									);
 																								}}
 																							/>
+																							{registration_json_value.hidden ?
 																							<div className="mvx-registration-fileds-description">
 																								{
 																									appLocalizer
@@ -1103,7 +1111,10 @@ class MVX_Settings extends Component {
 																										.registration22
 																								}
 																							</div>
+																							: ''}
 																						</div>
+																						{registration_json_value.hidden ?
+																						<>
 																						<div>
 																							<input
 																								type="text"
@@ -1144,10 +1155,13 @@ class MVX_Settings extends Component {
 																								<i className="mvx-font icon-close"></i>
 																							</a>
 																						</div>
+																						</>
+																						: ''}
 																					</li>
 																				)
 																			)}
 																		</ul>
+																		{registration_json_value.hidden ?
 																		<a
 																			className="btn purple-btn"
 																			onClick={(
@@ -1162,14 +1176,13 @@ class MVX_Settings extends Component {
 																			Add
 																			New
 																		</a>
+																		: ''}
 																	</div>
 																) : (
 																	''
 																)}
 															</div>
-														) : (
-															''
-														)}
+														
 
 														{registration_json_value.hidden ? (
 															<div className="mvx-footer-icon-form">

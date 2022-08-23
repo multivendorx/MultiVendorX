@@ -1256,8 +1256,10 @@ class MVX_REST_API {
     }
 
     public function mvx_active_suspend_vendor($request) {
+
         $status = $request && $request->get_param('status') ? $request->get_param('status') : '';
         $user_id = $request && $request->get_param('vendor_id') ? $request->get_param('vendor_id') : '';
+        $section = $request && $request->get_param('section') ? $request->get_param('section') : '';
         $user = new WP_User(absint($user_id));
         if ($status == 'activate') {
             if (is_user_mvx_vendor($user)) {
@@ -1271,6 +1273,10 @@ class MVX_REST_API {
                     $email_vendor_suspend->trigger($user_id);
                 }
             }
+        }
+
+        if ($section) {
+            return $this->mvx_list_all_vendor('');
         }
     }
 
@@ -5128,6 +5134,7 @@ class MVX_REST_API {
                 'registered'    => get_date_from_gmt( $user->data->user_registered ),
                 'products'      => $product_count,
                 'status'        => $status,
+                'status_raw_text'   =>  $status_text,
                 'permalink'     => $vendor_permalink,
                 'username'      => $user->data->user_login,
                 'action'        => $action_display 
