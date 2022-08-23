@@ -245,39 +245,6 @@ class MVX_Dashboard extends Component {
                                             </a>
                                         </div>
                                     </li>
-                                    <li className="mvx-align-items-center hover-border-box">
-                                        <div className="mvx-allign-li-txt">
-                                            <span>
-                                                <i className="mvx-font icon-chart-line" />
-                                            </span>{' '}
-                                            Set up marketing tools
-                                            <p>2 minutes</p>
-                                        </div>
-                                        <div className="li-action">
-                                            <a
-                                                href="#"
-                                                className="chckbx-border"
-                                            >
-                                                Setup
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li className="mvx-align-items-center hover-border-box">
-                                        <div className="mvx-allign-li-txt">
-                                            <span>
-                                                <i className="mvx-font icon-chart-line" />
-                                            </span>{' '}
-                                            Set up marketing tools
-                                        </div>
-                                        <div className="li-action">
-                                            <a
-                                                href="#"
-                                                className="chckbx-purple"
-                                            >
-                                                <i className="mvx-font icon-yes" />
-                                            </a>
-                                        </div>
-                                    </li>
                                 </ul>
                             </div>
                             <div className="mvx-documentation-quick-link-wrapper">
