@@ -89,7 +89,6 @@ $scroll-color:#ece8f1;
   border: $border;
   padding: 0.5rem 1rem 0.5rem 0.6rem;
   border-radius: $border-radius;
-  
  }
  @mixin toggle-btn-disable {
   input[type=checkbox]{
@@ -795,6 +794,10 @@ $scroll-color:#ece8f1;
 // Start - Common CSS
 textarea, input[type=text], input[type=url], input[type=email], input[type=number], select, input, .default-input,  input[type=password] {
   @include select-input();
+  &:focus{
+    box-shadow: none;
+    border-color:$boder-color;
+  }
 }
 textarea{
   padding: 0.5rem;
@@ -1603,13 +1606,31 @@ hr{
         padding-top:0 !important;//registration form top gap manage
         ::placeholder{
           color: $title-color;
-        }   }
+        } 
+           input[type="text"]{
+          font-size: 0.875rem;
+          border: solid $boder-color;
+          border-width: 0 0 0.06rem 0;
+          border-radius: 0;
+          background:transparent;
+        }
+      }
+        .mvx-form-vendor-register .mvx-option-part{
+          input[type="text"]{
+            border: 0;
+            background:transparent;
+            &:focus{
+              border: solid $boder-color;
+              border-radius:0;
+              border-width: 0 0 0.06rem 0;
+            }
+          }
+        }
       .mvx-form-vendor-register .mvx-option-part, .mvx-top-part-registartion-from  {
         padding: 1.5rem;
         border-radius: 0.25rem;
         margin: 0.7rem 0;
         position: relative;
-        overflow: hidden;
         input[type="text"].mvx-rgistration-form-title{
           font-size: 1.25rem;
         }
@@ -1618,14 +1639,7 @@ hr{
         &::placeholder{
             color: $title-color;
           } 
-        }
-        input[type="text"]{
-          font-size: 0.875rem;
-          border: solid $boder-color;
-          border-width: 0 0 0.06rem 0;
-          border-radius: 0;
-          background:transparent;
-        }
+        }       
         & .mvx-form-group{
           @include flexprops(start);
           flex-wrap: wrap;
@@ -1640,11 +1654,11 @@ hr{
             padding:0 0 0.5rem;
           }
           ul li{
-            @include flexprops(center);
+            @include flexprops(start);
             column-gap: 0.8rem;
             padding: 1rem 0;
             input[type="radio"], input[type="checkbox"], .mvx-close-icon{
-              margin-top: -3.5rem;
+              margin-top: 0.563rem;
           }
           }
         }
@@ -2881,6 +2895,9 @@ div.health-check-accordion{
           font-size: 0.875rem;
           background-color:$fill-color;
           color:$title-color;
+          .sc-crXcEl.gJhVev.rdt_TableCol_Sortable {
+            justify-content: start;
+        }
       }
     }
     .rdt_TableBody {
@@ -2899,7 +2916,14 @@ div.health-check-accordion{
           }
           .mvx-vendor-action-icon {
             @include flexprops(center);
+            min-width: 7rem;
             column-gap:0.25rem;
+            .mvx-vendor-icon-name {
+              overflow: hidden;
+              width: 4.438rem;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+          }
             div, a{
               &:hover{
                 text-decoration: none;
@@ -2923,6 +2947,9 @@ div.health-check-accordion{
         }
         .jfrgbA {
          padding:0 1rem;
+         &:first-child{
+          background-color: #000;
+         }
         }
       }
     }
@@ -3337,7 +3364,7 @@ padding:0;
           }
     .mvx-registration-dropdown-menu{
       position:absolute;
-      top:-1.5rem;
+      top:-5.5rem;
       left:0;
       width: 100%;
       height:20rem;

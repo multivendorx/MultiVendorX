@@ -655,6 +655,12 @@ textarea, input[type=text], input[type=url], input[type=email], input[type=numbe
   line-height: 2.375;
 }
 
+textarea:focus, input[type=text]:focus, input[type=url]:focus, input[type=email]:focus, input[type=number]:focus, select:focus, input:focus, .default-input:focus, input[type=password]:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border-color: #d4d1d9;
+}
+
 textarea {
   padding: 0.5rem;
 }
@@ -1888,12 +1894,30 @@ div#wpbody-content {
   color: #181718;
 }
 
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from input[type="text"] {
+  font-size: 0.875rem;
+  border: solid #d4d1d9;
+  border-width: 0 0 0.06rem 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part input[type="text"] {
+  border: 0;
+  background: transparent;
+}
+
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part input[type="text"]:focus {
+  border: solid #d4d1d9;
+  border-radius: 0;
+  border-width: 0 0 0.06rem 0;
+}
+
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from {
   padding: 1.5rem;
   border-radius: 0.25rem;
   margin: 0.7rem 0;
   position: relative;
-  overflow: hidden;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part input[type="text"].mvx-rgistration-form-title, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from input[type="text"].mvx-rgistration-form-title {
@@ -1918,14 +1942,6 @@ div#wpbody-content {
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part input[type="text"].mvx-question-title::placeholder, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from input[type="text"].mvx-question-title::placeholder {
   color: #181718;
-}
-
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part input[type="text"], .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from input[type="text"] {
-  font-size: 0.875rem;
-  border: solid #d4d1d9;
-  border-width: 0 0 0.06rem 0;
-  border-radius: 0;
-  background: transparent;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-form-group, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-form-group {
@@ -1956,16 +1972,16 @@ div#wpbody-content {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
   -webkit-column-gap: 0.8rem;
           column-gap: 0.8rem;
   padding: 1rem 0;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container ul li input[type="radio"], .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container ul li input[type="checkbox"], .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container ul li .mvx-close-icon, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container ul li input[type="radio"], .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container ul li input[type="checkbox"], .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container ul li .mvx-close-icon {
-  margin-top: -3.5rem;
+  margin-top: 0.563rem;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-registration-fileds-description, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-registration-fileds-description {
@@ -3785,6 +3801,12 @@ div.health-check-accordion .health-check-accordion-panel table td {
   color: #181718;
 }
 
+.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableHead .rdt_TableHeadRow .sc-crXcEl.gJhVev.rdt_TableCol_Sortable {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+}
+
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow {
   border: 0.063rem solid #d4d1d9;
   color: #5e5d60;
@@ -3807,8 +3829,16 @@ div.health-check-accordion .health-check-accordion-panel table td {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  min-width: 7rem;
   -webkit-column-gap: 0.25rem;
           column-gap: 0.25rem;
+}
+
+.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon .mvx-vendor-icon-name {
+  overflow: hidden;
+  width: 4.438rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon div:hover, .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon a:hover {
@@ -3832,6 +3862,10 @@ div.health-check-accordion .health-check-accordion-panel table td {
 
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .jfrgbA {
   padding: 0 1rem;
+}
+
+.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .jfrgbA:first-child {
+  background-color: #000;
 }
 
 .mvx-backend-datatable-wrapper .rdt_Table input[type="checkbox"] {
@@ -4460,7 +4494,7 @@ div.health-check-accordion .health-check-accordion-panel table td {
 
 .mvx-registration-content .mvx-form-group .dropdown .mvx-registration-dropdown-menu {
   position: absolute;
-  top: -1.5rem;
+  top: -5.5rem;
   left: 0;
   width: 100%;
   height: 20rem;

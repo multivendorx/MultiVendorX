@@ -8135,7 +8135,7 @@ if (!function_exists('mvx_list_all_modules')) {
                     ],
                     [
                         'id'           => 'knowladgebase',
-                        'name'         => __( 'Knowladgebase', 'multivendorx' ),
+                        'name'         => __( 'Knowledgebase', 'multivendorx' ),
                         'description'  => __( 'Admin can share tutorials and othe vendor-specific information with vendors', 'multivendorx' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
