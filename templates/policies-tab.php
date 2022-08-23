@@ -2,7 +2,7 @@
 /**
  * The template for displaying single product page vendor tab 
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/policies_tab.php
+ * Override this template by copying it to yourtheme/dc-product-vendor/policies-tab.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

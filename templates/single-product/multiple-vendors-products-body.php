@@ -2,7 +2,7 @@
 /**
  * Single Product Multiple vendors
  *
- * This template can be overridden by copying it to yourtheme/dc-product-vendor/single-product/multiple_vendors_products_body.php.
+ * This template can be overridden by copying it to yourtheme/dc-product-vendor/single-product/multiple-vendors-products-body.php.
  *
  * HOWEVER, on occasion MVX will need to update template files and you (the theme developer).
  * will need to copy the new files to your theme to maintain compatibility. We try to do this.

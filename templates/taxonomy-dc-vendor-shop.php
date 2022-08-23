@@ -2,7 +2,7 @@
 /**
  * The Template for displaying products in a product category. Simply includes the archive template.
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/taxonomy-dc_vendor_shop.php
+ * Override this template by copying it to yourtheme/dc-product-vendor/taxonomy-dc-vendor-shop.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

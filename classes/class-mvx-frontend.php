@@ -225,7 +225,7 @@ class MVX_Frontend {
     function mvx_vendor_register_form_callback() {
         global $MVX;
         $mvx_vendor_registration_form_data = mvx_get_option('mvx_new_vendor_registration_form_data');
-        $MVX->template->get_template('vendor_registration_form.php', array('mvx_vendor_registration_form_data' => $mvx_vendor_registration_form_data));
+        $MVX->template->get_template('vendor-registration-form.php', array('mvx_vendor_registration_form_data' => $mvx_vendor_registration_form_data));
     }
 
     /**
@@ -264,9 +264,9 @@ class MVX_Frontend {
         if (!empty($vendor_array)) {
             echo '<div style="clear:both">';
             if (apply_filters('can_vendor_add_message_on_email_and_thankyou_page', true)) {
-                $MVX->template->get_template('vendor_message_to_buyer.php', array('vendor_array' => $vendor_array, 'capability_settings' => $customer_support_details_settings, 'customer_support_details_settings' => $customer_support_details_settings));
+                $MVX->template->get_template('vendor-message-to-buyer.php', array('vendor_array' => $vendor_array, 'capability_settings' => $customer_support_details_settings, 'customer_support_details_settings' => $customer_support_details_settings));
             } elseif (get_mvx_vendor_settings('is_customer_support_details', 'settings_general')) {
-                $MVX->template->get_template('customer_support_details_to_buyer.php', array('vendor_array' => $vendor_array, 'capability_settings' => $customer_support_details_settings, 'customer_support_details_settings' => $customer_support_details_settings));
+                $MVX->template->get_template('customer-support-details-to-buyer.php', array('vendor_array' => $vendor_array, 'capability_settings' => $customer_support_details_settings, 'customer_support_details_settings' => $customer_support_details_settings));
             }
             echo "</div>";
         }
@@ -522,7 +522,7 @@ class MVX_Frontend {
 
                 $address = $vendor->get_formatted_address();
 
-                $MVX->template->get_template('archive_vendor_info.php', array('vendor_id' => $vendor->id, 'banner' => $vendor->get_image('banner'), 'profile' => $image, 'description' => apply_filters('the_content', $description), 'mobile' => $vendor->phone, 'location' => $address, 'email' => $vendor->user_data->user_email));
+                $MVX->template->get_template('archive-vendor-info.php', array('vendor_id' => $vendor->id, 'banner' => $vendor->get_image('banner'), 'profile' => $image, 'description' => apply_filters('the_content', $description), 'mobile' => $vendor->phone, 'location' => $address, 'email' => $vendor->user_data->user_email));
             }
         }
     }

@@ -91,6 +91,7 @@ class MVXBackendVendor extends React.Component {
 		this.handle_Vendor_Approve = this.handle_Vendor_Approve.bind(this);
 		this.handle_Vendor_Reject = this.handle_Vendor_Reject.bind(this);
 		this.handle_Vendor_Edit = this.handle_Vendor_Edit.bind(this);
+		this.handle_Vendor_Suspend = this.handle_Vendor_Suspend.bind(this);
 	}
 
 	handle_rejected_vendor_description(e, vendorid) {
@@ -116,6 +117,23 @@ class MVXBackendVendor extends React.Component {
 					datavendor: response.data,
 				});
 			}
+		});
+	}
+
+	handle_Vendor_Suspend(e) {
+		axios({
+			method: 'post',
+			url: `${appLocalizer.apiUrl}/mvx_module/v1/active_suspend_vendor`,
+			data: {
+				vendor_id: e,
+				status: 'suspend',
+				section: 'vendor_list',
+			},
+		}).then((response) => {
+			this.handleClose_dynamic();
+			this.setState({
+				datavendor: response.data,
+			});
 		});
 	}
 
@@ -579,6 +597,12 @@ class MVXBackendVendor extends React.Component {
 					? (data_ann.cell = (row) => (
 							<div className="mvx-vendor-action-icon">
 								<div
+									dangerouslySetInnerHTML={{
+										__html: row.name,
+									}}
+								></div>
+
+								<div
 									onClick={() => this.handleEyeIcon(row.ID)}
 									id={row.ID}
 								>
@@ -946,6 +970,7 @@ class MVXBackendVendor extends React.Component {
 													</div>
 
 													<div className="mvx-vendor-multi-action-buttons">
+														{data8.status_raw_text !== 'Approved' ?
 														<button
 															className="mvx-btn btn-purple"
 															onClick={() =>
@@ -961,6 +986,24 @@ class MVXBackendVendor extends React.Component {
 																	.approve
 															}
 														</button>
+														: 
+														<button
+															className="mvx-btn btn-purple"
+															onClick={() =>
+																this.handle_Vendor_Suspend(
+																	data8.ID
+																)
+															}
+															color="primary"
+														>
+															{
+																appLocalizer
+																	.vendor_page_string
+																	.suspend
+															}
+														</button>
+
+														}
 														<button
 															className="mvx-btn btn-red"
 															onClick={() =>

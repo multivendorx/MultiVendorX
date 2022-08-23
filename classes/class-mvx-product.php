@@ -159,7 +159,7 @@ class MVX_Product {
     function product_single_product_multivendor_tab_link() {
         global $MVX;
         if (is_product()) {
-            $MVX->template->get_template('single-product/multiple_vendors_products_link.php');
+            $MVX->template->get_template('single-product/multiple-vendors-products-link.php');
         }
     }
 
@@ -192,7 +192,7 @@ class MVX_Product {
         $more_products = apply_filters('mvx_single_product_multiple_vendor_products_array', $this->get_multiple_vendors_array_for_single_product($post->ID), $post->ID);
         $more_product_array = $more_products['more_product_array'];
         $results = $more_products['results'];
-        $MVX->template->get_template('single-product/multiple_vendors_products.php', array('results' => $results, 'more_product_array' => $more_product_array));
+        $MVX->template->get_template('single-product/multiple-vendors-products.php', array('results' => $results, 'more_product_array' => $more_product_array));
     }
 
     function get_multiple_vendors_array_for_single_product($post_id) {
@@ -1250,7 +1250,7 @@ class MVX_Product {
      */
     function woocommerce_product_vendor_tab() {
         global $woocommerce, $MVX;
-        $MVX->template->get_template('vendor_tab.php');
+        $MVX->template->get_template('vendor-tab.php');
     }
 
     /**
@@ -1281,7 +1281,7 @@ class MVX_Product {
      */
     function woocommerce_product_policies_tab() {
         global $MVX;
-        $MVX->template->get_template('policies_tab.php');
+        $MVX->template->get_template('policies-tab.php');
     }
 
     /**

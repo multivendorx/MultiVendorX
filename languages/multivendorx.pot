@@ -841,7 +841,7 @@ msgstr ""
 #: classes/class-mvx-product.php:908 classes/class-mvx-user.php:643
 #: classes/widgets/class-mvx-widget-vendor-policies.php:25
 #: classes/widgets/class-mvx-widget-vendor-policies.php:65
-#: includes/mvx-core-functions.php:6673 templates/policies_tab.php:17
+#: includes/mvx-core-functions.php:6673 templates/policies-tab.php:17
 #: templates/vendor-dashboard/product-manager/views/html-product-data-policy.php:25
 #: templates/vendor-dashboard/vendor-policy.php:39
 msgid "Shipping Policy"
@@ -851,7 +851,7 @@ msgstr ""
 #: classes/class-mvx-product.php:909 classes/class-mvx-user.php:636
 #: classes/widgets/class-mvx-widget-vendor-policies.php:30
 #: classes/widgets/class-mvx-widget-vendor-policies.php:71
-#: includes/mvx-core-functions.php:6681 templates/policies_tab.php:22
+#: includes/mvx-core-functions.php:6681 templates/policies-tab.php:22
 #: templates/vendor-dashboard/product-manager/views/html-product-data-policy.php:44
 #: templates/vendor-dashboard/vendor-policy.php:46
 msgid "Refund Policy"
@@ -1189,7 +1189,7 @@ msgstr ""
 #: api/class-mvx-rest-controller.php:4849 classes/class-mvx-admin.php:318
 #: classes/class-mvx-admin.php:644 classes/class-mvx-ajax.php:2024
 #: classes/class-mvx-ajax.php:2902 includes/mvx-core-functions.php:6996
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_product_stats.php:51
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-product-stats.php:51
 #: templates/vendor-dashboard/product-manager/products.php:27
 msgid "Pending"
 msgstr ""
@@ -1486,7 +1486,7 @@ msgstr ""
 
 #: classes/class-mvx-admin.php:283 classes/class-mvx-admin.php:324
 #: classes/class-mvx-admin.php:342 classes/class-mvx-admin.php:865
-#: templates/customer_support_details_to_buyer.php:33
+#: templates/customer-support-details-to-buyer.php:33
 #: templates/vendor-dashboard/dashboard/vendor-dasboard-pending-shipping-items-header.php:16
 #: templates/vendor_message_to_buyer.php:36
 msgid "Product Name"
@@ -1504,7 +1504,7 @@ msgstr ""
 
 #: classes/class-mvx-admin.php:293 classes/class-mvx-admin.php:329
 #: classes/class-mvx-admin.php:371 classes/class-mvx-vendor-dashboard.php:293
-#: templates/customer_support_details_to_buyer.php:31
+#: templates/customer-support-details-to-buyer.php:31
 #: templates/vendor_message_to_buyer.php:34
 msgid "Vendor Name"
 msgstr ""
@@ -1589,7 +1589,7 @@ msgstr ""
 
 #: classes/class-mvx-admin.php:317 classes/class-mvx-admin.php:648
 #: classes/class-mvx-ajax.php:2021
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_product_stats.php:46
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-product-stats.php:46
 #: templates/vendor-dashboard/product-manager/products.php:26
 msgid "Published"
 msgstr ""
@@ -1749,7 +1749,7 @@ msgstr ""
 #: includes/mvx-core-functions.php:6157 includes/mvx-core-functions.php:7520
 #: includes/mvx-core-functions.php:7585
 #: templates/emails/report-abuse-email.php:26
-#: templates/single-product/multiple_vendors_products.php:27
+#: templates/single-product/multiple-vendors-products.php:27
 msgid "Vendor"
 msgstr ""
 
@@ -1758,7 +1758,7 @@ msgid "Commission Details"
 msgstr ""
 
 #: classes/class-mvx-admin.php:365
-#: templates/customer_support_details_to_buyer.php:25
+#: templates/customer-support-details-to-buyer.php:25
 #: templates/vendor_message_to_buyer.php:26
 msgid "Vendor Details"
 msgstr ""
@@ -1816,8 +1816,8 @@ msgstr ""
 #: templates/emails/vendor-followed.php:16
 #: templates/emails/vendor-new-order.php:26
 #: templates/emails/vendor-notify-shipped.php:29
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_product_sales_report.php:17
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_product_sales_report.php:32
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-product-sales-report.php:17
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-product-sales-report.php:32
 #: templates/vendor-dashboard/vendor-products-qna.php:38
 msgid "Product"
 msgstr ""
@@ -2721,7 +2721,7 @@ msgstr ""
 
 #: classes/class-mvx-ajax.php:1128
 #: templates/vendor-dashboard/dashboard/vendor-dashboard-sales-item-header.php:18
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_stats_reports.php:37
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-stats-reports.php:37
 msgid "Sales"
 msgstr ""
 
@@ -2744,7 +2744,7 @@ msgstr ""
 #: classes/class-mvx-ajax.php:1771 classes/class-mvx-vendor-hooks.php:528
 #: packages/mvx-tablerate/mvx-tablerate.php:608
 #: templates/emails/vendor-notify-shipped.php:31
-#: templates/single-product/multiple_vendors_products.php:28
+#: templates/single-product/multiple-vendors-products.php:28
 msgid "Price"
 msgstr ""
 
@@ -2845,7 +2845,7 @@ msgstr ""
 
 #: classes/class-mvx-ajax.php:2026
 #: templates/vendor-dashboard/coupon-manager/add-coupons.php:126
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_product_stats.php:56
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-product-stats.php:56
 #: templates/vendor-dashboard/product-manager/edit-product.php:365
 #: templates/vendor-dashboard/product-manager/products.php:28
 msgid "Draft"
@@ -3313,16 +3313,16 @@ msgid "Customer Support Details of : "
 msgstr ""
 
 #: classes/class-mvx-email.php:178 classes/class-mvx-email.php:245
-#: templates/customer_support_details_to_buyer.php:38
-#: templates/customer_support_details_to_buyer.php:74
+#: templates/customer-support-details-to-buyer.php:38
+#: templates/customer-support-details-to-buyer.php:74
 #: templates/vendor_message_to_buyer.php:44
 #: templates/vendor_message_to_buyer.php:75
 msgid "Email : "
 msgstr ""
 
 #: classes/class-mvx-email.php:185 classes/class-mvx-email.php:255
-#: templates/customer_support_details_to_buyer.php:43
-#: templates/customer_support_details_to_buyer.php:79
+#: templates/customer-support-details-to-buyer.php:43
+#: templates/customer-support-details-to-buyer.php:79
 #: templates/vendor_message_to_buyer.php:49
 #: templates/vendor_message_to_buyer.php:80
 msgid "Phone : "
@@ -3571,7 +3571,7 @@ msgstr ""
 #: templates/shortcode/vendor-list/map-filters.php:51
 #: templates/shortcode/vendor_lists.php:55
 #: templates/vendor-dashboard/coupon-manager/add-coupons.php:116
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_pending_shipping.php:63
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-pending-shipping.php:63
 #: templates/vendor-dashboard/product-manager/edit-product.php:262
 #: templates/vendor-dashboard/product-manager/edit-product.php:355
 #: templates/vendor-dashboard/vendor-orders/views/html-order-notes.php:70
@@ -4486,7 +4486,7 @@ msgid "Discount Used"
 msgstr ""
 
 #: classes/class-mvx-vendor-dashboard.php:299
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_stats_reports.php:44
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-stats-reports.php:44
 msgid "Earning"
 msgstr ""
 
@@ -4625,7 +4625,7 @@ msgstr ""
 
 #: classes/class-mvx-vendor-dashboard.php:1612
 #: classes/class-mvx-vendor-hooks.php:206 includes/mvx-core-functions.php:4366
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_stats_reports.php:49
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-stats-reports.php:49
 msgid "Withdrawal"
 msgstr ""
 
@@ -6686,7 +6686,7 @@ msgid "MVX: Vendor's Policies"
 msgstr ""
 
 #: classes/widgets/class-mvx-widget-vendor-policies.php:77
-#: includes/mvx-core-functions.php:6689 templates/policies_tab.php:27
+#: includes/mvx-core-functions.php:6689 templates/policies-tab.php:27
 msgid "Cancellation / Return / Exchange Policy"
 msgstr ""
 
@@ -9061,20 +9061,20 @@ msgstr ""
 
 #: packages/mvx-elementor/includes/Tags/StoreFollow.php:52
 #: packages/mvx-elementor/widgets/class-mvx-widget-storefollow.php:168
-#: templates/archive_vendor_info.php:29
+#: templates/archive-vendor-info.php:29
 msgid "Unfollow"
 msgstr ""
 
 #: packages/mvx-elementor/includes/Tags/StoreFollow.php:52
 #: packages/mvx-elementor/includes/Tags/StoreFollow.php:55
 #: packages/mvx-elementor/widgets/class-mvx-widget-storefollow.php:168
-#: templates/archive_vendor_info.php:29
+#: templates/archive-vendor-info.php:29
 msgid "Follow"
 msgstr ""
 
 #: packages/mvx-elementor/includes/Tags/StoreFollow.php:53
-#: templates/archive_vendor_info.php:71 templates/archive_vendor_info.php:187
-#: templates/archive_vendor_info.php:277
+#: templates/archive-vendor-info.php:71 templates/archive-vendor-info.php:187
+#: templates/archive-vendor-info.php:277
 msgid "You must logged in to follow"
 msgstr ""
 
@@ -9233,7 +9233,7 @@ msgid "Store Tab Contents"
 msgstr ""
 
 #: packages/mvx-elementor/widgets/class-mvx-widget-storetabcontents.php:120
-#: templates/taxonomy-dc_vendor_shop.php:55
+#: templates/taxonomy-dc-vendor-shop.php:55
 msgid "Site Administrator has blocked this vendor"
 msgstr ""
 
@@ -9325,27 +9325,27 @@ msgstr ""
 msgid "Item count"
 msgstr ""
 
-#: templates/archive_vendor_info.php:88 templates/archive_vendor_info.php:163
-#: templates/archive_vendor_info.php:259
+#: templates/archive-vendor-info.php:88 templates/archive-vendor-info.php:163
+#: templates/archive-vendor-info.php:259
 msgid "External Store URL"
 msgstr ""
 
-#: templates/customer_support_details_to_buyer.php:36
-#: templates/customer_support_details_to_buyer.php:72
+#: templates/customer-support-details-to-buyer.php:36
+#: templates/customer-support-details-to-buyer.php:72
 #: templates/vendor-dashboard/vendor-policy.php:65
 #: templates/vendor_message_to_buyer.php:41
 #: templates/vendor_message_to_buyer.php:72
 msgid "Customer Support Details"
 msgstr ""
 
-#: templates/customer_support_details_to_buyer.php:46
-#: templates/customer_support_details_to_buyer.php:82
+#: templates/customer-support-details-to-buyer.php:46
+#: templates/customer-support-details-to-buyer.php:82
 #: templates/vendor_message_to_buyer.php:53
 #: templates/vendor_message_to_buyer.php:85
 msgid "Return Address "
 msgstr ""
 
-#: templates/customer_support_details_to_buyer.php:67
+#: templates/customer-support-details-to-buyer.php:67
 msgid "Customer Support Details & Product Return Address"
 msgstr ""
 
@@ -9946,7 +9946,7 @@ msgid "Order: %s"
 msgstr ""
 
 #: templates/emails/vendor-notify-shipped.php:68
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_pending_shipping.php:42
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-pending-shipping.php:42
 #: templates/vendor-dashboard/vendor-orders.php:119
 msgid "Shipment Tracking Details"
 msgstr ""
@@ -10253,31 +10253,31 @@ msgstr ""
 msgid " Load More "
 msgstr ""
 
-#: templates/single-product/multiple_vendors_products.php:31
+#: templates/single-product/multiple-vendors-products.php:31
 msgid "Price Low To High"
 msgstr ""
 
-#: templates/single-product/multiple_vendors_products.php:32
+#: templates/single-product/multiple-vendors-products.php:32
 msgid "Price High To Low"
 msgstr ""
 
-#: templates/single-product/multiple_vendors_products.php:33
+#: templates/single-product/multiple-vendors-products.php:33
 msgid "Rating High To Low"
 msgstr ""
 
-#: templates/single-product/multiple_vendors_products.php:34
+#: templates/single-product/multiple-vendors-products.php:34
 msgid "Rating Low To High"
 msgstr ""
 
-#: templates/single-product/multiple_vendors_products.php:48
+#: templates/single-product/multiple-vendors-products.php:48
 msgid "Sorry no more offers available"
 msgstr ""
 
-#: templates/single-product/multiple_vendors_products_body.php:70
+#: templates/single-product/multiple-vendors-products-body.php:70
 msgid "Details"
 msgstr ""
 
-#: templates/single-product/multiple_vendors_products_link.php:21
+#: templates/single-product/multiple-vendors-products-link.php:21
 msgid "More Vendors"
 msgstr ""
 
@@ -10331,10 +10331,10 @@ msgid "No matching coupons found"
 msgstr ""
 
 #: templates/vendor-dashboard/coupon-manager/coupons.php:90
-#: templates/vendor-dashboard/dashboard-widgets/mvx_customer_review.php:67
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_pending_shipping.php:98
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_product_sales_report.php:69
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_products_cust_qna.php:57
+#: templates/vendor-dashboard/dashboard-widgets/mvx-customer-review.php:67
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-pending-shipping.php:98
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-product-sales-report.php:69
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-products-cust-qna.php:57
 #: templates/vendor-dashboard/product-manager/products.php:218
 #: templates/vendor-dashboard/vendor-orders.php:204
 #: templates/vendor-dashboard/vendor-products-qna.php:105
@@ -10553,105 +10553,105 @@ msgstr ""
 msgid "Discount"
 msgstr ""
 
-#: templates/vendor-dashboard/dashboard-widgets/mvx_customer_review.php:51
+#: templates/vendor-dashboard/dashboard-widgets/mvx-customer-review.php:51
 msgid "No reviews found."
 msgstr ""
 
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_pending_shipping.php:47
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-pending-shipping.php:47
 #: templates/vendor-dashboard/vendor-orders/views/html-order-notes.php:81
 #: templates/vendor-dashboard/vendor-orders.php:124
 msgid "Enter Tracking Url"
 msgstr ""
 
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_pending_shipping.php:51
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-pending-shipping.php:51
 #: templates/vendor-dashboard/vendor-orders/views/html-order-notes.php:85
 #: templates/vendor-dashboard/vendor-orders.php:128
 msgid "Enter Tracking ID"
 msgstr ""
 
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_pending_shipping.php:90
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_pending_shipping.php:91
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-pending-shipping.php:90
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-pending-shipping.php:91
 msgid "You have no pending shipping!"
 msgstr ""
 
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_product_sales_report.php:18
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_product_sales_report.php:33
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-product-sales-report.php:18
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-product-sales-report.php:33
 msgid "Revenue"
 msgstr ""
 
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_product_sales_report.php:19
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_product_sales_report.php:34
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-product-sales-report.php:19
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-product-sales-report.php:34
 msgid "Unique Purchases"
 msgstr ""
 
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_product_sales_report.php:61
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_product_sales_report.php:62
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-product-sales-report.php:61
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-product-sales-report.php:62
 msgid "Not enough data."
 msgstr ""
 
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_product_stats.php:16
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-product-stats.php:16
 msgid "No products Available."
 msgstr ""
 
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_product_stats.php:61
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-product-stats.php:61
 msgid "Not Approved"
 msgstr ""
 
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_products_cust_qna.php:41
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-products-cust-qna.php:41
 msgid "No unanswered questions found."
 msgstr ""
 
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_stats_reports.php:21
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-stats-reports.php:21
 msgid "Your Store Report - %s"
 msgstr ""
 
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_stats_reports.php:24
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-stats-reports.php:24
 msgid "Key Performance Indicators"
 msgstr ""
 
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_stats_reports.php:27
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-stats-reports.php:27
 msgid "Traffic"
 msgstr ""
 
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_stats_reports.php:32
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-stats-reports.php:32
 msgid "Order No"
 msgstr ""
 
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_stats_reports.php:56
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-stats-reports.php:56
 msgid "Store Insights"
 msgstr ""
 
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_stats_reports.php:57
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-stats-reports.php:57
 msgid "Your average order value %1$s for this span was %2$s"
 msgstr ""
 
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_stats_reports.php:58
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-stats-reports.php:58
 msgid ""
 "During this span, %1$s has been credited to your %2$s account, as "
 "commission."
 msgstr ""
 
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_stats_reports.php:60
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-stats-reports.php:60
 msgid "Compare your store performance against"
 msgstr ""
 
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_stats_reports.php:74
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-stats-reports.php:74
 msgid "Store traffic"
 msgstr ""
 
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_stats_reports.php:78
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-stats-reports.php:78
 msgid "Received orders"
 msgstr ""
 
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_stats_reports.php:82
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-stats-reports.php:82
 msgid "Total sales"
 msgstr ""
 
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_stats_reports.php:87
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-stats-reports.php:87
 msgid "Your earning"
 msgstr ""
 
-#: templates/vendor-dashboard/dashboard-widgets/mvx_vendor_transaction_details.php:3
+#: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-transaction-details.php:3
 msgid "Withdrawable Balance"
 msgstr ""
 
