@@ -293,7 +293,7 @@ class MVX_Dashboard extends Component {
                                                     Learn more about marketplace features and settings by accessing our documentation forum.
                                                 </p>
                                             </div>
-                                            <a href="#">
+                                            <a href="https://multivendorx.com/doc/">
                                                 Visit Documentation Forum{' '}
                                                 <span className="mvx-font icon-link-right-arrow" />
                                             </a>
@@ -311,7 +311,7 @@ class MVX_Dashboard extends Component {
                                                     Lost somewhere or have a query to make? Join us on our support forum and flag your issue.
                                                 </p>
                                             </div>
-                                            <a href="#">
+                                            <a href="https://wc-marketplace.com/support-forum">
                                                 Join Support Forum{' '}
                                                 <span className="mvx-font icon-link-right-arrow" />
                                             </a>
