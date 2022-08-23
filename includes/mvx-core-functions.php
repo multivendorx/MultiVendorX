@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 if (!function_exists('get_mvx_vendor_settings')) {
 
@@ -5748,7 +5748,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'type'      => 'toggle_rectangle',
                     'class'     => 'mvx-toggle-radio-switcher',
                     'label'     => __( 'Revenue Sharing Mode', 'multivendorx' ),
-                    'desc'      => __( 'Select how you want the commission to be split', 'multivendorx' ),
+                    'desc'      => __( 'Select how you want the commission to be split. If you are not sure about how to setup commissions and payment options in your marketplace, kindly read this <a href="https://multivendorx.com/doc/knowladgebase/payments/" terget="_blank">article</a> before proceeding.', 'multivendorx' ),
                     'options' => array(
                         array(
                             'name'  => 'revenue_sharing_mode',
@@ -7083,7 +7083,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
             ),
             array(
                 'tablabel'      =>  __('Registration Form', 'multivendorx'),
-                'description'   =>  __('Customise personalised seller registration form for marketplace', 'multivendorx'),
+                'description'   =>  __('Customise personalised seller registration form for marketplace.', 'multivendorx'),
                 'icon'          =>  'icon-tab-registration-form',
                 'submenu'       =>  'settings',
                 'modulename'    => 'registration'
@@ -7091,7 +7091,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
             array(
                 'tablabel'      =>  __('Seller Dashboard', 'multivendorx'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
-                'description'   =>  __("Manage the appearance of your seller's dashboard", 'multivendorx'),
+                'description'   =>  __("Manage the appearance of your seller's dashboard.", 'multivendorx'),
                 'icon'          =>  'icon-tab-seller-dashbaord',
                 'submenu'       =>  'settings',
                 'modulename'    =>  'seller-dashbaord'
@@ -7099,7 +7099,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
             array(
                 'tablabel'      =>  __('Store', 'multivendorx'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
-                'description'   =>  __("Manage setting related to the sellers shop", 'multivendorx'),
+                'description'   =>  __("Manage setting related to the sellers shop.", 'multivendorx'),
                 'icon'          =>  'icon-tab-store',
                 'submenu'       =>  'settings',
                 'modulename'    =>  'store'
@@ -7107,7 +7107,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
             array(
                 'tablabel'      =>  __('Products', 'multivendorx'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
-                'description'   =>  __("Select the type of product that best suits your marketplace", 'multivendorx'),
+                'description'   =>  __("Select the type of product that best suits your marketplace.", 'multivendorx'),
                 'icon'          =>  'icon-tab-products',
                 'submenu'       =>  'settings',
                 'modulename'    =>  'products'
@@ -7123,7 +7123,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
             array(
                 'tablabel'      =>  __('SPMV(Single Product Multiple Vendor)', 'multivendorx'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
-                'description'   =>  __("Give sellers the option to add other seller's products into their store inventory", 'multivendorx'),
+                'description'   =>  __("Give sellers the option to add other seller's products into their store inventory.", 'multivendorx'),
                 'icon'          =>  'icon-tab-SPMV',
                 'submenu'       =>  'settings',
                 'modulename'    =>  'spmv-pages'
@@ -7131,7 +7131,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
             array(
                 'tablabel'      =>  __('Commissions', 'multivendorx'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
-                'description'   =>  __("Configure commission settings to customise your commission plan", 'multivendorx'),
+                'description'   =>  __("Configure commission settings to customise your commission plan.", 'multivendorx'),
                 'icon'          =>  'icon-tab-commissions',
                 'submenu'       =>  'settings',
                 'modulename'    =>  'commissions'
@@ -7139,7 +7139,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
             array(
                 'tablabel'      =>  __('Disbursement', 'multivendorx'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
-                'description'   =>  __('Manage payment and disbursement setting of your site', 'multivendorx'),
+                'description'   =>  __('Manage payment and disbursement setting of your site.', 'multivendorx'),
                 'icon'          =>  'icon-tab-disbursement',
                 'submenu'       =>  'settings',
                 'modulename'    =>  'disbursement'
@@ -7147,7 +7147,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
             array(
                 'tablabel'      =>  __('Policy', 'multivendorx'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
-                'description'   =>  __('Add policies that are applicable to your site', 'multivendorx'),
+                'description'   =>  __('Add policies that are applicable to your site.', 'multivendorx'),
                 'icon'          =>  'icon-tab-policy',
                 'submenu'       =>  'settings',
                 'modulename'    =>  'policy'
@@ -7155,7 +7155,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
             array(
                 'tablabel'      =>  __('Refunds', 'multivendorx'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
-                'description'   =>  __('Set conditions for refund requests', 'multivendorx'),
+                'description'   =>  __('Set conditions for refund requests.', 'multivendorx'),
                 'icon'          =>  'icon-tab-refunds',
                 'submenu'       =>  'settings',
                 'modulename'    =>  'refund-management'
@@ -7163,7 +7163,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
             array(
                 'tablabel'      =>  __('Reviews & Rating', 'multivendorx'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
-                'description'   =>  __('Manage settings for product and store review', 'multivendorx'),
+                'description'   =>  __('Manage settings for product and store review.', 'multivendorx'),
                 'icon'          =>  'icon-tab-reviews-and-rating',
                 'submenu'       =>  'settings',
                 'modulename'    =>  'review-management'
@@ -7171,7 +7171,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
             array(
                 'tablabel'      =>  __('Social', 'multivendorx'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
-                'description'   =>  __('Create a platform for seller-customer interaction', 'multivendorx'),
+                'description'   =>  __('Create a platform for seller-customer interaction.', 'multivendorx'),
                 'icon'          =>  'icon-tab-social',
                 'submenu'       =>  'settings',
                 'modulename'    =>  'social'
@@ -7206,7 +7206,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
             array(
                 'tablabel'      =>  __('PayPal Payout', 'multivendorx'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
-                'description'   =>  __('PayPal Payout makes it easy for you to pay multiple sellers at the sametime', 'multivendorx'),
+                'description'   =>  __('PayPal Payout makes it easy for you to pay multiple sellers at the sametime.', 'multivendorx'),
                 'icon'          =>  'icon-tab-paypal-payout',
                 'submenu'       =>  'payment',
                 'modulename'     =>  'payment-payout'
@@ -7214,7 +7214,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
             array(
                 'tablabel'      =>  __('Stripe Connect', 'multivendorx'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
-                'description'   =>  __('Connect to vendors stripe account and make hassle-free transfers as scheduled', 'multivendorx'),
+                'description'   =>  __('Connect to vendors stripe account and make hassle-free transfers as scheduled.', 'multivendorx'),
                 'icon'          =>  'icon-tab-stripe-connect',
                 'submenu'       =>  'payment',
                 'modulename'     =>  'payment-stripe-connect'

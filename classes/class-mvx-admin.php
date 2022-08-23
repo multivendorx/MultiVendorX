@@ -454,7 +454,7 @@ class MVX_Admin {
                 array(
                     'name'              =>  __('Order Migrate', 'multivendorx'),
                     'key'               =>  'migrate_order',
-                    'headline_text'     =>  __('Migrate Previous Marketplace Data', 'multivendorx'),
+                    'headline_text'     =>  __('Regenerate Suborders', 'multivendorx'),
                     'description_text'  =>  __('With this tool, you can create missing sub orders', 'multivendorx')
                 ),
                 array(
