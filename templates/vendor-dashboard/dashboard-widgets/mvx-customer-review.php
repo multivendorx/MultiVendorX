@@ -1,7 +1,7 @@
 <?php
 /*
  * The template for displaying vendor pending shipping table dashboard widget
- * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/dashboard-widgets/mvx_customer_review.php
+ * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/dashboard-widgets/mvx-customer-review.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

@@ -730,12 +730,12 @@ class MVX_Admin {
                 'sortable'  =>  true,
                 'selector_choice'  => "email",
             ),
-            array(
+           /* array(
                 'name'      =>  __('Registered', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "registered",
-            ),
+            ),*/
             array(
                 'name'      =>  __('Products', 'multivendorx'),
                 'selector'  =>  '',

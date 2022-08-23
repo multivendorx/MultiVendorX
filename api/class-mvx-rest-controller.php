@@ -641,7 +641,6 @@ class MVX_REST_API {
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
 
-
         register_rest_route( 'mvx_module/v1', '/report_abuse_details', [
             'methods' => WP_REST_Server::READABLE,
             'callback' => array( $this, 'mvx_report_abuse_details' ),
@@ -701,31 +700,31 @@ class MVX_REST_API {
             'callback' => array( $this, 'mvx_approve_dismiss_pending_transaction' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
+        // fetch all tabs
         register_rest_route( 'mvx_module/v1', '/list_of_all_tabs', [
             'methods' => WP_REST_Server::READABLE,
             'callback' => array( $this, 'mvx_list_of_all_tabs' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
+        // update vendor store data
         register_rest_route( 'mvx_module/v1', '/update_vendor_store', [
             'methods' => WP_REST_Server::EDITABLE,
             'callback' => array( $this, 'mvx_update_vendor_store' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
+        // taskboard datas display dynamicaly from array
         register_rest_route( 'mvx_module/v1', '/list_of_work_board_content', [
             'methods' => WP_REST_Server::READABLE,
             'callback' => array( $this, 'mvx_list_of_work_board_content' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
+        // taskboard section every icons working callback
         register_rest_route( 'mvx_module/v1', '/task_board_icons_triggers', [
             'methods' => WP_REST_Server::EDITABLE,
             'callback' => array( $this, 'mvx_task_board_icons_triggers' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
+        // fetch individual tab list
         register_rest_route( 'mvx_module/v1', '/find_individual_vendor_tabs', [
             'methods' => WP_REST_Server::READABLE,
             'callback' => array( $this, 'mvx_find_individual_vendor_tabs' ),
