@@ -1894,7 +1894,7 @@ div#wpbody-content {
   color: #181718;
 }
 
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from input[type="text"] {
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from input[type="text"], .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part.mvx-form-left-line-active input[type="text"] {
   font-size: 0.875rem;
   border: solid #d4d1d9;
   border-width: 0 0 0.06rem 0;
@@ -1922,10 +1922,6 @@ div#wpbody-content {
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part input[type="text"].mvx-rgistration-form-title, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from input[type="text"].mvx-rgistration-form-title {
   font-size: 1.25rem;
-}
-
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part input[type="text"].mvx-question-title, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from input[type="text"].mvx-question-title {
-  font-size: 1rem;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part input[type="text"].mvx-question-title::-webkit-input-placeholder, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from input[type="text"].mvx-question-title::-webkit-input-placeholder {
@@ -1984,11 +1980,18 @@ div#wpbody-content {
   margin-top: 0.563rem;
 }
 
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-registration-fileds-description, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-registration-fileds-description {
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-registration-form-description, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-registration-form-description {
   padding: 0.625rem 0 1.5rem;
-  font-style: italic;
   font-size: 0.75rem;
   color: #8e8b91;
+  font-style: normal;
+}
+
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-registration-fileds-description, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-registration-fileds-description {
+  padding: 0.625rem 0 1.5rem;
+  font-size: 0.75rem;
+  color: #8e8b91;
+  font-style: italic;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-footer-icon-form, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-footer-icon-form {
@@ -4497,7 +4500,7 @@ div.health-check-accordion .health-check-accordion-panel table td {
   top: -5.5rem;
   left: 0;
   width: 100%;
-  height: 20rem;
+  height: 30rem;
   background: #fdfdfe;
   border: 0.063rem solid #d4d1d9;
   overflow-y: scroll;
@@ -4515,12 +4518,16 @@ div.health-check-accordion .health-check-accordion-panel table td {
   border-radius: 0.25rem;
 }
 
+.mvx-registration-content .mvx-form-group .dropdown .mvx-registration-dropdown-menu i {
+  color: #9f8ab9;
+}
+
 .mvx-registration-content .mvx-form-group .dropdown .mvx-registration-dropdown-menu div {
   padding: 0.25rem;
 }
 
-.mvx-registration-content .mvx-form-group .dropdown .mvx-registration-dropdown-menu div:hover {
-  background-color: #5e5d60;
+.mvx-registration-content .mvx-form-group .dropdown .mvx-registration-dropdown-menu div:hover, .mvx-registration-content .mvx-form-group .dropdown .mvx-registration-dropdown-menu div:hover i {
+  background-color: #65438f;
   color: #fdfdfe;
 }
 

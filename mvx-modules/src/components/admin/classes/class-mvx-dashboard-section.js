@@ -359,22 +359,24 @@ class MVX_Dashboard extends Component {
                                         <li>Dynamic Shipping</li>
                                         <li>Invoice Mangement</li>
                                         <li>Refund Mangemnt</li>
-                                        <li>Customisable Commission</li>
-                                        <li>Multiple Payment Options</li>
-                                        <li>Store location</li>
-                                        <li>Review and Ratings</li>
-                                        <li>Business Hours</li>
-                                        <li>Vacation</li>
-                                        <li>Staff Manger</li>
-                                        <li>Wholesale Pricing</li>
-                                        <li>Live Chat</li>
-                                        <li>Marketplace Analytics</li>
-                                        <li>Coupon Management</li>
-                                        <li>Wholesale Pricing</li>
-                                        <li>Vendor Notificaton </li>
-                                        <li>Marketplace  Memberships</li>
+                                        
                                         {this.state.money_back_show_more_compared ?
-                                            <li>Modules</li>
+                                            <>
+                                                <li>Customisable Commission</li>
+                                                <li>Multiple Payment Options</li>
+                                                <li>Store location</li>
+                                                <li>Review and Ratings</li>
+                                                <li>Business Hours</li>
+                                                <li>Vacation</li>
+                                                <li>Staff Manger</li>
+                                                <li>Wholesale Pricing</li>
+                                                <li>Live Chat</li>
+                                                <li>Marketplace Analytics</li>
+                                                <li>Coupon Management</li>
+                                                <li>Vendor Notificaton </li>
+                                                <li>Marketplace  Memberships</li>
+                                                <li>3rd Party Compatibility</li>
+                                            </>
                                             : ''
                                         }
                                            <li className='mvx-show-compare'>
@@ -417,33 +419,71 @@ class MVX_Dashboard extends Component {
                                         <li>Free</li>
                                         <li>Ticket Based Support</li>
                                         <li>
+                                            20
+                                        </li>
+                                        <li>
+                                            Simple Product
+                                        </li>
+                                        <li><i className="mvx-font icon-yes blue" /></li>
+                                        <li>
                                             <i className="mvx-font icon-no red" />
                                         </li>
                                         <li>
                                             <i className="mvx-font icon-no red" />
                                         </li>
-                                        <li>Five Venders</li>
+                                        <li>
+                                            <i className="mvx-font icon-no red" />
+                                        </li>
                                         <li>
                                             <i className="mvx-font icon-yes blue" />
                                         </li>
-                                        <li>
-                                            <i className="mvx-font icon-no red" />
-                                        </li>
-                                        <li>
-                                            <i className="mvx-font icon-no red" />
-                                        </li>
-                                        <li>
-                                            <i className="mvx-font icon-no red" />
-                                        </li>
-                                        <li>Five Venders</li>
+                                        <li><i className="mvx-font icon-no red" /></li>
                                         <li>
                                             <i className="mvx-font icon-yes blue" />
                                         </li>
 
                                         {this.state.money_back_show_more_compared ?
-                                            <li>
-                                                <i className="mvx-font icon-yes blue" />
-                                            </li>
+                                            <>
+                                        <li>
+                                            <i className="mvx-font icon-yes blue" />
+                                        </li>
+                                        <li>
+                                            <i className="mvx-font icon-yes blue" />
+                                        </li>
+                                        <li>
+                                            <i className="mvx-font icon-yes blue" />
+                                        </li>
+                                        <li>
+                                            <i className="mvx-font icon-no red" />
+                                        </li>
+                                        <li>
+                                            <i className="mvx-font icon-no red" />
+                                        </li>
+                                        <li>
+                                            <i className="mvx-font icon-no red" />
+                                        </li>
+                                        <li>
+                                            <i className="mvx-font icon-no red" />
+                                        </li>
+                                        <li>
+                                            <i className="mvx-font icon-no red" />
+                                        </li>
+                                        <li>
+                                            <i className="mvx-font icon-yes blue" />
+                                        </li>
+                                        <li>
+                                            <i className="mvx-font icon-yes blue" />
+                                        </li>
+                                        <li>
+                                            <i className="mvx-font icon-no red" />
+                                        </li>
+                                        <li>
+                                            <i className="mvx-font icon-no red" />
+                                        </li>
+                                        <li>
+                                            <i className="mvx-font icon-yes blue" />
+                                        </li>
+                                            </>
                                             : ''
                                         }
                                         
@@ -458,33 +498,71 @@ class MVX_Dashboard extends Component {
                                         <li>Pro</li>
                                         <li>Ticket Based Support</li>
                                         <li>
-                                            <i className="mvx-font icon-no red" />
+                                            All
                                         </li>
                                         <li>
-                                            <i className="mvx-font icon-no red" />
+                                            All
                                         </li>
-                                        <li>Five Venders</li>
+                                        <li><i className="mvx-font icon-yes blue" /></li>
                                     
                                         <li>
-                                            <i className="mvx-font icon-no red" />
+                                            <i className="mvx-font icon-yes blue" />
                                         </li>
-                                        <li>Ticket Based Support</li>
+                                        <li><i className="mvx-font icon-yes blue" /></li>
                                         <li>
-                                            <i className="mvx-font icon-no red" />
+                                            <i className="mvx-font icon-yes blue" />
                                         </li>
                                         <li>
-                                            <i className="mvx-font icon-no red" />
+                                            <i className="mvx-font icon-yes blue" />
                                         </li>
-                                        <li>Five Venders</li>
+                                        <li><i className="mvx-font icon-yes blue" /></li>
                                         <li>
                                             <i className="mvx-font icon-yes blue" />
                                         </li>
 
 
                                         {this.state.money_back_show_more_compared ?
+                                            <>
                                             <li>
                                                 <i className="mvx-font icon-yes blue" />
                                             </li>
+                                            <li>
+                                                <i className="mvx-font icon-yes blue" />
+                                            </li>
+                                            <li>
+                                                <i className="mvx-font icon-yes blue" />
+                                            </li>
+                                            <li>
+                                                <i className="mvx-font icon-yes blue" />
+                                            </li>
+                                            <li>
+                                                <i className="mvx-font icon-yes blue" />
+                                            </li>
+                                            <li>
+                                                <i className="mvx-font icon-yes blue" />
+                                            </li>
+                                            <li>
+                                                <i className="mvx-font icon-yes blue" />
+                                            </li>
+                                            <li>
+                                                <i className="mvx-font icon-yes blue" />
+                                            </li>
+                                            <li>
+                                                <i className="mvx-font icon-yes blue" />
+                                            </li>
+                                            <li>
+                                                <i className="mvx-font icon-yes blue" />
+                                            </li>
+                                            <li>
+                                                <i className="mvx-font icon-yes blue" />
+                                            </li>
+                                            <li>
+                                                <i className="mvx-font icon-yes blue" />
+                                            </li>
+                                            <li>
+                                                <i className="mvx-font icon-yes blue" />
+                                            </li>
+                                            </>
                                             : ''
                                         }
                                     </ul>

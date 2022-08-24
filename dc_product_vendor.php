@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name: Multivendor X
+ * Plugin Name: MultiVendorX
  * Plugin URI: https://wc-marketplace.com/
  * Description: A Free Extension That Transforms Your WooCommerce Site into a Marketplace.
- * Author: Multivendor X
+ * Author: MultiVendorX
  * Version: 3.8.7
  * Author URI: https://wc-marketplace.com/
  * Requires at least: 4.4

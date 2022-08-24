@@ -393,6 +393,7 @@ class MVX_Settings extends Component {
 		                        })
 		                    )
 		                }>
+		                <p className="mvx-settings-metabox-description-code">Username and Password fileds display as per WooCommerce settings</p>
 						{this.state.mvx_registration_fileds_list.length > 0 ? (
 							<div
 								className={`mvx-top-part-registartion-from ${
@@ -429,7 +430,7 @@ class MVX_Settings extends Component {
 											);
 										}}
 									/>
-									<div className="mvx-registration-fileds-description">
+									<div className="mvx-registration-form-description">
 										{
 											appLocalizer.settings_page_string
 												.registration_form_title_desc
@@ -456,7 +457,7 @@ class MVX_Settings extends Component {
 											);
 										}}
 									/>
-									<div className="mvx-registration-fileds-description">
+									<div className="mvx-registration-form-description">
 										{
 											appLocalizer.settings_page_string
 												.registration1
@@ -519,7 +520,7 @@ class MVX_Settings extends Component {
 																	}}
 																/>
 																{registration_json_value.hidden ? (
-																	<div className="mvx-registration-fileds-description">
+																	<div className="mvx-registration-form-description">
 																		{
 																			appLocalizer
 																				.settings_page_string
@@ -576,7 +577,7 @@ class MVX_Settings extends Component {
 																		: ''}
 																	</div>
 
-																	<div className="mvx-registration-fileds-description">
+																	<div className="mvx-registration-form-description">
 																		{
 																			appLocalizer
 																				.settings_page_string
@@ -638,7 +639,7 @@ class MVX_Settings extends Component {
 																					);
 																				}}
 																			/>
-																			<div className="mvx-registration-fileds-description">
+																			<div className="mvx-registration-form-description">
 																				{
 																					appLocalizer
 																						.settings_page_string
@@ -668,7 +669,7 @@ class MVX_Settings extends Component {
 																					);
 																				}}
 																			/>
-																			<div className="mvx-registration-fileds-description">
+																			<div className="mvx-registration-form-description">
 																				{
 																					appLocalizer
 																						.settings_page_string
@@ -708,7 +709,7 @@ class MVX_Settings extends Component {
 																				);
 																			}}
 																		/>
-																		<div className="mvx-registration-fileds-description">
+																		<div className="mvx-registration-form-description">
 																			{
 																				appLocalizer
 																					.settings_page_string
@@ -726,13 +727,6 @@ class MVX_Settings extends Component {
 																	registration_json_value.hidden ?
 																	<div>
 																		<div className="mvx-vendor-form-input-field-container">
-																			<label>
-																				{
-																					appLocalizer
-																						.settings_page_string
-																						.registration10
-																				}
-																			</label>
 																			<input
 																				type="checkbox"
 																				checked={
@@ -778,7 +772,7 @@ class MVX_Settings extends Component {
 																					);
 																				}}
 																			/>
-																			<div className="mvx-registration-fileds-description">
+																			<div className="mvx-registration-form-description">
 																				{
 																					appLocalizer
 																						.settings_page_string
@@ -825,7 +819,7 @@ class MVX_Settings extends Component {
 																					</div>
 																				)
 																			)}
-																			<div className="mvx-registration-fileds-description">
+																			<div className="mvx-registration-form-description">
 																				{
 																					appLocalizer
 																						.settings_page_string
@@ -1012,7 +1006,7 @@ class MVX_Settings extends Component {
 																			</p>
 																		</div>
 
-																		<div className="mvx-registration-fileds-description">
+																		<div className="mvx-registration-form-description">
 																			{
 																				appLocalizer
 																					.settings_page_string
@@ -1104,7 +1098,7 @@ class MVX_Settings extends Component {
 																								}}
 																							/>
 																							{registration_json_value.hidden ?
-																							<div className="mvx-registration-fileds-description">
+																							<div className="mvx-registration-form-description">
 																								{
 																									appLocalizer
 																										.settings_page_string
@@ -1132,7 +1126,7 @@ class MVX_Settings extends Component {
 																									);
 																								}}
 																							/>
-																							<div className="mvx-registration-fileds-description">
+																							<div className="mvx-registration-form-description">
 																								{
 																									appLocalizer
 																										.settings_page_string

@@ -442,7 +442,7 @@ class MVX_Admin {
             'registration_form_title'       =>  __('Registration form title', 'multivendorx'),
             'registration_form_title_desc'  =>  __('Type the form title you want the vendor to see. eg registrazione del venditore', 'multivendorx'),
             'registration_form_desc'        =>  __('Registration form description', 'multivendorx'),
-            'registration1'                  =>  __('Choose your desired question format', 'multivendorx'),
+            'registration1'                  =>  __('Introduce your marketplace or add instructions for registration', 'multivendorx'),
             'registration2'                  =>  __('Write questions applicable to your marketplace', 'multivendorx'),
             'registration3'                  =>  __('Select your preferred question format. Read doc to know more about each format.', 'multivendorx'),
             'registration4'                  =>  __('Placeholder', 'multivendorx'),
@@ -451,7 +451,6 @@ class MVX_Admin {
             'registration7'                  =>  __('Add more information or specific instructions here.', 'multivendorx'),
             'registration8'                  =>  __('Characters Limit', 'multivendorx'),
             'registration9'                  =>  __('Restrict vendor descriptions to a certain number of characters.', 'multivendorx'),
-            'registration10'                  =>  __('File Type', 'multivendorx'),
             'registration11'                  =>  __('Multiple', 'multivendorx'),
             'registration12'                  =>  __('Maximum file size', 'multivendorx'),
             'registration13'                  =>  __('Add limitation for file size', 'multivendorx'),
@@ -473,7 +472,7 @@ class MVX_Admin {
             'registration29'                  =>  __('Register', 'multivendorx'),
             'question-format'                 => array(
                 array(
-                    'icon'  =>  'icon-yes',
+                    'icon'  =>  'icon-select-question-type',
                     'value' => 'select_question_type',
                     'label' =>  __('Select question type', 'multivendorx')
                 ),
