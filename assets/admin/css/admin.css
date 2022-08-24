@@ -794,6 +794,7 @@ code {
 
 input[type="checkbox"] {
   border-radius: 0.125rem;
+  margin: 0.25rem;
 }
 
 input[type="radio"], input[type="checkbox"] {
@@ -1874,10 +1875,6 @@ div#wpbody-content {
   background-color: #f9f8fb;
 }
 
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from {
-  padding-top: 0 !important;
-}
-
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from ::-webkit-input-placeholder {
   color: #181718;
 }
@@ -1916,6 +1913,7 @@ div#wpbody-content {
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from {
   padding: 1.5rem;
   border-radius: 0.25rem;
+  border: 0.06rem solid #f2eff5;
   margin: 0.7rem 0;
   position: relative;
 }
@@ -1958,6 +1956,23 @@ div#wpbody-content {
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container {
   margin: 0 0 .5rem 0;
+}
+
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container .mvx-form-type-wrap, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container .mvx-form-type-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container .mvx-form-type-wrap label, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container .mvx-form-type-wrap label {
+  margin: 0 0 0 0.25rem;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container label, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container label {
@@ -4203,6 +4218,7 @@ div.health-check-accordion .health-check-accordion-panel table td {
   min-width: 20.563rem;
   overflow: hidden;
   padding: 1rem 1.5rem;
+  background: #fdfdfe;
 }
 
 .MuiDialog-paperScrollPaper .MuiDialogContent-root {
@@ -4527,8 +4543,7 @@ div.health-check-accordion .health-check-accordion-panel table td {
 }
 
 .mvx-registration-content .mvx-form-group .dropdown .mvx-registration-dropdown-menu div:hover, .mvx-registration-content .mvx-form-group .dropdown .mvx-registration-dropdown-menu div:hover i {
-  background-color: #65438f;
-  color: #fdfdfe;
+  background-color: #f9f8fb;
 }
 
 @media only screen and (min-width: 767px) {
@@ -4600,6 +4615,9 @@ div.health-check-accordion .health-check-accordion-panel table td {
   .mvx-compare-table-holder .mvx-recomend span.recommend-tag {
     padding: 0.15rem 1.75rem;
     border-radius: 0 0 1rem 1rem;
+  }
+  .mvx-sidebar {
+    width: 30%;
   }
 }
 
@@ -4721,5 +4739,50 @@ div.health-check-accordion .health-check-accordion-panel table td {
     width: 86%;
     border-radius: 0 0 0.75rem 0.75rem;
   }
+}
+
+.mvx-sidebar .mvx-logo-right {
+  padding: 0 1.5rem 3rem;
+}
+
+.mvx-sidebar .mvx-logo-right img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  height: 100%;
+  width: 100%;
+}
+
+.mvx-sidebar .mvx-banner-right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1rem;
+  padding: 3rem 1rem 5rem;
+  text-align: center;
+  background: url(../../images/unnamed.png) top right no-repeat;
+  background-size: 100% 100%;
+  border-radius: 0.25rem;
+}
+
+.mvx-sidebar .mvx-banner-right p {
+  font-size: 1rem;
+  color: #ece8f1;
+}
+
+.mvx-sidebar .mvx-banner-right a {
+  font-weight: 500;
+  color: #f9f8fb;
+  background: #f9f8fb;
+  padding: 0 0.25rem;
+  color: #db4b54;
 }
 /*# sourceMappingURL=admin.css.map */

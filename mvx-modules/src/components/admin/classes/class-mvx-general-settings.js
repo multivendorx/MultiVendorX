@@ -789,6 +789,7 @@ class MVX_Settings extends Component {
 																						.registration14
 																				}
 																			</label>
+																			<div className='mvx-form-type-wrap'>
 																			{registration_json_value.fileType.map(
 																				(
 																					xnew,
@@ -819,6 +820,8 @@ class MVX_Settings extends Component {
 																					</div>
 																				)
 																			)}
+																						</div>
+
 																			<div className="mvx-registration-form-description">
 																				{
 																					appLocalizer

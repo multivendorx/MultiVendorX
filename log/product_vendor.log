@@ -12,3 +12,15 @@
 -------------------------------------
 {"TIMESTAMP":"2022-08-24T06:40:33Z","CORRELATIONID":"e5d18325c06ee","ACK":"Failure","VERSION":"60.0","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
 -------------------------------------
+{"TIMESTAMP":"2022-08-24T07:39:12Z","CORRELATIONID":"88cbe66e370a2","ACK":"Failure","VERSION":"124","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
+-------------------------------------
+{"TIMESTAMP":"2022-08-24T08:39:50Z","CORRELATIONID":"d7d0229147e32","ACK":"Failure","VERSION":"91.0","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
+-------------------------------------
+{"TIMESTAMP":"2022-08-24T10:20:19Z","CORRELATIONID":"1c0b572fa16d2","ACK":"Failure","VERSION":"106","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
+-------------------------------------
+{"TIMESTAMP":"2022-08-24T10:38:55Z","CORRELATIONID":"e98b5e42c9cb0","ACK":"Failure","VERSION":"124.0","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
+-------------------------------------
+{"TIMESTAMP":"2022-08-24T12:55:26Z","CORRELATIONID":"aa3ce8f771355","ACK":"Failure","VERSION":"95","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
+-------------------------------------
+{"TIMESTAMP":"2022-08-24T14:57:30Z","CORRELATIONID":"b2fbdd34f6e25","ACK":"Failure","VERSION":"56.0","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
+-------------------------------------

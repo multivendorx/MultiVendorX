@@ -911,6 +911,7 @@ code {
 }
 input[type="checkbox"]{
   border-radius: 0.125rem;
+  margin: 0.25rem;
 }
 input[type="radio"], input[type="checkbox"] {
     width: 1rem;
@@ -1608,7 +1609,6 @@ hr{
         background-color: $font-white;
       }
       .mvx-top-part-registartion-from{
-        padding-top:0 !important;//registration form top gap manage
         ::placeholder{
           color: $title-color;
         } }
@@ -1635,6 +1635,7 @@ hr{
       .mvx-form-vendor-register .mvx-option-part, .mvx-top-part-registartion-from  {
         padding: 1.5rem;
         border-radius: 0.25rem;
+        border:0.06rem solid $base-color;
         margin: 0.7rem 0;
         position: relative;
         input[type="text"].mvx-rgistration-form-title{
@@ -1655,6 +1656,15 @@ hr{
         }
         & .mvx-vendor-form-input-field-container {
           margin: 0 0 .5rem 0;
+          .mvx-form-type-wrap {
+            @include flexprops(center);
+            gap: 1rem;
+            padding:0.75rem 0;
+            flex-wrap: wrap;
+            & label{
+              margin:0 0 0 0.25rem;
+            }
+        }
           & label{
             padding:0 0 0.5rem;
           }
@@ -3181,6 +3191,7 @@ padding:0;
   min-width:20.563rem;
   overflow: hidden;
   padding:1rem 1.5rem;
+  background:$fill-color;
  .MuiDialogContent-root{
     padding:1.5rem 0rem 2.5rem;
   } 
@@ -3388,8 +3399,7 @@ padding:0;
       div{
         padding:0.25rem;
         &:hover, &:hover i{
-          background-color: $theme-color;
-          color: $fill-color;
+          background-color: $font-white;
         }
       }
     }
@@ -3467,6 +3477,8 @@ li.mvx-compare-table-row{
     border-radius: 0 0 1rem 1rem; 
   }
 }}
+.mvx-sidebar{
+  width:30%;}
 }
 @media only screen and (max-width: 668px) {
   .mvx-header-wapper .mvx-header-nav-left-section .mvx-logo-title{
@@ -3574,4 +3586,37 @@ li.mvx-compare-table-row{
           border-radius: 0 0 0.75rem 0.75rem;
         }
       }}
+}
+// right-side banner
+.mvx-sidebar{
+  .mvx-logo-right{
+    padding: 0 1.5rem 3rem;
+    img{
+      object-fit: cover;
+      object-position: center;
+      height: 100%;
+      width: 100%;
+    }
+  }
+  .mvx-banner-right {
+    @include flexprops(center);
+    flex-direction: column;
+    gap: 1rem;
+    padding: 3rem 1rem 5rem;
+    text-align: center;
+    background: url(../../images/unnamed.png) top right no-repeat;
+    background-size: 100% 100%;
+  border-radius:$border-radius;
+    p{
+      font-size: 1rem;
+      color: $scroll-color;
+    }
+    a{
+      font-weight: 500;
+      color: $font-white;
+      background: $font-white;
+      padding: 0 0.25rem;
+      color: #db4b54;
+    }
+}
 }
