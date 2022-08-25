@@ -38,7 +38,8 @@ class MVX_Backend_Commission extends Component {
 			commissiondata: [],
 			commission_list_status_all: false,
 			commission_list_status_paid: false,
-			commission_list_status_unpaid: false
+			commission_list_status_unpaid: false,
+			commission_list_status_refunded: false
 		};
 		this.handleSelectRowsChange = this.handleSelectRowsChange.bind(this);
 		this.handlecommissionsearch = this.handlecommissionsearch.bind(this);
@@ -96,6 +97,29 @@ class MVX_Backend_Commission extends Component {
 					});
 				});
 		}
+
+		if (type === 'refunded') {
+			// refunded status
+			this.setState({
+				commission_list_status_all: false,
+				commission_list_status_paid: false,
+				commission_list_status_unpaid: false,
+				commission_list_status_refunded: true
+			});
+			axios
+				.get(
+					`${appLocalizer.apiUrl}/mvx_module/v1/show_commission_from_status_list`,
+					{
+						params: { commission_status: 'refunded' },
+					}
+				)
+				.then((response) => {
+					this.setState({
+						datacommission: response.data,
+					});
+				});
+		}
+		
 
 		if (type === 'all') {
 			this.setState({
@@ -1733,6 +1757,8 @@ class MVX_Backend_Commission extends Component {
 							</div>
 
 							<div className="mvx-search-and-multistatus-wrap">
+
+
 								<ul className="mvx-multistatus-ul">
 									<li className={`mvx-multistatus-item ${this.state.commission_list_status_all ? 'status-active' : ''}`}>
 										<div
@@ -1805,7 +1831,34 @@ class MVX_Backend_Commission extends Component {
 											)
 										</div>
 									</li>
+									<li className="mvx-multistatus-item mvx-divider"></li>
+									<li className={`mvx-multistatus-item ${this.state.commission_list_status_refunded ? 'status-active' : ''}`}>
+										<div
+											className="mvx-multistatus-check-unpaid"
+											onClick={(e) =>
+												this.handle_commission_status_check(
+													e,
+													'refunded'
+												)
+											}
+										>
+											{
+												appLocalizer
+													.commission_page_string
+													.refunded
+											}{' '}
+											(
+											{
+												this.state
+													.data_refunded_commission
+													.length
+											}
+											)
+										</div>
+									</li>
 								</ul>
+
+
 								<div className="mvx-header-search-section">
 									<label>
 										<i className="mvx-font icon-search"></i>

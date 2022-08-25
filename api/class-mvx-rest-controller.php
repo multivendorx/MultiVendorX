@@ -4426,7 +4426,7 @@ class MVX_REST_API {
                         $product = $item->get_product();
                         $name = ( $product ) ? $product->get_formatted_name() : $item->get_name();
                         $product_id = ( $product ) ? $product->get_id() : 0;
-                        $product_list .= ' &nbsp;[&nbsp;<a href="' . esc_url(get_permalink($product_id)) . '">' . $name . '</a>&nbsp;]&nbsp;';
+                        $product_list .= '<a href="' . esc_url(get_permalink($product_id)) . '">' . $name . '</a><br>';
                     }
                 }
 
@@ -4460,7 +4460,7 @@ class MVX_REST_API {
 
                 $commission_list[] = array(
                     'id'            =>  $commission_value,
-                    'commission_id'         =>  '<a href="' . sprintf('?page=%s&CommissionID=%s', 'mvx#&submenu=commission', $commission_value) . '">[' . $commission_value . ']</a>',
+                    'commission_id'         =>  '<a href="' . sprintf('?page=%s&CommissionID=%s', 'mvx#&submenu=commission', $commission_value) . '">#' . $commission_value . '</a>',
                     'link'          =>  sprintf('?page=%s&CommissionID=%s', 'mvx#&submenu=commission', $commission_value),
                     'order_id'      =>  '<a href="' . esc_url($edit_url) . '">#' . $order_id . '</a>',
                     'product'       =>  $product_list,
