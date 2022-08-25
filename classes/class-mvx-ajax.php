@@ -131,10 +131,6 @@ class MVX_Ajax {
         }
         // Follow ajax
         add_action('wp_ajax_mvx_follow_store_toggle_status', array($this, 'mvx_follow_store_toggle_status'));
-        // commission by product variation
-        add_action('wp_ajax_commission_variation', array($this, 'commission_variation'));
-        add_action('wp_ajax_admin_review_setting', array($this, 'admin_review_setting'));
-
         add_action('wp_ajax_mvx_vendor_zone_shipping_order', array($this, 'mvx_vendor_zone_shipping_order'));
     }
 
@@ -3711,49 +3707,6 @@ class MVX_Ajax {
             wp_send_json_error( $follow_status, 422 );
         }
         wp_send_json_success( array( 'status' => $follow_status ), 200 );
-    }
-
-    public function commission_variation() {
-        $setting_from_sanitize = isset($_POST['mvx_settings_form']) ? wp_unslash($_POST['mvx_settings_form']) : '';
-        parse_str($setting_from_sanitize, $mvx_settings_form);
-        if( isset( $mvx_settings_form['vendor_commission_by_products'] ) ) {
-            $mvx_commission_options['vendor_commission_by_products'] = $mvx_settings_form['vendor_commission_by_products'];
-        }
-        if( isset( $mvx_settings_form['commission']['commission_by_quantity'] ) ) {
-            $mvx_commission_options['vendor_commission_by_quantity'] = $mvx_settings_form['commission']['commission_by_quantity'];
-        }
-        mvx_update_option( 'mvx_variation_commission_options', $mvx_commission_options );
-        die;
-    }
-
-    public function admin_review_setting() {
-        $setting_from_sanitize = isset($_POST['mvx_review_settings_form']) ? wp_unslash($_POST['mvx_review_settings_form']) : '';
-        parse_str($setting_from_sanitize, $mvx_review_settings_form);
-
-        if( isset( $mvx_review_settings_form['mvx_review_options'] ) && isset( $mvx_review_settings_form['mvx_review_options']['review_categories'] ) ) {
-            $mvx_review_settings_option['review_categories'] = $mvx_review_settings_form['mvx_review_options']['review_categories'];
-            mvx_update_option( 'mvx_review_settings_option', array_filter( array_map( 'wc_clean', (array) $mvx_review_settings_option ) ) );
-        }
-        $general_settings_option = get_option( 'mvx_general_settings_name', array() );
-        if( isset( $mvx_review_settings_form['mvx_review_options'] ) ) {
-            if (isset( $mvx_review_settings_form['mvx_review_options']['is_sellerreview_varified'] )) {
-                $general_settings_option['is_sellerreview_varified'] = 'Enable';
-            } else {
-                unset($general_settings_option['is_sellerreview_varified']);
-            }
-            if (isset( $mvx_review_settings_form['mvx_review_options']['is_sellerreview'] )) {
-                $general_settings_option['is_sellerreview'] = 'Enable';
-            } else {
-                unset($general_settings_option['is_sellerreview']);
-            }
-            if (isset( $mvx_review_settings_form['mvx_review_options']['product_review_sync'] )) {
-                $general_settings_option['product_review_sync'] = 'Enable';
-            } else {
-                unset($general_settings_option['product_review_sync']);
-            }
-            mvx_update_option( 'mvx_general_settings_name', array_filter( array_map( 'wc_clean', (array) $general_settings_option ) ) );
-        }
-        die;
     }
 
     // Update vendor shipping zone order
