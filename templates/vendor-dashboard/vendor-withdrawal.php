@@ -129,6 +129,9 @@ jQuery(document).ready(function($) {
         ajax:{
             url : '<?php echo add_query_arg( 'action', 'mvx_vendor_unpaid_order_vendor_withdrawal_list', $MVX->ajax_url() ); ?>', 
             type: "post",
+            data: function (data) {
+                data.security = '<?php echo wp_create_nonce('mvx-withdrawal'); ?>';
+            },
             error: function(xhr, status, error) {
                 $("#vendor_withdrawal tbody").append('<tr class="odd"><td valign="top" colspan="6" class="dataTables_empty" style="text-align:center;">'+error+' - <a href="javascript:window.location.reload();"><?php _e('Reload', 'multivendorx'); ?></a></td></tr>');
                 $("#vendor_withdrawal_processing").css("display","none");

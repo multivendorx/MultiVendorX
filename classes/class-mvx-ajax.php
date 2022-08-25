@@ -55,9 +55,6 @@ class MVX_Ajax {
         add_action('wp_ajax_mvx_load_more_review_rating_vendor', array($this, 'mvx_load_more_review_rating_vendor'));
         add_action('wp_ajax_nopriv_mvx_load_more_review_rating_vendor', array($this, 'mvx_load_more_review_rating_vendor'));
 
-        add_action('wp_ajax_mvx_save_vendor_registration_form', array(&$this, 'mvx_save_vendor_registration_form_callback'));
-
-        add_action('wp_ajax_dismiss_mvx_servive_notice', array(&$this, 'dismiss_mvx_servive_notice'));
         // search filter vendors from widget
         add_action('wp_ajax_vendor_list_by_search_keyword', array($this, 'vendor_list_by_search_keyword'));
         add_action('wp_ajax_nopriv_vendor_list_by_search_keyword', array($this, 'vendor_list_by_search_keyword'));
@@ -344,18 +341,6 @@ class MVX_Ajax {
         wp_send_json($json_data);
     }
 
-    public function mvx_save_vendor_registration_form_callback() {
-        $form_data = json_decode(stripslashes_deep($_REQUEST['form_data']), true);
-        if (!empty($form_data) && is_array($form_data)) {
-            foreach ($form_data as $key => $value) {
-                $form_data[$key]['hidden'] = true;
-            }
-        }
-
-        mvx_update_option('mvx_vendor_registration_form_data', $form_data);
-        die;
-    }
-
     function single_product_multiple_vendors_sorting() {
         global $MVX;
         $sorting_value = isset($_POST['sorting_value']) ? wc_clean($_POST['sorting_value']) : 0;
@@ -388,6 +373,7 @@ class MVX_Ajax {
 
     function mvx_add_review_rating_vendor() {
         global $MVX, $wpdb;
+        check_ajax_referer('mvx-review', 'security');
         $review = isset( $_POST['comment'] ) ? wc_clean( $_POST['comment'] ) : '';
         $rating = isset($_POST['rating']) ? intval( wp_unslash( $_POST['rating'] ) ): false;
         $comment_parent = isset($_POST['comment_parent']) ? absint($_POST['comment_parent']) : 0;
@@ -463,6 +449,10 @@ class MVX_Ajax {
 
     public function mvx_create_duplicate_product() {
         global $MVX;
+        if (!current_user_can('edit_products') ) {
+            wp_die(-1);
+        }
+        check_ajax_referer('mvx-types', 'security');
         $product_id = isset($_POST['product_id']) ? absint($_POST['product_id']) : 0;
         $parent_post = get_post($product_id);
         $redirect_url = isset($_POST['redirect_url']) ? esc_url($_POST['redirect_url']) : esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_edit_product_endpoint', 'seller_dashbaord', 'edit-product')));
@@ -582,6 +572,7 @@ class MVX_Ajax {
 
     public function mvx_dismiss_dashboard_message() {
         global $wpdb, $MVX;
+        check_ajax_referer('mvx-dashboard', 'security');
         $post_id = isset($_POST['post_id']) ? absint($_POST['post_id']) : 0;
         $current_user = wp_get_current_user();
         $current_user_id = $current_user->ID;
@@ -651,6 +642,7 @@ class MVX_Ajax {
 
     public function mvx_vendor_messages_operation() {
         global $wpdb, $MVX;
+        check_ajax_referer('grant-access', 'security');
         $current_user = wp_get_current_user();
         $current_user_id = $current_user->ID;
         $post_id = isset($_POST['msg_id']) ? wc_clean($_POST['msg_id']) : 0;
@@ -792,7 +784,10 @@ class MVX_Ajax {
      */
     function unassign_vendor() {
         global $MVX;
-
+        if ( ! current_user_can( 'edit_users' ) ) {
+            wp_die(__('Sorry, you cannot update vendors', 'dc-woocommerce-multi-vendor'));
+        }
+        check_ajax_referer('search-products', 'security');
         $product_id = isset($_POST['product_id']) ? absint($_POST['product_id']) : 0;
         $vendor = get_mvx_product_vendors($product_id);
         $admin_id = get_current_user_id();
@@ -895,15 +890,6 @@ class MVX_Ajax {
         die();
     }
 
-    /**
-     * Set a flag while dismiss MVX service notice
-     */
-    public function dismiss_mvx_servive_notice() {
-        $updated = update_option('_is_dismiss_mvx4_0_notice', true);
-        echo $updated;
-        die();
-    }
-
     function vendor_list_by_search_keyword() {
         global $MVX;
         // check vendor_search_nonce
@@ -971,7 +957,7 @@ class MVX_Ajax {
     }
 
     public function delete_fpm_product() {
-
+        check_ajax_referer('mvx-frontend', 'security');
         $proid = isset($_POST['proid']) ? wc_clean($_POST['proid']) : 0;
         if ($proid) {
             if (wp_delete_post($proid)) {
@@ -1002,6 +988,7 @@ class MVX_Ajax {
 
     public function mvx_vendor_product_list() {
         global $MVX;
+        check_ajax_referer('mvx-product', 'security');
         if (is_user_logged_in() && is_user_mvx_vendor(get_current_user_id())) {
             $vendor = get_current_vendor();
             $enable_ordering = apply_filters('mvx_vendor_dashboard_product_list_table_orderable_columns', array('name', 'date'));
@@ -1299,6 +1286,7 @@ class MVX_Ajax {
 
     public function mvx_vendor_unpaid_order_vendor_withdrawal_list() {
         global $MVX;
+        check_ajax_referer('mvx-withdrawal', 'security');
         if (is_user_logged_in() && is_user_mvx_vendor(get_current_vendor_id())) {
             $vendor = get_mvx_vendor(get_current_vendor_id());
             $requestData = ( $_REQUEST ) ? wc_clean( $_REQUEST ) : array();
@@ -1374,6 +1362,7 @@ class MVX_Ajax {
     }
 
     public function mvx_vendor_coupon_list() {
+        check_ajax_referer('mvx-coupon', 'security');
         if (is_user_logged_in() && is_user_mvx_vendor(get_current_vendor_id())) {
             $vendor = get_mvx_vendor(get_current_vendor_id());
             $requestData = ( $_REQUEST ) ? wc_clean( $_REQUEST ) : array();
@@ -2034,6 +2023,7 @@ class MVX_Ajax {
      * @since 3.0.6
      */
     function mvx_product_tag_add() {
+        check_ajax_referer('add-attribute', 'security');
         $taxonomy = apply_filters('mvx_product_tag_add_taxonomy', 'product_tag');
         $tax = get_taxonomy($taxonomy);
         $tag_name = '';

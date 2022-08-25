@@ -48,8 +48,9 @@ jQuery(document).ready(function($){
 		var tab_id = tab_element.attr('id');
 		var data = {
 			action : 'mvx_vendor_announcements_operation',
+			security: mvx_new_vandor_announcements_js_script_data.grant_access_nonce,
 			actionmode : 'mark_delete',
-			msg_id : msg_id			
+			msg_id : msg_id		
 		}
 		$.post(mvx_new_vandor_announcements_js_script_data.ajax_url, data, function(res) {			
 			if(	res == 1 ) {
@@ -61,6 +62,7 @@ jQuery(document).ready(function($){
 				$("#mvx_msg_tab_to_be_refrash3").val('_unread');
 				var data = {
 					action : 'mvx_announcements_refresh_tab_data',
+					security: mvx_new_vandor_announcements_js_script_data.grant_access_nonce,
 					tabname : tab_to_refrash					
 				}
 				$.post(mvx_new_vandor_announcements_js_script_data.ajax_url, data, function(res) {
@@ -99,6 +101,7 @@ jQuery(document).ready(function($){
 				
 		var data = {
 			action : 'mvx_vendor_announcements_operation',
+			security: mvx_new_vandor_announcements_js_script_data.grant_access_nonce,
 			actionmode : 'mark_read',
 			msg_id : msg_id			
 		}
@@ -123,6 +126,7 @@ jQuery(document).ready(function($){
 		lodder.show();		
 		var data = {
 			action : 'mvx_vendor_announcements_operation',
+			security: mvx_new_vandor_announcements_js_script_data.grant_access_nonce,
 			actionmode : 'mark_unread',
 			msg_id : msg_id			
 		}
@@ -152,6 +156,7 @@ jQuery(document).ready(function($){
 		
 		var data = {
 			action : 'mvx_vendor_announcements_operation',
+			security: mvx_new_vandor_announcements_js_script_data.grant_access_nonce,
 			actionmode : 'mark_unread',
 			msg_id : msg_id			
 		}
@@ -164,6 +169,7 @@ jQuery(document).ready(function($){
 				$("#mvx_msg_tab_to_be_refrash").val('_all');
 				var data2 = {
 					action : 'mvx_announcements_refresh_tab_data',
+					security: mvx_new_vandor_announcements_js_script_data.grant_access_nonce,
 					tabname : tab_to_refrash					
 				}				
 				$.post(mvx_new_vandor_announcements_js_script_data.ajax_url, data2, function(res2) {
@@ -195,6 +201,7 @@ jQuery(document).ready(function($){
 				
 		var data = {
 			action : 'mvx_vendor_announcements_operation',
+			security: mvx_new_vandor_announcements_js_script_data.grant_access_nonce,
 			actionmode : 'mark_read',
 			msg_id : msg_id			
 		}
@@ -208,6 +215,7 @@ jQuery(document).ready(function($){
 				
 				var data2 = {
 					action : 'mvx_announcements_refresh_tab_data',
+					security: mvx_new_vandor_announcements_js_script_data.grant_access_nonce,
 					tabname : tab_to_refrash					
 				}				
 				$.post(mvx_new_vandor_announcements_js_script_data.ajax_url, data2, function(res2) {
@@ -239,6 +247,7 @@ jQuery(document).ready(function($){
 		var tab_id = tab_element.attr('id');		
 		var data = {
 			action : 'mvx_vendor_announcements_operation',
+			security: mvx_new_vandor_announcements_js_script_data.grant_access_nonce,
 			actionmode : 'mark_restore',
 			msg_id : msg_id			
 		}
@@ -252,6 +261,7 @@ jQuery(document).ready(function($){
 				$("#mvx_msg_tab_to_be_refrash3").val('_all');
 				var data2 = {
 					action : 'mvx_announcements_refresh_tab_data',
+					security: mvx_new_vandor_announcements_js_script_data.grant_access_nonce,
 					tabname : tab_to_refrash					
 				}				
 				$.post(mvx_new_vandor_announcements_js_script_data.ajax_url, data2, function(res2) {
@@ -280,6 +290,7 @@ jQuery(document).ready(function($){
 			$(target_tab_id+' div.ajax_loader_class_msg').show();
 			var data = {
 				action : 'mvx_announcements_refresh_tab_data',
+				security: mvx_new_vandor_announcements_js_script_data.grant_access_nonce,
 				tabname : clicked_tab					
 			}
 			$.post(mvx_new_vandor_announcements_js_script_data.ajax_url, data, function(res) {

@@ -38,6 +38,7 @@ jQuery(document).ready(function ($) {
                 var vendor_id = $('#mvx_vendor_reviews #respond #mvx_vendor_for_rating').val();
                 var data = {
                     action: 'mvx_add_review_rating_vendor',
+                    security: mvx_seller_review_rating_js_script_data.review_nonce,
                     rating: rating,
                     comment: comment,
                     vendor_id: $('#mvx_vendor_for_rating').val(),
@@ -76,6 +77,7 @@ jQuery(document).ready(function ($) {
         $('.mvx_review_loader').show();
         var data = {
             action: 'mvx_load_more_review_rating_vendor',
+            security: mvx_seller_review_rating_js_script_data.review_nonce,
             pageno: pageno.val(),
             postperpage: postperpage.val(),
             totalpage: totalpage.val(),
@@ -102,6 +104,7 @@ jQuery(document).ready(function ($) {
         }
         var data = {
             action: 'mvx_add_review_rating_vendor',
+            security: mvx_seller_review_rating_js_script_data.review_nonce,
             comment: comment,
             vendor_id: vendor_id,
             comment_parent : comment_id

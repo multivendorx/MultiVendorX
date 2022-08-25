@@ -9,6 +9,7 @@ jQuery(document).ready(function($) {
 		var unassign_vendor = {
 			action: 'unassign_vendor',
 			'product_id': unassign_vendors_data.current_product_id,
+			'security': unassign_vendors_data.security
 		};
 		
 		$.post( 'admin-ajax.php', unassign_vendor, function(response) {
@@ -26,7 +27,7 @@ jQuery(document).ready(function($) {
         
     if ( $.isFunction($.fn.singleProductMulipleVendor) ) {
         $('input[name=post_title]').singleProductMulipleVendor({
-            ajaxurl : 'admin-ajax.php'
+            ajaxurl : 'admin-ajax.php',
         });
     }	
 });

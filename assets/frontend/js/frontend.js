@@ -129,7 +129,8 @@ jQuery(document).ready(function ($) {
         });
         var data = {
             action : 'delete_fpm_product',
-            proid : item.data('proid')
+            proid : item.data('proid'),
+            security       : frontend_js_script_data.frontend_nonce
         }	
         $.ajax({
             type: 'POST',

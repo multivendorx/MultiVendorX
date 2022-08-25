@@ -8,7 +8,8 @@ jQuery(document).ready(function($){
 			lodder.show();			
 			var data = {
 				action : 'mvx_dismiss_dashboard_announcements',
-				post_id : post_id
+				post_id : post_id,
+				security : mvx_frontend_vdashboard_js_script_data.dashboard_nonce
 			}
 			$.post(mvx_frontend_vdashboard_js_script_data.ajax_url, data, function(responsee) { 
 				element_to_be_refrash.html(responsee);			

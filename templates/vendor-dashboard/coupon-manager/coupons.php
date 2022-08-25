@@ -85,7 +85,10 @@ jQuery(document).ready(function($) {
         },
         ajax:{
             url : '<?php echo add_query_arg( 'action', 'mvx_vendor_coupon_list', $MVX->ajax_url() ); ?>', 
-            type: "post", 
+            type: "post",
+            data: function (data) {
+                data.security = '<?php echo wp_create_nonce('mvx-coupon'); ?>';
+            }, 
             error: function(xhr, status, error) {
                 $("#coupons_table tbody").append('<tr class="odd"><td valign="top" colspan="4" class="dataTables_empty" style="text-align:center;">'+error+' - <a href="javascript:window.location.reload();"><?php _e('Reload', 'multivendorx'); ?></a></td></tr>');
                 $("#coupons_table_processing").css("display","none");

@@ -213,6 +213,7 @@ if ($products_table_headers) {
                     data.product_cat = $('#product_cat').val();
                     data.bulk_action = $('#product_bulk_actions').val();
                     data.search_keyword = $('#pro_search_key').val();
+                    data.security = '<?php echo wp_create_nonce('mvx-product'); ?>';
                 },
                 error: function(xhr, status, error) {
                     $("#product_table tbody").append('<tr class="odd"><td valign="top" colspan="<?php echo count($products_table_headers); ?>" class="dataTables_empty" style="text-align:center;">'+error+' - <a href="javascript:window.location.reload();"><?php _e('Reload', 'multivendorx'); ?></a></td></tr>');

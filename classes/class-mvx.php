@@ -522,6 +522,7 @@ final class MVX {
                         'confirm_dlt_pro' => __("Are you sure and want to delete this Product?\nYou can't undo this action ...", 'multivendorx'),
                         'report_abuse_msg' => __('Report has been sent', 'multivendorx'),
                     ),
+                    'frontend_nonce' => wp_create_nonce('mvx-frontend')
                 );
                 break;
             
@@ -531,12 +532,15 @@ final class MVX {
             case 'mvx_new_vandor_announcements_js' :
                 $params = array(
                     'ajax_url' => $this->ajax_url(),
+                    'dashboard_nonce' => wp_create_nonce('mvx-dashboard'),
+                    'vendors_nonce' => wp_create_nonce('mvx-vendors'),
                 );
                 break;
             
             case 'mvx_seller_review_rating_js' :
                 $params = array(
                     'ajax_url' => $this->ajax_url(),
+                    'review_nonce' => wp_create_nonce('mvx-review'),
                     'messages' => array(
                         'rating_error_msg_txt' => __('Please rate the vendor', 'multivendorx'),
                         'review_error_msg_txt' => __('Please review your vendor and minimum 10 Character required', 'multivendorx'),
@@ -574,7 +578,7 @@ final class MVX {
                 break;
                 
             default:
-                $params = array('ajax_url' => $this->ajax_url());
+                $params = array('ajax_url' => $this->ajax_url(), 'types_nonce' => wp_create_nonce('mvx-types'));
         }
         if ($default && is_array($default)) $params = array_merge($default,$params);
         return apply_filters('mvx_get_script_data', $params, $handle);

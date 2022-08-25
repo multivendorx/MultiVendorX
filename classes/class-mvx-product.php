@@ -812,7 +812,7 @@ class MVX_Product {
             if (current_user_can('manage_options')) {
                 $html .= '<tr valign="top"><td scope="row"><input type="button" class="delete_vendor_data button" value="' . __("Unassign vendor", 'multivendorx') . '" /></td></tr>';
 
-                wp_localize_script('mvx-admin-product-js', 'unassign_vendors_data', array('current_product_id' => $post->ID, 'current_user_id' => get_current_vendor_id()));
+                wp_localize_script('mvx-admin-product-js', 'unassign_vendors_data', array('current_product_id' => $post->ID, 'current_user_id' => get_current_vendor_id(), 'security' => wp_create_nonce("search-products")));
             }
         }
 
