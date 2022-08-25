@@ -64,8 +64,8 @@ function mvx_delete_woocomerce_transient_redirect_to_mvx_setup(){
 	exit;
     }
 }
-
-if (!class_exists('MVX') && WC_Dependencies_Product_Vendor::is_woocommerce_active()) {
+$permalink_structure = get_option('permalink_structure');
+if (!class_exists('MVX') && WC_Dependencies_Product_Vendor::is_woocommerce_active() && !empty($permalink_structure)) {
     global $MVX;
     require_once( 'classes/class-mvx.php' );
     /* recheck plugin install */
@@ -78,15 +78,13 @@ if (!class_exists('MVX') && WC_Dependencies_Product_Vendor::is_woocommerce_activ
     }
 } else {
     add_action('admin_notices', 'mvx_admin_notice');
-
     function mvx_admin_notice() {
         ?>
         <div class="error">
-            <p><?php _e('Multivendor X plugin requires <a href="https://wordpress.org/plugins/woocommerce/">WooCommerce</a> plugins to be active!', 'multivendorx'); ?></p>
+            <p><?php _e('MultiVendorX plugin requires <a href="https://wordpress.org/plugins/woocommerce/">WooCommerce</a> plugins to be active! and <a href='. admin_url('options-permalink.php') .'>permalink</a> structure should not be empty', 'multivendorx'); ?></p>
         </div>
         <?php
     }
-
 }
 
 function mvx_namespace_approve( $value ) {

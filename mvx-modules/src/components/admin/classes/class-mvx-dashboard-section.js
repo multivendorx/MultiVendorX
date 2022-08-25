@@ -40,7 +40,7 @@ class MVX_Dashboard extends Component {
                 <div className="mvx-sub-container mvx-container">
                     <div className="mvx-left-container">
                         <div className="mvx-dashboard-top-heading">
-                            Welcome to MultiVendorX
+                            {appLocalizer.dashboard_string.dashboard1}
                         </div>
                         <div className="mvx-slider-content-main-wrapper">
                             <div className="mvx-dashboard-slider">
@@ -51,7 +51,7 @@ class MVX_Dashboard extends Component {
                                 <div className="mvx-pro-txt">
                                     <h3>{appLocalizer.dashboard_string.dashboard3}</h3>
                                     <p>
-                                        Activate your Pro License and gain access to better marketplace features 
+                                        {appLocalizer.dashboard_string.dashboard4}
                                     </p>
                                     <a href="#" className="mvx-btn btn-red">
                                     {appLocalizer.dashboard_string.dashboard5}
@@ -106,10 +106,10 @@ class MVX_Dashboard extends Component {
                                 </div>
                                 <div className="mvx-pro-txt">
                                     <h3>
-                                        Marketplace Membership
+                                        {appLocalizer.dashboard_string.dashboard10}
                                     </h3>
                                     <p>
-                                        Invite unlimited vendors to your marketplace by creating appealing membership packages
+                                        {appLocalizer.dashboard_string.dashboard11}
                                     </p>
                                     <a href="#" className="mvx-btn btn-red">    {appLocalizer.dashboard_string.dashboard5}
                                     </a>
@@ -121,7 +121,7 @@ class MVX_Dashboard extends Component {
                                 <a href="#" className="p-prev">
                                     <i className="mvx-font icon-left-arrow" />
                                 </a>
-                                <span>1 of 4</span>
+                                <span>{appLocalizer.dashboard_string.dashboard12}</span>
                                 <a href="#" className="p-next">
                                     <i className="mvx-font icon-right-arrow" />
                                 </a>
@@ -130,7 +130,7 @@ class MVX_Dashboard extends Component {
                         <div className="mvx-setup-documentation">
                             <div className="mvx-setup-marketing-white-box">
                                 <h2 className="mvx-block-title">
-                                    This is what you get
+                                    {appLocalizer.dashboard_string.dashboard13}
                                 </h2>
                                 <ul className="mvx-table-ul">
                                     <li className="mvx-align-items-center hover-border-box">
@@ -138,7 +138,7 @@ class MVX_Dashboard extends Component {
                                             <span>
                                                 <i className="mvx-font icon-chart-line" />
                                             </span>{' '}
-                                            Set up seller Registration Form Fields
+                                            {appLocalizer.dashboard_string.dashboard14}
                                         </div>
                                         <div className="li-action">
                                             <a
@@ -154,7 +154,7 @@ class MVX_Dashboard extends Component {
                                             <span>
                                                 <i className="mvx-font icon-chart-line" />
                                             </span>{' '}
-                                            Set up payments
+                                            {appLocalizer.dashboard_string.dashboard15}
                                         </div>
                                         <div className="li-action">
                                             <a
@@ -170,7 +170,7 @@ class MVX_Dashboard extends Component {
                                             <span>
                                                 <i className="mvx-font icon-chart-line" />
                                             </span>{' '}
-                                            Set up taxes
+                                            {appLocalizer.dashboard_string.dashboard16}
                                         </div>
                                         <div className="li-action">
                                             <a
@@ -186,7 +186,7 @@ class MVX_Dashboard extends Component {
                                             <span>
                                                 <i className="mvx-font icon-chart-line" />
                                             </span>{' '}
-                                            Set up shipping
+                                            {appLocalizer.dashboard_string.dashboard17}
                                         </div>
                                         <div className="li-action">
                                             <a
@@ -202,7 +202,7 @@ class MVX_Dashboard extends Component {
                                             <span>
                                                 <i className="mvx-font icon-chart-line" />
                                             </span>{' '}
-                                            Set up commissions
+                                            {appLocalizer.dashboard_string.dashboard18}
                                         </div>
                                         <div className="li-action">
                                             <a
@@ -218,7 +218,7 @@ class MVX_Dashboard extends Component {
                                             <span>
                                                 <i className="mvx-font icon-chart-line" />
                                             </span>{' '}
-                                            Set up product capabilities
+                                            {appLocalizer.dashboard_string.dashboard19}
                                         </div>
                                         <div className="li-action">
                                             <a
@@ -234,7 +234,7 @@ class MVX_Dashboard extends Component {
                                             <span>
                                                 <i className="mvx-font icon-chart-line" />
                                             </span>{' '}
-                                            Set up allowed product types
+                                            {appLocalizer.dashboard_string.dashboard20}
                                         </div>
                                         <div className="li-action">
                                             <a
@@ -254,14 +254,14 @@ class MVX_Dashboard extends Component {
                                             <i className="mvx-font icon-documentation-forum" />
                                         </figure>
                                         <figcaption>
-                                            <h2>Documentation Forum</h2>
+                                            <h2>{appLocalizer.dashboard_string.dashboard21}</h2>
                                             <div>
                                                 <p>
-                                                    Learn more about marketplace features and settings by accessing our documentation forum.
+                                                    {appLocalizer.dashboard_string.dashboard22}
                                                 </p>
                                             </div>
                                             <a href="https://multivendorx.com/doc/">
-                                                Visit Documentation Forum{' '}
+                                                {appLocalizer.dashboard_string.dashboard23}{' '}
                                                 <span className="mvx-font icon-link-right-arrow" />
                                             </a>
                                         </figcaption>
@@ -272,14 +272,14 @@ class MVX_Dashboard extends Component {
                                             <i className="mvx-font icon-support-forum" />
                                         </figure>
                                         <figcaption>
-                                            <h2>Support Forum</h2>
+                                            <h2>{appLocalizer.dashboard_string.dashboard24}</h2>
                                             <div>
                                                 <p>
-                                                    Lost somewhere or have a query to make? Join us on our support forum and flag your issue.
+                                                    {appLocalizer.dashboard_string.dashboard25}
                                                 </p>
                                             </div>
                                             <a href="https://wc-marketplace.com/support-forum">
-                                                Join Support Forum{' '}
+                                                {appLocalizer.dashboard_string.dashboard26}{' '}
                                                 <span className="mvx-font icon-link-right-arrow" />
                                             </a>
                                         </figcaption>
@@ -293,7 +293,7 @@ class MVX_Dashboard extends Component {
                                                     <figure>
                                                         <i className="mvx-font icon-vendor-personal" />
                                                     </figure>
-                                                    Add Vendor
+                                                    {appLocalizer.dashboard_string.dashboard27}
                                                 </a>
                                             </li>
                                             <li>
@@ -301,7 +301,7 @@ class MVX_Dashboard extends Component {
                                                     <figure>
                                                         <i className="mvx-font icon-vendor-personal" />
                                                     </figure>
-                                                    Commission
+                                                    {appLocalizer.dashboard_string.dashboard28}
                                                 </a>
                                             </li>
                                             <li>
@@ -309,7 +309,7 @@ class MVX_Dashboard extends Component {
                                                     <figure>
                                                         <i className="mvx-font icon-vendor-personal" />
                                                     </figure>
-                                                    Add Product
+                                                    {appLocalizer.dashboard_string.dashboard29}
                                                 </a>
                                             </li>
                                             <li>
@@ -317,7 +317,7 @@ class MVX_Dashboard extends Component {
                                                     <figure>
                                                         <i className="mvx-font icon-vendor-personal" />
                                                     </figure>
-                                                    Payment
+                                                    {appLocalizer.dashboard_string.dashboard30}
                                                 </a>
                                             </li>
                                         </ul>
@@ -492,7 +492,7 @@ class MVX_Dashboard extends Component {
 
                                 <li className="mvx-compare-table-row mvx-recomend">
                                     <span className="recommend-tag">
-                                        Recommend
+                                        {appLocalizer.dashboard_string.dashboard61}
                                     </span>
                                     <ul>
                                         <li>Pro</li>

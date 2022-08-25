@@ -271,6 +271,7 @@ class MVX_Admin {
             'all'                   =>  __('All', 'multivendorx'),
             'published'             =>  __('Published', 'multivendorx'),
             'pending'               =>  __('Pending', 'multivendorx'),
+            'delete'               =>  __('Delete', 'multivendorx'),
             'save'                  =>  __('Save', 'multivendorx'),
             'saving'                =>  __('Saving..', 'multivendorx'),
             'open_uploader'         =>  __('Upload Image', 'multivendorx'),

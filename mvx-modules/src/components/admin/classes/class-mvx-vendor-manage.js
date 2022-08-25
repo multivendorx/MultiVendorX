@@ -564,19 +564,13 @@ class MVXBackendVendor extends React.Component {
 					? (data_ann.cell = (row) => (
 							<div className="mvx-vendor-action-icon">
 								<div>
-									<a href={row.link_shop} data-title="shop">
+									<a href={row.link_shop} data-title={appLocalizer.global_string.shop}>
 										<i className="mvx-font icon-shop"></i>
-										{/* <p className="mvxicon-hover-text">
-											{appLocalizer.global_string.shop}
-										</p> */}
 									</a>
 								</div>
 								<div>
-									<a href={row.link} data-title="Edit">
+									<a href={row.link} data-title={appLocalizer.global_string.edit}>
 										<i className="mvx-font icon-edit"></i>
-										{/* <p className="mvxicon-hover-text">
-											{appLocalizer.global_string.edit}
-										</p> */}
 									</a>
 								</div>
 								<div
@@ -584,10 +578,9 @@ class MVXBackendVendor extends React.Component {
 										this.handleVendorDismiss(row.ID)
 									}
 									id={row.ID}
-									data-title="Close"
+									data-title={appLocalizer.global_string.delete}
 								>
 									<i className="mvx-font icon-no"></i>
-									{/* <p className="mvxicon-hover-text">Close</p> */}
 								</div>
 							</div>
 					  ))
