@@ -131,7 +131,8 @@
             question_type : question_type,
             question_id : question_id,
             data_action : data_action,
-            product     : product
+            product     : product,
+            security     : mvx_customer_qna_js_script_data.vendors_nonce
         }   
         $.post(mvx_customer_qna_js_script_data.ajax_url, data, function(response) {
             window.location.reload();

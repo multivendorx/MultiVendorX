@@ -554,6 +554,7 @@ final class MVX {
             case 'mvx_vendor_shipping' :    
                 $params = array(
                     'ajaxurl'	=> $this->ajax_url(),
+                    'security' => wp_create_nonce('mvx-shipping'),
                     'i18n' 	=> array(
 			'deleteShippingMethodConfirmation'	=> __( 'Are you absolutely sure to delete this shipping method?', 'multivendorx' ),
                     ),

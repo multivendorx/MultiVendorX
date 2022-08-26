@@ -196,6 +196,10 @@ class MVX_Ajax {
 
     public function mvx_datatable_get_vendor_orders() {
         global $wpdb, $MVX;
+        if ( ! current_user_can( 'edit_shop_orders' ) ) {
+                wp_die( -1 );
+        }
+        check_ajax_referer('mvx-dashboard', 'security');
         $requestData = ( $_REQUEST ) ? wp_unslash( $_REQUEST ) : array();
         $date_start = isset( $_POST['start_date'] ) ? wc_clean( $_POST['start_date'] ) : '';
         $date_end = isset( $_POST['end_date'] ) ? wc_clean( $_POST['end_date'] ) : '';
@@ -1464,6 +1468,7 @@ class MVX_Ajax {
 
     public function mvx_vendor_transactions_list() {
         global $MVX;
+        check_ajax_referer('mvx-transaction', 'security');
         if (is_user_logged_in() && is_user_mvx_vendor(get_current_vendor_id())) {
             $vendor = get_mvx_vendor(get_current_vendor_id());
             $requestData = ( $_REQUEST ) ? wc_clean( $_REQUEST ) : array();
@@ -1996,6 +2001,7 @@ class MVX_Ajax {
 
     public function mvx_question_verification_approval() {
         global $MVX;
+        check_ajax_referer('mvx-vendors', 'security');
         $data = array();
         if(!empty($_POST['question_id'])){
             $question_id = isset($_POST['question_id']) ? absint($_POST['question_id']) : 0;
@@ -2050,6 +2056,7 @@ class MVX_Ajax {
     }
 
     function mvx_widget_vendor_pending_shipping() {
+        check_ajax_referer('mvx-pending-shipping', 'security');
         if (is_user_logged_in() && is_user_mvx_vendor(get_current_vendor_id())) {
 
             $vendor = get_mvx_vendor(get_current_vendor_id());
@@ -2123,6 +2130,7 @@ class MVX_Ajax {
 
     function mvx_widget_vendor_product_sales_report() {
         global $wpdb;
+        check_ajax_referer('mvx-sales', 'security');
         if (is_user_logged_in() && is_user_mvx_vendor(get_current_vendor_id())) {
 
             $vendor = get_mvx_vendor(get_current_vendor_id());
@@ -2569,6 +2577,7 @@ class MVX_Ajax {
 
     public function mvx_add_shipping_method() {
         global $MVX;
+        check_ajax_referer('mvx-shipping', 'security');
         $data = array(
             'zone_id' => wc_clean($_POST['zoneID']),
             'method_id' => wc_clean($_POST['method'])
@@ -2587,6 +2596,7 @@ class MVX_Ajax {
 
     public function mvx_update_shipping_method() {
         global $MVX;
+        check_ajax_referer('mvx-shipping', 'security');
         $args = isset($_POST['args']) ? wc_clean($_POST['args']) : '';
         $posted_data = isset($_POST['posted_data']) ? array_filter(wc_clean($_POST['posted_data'])) : array();
         $form_fields = array();
@@ -2625,6 +2635,7 @@ class MVX_Ajax {
 
     public function mvx_delete_shipping_method() {
         global $MVX;
+        check_ajax_referer('mvx-shipping', 'security');
         $data = array(
             'zone_id' => wc_clean($_POST['zoneID']),
             'instance_id' => wc_clean($_POST['instance_id'])
@@ -2645,6 +2656,7 @@ class MVX_Ajax {
 
     public function mvx_toggle_shipping_method() {
         global $MVX;
+        check_ajax_referer('mvx-shipping', 'security');
         $data = array(
             'instance_id' => wc_clean($_POST['instance_id']),
             'zone_id' => absint($_POST['zoneID']),
@@ -2662,6 +2674,7 @@ class MVX_Ajax {
     }
     
     public function mvx_configure_shipping_method(){
+        check_ajax_referer('mvx-shipping', 'security');
         global $MVX;
         $zone_id = isset($_POST['zoneId']) ? absint($_POST['zoneId']) : 0;
         $method_id = isset($_POST['methodId']) ? wc_clean($_POST['methodId']) : '';
@@ -2805,6 +2818,7 @@ class MVX_Ajax {
     
     public function mvx_vendor_configure_shipping_method(){
         global $MVX;
+        check_ajax_referer('mvx-shipping', 'security');
         $zone_id = isset($_POST['zoneId']) ? absint($_POST['zoneId']) : 0;
         $method_id = isset($_POST['methodId']) ? wc_clean($_POST['methodId']) : '';
         $instance_id = isset($_POST['instanceId']) ? wc_clean($_POST['instanceId']) : '';
@@ -3403,7 +3417,11 @@ class MVX_Ajax {
         wp_die();
     }
     
-    public function mvx_order_status_changed(){
+    public function mvx_order_status_changed() {
+        check_ajax_referer('grant-access', 'security');
+        if (!current_user_can('edit_shop_orders')) {
+            wp_die(-1);
+        }
         $order_id = isset( $_POST['order_id'] ) ? absint($_POST['order_id']) : 0;
         $selected_status = isset( $_POST['selected_status'] ) ? wc_clean($_POST['selected_status']) : '';
         $order = wc_get_order( $order_id );
@@ -3418,6 +3436,7 @@ class MVX_Ajax {
     
     public function mvx_vendor_banking_ledger_list(){
         global $MVX;
+        check_ajax_referer('mvx-ledger', 'security');
         if (is_user_logged_in() && is_user_mvx_vendor(get_current_vendor_id())) {
             $vendor = get_mvx_vendor(get_current_vendor_id());
             $requestData = ( $_REQUEST ) ? wc_clean( $_REQUEST ) : array();
@@ -3493,7 +3512,7 @@ class MVX_Ajax {
      */
     function wpml_mvx_product_translations() {
         global $sitepress, $wpml_post_translations, $_POST, $MVX;
-        
+        check_ajax_referer('mvx-dashboard', 'security');
         $translation_html = '';
         if( isset( $_POST['proid'] ) && !empty( $_POST['proid'] ) ) {
             $product_id = $_POST['proid'];
@@ -3531,7 +3550,8 @@ class MVX_Ajax {
     }
 
     function wpml_mvx_product_new_translation() {
-        global $sitepress, $wpml_post_translations, $_POST, $wpdb;
+        global $sitepress, $_POST, $wpdb;
+        check_ajax_referer('mvx-dashboard', 'security');
         if( isset( $_POST['proid'] ) && !empty( $_POST['proid'] ) ) {
             $product_id = absint($_POST['proid']);
             if( $product_id ) {
@@ -3642,6 +3662,7 @@ class MVX_Ajax {
     }
 
     public function mvx_follow_store_toggle_status() {
+        check_ajax_referer('mvx-frontend', 'security');
         $store_vendor_id = isset( $_POST['vendor_id'] ) ? absint($_POST['vendor_id']) : 0;
         $follow_status = isset( $_POST['status'] ) ? wc_clean($_POST['status']) : '';
         $current_user_id = get_current_user_id() ? absint(get_current_user_id()) : 0;
@@ -3701,6 +3722,7 @@ class MVX_Ajax {
 
     // Update vendor shipping zone order
     public function mvx_vendor_zone_shipping_order() {
+        check_ajax_referer('mvx-shipping-zone', 'security');
         $array_items = array();
         foreach (explode("&", $_POST['data_detail']) as $value) {
             $array_items[] = (int) str_replace("item[]=","",$value);

@@ -168,6 +168,7 @@ jQuery(document).ready(function ($) {
             action      : 'mvx_follow_store_toggle_status',
             vendor_id   : vendor_id,
             status      : status,
+            security       : frontend_js_script_data.frontend_nonce
         }
 
         $.ajax({

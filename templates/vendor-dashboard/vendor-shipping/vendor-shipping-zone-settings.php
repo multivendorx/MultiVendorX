@@ -114,6 +114,7 @@
 				var data = {
 					action: 'mvx_vendor_zone_shipping_order',
 					data_detail: data_detail,
+					security: '<?php echo wp_create_nonce('mvx-shipping-zone'); ?>',
 				};
 				$.post("<?php echo admin_url('admin-ajax.php') ?>", data, function () {});
 			}

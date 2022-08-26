@@ -199,6 +199,7 @@ $orders_list_table_headers = apply_filters('mvx_datatable_order_list_table_heade
                     data.bulk_action = $('#order_bulk_actions').val();
                     data.order_status = $('#filter_by_order_status').val();
                     data.search_keyword = $('#pro_search_key').val();
+                    data.security = '<?php echo wp_create_nonce('mvx-dashboard'); ?>';
                 },
                 error: function(xhr, status, error) {
                     $("#mvx-vendor-orders tbody").append('<tr class="odd"><td valign="top" colspan="6" class="dataTables_empty" style="text-align:center;">'+error+' - <a href="javascript:window.location.reload();"><?php _e('Reload', 'multivendorx'); ?></a></td></tr>');

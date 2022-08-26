@@ -94,6 +94,7 @@ jQuery( document ).ready( function ( $ ) {
         var data = {
             action   : 'mvx_product_translations',
             proid    : $('#mvx_product_translations').data('product_id'),
+            security      : mvx_advance_product_params.dashboard_nonce
         }   
         jQuery.ajax({
             type:       'POST',
@@ -121,7 +122,8 @@ jQuery( document ).ready( function ( $ ) {
                 proid         : $(this).data('proid'),
                 trid          : $(this).data('trid'),
                 source_lang   : $(this).data('source_lang'),
-                lang          : $(this).data('lang')
+                lang          : $(this).data('lang'),
+                security      : mvx_advance_product_params.dashboard_nonce
             }   
             $.ajax({
                 type:       'POST',

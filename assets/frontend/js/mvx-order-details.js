@@ -114,7 +114,8 @@ jQuery(function ($) {
             var data = {
                 action: 'mvx_order_status_changed',
                 order_id: order_id,
-                selected_status: selected_status
+                selected_status: selected_status,
+                security: mvx_order_details_js_script_data.grant_access_nonce
             };
 
             $.post(mvx_order_details_js_script_data.ajax_url, data, function (response) {

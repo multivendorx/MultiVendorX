@@ -65,6 +65,9 @@ jQuery(document).ready(function($) {
         ajax:{
             url : '<?php echo add_query_arg( 'action', 'mvx_widget_vendor_product_sales_report', $MVX->ajax_url() ); ?>', 
             type: "post",
+            data: function (data) {
+                data.security = '<?php echo wp_create_nonce('mvx-sales'); ?>';
+            },
             error: function(xhr, status, error) {
                 $("#widget_product_sales_report tbody").append('<tr class="odd"><td valign="top" colspan="<?php if(is_array($product_sales_report_table_headers)) count($product_sales_report_table_headers); ?>" class="dataTables_empty" style="text-align:center;">'+error+' - <a href="javascript:window.location.reload();"><?php _e('Reload', 'multivendorx'); ?></a></td></tr>');
                 $("#widget_product_sales_report").css("display","none");

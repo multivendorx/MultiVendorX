@@ -116,6 +116,7 @@ jQuery(document).ready(function($) {
             data: function (data) {
                 data.from_date = $('#mvx_from_date').val();
                 data.to_date = $('#mvx_to_date').val();
+                data.security = '<?php echo wp_create_nonce('mvx-transaction'); ?>';
             },
             error: function(xhr, status, error) {
                 $("#vendor_transactions tbody").append('<tr class="odd"><td valign="top" colspan="6" class="dataTables_empty" style="text-align:center;">'+error+' - <a href="javascript:window.location.reload();"><?php _e('Reload', 'multivendorx'); ?></a></td></tr>');
