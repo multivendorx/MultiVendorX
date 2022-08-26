@@ -849,330 +849,233 @@ class MVX_Backend_Commission extends Component {
 															{this.state
 																.commission_details
 																.line_items ? (
-																<td className="thumb">
-																	<p
-																		dangerouslySetInnerHTML={{
-																			__html: this
-																				.state
-																				.commission_details
-																				.line_items
-																				.item_thunbail,
-																		}}
-																	></p>
-																	<div className="mvx-customer-details">
-																		<div
-																			dangerouslySetInnerHTML={{
-																				__html: this
-																					.state
-																					.commission_details
-																					.line_items
-																					.product_link_display,
-																			}}
-																		></div>
-																		<div
-																			dangerouslySetInnerHTML={{
-																				__html: this
-																					.state
-																					.commission_details
-																					.line_items
-																					.product_sku,
-																			}}
-																		></div>
-																		<div
-																			dangerouslySetInnerHTML={{
-																				__html: this
-																					.state
-																					.commission_details
-																					.line_items
-																					.check_variation_id
-																					? this
-																							.state
-																							.commission_details
-																							.line_items
-																							.variation_id_text
-																					: '',
-																			}}
-																		></div>
 
-																		{this
-																			.state
-																			.commission_details
-																			.line_items
-																			.check_variation_id ? (
-																			<div
-																				dangerouslySetInnerHTML={{
-																					__html:
-																						this
-																							.state
-																							.commission_details
-																							.line_items
-																							.get_variation_post_type ===
-																						'product_variation'
-																							? this
-																									.state
-																									.commission_details
-																									.line_items
-																									.item_variation_display
-																							: this
-																									.state
-																									.commission_details
-																									.line_items
-																									.no_longer_exist,
-																				}}
-																			></div>
-																		) : (
-																			''
-																		)}
+																this.state.commission_details.line_items.map(
+																(
+																	item_value,
+																	item_index
+																) => (
 
-																		<div
-																			dangerouslySetInnerHTML={{
-																				__html: this
-																					.state
-																					.commission_details
-																					.line_items
-																					.close_div,
-																			}}
-																		></div>
+																				<td className="thumb">
+																					<p
+																						dangerouslySetInnerHTML={{
+																							__html: item_value
+																								.item_thunbail,
+																						}}
+																					></p>
+																					<div className="mvx-customer-details">
+																						<div
+																							dangerouslySetInnerHTML={{
+																								__html: item_value
+																									.product_link_display,
+																							}}
+																						></div>
+																						<div
+																							dangerouslySetInnerHTML={{
+																								__html: item_value
+																									.product_sku,
+																							}}
+																						></div>
+																						<div
+																							dangerouslySetInnerHTML={{
+																								__html: item_value
+																									.check_variation_id
+																									? item_value
+																											.variation_id_text
+																									: '',
+																							}}
+																						></div>
 
-																		<div className="view">
-																			{this
-																				.state
-																				.commission_details
-																				.line_items
-																				.meta_format_data ? (
-																				<table
-																					cellSpacing="0"
-																					className="display_meta"
-																				>
-																					{this.state.commission_details.line_items.meta_data.map(
-																						(
-																							data,
-																							index
-																						) => (
-																							<tr>
-																								<th>
-																									{
-																										data.display_key
-																									}
+																						{item_value
+																							.check_variation_id ? (
+																							<div
+																								dangerouslySetInnerHTML={{
+																									__html:
+																										item_value
+																											.get_variation_post_type ===
+																										'product_variation'
+																											? item_value
+																													.item_variation_display
+																											: item_value
+																													.no_longer_exist,
+																								}}
+																							></div>
+																						) : (
+																							''
+																						)}
 
-																									:
-																								</th>
-																								<td>
-																									<div
-																										dangerouslySetInnerHTML={{
-																											__html: data.display_value,
-																										}}
-																									></div>
-																								</td>
-																							</tr>
-																						)
-																					)}
-																				</table>
-																			) : (
-																				''
-																			)}
-																		</div>
-																	</div>
-																</td>
+																						<div
+																							dangerouslySetInnerHTML={{
+																								__html: item_value
+																									.close_div,
+																							}}
+																						></div>
+
+																						<div className="view">
+																							{item_value
+																								.meta_format_data ? (
+																								<table
+																									cellSpacing="0"
+																									className="display_meta"
+																								>
+																									{item_value.meta_data.map(
+																										(
+																											data,
+																											index
+																										) => (
+																											<tr>
+																												<th>
+																													{
+																														data.display_key
+																													}
+
+																													:
+																												</th>
+																												<td>
+																													<div
+																														dangerouslySetInnerHTML={{
+																															__html: data.display_value,
+																														}}
+																													></div>
+																												</td>
+																											</tr>
+																										)
+																									)}
+																								</table>
+																							) : (
+																								''
+																							)}
+																						</div>
+																					</div>
+																				</td>
+
+																				)
+																				)
 															) : (
 																''
 															)}
 
-															{this.state
-																.commission_details
-																.line_items ? (
-																<td>
-																	{/* <div
-                                dangerouslySetInnerHTML={{
-                                  __html:
-                                    this.state.commission_details.line_items
-                                      .product_link_display,
-                                }}
-                              ></div>
-                              <div
-                                dangerouslySetInnerHTML={{
-                                  __html:
-                                    this.state.commission_details.line_items
-                                      .product_sku,
-                                }}
-                              ></div>
-                              <div
-                                dangerouslySetInnerHTML={{
-                                  __html: this.state.commission_details
-                                    .line_items.check_variation_id
-                                    ? this.state.commission_details.line_items
-                                        .variation_id_text
-                                    : "",
-                                }}
-                              ></div>
-
-                              {this.state.commission_details.line_items
-                                .check_variation_id ? (
-                                <div
-                                  dangerouslySetInnerHTML={{
-                                    __html:
-                                      this.state.commission_details.line_items
-                                        .get_variation_post_type ===
-                                      "product_variation"
-                                        ? this.state.commission_details
-                                            .line_items.item_variation_display
-                                        : this.state.commission_details
-                                            .line_items.no_longer_exist,
-                                  }}
-                                ></div>
-                              ) : (
-                                ""
-                              )}
-
-                              <div
-                                dangerouslySetInnerHTML={{
-                                  __html:
-                                    this.state.commission_details.line_items
-                                      .close_div,
-                                }}
-                              ></div>
-
-                              <div className="view">
-                                {this.state.commission_details.line_items
-                                  .meta_format_data ? (
-                                  <table
-                                    cellspacing="0"
-                                    className="display_meta"
-                                  >
-                                    {this.state.commission_details.line_items.meta_data.map(
-                                      (data, index) => (
-                                        <tr>
-                                          <th>{data.display_key}:</th>
-                                          <td>
-                                            <div
-                                              dangerouslySetInnerHTML={{
-                                                __html: data.display_value,
-                                              }}
-                                            ></div>
-                                          </td>
-                                        </tr>
-                                      )
-                                    )}
-                                  </table>
-                                ) : (
-                                  ""
-                                )}
-                              </div> */}
-																</td>
-															) : (
-																''
-															)}
+															
 
 															<td className="item_cost">
 																<div className="view">
+																	{this.state.commission_details.line_items.map(
+																	(
+																		item_value,
+																		item_index
+																	) => (
 																	<div
 																		dangerouslySetInnerHTML={{
-																			__html: this
-																				.state
-																				.commission_details
-																				.line_items
-																				? this
-																						.state
-																						.commission_details
-																						.line_items
+																			__html: item_value
+																				? item_value
 																						.item_cost
 																				: '',
 																		}}
 																	></div>
+																	))}
+
+																	{this.state.commission_details.line_items.map(
+																	(
+																		item_value,
+																		item_index
+																	) => (
 																	<div
 																		dangerouslySetInnerHTML={{
-																			__html: this
-																				.state
-																				.commission_details
-																				.line_items
-																				? this
-																						.state
-																						.commission_details
-																						.line_items
+																			__html: item_value
+																				? item_value
 																						.line_cost_html
 																				: '',
 																		}}
 																	></div>
+																	))}
 																</div>
 															</td>
 
 															<td className="quantity">
 																<div className="view">
+																	{this.state.commission_details.line_items.map(
+																	(
+																		item_value,
+																		item_index
+																	) => (
+
+																		<div
+																			dangerouslySetInnerHTML={{
+																				__html: item_value
+																					? item_value
+																							.quantity_1st
+																					: '',
+																			}}
+																		></div>
+																	))}
+
+																	{this.state.commission_details.line_items.map(
+																	(
+																		item_value,
+																		item_index
+																	) => (
 																	<div
 																		dangerouslySetInnerHTML={{
-																			__html: this
-																				.state
-																				.commission_details
-																				.line_items
-																				? this
-																						.state
-																						.commission_details
-																						.line_items
-																						.quantity_1st
-																				: '',
-																		}}
-																	></div>
-																	<div
-																		dangerouslySetInnerHTML={{
-																			__html: this
-																				.state
-																				.commission_details
-																				.line_items
-																				? this
-																						.state
-																						.commission_details
-																						.line_items
+																			__html: item_value
+																				? item_value
 																						.quantity_2nd
 																				: '',
 																		}}
 																	></div>
+
+																	))}
 																</div>
 															</td>
 
 															<td className="line_cost">
 																<div className="view">
+
+																	{this.state.commission_details.line_items.map(
+																	(
+																		item_value,
+																		item_index
+																	) => (
+
 																	<div
 																		dangerouslySetInnerHTML={{
-																			__html: this
-																				.state
-																				.commission_details
-																				.line_items
-																				? this
-																						.state
-																						.commission_details
-																						.line_items
+																			__html: item_value
+																				? item_value
 																						.line_cost
 																				: '',
 																		}}
 																	></div>
+																	))}
+
+																	{this.state.commission_details.line_items.map(
+																	(
+																		item_value,
+																		item_index
+																	) => (
 																	<div
 																		dangerouslySetInnerHTML={{
-																			__html: this
-																				.state
-																				.commission_details
-																				.line_items
-																				? this
-																						.state
-																						.commission_details
-																						.line_items
+																			__html: item_value
+																				? item_value
 																						.line_cost_1st
 																				: '',
 																		}}
 																	></div>
+																	))}
+
+																	{this.state.commission_details.line_items.map(
+																	(
+																		item_value,
+																		item_index
+																	) => (
 																	<div
 																		dangerouslySetInnerHTML={{
-																			__html: this
-																				.state
-																				.commission_details
-																				.line_items
-																				? this
-																						.state
-																						.commission_details
-																						.line_items
+																			__html: item_value
+																				? item_value
 																						.line_cost_2nd
 																				: '',
 																		}}
 																	></div>
+																	))}
+
 																</div>
 															</td>
 														</tr>

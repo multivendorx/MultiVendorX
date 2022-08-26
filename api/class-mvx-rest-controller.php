@@ -4004,7 +4004,8 @@ class MVX_REST_API {
 
         /* translators: %s: Commission status */
         $status = MVX_Commission::get_status($commission_id, 'edit');
-        $line_items_details = $shipping_items_details = $status_html = $tax_data = '';
+        $shipping_items_details = $status_html = $tax_data = '';
+        $line_items_details = [];
         if ($status == 'paid') {
             $status_html .= '<p class="commission-status-paid">'.MVX_Commission::get_status($commission_id).'</p>';
         } else {
@@ -4061,7 +4062,7 @@ class MVX_REST_API {
                 $refunded = $order->get_total_refunded_for_item($item_id);
                 $refunded_qty = $order->get_qty_refunded_for_item($item_id);
 
-                $line_items_details   =   array(
+                $line_items_details[]   =   array(
                     'item_id'   =>  $item_id,
                     'product'   =>  $item->get_product(),
                     'product_link'  =>  $product ? admin_url('post.php?post=' . $item->get_product_id() . '&action=edit') : '',
@@ -4114,6 +4115,7 @@ class MVX_REST_API {
                         'cost',
                         '_vendor_order_shipping_item_id',
                         'vendor_id',
+                        'Items'
                     )
                 );
                 $refunded = $order->get_total_refunded_for_item($item_id, 'shipping');
@@ -4131,7 +4133,7 @@ class MVX_REST_API {
                             continue;
                         }
                         $shipping_items_meta_details[]  =   array(
-                            'display_key'   =>  wp_kses_post($meta->display_key),
+                            'display_key'   =>  $meta->display_key == 'package_qty' ? 'Qty' : wp_kses_post($meta->display_key),
                             'display_value' =>  wp_kses_post(force_balance_tags($meta->display_value)),
                         );
                     }
@@ -4181,7 +4183,7 @@ class MVX_REST_API {
         }
 
         $order_edit_link = sprintf('post.php?post=%s&action=edit', $commission_order_id);
-
+        //print_r($line_items_details);die;
         $payment_details = array(
             'commission_id' => $commission_id,
             'commission_order_id'   => $commission_order_id,
