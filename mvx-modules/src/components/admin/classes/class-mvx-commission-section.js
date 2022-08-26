@@ -1101,122 +1101,7 @@ class MVX_Backend_Commission extends Component {
 											{this.state.commission_details
 												.shipping_items_details ? (
 												<div className="mvx-commission-order-data woocommerce_order_items_wrapper wc-order-items-editable">
-													{/* <table
-														cellPadding="0"
-														cellSpacing="0"
-														className="woocommerce_order_items"
-													>
-														<tbody id="order_line_items">
-															<tr>
-																<td className="thumb"></td>
-																{this.state
-																	.commission_details
-																	.shipping_items_details ? (
-																	<td>
-																		<p
-																			dangerouslySetInnerHTML={{
-																				__html: this
-																					.state
-																					.commission_details
-																					.shipping_items_details
-																					.shipping_text,
-																			}}
-																		></p>
-																		<div className="view">
-																			{this
-																				.state
-																				.commission_details
-																				.shipping_items_details
-																				.meta_data ? (
-																				<table
-																					cellSpacing="0"
-																					className="display_meta"
-																				>
-																					{this.state.commission_details.shipping_items_details.meta_data.map(
-																						(
-																							data,
-																							index
-																						) => (
-																							<tr>
-																								<th>
-																									{
-																										data.display_key
-																									}
-
-																									:
-																								</th>
-																								<td>
-																									<div
-																										dangerouslySetInnerHTML={{
-																											__html: data.display_value,
-																										}}
-																									></div>
-																								</td>
-																							</tr>
-																						)
-																					)}
-																				</table>
-																			) : (
-																				''
-																			)}
-																		</div>
-																	</td>
-																) : (
-																	''
-																)}
-
-																<td
-																	className="item_cost"
-																	width="1%"
-																>
-																	&nbsp;
-																</td>
-
-																<td
-																	className="quantity"
-																	width="1%"
-																>
-																	&nbsp;
-																</td>
-
-																<td
-																	className="line_cost"
-																	width="1%"
-																>
-																	<div className="view">
-																		<p
-																			dangerouslySetInnerHTML={{
-																				__html: this
-																					.state
-																					.commission_details
-																					.shipping_items_details
-																					? this
-																							.state
-																							.commission_details
-																							.shipping_items_details
-																							.shipping_price
-																					: '',
-																			}}
-																		></p>
-																		<p
-																			dangerouslySetInnerHTML={{
-																				__html: this
-																					.state
-																					.commission_details
-																					.shipping_items_details
-																					? this
-																							.state
-																							.commission_details
-																							.shipping_items_details
-																							.refunded_shipping
-																					: '',
-																			}}
-																		></p>
-																	</div>
-																</td>
-															</tr>
-														</tbody>
-														</table> */}
+													
 												<div className='woocommerce_order_items mvx-shipping-table-wrap'>
 																
 																{this
@@ -1228,7 +1113,7 @@ class MVX_Backend_Commission extends Component {
 																					cellSpacing="0"
 																					className="display_meta"
 																				>
-
+																				<thead>
 																				<tr>
 																					{this.state.commission_details.shipping_items_details.meta_data.map(
 																						(
@@ -1245,8 +1130,10 @@ class MVX_Backend_Commission extends Component {
 																					)}
 
 
-																					</tr>
-																					<tr>
+																				</tr>
+																				</thead>
+																				<tbody>
+																				<tr>
 																					{this.state.commission_details.shipping_items_details.meta_data.map(
 																						(
 																							data,
@@ -1262,7 +1149,8 @@ class MVX_Backend_Commission extends Component {
 																								</td>
 																						)
 																					)}
-																					</tr>
+																				</tr>
+																				</tbody>
 																				</table>
 																			) : (
 																				''
