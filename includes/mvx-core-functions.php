@@ -382,11 +382,6 @@ if (!function_exists('doProductVendorLOG')) {
         global $MVX;
         $file = $MVX->plugin_path . 'log/product_vendor.log';
         if (file_exists($file)) {
-//            $temphandle = @fopen($file, 'w+'); // @codingStandardsIgnoreLine.
-//            @fclose($temphandle); // @codingStandardsIgnoreLine.
-//            if (defined('FS_CHMOD_FILE')) {
-//                @chmod($file, FS_CHMOD_FILE); // @codingStandardsIgnoreLine.
-//            }
             // Open the file to get existing content
             $current = file_get_contents($file);
             if ($current) {

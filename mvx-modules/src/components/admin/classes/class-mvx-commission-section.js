@@ -1198,7 +1198,7 @@ class MVX_Backend_Commission extends Component {
 											{this.state.commission_details
 												.shipping_items_details ? (
 												<div className="mvx-commission-order-data woocommerce_order_items_wrapper wc-order-items-editable">
-													<table
+													{/* <table
 														cellPadding="0"
 														cellSpacing="0"
 														className="woocommerce_order_items"
@@ -1313,7 +1313,61 @@ class MVX_Backend_Commission extends Component {
 																</td>
 															</tr>
 														</tbody>
-													</table>
+														</table> */}
+												<div className='woocommerce_order_items mvx-shipping-table-wrap'>
+																
+																{this
+																				.state
+																				.commission_details
+																				.shipping_items_details
+																				.meta_data ? (
+																				<table
+																					cellSpacing="0"
+																					className="display_meta"
+																				>
+
+																				<tr>
+																					{this.state.commission_details.shipping_items_details.meta_data.map(
+																						(
+																							data,
+																							index
+																						) => (
+																								<th>
+																									{
+																										data.display_key
+																									}
+																								</th>
+																								
+																						)
+																					)}
+
+
+																					</tr>
+																					<tr>
+																					{this.state.commission_details.shipping_items_details.meta_data.map(
+																						(
+																							data,
+																							index
+																						) => (
+																								
+																								<td>
+																									<div
+																										dangerouslySetInnerHTML={{
+																											__html: data.display_value,
+																										}}
+																									></div>
+																								</td>
+																						)
+																					)}
+																					</tr>
+																				</table>
+																			) : (
+																				''
+																			)}
+
+
+														</div>
+													
 												</div>
 											) : (
 												''

@@ -4112,9 +4112,18 @@ class MVX_REST_API {
                         '_line_tax',
                         'method_id',
                         'cost',
+                        '_vendor_order_shipping_item_id',
+                        'vendor_id',
                     )
                 );
                 $refunded = $order->get_total_refunded_for_item($item_id, 'shipping');
+
+
+                // to add shipping method title
+                $shipping_items_meta_details[]  =   array(
+                    'display_key'   =>  __('shipping method', 'multivendorx'),
+                    'display_value' =>  esc_html($item->get_name() ? $item->get_name() : __('Shipping', 'multivendorx') ),
+                );
 
                 if ($meta_data = $item->get_formatted_meta_data('')) {
                     foreach ($meta_data as $meta_id => $meta) {
@@ -4127,6 +4136,11 @@ class MVX_REST_API {
                         );
                     }
                 }
+
+                $shipping_items_meta_details[]  =   array(
+                    'display_key'   =>  __('total shipping', 'multivendorx'),
+                    'display_value' =>  wc_price($item->get_total(), array('currency' => $order->get_currency())),
+                );
 
                 $shipping_items_details   =   array(
                     'shipping_text'   =>  esc_html($item->get_name() ? $item->get_name() : __('Shipping', 'multivendorx') ),

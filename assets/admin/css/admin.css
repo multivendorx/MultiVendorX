@@ -4068,8 +4068,13 @@ div.health-check-accordion .health-check-accordion-panel table td {
   font-weight: 500;
 }
 
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-commission-order-data.woocommerce_order_items_wrapper.wc-order-items-editable, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-commission-order-data.woocommerce_order_items_wrapper.wc-order-items-editable {
-  border-radius: 0.25rem;
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-shipping-table-wrap, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-shipping-table-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
 }
 
 .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table.woocommerce_order_items, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table.woocommerce_order_items {

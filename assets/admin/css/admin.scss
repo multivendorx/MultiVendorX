@@ -3092,8 +3092,8 @@ padding:0;
       color: $title-color;
       font-weight: 500;
     }
-    .mvx-commission-order-data.woocommerce_order_items_wrapper.wc-order-items-editable{
-      border-radius: $border-radius;
+    .mvx-shipping-table-wrap{
+      @include flexprops(start);
     }
     table.woocommerce_order_items{
       border: $border;
