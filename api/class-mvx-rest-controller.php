@@ -4123,7 +4123,7 @@ class MVX_REST_API {
 
                 // to add shipping method title
                 $shipping_items_meta_details[]  =   array(
-                    'display_key'   =>  __('shipping method', 'multivendorx'),
+                    'display_key'   =>  __('Shipping method', 'multivendorx'),
                     'display_value' =>  esc_html($item->get_name() ? $item->get_name() : __('Shipping', 'multivendorx') ),
                 );
 
@@ -4140,7 +4140,7 @@ class MVX_REST_API {
                 }
 
                 $shipping_items_meta_details[]  =   array(
-                    'display_key'   =>  __('total shipping', 'multivendorx'),
+                    'display_key'   =>  __('Total shipping', 'multivendorx'),
                     'display_value' =>  wc_price($item->get_total(), array('currency' => $order->get_currency())),
                 );
 
