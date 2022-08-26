@@ -845,7 +845,7 @@ class MVX_Backend_Commission extends Component {
 													</thead>
 
 													<tbody id="order_line_items">
-														<tr>
+														
 															{this.state
 																.commission_details
 																.line_items ? (
@@ -855,7 +855,7 @@ class MVX_Backend_Commission extends Component {
 																	item_value,
 																	item_index
 																) => (
-
+																			<tr>
 																				<td className="thumb">
 																					<p
 																						dangerouslySetInnerHTML={{
@@ -948,137 +948,105 @@ class MVX_Backend_Commission extends Component {
 																						</div>
 																					</div>
 																				</td>
+																				<td></td>
+																				<td className="item_cost">
+																					<div className="view">
+																						
+																						<div
+																							dangerouslySetInnerHTML={{
+																								__html: item_value
+																									? item_value
+																											.item_cost
+																									: '',
+																							}}
+																						></div>
 
-																				)
-																				)
+																						<div
+																							dangerouslySetInnerHTML={{
+																								__html: item_value
+																									? item_value
+																											.line_cost_html
+																									: '',
+																							}}
+																						></div>
+																						
+																					</div>
+																				</td>
+
+																				<td className="quantity">
+																					<div className="view">
+																						
+
+																							<div
+																								dangerouslySetInnerHTML={{
+																									__html: item_value
+																										? item_value
+																												.quantity_1st
+																										: '',
+																								}}
+																							></div>
+
+																						
+																						<div
+																							dangerouslySetInnerHTML={{
+																								__html: item_value
+																									? item_value
+																											.quantity_2nd
+																									: '',
+																							}}
+																						></div>
+
+																					</div>
+																				</td>
+
+
+																				<td className="line_cost">
+																					<div className="view">
+
+																				
+
+																						<div
+																							dangerouslySetInnerHTML={{
+																								__html: item_value
+																									? item_value
+																											.line_cost
+																									: '',
+																							}}
+																						></div>
+
+																					
+																						<div
+																							dangerouslySetInnerHTML={{
+																								__html: item_value
+																									? item_value
+																											.line_cost_1st
+																									: '',
+																							}}
+																						></div>
+
+																					
+																						<div
+																							dangerouslySetInnerHTML={{
+																								__html: item_value
+																									? item_value
+																											.line_cost_2nd
+																									: '',
+																							}}
+																						></div>
+
+																					</div>
+																				</td>
+
+
+																				</tr>
+																				))
 															) : (
 																''
 															)}
 
 															
 
-															<td className="item_cost">
-																<div className="view">
-																	{this.state.commission_details.line_items.map(
-																	(
-																		item_value,
-																		item_index
-																	) => (
-																	<div
-																		dangerouslySetInnerHTML={{
-																			__html: item_value
-																				? item_value
-																						.item_cost
-																				: '',
-																		}}
-																	></div>
-																	))}
-
-																	{this.state.commission_details.line_items.map(
-																	(
-																		item_value,
-																		item_index
-																	) => (
-																	<div
-																		dangerouslySetInnerHTML={{
-																			__html: item_value
-																				? item_value
-																						.line_cost_html
-																				: '',
-																		}}
-																	></div>
-																	))}
-																</div>
-															</td>
-
-															<td className="quantity">
-																<div className="view">
-																	{this.state.commission_details.line_items.map(
-																	(
-																		item_value,
-																		item_index
-																	) => (
-
-																		<div
-																			dangerouslySetInnerHTML={{
-																				__html: item_value
-																					? item_value
-																							.quantity_1st
-																					: '',
-																			}}
-																		></div>
-																	))}
-
-																	{this.state.commission_details.line_items.map(
-																	(
-																		item_value,
-																		item_index
-																	) => (
-																	<div
-																		dangerouslySetInnerHTML={{
-																			__html: item_value
-																				? item_value
-																						.quantity_2nd
-																				: '',
-																		}}
-																	></div>
-
-																	))}
-																</div>
-															</td>
-
-															<td className="line_cost">
-																<div className="view">
-
-																	{this.state.commission_details.line_items.map(
-																	(
-																		item_value,
-																		item_index
-																	) => (
-
-																	<div
-																		dangerouslySetInnerHTML={{
-																			__html: item_value
-																				? item_value
-																						.line_cost
-																				: '',
-																		}}
-																	></div>
-																	))}
-
-																	{this.state.commission_details.line_items.map(
-																	(
-																		item_value,
-																		item_index
-																	) => (
-																	<div
-																		dangerouslySetInnerHTML={{
-																			__html: item_value
-																				? item_value
-																						.line_cost_1st
-																				: '',
-																		}}
-																	></div>
-																	))}
-
-																	{this.state.commission_details.line_items.map(
-																	(
-																		item_value,
-																		item_index
-																	) => (
-																	<div
-																		dangerouslySetInnerHTML={{
-																			__html: item_value
-																				? item_value
-																						.line_cost_2nd
-																				: '',
-																		}}
-																	></div>
-																	))}
-
-																</div>
-															</td>
-														</tr>
+														
 													</tbody>
 												</table>
 											</div>

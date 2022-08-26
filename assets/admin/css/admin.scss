@@ -3092,10 +3092,8 @@ padding:0;
       color: $title-color;
       font-weight: 500;
     }
-    .mvx-shipping-table-wrap{
-      @include flexprops(start);
-    }
-    table.woocommerce_order_items{
+ 
+    .woocommerce_order_items{
       border: $border;
       thead{
         background-color: $font-white;

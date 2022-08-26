@@ -4068,34 +4068,25 @@ div.health-check-accordion .health-check-accordion-panel table td {
   font-weight: 500;
 }
 
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-shipping-table-wrap, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-shipping-table-wrap {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: start;
-}
-
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table.woocommerce_order_items, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table.woocommerce_order_items {
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .woocommerce_order_items, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .woocommerce_order_items {
   border: 0.063rem solid #d4d1d9;
 }
 
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table.woocommerce_order_items thead, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table.woocommerce_order_items thead {
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .woocommerce_order_items thead, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .woocommerce_order_items thead {
   background-color: #f9f8fb;
   color: #5e5d60;
   text-align: left;
 }
 
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table.woocommerce_order_items thead th, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table.woocommerce_order_items thead th {
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .woocommerce_order_items thead th, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .woocommerce_order_items thead th {
   padding: 1rem 0.75rem;
 }
 
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table.woocommerce_order_items tbody td, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table.woocommerce_order_items tbody td {
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .woocommerce_order_items tbody td, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .woocommerce_order_items tbody td {
   padding: 1rem 0.75rem;
 }
 
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table.woocommerce_order_items tbody td.thumb, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table.woocommerce_order_items tbody td.thumb {
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .woocommerce_order_items tbody td.thumb, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .woocommerce_order_items tbody td.thumb {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
