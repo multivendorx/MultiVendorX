@@ -748,7 +748,7 @@ class MVXworkboard extends Component {
 										this.handlePostDismiss(row.id, row.type)
 									}
 									id={row.id}
-									data-title='close'
+									data-title='Delete'
 								>
 									<i className="mvx-font icon-no"></i>
 								</div>
@@ -810,7 +810,7 @@ class MVXworkboard extends Component {
 										)
 									}
 									id={row.id}
-									data-title='close'
+									data-title='Delete'
 								>
 									<i className="mvx-font icon-no"></i>
 								</div>
@@ -862,7 +862,7 @@ class MVXworkboard extends Component {
 											)
 										}
 										id={row.id}
-										data-title='close'
+										data-title='Delete'
 									>
 										<i className="mvx-font icon-no"></i>
 									</div>
@@ -912,7 +912,7 @@ class MVXworkboard extends Component {
 											this.handleReviewDismiss(row.id)
 										}
 										id={row.id}
-										data-title='close'
+										data-title='Delete'
 									>
 										<i className="mvx-font icon-no"></i>
 									</div>
@@ -964,7 +964,7 @@ class MVXworkboard extends Component {
 											)
 										}
 										id={row.reason}
-										data-title='close'
+										data-title='Delete'
 									>
 										<i className="mvx-font icon-no"></i>
 									</div>

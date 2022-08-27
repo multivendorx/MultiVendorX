@@ -425,7 +425,7 @@ class MVX_Backend_Commission extends Component {
 										this.handleCommisssionDismiss(row.id)
 									}
 									id={row.id}
-									data-title='close'
+									data-title='Delete'
 								>
 									<i className="mvx-font icon-no"></i>
 							
