@@ -4440,9 +4440,9 @@ class MVX_REST_API {
                     $line_items = $order->get_items( 'line_item' );
                     foreach ($line_items as $item_id => $item) {
                         $product = $item->get_product();
-                        $name = ( $product ) ? $product->get_formatted_name() : $item->get_name();
+                        $name = ( $product ) ? $product->get_title() : $item->get_name();
                         $product_id = ( $product ) ? $product->get_id() : 0;
-                        $product_list .= '<a href="' . esc_url(get_permalink($product_id)) . '">' . $name . '</a><br>';
+                        $product_list .= '[<a href="' . esc_url(get_permalink($product_id)) . '">' . $name . '</a>]<br>';
                     }
                 }
 

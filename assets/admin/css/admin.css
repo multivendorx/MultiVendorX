@@ -3858,10 +3858,14 @@ div.health-check-accordion .health-check-accordion-panel table td {
 }
 
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon .mvx-vendor-icon-name {
-  overflow: hidden;
-  width: 4.438rem;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  padding: 0.25rem 0;
+  word-break: break-word;
 }
 
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon div:hover, .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon a:hover {
@@ -3883,12 +3887,12 @@ div.health-check-accordion .health-check-accordion-panel table td {
   margin-right: 0.4rem;
 }
 
-.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .jfrgbA {
+.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .bMgaAx {
   padding: 0 1rem;
 }
 
-.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .jfrgbA:first-child {
-  background-color: #000;
+.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .bMgaAx div:first-child {
+  white-space: normal;
 }
 
 .css-14dclt2-Input {
@@ -4098,6 +4102,10 @@ div.health-check-accordion .health-check-accordion-panel table td {
           justify-content: space-between;
   -webkit-column-gap: 0.5rem;
           column-gap: 0.5rem;
+}
+
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .woocommerce_order_items tbody td.thumb .mvx-customer-details a, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .woocommerce_order_items tbody td.thumb .mvx-customer-details a {
+  word-break: break-word;
 }
 
 .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table.mvx-order-totals, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table.mvx-order-totals {

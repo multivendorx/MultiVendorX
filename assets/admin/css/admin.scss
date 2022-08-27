@@ -2942,10 +2942,9 @@ div.health-check-accordion{
             min-width: 7rem;
             column-gap:0.25rem;
             .mvx-vendor-icon-name {
-              overflow: hidden;
-              width: 4.438rem;
-              white-space: nowrap;
-              text-overflow: ellipsis;
+              @include flexprops(start);
+              padding: 0.25rem 0;
+             word-break: break-word;
           }
             div, a{
               &:hover{
@@ -2968,10 +2967,10 @@ div.health-check-accordion{
             margin-right: 0.4rem;
           }
         }
-        .jfrgbA {
+        .bMgaAx {
          padding:0 1rem;
-         &:first-child{
-          background-color: #000;
+         div:first-child{
+          white-space: normal;
          }
         }
       }
@@ -3111,6 +3110,9 @@ padding:0;
           @include flexprops(center);
           justify-content: space-between;
           column-gap: 0.5rem;
+          .mvx-customer-details a{
+            word-break: break-word;
+          }
         }
       }
     }
