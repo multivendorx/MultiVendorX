@@ -3887,11 +3887,14 @@ div.health-check-accordion .health-check-accordion-panel table td {
   margin-right: 0.4rem;
 }
 
-.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .bMgaAx {
-  padding: 0 1rem;
+.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .sc-hKMtZM {
+  padding: 0.75rem 1rem 0.5rem;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
 }
 
-.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .bMgaAx div:first-child {
+.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .sc-hKMtZM div:first-child {
   white-space: normal;
 }
 
@@ -4121,6 +4124,11 @@ div.health-check-accordion .health-check-accordion-panel table td {
   font-weight: 500;
   height: 2.5rem;
   border-top: 0.06rem solid #f2eff5;
+}
+
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table.mvx-order-totals tr td.cupon-ntc, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table.mvx-order-totals tr td.cupon-ntc {
+  text-align: left;
+  font-size: 0.75rem;
 }
 
 .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table.mvx-order-totals tr td, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table.mvx-order-totals tr td {

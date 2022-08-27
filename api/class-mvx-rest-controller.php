@@ -766,8 +766,8 @@ class MVX_REST_API {
                         array(
                             'key'   =>  'dismiss_product',
                             'value'  =>  $value,
-                            'icon'  =>  'icon-close',
-                            'title' =>  __('Edit', 'multivendorx')
+                            'icon'  =>  'icon-dismiss',
+                            'title' =>  __('Dismiss', 'multivendorx')
                         )
                     )
                 );
@@ -801,8 +801,8 @@ class MVX_REST_API {
                         array(
                             'key'   =>  'dismiss_vendor',
                             'value'  =>  $value,
-                            'icon'  =>  'icon-close',
-                            'title' =>  __('Close', 'multivendorx')
+                            'icon'  =>  'icon-dismiss',
+                            'title' =>  __('Dismiss', 'multivendorx')
                         )
                     )
                 );
@@ -840,8 +840,8 @@ class MVX_REST_API {
                         array(
                             'key'   =>  'dismiss_coupon',
                             'value'  =>  $value,
-                            'icon'  =>  'icon-close',
-                            'title' =>  __('Close', 'multivendorx')
+                            'icon'  =>  'icon-dismiss',
+                            'title' =>  __('Dismiss', 'multivendorx')
                         )
                     )
                 );
@@ -878,8 +878,8 @@ class MVX_REST_API {
                         array(
                             'key'   =>  'dismiss_transaction',
                             'value'  =>  $value,
-                            'icon'  =>  'icon-close',
-                            'title' =>  __('Close', 'multivendorx')
+                            'icon'  =>  'icon-dismiss',
+                            'title' =>  __('Dismiss', 'multivendorx')
                         )
                     )
                 );
@@ -916,8 +916,8 @@ class MVX_REST_API {
                         array(
                             'key'   =>  'dismiss_question',
                             'value'  =>  $value,
-                            'icon'  =>  'icon-close',
-                            'title' =>  __('Close', 'multivendorx')
+                            'icon'  =>  'icon-dismiss',
+                            'title' =>  __('Dismiss', 'multivendorx')
                         )
                     )
                 );
@@ -4214,7 +4214,7 @@ class MVX_REST_API {
             'commission_include_coupon' =>  get_post_meta($commission_id, '_commission_include_coupon', true),
             'is_shipping'   =>   get_post_meta($commission_id, '_shipping', true),
             'commission_total_include_shipping' =>  get_post_meta($commission_id, '_commission_total_include_shipping', true),
-            'is_tax'    =>  get_post_meta($commission_id, '_tax', true),
+            'is_tax'    =>  get_post_meta($commission_id, '_tax', true) ? get_post_meta($commission_id, '_tax', true) : 0,
             'commission_total_include_tax'  =>  get_post_meta($commission_id, '_commission_total_include_tax', true),
             'formated_commission_total' =>  $vendor_order->get_formatted_commission_total(),
             'get_total_shipping_refunded'   =>  $get_total_shipping_refunded,

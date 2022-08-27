@@ -125,7 +125,6 @@ if (!empty($mvx_vendor_registration_form_data) && is_array($mvx_vendor_registrat
                     <label><?php echo __($value['label'],'multivendorx'); ?><?php if ($value['required']) { echo ' <span class="required">*</span>'; }?></label>
                     <input type="hidden" name="mvx_vendor_fields[<?php echo $key; ?>][label]" value="<?php echo htmlentities($value['label']); ?>" />
                     <input type="hidden" name="mvx_vendor_fields[<?php echo $key; ?>][type]" value="selectbox" />
-                    <select class="select_box" name="mvx_vendor_fields[<?php echo $key; ?>][value]" <?php if ($value['required']) { echo 'required="required"'; }?>>
                     <?php
                     if (!empty($value['options']) && is_array($value['options'])) {
                         foreach ($value['options'] as $option_key => $option_value) {

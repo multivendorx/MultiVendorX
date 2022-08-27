@@ -1139,7 +1139,7 @@ class MVX_Backend_Commission extends Component {
 
 											<div className="mvx-wrap-table-commission-and-coupon-commission">
 												<div className="mvx-coupon-shipping-tax">
-													<ul className="mvx-child-coupon-shipping-tax">
+													{/*<ul className="mvx-child-coupon-shipping-tax">
 														{this.state
 															.commission_details
 															.order_total_discount >
@@ -1179,34 +1179,38 @@ class MVX_Backend_Commission extends Component {
 														) : (
 															''
 														)}
-														{this.state
-															.commission_details
-															.is_tax > 0 &&
-														this.state
-															.commission_details
-															.commission_total_include_tax ? (
-															<li>
-																<em>
-																	*
-																	{
-																		appLocalizer
-																			.commission_page_string
-																			.calculated_tax
-																	}
-																</em>
-															</li>
-														) : (
-															''
-														)}
-													</ul>
+													
+													</ul> */}
 												</div>
 
 												<table className="mvx-order-totals">
 													<tbody>
+
 														<tr>
-														<td/>
-														<td/>
-														<td/>	
+															{this.state
+																.commission_details
+																.order_total_discount >
+																0 &&
+															this.state
+																.commission_details
+																.commission_include_coupon ? (
+																<td className='cupon-ntc'>
+																	<em>
+																		*
+																		{
+																			appLocalizer
+																				.commission_page_string
+																				.calculated_coupon
+																		}
+																	</em>
+																</td>
+															) : (
+																''
+															)}
+															<td/>
+															<td/>
+															<td/>
+														
 															<td className="mvx-order-label-td">
 																{this.state
 																	.commission_details
@@ -1224,6 +1228,7 @@ class MVX_Backend_Commission extends Component {
 																}
 																:
 															</td>
+
 															<td className="total">
 																<div
 																	dangerouslySetInnerHTML={{
@@ -1234,13 +1239,35 @@ class MVX_Backend_Commission extends Component {
 																	}}
 																></div>
 															</td>
+															
 														</tr>
+
+
+
 
 														{this.state
 															.commission_details
 															.get_shipping_method ? (
 															<tr>
-																<td/>
+																{this.state
+															.commission_details
+															.is_shipping > 0 &&
+														this.state
+															.commission_details
+															.commission_total_include_shipping ? (
+																<td className='cupon-ntc'>
+																<em>
+																	*
+																	{
+																		appLocalizer
+																			.commission_page_string
+																			.calculated_shipping
+																	}
+																</em>
+															</td>
+														) : (
+															''
+														)}
 																<td/>
 																<td/>
 																<td className="mvx-order-label-td">
@@ -1276,35 +1303,84 @@ class MVX_Backend_Commission extends Component {
 															''
 														)}
 
-														{this.state
+
+
+													{this.state
+														.commission_details
+														.tax_data &&
+													Object.keys(
+														this.state
 															.commission_details
-															.tax_data &&
-														Object.keys(
-															this.state
-																.commission_details
-																.tax_data
-														).length > 0
-															? Object.keys(
-																	this.state
-																		.commission_details
-																		.tax_data
-															  ).map(
-																	(
-																		data,
-																		index
-																	) => (
-																		<tr>
+															.tax_data
+													).length > 0
+														? 
+														<tr>
+																			{this.state
+																				.commission_details
+																				.is_tax > 0 &&
+																			this.state
+																				.commission_details
+																				.commission_total_include_tax ? (
+																					<td className='cupon-ntc'>
+
+																					<em>
+																						*
+																						{
+																							appLocalizer
+																								.commission_page_string
+																								.calculated_tax
+																						}
+																					</em>
+																				</td>
+																			) : (
+																				''
+																			)}
+
 																			<td/>
 																			<td/>
-																			<td/>
+
 																			<td className="mvx-order-label-td">
+																					{this.state
+																						.commission_details
+																						.tax_data &&
+																					Object.keys(
+																						this.state
+																							.commission_details
+																							.tax_data
+																					).length > 0 && Object.keys(
+																					this.state
+																					.commission_details
+																					.tax_data
+																					).map(
+																					(
+																					data,
+																					index
+																					) => (
 																				<div
 																					dangerouslySetInnerHTML={{
 																						__html: data.tax_label,
 																					}}
 																				></div>
+																				))}
 																			</td>
+
 																			<td className="total">
+																					{this.state
+																						.commission_details
+																						.tax_data &&
+																					Object.keys(
+																						this.state
+																							.commission_details
+																							.tax_data
+																					).length > 0 && Object.keys(
+																					this.state
+																					.commission_details
+																					.tax_data
+																					).map(
+																					(
+																					data,
+																					index
+																					) => (
 																				<div
 																					dangerouslySetInnerHTML={{
 																						__html:
@@ -1314,11 +1390,14 @@ class MVX_Backend_Commission extends Component {
 																								: data.else_output,
 																					}}
 																				></div>
+																				))}
 																			</td>
-																		</tr>
-																	)
-															  )
+														</tr>
 															: ''}
+
+
+
+
 
 														<tr>
 															<td/>

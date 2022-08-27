@@ -139,7 +139,7 @@ class MVX_Module_Listing extends Component {
 				open_model: true,
 			});
 		} else if (!is_plugin_active) {
-			console.log('rrrrrrrrrrrrrrrrrr');
+
 		} else {
 			// If everything works fine then checkbox trigger
 			items[parent_index].options[sub_index].is_active =
@@ -204,7 +204,6 @@ class MVX_Module_Listing extends Component {
 			}
 		)
 		.then((response) => {
-			console.log(response.data);
 			this.setState({
 				total_number_of_deactive_module: response.data,
 			});
@@ -329,6 +328,7 @@ class MVX_Module_Listing extends Component {
 									</div>
 									
 										<div className="mvx-module-option-row">
+										{console.log(student1.options)}
 											{student1.options.map(
 												(student, index) => (
 													<div className="mvx-module-section-options-list">
