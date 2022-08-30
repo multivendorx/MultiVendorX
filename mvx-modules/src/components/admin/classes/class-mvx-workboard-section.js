@@ -8,6 +8,11 @@ import { BrowserRouter as Router, Link, useLocation } from 'react-router-dom';
 import DynamicForm from '../../../DynamicForm';
 import DataTable from 'react-data-table-component';
 import TabSection from './class-mvx-page-tab';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 const override = css`
 	display: block;
@@ -44,6 +49,10 @@ class MVXworkboard extends Component {
 			list_of_all_tabs: [],
 			list_of_work_board_content: [],
 			pending_individual_checkbox: [],
+			open_dialog_popup_for_pending_product: [],
+			pending_product_list: [],
+			current_url: '',
+			handle_rejected_vendor_product_description: '',
 			workboard_list_announcement_status_all: false,
 			workboard_list_announcement_status_approve: false,
 			workboard_list_status_announcement_pending: false,
@@ -80,6 +89,43 @@ class MVXworkboard extends Component {
 		this.handleQuestionDelete = this.handleQuestionDelete.bind(this);
 		this.handleQuestionBulkStatusChange =
 			this.handleQuestionBulkStatusChange.bind(this);
+		this.handleClose_dynamic = this.handleClose_dynamic.bind(this);
+		this.handle_rejected_vendor_product_description = this.handle_rejected_vendor_product_description.bind(this);
+		this.handle_Vendor_Product_Approve = this.handle_Vendor_Product_Approve.bind(this);
+	}
+
+
+	handleClose_dynamic() {
+		const default_vendor_eye_popup = [];
+		this.state.pending_product_list.map((data_ann, index_ann) => {
+			default_vendor_eye_popup[data_ann.id] = false;
+		});
+		this.setState({
+			open_dialog_popup_for_pending_product: default_vendor_eye_popup,
+		});
+	}
+
+	handle_rejected_vendor_product_description(e, id) {
+		this.setState({
+			handle_rejected_vendor_product_description: e.target.value,
+		});
+	}
+
+	handle_Vendor_Product_Approve(id) {
+		this.handleClose_dynamic();
+		axios({
+			method: 'post',
+			url: `${appLocalizer.apiUrl}/mvx_module/v1/task_board_icons_triggers`,
+			data: {
+				value: id,
+				key: 'dismiss_product',
+				reject_word: this.state.handle_rejected_vendor_product_description
+			},
+		}).then((responce) => {
+			this.setState({
+				list_of_work_board_content: responce.data,
+			});
+		})
 	}
 
 	handleQuestionBulkStatusChange(e) {
@@ -609,6 +655,25 @@ class MVXworkboard extends Component {
 			workboard_list_knowledgebase_status_all: true,
 			workboard_list_announcement_status_all: true
 		});
+
+		// pending product rejection popup
+		axios({
+				url: `${appLocalizer.apiUrl}/mvx_module/v1/list_of_pending_vendor_product`,
+		}).then((response) => {
+			const default_vendor_popup = [];
+			response.data.map((data_ann, index_ann) => {
+				default_vendor_popup[data_ann.id] = false;
+			});
+
+			this.setState({
+				open_dialog_popup_for_pending_product: default_vendor_popup,
+				pending_product_list: response.data,
+			});
+		});
+
+		
+
+		
 	}
 
 	useQuery() {
@@ -983,9 +1048,10 @@ class MVXworkboard extends Component {
 				}
 			);
 		}
-
+		let set_vendors_id_data = [];
+		
 		return name === 'activity-reminder' ? (
-
+		<div>{
 			this.state.list_of_work_board_content.map(
 				(taskboard_data, taskboard_index) => (
 					<div className="mvx-todo-status-check">
@@ -1093,6 +1159,18 @@ class MVXworkboard extends Component {
 																className={`mvx-font ${icons_data.icon}`}
 																onClick={(e) =>
 																	(
+
+																		icons_data.key === 'dismiss_product' ? (
+																		set_vendors_id_data = this.state.open_dialog_popup_for_pending_product,
+																		set_vendors_id_data[icons_data.value.id] = true,
+																		console.log(set_vendors_id_data),
+																		this.setState({
+																			open_dialog_popup_for_pending_product: set_vendors_id_data,
+																		}))
+																		: '',
+
+
+																		icons_data.key === 'dismiss_product' ? '' :
 																		axios({
 																			method: 'post',
 																			url: `${appLocalizer.apiUrl}/mvx_module/v1/task_board_icons_triggers`,
@@ -1105,6 +1183,7 @@ class MVXworkboard extends Component {
 																				list_of_work_board_content: responce.data,
 																			});
 																		})
+
 																	)
 																}
 															></i>
@@ -1122,6 +1201,65 @@ class MVXworkboard extends Component {
 					</div>
 				)
 			)
+			}
+
+			{this.state.pending_product_list.map((data8, index8) => (
+				<Dialog
+					open={
+						this.state
+							.open_dialog_popup_for_pending_product[
+							data8.id
+						]
+						
+					}
+					aria-labelledby="form-dialog-title"
+					onClose={this.handleClose_dynamic}
+				>
+					<DialogTitle id="form-dialog-title">
+						<div className="mvx-module-dialog-title">
+							Reason for dismissal
+						</div>
+					</DialogTitle>
+					<DialogContent>
+						<DialogContentText>
+							<textarea
+								placeholder={
+									appLocalizer
+										.vendor_page_string
+										.describe_yourself
+								}
+								onChange={(e) =>
+									this.handle_rejected_vendor_product_description(
+										e,
+										data8.id
+									)
+								}
+							></textarea>
+							<button
+								className="mvx-btn btn-red"
+								onClick={() =>
+									this.handle_Vendor_Product_Approve(
+										data8
+									)
+								}
+								color="primary"
+							>
+								{
+									appLocalizer
+										.workboard_string
+										.workboard34
+								}
+							</button>
+						</DialogContentText>
+					</DialogContent>
+					<DialogActions></DialogActions>
+				</Dialog>
+			))}
+
+
+
+
+			</div>
 
 		) : name === 'announcement' ? (
 			<div className="mvx-module-grid">

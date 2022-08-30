@@ -5385,7 +5385,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                             'name'  => 'mvx_vendor_shop_template',
                             'key' => 'template1',
                             'label' => __('Outer Space', 'multivendorx'),
-                            'color' => $MVX->plugin_url.'assets/images/template1.png',
+                            'color' => $MVX->plugin_url.'assets/images/template1.jpg',
                             'width' => 50,
                             'height'=> 60,
                             'value' => 'template1'
@@ -5394,7 +5394,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                             'name'  => 'mvx_vendor_shop_template',
                             'key'   => 'template2',
                             'label' => __('Green Lagoon', 'multivendorx'),
-                            'color' => $MVX->plugin_url.'assets/images/template2.png',
+                            'color' => $MVX->plugin_url.'assets/images/template2.jpg',
                             'width' => 50,
                             'height'=> 60,
                             'value' => 'template2'
@@ -5403,7 +5403,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                             'name'  => 'mvx_vendor_shop_template',
                             'key'   => 'template3',
                             'label' => __('Old West', 'multivendorx'),
-                            'color' => $MVX->plugin_url.'assets/images/template3.png',
+                            'color' => $MVX->plugin_url.'assets/images/template3.jpg',
                             'width' => 50,
                             'height'=> 60,
                             'value' => 'template3'
@@ -6203,87 +6203,6 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'label'     => __( 'Vendor Dashboard', 'multivendorx' ),
                     'desc'      => __( 'Choose your preferred page for vendor registration', 'multivendorx' ),
                     'options' => $pages_array,
-                    'database_value' => '',
-                ],
-            ],
-            'product-settings'  => [
-                [
-                    'key'       => 'type_options',
-                    'type'      => 'toggle_rectangle',
-                    'class'     => 'mvx-toggle-radio-switcher',
-                    'label'     => __( 'Type Options ', 'multivendorx' ),
-                    'desc'      => __( 'Type Options ', 'multivendorx' ),
-                    'options' => array(
-                        array(
-                            'name'  => 'type_options',
-                            'key' => 'virtual_type',
-                            'label' => __('Virtual', 'multivendorx'),
-                            'value' => 'virtual_type'
-                        ),
-                        array(
-                            'name'  => 'type_options',
-                            'key'   => 'download_type',
-                            'label' => __('Downloadable', 'multivendorx'),
-                            'value' => 'download_type'
-                        )
-                    ),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'products_fields',
-                    'type'      => 'toggle_rectangle',
-                    'class'     => 'mvx-toggle-radio-switcher',
-                    'label'     => __( 'Product Fields ', 'multivendorx' ),
-                    'options' => array(
-                        array(
-                            'name'  => 'products_fields',
-                            'key' => 'general',
-                            'label' => __('Generl', 'multivendorx'),
-                            'value' => 'general'
-                        ),
-                        array(
-                            'name'  => 'products_fields',
-                            'key'   => 'inventory',
-                            'label' => __('Inventory', 'multivendorx'),
-                            'value' => 'inventory'
-                        ),
-                        array(
-                            'name'  => 'products_fields',
-                            'key'   => 'linked_product',
-                            'label' => __('Linked Product', 'multivendorx'),
-                            'value' => 'linked_product'
-                        ),
-                        array(
-                            'name'  => 'products_fields',
-                            'key'   => 'attribute',
-                            'label' => __('Attribute', 'multivendorx'),
-                            'value' => 'attribute'
-                        ),
-                        array(
-                            'name'  => 'products_fields',
-                            'key'   => 'advance',
-                            'label' => __('Advance', 'multivendorx'),
-                            'value' => 'advance'
-                        ),
-                        array(
-                            'name'  => 'products_fields',
-                            'key'   => 'policies',
-                            'label' => __('Policies', 'multivendorx'),
-                            'value' => 'policies'
-                        ),
-                        array(
-                            'name'  => 'products_fields',
-                            'key'   => 'product_tag',
-                            'label' => __('Product Tag', 'multivendorx'),
-                            'value' => 'product_tag'
-                        ),
-                        array(
-                            'name'  => 'products_fields',
-                            'key'   => 'GTIN',
-                            'label' => __('GTIN', 'multivendorx'),
-                            'value' => 'GTIN'
-                        )
-                    ),
                     'database_value' => '',
                 ],
             ],

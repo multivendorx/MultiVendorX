@@ -957,11 +957,12 @@ class MVX_REST_API {
     public function mvx_task_board_icons_triggers($request) {
         $value = $request->get_param('value') ? $request->get_param('value') : '';
         $key = $request->get_param('key') ? $request->get_param('key') : '';
+        $reject_word = $request->get_param('reject_word') ? $request->get_param('reject_word') : '';
         if ($key == 'dismiss_product') {
             $product_id = $value['id'];
             $vendor_id = $value['vendor_id'];
             $post = get_post($product_id);
-            $reason = '';
+            $reason = $reject_word;
             $vendor = get_mvx_vendor($vendor_id);
             $email_vendor = WC()->mailer()->emails['WC_Email_Vendor_Product_Rejected'];
             $email_vendor->trigger($product_id, $post, $vendor, $reason);

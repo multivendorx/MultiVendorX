@@ -214,25 +214,6 @@ $scroll-color:#ece8f1;
   background-color:$fill-color;
   line-height: 2.375;
 }
-@mixin boxcss {
-    display: flex;
-    gap: 0.375rem;
-    flex-wrap: wrap;
-    & .mvx-module-section-options-list {
-        width: 32.6%;
-        background: $fill-color;
-        padding: 1.5rem;
-        text-align: center;
-        height: 25rem;
-        border: $border;
-        border-radius: $border-radius;
-        position: relative;
-        min-width: 15rem;
-    }
-    & .mvx-module-section-options-list:nth-child(3n+0) {
-      flex:1;
-    }
-}
 @mixin moduleicon {
     width: 3.5rem;
     height: 3.5rem;
@@ -1294,20 +1275,9 @@ hr{
             color: $blue-icon;
           }
         }
-      & .active-current-tab {
+        & .active-current-tab{
         background-color: $fill-color;
-        position: relative;
-        &:after{
-          content: '';
-          height: 100%;
-          width: 0.076rem;
-          background-color: $fill-color;
-          right: -0.07rem;
-          top: 0;
-          position: absolute;
-          z-index:99;
         }
-      }
     }
     & .mvx-tab-content {
       padding: 2.5rem;
@@ -1399,7 +1369,7 @@ hr{
             & .default-btn {
               height: 2.5rem;
               background-color: $red-btn-back;
-              width: 20%;
+              width: 4.75rem;
               color:$font-white;
                float: right;
           }
@@ -2038,8 +2008,8 @@ hr{
         .mvx-documentation-quick-link{
           @include flexprops(start);
           flex-wrap: wrap;
+              justify-content: space-between;
           gap:0.5rem;
-          justify-content: space-between
         }
         .left-forum{
           background: url(../../images/forum-shrt-bg.png) top right no-repeat;
@@ -2096,7 +2066,7 @@ hr{
         min-height: 14rem;
           ul.row-link{
             @include flexprops(center);
-            padding: 1rem;
+            padding: 1rem 0;
             overflow-x: scroll;
             margin: 0;
             &::-webkit-scrollbar {
@@ -2251,6 +2221,7 @@ hr{
           color: $font-white;
           padding: 0.15rem 1.75rem;
           border-radius: 0 0 1rem 1rem;
+          white-space: nowrap;
         }
       }
       .mvx-money-table-coloumn{
@@ -2386,7 +2357,20 @@ hr{
     margin-left: 0;
   }
   .mvx-module-option-row {
-    @include boxcss;
+    display: flex;
+    gap: 0.375rem;
+    flex-wrap: wrap;
+    & .mvx-module-section-options-list {
+        width: 32.82%;
+        background: $fill-color;
+        padding: 1.5rem;
+        text-align: center;
+        height: 25rem;
+        border: $border;
+        border-radius: $border-radius;
+        position: relative;
+        min-width: 15rem;
+    }
   }
   .mvx-module-settings-box {
     & .mvx-module-icon {
@@ -2758,8 +2742,8 @@ table.form-table {
 }
 .mvx-all-done-page-header-sec{
   @include flexprops(start);
-  justify-content: center;
   width:max-content;
+  margin: auto;
   .mvx-title{
     font-size: 2rem;
     margin: 0 0.5rem 0 0;
@@ -3434,6 +3418,19 @@ padding:0;
     padding: 4rem 2rem;
     box-shadow: 0rem 0rem 0.9375rem 0.0625rem #0000001a;
 }}
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-current-tab-lists .active-current-tab {
+  position: relative;
+  &:after{
+    content: '';
+    height: 100%;
+    width: 0.076rem;
+    background-color: $fill-color;
+    right: -0.07rem;
+    top: 0;
+    position: absolute;
+    z-index:99;
+  }
+}
 .mvx-registration-content .mvx-form-group{
   flex-wrap: nowrap !important;// to align registration form content
 }
@@ -3490,16 +3487,45 @@ li.mvx-compare-table-row{
     border-radius: 0 0 1rem 1rem; 
   }
 }}
-.mvx-sidebar{
-  width:30%;}
 }
 @media only screen and (max-width: 668px) {
   .mvx-header-wapper .mvx-header-nav-left-section .mvx-logo-title{
     display:none;
   }
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1024px) {
+  .mvx-container{
+    flex-wrap: wrap;
+    justify-content: center;  
+    .mvx-sidebar {
+      margin: 1.5rem 0 0 ;// all pages side banner
+    }
+  }
+}
+@media only screen and (max-width: 993px) {
+  .mvx-container{
+    .mvx-setup-documentation{
+      flex-wrap:wrap;
+      .mvx-setup-marketing-white-box, .mvx-documentation-quick-link-wrapper{
+        width: 100%;
+      }
+    }
+    .mvx-dashboard-slider{
+    width:100%;
+  }  }
+}
+@media only screen and (max-width: 766px) {
   //all pages
+  .mvx-middle-container-wrapper,   .mvx-documentation-support-forum{
+    width: 100%;//dashboard responsive
+  }
+  .mvx-money-table-holder{
+    flex-wrap:wrap;
+    gap:0.5rem;
+    .mvx-money-table-coloumn{
+      width: 100%;
+    }
+  }
   .mvx-product-box-sec{
     justify-content: center;
   }
@@ -3509,31 +3535,7 @@ li.mvx-compare-table-row{
     width: 2rem;
     text-overflow: ellipsis;
 }
-    .mvx-container{
-      flex-wrap: wrap;
-      justify-content: center;
-      .mvx-setup-documentation{
-        flex-wrap:wrap;
-        .mvx-setup-marketing-white-box, .mvx-documentation-quick-link-wrapper{
-          width: 100%;
-        }
-      }
-    .mvx-middle-container-wrapper,   .mvx-documentation-support-forum{
-      width: 100%;//dashboard responsive
-    }
-    .mvx-sidebar {
-      margin: 1.5rem 0 0 ;// all pages side banner
-    }
-    .mvx-money-table-holder{
-      flex-wrap:wrap;
-      gap:0.5rem;
-      .mvx-money-table-coloumn{
-        width: 100%;
-      }
-    }
-    .mvx-dashboard-slider{
-      width:100%;
-    }  }
+   
   .show-money-btn-wrapper{
     display:none;
   }
@@ -3633,6 +3635,7 @@ li.mvx-compare-table-row{
     flex-direction: column;
     gap: 1rem;
     padding: 3rem 1rem 5rem;
+    width: 16.188rem;
     text-align: center;
     background: url(../../images/unnamed.png) top right no-repeat;
     background-size: 100% 100%;

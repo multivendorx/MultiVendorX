@@ -288,6 +288,7 @@ class MVX_Admin {
             'workboard31'                 =>  __('Filter by product', 'multivendorx'),
             'workboard32'                 =>  __('Search Question', 'multivendorx'),
             'workboard33'                 =>  __('Search status', 'multivendorx'),
+            'workboard34'                 =>  __('Dismiss', 'multivendorx'),
         );
 
         $analytics_page_string = array(
