@@ -33,12 +33,9 @@ class MVX_Capabilities {
         add_filter('wc_product_sku_enabled', array(&$this, 'mvx_wc_product_sku_enabled'), 30);
 
         add_action('woocommerce_get_item_data', array(&$this, 'add_sold_by_text_cart'), 30, 2);
-        //add_action('woocommerce_new_order_item', array(&$this, 'order_item_meta_2'), 20, 3);
         add_action('woocommerce_after_shop_loop_item', array($this, 'mvx_after_add_to_cart_form'), 6);
         /* for single product */
         add_action('woocommerce_product_meta_start', array($this, 'mvx_after_add_to_cart_form'), 25);
-        //add_action('update_option_mvx_capabilities_product_settings_name', array(&$this, 'update_mvx_vendor_role_capability'), 10);
-        //add_action('mvx_before_capabilities_product_settings_field_save', array(&$this, 'update_mvx_vendor_role_capability'), 10);
         if (defined('MVX_FORCE_VENDOR_CAPS') && MVX_FORCE_VENDOR_CAPS) $this->update_mvx_vendor_role_capability();
     }
 

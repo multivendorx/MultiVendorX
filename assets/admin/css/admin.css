@@ -1986,6 +1986,7 @@ div#wpbody-content {
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container .purple-btn, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container .purple-btn {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-registration-fileds-description, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-registration-form-description, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-registration-fileds-description, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-registration-form-description {
@@ -2024,6 +2025,7 @@ div#wpbody-content {
   color: #65438f;
   padding: 0 0.5rem;
   font-size: 1rem;
+  cursor: pointer;
 }
 
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part select, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from select {
@@ -2658,7 +2660,7 @@ div#wpbody-content {
 }
 
 .mvx-container .mvx-left-container .mvx-text-center .show-money-btn-wrapper {
-  padding-bottom: 2.4rem;
+  padding-bottom: 4rem;
 }
 
 .mvx-container .mvx-left-container .mvx-text-center .show-money-btn-wrapper a.show-link {
@@ -2671,57 +2673,32 @@ div#wpbody-content {
   cursor: pointer;
 }
 
-.mvx-container .mvx-left-container .mvx-text-center .mvx-show-compare {
-  padding: 4.5rem 0 0;
-}
-
 .mvx-container .mvx-left-container .mvx-text-center ul.mvx-compare-table-holder {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: #fbfafc;
-  border: 0.06rem solid #d4d1d9;
-  border-right: none;
-  margin: 5.513rem auto 0;
-  position: relative;
-}
-
-.mvx-container .mvx-left-container .mvx-text-center ul.mvx-compare-table-holder li.mvx-show-compare {
-  position: absolute;
-  border-top: 0.063rem solid #d4d1d9;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  background: #fbfafc;
-  cursor: pointer;
-  padding: 1rem 2rem !important;
+  gap: 0.5rem;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 2.5rem auto 2rem;
+  width: 85%;
 }
 
 .mvx-container .mvx-left-container .mvx-text-center ul.mvx-compare-table-holder li.mvx-compare-table-row {
-  width: 34.33%;
-}
-
-.mvx-container .mvx-left-container .mvx-text-center ul.mvx-compare-table-holder li.mvx-compare-table-row:first-child {
+  position: relative;
   text-align: left;
-  border-right: 0.06rem solid #d4d1d9;
-  margin: 0;
-}
-
-.mvx-container .mvx-left-container .mvx-text-center ul.mvx-compare-table-holder li.mvx-compare-table-row:first-child ul li {
-  color: #8e8b91;
+  background: #fdfdfe;
+  border: 0.063rem solid #d4d1d9;
+  border-radius: 0.25rem 0.25rem 0 0;
 }
 
 .mvx-container .mvx-left-container .mvx-text-center ul.mvx-compare-table-holder li.mvx-compare-table-row ul li {
   padding: 0.65rem;
   margin: 0;
-}
-
-.mvx-container .mvx-left-container .mvx-text-center ul.mvx-compare-table-holder li.mvx-compare-table-row ul li .red {
-  color: #e26f76;
-}
-
-.mvx-container .mvx-left-container .mvx-text-center ul.mvx-compare-table-holder li.mvx-compare-table-row ul li .blue {
-  color: #9f8ab9;
+  color: #8e8b91;
 }
 
 .mvx-container .mvx-left-container .mvx-text-center ul.mvx-compare-table-holder li.mvx-compare-table-row ul li:first-child {
@@ -2729,29 +2706,24 @@ div#wpbody-content {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 1.75rem;
-  height: 4rem;
-  text-align: center;
+  height: 5rem;
   font-weight: 600;
-}
-
-.mvx-container .mvx-left-container .mvx-text-center ul.mvx-compare-table-holder .mvx-recomend {
   position: relative;
-  background: #fdfdfe;
-  margin: -2rem 0;
-  -webkit-box-shadow: 0rem 0rem 0.9375rem 0.0625rem #0000001a;
-          box-shadow: 0rem 0rem 0.9375rem 0.0625rem #0000001a;
-  border-radius: 0.25rem;
-  z-index: 99;
 }
 
-.mvx-container .mvx-left-container .mvx-text-center ul.mvx-compare-table-holder .mvx-recomend span.recommend-tag {
+.mvx-container .mvx-left-container .mvx-text-center ul.mvx-compare-table-holder li.mvx-compare-table-row ul li:first-child:after {
   position: absolute;
-  top: 0;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
-  background-color: #9f8ab9;
-  color: #f9f8fb;
+  content: "";
+  left: 0.5rem;
+  top: 2.5rem;
+  height: 0.25rem;
+  width: 30%;
+  background-color: #f2eff5;
+  border-radius: 1.25rem;
+}
+
+.mvx-container .mvx-left-container .mvx-text-center ul.mvx-compare-table-holder li.mvx-compare-table-row .mvx-cmpr-active {
+  color: #181718;
 }
 
 .mvx-container .mvx-left-container .mvx-text-center .show-link:hover {
@@ -2776,7 +2748,7 @@ div#wpbody-content {
       -ms-flex-align: center;
           align-items: center;
   width: 85%;
-  margin: 4.313rem auto 2rem;
+  margin: 2.5rem auto 2rem;
 }
 
 .mvx-container .mvx-left-container .mvx-text-center .mvx-money-table-holder .mvx-spr-sever-rcmnd {
@@ -4618,18 +4590,10 @@ div.health-check-accordion .health-check-accordion-panel table td {
   .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content {
     width: 78%;
   }
-  .mvx-compare-table-holder {
-    width: 85%;
-  }
   .mvx-compare-table-holder li.mvx-compare-table-row {
-    padding: 2rem 2rem 3rem;
-  }
-  .mvx-compare-table-holder .mvx-recomend {
-    padding: 3.85rem !important;
-  }
-  .mvx-compare-table-holder .mvx-recomend span.recommend-tag {
-    padding: 0.15rem 1.75rem;
-    border-radius: 0 0 1rem 1rem;
+    width: 34%;
+    max-width: 30rem;
+    padding: 2rem;
   }
 }
 
@@ -4688,14 +4652,14 @@ div.health-check-accordion .health-check-accordion-panel table td {
     width: 2rem;
     text-overflow: ellipsis;
   }
-  .show-money-btn-wrapper {
+  .show-money-btn-wrapper, .show-btn-wrapper {
     display: none;
   }
   .mvx-money-table-coloumn {
     position: relative;
     padding: 2rem 2rem 4rem;
   }
-  .mvx-money-table-coloumn .show-responsive-money-btn-wrapper {
+  .show-responsive-money-btn-wrapper {
     display: block;
     text-align: center;
     padding: 1rem;
@@ -4705,7 +4669,7 @@ div.health-check-accordion .health-check-accordion-panel table td {
     background-color: #f9f8fb;
     width: 100%;
   }
-  .mvx-money-table-coloumn .show-responsive-money-btn-wrapper a.show-link:hover {
+  .show-responsive-money-btn-wrapper a.show-link:hover {
     text-decoration: none;
   }
   .mvx-middle-child-container .mvx-current-tab-lists, .mvx-middle-child-container .mvx-tab-content {
@@ -4756,21 +4720,13 @@ div.health-check-accordion .health-check-accordion-panel table td {
     width: 100%;
   }
   ul.mvx-compare-table-holder li.mvx-compare-table-row {
-    padding: 2rem 0rem 3rem;
+    padding: 2rem 2rem 4rem;
+    width: 100%;
   }
   ul.mvx-compare-table-holder li.mvx-compare-table-row ul li {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
-  ul.mvx-compare-table-holder .mvx-recomend {
-    padding: 3.85rem 0 !important;
-    overflow: hidden;
-  }
-  ul.mvx-compare-table-holder .mvx-recomend span.recommend-tag {
-    padding: 0.129rem 0.25rem 0.25rem;
-    width: 86%;
-    border-radius: 0 0 0.75rem 0.75rem;
   }
   .wc-setup-next-steps-last, .wc-setup-next-steps-first {
     width: 100% !important;

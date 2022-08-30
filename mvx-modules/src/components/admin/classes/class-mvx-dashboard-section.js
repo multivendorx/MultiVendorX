@@ -348,38 +348,41 @@ class MVX_Dashboard extends Component {
                             <ul className="mvx-compare-table-holder">
                                 <li className="mvx-compare-table-row">
                                     <ul>
-                                        <li/>
-                                        <li>{appLocalizer.dashboard_string.dashboard35}</li>
-                                        <li>{appLocalizer.dashboard_string.dashboard36}</li>
-                                        <li>{appLocalizer.dashboard_string.dashboard37}</li>
-                                        <li>{appLocalizer.dashboard_string.dashboard38}</li>
+                                        <li>{appLocalizer.dashboard_string.dashboard85}</li>
+                                        <li className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard35}</li>
+                                        <li className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard36}</li>
+                                        <li className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard37}</li>
+                                        <li className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard38}</li>
                                         <li>{appLocalizer.dashboard_string.dashboard39}</li>
                                         <li>{appLocalizer.dashboard_string.dashboard40}</li>
                                         <li>{appLocalizer.dashboard_string.dashboard41}</li>
-                                        <li>{appLocalizer.dashboard_string.dashboard6}</li>
+                                        <li className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard6}</li>
                                         <li>{appLocalizer.dashboard_string.dashboard43}</li>
-                                        <li>{appLocalizer.dashboard_string.dashboard44}</li>
+                                        <li className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard44}</li>
+                                        <li className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard45}</li>
+                                         <li className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard46}</li>
+                                         <li className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard47}</li>
+                                        <li>{appLocalizer.dashboard_string.dashboard48}</li>
                                         
                                         {this.state.money_back_show_more_compared ?
                                             <>
-                                                <li>{appLocalizer.dashboard_string.dashboard45}</li>
-                                                <li>{appLocalizer.dashboard_string.dashboard46}</li>
-                                                <li>{appLocalizer.dashboard_string.dashboard47}</li>
-                                                <li>{appLocalizer.dashboard_string.dashboard48}</li>
+                                              
                                                 <li>{appLocalizer.dashboard_string.dashboard49}</li>
                                                 <li>{appLocalizer.dashboard_string.dashboard50}</li>
                                                 <li>{appLocalizer.dashboard_string.dashboard51}</li>
                                                 <li>{appLocalizer.dashboard_string.dashboard52}</li>
-                                                <li>{appLocalizer.dashboard_string.dashboard8}</li>
-                                                <li>{appLocalizer.dashboard_string.dashboard54}</li>
+                                                <li className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard8}</li>
+                                                <li className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard54}</li>
                                                 <li>{appLocalizer.dashboard_string.dashboard55}</li>
                                                 <li>{appLocalizer.dashboard_string.dashboard56}</li>
-                                                <li>{appLocalizer.dashboard_string.dashboard57}</li>
+                                                <li className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard57}</li>
                                                 <li>{appLocalizer.dashboard_string.dashboard58}</li>
                                             </>
                                             : ''
                                         }
-                                           <li className='mvx-show-compare'>
+                                         
+                                    </ul>
+                                    <div className='show-responsive-money-btn-wrapper'>
                                             {this.state.money_back_show_more_compared ?
 
                                                 <a className="show-link" onClick={(e) =>
@@ -390,9 +393,13 @@ class MVX_Dashboard extends Component {
                                                                 )
                                                             }>
                                                     <span>
-                                                        <i className="mvx-font icon-up-round-arrow" />
+                                                        {/* <i className="mvx-font icon-up-round-arrow" /> */}
+                                                        <i className="mvx-font icon-eye-see-more" />
+
                                                     </span>{' '}
-                                                    {appLocalizer.dashboard_string.dashboard87}
+                                                    {/* {appLocalizer.dashboard_string.dashboard87} */}
+                                                    {appLocalizer.dashboard_string.dashboard74}
+
                                                 </a>
 
                                                 :
@@ -405,172 +412,141 @@ class MVX_Dashboard extends Component {
                                                                 )
                                                             }>
                                                     <span>
-                                                        <i className="mvx-font icon-down-round-arrow" />
+                                                        {/* <i className="mvx-font icon-down-round-arrow" /> */}
+                                                        <i className="mvx-font icon-eye-see-more" />
+
                                                     </span>{' '}
-                                                    {appLocalizer.dashboard_string.dashboard86}
+                                                    {/* {appLocalizer.dashboard_string.dashboard86} */}
+                                                    {appLocalizer.dashboard_string.dashboard75}
+                                                
                                                 </a>
                                             }
-                                        </li>
-                                    </ul>
+                                        </div>
                                 </li>
 
-                                <li className="mvx-compare-table-row">
-                                    <ul>
-                                        <li>{appLocalizer.dashboard_string.dashboard85}</li>
-                                        <li>{appLocalizer.dashboard_string.dashboard59}</li>
-                                        <li>
-                                            20
-                                        </li>
-                                        <li>
-                                            {appLocalizer.dashboard_string.dashboard60}
-                                        </li>
-                                        <li><i className="mvx-font icon-yes blue" /></li>
-                                        <li>
-                                            <i className="mvx-font icon-no red" />
-                                        </li>
-                                        <li>
-                                            <i className="mvx-font icon-no red" />
-                                        </li>
-                                        <li>
-                                            <i className="mvx-font icon-no red" />
-                                        </li>
-                                        <li>
-                                            <i className="mvx-font icon-yes blue" />
-                                        </li>
-                                        <li><i className="mvx-font icon-no red" /></li>
-                                        <li>
-                                            <i className="mvx-font icon-yes blue" />
-                                        </li>
+                           
 
+                                <li className="mvx-compare-table-row mvx-recomend">
+                                   
+                                    <ul>
+                                        <li>Pro</li>
+                                        <li className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard35}</li>
+                                        <li className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard36}</li>
+                                        <li className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard37}</li>
+                                        <li className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard38}</li>
+                                        <li  className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard39}</li>
+                                        <li className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard40}</li>
+                                        <li  className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard41}</li>
+                                        <li  className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard6}</li>
+                                        <li  className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard43}</li>
+                                        <li  className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard44}</li>
+                                        <li className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard45}</li>
+                                        <li className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard46}</li>
+                                        <li className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard47}</li>
+                                        <li className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard48}</li>
+                                        
                                         {this.state.money_back_show_more_compared ?
                                             <>
-                                        <li>
-                                            <i className="mvx-font icon-yes blue" />
-                                        </li>
-                                        <li>
-                                            <i className="mvx-font icon-yes blue" />
-                                        </li>
-                                        <li>
-                                            <i className="mvx-font icon-yes blue" />
-                                        </li>
-                                        <li>
-                                            <i className="mvx-font icon-no red" />
-                                        </li>
-                                        <li>
-                                            <i className="mvx-font icon-no red" />
-                                        </li>
-                                        <li>
-                                            <i className="mvx-font icon-no red" />
-                                        </li>
-                                        <li>
-                                            <i className="mvx-font icon-no red" />
-                                        </li>
-                                        <li>
-                                            <i className="mvx-font icon-no red" />
-                                        </li>
-                                        <li>
-                                            <i className="mvx-font icon-yes blue" />
-                                        </li>
-                                        <li>
-                                            <i className="mvx-font icon-yes blue" />
-                                        </li>
-                                        <li>
-                                            <i className="mvx-font icon-no red" />
-                                        </li>
-                                        <li>
-                                            <i className="mvx-font icon-no red" />
-                                        </li>
-                                        <li>
-                                            <i className="mvx-font icon-yes blue" />
-                                        </li>
+                                               
+                                                <li className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard49}</li>
+                                                <li className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard50}</li>
+                                                <li className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard51}</li>
+                                                <li className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard52}</li>
+                                                <li className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard8}</li>
+                                                <li className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard54}</li>
+                                                <li  className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard55}</li>
+                                                <li  className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard56}</li>
+                                                <li  className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard57}</li>
+                                                <li  className='mvx-cmpr-active'>{appLocalizer.dashboard_string.dashboard58}</li>
                                             </>
                                             : ''
                                         }
                                         
                                     </ul>
-                                </li>
+                                    <div className='show-responsive-money-btn-wrapper'>
+                                            {this.state.money_back_show_more_compared ?
 
-                                <li className="mvx-compare-table-row mvx-recomend">
-                                    <span className="recommend-tag">
-                                        {appLocalizer.dashboard_string.dashboard61}
-                                    </span>
-                                    <ul>
-                                        <li>Pro</li>
-                                        <li>{appLocalizer.dashboard_string.dashboard59}</li>
-                                        <li>
-                                            {appLocalizer.dashboard_string.dashboard62}
-                                        </li>
-                                        <li>
-                                            {appLocalizer.dashboard_string.dashboard62}
-                                        </li>
-                                        <li><i className="mvx-font icon-yes blue" /></li>
-                                    
-                                        <li>
-                                            <i className="mvx-font icon-yes blue" />
-                                        </li>
-                                        <li><i className="mvx-font icon-yes blue" /></li>
-                                        <li>
-                                            <i className="mvx-font icon-yes blue" />
-                                        </li>
-                                        <li>
-                                            <i className="mvx-font icon-yes blue" />
-                                        </li>
-                                        <li><i className="mvx-font icon-yes blue" /></li>
-                                        <li>
-                                            <i className="mvx-font icon-yes blue" />
-                                        </li>
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_compared: false
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        {/* <i className="mvx-font icon-up-round-arrow" /> */}
+                                                        <i className="mvx-font icon-eye-see-more" />
 
+                                                    </span>{' '}
+                                                    {/* {appLocalizer.dashboard_string.dashboard87} */}
+                                                    {appLocalizer.dashboard_string.dashboard74}
 
-                                        {this.state.money_back_show_more_compared ?
-                                            <>
-                                            <li>
-                                                <i className="mvx-font icon-yes blue" />
-                                            </li>
-                                            <li>
-                                                <i className="mvx-font icon-yes blue" />
-                                            </li>
-                                            <li>
-                                                <i className="mvx-font icon-yes blue" />
-                                            </li>
-                                            <li>
-                                                <i className="mvx-font icon-yes blue" />
-                                            </li>
-                                            <li>
-                                                <i className="mvx-font icon-yes blue" />
-                                            </li>
-                                            <li>
-                                                <i className="mvx-font icon-yes blue" />
-                                            </li>
-                                            <li>
-                                                <i className="mvx-font icon-yes blue" />
-                                            </li>
-                                            <li>
-                                                <i className="mvx-font icon-yes blue" />
-                                            </li>
-                                            <li>
-                                                <i className="mvx-font icon-yes blue" />
-                                            </li>
-                                            <li>
-                                                <i className="mvx-font icon-yes blue" />
-                                            </li>
-                                            <li>
-                                                <i className="mvx-font icon-yes blue" />
-                                            </li>
-                                            <li>
-                                                <i className="mvx-font icon-yes blue" />
-                                            </li>
-                                            <li>
-                                                <i className="mvx-font icon-yes blue" />
-                                            </li>
-                                            </>
-                                            : ''
-                                        }
-                                    </ul>
+                                                </a>
+
+                                                :
+
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_compared: true
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        {/* <i className="mvx-font icon-down-round-arrow" /> */}
+                                                        <i className="mvx-font icon-eye-see-more" />
+
+                                                    </span>{' '}
+                                                    {/* {appLocalizer.dashboard_string.dashboard86} */}
+                                                    {appLocalizer.dashboard_string.dashboard75}
+                                                
+                                                </a>
+                                            }
+                                        </div>
                                 </li>
                                
                                         
                             </ul>
-                         
+                            <div className='show-btn-wrapper'>
+                                            {this.state.money_back_show_more_compared ?
+
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_compared: false
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        {/* <i className="mvx-font icon-up-round-arrow" /> */}
+                                                        <i className="mvx-font icon-eye-see-more" />
+
+                                                    </span>{' '}
+                                                    {/* {appLocalizer.dashboard_string.dashboard87} */}
+                                                    {appLocalizer.dashboard_string.dashboard74}
+
+                                                </a>
+
+                                                :
+
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_compared: true
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        {/* <i className="mvx-font icon-down-round-arrow" /> */}
+                                                        <i className="mvx-font icon-eye-see-more" />
+
+                                                    </span>{' '}
+                                                    {/* {appLocalizer.dashboard_string.dashboard86} */}
+                                                    {appLocalizer.dashboard_string.dashboard75}
+                                                
+                                                </a>
+                                            }
+                                        </div>
                         </div>
 
                         <div className="mvx-text-center">

@@ -1651,6 +1651,7 @@ hr{
           }
           .purple-btn{
             text-decoration:underline;
+            cursor: pointer;
           }
         }
         .mvx-registration-fileds-description, .mvx-registration-form-description{
@@ -1677,6 +1678,7 @@ hr{
                     color: $theme-color;
                     padding: 0 0.5rem;
                     font-size: 1rem;
+                    cursor: pointer;
                   }
               }
           &  select {
@@ -2119,80 +2121,54 @@ hr{
   }
 }
   .show-money-btn-wrapper{
-    padding-bottom: 2.4rem;
+    padding-bottom: 4rem;
   a.show-link {
     display: flex;
     justify-content: center;
     cursor: pointer;
 }}
-  .mvx-show-compare {
-    padding: 4.5rem 0 0;
-}
     ul.mvx-compare-table-holder {
     display: flex;
-    background-color: $section-background;
-    border: 0.06rem solid $boder-color;
-    border-right: none;
-    margin: 5.513rem auto 0;
-    position: relative;
-    li.mvx-show-compare {
-      position: absolute;
-      border-top: $border;
-      width: 100%;
-      bottom: 0;
-      left: 0;
-      background: $section-background;
-      cursor:pointer;
-      padding: 1rem 2rem!important;//dashboard compare table pop
-  }
+    gap:0.5rem;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin: 2.5rem auto 2rem;
+      width:85%;
      li.mvx-compare-table-row{
-      width: 34.33%;
-          &:first-child{
-            text-align: left;
-             border-right: 0.06rem solid $boder-color;
-             margin: 0;
-           ul li{
-            color: $grey-icon;
-           }
-          } 
+      position: relative;
+       text-align: left;
+       background: $fill-color;
+      border: $border;
+      border-radius: 0.25rem 0.25rem 0 0;
           ul li{
             padding: 0.65rem;
             margin: 0;
-            .red{
-              color:$red-icon;
-            }
-            .blue{
-              color: $blue-icon;
-            }
+            color: $grey-icon;
             &:first-child{
               background: linear-gradient(-28deg, #3f1473 0%, #af3b74 50%, #db4b54 100%);
               -webkit-background-clip: text;
               -webkit-text-fill-color: transparent;
               font-size: 1.75rem;
-              height: 4rem;
-              text-align: center;
+              height: 5rem;
               font-weight: 600;
+              position: relative;
+              &:after{
+                position: absolute;
+                content: "";
+                left: 0.5rem;
+                top: 2.5rem;
+                height: 0.25rem;
+                width: 30%;
+                background-color: $base-color;
+                border-radius: 1.25rem;
+              }
             }
           }
+          .mvx-cmpr-active{
+            color: $title-color;
+          }
         }
-        .mvx-recomend{
-          position: relative;
-          background: $fill-color;
-          margin: -2rem 0;
-          box-shadow: 0rem 0rem 0.9375rem 0.0625rem #0000001a;
-          border-radius: 0.25rem;
-          z-index: 99;
-          span.recommend-tag {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: $blue-icon;
-            color: $font-white;
-              }
-  
-            }
-  }
+         }
   .show-link:hover{
     text-decoration: none;
   }
@@ -2208,7 +2184,7 @@ hr{
       display: flex;
       align-items: center;
       width: 85%;
-      margin: 4.313rem auto 2rem;
+      margin: 2.5rem auto 2rem;
       .mvx-spr-sever-rcmnd{
         background-color: $fill-color !important; //to color middle price coloumn
         position: relative;
@@ -3476,18 +3452,11 @@ padding:0;
   width:78%;
 }}
 .mvx-compare-table-holder{
-  width: 85%;
 li.mvx-compare-table-row{
-  padding: 2rem 2rem 3rem;
-}
-.mvx-recomend{
-  padding:3.85rem !important;// to align the last part
-  span.recommend-tag{
-    padding: 0.15rem 1.75rem;
-    border-radius: 0 0 1rem 1rem; 
-  }
-}}
-}
+  width: 34%;
+  max-width: 30rem;
+  padding:2rem;
+}}}
 @media only screen and (max-width: 668px) {
   .mvx-header-wapper .mvx-header-nav-left-section .mvx-logo-title{
     display:none;
@@ -3536,25 +3505,26 @@ li.mvx-compare-table-row{
     text-overflow: ellipsis;
 }
    
-  .show-money-btn-wrapper{
+  .show-money-btn-wrapper, .show-btn-wrapper{
     display:none;
   }
   .mvx-money-table-coloumn{
     position: relative;
     padding: 2rem 2rem 4rem;
-  .show-responsive-money-btn-wrapper{
-    display: block;
-    text-align: center;
-    padding: 1rem;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background-color: $font-white;
-    width: 100%;
-    a.show-link:hover{
-      text-decoration:none;
-    }
-  }}
+ }
+ .show-responsive-money-btn-wrapper{
+  display: block;
+  text-align: center;
+  padding: 1rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: $font-white;
+  width: 100%;
+  a.show-link:hover{
+    text-decoration:none;
+  }
+}
  .mvx-middle-child-container{
     .mvx-current-tab-lists, .mvx-tab-content{
       width: 100%;
@@ -3599,22 +3569,15 @@ li.mvx-compare-table-row{
       ul.mvx-compare-table-holder {
         width: 100%;
       li.mvx-compare-table-row{
-        padding: 2rem 0rem 3rem;
+        padding: 2rem 2rem 4rem;
+        width: 100%;
         ul li{
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
         }
       }
-      .mvx-recomend{
-        padding:3.85rem 0 !important;// to align the last part
-        overflow: hidden;
-        span.recommend-tag{
-          padding: 0.129rem 0.25rem 0.25rem;
-          width: 86%;
-          border-radius: 0 0 0.75rem 0.75rem;
-        }
-      }}
+     }
       .wc-setup-next-steps-last, .wc-setup-next-steps-first {
         width: 100% !important;// responsive set up widgets
     }
