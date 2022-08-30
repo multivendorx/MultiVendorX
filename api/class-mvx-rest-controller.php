@@ -2311,6 +2311,7 @@ class MVX_REST_API {
         return $all_details;
     }
     public function mvx_display_list_knowladgebase($request) {
+        $knowladgebase_list = [];
         $status = $request && $request->get_param('status') ? $request->get_param('status') : '';
         $status = $status == 'all' ? array('publish', 'auto-draft', 'pending') : $status;
         $announcement_list = array();

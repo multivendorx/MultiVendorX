@@ -6,3 +6,5 @@
 -------------------------------------
 {"TIMESTAMP":"2022-08-30T06:38:52Z","CORRELATIONID":"761d0cc8af9c8","ACK":"Failure","VERSION":"91.0","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
 -------------------------------------
+{"TIMESTAMP":"2022-08-30T07:38:51Z","CORRELATIONID":"3782e430fdd59","ACK":"Failure","VERSION":"91.0","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
+-------------------------------------

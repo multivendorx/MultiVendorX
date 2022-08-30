@@ -1,5 +1,4 @@
-    <?php
-
+<?php
 if (!function_exists('get_mvx_vendor_settings')) {
 
     /**
