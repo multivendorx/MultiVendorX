@@ -255,7 +255,7 @@ class MVX_Capabilities {
             } else {
                 $caps['publish_shop_coupons'] = false;
             }
-            if ($this->vendor_capabilities_settings('is_edit_coupon', $capability)) {
+            if ($this->vendor_capabilities_settings('is_edit_delete_published_coupon', $capability)) {
                 $caps['edit_published_shop_coupons'] = true;
                 $caps['delete_published_shop_coupons'] = true;
             } else {
@@ -324,7 +324,7 @@ class MVX_Capabilities {
             } else {
                 $caps['publish_shop_coupons'] = false;
             }
-            if (get_mvx_global_settings('is_edit_coupon')) {
+            if (get_mvx_global_settings('is_edit_delete_published_coupon')) {
                 $caps['edit_published_shop_coupons'] = true;
                 $caps['delete_published_shop_coupons'] = true;
             } else {

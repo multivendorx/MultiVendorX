@@ -46,6 +46,7 @@ class MVXBackendVendor extends React.Component {
 			data_all_vendor: [],
 			data_approve_vendor: [],
 			data_rejected_vendor: [],
+			data_suspend_vendor: [],
 			datafollowers: [],
 			data_zone_in_shipping: [],
 			list_vendor_roles_data: [],
@@ -57,6 +58,7 @@ class MVXBackendVendor extends React.Component {
 			vendor_list_status_approve: false,
 			vendor_list_status_pending: false,
 			vendor_list_status_rejected: false,
+			vendor_list_status_suspended: false,
 			vendor_list_status_all: false
 		};
 
@@ -186,6 +188,7 @@ class MVXBackendVendor extends React.Component {
 				vendor_list_status_approve: true,
 				vendor_list_status_pending: false,
 				vendor_list_status_rejected: false,
+				vendor_list_status_suspended: false,
 				vendor_list_status_all: false
 			});
 			axios
@@ -202,6 +205,7 @@ class MVXBackendVendor extends React.Component {
 				vendor_list_status_approve: false,
 				vendor_list_status_pending: true,
 				vendor_list_status_rejected: false,
+				vendor_list_status_suspended: false,
 				vendor_list_status_all: false
 			});
 			axios
@@ -218,6 +222,7 @@ class MVXBackendVendor extends React.Component {
 				vendor_list_status_approve: false,
 				vendor_list_status_pending: false,
 				vendor_list_status_rejected: true,
+				vendor_list_status_suspended: false,
 				vendor_list_status_all: false
 			});
 			axios
@@ -229,11 +234,30 @@ class MVXBackendVendor extends React.Component {
 						datavendor: response.data,
 					});
 				});
+		} else if (type === 'suspended') {
+			this.setState({
+				vendor_list_status_approve: false,
+				vendor_list_status_pending: false,
+				vendor_list_status_rejected: false,
+				vendor_list_status_suspended: true,
+				vendor_list_status_all: false
+			});
+			axios
+				.get(`${appLocalizer.apiUrl}/mvx_module/v1/all_vendors`, {
+					params: { role: 'suspended' },
+				})
+				.then((response) => {
+					this.setState({
+						datavendor: response.data,
+					});
+				});
+
 		} else if (type === 'all') {
 			this.setState({
 				vendor_list_status_approve: false,
 				vendor_list_status_pending: false,
 				vendor_list_status_rejected: false,
+				vendor_list_status_suspended: false,
 				vendor_list_status_all: true
 			});
 			axios
@@ -842,6 +866,31 @@ class MVXBackendVendor extends React.Component {
 												{
 													this.state
 														.data_rejected_vendor
+														.length
+												}
+												)
+											</div>
+										</li>
+										<li className="mvx-multistatus-item mvx-divider"></li>
+										<li className={`mvx-multistatus-item ${this.state.vendor_list_status_suspended ? 'status-active' : ''}`}>
+											<div
+												className="mvx-multistatus-check-rejected"
+												onClick={(e) =>
+													this.different_vendor_status(
+														e,
+														'suspended'
+													)
+												}
+											>
+												{
+													appLocalizer
+														.vendor_page_string
+														.suspend
+												}{' '}
+												(
+												{
+													this.state
+														.data_suspend_vendor
 														.length
 												}
 												)
@@ -2165,6 +2214,17 @@ class MVXBackendVendor extends React.Component {
 			.then((response) => {
 				this.setState({
 					data_rejected_vendor: response.data,
+				});
+			});
+
+		// suspended vendor
+		axios
+			.get(`${appLocalizer.apiUrl}/mvx_module/v1/all_vendors`, {
+				params: { role: 'suspended' },
+			})
+			.then((response) => {
+				this.setState({
+					data_suspend_vendor: response.data,
 				});
 			});
 

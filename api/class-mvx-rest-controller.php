@@ -5096,6 +5096,11 @@ class MVX_REST_API {
     public function mvx_list_all_vendor($specific_id = array(), $role = '') {
         global $MVX;
         $user_list = array();
+        $role_status = false;
+        if ($role == 'suspended') {
+            $role_status = true;
+        }
+        $role = $role == 'suspended' ? '' : $role;
         $user_query = new WP_User_Query(array('role__in' => $role ? array($role) : array('dc_vendor', 'dc_pending_vendor', 'dc_rejected_vendor'), 'orderby' => 'registered', 'order' => 'ASC', 'include' => $specific_id));
         $users = $user_query->get_results();
         foreach($users as $user) {
@@ -5107,6 +5112,13 @@ class MVX_REST_API {
                 $vendor_products = $vendor->get_products_ids();
                 $vendor_permalink = $vendor->permalink;
                 $product_count = count($vendor_products);
+            }
+            
+            if ($role_status) {
+                $is_block = get_user_meta($vendor->id, '_vendor_turn_off', true);
+                if (!$is_block) {
+                    continue;
+                }
             }
             
             if (in_array('dc_vendor', $user->roles)) {
