@@ -1251,7 +1251,7 @@ class MVXBackendVendor extends React.Component {
 				});
 		}
 
-		return appLocalizer.mvx_all_backend_tab_list['marketplace-vendors'].map(
+		return this.state.vendors_tab.map(
 			(data, index) =>
 				data.modulename === name.get('name') ? (
 					name.get('name') === 'vendor-application' ? (

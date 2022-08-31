@@ -28,3 +28,7 @@
 -------------------------------------
 {"TIMESTAMP":"2022-08-31T07:38:40Z","CORRELATIONID":"fbc7d1ae65897","ACK":"Failure","VERSION":"91.0","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
 -------------------------------------
+{"TIMESTAMP":"2022-08-31T10:50:04Z","CORRELATIONID":"1700aa4863042","ACK":"Failure","VERSION":"91.0","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
+-------------------------------------
+{"TIMESTAMP":"2022-08-31T11:38:42Z","CORRELATIONID":"c7c496bad46d6","ACK":"Failure","VERSION":"91.0","BUILD":"53356671","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Security error","L_LONGMESSAGE0":"Security header is not valid","L_SEVERITYCODE0":"Error"}
+-------------------------------------

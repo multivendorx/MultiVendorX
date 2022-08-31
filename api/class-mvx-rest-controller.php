@@ -5275,7 +5275,7 @@ class MVX_REST_API {
         $user = get_user_by("ID", $vendor_id);
 
         $marketplace_vendors = [];
-        $marketplace_vendors = array(
+        $marketplace_vendors = apply_filters( 'mvx_backend_vendor_tab_list', array(
             array(
                 'tablabel'      =>  __('Personal', 'multivendorx'),
                 'apiurl'        =>  'mvx_module/v1/update_vendor',
@@ -5311,7 +5311,7 @@ class MVX_REST_API {
                 'submenu'       =>  'vendor',
                 'modulename'     =>  'vendor-application'
             ),
-        );
+        ) );
         if (in_array('dc_pending_vendor', $user->roles)) {
             unset($marketplace_vendors[0], $marketplace_vendors[1], $marketplace_vendors[2], $marketplace_vendors[3]);
         }
