@@ -58,7 +58,8 @@ class MVXworkboard extends Component {
 			workboard_list_status_announcement_pending: false,
 			workboard_list_knowledgebase_status_all: false,
 			workboard_list_knowledgebase_status_publish: false,
-			workboard_list_knowledgebase_status_pending: false
+			workboard_list_knowledgebase_status_pending: false,
+			taskboard_loader_on: false
 		};
 
 		this.QueryParamsDemo = this.QueryParamsDemo.bind(this);
@@ -113,6 +114,9 @@ class MVXworkboard extends Component {
 
 	handle_Vendor_Product_Approve(id) {
 		this.handleClose_dynamic();
+		this.setState({
+			taskboard_loader_on: true,
+		});
 		axios({
 			method: 'post',
 			url: `${appLocalizer.apiUrl}/mvx_module/v1/task_board_icons_triggers`,
@@ -124,6 +128,7 @@ class MVXworkboard extends Component {
 		}).then((responce) => {
 			this.setState({
 				list_of_work_board_content: responce.data,
+				taskboard_loader_on: false,
 			});
 		})
 	}
@@ -1093,7 +1098,15 @@ class MVXworkboard extends Component {
 							</div>
 						</div>
 						<div className="mvx-product-box-sec">
-							{taskboard_data.content.map(
+							{this.state.taskboard_loader_on ?
+								<PuffLoader
+									css={override}
+									color={'#3f1473'}
+									size={100}
+									loading={true}
+								/>
+								:
+							 taskboard_data.content.map(
 								(task_lists_data, task_lists_index) => (
 									<div className="mvx-all-product-box">
 										<div className="mvx-white-box-header">
