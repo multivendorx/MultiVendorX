@@ -582,7 +582,7 @@ export default class DynamicForm extends React.Component {
 					<div className="mvx-settings-calender">
 						<Calendar
 						className="teal"
-						format="DD/MM/YYYY"
+						format="D/M/YYYY"
 						multiple
 						value={this.state[target] && this.state[target].length >  0 ? this.state[target].split(",") : ''}
 						onChange={(e) => {
