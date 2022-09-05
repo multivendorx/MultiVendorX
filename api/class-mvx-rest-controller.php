@@ -5083,7 +5083,7 @@ class MVX_REST_API {
         
         do_action('mvx_vendor_details_update', $model, $vendor);
 
-        $all_details['error'] = 'Settings saving ...';
+        $all_details['error'] = __('Settings saving ...', 'multivendorx');
         return $all_details; 
         die;
     }

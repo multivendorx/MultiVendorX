@@ -19,6 +19,8 @@ class MVX_Library {
     public $jqvmap;
     public $dataTable_lib_url;
     public $popper_lib_url;
+    public $hybridauth_lib_path;
+    public $hybridauth_lib_url;
 
     public function __construct() {
 
@@ -48,6 +50,9 @@ class MVX_Library {
 
         $this->popper_lib_url = $this->lib_url . 'popper/';
 
+        $this->hybridauth_lib_path = $this->lib_path . 'Hybrid/';
+        
+        $this->hybridauth_lib_url = $this->lib_url . 'Hybrid/';
     }
 
     /**
