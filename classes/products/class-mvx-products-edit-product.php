@@ -178,13 +178,6 @@ class MVX_Products_Edit_Product {
                 'class'    => array(),
                 'priority' => 70,
             ),
-            /*'simple_auction'  =>  array(
-            'label'    => __( 'Auction', 'wc_simple_auctions' ),
-            'target'   => 'simple_auction_product_data',
-            'class'    => array( 'show_if_auction' ),
-            'priority' => 77,
-            
-        ),*/
             ) );
 
         // Sort tabs based on priority.

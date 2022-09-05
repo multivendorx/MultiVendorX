@@ -3794,13 +3794,7 @@ if ( ! function_exists( 'mvx_is_allowed_vendor_shipping' ) ) {
 
     function mvx_is_allowed_vendor_shipping() {
         global $MVX;
-        if ( version_compare( $MVX->version, '3.1.5', '<' ) && mvx_is_module_active('vendor-shipping') != true ) {
-            // new vendor shipping setting value based on payment shipping settings
-            if ( 'Enable' === get_mvx_vendor_settings( 'give_shipping', 'payment' ) ) {
-                update_mvx_vendor_settings( 'is_vendor_shipping_on', 'Enable', 'general' );
-            }
-        }
-        return true === mvx_is_module_active('vendor-shipping');
+        return is_mvx_shipping_module_active() && $MVX->vendor_caps->vendor_payment_settings('give_shipping');
     }
 
 }

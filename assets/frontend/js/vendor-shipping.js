@@ -64,6 +64,7 @@
                 data: {
                     action: 'mvx-get-shipping-methods-by-zone',
                     zoneID: zoneID,
+                    security: mvx_vendor_shipping_script_data.security
                 },
                 success: function (response) {
                     $(appObj.vendor_shipping_methods).html(response.data.html).show();
@@ -117,6 +118,7 @@
                     action: 'mvx-add-shipping-method',
                     zoneID: zoneId,
                     method: shippingMethod,
+                    security: mvx_vendor_shipping_script_data.security
                 };
 
                 $('#mvx_shipping_method_add_button').block({
@@ -163,6 +165,7 @@
                     zoneId: zoneId,
                     instanceId: instanceId,
                     methodId: methodId,
+                    security: mvx_vendor_shipping_script_data.security
                 };
                 
             var ajaxRequest = $.ajax({
@@ -194,6 +197,7 @@
                     data = {
                         action: 'mvx-update-shipping-method',
                         zoneID: zoneId,
+                        security: mvx_vendor_shipping_script_data.security,
                         args: {
                             instance_id: instanceId,
                             zone_id: zoneId,
@@ -238,6 +242,7 @@
                     action: 'mvx-delete-shipping-method',
                     zoneID: zoneId,
                     instance_id: instance_id,
+                    security: mvx_vendor_shipping_script_data.security
                 };
 
                 if (zoneId == '') {
@@ -286,6 +291,7 @@
                 zoneID: zoneId,
                 instance_id: value,
                 checked: checked,
+                security: mvx_vendor_shipping_script_data.security
             };
 
             if (zoneId == '') {

@@ -137,7 +137,7 @@ class MVX_Shipping_Zone {
             $method_id = $result->method_id .':'. $result->instance_id;
             $settings = ! empty( $result->settings ) ? maybe_unserialize( $result->settings ) : array();
             // temp code
-            $settings['description'] = ( $shipping_method ) ? $shipping_method->get_method_description() : $settings['description'];
+            $settings['description'] = ( $shipping_method ) ? $shipping_method->get_method_description() : ( isset($settings['description']) ? $settings['description'] : '' );
             $settings = wp_parse_args( $settings, $default_settings );
 
             $method[$method_id]['instance_id'] = $result->instance_id;

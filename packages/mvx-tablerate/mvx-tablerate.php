@@ -48,7 +48,7 @@ class MVX_Tablerate {
 	 */
 	public function has_dependencies() {
         include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-        if ( is_plugin_active( 'woocommerce-table-rate-shipping/woocommerce-table-rate-shipping.php' ) && !is_plugin_active( 'mvx-advance-shipping/mvx-advance-shipping.php' ) ) {
+        if ( is_plugin_active( 'woocommerce-table-rate-shipping/woocommerce-table-rate-shipping.php' ) && !is_plugin_active( 'mvx-advance-shipping/mvx-advance-shipping.php' ) && is_current_module_active('weight-shipping') ) {
             return true;
         } else {
             return false;
@@ -442,7 +442,9 @@ class MVX_Tablerate {
      	$zone = new WC_Shipping_Zone($zone_id);
      	$raw_methods = $zone->get_shipping_methods();
      	foreach ($raw_methods as $raw_method) {
+
      		if ($raw_method->id == 'table_rate') {
+
      			$table_rates = $wpdb->get_results( $wpdb->prepare("SELECT * FROM {$wpdb->prefix}woocommerce_shipping_table_rates WHERE `rate_class` = %d AND `shipping_method_id` = %d order by 'shipping_method_id' ", $shipping_class_id, $raw_method->instance_id, OBJECT));
      			?>
      			<input type="hidden" name="shipping_method_id" value="<?php echo esc_attr($raw_method->instance_id); ?>" />
