@@ -7584,7 +7584,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
-                        'id'           => 'rental',
+                        'id'           => 'rental-pro',
                         'name'         => __( 'Rental-Pro', 'multivendorx' ),
                         'description'  => __( 'Perfect for those desiring to offer rental, booking, or real state agencies or services.', 'multivendorx' ),
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
