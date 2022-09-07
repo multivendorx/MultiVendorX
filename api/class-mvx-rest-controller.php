@@ -731,6 +731,133 @@ class MVX_REST_API {
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
 
+        // fetch individual tab list
+        register_rest_route( 'mvx_module/v1', '/fetch_pending_verification_data', [
+            'methods' => WP_REST_Server::READABLE,
+            'callback' => array( $this, 'mvx_fetch_pending_verification_data' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
+        register_rest_route( 'mvx_module/v1', '/vendor_pending_verification_action', [
+            'methods' => WP_REST_Server::EDITABLE,
+            'callback' => array( $this, 'mvx_vendor_pending_verification_action' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
+    }
+
+    public function mvx_vendor_pending_verification_action($request) {
+        $action = $request->get_param('action') ? $request->get_param('action') : '';
+        $id = $request->get_param('id') ? $request->get_param('id') : '';
+        $type = $request->get_param('type') ? $request->get_param('type') : '';
+
+        if(!empty($id)){
+            $user_id = (int)$id;
+            $verification_settings = get_user_meta($user_id, 'mvx_vendor_verification_settings', true);
+            if(!empty($type) && !empty($action)) {
+                $v_type = $type;
+                if($action == 'rejected'){
+                    $verification_settings[$v_type]['is_verified'] = $action;
+                    $verification_settings[$v_type]['data'] = '';
+                    delete_user_meta($user_id, 'mvx_vendor_is_verified');
+                }else{
+                    $verification_settings[$v_type]['is_verified'] = $action;
+                }
+            }
+            
+            update_user_meta($user_id, 'mvx_vendor_verification_settings', $verification_settings);
+
+            if(isset($verification_settings['address_verification']['is_verified']) && $verification_settings['address_verification']['is_verified'] == 'verified' && isset($verification_settings['id_verification']['is_verified']) && $verification_settings['id_verification']['is_verified'] == 'verified'){
+                update_user_meta($user_id, 'mvx_vendor_is_verified', 'verified');
+
+            }else{
+                delete_user_meta($user_id, 'mvx_vendor_is_verified');
+            }
+
+            // Send email as per admin notified
+            $vendor = get_wcmp_vendor($user_id) ? get_wcmp_vendor($user_id) : '';
+            $verification_type = isset($type) ? wc_clean($type) : '';
+            if ($verification_type && $verification_type == 'address_verification') {
+                $verification_title = __('Address Verification', 'wcmp-vendor-verification');
+            } elseif ($verification_type == 'id_verification') {
+                $verification_title = __('Identity Verification', 'wcmp-vendor-verification');
+            } else {
+                $verification_title = __('Verification', 'wcmp-vendor-verification');
+            }
+            $action_status = !empty($action) && $action == 'verified' ? __('Approved', 'wcmp-vendor-verification') : __('Rejected', 'wcmp-vendor-verification');
+            $email = WC()->mailer()->emails['WCMp_Email_Vendor_Notification_Alert'];
+            if ($email) {
+                $email->trigger($vendor, $action_status, $verification_title);
+            }
+        }
+    }
+
+    public function mvx_fetch_pending_verification_data() {
+        global $MVX;
+        $get_pending_verification_list = $lists = [];
+        $args = apply_filters('mvx_vendor_verification_to_do_list_args', array(
+            'role' => 'dc_vendor',
+            'meta_key' => 'mvx_vendor_verification_settings',
+        ));
+        
+        $get_verification_vendors = new WP_User_Query($args);
+        $get_verification_vendors = $get_verification_vendors->get_results();
+        $have_pending_verification = array();
+        foreach ($get_verification_vendors as $get_vendor) {
+            $verification_settings = get_user_meta($get_vendor->ID, 'mvx_vendor_verification_settings', true);
+            if (isset($verification_settings['address_verification']['is_verified']) && $verification_settings['address_verification']['is_verified'] == 'pending' || isset($verification_settings['id_verification']['is_verified']) && $verification_settings['id_verification']['is_verified'] == 'pending' ){
+                $have_pending_verification[] = 'pending';
+            }
+        }
+        if (in_array('pending', $have_pending_verification) && $get_verification_vendors) {
+            foreach ($get_verification_vendors as $get_vendor) {
+                $verification_settings = get_user_meta($get_vendor->ID, 'mvx_vendor_verification_settings', true);
+
+                $addrs = array();
+                if (isset($verification_settings['address_verification']['data']['address_1']) )
+                    $addrs['address_1'] = $verification_settings['address_verification']['data']['address_1'];
+                if (isset($verification_settings['address_verification']['data']['address_2']) )
+                    $addrs['address_2'] = $verification_settings['address_verification']['data']['address_2'];
+                if (isset($verification_settings['address_verification']['data']['country']) )
+                    $addrs['country'] = $verification_settings['address_verification']['data']['country'];
+                if (isset($verification_settings['address_verification']['data']['state']) )
+                    $addrs['state'] = $verification_settings['address_verification']['data']['state'];
+                if (isset($verification_settings['address_verification']['data']['city']) )
+                    $addrs['city'] = $verification_settings['address_verification']['data']['city'];
+                if (isset($verification_settings['address_verification']['data']['postcode']) )
+                    $addrs['postcode'] = $verification_settings['address_verification']['data']['postcode'];
+
+                $id_type = $file_display = $file_display_social = '';
+                if (isset($verification_settings['id_verification']['data']['verification_type']) )
+                    $id_type = $verification_settings['id_verification']['data']['verification_type'];
+
+
+                if (isset($verification_settings['id_verification']['data']['verification_file']) && !empty($verification_settings['id_verification']['data']['verification_file'])){
+                    $file_type = wp_check_filetype($verification_settings['id_verification']['data']['verification_file']);
+                    $img_type = array('image/jpeg', 'image/png', 'image/gif');
+                    if (isset($file_type['type']) && in_array($file_type['type'], $img_type)){
+                        $file_display = '<br><img height="100px" src="'.esc_url($verification_settings['id_verification']['data']['verification_file']).'" />';
+                    } else {
+                        $file_display = '<br><img height="100px" src="'.$WCMP_Vendor_Verification->plugin_url . 'assets/images/document.png'.'" />';
+                    }
+                }
+
+                if (isset($verification_settings['social_verification'])){
+                    foreach($verification_settings['social_verification'] as $provider => $profile) {
+                    $file_display_social = '<img height="35px" src="'. $WCMP_Vendor_Verification->plugin_url . 'assets/images/'.strtolower($provider).'.png'.'" style="margin-right:4px;"/>';
+                    }
+                }
+
+                $lists[] = array(
+                    'id'    =>  $get_vendor->ID,
+                    'image' =>  '<img src='.$MVX->plugin_url . 'assets/images/wp-avatar-frau.jpg'.' alt="" class="avatar avatar-32 photo" height="32" width="32"></img>' . $get_vendor->data->display_name,
+                    'address'   =>  WC()->countries->get_formatted_address($addrs),
+                    'id_verification'   =>  __('ID Type : ', 'multivendorx').ucwords($id_type) . $file_display,
+                    'social'    =>  $file_display_social ? $file_display_social : __('No social data found', 'mvx-pro')
+                );
+            }
+        }
+        return rest_ensure_response($lists);
     }
 
     public function mvx_list_of_work_board_content() {

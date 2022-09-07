@@ -50,7 +50,9 @@ class MVXworkboard extends Component {
 			list_of_work_board_content: [],
 			pending_individual_checkbox: [],
 			open_dialog_popup_for_pending_product: [],
+			open_dialog_popup_for_pending_verification: [],
 			pending_product_list: [],
+			pending_verification_list: [],
 			current_url: '',
 			handle_rejected_vendor_product_description: '',
 			workboard_list_announcement_status_all: false,
@@ -91,6 +93,7 @@ class MVXworkboard extends Component {
 		this.handleQuestionBulkStatusChange =
 			this.handleQuestionBulkStatusChange.bind(this);
 		this.handleClose_dynamic = this.handleClose_dynamic.bind(this);
+		this.handleClose_verification_dynamic = this.handleClose_verification_dynamic.bind(this);
 		this.handle_rejected_vendor_product_description = this.handle_rejected_vendor_product_description.bind(this);
 		this.handle_Vendor_Product_Approve = this.handle_Vendor_Product_Approve.bind(this);
 	}
@@ -105,6 +108,18 @@ class MVXworkboard extends Component {
 			open_dialog_popup_for_pending_product: default_vendor_eye_popup,
 		});
 	}
+
+	handleClose_verification_dynamic() {
+		const default_verification_eye_popup = [];
+		this.state.pending_verification_list.map((data_ann, index_ann) => {
+			default_verification_eye_popup[data_ann.id] = false;
+		});
+		this.setState({
+			open_dialog_popup_for_pending_verification: default_verification_eye_popup,
+		});
+	}
+
+	
 
 	handle_rejected_vendor_product_description(e, id) {
 		this.setState({
@@ -676,7 +691,19 @@ class MVXworkboard extends Component {
 			});
 		});
 
-		
+		// pending verification
+		axios({
+				url: `${appLocalizer.apiUrl}/mvx_module/v1/fetch_pending_verification_data`,
+		}).then((response) => {
+			const default_vendor_verification_popup = [];
+			response.data.map((data_verifi, index_ann) => {
+				default_vendor_verification_popup[data_verifi.id] = false;
+			});
+			this.setState({
+				open_dialog_popup_for_pending_verification: default_vendor_verification_popup,
+				pending_verification_list: response.data,
+			});
+		});
 
 		
 	}
@@ -1054,6 +1081,7 @@ class MVXworkboard extends Component {
 			);
 		}
 		let set_vendors_id_data = [];
+		let set_verification_id_data = [];
 		
 		return name === 'activity-reminder' ? (
 		<div>{
@@ -1176,12 +1204,19 @@ class MVXworkboard extends Component {
 																		icons_data.key === 'dismiss_product' ? (
 																		set_vendors_id_data = this.state.open_dialog_popup_for_pending_product,
 																		set_vendors_id_data[icons_data.value.id] = true,
-																		console.log(set_vendors_id_data),
 																		this.setState({
 																			open_dialog_popup_for_pending_product: set_vendors_id_data,
 																		}))
 																		: '',
 
+
+																		icons_data.action === 'view' ? (
+																		set_verification_id_data = this.state.open_dialog_popup_for_pending_verification,
+																		set_verification_id_data[icons_data.value] = true,
+																		this.setState({
+																			open_dialog_popup_for_pending_verification: set_verification_id_data,
+																		}))
+																		: '',
 
 																		icons_data.key === 'dismiss_product' ? '' :
 																		axios({
@@ -1215,6 +1250,136 @@ class MVXworkboard extends Component {
 				)
 			)
 			}
+
+
+
+		{this.state.pending_verification_list.map((data_veri, index_veri) => (
+			<Dialog
+				open={this.state
+						.open_dialog_popup_for_pending_verification[
+						data_veri.id
+					]}
+				aria-labelledby="form-dialog-title"
+				onClose={this.handleClose_verification_dynamic}
+			>
+				<DialogTitle id="form-dialog-title">
+					<div className="mvx-module-dialog-title">
+						Verification Details
+					</div>
+				</DialogTitle>
+				<DialogContent>
+					<DialogContentText>
+						<div
+							dangerouslySetInnerHTML={{ __html: data_veri.image }}
+						></div>
+
+					<table>
+					  <tr>
+					  	<th>Title</th>
+					    <th>Type</th>
+					    <th>Action</th>
+					  </tr>
+
+					  <tr>
+					    <td>Address Verification</td>
+					    <td>
+						    <div
+								dangerouslySetInnerHTML={{ __html: data_veri.address }}
+							></div>
+						</td>
+					    <td>
+					    	<button className="mvx-back-btn" onClick={(e) =>
+								(
+								axios({
+									method: 'post',
+									url: `${appLocalizer.apiUrl}/mvx_module/v1/vendor_pending_verification_action`,
+									data: {
+										action: 'verified', id: data_veri.id, type: 'address'
+									},
+								}).then((responce) => {
+									location.reload();
+								})
+
+								)
+							}>
+								<i className="mvx-font icon-yes"></i>
+							</button>
+							<button className="mvx-back-btn" onClick={(e) =>
+								(
+									axios({
+									method: 'post',
+									url: `${appLocalizer.apiUrl}/mvx_module/v1/vendor_pending_verification_action`,
+									data: {
+										action: 'rejected', id: data_veri.id, type: 'address'
+									},
+									}).then((responce) => {
+										location.reload();
+									})
+								)
+							}>
+								<i className="mvx-font icon-no"></i>
+							</button>
+					    </td>
+					  </tr>
+
+					  <tr>
+					    <td>Id Verification</td>
+					    <td>
+					    	<div
+								dangerouslySetInnerHTML={{ __html: data_veri.id_verification }}
+							></div>
+						</td>
+					    <td>
+					    	<button className="mvx-back-btn" onClick={(e) =>
+								(
+									axios({
+									method: 'post',
+									url: `${appLocalizer.apiUrl}/mvx_module/v1/vendor_pending_verification_action`,
+									data: {
+										action: 'verified', id: data_veri.id, type: 'id'
+									},
+									}).then((responce) => {
+										location.reload();
+									})
+								)
+							}>
+								<i className="mvx-font icon-yes"></i>
+							</button>
+							<button className="mvx-back-btn" onClick={(e) =>
+								(
+									axios({
+									method: 'post',
+									url: `${appLocalizer.apiUrl}/mvx_module/v1/vendor_pending_verification_action`,
+									data: {
+										action: 'rejected', id: data_veri.id, type: 'id'
+									},
+									}).then((responce) => {
+										location.reload();
+									})
+								)
+							}>
+								<i className="mvx-font icon-no"></i>
+							</button>
+					    </td>
+					  </tr>
+
+					  <tr>
+					    <td>Social Verification</td>
+					    <td>
+					    	<div
+								dangerouslySetInnerHTML={{ __html: data_veri.social }}
+							></div>
+						</td>
+					    <td></td>
+					  </tr>
+					</table>
+
+					</DialogContentText>
+				</DialogContent>
+				<DialogActions></DialogActions>
+			</Dialog>
+		))}
+
 
 			{this.state.pending_product_list.map((data8, index8) => (
 				<Dialog
