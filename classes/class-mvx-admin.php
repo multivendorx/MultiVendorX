@@ -674,7 +674,7 @@ class MVX_Admin {
             )
         );
 
-        $columns_vendor = array(
+        $columns_vendor = apply_filters('mvx_backend_vendor_table_column', array(
             /*array(
                 'name'      =>  __('Name', 'multivendorx'),
                 'selector'  =>  '',
@@ -714,17 +714,18 @@ class MVX_Admin {
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "status",
-            ),
-            array(
-                'name'      =>  __('Action', 'multivendorx'),
-                'selector'  =>  '',
-                'sortable'  =>  true,
-                'cell'  =>  'cell',
-                'ignoreRowClick'=> true,
-                'allowOverflow'=> true,
-                'button'=> true,
-                'last_action'   =>  'last_action_trigger'
             )
+        ));
+
+        $columns_vendor[] = array(
+            'name'      =>  __('Action', 'multivendorx'),
+            'selector'  =>  '',
+            'sortable'  =>  true,
+            'cell'  =>  'cell',
+            'ignoreRowClick'=> true,
+            'allowOverflow'=> true,
+            'button'=> true,
+            'last_action'   =>  'last_action_trigger'
         );
 
         $columns_commission = array(
