@@ -10,6 +10,7 @@ import GESettings from './class-mvx-general-settings';
 import Modules from './class-mvx-modules-listing';
 import StatusTools from './class-mvx-status-tools';
 import Dashboard from './class-mvx-dashboard-section';
+import Membership from './class-mvx-membership';
 
 class Mvx_Backend_Endpoints_Load extends Component {
 	constructor(props) {
@@ -93,6 +94,12 @@ class Mvx_Backend_Endpoints_Load extends Component {
 				'status-tools'
 		) {
 			return <StatusTools />;
+		} else if (
+			new URLSearchParams(useLocation().hash).get('submenu') &&
+			new URLSearchParams(useLocation().hash).get('submenu') ==
+				'membership'
+		) {
+			return <Membership />;
 		} else if (
 			new URLSearchParams(useLocation().hash).get('submenu') &&
 			new URLSearchParams(useLocation().hash).get('submenu') === 'modules'

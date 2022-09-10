@@ -45,6 +45,8 @@ class MVX_Settings {
             
             $submenu[ $slug ][] = [ __( 'Status and Tools', 'multivendorx' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=status-tools&name=database-tools' ];
 
+            $submenu = apply_filters('mvx_backend_submenu_list', $submenu, $slug);
+
             $submenu[ $slug ][] = [ __( 'Help & Support', 'multivendorx' ), 'manage_woocommerce', 'https://multivendorx.com/' ];
 
             add_submenu_page( null, __( 'Transaction Details', 'multivendorx' ), __( 'Transaction Details', 'multivendorx' ), 'manage_woocommerce', 'mvx-transaction-details', array( $this, 'mvx_transaction_details' ) );
