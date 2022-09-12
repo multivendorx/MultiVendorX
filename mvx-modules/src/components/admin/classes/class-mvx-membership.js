@@ -74,7 +74,7 @@ class App extends Component {
 			.length > 0
 			? appLocalizer.mvx_all_backend_tab_list['marketplace-memberhip'].map(
 					(data, index) => (
-						(name = !name ? 'paypal_masspay' : name),
+						(name = !name ? 'payment-membership-message' : name),
 						data.modulename === name ? (
 							Object.keys(this.state.list_of_module_data).length >
 							0 ? (

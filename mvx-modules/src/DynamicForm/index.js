@@ -5,7 +5,7 @@ import axios from 'axios';
 import GoogleMapReact from 'google-map-react';
 import AutoComplete from './autocomplete';
 import { Calendar } from "react-multi-date-picker"
-
+import DataTable from 'react-data-table-component';
 const AnyReactComponent = ({ text }) => (
 	<img src={text} width="38" height="50" />
 );
@@ -1154,6 +1154,79 @@ export default class DynamicForm extends React.Component {
 						) : (
 							''
 						)}
+					</div>
+				);
+			}
+
+			if (type === 'datatable') {
+
+				let columns_vendor_zone_list = [];
+				m.column_header.map((data_zone, index_zone) => {
+					let data_selector_zone = '';
+					let set_for_dynamic_column_zone = '';
+					data_selector_zone = data_zone.selector_choice;
+					data_zone.selector = (row) => (
+						<div
+							dangerouslySetInnerHTML={{
+								__html: row[data_selector_zone],
+							}}
+						></div>
+					);
+
+
+
+					data_zone.last_action === 'last_action_trigger'
+					? (data_zone.cell = (row) => (
+							<div className="mvx-vendor-action-icon">
+							
+							{data_zone.action_icons_data.map((o) => (
+
+									<div
+									onClick={(e) =>
+										(
+										axios({
+											method: 'post',
+											url: `${appLocalizer.apiUrl}/mvx_membership/v1/update_membership`,
+											data: {
+												action: 'verified', id: row.user_id, status: row.status
+											},
+										}).then((responce) => {
+											location.reload();
+										})
+
+										)
+									}
+								>
+									<i className={`mvx-font ${o.icon}`}></i>
+								</div>
+
+								)
+							)
+						}
+								
+							</div>
+					  ))
+					: '';
+
+
+					columns_vendor_zone_list[index_zone] = data_zone;
+					set_for_dynamic_column_zone =
+						columns_vendor_zone_list;
+					columns_vendor_zone_list =
+						set_for_dynamic_column_zone;
+				});
+
+				console.log(columns_vendor_zone_list);
+
+				input = (
+					<div className="mvx-backend-datatable-wrapper">
+						<DataTable
+							columns={
+								columns_vendor_zone_list
+							}
+							data={m.column_data}
+							pagination
+						/>
 					</div>
 				);
 			}

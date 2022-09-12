@@ -56,7 +56,7 @@ if(isset($mvx_vendor_registration_form_data) && is_array($mvx_vendor_registratio
 				<div class="panel-body panel-content-padding">
 					<div class="mvx_regi_form_box">
 						<?php
-							$MVX->template->get_template('vendor_registration_form.php', array('mvx_vendor_registration_form_data' => $mvx_vendor_registration_form_data, 'form_data' => array('mvx_vendor_fields' => $form_data)));
+							$MVX->template->get_template('vendor-registration-form.php', array('mvx_vendor_registration_form_data' => $mvx_vendor_registration_form_data, 'form_data' => array('mvx_vendor_fields' => $form_data)));
 						?>
 						<div class="clearboth"></div>
 					</div>

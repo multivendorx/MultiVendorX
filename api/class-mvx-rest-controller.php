@@ -930,6 +930,12 @@ class MVX_REST_API {
                             'value'  =>  $value,
                             'icon'  =>  'icon-dismiss',
                             'title' =>  __('Dismiss', 'multivendorx')
+                        ),
+                        array(
+                            'key'   =>  'reject_vendor',
+                            'value'  =>  $value,
+                            'icon'  =>  'icon-no',
+                            'title' =>  __('Reject', 'multivendorx')
                         )
                     )
                 );
@@ -1116,6 +1122,9 @@ class MVX_REST_API {
         } elseif ($key == 'dismiss_vendor') {
             $vendor_id = $value['id'];
             update_user_meta($vendor_id, '_dismiss_to_do_list', 'true');
+        } elseif ($key == 'reject_vendor') {
+            $user = new WP_User(absint($value['id']));
+            $user->set_role('dc_rejected_vendor');
         } elseif ($key == 'approve_coupon') {
             $coupon_id = $value['id'];
             $post_update = array(
@@ -1488,10 +1497,6 @@ class MVX_REST_API {
     public function mvx_fetch_all_modules_data() {
         // get all settings fileds
         $settings_fields = mvx_admin_backend_settings_fields_details();
-
-        // get all tab settings fileds
-        $mvx_all_backend_tab_list = mvx_admin_backend_tab_settings();
-
         if (!empty($settings_fields)) {
             foreach ($settings_fields as $settings_key => $settings_value) {
                 foreach ($settings_value as $inter_key => $inter_value) {
