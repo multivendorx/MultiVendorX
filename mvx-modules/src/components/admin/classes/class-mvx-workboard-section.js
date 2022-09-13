@@ -1207,7 +1207,13 @@ class MVXworkboard extends Component {
 																		this.setState({
 																			open_dialog_popup_for_pending_product: set_vendors_id_data,
 																		}))
-																		: '',
+																		: 
+
+																		this.setState({
+																			taskboard_loader_on: true,	
+																		})
+
+																		,
 
 
 																		icons_data.action === 'view' ? (
@@ -1229,6 +1235,7 @@ class MVXworkboard extends Component {
 																		}).then((responce) => {
 																			this.setState({
 																				list_of_work_board_content: responce.data,
+																				taskboard_loader_on: false,
 																			});
 																		})
 
