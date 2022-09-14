@@ -5399,6 +5399,9 @@ class MVX_REST_API {
         }
         mvx_update_option( 'mvx_all_active_module_list', $active_module_list );
         do_action('mvx_after_module_active', $module_id, $is_checked, $active_module_list);
+        if ( in_array( $module_id, apply_filters('mvx_module_enabled_reload', array('marketplace-membership')))) {
+            return rest_ensure_response( 'reload' );
+        }
         return rest_ensure_response( 'success' );
     }
 

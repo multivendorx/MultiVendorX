@@ -995,7 +995,7 @@ class MVX_Admin {
             'dashboard2' =>  __('Pro', 'multivendorx'),
             'dashboard3' =>  __('Upgrade to Pro', 'multivendorx'),
             'dashboard4' =>  __('Activate your Pro License and gain access to better marketplace features ', 'multivendorx'),
-            'dashboard5' =>  __('Active License', 'multivendorx'),
+            'dashboard5' =>  apply_filters('mvx_active_license_text', __('Upgrade to pro', 'multivendorx')),
             'dashboard6' =>  __('Dynamic Shipping', 'multivendorx'),
             'dashboard7' =>  __('Grow your business accross the globe with multiple shipping options', 'multivendorx'),
             'dashboard8' =>  __('Live Chat', 'multivendorx'),
@@ -1080,6 +1080,7 @@ class MVX_Admin {
             'dashboard85' =>  __('Free', 'multivendorx'),
             'dashboard86' =>  __('Show More', 'multivendorx'),
             'dashboard87' =>  __('Show Less', 'multivendorx'),
+            'dashboard88' =>  apply_filters('mvx_upgrade_to_pro_link', 'https://multivendorx.com/'),
         );
         
         wp_localize_script( 'mvx-modules-build-frontend', 'appLocalizer', apply_filters('mvx_module_complete_settings', [

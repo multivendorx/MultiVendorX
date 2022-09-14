@@ -53,7 +53,7 @@ class MVX_Dashboard extends Component {
                                     <p>
                                         {appLocalizer.dashboard_string.dashboard4}
                                     </p>
-                                    <a href="#" className="mvx-btn btn-red">
+                                    <a href={appLocalizer.dashboard_string.dashboard88} className="mvx-btn btn-red">
                                     {appLocalizer.dashboard_string.dashboard5}
                             </a>
                                 </div>
@@ -73,7 +73,7 @@ class MVX_Dashboard extends Component {
                                     <p>
                                         {appLocalizer.dashboard_string.dashboard7}
                                     </p>
-                                    <a href="#" className="mvx-btn btn-red">
+                                    <a href={appLocalizer.dashboard_string.dashboard88} className="mvx-btn btn-red">
                                         {appLocalizer.dashboard_string.dashboard5}
                                     </a>
                                 </div>
@@ -92,7 +92,7 @@ class MVX_Dashboard extends Component {
                                     <p>
                                         {appLocalizer.dashboard_string.dashboard9}
                                     </p>
-                                    <a href="#" className="mvx-btn btn-red">
+                                    <a href={appLocalizer.dashboard_string.dashboard88} className="mvx-btn btn-red">
                                         {appLocalizer.dashboard_string.dashboard5}
                                     </a>
                                 </div>
@@ -111,7 +111,7 @@ class MVX_Dashboard extends Component {
                                     <p>
                                         {appLocalizer.dashboard_string.dashboard11}
                                     </p>
-                                    <a href="#" className="mvx-btn btn-red">    {appLocalizer.dashboard_string.dashboard5}
+                                    <a href={appLocalizer.dashboard_string.dashboard88} className="mvx-btn btn-red">    {appLocalizer.dashboard_string.dashboard5}
                                     </a>
                                 </div>
                                 </div>

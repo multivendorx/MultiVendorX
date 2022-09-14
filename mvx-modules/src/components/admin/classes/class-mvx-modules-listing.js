@@ -156,7 +156,11 @@ class MVX_Module_Listing extends Component {
 					module_id,
 					is_checked: event.target.checked,
 				},
-			}).then((res) => {});
+			}).then((res) => {
+				if (res.data === 'reload') {
+					location.reload();
+				}
+			});
 		}
 	}
 
