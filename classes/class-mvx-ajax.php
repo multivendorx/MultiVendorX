@@ -789,7 +789,7 @@ class MVX_Ajax {
     function unassign_vendor() {
         global $MVX;
         if ( ! current_user_can( 'edit_users' ) ) {
-            wp_die(__('Sorry, you cannot update vendors', 'dc-woocommerce-multi-vendor'));
+            wp_die(__('Sorry, you cannot update vendors', 'multivendorx'));
         }
         check_ajax_referer('search-products', 'security');
         $product_id = isset($_POST['product_id']) ? absint($_POST['product_id']) : 0;

@@ -778,13 +778,13 @@ class MVX_REST_API {
             $vendor = get_wcmp_vendor($user_id) ? get_wcmp_vendor($user_id) : '';
             $verification_type = isset($type) ? wc_clean($type) : '';
             if ($verification_type && $verification_type == 'address_verification') {
-                $verification_title = __('Address Verification', 'wcmp-vendor-verification');
+                $verification_title = __('Address Verification', 'multivendorx');
             } elseif ($verification_type == 'id_verification') {
-                $verification_title = __('Identity Verification', 'wcmp-vendor-verification');
+                $verification_title = __('Identity Verification', 'multivendorx');
             } else {
-                $verification_title = __('Verification', 'wcmp-vendor-verification');
+                $verification_title = __('Verification', 'multivendorx');
             }
-            $action_status = !empty($action) && $action == 'verified' ? __('Approved', 'wcmp-vendor-verification') : __('Rejected', 'wcmp-vendor-verification');
+            $action_status = !empty($action) && $action == 'verified' ? __('Approved', 'multivendorx') : __('Rejected', 'multivendorx');
             $email = WC()->mailer()->emails['WCMp_Email_Vendor_Notification_Alert'];
             if ($email) {
                 $email->trigger($vendor, $action_status, $verification_title);
@@ -853,7 +853,7 @@ class MVX_REST_API {
                     'image' =>  '<img src='.$MVX->plugin_url . 'assets/images/wp-avatar-frau.jpg'.' alt="" class="avatar avatar-32 photo" height="32" width="32"></img>' . $get_vendor->data->display_name,
                     'address'   =>  WC()->countries->get_formatted_address($addrs),
                     'id_verification'   =>  __('ID Type : ', 'multivendorx').ucwords($id_type) . $file_display,
-                    'social'    =>  $file_display_social ? $file_display_social : __('No social data found', 'mvx-pro')
+                    'social'    =>  $file_display_social ? $file_display_social : __('No social data found', 'multivendorx')
                 );
             }
         }
