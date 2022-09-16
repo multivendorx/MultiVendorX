@@ -560,6 +560,27 @@ class MVXBackendVendor extends React.Component {
 			/****	pending vendor application status end	****/
 		}
 
+		/******** Vendor list **********/
+		if (window.location.hash !== this.state.current_url && !this.useQuery().get('ID')) {
+			axios({
+				url: `${appLocalizer.apiUrl}/mvx_module/v1/all_vendors`,
+			}).then((response) => {
+				//open_vendor_model_dynamic
+				const default_vendor_eye_popup = [];
+				response.data.map((data_ann, index_ann) => {
+					default_vendor_eye_popup[data_ann.ID] = false;
+				});
+				this.setState({
+					datavendor: response.data,
+					data_all_vendor: response.data,
+					open_vendor_model_dynamic: default_vendor_eye_popup,
+					vendor_loading: true,
+					current_url: window.location.hash
+				});
+			});
+		}
+
+
 
 
 		if (!this.useQuery().get('ID')) {
@@ -696,23 +717,6 @@ class MVXBackendVendor extends React.Component {
 			/* column zone list end */
 		}
 
-		if (this.state.datavendor.length === 0) {
-			axios({
-				url: `${appLocalizer.apiUrl}/mvx_module/v1/all_vendors`,
-			}).then((response) => {
-				//open_vendor_model_dynamic
-				const default_vendor_eye_popup = [];
-				response.data.map((data_ann, index_ann) => {
-					default_vendor_eye_popup[data_ann.ID] = false;
-				});
-				this.setState({
-					datavendor: response.data,
-					data_all_vendor: response.data,
-					open_vendor_model_dynamic: default_vendor_eye_popup,
-					vendor_loading: true,
-				});
-			});
-		}
 		if (this.useQuery().get('ID')) {
 			this.state.datavendor = [];
 			this.state.vendor_loading = false;
