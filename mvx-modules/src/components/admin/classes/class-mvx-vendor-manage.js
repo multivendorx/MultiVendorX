@@ -183,6 +183,9 @@ class MVXBackendVendor extends React.Component {
 	}
 
 	different_vendor_status(e, type) {
+		this.setState({
+			vendor_loading: false
+		});
 		if (type === 'approve') {
 			this.setState({
 				vendor_list_status_approve: true,
@@ -198,6 +201,7 @@ class MVXBackendVendor extends React.Component {
 				.then((response) => {
 					this.setState({
 						datavendor: response.data,
+						vendor_loading: true
 					});
 				});
 		} else if (type === 'pending') {
@@ -215,6 +219,7 @@ class MVXBackendVendor extends React.Component {
 				.then((response) => {
 					this.setState({
 						datavendor: response.data,
+						vendor_loading: true
 					});
 				});
 		} else if (type === 'rejected') {
@@ -232,6 +237,7 @@ class MVXBackendVendor extends React.Component {
 				.then((response) => {
 					this.setState({
 						datavendor: response.data,
+						vendor_loading: true
 					});
 				});
 		} else if (type === 'suspended') {
@@ -249,6 +255,7 @@ class MVXBackendVendor extends React.Component {
 				.then((response) => {
 					this.setState({
 						datavendor: response.data,
+						vendor_loading: true
 					});
 				});
 
@@ -267,6 +274,7 @@ class MVXBackendVendor extends React.Component {
 				.then((response) => {
 					this.setState({
 						datavendor: response.data,
+						vendor_loading: true
 					});
 				});
 		}

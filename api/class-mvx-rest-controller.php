@@ -5221,7 +5221,7 @@ class MVX_REST_API {
     }
 
     public function mvx_all_vendor_details($request) {
-        $role = $request && $request->get_param('role') ? $request->get_param('role') : 0;
+        $role = $request && $request->get_param('role') ? $request->get_param('role') : '';
         return $this->mvx_list_all_vendor('', $role);
     }
 
