@@ -5642,5 +5642,8 @@ form[name="mvx_vendor_dashboard_orders"] .date-inp-wrap { width: 100%;}
   .mvx-action-container { top: 69px;right: 20px;}
   .side-collapse-container div.dataTables_wrapper div.dataTables_length {text-align: left;}
 }
+#vendor_products_qna_table_wrapper .row:nth-child(2) {
+    display: block;
+}
 
 /* #woocommerce-product-data .product-info-tab-wrapper > .tab-content{border-top: 0;} */
