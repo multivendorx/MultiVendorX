@@ -1655,7 +1655,7 @@ class MVX_REST_API {
     }
 
     public function mvx_tools_funtion($request) {
-        global $wpdb;
+        global $wpdb, $MVX;
         $all_details = [];
         $type = $request && $request->get_param('type') ? $request->get_param('type') : '';
         
@@ -1678,6 +1678,13 @@ class MVX_REST_API {
         } else if ($type == 'migrate') {
             $all_details['redirect_link'] = admin_url('index.php?page=mvx-migrator');
             return $all_details;
+        } else if ($type == 'default_pages') {
+            require_once($MVX->plugin_path . 'includes/class-mvx-install.php');
+            $install = new MVX_Install();
+            if (!get_option("dc_product_vendor_plugin_page_install")) {
+                $install->mvx_product_vendor_plugin_create_pages();
+                update_option("dc_product_vendor_plugin_page_install", 1);
+            }
         }
     }
 

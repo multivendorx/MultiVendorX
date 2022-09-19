@@ -431,6 +431,12 @@ class MVX_Admin {
                     'headline_text'     =>  __('Multivendor Migration', 'multivendorx'),
                     'description_text'  =>  __('With this tool, you can transfer valuable data from your previous marketplace', 'multivendorx')
                 ),
+                array(
+                    'name'              =>  __('Create default MultiVendorX Page', 'multivendorx'),
+                    'key'               =>  'default_pages',
+                    'headline_text'     =>  __('MultiVendorX Page', 'multivendorx'),
+                    'description_text'  =>  __('This tools will install all the missing MultiVendorX pages. Pages already defined and set up will not be replaced', 'multivendorx')
+                ),
             ),
             'system-info'   =>  __('System Info', 'multivendorx'),
             'copy-system-info'   =>  __('Copy System Info to Clipboard', 'multivendorx'),
