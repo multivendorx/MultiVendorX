@@ -336,7 +336,7 @@ class MVX_Dashboard extends Component {
                             <p>
                                 {appLocalizer.dashboard_string.dashboard32}
                             </p>
-                            <a href="#" className="mvx-btn btn-red">
+                            <a href={appLocalizer.dashboard_string.dashboard88} className="mvx-btn btn-red">
                                 {appLocalizer.dashboard_string.dashboard3}
                             </a>
                         </div>
@@ -891,7 +891,7 @@ class MVX_Dashboard extends Component {
                             <p>
                                 {appLocalizer.dashboard_string.dashboard84}
                             </p>
-                            <a href="#" className="mvx-btn btn-red">
+                            <a href={appLocalizer.dashboard_string.dashboard88} className="mvx-btn btn-red">
                                 {appLocalizer.dashboard_string.dashboard3}
                             </a>
                         </div>
