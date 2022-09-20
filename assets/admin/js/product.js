@@ -21,6 +21,7 @@ jQuery(document).ready(function($) {
 			$('._product_vendors_commission_fixed_per_qty input').val('');
 			$('._product_vendors_commission_percentage input').val('');
 			$('._product_vendors_commission_fixed_per_qty input').val('');
+			location.reload();
 		});
 	
 	});

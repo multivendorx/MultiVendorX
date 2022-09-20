@@ -669,6 +669,7 @@ class MVX_Cron_Job {
                 $seller_dashboard['mvx_vendor_dashboard_custom_css'] = get_mvx_older_global_settings('wcmp_vendor_dashboard_custom_css');
                 mvx_update_option('mvx_seller_dashbaord_tab_settings', $seller_dashboard);
             }
+            do_action('mvx_seller_dashboard_settings_option', $seller_dashboard);
 
             // store settings
             if (get_mvx_older_global_settings('wcmp_vendor_shop_template')) {
@@ -726,6 +727,7 @@ class MVX_Cron_Job {
                 $store_data['mvx_store_sidebar_position'] = get_mvx_older_global_settings('store_sidebar_position');
                 mvx_update_option('mvx_store_tab_settings', $store_data);
             }
+            do_action('mvx_seller_store_settings_option', $store_data);
 
             // products data
             if (get_mvx_older_global_settings('virtual') && get_mvx_older_global_settings('virtual') == 'Enable') {
