@@ -104,6 +104,14 @@ class MVX_Vendor_Hooks {
                         , 'position'    => 40
                         , 'link_target' => '_self'
                         , 'nav_icon'    => 'mvx-font ico-shippingnew-icon'
+                    ),
+                    'products-qna' => array(
+                        'label'       => __( 'Customer Questions', 'multivendorx' )
+                        , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_vendor_products_qnas_endpoint', 'seller_dashbaord', 'products-qna' ) )
+                        , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_customer_questions_capability', true )
+                        , 'position'    => 40
+                        , 'link_target' => '_self'
+                        , 'nav_icon'    => 'mvx-font ico-shippingnew-icon'
                     )
                 )
                 , 'link_target' => '_self'

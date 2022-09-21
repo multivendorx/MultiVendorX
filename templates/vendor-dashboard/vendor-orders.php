@@ -20,6 +20,8 @@ $orders_list_table_headers = apply_filters('mvx_datatable_order_list_table_heade
     'order_date'    => array('label' => __( 'Date', 'multivendorx' )),
     'vendor_earning'=> array('label' => __( 'Earnings', 'multivendorx' )),
     'order_status'  => array('label' => __( 'Status', 'multivendorx' )),
+    'refund_amount'  => array('label' => __( 'Refund Amount', 'multivendorx' )),
+    'refund_reason'  => array('label' => __( 'Refund Reason', 'multivendorx' )),
     'action'        => array('label' => __( 'Action', 'multivendorx' )),
 ), get_current_user_id());
 ?>
