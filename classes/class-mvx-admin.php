@@ -204,6 +204,11 @@ class MVX_Admin {
         if (in_array($screen->id, array('product', 'edit-product'))) {
             wp_register_script('mvx-admin-product-js', $MVX->plugin_url . 'assets/admin/js/product' . $suffix . '.js', array('jquery'), $MVX->version, true);
             wp_enqueue_script('mvx-admin-product-js');
+
+            $custom_css = "
+                table.form-field.form-table tbody tr td label {margin: 0;}
+            ";
+            wp_add_inline_style( 'woocommerce_admin_styles', $custom_css );
         }
         wp_enqueue_script(
             'mvx-modules-build-frontend',
