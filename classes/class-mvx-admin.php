@@ -1092,6 +1092,15 @@ class MVX_Admin {
             'dashboard86' =>  __('Show More', 'multivendorx'),
             'dashboard87' =>  __('Show Less', 'multivendorx'),
             'dashboard88' =>  apply_filters('mvx_upgrade_to_pro_link', 'https://multivendorx.com/'),
+
+
+
+            'dashboard89' =>  mvx_get_option('mvx_new_vendor_registration_form_data') && !empty(mvx_get_option('mvx_new_vendor_registration_form_data')) ? true : false,
+            'dashboard90' =>  mvx_is_module_active('simple') ? true : false,
+            'dashboard91' =>  mvx_is_module_active('paypal-payout') || mvx_is_module_active('paypal-marketplace') || mvx_is_module_active('stripe-connect') ? true : false,
+            'dashboard92' =>  get_mvx_older_global_settings('give_tax') ? true : false,
+            'dashboard93' =>  get_mvx_older_global_settings('give_shipping') ? true : false,
+            'dashboard94' =>  get_mvx_older_global_settings('revenue_sharing_mode') && get_mvx_older_global_settings('commission_type') ? true : false,
         );
         
         wp_localize_script( 'mvx-modules-build-frontend', 'appLocalizer', apply_filters('mvx_module_complete_settings', [

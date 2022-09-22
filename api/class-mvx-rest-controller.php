@@ -5454,10 +5454,11 @@ class MVX_REST_API {
                 'modulename'     =>  'vendor-application'
             ),
         ) );
-        if (in_array('dc_pending_vendor', $user->roles)) {
+        if (in_array('dc_pending_vendor', $user->roles) || in_array('dc_rejected_vendor', $user->roles)) {
             unset($marketplace_vendors[0], $marketplace_vendors[1], $marketplace_vendors[2], $marketplace_vendors[3]);
         }
-        if (!in_array('dc_pending_vendor', $user->roles)) {
+
+        if (empty(array_intersect(['dc_pending_vendor', 'dc_rejected_vendor'], $user->roles))) {
             if (is_mvx_shipping_module_active()) {
                 $marketplace_vendors[] = array(
                     'tablabel'      =>  __('Vendor Shipping', 'multivendorx'),

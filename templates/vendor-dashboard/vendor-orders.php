@@ -24,6 +24,10 @@ $orders_list_table_headers = apply_filters('mvx_datatable_order_list_table_heade
     'refund_reason'  => array('label' => __( 'Refund Reason', 'multivendorx' )),
     'action'        => array('label' => __( 'Action', 'multivendorx' )),
 ), get_current_user_id());
+
+if ( !mvx_is_module_active( 'marketplace-refund' ) ) {
+    unset($orders_list_table_headers['refund_amount'], $orders_list_table_headers['refund_reason']);
+}
 ?>
 <div class="col-md-12">
     <div class="panel panel-default">

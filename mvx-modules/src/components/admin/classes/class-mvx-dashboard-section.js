@@ -145,7 +145,7 @@ class MVX_Dashboard extends Component {
                                                 href="#"
                                                 className="chckbx-purple"
                                             >
-                                                <i className="mvx-font icon-yes" />
+                                                <i className={`mvx-font ${appLocalizer.dashboard_string.dashboard89 ? 'icon-yes' : 'icon-no'}`} />
                                             </a>
                                         </div>
                                     </li>
@@ -161,7 +161,7 @@ class MVX_Dashboard extends Component {
                                                 href="#"
                                                 className="chckbx-purple"
                                             >
-                                                <i className="mvx-font icon-yes" />
+                                                <i className={`mvx-font ${appLocalizer.dashboard_string.dashboard91 ? 'icon-yes' : 'icon-no'}`} />
                                             </a>
                                         </div>
                                     </li>
@@ -177,7 +177,7 @@ class MVX_Dashboard extends Component {
                                                 href="#"
                                                 className="chckbx-purple"
                                             >
-                                                <i className="mvx-font icon-yes" />
+                                                <i className={`mvx-font ${appLocalizer.dashboard_string.dashboard92 ? 'icon-yes' : 'icon-no'}`} />
                                             </a>
                                         </div>
                                     </li>
@@ -193,7 +193,7 @@ class MVX_Dashboard extends Component {
                                                 href="#"
                                                 className="chckbx-purple"
                                             >
-                                                <i className="mvx-font icon-yes" />
+                                                <i className={`mvx-font ${appLocalizer.dashboard_string.dashboard93 ? 'icon-yes' : 'icon-no'}`} />
                                             </a>
                                         </div>
                                     </li>
@@ -209,7 +209,7 @@ class MVX_Dashboard extends Component {
                                                 href="#"
                                                 className="chckbx-purple"
                                             >
-                                                <i className="mvx-font icon-yes" />
+                                                <i className={`mvx-font ${appLocalizer.dashboard_string.dashboard94 ? 'icon-yes' : 'icon-no'}`} />
                                             </a>
                                         </div>
                                     </li>
@@ -225,7 +225,7 @@ class MVX_Dashboard extends Component {
                                                 href="#"
                                                 className="chckbx-purple"
                                             >
-                                                <i className="mvx-font icon-yes" />
+                                                <i className={`mvx-font ${appLocalizer.dashboard_string.dashboard90 ? 'icon-yes' : 'icon-no'}`} />
                                             </a>
                                         </div>
                                     </li>
@@ -241,7 +241,7 @@ class MVX_Dashboard extends Component {
                                                 href="#"
                                                 className="chckbx-purple"
                                             >
-                                                <i className="mvx-font icon-yes" />
+                                                <i className={`mvx-font ${appLocalizer.dashboard_string.dashboard90 ? 'icon-yes' : 'icon-no'}`} />
                                             </a>
                                         </div>
                                     </li>
