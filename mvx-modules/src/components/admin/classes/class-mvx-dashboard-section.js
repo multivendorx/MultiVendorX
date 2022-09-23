@@ -278,7 +278,7 @@ class MVX_Dashboard extends Component {
                                                     {appLocalizer.dashboard_string.dashboard25}
                                                 </p>
                                             </div>
-                                            <a href="https://wc-marketplace.com/support-forum">
+                                            <a href="https://multivendorx.com/support-forum/">
                                                 {appLocalizer.dashboard_string.dashboard26}{' '}
                                                 <span className="mvx-font icon-link-right-arrow" />
                                             </a>

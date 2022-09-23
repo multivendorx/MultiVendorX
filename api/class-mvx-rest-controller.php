@@ -5247,6 +5247,7 @@ class MVX_REST_API {
             $product_count = 0;
             $vendor_permalink = ''; 
             $status = $status_text = "";
+            $vendor_link = sprintf('?page=%s&ID=%s&name=vendor-personal', 'mvx#&submenu=vendor', $user->data->ID);
             if ($vendor) {
                 $vendor_products = $vendor->get_products_ids();
                 $vendor_permalink = $vendor->permalink;
@@ -5273,15 +5274,17 @@ class MVX_REST_API {
             } else if (in_array('dc_rejected_vendor', $user->roles)) {
                 $status_text = "Rejected";
                 $status = "<p class='vendor-status rejected-vendor'>" . __('Rejected', 'multivendorx') . "</p>";
+                $vendor_link = sprintf('?page=%s&ID=%s&name=vendor-application', 'mvx#&submenu=vendor', $user->data->ID);
             } else if (in_array('dc_pending_vendor', $user->roles)) {
                 $status_text = "Pending";
                 $status = "<p class='vendor-status pending-vendor'>" . __('Pending', 'multivendorx') . "</p>";
+                $vendor_link = sprintf('?page=%s&ID=%s&name=vendor-application', 'mvx#&submenu=vendor', $user->data->ID);
             }
 
             $vendor_profile_image = get_user_meta($user->data->ID, '_vendor_profile_image', true);
             if (isset($vendor_profile_image)) $image_info = wp_get_attachment_image_src( $vendor_profile_image , array(32, 32) );
             $final_image = isset($image_info[0]) ? $image_info[0] : get_avatar_url($user->data->ID, array('size' => 32));
-            $status_url = $status_text == 'Pending' ? 'vendor-application' : 'vendor-personal';
+            $status_url = $status_text == 'Pending' || $status_text == 'Rejected' ? 'vendor-application' : 'vendor-personal';
             $name_display = "<div class='mvx-vendor-icon-name'><img src='". $final_image ."' width='20' height='20' ></img><a href='". sprintf('?page=%s&ID=%s&name=%s', 'mvx#&submenu=vendor', $user->data->ID, $status_url) ."'>" . $user->data->display_name . "</a></div>";
 
             $action_display = "
@@ -5295,7 +5298,7 @@ class MVX_REST_API {
                 'ID'            => $user->data->ID,
                 'name'          => $name_display,
                 'sample_title'  => $user->data->display_name,
-                'link'          => sprintf('?page=%s&ID=%s&name=vendor-personal', 'mvx#&submenu=vendor', $user->data->ID),
+                'link'          => $vendor_link,
                 'link_shop'     => $vendor->permalink,
                 'admin_link'    => admin_url('admin.php?page=mvx#&submenu=vendor&ID='. $user->data->ID .'&name=vendor-personal'),
                 'email'         => $mail_to_email,
