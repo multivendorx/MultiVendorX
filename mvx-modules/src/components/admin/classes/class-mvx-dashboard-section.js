@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import HeaderSection from './class-mvx-page-header';
+import axios from 'axios';
+import DataTable from 'react-data-table-component';
 class MVX_Dashboard extends Component {
     constructor(props) {
         super(props);
@@ -8,6 +10,8 @@ class MVX_Dashboard extends Component {
             money_back_show_more_yearly: false,
             money_back_show_more_monthly: false,
             money_back_show_more_compared : false,
+            pending_shippig: [],
+            pending_shippig_header: []
         };
     }
     componentDidMount() {
@@ -32,6 +36,35 @@ class MVX_Dashboard extends Component {
             $('.message-banner-sliding span').html(cs + ' of 4');
           }
         });
+
+
+        appLocalizer.columns_pending_shipping.map((data_ann, index_ann) => {
+            let data_selector = '';
+            let set_for_dynamic_column = '';
+            data_selector = data_ann.selector_choice;
+            data_ann.selector = (row) => (
+                <div
+                    dangerouslySetInnerHTML={{ __html: row[data_selector] }}
+                ></div>
+            );
+
+            this.state.pending_shippig_header[index_ann] = data_ann;
+            set_for_dynamic_column = this.state.pending_shippig_header;
+            this.setState({
+                pending_shippig_header: set_for_dynamic_column,
+            });
+        });
+
+        axios
+        .get(
+        `${appLocalizer.apiUrl}/mvx_module/v1/vendor_pending_shipping`
+        )
+        .then((response) => {
+            this.setState({
+                pending_shippig: response.data,
+            });
+        })
+
     }
     render() {
         return (
@@ -73,9 +106,12 @@ class MVX_Dashboard extends Component {
                                     <p>
                                         {appLocalizer.dashboard_string.dashboard7}
                                     </p>
-                                    <a href={appLocalizer.dashboard_string.dashboard88} className="mvx-btn btn-red">
+                                    {appLocalizer.dashboard_string.dashboard95 == 'free' ? <a href={appLocalizer.dashboard_string.dashboard88} className="mvx-btn btn-red">
                                         {appLocalizer.dashboard_string.dashboard5}
-                                    </a>
+                                    </a> : 
+                                    <a href={appLocalizer.dashboard_string.dashboard97} className="mvx-btn btn-red">
+                                        {appLocalizer.dashboard_string.dashboard96}
+                                    </a> }
                                 </div>
                             </div>
                             </div>
@@ -92,9 +128,9 @@ class MVX_Dashboard extends Component {
                                     <p>
                                         {appLocalizer.dashboard_string.dashboard9}
                                     </p>
-                                    <a href={appLocalizer.dashboard_string.dashboard88} className="mvx-btn btn-red">
+                                    {appLocalizer.dashboard_string.dashboard95 == 'free' ? <a href={appLocalizer.dashboard_string.dashboard88} className="mvx-btn btn-red">
                                         {appLocalizer.dashboard_string.dashboard5}
-                                    </a>
+                                    </a> : ''}
                                 </div>
                                 </div>
                             </div>
@@ -111,8 +147,8 @@ class MVX_Dashboard extends Component {
                                     <p>
                                         {appLocalizer.dashboard_string.dashboard11}
                                     </p>
-                                    <a href={appLocalizer.dashboard_string.dashboard88} className="mvx-btn btn-red">    {appLocalizer.dashboard_string.dashboard5}
-                                    </a>
+                                    {appLocalizer.dashboard_string.dashboard95 == 'free' ? <a href={appLocalizer.dashboard_string.dashboard88} className="mvx-btn btn-red">    {appLocalizer.dashboard_string.dashboard5}
+                                    </a> : ''}
                                 </div>
                                 </div>
                             </div>
@@ -326,6 +362,9 @@ class MVX_Dashboard extends Component {
                             </div>
                         </div>
 
+                        {appLocalizer.dashboard_string.dashboard95 == 'free' ?
+
+                        <>
                         <div className="mvx-upgrade-pro-section">
                             <div className="mvx-pro-title">
                                 <div className="mvx-dashboard-top-icon">
@@ -895,6 +934,32 @@ class MVX_Dashboard extends Component {
                                 {appLocalizer.dashboard_string.dashboard3}
                             </a>
                         </div>
+                        </>
+                        : ''}
+
+                        
+
+
+
+                        <div className="mvx-page-title">
+                            <p>
+                                Pending shipping
+                            </p>
+                        </div>
+                                
+                        {this.state.pending_shippig_header &&
+                                this.state.pending_shippig_header.length > 0 ?
+                        <div className="mvx-backend-datatable-wrapper">
+                            <DataTable
+                                columns={this.state.pending_shippig_header}
+                                data={this.state.pending_shippig}
+                                selectableRows
+                                pagination
+                            />
+                        </div>
+                        : ''}
+
+
                     </div>
                 </div>
             </div>

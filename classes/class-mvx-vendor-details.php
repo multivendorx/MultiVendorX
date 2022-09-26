@@ -1016,7 +1016,6 @@ class MVX_Vendor {
                     )
                 );
                 $vendor_orders = mvx_get_orders( $query, 'object' );
-
                 $reports = $vendor_orders;
                 break;
 

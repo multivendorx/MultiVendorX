@@ -1197,7 +1197,7 @@ export default class DynamicForm extends React.Component {
 										)
 									}
 								>
-									<i className={`mvx-font ${o.icon}`}></i>
+									<div data-title={o.name}><i className={`mvx-font ${o.icon}`}></i> </div>
 								</div>
 
 								)
@@ -1215,8 +1215,6 @@ export default class DynamicForm extends React.Component {
 					columns_vendor_zone_list =
 						set_for_dynamic_column_zone;
 				});
-
-				console.log(columns_vendor_zone_list);
 
 				input = (
 					<div className="mvx-backend-datatable-wrapper">

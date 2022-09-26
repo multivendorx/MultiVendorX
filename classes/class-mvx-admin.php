@@ -973,6 +973,47 @@ class MVX_Admin {
                 'button'=> true,
             )
         );
+
+        $columns_pending_shipping = array(
+            array(
+                'name'      =>  __('vendor', 'multivendorx'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "vendor_name",
+            ),
+            array(
+                'name'      =>  __('Order ID', 'multivendorx'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "order_id",
+            ),
+            array(
+                'name'      =>  __('Product', 'multivendorx'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "products_name",
+            ),
+            array(
+                'name'      =>  __('Order Date', 'multivendorx'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "order_date",
+            ),
+            array(
+                'name'      =>  __('Address', 'multivendorx'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "shipping_address",
+            ),
+            array(
+                'name'      =>  __('Charges', 'multivendorx'),
+                'selector'  =>  '',
+                'sortable'  =>  true,
+                'selector_choice'  => "shipping_amount",
+            )
+            
+        );
+
         // word board section end
         $select_module_category_option = array(
             array(
@@ -1098,6 +1139,9 @@ class MVX_Admin {
             'dashboard92' =>  get_mvx_older_global_settings('give_tax') ? true : false,
             'dashboard93' =>  get_mvx_older_global_settings('give_shipping') ? true : false,
             'dashboard94' =>  get_mvx_older_global_settings('revenue_sharing_mode') && get_mvx_older_global_settings('commission_type') ? true : false,
+            'dashboard95'   =>  apply_filters('is_mvx_pro_plugin_inactive', true) ? 'free' : 'pro',
+            'dashboard96'   =>  __('go to settings', 'multivendorx'),
+            'dashboard97'   =>  admin_url('admin.php?page=mvx#&submenu=modules')
         );
         
         wp_localize_script( 'mvx-modules-build-frontend', 'appLocalizer', apply_filters('mvx_module_complete_settings', [
@@ -1165,6 +1209,7 @@ class MVX_Admin {
             'select_option_delete'    =>  $select_option_delete,
             'columns_commission'                    =>  $columns_commission,
             'columns_report_abuse'                  =>  $columns_report_abuse,
+            'columns_pending_shipping'              =>  $columns_pending_shipping,
             'select_module_category_option'         =>  $select_module_category_option,
             'errors_log'                            =>  $this->get_error_log_rows(100),
         ] ) );

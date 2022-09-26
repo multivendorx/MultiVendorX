@@ -744,6 +744,74 @@ class MVX_REST_API {
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
 
+        // pending shipping for all vendor
+        register_rest_route( 'mvx_module/v1', '/vendor_pending_shipping', [
+            'methods' => WP_REST_Server::READABLE,
+            'callback' => array( $this, 'mvx_vendor_pending_shipping' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+    }
+
+    public function mvx_vendor_pending_shipping() {
+        $today = @date('Y-m-d 00:00:00', strtotime("+1 days"));
+        $days_range = 7;
+        $last_seven_day_date = date('Y-m-d H:i:s', strtotime("-$days_range days"));
+
+        $args = apply_filters('mvx_vendor_pending_shipping_args', array(
+            'start_date' => $last_seven_day_date,
+            'end_date' => $today
+        ));
+        $user_list = [];
+        $user_query = new WP_User_Query(array('role__in' => array('dc_vendor'), 'orderby' => 'registered', 'order' => 'ASC'));
+        $users = $user_query->get_results();
+        if ($users) {
+            foreach($users as $user_details) {
+                $user = get_mvx_vendor($user_details->ID);
+                $pending_shippings_orders = $user->get_vendor_orders_reports_of('pending_shipping', $args);
+                if ($pending_shippings_orders) {
+                    foreach ($pending_shippings_orders as $pending_order) {
+                        $line_items = $pending_order->get_items('line_item');
+                        $product_name = array();
+                        foreach ($line_items as $item_id => $item) {
+                            $product = $item->get_product();
+                            if ($product && $product->needs_shipping()) {
+                                $product_name[] = $item->get_name();
+                            }
+                        }
+                        if (empty($product_name))
+                            continue;
+
+                        $action_html = '';
+                        if ($user->is_shipping_enable()) {
+                            $is_shipped = (array) get_post_meta($pending_order->get_id(), 'dc_pv_shipped', true);
+                            $vendor_order_shipped = get_post_meta($pending_order->get_id(), 'mvx_vendor_order_shipped');
+                            if (!in_array($user->id, $is_shipped) && !$vendor_order_shipped ) {
+                                $action_html .= '<a href="javascript:void(0)" title="' . __('Mark as shipped', 'multivendorx') . '" onclick="mvxMarkeAsShip(this,' . $pending_order->get_id() . ')"><i class="mvx-font ico-shippingnew-icon action-icon"></i></a> ';
+                            } else {
+                                $action_html .= '<i title="' . __('Shipped', 'multivendorx') . '" class="mvx-font ico-shipping-icon"></i> ';
+                            }
+                        }
+                        // shipping amount
+                        $refunded = $pending_order->get_total_shipping_refunded();
+                        if ( $refunded > 0 ) {
+                            $shipping_amount = '<del>' . strip_tags( wc_price( $pending_order->get_shipping_total(), array( 'currency' => $pending_order->get_currency() ) ) ) . '</del> <ins>' . wc_price( $pending_order->get_shipping_total() - $refunded, array( 'currency' => $pending_order->get_currency() ) ) . '</ins>'; // WPCS: XSS ok.
+                        } else {
+                            $shipping_amount = wc_price( $pending_order->get_shipping_total(), array( 'currency' => $pending_order->get_currency() ) ); // WPCS: XSS ok.
+                        }
+
+                        $user_list[] = array(
+                            'vendor_name'   =>  $user->page_title,
+                            'order_id'       => '<a href="' . esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_orders_endpoint', 'seller_dashbaord', 'vendor-orders'), $pending_order->get_id())) . '">#' . $pending_order->get_id() . '</a>',
+                            'products_name'            => implode(' , ', $product_name),
+                            'order_date'           => mvx_date($pending_order->get_date_created()),
+                            'shipping_address'            => $pending_order->get_formatted_shipping_address(),
+                            'shipping_amount'       => $shipping_amount,
+                        );
+                    }
+                }
+            }
+        }
+        return rest_ensure_response($user_list);
     }
 
     public function mvx_vendor_pending_verification_action($request) {
