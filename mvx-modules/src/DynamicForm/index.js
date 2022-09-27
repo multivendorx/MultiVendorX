@@ -1217,14 +1217,20 @@ export default class DynamicForm extends React.Component {
 				});
 
 				input = (
-					<div className="mvx-backend-datatable-wrapper">
-						<DataTable
-							columns={
-								columns_vendor_zone_list
-							}
-							data={m.column_data}
-							pagination
-						/>
+					<div>
+						<div className="mvx-page-title">
+							<a class="mvx-btn btn-purple" href={m.new_button_link}><i class="mvx-font icon-add"></i>{m.new_button_title}</a>
+						</div>
+
+						<div className="mvx-backend-datatable-wrapper">
+							<DataTable
+								columns={
+									columns_vendor_zone_list
+								}
+								data={m.column_data}
+								pagination
+							/>
+						</div>
 					</div>
 				);
 			}

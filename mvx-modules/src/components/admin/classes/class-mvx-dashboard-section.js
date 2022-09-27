@@ -11,9 +11,18 @@ class MVX_Dashboard extends Component {
             money_back_show_more_monthly: false,
             money_back_show_more_compared : false,
             pending_shippig: [],
-            pending_shippig_header: []
+            pending_shippig_header: [],
+            pricing_tab: 'monthly'
         };
+        this.pricing_tab = this.pricing_tab.bind(this);
     }
+
+    pricing_tab(e, status) {
+        this.setState({
+            pricing_tab: status
+        });
+    }
+
     componentDidMount() {
         var $ = jQuery;
         var cs = 1;
@@ -36,7 +45,13 @@ class MVX_Dashboard extends Component {
             $('.message-banner-sliding span').html(cs + ' of 4');
           }
         });
+        // tabjs start
 
+
+     
+   
+
+        //   tab jsend
 
         appLocalizer.columns_pending_shipping.map((data_ann, index_ann) => {
             let data_selector = '';
@@ -284,7 +299,7 @@ class MVX_Dashboard extends Component {
                                 </ul>
                             </div>
                             <div className="mvx-documentation-quick-link-wrapper">
-                                <div class="mvx-documentation-quick-link">
+                                <div className="mvx-documentation-quick-link">
                                     <div className="mvx-documentation-support-forum left-forum">
                                         <figure>
                                             <i className="mvx-font icon-documentation-forum" />
@@ -598,13 +613,120 @@ class MVX_Dashboard extends Component {
                                 {appLocalizer.dashboard_string.dashboard65}
                             </p>
                             </div>
+                            <div className='mvx-money-tablink-wrap' >
+                                <div className={`mvx-money-tablink ${this.state.pricing_tab === 'monthly' ? 'active-money-tab' : '' }`} onClick={(e) => {
+                                    this.pricing_tab(e, 'monthly');
+                                }}>Monthly</div>
+                                <div className={`mvx-money-tablink ${this.state.pricing_tab === 'yearly' ? 'active-money-tab' : '' }`} onClick={(e) => {
+                                    this.pricing_tab(e, 'yearly');
+                                }}>Yearly</div>
+                                <div className={`mvx-money-tablink ${this.state.pricing_tab === 'lifetime' ? 'active-money-tab' : '' }`} onClick={(e) => {
+                                    this.pricing_tab(e, 'lifetime');
+                                }}>Lifetime</div>
+                            </div>
+
+                            {this.state.pricing_tab === 'monthly' ?
                             <ul className="mvx-money-table-holder">
                                 <li className='mvx-money-table-coloumn' >
                                     <ul>
-                                        <li>{appLocalizer.dashboard_string.dashboard66}</li>
+                                        <li>Basic</li>
                                         <li>
                                             <div className="m-price">
-                                                <h1>$399 </h1> &nbsp;<p><s>/$599</s> </p>
+                                                <h1>Basic </h1>
+                                            </div>
+                                        </li>
+                                        <li className="mvx-btn btn-border">
+                                            <a
+                                                href="#"
+                                            >
+                                                {appLocalizer.dashboard_string.dashboard69}
+                                            </a>
+                                        </li>
+                                        <div className='mvx-price-component'>
+                                            <span>        
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard70}
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard71}
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-form-radio" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard72}{' '}
+
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard73}
+                                                </p>
+                                                        
+                                            </span>
+                                            {this.state.money_back_show_more_yearly ?
+                                                <span>    
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard70}
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard71}
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-form-radio" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard72}{' '}
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard73}
+                                                    </p>
+                                                </span>
+                                            : ''}
+
+                                           
+                                        </div>
+                                       
+                                    </ul>
+                                    <div className='show-responsive-money-btn-wrapper'>
+                                             {this.state.money_back_show_more_yearly ?
+
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_yearly: false
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        <i className="mvx-font icon-eye-see-more" />
+                                                    </span>{' '}
+                                                    {appLocalizer.dashboard_string.dashboard74}
+                                                </a>
+
+                                                :
+
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_yearly: true
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        <i className="mvx-font icon-eye-see-more" />
+                                                    </span>{' '}
+                                                    {appLocalizer.dashboard_string.dashboard75}
+                                                </a>
+                                                }
+                                        </div>
+                                </li>
+                                <li className='mvx-money-table-coloumn' >
+                                    <ul>
+                                        <li>Growth</li>
+                                        <li>
+                                            <div className="m-price">
+                                            <p><s>$599</s> </p>&nbsp;<h1>$399 </h1> &nbsp;<p>/Year</p>
                                             </div>
                                         </li>
                                         <li className="mvx-btn btn-border">
@@ -699,10 +821,10 @@ class MVX_Dashboard extends Component {
                                         {appLocalizer.dashboard_string.dashboard76}
                                     </span>
                                     <ul>
-                                        <li>{appLocalizer.dashboard_string.dashboard77}</li>
+                                    <li>Agency</li>
                                         <li>
                                             <div className="m-price">
-                                                <h1>$499 </h1> &nbsp;<p><s>/$599</s> </p>
+                                            <p><s>$599</s> </p>&nbsp;<h1>$499 </h1> &nbsp;<p>/Year</p>
                                             </div>
                                         </li>
                                         <li className="mvx-btn btn-red">
@@ -793,10 +915,10 @@ class MVX_Dashboard extends Component {
 
                                 <li  className='mvx-money-table-coloumn'>
                                     <ul>
-                                        <li>{appLocalizer.dashboard_string.dashboard80}</li>
+                                    <li>Starter</li>
                                         <li>
                                             <div className="m-price">
-                                                <h1>$299 </h1>&nbsp;<p><s>/$599</s> </p>
+                                            <p><s>$399</s> </p>&nbsp;<h1>$299 </h1> &nbsp;<p>/Year</p>
                                             </div>
                                         </li>
                                         <li className="mvx-btn btn-border">
@@ -886,6 +1008,779 @@ class MVX_Dashboard extends Component {
                                 </li>
                               
                             </ul>
+                            : ''}
+
+                            {this.state.pricing_tab === 'yearly' ?
+                            <ul className="mvx-money-table-holder active-money-table">
+                                <li className='mvx-money-table-coloumn' >
+                                    <ul>
+                                        <li>Basic</li>
+                                        <li>
+                                            <div className="m-price">
+                                                <h1>Basic </h1>
+                                            </div>
+                                        </li>
+                                        <li className="mvx-btn btn-border">
+                                            <a
+                                                href="#"
+                                            >
+                                                {appLocalizer.dashboard_string.dashboard69}
+                                            </a>
+                                        </li>
+                                        <div className='mvx-price-component'>
+                                            <span>        
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard70}
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard71}
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-form-radio" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard72}{' '}
+
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard73}
+                                                </p>
+                                                        
+                                            </span>
+                                            {this.state.money_back_show_more_yearly ?
+                                                <span>    
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard70}
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard71}
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-form-radio" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard72}{' '}
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard73}
+                                                    </p>
+                                                </span>
+                                            : ''}
+
+                                           
+                                        </div>
+                                       
+                                    </ul>
+                                    <div className='show-responsive-money-btn-wrapper'>
+                                             {this.state.money_back_show_more_yearly ?
+
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_yearly: false
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        <i className="mvx-font icon-eye-see-more" />
+                                                    </span>{' '}
+                                                    {appLocalizer.dashboard_string.dashboard74}
+                                                </a>
+
+                                                :
+
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_yearly: true
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        <i className="mvx-font icon-eye-see-more" />
+                                                    </span>{' '}
+                                                    {appLocalizer.dashboard_string.dashboard75}
+                                                </a>
+                                                }
+                                        </div>
+                                </li>
+                                <li className='mvx-money-table-coloumn' >
+                                    <ul>
+                                        <li>Growth</li>
+                                        <li>
+                                            <div className="m-price">
+                                            <p><s>$599</s> </p>&nbsp;<h1>$399 </h1> &nbsp;<p>/Year</p>
+                                            </div>
+                                        </li>
+                                        <li className="mvx-btn btn-border">
+                                            <a
+                                                href="#"
+                                            >
+                                                {appLocalizer.dashboard_string.dashboard69}
+                                            </a>
+                                        </li>
+                                        <div className='mvx-price-component'>
+                                            <span>        
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard70}
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard71}
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-form-radio" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard72}{' '}
+
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard73}
+                                                </p>
+                                                        
+                                            </span>
+                                            {this.state.money_back_show_more_yearly ?
+                                                <span>    
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard70}
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard71}
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-form-radio" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard72}{' '}
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard73}
+                                                    </p>
+                                                </span>
+                                            : ''}
+
+                                           
+                                        </div>
+                                       
+                                    </ul>
+                                    <div className='show-responsive-money-btn-wrapper'>
+                                             {this.state.money_back_show_more_yearly ?
+
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_yearly: false
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        <i className="mvx-font icon-eye-see-more" />
+                                                    </span>{' '}
+                                                    {appLocalizer.dashboard_string.dashboard74}
+                                                </a>
+
+                                                :
+
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_yearly: true
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        <i className="mvx-font icon-eye-see-more" />
+                                                    </span>{' '}
+                                                    {appLocalizer.dashboard_string.dashboard75}
+                                                </a>
+                                                }
+                                        </div>
+                                </li>
+                               
+                                <li className='mvx-spr-sever-rcmnd mvx-money-table-coloumn'>
+                                    <span className="mvx-recommend-tag">
+                                        {appLocalizer.dashboard_string.dashboard76}
+                                    </span>
+                                    <ul>
+                                    <li>Agency</li>
+                                        <li>
+                                            <div className="m-price">
+                                            <p><s>$599</s> </p>&nbsp;<h1>$499 </h1> &nbsp;<p>/Year</p>
+                                            </div>
+                                        </li>
+                                        <li className="mvx-btn btn-red">
+                                            <a
+                                                href="#"
+                                            >
+                                                {appLocalizer.dashboard_string.dashboard69}
+                                            </a>
+                                        </li>
+                                        <div className='mvx-price-component'>
+                                            <span>    
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard70}
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard71}
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-form-radio" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard72}{' '}
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard73}
+                                                </p>
+                                            </span>
+
+                                            {this.state.money_back_show_more_yearly ?
+                                                <span>    
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard70}
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard71}
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-form-radio" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard72}{' '}
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard73}
+                                                    </p>
+                                                </span>
+                                            : ''}
+                                           
+                                        </div>
+                                    
+                                    </ul>
+                                    <div className='show-responsive-money-btn-wrapper'>
+                                             {this.state.money_back_show_more_yearly ?
+
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_yearly: false
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        <i className="mvx-font icon-eye-see-more" />
+                                                    </span>{' '}
+                                                    {appLocalizer.dashboard_string.dashboard74}
+                                                </a>
+
+                                                :
+
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_yearly: true
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        <i className="mvx-font icon-eye-see-more" />
+                                                    </span>{' '}
+                                                    {appLocalizer.dashboard_string.dashboard75}
+                                                </a>
+                                                }
+                                        </div>
+                                </li>
+                            
+
+                                <li  className='mvx-money-table-coloumn'>
+                                    <ul>
+                                    <li>Starter</li>
+                                        <li>
+                                            <div className="m-price">
+                                            <p><s>$399</s> </p>&nbsp;<h1>$299 </h1> &nbsp;<p>/Year</p>
+                                            </div>
+                                        </li>
+                                        <li className="mvx-btn btn-border">
+                                            <a
+                                                href="#"
+                                            >
+                                                {appLocalizer.dashboard_string.dashboard69}
+                                            </a>
+                                        </li>
+                                        <div className='mvx-price-component'>
+                                            
+                                            <span>
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard70}
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard71}
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-form-radio" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard72}{' '}
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard73}
+                                                </p>
+                                            </span>
+
+                                            {this.state.money_back_show_more_yearly ?
+                                                <span>    
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard70}
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard71}
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-form-radio" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard72}{' '}
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard73}
+                                                    </p>
+                                                </span>
+                                            : ''}
+
+                                        </div>
+                                       
+                                    </ul>
+                                    <div className='show-responsive-money-btn-wrapper'>
+                                             {this.state.money_back_show_more_yearly ?
+
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_yearly: false
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        <i className="mvx-font icon-eye-see-more" />
+                                                    </span>{' '}
+                                                    {appLocalizer.dashboard_string.dashboard74}
+                                                </a>
+
+                                                :
+
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_yearly: true
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        <i className="mvx-font icon-eye-see-more" />
+                                                    </span>{' '}
+                                                    {appLocalizer.dashboard_string.dashboard75}
+                                                </a>
+                                                }
+                                        </div>
+                                </li>
+                              
+                            </ul>
+                            : ''}
+
+                            {this.state.pricing_tab === 'lifetime' ?
+                            <ul className="mvx-money-table-holder">
+                                <li className='mvx-money-table-coloumn' >
+                                    <ul>
+                                        <li>Basic</li>
+                                        <li>
+                                            <div className="m-price">
+                                                <h1>Basic </h1>
+                                            </div>
+                                        </li>
+                                        <li className="mvx-btn btn-border">
+                                            <a
+                                                href="#"
+                                            >
+                                                {appLocalizer.dashboard_string.dashboard69}
+                                            </a>
+                                        </li>
+                                        <div className='mvx-price-component'>
+                                            <span>        
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard70}
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard71}
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-form-radio" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard72}{' '}
+
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard73}
+                                                </p>
+                                                        
+                                            </span>
+                                            {this.state.money_back_show_more_yearly ?
+                                                <span>    
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard70}
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard71}
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-form-radio" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard72}{' '}
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard73}
+                                                    </p>
+                                                </span>
+                                            : ''}
+
+                                           
+                                        </div>
+                                       
+                                    </ul>
+                                    <div className='show-responsive-money-btn-wrapper'>
+                                             {this.state.money_back_show_more_yearly ?
+
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_yearly: false
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        <i className="mvx-font icon-eye-see-more" />
+                                                    </span>{' '}
+                                                    {appLocalizer.dashboard_string.dashboard74}
+                                                </a>
+
+                                                :
+
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_yearly: true
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        <i className="mvx-font icon-eye-see-more" />
+                                                    </span>{' '}
+                                                    {appLocalizer.dashboard_string.dashboard75}
+                                                </a>
+                                                }
+                                        </div>
+                                </li>
+
+                                <li className='mvx-money-table-coloumn' >
+                                    <ul>
+                                        <li>Growth</li>
+                                        <li>
+                                            <div className="m-price">
+                                            <p><s>$599</s> </p>&nbsp;<h1>$399 </h1> &nbsp;<p>/Year</p>
+                                            </div>
+                                        </li>
+                                        <li className="mvx-btn btn-border">
+                                            <a
+                                                href="#"
+                                            >
+                                                {appLocalizer.dashboard_string.dashboard69}
+                                            </a>
+                                        </li>
+                                        <div className='mvx-price-component'>
+                                            <span>        
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard70}
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard71}
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-form-radio" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard72}{' '}
+
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard73}
+                                                </p>
+                                                        
+                                            </span>
+                                            {this.state.money_back_show_more_yearly ?
+                                                <span>    
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard70}
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard71}
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-form-radio" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard72}{' '}
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard73}
+                                                    </p>
+                                                </span>
+                                            : ''}
+
+                                           
+                                        </div>
+                                       
+                                    </ul>
+                                    <div className='show-responsive-money-btn-wrapper'>
+                                             {this.state.money_back_show_more_yearly ?
+
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_yearly: false
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        <i className="mvx-font icon-eye-see-more" />
+                                                    </span>{' '}
+                                                    {appLocalizer.dashboard_string.dashboard74}
+                                                </a>
+
+                                                :
+
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_yearly: true
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        <i className="mvx-font icon-eye-see-more" />
+                                                    </span>{' '}
+                                                    {appLocalizer.dashboard_string.dashboard75}
+                                                </a>
+                                                }
+                                        </div>
+                                </li>
+                               
+                                <li className='mvx-spr-sever-rcmnd mvx-money-table-coloumn'>
+                                    <span className="mvx-recommend-tag">
+                                        {appLocalizer.dashboard_string.dashboard76}
+                                    </span>
+                                    <ul>
+                                    <li>Agency</li>
+                                        <li>
+                                            <div className="m-price">
+                                            <p><s>$599</s> </p>&nbsp;<h1>$499 </h1> &nbsp;<p>/Year</p>
+                                            </div>
+                                        </li>
+                                        <li className="mvx-btn btn-red">
+                                            <a
+                                                href="#"
+                                            >
+                                                {appLocalizer.dashboard_string.dashboard69}
+                                            </a>
+                                        </li>
+                                        <div className='mvx-price-component'>
+                                            <span>    
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard70}
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard71}
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-form-radio" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard72}{' '}
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard73}
+                                                </p>
+                                            </span>
+
+                                            {this.state.money_back_show_more_yearly ?
+                                                <span>    
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard70}
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard71}
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-form-radio" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard72}{' '}
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard73}
+                                                    </p>
+                                                </span>
+                                            : ''}
+                                           
+                                        </div>
+                                    
+                                    </ul>
+                                    <div className='show-responsive-money-btn-wrapper'>
+                                             {this.state.money_back_show_more_yearly ?
+
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_yearly: false
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        <i className="mvx-font icon-eye-see-more" />
+                                                    </span>{' '}
+                                                    {appLocalizer.dashboard_string.dashboard74}
+                                                </a>
+
+                                                :
+
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_yearly: true
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        <i className="mvx-font icon-eye-see-more" />
+                                                    </span>{' '}
+                                                    {appLocalizer.dashboard_string.dashboard75}
+                                                </a>
+                                                }
+                                        </div>
+                                </li>
+                            
+
+                                <li  className='mvx-money-table-coloumn'>
+                                    <ul>
+                                    <li>Starter</li>
+                                        <li>
+                                            <div className="m-price">
+                                            <p><s>$399</s> </p>&nbsp;<h1>$299 </h1> &nbsp;<p>/Year</p>
+                                            </div>
+                                        </li>
+                                        <li className="mvx-btn btn-border">
+                                            <a
+                                                href="#"
+                                            >
+                                                {appLocalizer.dashboard_string.dashboard69}
+                                            </a>
+                                        </li>
+                                        <div className='mvx-price-component'>
+                                            
+                                            <span>
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard70}
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard71}
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-form-radio" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard72}{' '}
+                                                </p>
+                                                <p>
+                                                    <i className="mvx-font icon-documentation-forum" />{' '}
+                                                    {appLocalizer.dashboard_string.dashboard73}
+                                                </p>
+                                            </span>
+
+                                            {this.state.money_back_show_more_yearly ?
+                                                <span>    
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard70}
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard71}
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-form-radio" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard72}{' '}
+                                                    </p>
+                                                    <p>
+                                                        <i className="mvx-font icon-documentation-forum" />{' '}
+                                                        {appLocalizer.dashboard_string.dashboard73}
+                                                    </p>
+                                                </span>
+                                            : ''}
+
+                                        </div>
+                                       
+                                    </ul>
+                                    <div className='show-responsive-money-btn-wrapper'>
+                                             {this.state.money_back_show_more_yearly ?
+
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_yearly: false
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        <i className="mvx-font icon-eye-see-more" />
+                                                    </span>{' '}
+                                                    {appLocalizer.dashboard_string.dashboard74}
+                                                </a>
+
+                                                :
+
+                                                <a className="show-link" onClick={(e) =>
+                                                                (
+                                                                    this.setState({
+                                                                        money_back_show_more_yearly: true
+                                                                    })
+                                                                )
+                                                            }>
+                                                    <span>
+                                                        <i className="mvx-font icon-eye-see-more" />
+                                                    </span>{' '}
+                                                    {appLocalizer.dashboard_string.dashboard75}
+                                                </a>
+                                                }
+                                        </div>
+                                </li>
+                              
+                            </ul>
+                            : ''}
+                            
                                            
                                          <div className='show-money-btn-wrapper'>
                                              {this.state.money_back_show_more_yearly ?
@@ -921,6 +1816,8 @@ class MVX_Dashboard extends Component {
                                         </div>
 
                         </div>
+
+
 
                         <div className="mvx-upgrade-pro-section pro-bg">
                             <div className="mvx-dashboard-top-icon">

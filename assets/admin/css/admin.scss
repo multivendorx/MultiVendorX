@@ -2120,13 +2120,34 @@ hr{
     padding-bottom: 0.75rem;
   }
 }
+.mvx-money-tablink-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 3rem auto 2rem;
+  background: $fill-color;
+  width: fit-content;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  .mvx-money-tablink {
+    font-size: 1.25rem;
+    padding: 0.75rem 1rem;
+    color: $title-color;
+    font-weight: 500;
+    border-radius:0.25rem;
+}
+.active-money-tab{
+  background:$approve-font-color;
+  color: $font-white;
+}
+}
   .show-money-btn-wrapper{
     padding-bottom: 4rem;
-  a.show-link {
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
-}}
+ }
+ a.show-link {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
     ul.mvx-compare-table-holder {
     display: flex;
     gap:0.5rem;
@@ -2141,9 +2162,25 @@ hr{
       border: $border;
       border-radius: 0.25rem 0.25rem 0 0;
           ul li{
-            padding: 0.65rem;
+            padding: 0.65rem 0.65rem 0.65rem 1.9rem;
             margin: 0;
             color: $grey-icon;
+            position:relative;
+            &:before{
+              position: absolute;
+              content: "\e907";
+              font-family: "mvx-admin-font";
+              font-size: 0.5rem;
+              background: $code-line;
+              color: $font-white;
+              left: 0;
+              width: 1rem;
+              height: 1rem;
+              line-height: 1rem;
+              padding: 0.125rem;
+              border-radius: 50%;
+              text-align: center;
+            }
             &:first-child{
               background: linear-gradient(-28deg, #3f1473 0%, #af3b74 50%, #db4b54 100%);
               -webkit-background-clip: text;
@@ -2151,6 +2188,7 @@ hr{
               font-size: 1.75rem;
               height: 5rem;
               font-weight: 600;
+              padding-left: 0.65rem;
               position: relative;
               &:after{
                 position: absolute;
@@ -2162,10 +2200,17 @@ hr{
                 background-color: $base-color;
                 border-radius: 1.25rem;
               }
+            &:before{
+              opacity:0;
+            }
             }
           }
           .mvx-cmpr-active{
             color: $title-color;
+            &::before{
+              content: "\e90a";
+              background: $approve-font-color;
+            }
           }
         }
          }
@@ -3123,7 +3168,7 @@ padding:0;
       }
     }
   }
-} 
+}
 // Start - List Vendor Page Pop Up   //popup - set
 .mvx-add-new .mvx-container .mvx-vertical-tabs .mvx-tab-content{
   width: 100% !important;// set add vendor content 
@@ -3378,6 +3423,24 @@ padding:0;
     }
   }
   }}
+  //start - mvx pro membership page
+  .mvx-general-wrapper.mvx-payment-membership-design{
+   .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form .mvx-form-group .mvx-settings-input-content{
+    .mvx-settings-color-picker-parent-class{
+      .mvx-setting-color-picker{
+        border: 0;
+        display: inline-block;
+        width: 6rem;
+        height: 2.5rem;
+        vertical-align: middle;
+          &:focus{
+            outline: 0;
+            box-shadow: none;
+          }
+      }
+    }
+   }
+  }
 //responsive code are here
 @media only screen and (min-width: 767px) {
 .mvx-container .mvx-left-container .mvx-text-center .mvx-money-table-holder .mvx-money-table-coloumn{
@@ -3385,11 +3448,15 @@ padding:0;
     border-right: 0;
     border-radius: 0.25rem 0 0 0.25rem;
   }
-  &:nth-child(3){
+  &:nth-child(2){
+    border-width: 0.06rem 0 0.06rem 0;
+    border-radius: 0;
+  }
+  &:nth-child(4){
     border-left: 0;
     border-radius:0 0.25rem 0.25rem 0;
   }
-  &:nth-child(2) {
+  &:nth-child(3) {
     border: none;
     padding: 4rem 2rem;
     box-shadow: 0rem 0rem 0.9375rem 0.0625rem #0000001a;
@@ -3616,3 +3683,6 @@ li.mvx-compare-table-row{
     }
 }
 }
+
+
+//price section in dashboard
