@@ -1139,7 +1139,7 @@ class MVX_Admin {
             'dashboard92' =>  get_mvx_older_global_settings('give_tax') ? true : false,
             'dashboard93' =>  get_mvx_older_global_settings('give_shipping') ? true : false,
             'dashboard94' =>  get_mvx_older_global_settings('revenue_sharing_mode') && get_mvx_older_global_settings('commission_type') ? true : false,
-            'dashboard95'   =>  'free',
+            'dashboard95'   =>  apply_filters('is_mvx_pro_plugin_inactive', true) ? 'free' : 'pro',
             'dashboard96'   =>  __('go to settings', 'multivendorx'),
             'dashboard97'   =>  admin_url('admin.php?page=mvx#&submenu=modules')
         );
