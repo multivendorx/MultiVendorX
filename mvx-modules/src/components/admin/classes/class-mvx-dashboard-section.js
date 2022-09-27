@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import HeaderSection from './class-mvx-page-header';
 import axios from 'axios';
 import DataTable from 'react-data-table-component';
+
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 class MVX_Dashboard extends Component {
     constructor(props) {
         super(props);
@@ -12,9 +15,19 @@ class MVX_Dashboard extends Component {
             money_back_show_more_compared : false,
             pending_shippig: [],
             pending_shippig_header: [],
-            pricing_tab: 'monthly'
+            pricing_tab: 'monthly',
+            mat_tab_value: 0
         };
         this.pricing_tab = this.pricing_tab.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+
+    }
+
+    handleChange(e, v) {        
+        this.setState({
+            mat_tab_value: v,
+            pricing_tab: v === 1 ? 'yearly' : v === 2 ? 'lifetime' : 'monthly'
+        });
     }
 
     pricing_tab(e, status) {
@@ -613,17 +626,15 @@ class MVX_Dashboard extends Component {
                                 {appLocalizer.dashboard_string.dashboard65}
                             </p>
                             </div>
+
                             <div className='mvx-money-tablink-wrap' >
-                                <div className={`mvx-money-tablink ${this.state.pricing_tab === 'monthly' ? 'active-money-tab' : '' }`} onClick={(e) => {
-                                    this.pricing_tab(e, 'monthly');
-                                }}>Monthly</div>
-                                <div className={`mvx-money-tablink ${this.state.pricing_tab === 'yearly' ? 'active-money-tab' : '' }`} onClick={(e) => {
-                                    this.pricing_tab(e, 'yearly');
-                                }}>Yearly</div>
-                                <div className={`mvx-money-tablink ${this.state.pricing_tab === 'lifetime' ? 'active-money-tab' : '' }`} onClick={(e) => {
-                                    this.pricing_tab(e, 'lifetime');
-                                }}>Lifetime</div>
+                                <Tabs value={this.state.mat_tab_value} onChange={this.handleChange} >
+                                  <Tab label="Monthly" />
+                                  <Tab label="Yearly" />
+                                  <Tab label="Lifetime" />
+                                </Tabs>
                             </div>
+
 
                             {this.state.pricing_tab === 'monthly' ?
                             <ul className="mvx-money-table-holder">
@@ -1855,6 +1866,11 @@ class MVX_Dashboard extends Component {
                             />
                         </div>
                         : ''}
+
+
+
+
+        
 
 
                     </div>
