@@ -629,9 +629,9 @@ class MVX_Dashboard extends Component {
 
                             <div className='mvx-money-tablink-wrap' >
                                 <Tabs value={this.state.mat_tab_value} onChange={this.handleChange} >
-                                  <Tab label="Monthly" />
-                                  <Tab label="Yearly" />
-                                  <Tab label="Lifetime" />
+                                  <Tab className="mvx-money-tablink" label="Monthly" />
+                                  <Tab className="mvx-money-tablink" label="Yearly" />
+                                  <Tab className="mvx-money-tablink" label="Lifetime" />
                                 </Tabs>
                             </div>
 
