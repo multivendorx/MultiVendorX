@@ -2069,7 +2069,6 @@ class MVX_Ajax {
     function mvx_widget_vendor_pending_shipping() {
         check_ajax_referer('mvx-pending-shipping', 'security');
         if (is_user_logged_in() && is_user_mvx_vendor(get_current_vendor_id())) {
-
             $vendor = get_mvx_vendor(get_current_vendor_id());
             $requestData = ( $_REQUEST ) ? wc_clean( $_REQUEST ) : array();
             $today = @date('Y-m-d 00:00:00', strtotime("+1 days"));

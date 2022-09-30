@@ -16,7 +16,9 @@ class MVX_Dashboard extends Component {
             pending_shippig: [],
             pending_shippig_header: [],
             pricing_tab: 'monthly',
-            mat_tab_value: 0
+            mat_tab_value: 0,
+            pending_customer: '',
+            latest_activity: ''
         };
         this.pricing_tab = this.pricing_tab.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -91,7 +93,29 @@ class MVX_Dashboard extends Component {
             this.setState({
                 pending_shippig: response.data,
             });
-        })
+        });
+
+        axios
+        .get(
+        `${appLocalizer.apiUrl}/mvx_module/v1/vendor_short_pending_customer`
+        )
+        .then((response) => {
+            this.setState({
+                pending_customer: response.data,
+            });
+        });
+
+
+
+        axios
+        .get(
+        `${appLocalizer.apiUrl}/mvx_module/v1/seller_latest_ativity`
+        )
+        .then((response) => {
+            this.setState({
+                latest_activity: response.data,
+            });
+        });
 
     }
     render() {
@@ -1848,29 +1872,36 @@ class MVX_Dashboard extends Component {
                         
 
 
-
-                        <div className="mvx-page-title">
-                            <p>
-                                Pending shipping
-                            </p>
-                        </div>
-                                
-                        {this.state.pending_shippig_header &&
-                                this.state.pending_shippig_header.length > 0 ?
-                        <div className="mvx-backend-datatable-wrapper">
-                            <DataTable
-                                columns={this.state.pending_shippig_header}
-                                data={this.state.pending_shippig}
-                                selectableRows
-                                pagination
-                            />
-                        </div>
+                        {appLocalizer.dashboard_string.dashboard95 == 'pro' ?
+                            <>
+                                <div className="mvx-page-title">
+                                    <p>
+                                        Pending shipping
+                                    </p>
+                                </div>
+                                        
+                                {this.state.pending_shippig_header &&
+                                        this.state.pending_shippig_header.length > 0 ?
+                                <div className="mvx-backend-datatable-wrapper">
+                                    <DataTable
+                                        columns={this.state.pending_shippig_header}
+                                        data={this.state.pending_shippig}
+                                        selectableRows
+                                        pagination
+                                    />
+                                </div>
+                                : ''}
+                            </>
                         : ''}
 
+                        <div
+                            dangerouslySetInnerHTML={{ __html: this.state.pending_customer }}
+                        ></div>
 
-
-
-        
+                        <div className="mvx-vendor-application-content"
+                            dangerouslySetInnerHTML={{ __html: this.state.latest_activity }}
+                        ></div>
+                        
 
 
                     </div>

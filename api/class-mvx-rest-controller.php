@@ -750,6 +750,151 @@ class MVX_REST_API {
             'callback' => array( $this, 'mvx_vendor_pending_shipping' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
+
+        // pending shipping for all vendor
+        register_rest_route( 'mvx_module/v1', '/vendor_short_pending_customer', [
+            'methods' => WP_REST_Server::READABLE,
+            'callback' => array( $this, 'mvx_vendor_short_pending_customer' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
+        // pending shipping for all vendor
+        register_rest_route( 'mvx_module/v1', '/seller_latest_ativity', [
+            'methods' => WP_REST_Server::READABLE,
+            'callback' => array( $this, 'mvx_seller_latest_ativity' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+    }
+
+    public function mvx_vendor_short_pending_customer() {
+        $pending_questions = $this->mvx_list_of_pending_question('', '')->data && !empty($this->mvx_list_of_pending_question('', '')->data) ? $this->mvx_list_of_pending_question('', '')->data[0] : '';
+        $Q_A_link = admin_url('admin.php?page=mvx#&submenu=work-board&name=question-ans');
+        $row = '<div class="media">
+                    <div class="media-body">
+                        <h4 class="media-heading qna-question">' . wp_trim_words($pending_questions['question_details'], 160, '...') . '</h4>
+                        <time class="qna-date">
+                            <span>' . mvx_date($pending_questions['question_date']) . '</span>
+                        </time>
+                    </div>
+                    <a href="'.$Q_A_link.'" class="footer-link">
+                        Show All Q&As
+                        <i class="mvx-font icon-link-right-arrow"></i>
+                    </a>
+            </div>
+        ';
+        return rest_ensure_response($row);
+    }
+
+    public function mvx_seller_latest_ativity() {
+
+        $store_product_details = $store_order_details = $store_order_refund_details = [];
+        $args_multi_vendor = array(
+            'posts_per_page' => -1,
+            'post_type' => 'product',
+            'post_status' => 'publish',
+        );
+        $vendor_query = new WP_Query($args_multi_vendor);
+        if (!empty($vendor_query->get_posts())) {
+            foreach ($vendor_query->get_posts() as $key_post => $value_post) {
+                if (is_user_mvx_vendor($value_post->post_author)) {
+                    $store_product_details[] = array('id' => $value_post->ID, 'title'   =>  $value_post->post_title, 'date' =>  $value_post->post_date, 'vendor'    =>  get_mvx_product_vendors($value_post->ID) ? get_mvx_product_vendors($value_post->ID)->page_title : '');
+                }
+            }
+        }
+        $store_first_id = !empty($store_product_details) && isset($store_product_details[0]) ? $store_product_details[0] : '';
+        $store_second_id = !empty($store_product_details) && isset($store_product_details[1]) ? $store_product_details[1] : '';
+
+        // order setails
+        $args_multi_vendor = array(
+            'post_type' => 'shop_order',
+            'posts_per_page' => -1,
+            'post_status' => array('wc-processing', 'wc-completed'),
+            'meta_query' => array(
+                array(
+                    'key' => '_commissions_processed',
+                    'value' => 'yes',
+                    'compare' => '='
+                )
+            ),
+        );
+        $vendor_query = new WP_Query($args_multi_vendor);
+        if (!empty($vendor_query->get_posts())) {
+            foreach ($vendor_query->get_posts() as $key_post => $value_post) {
+                $order = wc_get_order( $value_post->ID );
+                if (!$order) continue;
+                if (get_post_meta( $value_post->ID, '_customer_refund_order', true )) {
+                    $store_order_refund_details[] = array('id' => $value_post->ID, 'date' =>  $value_post->post_date, 'customer'    =>  $order->get_billing_first_name());
+                }
+                $store_order_details[] = array('id' => $value_post->ID, 'date' =>  $value_post->post_date);
+            }
+        }
+        $store_order_first_id = !empty($store_order_details) && isset($store_order_details[0]) ? $store_order_details[0] : '';
+        $store_order_second_id = !empty($store_order_details) && isset($store_order_details[1]) ? $store_order_details[1] : '';
+
+        $store_order_refund_first_id = !empty($store_order_refund_details) && isset($store_order_refund_details[0]) ? $store_order_refund_details[0] : '';
+        $store_order_refund_second_id = !empty($store_order_refund_details) && isset($store_order_refund_details[1]) ? $store_order_refund_details[1] : '';
+
+        // transaction details
+        $transaction_details = $this->mvx_list_of_pending_transaction()->data ? $this->mvx_list_of_pending_transaction()->data : '';
+        $transaction_details1 = $transaction_details && isset($transaction_details[0]) ? $transaction_details[0] : '';
+        $transaction_details2 = $transaction_details && isset($transaction_details[1]) ? $transaction_details[1] : '';
+
+        // commission details
+        $args = array(
+            'post_type' => 'dc_commission',
+            'post_status' => array('publish', 'private'),
+            'meta_key' => '_paid_status',
+            'meta_value' => 'paid',
+            'posts_per_page' => 5
+        );
+        $commissions = get_posts($args);
+        //mvx-vendor-application-content
+        $applcation_data_display = '';
+        $applcation_data_display .= '<h2 class="mvx-text-with-right-side-line-wrapper">' . __('Notes', 'multivendorx') . '<hr></h2>';
+        $applcation_data_display .= '<div class="note-clm-wrap">';
+
+        if ($store_first_id) {
+            $applcation_data_display .= '<div class="note-clm"><p class="note-description"> Vendor ' . $store_first_id['vendor'] . ' has added product ' . $store_first_id['title'] . '</p><p class="note_time note-meta">On ' . human_time_diff(strtotime($store_first_id['date'])) . ' </p><p class="note_owner note-meta"></p></div>';
+        }
+        if ($store_order_first_id) {
+            $applcation_data_display .= '<div class="note-clm"><p class="note-description"> New Order placed #' . $store_order_first_id['id'] . '</p><p class="note_time note-meta">On ' . human_time_diff(strtotime($store_order_first_id['date'])) . '</p><p class="note_owner note-meta"></p></div>';
+        }
+
+        if ($store_order_refund_first_id) {
+            $applcation_data_display .= '<div class="note-clm"><p class="note-description"> Customer '. $store_order_refund_first_id['customer'] .'has requested refund for #' . $store_order_refund_first_id['id'] . '</p><p class="note_time note-meta">On ' . human_time_diff(strtotime($store_order_refund_first_id['date'])) . '</p><p class="note_owner note-meta"></p></div>';
+        }
+
+        if ($transaction_details1) {
+            $applcation_data_display .= '<div class="note-clm"><p class="note-description"> Vendor '.$transaction_details1['vendor'].' has requested commission withdrawl for order#' . $transaction_details1['order'] . '</p><p class="note_time note-meta">On ' . $transaction_details1['commission'] . '</p><p class="note_owner note-meta"></p></div>';
+        }
+
+        if (isset($commissions[0])) {
+            $applcation_data_display .= '<div class="note-clm"><p class="note-description"> Commission id #'.$commissions[0]->ID.' is paid</p><p class="note_time note-meta">On ' . human_time_diff(strtotime($commissions[0]->post_date)) . '</p><p class="note_owner note-meta"></p></div>';
+        }
+
+
+
+        if ($store_second_id) {
+            $applcation_data_display .= '<div class="note-clm"><p class="note-description"> Vendor ' . $store_second_id['vendor'] . ' has added product ' . $store_second_id['title'] . '</p><p class="note_time note-meta">On ' . human_time_diff(strtotime($store_second_id['date'])) . ' </p><p class="note_owner note-meta"></p></div>';
+        }
+        if ($store_order_second_id) {
+            $applcation_data_display .= '<div class="note-clm"><p class="note-description"> New Order placed #' . $store_order_second_id['id'] . '</p><p class="note_time note-meta">On ' . human_time_diff(strtotime($store_order_second_id['date'])) . '</p><p class="note_owner note-meta"></p></div>';
+        }
+
+        if ($store_order_refund_second_id) {
+            $applcation_data_display .= '<div class="note-clm"><p class="note-description"> Customer '. $store_order_refund_second_id['customer'] .'has requested refund for #' . $store_order_refund_second_id['id'] . '</p><p class="note_time note-meta">On ' . human_time_diff(strtotime($store_order_refund_second_id['date'])) . '</p><p class="note_owner note-meta"></p></div>';
+        }
+
+        if ($transaction_details2) {
+            $applcation_data_display .= '<div class="note-clm"><p class="note-description"> Vendor '.$transaction_details2['vendor'].' has requested commission withdrawl for order#' . $transaction_details2['order'] . '</p><p class="note_time note-meta">On ' . $transaction_details2['commission'] . '</p><p class="note_owner note-meta"></p></div>';
+        }
+
+        if (isset($commissions[1])) {
+            $applcation_data_display .= '<div class="note-clm"><p class="note-description"> Commission id #'.$commissions[1]->ID.' is paid</p><p class="note_time note-meta">On ' . human_time_diff(strtotime($commissions[1]->post_date)) . '</p><p class="note_owner note-meta"></p></div>';
+        }
+
+        $applcation_data_display .= '</div>';
+        return $applcation_data_display;
     }
 
     public function mvx_vendor_pending_shipping() {
@@ -2405,7 +2550,7 @@ class MVX_REST_API {
         return rest_ensure_response($pending_list);
     }
     public function mvx_list_of_pending_transaction() {
-        $pending_list = [];
+        $pending_list = $order_id = [];
         $args = array(
             'post_type' => 'mvx_transaction',
             'post_status' => 'mvx_processing',
@@ -2436,12 +2581,19 @@ class MVX_REST_API {
                 __('IBAN -', 'multivendorx') . ' ' . $iban,
                     ), $currentvendor, $transaction);
 
+                $commission_details = get_post_meta($transaction->ID, 'commission_detail', true);
+                if ($commission_details) {
+                    foreach ($commission_details as $commission_detail)
+                        $order_id[] = get_post_meta($commission_detail, '_commission_order_id', true);
+                }
+
                 $pending_list[] = array(
                     'id'        =>  $transaction->ID,
                     'vendor'    =>  $vendor_term->name,
                     'vendor_id'    =>  $vendor_term_id,
                     'commission'    =>  $transaction->post_title,
                     'amount'    =>  $amount,
+                    'order'     =>  '#'. implode(', #', $order_id),
                     'account_details'   =>  implode('<br/>', $address_array)
                 );
             }
