@@ -2,9 +2,16 @@ import React, { Component } from 'react';
 import HeaderSection from './class-mvx-page-header';
 import axios from 'axios';
 import DataTable from 'react-data-table-component';
-
+import PuffLoader from 'react-spinners/PuffLoader';
+import { css } from '@emotion/react';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+
+const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: green;
+`;
 class MVX_Dashboard extends Component {
     constructor(props) {
         super(props);
@@ -1893,16 +1900,35 @@ class MVX_Dashboard extends Component {
                                 : ''}
                             </>
                         : ''}
+                        <div className='Question-answer-wrapper'>
+                            
+                            {this.state.pending_customer ? 
+                                <div className='media-wrap'
+                                    dangerouslySetInnerHTML={{ __html: this.state.pending_customer }}
+                                ></div>
+                            :
+                                <PuffLoader
+                                    css={override}
+                                    color={'#cd0000'}
+                                    size={200}
+                                    loading={true}
+                                />
+                            }
 
-                        <div
-                            dangerouslySetInnerHTML={{ __html: this.state.pending_customer }}
-                        ></div>
+                            {this.state.latest_activity ? 
+                                <div className="mvx-vendor-application-content"
+                                    dangerouslySetInnerHTML={{ __html: this.state.latest_activity }}
+                                ></div>
+                                :
+                                <PuffLoader
+                                    css={override}
+                                    color={'#cd0000'}
+                                    size={200}
+                                    loading={true}
+                                />
+                            }
 
-                        <div className="mvx-vendor-application-content"
-                            dangerouslySetInnerHTML={{ __html: this.state.latest_activity }}
-                        ></div>
-                        
-
+                        </div>
 
                     </div>
                 </div>

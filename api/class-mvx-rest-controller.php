@@ -850,7 +850,7 @@ class MVX_REST_API {
         $commissions = get_posts($args);
         //mvx-vendor-application-content
         $applcation_data_display = '';
-        $applcation_data_display .= '<h2 class="mvx-text-with-right-side-line-wrapper">' . __('Notes', 'multivendorx') . '<hr></h2>';
+        $applcation_data_display .= '<h2 class="mvx-text-with-right-side-line-wrapper">' . __("Seller's Latest Activity", 'multivendorx') . '<hr></h2>';
         $applcation_data_display .= '<div class="note-clm-wrap">';
 
         if ($store_first_id) {

@@ -2675,12 +2675,25 @@ div#wpbody-content {
   border-radius: 0.25rem;
 }
 
+.mvx-container .mvx-left-container .mvx-text-center .mvx-money-tablink-wrap .PrivateTabIndicator-colorSecondary-3 {
+  background: #522c81;
+  height: 100%;
+  z-index: 0;
+  border-radius: 0.25rem;
+}
+
+.mvx-container .mvx-left-container .mvx-text-center .mvx-money-tablink-wrap .mvx-money-tablink.Mui-selected {
+  color: #f9f8fb;
+}
+
 .mvx-container .mvx-left-container .mvx-text-center .mvx-money-tablink-wrap .mvx-money-tablink {
   font-size: 1.25rem;
   padding: 0.75rem 1rem;
   color: #181718;
+  text-transform: capitalize;
   font-weight: 500;
   border-radius: 0.25rem;
+  z-index: 9;
 }
 
 .mvx-container .mvx-left-container .mvx-text-center .mvx-money-tablink-wrap .active-money-tab {
@@ -2901,6 +2914,65 @@ div#wpbody-content {
   background: -webkit-gradient(left top, right bottom, color-stop(0%, #4e1a74), color-stop(100%, #d64959));
   background: linear-gradient(135deg, #4e1a74 0%, #d64959 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4e1a74', endColorstr='#d64959',  GradientType=1);
+}
+
+.mvx-container .Question-answer-wrapper {
+  margin: 3rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 1rem;
+}
+
+.mvx-container .Question-answer-wrapper .media, .mvx-container .Question-answer-wrapper .mvx-vendor-application-content {
+  background: #fdfdfe;
+  border-radius: 0.25rem;
+  border: 0.06rem solid #d4d1d9;
+  word-break: break-all;
+  -webkit-box-flex: 1;
+      -ms-flex: auto;
+          flex: auto;
+}
+
+.mvx-container .Question-answer-wrapper .mvx-vendor-application-content {
+  padding: 2rem;
+}
+
+.mvx-container .Question-answer-wrapper .media-wrap {
+  -webkit-box-flex: 1;
+      -ms-flex: auto;
+          flex: auto;
+}
+
+.mvx-container .Question-answer-wrapper .media-wrap .media-body {
+  padding: 2rem;
+}
+
+.mvx-container .Question-answer-wrapper .media-wrap .media-body h4.media-heading.qna-question {
+  font-size: 1.25rem;
+  padding: 0 0 0.75rem;
+}
+
+.mvx-container .Question-answer-wrapper .media-wrap a {
+  border-top: 0.06rem solid #d4d1d9;
+  display: block;
+  font-size: 1rem;
+  padding: 1rem 2rem;
+}
+
+.mvx-container .Question-answer-wrapper .media-wrap a:hover i {
+  padding: 0 0 0 0.5rem;
+}
+
+.mvx-container .Question-answer-wrapper .media-wrap a i {
+  font-size: 0.875rem;
+  -webkit-transition: 0.3s all ease;
+  transition: 0.3s all ease;
 }
 
 .mvx-container .mvx-setting-section-divider {
@@ -4674,6 +4746,10 @@ div.health-check-accordion .health-check-accordion-panel table td {
 @media only screen and (max-width: 668px) {
   .mvx-header-wapper .mvx-header-nav-left-section .mvx-logo-title {
     display: none;
+  }
+  .mvx-container .mvx-left-container .mvx-text-center .mvx-money-tablink-wrap .mvx-money-tablink {
+    font-size: 1rem;
+    padding: 0 1rem;
   }
 }
 

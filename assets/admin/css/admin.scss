@@ -2128,12 +2128,23 @@ hr{
   width: fit-content;
   padding: 0.5rem;
   border-radius: 0.25rem;
+  .PrivateTabIndicator-colorSecondary-3 {
+    background:$approve-font-color;
+    height: 100%;
+    z-index: 0;
+    border-radius: 0.25rem;
+}
+.mvx-money-tablink.Mui-selected{
+    color: $font-white;
+  }
   .mvx-money-tablink {
     font-size: 1.25rem;
     padding: 0.75rem 1rem;
     color: $title-color;
+    text-transform: capitalize;
     font-weight: 500;
     border-radius:0.25rem;
+    z-index: 9;
 }
 .active-money-tab{
   background:$approve-font-color;
@@ -2308,7 +2319,45 @@ hr{
       }
     }
   }
-
+  .Question-answer-wrapper {
+    margin: 3rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    .media, .mvx-vendor-application-content{
+      background: $fill-color;
+      border-radius: 0.25rem;
+      border: 0.06rem solid $boder-color;
+      word-break: break-all;
+      flex:auto;
+  }
+  .mvx-vendor-application-content{
+    padding: 2rem;
+  }
+  .media-wrap{
+    flex: auto;
+    .media-body {
+      padding: 2rem;
+      h4.media-heading.qna-question {
+        font-size: 1.25rem;
+        padding: 0 0 0.75rem;
+    }
+}
+a {
+  border-top: 0.06rem solid $boder-color;
+  display: block;
+  font-size: 1rem;
+  padding:1rem 2rem;
+  &:hover i{
+    padding: 0 0 0 0.5rem;
+  }
+  i{
+    font-size: 0.875rem;
+    transition: 0.3s all ease;
+  }
+}}
+}
   // Start - Settings Page
   .mvx-setting-section-divider{
     background-color: $base-color;
@@ -3441,6 +3490,7 @@ padding:0;
     }
    }
   }
+  
 //responsive code are here
 @media only screen and (min-width: 767px) {
 .mvx-container .mvx-left-container .mvx-text-center .mvx-money-table-holder .mvx-money-table-coloumn{
@@ -3527,6 +3577,10 @@ li.mvx-compare-table-row{
 @media only screen and (max-width: 668px) {
   .mvx-header-wapper .mvx-header-nav-left-section .mvx-logo-title{
     display:none;
+  }
+  .mvx-container .mvx-left-container .mvx-text-center .mvx-money-tablink-wrap .mvx-money-tablink{
+    font-size: 1rem;
+    padding: 0 1rem;
   }
 }
 @media only screen and (max-width: 1024px) {
@@ -3683,6 +3737,3 @@ li.mvx-compare-table-row{
     }
 }
 }
-
-
-//price section in dashboard
