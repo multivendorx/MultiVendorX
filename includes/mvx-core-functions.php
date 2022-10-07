@@ -6534,44 +6534,16 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'database_value' => '',
                 ]
             ],
-            'suborder-configure'    => [
-                [
-                    'key'    => 'hide_suborder_for_customer',
-                    'label'   => __( 'Hide Sub order for customers', 'multivendorx' ),
-                    'class'     => 'mvx-toggle-checkbox',
-                    'type'    => 'checkbox',
-                    'options' => array(
-                        array(
-                            'key'=> "hide_suborder_for_customer",
-                            'label'=> __('If enabled customer cant see suborders', 'multivendorx'),
-                            'value'=> "hide_suborder_for_customer"
-                        )
-                    ),
-                    'database_value' => array(),
-                ],
-                [
-                    'key'    => 'hide_suborder_for_admin',
-                    'label'   => __( 'Hide Sub order for admin', 'multivendorx' ),
-                    'class'     => 'mvx-toggle-checkbox',
-                    'type'    => 'checkbox',
-                    'options' => array(
-                        array(
-                            'key'=> "hide_suborder_for_admin",
-                            'label'=> __('If enabled admin cant see suborders', 'multivendorx'),
-                            'value'=> "hide_suborder_for_admin"
-                        )
-                    ),
-                    'database_value' => array(),
-                ],
+            'order' =>  [
                 [
                     'key'    => 'disallow_vendor_order_status',
-                    'label'   => __( 'Disallow vendor to change order status', 'multivendorx' ),
+                    'label'   => __( 'Order Status Control', 'multivendorx' ),
                     'class'     => 'mvx-toggle-checkbox',
                     'type'    => 'checkbox',
                     'options' => array(
                         array(
                             'key'=> "disallow_vendor_order_status",
-                            'label'=> __('If enabled vendor can not change order status from frontend.', 'multivendorx'),
+                            'label'=> __('Allow sellers to change their order status', 'multivendorx'),
                             'value'=> "disallow_vendor_order_status"
                         )
                     ),
@@ -6634,20 +6606,6 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 ],
             ],
             'refund-management'   => [
-                /*[
-                    'key'    => 'disable_refund_customer_end',
-                    'label'   => __( 'Enable refund request for customer', 'multivendorx' ),
-                    'class'     => 'mvx-toggle-checkbox',
-                    'type'    => 'checkbox',
-                    'options' => array(
-                        array(
-                            'key'=> "disable_refund_customer_end",
-                            'label'=> __('Remove capability to customer from refund request', 'multivendorx'),
-                            'value'=> "disable_refund_customer_end"
-                        )
-                    ),
-                    'database_value' => array(),
-                ],*/
                 [
                     'key'    => 'customer_refund_status',
                     'label'   => __( 'Available Status for Refund', 'multivendorx' ),
@@ -6695,6 +6653,20 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'label'     => __( 'Reasons For Refund', 'multivendorx' ),
                     'desc'      => __( 'Add reasons for a refund. Use || to separate each reason. Options will appear as a radio button to customers', 'multivendorx' ),
                     'database_value' => '',
+                ],
+                [
+                    'key'    => 'disable_refund_customer_end',
+                    'label'   => __( 'Disable refund request for customer', 'multivendorx' ),
+                    'type'    => 'checkbox',
+                    'class'     => 'mvx-toggle-checkbox',
+                    'options' => array(
+                        array(
+                            'key'=> "disable_refund_customer_end",
+                            'label'=> __('Remove capability to customer from refund request', 'multivendorx'),
+                            'value'=> "disable_refund_customer_end"
+                        )
+                    ),
+                    'database_value' => array(),
                 ],
             ],
             'payment-stripe-connect' => [
@@ -7060,6 +7032,14 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'modulename'    =>  'policy'
             ),
             array(
+                'tablabel'      =>  __('Orders', 'multivendorx'),
+                'apiurl'        =>  'mvx_module/v1/save_dashpages',
+                'description'   =>  __("Manage vendor's order releated capabilities", 'multivendorx'),
+                'icon'          =>  'icon-tab-policy',
+                'submenu'       =>  'settings',
+                'modulename'    =>  'order'
+            ),
+            array(
                 'tablabel'      =>  __('Refunds', 'multivendorx'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'description'   =>  __('Set conditions for refund requests.', 'multivendorx'),
@@ -7090,7 +7070,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
         }
 
         if (!mvx_is_module_active('store-review')) {
-           unset($general_settings_page_endpoint[11]);
+           unset($general_settings_page_endpoint[12]);
         }
 
         if (!mvx_is_module_active('store-policy')) {
@@ -7098,7 +7078,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
         }
 
         if (!mvx_is_module_active('marketplace-refund')) {
-           unset($general_settings_page_endpoint[10]);
+           unset($general_settings_page_endpoint[11]);
         }
 
         $payment_page_endpoint = array(

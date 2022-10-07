@@ -30,7 +30,7 @@ $payment_gateway = wc_get_payment_gateway_by_order( $order );
 $vendor_order = mvx_get_order($order_id);
 $vendor_shipping_method = get_mvx_vendor_order_shipping_method($order->get_id(), $vendor->id);
 $subtotal = 0;
-$disallow_vendor_order_status = get_mvx_vendor_settings('disallow_vendor_order_status', 'capabilities', 'product') && get_mvx_vendor_settings('disallow_vendor_order_status', 'capabilities', 'product') == 'Enable' ? true : false;
+$disallow_vendor_order_status = get_mvx_vendor_settings('disallow_vendor_order_status', 'order') && !empty(get_mvx_vendor_settings('disallow_vendor_order_status', 'order')) ? true : false;
 ?>
 <div id="mvx-order-details" class="col-md-12">
     <div class="panel panel-default panel-pading pannel-outer-heading mt-0 order-detail-top-panel">

@@ -52,7 +52,7 @@ if ( !mvx_is_module_active( 'marketplace-refund' ) ) {
                     <select id="order_bulk_actions" name="bulk_action" class="bulk-actions form-control inline-input">
                         <option value=""><?php esc_html_e('Bulk Actions', 'multivendorx'); ?></option>
                         <?php
-                        $disallow_vendor_order_status = get_mvx_vendor_settings('disallow_vendor_order_status', 'capabilities', 'product') && get_mvx_vendor_settings('disallow_vendor_order_status', 'capabilities', 'product') == 'Enable' ? true : false;
+                        $disallow_vendor_order_status = get_mvx_vendor_settings('disallow_vendor_order_status', 'order') && !empty(get_mvx_vendor_settings('disallow_vendor_order_status', 'order')) ? true : false;
                         if ($disallow_vendor_order_status) {
                             unset($bulk_actions['mark_processing'], $bulk_actions['mark_on-hold'], $bulk_actions['mark_completed']);
                         }
