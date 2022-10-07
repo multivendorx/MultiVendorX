@@ -59,11 +59,6 @@ function wcmp_vendor_shipping_admin_capability($current_id) {
 	return mvx_vendor_shipping_admin_capability($current_id);
 }
 
-function wcmp_service_page_notice() {
-	wc_deprecated_function('wcmp_service_page_notice', '4.0.0', 'mvx_service_page_notice');
-	return mvx_service_page_notice();
-}
-
 function wcmp_crop_image() {
 	wc_deprecated_function('wcmp_crop_image', '4.0.0', 'mvx_crop_image');
 	return mvx_crop_image();
@@ -72,11 +67,6 @@ function wcmp_crop_image() {
 function wcmp_datatable_get_vendor_orders() {
 	wc_deprecated_function('wcmp_datatable_get_vendor_orders', '4.0.0', 'mvx_datatable_get_vendor_orders');
 	return mvx_datatable_get_vendor_orders();
-}
-
-function wcmp_save_vendor_registration_form_callback() {
-	wc_deprecated_function('wcmp_save_vendor_registration_form_callback', '4.0.0', 'mvx_save_vendor_registration_form_callback');
-	return mvx_save_vendor_registration_form_callback();
 }
 
 function wcmp_get_loadmorebutton_single_product_multiple_vendors() {
@@ -139,16 +129,6 @@ function wcmp_vendor_csv_download_per_order() {
 	return mvx_vendor_csv_download_per_order();
 }
 
-function wcmp_suspend_vendor() {
-	wc_deprecated_function('wcmp_suspend_vendor', '4.0.0', 'mvx_suspend_vendor');
-	return mvx_suspend_vendor();
-}
-
-function wcmp_activate_vendor() {
-	wc_deprecated_function('wcmp_activate_vendor', '4.0.0', 'mvx_activate_vendor');
-	return mvx_activate_vendor();
-}
-
 function wcmp_vendor_product_list() {
 	wc_deprecated_function('wcmp_vendor_product_list', '4.0.0', 'mvx_vendor_product_list');
 	return mvx_vendor_product_list();
@@ -192,11 +172,6 @@ function wcmp_vendor_products_qna_list() {
 function wcmp_question_verification_approval() {
 	wc_deprecated_function('wcmp_question_verification_approval', '4.0.0', 'mvx_question_verification_approval');
 	return mvx_question_verification_approval();
-}
-
-function wcmp_get_vendor_details() {
-	wc_deprecated_function('wcmp_get_vendor_details', '4.0.0', 'mvx_get_vendor_details');
-	return mvx_get_vendor_details();
 }
 
 function wcmp_product_tag_add() {
@@ -757,11 +732,6 @@ function wcmp_commission_delete_on_order_deleted($order_id) {
 function wcmp_commission_notices() {
 	wc_deprecated_function('wcmp_commission_notices', '4.0.0', 'mvx_commission_notices');
 	return mvx_commission_notices();
-}
-
-function wcmp_vendor_notice_addtional_field_callback() {
-	wc_deprecated_function('wcmp_vendor_notice_addtional_field_callback', '4.0.0', 'mvx_vendor_notice_addtional_field_callback');
-	return mvx_vendor_notice_addtional_field_callback();
 }
 
 function wcmp_vendor_notice_select_vendor_callback() {
