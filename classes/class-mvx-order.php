@@ -1413,6 +1413,23 @@ class MVX_Order {
             do_action( 'mvx_vendor_order_on_cancelled_commission', $commission_id, $order_id );
             if( $commission_id ) wp_trash_post( $commission_id );
         }
+        // stock increase when suborder mark as completed
+        if (wp_get_post_parent_id($order_id) && $new_status == 'completed') {
+            $order = wc_get_order( $order_id );
+            $items = $order->get_items();
+            foreach ($items as $item_id => $item) {
+                if (isset($item['product_id']) && $item['product_id'] !== 0) {
+                    // check vendor product
+                    $has_vendor = get_mvx_product_vendors($item['product_id']);
+                    $stock_status = get_post_meta($item['product_id'], '_manage_stock', true) && get_post_meta($item['product_id'], '_manage_stock', true) == 'yes' ? true : false;
+                    if ($has_vendor && $stock_status) {
+                        $product = wc_get_product($item['product_id']);
+                        $quantity = $product->get_stock_quantity();
+                        update_post_meta($item['product_id'], '_stock', absint($quantity + $item['qty']));
+                    }
+                }
+            }
+        }
     }
     
     public function mvx_exclude_suborders_from_rest_api_call( $args, $request ){

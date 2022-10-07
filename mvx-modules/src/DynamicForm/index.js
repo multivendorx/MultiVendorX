@@ -550,9 +550,6 @@ export default class DynamicForm extends React.Component {
 			if (type === 'color') {
 				input = (
 					<div className="mvx-settings-color-picker-parent-class">
-						<label htmlFor="favcolor">
-							{appLocalizer.global_string.favorite_color}:
-						</label>
 						<input
 							{...props}
 							className="mvx-setting-color-picker"
