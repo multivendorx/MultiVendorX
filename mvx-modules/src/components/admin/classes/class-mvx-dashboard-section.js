@@ -231,7 +231,7 @@ class MVX_Dashboard extends Component {
                                     <li className="mvx-align-items-center hover-border-box">
                                         <div className="mvx-allign-li-txt">
                                             <span>
-                                                <i className="mvx-font icon-chart-line" />
+                                                <i className="mvx-font icon-tab-registration-form" />
                                             </span>{' '}
                                             {appLocalizer.dashboard_string.dashboard14}
                                         </div>
@@ -247,7 +247,7 @@ class MVX_Dashboard extends Component {
                                     <li className="mvx-align-items-center hover-border-box">
                                         <div className="mvx-allign-li-txt">
                                             <span>
-                                                <i className="mvx-font icon-chart-line" />
+                                                <i className="mvx-font icon-payment" />
                                             </span>{' '}
                                             {appLocalizer.dashboard_string.dashboard15}
                                         </div>
@@ -263,7 +263,7 @@ class MVX_Dashboard extends Component {
                                     <li className="mvx-align-items-center hover-border-box">
                                         <div className="mvx-allign-li-txt">
                                             <span>
-                                                <i className="mvx-font icon-chart-line" />
+                                                <i className="mvx-font icon-tax" />
                                             </span>{' '}
                                             {appLocalizer.dashboard_string.dashboard16}
                                         </div>
@@ -279,7 +279,7 @@ class MVX_Dashboard extends Component {
                                     <li className="mvx-align-items-center hover-border-box">
                                         <div className="mvx-allign-li-txt">
                                             <span>
-                                                <i className="mvx-font icon-chart-line" />
+                                                <i className="mvx-font icon-shipping" />
                                             </span>{' '}
                                             {appLocalizer.dashboard_string.dashboard17}
                                         </div>
@@ -295,7 +295,7 @@ class MVX_Dashboard extends Component {
                                     <li className="mvx-align-items-center hover-border-box">
                                         <div className="mvx-allign-li-txt">
                                             <span>
-                                                <i className="mvx-font icon-chart-line" />
+                                                <i className="mvx-font icon-commission" />
                                             </span>{' '}
                                             {appLocalizer.dashboard_string.dashboard18}
                                         </div>
@@ -311,7 +311,7 @@ class MVX_Dashboard extends Component {
                                     <li className="mvx-align-items-center hover-border-box">
                                         <div className="mvx-allign-li-txt">
                                             <span>
-                                                <i className="mvx-font icon-chart-line" />
+                                                <i className="mvx-font icon-product" />
                                             </span>{' '}
                                             {appLocalizer.dashboard_string.dashboard19}
                                         </div>
@@ -327,7 +327,7 @@ class MVX_Dashboard extends Component {
                                     <li className="mvx-align-items-center hover-border-box">
                                         <div className="mvx-allign-li-txt">
                                             <span>
-                                                <i className="mvx-font icon-chart-line" />
+                                                <i className="mvx-font icon-product" />
                                             </span>{' '}
                                             {appLocalizer.dashboard_string.dashboard20}
                                         </div>
@@ -386,7 +386,7 @@ class MVX_Dashboard extends Component {
                                             <li>
                                                 <a href={`?page=mvx#&submenu=vendor&name=add-new`}>
                                                     <figure>
-                                                        <i className="mvx-font icon-vendor-personal" />
+                                                        <i className="mvx-font icon-vendor" />
                                                     </figure>
                                                     {appLocalizer.dashboard_string.dashboard27}
                                                 </a>
@@ -394,7 +394,7 @@ class MVX_Dashboard extends Component {
                                             <li>
                                                 <a href={`?page=mvx#&submenu=commission`}>
                                                     <figure>
-                                                        <i className="mvx-font icon-vendor-personal" />
+                                                        <i className="mvx-font icon-commission" />
                                                     </figure>
                                                     {appLocalizer.dashboard_string.dashboard28}
                                                 </a>
@@ -402,7 +402,7 @@ class MVX_Dashboard extends Component {
                                             <li>
                                                 <a href={`post-new.php?post_type=product`}>
                                                     <figure>
-                                                        <i className="mvx-font icon-vendor-personal" />
+                                                        <i className="mvx-font icon-product" />
                                                     </figure>
                                                     {appLocalizer.dashboard_string.dashboard29}
                                                 </a>
@@ -410,7 +410,7 @@ class MVX_Dashboard extends Component {
                                             <li>
                                                 <a href={`?page=mvx#&submenu=payment`}>
                                                     <figure>
-                                                        <i className="mvx-font icon-vendor-personal" />
+                                                        <i className="mvx-font icon-payment" />
                                                     </figure>
                                                     {appLocalizer.dashboard_string.dashboard30}
                                                 </a>
@@ -1898,37 +1898,38 @@ class MVX_Dashboard extends Component {
                                     />
                                 </div>
                                 : ''}
+                            
+                                <div className='Question-answer-wrapper'>
+                                    
+                                    {this.state.pending_customer ? 
+                                        <div className='media-wrap'
+                                            dangerouslySetInnerHTML={{ __html: this.state.pending_customer }}
+                                        ></div>
+                                    :
+                                        <PuffLoader
+                                            css={override}
+                                            color={'#cd0000'}
+                                            size={200}
+                                            loading={true}
+                                        />
+                                    }
+
+                                    {this.state.latest_activity ? 
+                                        <div className="mvx-vendor-application-content"
+                                            dangerouslySetInnerHTML={{ __html: this.state.latest_activity }}
+                                        ></div>
+                                        :
+                                        <PuffLoader
+                                            css={override}
+                                            color={'#cd0000'}
+                                            size={200}
+                                            loading={true}
+                                        />
+                                    }
+
+                                </div>
                             </>
                         : ''}
-                        <div className='Question-answer-wrapper'>
-                            
-                            {this.state.pending_customer ? 
-                                <div className='media-wrap'
-                                    dangerouslySetInnerHTML={{ __html: this.state.pending_customer }}
-                                ></div>
-                            :
-                                <PuffLoader
-                                    css={override}
-                                    color={'#cd0000'}
-                                    size={200}
-                                    loading={true}
-                                />
-                            }
-
-                            {this.state.latest_activity ? 
-                                <div className="mvx-vendor-application-content"
-                                    dangerouslySetInnerHTML={{ __html: this.state.latest_activity }}
-                                ></div>
-                                :
-                                <PuffLoader
-                                    css={override}
-                                    color={'#cd0000'}
-                                    size={200}
-                                    loading={true}
-                                />
-                            }
-
-                        </div>
 
                     </div>
                 </div>

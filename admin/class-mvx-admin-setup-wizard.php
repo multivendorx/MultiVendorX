@@ -682,7 +682,7 @@ class MVX_Admin_Setup_Wizard {
         <div class="mvx-all-done-page-header-sec">
             <i className="mvx-font icon-yes"></i></a>
             <h1 class="mvx-title"><?php esc_html_e('Yay! All done! ', 'multivendorx'); ?></h1>
-            <a href="https://twitter.com/share" class="twitter-button" data-url="<?php echo site_url(); ?>" data-text="Hey Guys! Our new marketplace is now live and ready to be ransacked! Check it out at" data-via="wc_marketplace" data-size="large"><i class="mvx-font icon-form-url"></i> Tweet</a>
+            <a href="https://twitter.com/share" class="twitter-button" data-url="<?php echo site_url(); ?>" data-text="Hey Guys! Our new marketplace is now live and ready to be ransacked! Check it out at" data-via="wc_marketplace" data-size="large"><i class="mvx-font icon-twitter-setup-widget"></i> Tweet</a>
             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
         </div>
         
@@ -699,9 +699,9 @@ class MVX_Admin_Setup_Wizard {
             <div class="wc-setup-next-steps-last">
                 <h2><?php _e( 'Learn more', 'multivendorx' ); ?></h2>
                 <ul>
-                    <li> <i class="mvx-font icon-vendor-form-copy"></i><a href="https://www.youtube.com/c/MultivendorX"><?php esc_html_e( 'Watch the tutorial videos', 'multivendorx' ); ?></a></li>
-                    <li> <i class="mvx-font icon-vendor-form-copy"></i><a href="https://wc-marketplace.com/knowledgebase/mvx-setup-guide/?utm_source=mvx_plugin&utm_medium=setup_wizard&utm_campaign=new_installation&utm_content=documentation"><?php esc_html_e( 'Looking for help to get started', 'multivendorx' ); ?></a></li>
-                    <li> <i class="mvx-font icon-vendor-form-copy"></i><a href="https://wc-marketplace.com/best-revenue-model-marketplace-part-one/?utm_source=mvx_plugin&utm_medium=setup_wizard&utm_campaign=new_installation&utm_content=blog"><?php esc_html_e( 'Learn more about revenue models', 'multivendorx' ); ?></a></li>
+                    <li> <i class="mvx-font icon-watch-setup-widget"></i><a href="https://www.youtube.com/c/MultivendorX"><?php esc_html_e( 'Watch the tutorial videos', 'multivendorx' ); ?></a></li>
+                    <li> <i class="mvx-font icon-help-setup-widget"></i><a href="https://wc-marketplace.com/knowledgebase/mvx-setup-guide/?utm_source=mvx_plugin&utm_medium=setup_wizard&utm_campaign=new_installation&utm_content=documentation"><?php esc_html_e( 'Looking for help to get started', 'multivendorx' ); ?></a></li>
+                    <li> <i class="mvx-font icon-Learn-more-setup-widget"></i><a href="https://wc-marketplace.com/best-revenue-model-marketplace-part-one/?utm_source=mvx_plugin&utm_medium=setup_wizard&utm_campaign=new_installation&utm_content=blog"><?php esc_html_e( 'Learn more about revenue models', 'multivendorx' ); ?></a></li>
                 </ul>
             </div>
         </div>

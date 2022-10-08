@@ -7035,7 +7035,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'tablabel'      =>  __('Orders', 'multivendorx'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'description'   =>  __("Manage vendor's order releated capabilities", 'multivendorx'),
-                'icon'          =>  'icon-tab-policy',
+                'icon'          =>  'icon-tab-orders',
                 'submenu'       =>  'settings',
                 'modulename'    =>  'order'
             ),

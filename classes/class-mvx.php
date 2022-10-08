@@ -84,7 +84,7 @@ final class MVX {
         add_action('admin_init', array(&$this, 'mvx_admin_init'));
         
         // MVX Update Notice
-        add_action('in_plugin_update_message-dc-woocommerce-multi-vendor/dc_product_vendor.php', array(&$this, 'mvx_plugin_update_message'));
+        //add_action('in_plugin_update_message-dc-woocommerce-multi-vendor/dc_product_vendor.php', array(&$this, 'mvx_plugin_update_message'));
 
         // Secure commission notes
         add_filter('comments_clauses', array(&$this, 'exclude_order_comments'), 10, 1);
@@ -115,6 +115,7 @@ final class MVX {
      * Initialize plugin on WP init
      */
     function init() {
+
         if (is_user_mvx_pending_vendor(get_current_vendor_id()) || is_user_mvx_rejected_vendor(get_current_vendor_id()) || is_user_mvx_vendor(get_current_vendor_id())) {
             show_admin_bar(apply_filters('mvx_show_admin_bar', false));
         }
@@ -186,6 +187,10 @@ final class MVX {
         // Init email activity action class 
         $this->load_class('email');
         $this->email = new MVX_Email();
+
+        $this->load_class('upgrade');
+        $this->upgrade = new MVX_Upgrade();
+
         // MVX Fields Lib
         $this->mvx_wp_fields = $this->library->load_wp_fields();
         // Load Jquery style
@@ -675,7 +680,7 @@ final class MVX {
         if (false === ( $upgrade_notice = get_transient($transient_name) )) {
             $response = wp_safe_remote_get('https://plugins.svn.wordpress.org/dc-woocommerce-multi-vendor/trunk/readme.txt');
             if (!is_wp_error($response) && !empty($response['body'])) {
-                $upgrade_notice = self::parse_update_notice($response['body'], $args['new_version']);
+                $upgrade_notice = self::parse_update_notice_old($response['body'], $args['new_version']);
                 set_transient($transient_name, $upgrade_notice, DAY_IN_SECONDS);
             }
         }
@@ -691,7 +696,7 @@ final class MVX {
      * @param  string $new_version
      * @return string
      */
-    private static function parse_update_notice($content, $new_version) {
+    private static function parse_update_notice_old($content, $new_version) {
         // Output Upgrade Notice.
         $matches = null;
         $regexp = '~==\s*Upgrade Notice\s*==\s*=\s*(.*)\s*=(.*)(=\s*' . preg_quote(MVX_PLUGIN_VERSION) . '\s*=|$)~Uis';

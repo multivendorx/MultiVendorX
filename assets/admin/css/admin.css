@@ -391,6 +391,74 @@
   content: "\e95b";
 }
 
+.icon-twitter-setup-widget:before {
+  content: "\e95c";
+}
+
+.icon-watch-setup-widget:before {
+  content: "\e95d";
+}
+
+.icon-help-setup-widget:before {
+  content: "\e95e";
+}
+
+.icon-Learn-more-setup-widget:before {
+  content: "\e95f";
+}
+
+.icon-delete-registraion-form:before {
+  content: "\e960";
+}
+
+.icon-commission:before {
+  content: "\e961";
+}
+
+.icon-payment:before {
+  content: "\e962";
+}
+
+.icon-product:before {
+  content: "\e963";
+}
+
+.icon-registraion-form:before {
+  content: "\e964";
+}
+
+.icon-shipping:before {
+  content: "\e965";
+}
+
+.icon-tax:before {
+  content: "\e966";
+}
+
+.icon-vendor:before {
+  content: "\e967";
+}
+
+.icon-tab-plans:before {
+  content: "\e968";
+}
+
+.icon-tab-orders:before {
+  content: "\e969";
+}
+
+.icon-tab-message-mails:before {
+  content: "\e96a";
+}
+
+.icon-tab-design-template:before {
+  content: "\e96b";
+}
+
+.icon-tab-subscribers:before {
+  content: "\e96c";
+}
+
 /*********** Modules section *********************/
 @font-face {
   font-family: 'mvx-module';
