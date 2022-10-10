@@ -836,7 +836,7 @@ class MVX_Vendor {
         if (is_mvx_shipping_module_active() && wc_shipping_enabled()) {
             $is_enable = true;
         }
-        return apply_filters('is_mvx_vendor_shipping_enable', $is_enable, $this->id);
+        return apply_filters('mvx_is_vendor_shipping_enable', $is_enable, $this->id);
     }
     
     public function is_transfer_shipping_enable() {
@@ -846,7 +846,7 @@ class MVX_Vendor {
         if ($MVX->vendor_caps->vendor_payment_settings('give_shipping') && !get_user_meta($this->id, '_vendor_give_shipping', true) && wc_shipping_enabled()) {
             $is_enable = true;
         }
-        return apply_filters('is_mvx_vendor_transfer_shipping_enable', $is_enable);
+        return apply_filters('mvx_is_vendor_transfer_shipping_enable', $is_enable);
     }
     
     public function is_transfer_tax_enable() {
@@ -856,7 +856,7 @@ class MVX_Vendor {
         if ($MVX->vendor_caps->vendor_payment_settings('give_tax') && !get_user_meta($this->id, '_vendor_give_tax', true) && wc_tax_enabled()) {
             $is_enable = true;
         }
-        return apply_filters('is_mvx_vendor_transfer_shipping_enable', $is_enable);
+        return apply_filters('mvx_is_vendor_transfer_shipping_enable', $is_enable);
     }
 
     public function is_shipping_tab_enable() {
@@ -876,7 +876,7 @@ class MVX_Vendor {
         if ($this->is_shipping_enable() && $is_enable_flat_rate) {
             $is_shipping_flat_rate_enable = true;
         }
-        return apply_filters('is_mvx_vendor_shipping_tab_enable', $is_shipping_flat_rate_enable, $this->is_shipping_enable());
+        return apply_filters('mvx_is_vendor_shipping_tab_enable', $is_shipping_flat_rate_enable, $this->is_shipping_enable());
     }
 
     /**

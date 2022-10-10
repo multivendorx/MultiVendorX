@@ -23,7 +23,7 @@ $vendor = apply_filters( 'mvx_vendor_select_product_for_add_coupon' , get_mvx_ve
 ?>
 <div role="tabpanel" class="tab-pane fade" id="usage_restriction_coupon_data">
     <div class="row-padding">
-        <?php do_action( 'mvx_afm_before_usage_restriction_coupon_data', $post->ID, $coupon ); ?>
+        <?php do_action( 'mvx_frontend_dashboard_before_usage_restriction_coupon_data', $post->ID, $coupon ); ?>
         <div class="form-group-row"> 
             <div class="form-group">
                 <label class="control-label col-sm-3 col-md-3" for="minimum_amount">
@@ -158,6 +158,6 @@ $vendor = apply_filters( 'mvx_vendor_select_product_for_add_coupon' , get_mvx_ve
                 <input type="email" id="customer_email" name="customer_email" class="form-control" value="<?php echo isset($_POST['customer_email']) ? wc_clean($_POST['customer_email']) : esc_attr( implode( ', ', (array) $coupon->get_email_restrictions( 'edit' ) ) ); ?>" placeholder="<?php esc_attr_e( 'No restrictions', 'multivendorx' ); ?>" multiple="multiple">
             </div>
         </div> 
-        <?php do_action( 'mvx_afm_after_usage_restriction_coupon_data', $post->ID, $coupon ); ?>
+        <?php do_action( 'mvx_frontend_dashboard_after_usage_restriction_coupon_data', $post->ID, $coupon ); ?>
     </div>
 </div>

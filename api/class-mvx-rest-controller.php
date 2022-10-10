@@ -2574,7 +2574,7 @@ class MVX_REST_API {
                 $bank_name = get_user_meta($currentvendor->id, '_vendor_bank_name', true);
                 $iban = get_user_meta($currentvendor->id, '_vendor_iban', true);
                 $amount = get_post_meta($transaction->ID, 'amount', true) - get_post_meta($transaction->ID, 'transfer_charge', true) - get_post_meta($transaction->ID, 'gateway_charge', true);
-                $address_array = apply_filters('mvx_todo_pending_bank_transfer_row_account_details_data', array(
+                $address_array = apply_filters('mvx_wordboard_pending_bank_transfer_data', array(
                 __('Account Name-', 'multivendorx') . ' ' . $account_name,
                 __('Account No -', 'multivendorx') . ' ' . $account_no,
                 __('Bank Name -', 'multivendorx') . ' ' . $bank_name,
@@ -5151,7 +5151,7 @@ class MVX_REST_API {
                 }
                 $vendor_shipping_methods_titles = implode('', $vendor_shipping_methods_titles);
 
-                $user_list[] = apply_filters('mvx_list_table_vendors_columns_data', array(
+                $user_list[] = apply_filters('mvx_backend_list_table_vendors_shipping_columns_data', array(
                         'zone_name' => "<a href='". sprintf('?page=%s&ID=%s&name=%s&zone_id=%s', 'mvx#&submenu=vendor', $vendor_id, 'vendor-shipping', $vendor_shipping_zones['zone_id']) ."'>". $vendor_shipping_zones['zone_name'] ."</a>",
                         'region' => $vendor_shipping_zones['formatted_zone_location'],
                         'shipping_method' => $vendor_shipping_methods_titles,
@@ -5196,7 +5196,7 @@ class MVX_REST_API {
             foreach ($mvx_vendor_followed_by_customer as $key_folloed => $value_followed) {
                 $user_details = get_user_by( 'ID', $value_followed['user_id'] );
                 if ( !$user_details ) continue;
-                $user_list[] = apply_filters('mvx_list_table_vendors_columns_data', array(
+                $user_list[] = apply_filters('mvx_backend_list_table_vendors_followers_columns_data', array(
                     'name' => $user_details->data->display_name,
                     'time' => human_time_diff(strtotime($value_followed['timestamp'])),
                 ), $user_details);

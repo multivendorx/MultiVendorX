@@ -752,7 +752,7 @@ class MVX_User {
                 $user = new WP_User(absint($user_id));
                 $user->set_role('dc_vendor');
             }
-            do_action('after_register_mvx_vendor', $user_id);
+            do_action('mvx_after_register_vendor', $user_id);
         }
     }
 
@@ -1074,7 +1074,7 @@ class MVX_User {
 
         //Determine if the user is MVX vendor
         $mvx_vendor_avatar = '';
-        if(is_user_mvx_vendor($user->ID) && apply_filters('is_mvx_user_avatar_overridden', true, $user->ID)){
+        if(is_user_mvx_vendor($user->ID) && apply_filters('mvx_is_user_avatar_overridden', true, $user->ID)){
             $vendor = get_mvx_vendor($user->ID);
             $mvx_vendor_avatar = sprintf(
                 "<img alt='%s' src='%s' class='%s' height='%d' width='%d' %s/>",

@@ -411,7 +411,7 @@ if (!function_exists('is_vendor_dashboard')) {
         } else {
             return is_page(mvx_vendor_dashboard_page_id());
         }
-        return apply_filters('is_mvx_vendor_dashboard', $is_vendor_dashboard);
+        return apply_filters('mvx_is_vendor_dashboard', $is_vendor_dashboard);
     }
 
 }
@@ -474,7 +474,7 @@ if (!function_exists('is_page_vendor_registration')) {
         if (mvx_vendor_registration_page_id()) {
             $is_vendor_registration = is_page(mvx_vendor_registration_page_id()) ? true : false;
         }
-        return apply_filters('is_mvx_vendor_registration', $is_vendor_registration);
+        return apply_filters('mvx_is_vendor_registration', $is_vendor_registration);
     }
 
 }
@@ -543,7 +543,7 @@ if (!function_exists('is_vendor_page')) {
      */
     function is_vendor_page() {
         _deprecated_function('is_vendor_page', '2.7.7', 'is_vendor_dashboard or is_page_vendor_registration');
-        return apply_filters('is_mvx_vendor_page', (is_vendor_dashboard() || is_page_vendor_registration()));
+        return apply_filters('mvx_is_vendor_page', (is_vendor_dashboard() || is_page_vendor_registration()));
     }
 
 }
@@ -2150,7 +2150,7 @@ if (!function_exists('MVXGenerateTaxonomyHTML')) {
     function MVXGenerateTaxonomyHTML($taxonomy, $product_categories = array(), $categories = array(), $nbsp = '') {
 
         foreach ($product_categories as $cat) {
-            if (apply_filters('is_visible_mvx_frontend_product_cat', true, $cat->term_id, $taxonomy)) {
+            if (apply_filters('mvx_is_visible_frontend_product_cat', true, $cat->term_id, $taxonomy)) {
                 echo '<option value="' . esc_attr($cat->term_id) . '"' . selected(in_array($cat->term_id, $categories), true, false) . '>' . $nbsp . esc_html($cat->name) . '</option>';
             }
             $product_child_categories = get_terms($taxonomy, 'orderby=name&hide_empty=0&parent=' . absint($cat->term_id));
@@ -3594,7 +3594,7 @@ if (!function_exists('mvx_list_categories')) {
             'echo' => false
         );
 
-        $r = apply_filters( 'before_mvx_list_categories_query_args', wp_parse_args($args, $defaults), $args );
+        $r = apply_filters( 'mvx_before_list_categories_query_args', wp_parse_args($args, $defaults), $args );
 
         $taxonomy = $r['taxonomy'];
 

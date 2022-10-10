@@ -21,7 +21,7 @@ defined( 'ABSPATH' ) || exit;
 ?>
 <div role="tabpanel" class="tab-pane fade active in" id="general_coupon_data">
     <div class="row-padding">
-        <?php do_action( 'mvx_afm_before_general_coupon_data', $post->ID, $coupon ); ?>
+        <?php do_action( 'mvx_frontend_dashboard_before_general_coupon_data', $post->ID, $coupon ); ?>
         <div class="form-group-row"> 
             <div class="form-group">
                 <label class="control-label col-sm-3 col-md-3" for="discount_type"><?php esc_html_e( 'Discount type', 'multivendorx' ); ?></label>

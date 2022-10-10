@@ -12,7 +12,7 @@ global $MVX, $product;
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
-do_action('before_mvx_customer_qna_form');
+do_action('mvx_before_customer_qna_form');
 ?>
 <div id="mvx_customer_qna" class="woocommerce-mvx_customer_qna">
     <div id="cust_qna_form_wrapper">
@@ -109,4 +109,4 @@ do_action('before_mvx_customer_qna_form');
         </div>
     </div>
 </div>
-<?php do_action('after_mvx_customer_qna_form');
+<?php do_action('mvx_after_customer_qna_form');

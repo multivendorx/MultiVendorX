@@ -23,9 +23,9 @@ $post_status = get_post_status( $post->ID );
 $title = in_array( $post_status, array( "publish", "draft", "pending" ) ) ? $post->post_title : '';
 ?>
 <div class="col-md-12 add-coupon-wrapper">
-    <?php do_action( 'before_mvx_afm_add_coupon_form' ); ?>
-    <form id="mvx-afm-add-coupon" class="woocommerce form-horizontal" method="post">
-        <?php do_action( 'mvx_afm_add_coupon_form_start' ); ?>
+    <?php do_action( 'mvx_before_frontend_dashboard_add_coupon_form' ); ?>
+    <form id="mvx-frontend-dashboard-add-coupon" class="woocommerce form-horizontal" method="post">
+        <?php do_action( 'mvx_frontend_dashboard_add_coupon_form_start' ); ?>
         <div class="coupon-primary-info custom-panel">
             <div class="row">
                 <div class="col-md-8 p-0"> 
@@ -88,7 +88,7 @@ $title = in_array( $post_status, array( "publish", "draft", "pending" ) ) ? $pos
 
                                             </li>
                                         <?php endforeach; ?>
-                                        <?php do_action( 'mvx_afm_coupon_write_panel_tabs' ); ?>
+                                        <?php do_action( 'mvx_frontend_dashboard_coupon_write_panel_tabs' ); ?>
                                     </ul>
                                 </div>
                                 <!-- Nav tabs End -->
@@ -100,7 +100,7 @@ $title = in_array( $post_status, array( "publish", "draft", "pending" ) ) ? $pos
                                     $MVX->template->get_template( 'vendor-dashboard/coupon-manager/views/html-coupon-data-usage-restriction.php', array( 'self' => $self, 'coupon' => $coupon, 'post' => $post ) );
                                     $MVX->template->get_template( 'vendor-dashboard/coupon-manager/views/html-coupon-data-usage-limit.php', array( 'self' => $self, 'coupon' => $coupon, 'post' => $post ) );
                                     ?>
-                                    <?php do_action( 'mvx_afm_coupon_tabs_content' ); ?>
+                                    <?php do_action( 'mvx_frontend_dashboard_coupon_tabs_content' ); ?>
                                 </div>
                                 <!-- Tab content End -->
                             </div>        
@@ -122,12 +122,12 @@ $title = in_array( $post_status, array( "publish", "draft", "pending" ) ) ? $pos
                 }
             }
             ?>
-            <input type="submit" class="btn btn-default" name="submit-data" value="<?php echo esc_attr( $primary_action ); ?>" id="mvx_afm_coupon_submit" />
-            <input type="submit" class="btn btn-default" name="draft-data" value="<?php esc_attr_e( 'Draft', 'multivendorx' ); ?>" id="mvx_afm_coupon_draft" />
+            <input type="submit" class="btn btn-default" name="submit-data" value="<?php echo esc_attr( $primary_action ); ?>" id="mvx_frontend_dashboard_coupon_submit" />
+            <input type="submit" class="btn btn-default" name="draft-data" value="<?php esc_attr_e( 'Draft', 'multivendorx' ); ?>" id="mvx_frontend_dashboard_coupon_draft" />
             <input type="hidden" name="status" value="<?php echo esc_attr( $post_status ); ?>">
-            <?php wp_nonce_field( 'mvx-afm-coupon', 'mvx_afm_coupon_nonce' ); ?>
+            <?php wp_nonce_field( 'mvx-frontend-dashboard-coupon', 'mvx_frontend_dashboard_coupon_nonce' ); ?>
         </div>
-        <?php do_action( 'mvx_afm_add_coupon_form_end' ); ?>
+        <?php do_action( 'mvx_frontend_dashboard_add_coupon_form_end' ); ?>
     </form>
-    <?php do_action( 'after_mvx_afm_add_coupon_form' ); ?>
+    <?php do_action( 'mvx_after_frontend_dashboard_add_coupon_form' ); ?>
 </div> 

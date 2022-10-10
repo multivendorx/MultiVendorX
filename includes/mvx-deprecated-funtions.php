@@ -2033,7 +2033,7 @@ function get_wcmp_store_data( $prop = null ) {
 }
 
 function is_wcmp_tab_has_subtab( $tab = 'general' ) {
-	wc_deprecated_function('s_wcmp_tab_has_subtab', '4.0.0', 's_mvx_tab_has_subtab');
+	wc_deprecated_function('s_wcmp_tab_has_subtab', '4.0.0', 'is_mvx_tab_has_subtab');
 	return is_mvx_tab_has_subtab( $tab = 'general' );
 }
 

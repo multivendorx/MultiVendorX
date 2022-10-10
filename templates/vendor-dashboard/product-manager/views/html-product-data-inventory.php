@@ -35,7 +35,7 @@ defined( 'ABSPATH' ) || exit;
                     <div class="form-group">
                         <label class="control-label col-sm-3 col-md-3" for="_manage_stock">
                             <?php esc_html_e( 'Manage stock?', 'multivendorx' ); ?>
-                            <?php do_action( 'mvx_afm_product_options_stock_description' ); ?>
+                            <?php do_action( 'mvx_frontend_dashboard_product_options_stock_description' ); ?>
                         </label>
                         <div class="col-md-6 col-sm-9">
                             <input class="form-control" type="checkbox" id="_manage_stock" name="_manage_stock" value="yes"<?php checked( isset($_POST['_manage_stock']) && $_POST['_manage_stock'] == 'yes' ? true : $product_object->get_manage_stock( 'edit' ), true ); ?>/>
@@ -43,7 +43,7 @@ defined( 'ABSPATH' ) || exit;
                         </div>
                     </div>  
                 </div>
-                <?php do_action( 'mvx_afm_product_options_stock', $post->ID, $product_object, $post ); ?>
+                <?php do_action( 'mvx_frontend_dashboard_product_options_stock', $post->ID, $product_object, $post ); ?>
                 <?php
                 $stock_fields_visibility = apply_filters( 'inventory_tab_stock_fields_section', array( 'simple', 'variable' ) );
                 if ( call_user_func_array( "mvx_is_allowed_product_type", $stock_fields_visibility ) ) :
@@ -85,7 +85,7 @@ defined( 'ABSPATH' ) || exit;
                     </div>
                 <?php endif; ?>
             <?php endif; ?>
-            <?php do_action( 'mvx_afm_product_options_stock_fields', $post->ID, $product_object, $post ); ?>
+            <?php do_action( 'mvx_frontend_dashboard_product_options_stock_fields', $post->ID, $product_object, $post ); ?>
             <?php
             $stock_status_invisibility = apply_filters( 'inventory_tab_stock_status_section_invisibility', array( 'variable', 'external' ) );
             $hide_classes = '';
@@ -104,7 +104,7 @@ defined( 'ABSPATH' ) || exit;
                     </div>
                 </div>    
             </div>
-            <?php do_action( 'mvx_afm_product_options_stock_status', $post->ID, $product_object, $post ); ?> 
+            <?php do_action( 'mvx_frontend_dashboard_product_options_stock_status', $post->ID, $product_object, $post ); ?> 
             
         <?php endif; ?> 
         <?php
@@ -120,10 +120,10 @@ defined( 'ABSPATH' ) || exit;
                         <span class="form-text"><?php esc_html_e( 'Enable this to only allow one of this item to be bought in a single order', 'multivendorx' ); ?></span>
                     </div>
                 </div> 
-                <?php do_action( 'mvx_afm_product_options_sold_individually', $post->ID, $product_object, $post ); ?>
+                <?php do_action( 'mvx_frontend_dashboard_product_options_sold_individually', $post->ID, $product_object, $post ); ?>
             </div>
         <?php endif; ?>
-        <?php do_action( 'mvx_afm_after_inventory_section_ends', $post->ID, $product_object, $post ); ?>
+        <?php do_action( 'mvx_frontend_dashboard_after_inventory_section_ends', $post->ID, $product_object, $post ); ?>
     </div>
-    <?php do_action( 'mvx_afm_product_options_inventory_product_data', $post->ID, $product_object, $post ); ?>
+    <?php do_action( 'mvx_frontend_dashboard_product_options_inventory_product_data', $post->ID, $product_object, $post ); ?>
 </div>

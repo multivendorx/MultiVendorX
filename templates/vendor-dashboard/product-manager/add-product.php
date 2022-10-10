@@ -56,7 +56,7 @@ if (is_user_logged_in() && is_user_mvx_vendor($current_vendor_id) && !current_us
                         <div class="mvx-product-categories-wrap cat-column-wrapper">
                             <div class="mvx-product-cat-level 1-level-cat cat-column" data-level="1"  data-mcs-theme="dark">
                                 <ul class="mvx-product-categories 1-level" data-cat-level="1">
-                                    <?php echo mvx_list_categories( apply_filters( 'mvx_vendor_product_classify_1_level_categories', array(
+                                    <?php echo mvx_list_categories( apply_filters( 'mvx_vendor_product_classify_first_level_categories', array(
                                     'taxonomy' => 'product_cat', 
                                     'hide_empty' => false, 
                                     'html_list' => true,
@@ -108,4 +108,4 @@ if (is_user_logged_in() && is_user_mvx_vendor($current_vendor_id) && !current_us
     </div>
 </div>
 <?php
-do_action('mvx-frontend-product-manager_template');
+do_action('mvx_frontend_product_manager_template');

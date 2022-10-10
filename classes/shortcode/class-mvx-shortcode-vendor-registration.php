@@ -24,7 +24,7 @@ class MVX_Vendor_Registration_Shortcode {
         global $MVX;
         $enable_registration = ( get_option('users_can_register') ) ? get_option('users_can_register') : false;
         $enable_registration = ( !$enable_registration ) ? get_option( 'woocommerce_enable_myaccount_registration' ) != 'yes' ? false : true : $enable_registration;
-        if (!apply_filters('enable_users_can_register_for_mvx_vendor_registration', $enable_registration)) {
+        if (!apply_filters('mvx_enable_users_can_register_for_vendor_registration', $enable_registration)) {
             echo ' ' . __('Signup has been disabled.', 'multivendorx');
             return;
         }

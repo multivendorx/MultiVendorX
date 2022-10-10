@@ -68,7 +68,7 @@ class MVX_BuddyPress {
 	        add_filter( 'bp_before_xprofile_cover_image_settings_parse_args', array( $this, 'bpcp_profile_cover_default_from_vendor'), 10, 1 );
 
 	        /***************** Update from vendor profile to buddypress profile ****************************/
-	        add_action( 'before_mvx_vendor_dashboard',array($this, 'save_vendor_dashboard_data_change') , 99 );
+	        add_action( 'mvx_before_vendor_dashboard',array($this, 'save_vendor_dashboard_data_change') , 99 );
 
 	        /********************** If members delete there image in buddypress,vendor dashboard image also removed if sync done before **************************/
 	        add_action( 'bp_core_delete_existing_avatar', array( $this, 'delete_avatar_existing_image' ) );

@@ -77,7 +77,7 @@ function return_vendor_info_on_list_product_query($response, $object, $request) 
 		$data = $response->get_data();
 		$data['vendor'] = $vendor_id;
                 $data['store_name'] = $vendor->page_title;
-		$response->set_data( apply_filters( 'before_mvx_rest_prepare_product_object_data', $data, $vendor, $object, $request ) );
+		$response->set_data( apply_filters( 'mvx_before_rest_prepare_product_object_data', $data, $vendor, $object, $request ) );
 	}
 	return $response;
 }

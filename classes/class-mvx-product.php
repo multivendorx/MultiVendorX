@@ -112,7 +112,7 @@ class MVX_Product {
         // product classify
         add_filter( 'mvx_get_product_terms_html_selected_terms', array($this, 'mvx_get_product_terms_html_selected_terms'), 99, 3);
         add_action( 'mvx_process_product_object', array($this, 'reset_vendor_classified_product_terms'), 99 );
-        add_action( 'before_mvx_vendor_dashboard_content', array($this, 'reset_vendor_classified_product_terms'), 99  );
+        add_action( 'mvx_before_vendor_dashboard_content', array($this, 'reset_vendor_classified_product_terms'), 99  );
         // Hide products backend fields as per new product modifications
         add_action( 'add_meta_boxes', array( $this, 'remove_meta_boxes' ), 99 );
         // show default product categories

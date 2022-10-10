@@ -26,7 +26,7 @@ foreach ($get_product_data_tabs as $key_tabs => $value_tabs) {
 }
 ?> 
 <div class="col-md-12 add-product-wrapper">
-    <?php do_action( 'before_mvx_add_product_form' ); ?>
+    <?php do_action( 'mvx_before_add_product_form' ); ?>
     <form id="mvx-edit-product-form" class="woocommerce form-horizontal" method="post">
         <?php do_action( 'mvx_add_product_form_start' ); ?>
         <!-- Top product highlight -->
@@ -197,7 +197,7 @@ foreach ($get_product_data_tabs as $key_tabs => $value_tabs) {
                             <div class="tab-nav-direction-wrapper"></div>
                             <ul class="nav nav-tabs" role="tablist" id="product_data_tabs">
                                 <?php foreach ( $get_product_data_tabs as $key => $tab ) : ?>
-                                    <?php if ( apply_filters( 'mvx_afm_product_data_tabs_filter', ( ! isset( $tab['p_type'] ) || array_key_exists( $tab['p_type'], mvx_get_product_types() ) && mvx_is_product_type_avaliable( $tab['p_type'] ) ), $key, $tab ) ) : ?>
+                                    <?php if ( apply_filters( 'mvx_frontend_dashboard_product_data_tabs_filter', ( ! isset( $tab['p_type'] ) || array_key_exists( $tab['p_type'], mvx_get_product_types() ) && mvx_is_product_type_avaliable( $tab['p_type'] ) ), $key, $tab ) ) : ?>
                                         <li role="presentation" class="nav-item <?php echo esc_attr( $key ); ?>_options <?php echo esc_attr( $key ); ?>_tab <?php echo esc_attr( isset( $tab['class'] ) ? implode( ' ', (array) $tab['class'] ) : ''  ); ?>">
                                             <a class="nav-link" href="#<?php echo esc_attr( $tab['target'] ); ?>" aria-controls="<?php echo $tab['target']; ?>" role="tab" data-toggle="tab"><span><?php echo esc_html( $tab['label'] ); ?></span></a>
                                         </li>
@@ -233,7 +233,7 @@ foreach ($get_product_data_tabs as $key_tabs => $value_tabs) {
         <div class="row">
             <div class="col-md-8">
                 <?php do_action( 'mvx_after_product_excerpt_metabox_panel', $post->ID ); ?>
-                <?php do_action( 'mvx_afm_after_product_excerpt_metabox_panel', $post->ID ); ?>
+                <?php do_action( 'mvx_frontend_dashboard_after_product_excerpt_metabox_panel', $post->ID ); ?>
                 
                 <?php 
                 do_action( 'mvx_before_product_note_metabox_panel', $post->ID );
@@ -343,7 +343,7 @@ foreach ($get_product_data_tabs as $key_tabs => $value_tabs) {
                     }
                 }
                 ?>
-                <?php do_action( 'after_mvx_product_tags_metabox_panel', $post->ID ); ?>
+                <?php do_action( 'mvx_after_product_tags_metabox_panel', $post->ID ); ?>
             </div>
         </div>
         <?php if ( ! empty( mvx_get_product_types() ) ) : ?>
@@ -358,13 +358,13 @@ foreach ($get_product_data_tabs as $key_tabs => $value_tabs) {
                     }
                 }
                 ?>
-                <input type="submit" class="btn btn-default" name="submit-data" value="<?php echo esc_attr( $primary_action ); ?>" id="mvx_afm_product_submit" />
-                <input type="submit" class="btn btn-default" name="draft-data" value="<?php esc_attr_e( 'Draft', 'multivendorx' ); ?>" id="mvx_afm_product_draft" />
+                <input type="submit" class="btn btn-default" name="submit-data" value="<?php echo esc_attr( $primary_action ); ?>" id="mvx_frontend_dashboard_product_submit" />
+                <input type="submit" class="btn btn-default" name="draft-data" value="<?php esc_attr_e( 'Draft', 'multivendorx' ); ?>" id="mvx_frontend_dashboard_product_draft" />
                 <input type="hidden" name="status" value="<?php echo esc_attr( get_post_status( $post ) ); ?>">
                 <?php wp_nonce_field( 'mvx-product', 'mvx_product_nonce' ); ?>
             </div>
         <?php endif; ?>
         <?php do_action( 'mvx_add_product_form_end' ); ?>
     </form>
-    <?php do_action( 'after_mvx_add_product_form' ); ?>
+    <?php do_action( 'mvx_after_add_product_form' ); ?>
 </div>

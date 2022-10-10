@@ -37,6 +37,6 @@ defined( 'ABSPATH' ) || exit;
             </div> 
         <?php endif; ?>
 
-        <?php do_action( 'mvx_afm_product_options_advanced', $post->ID, $product_object, $post ); ?>
+        <?php do_action( 'mvx_frontend_dashboard_product_options_advanced', $post->ID, $product_object, $post ); ?>
     </div>
 </div>

@@ -29,7 +29,7 @@ class MVX_Gateway_Stripe_Connect extends MVX_Payment_Gateway {
         $this->payment_gateway = $this->id;
         $this->enabled = mvx_is_module_active('stripe-connect') ? 'Enable' : '';
         // Disconnect Vendor stripe account
-        add_action('before_mvx_vendor_dashboard', array($this, 'disconnect_stripe_account'));
+        add_action('mvx_before_vendor_dashboard', array($this, 'disconnect_stripe_account'));
         // Stripe authorization
         add_action('wp_ajax_marketplace_stripe_authorize', array(&$this, 'marketplace_stripe_authorize')); 
         // stripe return back to dashboard page

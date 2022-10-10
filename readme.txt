@@ -973,7 +973,7 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/d
 * Tweak - Vendor top rated products widget show.
 * Tweak - Vendor report abuse from.
 * Dev - Disable `mvx_is_disable_store_visitors_stats` filter added.
-* Dev - Capability for product `is_mvx_vendor_edit_non_published_product` filter added.
+* Dev - Capability for product `mvx_is_vendor_edit_non_published_product` filter added.
 * Updated - Stripe library.
 * Updated - Language file.
 

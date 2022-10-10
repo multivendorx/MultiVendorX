@@ -3,7 +3,7 @@
 /**
  * Policies product tab template
  *
- * Used by mvx-afm-add-product.php template
+ * Used by mvx-frontend-dashboard-add-product.php template
  *
  * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/product-manager/views/html-product-data-policy.php
  *
@@ -19,7 +19,7 @@ $_mvx_cancallation_policy = get_post_meta( $id, '_mvx_cancallation_policy', true
 ?>
 <div role="tabpanel" class="tab-pane fade" id="product_policy_data">
     <div class="row-padding"> 
-        <?php do_action( 'mvx_afm_before_vendor_policies', $post->ID, $product_object, $post ); ?>
+        <?php do_action( 'mvx_frontend_dashboard_before_vendor_policies', $post->ID, $product_object, $post ); ?>
         <?php if ( apply_filters( 'can_vendor_edit_shipping_policy_field', true ) ) : ?>
             <div class="form-group">
                 <label class="control-label col-sm-3 col-md-3" for="_mvx_shipping_policy"><?php esc_attr_e( 'Shipping Policy', 'multivendorx' ); ?></label>
@@ -77,6 +77,6 @@ $_mvx_cancallation_policy = get_post_meta( $id, '_mvx_cancallation_policy', true
                 </div>
             </div>
         <?php endif; ?>
-        <?php do_action( 'mvx_afm_after_vendor_policies', $post->ID, $product_object, $post ); ?>
+        <?php do_action( 'mvx_frontend_dashboard_after_vendor_policies', $post->ID, $product_object, $post ); ?>
     </div>
 </div>

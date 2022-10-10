@@ -14,7 +14,7 @@ global $MVX;
 ?>
 <div role="tabpanel" class="tab-pane fade" id="general_product_data">
     <div class="row-padding">
-        <?php do_action( 'mvx_afm_before_general_product_data', $post->ID, $product_object, $post ); ?>
+        <?php do_action( 'mvx_frontend_dashboard_before_general_product_data', $post->ID, $product_object, $post ); ?>
         <?php
         $product_url_visibility = apply_filters( 'general_tab_product_url_section', array( 'external' ) );
         if ( call_user_func_array( "mvx_is_allowed_product_type", $product_url_visibility ) ) :
@@ -76,7 +76,7 @@ global $MVX;
                         <a href="#" class="pull-right cancel_sale_schedule form-text"><?php esc_html_e( 'Cancel', 'multivendorx' ); ?></a>
                     </div>
                 </div> 
-                <?php do_action( 'mvx_afm_product_options_pricing', $post->ID, $product_object, $post ); ?> 
+                <?php do_action( 'mvx_frontend_dashboard_product_options_pricing', $post->ID, $product_object, $post ); ?> 
             </div>
         <?php endif; ?>
         <?php if ( mvx_is_product_type_avaliable( 'downloadable' ) ) : ?>
@@ -144,7 +144,7 @@ global $MVX;
                         <input class="form-control" type="text" placeholder="<?php esc_attr_e( 'Never', 'multivendorx' ); ?>" id="_download_expiry" name="_download_expiry" value="<?php echo -1 === $product_object->get_download_expiry( 'edit' ) ? '' : (isset($_POST['_download_expiry']) ? wc_clean($_POST['_download_expiry']) : $product_object->get_download_expiry( 'edit' )); ?>" />
                     </div>
                 </div> 
-                <?php do_action( 'mvx_afm_product_options_downloads', $post->ID, $product_object, $post ); ?>
+                <?php do_action( 'mvx_frontend_dashboard_product_options_downloads', $post->ID, $product_object, $post ); ?>
             </div>
         <?php endif; ?>
         <?php

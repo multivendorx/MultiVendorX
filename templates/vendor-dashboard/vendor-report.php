@@ -26,7 +26,7 @@ global $MVX;
                     <div class="form-group">
                         <button name="submit_button" type="submit" value="Show" class="mvx_black_btn btn btn-default"><?php esc_html_e('Show', 'multivendorx'); ?></button>
                     </div> 
-                    <?php if (apply_filters('can_mvx_vendor_export_orders_csv', true, get_current_vendor_id())) : ?>
+                    <?php if (apply_filters('mvx_can_vendor_export_orders_csv', true, get_current_vendor_id())) : ?>
                     <div class="form-group">
                         <button type="submit" class="mvx_black_btn btn btn-default" name="mvx_stat_export" value="export"><?php esc_html_e('Download CSV', 'multivendorx'); ?></button>
                     </div> 

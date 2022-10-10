@@ -45,7 +45,7 @@ if(isset($more_product_array) && is_array($more_product_array) && count($more_pr
 			<div class="rowsub ">
 				<div class="vendor_name">
 					<a href="<?php echo esc_url($more_product['shop_link']); ?>" class="mvx_seller_name"><?php echo esc_html($more_product['seller_name']); ?></a>
-					<?php do_action('after_mvx_singleproductmultivendor_vendor_name', $more_product['product_id'], $more_product);?>
+					<?php do_action('mvx_after_singleproductmultivendor_vendor_name', $more_product['product_id'], $more_product);?>
 				</div>
 				<?php 
 				if(isset($more_product['rating_data']) && is_array($more_product['rating_data']) && isset($more_product['rating_data']['avg_rating']) && $more_product['rating_data']['avg_rating']!=0 && $more_product['rating_data']['avg_rating']!=''){ 

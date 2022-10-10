@@ -124,7 +124,7 @@ class MVX_Vendor_Query {
 		 * @param WP_User_Query $this The current WP_User_Query instance,
 		 *                            passed by reference.
 		 */
-		do_action( 'pre_get_mvx_vendors', $this );
+		do_action( 'mvx_pre_get_vendors', $this );
 
 		// Ensure that query vars are filled after 'pre_get_users'.
 		$this->query_vars = $this->fill_query_vars( $this->query_vars );

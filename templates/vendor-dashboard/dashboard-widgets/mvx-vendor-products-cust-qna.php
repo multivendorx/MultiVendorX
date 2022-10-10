@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
 }
 global $MVX;
 
-do_action('before_mvx_vendor_dashboard_products_cust_qna');
+do_action('mvx_before_vendor_dashboard_products_cust_qna');
 ?>
 <div class="customer-questions-panel dash-widget-dt">
     <table id="customer_questions" class="mvx-widget-dt table" width="100%">
@@ -62,4 +62,4 @@ jQuery(document).ready(function($) {
 });
 </script>
 <?php
-do_action('after_mvx_vendor_dashboard_products_cust_qna');
+do_action('mvx_after_vendor_dashboard_products_cust_qna');

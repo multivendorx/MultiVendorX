@@ -146,8 +146,8 @@ class MVX_Ajax {
         }
         $crop_details_post = isset($_POST['cropDetails']) ? wc_clean( $_POST['cropDetails'] ) : '';
         $crop_details_option = isset($_POST['cropOptions']) ? wc_clean( $_POST['cropOptions'] ) : '';
-        $crop_details = apply_filters('before_mvx_crop_image_cropDetails_data', $crop_details_post, $attachment_id);
-        $crop_options = apply_filters('before_mvx_crop_image_cropOptions_data', $crop_details_option, $attachment_id);
+        $crop_details = apply_filters('mvx_before_crop_image_cropDetails_data', $crop_details_post, $attachment_id);
+        $crop_options = apply_filters('mvx_before_crop_image_cropOptions_data', $crop_details_option, $attachment_id);
 
         $cropped = wp_crop_image(
                 $attachment_id, (int) $crop_details['x1'], (int) $crop_details['y1'], (int) $crop_details['width'], (int) $crop_details['height'], $crop_options['maxWidth'], $crop_options['maxHeight']
@@ -222,7 +222,7 @@ class MVX_Ajax {
         
         $filterActionData = array();
         parse_str($requestData['orders_filter_action'], $filterActionData);
-        do_action('before_mvx_orders_list_query_bind', $filterActionData, $requestData, $vendor_all_orders);
+        do_action('mvx_before_orders_list_query_bind', $filterActionData, $requestData, $vendor_all_orders);
         $notices = array();
         
         // Do bulk handle
@@ -295,7 +295,7 @@ class MVX_Ajax {
                     'icon' => 'ico-eye-icon action-icon',
                     'title' => __('View', 'multivendorx'),
                 );
-                if (apply_filters('can_mvx_vendor_export_orders_csv', true, get_current_vendor_id())) :
+                if (apply_filters('mvx_can_vendor_export_orders_csv', true, get_current_vendor_id())) :
                     $actions['mvx_vendor_csv_download_per_order'] = array(
                         'url' => admin_url('admin-ajax.php?action=mvx_vendor_csv_download_per_order&order_id=' . $order->get_id() . '&nonce=' . wp_create_nonce('mvx_vendor_csv_download_per_order')),
                         'icon' => 'ico-download-icon action-icon',
@@ -1028,7 +1028,7 @@ class MVX_Ajax {
             $requestData = ( $_REQUEST ) ? wp_unslash( $_REQUEST ) : array();
             $filterActionData = array();
             parse_str($requestData['products_filter_action'], $filterActionData);
-            do_action('before_mvx_products_list_query_bind', $filterActionData, $requestData);
+            do_action('mvx_before_products_list_query_bind', $filterActionData, $requestData);
             $notices = array();
             // Do bulk handle
             if (isset($requestData['bulk_action']) && $requestData['bulk_action'] != '' && isset($filterActionData['selected_products']) && is_array($filterActionData['selected_products'])) {
@@ -2926,7 +2926,7 @@ class MVX_Ajax {
         }
         $html_level .= '<div class="mvx-product-cat-level ' . $level . '-level-cat cat-column" data-level="' . $level . '">'
                 . '<ul class="mvx-product-categories ' . $level . '-level" data-cat-level="' . $level . '">';
-        $html_level .= mvx_list_categories(apply_filters('mvx_vendor_product_classify_1_level_categories', array(
+        $html_level .= mvx_list_categories(apply_filters('mvx_vendor_product_classify_first_level_categories', array(
             'taxonomy' => 'product_cat',
             'hide_empty' => false,
             'html_list' => true,

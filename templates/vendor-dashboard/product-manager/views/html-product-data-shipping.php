@@ -3,7 +3,7 @@
 /**
  * Shipping product tab template
  *
- * Used by mvx-afm-add-product.php template
+ * Used by mvx-frontend-dashboard-add-product.php template
  *
  * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/product-manager/views/html-product-data-shipping.php
  *
@@ -41,7 +41,7 @@ defined( 'ABSPATH' ) || exit;
                 </div>
             </div> 
         <?php endif; ?>
-        <?php do_action( 'mvx_afm_product_options_dimensions', $post->ID, $product_object, $post ); ?> 
+        <?php do_action( 'mvx_frontend_dashboard_product_options_dimensions', $post->ID, $product_object, $post ); ?> 
         <div class="form-group">
             <label class="control-label col-sm-3 col-md-3" for="product_shipping_class"><?php esc_html_e( 'Shipping class', 'multivendorx' ); ?></label>
             <div class="col-md-6 col-sm-9">
@@ -53,6 +53,6 @@ defined( 'ABSPATH' ) || exit;
                 </select>
             </div>
         </div> 
-        <?php do_action( 'mvx_afm_product_options_shipping', $post->ID, $product_object, $post ); ?> 
+        <?php do_action( 'mvx_frontend_dashboard_product_options_shipping', $post->ID, $product_object, $post ); ?> 
     </div>
 </div>

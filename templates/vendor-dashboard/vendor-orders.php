@@ -66,7 +66,7 @@ if ( !mvx_is_module_active( 'marketplace-refund' ) ) {
                     </select>
                     <button class="mvx_black_btn btn btn-secondary" type="button" id="order_list_do_bulk_action"><?php esc_html_e('Apply', 'multivendorx'); ?></button>
                     <?php 
-                    $filter_by_status = apply_filters( 'mvx_vendor_dashboard_order_filter_status_arr', array_merge( 
+                    $filter_by_status = apply_filters( 'mvx_vendor_dashboard_order_filter_status_array', array_merge( 
                         array( 'all' => __('All', 'multivendorx'), 'request_refund' => __('Request Refund', 'multivendorx') ), 
                         wc_get_order_statuses()
                     ) ); 
@@ -99,7 +99,7 @@ if ( !mvx_is_module_active( 'marketplace-refund' ) ) {
                     </thead>
                     <tbody></tbody>
                 </table>
-            <?php if(apply_filters('can_mvx_vendor_export_orders_csv', true, get_current_vendor_id())) : ?>
+            <?php if(apply_filters('mvx_can_vendor_export_orders_csv', true, get_current_vendor_id())) : ?>
             <div class="mvx-action-container">
                 <input class="btn btn-default" type="submit" name="mvx_download_vendor_order_csv" value="<?php esc_attr_e('Download CSV', 'multivendorx') ?>" />
             </div>

@@ -91,7 +91,7 @@ if ( $template_class == 'template3') { ?>
                             }
                         }
                         ?>
-                    <?php do_action('after_mvx_vendor_information',$vendor_id);?>   
+                    <?php do_action('mvx_after_vendor_information',$vendor_id);?>   
                 </div>
 
                 <?php if (!$vendor_hide_description && !empty($description)) { ?>                
@@ -166,7 +166,7 @@ if ( $template_class == 'template3') { ?>
                             }
                         }
                         ?>
-                    <?php do_action('after_mvx_vendor_information',$vendor_id);?>   
+                    <?php do_action('mvx_after_vendor_information',$vendor_id);?>   
                 </div>
             </div>
             <div class='mvx-bannerright'>
@@ -262,7 +262,7 @@ if ( $template_class == 'template3') { ?>
                             }
                         }
                         ?>
-                    <?php do_action('after_mvx_vendor_information',$vendor_id);?>   
+                    <?php do_action('mvx_after_vendor_information',$vendor_id);?>   
                 </div>
                 
                 <?php if (!$vendor_hide_description && !empty($description)) { ?>                
@@ -284,4 +284,4 @@ if ( $template_class == 'template3') { ?>
     <?php
 }
 // Additional hook after archive description ended
-do_action('after_mvx_vendor_description', $vendor_id);
+do_action('mvx_after_vendor_description', $vendor_id);

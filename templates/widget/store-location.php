@@ -20,7 +20,7 @@ if (mvx_mapbox_api_enabled() || mvx_google_api_enabled()) {
         <?php
         if (mvx_mapbox_api_enabled()) {
             $MVX->library->load_mapbox_api();
-            $map_style = apply_filters( 'mvx_store_location_widget_map_style', 'mapbox://styles/mapbox/streets-v11');
+            $map_style = apply_filters( 'mvx_store_location_widget_mapbox_style', 'mapbox://styles/mapbox/streets-v11');
             ?>
             <script>
                 mapboxgl.accessToken = '<?php echo mvx_mapbox_api_enabled(); ?>';
