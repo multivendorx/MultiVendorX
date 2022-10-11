@@ -146,8 +146,8 @@ class MVX_Ajax {
         }
         $crop_details_post = isset($_POST['cropDetails']) ? wc_clean( $_POST['cropDetails'] ) : '';
         $crop_details_option = isset($_POST['cropOptions']) ? wc_clean( $_POST['cropOptions'] ) : '';
-        $crop_details = apply_filters('mvx_before_crop_image_cropDetails_data', $crop_details_post, $attachment_id);
-        $crop_options = apply_filters('mvx_before_crop_image_cropOptions_data', $crop_details_option, $attachment_id);
+        $crop_details = apply_filters('mvx_before_crop_image_details', $crop_details_post, $attachment_id);
+        $crop_options = apply_filters('mvx_before_crop_image_options', $crop_details_option, $attachment_id);
 
         $cropped = wp_crop_image(
                 $attachment_id, (int) $crop_details['x1'], (int) $crop_details['y1'], (int) $crop_details['width'], (int) $crop_details['height'], $crop_options['maxWidth'], $crop_options['maxHeight']
@@ -313,7 +313,7 @@ class MVX_Ajax {
                         );
                     }
                 }
-                $actions = apply_filters('mvx_my_account_my_orders_actions', $actions, $order->get_id());
+                $actions = apply_filters('mvx_vendor_dashboard_order_list_actions', $actions, $order->get_id());
                 $action_html = '';
                 foreach ($actions as $key => $action) {
                     $target = isset($action['target']) ? $action['target'] : '';
@@ -334,7 +334,7 @@ class MVX_Ajax {
                     }
                 }
 
-                $data[] = apply_filters('mvx_datatable_order_list_row_data', array(
+                $data[] = apply_filters('mvx_datatable_order_list_row', array(
                     'select_order' => '<input type="checkbox" class="select_' . $order->get_status() . '" name="selected_orders[' . $order->get_id() . ']" value="' . $order->get_id() . '" />',
                     'order_id' => $order->get_id(),
                     'order_date' => mvx_date($order->get_date_created()),
@@ -1283,11 +1283,11 @@ class MVX_Ajax {
                     $row ['date'] = '<td>' . $date . '</td>';
                     $row ['status'] = '<td>' . $status . '</td>';
                     $row ['actions'] = '<td>' . $actions_col_html . '</td>';
-                    $data[] = apply_filters('mvx_vendor_dashboard_product_list_table_row_data', $row, $product, $filterActionData, $requestData);
+                    $data[] = apply_filters('mvx_vendor_dashboard_product_list_table_rows', $row, $product, $filterActionData, $requestData);
                 }
             }
 
-            $json_data = apply_filters('mvx_datatable_product_list_result_data', array(
+            $json_data = apply_filters('mvx_datatable_product_list_results', array(
                 "draw" => intval($requestData['draw']), // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw. 
                 "recordsTotal" => intval(count($total_products_array)), // total number of records
                 "recordsFiltered" => intval(count($total_products_array)), // total number of records after searching, if there is no searching then totalFiltered = totalData
@@ -1318,7 +1318,7 @@ class MVX_Ajax {
                 )
             );
             $vendor_unpaid_total_orders = $vendor->get_unpaid_orders(false, false, $meta_query);
-            $vendor_unpaid_total_orders = apply_filters( 'mvx_before_unpaid_order_vendor_withdrawal_list_data', $vendor_unpaid_total_orders, $vendor, $requestData );
+            $vendor_unpaid_total_orders = apply_filters( 'mvx_before_unpaid_order_vendor_withdrawal_lists', $vendor_unpaid_total_orders, $vendor, $requestData );
             $data = array();
             $commission_threshold_time = isset($MVX->vendor_caps->payment_cap['commission_threshold_time']) && !empty($MVX->vendor_caps->payment_cap['commission_threshold_time']) ? $MVX->vendor_caps->payment_cap['commission_threshold_time'] : 0;
             if ($vendor_unpaid_total_orders) {
@@ -1358,7 +1358,7 @@ class MVX_Ajax {
                         $row ['shipping_amount'] = wc_price($shipping_amount, array('currency' => $order->get_currency()));
                         $row ['tax_amount'] = wc_price($tax_amount, array('currency' => $order->get_currency()));
                         $row ['total'] = ( $vendor_order ) ? $vendor_order->get_commission_total() : wc_price(0);
-                        $data[] = apply_filters('mvx_vendor_withdrawal_list_row_data', $row, $commission_id);
+                        $data[] = apply_filters('mvx_vendor_withdrawal_list_rows', $row, $commission_id);
                     }
                 }
             }
@@ -1462,7 +1462,7 @@ class MVX_Ajax {
                     $row ['uses_limit'] = $usage_count . ' / ' . $usage_limit;
                     $row ['expiry_date'] = $expiry_date;
                     $row ['actions'] = $actions_col_html;
-                    $data[] = apply_filters('mvx_vendor_coupon_list_row_data', $row, $coupon);
+                    $data[] = apply_filters('mvx_vendor_coupon_list_rows', $row, $coupon);
                 }
             }
 
@@ -1507,7 +1507,7 @@ class MVX_Ajax {
                     $row ['commission_ids'] = '#' . implode(', #', $commission_details);
                     $row ['fees'] = isset($transfer_charge) ? wc_price($transfer_charge) : wc_price(0);
                     $row ['net_earning'] = wc_price($transaction_amt);
-                    $data[] = apply_filters('mvx_vendor_transaction_list_row_data', $row, $transaction_id);
+                    $data[] = apply_filters('mvx_vendor_transaction_list_rows', $row, $transaction_id);
                 }
             }
             $data = array_slice( $data, $requestData['start'], $requestData['length'] );
@@ -2120,7 +2120,7 @@ class MVX_Ajax {
                         $row ['shipping_address'] = $pending_order->get_formatted_shipping_address();
                         $row ['shipping_amount'] = $shipping_amount;
                         $row ['action'] = $action_html;
-                        $data[] = apply_filters('mvx_widget_vendor_pending_shipping_row_data', $row, $pending_order);
+                        $data[] = apply_filters('mvx_widget_vendor_pending_shipping_rows', $row, $pending_order);
                     } catch (Exception $ex) {
                         
                     }
@@ -2201,7 +2201,7 @@ class MVX_Ajax {
                     $row ['revenue'] = '-';
                     $row ['unique_purchase'] = $sold_item_data['qty'];
                 }
-                $data[] = apply_filters( 'mvx_widget_vendor_product_sales_report_row_data', $row, $product_id, $sold_item_data );
+                $data[] = apply_filters( 'mvx_widget_vendor_product_sales_report_rows', $row, $product_id, $sold_item_data );
             }
 
             $json_data = array(
@@ -2257,11 +2257,9 @@ class MVX_Ajax {
 
         if ($show_limit_location_link) {
             if (in_array('state', $zone_location_types)) {
-                $show_city_list = apply_filters('mvx_city_select_dropdown_enabled', false);
                 $show_post_code_list = true;
             } elseif (in_array('country', $zone_location_types)) {
                 $show_state_list = true;
-                $show_city_list = apply_filters('mvx_city_select_dropdown_enabled', false);
                 $show_post_code_list = true;
             }
         }
@@ -2320,7 +2318,7 @@ class MVX_Ajax {
         if ($zones)
         $zone = WC_Shipping_Zones::get_zone(absint($zone_ids));
 
-        $show_post_code_list = $show_state_list = $show_post_code_list = false;
+        $show_post_code_list = $show_state_list = false;
         $zone_id = $zones['data']['id'];
         $zone_locations = $zones['data']['zone_locations'];
 
@@ -2348,11 +2346,9 @@ class MVX_Ajax {
         $vendor_shipping_methods = $zones['shipping_methods'];
         if ($show_limit_location_link) {
             if (in_array('state', $zone_location_types)) {
-                $show_city_list = apply_filters('mvx_city_select_dropdown_enabled', false);
                 $show_post_code_list = true;
             } elseif (in_array('country', $zone_location_types)) {
                 $show_state_list = true;
-                $show_city_list = apply_filters('mvx_city_select_dropdown_enabled', false);
                 $show_post_code_list = true;
             }
         }
@@ -3496,7 +3492,7 @@ class MVX_Ajax {
                     $row ['credit'] = ( $ledger->credit ) ? wc_price($ledger->credit, array('currency' => $currency)) : '';
                     $row ['debit'] = ( $ledger->debit ) ? wc_price($ledger->debit, array('currency' => $currency)) : '';
                     $row ['balance'] = wc_price($ledger->balance, array('currency' => $currency));
-                    $data[] = apply_filters( 'mvx_vendor_banking_ledger_list_row_data', $row, $ledger );
+                    $data[] = apply_filters( 'mvx_vendor_banking_ledger_list_rows', $row, $ledger );
                 }
             }
 

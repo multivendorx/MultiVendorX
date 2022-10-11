@@ -4035,9 +4035,6 @@ class MVX_REST_API {
             }
         }
 
-
-        //print_r($total_sales);die;
-
         /** * ---------------------------------------------------- vendor report start ------------------------------------------------------------- * **/
 
         $all_vendors = get_mvx_vendors();
@@ -4681,7 +4678,7 @@ class MVX_REST_API {
                 $commission_total = get_post_meta( $commission, '_commission_total', true ) ? get_post_meta( $commission, '_commission_total', true ) : 0;
                 $commission_order = get_post_meta($commission, '_commission_order_id', true) ? wc_get_order(get_post_meta($commission, '_commission_order_id', true)) : false;
                 if ($commission_order) $currency = $commission_order->get_currency();
-                $commissions_data[] = apply_filters('mvx_vendor_commission_data', array(
+                $commissions_data[] = apply_filters('mvx_vendor_commissions', array(
                     'Recipient'     =>  $recipient,
                     'Currency'      =>  $currency,
                     'Commission'    =>  $commission_amount,
@@ -5044,7 +5041,7 @@ class MVX_REST_API {
         if ($zones) {
         //$zone = WC_Shipping_Zones::get_zone(absint($zone_ids));
 
-            $show_post_code_list = $show_state_list = $show_post_code_list = false;
+            $show_post_code_list = $show_state_list = false;
             $zone_id = $zones['data']['id'];
             $zone_locations = $zones['data']['zone_locations'];
 
@@ -5072,11 +5069,9 @@ class MVX_REST_API {
             $vendor_shipping_methods = $zones['shipping_methods'];
             if ($show_limit_location_link) {
                 if (in_array('state', $zone_location_types)) {
-                    $show_city_list = apply_filters('mvx_city_select_dropdown_enabled', false);
                     $show_post_code_list = true;
                 } elseif (in_array('country', $zone_location_types)) {
                     $show_state_list = true;
-                    $show_city_list = apply_filters('mvx_city_select_dropdown_enabled', false);
                     $show_post_code_list = true;
                 }
             }

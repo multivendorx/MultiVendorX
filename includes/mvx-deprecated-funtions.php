@@ -704,11 +704,6 @@ function wcmp_register_custom_columns($column_name, $id) {
 	return mvx_register_custom_columns($column_name, $id);
 }
 
-function wcmp_generate_commissions_csv($post_ids) {
-	wc_deprecated_function('wcmp_generate_commissions_csv', '4.0.0', 'mvx_generate_commissions_csv');
-	return mvx_generate_commissions_csv($post_ids);
-}
-
 function wcmp_mark_commission_paid($post_ids) {
 	wc_deprecated_function('wcmp_mark_commission_paid', '4.0.0', 'mvx_mark_commission_paid');
 	return mvx_mark_commission_paid($post_ids);
@@ -812,11 +807,6 @@ function wcmp_product_cat_hierarchy_meta_box() {
 function wcmp_product_duplicate_before_save($duplicate, $product) {
 	wc_deprecated_function('wcmp_product_duplicate_before_save', '4.0.0', 'mvx_product_duplicate_before_save');
 	return mvx_product_duplicate_before_save($duplicate, $product);
-}
-
-function wcmp_get_report($name) {
-	wc_deprecated_function('wcmp_get_report', '4.0.0', 'mvx_get_report');
-	return mvx_get_report($name);
 }
 
 function wcmp_vendor_list_rating_rating_value($vendor_term_id, $vendor_id) {

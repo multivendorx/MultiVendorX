@@ -226,7 +226,7 @@ class MVX_Admin {
         $commission_bulk_list_action = mvx_convert_select_structure(array('mark_paid' => __('Mark paid', 'multivendorx')));
         // Commission csv header
         $commission_header = mvx_convert_select_structure(
-            apply_filters('mvx_vendor_commission_data_header',array(
+            apply_filters('mvx_vendor_commissions_header',array(
                 __('Recipient', 'multivendorx'),
                 __('Currency', 'multivendorx'),
                 __('Commission', 'multivendorx'),

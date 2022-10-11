@@ -947,7 +947,7 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/d
 * Dev - Added `mvx_commission_fully_refunded` action.
 * Dev - Added `mvx_commission_partially_refunded` action.
 * Dev - Added `mvx_after_create_commission_refunds` action.
-* Dev - Added `mvx_create_vendor_order_new_order_data` filter.
+* Dev - Added `mvx_create_vendor_order_new_order` filter.
 * Dev - Added `mvx_parent_order_to_vendor_order_status_synchronization` filter.
 * Dev - Added `mvx_vendor_order_to_parent_order_status_synchronization` filter.
 * Dev - Added `mvx_parent_order_to_vendor_order_statuses_to_sync` filter.

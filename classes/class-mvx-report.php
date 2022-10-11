@@ -441,20 +441,6 @@ class MVX_Report {
        return $tabs;
     }
 
-    
-    /**
-     * Get a report from our reports subfolder
-     */
-    public static function mvx_get_report($name) {
-        $name = sanitize_title(str_replace('_', '-', $name));
-        $class = 'MVX_Report_' . ucfirst(str_replace('-', '_', $name));
-        include_once( apply_filters('mvx_admin_reports_path', 'reports/class-mvx-report-' . $name . '.php', $name, $class) );
-        if (!class_exists($class))
-            return;
-        $report = new $class();
-        $report->output_report();
-    }
-
     /**
      * get vendor commission by date
      *

@@ -459,7 +459,7 @@ class MVX_Order {
             $data['ID'] = $args['vendor_order_id'];
         } else {
             $updating = false;
-            $data = apply_filters('mvx_create_vendor_order_new_order_data', array(
+            $data = apply_filters('mvx_create_vendor_order_new_order', array(
                 'post_date' => gmdate('Y-m-d H:i:s', $order->get_date_created('edit')->getOffsetTimestamp()),
                 'post_date_gmt' => gmdate('Y-m-d H:i:s', $order->get_date_created('edit')->getTimestamp()),
                 'post_type' => 'shop_order',
@@ -523,7 +523,7 @@ class MVX_Order {
             }
         }
         // Add vendor order meta data
-        $order_meta = apply_filters('mvx_vendor_order_meta_data', array(
+        $order_meta = apply_filters('mvx_vendor_order_metas', array(
             '_payment_method',
             '_payment_method_title',
             '_customer_user',
@@ -1119,7 +1119,7 @@ class MVX_Order {
     }
 
     public static function exclude_coping_order_data() {
-        return apply_filters('mvx_exclude_coping_order_data', array(
+        return apply_filters('mvx_exclude_coping_orders', array(
             'id', 'parent_id', 'created_via', 'date_created', 'date_modified', 'status', 'discount_total', 'discount_tax', 'shipping_total', 'shipping_tax',
             'cart_tax', 'total', 'total_tax', 'order_key', 'date_completed', 'date_paid', 'number', 'meta_data', 'line_items', 'tax_lines', 'shipping_lines',
             'fee_lines', 'coupon_lines'

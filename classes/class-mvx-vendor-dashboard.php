@@ -565,7 +565,7 @@ Class MVX_Admin_Dashboard {
                 } elseif ($zones) {
                     // for specific zone shipping methods settings
 
-                    $show_post_code_list = $show_state_list = $show_post_code_list = false;
+                    $show_post_code_list = $show_state_list = false;
 
                     $zone_id = $zones['data']['id'];
                     $zone_locations = $zones['data']['zone_locations'];
@@ -595,11 +595,9 @@ Class MVX_Admin_Dashboard {
 
                     if ($show_limit_location_link) {
                         if (in_array('state', $zone_location_types)) {
-                            $show_city_list = apply_filters('mvx_city_select_dropdown_enabled', false);
                             $show_post_code_list = true;
                         } elseif (in_array('country', $zone_location_types)) {
                             $show_state_list = true;
-                            $show_city_list = apply_filters('mvx_city_select_dropdown_enabled', false);
                             $show_post_code_list = true;
                         }
                     }
