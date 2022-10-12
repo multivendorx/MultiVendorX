@@ -1013,8 +1013,8 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/d
 * Fix - SPMV term_links-product_cat issue fixed.
 * Dev - Redirect url `mvx_user_apply_vendor_redirect_url` filter added.
 * Dev - Calculate shipping `mvx_get_shipping_methods_for_shipping_address` filter added.
-* Dev - Generate commission `mvx_vendor_commission_data_header` filter added.
-* Dev - Generate commission `mvx_vendor_commission_data` filter added.
+* Dev - Generate commission `mvx_vendor_commissions_header` filter added.
+* Dev - Generate commission `mvx_vendor_commissions` filter added.
 * Updated - Language file.
 
 = 3.3.1 - 2019-01-22 =
@@ -1181,7 +1181,7 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/d
 * Fix - Vendor dashboard > Vendor report price decimals issue.
 * Fix - Single product page > Vendor refund policy issue. #29
 * Dev - Add new `$MVX->localize_script()` method.
-* Dev - Add filter 'mvx_get_script_data'.
+* Dev - Add filter 'mvx_get_script_content'.
 * Updated - Language file.
 
 = 3.0.5 - 2018-04-09 =

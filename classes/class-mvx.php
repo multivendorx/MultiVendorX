@@ -516,7 +516,7 @@ final class MVX {
      * @param  array $default params
      * @return array|bool
      */
-    public function mvx_get_script_data($handle, $default) {
+    public function mvx_get_script_content($handle, $default) {
         global $MVX;
 
         switch ($handle) {
@@ -587,7 +587,7 @@ final class MVX {
                 $params = array('ajax_url' => $this->ajax_url(), 'types_nonce' => wp_create_nonce('mvx-types'));
         }
         if ($default && is_array($default)) $params = array_merge($default,$params);
-        return apply_filters('mvx_get_script_data', $params, $handle);
+        return apply_filters('mvx_get_script_content', $params, $handle);
     }
 
     /**
@@ -596,7 +596,7 @@ final class MVX {
      * @param  string $handle
      */
     public function localize_script($handle, $params = array(), $object = '') {
-        if ( $data = $this->mvx_get_script_data($handle, $params) ) {
+        if ( $data = $this->mvx_get_script_content($handle, $params) ) {
             $name = str_replace('-', '_', $handle) . '_script_data';
             if ($object) {
                 $name = str_replace('-', '_', $object) . '_script_data';

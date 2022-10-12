@@ -28,7 +28,7 @@ class MVX_Ledger_Data_Store {
      */
     public function create( $data = array() ) {
         global $wpdb;
-        $data = apply_filters( 'mvx_ledger_data_store_before_create_data', $data );
+        $data = apply_filters( 'mvx_ledger_data_store_before_create', $data );
         $wpdb->insert( $wpdb->prefix . 'mvx_vendor_ledger', $data );
         return $wpdb->insert_id;
     }

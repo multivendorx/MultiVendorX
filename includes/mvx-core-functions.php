@@ -2150,7 +2150,7 @@ if (!function_exists('MVXGenerateTaxonomyHTML')) {
     function MVXGenerateTaxonomyHTML($taxonomy, $product_categories = array(), $categories = array(), $nbsp = '') {
 
         foreach ($product_categories as $cat) {
-            if (apply_filters('mvx_is_visible_frontend_product_cat', true, $cat->term_id, $taxonomy)) {
+            if (apply_filters('mvx_is_visible_frontend_product_categories', true, $cat->term_id, $taxonomy)) {
                 echo '<option value="' . esc_attr($cat->term_id) . '"' . selected(in_array($cat->term_id, $categories), true, false) . '>' . $nbsp . esc_html($cat->name) . '</option>';
             }
             $product_child_categories = get_terms($taxonomy, 'orderby=name&hide_empty=0&parent=' . absint($cat->term_id));
@@ -3022,9 +3022,9 @@ if (!function_exists('mvx_get_latlng_distance')) {
 }
 
 
-if (!function_exists('mvx_get_vendor_list_map_store_data')) {
+if (!function_exists('mvx_get_vendor_list_map_store')) {
 
-    function mvx_get_vendor_list_map_store_data($vendors, $request) {
+    function mvx_get_vendor_list_map_store($vendors, $request) {
         global $MVX;
         $location = isset($request['locationText']) ? $request['locationText'] : '';
         $distance_type = isset($request['distanceSelect']) ? $request['distanceSelect'] : 'M';
@@ -3096,7 +3096,7 @@ if (!function_exists('mvx_get_vendor_list_map_store_data')) {
                 $map_stores['vendors'][] = $vendor_id;
             }
         }
-        return apply_filters('mvx_get_vendor_list_map_store_data', $map_stores, $vendors, $request);
+        return apply_filters('mvx_get_vendor_list_map_store', $map_stores, $vendors, $request);
     }
 
 }
@@ -3531,7 +3531,7 @@ if (!function_exists('get_mvx_spmv_excluded_products_map_data')) {
                 }
             }
 
-            return apply_filters('mvx_spmv_term_exclude_products_data', $exclude_spmv_products, $spmv_terms);
+            return apply_filters('mvx_spmv_term_exclude_products', $exclude_spmv_products, $spmv_terms);
         }
         return false;
     }
@@ -4416,7 +4416,7 @@ if (!function_exists('get_mvx_more_spmv_products')) {
                 }
             }
         }
-        return apply_filters( 'mvx_more_spmv_products_data', $more_products, $product_id );
+        return apply_filters( 'mvx_more_spmv_products', $more_products, $product_id );
     }
 }
 

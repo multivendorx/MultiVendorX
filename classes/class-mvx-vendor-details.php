@@ -1041,7 +1041,7 @@ class MVX_Vendor {
                 $reports = $vendor_orders;
                 break;
         }
-        return apply_filters('mvx_vendor_order_report_of_data', $reports, $report_type, $args);
+        return apply_filters('mvx_vendor_order_report_details', $reports, $report_type, $args);
     }
 
     /**

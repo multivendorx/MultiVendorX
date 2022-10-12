@@ -892,7 +892,7 @@ class MVX_Vendor_Hooks {
      * Generate Vendor Progress
      * @global object $MVX
      */
-    public function before_mvx_vendor_dashboard_content( $key ) {
+    public function mvx_before_vendor_dashboard_content( $key ) {
         global $MVX;
         if ( $key !== $MVX->endpoints->get_current_endpoint() ) {
             return;

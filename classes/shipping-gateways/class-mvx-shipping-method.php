@@ -303,7 +303,7 @@ class MVX_Vendor_Shipping_Method extends WC_Shipping_Method {
         if( is_array( $rates ) && count( $rates ) > 0 ) {
             // cycle through rates to send and alter post-add settings
             foreach( $rates as $key => $rate ) { 
-                $this->add_rate( apply_filters( 'mvx_vendor_before_add_shipping_rate_data', $rate, $package ) );
+                $this->add_rate( apply_filters( 'mvx_vendor_before_add_shipping_rates', $rate, $package ) );
             }
         }
     }

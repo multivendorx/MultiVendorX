@@ -21,7 +21,7 @@ $vendor_hide_email = get_user_meta($vendor->id, '_vendor_hide_email', true);
 $vendor_hide_address = get_user_meta($vendor->id, '_vendor_hide_address', true);
 $vendor_hide_phone = get_user_meta($vendor->id, '_vendor_hide_phone', true);
 
-$field_type = (apply_filters('mvx_vendor_storefront_wpeditor_enabled', true, $vendor->id)) ? 'wpeditor' : 'textarea';
+$field_type = apply_filters('mvx_vendor_storefront_wpeditor_enabled', true, $vendor->id) ? 'wpeditor' : 'textarea';
 $_wp_editor_settings = array('tinymce' => true);
 if (!$MVX->vendor_caps->vendor_can('is_upload_files')) {
     $_wp_editor_settings['media_buttons'] = false;

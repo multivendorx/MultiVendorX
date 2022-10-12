@@ -265,7 +265,7 @@ class MVX_Vendor_Query {
 		$store_data->payment_mode = self::get_meta( '_vendor_payment_mode' );
 		$store_data->timezone_string = self::get_meta( 'timezone_string' );
 		$store_data->shipping_class_id = self::get_meta( 'shipping_class_id' );
-		return apply_filters( 'mvx_vendor_query_result_store_data', $store_data, $this->vendor_id );
+		return apply_filters( 'mvx_vendor_query_result_stores', $store_data, $this->vendor_id );
 	}
 	
 	/**

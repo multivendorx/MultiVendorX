@@ -1190,8 +1190,8 @@ function wcmp_remove_woocommerce_admin_from_vendor() {
 }
 
 function wcmp_get_script_data($handle, $default) {
-	wc_deprecated_function('wcmp_get_script_data', '4.0.0', 'mvx_get_script_data');
-	return mvx_get_script_data($handle, $default);
+	wc_deprecated_function('wcmp_get_script_data', '4.0.0', 'mvx_get_script_content');
+	return mvx_get_script_content($handle, $default);
 }
 
 function wcmp_stripe_phpversion_required_notice() {
@@ -1471,8 +1471,8 @@ function wcmp_get_latlng_distance($lat1, $lon1, $lat2, $lon2, $unit = 'M') {
 }
 
 function wcmp_get_vendor_list_map_store_data($vendors, $request) {
-	wc_deprecated_function('wcmp_get_vendor_list_map_store_data', '4.0.0', 'mvx_get_vendor_list_map_store_data');
-	return mvx_get_vendor_list_map_store_data($vendors, $request);
+	wc_deprecated_function('wcmp_get_vendor_list_map_store_data', '4.0.0', 'mvx_get_vendor_list_map_store');
+	return mvx_get_vendor_list_map_store($vendors, $request);
 }
 
 function wcmp_get_vendor_specific_order_charge($order) {
@@ -1716,8 +1716,8 @@ function wcmp_vendor_list_vendors_loop() {
 }
 
 function wcmp_no_vendors_found_data() {
-	wc_deprecated_function('wcmp_no_vendors_found_data', '4.0.0', 'mvx_no_vendors_found_data');
-	return mvx_no_vendors_found_data();
+	wc_deprecated_function('wcmp_no_vendors_found_data', '4.0.0', 'mvx_no_vendors_found');
+	return mvx_no_vendors_found();
 }
 
 function wcmp_vendor_list_pagination() {

@@ -183,7 +183,7 @@ if (!class_exists('MVX_Shortcode_Vendor_List')) {
                 $vendors = $vendors_query_all->get_results();
             }
             // map data
-            $listed_stores = mvx_get_vendor_list_map_store_data($vendors, $_REQUEST);
+            $listed_stores = mvx_get_vendor_list_map_store($vendors, $_REQUEST);
 
             if(isset($_REQUEST['mvx_vlist_center_lat']) && isset($_REQUEST['mvx_vlist_center_lng'])){
                 $vendors = $listed_stores['vendors'];
@@ -223,9 +223,9 @@ if (!class_exists('MVX_Shortcode_Vendor_List')) {
                 'autocomplete' => true,
             );
             $MVX->localize_script('mvx_vendor_list', apply_filters('mvx_vendor_list_script_data_params',$script_param, $_REQUEST));
-            $radius = apply_filters('mvx_vendor_list_filter_radius_data', array(5,10,20,30,50));
+            $radius = apply_filters('mvx_vendor_list_filter_radius', array(5,10,20,30,50));
             $big_pagi = 999999999; // need an unlikely integer
-            $data = apply_filters('mvx_vendor_list_data', array(
+            $data = apply_filters('mvx_vendor_list_array_contains', array(
                 'total'   => ceil($vendors_total/$query['number']),
                 'current' => is_front_page() ? max( 1, ( get_query_var('page') ) ) : max( 1, get_query_var('paged') ),
                 'per_page' => $query['number'],

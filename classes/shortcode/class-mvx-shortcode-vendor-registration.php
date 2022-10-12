@@ -9,10 +9,6 @@
  */
 class MVX_Vendor_Registration_Shortcode {
 
-    public function __construct() {
-        
-    }
-
     /**
      * Output the vendor Registration shortcode.
      *
