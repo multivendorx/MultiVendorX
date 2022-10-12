@@ -560,14 +560,14 @@ if (!function_exists('is_vendor_order_by_product_page')) {
 
 }
 
-if (!function_exists('MVX_action_links')) {
+if (!function_exists('mvx_action_links')) {
 
     /**
      * Product Vendor Action Links Function
      * @param plugin links
      * @return plugin links
      */
-    function MVX_action_links($links) {
+    function mvx_action_links($links) {
         $plugin_links = array(
             '<a href="' . admin_url('admin.php?page=mvx#&submenu=dashboard') . '">' . __('Settings', 'multivendorx') . '</a>');
         return array_merge($plugin_links, $links);
@@ -826,29 +826,6 @@ if (!function_exists('mvx_check_if_another_vendor_plugin_exits')) {
                 deactivate_plugins('dc-woocommerce-multi-vendor/dc_product_vendor.php');
                 exit(__('Another Multivendor Plugin is allready Activated Please deactivate first to install this plugin', 'multivendorx'));
             }
-        }
-    }
-
-}
-
-if (!function_exists('mvxArrayToObject')) {
-
-    /**
-     * Convert php array to object
-     * @param array $d
-     * @return object
-     */
-    function mvxArrayToObject($d) {
-        if (is_array($d)) {
-            /*
-             * Return array converted to object
-             * Using __FUNCTION__ (Magic constant)
-             * for recursive call
-             */
-            return (object) array_map(__FUNCTION__, $d);
-        } else {
-            // Return object
-            return $d;
         }
     }
 

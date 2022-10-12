@@ -74,7 +74,7 @@ if (!class_exists('MVX') && WC_Dependencies_Product_Vendor::is_woocommerce_activ
     $MVX = new MVX(__FILE__);
     $GLOBALS['MVX'] = $MVX;
     if (is_admin() && !defined('DOING_AJAX')) {
-        add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'MVX_action_links');
+        add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'mvx_action_links');
     }
 } else {
     add_action('admin_notices', 'mvx_admin_notice');

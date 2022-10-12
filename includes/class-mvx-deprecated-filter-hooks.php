@@ -576,12 +576,6 @@ class MVX_Deprecated_Filter_Hooks extends WC_Deprecated_Hooks {
 		'mvx_widget_varified_buyer_text_filter' => 'wcmp_widget_varified_buyer_text_filter',
 		'mvx_widget_empty_reviews_text_filter' => 'wcmp_widget_empty_reviews_text_filter',
 		'mvx_setup_wizard_steps' => 'wcmp_setup_wizard_steps',
-
-
-
-
-
-
 		'mvx_crop_image_override_with_original' => 'wcmp_crop_image_override_with_original',
 		'mvx_submenu_show_necesarry_count' => 'wcmp_submenu_show_necesarry_count',
 		'mvx_products_list_total_products_query_args' => 'wcmp_products_list_total_products_query_args',
