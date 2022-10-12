@@ -27,7 +27,6 @@ class MVX_Admin {
         add_filter('woocommerce_hidden_order_itemmeta', array(&$this, 'add_hidden_order_items'));
 
         add_action('admin_menu', array(&$this, 'mvx_admin_menu'));
-        add_action('admin_head', array($this, 'mvx_submenu_count'));
         add_action('wp_dashboard_setup', array(&$this, 'mvx_remove_wp_dashboard_widget'));
         add_filter('woocommerce_order_actions', array(&$this, 'woocommerce_order_actions'));
         add_action('woocommerce_order_action_regenerate_order_commissions', array(&$this, 'regenerate_order_commissions'));
@@ -144,24 +143,6 @@ class MVX_Admin {
             remove_menu_page('edit.php');
             remove_menu_page('edit-comments.php');
             remove_menu_page('tools.php');
-        }
-    }
-
-    public function mvx_submenu_count() {
-        global $submenu;
-        if (isset($submenu['mvx'])) {
-            if (apply_filters('mvx_submenu_show_necesarry_count', true) && current_user_can('manage_woocommerce') ) {
-                foreach ($submenu['mvx'] as $key => $menu_item) {
-                    if (0 === strpos($menu_item[0], _x('Commissions', 'Admin menu name', 'multivendorx'))) {
-                        $order_count = isset( mvx_count_commission()->unpaid ) ? mvx_count_commission()->unpaid : 0;
-                        $submenu['mvx'][$key][0] .= ' <span class="awaiting-mod update-plugins count-' . $order_count . '"><span class="processing-count">' . number_format_i18n($order_count) . '</span></span>';
-                    }
-                    if (0 === strpos($menu_item[0], _x('To-do List', 'Admin menu name', 'multivendorx'))) {
-                        $to_do_list_count = mvx_count_to_do_list();
-                        $submenu['mvx'][$key][0] .= ' <span class="awaiting-mod update-plugins count-' . $to_do_list_count . '"><span class="processing-count">' . number_format_i18n($to_do_list_count) . '</span></span>';
-                    }
-                }
-            }
         }
     }
 

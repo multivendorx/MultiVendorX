@@ -1284,11 +1284,6 @@ function wcmp_get_all_blocked_vendors() {
 	return mvx_get_all_blocked_vendors();
 }
 
-function wcmp_get_vendors_due_from_order($order) {
-	wc_deprecated_function('wcmp_get_vendors_due_from_order', '4.0.0', 'mvx_get_vendors_due_from_order');
-	return mvx_get_vendors_due_from_order($order);
-}
-
 function wcmp_get_vendors_form_order($order) {
 	wc_deprecated_function('wcmp_get_vendors_form_order', '4.0.0', 'mvx_get_vendors_form_order');
 	return mvx_get_vendors_form_order($order);
@@ -1307,11 +1302,6 @@ function wcmp_paid_commission_status($commission_id) {
 function wcmp_rangeWeek($datestr) {
 	wc_deprecated_function('wcmp_rangeWeek', '4.0.0', 'mvx_rangeWeek');
 	return mvx_rangeWeek($datestr);
-}
-
-function wcmp_role_exists($role) {
-	wc_deprecated_function('wcmp_role_exists', '4.0.0', 'mvx_role_exists');
-	return mvx_role_exists($role);
 }
 
 function wcmp_seller_review_enable($vendor_term_id) {
@@ -1359,19 +1349,9 @@ function wcmp_remove_comments_section_from_vendor_dashboard() {
 	return mvx_remove_comments_section_from_vendor_dashboard();
 }
 
-function wcmp_unpaid_commission_count() {
-	wc_deprecated_function('wcmp_unpaid_commission_count', '4.0.0', 'mvx_unpaid_commission_count');
-	return mvx_unpaid_commission_count();
-}
-
 function wcmp_count_commission() {
 	wc_deprecated_function('wcmp_count_commission', '4.0.0', 'mvx_count_commission');
 	return mvx_count_commission();
-}
-
-function wcmp_count_to_do_list() {
-	wc_deprecated_function('wcmp_count_to_do_list', '4.0.0', 'mvx_count_to_do_list');
-	return mvx_count_to_do_list();
 }
 
 function wcmp_process_order($order_id, $order = null) {
@@ -1832,11 +1812,6 @@ function get_wcmp_vendor($vendor_id = 0) {
 function get_wcmp_vendor_by_term($term_id) {
 	wc_deprecated_function('get_wcmp_vendor_by_term', '4.0.0', 'get_mvx_vendor_by_term');
 	return get_mvx_vendor_by_term($term_id);
-}
-
-function get_wcmp_vendor_by_store_url($store_url) {
-	wc_deprecated_function('get_wcmp_vendor_by_store_url', '4.0.0', 'get_mvx_vendor_by_store_url');
-	return get_mvx_vendor_by_store_url($store_url);
 }
 
 function get_wcmp_product_vendors($product_id = 0) {

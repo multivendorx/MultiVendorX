@@ -324,20 +324,6 @@ if (!function_exists('get_mvx_vendor_by_term')) {
     }
 
 }
-if (!function_exists('get_mvx_vendor_by_store_url')) {
-
-    function get_mvx_vendor_by_store_url($store_url) {
-        global $MVX;
-        $vendor = false;
-        $termslug = basename($store_url);
-        $term = get_term_by('slug', $termslug, $MVX->taxonomy->taxonomy_name);
-        if ($term) {
-            $vendor = get_mvx_vendor_by_term($term->term_id);
-        }
-        return $vendor;
-    }
-
-}
 
 if (!function_exists('get_mvx_product_vendors')) {
 
@@ -535,31 +521,6 @@ if (!function_exists('get_vendor_from_an_order')) {
 
 }
 
-if (!function_exists('is_vendor_page')) {
-
-    /**
-     * check if vendor pages
-     * @return boolean
-     */
-    function is_vendor_page() {
-        _deprecated_function('is_vendor_page', '2.7.7', 'is_vendor_dashboard or is_page_vendor_registration');
-        return apply_filters('mvx_is_vendor_page', (is_vendor_dashboard() || is_page_vendor_registration()));
-    }
-
-}
-
-if (!function_exists('is_vendor_order_by_product_page')) {
-
-    /**
-     * Check if vendor order page
-     * @return boolean
-     */
-    function is_vendor_order_by_product_page() {
-        return is_mvx_endpoint_url(get_mvx_vendor_settings('mvx_vendor_orders_endpoint', 'seller_dashbaord', 'vendor-orders'));
-    }
-
-}
-
 if (!function_exists('mvx_action_links')) {
 
     /**
@@ -598,35 +559,6 @@ if (!function_exists('mvx_get_all_blocked_vendors')) {
             }
         }
         return $blocked_vendor;
-    }
-
-}
-
-if (!function_exists('mvx_get_vendors_due_from_order')) {
-
-    /**
-     * Get vendor due from an order.
-     * @param WC_Order $order or order id
-     * @return array
-     */
-    function mvx_get_vendors_due_from_order($order) {
-        if (!is_object($order)) {
-            $order = new WC_Order($order);
-        }
-        $items = $order->get_items('line_item');
-        $vendors_array = array();
-        if ($items) {
-            foreach ($items as $item_id => $item) {
-                $product_id = wc_get_order_item_meta($item_id, '_product_id', true);
-                if ($product_id) {
-                    $vendor = get_mvx_product_vendors($product_id);
-                    if (!empty($vendor) && isset($vendor->term_id)) {
-                        $vendors_array[$vendor->term_id] = $vendor->mvx_get_vendor_part_from_order($order, $vendor->term_id);
-                    }
-                }
-            }
-        }
-        return $vendors_array;
     }
 
 }
@@ -855,22 +787,6 @@ if (!function_exists('mvx_rangeWeek')) {
         $res['start'] = date('N', $dt) == 1 ? date('Y-m-d', $dt) : date('Y-m-d', strtotime('last monday', $dt));
         $res['end'] = date('N', $dt) == 7 ? date('Y-m-d', $dt) : date('Y-m-d', strtotime('next sunday', $dt));
         return $res;
-    }
-
-}
-
-if (!function_exists('mvx_role_exists')) {
-
-    /**
-     * Check if role exist or not
-     * @param string $role
-     * @return boolean
-     */
-    function mvx_role_exists($role) {
-        if (!empty($role)) {
-            return $GLOBALS['wp_roles']->is_role($role);
-        }
-        return false;
     }
 
 }
@@ -1713,21 +1629,6 @@ if (!function_exists('do_mvx_data_migrate')) {
 
 }
 
-if (!function_exists('vendor_orders_sort')) {
-
-    /**
-     * 
-     * @param type $a
-     * @param type $b
-     * @return type
-     * sort vendor order
-     */
-    function vendor_orders_sort($a, $b) {
-        return $a[0] - $b[0];
-    }
-
-}
-
 if (!function_exists('sksort')) {
 
     /**
@@ -1882,18 +1783,6 @@ if (!function_exists('do_mvx_commission_data_migrate')) {
 
 }
 
-if (!function_exists('mvx_unpaid_commission_count')) {
-
-    /**
-     * Count unpaid commisssion
-     * @return int
-     */
-    function mvx_unpaid_commission_count() {
-        return count(array_unique(wp_list_pluck(get_mvx_vendor_orders(array('commission_status' => 'unpaid', 'is_trashed' => '')), 'commission_id')));
-    }
-
-}
-
 if (!function_exists('mvx_count_commission')) {
 
     function mvx_count_commission() {
@@ -1922,72 +1811,6 @@ if (!function_exists('mvx_count_commission')) {
             }
         }
         return $commission_count;
-    }
-
-}
-
-if (!function_exists('mvx_count_to_do_list')) {
-
-    function mvx_count_to_do_list() {
-        global $MVX;
-        $to_do_list_count = 0;
-
-        // pending vendors
-        $get_pending_vendors = get_users('role=dc_pending_vendor');
-        $to_do_list_count += count( $get_pending_vendors );
-
-        $vendor_ids = get_mvx_vendors(array(), 'ids');
-
-        // pending coupons
-        $args = array(
-            'posts_per_page' => -1,
-            'author__in' => $vendor_ids,
-            'post_type' => 'shop_coupon',
-            'post_status' => 'pending',
-            'meta_query' => array(
-                array(
-                    'key' => '_dismiss_to_do_list',
-                    'compare' => 'NOT EXISTS',
-                ),
-            )
-        );
-        $get_pending_coupons = new WP_Query($args);
-        $to_do_list_count += count($get_pending_coupons->get_posts());
-
-        // pending products
-        $args = array(
-            'posts_per_page' => -1,
-            'author__in' => $vendor_ids,
-            'post_type' => 'product',
-            'post_status' => 'pending',
-            'meta_query' => array(
-                array(
-                    'key' => '_dismiss_to_do_list',
-                    'compare' => 'NOT EXISTS',
-                ),
-            )
-        );
-        $get_pending_products = new WP_Query($args);
-        $to_do_list_count += count($get_pending_products->get_posts());
-
-        // pending bank transfer
-        $args = array(
-            'post_type' => 'mvx_transaction',
-            'post_status' => 'mvx_processing',
-            'meta_key' => 'transaction_mode',
-            'meta_value' => 'direct_bank',
-            'posts_per_page' => -1,
-            'meta_query' => array(
-                array(
-                    'key' => '_dismiss_to_do_list',
-                    'compare' => 'NOT EXISTS',
-                ),
-            )
-        );
-        $transactions = get_posts($args);
-        $to_do_list_count += count($transactions);
-
-        return $to_do_list_count; 
     }
 
 }
@@ -2269,82 +2092,6 @@ if (!function_exists('get_attachment_id_by_url')) {
             }
         }
         return $attachment_id;
-    }
-
-}
-
-if (!function_exists('get_customer_questions_and_answers')) {
-
-    /**
-     * Get Customer Questions and Answers.
-     * 
-     * @param int $vendor_id
-     * @param int $product_id
-     * @param array $args
-     * @return array $qna_data, if no vendor return false
-     */
-    function get_customer_questions_and_answers($vendor_id, $product_id = '', $args = array()) {
-        if ($vendor_id) {
-            $default = array(
-                'hide_empty_ans' => 1,
-                'keyword' => '',
-                'order' => 'ASC',
-                'limit' => -1
-            );
-            $args = wp_parse_args($args, $default);
-            $qna_data = array();
-            $order = array();
-            $vendor = get_mvx_vendor($vendor_id);
-            $cust_qna_data = get_term_meta($vendor->term_id, '_customer_qna_data', true);
-            if ($product_id && $cust_qna_data) {
-                foreach ($cust_qna_data as $key => $qna) {
-                    if ($product_id == $qna['product_ID']) {
-                        $qna_data[$key] = $qna;
-                    }
-                }
-            } else {
-                $qna_data = $cust_qna_data;
-            }
-            // for data sorting
-            if ($qna_data) {
-                foreach ($qna_data as $key => $data) {
-                    // date wise
-                    $order[$key] = $data['qna_created'];
-                }
-            }
-            if ($qna_data && count($qna_data) > 0) {
-                // order by created date
-                if (strtolower($args['order']) == 'asc') {
-                    array_multisort($order, SORT_ASC, $qna_data);
-                } else {
-                    array_multisort($order, SORT_DESC, $qna_data);
-                }
-                // answers wise
-                if ($args['hide_empty_ans'] == 0) {
-                    $qna_data = array_filter($qna_data, function($data) {
-                        return ( $data['cust_answer'] == '' );
-                    });
-                } elseif ($args['hide_empty_ans'] == 1) {
-                    $qna_data = array_filter($qna_data, function($data) {
-                        return ( $data['cust_answer'] != '' );
-                    });
-                }
-                // keyword wise
-                $keyword = strtolower($args['keyword']);
-                if ($keyword) {
-                    $qna_data = array_filter($qna_data, function($data) use ($keyword) {
-                        return ( strpos(strtolower($data['cust_question']), $keyword) !== false );
-                    });
-                }
-                // limit
-                if ($args['limit'] != -1) {
-                    $qna_data = array_slice($qna_data, 0, absint($args['limit']));
-                }
-            }
-            return $qna_data;
-        } else {
-            return false;
-        }
     }
 
 }
