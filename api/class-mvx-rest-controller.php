@@ -2574,7 +2574,7 @@ class MVX_REST_API {
                 $bank_name = get_user_meta($currentvendor->id, '_vendor_bank_name', true);
                 $iban = get_user_meta($currentvendor->id, '_vendor_iban', true);
                 $amount = get_post_meta($transaction->ID, 'amount', true) - get_post_meta($transaction->ID, 'transfer_charge', true) - get_post_meta($transaction->ID, 'gateway_charge', true);
-                $address_array = apply_filters('mvx_todo_pending_bank_transfer_row_account_details_data', array(
+                $address_array = apply_filters('mvx_wordboard_pending_bank_transfer_data', array(
                 __('Account Name-', 'multivendorx') . ' ' . $account_name,
                 __('Account No -', 'multivendorx') . ' ' . $account_no,
                 __('Bank Name -', 'multivendorx') . ' ' . $bank_name,
@@ -4035,9 +4035,6 @@ class MVX_REST_API {
             }
         }
 
-
-        //print_r($total_sales);die;
-
         /** * ---------------------------------------------------- vendor report start ------------------------------------------------------------- * **/
 
         $all_vendors = get_mvx_vendors();
@@ -4681,7 +4678,7 @@ class MVX_REST_API {
                 $commission_total = get_post_meta( $commission, '_commission_total', true ) ? get_post_meta( $commission, '_commission_total', true ) : 0;
                 $commission_order = get_post_meta($commission, '_commission_order_id', true) ? wc_get_order(get_post_meta($commission, '_commission_order_id', true)) : false;
                 if ($commission_order) $currency = $commission_order->get_currency();
-                $commissions_data[] = apply_filters('mvx_vendor_commission_data', array(
+                $commissions_data[] = apply_filters('mvx_vendor_commissions', array(
                     'Recipient'     =>  $recipient,
                     'Currency'      =>  $currency,
                     'Commission'    =>  $commission_amount,
@@ -5044,7 +5041,7 @@ class MVX_REST_API {
         if ($zones) {
         //$zone = WC_Shipping_Zones::get_zone(absint($zone_ids));
 
-            $show_post_code_list = $show_state_list = $show_post_code_list = false;
+            $show_post_code_list = $show_state_list = false;
             $zone_id = $zones['data']['id'];
             $zone_locations = $zones['data']['zone_locations'];
 
@@ -5072,11 +5069,9 @@ class MVX_REST_API {
             $vendor_shipping_methods = $zones['shipping_methods'];
             if ($show_limit_location_link) {
                 if (in_array('state', $zone_location_types)) {
-                    $show_city_list = apply_filters('mvx_city_select_dropdown_enabled', false);
                     $show_post_code_list = true;
                 } elseif (in_array('country', $zone_location_types)) {
                     $show_state_list = true;
-                    $show_city_list = apply_filters('mvx_city_select_dropdown_enabled', false);
                     $show_post_code_list = true;
                 }
             }
@@ -5151,7 +5146,7 @@ class MVX_REST_API {
                 }
                 $vendor_shipping_methods_titles = implode('', $vendor_shipping_methods_titles);
 
-                $user_list[] = apply_filters('mvx_list_table_vendors_columns_data', array(
+                $user_list[] = apply_filters('mvx_backend_list_table_vendors_shipping_columns_data', array(
                         'zone_name' => "<a href='". sprintf('?page=%s&ID=%s&name=%s&zone_id=%s', 'mvx#&submenu=vendor', $vendor_id, 'vendor-shipping', $vendor_shipping_zones['zone_id']) ."'>". $vendor_shipping_zones['zone_name'] ."</a>",
                         'region' => $vendor_shipping_zones['formatted_zone_location'],
                         'shipping_method' => $vendor_shipping_methods_titles,
@@ -5196,7 +5191,7 @@ class MVX_REST_API {
             foreach ($mvx_vendor_followed_by_customer as $key_folloed => $value_followed) {
                 $user_details = get_user_by( 'ID', $value_followed['user_id'] );
                 if ( !$user_details ) continue;
-                $user_list[] = apply_filters('mvx_list_table_vendors_columns_data', array(
+                $user_list[] = apply_filters('mvx_backend_list_table_vendors_followers_columns_data', array(
                     'name' => $user_details->data->display_name,
                     'time' => human_time_diff(strtotime($value_followed['timestamp'])),
                 ), $user_details);

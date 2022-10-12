@@ -62,7 +62,7 @@ class MVX_Tablerate {
 	 */
 	public function on_plugins_loaded() {
 		add_action('init', array(&$this, 'tablerate_init'), 99);
-        add_filter('is_mvx_vendor_shipping_tab_enable', array(&$this, 'is_mvx_table_rate_shipping_enable'), 10, 2);
+        add_filter('mvx_is_vendor_shipping_tab_enable', array(&$this, 'is_mvx_table_rate_shipping_enable'), 10, 2);
 	}
 
 	public function tablerate_init() {

@@ -100,7 +100,7 @@ class MVX_Coupons_Add_Coupon {
      * @return array
      */
     public function get_coupon_data_tabs() {
-        $tabs = apply_filters( 'mvx_afm_coupon_data_tabs', array(
+        $tabs = apply_filters( 'mvx_frontend_dashboard_coupon_data_tabs', array(
             'general'           => array(
                 'label'    => __( 'General', 'multivendorx' ),
                 'target'   => 'general_coupon_data',
@@ -151,14 +151,14 @@ class MVX_Coupons_Add_Coupon {
         global $MVX;
         
         if ( ! $this->no_cap ) {
-            $add_coupon_params = apply_filters( 'mvx_afm_add_coupon_params', array(
+            $add_coupon_params = apply_filters( 'mvx_frontend_dashboard_add_coupon_params', array(
                 'ajax_url'              => admin_url( 'admin-ajax.php' ),
                 'coupon_id'             => $this->coupon_id,
                 'search_products_nonce' => wp_create_nonce( 'search-products' ),
                 ) );
             wp_localize_script( 'mvx-advance-coupon', 'add_coupon_params', $add_coupon_params );
             wp_enqueue_script( 'mvx-advance-coupon' );
-            do_action( 'mvx_afm_add_coupon_template_load', $this->coupon_id, $this->coupon_object, $this->post_object );
+            do_action( 'mvx_frontend_dashboard_add_coupon_template_load', $this->coupon_id, $this->coupon_object, $this->post_object );
             $MVX->template->get_template( 'vendor-dashboard/coupon-manager/add-coupons.php', array( 'self' => $this, 'coupon' => $this->coupon_object, 'post' => $this->post_object, 'edit_coupon' => $this->edit ) );
         } else {
             $this->coupon_no_caps_notice();

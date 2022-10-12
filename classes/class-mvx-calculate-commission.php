@@ -60,7 +60,7 @@ class MVX_Calculate_Commission {
                 // Mark commissions as processed
                 update_post_meta($vendor_order_id, '_commissions_processed', 'yes');
                 
-                do_action( 'after_mvx_calculate_commission', $commission_id, $vendor_order_id );
+                do_action( 'mvx_after_calculate_commission', $commission_id, $vendor_order_id );
             }
         }
     }

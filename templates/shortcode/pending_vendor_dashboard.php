@@ -15,7 +15,7 @@ if (!defined('ABSPATH')) {
 global $MVX, $wp;
 
 echo '<div class="pending-vendor-dashboard">';
-do_action('before_mvx_pending_vendor_dashboard');
+do_action('mvx_before_pending_vendor_dashboard');
 
 $MVX->template->get_template('vendor-dashboard/dashboard-header.php');
 
@@ -48,5 +48,5 @@ $is_single = !is_null($MVX->endpoints->get_current_endpoint_var()) ? '-single' :
 <?php
 $MVX->template->get_template('vendor-dashboard/dashboard-footer.php');
 
-do_action('after_mvx_pending_vendor_dashboard');
+do_action('mvx_after_pending_vendor_dashboard');
 echo '</div>';

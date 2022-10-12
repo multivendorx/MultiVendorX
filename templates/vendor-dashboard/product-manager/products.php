@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
 }
 global $MVX, $wpdb;
 $vendor = get_mvx_vendor(get_current_vendor_id());
-do_action('before_mvx_vendor_dashboard_product_list_table');
+do_action('mvx_before_vendor_dashboard_product_list_table');
 ?>
 <div class="col-md-12 all-products-wrapper">
     <div class="panel panel-default panel-pading">
@@ -128,14 +128,14 @@ do_action('before_mvx_vendor_dashboard_product_list_table');
             </tr></thead>
         </table>
         <div class="mvx-action-container">
-            <?php do_action('before_mvx_vendor_dash_product_list_page_header_action_btn'); ?>
+            <?php do_action('mvx_before_vendor_dashboard_product_list_page_header_action_btn'); ?>
             <a href="<?php echo apply_filters('mvx_vendor_dashboard_add_product_url', mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_add_product_endpoint', 'seller_dashbaord', 'add-product')));?>" class="btn btn-default"><i class="mvx-font ico-add-booking"></i><?php echo __('Add Product', 'multivendorx');?></a>
-            <?php do_action('after_mvx_vendor_dash_product_list_page_header_action_btn'); ?>
+            <?php do_action('mvx_after_vendor_dashboard_product_list_page_header_action_btn'); ?>
         </div>
         </form>
     </div>
 </div>
-<?php do_action('after_mvx_vendor_dashboard_product_list_table'); ?>
+<?php do_action('mvx_after_vendor_dashboard_product_list_table'); ?>
 <script>
     jQuery(document).ready(function ($) { 
         var product_table;

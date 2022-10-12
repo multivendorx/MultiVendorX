@@ -947,7 +947,7 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/d
 * Dev - Added `mvx_commission_fully_refunded` action.
 * Dev - Added `mvx_commission_partially_refunded` action.
 * Dev - Added `mvx_after_create_commission_refunds` action.
-* Dev - Added `mvx_create_vendor_order_new_order_data` filter.
+* Dev - Added `mvx_create_vendor_order_new_order` filter.
 * Dev - Added `mvx_parent_order_to_vendor_order_status_synchronization` filter.
 * Dev - Added `mvx_vendor_order_to_parent_order_status_synchronization` filter.
 * Dev - Added `mvx_parent_order_to_vendor_order_statuses_to_sync` filter.
@@ -973,7 +973,7 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/d
 * Tweak - Vendor top rated products widget show.
 * Tweak - Vendor report abuse from.
 * Dev - Disable `mvx_is_disable_store_visitors_stats` filter added.
-* Dev - Capability for product `is_mvx_vendor_edit_non_published_product` filter added.
+* Dev - Capability for product `mvx_is_vendor_edit_non_published_product` filter added.
 * Updated - Stripe library.
 * Updated - Language file.
 
@@ -1013,8 +1013,8 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/d
 * Fix - SPMV term_links-product_cat issue fixed.
 * Dev - Redirect url `mvx_user_apply_vendor_redirect_url` filter added.
 * Dev - Calculate shipping `mvx_get_shipping_methods_for_shipping_address` filter added.
-* Dev - Generate commission `mvx_vendor_commission_data_header` filter added.
-* Dev - Generate commission `mvx_vendor_commission_data` filter added.
+* Dev - Generate commission `mvx_vendor_commissions_header` filter added.
+* Dev - Generate commission `mvx_vendor_commissions` filter added.
 * Updated - Language file.
 
 = 3.3.1 - 2019-01-22 =
@@ -1181,7 +1181,7 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/d
 * Fix - Vendor dashboard > Vendor report price decimals issue.
 * Fix - Single product page > Vendor refund policy issue. #29
 * Dev - Add new `$MVX->localize_script()` method.
-* Dev - Add filter 'mvx_get_script_data'.
+* Dev - Add filter 'mvx_get_script_content'.
 * Updated - Language file.
 
 = 3.0.5 - 2018-04-09 =

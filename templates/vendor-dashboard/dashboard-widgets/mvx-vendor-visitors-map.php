@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 global $MVX;
-do_action('before_mvx_vendor_visitors_map');
+do_action('mvx_before_vendor_visitors_map');
 ?>
 <div class="vendor_visitors_map">
     <div class="col-sm-4 col-md-3">
@@ -24,4 +24,4 @@ do_action('before_mvx_vendor_visitors_map');
     </div>
 </div>
 <?php 
-do_action('after_mvx_vendor_visitors_map');
+do_action('mvx_after_vendor_visitors_map');

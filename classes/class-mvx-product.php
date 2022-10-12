@@ -112,7 +112,7 @@ class MVX_Product {
         // product classify
         add_filter( 'mvx_get_product_terms_html_selected_terms', array($this, 'mvx_get_product_terms_html_selected_terms'), 99, 3);
         add_action( 'mvx_process_product_object', array($this, 'reset_vendor_classified_product_terms'), 99 );
-        add_action( 'before_mvx_vendor_dashboard_content', array($this, 'reset_vendor_classified_product_terms'), 99  );
+        add_action( 'mvx_before_vendor_dashboard_content', array($this, 'reset_vendor_classified_product_terms'), 99  );
         // Hide products backend fields as per new product modifications
         add_action( 'add_meta_boxes', array( $this, 'remove_meta_boxes' ), 99 );
         // show default product categories
@@ -1946,7 +1946,7 @@ class MVX_Product {
             $comment_author_email = $user->user_email;
         }
 
-        $commentdata = apply_filters('mvx_new_product_note_data', array(
+        $commentdata = apply_filters('mvx_new_product_note', array(
             'comment_post_ID' => $product_id,
             'comment_author' => $comment_author,
             'comment_author_email' => $comment_author_email,
@@ -1967,7 +1967,7 @@ class MVX_Product {
 
     public static function get_product_note($product_id) {
         global $MVX;
-        $args = apply_filters('mvx_new_product_get_note_data', array(
+        $args = apply_filters('mvx_new_product_get_note', array(
             'post_id' => $product_id,
             'type' => 'product_note',
             'status' => 'approve',

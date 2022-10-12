@@ -441,20 +441,6 @@ class MVX_Report {
        return $tabs;
     }
 
-    
-    /**
-     * Get a report from our reports subfolder
-     */
-    public static function mvx_get_report($name) {
-        $name = sanitize_title(str_replace('_', '-', $name));
-        $class = 'MVX_Report_' . ucfirst(str_replace('-', '_', $name));
-        include_once( apply_filters('mvx_admin_reports_path', 'reports/class-mvx-report-' . $name . '.php', $name, $class) );
-        if (!class_exists($class))
-            return;
-        $report = new $class();
-        $report->output_report();
-    }
-
     /**
      * get vendor commission by date
      *
@@ -544,7 +530,7 @@ class MVX_Report {
             }
         }
 
-        return apply_filters('mvx_vendor_dashboard_report_data', array('total_order_count' => $total_order_count, 'total_vendor_sales' => $total_sales, 'total_vendor_earning' => $total_vendor_earnings, 'total_coupon_discount_value' => $total_coupon_discount_value, 'total_coupon_used' => $total_coupon_used, 'total_customers' => array_unique($total_customers), 'total_purchased_products' => $total_purchased_products), $vendor);
+        return apply_filters('mvx_vendor_dashboard_reports', array('total_order_count' => $total_order_count, 'total_vendor_sales' => $total_sales, 'total_vendor_earning' => $total_vendor_earnings, 'total_coupon_discount_value' => $total_coupon_discount_value, 'total_coupon_used' => $total_coupon_used, 'total_customers' => array_unique($total_customers), 'total_purchased_products' => $total_purchased_products), $vendor);
     }
 
 }

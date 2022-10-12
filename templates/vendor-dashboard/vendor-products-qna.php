@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
 }
 global $MVX;
 $vendor = get_mvx_vendor(get_current_vendor_id());
-do_action('before_mvx_vendor_dashboard_products_qna_table');
+do_action('mvx_before_vendor_dashboard_products_qna_table');
 ?>
 <div class="col-md-12 vendor-products-qna-wrapper">
     <div class="panel panel-default panel-pading">
@@ -49,12 +49,12 @@ do_action('before_mvx_vendor_dashboard_products_qna_table');
         </div>
     </div>
 </div>
-<?php do_action('after_mvx_vendor_dashboard_products_qna_table'); ?>
+<?php do_action('mvx_after_vendor_dashboard_products_qna_table'); ?>
 <script>
     jQuery(document).ready(function ($) {
         var statuses = [];
         <?php 
-        $filter_by_status = apply_filters('mvx_vendor_dashboard_order_filter_status_arr',array(
+        $filter_by_status = apply_filters('mvx_vendor_dashboard_order_filter_status_array',array(
             'unanswer' => __('Unanswered', 'multivendorx'),
             'all' => __('All Q&As', 'multivendorx')
         ));

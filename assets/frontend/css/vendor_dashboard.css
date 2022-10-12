@@ -1178,7 +1178,7 @@ blockquote {
 @media (max-width: 768px) {
   .modal-dialog {
     margin: 0 auto; } }
-#mvx-afm-bulk-edit-form .form-group {
+#mvx-frontend-dashboard-bulk-edit-form .form-group {
   margin-bottom: 10px; }
 
 .star-rating {

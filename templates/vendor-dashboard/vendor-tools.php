@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-do_action( 'before_mvx_vendor_tools_content' );
+do_action( 'mvx_before_vendor_tools_content' );
 ?>
 <div class="col-md-12">
     <div class="panel panel-default panel-pading">
@@ -33,4 +33,4 @@ do_action( 'before_mvx_vendor_tools_content' );
     </div>
 </div>
 <?php
-do_action( 'after_mvx_vendor_tools_content' );
+do_action( 'mvx_after_vendor_tools_content' );

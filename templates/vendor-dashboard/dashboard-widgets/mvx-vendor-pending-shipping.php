@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
 }
 global $MVX;
 $vendor = get_current_vendor();
-do_action('before_mvx_vendor_pending_shipping');
+do_action('mvx_before_vendor_pending_shipping');
 ?>
 <table id="widget_vendor_pending_shipping" class="table table-striped table-bordered mvx-widget-dt <?php //echo $pending_shippings ? 'responsive-table' : 'blank-responsive-table'; ?>" width="100%">
 <?php if($default_headers){ ?>
@@ -112,4 +112,4 @@ function mvxMarkeAsShip(self, order_id) {
 }
 </script>
 <?php 
-do_action('after_mvx_vendor_pending_shipping');
+do_action('mvx_after_vendor_pending_shipping');

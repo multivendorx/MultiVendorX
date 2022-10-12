@@ -217,7 +217,7 @@ class MVX_Capabilities {
             $caps['delete_product'] = true;
             $caps['delete_products'] = true;
             $caps['edit_products'] = true;
-            if(!apply_filters('is_mvx_vendor_edit_non_published_product', false)){
+            if(!apply_filters('mvx_is_vendor_edit_non_published_product', false)){
                 $caps['edit_product'] = false;
             }else{
                 $caps['edit_product'] = true;
@@ -286,7 +286,7 @@ class MVX_Capabilities {
             $caps['delete_product'] = true;
             $caps['delete_products'] = true;
             $caps['edit_products'] = true;
-            if(!apply_filters('is_mvx_vendor_edit_non_published_product', false)){
+            if(!apply_filters('mvx_is_vendor_edit_non_published_product', false)){
                 $caps['edit_product'] = false;
             }else{
                 $caps['edit_product'] = true;

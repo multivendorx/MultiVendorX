@@ -10,7 +10,7 @@ class MVX_Vendor_Hooks {
     function __construct() {
         add_action( 'mvx_vendor_dashboard_navigation', array( &$this, 'mvx_create_vendor_dashboard_navigation' ) );
         add_action( 'mvx_vendor_dashboard_content', array( &$this, 'mvx_create_vendor_dashboard_content' ) );
-        add_action( 'before_mvx_vendor_dashboard', array( &$this, 'save_vendor_dashboard_data' ) );
+        add_action( 'mvx_before_vendor_dashboard', array( &$this, 'save_vendor_dashboard_data' ) );
 
         add_action( 'mvx_vendor_dashboard_vendor-announcements_endpoint', array( &$this, 'mvx_vendor_dashboard_vendor_announcements_endpoint' ) );
         add_action( 'mvx_vendor_dashboard_vendor-orders_endpoint', array( &$this, 'mvx_vendor_dashboard_vendor_orders_endpoint' ) );
@@ -39,12 +39,12 @@ class MVX_Vendor_Hooks {
         add_filter( 'mvx_vendor_dashboard_menu_vendor_withdrawal_capability', array( &$this, 'mvx_vendor_dashboard_menu_vendor_withdrawal_capability' ) );
         add_filter( 'mvx_vendor_dashboard_menu_vendor_shipping_capability', array( &$this, 'mvx_vendor_dashboard_menu_vendor_shipping_capability' ) );
         add_filter('mvx_vendor_dashboard_menu_vendor_knowledgebase_capability', array( &$this, 'mvx_vendor_dashboard_menu_vendor_knowledgebase_capability' ) );
-        add_action( 'before_mvx_vendor_dashboard_content', array( &$this, 'before_mvx_vendor_dashboard_content' ) );
+        add_action( 'mvx_before_vendor_dashboard_content', array( &$this, 'mvx_before_vendor_dashboard_content' ) );
         add_action( 'wp', array( &$this, 'mvx_add_theme_support' ), 15 );
         
         // Rejected vendor dashboard content
         add_action( 'mvx_rejected_vendor_dashboard_content', array( &$this, 'rejected_vendor_dashboard_content' ) );
-        add_action( 'before_mvx_rejected_vendor_dashboard', array( &$this, 'save_rejected_vendor_reapply_data' ) );
+        add_action( 'mvx_before_rejected_vendor_dashboard', array( &$this, 'save_rejected_vendor_reapply_data' ) );
     }
 
     /**
@@ -265,14 +265,14 @@ class MVX_Vendor_Hooks {
             if ( in_array( $key, array( 'page', 'pagename' ) ) ) {
                 continue;
             }
-            do_action( 'before_mvx_vendor_dashboard_content', $key );
+            do_action( 'mvx_before_vendor_dashboard_content', $key );
             if ( has_action( 'mvx_vendor_dashboard_' . $key . '_endpoint' ) ) {
                 if ( $this->current_vendor_can_view( $MVX->endpoints->get_current_endpoint() ) ) {
                     do_action( 'mvx_vendor_dashboard_' . $key . '_endpoint', $value );
                 }
                 return;
             }
-            do_action( 'after_mvx_vendor_dashboard_content' );
+            do_action( 'mvx_after_vendor_dashboard_content' );
         }
         $MVX->library->load_dataTable_lib();
         $MVX->template->get_template( 'vendor-dashboard/dashboard.php' );
@@ -892,7 +892,7 @@ class MVX_Vendor_Hooks {
      * Generate Vendor Progress
      * @global object $MVX
      */
-    public function before_mvx_vendor_dashboard_content( $key ) {
+    public function mvx_before_vendor_dashboard_content( $key ) {
         global $MVX;
         if ( $key !== $MVX->endpoints->get_current_endpoint() ) {
             return;

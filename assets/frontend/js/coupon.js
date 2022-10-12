@@ -2,8 +2,8 @@
 var couponController = ( function ( $ ) {
     var privateApi = {
         addEventHandlers: function addEventHandlers() {
-            $( '#mvx-afm-add-coupon' )
-                .on( 'click', '#mvx_afm_coupon_submit, #mvx_afm_coupon_draft', this.saveCoupon )
+            $( '#mvx-frontend-dashboard-add-coupon' )
+                .on( 'click', '#mvx_frontend_dashboard_coupon_submit, #mvx_frontend_dashboard_coupon_draft', this.saveCoupon )
             ;
             return false;
         },
@@ -22,8 +22,8 @@ var couponController = ( function ( $ ) {
             return false;
         },
         saveCoupon: function saveCoupon() {
-            $( 'form#mvx-afm-add-coupon' ).trigger( 'before_coupon_save' );
-            var status = ( this.id === 'mvx_afm_coupon_submit' ) ? 'publish' : ( this.id === 'mvx_afm_coupon_draft' ) ? 'draft' : '';
+            $( 'form#mvx-frontend-dashboard-add-coupon' ).trigger( 'before_coupon_save' );
+            var status = ( this.id === 'mvx_frontend_dashboard_coupon_submit' ) ? 'publish' : ( this.id === 'mvx_frontend_dashboard_coupon_draft' ) ? 'draft' : '';
             $( 'input:hidden[name="status"]' ).val( status );
             $( 'textarea#coupon_description' ).val( publicApi.getTinymceContent( 'coupon_description' ) );
             return true;

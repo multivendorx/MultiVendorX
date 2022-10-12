@@ -74,7 +74,7 @@ defined( 'ABSPATH' ) || exit;
                                 <?php
                             }
 
-                            do_action('mvx_afm_product_option_terms', $attribute_taxonomy, $i);
+                            do_action('mvx_frontend_dashboard_product_option_terms', $attribute_taxonomy, $i);
                         } else {
                             /* translators: %s: WC_DELIMITER */
                             ?><textarea class="form-control" name="wc_attributes[<?php echo esc_attr($i); ?>][value]" cols="5" rows="5" placeholder="<?php printf(esc_attr__('Enter some text, or some attributes by "%s" separating values.', 'multivendorx'), WC_DELIMITER); ?>"><?php echo esc_textarea(wc_implode_text_attributes($attribute->get_options())); ?></textarea><?php
@@ -100,7 +100,7 @@ defined( 'ABSPATH' ) || exit;
                     </td>
                 </tr>
                 <?php endif; ?>
-                <?php do_action('mvx_afm_after_product_attribute_settings', $attribute, $i); ?>
+                <?php do_action('mvx_frontend_dashboard_after_product_attribute_settings', $attribute, $i); ?>
             </tbody>
         </table>
     </div>

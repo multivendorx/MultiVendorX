@@ -76,5 +76,5 @@ defined( 'ABSPATH' ) || exit;
             </div>
         </div>
     </div>
-    <?php do_action( 'mvx_afm_product_options_attributes', $post->ID, $product_object, $post ); ?>
+    <?php do_action( 'mvx_frontend_dashboard_product_options_attributes', $post->ID, $product_object, $post ); ?>
 </div>

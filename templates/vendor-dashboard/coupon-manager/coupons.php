@@ -12,7 +12,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 global $MVX;
-do_action('before_mvx_vendor_dashboard_coupon_list_table');
+do_action('mvx_before_vendor_dashboard_coupon_list_table');
 $coupon_list_table_headers = apply_filters('mvx_datatable_coupon_list_table_headers', array(
     'coupons'      => array('label' => __( 'Coupon(s)', 'multivendorx' ), 'class' => 'name'),
     'type'    => array('label' => __( 'Coupon type', 'multivendorx' )),
@@ -102,4 +102,4 @@ jQuery(document).ready(function($) {
     new $.fn.dataTable.FixedHeader( vendor_coupons );
 });
 </script>
-<?php do_action('after_mvx_vendor_dashboard_coupon_list_table'); 
+<?php do_action('mvx_after_vendor_dashboard_coupon_list_table'); 

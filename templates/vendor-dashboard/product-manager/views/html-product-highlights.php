@@ -21,7 +21,7 @@ global $MVX;
             <?php esc_html_e( 'Add Product Details', 'multivendorx' );?>
         </h1>
         <?php if( get_transient( 'classified_product_terms_vendor'. get_current_user_id() ) || ($self->is_spmv() && $post) || $is_update ) : ?>
-        <?php do_action( 'mvx_afm_before_product_highlights_category_wrap', $post->ID, $product_object, $post ); ?> 
+        <?php do_action( 'mvx_frontend_dashboard_before_product_highlights_category_wrap', $post->ID, $product_object, $post ); ?> 
         <div class="cat-breadcrumb-wrap">
         <?php 
             if( get_transient( 'classified_product_terms_vendor'. get_current_user_id() ) ){
@@ -112,9 +112,9 @@ global $MVX;
             }
         ?>
         </div>
-        <?php do_action( 'mvx_afm_after_product_highlights_category_wrap', $post->ID, $product_object, $post ); ?> 
+        <?php do_action( 'mvx_frontend_dashboard_after_product_highlights_category_wrap', $post->ID, $product_object, $post ); ?> 
         <?php endif; ?>
-        <?php do_action( 'mvx_afm_before_product_highlights_title_wrap', $post->ID, $product_object, $post ); ?> 
+        <?php do_action( 'mvx_frontend_dashboard_before_product_highlights_title_wrap', $post->ID, $product_object, $post ); ?> 
         <div class="product-title-wrap <?php echo ( $self->is_spmv() || $is_update ) ? 'product-edit-mode' : 'product-add-mode'; ?>"> <!-- product-add-mode / product-edit-mode according to flow -->
             <div class="pull-left product-title-inner full-1080"> 
                 <p class="pro-title">
@@ -199,7 +199,7 @@ global $MVX;
                     </div>
                 </div>
             </div>
-            <?php do_action( 'mvx_afm_after_product_highlights_title_wrap', $post->ID, $product_object, $post ); ?> 
+            <?php do_action( 'mvx_frontend_dashboard_after_product_highlights_title_wrap', $post->ID, $product_object, $post ); ?> 
         </div>
     </div>
 </div>

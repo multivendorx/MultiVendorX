@@ -209,18 +209,18 @@ if ( ! function_exists( 'mvx_vendor_list_vendors_loop' ) ) {
 				);
 			}
 		} else {
-			mvx_no_vendors_found_data();
+			mvx_no_vendors_found();
 		}
 	}
 }
 
-if ( ! function_exists( 'mvx_no_vendors_found_data' ) ) {
+if ( ! function_exists( 'mvx_no_vendors_found' ) ) {
 
 	/**
 	 * No vendors found section.
 	 */
-	function mvx_no_vendors_found_data() {
-		echo apply_filters( 'mvx_no_vendors_found_data', __('No vendor found!', 'multivendorx') );
+	function mvx_no_vendors_found() {
+		echo apply_filters( 'mvx_no_vendors_found', __('No vendor found!', 'multivendorx') );
 	}
 }
 

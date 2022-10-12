@@ -180,7 +180,7 @@ var mvxAfmProductEditor = ( function ( $ ) {
             $( '.add-product-single' )
                 .on( 'click', '.notice-wrapper button.notice-dismiss', this.dismissNotice );
             //save
-            $( '#mvx-edit-product-form' ).on( 'click', '#mvx_afm_product_submit, #mvx_afm_product_draft', this.saveProduct.bind( this ) );
+            $( '#mvx-edit-product-form' ).on( 'click', '#mvx_frontend_dashboard_product_submit, #mvx_frontend_dashboard_product_draft', this.saveProduct.bind( this ) );
             // reset taxonomy on change trigger
             $( '#mvx-edit-product-form' )
                 .on( 'change', 'ul.taxonomy-widget input[name^="tax_input"]', this.taxInputChanged.bind( this ) )
@@ -510,7 +510,7 @@ var mvxAfmProductEditor = ( function ( $ ) {
                             } else {
                                 if ( response.message != '' ) {
                                     $( '.woocommerce-error,woocommerce-message' ).remove();
-                                    $( '#mvx-afm-add-product' ).prepend( '<div class="woocommerce-error" tabindex="-1">' + response.message + '</div>' );
+                                    $( '#mvx-frontend-dashboard-add-product' ).prepend( '<div class="woocommerce-error" tabindex="-1">' + response.message + '</div>' );
                                     $( '.woocommerce-error' ).focus();
                                 }
                                 $( '.multiselect.product_tag option[value="' + isNew.val() + '"]' ).remove();
@@ -1087,7 +1087,7 @@ var mvxAfmProductEditor = ( function ( $ ) {
                                 .on( 'change', '#variable_product_options .woocommerce_variations :input', this.inputChanged )
                                 .on( 'change', '.variations-defaults select', this.defaultsChanged );
 
-                            $( 'form#mvx-afm-add-product' ).on( 'submit', this.saveOnSubmit );
+                            $( 'form#mvx-frontend-dashboard-add-product' ).on( 'submit', this.saveOnSubmit );
                             $( '.collapsable-component-wrapper' ).on( 'click', 'a.do_variation_action', this.doVariationAction );
                         },
                         /**
@@ -1157,7 +1157,7 @@ var mvxAfmProductEditor = ( function ( $ ) {
                             $.ajax( {
                                 url: mvx_advance_product_params.ajax_url,
                                 data: {
-                                    action: 'mvx_afm_load_variations',
+                                    action: 'mvx_frontend_dashboard_load_variations',
                                     security: mvx_advance_product_params.load_variations_nonce,
                                     product_id: mvx_advance_product_params.product_id,
                                     attributes: $wrapper.data( 'attributes' ),
@@ -1303,7 +1303,7 @@ var mvxAfmProductEditor = ( function ( $ ) {
                             this.block();
 
                             var data = {
-                                action: 'mvx_afm_add_variation',
+                                action: 'mvx_frontend_dashboard_add_variation',
                                 post_id: mvx_advance_product_params.product_id,
                                 loop: $( '.woocommerce_variation' ).length,
                                 security: mvx_advance_product_params.add_variation_nonce
@@ -1888,7 +1888,7 @@ var mvxAfmProductEditor = ( function ( $ ) {
         },
         saveProduct: function ( e ) { 
             $( 'form#mvx-edit-product-form' ).trigger( 'before_product_save' );
-            var status = ( e.target.id === 'mvx_afm_product_submit' ) ? 'publish' : ( e.target.id === 'mvx_afm_product_draft' ) ? 'draft' : '';
+            var status = ( e.target.id === 'mvx_frontend_dashboard_product_submit' ) ? 'publish' : ( e.target.id === 'mvx_frontend_dashboard_product_draft' ) ? 'draft' : '';
             $( 'input:hidden[name="status"]' ).val( status );
             $( 'textarea#product_description' ).val( this.getTinymceContent( 'product_description' ) );
             $( 'textarea#product_excerpt' ).val( this.getTinymceContent( 'product_excerpt' ) );

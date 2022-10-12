@@ -118,7 +118,7 @@ $lng = get_post_meta(wp_get_post_parent_id($order->get_id()), '_mvx_user_locatio
                     </div>
                     <div class="detail-contnt">
                         <p><?php echo $user->display_name; ?></p>
-                        <?php $billing_fields = apply_filters( 'mvx_vendor_dash_customer_details_data', array(
+                        <?php $billing_fields = apply_filters( 'mvx_vendor_dash_customer_details', array(
                             'email' => array( 'label' => __( 'Email address', 'multivendorx' ) ),
                             'phone' => array( 'label' => __( 'Phone', 'multivendorx' ) )
                         ) );

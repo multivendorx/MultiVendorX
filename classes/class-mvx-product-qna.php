@@ -29,7 +29,7 @@ class MVX_Product_QNA {
      */
     public function createQuestion( $data ) {
         global $wpdb;
-        $data = apply_filters( 'mvx_product_qna_insert_question_data', $data );
+        $data = apply_filters( 'mvx_product_qna_insert_question', $data );
         $wpdb->insert( $this->question_table, $data );
         return $wpdb->insert_id;
     }
@@ -44,7 +44,7 @@ class MVX_Product_QNA {
     public function updateQuestion( $ques_ID, $data ) {
         global $wpdb;
         if ( $ques_ID ) {
-            $data = apply_filters( 'mvx_product_qna_update_question_data', $data, $ques_ID );
+            $data = apply_filters( 'mvx_product_qna_update_question', $data, $ques_ID );
             return $wpdb->update( $this->question_table, $data, array( 'ques_ID' => $ques_ID ) );
         }
     }
@@ -182,7 +182,7 @@ class MVX_Product_QNA {
      */
     public function createAnswer( $data ) {
         global $wpdb;
-        $data = apply_filters( 'mvx_product_qna_insert_answer_data', $data );
+        $data = apply_filters( 'mvx_product_qna_insert_answer', $data );
         $wpdb->insert( $this->answer_table, $data );
         return $wpdb->insert_id;
     }
@@ -197,7 +197,7 @@ class MVX_Product_QNA {
     public function updateAnswer( $ans_ID, $data ) {
         global $wpdb;
         if ( $ans_ID ) {
-            $data = apply_filters( 'mvx_product_qna_update_answer_data', $data, $ans_ID );
+            $data = apply_filters( 'mvx_product_qna_update_answer', $data, $ans_ID );
             return $wpdb->update( $this->answer_table, $data, array( 'ans_ID' => $ans_ID) );
         }
     }

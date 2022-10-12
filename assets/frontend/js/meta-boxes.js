@@ -67,7 +67,7 @@
     product_meta_boxes.init();
     
     var coupon_meta_boxes = {
-        $coupon_form_wrap: $('#mvx-afm-add-coupon'),
+        $coupon_form_wrap: $('#mvx-frontend-dashboard-add-coupon'),
         init: function() {
             // helper functions
             this.insert_generate_coupon_code_button();

@@ -47,7 +47,7 @@ if($comments){
 		}
 	}
 } else {
- 		echo apply_filters('mvx_widget_empty_reviews_text_filter',__( 'No Reviews..', 'multivendorx' ));
+ 		echo apply_filters('mvx_widget_empty_reviews_text_filter', __( 'No Reviews..', 'multivendorx' ));
  	}
  ?>
 </div>

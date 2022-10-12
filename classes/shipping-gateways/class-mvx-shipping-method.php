@@ -303,7 +303,7 @@ class MVX_Vendor_Shipping_Method extends WC_Shipping_Method {
         if( is_array( $rates ) && count( $rates ) > 0 ) {
             // cycle through rates to send and alter post-add settings
             foreach( $rates as $key => $rate ) { 
-                $this->add_rate( apply_filters( 'mvx_vendor_before_add_shipping_rate_data', $rate, $package ) );
+                $this->add_rate( apply_filters( 'mvx_vendor_before_add_shipping_rates', $rate, $package ) );
             }
         }
     }
@@ -547,7 +547,7 @@ class MVX_Vendor_Shipping_Method extends WC_Shipping_Method {
     
     public function woocommerce_package_rates( $rates, $package ){
         if( !isset( $package['vendor_id'] ) ) return $rates;
-        if( !apply_filters( 'allow_supported_shipping_in_mvx_vendor_shipping_package', true, $package ) && $rates ) {
+        if( !apply_filters( 'mvx_allow_supported_shipping_in_vendor_shipping_package', true, $package ) && $rates ) {
             foreach ( $rates as $key => $shipping_rate ) {
                 if( $shipping_rate->method_id != 'mvx_vendor_shipping' ) {
                     unset( $rates[$key] );

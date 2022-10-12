@@ -236,7 +236,7 @@ Class MVX_Admin_Dashboard {
             }
             $user = wp_get_current_user();
             $vendor = get_mvx_vendor($user->ID);
-            if (isset($_POST['mvx_stat_export']) && !empty($_POST['mvx_stat_export']) && $vendor && apply_filters('can_mvx_vendor_export_orders_csv', true, $vendor->id)) {
+            if (isset($_POST['mvx_stat_export']) && !empty($_POST['mvx_stat_export']) && $vendor && apply_filters('mvx_can_vendor_export_orders_csv', true, $vendor->id)) {
                 $vendor = apply_filters('mvx_order_details_export_vendor', $vendor);
                 $start_date = isset($_POST['mvx_stat_start_dt']) ? wc_clean($_POST['mvx_stat_start_dt']) : date('Y-m-01');
                 $end_date = isset($_POST['mvx_stat_end_dt']) ? wc_clean($_POST['mvx_stat_end_dt']) : date('Y-m-d');
@@ -367,7 +367,7 @@ Class MVX_Admin_Dashboard {
                         $customer_email = $order->get_billing_email();
                         $customer_phone = $order->get_billing_phone();
 
-                        $order_datas[$index] = apply_filters('mvx_vendor_order_generate_csv_data', array(
+                        $order_datas[$index] = apply_filters('mvx_vendor_order_generate_csv', array(
                             'order' => '#' . $customer_order,
                             'date_of_purchase' => date_i18n('Y-m-d', strtotime($order->get_date_created())),
                             'time_of_purchase' => date_i18n('H', strtotime($order->get_date_created())) . ' : ' . date_i18n('i', strtotime($order->get_date_created())),
@@ -565,7 +565,7 @@ Class MVX_Admin_Dashboard {
                 } elseif ($zones) {
                     // for specific zone shipping methods settings
 
-                    $show_post_code_list = $show_state_list = $show_post_code_list = false;
+                    $show_post_code_list = $show_state_list = false;
 
                     $zone_id = $zones['data']['id'];
                     $zone_locations = $zones['data']['zone_locations'];
@@ -595,11 +595,9 @@ Class MVX_Admin_Dashboard {
 
                     if ($show_limit_location_link) {
                         if (in_array('state', $zone_location_types)) {
-                            $show_city_list = apply_filters('mvx_city_select_dropdown_enabled', false);
                             $show_post_code_list = true;
                         } elseif (in_array('country', $zone_location_types)) {
                             $show_state_list = true;
-                            $show_city_list = apply_filters('mvx_city_select_dropdown_enabled', false);
                             $show_post_code_list = true;
                         }
                     }
@@ -1685,7 +1683,7 @@ Class MVX_Admin_Dashboard {
         if (!$mvx_dashboard_widget) {
             return;
         }
-        $mvx_dashboard_widget = apply_filters('before_mvx_dashboard_widget', $mvx_dashboard_widget);
+        $mvx_dashboard_widget = apply_filters('mvx_before_dashboard_widget', $mvx_dashboard_widget);
         if ($mvx_dashboard_widget) {
             foreach ($mvx_dashboard_widget as $context => $dashboard_widget) {
                 if ($place == $context) {
@@ -1900,7 +1898,7 @@ Class MVX_Admin_Dashboard {
                 $total_amount = $total_amount + $details['total_amount'];
             }
             $total_amounts = isset($unpaid_commission_total['total']) ? $unpaid_commission_total['total'] : 0;
-            $MVX->template->get_template('vendor-dashboard/dashboard-widgets/mvx-vendor-transaction-details.php', apply_filters( 'mvx_widget_vendor_transaction_details_data', array('total_amount' => $total_amounts, 'transaction_display_array' => $transaction_display_array), $vendor, $requestData ) );
+            $MVX->template->get_template('vendor-dashboard/dashboard-widgets/mvx-vendor-transaction-details.php', apply_filters( 'mvx_widget_vendor_transaction_details', array('total_amount' => $total_amounts, 'transaction_display_array' => $transaction_display_array), $vendor, $requestData ) );
         }
 
         public function mvx_vendor_products_cust_qna() {
@@ -1916,7 +1914,7 @@ Class MVX_Admin_Dashboard {
             $visitor_map_stats['init'] = array('map' => 'world_en', 'background_color' => false, 'color' => '#a0a0a0', 'hover_color' => false, 'hover_opacity' => 0.7);
             //wp_enqueue_script('mvx_gchart_loader', '//www.gstatic.com/charts/loader.js');
             wp_enqueue_script('mvx_visitor_map_data', $MVX->plugin_url . 'assets/frontend/js/mvx_vendor_map_widget_data.js', apply_filters('mvx_vendor_visitors_map_script_dependancies', array('jquery', 'mvx-vmap-world-script')));
-            wp_localize_script('mvx_visitor_map_data', 'visitor_map_stats', apply_filters('mvx_vendor_visitors_map_script_data', $visitor_map_stats));
+            wp_localize_script('mvx_visitor_map_data', 'visitor_map_stats', apply_filters('mvx_vendor_visitors_map_script', $visitor_map_stats));
             $MVX->template->get_template('vendor-dashboard/dashboard-widgets/mvx-vendor-visitors-map.php');
         }
 
@@ -2074,7 +2072,7 @@ Class MVX_Admin_Dashboard {
                 }
             }
 
-            $post_data = apply_filters( 'mvx_submitted_product_data', array(
+            $post_data = apply_filters( 'mvx_submitted_products', array(
                 'ID'            => $product_id,
                 'post_title'    => $title,
                 'post_content'  => stripslashes( html_entity_decode( $_POST['product_description'], ENT_QUOTES, get_bloginfo( 'charset' ) ) ),
@@ -2300,13 +2298,13 @@ Class MVX_Admin_Dashboard {
         $add_coupon_endpoint = get_mvx_vendor_settings( 'mvx_add_coupon_endpoint', 'seller_dashbaord', 'add-coupon' );
         $can_publish = true;
         //Return if not add coupon endpoint
-        if ( $current_endpoint !== $add_coupon_endpoint || ! isset( $_POST['mvx_afm_coupon_nonce'] ) ) {
+        if ( $current_endpoint !== $add_coupon_endpoint || ! isset( $_POST['mvx_frontend_dashboard_coupon_nonce'] ) ) {
             return;
         }
 
         $vendor_id = get_current_user_id();
 
-        if ( ! $vendor_id || ! current_vendor_can( 'edit_shop_coupon' ) || empty( $_POST['post_ID'] ) || ! wp_verify_nonce( $_POST['mvx_afm_coupon_nonce'], 'mvx-afm-coupon' ) ) {
+        if ( ! $vendor_id || ! current_vendor_can( 'edit_shop_coupon' ) || empty( $_POST['post_ID'] ) || ! wp_verify_nonce( $_POST['mvx_frontend_dashboard_coupon_nonce'], 'mvx-frontend-dashboard-coupon' ) ) {
             wp_die( -1 );
         }
 
@@ -2374,7 +2372,7 @@ Class MVX_Admin_Dashboard {
             'post_date_gmt' => gmdate( 'Y-m-d H:i:s', $coupon->get_date_created( 'edit' )->getTimestamp() ),
             ), $_POST );
 
-        do_action( 'mvx_afm_before_coupon_post_update' );
+        do_action( 'mvx_frontend_dashboard_before_coupon_post_update' );
 
         if ($can_publish) :
 
@@ -2411,7 +2409,7 @@ Class MVX_Admin_Dashboard {
                 $errors[] = $error->get_error_message();
             }
             $coupon->save();
-            do_action( 'mvx_afm_coupon_options_save', $post_id, $coupon );
+            do_action( 'mvx_frontend_dashboard_coupon_options_save', $post_id, $coupon );
             
             $status_for_send_mail_to_admin = apply_filters('mvx_send_coupon_mail_admin_status', array('draft'));
             if ( !in_array( $status, $status_for_send_mail_to_admin) ) {

@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
 }
 global $MVX;
 
-do_action('before_mvx_vendor_stats_reports'); 
+do_action('mvx_before_vendor_stats_reports'); 
 ?>
 <div class="pannel panel-default pannel-outer-heading staticstics-panel-wrap">
     <div class="panel-body">
@@ -92,4 +92,4 @@ do_action('before_mvx_vendor_stats_reports');
     </div>
 </div>
 <?php
-do_action('after_mvx_vendor_stats_reports');
+do_action('mvx_after_vendor_stats_reports');
