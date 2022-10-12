@@ -1113,7 +1113,7 @@ class MVX_Admin {
             'dashboard67' =>  __('$399', 'multivendorx'),
             'dashboard68' =>  __('$599', 'multivendorx'),
             'dashboard69' =>  __('Buy Now', 'multivendorx'),
-            'dashboard70' =>  __('10 Sites', 'multivendorx'),
+            'dashboard70' =>  __('3 Sites', 'multivendorx'),
             'dashboard71' =>  __('50+ Modules', 'multivendorx'),
 
             'dashboard72' =>  __('Unlimited Support', 'multivendorx'),
