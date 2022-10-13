@@ -165,7 +165,7 @@ abstract class MVX_Payment_Gateway {
                 update_post_meta($this->transaction_id, 'paid_date', date("Y-m-d H:i:s"));
             }
         }
-        do_action('mvx_transaction_update_meta_data', $commission_status, $this->transaction_id, $this->vendor, $this);
+        do_action('mvx_transaction_update_meta', $commission_status, $this->transaction_id, $this->vendor, $this);
     }
 
     public function email_notify($commission_status = 'mvx_processing') {

@@ -325,23 +325,13 @@ class MVX_Ajax {
                         $action_html .= '<a href="' . $action['url'] . '" target="'. $target .'" title="' . $action['title'] . '"><i class="mvx-font ' . $action['icon'] . '"></i></a> ';
                     }
                 }
-
-                $refund_reason = $refund_amount = '';
-                if ($order->get_refunds()) {
-                    foreach ( $order->get_refunds() as $id => $refund ) {
-                        $refund_reason .= $refund->get_reason() ? $refund->get_reason() : '';
-                        $refund_amount .= $refund->get_amount() ? $refund->get_amount() : '';
-                    }
-                }
-
+                
                 $data[] = apply_filters('mvx_datatable_order_list_row', array(
                     'select_order' => '<input type="checkbox" class="select_' . $order->get_status() . '" name="selected_orders[' . $order->get_id() . ']" value="' . $order->get_id() . '" />',
                     'order_id' => $order->get_id(),
                     'order_date' => mvx_date($order->get_date_created()),
                     'vendor_earning' => ($vendor_order->get_commission_total()) ? $vendor_order->get_commission_total() : '-',
                     'order_status' => esc_html(wc_get_order_status_name($order->get_status())), //ucfirst($order->get_status()),
-                    'refund_amount' =>  $refund_amount,
-                    'refund_reason' =>  $refund_reason,
                     'action' => apply_filters('mvx_vendor_orders_row_action_html', $action_html, $actions)
                         ), $order);
             }

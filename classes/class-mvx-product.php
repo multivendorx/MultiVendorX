@@ -910,7 +910,7 @@ class MVX_Product {
                                     "_mvx_cancallation_policy" => array('label' => __('Cancellation/Return/Exchange Policy', 'multivendorx'), 'type' => 'wpeditor', 'id' => '_mvx_cancallation_policy', 'label_for' => '_mvx_cancallation_policy', 'name' => '_mvx_cancallation_policy', 'class' => 'regular-text', 'value' => $_mvx_cancallation_policy, 'in_table' => true),
                                 )
                         );
-                        do_action('mvx_product_options_policy_product_data');
+                        do_action('mvx_product_options_policy_on_single_page');
                         ?>
                     </tbody>
                 </table>            

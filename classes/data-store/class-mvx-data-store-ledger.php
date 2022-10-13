@@ -45,7 +45,7 @@ class MVX_Ledger_Data_Store {
         if ( $id ) {
             $wpdb->update( $wpdb->prefix . 'mvx_vendor_ledger', $data, array( 'id' => $id ) );
         }
-        do_action( 'mvx_ledger_data_store_after_update_data', $id, $data );
+        do_action( 'mvx_ledger_data_store_after_update', $id, $data );
     }
     
     /**

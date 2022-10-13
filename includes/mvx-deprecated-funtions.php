@@ -565,8 +565,8 @@ function wcmp_create_commission_refund_after_commission_note( $commission_id, $c
 }
 
 function wcmp_transaction_update_meta_data( $commission_status, $transaction_id, $vendor ) {
-	wc_deprecated_function('wcmp_transaction_update_meta_data', '4.0.0', 'mvx_transaction_update_meta_data');
-	return mvx_transaction_update_meta_data( $commission_status, $transaction_id, $vendor );
+	wc_deprecated_function('wcmp_transaction_update_meta_data', '4.0.0', 'mvx_transaction_update_meta');
+	return mvx_transaction_update_meta( $commission_status, $transaction_id, $vendor );
 }
 
 function wcmp_shop_order_columns($columns) {
@@ -1284,11 +1284,6 @@ function wcmp_get_all_blocked_vendors() {
 	return mvx_get_all_blocked_vendors();
 }
 
-function wcmp_get_vendors_form_order($order) {
-	wc_deprecated_function('wcmp_get_vendors_form_order', '4.0.0', 'mvx_get_vendors_form_order');
-	return mvx_get_vendors_form_order($order);
-}
-
 function wcmp_check_if_another_vendor_plugin_exits() {
 	wc_deprecated_function('wcmp_check_if_another_vendor_plugin_exits', '4.0.0', 'mvx_check_if_another_vendor_plugin_exits');
 	return mvx_check_if_another_vendor_plugin_exits();
@@ -1347,11 +1342,6 @@ function wcmp_sort_by_rating_multiple_product($more_product_array) {
 function wcmp_remove_comments_section_from_vendor_dashboard() {
 	wc_deprecated_function('wcmp_remove_comments_section_from_vendor_dashboard', '4.0.0', 'mvx_remove_comments_section_from_vendor_dashboard');
 	return mvx_remove_comments_section_from_vendor_dashboard();
-}
-
-function wcmp_count_commission() {
-	wc_deprecated_function('wcmp_count_commission', '4.0.0', 'mvx_count_commission');
-	return mvx_count_commission();
 }
 
 function wcmp_process_order($order_id, $order = null) {
@@ -1487,11 +1477,6 @@ function wcmp_get_commission_statuses() {
 function wcmp_get_product_link( $product_id ) {
 	wc_deprecated_function('wcmp_get_product_link', '4.0.0', 'mvx_get_product_link');
 	return mvx_get_product_link( $product_id );
-}
-
-function wcmp_failed_pending_order_commission() {
-	wc_deprecated_function('wcmp_failed_pending_order_commission', '4.0.0', 'mvx_failed_pending_order_commission');
-	return mvx_failed_pending_order_commission();
 }
 
 function wcmp_get_option( $key, $default_val = '', $lang_code = '' ) {

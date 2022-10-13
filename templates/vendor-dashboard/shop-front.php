@@ -401,7 +401,7 @@ $_wp_editor_settings = apply_filters('mvx_vendor_storefront_wp_editor_settings',
                         </div>
                     </div>
                     <!-- from group end -->
-                    <?php do_action( 'mvx_vendor_add_store_data', $vendor ); ?>
+                    <?php do_action( 'mvx_vendor_add_store', $vendor ); ?>
                 </div>
             </div>
         </div>

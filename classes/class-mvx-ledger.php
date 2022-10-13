@@ -16,7 +16,7 @@ class MVX_Ledger {
     public function __construct() {
         add_action( 'mvx_commission_after_save_commission_total', array( $this, 'mvx_commission_after_save_commission_total' ), 10, 2 );
         add_action( 'mvx_create_commission_refund_after_commission_note', array( $this, 'mvx_create_commission_refund_after_commission_note' ), 10, 4 );
-        add_action( 'mvx_transaction_update_meta_data', array( $this, 'mvx_transaction_update_meta_data' ), 10, 3 );
+        add_action( 'mvx_transaction_update_meta', array( $this, 'mvx_transaction_update_meta' ), 10, 3 );
         add_action( 'before_delete_post', array( $this, 'before_commission_delete' ), 99 );
         add_action( 'mvx_vendor_order_on_cancelled_commission', array( $this, 'before_commission_delete' ), 99 );
         // for BW order migration
@@ -123,7 +123,7 @@ class MVX_Ledger {
         }
     }
     
-    public function mvx_transaction_update_meta_data( $commission_status, $transaction_id, $vendor ) {
+    public function mvx_transaction_update_meta( $commission_status, $transaction_id, $vendor ) {
         if( $commission_status == 'mvx_processing' ) return;
         
         if( $transaction_id ){

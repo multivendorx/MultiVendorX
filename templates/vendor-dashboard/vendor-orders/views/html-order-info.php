@@ -27,7 +27,7 @@ $lng = get_post_meta(wp_get_post_parent_id($order->get_id()), '_mvx_user_locatio
 <div class="panel-body panel-content-padding top-order-note">
     <div class="vorder-info-top-left pull-left">
         <table>
-            <?php do_action( 'mvx_vendor_dash_order_details_before_top_left_data', $order, $vendor ); ?>
+            <?php do_action( 'mvx_vendor_dash_order_details_before_top_left', $order, $vendor ); ?>
             <tr>
                 <th><?php esc_html_e( 'Order date', 'multivendorx' ); ?> :</th>
                 <td><?php echo esc_html( $order->get_date_created()->date_i18n( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ) ) ); ?></td>
@@ -58,11 +58,11 @@ $lng = get_post_meta(wp_get_post_parent_id($order->get_id()), '_mvx_user_locatio
                     </td>
                 </tr>
             <?php } ?>
-            <?php do_action( 'mvx_vendor_dash_order_details_after_top_left_data', $order, $vendor ); ?>
+            <?php do_action( 'mvx_vendor_dash_order_details_after_top_left', $order, $vendor ); ?>
         </table>
     </div>
     <div class="vorder-info-top-right pull-right mt-10">
-        <?php do_action( 'mvx_vendor_dash_order_details_top_right_data', $order, $vendor ); ?>
+        <?php do_action( 'mvx_vendor_dash_order_details_top_right', $order, $vendor ); ?>
         <!--a href="#" class="btn btn-default btn-outline">PDF invoice</a>
         <a href="#" class="btn btn-default btn-outline">PDF package slip</a-->
     </div>

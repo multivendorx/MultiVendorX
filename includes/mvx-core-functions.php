@@ -677,30 +677,6 @@ if (!function_exists('get_mvx_vendor_order_amount')) {
 
 }
 
-if (!function_exists('mvx_get_vendors_form_order')) {
-
-    function mvx_get_vendors_form_order($order) {
-        if (!is_object($order)) {
-            $order = new WC_Order($order);
-        }
-        $items = $order->get_items('line_item');
-        $vendors_array = array();
-        if ($items) {
-            foreach ($items as $item_id => $item) {
-                $product_id = wc_get_order_item_meta($item_id, '_product_id', true);
-                if ($product_id) {
-                    $vendor = get_mvx_product_vendors($product_id);
-                    if (!empty($vendor) && isset($vendor->term_id)) {
-                        $vendors_array[$vendor->term_id] = $vendor;
-                    }
-                }
-            }
-        }
-        return $vendors_array;
-    }
-
-}
-
 if (!function_exists('activate_mvx_plugin')) {
 
     /**
@@ -1779,38 +1755,6 @@ if (!function_exists('do_mvx_commission_data_migrate')) {
         } else {
             update_option('commission_data_migrated', '1');
         }
-    }
-
-}
-
-if (!function_exists('mvx_count_commission')) {
-
-    function mvx_count_commission() {
-        $args = array(
-            'posts_per_page' => -1,
-            'post_type' => 'dc_commission',
-            'post_status' => array('private', 'publish')
-        );
-        $commission_id = wp_list_pluck(get_posts($args), 'ID');
-        $commission_count = new stdClass();
-        $commission_count->paid = $commission_count->unpaid = $commission_count->reverse = 0;
-        foreach ($commission_id as $id) {
-            $commission_status = get_post_meta($id, '_paid_status', true);
-            if ($commission_status) {
-                switch ($commission_status) {
-                    case 'paid':
-                        $commission_count->paid += 1;
-                        break;
-                    case 'unpaid':
-                        $commission_count->unpaid += 1;
-                        break;
-                    case 'reverse':
-                        $commission_count->reverse += 1;
-                        break;
-                }
-            }
-        }
-        return $commission_count;
     }
 
 }
@@ -4144,24 +4088,6 @@ if (!function_exists('get_mvx_more_spmv_products')) {
     }
 }
 
-/**
- * Get failed and pending order commission ID
- *
- * @return commission ID
- */
-
-function mvx_failed_pending_order_commission() {
-    // find failed and pending order
-    $failed_and_pending_orders = mvx_get_orders( array('post_status' => array( 'wc-failed', 'wc-pending' )), 'ids', true );
-    $commission_id = array();
-    if (!empty($failed_and_pending_orders)) {
-        foreach ($failed_and_pending_orders as $order_id) {
-            $commission_id[] = mvx_get_order_commission_id($order_id);
-        }
-    }
-    return $commission_id;
-}
-
 function mvx_get_option( $key, $default_val = '', $lang_code = '' ) {
     $option_val = get_option( $key, $default_val );
     
@@ -4342,6 +4268,7 @@ if (!function_exists('mvx_mapbox_design_switcher')) {
         }
     }
 }
+
 if (!function_exists('mvx_vendor_distance_by_shipping_settings')) {
     function mvx_vendor_distance_by_shipping_settings( $vendor_id = 0 ) {
         global $MVX;

@@ -14,7 +14,7 @@ global $MVX;
 ?>
 <div role="tabpanel" class="tab-pane fade" id="general_product_data">
     <div class="row-padding">
-        <?php do_action( 'mvx_frontend_dashboard_before_general_product_data', $post->ID, $product_object, $post ); ?>
+        <?php do_action( 'mvx_frontend_dashboard_before_general_product', $post->ID, $product_object, $post ); ?>
         <?php
         $product_url_visibility = apply_filters( 'general_tab_product_url_section', array( 'external' ) );
         if ( call_user_func_array( "mvx_is_allowed_product_type", $product_url_visibility ) ) :

@@ -111,7 +111,7 @@ class MVX_Order {
             $item->add_meta_data('vendor_id', $vendor_id, true);
             $package_qty = array_sum(wp_list_pluck($package['contents'], 'quantity'));
             $item->add_meta_data('package_qty', $package_qty, true);
-            do_action('mvx_add_shipping_package_meta_data');
+            do_action('mvx_add_shipping_package_meta');
         }
     }
 

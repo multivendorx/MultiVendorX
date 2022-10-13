@@ -21,7 +21,7 @@ defined( 'ABSPATH' ) || exit;
 ?>
 <div role="tabpanel" class="tab-pane fade" id="usage_limit_coupon_data">
     <div class="row-padding">
-        <?php do_action( 'mvx_frontend_dashboard_before_usage_limit_coupon_data', $post->ID, $coupon ); ?>
+        <?php do_action( 'mvx_frontend_dashboard_before_usage_limit_coupon', $post->ID, $coupon ); ?>
         <div class="form-group-row"> 
             <div class="form-group">
                 <label class="control-label col-sm-3 col-md-3" for="usage_limit">
@@ -51,6 +51,6 @@ defined( 'ABSPATH' ) || exit;
                 </div>
             </div>
         </div>
-        <?php do_action( 'mvx_frontend_dashboard_after_usage_limit_coupon_data', $post->ID, $coupon ); ?>
+        <?php do_action( 'mvx_frontend_dashboard_after_usage_limit_coupon', $post->ID, $coupon ); ?>
     </div>
 </div>
