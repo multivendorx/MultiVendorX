@@ -76,14 +76,24 @@ abstract class MVX_Payment_Gateway {
     }
 
     public function gateway_charge() {
-        $gateway_charge = $admin_gateway_charge = $global_charges = 0;
+        $gateway_charge = $admin_gateway_charge = $global_charges = $payment_gateway_fixed_value = $payment_gateway_percent_value = 0;
         $is_enable_gateway_charge = get_mvx_global_settings('payment_gateway_charge');
         $order_totals = $this->vendor_wise_order_total();
-        if ($is_enable_gateway_charge == 'Enable') {
+        if (!empty($is_enable_gateway_charge)) {
             $payment_gateway_charge_type = get_mvx_global_settings('payment_gateway_charge_type') ? get_mvx_global_settings('payment_gateway_charge_type')['value'] : '';
-            $gateway_charge_amount = floatval(get_mvx_global_settings("percent_gayeway_amount_{$this->payment_gateway}"));
+            
+            if (get_mvx_global_settings("default_gateway_charge_value")) {
+                foreach (get_mvx_global_settings("default_gateway_charge_value") as $key => $value) {
+                    if ($value['key'] == "fixed_gayeway_amount_{$this->payment_gateway}") {
+                        $payment_gateway_fixed_value = $value['value'] ? $value['value'] : 0;
+                    }
+                    if ($value['key'] == "percent_gayeway_amount_{$this->payment_gateway}") {
+                        $payment_gateway_percent_value = $value['value'] ? $value['value'] : 0;
+                    }
+                }
+            }
+
             $carrier = get_mvx_global_settings('gateway_charges_cost_carrier') ? get_mvx_global_settings('gateway_charges_cost_carrier')['value'] : '';
-            if ($gateway_charge_amount) {
                 foreach ($order_totals as $order_id => $details) {
                     $order = wc_get_order($order_id);
                     if (apply_filters('mvx_gateway_charge_with_refunded_order_amount', true)) {
@@ -96,15 +106,15 @@ abstract class MVX_Payment_Gateway {
                     $order_gateway_charge = 0;
                     $vendor_ratio = ($vendor_total / $order_total);
                     if ('percent' === $payment_gateway_charge_type) {
-                        $parcentize_charges = ($order_total * $gateway_charge_amount) / 100;
+                        $parcentize_charges = ($order_total * $payment_gateway_percent_value) / 100;
                         $order_gateway_charge = ($vendor_ratio) ? $vendor_ratio * $parcentize_charges : $parcentize_charges;
                     }else if ('fixed_with_percentage' === $payment_gateway_charge_type) {
-                        $gateway_fixed_charge_amount = floatval(get_mvx_global_settings("fixed_gayeway_amount_{$this->payment_gateway}"));
-                        $parcentize_charges = (($order_total * $gateway_charge_amount) / 100 );
-                        $fixed_charges = floatval($gateway_fixed_charge_amount) / count($details['order_marchants']);
+                        
+                        $parcentize_charges = (($order_total * $payment_gateway_percent_value) / 100 );
+                        $fixed_charges = floatval($payment_gateway_fixed_value) / count($details['order_marchants']);
                         $order_gateway_charge = ($vendor_ratio) ? ($vendor_ratio * $parcentize_charges) + $fixed_charges : ($parcentize_charges + $fixed_charges);
                     }else{
-                        $fixed_charges = floatval($gateway_charge_amount) / count($details['order_marchants']);
+                        $fixed_charges = floatval($payment_gateway_fixed_value) / count($details['order_marchants']);
                         $order_gateway_charge = $fixed_charges;
                     }
                     $gateway_charge += $order_gateway_charge; 
@@ -113,18 +123,17 @@ abstract class MVX_Payment_Gateway {
                 if($carrier == 'separate'){
                     //$gateway_charge = 0;
                     if ('percent' === $payment_gateway_charge_type) {
-                        $gateway_charge = ($this->get_transaction_total() * $gateway_charge_amount) / 100;
+                        $gateway_charge = ($this->get_transaction_total() * $payment_gateway_percent_value) / 100;
                     }else if ('fixed_with_percentage' === $payment_gateway_charge_type) {
-                        $gateway_fixed_charge_amount = floatval(get_mvx_global_settings("fixed_gayeway_amount_{$this->payment_gateway}"));
-                        $gateway_charge = (($this->get_transaction_total() * $gateway_charge_amount) / 100 ) + floatval($gateway_fixed_charge_amount);
-                    }else{
-                        $gateway_charge = floatval($gateway_charge_amount);
+                        
+                        $gateway_charge = (($this->get_transaction_total() * $payment_gateway_percent_value) / 100 ) + floatval($payment_gateway_fixed_value);
+                    } else {
+                        $gateway_charge = floatval($payment_gateway_fixed_value);
                     }
                 }
                 
                 if($carrier == 'admin')
                     $gateway_charge = 0;
-            }
         }
         return apply_filters('mvx_commission_gateway_charge_amount', $gateway_charge, $order_totals, $this->vendor, $this->commissions, $this->get_transaction_total(), $this->payment_gateway);
     }

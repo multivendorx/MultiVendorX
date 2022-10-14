@@ -447,6 +447,12 @@ $_wp_editor_settings = apply_filters('mvx_vendor_storefront_wp_editor_settings',
                             <input class="form-control" type="url"   name="vendor_instagram" value="<?php echo isset($vendor_instagram['value']) ? $vendor_instagram['value'] : ''; ?>">
                         </div>  
                     </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3 col-md-3 pinterest"><?php _e('Pinterest', 'dc-woocommerce-multi-vendor'); ?></label>
+                        <div class="col-md-6 col-sm-9">
+                            <input class="form-control" type="url" name="vendor_pinterest_profile" value="<?php echo isset($vendor_pinterest_profile['value']) ? $vendor_pinterest_profile['value'] : ''; ?>">
+                        </div>  
+                    </div>
                     <?php do_action( 'mvx_vendor_add_extra_social_link', $vendor ); ?>
                 </div>
             </div>

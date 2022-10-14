@@ -154,6 +154,7 @@ class MVX_Elementor {
 					'linkedin'  => 'fab fa-linkedin',
 					'youtube'   => 'fab fa-youtube',
 					'instagram' => 'fab fa-instagram',
+					'pinterest'	=> 'fab fa-pinterest'
 			];
 
 			return apply_filters( 'mvx_elementor_social_network_map', $map );

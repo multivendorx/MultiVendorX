@@ -465,6 +465,12 @@ class MVX_User {
                 'value' => $vendor->youtube,
                 'class' => "user-profile-fields regular-text"
             ), // Text
+            "vendor_pinterest_profile" => array(
+                'label' => __('Pinterest Profile', 'dc-woocommerce-multi-vendor'),
+                'type' => 'text',
+                'value' => $vendor->pinterest_profile,
+                'class' => "user-profile-fields regular-text"
+            ), // Text
             "vendor_instagram" => array(
                 'label' => __('Instagram Profile', 'multivendorx'),
                 'type' => 'text',

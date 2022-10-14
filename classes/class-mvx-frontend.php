@@ -491,6 +491,7 @@ class MVX_Frontend {
             wp_enqueue_style('frontend_css');
             // Enqueue shop page css
             wp_enqueue_style('mvx_seller_shop_page_css');
+            wp_enqueue_style('dashicons');
         }
         do_action('mvx_frontend_enqueue_scripts', $is_vendor_dashboard);
     }

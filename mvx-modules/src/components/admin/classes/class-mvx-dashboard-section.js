@@ -674,12 +674,12 @@ class MVX_Dashboard extends Component {
                                         <li>Basic</li>
                                         <li>
                                             <div className="m-price">
-                                                <h1>Basic </h1>
+                                                <h1>Free </h1>
                                             </div>
                                         </li>
                                         <li className="mvx-btn btn-border">
                                             <a
-                                                href="#"
+                                                href="https://wcmarketpstag.wpengine.com/pricing/"
                                             >
                                                 {appLocalizer.dashboard_string.dashboard69}
                                             </a>
@@ -688,20 +688,20 @@ class MVX_Dashboard extends Component {
                                             <span>        
                                                 <p>
                                                     <i className="mvx-font icon-documentation-forum" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard70}
+                                                    Unlimited Sites
                                                 </p>
                                                 <p>
                                                     <i className="mvx-font icon-documentation-forum" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard71}
+                                                    25+ Modules
                                                 </p>
                                                 <p>
                                                     <i className="mvx-font icon-form-radio" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard72}{' '}
+                                                     Unlimited Support
 
                                                 </p>
                                                 <p>
                                                     <i className="mvx-font icon-documentation-forum" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard73}
+                                                    Lifetime Updates
                                                 </p>
                                                         
                                             </span>
@@ -768,12 +768,12 @@ class MVX_Dashboard extends Component {
                                         <li>Growth</li>
                                         <li>
                                             <div className="m-price">
-                                            <p><s>$599</s> </p>&nbsp;<h1>$399 </h1> &nbsp;<p>/Year</p>
+                                            <p><s>$599</s> </p>&nbsp;<h1>$69 </h1> &nbsp;<p>/month</p>
                                             </div>
                                         </li>
                                         <li className="mvx-btn btn-border">
                                             <a
-                                                href="#"
+                                                href="https://wcmarketpstag.wpengine.com/pricing/"
                                             >
                                                 {appLocalizer.dashboard_string.dashboard69}
                                             </a>
@@ -790,12 +790,12 @@ class MVX_Dashboard extends Component {
                                                 </p>
                                                 <p>
                                                     <i className="mvx-font icon-form-radio" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard72}{' '}
+                                                    1 Month Support
 
                                                 </p>
                                                 <p>
                                                     <i className="mvx-font icon-documentation-forum" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard73}
+                                                    1 Month Updates
                                                 </p>
                                                         
                                             </span>
@@ -866,12 +866,12 @@ class MVX_Dashboard extends Component {
                                     <li>Agency</li>
                                         <li>
                                             <div className="m-price">
-                                            <p><s>$599</s> </p>&nbsp;<h1>$499 </h1> &nbsp;<p>/Year</p>
+                                            <p><s>$599</s> </p>&nbsp;<h1>$89 </h1> &nbsp;<p>/month</p>
                                             </div>
                                         </li>
                                         <li className="mvx-btn btn-red">
                                             <a
-                                                href="#"
+                                                href="https://wcmarketpstag.wpengine.com/pricing/"
                                             >
                                                 {appLocalizer.dashboard_string.dashboard69}
                                             </a>
@@ -880,7 +880,7 @@ class MVX_Dashboard extends Component {
                                             <span>    
                                                 <p>
                                                     <i className="mvx-font icon-documentation-forum" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard70}
+                                                    10 Sites
                                                 </p>
                                                 <p>
                                                     <i className="mvx-font icon-documentation-forum" />{' '}
@@ -888,11 +888,11 @@ class MVX_Dashboard extends Component {
                                                 </p>
                                                 <p>
                                                     <i className="mvx-font icon-form-radio" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard72}{' '}
+                                                    1 Month Support
                                                 </p>
                                                 <p>
                                                     <i className="mvx-font icon-documentation-forum" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard73}
+                                                    1 Month Updates
                                                 </p>
                                             </span>
 
@@ -960,12 +960,12 @@ class MVX_Dashboard extends Component {
                                     <li>Starter</li>
                                         <li>
                                             <div className="m-price">
-                                            <p><s>$399</s> </p>&nbsp;<h1>$299 </h1> &nbsp;<p>/Year</p>
+                                            <p><s>$399</s> </p>&nbsp;<h1>$49 </h1> &nbsp;<p>/month</p>
                                             </div>
                                         </li>
                                         <li className="mvx-btn btn-border">
                                             <a
-                                                href="#"
+                                                href="https://wcmarketpstag.wpengine.com/pricing/"
                                             >
                                                 {appLocalizer.dashboard_string.dashboard69}
                                             </a>
@@ -983,11 +983,11 @@ class MVX_Dashboard extends Component {
                                                 </p>
                                                 <p>
                                                     <i className="mvx-font icon-form-radio" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard72}{' '}
+                                                    1 Month Support
                                                 </p>
                                                 <p>
                                                     <i className="mvx-font icon-documentation-forum" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard73}
+                                                    1 Month Updates
                                                 </p>
                                             </span>
 
@@ -1059,12 +1059,12 @@ class MVX_Dashboard extends Component {
                                         <li>Basic</li>
                                         <li>
                                             <div className="m-price">
-                                                <h1>Basic </h1>
+                                                <h1>Free </h1>
                                             </div>
                                         </li>
                                         <li className="mvx-btn btn-border">
                                             <a
-                                                href="#"
+                                                href="https://wcmarketpstag.wpengine.com/pricing/"
                                             >
                                                 {appLocalizer.dashboard_string.dashboard69}
                                             </a>
@@ -1073,20 +1073,20 @@ class MVX_Dashboard extends Component {
                                             <span>        
                                                 <p>
                                                     <i className="mvx-font icon-documentation-forum" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard70}
+                                                    Unlimited Sites
                                                 </p>
                                                 <p>
                                                     <i className="mvx-font icon-documentation-forum" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard71}
+                                                    25+ Modules
                                                 </p>
                                                 <p>
                                                     <i className="mvx-font icon-form-radio" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard72}{' '}
+                                                     Unlimited Support
 
                                                 </p>
                                                 <p>
                                                     <i className="mvx-font icon-documentation-forum" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard73}
+                                                    Lifetime Updates
                                                 </p>
                                                         
                                             </span>
@@ -1158,7 +1158,7 @@ class MVX_Dashboard extends Component {
                                         </li>
                                         <li className="mvx-btn btn-border">
                                             <a
-                                                href="#"
+                                                href="https://wcmarketpstag.wpengine.com/pricing/"
                                             >
                                                 {appLocalizer.dashboard_string.dashboard69}
                                             </a>
@@ -1175,12 +1175,12 @@ class MVX_Dashboard extends Component {
                                                 </p>
                                                 <p>
                                                     <i className="mvx-font icon-form-radio" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard72}{' '}
+                                                    1 Year Support
 
                                                 </p>
                                                 <p>
                                                     <i className="mvx-font icon-documentation-forum" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard73}
+                                                    1 Year Updates
                                                 </p>
                                                         
                                             </span>
@@ -1256,7 +1256,7 @@ class MVX_Dashboard extends Component {
                                         </li>
                                         <li className="mvx-btn btn-red">
                                             <a
-                                                href="#"
+                                                href="https://wcmarketpstag.wpengine.com/pricing/"
                                             >
                                                 {appLocalizer.dashboard_string.dashboard69}
                                             </a>
@@ -1265,7 +1265,7 @@ class MVX_Dashboard extends Component {
                                             <span>    
                                                 <p>
                                                     <i className="mvx-font icon-documentation-forum" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard70}
+                                                     10 Sites
                                                 </p>
                                                 <p>
                                                     <i className="mvx-font icon-documentation-forum" />{' '}
@@ -1273,11 +1273,11 @@ class MVX_Dashboard extends Component {
                                                 </p>
                                                 <p>
                                                     <i className="mvx-font icon-form-radio" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard72}{' '}
+                                                    1 Year Support
                                                 </p>
                                                 <p>
                                                     <i className="mvx-font icon-documentation-forum" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard73}
+                                                     1 Year Updates
                                                 </p>
                                             </span>
 
@@ -1350,7 +1350,7 @@ class MVX_Dashboard extends Component {
                                         </li>
                                         <li className="mvx-btn btn-border">
                                             <a
-                                                href="#"
+                                                href="https://wcmarketpstag.wpengine.com/pricing/"
                                             >
                                                 {appLocalizer.dashboard_string.dashboard69}
                                             </a>
@@ -1368,11 +1368,11 @@ class MVX_Dashboard extends Component {
                                                 </p>
                                                 <p>
                                                     <i className="mvx-font icon-form-radio" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard72}{' '}
+                                                     1 Year Support
                                                 </p>
                                                 <p>
                                                     <i className="mvx-font icon-documentation-forum" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard73}
+                                                    1 Year Updates
                                                 </p>
                                             </span>
 
@@ -1444,12 +1444,12 @@ class MVX_Dashboard extends Component {
                                         <li>Basic</li>
                                         <li>
                                             <div className="m-price">
-                                                <h1>Basic </h1>
+                                                <h1>Free </h1>
                                             </div>
                                         </li>
                                         <li className="mvx-btn btn-border">
                                             <a
-                                                href="#"
+                                                href="https://wcmarketpstag.wpengine.com/pricing/"
                                             >
                                                 {appLocalizer.dashboard_string.dashboard69}
                                             </a>
@@ -1458,20 +1458,20 @@ class MVX_Dashboard extends Component {
                                             <span>        
                                                 <p>
                                                     <i className="mvx-font icon-documentation-forum" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard70}
+                                                    Unlimited Sites
                                                 </p>
                                                 <p>
                                                     <i className="mvx-font icon-documentation-forum" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard71}
+                                                    25+ Modules
                                                 </p>
                                                 <p>
                                                     <i className="mvx-font icon-form-radio" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard72}{' '}
+                                                     Unlimited Support
 
                                                 </p>
                                                 <p>
                                                     <i className="mvx-font icon-documentation-forum" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard73}
+                                                    Lifetime Updates
                                                 </p>
                                                         
                                             </span>
@@ -1539,12 +1539,12 @@ class MVX_Dashboard extends Component {
                                         <li>Growth</li>
                                         <li>
                                             <div className="m-price">
-                                            <p><s>$599</s> </p>&nbsp;<h1>$399 </h1> &nbsp;<p>/Year</p>
+                                            <p><s>$1699</s></p>&nbsp;<h1>$899 </h1> &nbsp;<p>/lifetime</p>
                                             </div>
                                         </li>
                                         <li className="mvx-btn btn-border">
                                             <a
-                                                href="#"
+                                                href="https://wcmarketpstag.wpengine.com/pricing/"
                                             >
                                                 {appLocalizer.dashboard_string.dashboard69}
                                             </a>
@@ -1561,12 +1561,12 @@ class MVX_Dashboard extends Component {
                                                 </p>
                                                 <p>
                                                     <i className="mvx-font icon-form-radio" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard72}{' '}
+                                                    Unlimited Support
 
                                                 </p>
                                                 <p>
                                                     <i className="mvx-font icon-documentation-forum" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard73}
+                                                    Lifetime Updates
                                                 </p>
                                                         
                                             </span>
@@ -1637,12 +1637,12 @@ class MVX_Dashboard extends Component {
                                     <li>Agency</li>
                                         <li>
                                             <div className="m-price">
-                                            <p><s>$599</s> </p>&nbsp;<h1>$499 </h1> &nbsp;<p>/Year</p>
+                                            <p><s>$2999</s></p>&nbsp;<h1>$1499 </h1> &nbsp;<p>/lifetime</p>
                                             </div>
                                         </li>
                                         <li className="mvx-btn btn-red">
                                             <a
-                                                href="#"
+                                                href="https://wcmarketpstag.wpengine.com/pricing/"
                                             >
                                                 {appLocalizer.dashboard_string.dashboard69}
                                             </a>
@@ -1651,7 +1651,7 @@ class MVX_Dashboard extends Component {
                                             <span>    
                                                 <p>
                                                     <i className="mvx-font icon-documentation-forum" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard70}
+                                                    10 Sites
                                                 </p>
                                                 <p>
                                                     <i className="mvx-font icon-documentation-forum" />{' '}
@@ -1659,11 +1659,11 @@ class MVX_Dashboard extends Component {
                                                 </p>
                                                 <p>
                                                     <i className="mvx-font icon-form-radio" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard72}{' '}
+                                                    Unlimited Support
                                                 </p>
                                                 <p>
                                                     <i className="mvx-font icon-documentation-forum" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard73}
+                                                     Lifetime Updates
                                                 </p>
                                             </span>
 
@@ -1731,12 +1731,12 @@ class MVX_Dashboard extends Component {
                                     <li>Starter</li>
                                         <li>
                                             <div className="m-price">
-                                            <p><s>$399</s> </p>&nbsp;<h1>$299 </h1> &nbsp;<p>/Year</p>
+                                            <p><s>$999</s> </p>&nbsp;<h1>$499 </h1> &nbsp;<p>/lifetime</p>
                                             </div>
                                         </li>
                                         <li className="mvx-btn btn-border">
                                             <a
-                                                href="#"
+                                                href="https://wcmarketpstag.wpengine.com/pricing/"
                                             >
                                                 {appLocalizer.dashboard_string.dashboard69}
                                             </a>
@@ -1754,11 +1754,11 @@ class MVX_Dashboard extends Component {
                                                 </p>
                                                 <p>
                                                     <i className="mvx-font icon-form-radio" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard72}{' '}
+                                                     Unlimited Support
                                                 </p>
                                                 <p>
                                                     <i className="mvx-font icon-documentation-forum" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard73}
+                                                    Lifetime Updates
                                                 </p>
                                             </span>
 

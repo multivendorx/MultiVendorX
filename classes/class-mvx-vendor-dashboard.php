@@ -1217,7 +1217,7 @@ Class MVX_Admin_Dashboard {
                     mvx_update_user_meta($user_id, '_' . $fieldkey . '_code', $state_code);
                 } else {
                     // social url validation
-                    if (in_array($fieldkey, array('vendor_fb_profile', 'vendor_twitter_profile', 'vendor_linkdin_profile', 'vendor_youtube', 'vendor_instagram'))) {
+                    if (in_array($fieldkey, array('vendor_fb_profile', 'vendor_twitter_profile', 'vendor_linkdin_profile', 'vendor_youtube', 'vendor_instagram', 'vendor_pinterest_profile'))) {
                         if (!empty($post[$fieldkey]) && filter_var($post[$fieldkey], FILTER_VALIDATE_URL)) {
                             mvx_update_user_meta($user_id, '_' . $fieldkey, $post[$fieldkey]);
                         } else {

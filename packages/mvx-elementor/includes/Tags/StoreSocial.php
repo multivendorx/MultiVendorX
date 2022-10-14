@@ -73,6 +73,7 @@ class StoreSocial extends MVX_Elementor_TagBase {
         $vendor_linkdin_profile = get_user_meta($vendor_id, '_vendor_linkdin_profile', true);
         $vendor_youtube = get_user_meta($vendor_id, '_vendor_youtube', true);
         $vendor_instagram = get_user_meta($vendor_id, '_vendor_instagram', true);
+        $vendor_pinterest_profile = get_user_meta($vendor_id, '_vendor_pinterest_profile', true);
         if ($vendor_fb_profile) {
            $store_infos['fb'] = $vendor_fb_profile;
         }
@@ -87,6 +88,9 @@ class StoreSocial extends MVX_Elementor_TagBase {
         }
         if ($vendor_instagram) {
            $store_infos['instagram'] = $vendor_instagram;
+        }
+        if ($vendor_pinterest_profile) {
+           $store_infos['pinterest'] = $vendor_pinterest_profile;
         }
         return $store_infos;
     }

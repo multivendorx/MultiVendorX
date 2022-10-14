@@ -64,6 +64,10 @@ i.mvx-font {
   content: "\e907";
 }
 
+.icon-pinterest:before {
+  content: "\e91d";
+}
+
 .vendor_description_background {
   position: relative;
   line-height: 0.8;

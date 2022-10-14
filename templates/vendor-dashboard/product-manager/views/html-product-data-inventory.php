@@ -123,7 +123,7 @@ defined( 'ABSPATH' ) || exit;
                 <?php do_action( 'mvx_frontend_dashboard_product_options_sold_individually', $post->ID, $product_object, $post ); ?>
             </div>
         <?php endif; ?>
-        <?php do_action( 'mvx_frontend_dashboard_after_inventory_section_ends', $post->ID, $product_object, $post ); ?>
+        <?php do_action( 'mvx_frontend_dashboard_after_inventory_section_end', $post->ID, $product_object, $post ); ?>
     </div>
-    <?php do_action( 'mvx_frontend_dashboard_product_options_inventory_product', $post->ID, $product_object, $post ); ?>
+    <?php do_action( 'mvx_frontend_dashboard_product_inventory_options', $post->ID, $product_object, $post ); ?>
 </div>

@@ -144,7 +144,7 @@ global $MVX;
                         <input class="form-control" type="text" placeholder="<?php esc_attr_e( 'Never', 'multivendorx' ); ?>" id="_download_expiry" name="_download_expiry" value="<?php echo -1 === $product_object->get_download_expiry( 'edit' ) ? '' : (isset($_POST['_download_expiry']) ? wc_clean($_POST['_download_expiry']) : $product_object->get_download_expiry( 'edit' )); ?>" />
                     </div>
                 </div> 
-                <?php do_action( 'mvx_frontend_dashboard_product_options_downloads', $post->ID, $product_object, $post ); ?>
+                <?php do_action( 'mvx_frontend_dashboard_product_options_download', $post->ID, $product_object, $post ); ?>
             </div>
         <?php endif; ?>
         <?php
