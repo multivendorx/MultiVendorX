@@ -7258,7 +7258,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'name'         => __( 'Single Product Multiple Vendor', 'multivendorx' ),
                         'description'  => __( 'Lets multiple vendors sell the same products ', 'multivendorx' ),
                         'plan'         => 'free',
-                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/spmv',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/single-product-multiple-vendors-spmv',
                         'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=spmv-pages'),
                     ],
                     [
