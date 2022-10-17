@@ -33,7 +33,7 @@ class MVX_Banner_Adv extends Component {
 					<br/>
 					10.Vacation-Mode Marketplace Management
 
-					Upgrade to <a href="https://wcmarketpstag.wpengine.com/pricing/">MultiVendorX Pro</a> Today!!
+					Upgrade to <a href="https://multivendorx.com/pricing/">MultiVendorX Pro</a> Today!!
 
 
 					</p>

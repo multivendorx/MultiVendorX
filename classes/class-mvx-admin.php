@@ -1122,7 +1122,20 @@ class MVX_Admin {
             'dashboard94' =>  get_mvx_older_global_settings('revenue_sharing_mode') && get_mvx_older_global_settings('commission_type') ? true : false,
             'dashboard95'   => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'free' : 'pro',
             'dashboard96'   =>  __('go to settings', 'multivendorx'),
-            'dashboard97'   =>  admin_url('admin.php?page=mvx#&submenu=modules')
+            'dashboard97'   =>  admin_url('admin.php?page=mvx#&submenu=modules'),
+            'dashboard98'   =>  __('1 Site', 'multivendorx'),
+            'dashboard99'   =>  __('1 Month Support', 'multivendorx'),
+            'dashboard100'   =>  __('1 Month Updates', 'multivendorx'),
+            'dashboard101'   =>  __('Unlimited Sites', 'multivendorx'),
+            'dashboard102'   =>  __('25+ Modules', 'multivendorx'),
+
+            'dashboard103'   =>  __('1 Year Support', 'multivendorx'),
+            'dashboard104'   =>  __('1 Year Updates', 'multivendorx'),
+            'dashboard105'   =>  __('Pending shipping', 'multivendorx'),
+            'dashboard106'   =>  __('Basic', 'multivendorx'),
+            'dashboard107'   =>  __('Free', 'multivendorx'),
+            'dashboard108'   =>  __('Agency', 'multivendorx'),
+            'dashboard109'   =>  __('Starter', 'multivendorx'),
         );
         
         wp_localize_script( 'mvx-modules-build-frontend', 'appLocalizer', apply_filters('mvx_module_complete_settings', [
