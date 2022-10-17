@@ -466,7 +466,7 @@ class MVX_User {
                 'class' => "user-profile-fields regular-text"
             ), // Text
             "vendor_pinterest_profile" => array(
-                'label' => __('Pinterest Profile', 'dc-woocommerce-multi-vendor'),
+                'label' => __('Pinterest Profile', 'multivendorx'),
                 'type' => 'text',
                 'value' => $vendor->pinterest_profile,
                 'class' => "user-profile-fields regular-text"

@@ -265,7 +265,7 @@ class MVX_Admin {
         );
 
         $workboard_string = array(
-            'workboard8'                 =>  __('Vendor Name', 'multivendorx'),
+            'workboard8'                  =>  __('Vendor Name', 'multivendorx'),
             'workboard25'                 =>  __('Add Announcement', 'multivendorx'),
             'workboard26'                 =>  __('Search Announcement', 'multivendorx'),
             'workboard27'                 =>  __('Add Knowladgebase', 'multivendorx'),
@@ -1058,7 +1058,6 @@ class MVX_Admin {
             'dashboard32' =>  __('Stop waiting for new opportunity to grow your business instead pounce onto the pack of premium features.', 'multivendorx'),
             'dashboard33' =>  __('Upgrade to Pro', 'multivendorx'),
             'dashboard34' =>  __('Here Is What You Get In Pro Compared to Free', 'multivendorx'),
-
             'dashboard35' =>  __('Support', 'multivendorx'),
             'dashboard36' =>  __('Modules', 'multivendorx'),
             'dashboard37' =>  __('Product Types', 'multivendorx'),
@@ -1081,7 +1080,6 @@ class MVX_Admin {
             'dashboard56' =>  __('Vendor Notificaton', 'multivendorx'),
             'dashboard57' =>  __('Marketplace  Memberships', 'multivendorx'),
             'dashboard58' =>  __('3rd Party Compatibility', 'multivendorx'),
-
             'dashboard59' =>  __('Ticket Based Support', 'multivendorx'),
             'dashboard60' =>  __('Simple Product', 'multivendorx'),
             'dashboard61' =>  __('Recommend', 'multivendorx'),
@@ -1089,25 +1087,14 @@ class MVX_Admin {
             'dashboard63' =>  __('30 Days', 'multivendorx'),
             'dashboard64' =>  __('Money-Back Guarantee', 'multivendorx'),
             'dashboard65' =>  __("Make an investment for a better marketplace by saying 'yes' to your desired plans.", 'multivendorx'),
-            'dashboard66' =>  __('Yearly', 'multivendorx'),
-            
-            'dashboard67' =>  __('$399', 'multivendorx'),
-            'dashboard68' =>  __('$599', 'multivendorx'),
             'dashboard69' =>  __('Buy Now', 'multivendorx'),
             'dashboard70' =>  __('3 Sites', 'multivendorx'),
             'dashboard71' =>  __('50+ Modules', 'multivendorx'),
-
             'dashboard72' =>  __('Unlimited Support', 'multivendorx'),
             'dashboard73' =>  __('Lifetime Updates', 'multivendorx'),
             'dashboard74' =>  __('See Less Details', 'multivendorx'),
             'dashboard75' =>  __('See More Details', 'multivendorx'),
             'dashboard76' =>  __('Super saver', 'multivendorx'),
-            'dashboard77' =>  __('Lifetime', 'multivendorx'),
-            'dashboard78' =>  __('$499', 'multivendorx'),
-            'dashboard79' =>  __('$599', 'multivendorx'),
-            'dashboard80' =>  __('Monthly', 'multivendorx'),
-            'dashboard81' =>  __('$299', 'multivendorx'),
-            'dashboard82' =>  __('$599', 'multivendorx'),
             'dashboard83' =>  __('Ready to get started?', 'multivendorx'),
             'dashboard84' =>  __('Remember you are just one-click away from your newly optimised marketplace.', 'multivendorx'),
             'dashboard85' =>  __('Free', 'multivendorx'),
@@ -1128,7 +1115,6 @@ class MVX_Admin {
             'dashboard100'   =>  __('1 Month Updates', 'multivendorx'),
             'dashboard101'   =>  __('Unlimited Sites', 'multivendorx'),
             'dashboard102'   =>  __('25+ Modules', 'multivendorx'),
-
             'dashboard103'   =>  __('1 Year Support', 'multivendorx'),
             'dashboard104'   =>  __('1 Year Updates', 'multivendorx'),
             'dashboard105'   =>  __('Pending shipping', 'multivendorx'),
@@ -1163,10 +1149,8 @@ class MVX_Admin {
             'multivendor_migration_link' => admin_url('index.php?page=mvx-migrator'),
             'add_announcement_link' =>  admin_url('admin.php?page=mvx#&submenu=work-board&name=announcement&create=announcement'),
             'announcement_back' =>  admin_url('admin.php?page=mvx#&submenu=work-board&name=announcement'),
-
             'add_knowladgebase_link' =>  admin_url('admin.php?page=mvx#&submenu=work-board&name=knowladgebase&create=knowladgebase'),
             'knowladgebase_back' =>  admin_url('admin.php?page=mvx#&submenu=work-board&name=knowladgebase'),
-
             'settings_fields' => apply_filters('mvx-settings-fileds-details', $settings_fields),
             'countries'                 => wp_json_encode( array_merge( WC()->countries->get_allowed_country_states(), WC()->countries->get_shipping_country_states() ) ),
             'mvx_all_backend_tab_list' => $mvx_all_backend_tab_list,
@@ -1200,7 +1184,7 @@ class MVX_Admin {
             'columns_vendor'                =>  $columns_vendor,
             'columns_followers'             =>  $columns_followers,
             'columns_zone_shipping'         =>  $columns_zone_shipping,
-            'select_option_delete'    =>  $select_option_delete,
+            'select_option_delete'          =>  $select_option_delete,
             'columns_commission'                    =>  $columns_commission,
             'columns_report_abuse'                  =>  $columns_report_abuse,
             'columns_pending_shipping'              =>  $columns_pending_shipping,

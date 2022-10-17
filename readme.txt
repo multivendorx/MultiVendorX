@@ -1546,5 +1546,5 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/d
 
 == Upgrade Notice ==
 
-= 3.8.0 =
-3.8+ is a major update. Make a full site backup and [review latest release](https://multivendorx.com/latest-release/) before upgrading your marketplace to avoid any undesirable situations.
+= 4.0.0 =
+4.0.0+ is a major update. Make a full site backup and [review latest release](https://multivendorx.com/latest-release/) before upgrading your marketplace to avoid any undesirable situations.
