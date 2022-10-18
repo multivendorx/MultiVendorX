@@ -5459,6 +5459,7 @@ class MVX_REST_API {
         $users = $user_query->get_results();
         foreach($users as $user) {
             $vendor = get_mvx_vendor($user->data->ID);
+            if (!$vendor) continue;
             $product_count = 0;
             $vendor_permalink = ''; 
             $status = $status_text = "";
