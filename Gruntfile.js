@@ -184,8 +184,8 @@ module.exports = function (grunt) {
                 domainPath: 'languages',
                 potHeaders: {
                     'report-msgid-bugs-to': 'https://github.com/multivendorx/dc-woocommerce-multi-vendor/issues',
-                    'language-team': 'Multivendor X <support@wc-marketplace.com>',
-                    'last-translator': 'Multivendor X<support@wc-marketplace.com>'
+                    'language-team': 'Multivendor X <contact@multivendorx.com>',
+                    'last-translator': 'Multivendor X<contact@multivendorx.com>'
                 }
             },
             dist: {

@@ -10,8 +10,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: 2022-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Multivendor X<support@wc-marketplace.com>\n"
-"Language-Team: Multivendor X <support@wc-marketplace.com>\n"
+"Last-Translator: Multivendor X<contact@multivendorx.com>\n"
+"Language-Team: Multivendor X <contact@multivendorx.com>\n"
 "X-Generator: grunt-wp-i18n 1.0.3\n"
 
 #: admin/class-mvx-admin-setup-wizard.php:51
