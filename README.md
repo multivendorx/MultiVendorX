@@ -4,7 +4,7 @@ marketplace, woocommerce multivendor marketplace, multi seller store,
 product vendors, best marketplace plugin, multi seller, one product
 multi seller, woocommerce vendors, ebay, etsy, amazon, commission rate
 Donate link: https://multivendorx.com/donate Requires at least: 4.4
-Tested up to: 6.0.2 Requires PHP: 5.6 Stable tag: 3.9.3 License: GPLv2
+Tested up to: 6.0.2 Requires PHP: 5.6 Stable tag: 4.0.0 License: GPLv2
 or later License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 MultiVendorX - brings you, your easiest and one stop solution to build a perfect online marketplace website.
