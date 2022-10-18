@@ -5461,7 +5461,7 @@ class MVX_REST_API {
             $vendor = get_mvx_vendor($user->data->ID);
             if (!$vendor) continue;
             $product_count = 0;
-            $vendor_permalink = ''; 
+            $vendor_permalink = '';
             $status = $status_text = "";
             $vendor_link = sprintf('?page=%s&ID=%s&name=vendor-personal', 'mvx#&submenu=vendor', $user->data->ID);
             if ($vendor) {

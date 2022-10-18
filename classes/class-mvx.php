@@ -83,9 +83,6 @@ final class MVX {
 
         add_action('admin_init', array(&$this, 'mvx_admin_init'));
         
-        // MVX Update Notice
-        //add_action('in_plugin_update_message-dc-woocommerce-multi-vendor/dc_product_vendor.php', array(&$this, 'mvx_plugin_update_message'));
-
         // Secure commission notes
         add_filter('comments_clauses', array(&$this, 'exclude_order_comments'), 10, 1);
         add_filter('comment_feed_where', array(&$this, 'exclude_order_comments_from_feed_where'));
@@ -252,8 +249,6 @@ final class MVX {
         include_once ( $this->plugin_path . "/includes/mvx-hooks-functions.php" );
         // Query classes
         include_once ( $this->plugin_path . '/classes/query/class-mvx-vendor-query.php' );
-
-        
     }
 
     /**
@@ -262,7 +257,6 @@ final class MVX {
      * @return type
      */
     function template_loader($template) {
-        global $MVX;
         if (mvx_is_store_page()) {
             $template = $this->template->store_locate_template('taxonomy-dc-vendor-shop.php');
         }
@@ -668,22 +662,6 @@ final class MVX {
             <p><?php printf(__("%sMVX Vendor Membership Stripe gateway depends on the %s PHP extension. Please enable it, or ask your hosting provider to enable it.", 'multivendorx' ), '<strong>', '</strong>', 'json' ); ?></p>
         </div>
         <?php
-    }
-
-    /**
-     * Show plugin changes. Code adapted from W3 Total Cache and Woocommerce.
-     */
-    public static function mvx_plugin_update_message($args) {
-        $transient_name = 'mvx_upgrade_notice_' . $args['Version'];
-        if (false === ( $upgrade_notice = get_transient($transient_name) )) {
-            $response = wp_safe_remote_get('https://plugins.svn.wordpress.org/dc-woocommerce-multi-vendor/trunk/readme.txt');
-            if (!is_wp_error($response) && !empty($response['body'])) {
-                $upgrade_notice = self::parse_update_notice_old($response['body'], $args['new_version']);
-                set_transient($transient_name, $upgrade_notice, DAY_IN_SECONDS);
-            }
-        }
-        echo '<style type="text/css">.mvx_plugin_upgrade_notice{background-color:#ec4e2a;padding:10px;color:#fff;}.mvx_plugin_upgrade_notice:before{content: "\f534";padding-right:5px;}</style>';
-        echo wp_kses_post($upgrade_notice);
     }
 
     /**

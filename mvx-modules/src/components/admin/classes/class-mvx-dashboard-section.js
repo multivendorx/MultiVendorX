@@ -22,8 +22,8 @@ class MVX_Dashboard extends Component {
             money_back_show_more_compared : false,
             pending_shippig: [],
             pending_shippig_header: [],
-            pricing_tab: 'monthly',
-            mat_tab_value: 0,
+            pricing_tab: 'yearly',
+            mat_tab_value: 1,
             pending_customer: '',
             latest_activity: ''
         };
@@ -35,7 +35,7 @@ class MVX_Dashboard extends Component {
     handleChange(e, v) {        
         this.setState({
             mat_tab_value: v,
-            pricing_tab: v === 1 ? 'yearly' : v === 2 ? 'lifetime' : 'monthly'
+            pricing_tab: v === 1 ? 'yearly' : 'monthly'
         });
     }
 
@@ -669,7 +669,7 @@ class MVX_Dashboard extends Component {
                                         </li>
                                         <li className="mvx-btn btn-border">
                                             <a
-                                                href="https://multivendorx.com/pricing/"
+                                                href="https://downloads.wordpress.org/plugin/dc-woocommerce-multi-vendor.zip"
                                             >
                                                 {appLocalizer.dashboard_string.dashboard69}
                                             </a>
@@ -759,12 +759,12 @@ class MVX_Dashboard extends Component {
                                         <li>Growth</li>
                                         <li>
                                             <div className="m-price">
-                                            <p><s>$599</s> </p>&nbsp;<h1>$69 </h1> &nbsp;<p>/month</p>
+                                            <p><s>$199</s> </p>&nbsp;<h1>$69 </h1> &nbsp;<p>/month</p>
                                             </div>
                                         </li>
                                         <li className="mvx-btn btn-border">
                                             <a
-                                                href="https://multivendorx.com/pricing/"
+                                                href="https://multivendorx.com/cart/?add-to-cart=143434&variation_id=143441&attribute_pa_site-license=3-site-monthly"
                                             >
                                                 {appLocalizer.dashboard_string.dashboard69}
                                             </a>
@@ -858,12 +858,12 @@ class MVX_Dashboard extends Component {
                                     <li>{appLocalizer.dashboard_string.dashboard108}</li>
                                         <li>
                                             <div className="m-price">
-                                            <p><s>$599</s> </p>&nbsp;<h1>$89 </h1> &nbsp;<p>/month</p>
+                                            <p><s>$299</s> </p>&nbsp;<h1>$89 </h1> &nbsp;<p>/month</p>
                                             </div>
                                         </li>
                                         <li className="mvx-btn btn-red">
                                             <a
-                                                href="https://multivendorx.com/pricing/"
+                                                href="https://multivendorx.com/cart/?add-to-cart=143434&variation_id=143439&attribute_pa_site-license=10-site-monthly"
                                             >
                                                 {appLocalizer.dashboard_string.dashboard69}
                                             </a>
@@ -952,12 +952,12 @@ class MVX_Dashboard extends Component {
                                     <li>{appLocalizer.dashboard_string.dashboard109}</li>
                                         <li>
                                             <div className="m-price">
-                                            <p><s>$399</s> </p>&nbsp;<h1>$49 </h1> &nbsp;<p>/month</p>
+                                            <p><s>$99</s> </p>&nbsp;<h1>$49 </h1> &nbsp;<p>/month</p>
                                             </div>
                                         </li>
                                         <li className="mvx-btn btn-border">
                                             <a
-                                                href="https://multivendorx.com/pricing/"
+                                                href="https://multivendorx.com/cart/?add-to-cart=143434&variation_id=143442&attribute_pa_site-license=1-site-monthly"
                                             >
                                                 {appLocalizer.dashboard_string.dashboard69}
                                             </a>
@@ -1056,7 +1056,7 @@ class MVX_Dashboard extends Component {
                                         </li>
                                         <li className="mvx-btn btn-border">
                                             <a
-                                                href="https://multivendorx.com/pricing/"
+                                                href="https://downloads.wordpress.org/plugin/dc-woocommerce-multi-vendor.zip"
                                             >
                                                 {appLocalizer.dashboard_string.dashboard69}
                                             </a>
@@ -1146,12 +1146,12 @@ class MVX_Dashboard extends Component {
                                         <li>Growth</li>
                                         <li>
                                             <div className="m-price">
-                                            <p><s>$599</s> </p>&nbsp;<h1>$399 </h1> &nbsp;<p>/Year</p>
+                                            <p><s>$899</s> </p>&nbsp;<h1>$399 </h1> &nbsp;<p>/Year</p>
                                             </div>
                                         </li>
                                         <li className="mvx-btn btn-border">
                                             <a
-                                                href="https://multivendorx.com/pricing/"
+                                                href="https://multivendorx.com/cart/?add-to-cart=143434&variation_id=143445&attribute_pa_site-license=3-site-yearly"
                                             >
                                                 {appLocalizer.dashboard_string.dashboard69}
                                             </a>
@@ -1245,12 +1245,12 @@ class MVX_Dashboard extends Component {
                                     <li>Agency</li>
                                         <li>
                                             <div className="m-price">
-                                            <p><s>$599</s> </p>&nbsp;<h1>$499 </h1> &nbsp;<p>/Year</p>
+                                            <p><s>$999</s> </p>&nbsp;<h1>$499 </h1> &nbsp;<p>/Year</p>
                                             </div>
                                         </li>
                                         <li className="mvx-btn btn-red">
                                             <a
-                                                href="https://multivendorx.com/pricing/"
+                                                href="https://multivendorx.com/cart/?add-to-cart=143434&variation_id=143440&attribute_pa_site-license=10-site-yearly"
                                             >
                                                 {appLocalizer.dashboard_string.dashboard69}
                                             </a>
@@ -1339,12 +1339,12 @@ class MVX_Dashboard extends Component {
                                     <li>{appLocalizer.dashboard_string.dashboard109}</li>
                                         <li>
                                             <div className="m-price">
-                                            <p><s>$399</s> </p>&nbsp;<h1>$299 </h1> &nbsp;<p>/Year</p>
+                                            <p><s>$499</s> </p>&nbsp;<h1>$299 </h1> &nbsp;<p>/Year</p>
                                             </div>
                                         </li>
                                         <li className="mvx-btn btn-border">
                                             <a
-                                                href="https://multivendorx.com/pricing/"
+                                                href="https://multivendorx.com/cart/?add-to-cart=143434&variation_id=143443&attribute_pa_site-license=1-site-yearly"
                                             >
                                                 {appLocalizer.dashboard_string.dashboard69}
                                             </a>
