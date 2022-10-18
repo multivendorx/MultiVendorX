@@ -1660,11 +1660,6 @@ function wcmp_removeslashes( $string ) {
 	return mvx_removeslashes( $string );
 }
 
-function wcmp_generate_form_field($fields, $common_attrs = array()) {
-	wc_deprecated_function('wcmp_generate_form_field', '4.0.0', 'mvx_generate_form_field');
-	return mvx_generate_form_field($fields, $common_attrs = array());
-}
-
 function wcmp_vendor_user_store_name( $defalut_name ) {
 	wc_deprecated_function('wcmp_vendor_user_store_name', '4.0.0', 'mvx_vendor_user_store_name');
 	return mvx_vendor_user_store_name( $defalut_name );

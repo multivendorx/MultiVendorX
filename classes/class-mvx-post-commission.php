@@ -63,7 +63,6 @@ class MVX_Commission {
             'hierarchical' => true,
             'supports' => array('title'),
             'menu_position' => 5,
-            'menu_icon' => $MVX->plugin_url . '/assets/images/dualcube.png'
         );
 
         register_post_type($this->post_type, $args);

@@ -260,7 +260,7 @@ Ans. This plugin is tested with PHP version 5.6.
 = Where can I find the REST API documentation? =
 Ans. You can find the documentation of our REST API on the [MVX REST API Docs](https://wc-marketplace.github.io/rest-api-docs/).
 = MultiVendorX is awesome! Can I contribute? =
-Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/dualcube/dc-woocommerce-multi-vendor/) :)
+Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/multivendorx/dc-woocommerce-multi-vendor/) :)
 
 == Screenshots ==
 1. Vendor Dashboard.

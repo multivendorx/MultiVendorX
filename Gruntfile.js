@@ -183,7 +183,7 @@ module.exports = function (grunt) {
                 type: 'wp-plugin',
                 domainPath: 'languages',
                 potHeaders: {
-                    'report-msgid-bugs-to': 'https://github.com/dualcube/dc-woocommerce-multi-vendor/issues',
+                    'report-msgid-bugs-to': 'https://github.com/multivendorx/dc-woocommerce-multi-vendor/issues',
                     'language-team': 'Multivendor X <support@wc-marketplace.com>',
                     'last-translator': 'Multivendor X<support@wc-marketplace.com>'
                 }

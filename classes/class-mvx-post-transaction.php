@@ -63,7 +63,6 @@ class mvx_transaction {
             'hierarchical' => true,
             'supports' => array('title', 'editor', 'comments', 'custom-fields', 'excerpt'),
             'menu_position' => 57,
-            'menu_icon' => $MVX->plugin_url . '/assets/images/dualcube.png'
         );
 
         register_post_type($this->post_type, $args);

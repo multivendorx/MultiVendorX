@@ -4501,7 +4501,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
         if (mvx_is_module_active('paypal-masspay')) {
             $disbursement_settings_methods[] = array(
                 'key'=> "paypal_masspay",
-                'label'=> __('PayPal Masspay ', 'multivendorx'),//(Stop Waiting and Pay Vendors Immediately with PayPal Real-Time Split Payment using <a href="https://wc-marketplace.com/product/mvx-paypal-marketplace/">MVX PayPal Marketplace</a>. Please visit our site)
+                'label'=> __('PayPal Masspay ', 'multivendorx'),//(Stop Waiting and Pay Vendors Immediately with PayPal Real-Time Split Payment using <a href="https://multivendorx.com/product/mvx-paypal-marketplace/">MVX PayPal Marketplace</a>. Please visit our site)
                 'value'=> "paypal_masspay"
             );
 
@@ -7300,7 +7300,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'name'         => __( 'Bank Transfer', 'multivendorx' ),
                         'description'  => __( "Manually transfer money directly to the vendor's bank account.", 'multivendorx' ),
                         'plan'         => 'free',
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'doc_link'     => 'https://multivendorx.com/knowledgebase/',
                     ],
                     [
                         'id'           => 'paypal-masspay',
@@ -7396,7 +7396,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'name'         => __( 'Zone-Wise Shipping', 'multivendorx' ),
                         'description'  => __( 'Limit vendors to sell in selected zones', 'multivendorx' ),
                         'plan'         => 'free',
-                        'doc_link'     => 'https://wc-marketplace.com/knowledgebase/',
+                        'doc_link'     => 'https://multivendorx.com/knowledgebase/',
                         'mod_link'     => admin_url('admin.php?page=wc-settings&tab=shipping'),
                         'parent_category' => __( 'Shipping.', 'multivendorx' ),
                     ],

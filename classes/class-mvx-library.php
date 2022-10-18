@@ -64,11 +64,6 @@ class MVX_Library {
         return $DC_WP_Fields;
     }
 
-    public function load_mvx_frontend_fields() {
-        require_once ($this->php_lib_path . 'class-mvx-frontend-wp-fields.php');
-        return new MVX_Frontend_WP_Fields();
-    }
-
     /**
      * Jquery qTip library
      */
@@ -132,15 +127,6 @@ class MVX_Library {
     }
 
     /**
-     * Jquery TinyMCE library
-     */
-    public function load_tinymce_lib() {
-        global $MVX;
-        wp_enqueue_script('tinymce_js', $this->jquery_lib_url . 'cloudflare.js', array('jquery'), $MVX->version, true);
-        wp_enqueue_script('jquery_tinymce_js', $this->jquery_lib_url . 'cloudflare_jquery.js', array('jquery'), $MVX->version, true);
-    }
-
-    /**
      * WP ColorPicker library
      */
     public function load_colorpicker_lib() {
@@ -148,14 +134,6 @@ class MVX_Library {
         wp_enqueue_script('wp-color-picker');
         wp_enqueue_script('colorpicker_init', $this->jquery_lib_url . 'colorpicker/colorpicker.js', array('jquery', 'wp-color-picker'), $MVX->version, true);
         wp_enqueue_style('wp-color-picker');
-    }
-
-    /**
-     * WP DatePicker library
-     */
-    public function load_datepicker_lib() {
-        // wp_enqueue_script('jquery-ui-datepicker');
-        // wp_enqueue_style('jquery-ui-style');
     }
 
     /**

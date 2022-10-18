@@ -700,8 +700,8 @@ class MVX_Admin_Setup_Wizard {
                 <h2><?php _e( 'Learn more', 'multivendorx' ); ?></h2>
                 <ul>
                     <li> <i class="mvx-font icon-watch-setup-widget"></i><a href="https://www.youtube.com/c/MultivendorX"><?php esc_html_e( 'Watch the tutorial videos', 'multivendorx' ); ?></a></li>
-                    <li> <i class="mvx-font icon-help-setup-widget"></i><a href="https://wc-marketplace.com/knowledgebase/mvx-setup-guide/?utm_source=mvx_plugin&utm_medium=setup_wizard&utm_campaign=new_installation&utm_content=documentation"><?php esc_html_e( 'Looking for help to get started', 'multivendorx' ); ?></a></li>
-                    <li> <i class="mvx-font icon-Learn-more-setup-widget"></i><a href="https://wc-marketplace.com/best-revenue-model-marketplace-part-one/?utm_source=mvx_plugin&utm_medium=setup_wizard&utm_campaign=new_installation&utm_content=blog"><?php esc_html_e( 'Learn more about revenue models', 'multivendorx' ); ?></a></li>
+                    <li> <i class="mvx-font icon-help-setup-widget"></i><a href="https://multivendorx.com/knowledgebase/mvx-setup-guide/?utm_source=mvx_plugin&utm_medium=setup_wizard&utm_campaign=new_installation&utm_content=documentation"><?php esc_html_e( 'Looking for help to get started', 'multivendorx' ); ?></a></li>
+                    <li> <i class="mvx-font icon-Learn-more-setup-widget"></i><a href="https://multivendorx.com/best-revenue-model-marketplace-part-one/?utm_source=mvx_plugin&utm_medium=setup_wizard&utm_campaign=new_installation&utm_content=blog"><?php esc_html_e( 'Learn more about revenue models', 'multivendorx' ); ?></a></li>
                 </ul>
             </div>
         </div>

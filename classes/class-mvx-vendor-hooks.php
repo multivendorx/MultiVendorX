@@ -466,7 +466,6 @@ class MVX_Vendor_Hooks {
     public function mvx_vendor_dashboard_add_product_endpoint() {
         global $MVX, $wp;
         $MVX->library->load_colorpicker_lib();
-        $MVX->library->load_datepicker_lib();
         $MVX->library->load_frontend_upload_lib();
         $MVX->library->load_accordian_lib();
         $MVX->library->load_select2_lib();
@@ -508,7 +507,6 @@ class MVX_Vendor_Hooks {
         // load scripts & styles
         $suffix = defined( 'MVX_SCRIPT_DEBUG' ) && MVX_SCRIPT_DEBUG ? '' : '.min';
         $MVX->library->load_select2_lib();
-        $MVX->library->load_datepicker_lib();
         $MVX->library->load_jquery_serializejson_library();
         $MVX->library->load_tabs_library();
         wp_enqueue_media();
@@ -563,7 +561,6 @@ class MVX_Vendor_Hooks {
         global $MVX, $wp;
               
         $MVX->library->load_select2_lib();
-        $MVX->library->load_datepicker_lib();
         wp_enqueue_script( 'selectWoo' );
         wp_register_script( 'mvx-advance-coupon', $MVX->plugin_url . 'assets/frontend/js/coupon.js', array( 'jquery', 'select2_js', 'jquery-ui-datepicker', 'selectWoo' ), $MVX->version );
         wp_enqueue_script( 'mvx-meta-boxes' );

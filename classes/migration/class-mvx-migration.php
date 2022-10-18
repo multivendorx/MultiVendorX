@@ -190,7 +190,7 @@ class MVX_Migrator {
 			</head>
 			<body class="wc-setup wp-core-ui">
 
-			 <h1 id="wc-logo"><a target="_blank" href="<?php echo site_url(); ?>"><img src="<?php echo trailingslashit(plugins_url('multivendorx')); ?>assets/images/wc-marketplace.png" alt="<?php echo get_bloginfo('title'); ?>" /></a></h1>
+			 <h1 id="wc-logo"><a target="_blank" href="<?php echo site_url(); ?>"><img src="<?php echo trailingslashit(plugins_url('multivendorx')); ?>assets/images/widget-multivendorX.svg" alt="<?php echo get_bloginfo('title'); ?>" /></a></h1>
 			<?php
 	}
 

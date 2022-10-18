@@ -127,8 +127,6 @@ final class MVX {
         $this->load_class('library');
         $this->library = new MVX_Library();
 
-        $this->mvx_frontend_fields = $this->library->load_mvx_frontend_fields();
-
         //Init endpoints
         $this->load_class('endpoints');
         $this->endpoints = new MVX_Endpoints();

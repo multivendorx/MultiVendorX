@@ -4733,7 +4733,7 @@ div.health-check-accordion .health-check-accordion-panel table td {
   background-color: #f9f8fb;
 }
 
-.mvx-general-wrapper.mvx-payment-membership-design .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form .mvx-form-group .mvx-settings-input-content .mvx-settings-color-picker-parent-class .mvx-setting-color-picker {
+.mvx-tab-content .mvx-setting-color-picker {
   border: 0;
   display: inline-block;
   width: 6rem;
@@ -4741,7 +4741,7 @@ div.health-check-accordion .health-check-accordion-panel table td {
   vertical-align: middle;
 }
 
-.mvx-general-wrapper.mvx-payment-membership-design .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form .mvx-form-group .mvx-settings-input-content .mvx-settings-color-picker-parent-class .mvx-setting-color-picker:focus {
+.mvx-tab-content .mvx-setting-color-picker:focus {
   outline: 0;
   -webkit-box-shadow: none;
           box-shadow: none;

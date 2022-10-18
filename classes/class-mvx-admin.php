@@ -1132,7 +1132,6 @@ class MVX_Admin {
             'google_api'    =>  get_mvx_global_settings('google_api_key'),
             'mapbox_api'    =>  get_mvx_global_settings('mapbox_api_key'),
             'location_provider'    =>  get_mvx_global_settings('choose_map_api'),
-            'multivendor_logo' => $MVX->plugin_url.'assets/images/multivendorX.png',
             'multivendor_right_white_logo' => $MVX->plugin_url.'assets/images/vertical-logo-white.png', 
             'knowledgebase' => 'https://multivendorx.com/knowledgebase/',
             'knowledgebase_title' => __('MVX knowledge Base', 'multivendorx'),
@@ -1155,8 +1154,6 @@ class MVX_Admin {
             'countries'                 => wp_json_encode( array_merge( WC()->countries->get_allowed_country_states(), WC()->countries->get_shipping_country_states() ) ),
             'mvx_all_backend_tab_list' => $mvx_all_backend_tab_list,
             'default_logo'                  => $MVX->plugin_url.'assets/images/WP-stdavatar.png',
-            'right_logo'                    => $MVX->plugin_url.'assets/images/right_tick.jpg',
-            'cross_logo'                    => $MVX->plugin_url.'assets/images/cross_tick.png',
             'commission_bulk_list_option'   =>  $commission_bulk_list_action,
             'commission_header'             => $commission_header,
             'commission_status_list_action' =>  $commission_status_list_action,
@@ -1219,7 +1216,6 @@ class MVX_Admin {
    
         if (in_array($screen->id, array('user-edit', 'profile'))) :
             $MVX->library->load_qtip_lib();
-            $MVX->library->load_upload_lib();
             wp_enqueue_script('edit_user_js');
         endif;
 
