@@ -333,7 +333,7 @@ export default class DynamicForm extends React.Component {
 		});
 		// mapbox work
 		if (
-			this.props.modulename === 'vendor-store' &&
+			this.props.modulename === 'vendor-store' && appLocalizer.store_location_enabled &&
 			appLocalizer.location_provider.value &&
 			appLocalizer.location_provider.value === 'mapbox_api_set'
 		) {
