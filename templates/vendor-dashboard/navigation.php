@@ -1,7 +1,7 @@
 <?php
 /*
  * The template for displaying vendor dashboard nav
- * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/navigation.php
+ * Override this template by copying it to yourtheme/MultiVendorX/vendor-dashboard/navigation.php
  *
  * @author     Multivendor X
  * @package MultiVendorX/Templates

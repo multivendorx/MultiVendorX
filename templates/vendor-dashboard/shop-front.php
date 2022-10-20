@@ -1,7 +1,7 @@
 <?php
 /*
  * The template for displaying vendor dashboard
- * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/shop-front.php
+ * Override this template by copying it to yourtheme/MultiVendorX/vendor-dashboard/shop-front.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

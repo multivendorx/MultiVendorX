@@ -2,7 +2,7 @@
 /**
  * The template for displaying vendor report
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/vendor-report.php
+ * Override this template by copying it to yourtheme/MultiVendorX/vendor-dashboard/vendor-report.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

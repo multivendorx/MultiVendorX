@@ -4,7 +4,7 @@
  *
  * Used by MVX_Products_Edit_Product->output()
  *
- * This template can be overridden by copying it to yourtheme/dc-product-vendor/vendor-dashboard/product-manager/edit-product.php.
+ * This template can be overridden by copying it to yourtheme/MultiVendorX/vendor-dashboard/product-manager/edit-product.php.
  *
  * HOWEVER, on occasion MVX will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to

@@ -2,7 +2,7 @@
 /**
  * The template for displaying demo plugin content.
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/emails/vendor-notify-shipped.php
+ * Override this template by copying it to yourtheme/MultiVendorX/emails/vendor-notify-shipped.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

@@ -2,7 +2,7 @@
 /**
  * The template for displaying vendor orders
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/vendor-withdrawal.php
+ * Override this template by copying it to yourtheme/MultiVendorX/vendor-dashboard/vendor-withdrawal.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

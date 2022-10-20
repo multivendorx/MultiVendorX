@@ -2,7 +2,7 @@
 /**
  * The template for displaying vendor lists
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/shortcode/vendor_lists.php
+ * Override this template by copying it to yourtheme/MultiVendorX/shortcode/vendor_lists.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

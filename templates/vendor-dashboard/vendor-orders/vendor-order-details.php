@@ -2,7 +2,7 @@
 /**
  * The template for displaying vendor order detail and called from vendor_order_item.php template
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/vendor-orders/vendor-order-details.php
+ * Override this template by copying it to yourtheme/MultiVendorX/vendor-dashboard/vendor-orders/vendor-order-details.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

@@ -2,7 +2,7 @@
 
 /**
  * Add Downloadable file template
- * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/product-manager/views/html-product-download.php
+ * Override this template by copying it to yourtheme/MultiVendorX/vendor-dashboard/product-manager/views/html-product-download.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

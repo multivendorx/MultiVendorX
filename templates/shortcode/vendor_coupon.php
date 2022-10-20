@@ -2,7 +2,7 @@
 /**
  * The template for displaying vendor coupon
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/shortcode/vendor_coupon.php
+ * Override this template by copying it to yourtheme/MultiVendorX/shortcode/vendor_coupon.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

@@ -2,7 +2,7 @@
 /**
  * The template for displaying vendor dashboard footer content
  *
- * This template can be overridden by copying it to yourtheme/dc-product-vendor/vebdor-dashboard/dashboard-footer.php.
+ * This template can be overridden by copying it to yourtheme/MultiVendorX/vebdor-dashboard/dashboard-footer.php.
  *
  * HOWEVER, on occasion Multivendor X will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to

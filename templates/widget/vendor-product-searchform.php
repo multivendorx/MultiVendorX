@@ -2,7 +2,7 @@
 /**
  * Vendor Product search form.
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/widget/vendor-product-searchform.php
+ * Override this template by copying it to yourtheme/MultiVendorX/widget/vendor-product-searchform.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

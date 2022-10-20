@@ -2,7 +2,7 @@
 /**
  * The template for displaying demo plugin content.
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/emails/new-admin-product.php
+ * Override this template by copying it to yourtheme/MultiVendorX/emails/new-admin-product.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

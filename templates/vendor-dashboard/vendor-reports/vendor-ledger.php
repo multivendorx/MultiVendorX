@@ -2,7 +2,7 @@
 /**
  * The template for displaying vendor orders item band called from vendor-ledger.php template
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/vendor-reports/vendor-ledger.php
+ * Override this template by copying it to yourtheme/MultiVendorX/vendor-dashboard/vendor-reports/vendor-ledger.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

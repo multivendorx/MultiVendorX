@@ -1,7 +1,7 @@
 <?php
 /*
  * The template for displaying vendor add product
- * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/product-manager/add-product.php
+ * Override this template by copying it to yourtheme/MultiVendorX/vendor-dashboard/product-manager/add-product.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

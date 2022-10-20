@@ -3,7 +3,7 @@
 /**
  * The template for displaying single product page vendor tab 
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/vendor_tab.php
+ * Override this template by copying it to yourtheme/MultiVendorX/vendor_tab.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

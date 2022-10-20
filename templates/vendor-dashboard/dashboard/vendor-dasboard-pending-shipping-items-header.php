@@ -2,7 +2,7 @@
 /**
  * The template for displaying vendor dashboard
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/dashboard/vendor-dasboard-pending-shipping-items-header.php
+ * Override this template by copying it to yourtheme/MultiVendorX/vendor-dashboard/dashboard/vendor-dasboard-pending-shipping-items-header.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

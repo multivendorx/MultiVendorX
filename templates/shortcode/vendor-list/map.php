@@ -2,7 +2,7 @@
 /**
  * Vendor List Map
  *
- * This template can be overridden by copying it to yourtheme/dc-product-vendor/shortcode/vendor-list/map.php
+ * This template can be overridden by copying it to yourtheme/MultiVendorX/shortcode/vendor-list/map.php
  *
  * @package MultiVendorX/Templates
  * @version 3.5.0

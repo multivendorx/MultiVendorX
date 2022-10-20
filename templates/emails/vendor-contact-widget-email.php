@@ -2,7 +2,7 @@
 /**
  * The template for displaying vendor contact email via customer.
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/emails/vendor-contact-widget-email.php
+ * Override this template by copying it to yourtheme/MultiVendorX/emails/vendor-contact-widget-email.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

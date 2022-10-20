@@ -2,7 +2,7 @@
 
 /**
  * Add Downloadable file for each variations
-  * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/product-manager/views/html-product-variation-download.php
+  * Override this template by copying it to yourtheme/MultiVendorX/vendor-dashboard/product-manager/views/html-product-variation-download.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

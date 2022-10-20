@@ -2,7 +2,7 @@
 /**
  * The template for displaying vendor dashboard for non-vendors
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/shortcode/non_vendor_dashboard.php
+ * Override this template by copying it to yourtheme/MultiVendorX/shortcode/non_vendor_dashboard.php
  *
  * @author 		MultiVendorX
  * @package 	WCMm/Templates

@@ -2,7 +2,7 @@
 /**
  * The template for displaying demo plugin content.
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/emails/product-rejected.php
+ * Override this template by copying it to yourtheme/MultiVendorX/emails/product-rejected.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

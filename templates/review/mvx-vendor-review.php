@@ -3,7 +3,7 @@
  * Vendor Review Comments Lists Template
 
  *
- * This template can be overridden by copying it to yourtheme/dc-product-vendor/review/mvx-vendor-review.php.
+ * This template can be overridden by copying it to yourtheme/MultiVendorX/review/mvx-vendor-review.php.
  *
  * 
  * @author 		MultiVendorX

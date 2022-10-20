@@ -2,7 +2,7 @@
 /**
  * The template for displaying archive vendor info
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/archive-vendor-info.php
+ * Override this template by copying it to yourtheme/MultiVendorX/archive-vendor-info.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

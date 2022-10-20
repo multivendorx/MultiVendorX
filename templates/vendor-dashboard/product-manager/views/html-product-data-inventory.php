@@ -3,7 +3,7 @@
 /**
  * Inventory product tab template
  *
-  * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/product-manager/views/html-product-data-inventory.php
+  * Override this template by copying it to yourtheme/MultiVendorX/vendor-dashboard/product-manager/views/html-product-data-inventory.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

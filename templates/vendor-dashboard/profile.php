@@ -2,7 +2,7 @@
 /**
  * The template for displaying vendor profile management 
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/profile.php
+ * Override this template by copying it to yourtheme/MultiVendorX/vendor-dashboard/profile.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

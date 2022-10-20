@@ -2,7 +2,7 @@
 /**
  * The template for displaying vendor dashboard
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/customer-support-details-to-buyer.php
+ * Override this template by copying it to yourtheme/MultiVendorX/customer-support-details-to-buyer.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

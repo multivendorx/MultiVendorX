@@ -2,7 +2,7 @@
 /**
  * The template for displaying Seller Review form 
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/mvx-vendor-review-form.php
+ * Override this template by copying it to yourtheme/MultiVendorX/mvx-vendor-review-form.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

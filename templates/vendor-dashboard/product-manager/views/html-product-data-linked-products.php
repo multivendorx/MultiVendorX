@@ -3,7 +3,7 @@
 /**
  * Linked products product tab template
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/product-manager/views/html-product-data-linked-products.php
+ * Override this template by copying it to yourtheme/MultiVendorX/vendor-dashboard/product-manager/views/html-product-data-linked-products.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

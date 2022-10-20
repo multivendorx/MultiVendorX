@@ -2,7 +2,7 @@
 
 /*
  * The template for displaying customer active questiona dashboard widget
- * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/dashboard-widgets/mvx-vendor-products-cust-qna.php
+ * Override this template by copying it to yourtheme/MultiVendorX/vendor-dashboard/dashboard-widgets/mvx-vendor-products-cust-qna.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

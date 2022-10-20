@@ -5,7 +5,7 @@
  *
  * Used by add-coupon.php template
  *
- * This template can be overridden by copying it to yourtheme/dc-product-vendor/vendor-dashboard/coupon-manager/views/html-coupon-data-usage-limit.php.
+ * This template can be overridden by copying it to yourtheme/MultiVendorX/vendor-dashboard/coupon-manager/views/html-coupon-data-usage-limit.php.
  *
  * HOWEVER, on occasion MVX will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to

@@ -4,7 +4,7 @@
  *
  * Closing li is left out on purpose!.
  *
- * This template can be overridden by copying it to yourtheme/dc-product-vendor/review/rating_vendor_lists.php.
+ * This template can be overridden by copying it to yourtheme/MultiVendorX/review/rating_vendor_lists.php.
  *
  * HOWEVER, on occasion Multivendor X will need to update template files and you (the theme developer).
  * will need to copy the new files to your theme to maintain compatibility. We try to do this.

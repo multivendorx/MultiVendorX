@@ -1,7 +1,7 @@
 <?php
 /*
  * The template for displaying vendor coupons
- * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/coupon-manager/coupons.php
+ * Override this template by copying it to yourtheme/MultiVendorX/vendor-dashboard/coupon-manager/coupons.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

@@ -2,7 +2,7 @@
 /**
  * The template for displaying demo plugin content.
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/widget/vendor-review.php
+ * Override this template by copying it to yourtheme/MultiVendorX/widget/vendor-review.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

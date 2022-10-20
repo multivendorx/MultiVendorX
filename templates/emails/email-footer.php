@@ -2,7 +2,7 @@
 /**
  * MVX Email Footer
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/emails/email-footer.php
+ * Override this template by copying it to yourtheme/MultiVendorX/emails/email-footer.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

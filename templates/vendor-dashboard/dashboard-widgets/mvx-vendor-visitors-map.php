@@ -2,7 +2,7 @@
 
 /*
  * The template for displaying visitors map dashboard widget
- * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/dashboard-widgets/mvx-vendor-visitors-map.php
+ * Override this template by copying it to yourtheme/MultiVendorX/vendor-dashboard/dashboard-widgets/mvx-vendor-visitors-map.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

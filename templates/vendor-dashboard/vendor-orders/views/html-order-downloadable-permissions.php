@@ -4,7 +4,7 @@
  *
  * Used by vendor-order-details.php template
  *
- * This template can be overridden by copying it to yourtheme/dc-product-vendor/vendor-dashboard/vendor-orders/views/html-order-downloadable-permissions.php.
+ * This template can be overridden by copying it to yourtheme/MultiVendorX/vendor-dashboard/vendor-orders/views/html-order-downloadable-permissions.php.
  * 
  * @author 		MultiVendorX
  * @package MultiVendorX/templates/vendor dashboard/vendor orders/views

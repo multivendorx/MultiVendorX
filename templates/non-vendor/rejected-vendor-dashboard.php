@@ -2,7 +2,7 @@
 /**
  * The template for displaying vendor dashboard
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/non-vendor/rejected-vendor-dashboard.php
+ * Override this template by copying it to yourtheme/MultiVendorX/non-vendor/rejected-vendor-dashboard.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

@@ -2,7 +2,7 @@
 /**
  * The template for displaying Customer Q & A
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/mvx-customer-qna-form.php
+ * Override this template by copying it to yourtheme/MultiVendorX/mvx-customer-qna-form.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

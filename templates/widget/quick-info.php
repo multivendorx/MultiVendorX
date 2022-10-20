@@ -2,7 +2,7 @@
 /**
  * The template for displaying demo plugin content.
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/widget/quick-info.php
+ * Override this template by copying it to yourtheme/MultiVendorX/widget/quick-info.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

@@ -2,7 +2,7 @@
 /**
  * The template for displaying demo plugin content.
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/emails/vendor-commissions-paid.php
+ * Override this template by copying it to yourtheme/MultiVendorX/emails/vendor-commissions-paid.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

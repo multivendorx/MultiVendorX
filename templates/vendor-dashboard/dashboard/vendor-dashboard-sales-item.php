@@ -2,7 +2,7 @@
 /**
  * The template for displaying vendor dashboard
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/dashboard/vendor-dashboard-sales-item.php
+ * Override this template by copying it to yourtheme/MultiVendorX/vendor-dashboard/dashboard/vendor-dashboard-sales-item.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

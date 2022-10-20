@@ -2,7 +2,7 @@
 /**
  * The template for displaying demo plugin content.
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/widget/store-location.php
+ * Override this template by copying it to yourtheme/MultiVendorX/widget/store-location.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

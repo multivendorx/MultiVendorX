@@ -2,7 +2,7 @@
 /**
  * The template for displaying vendor stats report.
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/emails/plain/vendor-orders-stats-report.php
+ * Override this template by copying it to yourtheme/MultiVendorX/emails/plain/vendor-orders-stats-report.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

@@ -2,7 +2,7 @@
 /**
  * The template for displaying vendor withdrawal content
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/vendor-withdrawal/vendor-withdrawal-request.php
+ * Override this template by copying it to yourtheme/MultiVendorX/vendor-dashboard/vendor-withdrawal/vendor-withdrawal-request.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

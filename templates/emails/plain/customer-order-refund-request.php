@@ -2,7 +2,7 @@
 /**
  * The template for displaying report abuse via customer.
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/emails/plain/customer-order-refund-request.php
+ * Override this template by copying it to yourtheme/MultiVendorX/emails/plain/customer-order-refund-request.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

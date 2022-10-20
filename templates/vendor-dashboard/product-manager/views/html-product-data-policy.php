@@ -5,7 +5,7 @@
  *
  * Used by mvx-frontend-dashboard-add-product.php template
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/product-manager/views/html-product-data-policy.php
+ * Override this template by copying it to yourtheme/MultiVendorX/vendor-dashboard/product-manager/views/html-product-data-policy.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

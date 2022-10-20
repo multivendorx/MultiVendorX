@@ -1,7 +1,7 @@
 <?php
 /*
  * The template for displaying vendor products Q&As
- * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/vendor-products-qna.php
+ * Override this template by copying it to yourtheme/MultiVendorX/vendor-dashboard/vendor-products-qna.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

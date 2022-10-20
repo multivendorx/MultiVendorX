@@ -3,7 +3,7 @@
 /**
  * The template for displaying vendor tools
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/vendor-tools.php
+ * Override this template by copying it to yourtheme/MultiVendorX/vendor-dashboard/vendor-tools.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates

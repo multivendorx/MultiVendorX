@@ -2,7 +2,7 @@
 /**
  * The template for displaying vendor transaction details
  *
- * Override this template by copying it to yourtheme/dc-product-vendor/vendor-dashboard/vendor-transaction_detail.php
+ * Override this template by copying it to yourtheme/MultiVendorX/vendor-dashboard/vendor-transaction_detail.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates
