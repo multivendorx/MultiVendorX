@@ -42,6 +42,8 @@ class MVX_Settings {
 
             $submenu[ $slug ][] = [ __( 'Settings', 'multivendorx' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=settings&name=settings-general' ];
 
+            $submenu[ $slug ][] = [ __( 'Refund Request', 'multivendorx' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=settings&name=settings-general' ];
+
             $submenu[ $slug ][] = [ __( 'Analytics', 'multivendorx' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=analytics&name=admin-overview' ];
             
             $submenu[ $slug ][] = [ __( 'Status and Tools', 'multivendorx' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=status-tools&name=database-tools' ];

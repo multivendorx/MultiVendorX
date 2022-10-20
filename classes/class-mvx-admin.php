@@ -1251,7 +1251,7 @@ class MVX_Admin {
         $wp_filesystem  = $this->get_filesystem();
         $log_path = ini_get( 'error_log' );
 
-        $contents = $wp_filesystem->get_contents_array( $log_path );
+        $contents = $log_path && $wp_filesystem ? $wp_filesystem->get_contents_array( $log_path ) : array();
 
         if ( -1 === $limit ) {
             return join( '', $contents );
