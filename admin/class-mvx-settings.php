@@ -9,6 +9,7 @@ class MVX_Settings {
         // Admin menu
         add_action( 'admin_menu', array( $this, 'add_settings_page' ), 100 );
         add_filter( 'admin_body_class', array( $this, 'mvx_add_loading_classes' ) );
+        add_action('admin_head', array($this, 'mvx_submenu_count'));
     }
 
     /**
@@ -60,6 +61,24 @@ class MVX_Settings {
             $classes .= ' mvx-page';
         }
         return $classes;
+    }
+
+    public function mvx_submenu_count() {
+        global $submenu;
+        if (isset($submenu['mvx'])) {
+            if (apply_filters('mvx_submenu_show_necesarry_count', true) && current_user_can('manage_woocommerce') ) {
+                foreach ($submenu['mvx'] as $key => $menu_item) {
+                    if (isset($menu_item[0]) && strpos($menu_item[0], 'Commission') !== false) {
+                        $order_count = isset( mvx_count_commission()->unpaid ) ? mvx_count_commission()->unpaid : 0;
+                        $submenu['mvx'][$key][0] .= ' <span class="awaiting-mod update-plugins count-' . $order_count . '"><span class="processing-count">' . number_format_i18n($order_count) . '</span></span>';
+                    }
+                    if (isset($menu_item[0]) && strpos($menu_item[0], 'Work Board') !== false) {
+                        $workboard_list_count = mvx_count_wordboard_list() ? mvx_count_wordboard_list() : 0;
+                        $submenu['mvx'][$key][0] .= ' <span class="awaiting-mod update-plugins count-' . $workboard_list_count . '"><span class="processing-count">' . number_format_i18n($workboard_list_count) . '</span></span>';
+                    }
+                }
+            }
+        }
     }
 
     public function mvx_modules_callback() {

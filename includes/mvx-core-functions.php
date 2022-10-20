@@ -7895,3 +7895,41 @@ if (!function_exists('mvx_convert_select_structure')) {
         return $datafileds_initialize_array;
     }
 }
+
+if (!function_exists('mvx_count_commission')) {
+    function mvx_count_commission() {
+        $args = array(
+            'posts_per_page' => -1,
+            'post_type' => 'dc_commission',
+            'post_status' => array('private', 'publish')
+        );
+        $commission_id = wp_list_pluck(get_posts($args), 'ID');
+        $commission_count = new stdClass();
+        $commission_count->paid = $commission_count->unpaid = $commission_count->reverse = 0;
+        foreach ($commission_id as $id) {
+            $commission_status = get_post_meta($id, '_paid_status', true);
+            if ($commission_status) {
+                switch ($commission_status) {
+                    case 'paid':
+                        $commission_count->paid += 1;
+                        break;
+                    case 'unpaid':
+                        $commission_count->unpaid += 1;
+                        break;
+                    case 'reverse':
+                        $commission_count->reverse += 1;
+                        break;
+                }
+            }
+        }
+        return $commission_count;
+    }
+}
+
+if (!function_exists('mvx_count_wordboard_list')) {
+    function mvx_count_wordboard_list() {
+        global $MVX;        
+        return (int) ((int)count($MVX->vendor_rest_api->mvx_list_of_pending_vendor_product()->data) + (int) count($MVX->vendor_rest_api->mvx_list_of_pending_vendor()->data) + (int)count($MVX->vendor_rest_api->mvx_list_of_pending_vendor_coupon()->data) + (int)count($MVX->vendor_rest_api->mvx_list_of_pending_transaction()->data) + (int)count($MVX->vendor_rest_api->mvx_list_of_pending_question('', '')->data)
+        );
+    }
+}
