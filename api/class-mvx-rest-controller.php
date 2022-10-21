@@ -774,7 +774,36 @@ class MVX_REST_API {
     }
 
     public function mvx_list_of_refund_request() {
-        
+        $lists = [];
+        $default = array(
+            'posts_per_page'   => -1,
+            'post_type'        => 'shop_order',
+            'post_status' => 'any',
+            'fields'    =>  'ids'
+            );
+        $query = new WP_Query( $default ); 
+        foreach ($query->get_posts() as $post_id) {
+            $refund_reason = $refund_amount = '';
+            $order = wc_get_order($post_id);
+            $post = get_post($post_id);
+            if (!is_user_mvx_vendor($post->post_author)) continue;
+            if (!$order) continue;
+            if (!$order->get_refunds()) continue;
+
+            foreach ( $order->get_refunds() as $id => $refund ) {
+                $refund_reason .= $refund->get_reason() ? $refund->get_reason() : '';
+                $refund_amount .= $refund->get_amount() ? $refund->get_amount() : '';
+            }
+
+            $lists[] = array(
+                'order_id'    =>  $post_id,
+                'vendor' =>  get_user_by('ID', $post->post_author)->display_name,
+                'refund_reason'   =>  $refund_reason,
+                'refund_amount'    =>  $refund_amount,
+                'payment_gateway'   =>  $order->get_payment_method_title()
+            );
+        }
+        return rest_ensure_response($lists);
     }
 
     public function mvx_vendor_short_pending_customer() {
@@ -4620,9 +4649,7 @@ class MVX_REST_API {
     }
 
     public function mvx_commission_delete($request) {
-        require_once(ABSPATH.'wp-admin/includes/user.php');
         $commission_ids = $request->get_param('commission_ids') ? $request->get_param('commission_ids') : '';
-        print_r($commission_ids);die;
         if ($commission_ids && is_array($commission_ids)) {
             foreach (wp_list_pluck($commission_ids, "ID") as $key => $value) {
                 wp_delete_post($value);
@@ -4677,30 +4704,12 @@ class MVX_REST_API {
         $commission_list = $request->get_param('commission_list') ? ($request->get_param('commission_list')) : array();
         if ($value == 'mark_paid') {
             $MVX->postcommission->mvx_mark_commission_paid($commission_list);
-        } else if ($value == 'export') {
-            $commissions_data = array();
-            $currency = get_woocommerce_currency();
-            foreach ($commission_list as $commission) {
-                $commission_data = $MVX->postcommission->get_commission($commission);
-                $commission_staus = get_post_meta($commission, '_paid_status', true);
-                $recipient = get_user_meta($commission_data->vendor->id, '_vendor_paypal_email', true) ? get_user_meta($commission_data->vendor->id, '_vendor_paypal_email', true) : $commission_data->vendor->page_title;
-                $commission_amount = get_post_meta( $commission, '_commission_amount', true ) ? get_post_meta( $commission, '_commission_amount', true ) : 0;
-                $shipping_amount = get_post_meta( $commission, '_shipping', true ) ? get_post_meta( $commission, '_shipping', true ) : 0;
-                $tax_amount = get_post_meta( $commission, '_tax', true ) ? get_post_meta( $commission, '_tax', true ) : 0;
-                $commission_total = get_post_meta( $commission, '_commission_total', true ) ? get_post_meta( $commission, '_commission_total', true ) : 0;
-                $commission_order = get_post_meta($commission, '_commission_order_id', true) ? wc_get_order(get_post_meta($commission, '_commission_order_id', true)) : false;
-                if ($commission_order) $currency = $commission_order->get_currency();
-                $commissions_data[] = apply_filters('mvx_vendor_commissions', array(
-                    'Recipient'     =>  $recipient,
-                    'Currency'      =>  $currency,
-                    'Commission'    =>  $commission_amount,
-                    'Shipping'      =>  $shipping_amount,
-                    'Tax'           =>  $tax_amount,
-                    'Total'         =>  $commission_total,
-                    'Status'        =>  $commission_staus
-                ), $commission_data);
+        } else if ($value == 'delete') {
+            if ($commission_list) {
+                foreach ($commission_list as $key => $value_id) {
+                    wp_delete_post($value_id);
+                }
             }
-            return rest_ensure_response($commissions_data);
         }
         return $this->mvx_find_specific_commission();
     }

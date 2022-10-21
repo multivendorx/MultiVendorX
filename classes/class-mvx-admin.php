@@ -204,7 +204,7 @@ class MVX_Admin {
         if ($product_query->get_posts()) {
             $question_product_selection_wordpboard = mvx_convert_select_structure($product_query->get_posts(), '', true);
         }
-        $commission_bulk_list_action = mvx_convert_select_structure(array('mark_paid' => __('Mark paid', 'multivendorx')));
+        $commission_bulk_list_action = mvx_convert_select_structure(array('mark_paid' => __('Mark paid', 'multivendorx'), 'delete' => __('Delete', 'multivendorx')));
         // Commission csv header
         $commission_header = mvx_convert_select_structure(
             apply_filters('mvx_vendor_commissions_header',array(
