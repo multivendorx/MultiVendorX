@@ -6931,6 +6931,14 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'icon'          =>  'icon-tab-question-and-answer',
                 'submenu'       =>  'work-board',
                 'modulename'     =>  'question-ans'
+            ),
+            array(
+                'tablabel'      =>  __('Request refund', 'multivendorx'),
+                'description'   =>  __('View and publish questions sent to sellers by their customers.', 'multivendorx'),//neda
+                'apiurl'        =>  'mvx_module/v1/update_vendor',
+                'icon'          =>  'icon-tab-question-and-answer',
+                'submenu'       =>  'work-board',
+                'modulename'     =>  'refund-request'
             )
         );
 

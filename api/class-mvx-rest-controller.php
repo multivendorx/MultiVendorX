@@ -764,6 +764,17 @@ class MVX_REST_API {
             'callback' => array( $this, 'mvx_seller_latest_ativity' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
+
+        // pending shipping for all vendor
+        register_rest_route( 'mvx_module/v1', '/list_of_refund_request', [
+            'methods' => WP_REST_Server::READABLE,
+            'callback' => array( $this, 'mvx_list_of_refund_request' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+    }
+
+    public function mvx_list_of_refund_request() {
+        
     }
 
     public function mvx_vendor_short_pending_customer() {
@@ -4025,6 +4036,7 @@ class MVX_REST_API {
         if ($total_sales) {
             foreach ($total_sales as $total_sales_key => $total_sales_value) {
                 $product = wc_get_product( $total_sales_key );
+                if (!$product) continue;
                 $product_report_datatable[] = array(
                     'id'                    =>  $total_sales_key,
                     'title'                 =>  $product->get_name(),

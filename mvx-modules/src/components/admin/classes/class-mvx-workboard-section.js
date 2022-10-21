@@ -40,11 +40,13 @@ class MVXworkboard extends Component {
 			list_of_pending_question: [],
 			list_of_store_review: [],
 			list_of_report_abuse: [],
+			list_of_refund_request: [],
 			columns_announcement_new: [],
 			columns_knowledgebase_new: [],
 			columns_questions_new: [],
 			columns_store_review: [],
 			columns_report_abuse: [],
+			columns_refund_request: [],
 			list_of_publish_question: [],
 			list_of_all_tabs: [],
 			list_of_work_board_content: [],
@@ -638,6 +640,17 @@ class MVXworkboard extends Component {
 				});
 			});
 
+
+		axios
+			.get(`${appLocalizer.apiUrl}/mvx_module/v1/list_of_refund_request`)
+			.then((response) => {
+				this.setState({
+					list_of_refund_request: response.data,
+				});
+			});
+
+		
+
 		// get vendor name on select
 		axios({
 			url: `${appLocalizer.apiUrl}/mvx_module/v1/show_vendor_name`,
@@ -1028,6 +1041,41 @@ class MVXworkboard extends Component {
 				}
 			);
 		}
+
+
+		// Display table column and row slection refund request
+		if (
+			this.state.columns_refund_request.length === 0 &&
+			new URLSearchParams(window.location.hash).get('name') ===
+				'refund-request'
+		) {
+			appLocalizer.columns_refund_request.map(
+				(data_store_refund_request_content, index_store_abuse) => {
+					let data_refund_request_selector = '';
+					let set_for_dynamic_column_store_review = '';
+					data_refund_request_selector =
+						data_store_refund_request_content.selector_choice;
+					data_store_refund_request_content.selector = (row) => (
+						<div
+							dangerouslySetInnerHTML={{
+								__html: row[data_refund_request_selector],
+							}}
+						></div>
+					);
+
+					this.state.columns_refund_request[index_store_abuse] =
+						data_store_refund_request_content;
+					set_for_dynamic_column_store_review =
+						this.state.columns_refund_request;
+					this.setState({
+						columns_refund_request:
+							set_for_dynamic_column_store_review,
+					});
+				}
+			);
+		}
+
+
 
 		// Display table column and row slection report abuse
 		if (
@@ -1920,6 +1968,23 @@ class MVXworkboard extends Component {
 						<DataTable
 							columns={this.state.columns_report_abuse}
 							data={this.state.list_of_report_abuse}
+							selectableRows
+							pagination
+						/>
+					</div>
+				) : (
+					''
+				)}
+			</div>
+		) : name === 'refund-request' ? (
+			<div className="mvx-module-grid">
+				
+				{this.state.columns_refund_request &&
+				this.state.columns_refund_request.length > 0 ? (
+					<div className="mvx-backend-datatable-wrapper">
+						<DataTable
+							columns={this.state.columns_refund_request}
+							data={this.state.list_of_refund_request}
 							selectableRows
 							pagination
 						/>

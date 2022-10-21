@@ -477,7 +477,7 @@ class MVX_Frontend {
             wp_enqueue_style('jquery-ui-style');
             $MVX->library->load_bootstrap_style_lib();
             wp_enqueue_style('vandor-dashboard-style');
-            wp_add_inline_style('vandor-dashboard-style', get_mvx_vendor_settings('mvx_vendor_dashboard_custom_css', 'vendor', 'dashboard'));
+            wp_add_inline_style('vandor-dashboard-style', get_mvx_vendor_settings('mvx_vendor_dashboard_custom_css', 'seller_dashbaord'));
             wp_enqueue_style('mvx_custom_scroller');
         }
         if (is_woocommerce()) {
