@@ -808,20 +808,23 @@ class MVX_REST_API {
 
     public function mvx_vendor_short_pending_customer() {
         $pending_questions = $this->mvx_list_of_pending_question('', '')->data && !empty($this->mvx_list_of_pending_question('', '')->data) ? $this->mvx_list_of_pending_question('', '')->data[0] : '';
-        $Q_A_link = admin_url('admin.php?page=mvx#&submenu=work-board&name=question-ans');
-        $row = '<div class="media">
-                    <div class="media-body">
-                        <h4 class="media-heading qna-question">' . wp_trim_words($pending_questions['question_details'], 160, '...') . '</h4>
-                        <time class="qna-date">
-                            <span>' . mvx_date($pending_questions['question_date']) . '</span>
-                        </time>
-                    </div>
-                    <a href="'.$Q_A_link.'" class="footer-link">
-                        Show All Q&As
-                        <i class="mvx-font icon-link-right-arrow"></i>
-                    </a>
-            </div>
-        ';
+        $row = '';
+        if ($pending_questions) {
+            $Q_A_link = admin_url('admin.php?page=mvx#&submenu=work-board&name=question-ans');
+            $row = '<div class="media">
+                        <div class="media-body">
+                            <h4 class="media-heading qna-question">' . wp_trim_words($pending_questions['question_details'], 160, '...') . '</h4>
+                            <time class="qna-date">
+                                <span>' . mvx_date($pending_questions['question_date']) . '</span>
+                            </time>
+                        </div>
+                        <a href="'.$Q_A_link.'" class="footer-link">
+                            Show All Q&As
+                            <i class="mvx-font icon-link-right-arrow"></i>
+                        </a>
+                </div>
+            ';
+        }
         return rest_ensure_response($row);
     }
 
