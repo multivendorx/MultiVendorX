@@ -11,6 +11,9 @@ use Automattic\Jetpack\Constants;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+if ( ! class_exists( 'WC_Plugin_Updates' ) ) {
+	include_once ABSPATH . 'wp-content/plugins/woocommerce' . '/class-wc-plugin-updates.php';
+}
 
 /**
  * Class WC_Plugins_Screen_Updates
