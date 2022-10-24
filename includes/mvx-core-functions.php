@@ -5610,6 +5610,8 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                         array(
                             'key'=>'commission',
                             'type'=> "number",
+                            'depend'    => 'type',
+                            'dependvalue'       =>  'percent',
                             'class' => "nested-parent-class",
                             'name' => "nested-parent-name",
                             'label'=> __('Commission Percent(%)', 'multivendorx'),
@@ -5618,6 +5620,28 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                         array(
                             'key'=>'commission_fixed',
                             'type'=> "number",
+                            'depend'    => 'type',
+                            'dependvalue'       =>  'fixed',
+                            'class' => "nested-parent-class",
+                            'name' => "nested-parent-name",
+                            'label' => __('Commission Fixed', 'multivendorx') . '(' . get_woocommerce_currency_symbol() . ')',
+                            'value'=> "commission_fixed"
+                        ),
+                        array(
+                            'key'=>'commission',
+                            'type'=> "number",
+                            'depend'    => 'type',
+                            'dependvalue'       =>  'percent_fixed',
+                            'class' => "nested-parent-class",
+                            'name' => "nested-parent-name",
+                            'label'=> __('Commission Percent(%)', 'multivendorx'),
+                            'value'=> "commission"
+                        ),
+                        array(
+                            'key'=>'commission_fixed',
+                            'type'=> "number",
+                            'depend'    => 'type',
+                            'dependvalue'       =>  'percent_fixed',
                             'class' => "nested-parent-class",
                             'name' => "nested-parent-name",
                             'label' => __('Commission Fixed', 'multivendorx') . '(' . get_woocommerce_currency_symbol() . ')',

@@ -1483,13 +1483,19 @@ export default class DynamicForm extends React.Component {
 				const parentseectoption = [];
 				const parentseectoption2 = [];
 				const statedata = [];
-				let ggg;
 				input = (
 					<div className="mvx-multi-nested-class">
 						{m.database_value
 							? m.database_value.map((o, indexop) => (
 									<div className="mvx-boarder-parent">
 										{m.parent_options.map((op) => (
+
+											op.depend &&
+												o[op.depend] &&
+												o[op.depend].value &&
+												o[op.depend].value != op.dependvalue
+												? '':
+											
 											<div className="mvx-boarder-parent-loop">
 												<label className="mvx-setting-form-label">
 													<p
