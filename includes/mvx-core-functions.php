@@ -6683,7 +6683,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'modulename'    =>  'spmv-pages'
             ),
             array(
-                'tablabel'      =>  __('Commissions', 'multivendorx'),
+                'tablabel'      =>  __('Commission', 'multivendorx'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'description'   =>  __("Configure commission settings to customise your commission plan.", 'multivendorx'),
                 'icon'          =>  'icon-tab-commissions',
@@ -6977,6 +6977,9 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
         }
         if (!mvx_is_module_active('store-review')) {
             unset($marketplace_workboard[3]);
+        }
+        if (!mvx_is_module_active('marketplace-refund')) {
+            unset($marketplace_workboard[6]);
         }
 
         $status_tools = array(

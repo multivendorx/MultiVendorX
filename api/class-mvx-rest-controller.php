@@ -771,17 +771,6 @@ class MVX_REST_API {
             'callback' => array( $this, 'mvx_list_of_refund_request' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-
-
-        register_rest_route( 'mvx_module/v1', '/testing_phase', [
-            'methods' => WP_REST_Server::EDITABLE,
-            'callback' => array( $this, 'mvx_testing_phase' ),
-            'permission_callback' => array( $this, 'save_settings_permission' )
-        ] );
-    }
-
-    public function mvx_testing_phase($request) {
-        print_r($_POST);die;
     }
 
     public function mvx_list_of_refund_request() {

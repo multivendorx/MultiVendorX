@@ -38,7 +38,7 @@ class MVX_Settings {
             
             $submenu[ $slug ][] = [ __( 'Payments', 'multivendorx' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=payment&name=payment-masspay' ];
 
-            $submenu[ $slug ][] = [ __( 'Commission', 'multivendorx' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=commission' ];
+            $submenu[ $slug ][] = [ __( 'Commissions', 'multivendorx' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=commission' ];
 
             $submenu[ $slug ][] = [ __( 'Settings', 'multivendorx' ), 'manage_woocommerce', 'admin.php?page=' . $slug . '#&submenu=settings&name=settings-general' ];
 
