@@ -765,7 +765,7 @@ class MVX_Vendor {
         $vendor = get_mvx_vendor_by_term($this->term_id);
         if ($this->term_id > 0) {
             $args = array(
-                'post_type' => 'mvx_transaction',
+                'post_type' => array('mvx_transaction', 'wcmp_transaction'),
                 'post_status' => array('publish', 'private'),
                 'posts_per_page' => -1,
                 'post_author' => $vendor->id

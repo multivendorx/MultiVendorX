@@ -4626,7 +4626,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'class'     => 'mvx-toggle-checkbox',
                     'type'    => 'checkbox',
                     'props'     => array(
-                        'disabled'  => true
+                        'disabled'  => apply_filters('is_mvx_pro_plugin_inactive', true)
                     ),
                     'options' => array(
                         array(

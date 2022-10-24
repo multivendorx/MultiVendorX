@@ -256,7 +256,7 @@ class mvx_transaction {
             $transaction_status = 'any';
 
         $args = array(
-            'post_type' => 'mvx_transaction',
+            'post_type' => array('mvx_transaction', 'wcmp_transaction'),
             'post_status' => $transaction_status,
             'posts_per_page' => $no_of
         );
@@ -310,10 +310,13 @@ class mvx_transaction {
         if ($transactions) {
             foreach ($transactions as $transaction_key => $transaction) {
 
+                $transaction_complete = array('mvx_completed', 'wcmp_completed');
+                $transaction_processing = array('wcmp_processing', 'wcmp_processing');
+
                 $transaction_details[$transaction->ID]['post_date'] = $transaction->post_date;
-                if ($transaction->post_status == 'mvx_completed') {
+                if (in_array( $transaction->post_type, $transaction_complete)) {
                     $transaction_details[$transaction->ID]['status'] = __('Completed', 'multivendorx');
-                } else if ($transaction->post_status == 'mvx_processing') {
+                } else if (in_array( $transaction->post_type, $transaction_processing)) {
                     $transaction_details[$transaction->ID]['status'] = __('Processing', 'multivendorx');
                 }
                 $transaction_details[$transaction->ID]['post_status'] = $transaction->post_status;

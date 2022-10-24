@@ -14,7 +14,8 @@ if (!defined('ABSPATH')) {
 global $MVX;
 $transaction = get_post($transaction_id);
 $vendor = get_current_vendor();
-if ( !$transaction || (isset($transaction->post_type) && $transaction->post_type != 'mvx_transaction') || $vendor->id !== get_current_user_id() ) {
+$transaction_post_types = array('mvx_transaction', 'wcmp_transaction');
+if ( !$transaction || (isset($transaction->post_type) && in_array( $transaction->post_type, $transaction_post_types) || $vendor->id !== get_current_user_id() ) {
     $vendor = get_mvx_vendor_by_term($transaction->post_author) ? get_mvx_vendor_by_term($transaction->post_author) : get_mvx_vendor($transaction->post_author);
     ?>
     <div class="col-md-12">
@@ -32,7 +33,7 @@ if ( !$transaction || (isset($transaction->post_type) && $transaction->post_type
         <div class="panel-body">
             <?php $transaction = get_post($transaction_id);
             $amount = (float) get_post_meta($transaction_id, 'amount', true) - (float) get_post_meta($transaction_id, 'transfer_charge', true) - (float) get_post_meta($transaction_id, 'gateway_charge', true);
-            if (isset($transaction->post_type) && $transaction->post_type == 'mvx_transaction') {
+            if (isset($transaction->post_type) && in_array( $transaction->post_type, $transaction_post_types)) {
                 $commission_details = $MVX->transaction->get_transaction_item_details($transaction_id);
             ?>
             <div class="withdrawal-transaction-wrapper">

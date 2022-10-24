@@ -1476,7 +1476,7 @@ class MVX_Ajax {
             $vendor = apply_filters('mvx_transaction_vendor', $vendor);
             $start_date = isset($requestData['from_date']) ? $requestData['from_date'] : date('Y-m-01');
             $end_date = isset($requestData['to_date']) ? $requestData['to_date'] : date('Y-m-d');
-            $transaction_details = $MVX->transaction->get_transactions($vendor->term_id, $start_date, $end_date, array('mvx_processing', 'mvx_completed'));
+            $transaction_details = $MVX->transaction->get_transactions($vendor->term_id, $start_date, $end_date, array('mvx_processing', 'mvx_completed', 'wcmp_completed', 'wcmp_processing'));
 
             $data = array();
             if (!empty($transaction_details)) {

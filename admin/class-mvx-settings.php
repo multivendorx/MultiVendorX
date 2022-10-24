@@ -95,7 +95,8 @@ class MVX_Settings {
             $trans_id = isset( $_REQUEST['trans_id'] ) ? absint( $_REQUEST['trans_id'] ) : 0;
             if ( $_is_trans_details_page == 'mvx-transaction-details' && $trans_id != 0 ) {
                 $transaction = get_post( $trans_id );
-                if ( isset( $transaction->post_type ) && $transaction->post_type == 'mvx_transaction' ) {
+                $transaction_post_types = array('mvx_transaction', 'wcmp_transaction');
+                if ( isset( $transaction->post_type ) && in_array( $transaction->post_type, $transaction_post_types) ) {
                     $vendor = get_mvx_vendor_by_term( $transaction->post_author ) ? get_mvx_vendor_by_term( $transaction->post_author ) : get_mvx_vendor( $transaction->post_author );
                     $commission_details = $MVX->transaction->get_transaction_item_details( $trans_id );
                     ?>

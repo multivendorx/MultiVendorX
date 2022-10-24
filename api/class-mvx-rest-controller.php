@@ -2595,7 +2595,7 @@ class MVX_REST_API {
     public function mvx_list_of_pending_transaction() {
         $pending_list = $order_id = [];
         $args = array(
-            'post_type' => 'mvx_transaction',
+            'post_type' => array('mvx_transaction', 'wcmp_transaction'),
             'post_status' => 'mvx_processing',
             'meta_key' => 'transaction_mode',
             'meta_value' => 'direct_bank',
@@ -3922,7 +3922,7 @@ class MVX_REST_API {
             $products = count($get_pending_products->get_posts());
 
         $transactions_args = array(
-            'post_type' => 'mvx_transaction',
+            'post_type' => array('mvx_transaction', 'wcmp_transaction'),
             'post_status' => 'mvx_processing',
             'meta_key' => 'transaction_mode',
             'meta_value' => 'direct_bank',
@@ -4578,7 +4578,7 @@ class MVX_REST_API {
         if ($notes) {
             foreach ($notes as $note) {
                 $notes_data[] = array(
-                    'comment_content'   =>  $note->comment_content,
+                    'comment_content'   => str_replace("wcmp", "mvx", $note->comment_content),
                     'comment_date'   =>  $note->comment_date,
                 );
             }
