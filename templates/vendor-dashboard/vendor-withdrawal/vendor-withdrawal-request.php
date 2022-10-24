@@ -15,7 +15,7 @@ global $MVX;
 $transaction = get_post($transaction_id);
 $vendor = get_current_vendor();
 $transaction_post_types = array('mvx_transaction', 'wcmp_transaction');
-if ( !$transaction || (isset($transaction->post_type) && in_array( $transaction->post_type, $transaction_post_types) || $vendor->id !== get_current_user_id() ) {
+if ( !$transaction || (isset($transaction->post_type) && in_array( $transaction->post_type, $transaction_post_types)) || $vendor->id !== get_current_user_id() ) {
     $vendor = get_mvx_vendor_by_term($transaction->post_author) ? get_mvx_vendor_by_term($transaction->post_author) : get_mvx_vendor($transaction->post_author);
     ?>
     <div class="col-md-12">
