@@ -817,6 +817,11 @@ class MVX_Cron_Job {
             }
 
             // commission
+            if (get_mvx_older_global_settings('default_commission')) {
+                $commission_data['default_commission'] = array( array('key' =>   'fixed_ammount', 'value'    =>  get_mvx_older_global_settings('default_commission')), array('key' =>   'percent_amount', 'value'    =>  get_mvx_older_global_settings('default_commission')) );
+                mvx_update_option('mvx_commissions_tab_settings', $commission_data);
+            }
+
             if (get_mvx_older_global_settings('revenue_sharing_mode')) {
                 $commission_data['revenue_sharing_mode'] = get_mvx_older_global_settings('revenue_sharing_mode');
                 mvx_update_option('mvx_commissions_tab_settings', $commission_data);
@@ -1168,6 +1173,9 @@ class MVX_Cron_Job {
                 array_push($active_module_list, 'elementor');
                 mvx_update_option( 'mvx_all_active_module_list', $active_module_list );
             }
+            // product types add
+            array_push($active_module_list, 'simple', 'external', 'grouped');
+            mvx_update_option( 'mvx_all_active_module_list', $active_module_list );
 
             // registration form migrate
             $mvx_vendor_registration_form_data = mvx_get_option( 'wcmp_vendor_registration_form_data' );
