@@ -524,41 +524,39 @@ class MVX_Calculate_Commission {
             if ($vendor) {
                 $commission = $this->get_commission_amount($product_id, $vendor->term_id, $variation_id, $item_id, $order);
                 $commission = apply_filters('mvx_get_commission_amount', $commission, $product_id, $vendor->term_id, $variation_id, $item_id, $order);
-                if (!empty($commission)) {
-                    $commission_type = mvx_get_settings_value($MVX->vendor_caps->payment_cap['commission_type']);
-                    if ($commission_type == 'fixed_with_percentage') {
-                        $amount = (float) $line_total * ( (float) $commission['commission_val'] / 100 ) + (float) $commission['commission_fixed'];
-                    } else if ($commission_type == 'fixed_with_percentage_qty') {
-                        $amount = (float) $line_total * ( (float) $commission['commission_val'] / 100 ) + ((float) $commission['commission_fixed'] * $item['qty']);
-                    } else if ($commission_type == 'percent') {
-                        $amount = (float) $line_total * ( (float) $commission['commission_val'] / 100 );
-                    } else if ($commission_type == 'fixed') {
-                        $amount = (float) $commission['commission_val'] * $item['qty'];
-                    } elseif ($commission_type == 'commission_by_product_price') {
-                        $amount = $this->mvx_get_commission_as_per_product_price($product_id, $line_total, $item['qty'], $commission_rule);
-                    } elseif ($commission_type == 'commission_by_purchase_quantity') {
-                        $amount = $this->mvx_get_commission_rule_by_quantity_rule($product_id, $line_total, $item['qty'], $commission_rule);
-                    }
-                    if (isset($MVX->vendor_caps->payment_cap['revenue_sharing_mode'])) {
-                        if ($MVX->vendor_caps->payment_cap['revenue_sharing_mode'] == 'revenue_sharing_mode_admin') {
-                            $amount = (float) $line_total - (float) $amount;
-                            if ($amount < 0) {
-                                $amount = 0;
-                            }
+                $commission_type = mvx_get_settings_value($MVX->vendor_caps->payment_cap['commission_type']);
+                if (!empty($commission) && $commission_type == 'fixed_with_percentage') {
+                    $amount = (float) $line_total * ( (float) $commission['commission_val'] / 100 ) + (float) $commission['commission_fixed'];
+                } else if (!empty($commission) && $commission_type == 'fixed_with_percentage_qty') {
+                    $amount = (float) $line_total * ( (float) $commission['commission_val'] / 100 ) + ((float) $commission['commission_fixed'] * $item['qty']);
+                } else if (!empty($commission) && $commission_type == 'percent') {
+                    $amount = (float) $line_total * ( (float) $commission['commission_val'] / 100 );
+                } else if (!empty($commission) && $commission_type == 'fixed') {
+                    $amount = (float) $commission['commission_val'] * $item['qty'];
+                } elseif ($commission_type == 'commission_by_product_price') {
+                    $amount = $this->mvx_get_commission_as_per_product_price($product_id, $line_total, $item['qty'], $commission_rule);
+                } elseif ($commission_type == 'commission_by_purchase_quantity') {
+                    $amount = $this->mvx_get_commission_rule_by_quantity_rule($product_id, $line_total, $item['qty'], $commission_rule);
+                }
+                if (isset($MVX->vendor_caps->payment_cap['revenue_sharing_mode'])) {
+                    if ($MVX->vendor_caps->payment_cap['revenue_sharing_mode'] == 'revenue_sharing_mode_admin') {
+                        $amount = (float) $line_total - (float) $amount;
+                        if ($amount < 0) {
+                            $amount = 0;
                         }
                     }
-                    if ($variation_id == 0 || $variation_id == '') {
-                        $product_id_for_value = $product_id;
-                    } else {
-                        $product_id_for_value = $variation_id;
-                    }
-
-                    $product_value_total += $item->get_total();
-                    if ( apply_filters('mvx_admin_pay_commission_more_than_order_amount', true) && $amount > $product_value_total) {
-                        $amount = $product_value_total;
-                    }
-                    return apply_filters('vendor_commission_amount', $amount, $product_id, $variation_id, $item, $order_id, $item_id);
                 }
+                if ($variation_id == 0 || $variation_id == '') {
+                    $product_id_for_value = $product_id;
+                } else {
+                    $product_id_for_value = $variation_id;
+                }
+
+                $product_value_total += $item->get_total();
+                if ( apply_filters('mvx_admin_pay_commission_more_than_order_amount', true) && $amount > $product_value_total) {
+                    $amount = $product_value_total;
+                }
+                return apply_filters('vendor_commission_amount', $amount, $product_id, $variation_id, $item, $order_id, $item_id);
             }
         }
         return apply_filters('vendor_commission_amount', $amount, $product_id, $variation_id, $item, $order_id, $item_id);

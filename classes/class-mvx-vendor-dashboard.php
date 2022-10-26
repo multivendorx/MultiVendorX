@@ -2998,15 +2998,15 @@ Class MVX_Admin_Dashboard {
         require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
         $count = 0;
         $payment_methods = array();
-        if ( is_plugin_active('mvx-paypal-checkout-gateway/mvx-paypal-checkout-gateway.php') && array_key_exists('paypal_masspay', get_mvx_available_payment_gateways()) ) {
+        if ( mvx_is_module_active('paypal-marketplace') && array_key_exists('paypal_masspay', get_mvx_available_payment_gateways()) ) {
             $payment_methods[] = 'paypal_masspay';
             $count++;
         }
-        if ( is_plugin_active('mvx-stripe-marketplace/mvx-stripe-marketplace.php') && array_key_exists('stripe_masspay', get_mvx_available_payment_gateways()) ) {
+        if ( mvx_is_module_active('stripe-marketplace') && array_key_exists('stripe_masspay', get_mvx_available_payment_gateways()) ) {
             $payment_methods[] = 'stripe_masspay';
             $count++;
         }
-        if ( is_plugin_active('mvx-razorpay-split-payment/mvx-razorpay-checkout-gateway.php') && array_key_exists('razorpay', get_mvx_available_payment_gateways())) {
+        if ( mvx_is_module_active('razorpay') && array_key_exists('razorpay', get_mvx_available_payment_gateways())) {
             $payment_methods[] = 'razorpay';
             $count++;
         }
