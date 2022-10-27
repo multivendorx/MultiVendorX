@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 if ( ! class_exists( 'WC_Plugin_Updates' ) ) {
-	include_once ABSPATH . 'wp-content/plugins/woocommerce' . '/class-wc-plugin-updates.php';
+	include_once ABSPATH . 'wp-content/plugins/woocommerce' . '/includes/admin/plugin-updates/class-wc-plugin-updates.php';
 }
 
 /**
