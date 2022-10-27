@@ -4997,7 +4997,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'database_value' => '',
                 ],
                 [
-                    'key'       => 'mvx_vendor_products_qnas_endpoint',
+                    'key'       => 'mvx_products_qna_endpoint',
                     'type'      => 'text',
                     'label'     => __( 'Seller Products Q&As Endpoint', 'multivendorx' ),
                     'desc'      => __( 'Set endpoint for vendor products Q&As page', 'multivendorx' ),

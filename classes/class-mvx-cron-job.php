@@ -662,7 +662,7 @@ class MVX_Cron_Job {
                 mvx_update_option('mvx_seller_dashbaord_tab_settings', $seller_dashboard);
             }
             if (get_mvx_older_global_settings('wcmp_vendor_products_qnas_endpoint')) {
-                $seller_dashboard['mvx_vendor_products_qnas_endpoint'] = get_mvx_older_global_settings('wcmp_vendor_products_qnas_endpoint');
+                $seller_dashboard['mvx_products_qna_endpoint'] = get_mvx_older_global_settings('wcmp_vendor_products_qnas_endpoint');
                 mvx_update_option('mvx_seller_dashbaord_tab_settings', $seller_dashboard);
             }
             if (get_mvx_older_global_settings('wcmp_vendor_dashboard_custom_css')) {
