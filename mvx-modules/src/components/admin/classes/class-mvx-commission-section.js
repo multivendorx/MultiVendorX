@@ -9,7 +9,7 @@ import { BrowserRouter as Router, Link } from 'react-router-dom';
 import { CSVLink } from 'react-csv';
 import HeaderSection from './class-mvx-page-header';
 import BannerSection from './class-mvx-page-banner';
-
+import DateRangePicker from 'rsuite/DateRangePicker';
 const override = css`
 	display: block;
 	margin: 0 auto;
@@ -39,7 +39,8 @@ class MVX_Backend_Commission extends Component {
 			commission_list_status_all: false,
 			commission_list_status_paid: false,
 			commission_list_status_unpaid: false,
-			commission_list_status_refunded: false
+			commission_list_status_refunded: false,
+			date_range: ''
 		};
 		this.handleSelectRowsChange = this.handleSelectRowsChange.bind(this);
 		this.handlecommissionsearch = this.handlecommissionsearch.bind(this);
@@ -52,6 +53,44 @@ class MVX_Backend_Commission extends Component {
 		this.handlecommission_paid = this.handlecommission_paid.bind(this);
 		this.handle_commission_status_check =
 			this.handle_commission_status_check.bind(this);
+		this.handleupdatereport = this.handleupdatereport.bind(this);
+	}
+
+	handleupdatereport(e) {
+		this.setState({
+			date_range: e,
+		});
+
+		axios
+		.get(
+			`${appLocalizer.apiUrl}/mvx_module/v1/all_commission`,
+			{
+				params: { date_range: e },
+			}
+		).then((response) => {
+			this.setState({
+				datacommission: response.data,
+			});
+		});
+
+
+		/*this.setState({
+			store_date: e,
+		});
+
+		axios({
+			method: 'post',
+			url: `${appLocalizer.apiUrl}/mvx_module/v1/get_report_overview_data`,
+			data: {
+				value: e,
+				product: this.state.store_product_select,
+				vendor: this.state.store_vendor_select,
+			},
+		}).then((responce) => {
+			this.setState({
+				report_overview_data: responce.data,
+			});
+		});*/
 	}
 
 	handle_commission_status_check(e, type) {
@@ -67,7 +106,7 @@ class MVX_Backend_Commission extends Component {
 				.get(
 					`${appLocalizer.apiUrl}/mvx_module/v1/show_commission_from_status_list`,
 					{
-						params: { commission_status: 'paid' },
+						params: { commission_status: 'paid', date_range: this.state.date_range },
 					}
 				)
 				.then((response) => {
@@ -88,7 +127,7 @@ class MVX_Backend_Commission extends Component {
 				.get(
 					`${appLocalizer.apiUrl}/mvx_module/v1/show_commission_from_status_list`,
 					{
-						params: { commission_status: 'unpaid' },
+						params: { commission_status: 'unpaid', date_range: this.state.date_range },
 					}
 				)
 				.then((response) => {
@@ -110,7 +149,7 @@ class MVX_Backend_Commission extends Component {
 				.get(
 					`${appLocalizer.apiUrl}/mvx_module/v1/show_commission_from_status_list`,
 					{
-						params: { commission_status: 'refunded' },
+						params: { commission_status: 'refunded', date_range: this.state.date_range },
 					}
 				)
 				.then((response) => {
@@ -128,9 +167,13 @@ class MVX_Backend_Commission extends Component {
 				commission_list_status_unpaid: false
 			});
 
-			axios({
-				url: `${appLocalizer.apiUrl}/mvx_module/v1/all_commission`,
-			}).then((response) => {
+			axios
+			.get(
+				`${appLocalizer.apiUrl}/mvx_module/v1/all_commission`,
+				{
+					params: { date_range: this.state.date_range },
+				}
+			).then((response) => {
 				this.setState({
 					datacommission: response.data,
 				});
@@ -159,9 +202,13 @@ class MVX_Backend_Commission extends Component {
 					});
 				});
 		} else {
-			axios({
-				url: `${appLocalizer.apiUrl}/mvx_module/v1/all_commission`,
-			}).then((response) => {
+			axios
+			.get(
+				`${appLocalizer.apiUrl}/mvx_module/v1/all_commission`,
+				{
+					params: { date_range: this.state.date_range },
+				}
+			).then((response) => {
 				this.setState({
 					datacommission: response.data,
 				});
@@ -247,9 +294,13 @@ class MVX_Backend_Commission extends Component {
 				alert('Please select commission');
 			}
 		} else {
-			axios({
-				url: `${appLocalizer.apiUrl}/mvx_module/v1/all_commission`,
-			}).then((response) => {
+			axios
+			.get(
+				`${appLocalizer.apiUrl}/mvx_module/v1/all_commission`,
+				{
+					params: { date_range: this.state.date_range },
+				}
+			).then((response) => {
 				this.setState({
 					datacommission: response.data,
 				});
@@ -291,9 +342,13 @@ class MVX_Backend_Commission extends Component {
 	}
 
 	componentDidMount() {
-		axios({
-			url: `${appLocalizer.apiUrl}/mvx_module/v1/all_commission`,
-		}).then((response) => {
+		axios
+		.get(
+			`${appLocalizer.apiUrl}/mvx_module/v1/all_commission`,
+			{
+				params: { date_range: this.state.date_range },
+			}
+		).then((response) => {
 			this.setState({
 				datacommission: response.data,
 				mvx_all_commission_list: response.data,
@@ -306,7 +361,7 @@ class MVX_Backend_Commission extends Component {
 			.get(
 				`${appLocalizer.apiUrl}/mvx_module/v1/show_commission_from_status_list`,
 				{
-					params: { commission_status: 'paid' },
+					params: { commission_status: 'paid', date_range: this.state.date_range },
 				}
 			)
 			.then((response) => {
@@ -320,7 +375,7 @@ class MVX_Backend_Commission extends Component {
 			.get(
 				`${appLocalizer.apiUrl}/mvx_module/v1/show_commission_from_status_list`,
 				{
-					params: { commission_status: 'unpaid' },
+					params: { commission_status: 'unpaid', date_range: this.state.date_range },
 				}
 			)
 			.then((response) => {
@@ -334,7 +389,7 @@ class MVX_Backend_Commission extends Component {
 			.get(
 				`${appLocalizer.apiUrl}/mvx_module/v1/show_commission_from_status_list`,
 				{
-					params: { commission_status: 'refunded' },
+					params: { commission_status: 'refunded', date_range: this.state.date_range },
 				}
 			)
 			.then((response) => {
@@ -348,7 +403,7 @@ class MVX_Backend_Commission extends Component {
 			.get(
 				`${appLocalizer.apiUrl}/mvx_module/v1/show_commission_from_status_list`,
 				{
-					params: { commission_status: 'partial_refunded' },
+					params: { commission_status: 'partial_refunded', date_range: this.state.date_range },
 				}
 			)
 			.then((response) => {
@@ -477,7 +532,7 @@ class MVX_Backend_Commission extends Component {
 					.get(
 						`${appLocalizer.apiUrl}/mvx_module/v1/show_commission_from_status_list`,
 						{
-							params: { commission_status: e.value },
+							params: { commission_status: e.value, date_range: this.state.date_range },
 						}
 					)
 					.then((response) => {
@@ -486,9 +541,13 @@ class MVX_Backend_Commission extends Component {
 						});
 					});
 			} else {
-				axios({
-					url: `${appLocalizer.apiUrl}/mvx_module/v1/all_commission`,
-				}).then((response) => {
+			axios
+				.get(
+				`${appLocalizer.apiUrl}/mvx_module/v1/all_commission`,
+				{
+					params: { date_range: this.state.date_range },
+				}
+			).then((response) => {
 					this.setState({
 						datacommission: response.data,
 					});
@@ -500,7 +559,7 @@ class MVX_Backend_Commission extends Component {
 					.get(
 						`${appLocalizer.apiUrl}/mvx_module/v1/search_commissions_as_per_vendor_name`,
 						{
-							params: { vendor_name: e.value },
+							params: { vendor_name: e.value, date_range: this.state.date_range },
 						}
 					)
 					.then((response) => {
@@ -509,9 +568,14 @@ class MVX_Backend_Commission extends Component {
 						});
 					});
 			} else {
-				axios({
-					url: `${appLocalizer.apiUrl}/mvx_module/v1/all_commission`,
-				}).then((response) => {
+			
+			axios
+			.get(
+				`${appLocalizer.apiUrl}/mvx_module/v1/all_commission`,
+				{
+					params: { date_range: this.state.date_range },
+				}
+			).then((response) => {
 					this.setState({
 						datacommission: response.data,
 					});
@@ -1812,6 +1876,10 @@ class MVX_Backend_Commission extends Component {
 									onChange={(e) =>
 										this.handlecommissionwork(e)
 									}
+								/>
+
+								<DateRangePicker
+									onChange={(e) => this.handleupdatereport(e)}
 								/>
 							</div>
 

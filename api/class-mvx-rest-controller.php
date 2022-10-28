@@ -4757,32 +4757,56 @@ class MVX_REST_API {
 
     public function mvx_search_commissions_as_per_vendor_name($request) {
         $vendor_name = $request->get_param('vendor_name') ? ($request->get_param('vendor_name')) : 0;
-        return $this->mvx_find_specific_commission( array(), '',  $vendor_name);
+        return $this->mvx_find_specific_commission( $request, array(), '',  $vendor_name);
     }
 
     public function mvx_show_commission_from_status_list($request) {
         $commission_status = $request->get_param('commission_status') ? ($request->get_param('commission_status')) : 0;
-        return $this->mvx_find_specific_commission( array(), $commission_status );
+        return $this->mvx_find_specific_commission( $request, array(), $commission_status );
     }
 
     public function mvx_search_specific_commission($request) {
         $commission_ids = array();
         $commission_ids[] = $request->get_param('commission_ids') ? ($request->get_param('commission_ids')) : array();
-        return $this->mvx_find_specific_commission($commission_ids, '', '');
+        return $this->mvx_find_specific_commission('', $commission_ids, '', '');
     }
 
     public function mvx_all_commission_details($request) {
-        return $this->mvx_find_specific_commission();
+        return $this->mvx_find_specific_commission($request);
     }
 
-    public function mvx_find_specific_commission($commission_ids = array(), $status = '', $vendor_name = '') {
+    public function mvx_find_specific_commission($request = '', $commission_ids = array(), $status = '', $vendor_name = '') {
+        $date_range = $request && $request->get_param('date_range') ? $request->get_param('date_range') : '';
+
         $commission_list = array();
+        // Bydefault last 7 days
+        $start_date    = strtotime( '-7 days', strtotime( 'midnight', current_time( 'timestamp' ) ) );
+        $end_date      = strtotime( 'midnight', current_time( 'timestamp' ) );
+        if ($date_range) {
+            $initial_start = $date_range ? $date_range[0] : '';
+            $initial_end = $date_range ? $date_range[1] : '';
+            $start_date = max( strtotime( '-20 years' ), strtotime( sanitize_text_field( $initial_start ) ) );
+            $end_date = strtotime( 'midnight', strtotime( sanitize_text_field( $initial_end ) ) );
+        }
+
         $args = array(
             'post_type' => 'dc_commission',
             'post_status' => array('publish', 'private'),
             'posts_per_page' => -1,
             'fields' => 'ids',
-            //'post__in' => $commission_ids
+            'date_query' => array(
+                'inclusive' => true,
+                'after' => array(
+                    'year' => date('Y', $start_date),
+                    'month' => date('n', $start_date),
+                    'day' => date('j', $start_date), //date('1'),
+                ),
+                'before' => array(
+                    'year' => date('Y', $end_date),
+                    'month' => date('n', $end_date),
+                    'day' => date('j', $end_date),
+                ),
+            ),
         );
 
         if (!empty($commission_ids)) {
