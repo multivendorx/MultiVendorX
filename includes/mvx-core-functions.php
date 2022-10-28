@@ -6218,7 +6218,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'options' => array(
                         array(
                             'key'=> "disallow_vendor_order_status",
-                            'label'=> __('Allow sellers to change their order status', 'multivendorx'),
+                            'label'=> __('Disallow sellers to change their order status', 'multivendorx'),
                             'value'=> "disallow_vendor_order_status"
                         )
                     ),

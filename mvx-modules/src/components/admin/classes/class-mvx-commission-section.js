@@ -72,25 +72,6 @@ class MVX_Backend_Commission extends Component {
 				datacommission: response.data,
 			});
 		});
-
-
-		/*this.setState({
-			store_date: e,
-		});
-
-		axios({
-			method: 'post',
-			url: `${appLocalizer.apiUrl}/mvx_module/v1/get_report_overview_data`,
-			data: {
-				value: e,
-				product: this.state.store_product_select,
-				vendor: this.state.store_vendor_select,
-			},
-		}).then((responce) => {
-			this.setState({
-				report_overview_data: responce.data,
-			});
-		});*/
 	}
 
 	handle_commission_status_check(e, type) {
