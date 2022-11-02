@@ -180,7 +180,7 @@ class MVXworkboard extends Component {
 		}
 	}
 
-	handleQuestionDelete(e, questionId, productId, type) {
+	handleQuestionDelete(e, questionId, productId, type, row) {
 		if (type === 'rejected') {
 			if (confirm(appLocalizer.global_string.confirm_dismiss)) {
 				axios({
@@ -902,7 +902,8 @@ class MVXworkboard extends Component {
 											e,
 											row.id,
 											row.question_product_id,
-											'verified'
+											'verified',
+											row
 										)
 									}
 									id={row.id}
@@ -916,7 +917,8 @@ class MVXworkboard extends Component {
 											e,
 											row.id,
 											row.question_product_id,
-											'rejected'
+											'rejected',
+											row
 										)
 									}
 									id={row.id}

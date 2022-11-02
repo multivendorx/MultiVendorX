@@ -2684,18 +2684,18 @@ class MVX_REST_API {
 
     public function mvx_approve_dismiss_pending_question($request) {
         global $MVX;
-        $product_id = $request && $request->get_param('product_id') ? ($request->get_param('product_id')) : 0;
-        $question_id = $request && $request->get_param('question_id') ? ($request->get_param('question_id')) : 0;
-        $type = $request && $request->get_param('type') ? ($request->get_param('type')) : '';
+        $productId = $request && $request->get_param('productId') ? $request->get_param('productId') : 0;
+        $questionId = $request && $request->get_param('questionId') ? $request->get_param('questionId') : 0;
+        $type = $request && $request->get_param('type') ? $request->get_param('type') : '';
         $data = array();
-        if (!empty($product_id)) {
-            $vendor = get_mvx_product_vendors(absint($product_id));
+        if (!empty($productId)) {
+            $vendor = get_mvx_product_vendors(absint($productId));
             if ($type == 'rejected') {
-                $MVX->product_qna->deleteQuestion( $question_id );
+                $MVX->product_qna->deleteQuestion( $questionId );
                 delete_transient('mvx_customer_qna_for_vendor_' . $vendor->id);
             } else {
                 $data['status'] = $type;
-                $MVX->product_qna->updateQuestion( $question_id, $data );
+                $MVX->product_qna->updateQuestion( $questionId, $data );
                 $questions = $MVX->product_qna->get_Vendor_Questions($vendor);
                 set_transient('mvx_customer_qna_for_vendor_' . $vendor->id, $questions);
             }
@@ -2759,7 +2759,7 @@ class MVX_REST_API {
             ],
             [
                 'label' => __('Enter Content', 'multivendorx'),
-                'type' => 'textarea', 
+                'type' => get_mvx_vendor_settings('mvx_tinymce_api_section', 'settings_general') ? 'wpeditor' : 'textarea', 
                 'key' => 'knowladgebase_content', 
                 'database_value' => $knowladgebase_content
             ]
@@ -2855,7 +2855,7 @@ class MVX_REST_API {
             ],
             [
                 'label' => __('Enter Content', 'multivendorx'),
-                'type' => 'textarea', 
+                'type' => get_mvx_vendor_settings('mvx_tinymce_api_section', 'settings_general') ? 'wpeditor' : 'textarea', 
                 'key' => 'announcement_content', 
                 'database_value' => $announcement_content
             ],

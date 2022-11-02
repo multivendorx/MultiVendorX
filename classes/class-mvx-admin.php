@@ -1222,6 +1222,7 @@ class MVX_Admin {
             'columns_pending_shipping'              =>  $columns_pending_shipping,
             'select_module_category_option'         =>  $select_module_category_option,
             'errors_log'                            =>  $this->get_error_log_rows(100),
+            'mvx_tinymce_key'                       =>  get_mvx_vendor_settings('mvx_tinymce_api_section', 'settings_general')
         ] ) );
 
         if ( in_array($screen->id, $page_details)) {

@@ -6,6 +6,8 @@ import GoogleMapReact from 'google-map-react';
 import AutoComplete from './autocomplete';
 import { Calendar } from "react-multi-date-picker"
 import DataTable from 'react-data-table-component';
+import { Editor } from '@tinymce/tinymce-react';
+
 const AnyReactComponent = ({ text }) => (
 	<img src={text} width="38" height="50" />
 );
@@ -41,6 +43,21 @@ export default class DynamicForm extends React.Component {
 		this.onSelectDeselectChange = this.onSelectDeselectChange.bind(this);
 		this.onMultiChange = this.onMultiChange.bind(this);
 		this.handle_Vendor_active_suspend = this.handle_Vendor_active_suspend.bind(this);
+		this.ontinyChange = this.ontinyChange.bind(this);		
+	}
+
+	ontinyChange(e, target) {
+		this.setState(
+			{
+				[target]: e,
+			},
+			() => {}
+		);
+		if (this.props.submitbutton && this.props.submitbutton === 'false') {
+			setTimeout(() => {
+				this.onSubmit('');
+			}, 10);
+		}
 	}
 
 	handle_Vendor_active_suspend(e, api, status, vendor_id) {
@@ -1314,29 +1331,17 @@ export default class DynamicForm extends React.Component {
 
 			if (type === 'wpeditor') {
 				input = (
-					<div className={m.class}>
-						<textarea
-							{...props}
-							id={key}
-							className="mvx-setting-form-input"
-							key={key}
-							name={name}
-							value={value}
-							rows="3"
-							cols="50"
-							onChange={(e) => {
-								this.onChange(e, target);
-							}}
-						></textarea>
-						{m.desc ? (
-							<p
-								className="mvx-settings-metabox-description"
-								dangerouslySetInnerHTML={{ __html: m.desc }}
-							></p>
-						) : (
-							''
-						)}
-					</div>
+			      <Editor
+			          apiKey={appLocalizer.mvx_tinymce_key}
+			          value={value}
+			          init={{
+			            height: 200,
+			            plugins: 'media',
+			          }}
+			          onEditorChange={(e) => {
+							this.ontinyChange(e, target);
+						}}
+			        />
 				);
 			}
 

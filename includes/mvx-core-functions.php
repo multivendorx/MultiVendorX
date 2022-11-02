@@ -4716,6 +4716,13 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'database_value' => '',
                 ],
                 [
+                    'key'       => 'mvx_tinymce_api_section',
+                    'type'      => 'text',
+                    'label'     => __( 'TinyMCE Api', 'multivendorx' ),
+                    'desc'      => __( 'Set TinyMCE Api key <a href="https://www.tiny.cloud/blog/how-to-get-tinymce-cloud-up-in-less-than-5-minutes/" target="_blank">Click here to generate key</a>', 'multivendorx' ),
+                    'database_value' => '',
+                ],
+                [
                     'key'       => 'avialable_shortcodes',
                     'type'      => 'table',
                     'label'     => __( 'Avialable Shortcodes', 'multivendorx' ),
@@ -6525,7 +6532,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 ],
                 [
                     'label' => __('Enter Content', 'multivendorx'),
-                    'type' => 'textarea', 
+                    'type' => get_mvx_vendor_settings('mvx_tinymce_api_section', 'settings_general') ? 'wpeditor' : 'textarea', 
                     'key' => 'announcement_content', 
                     'database_value' => ''
                 ],
@@ -6549,7 +6556,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 ],
                 [
                     'label' => __('Enter Content', 'multivendorx'),
-                    'type' => 'textarea', 
+                    'type' => get_mvx_vendor_settings('mvx_tinymce_api_section', 'settings_general') ? 'wpeditor' : 'textarea', 
                     'key' => 'knowladgebase_content', 
                     'database_value' => ''
                 ],
