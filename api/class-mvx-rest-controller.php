@@ -4904,7 +4904,7 @@ class MVX_REST_API {
                     $status_display = "<p class='commission-status-unpaid'>" . ucfirst(get_post_meta($commission_value, '_paid_status', true)) . "</p>";
                 }
 
-                $commission_list[] = array(
+                $commission_list[] = apply_filters('mvx_commissions_table_columns_data', array(
                     'id'            =>  $commission_value,
                     'commission_id'         =>  '<a href="' . sprintf('?page=%s&CommissionID=%s', 'mvx#&submenu=commission', $commission_value) . '">#' . $commission_value . '</a>',
                     'link'          =>  sprintf('?page=%s&CommissionID=%s', 'mvx#&submenu=commission', $commission_value),
@@ -4916,7 +4916,7 @@ class MVX_REST_API {
                     'status'        =>  $status_display,
                     'date'          =>  $commission_details->post_modified,
                     'action'        =>  $action_display
-                );
+                ), $commission_value);
             }
         }
 
