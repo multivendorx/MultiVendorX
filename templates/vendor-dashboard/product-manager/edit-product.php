@@ -21,9 +21,22 @@ defined( 'ABSPATH' ) || exit;
 global $MVX;
 $get_product_data_tabs = $self->get_product_data_tabs();
 $other_tabs = apply_filters('mvx_product_extra_tabs_added', array('shipping', 'variations'));
+$product_fileds = get_mvx_global_settings('products_fields', array());
+$default_types = array('general', 'inventory', 'linked_product', 'attribute', 'advanced', 'policies');
 foreach ($get_product_data_tabs as $key_tabs => $value_tabs) {
     if (is_array($other_tabs) && in_array($key_tabs, $other_tabs)) continue;
 }
+
+if ($default_types && !empty($default_types)) {
+    foreach ($default_types as $key_types => $value_types) {
+        if (!in_array($value_types, $product_fileds)) {
+            unset($get_product_data_tabs[$value_types]);
+        }
+    }
+} else {
+    unset($get_product_data_tabs['general'], $get_product_data_tabs['inventory'], $get_product_data_tabs['linked_product'], $get_product_data_tabs['attribute'], $get_product_data_tabs['advanced']);
+}
+
 ?> 
 <div class="col-md-12 add-product-wrapper">
     <?php do_action( 'mvx_before_add_product_form' ); ?>
@@ -303,7 +316,7 @@ foreach ($get_product_data_tabs as $key_tabs => $value_tabs) {
                 <?php endif;
                 endif; ?>
                 <?php $product_tags = mvx_get_product_terms_HTML( 'product_tag', $post->ID, apply_filters( 'mvx_vendor_can_add_product_tag', true, get_current_user_id() ), false ); ?>
-                <?php if ( $product_tags ) : ?>
+                <?php if ( $product_tags && !empty($product_fileds) && in_array('product_tag', $product_fileds) ) : ?>
                     <div class="panel panel-default pannel-outer-heading">
                         <div class="panel-heading d-flex">
                             <h3 class="pull-left"><?php esc_html_e( 'Product tags', 'multivendorx' ); ?></h3>
