@@ -693,7 +693,7 @@ class MVX_Admin_Setup_Wizard {
             <div class="wc-setup-next-steps-first">
                 <h2><?php esc_html_e( 'Next steps', 'multivendorx' ); ?></h2>
                 <ul>
-                    <li class="setup-product"><a class="button button-primary btn-red" href="<?php echo esc_url( admin_url( 'admin.php?page=mvx-setting-admin&tab=vendor&tab_section=registration' ) ); ?>"><?php esc_html_e( 'Create your vendor registration form', 'multivendorx' ); ?></a></li>
+                    <li class="setup-product"><a class="button button-primary btn-red" href="<?php echo esc_url( admin_url( 'admin.php?page=mvx#&submenu=settings&name=registration' ) ); ?>"><?php esc_html_e( 'Create your vendor registration form', 'multivendorx' ); ?></a></li>
                 </ul>
             </div>
             <div class="wc-setup-next-steps-last">
