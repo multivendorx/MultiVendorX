@@ -5542,14 +5542,14 @@ class MVX_REST_API {
             }
             
             if ($role_status) {
-                $is_block = get_user_meta($vendor->id, '_vendor_turn_off', true);
+                $is_block = $vendor ? get_user_meta($vendor->id, '_vendor_turn_off', true) : '';
                 if (!$is_block) {
                     continue;
                 }
             }
             
             if (in_array('dc_vendor', $user->roles)) {
-                $is_block = get_user_meta($vendor->id, '_vendor_turn_off', true);
+                $is_block = $vendor ? get_user_meta($vendor->id, '_vendor_turn_off', true) : '';
             
                 if ($is_block) {
                     $status_text = "Suspended";
@@ -5579,14 +5579,14 @@ class MVX_REST_API {
                 <i class='mvx-font icon-edit'></i>
                 <i class='mvx-font icon-close'></i>
             </div>";
-            $product_count = sprintf('<a href="%1$s">' . $product_count . '</a>', admin_url('edit.php?post_type=product&dc_vendor_shop=' . $vendor->page_title));
+            $product_count = $vendor ? sprintf('<a href="%1$s">' . $product_count . '</a>', admin_url('edit.php?post_type=product&dc_vendor_shop=' . $vendor->page_title)) : '';
             $mail_to_email = sprintf('<a href="mailto:%1$s">' . $user->data->user_email . '</a>', $user->data->user_email);
             $user_list[] = apply_filters('mvx_vendor_list_table_columns_data', array(
                 'ID'            => $user->data->ID,
                 'name'          => $name_display,
                 'sample_title'  => $user->data->display_name,
                 'link'          => $vendor_link,
-                'link_shop'     => $vendor->permalink,
+                'link_shop'     => $vendor ? $vendor->permalink : '',
                 'admin_link'    => admin_url('admin.php?page=mvx#&submenu=vendor&ID='. $user->data->ID .'&name=vendor-personal'),
                 'email'         => $mail_to_email,
                 'registered'    => get_date_from_gmt( $user->data->user_registered ),
