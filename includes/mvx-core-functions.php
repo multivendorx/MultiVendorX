@@ -7171,6 +7171,25 @@ if (!function_exists('mvx_list_all_modules')) {
                         'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/booking-product',
                     ],
                     [
+                        'id'           => 'appointment',
+                        'name'         => __( 'Appointments', 'multivendorx' ),
+                        'description'  => __( 'Allow customers to book appointments', 'multivendorx' ),
+                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
+                        'required_plugin_list' => array(
+                            array(
+                                'plugin_name'   => __('WooCommerce Appointment', 'multivendorx'),
+                                'plugin_link'   => 'https://bookingwp.com/plugins/woocommerce-appointments/',
+                                'is_active'     => is_plugin_active('woocommerce-appointments/woocommerce-appointments.php') ? true :false,
+                            ),
+                            array(
+                                'plugin_name'   => __('MultivendorX Pro', 'multivendorx'),
+                                'plugin_link'   => 'https://multivendorx.com/',
+                                'is_active'     => $mvx_pro_is_active,
+                            ),
+                        ),
+                        'doc_link'     => 'https://bookingwp.com/plugins/woocommerce-appointments/',
+                    ],
+                    [
                         'id'           => 'subscription',
                         'name'         => __( 'Subscription', 'multivendorx' ),
                         'description'  => __( 'Let customers subscribe to your products or services and pay weekly, monthly or yearly ', 'multivendorx' ),  
@@ -7665,7 +7684,7 @@ if (!function_exists('mvx_list_all_modules')) {
                             ),
                         ),
                         'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/store-seo',
-                        'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
+                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=settings-seo'),
                     ],
                 ]
             ],
