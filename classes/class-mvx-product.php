@@ -563,7 +563,7 @@ class MVX_Product {
      */
     function show_related_products($query, $product_id) {
         $vendor = get_mvx_product_vendors($product_id);
-        $related = get_mvx_vendor_settings('show_related_products', 'general', '', 'all_related');
+        $related = get_mvx_global_settings('show_related_products') ? mvx_get_settings_value(get_mvx_global_settings('show_related_products') ): '';
         if ('disable' == $related) {
             return array();
         } elseif ('all_related' == $related) {
@@ -574,6 +574,7 @@ class MVX_Product {
             }
             return $query;
         }
+        return $query;
     }
 
     /**
