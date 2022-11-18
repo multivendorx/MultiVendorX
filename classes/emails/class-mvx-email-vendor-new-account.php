@@ -105,7 +105,7 @@ if (!class_exists('WC_Email_Vendor_New_Account')) :
                 'sent_to_admin' => false,
                 'plain_text' => false,
                 'email'         => $this,
-                    ), 'dc-product-vendor/', $this->template_base);
+                    ), 'MultiVendorX/', $this->template_base);
             return ob_get_clean();
         }
 
@@ -126,7 +126,7 @@ if (!class_exists('WC_Email_Vendor_New_Account')) :
                 'sent_to_admin' => false,
                 'plain_text' => true,
                 'email'         => $this,
-                    ), 'dc-product-vendor/', $this->template_base);
+                    ), 'MultiVendorX/', $this->template_base);
             return ob_get_clean();
         }
 

@@ -87,7 +87,7 @@ class WC_Email_Vendor_Followed extends WC_Email {
             'sent_to_admin' => false,
             'plain_text' => false,
             'email'         => $this,
-                ), 'dc-product-vendor/', $this->template_base);
+                ), 'MultiVendorX/', $this->template_base);
     }
 
     /**
@@ -104,7 +104,7 @@ class WC_Email_Vendor_Followed extends WC_Email {
             'sent_to_admin' => false,
             'plain_text' => true,
             'email'         => $this,
-                ), 'dc-product-vendor/', $this->template_base);
+                ), 'MultiVendorX/', $this->template_base);
     }
 
     /**

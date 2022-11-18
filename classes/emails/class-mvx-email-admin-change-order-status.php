@@ -106,7 +106,7 @@ if (!class_exists('WC_Email_Admin_Change_Order_Status')) :
                 'new_status' => $this->new_status,
                 'email_heading' => $this->get_heading(),
                 'email'         => $this,
-                    ), 'dc-product-vendor/', $this->template_base);
+                    ), 'MultiVendorX/', $this->template_base);
 
             return ob_get_clean();
         }
@@ -124,7 +124,7 @@ if (!class_exists('WC_Email_Admin_Change_Order_Status')) :
                 'new_status' => $this->new_status,
                 'email_heading' => $this->get_heading(),
                 'email'         => $this,
-                    ), 'dc-product-vendor/', $this->template_base);
+                    ), 'MultiVendorX/', $this->template_base);
 
             return ob_get_clean();
         }

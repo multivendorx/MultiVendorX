@@ -5,7 +5,7 @@
  * Override this template by copying it to yourtheme/MultiVendorX/emails/plain/vendor-new-announcement.php
  *
  * @author 		MultiVendorX
- * @package     dc-product-vendor/Templates
+ * @package     MultiVendorX/Templates
  * @version   0.0.1
  */
 

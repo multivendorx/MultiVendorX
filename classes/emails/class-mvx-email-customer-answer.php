@@ -106,7 +106,7 @@ if (!class_exists('WC_Email_Customer_Answer')) :
             'product_id'    => $this->product_id,
             'plain_text'    => false,
             'email'         => $this,
-            ), 'dc-product-vendor/', $this->template_base);
+            ), 'MultiVendorX/', $this->template_base);
         return ob_get_clean();
     }
 
@@ -125,7 +125,7 @@ if (!class_exists('WC_Email_Customer_Answer')) :
             'product_id'    => $this->product_id,
             'plain_text'    => true,
             'email'         => $this,
-            ), 'dc-product-vendor/', $this->template_base);
+            ), 'MultiVendorX/', $this->template_base);
         return ob_get_clean();
     }
 
