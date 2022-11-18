@@ -4719,6 +4719,21 @@ class MVX_REST_API {
             foreach ($commission_list as $commission) {
                 $commission_data = $MVX->postcommission->get_commission($commission);
                 $commission_staus = get_post_meta($commission, '_paid_status', true);
+
+                $product_list = '';
+                $order_id = get_post_meta($commission, '_commission_order_id', true);
+                $order = wc_get_order($order_id);
+                if ( $order ) {
+                    $line_items = $order->get_items( 'line_item' );
+                    foreach ($line_items as $item_id => $item) {
+                        $product = $item->get_product();
+                        $name = ( $product ) ? $product->get_title() : $item->get_name();
+                        $product_id = ( $product ) ? $product->get_id() : 0;
+                        $product_list .= $name . ' ';
+                    }
+                }
+                $commission_details = get_post($commission);
+
                 $recipient = get_user_meta($commission_data->vendor->id, '_vendor_paypal_email', true) ? get_user_meta($commission_data->vendor->id, '_vendor_paypal_email', true) : $commission_data->vendor->page_title;
                 $commission_amount = get_post_meta( $commission, '_commission_amount', true ) ? get_post_meta( $commission, '_commission_amount', true ) : 0;
                 $shipping_amount = get_post_meta( $commission, '_shipping', true ) ? get_post_meta( $commission, '_shipping', true ) : 0;
@@ -4733,7 +4748,10 @@ class MVX_REST_API {
                     'Shipping'      =>  $shipping_amount,
                     'Tax'           =>  $tax_amount,
                     'Total'         =>  $commission_total,
-                    'Status'        =>  $commission_staus
+                    'Status'        =>  $commission_staus,
+                    'Products'      =>  $product_list,
+                    'Sub Order'     =>  $order_id,
+                    'Date'          =>  $commission_details->post_modified
                 ), $commission_data);
             }
             return rest_ensure_response($commissions_data);
