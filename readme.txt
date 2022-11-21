@@ -1,11 +1,11 @@
-=== MultiVendorX ===
+=== MultiVendorX - MultiVendor Marketplace Solution For WooCommerce ===
 Contributors: wcmp, purnendu, rajsekharchatterjee11
 Tags: multi vendor marketplace, woocommerce multivendor marketplace, multi seller store, product vendors, best marketplace plugin, multi seller, one product multi seller, woocommerce vendors, ebay, etsy, amazon, commission rate
 Donate link: https://multivendorx.com/donate
 Requires at least: 4.4
-Tested up to: 6.1
+Tested up to: 6.1.1
 Requires PHP: 5.6
-Stable tag: 4.0.2
+Stable tag: 4.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -279,6 +279,14 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.0.3 - 2022-11-22 =
+* Added     - Compatibility of WordPress 6.1.1
+* Added     - Compatibility of WooCommerce 7.1.0
+* Added     - New data added on commission CSV.
+* Fix       - Related Product not working.
+* Fix       - Email template override folder issue.
+* Updated   - Language file.
 
 = 4.0.2 - 2022-11-08 =
 * Added     - Compatibility of WordPress 6.1.
