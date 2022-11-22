@@ -96,7 +96,7 @@ final class MVX {
             $this->load_vendor_shipping();
         }
         // Disable woocommerce admin from vendor backend
-        add_filter( 'woocommerce_admin_disabled', array( &$this, 'mvx_remove_woocommerce_admin_from_vendor' ) );
+        //add_filter( 'woocommerce_admin_disabled', array( &$this, 'mvx_remove_woocommerce_admin_from_vendor' ) );
     }
     
     public function exclude_order_comments($clauses) {
