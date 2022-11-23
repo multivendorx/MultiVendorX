@@ -45,6 +45,20 @@ class MVX_Dokan {
 			if (get_user_meta( $vendor_id, 'dokan_admin_percentage', true )) {
 				update_user_meta( $vendor_id, '_vendor_commission', get_user_meta( $vendor_id, 'dokan_admin_percentage', true ) );
 			}
+			$vendor->update_page_slug(wc_clean($user->data->user_nicename));
+			$user_details = get_user_meta($vendor_id, 'dokan_profile_settings', true);
+			// update image
+			if ( !empty($user_details) && isset($user_details['gravatar'])) {
+				update_user_meta($vendor_id, '_vendor_image', $user_details['gravatar']);
+			}
+			// update banner
+			if ( !empty($user_details) && isset($user_details['banner'])) {
+				update_user_meta($vendor_id, '_vendor_banner', $user_details['banner']);
+			}
+			// update store name
+			if ( !empty($user_details) && isset($user_details['store_name'])) {
+				$vendor->update_page_title(wc_clean($user_details['store_name']));
+			}
 		}
 		return true;
 	}
