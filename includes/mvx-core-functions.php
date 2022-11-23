@@ -731,8 +731,8 @@ if (!function_exists('mvx_check_if_another_vendor_plugin_exits')) {
         $vendor_arr[] = 'yith-woocommerce-product-vendors/init.php';
         foreach ($vendor_arr as $plugin) {
             if (is_plugin_active($plugin)) {
-                deactivate_plugins('dc-woocommerce-multi-vendor/dc_product_vendor.php');
-                exit(__('Another Multivendor Plugin is allready Activated Please deactivate first to install this plugin', 'multivendorx'));
+                // deactivate_plugins('dc-woocommerce-multi-vendor/dc_product_vendor.php');
+                // exit(__('Another Multivendor Plugin is allready Activated Please deactivate first to install this plugin', 'multivendorx'));
             }
         }
     }
