@@ -1,10 +1,10 @@
 <?php
 class MVX_Shipping_Zone {
-    public static function get_zones() {
+    public static function get_zones($vendor_id = '') {
         $data_store = WC_Data_Store::load( 'shipping-zone' );
         $raw_zones  = $data_store->get_zones();
         $zones      = array();
-        $vendor_id  = apply_filters( 'mvx_current_vendor_id', get_current_user_id() );
+        $vendor_id  = $vendor_id ? $vendor_id : apply_filters( 'mvx_current_vendor_id', get_current_user_id() );
 
         foreach ( $raw_zones as $raw_zone ) {
             $zone               = new WC_Shipping_Zone( $raw_zone );

@@ -3352,7 +3352,7 @@ if (!function_exists('mvx_list_categories')) {
 
 if (!function_exists('mvx_get_shipping_zone')) {
 
-    function mvx_get_shipping_zone($zoneID = '') {
+    function mvx_get_shipping_zone($zoneID = '', $vendor_id = '') {
         global $MVX;
         $zones = array();
         if( !class_exists( 'MVX_Shipping_Zone' ) ) {
@@ -3361,7 +3361,7 @@ if (!function_exists('mvx_get_shipping_zone')) {
         if ( isset($zoneID) && $zoneID != '' ) {
                 $zones = MVX_Shipping_Zone::get_zone($zoneID);
         } else {
-                $zones = MVX_Shipping_Zone::get_zones();
+                $zones = MVX_Shipping_Zone::get_zones($vendor_id);
         }
         return $zones;
     }

@@ -5222,7 +5222,7 @@ class MVX_REST_API {
     public function mvx_specific_vendor_shipping($request) {
         $user_list = array();
         $vendor_id = $request->get_param('vendor_id') ? absint($request->get_param('vendor_id')) : 0;
-        $vendor_all_shipping_zones = mvx_get_shipping_zone();
+        $vendor_all_shipping_zones = mvx_get_shipping_zone('', $vendor_id);
         if (!empty($vendor_all_shipping_zones)) {
             foreach ($vendor_all_shipping_zones as $key => $vendor_shipping_zones) {
 
@@ -5239,7 +5239,7 @@ class MVX_REST_API {
                 $user_list[] = apply_filters('mvx_backend_list_table_vendors_shipping_columns_data', array(
                         'zone_name' => "<a href='". sprintf('?page=%s&ID=%s&name=%s&zone_id=%s', 'mvx#&submenu=vendor', $vendor_id, 'vendor-shipping', $vendor_shipping_zones['zone_id']) ."'>". $vendor_shipping_zones['zone_name'] ."</a>",
                         'region' => $vendor_shipping_zones['formatted_zone_location'],
-                        'shipping_method' => $vendor_shipping_methods_titles,
+                        'shipping_method' => empty($vendor_shipping_methods) ? __('No shipping methods offered to this zone.', 'multivendorx') : $vendor_shipping_methods_titles,
                     ));
             }
         }
