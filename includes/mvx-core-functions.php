@@ -7994,3 +7994,24 @@ if (!function_exists('mvx_count_wordboard_list')) {
         );
     }
 }
+
+if (!function_exists('mvxArrayToObject')) {
+    /**
+     * Convert php array to object
+     * @param array $d
+     * @return object
+     */
+    function mvxArrayToObject($d) {
+        if (is_array($d)) {
+            /*
+             * Return array converted to object
+             * Using __FUNCTION__ (Magic constant)
+             * for recursive call
+             */
+            return (object) array_map(__FUNCTION__, $d);
+        } else {
+            // Return object
+            return $d;
+        }
+    }
+}
