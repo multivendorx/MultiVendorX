@@ -7484,7 +7484,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'id'           => 'weight-shipping',
                         'name'         => __( 'Weight Wise Shipping (using Table Rate Shipping)', 'multivendorx' ),
                         'description'  => __( 'Vendors can create shipping rates based on price, weight and quantity', 'multivendorx' ),
-                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
+                        'plan'         => 'free',
                         'required_plugin_list' => array(
                             array(
                                 'plugin_name'   => __('Table Rate Shipping', 'multivendorx'),
