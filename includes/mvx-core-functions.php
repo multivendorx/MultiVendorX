@@ -5457,6 +5457,11 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                             'label'=> __('%age + Fixed (per vendor)', 'multivendorx'),
                             'value'=> __('fixed_with_percentage_per_vendor', 'multivendorx'),
                         ),
+                        array(
+                            'key'=> "commission_calculation_on_tax",
+                            'label'=> __('Commission Calculation on Tax', 'multivendorx'),
+                            'value'=> __('commission_calculation_on_tax', 'multivendorx'),
+                        ),
                     ),
                     'database_value' => '',
                 ],

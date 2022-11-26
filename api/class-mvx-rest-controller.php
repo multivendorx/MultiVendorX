@@ -1675,7 +1675,7 @@ class MVX_REST_API {
     public function mvx_get_as_per_module_status($request) {
         $module_status = $request && $request->get_param('module_status') ? $request->get_param('module_status') : '';
         $module_count = $request && $request->get_param('count') ? $request->get_param('count') : '';
-        $active_modules = get_option('mvx_all_active_module_list', true);
+        $active_modules = get_option('mvx_all_active_module_list', true) ? get_option('mvx_all_active_module_list', true) : array();
 
         $all_module_lists = mvx_list_all_modules();
         if ($module_status == 'all') return rest_ensure_response(array_values($all_module_lists));
