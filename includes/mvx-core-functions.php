@@ -5767,6 +5767,20 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'label'     => "",
                 ],
                 [
+                    'key'       => 'commission_calculation_on_tax',
+                    'label'     => __( 'Commission Calculation On Tax', 'multivendorx' ),
+                    'class'     => 'mvx-toggle-checkbox',
+                    'type'      => 'checkbox',
+                    'options' => array(
+                        array(
+                            'key'=> "commission_calculation_on_tax",
+                            'label'=> __('', 'multivendorx'),
+                            'value'=> "commission_calculation_on_tax"
+                        )
+                    ),
+                    'database_value' => array(),
+                ],
+                [
                     'key'       => 'payment_gateway_charge',
                     'label'     => __( 'Payment Gateway Charge', 'multivendorx' ),
                     'desc'  =>  __( "Add the payment gateway charges incurred while paying online.", 'multivendorx' ),

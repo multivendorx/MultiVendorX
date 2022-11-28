@@ -180,7 +180,6 @@ class MVX_Commission {
             if ($MVX->vendor_caps->vendor_payment_settings('give_shipping') && !get_user_meta($vendor_id, '_vendor_give_shipping', true)) {
                 $shipping_amount = $order->get_shipping_total();
             }
-            
             // transfer tax charges
             foreach ( $order->get_items( 'tax' ) as $key => $tax ) { 
                 if ($MVX->vendor_caps->vendor_payment_settings('give_tax') && $MVX->vendor_caps->vendor_payment_settings('give_shipping') && !get_user_meta($vendor_id, '_vendor_give_shipping', true) && !get_user_meta($vendor_id, '_vendor_give_tax', true)) {
@@ -192,6 +191,15 @@ class MVX_Commission {
                 } else {
                     $tax_amount = 0;
                     $shipping_tax_amount = 0;
+                }
+
+                if ($MVX->vendor_caps->vendor_payment_settings('give_tax') && get_mvx_global_settings('commission_calculation_on_tax') ) {
+                    $tax_rate_id    = $tax->get_rate_id();
+                    $tax_percent    = WC_Tax::get_rate_percent( $tax_rate_id );
+                    $tax_rate       = str_replace('%', '', $tax_percent);
+                    if ($tax_rate) {
+                        $tax_amount = ($commission_amount * $tax_rate) / 100;
+                    }
                 }
             }
             
