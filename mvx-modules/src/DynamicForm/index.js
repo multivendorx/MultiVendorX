@@ -1204,7 +1204,7 @@ export default class DynamicForm extends React.Component {
 												action: 'verified', id: row.user_id, status: o.status
 											},
 										}).then((responce) => {
-											//location.reload();
+											location.reload();
 										})
 
 										)
