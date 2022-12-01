@@ -48,7 +48,7 @@ class MVX_Settings {
 
             $submenu = apply_filters('mvx_backend_submenu_list', $submenu, $slug);
 
-            $submenu[ $slug ][] = [ __( 'Help & Support', 'multivendorx' ), 'manage_woocommerce', 'https://multivendorx.com/' ];
+            $submenu[ $slug ][] = [ __( '<div id="help-and-support">Help & Support</div>', 'multivendorx' ), 'manage_woocommerce', 'https://multivendorx.com/' ];
 
             add_submenu_page( null, __( 'Transaction Details', 'multivendorx' ), __( 'Transaction Details', 'multivendorx' ), 'manage_woocommerce', 'mvx-transaction-details', array( $this, 'mvx_transaction_details' ) );
         }
@@ -79,6 +79,14 @@ class MVX_Settings {
                 }
             }
         }
+        
+        ?>
+        <script type="text/javascript">
+            jQuery(document).ready( function($) {   
+                $('#help-and-support').parent().attr('target','_blank');  
+            });
+        </script>
+        <?php
     }
 
     public function mvx_modules_callback() {
