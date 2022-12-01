@@ -79,9 +79,9 @@ class MVX_Settings {
                 }
             }
         }
-        
+
         ?>
-        <script type="text/javascript">
+        <script>
             jQuery(document).ready( function($) {   
                 $('#help-and-support').parent().attr('target','_blank');  
             });
