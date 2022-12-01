@@ -135,6 +135,8 @@ class MVX_Dashboard extends Component {
                             {appLocalizer.dashboard_string.dashboard1}
                         </div>
                         <div className="mvx-slider-content-main-wrapper">
+
+                            {appLocalizer.dashboard_string.dashboard95 == 'free' ? 
                             <div className="mvx-dashboard-slider">
                                 <div className='mvx-dashboard-slider-cmp-wrap'>
                                 <div className="mvx-dashboard-top-icon">
@@ -151,6 +153,7 @@ class MVX_Dashboard extends Component {
                                 </div>
                                 </div>
                             </div>
+                            : '' }
 
                             <div className="mvx-dashboard-slider mvx-flex-content">
                             <div className="mvx-dashboard-slider-cmp-wrap">
