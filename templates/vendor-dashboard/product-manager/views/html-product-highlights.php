@@ -134,7 +134,7 @@ global $MVX;
                 <?php if( $is_update ) : ?>
                 <p class="pro-view"><?php echo mvx_get_post_permalink_html( $product_object->get_id() ); ?></p>
                 <?php endif; ?>
-                <?php if( get_mvx_vendor_settings('is_gtin_enable', 'general') == 'Enable' ) : ?>
+                <?php if( in_array( 'GTIN', get_mvx_global_settings('products_fields', array() ) ) ) : ?>
                 <p class="gtin-field-wrap">
                     <?php if( $self->is_spmv() && !empty($self->get_gtin_no()) ) { ?>
                     <label><?php if( $self->get_gtin_term() ) echo $self->get_gtin_term()->name; else _e('GTIN', 'multivendorx'); ?>: </label>
