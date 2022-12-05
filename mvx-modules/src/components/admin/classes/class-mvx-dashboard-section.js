@@ -240,7 +240,7 @@ class MVX_Dashboard extends Component {
                                         </div>
                                         <div className="li-action">
                                             <a
-                                                href="#"
+                                                href={appLocalizer.dashboard_string.dashboard110}
                                                 className="chckbx-purple"
                                             >
                                                 <i className={`mvx-font ${appLocalizer.dashboard_string.dashboard89 ? 'icon-yes' : 'icon-no'}`} />
@@ -256,7 +256,7 @@ class MVX_Dashboard extends Component {
                                         </div>
                                         <div className="li-action">
                                             <a
-                                                href="#"
+                                                href={appLocalizer.dashboard_string.dashboard111}
                                                 className="chckbx-purple"
                                             >
                                                 <i className={`mvx-font ${appLocalizer.dashboard_string.dashboard91 ? 'icon-yes' : 'icon-no'}`} />
@@ -272,7 +272,7 @@ class MVX_Dashboard extends Component {
                                         </div>
                                         <div className="li-action">
                                             <a
-                                                href="#"
+                                                href={appLocalizer.dashboard_string.dashboard112}
                                                 className="chckbx-purple"
                                             >
                                                 <i className={`mvx-font ${appLocalizer.dashboard_string.dashboard92 ? 'icon-yes' : 'icon-no'}`} />
@@ -288,7 +288,7 @@ class MVX_Dashboard extends Component {
                                         </div>
                                         <div className="li-action">
                                             <a
-                                                href="#"
+                                                href={appLocalizer.dashboard_string.dashboard113}
                                                 className="chckbx-purple"
                                             >
                                                 <i className={`mvx-font ${appLocalizer.dashboard_string.dashboard93 ? 'icon-yes' : 'icon-no'}`} />
@@ -304,7 +304,7 @@ class MVX_Dashboard extends Component {
                                         </div>
                                         <div className="li-action">
                                             <a
-                                                href="#"
+                                                href={appLocalizer.dashboard_string.dashboard114}
                                                 className="chckbx-purple"
                                             >
                                                 <i className={`mvx-font ${appLocalizer.dashboard_string.dashboard94 ? 'icon-yes' : 'icon-no'}`} />
@@ -320,7 +320,7 @@ class MVX_Dashboard extends Component {
                                         </div>
                                         <div className="li-action">
                                             <a
-                                                href="#"
+                                                href={appLocalizer.dashboard_string.dashboard115}
                                                 className="chckbx-purple"
                                             >
                                                 <i className={`mvx-font ${appLocalizer.dashboard_string.dashboard90 ? 'icon-yes' : 'icon-no'}`} />
@@ -336,7 +336,7 @@ class MVX_Dashboard extends Component {
                                         </div>
                                         <div className="li-action">
                                             <a
-                                                href="#"
+                                                href={appLocalizer.dashboard_string.dashboard116}
                                                 className="chckbx-purple"
                                             >
                                                 <i className={`mvx-font ${appLocalizer.dashboard_string.dashboard90 ? 'icon-yes' : 'icon-no'}`} />
@@ -358,7 +358,7 @@ class MVX_Dashboard extends Component {
                                                     {appLocalizer.dashboard_string.dashboard22}
                                                 </p>
                                             </div>
-                                            <a href="https://multivendorx.com/doc/">
+                                            <a href="https://multivendorx.com/get-help/knowladgebase/">
                                                 {appLocalizer.dashboard_string.dashboard23}{' '}
                                                 <span className="mvx-font icon-link-right-arrow" />
                                             </a>

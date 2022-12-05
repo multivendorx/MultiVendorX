@@ -579,9 +579,6 @@ class MVX_Analytics extends Component {
 																	.value,
 															}}
 														></div>
-														<div className="mvx-percent-show">
-															0%
-														</div>
 													</div>
 												</div>
 											) : (
@@ -854,9 +851,6 @@ class MVX_Analytics extends Component {
 																	.value,
 															}}
 														></div>
-														<div className="mvx-percent-show">
-															0%
-														</div>
 													</div>
 												</div>
 											) : (
@@ -1139,9 +1133,6 @@ class MVX_Analytics extends Component {
 																.value,
 														}}
 													></div>
-													<div className="mvx-percent-show">
-														0%
-													</div>
 												</div>
 											</div>
 										) : (

@@ -1158,6 +1158,14 @@ class MVX_Admin {
             'dashboard107'   =>  __('Free', 'multivendorx'),
             'dashboard108'   =>  __('Agency', 'multivendorx'),
             'dashboard109'   =>  __('Starter', 'multivendorx'),
+
+            'dashboard110'   =>  admin_url('admin.php?page=mvx#&submenu=settings&name=registration'),
+            'dashboard111'   =>  admin_url('admin.php?page=mvx#&submenu=payment&name=payment-masspay'),
+            'dashboard112'   =>  admin_url('admin.php?page=mvx#&submenu=settings&name=disbursement'),
+            'dashboard113'   =>  admin_url('admin.php?page=mvx#&submenu=settings&name=disbursement'),
+            'dashboard114'   =>  admin_url('admin.php?page=mvx#&submenu=settings&name=commissions'),
+            'dashboard115'   =>  admin_url('admin.php?page=mvx#&submenu=settings&name=products-capability'),
+            'dashboard116'   =>  admin_url('admin.php?page=mvx#&submenu=settings&name=products'),
         );
         
         wp_localize_script( 'mvx-modules-build-frontend', 'appLocalizer', apply_filters('mvx_module_complete_settings', [

@@ -7091,7 +7091,7 @@ if (!function_exists('mvx_string_wpml')) {
     function mvx_string_wpml($input) {
         do_action( 'wpml_register_single_string', 'MVX', $input, $input );
         if (function_exists('icl_t')) {
-            return icl_t('MVX', '' . $input . '', '' . $input . '');
+            return icl_register_string ('MVX', '' . $input . '', '' . $input . '');
         } else {
             return $input;
         }
@@ -7410,7 +7410,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active' => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/paypal-payout',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/paypal-marketplace-real-time-split/',
                         'mod_link'     => admin_url('admin.php?page=mvx#&submenu=payment&name=payment-payout'),
                     ],
                     [
