@@ -4631,7 +4631,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'options' => array(
                         array(
                             'key'=> "vendors_backend_access",
-                            'label'=> __('Upgrade to MultiVendorX Pro to offer an all-purpose dashboard while eliminating the requirenment for Wordpress backend access.', 'multivendorx'),//neda
+                            'label'=> __('Upgrade to MultiVendorX Pro to offer an all-purpose dashboard while eliminating the requirenment for Wordpress backend access.', 'multivendorx'),
                             'value'=> "vendors_backend_access"
                         ),
                     ),
@@ -4665,7 +4665,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'options' => array(
                         array(
                             'key'=> "category_pyramid_guide",
-                            'label'=> __("CPG option helps vendor's to identify the correct categories for their products", 'multivendorx'),//neda
+                            'label'=> __("CPG option helps vendor's to identify the correct categories for their products", 'multivendorx'),
                             'value'=> "category_pyramid_guide"
                         ),
                     ),
@@ -6944,7 +6944,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
             ),
             array(
                 'tablabel'      =>  __('Announcement', 'multivendorx'),
-                'description'   =>  __('Broadcast important messages, news and announcements to single or multiple sellers.Read more to learn about this feature.', 'multivendorx'),//neda
+                'description'   =>  __('Broadcast important messages, news and announcements to single or multiple sellers.Read more to learn about this feature.', 'multivendorx'),
                 'apiurl'        =>  'mvx_module/v1/update_vendor',
                 'icon'          =>  'icon-tab-announcement',
                 'submenu'       =>  'work-board',
@@ -6952,7 +6952,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
             ),
             array(
                 'tablabel'      =>  __('Knowledgebase', 'multivendorx'),
-                'description'   =>  __('"Share tutorials, best practices, "how-to" guides or whatever you feel is appropriate with your vendors. Read More ', 'multivendorx'),//neda
+                'description'   =>  __('"Share tutorials, best practices, "how-to" guides or whatever you feel is appropriate with your vendors. Read More ', 'multivendorx'),
                 'apiurl'        =>  'mvx_module/v1/update_vendor',
                 'icon'          =>  'icon-tab-knowladgebase',
                 'submenu'       =>  'work-board',
@@ -6960,7 +6960,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
             ),
             array(
                 'tablabel'      =>  __('Store Review', 'multivendorx'),
-               'description'   =>  __('View feeckback received from cutomers. ', 'multivendorx'),//neda
+               'description'   =>  __('View feeckback received from cutomers. ', 'multivendorx'),
                  'apiurl'        =>  'mvx_module/v1/update_vendor',
                 'icon'          =>  'icon-tab-store-review',
                 'submenu'       =>  'work-board',
@@ -6968,7 +6968,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
             ),
             array(
                 'tablabel'      =>  __('Report Abuse', 'multivendorx'),
-               'description'   =>  __('Keep track of complaints and reports filed by customers.  ', 'multivendorx'),//neda
+               'description'   =>  __('Keep track of complaints and reports filed by customers.  ', 'multivendorx'),
                  'apiurl'        =>  'mvx_module/v1/update_vendor',
                 'icon'          =>  'icon-tab-report-abuse',
                 'submenu'       =>  'work-board',
@@ -6976,7 +6976,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
             ),
             array(
                 'tablabel'      =>  __('Question & Answer', 'multivendorx'),
-                'description'   =>  __('View and publish questions sent to sellers by their customers.', 'multivendorx'),//neda
+                'description'   =>  __('View and publish questions sent to sellers by their customers.', 'multivendorx'),
                 'apiurl'        =>  'mvx_module/v1/update_vendor',
                 'icon'          =>  'icon-tab-question-and-answer',
                 'submenu'       =>  'work-board',
@@ -6984,7 +6984,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
             ),
             array(
                 'tablabel'      =>  __('Request refund', 'multivendorx'),
-                'description'   =>  __('View and publish questions sent to sellers by their customers.', 'multivendorx'),//neda
+                'description'   =>  __('Records request for refund made by the customers', 'multivendorx'),
                 'apiurl'        =>  'mvx_module/v1/update_vendor',
                 'icon'          =>  'icon-tab-question-and-answer',
                 'submenu'       =>  'work-board',
