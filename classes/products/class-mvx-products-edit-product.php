@@ -48,7 +48,7 @@ class MVX_Products_Edit_Product {
             add_filter( 'mvx_product_data_tabs', array( $this, 'remove_shipping_tab' ) );
         }
         //check support for virtual and downloadable
-        //add_filter( 'mvx_product_type_options', array( $this, 'mvx_set_product_type_options' ), 99 );
+        add_filter( 'mvx_product_type_options', array( $this, 'mvx_set_product_type_options' ), 99 );
     }
 
     private function product_capablity_check( $action = 'add', $product_id = '' ) {
