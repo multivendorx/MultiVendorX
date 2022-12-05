@@ -1194,7 +1194,6 @@ export default class DynamicForm extends React.Component {
 							<div className="mvx-vendor-action-icon">
 							
 							{data_zone.action_icons_data.map((o) => (
-
 									<div
 									onClick={(e) =>
 										(
@@ -1202,7 +1201,7 @@ export default class DynamicForm extends React.Component {
 											method: 'post',
 											url: `${appLocalizer.apiUrl}/mvx_membership/v1/update_membership`,
 											data: {
-												action: 'verified', id: row.user_id, status: row.status
+												action: 'verified', id: row.user_id, status: o.status
 											},
 										}).then((responce) => {
 											location.reload();

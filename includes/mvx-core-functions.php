@@ -5457,6 +5457,11 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                             'label'=> __('%age + Fixed (per vendor)', 'multivendorx'),
                             'value'=> __('fixed_with_percentage_per_vendor', 'multivendorx'),
                         ),
+                        array(
+                            'key'=> "commission_calculation_on_tax",
+                            'label'=> __('Commission Calculation on Tax', 'multivendorx'),
+                            'value'=> __('commission_calculation_on_tax', 'multivendorx'),
+                        ),
                     ),
                     'database_value' => '',
                 ],
@@ -5760,6 +5765,20 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'key'       => 'separator_content',
                     'type'      => 'section',
                     'label'     => "",
+                ],
+                [
+                    'key'       => 'commission_calculation_on_tax',
+                    'label'     => __( 'Commission Calculation On Tax', 'multivendorx' ),
+                    'class'     => 'mvx-toggle-checkbox',
+                    'type'      => 'checkbox',
+                    'options' => array(
+                        array(
+                            'key'=> "commission_calculation_on_tax",
+                            'label'=> __('', 'multivendorx'),
+                            'value'=> "commission_calculation_on_tax"
+                        )
+                    ),
+                    'database_value' => array(),
                 ],
                 [
                     'key'       => 'payment_gateway_charge',
@@ -7479,7 +7498,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'id'           => 'weight-shipping',
                         'name'         => __( 'Weight Wise Shipping (using Table Rate Shipping)', 'multivendorx' ),
                         'description'  => __( 'Vendors can create shipping rates based on price, weight and quantity', 'multivendorx' ),
-                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
+                        'plan'         => 'free',
                         'required_plugin_list' => array(
                             array(
                                 'plugin_name'   => __('Table Rate Shipping', 'multivendorx'),
@@ -7992,5 +8011,26 @@ if (!function_exists('mvx_count_wordboard_list')) {
         global $MVX;        
         return (int) ((int)count($MVX->vendor_rest_api->mvx_list_of_pending_vendor_product()->data) + (int) count($MVX->vendor_rest_api->mvx_list_of_pending_vendor()->data) + (int)count($MVX->vendor_rest_api->mvx_list_of_pending_vendor_coupon()->data) + (int)count($MVX->vendor_rest_api->mvx_list_of_pending_transaction()->data) + (int)count($MVX->vendor_rest_api->mvx_list_of_pending_question('', '')->data)
         );
+    }
+}
+
+if (!function_exists('mvxArrayToObject')) {
+    /**
+     * Convert php array to object
+     * @param array $d
+     * @return object
+     */
+    function mvxArrayToObject($d) {
+        if (is_array($d)) {
+            /*
+             * Return array converted to object
+             * Using __FUNCTION__ (Magic constant)
+             * for recursive call
+             */
+            return (object) array_map(__FUNCTION__, $d);
+        } else {
+            // Return object
+            return $d;
+        }
     }
 }

@@ -11,11 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 class MVX_Coupon {
 	
 	public function __construct() {
-		
-		/* Coupon Management */
-		add_filter( 'woocommerce_coupon_discount_types', array( &$this, 'coupon_discount_types' ) );
 		add_filter( 'woocommerce_json_search_found_products', array( &$this, 'json_filter_report_products' ) );
-		
 		/* Filter coupon list */
 		add_action( 'request', array( &$this, 'filter_coupon_list' ) );
 		add_filter( 'wp_count_posts', array( &$this, 'vendor_count_coupons' ), 10, 3 );
@@ -23,8 +19,8 @@ class MVX_Coupon {
 		// Validate vendor coupon in cart and checkout
 		add_filter( 'woocommerce_coupon_is_valid', array(&$this, 'woocommerce_coupon_is_valid' ), 30, 2);
 		add_filter( 'woocommerce_coupon_is_valid_for_product', array(&$this, 'woocommerce_coupon_is_valid_for_product' ), 30, 4);
-                // coupon delete action
-                $this->mvx_delete_coupon_action();
+        // coupon delete action
+        $this->mvx_delete_coupon_action();
 	}
 
         /**
@@ -72,25 +68,7 @@ class MVX_Coupon {
 		}
 		return $true;
 	}
-	
-	/**
-	 * Filter coupon discount types as per vendor
-	 *
-	 * @param array $coupon_types
-	 * @return array $coupon_types
-	 */
-	public function coupon_discount_types( $coupon_types ){
-		$current_user = wp_get_current_user();
-		if( is_user_mvx_vendor($current_user) ){
-			$to_unset = apply_filters( 'mvx_multi_vendor_coupon_types', array( 'fixed_cart', 'percent' ) );
-			foreach( $to_unset as $coupon_type_id ){
-				unset( $coupon_types[ $coupon_type_id ] );
-			}
-		}
-		return $coupon_types;
-	}
 
-        
 	public function filter_coupon_list( $request ) {
 		global $typenow;
 

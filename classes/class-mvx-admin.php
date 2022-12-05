@@ -1232,6 +1232,10 @@ class MVX_Admin {
             wp_enqueue_style('mvx_admin_css', $MVX->plugin_url . 'assets/admin/css/admin' . $suffix . '.css', array(), $MVX->version);
             wp_enqueue_style('mvx_admin_rsuite_css', $MVX->plugin_url . 'assets/admin/css/rsuite-default' . '.min' . '.css', array(), $MVX->version);
         }
+
+        if ( in_array($screen->id, array('edit-shop_order'))) {
+            wp_enqueue_style('mvx_admin_order_css', $MVX->plugin_url . 'assets/admin/css/admin-order.css', array(), $MVX->version);
+        }
         
         //backend spmv
         if (mvx_is_module_active('spmv')) {
