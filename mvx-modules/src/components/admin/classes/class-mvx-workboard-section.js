@@ -1339,7 +1339,7 @@ class MVXworkboard extends Component {
 					  </tr>
 
 					  <tr>
-					    <td>Address Verification</td>
+					    <td>{ __( 'Address rrtttt', 'multivendorx' ) }</td>
 					    <td>
 						    <div
 								dangerouslySetInnerHTML={{ __html: data_veri.address }}
@@ -1347,7 +1347,7 @@ class MVXworkboard extends Component {
 						</td>
 					    <td>
 
-					    	{data_veri.address_verified ? 'Verified' :
+					    	{data_veri.address_verified ? __( 'Verified', 'multivendorx' ) :
 					    	<>
 					    	<button className="mvx-back-btn" onClick={(e) =>
 								(
