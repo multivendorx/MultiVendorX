@@ -3086,12 +3086,15 @@ div.health-check-accordion{
             border-radius: $border-radius;
             margin-right: 0.4rem;
           }
+          a{
+          white-space: nowrap;
+          }
         }
         .sc-hKMtZM {
          padding:0.75rem 1rem 0.5rem;
          align-items:start;
          div:first-child{
-          white-space: normal;
+          white-space: nowrap;
          }
         }
       }
@@ -3813,4 +3816,32 @@ li.mvx-compare-table-row{
       color: #db4b54;
     }
 }
+}
+// commmision page css date picker
+span.rs-picker-toggle-placeholder {
+  display: none;
+}
+input.rs-picker-toggle-textbox {
+  background-color: transparent;
+  border: none;
+  width: 13.375rem;
+  line-height: 1.5rem;
+}
+.rs-picker-cleanable.rs-picker-daterange .rs-picker-toggle.rs-btn {
+  padding-right: 1rem;
+}
+.rs-picker-toggle.rs-btn.rs-btn-default {
+  background-color: #fdfdfe;
+  padding: 0.563rem 1rem;
+  border-radius: 0.25rem;
+  border: 0.063rem solid #d4d1d9;
+  & svg{
+    margin-top: 0.25rem;
+  }
+  & span svg{
+    margin-top: 0rem;
+  }
+}
+.sc-evZas.dFsTSm {
+  overflow: visible;
 }
