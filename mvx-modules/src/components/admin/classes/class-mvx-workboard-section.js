@@ -1339,7 +1339,7 @@ class MVXworkboard extends Component {
 					  </tr>
 
 					  <tr>
-					    <td>{ __( 'Address rrtttt', 'multivendorx' ) }</td>
+					    <td>Address Verification</td>
 					    <td>
 						    <div
 								dangerouslySetInnerHTML={{ __html: data_veri.address }}
