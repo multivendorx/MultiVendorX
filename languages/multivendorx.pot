@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: MultiVendorX 4.0.4\n"
 "Report-Msgid-Bugs-To: "
 "https://github.com/multivendorx/dc-woocommerce-multi-vendor/issues\n"
-"POT-Creation-Date: 2022-12-06 05:41:17+00:00\n"
+"POT-Creation-Date: 2022-12-06 11:26:25+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -471,24 +471,24 @@ msgstr ""
 msgid "Shipped"
 msgstr ""
 
-#: api/class-mvx-rest-controller.php:1037
+#: api/class-mvx-rest-controller.php:1036
 msgid "Address Verification"
 msgstr ""
 
-#: api/class-mvx-rest-controller.php:1039
+#: api/class-mvx-rest-controller.php:1038
 msgid "Identity Verification"
 msgstr ""
 
-#: api/class-mvx-rest-controller.php:1041
+#: api/class-mvx-rest-controller.php:1040
 msgid "Verification"
 msgstr ""
 
-#: api/class-mvx-rest-controller.php:1043
+#: api/class-mvx-rest-controller.php:1042
 #: api/class-mvx-rest-controller.php:5577
 msgid "Approved"
 msgstr ""
 
-#: api/class-mvx-rest-controller.php:1043
+#: api/class-mvx-rest-controller.php:1042
 #: api/class-mvx-rest-controller.php:5581 classes/class-mvx-admin.php:599
 #: classes/emails/class-mvx-email-customer-order-refund-request.php:70
 msgid "Rejected"

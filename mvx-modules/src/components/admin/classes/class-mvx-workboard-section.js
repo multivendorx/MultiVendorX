@@ -13,6 +13,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { __ } from '@wordpress/i18n';
 
 const override = css`
 	display: block;
@@ -1393,7 +1394,7 @@ class MVXworkboard extends Component {
 							></div>
 						</td>
 					    <td>
-					    	{data_veri.id_verified ? 'Verified' :
+					    	{data_veri.id_verified ? __( 'Verified', 'multivendorx' ) :
 					    	<>
 					    	<button className="mvx-back-btn" onClick={(e) =>
 								(
