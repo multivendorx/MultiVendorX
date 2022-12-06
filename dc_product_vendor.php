@@ -4,7 +4,7 @@
  * Plugin URI: https://multivendorx.com/
  * Description: A Free Extension That Transforms Your WooCommerce Site into a Marketplace.
  * Author: MultiVendorX
- * Version: 4.0.3
+ * Version: 4.0.4
  * Author URI: https://multivendorx.com/
  * Requires at least: 4.4
  * Tested up to: 6.1.1

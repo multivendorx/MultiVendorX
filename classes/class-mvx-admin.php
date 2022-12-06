@@ -1242,7 +1242,7 @@ class MVX_Admin {
         }
 
         if ( in_array($screen->id, array('edit-shop_order'))) {
-            wp_enqueue_style('mvx_admin_order_css', $MVX->plugin_url . 'assets/admin/css/admin-order.css', array(), $MVX->version);
+            wp_enqueue_style('mvx_admin_order_css', $MVX->plugin_url . 'assets/admin/css/admin-order' . $suffix . '.css', array(), $MVX->version);
         }
         
         //backend spmv

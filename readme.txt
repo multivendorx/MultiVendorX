@@ -5,7 +5,7 @@ Donate link: https://multivendorx.com/donate
 Requires at least: 4.4
 Tested up to: 6.1.1
 Requires PHP: 5.6
-Stable tag: 4.0.3
+Stable tag: 4.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -279,6 +279,16 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.0.4 - 2022-12-06 =
+* Fix       - Error at the time of accessing products.
+* Fix       - Text rename.
+* Fix       - Virtual, downloadable option not working.
+* Fix       - Table rate enabled issue.
+* Fix       - Commission on tax.
+* Fix       - Show shipping methods added by vendors to admin.
+* Fix       - Complete store front migration from other multivendor plugins.
+* Updated   - Language file.
 
 = 4.0.3 - 2022-11-22 =
 * Added     - Compatibility of WordPress 6.1.1
