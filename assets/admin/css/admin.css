@@ -4054,7 +4054,7 @@ div.health-check-accordion .health-check-accordion-panel table td {
 }
 
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .mvx-vendor-icon-name a {
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .sc-hKMtZM {
