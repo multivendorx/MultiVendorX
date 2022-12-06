@@ -1006,7 +1006,6 @@ class MVX_REST_API {
         $action = $request->get_param('action') ? $request->get_param('action') : '';
         $id = $request->get_param('id') ? $request->get_param('id') : '';
         $type = $request->get_param('type') ? $request->get_param('type') : '';
-
         if(!empty($id)){
             $user_id = (int)$id;
             $verification_settings = get_user_meta($user_id, 'mvx_vendor_verification_settings', true);
@@ -1068,7 +1067,6 @@ class MVX_REST_API {
         if (in_array('pending', $have_pending_verification) && $get_verification_vendors) {
             foreach ($get_verification_vendors as $get_vendor) {
                 $verification_settings = get_user_meta($get_vendor->ID, 'mvx_vendor_verification_settings', true);
-
                 $addrs = array();
                 if (isset($verification_settings['address_verification']['data']['address_1']) )
                     $addrs['address_1'] = $verification_settings['address_verification']['data']['address_1'];
@@ -1107,6 +1105,8 @@ class MVX_REST_API {
                 $lists[] = array(
                     'id'    =>  $get_vendor->ID,
                     'image' =>  '<img src='.$MVX->plugin_url . 'assets/images/wp-avatar-frau.jpg'.' alt="" class="avatar avatar-32 photo" height="32" width="32"></img>' . $get_vendor->data->display_name,
+                    'address_verified'  => isset($verification_settings['address_verification']['is_verified']) && $verification_settings['address_verification']['is_verified'] == 'verified' ? true : false,
+                    'id_verified'  => isset($verification_settings['id_verification']['is_verified']) && $verification_settings['id_verification']['is_verified'] == 'verified' ? true : false,
                     'address'   =>  WC()->countries->get_formatted_address($addrs),
                     'id_verification'   =>  __('ID Type : ', 'multivendorx').ucwords($id_type) . $file_display,
                     'social'    =>  $file_display_social ? $file_display_social : __('No social data found', 'multivendorx')

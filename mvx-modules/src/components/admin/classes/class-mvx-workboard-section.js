@@ -1345,13 +1345,16 @@ class MVXworkboard extends Component {
 							></div>
 						</td>
 					    <td>
+
+					    	{data_veri.address_verified ? 'Verified' :
+					    	<>
 					    	<button className="mvx-back-btn" onClick={(e) =>
 								(
 								axios({
 									method: 'post',
 									url: `${appLocalizer.apiUrl}/mvx_module/v1/vendor_pending_verification_action`,
 									data: {
-										action: 'verified', id: data_veri.id, type: 'address'
+										action: 'verified', id: data_veri.id, type: 'address_verification'
 									},
 								}).then((responce) => {
 									location.reload();
@@ -1367,7 +1370,7 @@ class MVXworkboard extends Component {
 									method: 'post',
 									url: `${appLocalizer.apiUrl}/mvx_module/v1/vendor_pending_verification_action`,
 									data: {
-										action: 'rejected', id: data_veri.id, type: 'address'
+										action: 'rejected', id: data_veri.id, type: 'address_verification'
 									},
 									}).then((responce) => {
 										location.reload();
@@ -1376,6 +1379,9 @@ class MVXworkboard extends Component {
 							}>
 								<i className="mvx-font icon-no"></i>
 							</button>
+							</>
+					    	}
+
 					    </td>
 					  </tr>
 
@@ -1387,13 +1393,15 @@ class MVXworkboard extends Component {
 							></div>
 						</td>
 					    <td>
+					    	{data_veri.id_verified ? 'Verified' :
+					    	<>
 					    	<button className="mvx-back-btn" onClick={(e) =>
 								(
 									axios({
 									method: 'post',
 									url: `${appLocalizer.apiUrl}/mvx_module/v1/vendor_pending_verification_action`,
 									data: {
-										action: 'verified', id: data_veri.id, type: 'id'
+										action: 'verified', id: data_veri.id, type: 'id_verification'
 									},
 									}).then((responce) => {
 										location.reload();
@@ -1408,7 +1416,7 @@ class MVXworkboard extends Component {
 									method: 'post',
 									url: `${appLocalizer.apiUrl}/mvx_module/v1/vendor_pending_verification_action`,
 									data: {
-										action: 'rejected', id: data_veri.id, type: 'id'
+										action: 'rejected', id: data_veri.id, type: 'id_verification'
 									},
 									}).then((responce) => {
 										location.reload();
@@ -1417,6 +1425,8 @@ class MVXworkboard extends Component {
 							}>
 								<i className="mvx-font icon-no"></i>
 							</button>
+					    	</>
+					    	}
 					    </td>
 					  </tr>
 
