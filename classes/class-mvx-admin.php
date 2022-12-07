@@ -174,7 +174,7 @@ class MVX_Admin {
                     if (!empty($database_value)) {
                         if (isset($inter_value['key']) && array_key_exists($inter_value['key'], $database_value)) {
                             if (empty($settings_fields[$settings_key][$inter_key]['database_value'])) {
-                               $settings_fields[$settings_key][$inter_key]['database_value'] = mvx_string_wpml($database_value[$inter_value['key']]);
+                               $settings_fields[$settings_key][$inter_key]['database_value'] = $database_value[$inter_value['key']];
                             }
                         }
                     }
