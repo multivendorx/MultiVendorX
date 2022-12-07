@@ -63,7 +63,7 @@ class MVX_BuddyPress {
 
 	        add_filter( 'bp_core_fetch_avatar_no_grav', array( $this, 'fetch_avatar_no_grav' ) );
 
-	        add_filter( 'bp_core_avatar_default', array( $this, 'set_avatar_default'  ) , 10 , 2 );
+	        add_filter( 'bp_core_default_avatar', array( $this, 'set_avatar_default'  ) , 10 , 2 );
 			/*************************  Default Avatar cover image  ***********************************/
 	        add_filter( 'bp_before_xprofile_cover_image_settings_parse_args', array( $this, 'bpcp_profile_cover_default_from_vendor'), 10, 1 );
 
@@ -81,12 +81,6 @@ class MVX_BuddyPress {
 
 	        /************************ BuddyPress setting at Storefont  ****************************************/
 	        add_action('mvx_after_shop_front', array( $this, 'buddypress_compatibility_at_storefont') );
-
-	        /******************** (MVX->settings->capabilities) Give setting on admin end for capabilities to vendor *************************/
-	        add_filter( "settings_capabilities_product_tab_options", array( $this, 'mvx_buddypress_capability_to_vendor' ) );
-
-	        /**********************************  Save affiliate for admin capability section **************************************/
-	        add_filter( "settings_capabilities_product_tab_new_input", array( $this, 'save_mvx_buddypress_capability_to_vendor' ), 99 , 2 );
 
 	        add_filter( 'mvx_vendor_fields', array( $this, 'mvx_save_storefont_data' ), 99, 2 );
 	        add_action( 'mvx_vendor_add_extra_social_link', array( $this, 'mvx_add_storefont_buddypress_link' ) );
@@ -319,9 +313,9 @@ class MVX_BuddyPress {
 
     public function buddypress_compatibility_at_storefont(){
 
-    	$buddypress_option = get_option( 'mvx_capabilities_product_settings_name' ,true );
 		// Check backend setting for vendor capability
-    	if( !array_key_exists('profile_sync', $buddypress_option) ) return;
+    	if( !mvx_is_module_active('buddypress') ) return;
+    	if( !get_mvx_global_settings('buddypress_enabled') ) return;
     	?>
 		<div class="panel panel-default pannel-outer-heading">
 		<div class="panel-heading d-flex">
@@ -372,32 +366,7 @@ class MVX_BuddyPress {
 
 			</div>
 		</div>
-
-		
-			
-			
-
     	<?php
-    }
-
-    /******************** (MVX->settings->capabilities) Give setting on admin end for capabilities to vendor *************************/
-    public function mvx_buddypress_capability_to_vendor( $data ){
-      $data['sections']['default_buddypress_settings_section_type_option'] = array( "title"  => __( 'BuddyPress Sync Options ', 'multivendorx' ), // Section one
-                    "fields" => apply_filters( "mvx_vendor_buddypress_options", array(
-                        "profile_sync" => array('title' => __('Vendor Capability Sync', 'multivendorx'), 'type' => 'checkbox', 'id' => 'profile_sync', 'label_for' => 'profile_sync', 'name' => 'profile_sync', 'value' => 'Enable' ,'desc' => __('Ignore if BuddyPress is not active' , 'multivendorx' ) ), // Select
-                        )
-                    )
-                );
-
-      return $data;
-    }
-	
-	/**********************************  Save buddypress for admin capability section **************************************/
-    public function save_mvx_buddypress_capability_to_vendor( $new_input, $input ){
-      if ( isset( $input['profile_sync'] ) ) {
-          $new_input['profile_sync'] = sanitize_text_field( $input['profile_sync'] );
-        }
-      return $new_input;
     }
 
     public function mvx_save_storefont_data( $user_data ,$user_id ){

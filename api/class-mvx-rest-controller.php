@@ -3132,7 +3132,6 @@ class MVX_REST_API {
         ];
         $settings_fields_data['vendor_default_shipping_options']   = $vendor_default_shipping_options;
         $settings_fields_data['shipping_options']  = $shipping_options_list;
-
         $is_block = get_user_meta($vendor_id, '_vendor_turn_off', true);
         $settings_fields_data['vendor-personal'] =   [
             [
@@ -3153,7 +3152,7 @@ class MVX_REST_API {
                 'props'     => array(
                     'required'  => true
                 ),
-                'database_value' => 'password',
+                'database_value' => '$P$BBy/qPu84qp8n2TQ.fFhyJNoru.orT1',
             ],
             [
                 'key'       => 'first_name',
@@ -5443,7 +5442,7 @@ class MVX_REST_API {
                     if (isset($model['user_email']) && !empty($model['user_email'])) {
                         $userdata['user_email'] = isset( $model['user_email'] ) ? sanitize_email( $model['user_email'] ) : '';
                     }
-                    if (isset($model['password']) && !empty($model['password'])) {
+                    if (isset($model['password']) && !empty($model['password']) && $model['password'] != '$P$BBy/qPu84qp8n2TQ.fFhyJNoru.orT1') {
                         $userdata['user_pass'] = isset( $model['password'] ) ? sanitize_text_field( wp_unslash( $model['password'] ) ) : '';
                     }
                     if (isset($model['display_name']['value']) && !empty($model['display_name']['value'])) {
