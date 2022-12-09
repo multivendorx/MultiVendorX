@@ -43,7 +43,8 @@ export default class DynamicForm extends React.Component {
 		this.onSelectDeselectChange = this.onSelectDeselectChange.bind(this);
 		this.onMultiChange = this.onMultiChange.bind(this);
 		this.handle_Vendor_active_suspend = this.handle_Vendor_active_suspend.bind(this);
-		this.ontinyChange = this.ontinyChange.bind(this);		
+		this.ontinyChange = this.ontinyChange.bind(this);
+		this.showHideUpdateRow = this.showHideUpdateRow.bind(this);
 	}
 
 	ontinyChange(e, target) {
@@ -57,6 +58,16 @@ export default class DynamicForm extends React.Component {
 			setTimeout(() => {
 				this.onSubmit('');
 			}, 10);
+		}
+	}
+
+	showHideUpdateRow(e, target) {
+		if (this.props.submitbutton && this.props.submitbutton === 'false') {
+			if (target === 'password') {
+				setTimeout(() => {
+					this.onSubmit('');
+				}, 10);
+			}
 		}
 	}
 
@@ -459,9 +470,11 @@ export default class DynamicForm extends React.Component {
 			}
 		}
 		if (this.props.submitbutton && this.props.submitbutton === 'false') {
-			setTimeout(() => {
-				this.onSubmit('');
-			}, 10);
+			if (key != 'password') {
+				setTimeout(() => {
+					this.onSubmit('');
+				}, 10);
+			}
 		}
 	};
 
@@ -550,6 +563,9 @@ export default class DynamicForm extends React.Component {
 							value={value}
 							onChange={(e) => {
 								this.onChange(e, target);
+							}}
+							onMouseOut={(e) => {
+								this.showHideUpdateRow(e, target);
 							}}
 						/>
 						{m.desc ? (
