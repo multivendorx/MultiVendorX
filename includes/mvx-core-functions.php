@@ -7178,7 +7178,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'required_plugin_list' => array(
                             array(
                                 'plugin_name'   => __('WooCommerce Booking', 'multivendorx'),
-                                'plugin_link'   => 'https://woocommerce.com/products/woocommerce-bookings/',
+                                'plugin_link'   => 'https://multivendorx.com/docs/knowladgebase/appointment-product/',
                                 'is_active' => is_plugin_active('woocommerce-bookings/woocommerce-bookings.php') ? true :false,
                             ),
                             array(
