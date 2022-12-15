@@ -25,7 +25,9 @@ class MVX_Dashboard extends Component {
             pricing_tab: 'yearly',
             mat_tab_value: 1,
             pending_customer: '',
-            latest_activity: ''
+            latest_activity: '',
+            pending_customer_return: false,
+            latest_activity_return: false
         };
         this.pricing_tab = this.pricing_tab.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -109,6 +111,7 @@ class MVX_Dashboard extends Component {
         .then((response) => {
             this.setState({
                 pending_customer: response.data,
+                pending_customer_return: true,
             });
         });
 
@@ -121,6 +124,7 @@ class MVX_Dashboard extends Component {
         .then((response) => {
             this.setState({
                 latest_activity: response.data,
+                latest_activity_return: true,
             });
         });
 
@@ -1492,11 +1496,10 @@ class MVX_Dashboard extends Component {
 
                         {appLocalizer.dashboard_string.dashboard95 == 'pro' ?
                             <>
-                                <div className="mvx-page-title">
-                                    <p>
-                                        {appLocalizer.dashboard_string.dashboard105}
-                                    </p>
-                                </div>
+                                <h2 className="mvx-text-with-right-side-line-wrapper">
+                                    {appLocalizer.dashboard_string.dashboard105}
+                                    <hr/>
+                                </h2>
                                         
                                 {this.state.pending_shippig_header &&
                                         this.state.pending_shippig_header.length > 0 ?
@@ -1517,7 +1520,7 @@ class MVX_Dashboard extends Component {
                                             dangerouslySetInnerHTML={{ __html: this.state.pending_customer }}
                                         ></div>
                                     :
-                                        <PuffLoader
+                                        this.state.pending_customer_return ? '' : <PuffLoader
                                             css={override}
                                             color={'#cd0000'}
                                             size={200}
@@ -1526,11 +1529,14 @@ class MVX_Dashboard extends Component {
                                     }
 
                                     {this.state.latest_activity ? 
-                                        <div className="mvx-vendor-application-content"
-                                            dangerouslySetInnerHTML={{ __html: this.state.latest_activity }}
-                                        ></div>
+                                        <>
+                                            <h2 className="mvx-text-with-right-side-line-wrapper">Seller's Latest Activity<hr/></h2>
+                                            <div className="mvx-vendor-application-content"
+                                                dangerouslySetInnerHTML={{ __html: this.state.latest_activity }}
+                                            ></div>
+                                        </>
                                         :
-                                        <PuffLoader
+                                        this.state.latest_activity_return ? '' : <PuffLoader
                                             css={override}
                                             color={'#cd0000'}
                                             size={200}

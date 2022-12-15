@@ -670,14 +670,14 @@ class MVX_Admin {
         );
 
         $columns_vendor = apply_filters('mvx_backend_vendor_table_column', array(
-            /*array(
+            array(
                 'name'      =>  __('Name', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "name",
-            ),*/
+            ),
             array(
-                'name'      =>  __('Name', 'multivendorx'),
+                'name'      =>  __('', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'cell'  =>  'cell',
@@ -686,13 +686,13 @@ class MVX_Admin {
                 'button'=> true,
                 'last_action'   =>  'eyeicon_trigger'
             ),
-            array(
+            /*array(
                 'name'      =>  __('Email', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
                 'selector_choice'  => "email",
-            ),
-           /* array(
+            ),*/
+           /*array(
                 'name'      =>  __('Registered', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,

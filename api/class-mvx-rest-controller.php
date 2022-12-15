@@ -225,7 +225,7 @@ class MVX_REST_API {
             'callback' => array( $this, 'mvx_all_vendor_details' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
-        // create vendor
+        // ceate vendor
         register_rest_route( 'mvx_module/v1', '/create_vendor', [
             'methods' => WP_REST_Server::EDITABLE,
             'callback' => array( $this, 'mvx_create_vendor' ),
@@ -811,7 +811,7 @@ class MVX_REST_API {
         $row = '';
         if ($pending_questions) {
             $Q_A_link = admin_url('admin.php?page=mvx#&submenu=work-board&name=question-ans');
-            $row = '<div class="media">
+            $row = '<h2 class="mvx-text-with-right-side-line-wrapper">' . __("Q & A Part", 'multivendorx') . '<hr></h2><div class="media">
                         <div class="media-body">
                             <h4 class="media-heading qna-question">' . wp_trim_words($pending_questions['question_details'], 160, '...') . '</h4>
                             <time class="qna-date">
@@ -893,7 +893,7 @@ class MVX_REST_API {
         $commissions = get_posts($args);
         //mvx-vendor-application-content
         $applcation_data_display = '';
-        $applcation_data_display .= '<h2 class="mvx-text-with-right-side-line-wrapper">' . __("Seller's Latest Activity", 'multivendorx') . '<hr></h2>';
+        //$applcation_data_display .= '<h2 class="mvx-text-with-right-side-line-wrapper">' . __("Seller's Latest Activity", 'multivendorx') . '<hr></h2>';
         $applcation_data_display .= '<div class="note-clm-wrap">';
 
         if ($store_first_id) {

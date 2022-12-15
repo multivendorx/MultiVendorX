@@ -642,12 +642,7 @@ class MVXBackendVendor extends React.Component {
 				data_ann.last_action === 'eyeicon_trigger'
 					? (data_ann.cell = (row) => (
 							<div className="mvx-vendor-action-icon">
-								<div
-									dangerouslySetInnerHTML={{
-										__html: row.name,
-									}}
-								></div>
-
+								
 								<div
 									onClick={() => this.handleEyeIcon(row.ID)}
 									id={row.ID}
