@@ -15,23 +15,23 @@ class MVX_Banner_Adv extends Component {
 					<br/>
 					1.All Product Type Support 
 					<br/>
-					2.Marketplace-Friendly Payment Options
+					2.Instant Payment to Vendors 
 					<br/>
-					3.Dynamic Membership Package Builder 
+					3.Create Vendor Membership Plans
 					<br/>
-					4.Better Communication with Live Chat 
+					4.Quick Real-Time Chat with Vendors
 					<br/>
-					5.Automated Invoice Generation
+					5.Hassle-free Billing Invoice and Packing Slip
 					<br/>
-					6.Identity Verification through Social Media
+					6.Verify Vendors to Secure Marketplace
 					<br/>
-					7.Product Import and Export
+					7.Seamless Product Import and Export
 					<br/>
-					8.Advanced Analytics Options
+					8.Advanced Sales and Tax Analytics
 					<br/>	
-					9.Inventory Management with Stock Alerts
+					9.Inventory Tracker
 					<br/>
-					10.Vacation-Mode Marketplace Management
+					10.Marketplace Vacation-Mode
 
 					Upgrade to <a href="https://multivendorx.com/pricing/">MultiVendorX Pro</a> Today!!
 
