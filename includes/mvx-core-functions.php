@@ -7178,7 +7178,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'required_plugin_list' => array(
                             array(
                                 'plugin_name'   => __('WooCommerce Booking', 'multivendorx'),
-                                'plugin_link'   => 'https://woocommerce.com/products/woocommerce-bookings/',
+                                'plugin_link'   => 'https://multivendorx.com/docs/knowladgebase/appointment-product/',
                                 'is_active' => is_plugin_active('woocommerce-bookings/woocommerce-bookings.php') ? true :false,
                             ),
                             array(
@@ -7380,7 +7380,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'name'         => __( 'Bank Transfer', 'multivendorx' ),
                         'description'  => __( "Manually transfer money directly to the vendor's bank account.", 'multivendorx' ),
                         'plan'         => 'free',
-                        'doc_link'     => 'https://multivendorx.com/knowledgebase/',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/direct-bank-transfer/',
                     ],
                     [
                         'id'           => 'paypal-masspay',
@@ -7388,7 +7388,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'description'  => __( 'Schedule payment to multiple vendors at the same time.', 'multivendorx' ),
                         'plan'         => 'free',
                        
-                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/bank-payment',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/paypal-masspay/',
                     ],
                     [
                         'id'           => 'paypal-payout',
