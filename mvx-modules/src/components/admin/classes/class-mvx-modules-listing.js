@@ -430,6 +430,7 @@ class MVX_Module_Listing extends Component {
 																) : (
 																	''
 																)}
+																{student.doc_link ?
 																<a
 																	href={
 																		student.doc_link
@@ -439,7 +440,7 @@ class MVX_Module_Listing extends Component {
 																	{
 																		appLocalizer.documentation_text
 																	}
-																</a>
+																</a> : ''}
 																<div className={`mvx-toggle-checkbox-content ${student.plan && student.plan == 'pro' ? 'disabled' : ''}`}>
 																	<input
 																		type="checkbox"
