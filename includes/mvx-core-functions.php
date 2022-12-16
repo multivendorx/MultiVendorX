@@ -7869,8 +7869,8 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/toolset-types',
-                    ],
+                        '
+                                            ],
                     [
                         'id'           => 'wp-affiliate',
                         'name'         => __( 'WP Affiliate', 'multivendorx' ),
@@ -7888,7 +7888,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/mvx-acf',
+                        'doc_link'     => 'https://multivendorx.com/docs/code-snippet/affiliate-product/',
                     ],
                     [
                         'id'           => 'product-addon',
