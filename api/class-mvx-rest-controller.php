@@ -2555,7 +2555,7 @@ class MVX_REST_API {
                 $pending_list[] = array(
                     'id'        =>  $pending_vendor->ID,
                     'vendor_image_src'  =>  get_avatar($pending_vendor->ID, 50),
-                    'vendor_link'   =>  sprintf('?page=%s&ID=%s&name=vendor-personal', 'mvx#&submenu=vendor', $pending_vendor->ID),
+                    'vendor_link'   =>  sprintf('?page=%s&ID=%s&name=vendor-application', 'mvx#&submenu=vendor', $pending_vendor->ID),
                     'vendor'    =>  $question_by = "<img src=' " . $MVX->plugin_url . 'assets/images/wp-avatar-frau.jpg' ."' class='avatar avatar-32 photo' height='32' width='32'>" .$pending_vendor->user_login . "",
                     'vendor_name'    =>  $pending_vendor->user_login,
                 );
