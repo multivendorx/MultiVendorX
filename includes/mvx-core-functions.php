@@ -7486,6 +7486,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'description'  => __( 'Calculate Rates based on distance between the vendor store and drop location', 'multivendorx' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/distance-shipping',
+                        'mod_link'     => admin_url('admin.php?page=wc-settings&tab=shipping&section=mvx_product_shipping_by_distance'),
                     ],
                     [
                         'id'           => 'country-shipping',
@@ -7493,6 +7494,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'description'  => __( 'Let vendors choose and manage shipping, to countries of their choice', 'multivendorx' ),
                         'plan'         => 'free',
                         'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/country-shipping',
+                        'mod_link'     => admin_url('admin.php?page=wc-settings&tab=shipping&section=mvx_product_shipping_by_country'),
                     ],
                     [
                         'id'           => 'weight-shipping',
