@@ -340,31 +340,3 @@ class MVX_Shipping_By_Distance extends WC_Shipping_Method {
   }
   
 }
-
-
-function flat_rates_cost( $rates, $package ) {
-
-    $user = wp_get_current_user();
-    $data = get_user_meta( $user->ID, 'dispense_tva', true );
-         
-    if($data=='oui'){
-    foreach ( $rates as $rate_key => $rate ){
-      //if ( 'free_shipping' !== $rate->method_id ) {
-        $has_taxes = false;
-        $taxes = [];
-   
-        // Taxes rate cost (if enabled)
-        foreach ($rates[$rate_key]->taxes as $key => $tax){
-          if( $tax > 0 ){
-            $has_taxes = true;
-            $taxes[$key] = 0; // Set to 0 (zero)
-          }
-        }
-        if( $has_taxes )
-          $rates[$rate_key]->taxes = 0;
-      //}
-    }
-  }
-    return $rates;
-}
-add_filter( 'woocommerce_package_rates', 'flat_rates_cost', 10, 2 );
