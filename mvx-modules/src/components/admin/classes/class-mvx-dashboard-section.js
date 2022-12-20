@@ -1529,12 +1529,12 @@ class MVX_Dashboard extends Component {
                                     }
 
                                     {this.state.latest_activity ? 
-                                        <>
+                                        <div class="mvx-right-part">
                                             <h2 className="mvx-text-with-right-side-line-wrapper">Seller's Latest Activity<hr/></h2>
                                             <div className="mvx-vendor-application-content"
                                                 dangerouslySetInnerHTML={{ __html: this.state.latest_activity }}
                                             ></div>
-                                        </>
+                                        </div>
                                         :
                                         this.state.latest_activity_return ? '' : <PuffLoader
                                             css={override}

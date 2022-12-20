@@ -1305,6 +1305,7 @@ div#wpbody-content {
       -ms-flex-pack: justify;
           justify-content: space-between;
   gap: 0.5rem;
+  white-space: nowrap;
 }
 
 .mvx-container .mvx-select-all-bulk-wrap {
@@ -3014,14 +3015,17 @@ div#wpbody-content {
   gap: 1rem;
 }
 
+.mvx-container .Question-answer-wrapper .mvx-right-part {
+  -webkit-box-flex: 1;
+      -ms-flex: auto;
+          flex: auto;
+}
+
 .mvx-container .Question-answer-wrapper .media, .mvx-container .Question-answer-wrapper .mvx-vendor-application-content {
   background: #fdfdfe;
   border-radius: 0.25rem;
   border: 0.06rem solid #d4d1d9;
   word-break: break-all;
-  -webkit-box-flex: 1;
-      -ms-flex: auto;
-          flex: auto;
 }
 
 .mvx-container .Question-answer-wrapper .mvx-vendor-application-content {
