@@ -5,7 +5,7 @@ Donate link: https://multivendorx.com/donate
 Requires at least: 4.4
 Tested up to: 6.1.1
 Requires PHP: 5.6
-Stable tag: 4.0.4
+Stable tag: 4.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -279,6 +279,15 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.0.5 - 2022-12-20 =
+* Added     - Compatibility of WooCommerce 7.2.0
+* Fix       - Buddypress settings not working #264
+* Fix       - Password reset issue #263.
+* Fix       - Error on navigation menu #268
+* Fix       - Customer Refund status box is missing #267
+* Fix       - Shipping by distance link #265
+* Updated   - Language file.
 
 = 4.0.4 - 2022-12-06 =
 * Fix       - Error at the time of accessing products.
