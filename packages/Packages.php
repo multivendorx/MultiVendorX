@@ -22,8 +22,8 @@ class Packages {
 	protected static $packages = array(
 		'mvx-buddypress/mvx-buddypress.php'   => 'MVX_BuddyPress',
 		'mvx-elementor/mvx-elementor.php'   => 'MVX_Elementor',
-		'mvx-tablerate/mvx-tablerate.php'   => 'MVX_Tablerate'
-		//'mvx-blocks/mvx-blocks.php'   => 'MVX_Blocks',
+		'mvx-tablerate/mvx-tablerate.php'   => 'MVX_Tablerate',
+		//'wcmp-guten-blocks/wcmp-blocks.php'   => 'MVX_Blocks',
 	);
 
 	/**
