@@ -4874,6 +4874,8 @@ class MVX_REST_API {
                 if ( $vendor_order ) {
                     $vendor = $vendor_order->get_vendor();
                     $vendor_list = $vendor ? '<a href="' . esc_url($vendor->permalink) . '">' . $vendor->page_title . '</a>' : '';
+                    $vendor_link = sprintf('?page=%s&ID=%s&name=vendor-personal', 'mvx#&submenu=vendor', $vendor->get_id());
+	                $vendor_list_new = '<a href="' . esc_url($vendor_link) . '">' . $vendor->page_title . '</a>';
                 } else { // BW compatibilities
                     if ($vendor_user_id) {
                         if ($vendor) {
@@ -4927,7 +4929,7 @@ class MVX_REST_API {
                     'link'          =>  sprintf('?page=%s&CommissionID=%s', 'mvx#&submenu=commission', $commission_value),
                     'order_id'      =>  '<a href="' . esc_url($edit_url) . '">#' . $order_id . '</a>',
                     'product'       =>  $product_list,
-                    'vendor'        =>  $vendor_list,
+                    'vendor'        =>  $vendor_list_new,
                     'amount'        =>  $commission_amount,
                     'net_earning'   =>  $net_earning,
                     'status'        =>  $status_display,
