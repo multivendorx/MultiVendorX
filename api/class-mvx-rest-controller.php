@@ -1758,7 +1758,7 @@ class MVX_REST_API {
                 foreach ($settings_value as $inter_key => $inter_value) {
                     $change_settings_key    =   str_replace("-", "_", $settings_key);
                     $option_name = 'mvx_'.$change_settings_key.'_tab_settings';
-                    $database_value = get_option($option_name) ? get_option($option_name) : array();
+                    $database_value = mvx_get_option($option_name) ? mvx_get_option($option_name) : array();
                     if (!empty($database_value)) {
                         if (isset($inter_value['key']) && array_key_exists($inter_value['key'], $database_value)) {
                             if (empty($settings_fields[$settings_key][$inter_key]['database_value'])) {
