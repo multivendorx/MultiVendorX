@@ -17,7 +17,7 @@ if (!empty($mvx_vendor_registration_form_data) && is_array($mvx_vendor_registrat
     $MVX->library->load_qtip_lib();
     foreach ($mvx_vendor_registration_form_data as $key => $value) {
         switch ($value['type']) {
-            case 'separator':
+            case 'section':
                 ?>
                 <div class="clearboth"></div>
                 </div>
