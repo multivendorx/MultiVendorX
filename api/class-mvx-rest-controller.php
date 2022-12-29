@@ -4865,15 +4865,26 @@ class MVX_REST_API {
 
                 $order = wc_get_order($order_id);
                 $vendor_order = ( $order ) ? mvx_get_order( $order->get_id() ) : array();
-                $product_list = '';
-                $vendor_list = '';
-                $net_earning = '';
+                $product_list = $vendor_list = $net_earning = $vendor_link = '';
 
                 // find vendor 
                 $vendor_user_id = get_post_meta($commission_value, '_commission_vendor', true);
+                if ($vendor_user_id) {
+                    $vendor = get_mvx_vendor_by_term($vendor_user_id);
+                    if ($vendor) {
+                        $user = get_userdata(absint($vendor->id));
+                        $vendor_link = sprintf('?page=%s&ID=%s&name=vendor-personal', 'mvx#&submenu=vendor', $vendor->id);
+                        if ($user && in_array('dc_rejected_vendor', $user->roles)) {
+                            $vendor_link = sprintf('?page=%s&ID=%s&name=vendor-application', 'mvx#&submenu=vendor', $vendor->id);
+                        } else if ($user && in_array('dc_pending_vendor', $user->roles)) {
+                            $vendor_link = sprintf('?page=%s&ID=%s&name=vendor-application', 'mvx#&submenu=vendor', $vendor->id);
+                        }
+                    }
+                }
+                
                 if ( $vendor_order ) {
                     $vendor = $vendor_order->get_vendor();
-                    $vendor_list = $vendor ? '<a href="' . esc_url($vendor->permalink) . '">' . $vendor->page_title . '</a>' : '';
+                    $vendor_list = $vendor ? '<a href="' . esc_url($vendor_link) . '">' . $vendor->page_title . '</a>' : '';
                 } else { // BW compatibilities
                     if ($vendor_user_id) {
                         if ($vendor) {
