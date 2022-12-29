@@ -154,7 +154,7 @@ class MVX_Dokan {
 						foreach ($shipping_items as $key_shipping => $value_shipping) {
 							wc_delete_order_item_meta( $key_shipping, 'method_slug' ); 
 						}
-						$suborder_create = $MVX->order->mvx_create_orders_from_backend($order_id, '');
+						$suborder_create = $MVX->order->mvx_manually_create_order_item_and_suborder($order_id, '', true);
 						update_post_meta($order_id, '_mvx_vendor_specific_order_migrated', $set_order_id_migration);
 					}
 				}
