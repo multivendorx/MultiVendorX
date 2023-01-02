@@ -4910,13 +4910,13 @@ class MVX_REST_API {
                 if ( $vendor_order ) {
                     $net_earning = $vendor_order->get_commission_total();
                 } else { // BW compatibilities
-                    $commission_vendor = get_post_meta($commission_value, '_commission_vendor', true);
+                    /*$commission_vendor = get_post_meta($commission_value, '_commission_vendor', true);
                     $vendor_user_id = get_term_meta($commission_vendor, '_vendor_user_id', true);
                     $vendor = get_mvx_vendor($vendor_user_id);
                     if ($vendor) {
                         $vendor_total = get_mvx_vendor_order_amount(array('vendor_id' => $vendor->id, 'order_id' => $order_id));
                         $net_earning = wc_price($vendor_total['total']);
-                    }
+                    }*/
                 }
 
                 $action_display = "

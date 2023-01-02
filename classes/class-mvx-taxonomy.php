@@ -27,7 +27,7 @@ class MVX_Taxonomy {
         // register MVX single product multiple vendors (SPMV) taxonomy
         $this->init_mvx_spmv_taxonomy();
         // register MVX GTIN
-        if (get_mvx_vendor_settings('is_gtin_enable', 'general') == 'Enable') {
+        if ( in_array( 'GTIN', get_mvx_global_settings('products_fields', array() ) ) ) {
             $this->init_mvx_gtin_taxonomy();
         }
     }

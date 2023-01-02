@@ -1203,7 +1203,7 @@ class MVX_Order {
     public function delete_mvx_suborder( $order_id ) {
         if ( wp_get_post_parent_id( $order_id ) == 0 ) {
             $parent_order = wc_get_order($order_id);
-            $mvx_suborders = ( $parent_order ? $parent_order->get_status() == 'trash' : '' ) ? get_mvx_suborders($order_id, array('post_status' => 'trash')) : get_mvx_suborders($order_id);
+            $mvx_suborders = get_mvx_suborders($order_id);
             if ( $mvx_suborders ) {
                 foreach ( $mvx_suborders as $suborder ) {
                     $commission_id = get_post_meta( $suborder->get_id(), '_commission_id', true );
