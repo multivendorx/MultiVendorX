@@ -5,7 +5,7 @@ Donate link: https://multivendorx.com/donate
 Requires at least: 4.4
 Tested up to: 6.1.1
 Requires PHP: 5.6
-Stable tag: 4.0.5
+Stable tag: 4.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -279,6 +279,16 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.0.6 - 2023-01-03 =
+* Added     - Compatibility of WooCommerce 7.2.2.
+* Fix       - GTIN Fields Issue #285.
+* Fix       - Settings not saving when wpml active #284.
+* Fix       - Admin not able to delet order using "Empty Trash" #277.
+* Fix       - Workboard section pending vendor edit link issue.
+* Fix       - Registration page section not working.
+* Fix       - Admin not able to upload vendor logo #278.
+* Updated   - Language file.
 
 = 4.0.5 - 2022-12-20 =
 * Added     - Compatibility of WooCommerce 7.2.0
