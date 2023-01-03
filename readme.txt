@@ -284,9 +284,9 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 * Added     - Compatibility of WooCommerce 7.2.2.
 * Fix       - GTIN Fields Issue #285.
 * Fix       - Settings not saving when wpml active #284.
-* Fix       - Admin not able to delet order using "Empty Trash" #277.
+* Fix       - Admin not able to delete order using "Empty Trash" #277.
 * Fix       - Workboard section pending vendor edit link issue.
-* Fix       - Registration page section not working.
+* Fix       - Registration page section not working #276.
 * Fix       - Admin not able to upload vendor logo #278.
 * Updated   - Language file.
 
