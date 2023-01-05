@@ -1176,6 +1176,7 @@ class MVX_Admin {
             'google_api'    =>  get_mvx_global_settings('google_api_key'),
             'mapbox_api'    =>  get_mvx_global_settings('mapbox_api_key'),
             'location_provider'    =>  get_mvx_global_settings('choose_map_api'),
+            'store_location_check'    =>  get_mvx_global_settings('enable_store_map_for_vendor') && !empty(get_mvx_global_settings('enable_store_map_for_vendor')) ? true : false,
             'store_location_enabled'    =>  mvx_is_module_active('store-location'),
             'multivendor_right_white_logo' => $MVX->plugin_url.'assets/images/vertical-logo-white.png', 
             'knowledgebase' => 'https://multivendorx.com/knowledgebase/',
