@@ -5877,7 +5877,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'dependvalue'       =>  'fixed_with_percentage',
                     'label'     => __( 'Gateway Value', 'multivendorx' ),
                     'desc' => __('The commission amount added here will be applicable for all commissions. In case the your commission type is fixed the', 'multivendorx'),
-                    'options' => end($gateway_charge_fixed_percent_value),
+                    'options' => !empty($gateway_charge_fixed_percent_value) ? end($gateway_charge_fixed_percent_value) : array(),
                     'database_value' => '',
                 ],
             ],
