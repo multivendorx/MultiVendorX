@@ -12,7 +12,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 ## MultiVendorX - brings you, your easiest and one stop solution to build a perfect online marketplace website.
 
 == Description ==
-Afraid of launching an **Online Marketplace**? Well, worry no more MultiVendorX provides you with the best **marketplace software**, you can get, to kickstart your own **virtual eCommerce marketplace**. This free WordPress plugin equips you with the best of features that help to create any marketplace of your choice. So, **create a website like Amazon, Etsy or Airbnb**  without any worries. 
 
 MultiVendorX - Best multivendor marketplace plugin based on WooCommerce powered by WordPress. Build your multi vendor marketplace with MultiVendorX. Use the best **marketplace software** to create your dream marketplace. Whether it's a virtual eCommerce or a booking or a Rental marketplace, MultiVendorX is your best option!! This free WordPress plugin equips you with the best features to create any marketplace. So, **create a website like Amazon, Etsy, or Airbnb** without dropping a sweat.
 
