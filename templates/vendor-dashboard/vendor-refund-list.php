@@ -33,8 +33,8 @@ $refund_list_table_headers = apply_filters('mvx_datatable_refund_list_table_head
                     <?php 
                         if($refund_list_table_headers) :
                             foreach ($refund_list_table_headers as $key => $header) { ?>
-								<th class="<?php if(isset($header['class'])) echo $header['class']; ?>"><?php if(isset($header['label'])) echo $header['label']; ?></th>         
-		                   <?php }    
+                                <th class="<?php if(isset($header['class'])) echo $header['class']; ?>"><?php if(isset($header['label'])) echo $header['label']; ?></th>         
+                            <?php }    
 		                endif;
                     ?>
                     </tr>
