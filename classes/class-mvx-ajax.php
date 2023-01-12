@@ -129,6 +129,9 @@ class MVX_Ajax {
         // Follow ajax
         add_action('wp_ajax_mvx_follow_store_toggle_status', array($this, 'mvx_follow_store_toggle_status'));
         add_action('wp_ajax_mvx_vendor_zone_shipping_order', array($this, 'mvx_vendor_zone_shipping_order'));
+
+        //refund table
+        add_action('wp_ajax_mvx_datatable_get_vendor_refund', array($this,'mvx_datatable_get_vendor_refund'));
     }
 
     /**
@@ -3726,5 +3729,81 @@ class MVX_Ajax {
         if (!empty($array_items)) {
             update_user_meta(get_current_vendor_id(), 'mvx_vendor_shipping_zone_order', array_filter(wc_clean($array_items)));
         }
+    }
+
+    public function mvx_datatable_get_vendor_refund() {
+        global $wpdb, $MVX;
+        check_ajax_referer('mvx-dashboard', 'security');
+        $vendor = get_current_vendor();
+        $requestData = ( $_REQUEST ) ? wp_unslash( $_REQUEST ) : array();
+        $notices = array();
+        $vendor = get_current_vendor();
+        
+        $args = array(
+            'author' => $vendor->id,
+            'post_status' => 'any',
+            'meta_query' => array(
+                    array(
+                        'key' => '_customer_refund_order',
+                        'value' => array('refund_request', 'refund_accept', 'refund_reject'),
+                        'compare' => '='
+                    )
+                )
+        );
+        $vendor_all_orders = apply_filters('mvx_datatable_refund_vendor_all_orders', mvx_get_orders($args, 'object'), $requestData, $_POST);
+        $vendor_orders = array_slice($vendor_all_orders, $requestData['start'], $requestData['length']);
+        $data = array();
+        foreach ($vendor_orders as $order) {
+            $actions_col = array(
+                'pending' => '<a href="' . esc_url(wp_nonce_url(add_query_arg(array('order_id' => $order->get_id()), mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_refund_req_endpoint', 'seller_dashbaord', 'refund-request'))), 'mvx_pending_refund'))   . '" title="' . __('Pending Refund', 'multivendorx') . '"><i class="mvx-font ico-expire-icon"></i></a>',                    
+                'accept' => '<a href="' . esc_url(wp_nonce_url(add_query_arg(array('order_id' => $order->get_id()), mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_refund_req_endpoint', 'seller_dashbaord', 'refund-request'))), 'mvx_accept_refund'))   . '" title="' . __('Accept Refund', 'multivendorx') . '"><i class="mvx-font ico-approve-icon"></i></a>',
+                'reject' => '<a href="' . esc_url(wp_nonce_url(add_query_arg(array('order_id' => $order->get_id()), mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_refund_req_endpoint', 'seller_dashbaord', 'refund-request'))), 'mvx_reject_refund'))  . '" title="' . __('Reject Refund', 'multivendorx') . '"><i class="mvx-font ico-reject-icon"></i></a>',
+
+            );
+            
+            $refund_status = '';
+            $refund_status_raw = $order->get_meta('_customer_refund_order');
+            switch ($refund_status_raw) {
+                case 'refund_request':
+                    $refund_status = __('Refund Pending','multivendorx');
+                    unset($actions_col['pending']);
+                    break;
+                case 'refund_accept':
+                    $refund_status = __('Refund Accepted','multivendorx');
+                    unset($actions_col['accept']);
+                    break;
+                case 'refund_reject':
+                    $refund_status = __('Refund Rejected','multivendorx');
+                    unset($actions_col['reject']);
+                    break;
+                default:
+                    $refund_status = __('-','multivendorx');
+                    break;
+            }
+            
+            $row_actions_col = array();
+            foreach ($actions_col as $action => $link) {
+                $row_actions_col[] = '<span class="' . esc_attr($action) . '">' . $link . '</span>';
+            }
+            $actions_col_html = '<div class="col-actions">' . implode(' <span class="divider">|</span> ', $row_actions_col) . '</div>';
+
+            $data[] = apply_filters('mvx_datatable_refund_list_row', array(
+                'order_id'       => '<a href="' . esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_orders_endpoint', 'seller_dashbaord', 'vendor-orders'), $order->get_id())) . '">#' . $order->get_id() . '</a>' ,
+                'order_status'   => esc_html(wc_get_order_status_name($order->get_status())),
+                'refund_status'  => $refund_status,
+                'refund_reason'  => esc_html($order->get_meta('_customer_refund_reason')),
+                'payment_gateway'=> $order->get_payment_method_title(),
+                'action'         => $actions_col_html
+                ), $order); 
+        }
+        
+        $json_data = array(
+            "draw" => intval($requestData['draw']), // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw. 
+            "recordsTotal" => intval(count($vendor_all_orders)), // total number of records
+            "recordsFiltered" => intval(count($vendor_all_orders)), // total number of records after searching, if there is no searching then totalFiltered = totalData
+            "data" => $data,   // total data array
+            "notices" => $notices,  // set messages or notices
+        );
+        wp_send_json($json_data);
     }
 }
