@@ -7460,7 +7460,7 @@ if (!function_exists('mvx_list_all_modules')) {
                             array(
                                 'plugin_name'   => __('MVX Razorpay Split Payment', 'multivendorx'),
                                 'plugin_link'   => 'https://wordpress.org/plugins/mvx-razorpay-split-payment/',
-                                'is_active' => is_plugin_active('mvx-razorpay-split-payment/mvx-razorpay-checkout-gateway.php') ? true :false,
+                                'is_active' => is_plugin_active('wcmp-razorpay-split-payment/mvx-razorpay-checkout-gateway.php') ? true :false,
                             )
                         ),
                         'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/razorpay',
