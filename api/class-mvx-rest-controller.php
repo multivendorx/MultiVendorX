@@ -1675,7 +1675,7 @@ class MVX_REST_API {
     public function mvx_get_as_per_module_status($request) {
         $module_status = $request && $request->get_param('module_status') ? $request->get_param('module_status') : '';
         $module_count = $request && $request->get_param('count') ? $request->get_param('count') : '';
-        $active_modules = get_option('mvx_all_active_module_list', true) ? get_option('mvx_all_active_module_list', true) : array();
+        $active_modules = mvx_get_option('mvx_all_active_module_list', true) ? mvx_get_option('mvx_all_active_module_list', true) : array();
 
         $all_module_lists = mvx_list_all_modules();
         if ($module_status == 'all') return rest_ensure_response(array_values($all_module_lists));
@@ -1840,7 +1840,7 @@ class MVX_REST_API {
             require_once ABSPATH . 'wp-admin/includes/class-wp-debug-data.php';
         }
 
-        $is_module_active = get_option('mvx_all_active_module_list', true);
+        $is_module_active = mvx_get_option('mvx_all_active_module_list', true);
         $list_modules = [];
         if ($is_module_active) {
             foreach ($is_module_active as $key => $value) {
@@ -5719,7 +5719,7 @@ class MVX_REST_API {
     public function save_checkbox_module($request) {
         $module_id = $request['module_id'];
         $is_checked = $request['is_checked'];
-        $active_module_list = get_option('mvx_all_active_module_list') ? get_option('mvx_all_active_module_list') : array();
+        $active_module_list = mvx_get_option('mvx_all_active_module_list') ? mvx_get_option('mvx_all_active_module_list') : array();
         if ($module_id && !in_array($module_id, $active_module_list) && $is_checked) {
             array_push($active_module_list, $module_id);
         } elseif ($module_id && in_array($module_id, $active_module_list) && !$is_checked) {

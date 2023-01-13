@@ -7939,7 +7939,7 @@ if (!function_exists('mvx_list_all_modules')) {
 
 if (!function_exists('is_current_module_active')) {
     function is_current_module_active($module_name) {
-        $is_module_active = get_option('mvx_all_active_module_list', true);
+        $is_module_active = mvx_get_option('mvx_all_active_module_list', true);
         $is_active = $is_module_active && is_array($is_module_active) && in_array($module_name, $is_module_active) ? true : false;
         return $is_active;
     }
