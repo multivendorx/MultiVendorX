@@ -83,6 +83,8 @@ if (is_user_logged_in() && is_user_mvx_vendor($current_vendor_id) && !current_us
                             <input type="text" placeholder="<?php esc_attr_e('Product name, UPC, ISBN ...', 'multivendorx'); ?>" class="form-control inline-input search-product-name-gtin-keyword" required>
                             <button type="button" class="btn btn-default search-product-name-gtin-btn"><?php echo strtoupper(__('Search', 'multivendorx')); ?></button> 
                         </form>
+                        <br>
+                        <button class="btn btn-default view-all-products-btn"><?php echo strtoupper(__('View All Products', 'multivendorx')); ?></button>
                         <?php 
 
                          if (get_option('permalink_structure')) {
