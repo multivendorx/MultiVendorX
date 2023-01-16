@@ -5012,6 +5012,14 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'database_value' => '',
                 ],
                 [
+                    'key'       => 'mvx_refund_req_endpoint',
+                    'type'      => 'text',
+                    'label'     => __('Refund Endpoint', 'multivendorx'),
+                    'desc'      => __('Set endpoint for refund page', 'multivendorx'),
+                    'placeholder'   => __('refund-request', 'multivendorx'),
+                    'database_value' => '',
+                ],
+                [
                     'key'       => 'separator_content',
                     'type'      => 'section',
                     'label'     => "",
@@ -5767,20 +5775,6 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'label'     => "",
                 ],
                 [
-                    'key'       => 'commission_calculation_on_tax',
-                    'label'     => __( 'Commission Calculation On Tax', 'multivendorx' ),
-                    'class'     => 'mvx-toggle-checkbox',
-                    'type'      => 'checkbox',
-                    'options' => array(
-                        array(
-                            'key'=> "commission_calculation_on_tax",
-                            'label'=> __('', 'multivendorx'),
-                            'value'=> "commission_calculation_on_tax"
-                        )
-                    ),
-                    'database_value' => array(),
-                ],
-                [
                     'key'       => 'payment_gateway_charge',
                     'label'     => __( 'Payment Gateway Charge', 'multivendorx' ),
                     'desc'  =>  __( "Add the payment gateway charges incurred while paying online.", 'multivendorx' ),
@@ -6081,6 +6075,20 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                             'key'=> "admin_coupon_excluded",
                             'label'=> __('Bear the coupon discount charges of the coupons created by you', 'multivendorx'),
                             'value'=> "admin_coupon_excluded"
+                        )
+                    ),
+                    'database_value' => array(),
+                ],
+                [
+                    'key'       => 'commission_calculation_on_tax',
+                    'label'     => __( 'Commission Calculation On Tax', 'multivendorx' ),
+                    'class'     => 'mvx-toggle-checkbox',
+                    'type'      => 'checkbox',
+                    'options' => array(
+                        array(
+                            'key'=> "commission_calculation_on_tax",
+                            'label'=> __('', 'multivendorx'),
+                            'value'=> "commission_calculation_on_tax"
                         )
                     ),
                     'database_value' => array(),

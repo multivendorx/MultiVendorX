@@ -33,12 +33,14 @@ class MVX_Vendor_Hooks {
         add_action( 'mvx_vendor_dashboard_vendor-knowledgebase_endpoint', array( &$this, 'mvx_vendor_dashboard_vendor_knowledgebase_endpoint' ) );
         add_action( 'mvx_vendor_dashboard_vendor-tools_endpoint', array( &$this, 'mvx_vendor_dashboard_vendor_tools_endpoint' ) );
         add_action( 'mvx_vendor_dashboard_products-qna_endpoint', array( &$this, 'mvx_vendor_dashboard_products_qna_endpoint' ) );
+        add_action( 'mvx_vendor_dashboard_refund-request_endpoint', array( &$this, 'mvx_vendor_dashboard_refund_request_endpoint' ) );
 
         add_filter( 'the_title', array( &$this, 'mvx_vendor_dashboard_endpoint_title' ) );
         add_filter( 'mvx_vendor_dashboard_menu_vendor_policies_capability', array( &$this, 'mvx_vendor_dashboard_menu_vendor_policies_capability' ) );
         add_filter( 'mvx_vendor_dashboard_menu_vendor_withdrawal_capability', array( &$this, 'mvx_vendor_dashboard_menu_vendor_withdrawal_capability' ) );
         add_filter( 'mvx_vendor_dashboard_menu_vendor_shipping_capability', array( &$this, 'mvx_vendor_dashboard_menu_vendor_shipping_capability' ) );
         add_filter('mvx_vendor_dashboard_menu_vendor_knowledgebase_capability', array( &$this, 'mvx_vendor_dashboard_menu_vendor_knowledgebase_capability' ) );
+        add_filter('mvx_vendor_dashboard_menu_refund_request_capability', array( &$this, 'mvx_vendor_dashboard_menu_refund_request_capability' ) );
         add_action( 'mvx_before_vendor_dashboard_content', array( &$this, 'mvx_before_vendor_dashboard_content' ) );
         add_action( 'wp', array( &$this, 'mvx_add_theme_support' ), 15 );
         
@@ -225,7 +227,15 @@ class MVX_Vendor_Hooks {
                         , 'position'    => 20
                         , 'link_target' => '_self'
                         , 'nav_icon'    => 'mvx-font ico-history-icon'
-                    )
+                    ),
+                    'refund-request' => array(
+                        'label'       => __( 'Refund', 'multivendorx' )
+                        , 'url'         =>  mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings('mvx_refund_req_endpoint', 'seller_dashbaord', 'refund-request') )
+                        , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_refund_request_capability', true )
+                        , 'position'    => 30
+                        , 'link_target' => '_self'
+                        , 'nav_icon'    => 'mvx-font ico-reply-icon'
+                    ),
                 )
                 , 'link_target' => '_self'
                 , 'nav_icon'    => 'mvx-font ico-payments-icon'
@@ -795,6 +805,21 @@ class MVX_Vendor_Hooks {
         }
     }
 
+    /**
+     * Display Vendor refund content
+     * @global object $MVX
+     */
+    public function mvx_vendor_dashboard_refund_request_endpoint() {
+        global $MVX;
+        if(mvx_is_module_active('marketplace-refund')) {
+            if ( is_user_logged_in() && is_user_mvx_vendor(get_current_user_id() ) ) {
+                $vendor = get_mvx_vendor( get_current_vendor_id() );
+                $MVX->library->load_dataTable_lib();
+                $MVX->template->get_template( 'vendor-dashboard/vendor-refund-list.php', array( 'vendor' => $vendor ) ); 
+            }
+        }
+    }
+
     public function save_vendor_dashboard_data() {
         global $MVX;
         $vendor = get_mvx_vendor( get_current_vendor_id() );
@@ -883,6 +908,10 @@ class MVX_Vendor_Hooks {
 
     public function mvx_vendor_dashboard_menu_vendor_knowledgebase_capability( $cap ) {
         return mvx_is_module_active('knowladgebase');
+    }
+
+    public function mvx_vendor_dashboard_menu_refund_request_capability( $cap ) {
+        return mvx_is_module_active('marketplace-refund');
     }
 
     /**
