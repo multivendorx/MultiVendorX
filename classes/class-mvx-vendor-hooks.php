@@ -813,9 +813,8 @@ class MVX_Vendor_Hooks {
         global $MVX;
         if (mvx_is_module_active('marketplace-refund')) {
             if ( is_user_logged_in() && is_user_mvx_vendor(get_current_user_id() ) ) {
-                $vendor = get_mvx_vendor( get_current_vendor_id() );
                 $MVX->library->load_dataTable_lib();
-                $MVX->template->get_template( 'vendor-dashboard/vendor-refund-list.php', array( 'vendor' => $vendor ) ); 
+                $MVX->template->get_template( 'vendor-dashboard/vendor-refund-list.php' );
             }
         }
     }

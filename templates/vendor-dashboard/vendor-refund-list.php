@@ -27,13 +27,13 @@ $refund_list_table_headers = apply_filters('mvx_datatable_refund_list_table_head
 <div class="col-md-12">
     <div class="panel panel-default">
         <div class="panel-body">
-            <table class="table table-striped table-bordered" id="mvx-vendor-refund" style="width:100%;">
+            <table class="table table-striped table-bordered" id="mvx-vendor-refund" width="100%">
                 <thead>
                     <tr>
                     <?php 
                         if ($refund_list_table_headers) :
                             foreach ($refund_list_table_headers as $header) { ?>
-                                <th class="<?php if(isset($header['class'])) echo $header['class']; ?>"><?php if(isset($header['label'])) echo $header['label']; ?></th>
+                                <th class="<?php if(isset($header['class'])) echo esc_attr($header['class']); ?>"><?php if(isset($header['label'])) echo esc_html ($header['label']); ?></th>
                             <?php }
                         endif;
                     ?>

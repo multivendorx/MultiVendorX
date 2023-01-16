@@ -3752,6 +3752,7 @@ class MVX_Ajax {
             $vendor_orders = array_slice($vendor_all_orders, $requestData['start'], $requestData['length']);
             if ($vendor_orders) {
                 foreach ($vendor_orders as $order) {
+                    $row_actions_col = array();
                     $actions_col = array(
                         'pending' => '<a href="' . esc_url(wp_nonce_url(add_query_arg(array('order_id' => $order->get_id()), mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_refund_req_endpoint', 'seller_dashbaord', 'refund-request'))), 'mvx_pending_refund'))   . '" title="' . __('Pending Refund', 'multivendorx') . '"><i class="mvx-font ico-expire-icon"></i></a>',                    
                         'accept' => '<a href="' . esc_url(wp_nonce_url(add_query_arg(array('order_id' => $order->get_id()), mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_refund_req_endpoint', 'seller_dashbaord', 'refund-request'))), 'mvx_accept_refund'))   . '" title="' . __('Accept Refund', 'multivendorx') . '"><i class="mvx-font ico-approve-icon"></i></a>',
@@ -3778,7 +3779,7 @@ class MVX_Ajax {
                             break;
                     }
 
-                    $row_actions_col = array();
+                    
                     if ($actions_col) {
                         foreach ($actions_col as $action => $link) {
                             $row_actions_col[] = '<span class="' . esc_attr($action) . '">' . $link . '</span>';
