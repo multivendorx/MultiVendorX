@@ -7617,6 +7617,12 @@ if (!function_exists('mvx_list_all_modules')) {
                         ),
                         'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/nusiness-hours',
                     ],
+                    [
+                        'id'           => 'mvx-blocks',
+                        'name'         => __( 'Gutenberg Blocks', 'multivendorx' ),
+                        'description'  => __( 'Allows customers to use Gutenberg Blocks', 'multivendorx' ),
+                        'plan'         => 'free',
+                    ],
                 ]
             ],
             [

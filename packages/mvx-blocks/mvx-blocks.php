@@ -1,17 +1,4 @@
 <?php
-/**
- * Plugin Name:       MVX Block
- * Description:       MVX Blocks.
- * Requires at least: 6.1
- * Requires PHP:      7.0
- * Version:           1.0.0
- * Author:            The WordPress Contributors
- * License:           GPL-2.0-or-later
- * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       mvx-block
- *
- * @package           create-block
- */
 
 /**
  * Registers the block using the metadata loaded from the `block.json` file.
@@ -102,13 +89,14 @@ class MVX_Block {
      * @return void
      */
     public function on_plugins_loaded() {
-        $this->includes();
-        
-        add_action( 'enqueue_block_editor_assets', array( __CLASS__, 'register_blocks_assets' ) );
-        add_action( 'enqueue_block_assets', array( __CLASS__, 'enqueue_frontend_assets' ) );
-        add_filter( 'block_categories_all', array( __CLASS__, 'register_block_categories_all' ) );
-        add_action( 'init', array( __CLASS__, 'register_blocks' ) );
-
+        if (mvx_is_module_active('mvx-blocks')) {
+            $this->includes();
+            
+            add_action( 'enqueue_block_editor_assets', array( __CLASS__, 'register_blocks_assets' ) );
+            add_action( 'enqueue_block_assets', array( __CLASS__, 'enqueue_frontend_assets' ) );
+            add_filter( 'block_categories_all', array( __CLASS__, 'register_block_categories_all' ) );
+            add_action( 'init', array( __CLASS__, 'register_blocks' ) );
+        }
     }
         
     /**
