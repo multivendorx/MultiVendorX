@@ -43,6 +43,7 @@ class MVX_Ajax {
             add_action('wp_ajax_nopriv_single_product_multiple_vendors_sorting', array($this, 'single_product_multiple_vendors_sorting'));
 
             add_action('wp_ajax_mvx_create_duplicate_product', array(&$this, 'mvx_create_duplicate_product'));
+            add_action('wp_ajax_mvx_show_all_products', array(&$this, 'mvx_show_all_products'));
         }
         if (mvx_is_module_active('spmv')) {
             // Product auto suggestion
@@ -3808,5 +3809,19 @@ class MVX_Ajax {
             "notices" => $notices,  // set messages or notices
         );
         wp_send_json($json_data);
+    }
+
+    public function mvx_show_all_products() {
+        global $MVX;
+        $vendor_id = get_current_vendor_id() ? absint(get_current_vendor_id()) : 0;
+        $default = array(
+            'posts_per_page'   => -1,
+            'post_type'        => 'product',
+            'post_status' => 'publish',
+            'author__not_in' => $vendor_id,
+        );
+        $query = new WP_Query( $default ); 
+        $MVX->template->get_template( 'show_products.php', array('query' => $query) );	
+        die;
     }
 }
