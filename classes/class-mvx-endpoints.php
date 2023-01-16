@@ -114,6 +114,10 @@ class MVX_Endpoints {
                 'label' => __('Resubmit Application', 'multivendorx'),
                 'endpoint' => 'rejected-vendor-reapply'
             )
+            , 'refund-request' => array(
+                'label' => __('Refund', 'multivendorx'),
+                'endpoint' => 'refund-request'
+            )
         ));
     }
 

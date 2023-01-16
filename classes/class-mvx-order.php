@@ -79,6 +79,8 @@ class MVX_Order {
             add_filter( "woocommerce_rest_shop_order_object_query", array($this, 'mvx_suborder_hide' ), 99 , 2 );
             // customer list report section
             add_filter( "woocommerce_customer_get_total_spent_query", array($this, 'woocommerce_customer_exclude_suborder_query' ), 10 , 2 );
+            //refund table action
+            $this->mvx_refund_table_action();
         }
     }
 
@@ -1553,13 +1555,14 @@ class MVX_Order {
         $refund_request_addi_info = isset( $_REQUEST['refund_request_addi_info'] ) ? wc_clean( wp_unslash($_REQUEST['refund_request_addi_info'])) : '';
         $refund_settings = get_option( 'mvx_refund_management_tab_settings', true );
         $refund_reason_options = ( isset( $refund_settings['refund_order_msg'] ) && $refund_settings['refund_order_msg'] ) ? explode( "||", $refund_settings['refund_order_msg'] ) : array();
-        $refund_reason = (( $reason_option == 'others' ) ? $refund_reason_other : isset( $refund_reason_options[$reason_option] )) ? $refund_reason_options[$reason_option] : ''; 
+        $refund_reason = ( $reason_option == 'others' ) ? $refund_reason_other : (isset( $refund_reason_options[$reason_option] ) ? $refund_reason_options[$reason_option] : ''); 
         $refund_details = array(
             'refund_reason' => $refund_reason,
             'addi_info' => $refund_request_addi_info,
         );
         // update customer refunt request 
-        update_post_meta( $order_id, '_customer_refund_order', 'refund_request' );
+        update_post_meta( $order_id, '_customer_refund_order', wc_clean( wp_unslash( 'refund_request' ) ) );
+        update_post_meta( $order_id, '_customer_refund_reason', wc_clean( wp_unslash( $refund_reason ) ) );
         $comment_id = $order->add_order_note( __('Customer requested a refund ', 'multivendorx') .$order_id.' .' );
         // user info
         $user_info = get_userdata(get_current_user_id());
@@ -1687,5 +1690,32 @@ class MVX_Order {
             $vendor_item_id = $wpdb->get_var( $wpdb->prepare( "SELECT meta_value FROM {$wpdb->order_itemmeta} WHERE meta_key=%s AND order_item_id=%d", '_vendor_order_shipping_item_id', absint( $item_id ) ) );
         }
         return $vendor_item_id;
+    }
+
+     public function mvx_refund_table_action() { 
+        $refund_url = mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_refund_req_endpoint', 'seller_dashbaord', 'refund-request'));
+        $refund_redirect_url = apply_filters('mvx_vendor_redirect_after_refund_action', $refund_url);
+        $wpnonce = isset( $_REQUEST['_wpnonce'] ) ? $_REQUEST['_wpnonce'] : '';
+        $order_id = isset( $_REQUEST['order_id'] ) ? (int) $_REQUEST['order_id'] : 0;
+        $order = wc_get_order($order_id);
+
+        if ($wpnonce && wp_verify_nonce($wpnonce, 'mvx_accept_refund') && $order) {
+            update_post_meta( $order_id, '_customer_refund_order', wc_clean( wp_unslash( 'refund_accept' ) ) );
+            wc_add_notice(__('Changed status to Refund Accepted', 'multivendorx'), 'success');
+            wp_redirect(esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_orders_endpoint', 'seller_dashbaord', 'vendor-orders'), $order_id)));
+            exit;
+        }
+        if ($wpnonce && wp_verify_nonce($wpnonce, 'mvx_reject_refund') && $order) {
+            update_post_meta( $order_id, '_customer_refund_order', wc_clean( wp_unslash( 'refund_reject' ) ) );
+            wc_add_notice(__('Changed status to Refund rejected', 'multivendorx'), 'error');
+            wp_redirect( $refund_redirect_url );
+            exit;
+        }
+        if ($wpnonce && wp_verify_nonce($wpnonce, 'mvx_pending_refund') && $order) {
+            update_post_meta( $order_id, '_customer_refund_order', wc_clean( wp_unslash( 'refund_request' ) ) );
+            wc_add_notice(__('Changed status to Refund Pending', 'multivendorx'), 'error');
+            wp_redirect( $refund_redirect_url );
+            exit;
+        }
     }
 }
