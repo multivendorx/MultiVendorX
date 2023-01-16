@@ -35,7 +35,7 @@ $refund_list_table_headers = apply_filters('mvx_datatable_refund_list_table_head
                             foreach ($refund_list_table_headers as $header) { ?>
                                 <th class="<?php if(isset($header['class'])) echo $header['class']; ?>"><?php if(isset($header['label'])) echo $header['label']; ?></th>
                             <?php }
-		                endif;
+                        endif;
                     ?>
                     </tr>
                 </thead>
@@ -50,13 +50,13 @@ $refund_list_table_headers = apply_filters('mvx_datatable_refund_list_table_head
     jQuery(document).ready(function ($) {
         var refund_table;
         var columns = [];
-        <?php if($refund_list_table_headers) {
-        foreach ($refund_list_table_headers as $key => $header) { ?>
-        obj = {};
-        obj['data'] = '<?php echo esc_js($key); ?>';
-        obj['className'] = '<?php if(isset($header['class'])) echo esc_js($header['class']); ?>';
-        columns.push(obj);
-        <?php }
+        <?php if ($refund_list_table_headers) {
+            foreach ($refund_list_table_headers as $key => $header) { ?>
+                obj = {};
+                obj['data'] = '<?php echo esc_js($key); ?>';
+                obj['className'] = '<?php if(isset($header['class'])) echo esc_js($header['class']); ?>';
+                columns.push(obj);
+            <?php }
         }
         ?>
         refund_table = $('#mvx-vendor-refund').DataTable({
