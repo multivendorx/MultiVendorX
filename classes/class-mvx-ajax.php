@@ -3731,14 +3731,15 @@ class MVX_Ajax {
     
     public function mvx_show_all_products() {
         global $MVX;
-        $user_id = get_current_user_id() ? absint(get_current_user_id()) : 0;
+        $vendor_id = get_current_vendor_id() ? absint(get_current_vendor_id()) : 0;
         $default = array(
             'posts_per_page'   => -1,
             'post_type'        => 'product',
             'post_status' => 'publish',
-            );
+            'author__not_in' => $vendor_id,
+        );
         $query = new WP_Query( $default ); 
-        $MVX->template->get_template( 'show_products.php', array('query' => $query, 'user_id' => $user_id) );	
+        $MVX->template->get_template( 'show_products.php', array('query' => $query) );	
         die;
     }
 }
