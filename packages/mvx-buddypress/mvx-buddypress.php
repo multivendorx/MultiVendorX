@@ -65,7 +65,7 @@ class MVX_BuddyPress {
 
 	        add_filter( 'bp_core_default_avatar', array( $this, 'set_avatar_default'  ) , 10 , 2 );
 			/*************************  Default Avatar cover image  ***********************************/
-	        add_filter( 'bp_before_xprofile_cover_image_settings_parse_args', array( $this, 'bpcp_profile_cover_default_from_vendor'), 10, 1 );
+	        add_filter( 'bp_before_members_cover_image_settings_parse_args', array( $this, 'bpcp_profile_cover_default_from_vendor'), 10, 1 );
 
 	        /***************** Update from vendor profile to buddypress profile ****************************/
 	        add_action( 'mvx_before_vendor_dashboard',array($this, 'save_vendor_dashboard_data_change') , 99 );
