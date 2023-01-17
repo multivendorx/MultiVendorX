@@ -275,17 +275,17 @@
             var data = {
                 action: 'mvx_show_all_products',
             };
-			$.ajax({
-				type:  'post',
-				url:    mvx_product_classify_script_data.ajax_url, 
-				data:   data,
-				success: function(response) {
-					$('#result-view-all-products-name').html(response);
-				},
+            $.ajax({
+                type:  'post',
+                url:    mvx_product_classify_script_data.ajax_url, 
+                data:   data,
+                success: function(response) {
+                    $('#result-view-all-products-name').html(response);
+                },
                 complete: function() {
                     scroll_to($( '#result-view-all-products-name' ));
                 }
-			});
+            });
         },
         create_product: function () {
             var product_id = $( this ).data( 'product_id' );
