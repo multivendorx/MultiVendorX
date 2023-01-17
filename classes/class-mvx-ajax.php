@@ -3821,7 +3821,7 @@ class MVX_Ajax {
             'author__not_in' => $vendor_id,
         );
         $query = new WP_Query( $default ); 
-        $MVX->template->get_template( 'show_products.php', array('query' => $query) );	
+        $MVX->template->get_template( 'vendor-dashboard/product-manager/show_products.php', array('query' => $query) );	
         die;
     }
 }
