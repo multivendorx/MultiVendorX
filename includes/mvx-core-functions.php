@@ -7620,7 +7620,7 @@ if (!function_exists('mvx_list_all_modules')) {
                     [
                         'id'           => 'mvx-blocks',
                         'name'         => __( 'Gutenberg Blocks', 'multivendorx' ),
-                        'description'  => __( 'Allows customers to use Gutenberg Blocks', 'multivendorx' ),
+                        'description'  => __( 'Lets you add widgets using Gutenberg block editor. Use the block to register our widget area on any page or post using the Gutenberg editor.', 'multivendorx' ),
                         'plan'         => 'free',
                     ],
                 ]

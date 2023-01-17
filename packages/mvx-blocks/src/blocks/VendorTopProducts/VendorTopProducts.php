@@ -312,8 +312,8 @@ class VendorTopProducts extends AbstractBlock {
 		}
 
 		return '<span class="wc-block-grid__product-onsale">
-			<span aria-hidden="true">' . esc_html__( 'Sale!', 'woocommerce' ) . '</span>
-			<span class="screen-reader-text">' . esc_html__( 'Product on sale', 'woocommerce' ) . '</span>
+			<span aria-hidden="true">' . esc_html__( 'Sale!', 'multivendorx' ) . '</span>
+			<span class="screen-reader-text">' . esc_html__( 'Product on sale', 'multivendorx' ) . '</span>
 		</span>';
 	}
 

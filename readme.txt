@@ -5,7 +5,7 @@ Donate link: https://multivendorx.com/donate
 Requires at least: 4.4
 Tested up to: 6.1.1
 Requires PHP: 5.6
-Stable tag: 4.0.6
+Stable tag: 4.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -289,6 +289,17 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.0.7 - 2023-01-17 =
+* Added     - Compatibility of WooCommerce 7.3.0.
+* Added     - Widget support with Gutenberg Blocks.
+* Enhancement   - SPMV flow enhancement.
+* Enhancement   - Refund tab for vendor.
+* Fix       - GTIN Fields Issue #285.
+* Fix       - Error on backend payment tab.
+* Fix       - Razorpay plugin inactive issue.
+* Fix       - Buddypress deprecated filter update.
+* Updated   - Language file.
 
 = 4.0.6 - 2023-01-03 =
 * Added     - Compatibility of WooCommerce 7.2.2.
