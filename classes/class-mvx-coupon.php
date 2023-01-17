@@ -19,6 +19,14 @@ class MVX_Coupon {
 		// Validate vendor coupon in cart and checkout
 		add_filter( 'woocommerce_coupon_is_valid', array(&$this, 'woocommerce_coupon_is_valid' ), 30, 2);
 		add_filter( 'woocommerce_coupon_is_valid_for_product', array(&$this, 'woocommerce_coupon_is_valid_for_product' ), 30, 4);
+
+		//add vendor tab in coupons section backend
+		add_filter('woocommerce_coupon_data_tabs', array(&$this, 'add_vendor_tab_backend'));
+		//show content in vendor tab
+		add_action('woocommerce_coupon_data_panels', array(&$this, 'add_content_in_vendor_tab'));
+		//save data in database
+		add_action('woocommerce_coupon_options_save', array(&$this, 'save_data_from_vendor_tab'), 10, 2);
+
         // coupon delete action
         $this->mvx_delete_coupon_action();
 	}
@@ -172,6 +180,45 @@ class MVX_Coupon {
                 }
             }
         }
-	
+
+	function add_vendor_tab_backend( $coupon_data_tabs ){
+		$coupon_data_tabs['vendor'] = array(
+			'label'  => __( 'Vendor', 'woocommerce' ),
+			'target' => 'vendor_coupon_data',
+			'class'  => 'vendor_coupon_data',
+		);	
+		return $coupon_data_tabs; 
+	}
+
+	function add_content_in_vendor_tab(){
+		$html = '';
+		$option = '<option></option>';
+		$vendors = get_mvx_vendors();
+		if ( !empty($vendors) ) {
+			foreach($vendors as $vendor) {
+				$option .= '<option value="' . esc_attr($vendor->id). '"' . selected(esc_attr( $vendor->id )) . '>' . esc_html( $vendor->page_title ) . '</option>';
+			}
+		}
+		$html .= '<div class="options_group"> <table class="form-field form-table">';
+		$html .= '<tbody>';
+		$html .= '<tr valign="top"><td scope="row"><label id="vendor-label" style="margin:0px;">' . __("Vendor", 'multivendorx') . '</label></td><td>';
+		$html .= '<select name="' . esc_attr('select_vendor') . '" data-placeholder="'. esc_attr("Choose vendor", "multivendorx").'" style="width:300px;">' . $option . '</select>';
+		$html .= '</td></tr>';
+		$html = apply_filters('mvx_additional_fields_coupon_vendor_tab', $html);
+		$html .= '</tbody>';
+		$html .= '</table>';
+		$html .= '</div>';
+
+		echo '<div id="vendor_coupon_data" class="panel woocommerce_options_panel">';
+		echo $html;
+		echo '</div>';
+	}
+
+	function save_data_from_vendor_tab( $post_id, $coupon ){
+		$select_vendor = isset( $_POST['select_vendor'] ) ? wc_clean( wp_unslash($_POST['select_vendor'])) : '';
+		if ( !empty($select_vendor) ) {
+			wp_update_post(array('ID' => $post_id, 'post_author' => $select_vendor));
+		}
+	}
 }
 ?>
