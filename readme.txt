@@ -13,7 +13,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-MultiVendorX - Best multivendor marketplace plugin based on WooCommerce powered by WordPress. Build your multi vendor marketplace with MultiVendorX. Use the best **marketplace software** to create your dream marketplace. Whether it's a virtual eCommerce or a booking or a Rental marketplace, MultiVendorX is your best option!! This free WordPress plugin equips you with the best features to create any marketplace. So, **create a website like Amazon, Etsy, or Airbnb** without dropping a sweat.
+= BEST MULTIVENDOR MARKETPLACE PLUGIN - MULTIVENDORX - BASED ON WOOCOMMERCE POWERED BY WORDPRESS =
+
+Build a **WooCommerce multivendor marketplace** that is compatible with most **WooCommerce** payment gateways. Use the **best WooCommerce marketplace software** to create your dream marketplace. Whether it's a virtual eCommerce or a booking or a Rental marketplace, MultiVendorX is your best option!! This free WordPress plugin equips you with the best features to create any marketplace. So, **create a website like Amazon, Etsy, or Airbnb** without dropping a sweat.
 
 [Try Our Demo](https://multivendordemo.com/) | [Support](https://multivendorx.com/support-forum/) | [Features](https://multivendorx.com/features/) | [Pro](https://multivendorx.com/pricing/) | [Videos](https://www.youtube.com/@MultiVendorX/videos)
 
@@ -23,17 +25,17 @@ MultiVendorX - Best multivendor marketplace plugin based on WooCommerce powered 
 * A fabulous **Support Team**
 
 ### Marketplaces You Can Set Up with MultiVendorX *:
-* **Local Online Marketplace like ebay, Rakuten, AliExpress**
+* **[Niche Marketplace](https://multivendorx.com/booking-marketplace/) like Myntra, Nykaa**
+* **[Booking marketplace](https://multivendorx.com/booking-marketplace/)  like Oyo, Airbnb, MakeMyTrip**
+* **[Rental Marketplace](https://multivendorx.com/rental-marketplace/) like Craigslist, Yo!Rent**
+* **[Subscription Marketplace](https://multivendorx.com/subscription-marketplace/) like Cratejoy, OwlCrate**
+* **[Auction Marketplace](https://multivendorx.com/auction-marketplace/) like ebay and Etsy**
 * **Retail Marketplace like Amazon, Flipkart**
-* **[Niche Marketplace like Myntra, Nykaa](https://multivendorx.com/woocommerce-request-a-quote-product-catalog/?loggedout=true)**
-* **[Booking marketplace like Oyo, Airbnb, MakeMyTrip](https://multivendorx.com/booking-marketplace/)**
-* **[Rental Marketplace like Craigslist, Yo!Rent](https://multivendorx.com/rental-marketplace/)**
-* **[Subscription Marketplace like Cratejoy, OwlCrate](https://multivendorx.com/subscription-marketplace/)**
-* **[Auction Marketplace like ebay and Etsy](https://multivendorx.com/rental-marketplace/)**
+* **Local Online Marketplace like ebay, Rakuten, AliExpress**
 
 ### Why choose the MultiVendorX software solution?
 
-##### ✓ **Free Tools for Marketplace Beginners** - MultiVendorX presents you with a range of tools that can help you operate any kind of marketplace be it an all-in-one **Marketplace like Amazon,** or a niche marketplace like **Etsy.**
+##### ✓ **Free Tools for Marketplace Beginners** - MultiVendorX presents you with a range of WooCommerce marketplace friendly tools that can help you operate any kind of marketplace, be it an all-in-one **marketplace like Amazon** or a niche marketplace like **Etsy**.
 
 ##### ✓  **Easy Startup Guide** -  MultiVendorX plugin provides you with an **[Easy Setup Wizard](https://multivendorx.com/knowledgebase/admin-multi-step-setup-wizard/)**, which will help you get started in no time 
 
@@ -41,9 +43,9 @@ MultiVendorX - Best multivendor marketplace plugin based on WooCommerce powered 
 
 ##### ✓ **Personalised Dashboard** - With MVX you get an uncomplicated [**user friendly dashboard**](https://multivendorx.com/docs/knowladgebase/seller-dashboard-widget/) that can help your vendors manage and track all their tasks. Whatever you want to track and manage you can convert this dashboard into a **sales dashboard, report dashboard or a management dashboard**.
 
-##### ✓ **[Adjustable Commission plans](https://multivendorx.com/knowledgebase/setting-up-commission-and-other-payments-for-mvx/)** - Add more to your revenue, by adopting the flexible commission plans only MVX can provide. The [commission structure](https://multivendorx.com/docs/knowladgebase/types-of-commission/) set by us is created in such a way that you can add various **commission rates**, charge [any commission fee](https://multivendorx.com/docs/knowladgebase/disbursement-of-payments/) and calculate commissions based on multiple commission types. 
+##### ✓ **[Adjustable Commission plans](https://multivendorx.com/knowledgebase/setting-up-commission-and-other-payments-for-mvx/)** - Add more to your revenue, by adopting the flexible commission plans only MVX can provide. The [commission structure](https://multivendorx.com/docs/knowladgebase/types-of-commission/) set by us is created in such a way that you can add various **commission rates**, charge [any commission fee](https://multivendorx.com/docs/knowladgebase/disbursement-of-payments/) and calculate commissions based on multiple commission types. This woocommerce marketplace plugin is packed with features that lead to a stress-free commission management. 
 
-##### ✓ **[Marketplace for everything](https://multivendorx.com/knowledgebase/mvx-frontend-manager/)** - With more than a few products options to choose from MVX lets you create a marketplace for **any type of product** you desire. So whether it is **Digital or downloadable products** like **e-books** and **movies** you can create a site like **Sellfy** or **E-Junkie.** Or even marketplaces like **Oyo**, **Craigslist, ShareAsale and Cratejoy** can easily be created with a few clicks.
+##### ✓ **[Marketplace for everything](https://multivendorx.com/docs/knowladgebase/simple-product/)** - With more than a few products options to choose from MVX lets you create a marketplace for **any type of product** you desire. So whether it is **Digital or downloadable products** like **e-books** and **movies** you can create a site like **Sellfy** or **E-Junkie.** Or even marketplaces like **Oyo**, **Craigslist, ShareAsale and Cratejoy** can easily be created with a few clicks.
 
 ##### ✓ **Trustworthy [Vendor/ Seller ](https://multivendorx.com/docs/knowladgebase/vendors-management/)Manager -** In a **multi-vendor** site keeping track of your vendors is very important. With MVX this job becomes easier as we provide you with a **vendor list** that provides you with the names and information of any vendor irrespective of their **application status**. Furthermore, you can refine your list of vendors by using various **filters based on a vendor's location, Application status or name**.  Along with this, you have access to a customisable **vendor database** that allows you to monitor and manage a vendor’s personal store from your own dashboard.  
 
@@ -59,11 +61,11 @@ MultiVendorX - Best multivendor marketplace plugin based on WooCommerce powered 
 
 ##### ✓ **Multiple Payment Methods** - MultiVendorX offers an impressive range of payment options like **PayPal, MassPay, Direct Bank Transfer and Stripe.** Along with this MVX can integrate any compatible **WooCommerce payment gateway** option of your choice. With all the **eCommerce payment gateways** offered by MVX, the **payment process** becomes seamless. [To learn more about MVX Payments follow this document.](https://multivendorx.com/knowledgebase/payment/)
 
-##### ✓ [**Flexible Shipping** ](https://multivendorx.com/docs/knowladgebase/shipping/)- Make managing shipping more effective and efficient with the MultiVendorX plugin as we provide you with the option of **Vendor Shipping**. This option allows vendors to charge various **shipping rates** on the basis of weight, country or product category. Along with this vendors can also avail the **shipping tracking** option that lets them know the status of their delivery.
+##### ✓ [**Flexible Shipping** ](https://multivendorx.com/docs/knowladgebase/shipping/)- Make managing shipping more effective and efficient with the MultiVendorX plugin, as we provide you with the option of **vendor shipping**. **This woocommerce marketplace plugin lets** Vendors can charge various **shipping rates based** on weight, country, or product category. Vendors also get the **shipping tracking** option, to track the status of a delivery.
 
-##### ✓ **Trustworthy Customers Support** - MVX knows how much you treasure your customers which is why we offer your customer support tools like **[Vendor Reviews](https://multivendorx.com/knowledgebase/mvx-vendor-dashboard-widgets/#nav-8)**, [Product Question and Answers](https://multivendorx.com/knowledgebase/mvx-vendor-dashboard-widgets/#nav-9), **[Customer Support](https://multivendorx.com/knowledgebase/mvx-setup-guide/)** that will help you support your customers and create trust in them.
+##### ✓ **Trustworthy Customers Support** - MultiVendorX  knows how much you treasure your customers which is why we offer your customer support tools like **[Vendor Reviews](https://multivendorx.com/knowledgebase/mvx-vendor-dashboard-widgets/#nav-8)**, [Product Question and Answers](https://multivendorx.com/knowledgebase/mvx-vendor-dashboard-widgets/#nav-9), **[Customer Support](https://multivendorx.com/knowledgebase/mvx-setup-guide/)** that will help you support your customers and create trust in them.
 
-##### ✓ **Social Marketplace -** MVX also provides support to help you create a marketplace like **Facebook marketplace**. Now you can utilise the power of social media to not only communicate but also sell products. As MultiVendorX is **[BBPress or BuddyPress Compatible](https://multivendorx.com/docs/knowladgebase/mvx-buddypress/),** you will not only be able to track consumers and customers on your site but also your vendors and their associates**.** 
+##### ✓ **Social Marketplace -** MultiVendorX  also provides support to help you create a marketplace like **Facebook marketplace**. Now you can utilise the power of social media to not only communicate but also sell products. As MultiVendorX is **[BBPress or BuddyPress Compatible](https://multivendorx.com/docs/knowladgebase/mvx-buddypress/),** you will not only be able to connect with consumers and customers on your site but also your vendors and their associates**.** **Didn’t realize how flexible this woocommerce marketplace plugin could be? So did we!**
 
 ##### ✓ [**Easy Migration Support**](https://multivendorx.com/docs/knowladgebase/migration/) - MVX encourages its customers to sample everything before they invest into our plugin for a long term. Which is why users who wish to switch from **Dokan, WCFM or WC Vendors** can now happily convert into a MVXian, without the fear of losing precious data. The easy migration tool will allow its users to transfer data gathered from using Dokan or any other WooCommerce compatible marketplace plugin to MVX without breaking a sweat. 
 
@@ -84,7 +86,7 @@ Competition requires having the right toolkit. To keep you ahead of your competi
 
 ##### ✓ [**Customizable Membership Plan**](https://multivendorx.com/docs/knowladgebase/marketplace-memberhsip/) - **Membership model** businesses have flourished quite well. You can now create membership packages like **Free membership**, **trial membership** or **paid membership** package using our MVX Vendor membership. Here you can decide the **membership fee, adjust price rates** and create **membership benefits** and plans to your desire. 
 
-##### ✓ [**Advanced Product Catalogue**](https://multivendorx.com/woocommerce-request-a-quote-product-catalog/) - With [WooCommerce Quote & Product Catalog Enquiry](https://multivendorx.com/woocommerce-request-a-quote-product-catalog/), you can create a catalog that allows customers to view your products. But what makes this added feature even more unique is the **inquiry cart** option, which lets customers [inquire about multiple products](https://multivendorx.com/woocommerce-request-a-quote-product-catalog/) all at the same time. To make this feature sound more useful, you can create a **catalog list** showcasing all your products along with the add-to-cart option.
+##### ✓ [**Advanced Product Catalogue**](https://multivendorx.com/woocommerce-request-a-quote-product-catalog/) - With [WooCommerce Quote & Product Catalog Enquiry](https://multivendorx.com/woocommerce-request-a-quote-product-catalog/), you can create a catalog that allows customers to view your products. But what makes this added feature even more unique is the **inquiry cart** option, which lets customers [inquire about multiple products](https://multivendorx.com/woocommerce-request-a-quote-product-catalog/) all at the same time. To make this feature sound more useful, you can create a **catalog list** showcasing all your products along with the add-to-cart option. There is also an enquire now button that allows customers to enquire immediately.
 
 ##### ✓ **Advanced Analytics-** Allow your vendors to grow further with advanced features like [Store SEO](https://multivendorx.com/docs/knowladgebase/store-seo/) that gives them the power of **Google Analytics** for actionable and accurate data. Along with this, our plugin is compatible with some of the **best SEO plugins** like **Yoast** and **Rank Math**, which is assured to increase your SERP Ranking. 
 
@@ -235,7 +237,7 @@ To know more on what we learnt from our customer [***read this blog*** ](https:/
 Confused about **how to get started**? Read our Blogs on**e-commerce best practices**, **Multivendor Shops, how to increase your website traffic** and many more. These blogs are powerful, inspirational and detailed enough to educate on anything marketplace. 
 
 ### Stay Connected
-Stay connected with MVX and reap benefits like - 
+Stay connected with MultiVendorX and reap benefits like - 
 
 **[Quick Setup QuickStart ](https://multivendorx.com/knowledgebase/admin-multi-step-setup-wizard/)** - Setting up a Marketplace has now become more comfortable with our easy to follow Setup Wizard. 
 
@@ -245,9 +247,9 @@ Stay connected with MVX and reap benefits like -
 
 **[We Keep Our Ears Open](https://multivendorx.com/custom-development/)** - MultiVendorX is open to new ideas and suggestions as we look forward to the little tit-bits provided by you.
 
-**[Fixing Common Errors](http://github.com/wcmarketplace/dc-woocommerce-multi-vendor)** - With MVX, you can expect to see constant improvement as we try to fix our mistakes as soon as it occurs. 
+**[Fixing Common Errors](https://github.com/multivendorx/MultiVendorX)** - With MultiVendorX, you can expect to see constant improvement as we try to fix our mistakes as soon as it occurs. 
 
-**[Frequently Asked Questions](https://multivendorx.com/faq/)** - MVX team is happy to answer any queries you have so expect to receive answers for most of your queries here.
+**[Frequently Asked Questions](https://multivendorx.com/faq/)** - MultiVendorX team is happy to answer any queries you have so expect to receive answers for most of your queries here.
 
 == Installation ==
 NOTE: MultiVendorX plugin is an extension of WooCommerce, so the WooCommerce plugin must be installed and activated in your WordPress site for this plugin to work properly.
@@ -262,15 +264,15 @@ Plugins > Add new > Upload plugin > Upload dc-woocommerce-multi-vendor.zip > Ins
 
 == Frequently Asked Questions ==
 = Does this plugin work with newest WP version and also older versions? =
-Ans. Yes, this plugin works fine with WordPress 4.9.6! It is also compatible for older WordPress versions upto 4.2.
+Ans. Yes, this plugin works fine with WordPress 6.1.1! It is also compatible for older WordPress versions upto 4.2.
 = Up to which version of WooCommerce this plugin compatible with? =
 Ans. This plugin is compatible with the latest version of WooCommerce.
 = Up to which version of PHP this plugin is compatible with? =
-Ans. This plugin is tested with PHP version 5.6.
+Ans. This plugin is tested with PHP version 8.0.7.
 = Where can I find the REST API documentation? =
-Ans. You can find the documentation of our REST API on the [MVX REST API Docs](https://wc-marketplace.github.io/rest-api-docs/).
+Ans. You can find the documentation of our REST API on the [MVX REST API Docs](https://multivendorx.github.io/#introduction).
 = MultiVendorX is awesome! Can I contribute? =
-Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/multivendorx/dc-woocommerce-multi-vendor/) :)
+Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/multivendorx/MultiVendorX) :)
 
 == Screenshots ==
 1. Vendor Dashboard.

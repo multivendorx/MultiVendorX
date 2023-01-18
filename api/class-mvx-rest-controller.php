@@ -2529,14 +2529,14 @@ class MVX_REST_API {
                 if ($dismiss) continue;
 
                 $currentvendor = get_mvx_vendor($get_pending_product->post_author);
-                $vendor_term = get_term($currentvendor->term_id);
+                $vendor_term = $currentvendor ? get_term($currentvendor->term_id) : '';
                 $question_by = "<img src=' " . $MVX->plugin_url . 'assets/images/wp-avatar-frau.jpg' ."' class='avatar avatar-32 photo' height='32' width='32'>" .$get_pending_product->post_title . "";
                 $pending_list[] = array(
                     'id'        =>  $get_pending_product->ID,
-                    'vendor'    =>  $vendor_term->name,
+                    'vendor'    =>  $vendor_term ? $vendor_term->name : '',
                     'product_src'   =>  $question_by, //wp_get_attachment_image_src( get_post_thumbnail_id( $get_pending_product->ID ), 'single-post-thumbnail' ),
                     'vendor_id'    =>  $get_pending_product->post_author,
-                    'vendor_link'   =>  sprintf('?page=%s&ID=%s&name=vendor-personal', 'mvx#&submenu=vendor', $currentvendor->id),
+                    'vendor_link'   =>  sprintf('?page=%s&ID=%s&name=vendor-personal', 'mvx#&submenu=vendor', $currentvendor ? $currentvendor->id : 0),
                     'product'   =>  $get_pending_product->post_title,
                     'product_url'   =>  admin_url('post.php?post=' . $get_pending_product->ID . '&action=edit'),
                 );
