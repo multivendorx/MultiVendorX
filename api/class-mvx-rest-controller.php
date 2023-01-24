@@ -1675,7 +1675,7 @@ class MVX_REST_API {
     public function mvx_get_as_per_module_status($request) {
         $module_status = $request && $request->get_param('module_status') ? $request->get_param('module_status') : '';
         $module_count = $request && $request->get_param('count') ? $request->get_param('count') : '';
-        $active_modules = get_option('mvx_all_active_module_list', true) ? get_option('mvx_all_active_module_list', true) : array();
+        $active_modules = mvx_get_option('mvx_all_active_module_list', true) ? mvx_get_option('mvx_all_active_module_list', true) : array();
 
         $all_module_lists = mvx_list_all_modules();
         if ($module_status == 'all') return rest_ensure_response(array_values($all_module_lists));
@@ -1840,7 +1840,7 @@ class MVX_REST_API {
             require_once ABSPATH . 'wp-admin/includes/class-wp-debug-data.php';
         }
 
-        $is_module_active = get_option('mvx_all_active_module_list', true);
+        $is_module_active = mvx_get_option('mvx_all_active_module_list', true);
         $list_modules = [];
         if ($is_module_active) {
             foreach ($is_module_active as $key => $value) {
@@ -2529,14 +2529,14 @@ class MVX_REST_API {
                 if ($dismiss) continue;
 
                 $currentvendor = get_mvx_vendor($get_pending_product->post_author);
-                $vendor_term = get_term($currentvendor->term_id);
+                $vendor_term = $currentvendor ? get_term($currentvendor->term_id) : '';
                 $question_by = "<img src=' " . $MVX->plugin_url . 'assets/images/wp-avatar-frau.jpg' ."' class='avatar avatar-32 photo' height='32' width='32'>" .$get_pending_product->post_title . "";
                 $pending_list[] = array(
                     'id'        =>  $get_pending_product->ID,
-                    'vendor'    =>  $vendor_term->name,
+                    'vendor'    =>  $vendor_term ? $vendor_term->name : '',
                     'product_src'   =>  $question_by, //wp_get_attachment_image_src( get_post_thumbnail_id( $get_pending_product->ID ), 'single-post-thumbnail' ),
                     'vendor_id'    =>  $get_pending_product->post_author,
-                    'vendor_link'   =>  sprintf('?page=%s&ID=%s&name=vendor-personal', 'mvx#&submenu=vendor', $currentvendor->id),
+                    'vendor_link'   =>  sprintf('?page=%s&ID=%s&name=vendor-personal', 'mvx#&submenu=vendor', $currentvendor ? $currentvendor->id : 0),
                     'product'   =>  $get_pending_product->post_title,
                     'product_url'   =>  admin_url('post.php?post=' . $get_pending_product->ID . '&action=edit'),
                 );
@@ -5719,7 +5719,7 @@ class MVX_REST_API {
     public function save_checkbox_module($request) {
         $module_id = $request['module_id'];
         $is_checked = $request['is_checked'];
-        $active_module_list = get_option('mvx_all_active_module_list') ? get_option('mvx_all_active_module_list') : array();
+        $active_module_list = mvx_get_option('mvx_all_active_module_list') ? mvx_get_option('mvx_all_active_module_list') : array();
         if ($module_id && !in_array($module_id, $active_module_list) && $is_checked) {
             array_push($active_module_list, $module_id);
         } elseif ($module_id && in_array($module_id, $active_module_list) && !$is_checked) {

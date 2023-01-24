@@ -50,6 +50,8 @@
             $( document.body ).on( 'click', '.mvx-product-categories-wrap .mvx-product-cat-level .cat-item a', this.show_product_classify_next_level );
             $( document.body ).on( 'click', '.mvx-product-categories-wrap .classified-pro-cat-btn', this.set_classified_product_terms );
             $( document.body ).on( 'click', '.searched-result-products-name-gtin .mvx-create-pro-duplicate-btn', this.create_duplicate_product );
+            $( document.body ).on( 'click', '.view-all-products-btn', this.show_products );
+            $( document.body ).on( 'click', '.mvx-create-product-duplicate-btn', this.create_product );
             // helper functions
             this.$searched_products_name_gtin_panel.hide();
             this.$searched_categories_results.hide();
@@ -268,6 +270,38 @@
                     
                 }
             } );
+        },
+        show_products: function () {
+            var data = {
+                action: 'mvx_show_all_products',
+            };
+            $.ajax({
+                type:  'post',
+                url:    mvx_product_classify_script_data.ajax_url, 
+                data:   data,
+                success: function(response) {
+                    $('#result-view-all-products-name').html(response);
+                },
+                complete: function() {
+                    scroll_to($( '#result-view-all-products-name' ));
+                }
+            });
+        },
+        create_product: function () {
+            var product_id = $( this ).data( 'product_id' );
+            var data = {
+                action: 'mvx_create_duplicate_product',
+                security: mvx_product_classify_script_data.types_nonce,
+                product_id: product_id
+            };
+            $.ajax({
+                type:  'post',
+                url:    mvx_product_classify_script_data.ajax_url, 
+                data:   data,
+                success: function(response) {
+                    window.location.href = response.redirect_url;
+                }
+            });
         }
     };
     

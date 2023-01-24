@@ -83,6 +83,8 @@ if (is_user_logged_in() && is_user_mvx_vendor($current_vendor_id) && !current_us
                             <input type="text" placeholder="<?php esc_attr_e('Product name, UPC, ISBN ...', 'multivendorx'); ?>" class="form-control inline-input search-product-name-gtin-keyword" required>
                             <button type="button" class="btn btn-default search-product-name-gtin-btn"><?php echo strtoupper(__('Search', 'multivendorx')); ?></button> 
                         </form>
+                        <br>
+                        <button class="btn btn-default view-all-products-btn"><?php esc_html_e('View All Products', 'multivendorx'); ?></button>
                         <?php 
 
                          if (get_option('permalink_structure')) {
@@ -100,7 +102,8 @@ if (is_user_logged_in() && is_user_mvx_vendor($current_vendor_id) && !current_us
             <div class="panel panel-custom mt-15 product-search-panel searched-products-name-gtin-panel">
                 <div class="panel-heading d-flex"><?php _e('Your search results:', 'multivendorx'); ?></div>
                 <div class="panel-body search-result-holder p-0 searched-result-products-name-gtin"></div>
-            </div>          
+            </div>
+            <div id="result-view-all-products-name"></div>          
         </div>
         <!-- End List a product by name or gtin -->
         <?php } ?>

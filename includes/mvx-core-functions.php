@@ -5012,6 +5012,14 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'database_value' => '',
                 ],
                 [
+                    'key'       => 'mvx_refund_req_endpoint',
+                    'type'      => 'text',
+                    'label'     => __('Refund Endpoint', 'multivendorx'),
+                    'desc'      => __('Set endpoint for refund page', 'multivendorx'),
+                    'placeholder'   => __('refund-request', 'multivendorx'),
+                    'database_value' => '',
+                ],
+                [
                     'key'       => 'separator_content',
                     'type'      => 'section',
                     'label'     => "",
@@ -5767,20 +5775,6 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'label'     => "",
                 ],
                 [
-                    'key'       => 'commission_calculation_on_tax',
-                    'label'     => __( 'Commission Calculation On Tax', 'multivendorx' ),
-                    'class'     => 'mvx-toggle-checkbox',
-                    'type'      => 'checkbox',
-                    'options' => array(
-                        array(
-                            'key'=> "commission_calculation_on_tax",
-                            'label'=> __('', 'multivendorx'),
-                            'value'=> "commission_calculation_on_tax"
-                        )
-                    ),
-                    'database_value' => array(),
-                ],
-                [
                     'key'       => 'payment_gateway_charge',
                     'label'     => __( 'Payment Gateway Charge', 'multivendorx' ),
                     'desc'  =>  __( "Add the payment gateway charges incurred while paying online.", 'multivendorx' ),
@@ -6081,6 +6075,20 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                             'key'=> "admin_coupon_excluded",
                             'label'=> __('Bear the coupon discount charges of the coupons created by you', 'multivendorx'),
                             'value'=> "admin_coupon_excluded"
+                        )
+                    ),
+                    'database_value' => array(),
+                ],
+                [
+                    'key'       => 'commission_calculation_on_tax',
+                    'label'     => __( 'Commission Calculation On Tax', 'multivendorx' ),
+                    'class'     => 'mvx-toggle-checkbox',
+                    'type'      => 'checkbox',
+                    'options' => array(
+                        array(
+                            'key'=> "commission_calculation_on_tax",
+                            'label'=> __('', 'multivendorx'),
+                            'value'=> "commission_calculation_on_tax"
                         )
                     ),
                     'database_value' => array(),
@@ -7460,7 +7468,7 @@ if (!function_exists('mvx_list_all_modules')) {
                             array(
                                 'plugin_name'   => __('MVX Razorpay Split Payment', 'multivendorx'),
                                 'plugin_link'   => 'https://wordpress.org/plugins/mvx-razorpay-split-payment/',
-                                'is_active' => is_plugin_active('mvx-razorpay-split-payment/mvx-razorpay-checkout-gateway.php') ? true :false,
+                                'is_active' => is_plugin_active('wcmp-razorpay-split-payment/mvx-razorpay-checkout-gateway.php') ? true :false,
                             )
                         ),
                         'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/razorpay',
@@ -7608,6 +7616,12 @@ if (!function_exists('mvx_list_all_modules')) {
                             ),
                         ),
                         'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/nusiness-hours',
+                    ],
+                    [
+                        'id'           => 'mvx-blocks',
+                        'name'         => __( 'Gutenberg Blocks', 'multivendorx' ),
+                        'description'  => __( 'Lets you add widgets using Gutenberg block editor. Use the block to register our widget area on any page or post using the Gutenberg editor.', 'multivendorx' ),
+                        'plan'         => 'free',
                     ],
                 ]
             ],
@@ -7939,7 +7953,7 @@ if (!function_exists('mvx_list_all_modules')) {
 
 if (!function_exists('is_current_module_active')) {
     function is_current_module_active($module_name) {
-        $is_module_active = get_option('mvx_all_active_module_list', true);
+        $is_module_active = mvx_get_option('mvx_all_active_module_list', true);
         $is_active = $is_module_active && is_array($is_module_active) && in_array($module_name, $is_module_active) ? true : false;
         return $is_active;
     }
