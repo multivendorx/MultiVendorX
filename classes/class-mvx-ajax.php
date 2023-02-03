@@ -272,7 +272,8 @@ class MVX_Ajax {
             // search by order id
             if (isset($requestData['search_keyword']) && !empty($requestData['search_keyword'])) {
                 unset($args['date_query']);
-                $args['post__in'] = array($requestData['search_keyword']);
+                $result_ids = wc_order_search( $requestData['search_keyword'] );
+                $args['post__in'] = array_merge( $result_ids, array( 0 ) );
                 $vendor_all_orders = mvx_get_orders($args);
             }
             do_action('mvx_orders_list_do_handle_filter_actions', $filterActionData, $ids, $requestData, $vendor_all_orders );
