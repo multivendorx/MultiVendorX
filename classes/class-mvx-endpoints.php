@@ -98,6 +98,10 @@ class MVX_Endpoints {
                 'label' => __('Transaction Details', 'multivendorx'),
                 'endpoint' => get_mvx_vendor_settings('mvx_transaction_details_endpoint', 'seller_dashbaord', 'transaction-details')
             )
+            , 'vendor-followers' => array(
+                'label' => __('Vendor Followers', 'multivendorx'),
+                'endpoint' => get_mvx_vendor_settings('mvx_vendor_followers_endpoint', 'seller_dashbaord', 'vendor-followers'),
+            )
             , 'vendor-knowledgebase' => array(
                 'label' => __('Vendor Knowledgebase', 'multivendorx'),
                 'endpoint' => get_mvx_vendor_settings('mvx_vendor_knowledgebase_endpoint', 'seller_dashbaord', 'vendor-knowledgebase')
