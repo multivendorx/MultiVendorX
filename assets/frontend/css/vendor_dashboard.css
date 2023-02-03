@@ -2101,6 +2101,9 @@ input.remove_button:hover {
   padding: 0;
   border: 1px solid #d3dbe2;
 }
+.panel.panel-default.pannel-outer-heading .panel-body .membership-details-container {
+  overflow-x: scroll;
+}
 .panel.panel-default.pannel-outer-heading .panel-footer {
   background-color: #fff;
   margin: 0;
