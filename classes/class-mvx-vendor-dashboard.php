@@ -1636,7 +1636,7 @@ Class MVX_Admin_Dashboard {
             $this->mvx_add_dashboard_widget('mvx_customer_reviews', __('Reviews', 'multivendorx'), array(&$this, 'mvx_customer_review'));
         }
         // Vendor followeres list
-        if ( mvx_is_module_active('store-follow') ) {
+        if ( mvx_is_module_active('follow-store') ) {
             $this->mvx_add_dashboard_widget('mvx_vendor_follower', __('Followers', 'multivendorx'), array(&$this, 'mvx_vendor_followers'));
         }
         $this->mvx_add_dashboard_widget('mvx_vendor_products_cust_qna', __('Customer Questions', 'multivendorx'), array(&$this, 'mvx_vendor_products_cust_qna'), 'side', '', array('action' => array('title' => __('Show All Q&As', 'multivendorx'), 'link' => esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_products_qna_endpoint', 'seller_dashbaord', 'products-qna'))))));
