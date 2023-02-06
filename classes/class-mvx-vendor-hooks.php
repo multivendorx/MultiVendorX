@@ -30,6 +30,7 @@ class MVX_Vendor_Hooks {
 
         add_action( 'mvx_vendor_dashboard_vendor-withdrawal_endpoint', array( &$this, 'mvx_vendor_dashboard_vendor_withdrawal_endpoint' ) );
         add_action( 'mvx_vendor_dashboard_transaction-details_endpoint', array( &$this, 'mvx_vendor_dashboard_transaction_details_endpoint' ) );
+        add_action( 'mvx_vendor_dashboard_vendor-followers_endpoint', array( &$this, 'mvx_vendor_dashboard_vendor_followers_endpoint' ) );
         add_action( 'mvx_vendor_dashboard_vendor-knowledgebase_endpoint', array( &$this, 'mvx_vendor_dashboard_vendor_knowledgebase_endpoint' ) );
         add_action( 'mvx_vendor_dashboard_vendor-tools_endpoint', array( &$this, 'mvx_vendor_dashboard_vendor_tools_endpoint' ) );
         add_action( 'mvx_vendor_dashboard_products-qna_endpoint', array( &$this, 'mvx_vendor_dashboard_products_qna_endpoint' ) );
@@ -240,11 +241,20 @@ class MVX_Vendor_Hooks {
                 , 'link_target' => '_self'
                 , 'nav_icon'    => 'mvx-font ico-payments-icon'
             ),
+            'vendor-followers' => array(
+                'label'       => __('Followers', 'multivendorx')
+                , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings('mvx_vendor_followers_endpoint', 'seller_dashbaord', 'vendor-followers') )
+                , 'capability'  => mvx_is_module_active('follow-store') ? true : false
+                , 'position'    => 70
+                , 'submenu'     => array()
+                , 'link_target' => '_self'
+                , 'nav_icon'    => 'dashicons dashicons-menu-alt2', 
+            ),
             'vendor-knowledgebase' => array(
                 'label'       => __( 'Knowledgebase', 'multivendorx' )
                 , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_vendor_knowledgebase_endpoint', 'seller_dashbaord', 'vendor-knowledgebase' ) )
                 , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_vendor_knowledgebase_capability', true )
-                , 'position'    => 70
+                , 'position'    => 80
                 , 'submenu'     => array()
                 , 'link_target' => '_self'
                 , 'nav_icon'    => 'mvx-font ico-knowledgebase-icon'
@@ -253,7 +263,7 @@ class MVX_Vendor_Hooks {
                 'label'       => __( 'Tools', 'multivendorx' )
                 , 'url'         => mvx_get_vendor_dashboard_endpoint_url( get_mvx_vendor_settings( 'mvx_vendor_tools_endpoint', 'seller_dashbaord', 'vendor-tools' ) )
                 , 'capability'  => apply_filters( 'mvx_vendor_dashboard_menu_vendor_tools_capability', true )
-                , 'position'    => 80
+                , 'position'    => 90
                 , 'submenu'     => array()
                 , 'link_target' => '_self'
                 , 'nav_icon'    => 'mvx-font ico-tools-icon'
@@ -771,6 +781,17 @@ class MVX_Vendor_Hooks {
     }
 
     /**
+     * Display Vendor followers content
+     * @global object $MVX
+     */
+    public function mvx_vendor_dashboard_vendor_followers_endpoint() {
+        global $MVX;
+        if (mvx_is_module_active('follow-store')) {
+            $MVX->template->get_template( 'vendor-dashboard/vendor_followers.php' );
+        }
+    }
+
+    /**
      * Display Vendor university content
      * @global object $MVX
      */
@@ -968,86 +989,86 @@ class MVX_Vendor_Hooks {
      * MVX rejected vendor dashboard function
      */
     public function rejected_vendor_dashboard_content() {
-    	global $MVX, $wp;
-    	
-    	if(isset($wp->query_vars['rejected-vendor-reapply'])) {
-    		$MVX->template->get_template('non-vendor/rejected-vendor-reapply.php');
-    	} else {
-    		$MVX->template->get_template('non-vendor/rejected-vendor-dashboard.php');
-		}
+        global $MVX, $wp;
+        
+        if(isset($wp->query_vars['rejected-vendor-reapply'])) {
+            $MVX->template->get_template('non-vendor/rejected-vendor-reapply.php');
+        } else {
+            $MVX->template->get_template('non-vendor/rejected-vendor-dashboard.php');
+        }
     }
     
     /**
      *  Update rejected vendor data and make the status pending
      */
     public function save_rejected_vendor_reapply_data() {
-    	global $MVX;
+        global $MVX;
         $user = wp_get_current_user();
         if ( $_SERVER['REQUEST_METHOD'] == 'POST' && is_user_mvx_rejected_vendor($user->ID) && $MVX->endpoints->get_current_endpoint() == 'rejected-vendor-reapply') {
-        	if(isset($_POST['reapply_vendor_application']) && isset($_POST['mvx_vendor_fields'])) {
-        		if (isset($_FILES['mvx_vendor_fields'])) {
-					$attacment_files = array_filter($_FILES['mvx_vendor_fields']);
-					$files = array();
-					$count = 0;
-					if (!empty($attacment_files) && is_array($attacment_files)) {
-						foreach ($attacment_files['name'] as $key => $attacment) {
-							foreach ($attacment as $key_attacment => $value_attacment) {
-								$files[$count]['name'] = $value_attacment;
-								$files[$count]['type'] = $attacment_files['type'][$key][$key_attacment];
-								$files[$count]['tmp_name'] = $attacment_files['tmp_name'][$key][$key_attacment];
-								$files[$count]['error'] = $attacment_files['error'][$key][$key_attacment];
-								$files[$count]['size'] = $attacment_files['size'][$key][$key_attacment];
-								$files[$count]['field_key'] = $key;
-								$count++;
-							}
-						}
-					}
-					$upload_dir = wp_upload_dir();
-					require_once(ABSPATH . 'wp-admin/includes/image.php');
-					if (!function_exists('wp_handle_upload')) {
-						require_once( ABSPATH . 'wp-admin/includes/file.php' );
-					}
-					foreach ($files as $file) {
-						$uploadedfile = $file;
-						$upload_overrides = array('test_form' => false);
-						$movefile = wp_handle_upload($uploadedfile, $upload_overrides);
-						if ($movefile && !isset($movefile['error'])) {
-							$filename = $movefile['file'];
-							$filetype = wp_check_filetype($filename, null);
-							$attachment = array(
-								'post_mime_type' => $filetype['type'],
-								'post_title' => $file['name'],
-								'post_content' => '',
-								'post_status' => 'inherit',
-								'guid' => $movefile['url']
-							);
-							$attach_id = wp_insert_attachment($attachment, $movefile['file']);
-							$attach_data = wp_generate_attachment_metadata($attach_id, $filename);
-							wp_update_attachment_metadata($attach_id, $attach_data);
-							$_POST['mvx_vendor_fields'][$file['field_key']]['value'][] = $attach_id;
-						}
-					}
-				}
+            if(isset($_POST['reapply_vendor_application']) && isset($_POST['mvx_vendor_fields'])) {
+                if (isset($_FILES['mvx_vendor_fields'])) {
+                    $attacment_files = array_filter($_FILES['mvx_vendor_fields']);
+                    $files = array();
+                    $count = 0;
+                    if (!empty($attacment_files) && is_array($attacment_files)) {
+                        foreach ($attacment_files['name'] as $key => $attacment) {
+                            foreach ($attacment as $key_attacment => $value_attacment) {
+                                $files[$count]['name'] = $value_attacment;
+                                $files[$count]['type'] = $attacment_files['type'][$key][$key_attacment];
+                                $files[$count]['tmp_name'] = $attacment_files['tmp_name'][$key][$key_attacment];
+                                $files[$count]['error'] = $attacment_files['error'][$key][$key_attacment];
+                                $files[$count]['size'] = $attacment_files['size'][$key][$key_attacment];
+                                $files[$count]['field_key'] = $key;
+                                $count++;
+                            }
+                        }
+                    }
+                    $upload_dir = wp_upload_dir();
+                    require_once(ABSPATH . 'wp-admin/includes/image.php');
+                    if (!function_exists('wp_handle_upload')) {
+                        require_once( ABSPATH . 'wp-admin/includes/file.php' );
+                    }
+                    foreach ($files as $file) {
+                        $uploadedfile = $file;
+                        $upload_overrides = array('test_form' => false);
+                        $movefile = wp_handle_upload($uploadedfile, $upload_overrides);
+                        if ($movefile && !isset($movefile['error'])) {
+                            $filename = $movefile['file'];
+                            $filetype = wp_check_filetype($filename, null);
+                            $attachment = array(
+                                'post_mime_type' => $filetype['type'],
+                                'post_title' => $file['name'],
+                                'post_content' => '',
+                                'post_status' => 'inherit',
+                                'guid' => $movefile['url']
+                            );
+                            $attach_id = wp_insert_attachment($attachment, $movefile['file']);
+                            $attach_data = wp_generate_attachment_metadata($attach_id, $filename);
+                            wp_update_attachment_metadata($attach_id, $attach_data);
+                            $_POST['mvx_vendor_fields'][$file['field_key']]['value'][] = $attach_id;
+                        }
+                    }
+                }
                 /**
                  * Action hook to modify vendor re submit application before save.
                  *
                  * @since 3.4.5
                  */
                 do_action( 'mvx_before_reapply_vendor_application_save', $_POST, get_current_vendor( $user->ID ) );
-        		update_user_meta( $user->ID, 'mvx_vendor_fields', array_filter( array_map( 'wc_clean', (array) $_POST['mvx_vendor_fields'] ) ) );
-        		$user->remove_cap( 'dc_rejected_vendor' );
-        		$user->add_cap( 'dc_pending_vendor' );
-		        /**
+                update_user_meta( $user->ID, 'mvx_vendor_fields', array_filter( array_map( 'wc_clean', (array) $_POST['mvx_vendor_fields'] ) ) );
+                $user->remove_cap( 'dc_rejected_vendor' );
+                $user->add_cap( 'dc_pending_vendor' );
+                /**
                  * Action hook to modify vendor re submit application after save.
                  *
                  * @since 3.4.5
                  */
                 do_action( 'mvx_after_reapply_vendor_application_save', $_POST, get_current_vendor( $user->ID ) );
-        		$mvx_vendor_rejection_notes = unserialize( get_user_meta( $user->ID, 'mvx_vendor_rejection_notes', true ) );
-				$mvx_vendor_rejection_notes[time()] = array(
-						'note_by' => $user->ID,
-						'note' => __( 'Re applied to become a vendor', 'multivendorx' ));
-				update_user_meta( $user->ID, 'mvx_vendor_rejection_notes', serialize( $mvx_vendor_rejection_notes ) );
+                $mvx_vendor_rejection_notes = unserialize( get_user_meta( $user->ID, 'mvx_vendor_rejection_notes', true ) );
+                $mvx_vendor_rejection_notes[time()] = array(
+                        'note_by' => $user->ID,
+                        'note' => __( 'Re applied to become a vendor', 'multivendorx' ));
+                update_user_meta( $user->ID, 'mvx_vendor_rejection_notes', serialize( $mvx_vendor_rejection_notes ) );
                 // send mail to admin when rejected vendor reapply
                 if (apply_filters( 'mvx_send_mail_to_admin_when_vendor_reapply', true )) {
                     $email_admin = WC()->mailer()->emails['WC_Email_Admin_New_Vendor_Account'];
@@ -1059,7 +1080,7 @@ class MVX_Vendor_Hooks {
                 * @since 3.4.5
                 */
                 do_action( 'mvx_after_reapply_vendor_application_saved_notes', $_POST, get_current_vendor( $user->ID ) );
-        	}
-    	}
+            }
+        }
     }
 }
