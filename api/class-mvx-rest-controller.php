@@ -3140,7 +3140,8 @@ class MVX_REST_API {
                 'label'     => __( 'Username (required)', 'multivendorx' ),
                 'desc' => __('Usernames cannot be changed.', 'multivendorx'),
                 'props'     => array(
-                    'required'  => true
+                    'required'  => true,
+                    'disabled'  => true
                 ),
                 'database_value' => isset($user->user_login) ? $user->user_login : '',
             ],
