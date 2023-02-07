@@ -248,7 +248,7 @@ class MVX_Vendor_Hooks {
                 , 'position'    => 70
                 , 'submenu'     => array()
                 , 'link_target' => '_self'
-                , 'nav_icon'    => 'dashicons dashicons-menu-alt2', 
+                , 'nav_icon'    => 'dashicons dashicons-media-interactive', 
             ),
             'vendor-knowledgebase' => array(
                 'label'       => __( 'Knowledgebase', 'multivendorx' )
