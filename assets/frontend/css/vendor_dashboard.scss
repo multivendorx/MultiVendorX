@@ -1730,6 +1730,39 @@ table.table-bordered.no-th-border {
 // 		border: 1px solid #ddd;
 // 	}
 // }
+.navbar-rightside {
+    display: flex;
+    height: 64px;
+    justify-content: flex-end;
+}
+.navbar-leftside {
+    display: flex;
+    height: 64px;
+}
+.navbar-header button.navbar-toggler {
+	border: none;
+    padding: 0 18px;
+    height: 100%;
+    border-right: 0.06rem solid #00000038;
+    border-radius: 0;
+}
+.sidebar-nav.navbar-collapse .nav li {
+    width: 100%;
+}
+ul.nav .login-user .dropdown-menu.dropdown-user a {
+    font-size: 13px;
+    display: block;
+    color: #333;
+    padding: 7px 15px;
+    margin: 0;
+}
+ul.nav .login-user .dropdown-menu.dropdown-user {
+    box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
+    right: 0;
+}
+.top-user-nav > li a.dropdown-toggle::after{
+	display: none;
+}
 table.table-outer-border {
 	.table-outer-border {
 		thead {
@@ -3582,7 +3615,7 @@ ul.nav {
 }
 .top-user-nav {
 	height: 100%;
-	width: 100px;
+	// width: 100px;
 	>li {
 		height: 100%;
 		a.dropdown-toggle {
