@@ -21,466 +21,286 @@ i.mvx-font {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
-.ico-cancel-status-icon {
-	&:before {
-		content: "\e94f";
-	}
-}
-.ico-completed-status-icon {
-	&:before {
-		content: "\e950";
-	}
-}
-.ico-customer-details-icon {
-	&:before {
-		content: "\e951";
-	}
-}
-.ico-download2-icon {
-	&:before {
-		content: "\e952";
-	}
-}
-.ico-email-invoice-icon {
-	&:before {
-		content: "\e953";
-	}
-}
-.ico-failed-status-icon {
-	&:before {
-		content: "\e954";
-	}
-}
-.ico-order-commission {
-	&:before {
-		content: "\e955";
-	}
-}
-.ico-order-detailsnew-icon {
-	&:before {
-		content: "\e956";
-	}
-}
-.ico-pendingpayment-status-icon {
-	&:before {
-		content: "\e957";
-	}
-}
-.ico-processing-status-icon {
-	&:before {
-		content: "\e958";
-	}
-}
-.ico-refunded-status-icon {
-	&:before {
-		content: "\e959";
-	}
-}
-.ico-resend-notification-icon {
-	&:before {
-		content: "\e95a";
-	}
-}
-.ico-shippingnew2-icon {
-	&:before {
-		content: "\e95b";
-	}
-}
-.ico-duplicate-icon {
-	&:before {
-		content: "\e94e";
-	}
-}
-.ico-back-arrow {
-	&:before {
-		content: "\e94d";
-	}
-}
-.ico-search-icon {
-	&:before {
-		content: "\e94c";
-	}
-}
-.ico-export {
-	&:before {
-		content: "\e91b";
-	}
-}
-.ico-import {
-	&:before {
-		content: "\e921";
-	}
-}
-.ico-message {
-	&:before {
-		content: "\e92b";
-	}
-}
-.ico-notification {
-	&:before {
-		content: "\e930";
-	}
-}
-.ico-quote {
-	&:before {
-		content: "\e937";
-	}
-}
-.ico-rental-calender {
-	&:before {
-		content: "\e940";
-	}
-}
-.ico-resources {
-	&:before {
-		content: "\e941";
-	}
-}
-.ico-subscriptions {
-	&:before {
-		content: "\e94a";
-	}
-}
-.ico-add-booking {
-	&:before {
-		content: "\e94b";
-	}
-}
-.ico-uncheckbox-icon {
-	&:before {
-		content: "\e915";
-	}
-}
-.ico-check-box-icon {
-	&:before {
-		content: "\e90b";
-	}
-}
-.ico-approve-icon {
-	&:before {
-		content: "\e943";
-	}
-}
-.ico-delete-icon {
-	&:before {
-		content: "\e944";
-	}
-}
-.ico-expire-icon {
-	&:before {
-		content: "\e945";
-	}
-}
-.ico-reject-icon {
-	&:before {
-		content: "\e946";
-	}
-}
-.ico-rental-icon {
-	&:before {
-		content: "\e947";
-	}
-}
-.ico-reply-icon {
-	&:before {
-		content: "\e948";
-	}
-}
-.ico-rupee-icon {
-	&:before {
-		content: "\e949";
-	}
-}
-.ico-addcoupon-icon {
-	&:before {
-		content: "\e900";
-	}
-}
-.ico-add-icon {
-	&:before {
-		content: "\e901";
-	}
-}
-.ico-add-product-icon {
-	&:before {
-		content: "\e902";
-	}
-}
-.ico-all-bookings-icon {
-	&:before {
-		content: "\e903";
-	}
-}
-.ico-announcement-icon {
-	&:before {
-		content: "\e904";
-	}
-}
-.ico-avarage-order-value-icon {
-	&:before {
-		content: "\e905";
-	}
-}
-.ico-billing-icon {
-	&:before {
-		content: "\e906";
-	}
-}
-.ico-booking-icon {
-	&:before {
-		content: "\e907";
-	}
-}
-.ico-calendar-icon {
-	&:before {
-		content: "\e908";
-	}
-}
-.ico-cart-icon {
-	&:before {
-		content: "\e909";
-	}
-}
-.ico-catalog-icon {
-	&:before {
-		content: "\e90a";
-	}
-}
-.ico-coupons-icon {
-	&:before {
-		content: "\e90c";
-	}
-}
-.ico-dashboard-icon {
-	&:before {
-		content: "\e90d";
-	}
-}
-.ico-downarrow-2-icon {
-	&:before {
-		content: "\e90e";
-	}
-}
-.ico-down-arrow-icon {
-	&:before {
-		content: "\e90f";
-	}
-}
-.ico-download-icon {
-	&:before {
-		content: "\e910";
-	}
-}
-.ico-earning-icon {
-	&:before {
-		content: "\e911";
-	}
-}
-.ico-edit-pencil-icon {
-	&:before {
-		content: "\e912";
-	}
-}
-.ico-export-icon {
-	&:before {
-		content: "\e913";
-	}
-}
-.ico-eye-icon {
-	&:before {
-		content: "\e914";
-	}
-}
-.ico-history-icon {
-	&:before {
-		content: "\e916";
-	}
-}
-.ico-image-icon {
-	&:before {
-		content: "\e917";
-	}
-}
-.ico-import-icon {
-	&:before {
-		content: "\e918";
-	}
-}
-.ico-knowledgebase-icon {
-	&:before {
-		content: "\e919";
-	}
-}
-.ico-left-arrow-icon {
-	&:before {
-		content: "\e91a";
-	}
-}
-.ico-logout-icon {
-	&:before {
-		content: "\e91c";
-	}
-}
-.ico-minus-icon {
-	&:before {
-		content: "\e91d";
-	}
-}
-.ico-my-shop-icon {
-	&:before {
-		content: "\e91e";
-	}
-}
-.ico-order-details-icon {
-	&:before {
-		content: "\e91f";
-	}
-}
-.ico-orders-icon {
-	&:before {
-		content: "\e920";
-	}
-}
-.ico-payments-icon {
-	&:before {
-		content: "\e922";
-	}
-}
-.ico-pdf-icon {
-	&:before {
-		content: "\e923";
-	}
-}
-.ico-plus-icon {
-	&:before {
-		content: "\e924";
-	}
-}
-.ico-policies-icon {
-	&:before {
-		content: "\e925";
-	}
-}
-.ico-price2-icon {
-	&:before {
-		content: "\e926";
-	}
-}
-.ico-price-icon {
-	&:before {
-		content: "\e927";
-	}
-}
-.ico-product-icon {
-	&:before {
-		content: "\e928";
-	}
-}
-.ico-product-manager-icon {
-	&:before {
-		content: "\e929";
-	}
-}
-.ico-questionmark-icon {
-	&:before {
-		content: "\e92a";
-	}
-}
-.ico-report-icon {
-	&:before {
-		content: "\e92c";
-	}
-}
-.ico-reports-icon {
-	&:before {
-		content: "\e92d";
-	}
-}
-.ico-revenue-icon {
-	&:before {
-		content: "\e92e";
-	}
-}
-.ico-right-arrow-icon {
-	&:before {
-		content: "\e92f";
-	}
-}
-.ico-shipping-action-icon {
-	&:before {
-		content: "\e931";
-	}
-}
-.ico-shipping-icon {
-	&:before {
-		content: "\e932";
-	}
-}
-.ico-shippingnew-icon {
-	&:before {
-		content: "\e933";
-	}
-}
-.ico-storefront-icon {
-	&:before {
-		content: "\e934";
-	}
-}
-.ico-store-settings-icon {
-	&:before {
-		content: "\e935";
-	}
-}
-.ico-tools-icon {
-	&:before {
-		content: "\e936";
-	}
-}
-.ico-uparrow-2-icon {
-	&:before {
-		content: "\e938";
-	}
-}
-.ico-up-arrow-icon {
-	&:before {
-		content: "\e939";
-	}
-}
-.ico-upload-image-icon {
-	&:before {
-		content: "\e93a";
-	}
-}
-.ico-user-icon {
-	&:before {
-		content: "\e93b";
-	}
-}
-.ico-vendor-stuff-icon {
-	&:before {
-		content: "\e93c";
-	}
-}
-.ico-verified-icon {
-	&:before {
-		content: "\e93d";
-	}
-}
-.ico-visit-icon {
-	&:before {
-		content: "\e93e";
-	}
-}
-.ico-welcome-icon {
-	&:before {
-		content: "\e93f";
-	}
-}
-.ico-wp-backend-icon {
-	&:before {
-		content: "\e942";
-	}
-}
+.ico-addcoupon-icon:before {
+	content: "\e900";
+  }
+  .ico-add-icon:before {
+	content: "\e901";
+  }
+  .ico-add-product-icon:before {
+	content: "\e902";
+  }
+  .ico-all-bookings-icon:before {
+	content: "\e903";
+  }
+  .ico-announcement-icon:before {
+	content: "\e904";
+  }
+  .ico-avarage-order-value-icon:before {
+	content: "\e905";
+  }
+  .ico-billing-icon:before {
+	content: "\e906";
+  }
+  .ico-booking-icon:before {
+	content: "\e907";
+  }
+  .ico-calendar-icon:before {
+	content: "\e908";
+  }
+  .ico-cart-icon:before {
+	content: "\e909";
+  }
+  .ico-catalog-icon:before {
+	content: "\e90a";
+  }
+  .ico-check-box-icon:before {
+	content: "\e90b";
+  }
+  .ico-coupons-icon:before {
+	content: "\e90c";
+  }
+  .ico-dashboard-icon:before {
+	content: "\e90d";
+  }
+  .ico-downarrow-2-icon:before {
+	content: "\e90e";
+  }
+  .ico-down-arrow-icon:before {
+	content: "\e90f";
+  }
+  .ico-download-icon:before {
+	content: "\e910";
+  }
+  .ico-earning-icon:before {
+	content: "\e911";
+  }
+  .ico-edit-pencil-icon:before {
+	content: "\e912";
+  }
+  .ico-export-icon:before {
+	content: "\e913";
+  }
+  .ico-eye-icon:before {
+	content: "\e914";
+  }
+  .ico-uncheckbox-icon:before {
+	content: "\e915";
+  }
+  .ico-history-icon:before {
+	content: "\e916";
+  }
+  .ico-image-icon:before {
+	content: "\e917";
+  }
+  .ico-import-icon:before {
+	content: "\e918";
+  }
+  .ico-knowledgebase-icon:before {
+	content: "\e919";
+  }
+  .ico-left-arrow-icon:before {
+	content: "\e91a";
+  }
+  .ico-export:before {
+	content: "\e91b";
+  }
+  .ico-logout-icon:before {
+	content: "\e91c";
+  }
+  .ico-minus-icon:before {
+	content: "\e91d";
+  }
+  .ico-my-shop-icon:before {
+	content: "\e91e";
+  }
+  .ico-order-details-icon:before {
+	content: "\e91f";
+  }
+  .ico-orders-icon:before {
+	content: "\e920";
+  }
+  .ico-import:before {
+	content: "\e921";
+  }
+  .ico-payments-icon:before {
+	content: "\e922";
+  }
+  .ico-pdf-icon:before {
+	content: "\e923";
+  }
+  .ico-plus-icon:before {
+	content: "\e924";
+  }
+  .ico-policies-icon:before {
+	content: "\e925";
+  }
+  .ico-price2-icon:before {
+	content: "\e926";
+  }
+  .ico-price-icon:before {
+	content: "\e927";
+  }
+  .ico-product-icon:before {
+	content: "\e928";
+  }
+  .ico-product-manager-icon:before {
+	content: "\e929";
+  }
+  .ico-questionmark-icon:before {
+	content: "\e92a";
+  }
+  .ico-message:before {
+	content: "\e92b";
+  }
+  .ico-report-icon:before {
+	content: "\e92c";
+  }
+  .ico-reports-icon:before {
+	content: "\e92d";
+  }
+  .ico-revenue-icon:before {
+	content: "\e92e";
+  }
+  .ico-right-arrow-icon:before {
+	content: "\e92f";
+  }
+  .ico-notification:before {
+	content: "\e930";
+  }
+  .ico-shipping-action-icon:before {
+	content: "\e931";
+  }
+  .ico-shipping-icon:before {
+	content: "\e932";
+  }
+  .ico-shippingnew-icon:before {
+	content: "\e933";
+  }
+  .ico-storefront-icon:before {
+	content: "\e934";
+  }
+  .ico-store-settings-icon:before {
+	content: "\e935";
+  }
+  .ico-tools-icon:before {
+	content: "\e936";
+  }
+  .ico-quote:before {
+	content: "\e937";
+  }
+  .ico-uparrow-2-icon:before {
+	content: "\e938";
+  }
+  .ico-up-arrow-icon:before {
+	content: "\e939";
+  }
+  .ico-upload-image-icon:before {
+	content: "\e93a";
+  }
+  .ico-user-icon:before {
+	content: "\e93b";
+  }
+  .ico-vendor-stuff-icon:before {
+	content: "\e93c";
+  }
+  .ico-verified-icon:before {
+	content: "\e93d";
+  }
+  .ico-visit-icon:before {
+	content: "\e93e";
+  }
+  .ico-welcome-icon:before {
+	content: "\e93f";
+  }
+  .ico-rental-calender:before {
+	content: "\e940";
+  }
+  .ico-resources:before {
+	content: "\e941";
+  }
+  .ico-wp-backend-icon:before {
+	content: "\e942";
+  }
+  .ico-approve-icon:before {
+	content: "\e943";
+  }
+  .ico-delete-icon:before {
+	content: "\e944";
+  }
+  .ico-expire-icon:before {
+	content: "\e945";
+  }
+  .ico-reject-icon:before {
+	content: "\e946";
+  }
+  .ico-rental-icon:before {
+	content: "\e947";
+  }
+  .ico-reply-icon:before {
+	content: "\e948";
+  }
+  .ico-rupee-icon:before {
+	content: "\e949";
+  }
+  .ico-subscriptions:before {
+	content: "\e94a";
+  }
+  .ico-add-booking:before {
+	content: "\e94b";
+  }
+  .ico-search-icon:before {
+	content: "\e94c";
+  }
+  .ico-back-arrow:before {
+	content: "\e94d";
+  }
+  .ico-duplicate-icon:before {
+	content: "\e94e";
+  }
+  .ico-cancel-status-icon:before {
+	content: "\e94f";
+  }
+  .ico-completed-status-icon:before {
+	content: "\e950";
+  }
+  .ico-customer-details-icon:before {
+	content: "\e951";
+  }
+  .ico-download2-icon:before {
+	content: "\e952";
+  }
+  .ico-email-invoice-icon:before {
+	content: "\e953";
+  }
+  .ico-failed-status-icon:before {
+	content: "\e954";
+  }
+  .ico-order-commission:before {
+	content: "\e955";
+  }
+  .ico-order-detailsnew-icon:before {
+	content: "\e956";
+  }
+  .ico-pendingpayment-status-icon:before {
+	content: "\e957";
+  }
+  .ico-processing-status-icon:before {
+	content: "\e958";
+  }
+  .ico-refunded-status-icon:before {
+	content: "\e959";
+  }
+  .ico-resend-notification-icon:before {
+	content: "\e95a";
+  }
+  .ico-shippingnew2-icon:before {
+	content: "\e95b";
+  }
+  .ico-followers-icon:before {
+	content: "\e95c";
+  }
+  
 body {
 	font-family: "Open Sans", sans-serif;
 	color: #626c6f;
