@@ -53,7 +53,7 @@ class MVX_WCfmMarketplace {
 			}
 			// update store slug
 			if ( !empty($user_details) && isset($user_details['store_slug'])) {
-				$vendor->update_page_title(wc_clean($user_details['store_slug']));
+				$vendor->update_page_slug(wc_clean($user_details['store_slug']));
 			}
 
 		}
