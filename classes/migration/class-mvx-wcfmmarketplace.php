@@ -37,6 +37,25 @@ class MVX_WCfmMarketplace {
 			$this->store_vendor_data_migrate( $vendor_id );
 			// Store product migrate
 			$this->store_product_migrate( $vendor_id, $term_id );
+
+			$user_details = get_user_meta($vendor_id, 'wcfmmp_profile_settings', true);
+			// update image
+			if ( !empty($user_details) && isset($user_details['gravatar'])) {
+				update_user_meta($vendor_id, '_vendor_image', $user_details['gravatar']);
+			}
+			// update banner
+			if ( !empty($user_details) && isset($user_details['banner'])) {
+				update_user_meta($vendor_id, '_vendor_banner', $user_details['banner']);
+			}
+			// update store name
+			if ( !empty($user_details) && isset($user_details['store_name'])) {
+				$vendor->update_page_title(wc_clean($user_details['store_name']));
+			}
+			// update store slug
+			if ( !empty($user_details) && isset($user_details['store_slug'])) {
+				$vendor->update_page_title(wc_clean($user_details['store_slug']));
+			}
+
 		}
 		return true;
 	}
