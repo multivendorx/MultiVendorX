@@ -78,10 +78,12 @@ class MVX_Frontend {
             add_action( 'woocommerce_account_followers_endpoint', array($this, 'mvx_customer_followers_vendor_callback' ));
         }
         //is checkout delivery location on
-        add_filter( 'woocommerce_checkout_fields', array( &$this, 'mvx_checkout_user_location_fields' ), 50 );
-        add_action( 'woocommerce_after_checkout_billing_form', array( &$this, 'mvx_checkout_user_location_map' ), 50 );
-        add_action( 'woocommerce_checkout_update_order_review', array( &$this, 'mvx_checkout_user_location_session_set' ), 50 );
-        add_action( 'woocommerce_checkout_update_order_meta', array( &$this, 'mvx_checkout_user_location_save' ), 50 );
+        if ( mvx_is_module_active('store-location') ) {
+            add_filter( 'woocommerce_checkout_fields', array( &$this, 'mvx_checkout_user_location_fields' ), 50 );
+            add_action( 'woocommerce_after_checkout_billing_form', array( &$this, 'mvx_checkout_user_location_map' ), 50 );
+            add_action( 'woocommerce_checkout_update_order_review', array( &$this, 'mvx_checkout_user_location_session_set' ), 50 );
+            add_action( 'woocommerce_checkout_update_order_meta', array( &$this, 'mvx_checkout_user_location_save' ), 50 );
+        }
     }
 
     /**
@@ -1078,13 +1080,6 @@ class MVX_Frontend {
      * Checkout User Location Field
      */
     public function mvx_checkout_user_location_fields( $fields ) {
-        ?>
-        <style>
-            .input-hidden{
-                display: none;
-            }
-        </style>
-        <?php
         if( ! WC()->is_rest_api_request() ) {
             if( ( true === WC()->cart->needs_shipping() ) && apply_filters( 'mvx_is_allow_checkout_user_location', true ) && mvx_is_module_active('distance-shipping') ) {
                 $user_location_filed = mvx_mapbox_api_enabled() ? array('input-hidden') : array('form-row-wide');
