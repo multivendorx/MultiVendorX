@@ -1329,6 +1329,7 @@ class MVX_Backend_Commission extends Component {
 														)}
 																<td/>
 																<td/>
+																<td/>
 																<td className="mvx-order-label-td">
 																	{
 																		appLocalizer
@@ -1358,19 +1359,6 @@ class MVX_Backend_Commission extends Component {
 																	></div>
 																</td>
 
-																{
-																	this.state.commission_details.additional_down_datas ?
-																		<p
-																			dangerouslySetInnerHTML={{
-																				__html: this.state.commission_details.additional_down_datas
-																					
-																			}}
-																		>
-																		</p>
-																	:
-
-																	''
-																}
 
 															</tr>
 														) : (
@@ -1470,7 +1458,20 @@ class MVX_Backend_Commission extends Component {
 															: ''}
 
 
+															
+														{
+															this.state.commission_details.additional_down_datas ?
+																<tr
+																	dangerouslySetInnerHTML={{
+																		__html: this.state.commission_details.additional_down_datas
+																			
+																	}}
+																>
+																</tr>
+															:
 
+															''
+														}
 
 
 														<tr>
