@@ -4631,7 +4631,7 @@ class MVX_REST_API {
             'get_shipping_method'   =>  $order->get_shipping_methods(),
             'notes_data'    =>  $notes_data,
             'shipping_items_details'    =>  $shipping_items_details,
-            'additional_datas'  =>  '<div class="commission-details-data-value"><div>sdggggggggggggggg</div></div>'
+            'additional_datas'  =>  '<div class="commission-details-data-value"><div>sdggggggggggggggg</div></div>',
             'additional_down_datas'  =>  '<div class="commission-details-data-value"><div>sdggggggggggggggg</div></div>'
         ));
 
