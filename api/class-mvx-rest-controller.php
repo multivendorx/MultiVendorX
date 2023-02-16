@@ -4631,11 +4631,6 @@ class MVX_REST_API {
             'get_shipping_method'   =>  $order->get_shipping_methods(),
             'notes_data'    =>  $notes_data,
             'shipping_items_details'    =>  $shipping_items_details,
-            'additional_datas'  =>  '<div class="commission-details-data-value"><div>sdggggggggggggggg</div></div>',
-            'additional_down_datas'  =>  array(
-                '<div class="commission-details-data-value"><div>sdggggggggggggggg</div></div>',
-                '<div class="commission-details-data-value"><div>uuuuu</div></div>'
-            ) 
         ));
 
         return rest_ensure_response($payment_details); 
@@ -4948,7 +4943,8 @@ class MVX_REST_API {
                     'net_earning'   =>  $net_earning,
                     'status'        =>  $status_display,
                     'date'          =>  $commission_details->post_modified,
-                    'action'        =>  $action_display
+                    'action'        =>  $action_display,
+                    'edit_net_earning'  => MVX_Commission::commission_totals($commission_value, 'edit')
                 ), $commission_value);
             }
         }
