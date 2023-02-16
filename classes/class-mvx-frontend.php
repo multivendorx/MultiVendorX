@@ -84,6 +84,12 @@ class MVX_Frontend {
             add_action( 'woocommerce_checkout_update_order_review', array( &$this, 'mvx_checkout_user_location_session_set' ), 50 );
             add_action( 'woocommerce_checkout_update_order_meta', array( &$this, 'mvx_checkout_user_location_save' ), 50 );
         }
+
+        if ( get_mvx_vendor_settings('display_product_seller', 'settings_general') && apply_filters('mvx_cart_checkout_custom_template', true) ){
+            add_action( 'woocommerce_before_cart', array( &$this, 'message_multiple_vendors_cart' ), 10 );
+            add_filter( 'woocommerce_locate_template', array( &$this, 'mvx_template_cart' ), 10, 3 );
+            add_filter( 'wc_get_template', array( &$this, 'mvx_template_orderdetails' ), 10, 5 );
+        }
     }
 
     /**
@@ -1121,4 +1127,69 @@ class MVX_Frontend {
         }
     }
 
+    function message_multiple_vendors_cart(){
+        $vendorsincart = $this->get_vendors_in_cart();
+        if ( count($vendorsincart) > 1 ){
+            wc_print_notice(esc_html__('The products in your cart are sold by multiple different vendor partners. The order will be placed simultaneously with all vendors and you will receive a package from each of them.','multivendorx'), 'notice' );
+        }else if ( count($vendorsincart) === 1 ){
+            $vendorid = reset($vendorsincart);
+            echo '<input type="hidden" value="' . esc_attr($vendorid) . '">';
+        }
+        echo '<input type="hidden" value="' . esc_attr(count($vendorsincart)) . '">';
+    }
+
+    function get_vendors_in_cart(){
+        $cart = WC()->cart;
+        $vendors = array();
+        if ( is_object($cart) ){
+            foreach ( $cart->get_cart() as $cart_item ){
+                $vendor = get_mvx_product_vendors( $cart_item['product_id'] );
+                $vendor_id = $vendor->id;
+                if ( !empty($vendor_id) ){
+                    array_push($vendors, $vendor_id);
+                }
+            }
+        }
+        return array_unique(array_filter($vendors));
+    }
+
+    function get_vendors_of_order($order_id){
+        if ( is_object($order_id) ){
+            $order = $order_id;
+        } else {
+            $order = wc_get_order($order_id);
+        }
+        $vendors = array();
+        $items = $order->get_items();
+        foreach ( $items as $product ){
+            $vendor_id = get_post_field( 'post_author', $product->get_product_id() );
+            array_push($vendors, $vendor_id);
+        }
+        return array_unique(array_filter($vendors));
+    }
+
+    function mvx_template_cart( $template, $template_name, $template_path ) {
+        global $MVX;
+        $vendorsincart = $this->get_vendors_in_cart();
+        if ( count($vendorsincart) > 1 ){
+            if ( 'cart.php' === basename( $template ) ){
+                $template = $MVX->template->get_template( 'woocommerce/cart/cart.php' );
+            }
+        }
+        return $template;
+    }
+
+    function mvx_template_orderdetails( $template, $template_name, $args, $template_path, $default_path ){
+        global $MVX;
+        if ( 'order-details.php' === basename( $template ) ) {
+            if ( isset($args['order_id']) ){
+                $order_id = $args['order_id'];
+                $vendors = $this->get_vendors_of_order($order_id);
+                if ( count($vendors) > 1 ){
+                    $template = $MVX->template->get_template( 'woocommerce/order/order-details.php', array( 'order_id' => $order_id ) );
+                }
+            }	
+        }   
+        return $template;
+    }
 }
