@@ -837,6 +837,20 @@ class MVX_Backend_Commission extends Component {
 														></p>
 													</div>
 												</p>
+												{
+													this.state.commission_details.additional_datas ?
+														<p
+															dangerouslySetInnerHTML={{
+																__html: this.state.commission_details.additional_datas
+																	
+															}}
+														>
+														</p>
+													:
+
+													''
+												}
+
 											</div>
 										</div>
 									</div>
@@ -1343,6 +1357,21 @@ class MVX_Backend_Commission extends Component {
 																		}}
 																	></div>
 																</td>
+
+																{
+																	this.state.commission_details.additional_down_datas ?
+																		<p
+																			dangerouslySetInnerHTML={{
+																				__html: this.state.commission_details.additional_down_datas
+																					
+																			}}
+																		>
+																		</p>
+																	:
+
+																	''
+																}
+
 															</tr>
 														) : (
 															''
