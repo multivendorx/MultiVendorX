@@ -1458,19 +1458,22 @@ class MVX_Backend_Commission extends Component {
 															: ''}
 
 
-															
+
 														{
-															this.state.commission_details.additional_down_datas ?
+
+															this.state.commission_details.additional_down_datas.map(
+															(
+																data,
+																index_c
+															) => (
 																<tr
 																	dangerouslySetInnerHTML={{
-																		__html: this.state.commission_details.additional_down_datas
+																		__html: data
 																			
 																	}}
 																>
 																</tr>
-															:
-
-															''
+															))
 														}
 
 
