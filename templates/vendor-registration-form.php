@@ -3,7 +3,7 @@
 /**
  * The Template for displaying vendor registration form.
  *
- * Override this template by copying it to yourtheme/MultiVendorX/vendor_registration_form.php
+ * Override this template by copying it to yourtheme/MultiVendorX/vendor-registration-form.php
  *
  * @author 		MultiVendorX
  * @package MultiVendorX/Templates
