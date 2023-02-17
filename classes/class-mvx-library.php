@@ -19,6 +19,7 @@ class MVX_Library {
     public $jqvmap;
     public $dataTable_lib_url;
     public $popper_lib_url;
+    public $vlite_lib_url;
 
     public function __construct() {
 
@@ -47,6 +48,8 @@ class MVX_Library {
         $this->dataTable_lib_url = $this->lib_url . 'dataTable/';
 
         $this->popper_lib_url = $this->lib_url . 'popper/';
+
+        $this->vlite_lib_url = $this->lib_url . 'vlite/';
     }
 
     /**
@@ -65,6 +68,17 @@ class MVX_Library {
         global $MVX;
         wp_enqueue_script('qtip_js', $this->jquery_lib_url . 'qtip/qtip.js', array('jquery'), $MVX->version, true);
         wp_enqueue_style('qtip_css', $this->jquery_lib_url . 'qtip/qtip.css', array(), $MVX->version);
+    }
+
+    /**
+     * vLite library
+     */
+    public function load_vlite_lib() {
+        global $MVX;
+        wp_enqueue_style( 'vlite_css',  $this->vlite_lib_url . 'vlite.css', array(), $MVX->version, true );
+        wp_enqueue_script( 'vlite_js', $this->vlite_lib_url . 'vlite.js', array('jquery'), $MVX->version, true );
+        
+        wp_enqueue_script( 'vlite_youtube_js', $this->vlite_lib_url . 'providers/youtube.js', array('jquery'), $MVX->version, true );    
     }
 
     /**

@@ -1251,6 +1251,27 @@ Class MVX_Admin_Dashboard {
                 }
             }
         }
+        //banner type
+        if (isset($_POST['vendor_banner_type']) && !empty($_POST['vendor_banner_type'])) {
+            mvx_update_user_meta($user_id, '_vendor_banner_type', wc_clean($_POST['vendor_banner_type']));
+        }
+
+        //video link
+        if (isset($_POST['vendor_video_link']) && !empty($_POST['vendor_video_link'])) {
+            mvx_update_user_meta($user_id, '_vendor_video', wc_clean($_POST['vendor_video_link']));
+        }
+
+        //slider
+        $attachment_ids = isset( $_POST['slider_image_gallery'] ) ? explode( ',', wc_clean( $_POST['slider_image_gallery'] ) ) : array();
+
+        $attachment_ids = array_filter( $attachment_ids, function( $attachment_id ) {
+            //image validity check
+            $attachment = wp_get_attachment_image( $attachment_id );
+            return ! empty( $attachment );
+        } );
+
+        mvx_update_user_meta($user_id, '_vendor_slider', implode( ',', $attachment_ids ) );
+
         if (isset($_POST['_shop_template']) && !empty($_POST['_shop_template'])) {
             mvx_update_user_meta($user_id, '_shop_template', wc_clean($_POST['_shop_template']));
         }

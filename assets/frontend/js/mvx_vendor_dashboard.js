@@ -5,7 +5,7 @@ jQuery(document).ready(function($){
 			var element_to_be_refrash = $(this).parent();	
 			var lodder_parent = $(this).parent().parent();
 			var lodder = lodder_parent.find('.ajax_loader_class_msg');
-			lodder.show();			
+			lodder.show();
 			var data = {
 				action : 'mvx_dismiss_dashboard_announcements',
 				post_id : post_id,
@@ -206,4 +206,34 @@ jQuery(document).ready(function($){
         $(this).parents('.mvx-do-change-pass').toggle();
         $('.vendor-edit-pass-field').toggle();
     });
+
+    //banner
+    if($('.vendor_banner_type').val() == 'slider' ) {	
+		$('.vendor-cover-panel').hide();
+		$('.slider_images_container').show();
+		$('.video_container').hide();
+	} else if($('.vendor_banner_type').val() == 'video' ) {
+		$('.vendor-cover-panel').hide();
+		$('.slider_images_container').hide();
+		$('.video_container').show();
+	} else if($('.vendor_banner_type').val() == 'single_img' ) {
+		$('.vendor-cover-panel').show();
+		$('.slider_images_container').hide();
+		$('.video_container').hide();
+	}
+    $('.vendor_banner_type').on( 'change', function() {
+		if($(this).val() == 'slider' ) {	
+			$('.vendor-cover-panel').hide();
+			$('.slider_images_container').show();
+			$('.video_container').hide();
+		} else if($('.vendor_banner_type').val() == 'video' ) {
+			$('.vendor-cover-panel').hide();
+			$('.slider_images_container').hide();
+			$('.video_container').show();
+		} else if($('.vendor_banner_type').val() == 'single_img' ) {
+			$('.vendor-cover-panel').show();
+			$('.slider_images_container').hide();
+			$('.video_container').hide();
+		}
+	});
 });
