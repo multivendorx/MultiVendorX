@@ -34,14 +34,7 @@ $follow_status_key = in_array($vendor_id, $vendor_lists) ? 'Unfollow' : 'Follow'
 if ( $template_class == 'template3') { ?>
 <div class='mvx_bannersec_start mvx-theme01'>
     <div class="mvx-banner-wrap">
-        <?php if($banner != '') { ?>
-            <div class='banner-img-cls'>
-            <img src="<?php echo esc_url($banner); ?>" class="mvx-imgcls"/>
-            </div>
-        <?php } else { ?>
-            <img src="<?php echo $MVX->plugin_url . 'assets/images/banner_placeholder.jpg'; ?>" class="mvx-imgcls"/>
-        <?php } ?>
-
+        <?php $MVX->template->get_template('archive-vendor-banner.php', array('banner' => $banner , 'vendor_banner_type' => $vendor->banner_type, 'vendor_video' => $vendor->video, 'slider_image_gallery' => $vendor->slider)); ?>
         <div class='mvx-banner-area'>
             <div class='mvx-bannerright'>
                 <div class="socialicn-area">
@@ -125,13 +118,7 @@ if ( $template_class == 'template3') { ?>
     <div class='mvx_bannersec_start mvx-theme02'>
         
         <div class="mvx-banner-wrap">
-        <?php if($banner != '') { ?>
-            <div class='banner-img-cls'>
-            <img src="<?php echo esc_url($banner); ?>" class="mvx-imgcls"/>
-            </div>
-        <?php } else { ?>
-            <img src="<?php echo $MVX->plugin_url . 'assets/images/banner_placeholder.jpg'; ?>" class="mvx-imgcls"/>
-        <?php } ?>
+        <?php $MVX->template->get_template('archive-vendor-banner.php', array('banner' => $banner , 'vendor_banner_type' => $vendor->banner_type, 'vendor_video' => $vendor->video, 'slider_image_gallery' => $vendor->slider)); ?>
         <div class='mvx-banner-area'>
             <div class='mvx-bannerleft'>
                 <div class='mvx-profile-area'>
@@ -207,11 +194,7 @@ if ( $template_class == 'template3') { ?>
     <div class='mvx_bannersec_start mvx-theme03'>
         <div class="mvx-banner-wrap">
             <?php if($banner != '') { ?>
-                <div class='banner-img-cls'>
-                <img src="<?php echo esc_url($banner); ?>" class="mvx-imgcls"/>
-                </div>
-            <?php } else { ?>
-                <img src="<?php echo $MVX->plugin_url . 'assets/images/banner_placeholder.jpg'; ?>" class="mvx-imgcls"/>
+                <?php $MVX->template->get_template('archive-vendor-banner.php', array('banner' => $banner , 'vendor_banner_type' => $vendor->banner_type, 'vendor_video' => $vendor->video, 'slider_image_gallery' => $vendor->slider)); ?>
             <?php } ?>
             <div class='mvx-banner-area'>
                 <div class='mvx-bannerright'>

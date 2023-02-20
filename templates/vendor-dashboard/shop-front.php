@@ -3,7 +3,7 @@
  * The template for displaying vendor dashboard
  * Override this template by copying it to yourtheme/MultiVendorX/vendor-dashboard/shop-front.php
  *
- * @author 		MultiVendorX
+ * @author      MultiVendorX
  * @package MultiVendorX/Templates
  * @version   2.4.5
  */
@@ -27,6 +27,13 @@ if (!$MVX->vendor_caps->vendor_can('is_upload_files')) {
     $_wp_editor_settings['media_buttons'] = false;
 }
 $_wp_editor_settings = apply_filters('mvx_vendor_storefront_wp_editor_settings', $_wp_editor_settings);
+$store_banner_types = array( 
+        'single_img' => __( 'Static Image', 'multivendorx' ), 
+        'slider' => __( 'Slider', 'multivendorx' ), 
+        'video' => __( 'Video', 'multivendorx' ) 
+    );
+$vendor_banner_type = get_user_meta($vendor->id, '_vendor_banner_type');
+$vendor_video = get_user_meta($vendor->id, '_vendor_video', true);
 ?>
 <style>
     .store-map-address{
@@ -53,7 +60,97 @@ $_wp_editor_settings = apply_filters('mvx_vendor_storefront_wp_editor_settings',
     <!-- <div class="mvx_headding2 card-header"><?php _e('General', 'multivendorx'); ?></div> -->
     <form method="post" name="shop_settings_form" class="mvx_shop_settings_form form-horizontal">
         <?php do_action('mvx_before_shop_front'); ?>
+        <div class="panel panel-default pannel-outer-heading">
+            <div class="panel-heading d-flex">
+                <h3><?php _e('Store Brand', 'multivendorx'); ?></h3>
+            </div>
+            <div class="panel-body panel-content-padding form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-sm-3 col-md-3"><?php _e('Store Banner Type', 'multivendorx'); ?></label>
+                    <div class="col-md-6 col-sm-9">
+                       <select class="vendor_banner_type form-control regular-select" name="vendor_banner_type">
+                        <?php foreach ($store_banner_types as $banner_type_key => $banner_type_val) { ?>
+                            <option value="<?php echo $banner_type_key; ?>" <?php selected(in_array( $banner_type_key, $vendor_banner_type), true); ?>><?php echo $banner_type_val; ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3 col-md-3"><?php _e('Store Logo', 'multivendorx'); ?></label>
+                    <div class="col-md-6 col-sm-9">
+                        <div class="vendor-profile-pic-wraper pull-left">
+                            <img id="vendor-profile-img" src="<?php echo (isset($vendor_image['url']) && (!empty($vendor_image['url']))) ? $vendor_image['url'] : $MVX->plugin_url . 'assets/images/logo_placeholder.jpg'; ?>" alt="dp">
+                            <div class="mvx-media profile-pic-btn">
+                                <button type="button" class="mvx_upload_btn" data-target="vendor-profile"><i class="mvx-font ico-edit-pencil-icon"></i> <?php _e('Store Logo', 'multivendorx'); ?></button>
+                            </div>
+                            <input type="hidden" name="vendor_image" id="vendor-profile-img-id" class="user-profile-fields" value="<?php echo (isset($vendor_image['value']) && (!empty($vendor_image['value']))) ? $vendor_image['value'] : $MVX->plugin_url . 'assets/images/WP-stdavatar.png'; ?>"  />
+                        </div>
+                    </div>
+                </div>
 
+                <div id="slider_images_container" class="custom-panel slider_images_container">
+                    <div class="form-group">
+                        <label class="control-label col-sm-3 col-md-3"><?php _e('Slider gallery', 'multivendorx'); ?></label>
+                        <div class="col-md-6 col-sm-9">
+                            <ul class="slider_images">
+                                <?php
+                                $slider_image_gallery ='';
+                                if ( metadata_exists( 'user', $vendor->id, '_vendor_slider' ) ) {
+                                    $slider_image_gallery = get_user_meta( $vendor->id, '_vendor_slider', true );
+                                } else {
+                                    
+                                }
+
+                                $attachments = array_filter( explode( ',', $slider_image_gallery ) );
+                                $update_meta = false;
+                                $updated_gallery_ids = array();
+
+                                if ( ! empty( $attachments ) ) {
+                                    foreach ( $attachments as $attachment_id ) {
+                                        $attachment = wp_get_attachment_image( $attachment_id, 'thumbnail' );
+
+                                        // if attachment is empty skip
+                                        if ( empty( $attachment ) ) {
+                                            $update_meta = true;
+                                            continue;
+                                        }
+
+                                        echo '<li class="image" data-attachment_id="' . esc_attr( $attachment_id ) . '">
+                                                ' . $attachment . '
+                                                <ul class="actions">
+                                                    <li><a href="#" class="delete tips" data-tip="' . esc_attr__( 'Delete image', 'multivendorx' ) . '">' . __( 'Delete', 'multivendorx' ) . '</a></li>
+                                                </ul>
+                                            </li>';
+
+                                        // rebuild ids to be saved
+                                        $updated_gallery_ids[] = $attachment_id;
+                                    }
+
+                                    // need to update slider meta to set new gallery ids
+                                    if ( $update_meta ) {
+                                        update_post_meta( $post->ID, '_slider_image_gallery', implode( ',', $updated_gallery_ids ) );
+                                    }
+                                }
+                                ?>
+                            </ul>
+                        
+                            <input type="hidden" id="slider_image_gallery" name="slider_image_gallery" value="<?php echo esc_attr( $slider_image_gallery ); ?>" />
+                            <p class="add_slider_images">
+                                <a href="#" <?php echo current_user_can( 'upload_files' ) ? '' : 'data-nocaps="true" '; ?>data-choose="<?php esc_attr_e( 'Add images to Slider gallery', 'multivendorx' ); ?>" data-update="<?php esc_attr_e( 'Add to gallery', 'multivendorx' ); ?>" data-delete="<?php esc_attr_e( 'Delete image', 'multivendorx' ); ?>" data-text="<?php esc_attr_e( 'Delete', 'multivendorx' ); ?>" class="save_gallery_image"><?php _e( 'Add slider gallery images', 'multivendorx' ); ?></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div id="video_container" class="custom-panel video_container">
+                    <div class="form-group">
+                        <label class="control-label col-sm-3 col-md-3"><?php _e('Video Link', 'multivendorx'); ?></label>
+                        <div class="col-md-6 col-sm-9">
+                            <input class="no_input form-control" type="url" name="vendor_video_link" value="<?php echo $vendor_video; ?>"  placeholder="<?php _e('Enter youtube video link here', 'multivendorx'); ?>">
+                        </div>  
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="panel panel-default pannel-outer-heading vendor-cover-panel">
             <div class="panel-body">
                 <div class="row">
@@ -61,13 +158,6 @@ $_wp_editor_settings = apply_filters('mvx_vendor_storefront_wp_editor_settings',
                         <div class="vendor-cover-wrap">
                             <img id="vendor-cover-img" src="<?php echo (isset($vendor_banner['url']) && (!empty($vendor_banner['url'])) ) ? $vendor_banner['url'] : $MVX->plugin_url . 'assets/images/banner_placeholder.jpg'; ?>" alt="banner">
 
-                            <div class="vendor-profile-pic-wraper pull-left">
-                                <img id="vendor-profile-img" src="<?php echo (isset($vendor_image['url']) && (!empty($vendor_image['url']))) ? $vendor_image['url'] : $MVX->plugin_url . 'assets/images/logo_placeholder.jpg'; ?>" alt="dp">
-                                <div class="mvx-media profile-pic-btn">
-                                    <button type="button" class="mvx_upload_btn" data-target="vendor-profile"><i class="mvx-font ico-edit-pencil-icon"></i> <?php _e('Store Logo', 'multivendorx'); ?></button>
-                                </div>
-                                <input type="hidden" name="vendor_image" id="vendor-profile-img-id" class="user-profile-fields" value="<?php echo (isset($vendor_image['value']) && (!empty($vendor_image['value']))) ? $vendor_image['value'] : $MVX->plugin_url . 'assets/images/WP-stdavatar.png'; ?>"  />
-                            </div>
                             <div class="mvx-media cover-pic-button pull-right">
                                 <button type="button" class="mvx_upload_btn" data-target="vendor-cover"><i class="mvx-font ico-edit-pencil-icon"></i> <?php _e('Upload Cover Picture', 'multivendorx'); ?></button>
                             </div>
@@ -132,11 +222,11 @@ $_wp_editor_settings = apply_filters('mvx_vendor_storefront_wp_editor_settings',
                                     } echo $shop_page_url = trailingslashit(get_home_url());
                                     echo $store_slug;
                                     ?>
-                                </span>		
+                                </span>     
                                 <input class="small no_input form-control" id="basic-url" aria-describedby="basic-addon3" type="text" name="vendor_page_slug" value="<?php echo isset($vendor_page_slug['value']) ? $vendor_page_slug['value'] : ''; ?>" placeholder="<?php _e('Enter your Store Name here', 'multivendorx'); ?>">
-                            </div>	
-                        </div>	
-                    </div>	
+                            </div>  
+                        </div>  
+                    </div>  
                     <div class="form-group">
                         <label class="control-label col-sm-3 col-md-3"><?php _e('Store Description', 'multivendorx'); ?></label>
                         <div class="col-md-6 col-sm-9">

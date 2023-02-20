@@ -379,10 +379,13 @@ class MVX_Vendor_Hooks {
      */
     public function mvx_vendor_dashboard_storefront_endpoint() {
         global $MVX;
+        $suffix = defined('MVX_SCRIPT_DEBUG') && MVX_SCRIPT_DEBUG ? '' : '.min';
         $vendor = get_mvx_vendor( get_current_vendor_id() );
         $user_array = $MVX->user->get_vendor_fields( $vendor->id );
         $MVX->library->load_dashboard_upload_lib();
         $MVX->library->load_gmap_api();
+        wp_register_script( 'mvx-frontend-media', $MVX->plugin_url . 'assets/frontend/js/storefront-media' . $suffix . '.js', array( 'jquery'), $MVX->version );
+        wp_enqueue_script( 'mvx-frontend-media' );
         $MVX->template->get_template( 'vendor-dashboard/shop-front.php', $user_array );
     }
     
