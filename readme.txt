@@ -297,6 +297,8 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 * Added     - Let Vendor Add Slider and Video for shop page #282
 * Fix       - Registration Form Description not getting displayed #316.
 * Fix 		- Multiple Vendor Notice At Cart and Checkout Page #315.
+* Dev 		- Added `mvx_analytics_tabs_datas` filter.
+* Dev 		- Added `mvx_report_analytics_strings` filter.
 * Updated   - Language file.
 
 = 4.0.8 - 2023-02-06 =
