@@ -41,6 +41,8 @@ class MVX_Analytics extends Component {
 			store_vendor_select: '',
 			product_report_chart_data: [],
 			vendor_report_chart_data: [],
+			columns_sales_distribution_list: [],
+			current_sales_distribution: [],
 			columns_product: [
 				{
 					name: (
@@ -371,9 +373,31 @@ class MVX_Analytics extends Component {
 		this.handleChangeproduct_char_list =
 			this.handleChangeproduct_char_list.bind(this);
 		this.handlevendorsearch = this.handlevendorsearch.bind(this);
+		this.handleReportStatus = this.handleReportStatus.bind(this);
 		this.handleproductsearch = this.handleproductsearch.bind(this);
 		this.handleChangevendor_char_list =
 			this.handleChangevendor_char_list.bind(this);
+		this.handleSelectRowsChangeSales = this.handleSelectRowsChangeSales.bind(this);
+	}
+
+	handleSelectRowsChangeSales(e) {
+		const sales_distribution_list = [];
+		e.selectedRows.map((data, index) => {
+			sales_distribution_list[index] = data.id;
+		});
+		
+		axios
+		.get(
+			`${appLocalizer.apiUrl}/mvx_analytics/v1/fetch_csv_content`,
+			{
+				params: { sales_distribution_list: sales_distribution_list },
+			}
+		)
+		.then((response) => {
+			this.setState({
+				current_sales_distribution: response.data,
+			});
+		});
 	}
 
 	handleproductsearch(e) {
@@ -407,6 +431,23 @@ class MVX_Analytics extends Component {
 				value: this.state.store_date,
 				product: this.state.store_product_select,
 				vendor: e.value,
+			},
+		}).then((responce) => {
+			this.setState({
+				report_overview_data: responce.data,
+			});
+		});
+	}
+
+	handleReportStatus(e) {
+		axios({
+			method: 'post',
+			url: `${appLocalizer.apiUrl}/mvx_module/v1/get_report_overview_data`,
+			data: {
+				value: this.state.store_date,
+				product: this.state.store_product_select,
+				vendor: this.state.store_vendor_select,
+				status_sales: e.value,
 			},
 		}).then((responce) => {
 			this.setState({
@@ -529,6 +570,36 @@ class MVX_Analytics extends Component {
 	}
 
 	Child({ name }) {
+
+		var admin_net = 0;
+		var vendor_commission = 0;
+		var order_sub_total = 0;
+		var shipping = 0;
+
+		if (
+			this.state.columns_sales_distribution_list.length === 0 &&
+			new URLSearchParams(window.location.hash).get('name') ===
+				'sales-distribution'
+		) {
+			appLocalizer.columns_sales_distribution ? appLocalizer.columns_sales_distribution.map((data_report, index_report) => {
+				let data_selector_r = '';
+				let set_for_dynamic_column_r = '';
+				data_selector_r = data_report.selector_choice;
+				data_report.selector = (row) => (
+					<div
+						dangerouslySetInnerHTML={{ __html: row[data_selector_r] }}
+					></div>
+				);
+
+				this.state.columns_sales_distribution_list[index_report] = data_report;
+				set_for_dynamic_column_r = this.state.columns_sales_distribution_list;
+				this.setState({
+					columns_sales_distribution_list: set_for_dynamic_column_r,
+				});
+			}) : '';
+		}
+
+
 		return (
 			(name = !name
 				? appLocalizer.mvx_all_backend_tab_list[
@@ -1398,6 +1469,108 @@ class MVX_Analytics extends Component {
 						/>
 					</div>
 				</div>
+			) : name ==
+			  appLocalizer.mvx_all_backend_tab_list['marketplace-analytics'][4]
+					.modulename ? (
+				<div className="mvx-report-start-content">
+					{
+						this.state.report_overview_data.sales_distribution && appLocalizer.total_sales_distribution_visible ? this.state.report_overview_data.sales_distribution.map((data_earning, index_earning) => {
+							admin_net += data_earning.raw_data.admin_earning;
+							vendor_commission += data_earning.raw_data.commission;
+							order_sub_total += data_earning.raw_data.total_sales;
+							shipping += data_earning.raw_data.shipping_amount;
+						}) : '',
+						appLocalizer.total_sales_distribution_visible ? <div className="total-net-earning"> 
+						Total Admin Net Earning: {admin_net} 
+						<br/>
+						Total Vendor Commission: {vendor_commission}
+						<br/>
+						Total Sub Total: {order_sub_total}
+						<br/>
+						Shipping: {shipping}
+						<br/>
+						</div> 
+						: ''
+					}
+
+					<div className="mvx-date-and-show-wrapper">
+						<div className="mvx-wrapper-date-picker">
+							<div className="mvx-date-range">
+								{appLocalizer.analytics_page_string.analytics1}:
+							</div>
+							<div className="mvx-report-datepicker">
+								<DateRangePicker
+									onChange={(e) => this.handleupdatereport(e)}
+								/>
+							</div>
+						</div>
+
+						<div className="mvx-vendor-wrapper-show-specific">
+							<div className="mvx-date-range">
+								{appLocalizer.report_page_string.vendor_select}
+							</div>
+							{this.state.details_vendor.length > 0 ?
+								<Select
+									placeholder={
+										appLocalizer.report_page_string
+											.choose_vendor
+									}
+									defaultValue={this.state.details_vendor[0]}
+									options={this.state.details_vendor}
+									isClearable={true}
+									className="mvx-wrap-bulk-action"
+									onChange={(e) => this.handlevendorsearch(e)}
+								/>
+							: ''}
+						</div>
+
+						<div className="mvx-vendor-wrapper-show-specific">
+							<div className="mvx-date-range">
+								{appLocalizer.report_page_string.status_choose}
+							</div>
+							{appLocalizer.status_list.length > 0 ?
+								<Select
+									options={appLocalizer.status_list}
+									isClearable={true}
+									className="mvx-wrap-bulk-action"
+									onChange={(e) => this.handleReportStatus(e)}
+								/>
+							: ''}
+						</div>
+
+						{this.state.current_sales_distribution ? 
+						<CSVLink
+							data={this.state.current_sales_distribution}
+							headers={appLocalizer.sals_distribution_header}
+							filename={'sales.csv'}
+							className="mvx-btn btn-purple"
+						>
+							<i className="mvx-font icon-download"></i>
+							{
+								appLocalizer.global_string
+									.download_csv
+							}
+						</CSVLink>	
+						: '' }
+					</div>
+
+					<div className="mvx-backend-datatable-wrapper">
+					{this.state.report_overview_data.sales_distribution ? 
+						<DataTable
+							columns={this.state.columns_sales_distribution_list}
+							data={
+								this.state.report_overview_data.sales_distribution
+							}
+							selectableRows
+							onSelectedRowsChange={
+								this.handleSelectRowsChangeSales
+							}
+							pagination
+						/>
+						: 'Not Enough Data' }
+					</div>
+				</div>
+
 			) : (
 				''
 			)

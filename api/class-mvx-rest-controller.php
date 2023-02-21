@@ -3748,6 +3748,7 @@ class MVX_REST_API {
         $product = $request && $request->get_param('product') ? ($request->get_param('product')) : 0;
         $find_1st_vendor_from_rest = $this->mvx_vendor_list_search()->data ? $this->mvx_vendor_list_search()->data[0]['value'] : 0;
         $selectvendor = $request && $request->get_param('vendor') ? ($request->get_param('vendor')) : $find_1st_vendor_from_rest;
+        $status_sales = $request && $request->get_param('status_sales') ? $request->get_param('status_sales') : '';
 
         // Bydefault last 7 days
         $start_date    = strtotime( '-7 days', strtotime( 'midnight', current_time( 'timestamp' ) ) );
@@ -4340,8 +4341,7 @@ class MVX_REST_API {
             'banking_overview'  =>  $banking_datas
         );
 
-        //print_r($report_by_admin_overview);die;
-        return rest_ensure_response($report_by_admin_overview);
+        return rest_ensure_response(apply_filters('mvx_analytics_tabs_datas', $report_by_admin_overview, $status_sales, $selectvendor, $value));
     }
 
     public function mvx_update_commission_status($request) {

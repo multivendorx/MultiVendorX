@@ -1148,9 +1148,11 @@ class MVX_Frontend {
         if ( is_object($cart) ){
             foreach ( $cart->get_cart() as $cart_item ){
                 $vendor = get_mvx_product_vendors( $cart_item['product_id'] );
-                $vendor_id = $vendor->id;
-                if ( !empty($vendor_id) ){
-                    array_push($vendors, $vendor_id);
+                if ($vendor) {
+                    $vendor_id = $vendor->id;
+                    if ( !empty($vendor_id) ){
+                        array_push($vendors, $vendor_id);
+                    }
                 }
             }
         }

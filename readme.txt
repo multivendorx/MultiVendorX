@@ -5,7 +5,7 @@ Donate link: https://multivendorx.com/donate
 Requires at least: 4.4
 Tested up to: 6.1.1
 Requires PHP: 5.6
-Stable tag: 4.0.8
+Stable tag: 4.0.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -291,6 +291,12 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.0.9 - 2023-02-21 =
+* Added     - Let Vendor Add Slider and Video for shop page #282
+* Fix       - Registration Form Description not getting displayed #316.
+* Fix 		- Multiple Vendor Notice At Cart and Checkout Page #315.
+* Updated   - Language file.
 
 = 4.0.8 - 2023-02-06 =
 * Added     - New Follower menue for vendors.

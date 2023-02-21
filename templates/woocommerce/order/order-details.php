@@ -42,7 +42,7 @@
  <section class="woocommerce-order-details">
      <?php do_action( 'woocommerce_order_details_before_order_table', $order ); ?>
  
-     <h2 class="woocommerce-order-details__title"><?php esc_html_e( 'Order details', 'woocommerce' ); ?></h2>
+     <h2 class="woocommerce-order-details__title"><?php esc_html_e( 'Order details', 'multivendorx' ); ?></h2>
      <?php
       $suborders = array_reverse(get_mvx_suborders($order_id));
       if (count($suborders) > 1) {
@@ -69,7 +69,7 @@
              ?>
              <?php if ( $order->get_customer_note() ) : ?>
                  <tr>
-                     <th><?php esc_html_e( 'Note:', 'woocommerce' ); ?></th>
+                     <th><?php esc_html_e( 'Note:', 'multivendorx' ); ?></th>
                      <td><?php echo wp_kses_post( nl2br( wptexturize( $order->get_customer_note() ) ) ); ?></td>
                  </tr>
              <?php endif; ?>
@@ -92,7 +92,7 @@
              <?php echo '<h4>'.esc_html__('Products sold by ','multivendorx').$store_name.'</h4>'; ?>
          </div>
          <div class="order_details_vendor_table_view_order">
-             <a href="<?php echo esc_attr($suborder->get_view_order_url());?>"><button class="woocommerce-button button view"><?php echo esc_html__( 'View Order', 'woocommerce' ).' #'.esc_html($suborder_id); ?></button></a>
+             <a href="<?php echo esc_attr($suborder->get_view_order_url());?>"><button class="woocommerce-button button view"><?php echo esc_html__( 'View Order', 'multivendorx' ).' #'.esc_html($suborder_id); ?></button></a>
          </div>
      </div>
  
@@ -100,8 +100,8 @@
      <table class="woocommerce-table woocommerce-table--order-details shop_table order_details">
          <thead>
              <tr>
-                 <th class="woocommerce-table__product-name product-name"><?php esc_html_e( 'Product', 'woocommerce' ); ?></th>
-                 <th class="woocommerce-table__product-table product-total"><?php esc_html_e( 'Total', 'woocommerce' ); ?></th>
+                 <th class="woocommerce-table__product-name product-name"><?php esc_html_e( 'Product', 'multivendorx' ); ?></th>
+                 <th class="woocommerce-table__product-table product-total"><?php esc_html_e( 'Total', 'multivendorx' ); ?></th>
              </tr>
          </thead>
  
@@ -162,7 +162,7 @@
              ?>
              <?php if ( $suborder->get_customer_note() ) : ?>
                  <tr>
-                     <th><?php esc_html_e( 'Note:', 'woocommerce' ); ?></th>
+                     <th><?php esc_html_e( 'Note:', 'multivendorx' ); ?></th>
                      <td><?php echo wp_kses_post( nl2br( wptexturize( $suborder->get_customer_note() ) ) ); ?></td>
                  </tr>
              <?php endif; ?>

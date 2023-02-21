@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the MultiVendorX package.
 msgid ""
 msgstr ""
-"Project-Id-Version: MultiVendorX 4.0.8\n"
+"Project-Id-Version: MultiVendorX 4.0.9\n"
 "Report-Msgid-Bugs-To: "
 "https://github.com/multivendorx/dc-woocommerce-multi-vendor/issues\n"
-"POT-Creation-Date: 2023-02-06 14:03:52+00:00\n"
+"POT-Creation-Date: 2023-02-21 05:41:33+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -745,8 +745,8 @@ msgstr ""
 
 #: api/class-mvx-rest-controller.php:3020
 #: api/class-mvx-rest-controller.php:3021
-#: api/class-mvx-rest-controller.php:3022 classes/class-mvx-frontend.php:739
-#: classes/class-mvx-frontend.php:741 classes/class-mvx-frontend.php:743
+#: api/class-mvx-rest-controller.php:3022 classes/class-mvx-frontend.php:747
+#: classes/class-mvx-frontend.php:749 classes/class-mvx-frontend.php:751
 msgid "No policy found"
 msgstr ""
 
@@ -771,7 +771,7 @@ msgid "Usernames cannot be changed."
 msgstr ""
 
 #: api/class-mvx-rest-controller.php:3151 includes/mvx-core-functions.php:6605
-#: templates/shortcode/vendor_registration.php:24
+#: templates/shortcode/vendor_registration.php:25
 msgid "Password"
 msgstr ""
 
@@ -978,7 +978,7 @@ msgstr ""
 msgid "Account Number"
 msgstr ""
 
-#: api/class-mvx-rest-controller.php:3448 classes/class-mvx-frontend.php:754
+#: api/class-mvx-rest-controller.php:3448 classes/class-mvx-frontend.php:762
 #: classes/class-mvx-product.php:909 classes/class-mvx-user.php:656
 #: classes/widgets/class-mvx-widget-vendor-policies.php:25
 #: classes/widgets/class-mvx-widget-vendor-policies.php:65
@@ -990,7 +990,7 @@ msgstr ""
 msgid "Shipping Policy"
 msgstr ""
 
-#: api/class-mvx-rest-controller.php:3454 classes/class-mvx-frontend.php:764
+#: api/class-mvx-rest-controller.php:3454 classes/class-mvx-frontend.php:772
 #: classes/class-mvx-product.php:910 classes/class-mvx-user.php:649
 #: classes/widgets/class-mvx-widget-vendor-policies.php:30
 #: classes/widgets/class-mvx-widget-vendor-policies.php:71
@@ -1002,7 +1002,7 @@ msgstr ""
 msgid "Refund Policy"
 msgstr ""
 
-#: api/class-mvx-rest-controller.php:3460 classes/class-mvx-frontend.php:774
+#: api/class-mvx-rest-controller.php:3460 classes/class-mvx-frontend.php:782
 #: classes/class-mvx-product.php:911 classes/class-mvx-user.php:643
 #: classes/widgets/class-mvx-widget-vendor-policies.php:35
 #: templates/vendor-dashboard/product-manager/views/html-product-data-policy.php:63
@@ -1143,59 +1143,59 @@ msgstr ""
 msgid "All vendors and their"
 msgstr ""
 
-#: api/class-mvx-rest-controller.php:4056
+#: api/class-mvx-rest-controller.php:4057
 msgid "No product was sold in the given period."
 msgstr ""
 
-#: api/class-mvx-rest-controller.php:4059
+#: api/class-mvx-rest-controller.php:4060
 msgid "Your store has no products."
 msgstr ""
 
-#: api/class-mvx-rest-controller.php:4181
+#: api/class-mvx-rest-controller.php:4182
 msgid "Your store has no vendors."
 msgstr ""
 
-#: api/class-mvx-rest-controller.php:4274
+#: api/class-mvx-rest-controller.php:4275
 #: templates/vendor-dashboard/vendor-report.php:40
 msgid "Total Sales"
 msgstr ""
 
-#: api/class-mvx-rest-controller.php:4278
+#: api/class-mvx-rest-controller.php:4279
 msgid "Admin Earnings"
 msgstr ""
 
-#: api/class-mvx-rest-controller.php:4282
+#: api/class-mvx-rest-controller.php:4283
 msgid "Signup Vendors"
 msgstr ""
 
-#: api/class-mvx-rest-controller.php:4286
+#: api/class-mvx-rest-controller.php:4287
 msgid "Awaiting Vendors"
 msgstr ""
 
-#: api/class-mvx-rest-controller.php:4290
+#: api/class-mvx-rest-controller.php:4291
 msgid "Awaiting Products"
 msgstr ""
 
-#: api/class-mvx-rest-controller.php:4294
+#: api/class-mvx-rest-controller.php:4295
 msgid "Awaiting Withdrawals"
 msgstr ""
 
-#: api/class-mvx-rest-controller.php:4302
-#: api/class-mvx-rest-controller.php:4323
+#: api/class-mvx-rest-controller.php:4303
+#: api/class-mvx-rest-controller.php:4324
 #: classes/class-mvx-vendor-dashboard.php:1090
 #: classes/class-mvx-vendor-dashboard.php:1534
 #: classes/class-mvx-vendor-hooks.php:202 includes/mvx-core-functions.php:6744
 msgid "Orders"
 msgstr ""
 
-#: api/class-mvx-rest-controller.php:4306
-#: api/class-mvx-rest-controller.php:4327 classes/class-mvx-admin.php:229
+#: api/class-mvx-rest-controller.php:4307
+#: api/class-mvx-rest-controller.php:4328 classes/class-mvx-admin.php:229
 #: classes/class-mvx-admin.php:238 classes/class-mvx-admin.php:285
 msgid "Net Sales"
 msgstr ""
 
-#: api/class-mvx-rest-controller.php:4310
-#: api/class-mvx-rest-controller.php:4331
+#: api/class-mvx-rest-controller.php:4311
+#: api/class-mvx-rest-controller.php:4332
 msgid "Items Sold"
 msgstr ""
 
@@ -1248,7 +1248,7 @@ msgstr ""
 msgid "Total shipping"
 msgstr ""
 
-#: api/class-mvx-rest-controller.php:4931 classes/class-mvx-admin.php:356
+#: api/class-mvx-rest-controller.php:4930 classes/class-mvx-admin.php:356
 #: includes/mvx-core-functions.php:3914
 msgid "Paid"
 msgstr ""
@@ -1639,7 +1639,7 @@ msgstr ""
 
 #: classes/class-mvx-admin.php:215 classes/class-mvx-admin.php:309
 #: classes/class-mvx-admin.php:702 classes/class-mvx-endpoints.php:78
-#: classes/class-mvx-frontend.php:892
+#: classes/class-mvx-frontend.php:900
 #: classes/class-mvx-post-transaction.php:243 classes/class-mvx-user.php:772
 #: includes/mvx-core-functions.php:6696
 #: packages/mvx-elementor/includes/Tags/StoreTabs.php:95
@@ -1677,6 +1677,7 @@ msgstr ""
 #: templates/vendor-dashboard/vendor-orders/views/html-order-items.php:59
 #: templates/vendor-dashboard/vendor-orders/views/html-order-items.php:216
 #: templates/vendor-dashboard/vendor-withdrawal.php:26
+#: templates/woocommerce/order/order-details.php:104
 msgid "Total"
 msgstr ""
 
@@ -1910,6 +1911,9 @@ msgstr ""
 #: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-product-sales-report.php:17
 #: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-product-sales-report.php:32
 #: templates/vendor-dashboard/vendor-products-qna.php:38
+#: templates/woocommerce/cart/cart.php:86
+#: templates/woocommerce/cart/cart.php:139
+#: templates/woocommerce/order/order-details.php:103
 msgid "Product"
 msgstr ""
 
@@ -2486,7 +2490,7 @@ msgid "script, register your site with google account"
 msgstr ""
 
 #: classes/class-mvx-admin.php:469
-#: templates/shortcode/vendor_registration.php:40
+#: templates/shortcode/vendor_registration.php:41
 msgid "Register"
 msgstr ""
 
@@ -3146,6 +3150,8 @@ msgstr ""
 #: templates/emails/vendor-notify-shipped.php:31
 #: templates/single-product/multiple-vendors-products.php:28
 #: templates/vendor-dashboard/product-manager/show_products.php:5
+#: templates/woocommerce/cart/cart.php:87
+#: templates/woocommerce/cart/cart.php:159
 msgid "Price"
 msgstr ""
 
@@ -3847,36 +3853,36 @@ msgstr ""
 msgid "Refund"
 msgstr ""
 
-#: classes/class-mvx-frontend.php:177 classes/class-mvx-frontend.php:188
+#: classes/class-mvx-frontend.php:185 classes/class-mvx-frontend.php:196
 #: classes/class-mvx-user.php:150 classes/class-mvx-user.php:161
 msgid "Please Verify  Recaptcha"
 msgstr ""
 
-#: classes/class-mvx-frontend.php:205 classes/class-mvx-user.php:177
+#: classes/class-mvx-frontend.php:213 classes/class-mvx-user.php:177
 msgid "Please Upload valid file"
 msgstr ""
 
-#: classes/class-mvx-frontend.php:212 classes/class-mvx-user.php:183
+#: classes/class-mvx-frontend.php:220 classes/class-mvx-user.php:183
 msgid "File upload limit exceeded"
 msgstr ""
 
-#: classes/class-mvx-frontend.php:356
+#: classes/class-mvx-frontend.php:364
 msgid " Shipping"
 msgstr ""
 
-#: classes/class-mvx-frontend.php:443
+#: classes/class-mvx-frontend.php:451
 msgid "Insert your address .."
 msgstr ""
 
-#: classes/class-mvx-frontend.php:664 classes/class-mvx-frontend.php:665
+#: classes/class-mvx-frontend.php:672 classes/class-mvx-frontend.php:673
 msgid "Translations"
 msgstr ""
 
-#: classes/class-mvx-frontend.php:748
+#: classes/class-mvx-frontend.php:756
 msgid "Shop policies"
 msgstr ""
 
-#: classes/class-mvx-frontend.php:900 classes/class-mvx-product.php:892
+#: classes/class-mvx-frontend.php:908 classes/class-mvx-product.php:892
 #: classes/class-mvx-product.php:1268 classes/class-mvx-vendor-hooks.php:88
 #: classes/products/class-mvx-products-edit-product.php:218
 #: includes/mvx-core-functions.php:5266
@@ -3884,27 +3890,34 @@ msgstr ""
 msgid "Policies"
 msgstr ""
 
-#: classes/class-mvx-frontend.php:909
+#: classes/class-mvx-frontend.php:917
 #: classes/class-mvx-vendor-dashboard.php:1636
 #: packages/mvx-elementor/includes/Tags/StoreTabs.php:103
 #: templates/review/rating.php:31
 msgid "Reviews"
 msgstr ""
 
-#: classes/class-mvx-frontend.php:1010
+#: classes/class-mvx-frontend.php:1018
 msgid "Following"
 msgstr ""
 
-#: classes/class-mvx-frontend.php:1011
+#: classes/class-mvx-frontend.php:1019
 msgid "Log out"
 msgstr ""
 
-#: classes/class-mvx-frontend.php:1033
+#: classes/class-mvx-frontend.php:1041
 msgid "You do not follow any customer till now"
 msgstr ""
 
-#: classes/class-mvx-frontend.php:1092
+#: classes/class-mvx-frontend.php:1093
 msgid "Delivery Location"
+msgstr ""
+
+#: classes/class-mvx-frontend.php:1133
+msgid ""
+"The products in your cart are sold by multiple different vendor partners. "
+"The order will be placed simultaneously with all vendors and you will "
+"receive a package from each of them."
 msgstr ""
 
 #: classes/class-mvx-ledger.php:46 classes/class-mvx-ledger.php:83
@@ -4726,6 +4739,8 @@ msgstr ""
 #: classes/class-mvx-vendor-dashboard.php:295
 #: templates/emails/vendor-new-order.php:27
 #: templates/emails/vendor-notify-shipped.php:30
+#: templates/woocommerce/cart/cart.php:88
+#: templates/woocommerce/cart/cart.php:165
 msgid "Quantity"
 msgstr ""
 
@@ -9749,6 +9764,8 @@ msgstr ""
 
 #: templates/emails/plain/vendor-new-order.php:43
 #: templates/emails/vendor-new-order.php:56
+#: templates/woocommerce/order/order-details.php:72
+#: templates/woocommerce/order/order-details.php:165
 msgid "Note:"
 msgstr ""
 
@@ -10238,20 +10255,20 @@ msgstr ""
 msgid "Vendor Registration Form"
 msgstr ""
 
-#: templates/shortcode/vendor_registration.php:11
+#: templates/shortcode/vendor_registration.php:12
 msgid "Account Details"
 msgstr ""
 
-#: templates/shortcode/vendor_registration.php:14
+#: templates/shortcode/vendor_registration.php:15
 msgid "Username"
 msgstr ""
 
-#: templates/shortcode/vendor_registration.php:19
+#: templates/shortcode/vendor_registration.php:20
 #: templates/vendor-dashboard/vendor-orders/views/html-order-info.php:122
 msgid "Email address"
 msgstr ""
 
-#: templates/shortcode/vendor_registration.php:28
+#: templates/shortcode/vendor_registration.php:29
 msgid "Anti-spam"
 msgstr ""
 
@@ -10288,6 +10305,7 @@ msgid "Sorry no more offers available"
 msgstr ""
 
 #: templates/vendor-dashboard/coupon-manager/add-coupons.php:34
+#: templates/woocommerce/cart/cart.php:39
 msgid "Coupon code"
 msgstr ""
 
@@ -11699,6 +11717,63 @@ msgstr ""
 msgid "No Reviews.."
 msgstr ""
 
+#: templates/woocommerce/cart/cart.php:39
+msgid "Coupon:"
+msgstr ""
+
+#: templates/woocommerce/cart/cart.php:39
+msgid "Apply coupon"
+msgstr ""
+
+#: templates/woocommerce/cart/cart.php:44
+msgid "Update cart"
+msgstr ""
+
+#: templates/woocommerce/cart/cart.php:78
+#: templates/woocommerce/order/order-details.php:92
+msgid "Products sold by "
+msgstr ""
+
+#: templates/woocommerce/cart/cart.php:84
+msgid "Remove item"
+msgstr ""
+
+#: templates/woocommerce/cart/cart.php:85
+msgid "Thumbnail image"
+msgstr ""
+
+#: templates/woocommerce/cart/cart.php:89
+#: templates/woocommerce/cart/cart.php:191
+msgid "Subtotal"
+msgstr ""
+
+#: templates/woocommerce/cart/cart.php:118
+msgid "Remove this item"
+msgstr ""
+
+#: templates/woocommerce/cart/cart.php:154
+msgid "Available on backorder"
+msgstr ""
+
+#: templates/woocommerce/order/order-details.php:45
+msgid "Order details"
+msgstr ""
+
+#: templates/woocommerce/order/order-details.php:49
+msgid ""
+"Since your order contains products sold by different vendors, it has been "
+"split into multiple sub-orders. Each sub-order will be handled by their "
+"respective vendor independently."
+msgstr ""
+
+#: templates/woocommerce/order/order-details.php:56
+msgid "Order Totals"
+msgstr ""
+
+#: templates/woocommerce/order/order-details.php:95
+msgid "View Order"
+msgstr ""
+
 #. Author URI of the plugin/theme
 msgid "https://multivendorx.com/"
 msgstr ""
@@ -11788,7 +11863,7 @@ msgctxt "slug"
 msgid "vendor"
 msgstr ""
 
-#: classes/class-mvx-frontend.php:1093
+#: classes/class-mvx-frontend.php:1094
 msgctxt "placeholder"
 msgid "Insert your address .."
 msgstr ""

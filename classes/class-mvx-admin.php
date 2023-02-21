@@ -576,7 +576,7 @@ class MVX_Admin {
             )
         );
 
-        $report_page_string = array(
+        $report_page_string = apply_filters('mvx_report_analytics_strings', array(
             'vendor_select' =>  __('Select your vendor to view transaction details', 'multivendorx'),
             'choose_vendor' =>  __('Search Vendors', 'multivendorx'),
             'choose_product'    =>  __('Search Product', 'multivendorx'),
@@ -587,7 +587,7 @@ class MVX_Admin {
             'item_sold'    =>  __('Item Sold', 'multivendorx'),
             'download_csv'  =>  __('Download CSV', 'multivendorx'),
             'leaderboards'  =>  __('Leaderboards', 'multivendorx')
-        );
+        ));
 
         $pending_question_bulk = array(
             array(
