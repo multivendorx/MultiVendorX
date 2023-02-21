@@ -293,6 +293,7 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 == Changelog ==
 
 = 4.0.9 - 2023-02-21 =
+* Added     - Compatibility of WooCommerce 7.4.0.
 * Added     - Let Vendor Add Slider and Video for shop page #282
 * Fix       - Registration Form Description not getting displayed #316.
 * Fix 		- Multiple Vendor Notice At Cart and Checkout Page #315.
