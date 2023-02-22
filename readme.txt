@@ -293,7 +293,7 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 == Changelog ==
 
 = 4.0.10 - 2023-02-22 =
-* Fix 		- Vendor dashboard css issue.
+* Fix 		- Vendor dashboard css broken.
 * Updated   - Language file.
 
 = 4.0.9 - 2023-02-21 =
