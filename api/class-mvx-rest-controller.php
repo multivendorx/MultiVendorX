@@ -4757,12 +4757,6 @@ class MVX_REST_API {
                     }
                 }
             }
-        /*} else if ($value == 'trash') {
-            if ($commission_list) {
-                foreach ($commission_list as $key => $value_id) {
-                    wp_trash_post($value_id);
-                }
-            }*/
         } else if ($value == 'restore') {
             if ($commission_list) {
                 foreach ($commission_list as $key => $value_id_un) {
