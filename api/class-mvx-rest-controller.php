@@ -4639,13 +4639,54 @@ class MVX_REST_API {
     public function mvx_vendor_delete($request) {
         require_once(ABSPATH.'wp-admin/includes/user.php');
         $vendor_ids = $request->get_param('vendor_ids') ? $request->get_param('vendor_ids') : '';
+        $select_input = $request->get_param('select_input') ? $request->get_param('select_input') : '';
 
-        if ($vendor_ids && is_array($vendor_ids)) {
-            foreach (wp_list_pluck($vendor_ids, "ID") as $key => $value) {
-                wp_delete_user($value);
+        if ($select_input == 'delete') {
+            if ($vendor_ids && is_array($vendor_ids)) {
+                foreach (wp_list_pluck($vendor_ids, "ID") as $key => $value) {
+                    wp_delete_user($value);
+                }
+            } elseif ($vendor_ids) {
+                wp_delete_user($vendor_ids);
             }
-        } elseif ($vendor_ids) {
-            wp_delete_user($vendor_ids);
+        } elseif ($select_input == 'approve') {
+            if ($vendor_ids && is_array($vendor_ids)) {
+                foreach (wp_list_pluck($vendor_ids, "ID") as $key => $value) {
+                    $user = new WP_User(absint($value));
+                    $user->set_role('dc_vendor');
+                }
+            } elseif ($vendor_ids) {
+                $user = new WP_User(absint($vendor_ids));
+                $user->set_role('dc_vendor');
+            }
+        } elseif ($select_input == 'reject') {
+            if ($vendor_ids && is_array($vendor_ids)) {
+                foreach (wp_list_pluck($vendor_ids, "ID") as $key => $value) {
+                    $user = new WP_User(absint($value));
+                    $user->set_role('dc_rejected_vendor');
+                }
+            } elseif ($vendor_ids) {
+                $user = new WP_User(absint($vendor_ids));
+                $user->set_role('dc_rejected_vendor');
+            }
+        } elseif ($select_input == 'pending') {
+            if ($vendor_ids && is_array($vendor_ids)) {
+                foreach (wp_list_pluck($vendor_ids, "ID") as $key => $value) {
+                    $user = new WP_User(absint($value));
+                    $user->set_role('dc_pending_vendor');
+                }
+            } elseif ($vendor_ids) {
+                $user = new WP_User(absint($vendor_ids));
+                $user->set_role('dc_pending_vendor');
+            }
+        } elseif ($select_input == 'suspend') {
+            if ($vendor_ids && is_array($vendor_ids)) {
+                foreach (wp_list_pluck($vendor_ids, "ID") as $key => $value) {
+                    update_user_meta($value, '_vendor_turn_off', 'Enable');
+                }
+            } elseif ($vendor_ids) {
+                update_user_meta($vendor_ids, '_vendor_turn_off', 'Enable');
+            }
         }
         return $this->mvx_list_all_vendor('');
     }
@@ -4709,7 +4750,25 @@ class MVX_REST_API {
         } else if ($value == 'delete') {
             if ($commission_list) {
                 foreach ($commission_list as $key => $value_id) {
-                    wp_delete_post($value_id);
+                    if (get_post_status($value_id) != 'trash') {
+                        wp_trash_post($value_id);
+                    } else {
+                        wp_delete_post($value_id);
+                    }
+                }
+            }
+        /*} else if ($value == 'trash') {
+            if ($commission_list) {
+                foreach ($commission_list as $key => $value_id) {
+                    wp_trash_post($value_id);
+                }
+            }*/
+        } else if ($value == 'restore') {
+            if ($commission_list) {
+                foreach ($commission_list as $key => $value_id_un) {
+                    if (get_post_status($value_id_un) == 'trash') {
+                        wp_untrash_post($value_id_un);
+                    }
                 }
             }
         } else if ($value == 'export') {
@@ -4808,7 +4867,7 @@ class MVX_REST_API {
 
         $args = array(
             'post_type' => 'dc_commission',
-            'post_status' => array('publish', 'private'),
+            'post_status' => $status && $status == 'trash' ? array('trash') : array('publish', 'private', 'draft'),
             'posts_per_page' => -1,
             'fields' => 'ids',
             'date_query' => array(
@@ -4830,7 +4889,7 @@ class MVX_REST_API {
             $args['post__in']   =  $commission_ids;
         }
 
-        if ($status) {
+        if ($status && $status != 'trash') {
             $args['meta_query'] = array(
                 array(
                     'key' => '_paid_status',

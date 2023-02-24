@@ -282,22 +282,21 @@ class MVXBackendVendor extends React.Component {
 
 	handlevendoractionsearch(e) {
 		if (e) {
-			if (e.value === 'delete') {
-				if (
-					confirm(appLocalizer.global_string.confirm_delete) === true
-				) {
-					axios({
-						method: 'post',
-						url: `${appLocalizer.apiUrl}/mvx_module/v1/vendor_delete`,
-						data: {
-							vendor_ids: this.state.bulkselectlist,
-						},
-					}).then((response) => {
-						this.setState({
-							datavendor: response.data,
-						});
+			if (
+				confirm(appLocalizer.global_string.sure_text) === true
+			) {
+				axios({
+					method: 'post',
+					url: `${appLocalizer.apiUrl}/mvx_module/v1/vendor_delete`,
+					data: {
+						vendor_ids: this.state.bulkselectlist,
+						select_input: e.value
+					},
+				}).then((response) => {
+					this.setState({
+						datavendor: response.data,
 					});
-				}
+				});
 			}
 		}
 	}
@@ -926,7 +925,7 @@ class MVXBackendVendor extends React.Component {
 												.bulk_action
 										}
 										options={
-											appLocalizer.select_option_delete
+											appLocalizer.select_option_delete_for_vendor
 										}
 										isClearable={true}
 										className="mvx-wrap-bulk-action"

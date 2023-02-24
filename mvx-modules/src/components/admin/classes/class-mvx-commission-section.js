@@ -32,6 +32,7 @@ class MVX_Backend_Commission extends Component {
 			data_paid_commission: [],
 			data_unpaid_commission: [],
 			data_refunded_commission: [],
+			data_trash_commission: [],
 			data_partial_refunded_commission: [],
 			show_vendor_name: [],
 			commisson_bulk_choose: [],
@@ -40,6 +41,7 @@ class MVX_Backend_Commission extends Component {
 			commission_list_status_paid: false,
 			commission_list_status_unpaid: false,
 			commission_list_status_refunded: false,
+			commission_list_status_trash: false,
 			date_range: ''
 		};
 		this.handleSelectRowsChange = this.handleSelectRowsChange.bind(this);
@@ -80,7 +82,9 @@ class MVX_Backend_Commission extends Component {
 			this.setState({
 				commission_list_status_all: false,
 				commission_list_status_paid: true,
-				commission_list_status_unpaid: false
+				commission_list_status_unpaid: false,
+				commission_list_status_trash: false,
+				commission_list_status_refunded: false,
 			});
 			// paid status
 			axios
@@ -102,7 +106,9 @@ class MVX_Backend_Commission extends Component {
 			this.setState({
 				commission_list_status_all: false,
 				commission_list_status_paid: false,
-				commission_list_status_unpaid: true
+				commission_list_status_unpaid: true,
+				commission_list_status_trash: false,
+				commission_list_status_refunded: false,
 			});
 			axios
 				.get(
@@ -124,7 +130,8 @@ class MVX_Backend_Commission extends Component {
 				commission_list_status_all: false,
 				commission_list_status_paid: false,
 				commission_list_status_unpaid: false,
-				commission_list_status_refunded: true
+				commission_list_status_refunded: true,
+				commission_list_status_trash: false
 			});
 			axios
 				.get(
@@ -139,13 +146,38 @@ class MVX_Backend_Commission extends Component {
 					});
 				});
 		}
+
+		if (type === 'trash') {
+			// trash status
+			this.setState({
+				commission_list_status_all: false,
+				commission_list_status_paid: false,
+				commission_list_status_unpaid: false,
+				commission_list_status_refunded: false,
+				commission_list_status_trash: true
+			});
+			axios
+				.get(
+					`${appLocalizer.apiUrl}/mvx_module/v1/show_commission_from_status_list`,
+					{
+						params: { commission_status: 'trash', date_range: this.state.date_range },
+					}
+				)
+				.then((response) => {
+					this.setState({
+						datacommission: response.data,
+					});
+				});
+		}
 		
 
 		if (type === 'all') {
 			this.setState({
 				commission_list_status_all: true,
 				commission_list_status_paid: false,
-				commission_list_status_unpaid: false
+				commission_list_status_unpaid: false,
+				commission_list_status_trash: false,
+				commission_list_status_refunded: false,
 			});
 
 			axios
@@ -287,6 +319,7 @@ class MVX_Backend_Commission extends Component {
 				});
 			});
 		}
+		this.common_funtions('');
 	}
 
 	componentDidUpdate(prevProps) {
@@ -322,7 +355,7 @@ class MVX_Backend_Commission extends Component {
 		}
 	}
 
-	componentDidMount() {
+	common_funtions = (e) => {
 		axios
 		.get(
 			`${appLocalizer.apiUrl}/mvx_module/v1/all_commission`,
@@ -379,6 +412,20 @@ class MVX_Backend_Commission extends Component {
 				});
 			});
 
+		// trash status
+		axios
+			.get(
+				`${appLocalizer.apiUrl}/mvx_module/v1/show_commission_from_status_list`,
+				{
+					params: { commission_status: 'trash', date_range: this.state.date_range },
+				}
+			)
+			.then((response) => {
+				this.setState({
+					data_trash_commission: response.data,
+				});
+			});
+
 		// partial refunded status
 		axios
 			.get(
@@ -392,6 +439,93 @@ class MVX_Backend_Commission extends Component {
 					data_partial_refunded_commission: response.data,
 				});
 			});
+	};
+
+	componentDidMount() {
+		this.common_funtions('');
+		/*axios
+		.get(
+			`${appLocalizer.apiUrl}/mvx_module/v1/all_commission`,
+			{
+				params: { date_range: this.state.date_range },
+			}
+		).then((response) => {
+			this.setState({
+				datacommission: response.data,
+				mvx_all_commission_list: response.data,
+				commission_loading: true,
+			});
+		});
+
+		// paid status
+		axios
+			.get(
+				`${appLocalizer.apiUrl}/mvx_module/v1/show_commission_from_status_list`,
+				{
+					params: { commission_status: 'paid', date_range: this.state.date_range },
+				}
+			)
+			.then((response) => {
+				this.setState({
+					data_paid_commission: response.data,
+				});
+			});
+
+		// unpaid status
+		axios
+			.get(
+				`${appLocalizer.apiUrl}/mvx_module/v1/show_commission_from_status_list`,
+				{
+					params: { commission_status: 'unpaid', date_range: this.state.date_range },
+				}
+			)
+			.then((response) => {
+				this.setState({
+					data_unpaid_commission: response.data,
+				});
+			});
+
+		// refunded status
+		axios
+			.get(
+				`${appLocalizer.apiUrl}/mvx_module/v1/show_commission_from_status_list`,
+				{
+					params: { commission_status: 'refunded', date_range: this.state.date_range },
+				}
+			)
+			.then((response) => {
+				this.setState({
+					data_refunded_commission: response.data,
+				});
+			});
+
+		// trash status
+		axios
+			.get(
+				`${appLocalizer.apiUrl}/mvx_module/v1/show_commission_from_status_list`,
+				{
+					params: { commission_status: 'trash', date_range: this.state.date_range },
+				}
+			)
+			.then((response) => {
+				this.setState({
+					data_trash_commission: response.data,
+				});
+			});
+
+		// partial refunded status
+		axios
+			.get(
+				`${appLocalizer.apiUrl}/mvx_module/v1/show_commission_from_status_list`,
+				{
+					params: { commission_status: 'partial_refunded', date_range: this.state.date_range },
+				}
+			)
+			.then((response) => {
+				this.setState({
+					data_partial_refunded_commission: response.data,
+				});
+			});*/
 
 		// get vendor name on select
 		axios({
@@ -1822,6 +1956,31 @@ class MVX_Backend_Commission extends Component {
 											{
 												this.state
 													.data_refunded_commission
+													.length
+											}
+											)
+										</div>
+									</li>
+									<li className="mvx-multistatus-item mvx-divider"></li>
+									<li className={`mvx-multistatus-item ${this.state.commission_list_status_trash ? 'status-active' : ''}`}>
+										<div
+											className="mvx-multistatus-check-unpaid"
+											onClick={(e) =>
+												this.handle_commission_status_check(
+													e,
+													'trash'
+												)
+											}
+										>
+											{
+												appLocalizer
+													.commission_page_string
+													.trash
+											}{' '}
+											(
+											{
+												this.state
+													.data_trash_commission
 													.length
 											}
 											)

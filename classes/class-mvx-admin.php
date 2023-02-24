@@ -204,7 +204,7 @@ class MVX_Admin {
         if ($product_query->get_posts()) {
             $question_product_selection_wordpboard = mvx_convert_select_structure($product_query->get_posts(), '', true);
         }
-        $commission_bulk_list_action = mvx_convert_select_structure(array('mark_paid' => __('Mark paid', 'multivendorx'), 'delete' => __('Delete', 'multivendorx')));
+        $commission_bulk_list_action = mvx_convert_select_structure(array('mark_paid' => __('Mark paid', 'multivendorx'), 'delete' => __('Delete', 'multivendorx'), 'restore' => __('Restore', 'multivendorx')));
         // Commission csv header
         $commission_header = mvx_convert_select_structure(
             apply_filters('mvx_vendor_commissions_header',array(
@@ -222,6 +222,7 @@ class MVX_Admin {
             ), true);
         $commission_status_list_action = mvx_convert_select_structure(mvx_get_commission_statuses());
         $select_option_delete = mvx_convert_select_structure(array('delete' => __('Delete', 'multivendorx')));
+        $select_option_delete_for_vendor = mvx_convert_select_structure(array('delete' => __('Delete', 'multivendorx'), 'approve' => __('Approve', 'multivendorx'), 'pending' => __('Pending', 'multivendorx'), 'suspend' => __('Suspend', 'multivendorx'), 'reject' => __('Reject', 'multivendorx')));
         // product report chart data for csv
         $report_product_header = mvx_convert_select_structure(
             apply_filters('mvx_product_report_data_header',array(
@@ -247,6 +248,7 @@ class MVX_Admin {
             'shop'                  =>  __('Shop', 'multivendorx'),
             'download_csv'          =>  __('Download CSV', 'multivendorx'),
             'confirm_delete'        =>  __('Confirm delete?', 'multivendorx'),
+            'sure_text'             =>  __('Confirm?', 'multivendorx'),
             'save_changes'          =>  __('Save Changes', 'multivendorx'),
             'confirm_dismiss'       =>  __('Are you sure to dismiss?', 'multivendorx'),
             'confirm_approve'       =>  __('Are you sure to approve?', 'multivendorx'),
@@ -356,7 +358,8 @@ class MVX_Admin {
             'paid'  =>  __('Paid', 'multivendorx'),
             'unpaid'  =>  __('Unpaid', 'multivendorx'),
             'edit_commission'   =>  __('Edit Commission', 'multivendorx'),
-            'status'   =>  __('Status', 'multivendorx')
+            'status'   =>  __('Status', 'multivendorx'),
+            'trash'     =>  __('Trash', 'multivendorx')
         );
 
         $vendor_page_string     =   array(
@@ -1228,6 +1231,7 @@ class MVX_Admin {
             'columns_followers'             =>  $columns_followers,
             'columns_zone_shipping'         =>  $columns_zone_shipping,
             'select_option_delete'          =>  $select_option_delete,
+            'select_option_delete_for_vendor'       =>  $select_option_delete_for_vendor,
             'columns_commission'                    =>  $columns_commission,
             'columns_report_abuse'                  =>  $columns_report_abuse,
             'columns_refund_request'                =>  $columns_refund_request,
