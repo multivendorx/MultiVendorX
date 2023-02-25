@@ -4652,30 +4652,36 @@ class MVX_REST_API {
         } elseif ($select_input == 'approve') {
             if ($vendor_ids && is_array($vendor_ids)) {
                 foreach (wp_list_pluck($vendor_ids, "ID") as $key => $value) {
+                    delete_user_meta(absint($value), '_vendor_turn_off');
                     $user = new WP_User(absint($value));
                     $user->set_role('dc_vendor');
                 }
             } elseif ($vendor_ids) {
+                delete_user_meta(absint($vendor_ids), '_vendor_turn_off');
                 $user = new WP_User(absint($vendor_ids));
                 $user->set_role('dc_vendor');
             }
         } elseif ($select_input == 'reject') {
             if ($vendor_ids && is_array($vendor_ids)) {
                 foreach (wp_list_pluck($vendor_ids, "ID") as $key => $value) {
+                    delete_user_meta(absint($value), '_vendor_turn_off');
                     $user = new WP_User(absint($value));
                     $user->set_role('dc_rejected_vendor');
                 }
             } elseif ($vendor_ids) {
+                delete_user_meta(absint($vendor_ids), '_vendor_turn_off');
                 $user = new WP_User(absint($vendor_ids));
                 $user->set_role('dc_rejected_vendor');
             }
         } elseif ($select_input == 'pending') {
             if ($vendor_ids && is_array($vendor_ids)) {
                 foreach (wp_list_pluck($vendor_ids, "ID") as $key => $value) {
+                    delete_user_meta(absint($value), '_vendor_turn_off');
                     $user = new WP_User(absint($value));
                     $user->set_role('dc_pending_vendor');
                 }
             } elseif ($vendor_ids) {
+                delete_user_meta(absint($vendor_ids), '_vendor_turn_off');
                 $user = new WP_User(absint($vendor_ids));
                 $user->set_role('dc_pending_vendor');
             }
