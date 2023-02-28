@@ -558,14 +558,25 @@ class MVX_Vendor {
      * @param product id , vendor term id 
      * @return array with order id
      */
-    public function get_vendor_orders_by_product($vendor_term_id, $product_id) {
+public function get_vendor_orders_by_product($vendor_term_id, $product_id, $start_date = '', $end_date = '') {
         $order_dtl = array();
         if ($product_id && $vendor_term_id) {
             $vendor_id = get_term_meta( $vendor_term_id, '_vendor_user_id', true );
             $args = array(
                 'author' => $vendor_id,
-                'post_status' => array( 'wc-processing', 'wc-completed' )
+                'post_status' => array( 'wc-processing', 'wc-completed' ),
             );
+
+            if (!empty($start_date) && !empty($end_date)) {
+                $args['date_query'] = array(
+                    array(
+                        'after'     => $start_date,
+                        'before'    => $end_date,
+                        'inclusive' => true,
+                    ),
+                );
+            }
+                
             $orders = mvx_get_orders( $args, 'object' );
             
             if( $orders ) {
