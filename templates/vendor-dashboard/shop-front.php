@@ -27,11 +27,11 @@ if (!$MVX->vendor_caps->vendor_can('is_upload_files')) {
     $_wp_editor_settings['media_buttons'] = false;
 }
 $_wp_editor_settings = apply_filters('mvx_vendor_storefront_wp_editor_settings', $_wp_editor_settings);
-$store_banner_types = array( 
+$store_banner_types = apply_filters('mvx_vendor_storefront_banner_types', array( 
         'single_img' => __( 'Static Image', 'multivendorx' ), 
         'slider' => __( 'Slider', 'multivendorx' ), 
         'video' => __( 'Video', 'multivendorx' ) 
-    );
+    ));
 $vendor_banner_type = get_user_meta($vendor->id, '_vendor_banner_type');
 $vendor_video = get_user_meta($vendor->id, '_vendor_video', true);
 ?>
