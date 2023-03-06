@@ -22,7 +22,7 @@ echo "****************************************************\n\n";
 do_action( 'woocommerce_email_before_order_table', $order, $sent_to_admin, $plain_text );
 
 echo sprintf( __( 'Order Number: %s',  'multivendorx'), $order->get_order_number() ) . "\n";
-echo sprintf( __( 'Order Link: %s',  'multivendorx'), admin_url( 'post.php?post=' . $order->get_id() . '&action=edit' ) ) . "\n";
+echo sprintf( __( 'Order Link: %s',  'multivendorx'), esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_orders_endpoint', 'seller_dashbaord', 'vendor-orders'), $order->get_id())) ) . "\n";
 echo sprintf( __( 'Order Date: %s',  'multivendorx'), date_i18n( __( 'jS F Y',  'multivendorx' ), strtotime( $order->get_date_created() ) ) ) . "\n";
 
 do_action( 'woocommerce_email_order_meta', $order, $sent_to_admin, $plain_text );

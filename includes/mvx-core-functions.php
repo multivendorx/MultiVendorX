@@ -7299,13 +7299,13 @@ if (!function_exists('mvx_list_all_modules')) {
                     ],
                     [
                         'id'           => 'rental-pro',
-                        'name'         => __( 'Rental-Pro', 'multivendorx' ),
+                        'name'         => __( 'Rental Pro', 'multivendorx' ),
                         'description'  => __( 'Perfect for those desiring to offer rental, booking, or real state agencies or services.', 'multivendorx' ),
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
                         'required_plugin_list' => array(
                             array(
                                 'plugin_name'   => __('Rental Pro', 'multivendorx'),
-                                'plugin_link'   => 'https://woocommerce.com/products/rental-products/',
+                                'plugin_link'   => 'https://codecanyon.net/item/rnb-woocommerce-rental-booking-system/14835145?ref=redqteam',
                                 'is_active' => is_plugin_active('woocommerce-rental-and-booking/redq-rental-and-bookings.php') ? true : false,
                             ),
                             array(
