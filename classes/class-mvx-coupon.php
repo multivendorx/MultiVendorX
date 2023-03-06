@@ -23,7 +23,7 @@ class MVX_Coupon {
         //add vendor tab in coupons section backend
         add_filter('woocommerce_coupon_data_tabs', array(&$this, 'add_vendor_tab_backend'));
         //show content in vendor tab
-        add_action('woocommerce_coupon_data_panels', array(&$this, 'add_content_in_vendor_tab'));
+        add_action('woocommerce_coupon_data_panels', array(&$this, 'add_content_in_vendor_tab'), 10, 1);
         //save data in database
         add_action('woocommerce_coupon_options_save', array(&$this, 'save_data_from_vendor_tab'), 10, 2);
 
@@ -181,7 +181,7 @@ class MVX_Coupon {
             }
         }
 
-    function add_vendor_tab_backend( $coupon_data_tabs ){
+    function add_vendor_tab_backend( $coupon_data_tabs ) {
         $coupon_data_tabs['vendor'] = array(
             'label'  => __( 'Vendor', 'multivendorx' ),
             'target' => 'vendor_coupon_data',
@@ -190,21 +190,39 @@ class MVX_Coupon {
         return $coupon_data_tabs; 
     }
 
-    function add_content_in_vendor_tab(){
+    function add_content_in_vendor_tab( $coupon ) {
         $html = '';
-        $option = '<option></option>';
         $vendors = get_mvx_vendors();
-        if ( !empty($vendors) ) {
-            foreach($vendors as $vendor) {
-                $option .= '<option value="' . esc_attr($vendor->id). '"' . selected(esc_attr( $vendor->id )) . '>' . esc_html( $vendor->page_title ) . '</option>';
+        $current_coupon = get_post( $coupon->id );
+        if ( !empty($current_coupon) ) {
+            if ( is_user_mvx_vendor($current_coupon->post_author) ) {
+                $vendor_id = $current_coupon->post_author;
+                $vendor_name = get_user_meta( $vendor_id, '_vendor_page_title', true );
+                $option = '<option value="' . esc_attr( $vendor_id ). '" selected>' . esc_html( $vendor_name ) . '</option>';
+                if ( !empty($vendors) ) {
+                    foreach ( $vendors as $vendor ) {
+                        if( $vendor->id == $vendor_id) {
+                            continue;
+                        }
+                        $option .= '<option value="' . esc_attr( $vendor->id ). '">' . esc_html( $vendor->page_title ) . '</option>';
+                    }
+                }
+            } else {
+                $option = '<option>' . __("Choose vendor", "multivendorx") . '</option>';
+                if ( !empty($vendors) ) {
+                    foreach ( $vendors as $vendor ) {
+                        $option .= '<option value="' . esc_attr( $vendor->id ). '">' . esc_html( $vendor->page_title ) . '</option>';
+                    }
+                }
             }
         }
+    
         $html .= '<div class="options_group"> <table class="form-field form-table">';
         $html .= '<tbody>';
         $html .= '<tr valign="top"><td scope="row"><label id="vendor-label" style="margin:0px;">' . __("Vendor", 'multivendorx') . '</label></td><td>';
-        $html .= '<select name="' . esc_attr('select_vendor') . '" data-placeholder="'. esc_attr("Choose vendor", "multivendorx").'" style="width:300px;">' . $option . '</select>';
+        $html .= '<select name="' . esc_attr('select_vendor') . '" style="width:300px;">' . $option . '</select>';
         $html .= '</td></tr>';
-        $html = apply_filters('mvx_additional_fields_coupon_vendor_tab', $html);
+        $html  = apply_filters('mvx_additional_fields_coupon_vendor_tab', $html);
         $html .= '</tbody>';
         $html .= '</table>';
         $html .= '</div>';
@@ -213,8 +231,8 @@ class MVX_Coupon {
         echo $html;
         echo '</div>';
     }
-
-    function save_data_from_vendor_tab( $post_id, $coupon ){
+    
+    function save_data_from_vendor_tab( $post_id, $coupon ) {
         $select_vendor = isset( $_POST['select_vendor'] ) ? wc_clean( wp_unslash($_POST['select_vendor'])) : '';
         if ( !empty($select_vendor) ) {
             wp_update_post(array('ID' => $post_id, 'post_author' => $select_vendor));
