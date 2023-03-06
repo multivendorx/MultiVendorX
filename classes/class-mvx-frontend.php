@@ -752,11 +752,11 @@ class MVX_Frontend {
     }
 
     public function mvx_vendor_shop_page_policies_endpoint( $store_id, $query_vars_name ) {
-        $_vendor_shipping_policy = get_user_meta( $store_id, 'vendor_shipping_policy', true ) ? get_user_meta( $store_id, 'vendor_shipping_policy', true ) : __( 'No policy found', 'multivendorx' );
+        $_vendor_shipping_policy = get_user_meta( $store_id, '_vendor_shipping_policy', true ) ? get_user_meta( $store_id, '_vendor_shipping_policy', true ) : __( 'No policy found', 'multivendorx' );
 
-        $_vendor_refund_policy = get_user_meta( $store_id, 'vendor_refund_policy', true ) ? get_user_meta( $store_id, 'vendor_refund_policy', true ) : __( 'No policy found', 'multivendorx' );
+        $_vendor_refund_policy = get_user_meta( $store_id, '_vendor_refund_policy', true ) ? get_user_meta( $store_id, '_vendor_refund_policy', true ) : __( 'No policy found', 'multivendorx' );
 
-        $_vendor_cancellation_policy = get_user_meta( $store_id, 'vendor_cancellation_policy', true ) ? get_user_meta( $store_id, 'vendor_cancellation_policy', true ) : __( 'No policy found', 'multivendorx' );
+        $_vendor_cancellation_policy = get_user_meta( $store_id, '_vendor_cancellation_policy', true ) ? get_user_meta( $store_id, '_vendor_cancellation_policy', true ) : __( 'No policy found', 'multivendorx' );
 
         ?>
         <div class="mvx-policie-sec">
