@@ -1204,10 +1204,11 @@ span.form-text {
 .overlay:after {
   content: "";
   position: fixed;
-  top: 56px;
-  left: 0;
-  width: 100%;
-  height: calc(100vh - 56px);
+  top: 64px;
+  right: 0;
+  bottom: 44px;
+  width: calc(100% - 200px);
+  height: calc(100% - 108px);
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 9;
 }
@@ -7359,9 +7360,6 @@ select[name=mvx-vendor-orders_length] {
     font-size: 13px;
     padding: 1px 10px;
   }
-  ul.nav .login-user a {
-    padding: 16px 0 12px 0;
-  }
   .top-user-nav {
     width: 78px;
   }
@@ -7414,10 +7412,12 @@ select[name=mvx-vendor-orders_length] {
     margin: 0;
   }
   .btm-nav-fixed.nav li {
-    margin: 0;
-    width: 25%;
+    margin: 0.5rem;
     float: left;
     text-align: center;
+  }
+  .navbar-top-links li a i {
+    font-size: 13px;
   }
   .navbar-toggle {
     margin-top: -43px;
@@ -7463,9 +7463,6 @@ select[name=mvx-vendor-orders_length] {
   }
   .side-collapse-container.overlay .current-endpoint-title-wrapper {
     left: 200px;
-  }
-  .top-navbar {
-    height: 56px;
   }
   .navbar-static-top {
     top: 56px;

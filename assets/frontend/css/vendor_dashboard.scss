@@ -1127,12 +1127,13 @@ span.form-text {
 .overlay {
 	position: relative;
 	&:after {
-		content: '';
+		content: "";
 		position: fixed;
-		top: 56px;
-		left: 0;
-		width: 100%;
-		height: calc(100vh - 56px);
+		top: 64px;
+		right: 0;
+		bottom: 44px;
+		width: calc(100% - 200px);
+		height: calc(100% - 108px);
 		background-color: rgba(0, 0, 0, 0.5);
 		z-index: 9;
 	}
@@ -8354,7 +8355,7 @@ select[name="mvx-vendor-orders_length"] {
 				}
 			}
 			a {
-				padding: 16px 0 12px 0;
+			
 			}
 		}
 	}
@@ -8425,11 +8426,13 @@ select[name="mvx-vendor-orders_length"] {
 		box-shadow: 1px 0 3px rgba(0, 0, 0, 0.2);
 		margin: 0;
 		li {
-			margin: 0;
-			width: 25%;
+			margin: 0.5rem;
 			float: left;
 			text-align: center;
 		}
+	}
+	.navbar-top-links li a i {
+		font-size: 13px;
 	}
 	.navbar-toggle {
 		margin-top: -43px;
@@ -8489,7 +8492,6 @@ select[name="mvx-vendor-orders_length"] {
 		}
 	}
 	.top-navbar {
-		height: 56px;
 	}
 	.navbar-static-top {
 		top: 56px;
