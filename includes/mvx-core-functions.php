@@ -6258,6 +6258,20 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     ),
                     'database_value' => array(),
                 ],
+                [
+                    'key'     => 'display_suborder_in_mail',
+                    'label'   => __( 'Display Suborder in mail', 'multivendorx' ),
+                    'class'   => 'mvx-toggle-checkbox',
+                    'type'    => 'checkbox',
+                    'options' => array(
+                        array(
+                            'key'=> "display_suborder_in_mail",
+                            'label'=> __('Display suborder number in mail.', 'multivendorx'),
+                            'value'=> "display_suborder_in_mail"
+                        )
+                    ),
+                    'database_value' => array(),
+                ],
             ],
             'store-location' => [
                 [
