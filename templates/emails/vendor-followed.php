@@ -10,7 +10,6 @@
  */
 
 if ( !defined( 'ABSPATH' ) ) exit; 
-global  $MVX;
 
 if($post->post_type == 'shop_coupon') $title = esc_html__( 'Coupon', 'multivendorx' );
 else  $title = esc_html__( 'Product', 'multivendorx' );
@@ -18,8 +17,6 @@ else  $title = esc_html__( 'Product', 'multivendorx' );
 $vendor = get_mvx_vendor( $post->post_author );
 $product = wc_get_product( $post->ID );
 $product_link = $product ? $product->get_permalink() : '';
-$product_name = $product->get_title();
-
 ?>
 <?php do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
