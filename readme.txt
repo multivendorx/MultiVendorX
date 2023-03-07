@@ -293,6 +293,7 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 == Changelog ==
 
 = 4.0.11 - 2023-03-07 =
+* Added     - Compatibility of WooCommerce 7.4.1.
 * Fix 		- Policy issue #328.
 * Fix 		- Vendor control panel does not work in mobile mode #327.
 * Fix 		- Coupon Issues #331.
