@@ -190,10 +190,10 @@ class MVX_Coupon {
         return $coupon_data_tabs; 
     }
 
-    function add_content_in_vendor_tab( $coupon ) {
+    function add_content_in_vendor_tab( $coupon_id ) {
         $html = '';
         $vendors = get_mvx_vendors();
-        $current_coupon = get_post( $coupon->id );
+        $current_coupon = get_post( $coupon_id );
         if ( !empty($current_coupon) ) {
             if ( is_user_mvx_vendor($current_coupon->post_author) ) {
                 $vendor_id = $current_coupon->post_author;
