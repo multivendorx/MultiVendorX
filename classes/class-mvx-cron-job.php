@@ -25,8 +25,6 @@ class MVX_Cron_Job {
         add_action('mvx_spmv_product_meta_update', array(&$this, 'mvx_spmv_product_meta_update'));
         // Reset product mapping
         add_action('mvx_reset_product_mapping_data', array(&$this, 'mvx_reset_product_mapping_data'), 10, 1);
-
-        add_action('migrate_multivendor_table', array(&$this, 'migrate_multivendor_table'));
         add_action('migrate_multivendor_table', array(&$this, 'migrate_multivendor_table'));
         // MVX order migration
         add_action('mvx_orders_migration', array(&$this, 'mvx_orders_migration'));
