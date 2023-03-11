@@ -1173,7 +1173,7 @@ div#wpbody-content {
     background-color: #65438f;
     border: none;
     border-radius: 1rem;
-    padding: 0.5rem 0.65rem;
+    padding: 0.5rem 0.625rem;
     font-size: 0.75rem;
     &:hover{
       background-color: $purple-btn-hover;
@@ -1955,7 +1955,7 @@ hr{
         }
         .mvx-dashboard-slider-cmp-wrap{
           @include flexprops(start);
-          gap: 1rem;
+          gap: 1.5rem;
           width: 100%;
         }
         .mvx-dashboard-top-icon{
@@ -1967,6 +1967,7 @@ hr{
           height: 4rem;
           line-height: 2rem;
           width: 4rem;
+          box-shadow: 0rem 1rem 1.5rem rgb(63 20 115 / 7%);
         }
         .mv-dashboard-top-icon span {
           vertical-align: middle;
@@ -2062,6 +2063,10 @@ hr{
             flex-grow: 1;
             max-width: 4rem;
             margin-left: auto;
+            text-align: right;
+         & a:has(.icon-no) {
+              background: #d4d1d9 ;
+          }
         }
         & .mvx-allign-li-txt span {
             color: $blue-icon;
@@ -2146,7 +2151,7 @@ hr{
               text-align: center;
               margin: 0 0.3rem;
               border-radius: 0.25rem;
-              padding: 1rem 0;
+              padding: 1rem 0.5rem;
               border: 0.06rem solid $fill-color;
               a{
                 white-space: nowrap;
@@ -2155,6 +2160,7 @@ hr{
                 }
                 i{
                   color:$blue-icon;
+                  padding: 0;
                 }    }
               &:hover{
                 border: 0.06rem solid #4e1a74;
@@ -2205,13 +2211,14 @@ hr{
     color: $font-white;
   }
   .mvx-money-tablink {
-    font-size: 1.25rem;
-    padding: 0.75rem 1rem;
-    color: $title-color;
+    font-size: 1rem;
+    padding:0rem 0rem;
+    color: #181718;
     text-transform: capitalize;
     font-weight: 500;
-    border-radius:0.25rem;
+    border-radius: 0.25rem;
     z-index: 9;
+    line-height: 2;
 }
 .active-money-tab{
   background:$approve-font-color;
@@ -2232,11 +2239,12 @@ hr{
     flex-wrap:wrap;
     justify-content:center;
     margin: 2.5rem auto 2rem;
-      width:85%;
+    width:85%;
+  
      li.mvx-compare-table-row{
       position: relative;
-       text-align: left;
-       background: $fill-color;
+      text-align: left;
+      background: #fbfafc;
       border: $border;
       border-radius: 0.25rem 0.25rem 0 0;
           ul li{
@@ -2249,8 +2257,8 @@ hr{
               content: "\e907";
               font-family: "mvx-admin-font";
               font-size: 0.5rem;
-              background: $code-line;
-              color: $font-white;
+              background: #fef7f7;
+              color: #e26f76;
               left: 0;
               width: 1rem;
               height: 1rem;
@@ -2260,23 +2268,16 @@ hr{
               text-align: center;
             }
             &:first-child{
-              background: linear-gradient(-28deg, #3f1473 0%, #af3b74 50%, #db4b54 100%);
+              background: linear-gradient(110deg, #3f1473 0%, #af3b74 10%, #db4b54 100%);
               -webkit-background-clip: text;
               -webkit-text-fill-color: transparent;
-              font-size: 1.75rem;
+              font-size: 2rem;
               height: 5rem;
               font-weight: 600;
               padding-left: 0.65rem;
               position: relative;
               &:after{
-                position: absolute;
-                content: "";
-                left: 0.5rem;
-                top: 2.5rem;
-                height: 0.25rem;
-                width: 30%;
-                background-color: $base-color;
-                border-radius: 1.25rem;
+             opacity: 0;
               }
             &:before{
               opacity:0;
@@ -2287,10 +2288,15 @@ hr{
             color: $title-color;
             &::before{
               content: "\e90a";
-              background: $approve-font-color;
+              background: #f7f6f9;
+              color: $blue-icon;
             }
           }
         }
+        li.mvx-compare-table-row.mvx-recomend {
+          box-shadow: 0rem 1rem 1.5rem rgb(63 20 115 / 7%);
+          background: #fdfdfe;
+      }
          }
   .show-link:hover{
     text-decoration: none;
@@ -2558,9 +2564,9 @@ a {
         line-height: 1.2rem;
         text-align: left;
         .inactive-plugin-class{ 
-          background: $rejected-vendor-back;
+          background: #fef7f7;
          } .mvx-module-active-plugin-class{
-          background: $section-background;
+          background: #f7f6f9;
          }
         & .inactive-plugin-class, .mvx-module-active-plugin-class{
           border-radius: 50rem;
@@ -3565,6 +3571,29 @@ padding:0;
   }
   
 //responsive code are here
+@media only screen and (max-width: 1250px) {
+  .mvx-container .mvx-left-container .mvx-text-center .mvx-money-table-holder {
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    gap: 1rem;
+  }
+  .mvx-container .mvx-left-container .mvx-text-center .mvx-money-table-holder .mvx-money-table-coloumn{
+    background-color: #fbfafc;
+    border-radius: 0.25rem !important;
+    border: 0.06rem solid #d4d1d9 !important;
+    margin: 0;
+    width: 45%;
+}
+.mvx-container .mvx-left-container .mvx-text-center .mvx-money-table-holder .mvx-money-table-coloumn:nth-child(3) {
+  border: 0.06rem solid #d4d1d9;
+  padding:2rem !important; 
+  box-shadow:none;
+}
+.mvx-container .mvx-left-container .mvx-text-center ul.mvx-compare-table-holder {
+  width: 100%;
+}
+}
 @media only screen and (min-width: 767px) {
 .mvx-container .mvx-left-container .mvx-text-center .mvx-money-table-holder .mvx-money-table-coloumn{
   &:first-child{
@@ -3649,7 +3678,7 @@ li.mvx-compare-table-row{
 }}}
 @media only screen and (max-width: 375px) {
   .mvx-container .mvx-btn {
-    position: absolute;
+    // position: absolute;
     right:-10%;
     bottom: 0;
   }
@@ -3665,6 +3694,12 @@ li.mvx-compare-table-row{
   .mvx-container .mvx-left-container .mvx-slider-content-main-wrapper .mvx-dashboard-slider .mvx-dashboard-slider-cmp-wrap {
     position: relative;
 } 
+.mvx-money-table-coloumn{
+  width: 100% !important;
+}
+.mvx-container .mvx-left-container .mvx-text-center .mvx-money-table-holder .mvx-money-table-coloumn:nth-child(3) {
+  padding: 2rem 2rem 4rem !important;
+}
 }
 @media only screen and (max-width: 1024px) {
   .mvx-container{
@@ -3695,9 +3730,6 @@ li.mvx-compare-table-row{
   .mvx-money-table-holder{
     flex-wrap:wrap;
     gap:0.5rem;
-    .mvx-money-table-coloumn{
-      width: 100%;
-    }
   }
   .mvx-product-box-sec{
     justify-content: center;
@@ -3789,7 +3821,7 @@ li.mvx-compare-table-row{
 // right-side banner
 .mvx-sidebar{
   .mvx-logo-right{
-    padding: 0 1.5rem 3rem;
+    padding: 0 1.5rem 1.5rem;
     img{
       object-fit: cover;
       object-position: center;
@@ -3801,16 +3833,25 @@ li.mvx-compare-table-row{
     @include flexprops(center);
     flex-direction: column;
     gap: 1rem;
-    padding: 3rem 1rem 5rem;
+    padding: 3rem 1.5rem 5rem;
     width: 16.188rem;
     text-align: center;
     background: url(../../images/unnamed.png) top right no-repeat;
     background-size: 100% 100%;
-  border-radius:$border-radius;
+    border-radius:$border-radius;
     p{
       font-size: 1rem;
       color: $scroll-color;
+      text-align: left;
     }
+    p.mvx-banner-description span {
+      display: block;
+      margin: 0.5rem 0 0;
+  }
+  p.mvx-banner-description span:first-of-type{
+    display: block;
+    margin: 1rem 0 0;
+}
     a{
       font-weight: 500;
       color: $font-white;
@@ -3847,4 +3888,12 @@ input.rs-picker-toggle-textbox {
 }
 .sc-evZas.dFsTSm {
   overflow: visible;
+}
+// this is for date picker -----
+.rs-calendar-table-header-cell {
+  display: table-cell;
+  width: 1%;
+  padding: 1px;
+  text-align: center;
+  vertical-align: middle;
 }

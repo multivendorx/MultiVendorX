@@ -4800,16 +4800,16 @@ class MVX_REST_API {
                 $commission_order = get_post_meta($commission, '_commission_order_id', true) ? wc_get_order(get_post_meta($commission, '_commission_order_id', true)) : false;
                 if ($commission_order) $currency = $commission_order->get_currency();
                 $commissions_data[] = apply_filters('mvx_vendor_commissions', array(
-                    'Recipient'     =>  $recipient,
-                    'Currency'      =>  $currency,
-                    'Commission'    =>  $commission_amount,
-                    'Shipping'      =>  $shipping_amount,
-                    'Tax'           =>  $tax_amount,
-                    'Total'         =>  $commission_total,
-                    'Status'        =>  $commission_staus,
-                    'Products'      =>  $product_list,
-                    'Sub Order'     =>  $order_id,
-                    'Date'          =>  $commission_details->post_modified
+                    __('Recipient', 'multivendorx')     =>  $recipient,
+                    __('Currency', 'multivendorx')      =>  $currency,
+                    __('Commission', 'multivendorx')    =>  $commission_amount,
+                    __('Shipping', 'multivendorx')      =>  $shipping_amount,
+                    __('Tax', 'multivendorx')           =>  $tax_amount,
+                    __('Total', 'multivendorx')         =>  $commission_total,
+                    __('Status', 'multivendorx')        =>  $commission_staus,
+                    __('Products', 'multivendorx')      =>  $product_list,
+                    __('Sub Order', 'multivendorx')     =>  $order_id,
+                    __('Date', 'multivendorx')          =>  $commission_details->post_modified
                 ), $commission_data);
             }
             return rest_ensure_response($commissions_data);

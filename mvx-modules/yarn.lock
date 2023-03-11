@@ -9242,7 +9242,7 @@ rsuite-table@^5.9.0:
     lodash "^4.17.21"
     react-is "^17.0.2"
 
-rsuite@^5.6.0:
+rsuite@^5.28.1:
   version "5.28.1"
   resolved "https://registry.npmjs.org/rsuite/-/rsuite-5.28.1.tgz"
   integrity sha512-jBPEJj0CowWYmGa1IOckxiiIWPXehJgIH8SKSKL6cs+NOLiW6Q5SlnqUEjsbX+MzmFKrbU7cR1+sxyL3iRD6Zg==
@@ -9366,9 +9366,9 @@ scheduler@^0.20.2:
     object-assign "^4.1.1"
 
 schema-typed@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.npmjs.org/schema-typed/-/schema-typed-2.1.0.tgz"
-  integrity sha512-qKe33FDv1fckflGD97BrTjU9s2mvclTHM+f720DTOGhiloUMP5QfzuQi/U92KfahWZQUCsEJHmyzXVATTU3oVA==
+  version "2.1.1"
+  resolved "https://registry.npmjs.org/schema-typed/-/schema-typed-2.1.1.tgz"
+  integrity sha512-vCD139bMxF1xqpLHwhlPZQw2zzEQqexhtgDGEo7BO0Itgb5T+89ddfP51qgxregCZHXPsBaVkcAOfr2K5v3Ehg==
 
 schema-utils@^2.6.5, schema-utils@>1.0.0:
   version "2.7.1"
