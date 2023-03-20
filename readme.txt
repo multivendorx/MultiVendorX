@@ -9,7 +9,7 @@ Stable tag: 4.0.11
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-## MultiVendorX - brings you, your easiest and one stop solution to build a perfect online marketplace website.
+MultiVendorX - brings you, your easiest and one stop solution to build a perfect online marketplace website.
 
 == Description ==
 

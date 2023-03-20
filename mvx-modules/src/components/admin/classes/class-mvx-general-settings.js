@@ -599,6 +599,8 @@ class MVX_Settings extends Component {
 																registration_json_value.type ==
 																	'textarea' ||
 																registration_json_value.type ==
+																	'vendor_page_title' ||
+																registration_json_value.type ==
 																	'vendor_description' ||
 																registration_json_value.type ==
 																	'vendor_address_1' ||

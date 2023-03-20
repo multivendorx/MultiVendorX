@@ -533,6 +533,11 @@ class MVX_Admin {
                 ),
                 array(
                     'icon'  =>  'icon-form-store-description',
+                    'value' => 'vendor_page_title',
+                    'label' =>  __('Store Name', 'multivendorx')
+                ),
+                array(
+                    'icon'  =>  'icon-form-store-description',
                     'value' => 'vendor_description',
                     'label' =>  __('Store Description', 'multivendorx')
                 ),
@@ -1143,9 +1148,9 @@ class MVX_Admin {
             'dashboard89' =>  mvx_get_option('mvx_new_vendor_registration_form_data') && !empty(mvx_get_option('mvx_new_vendor_registration_form_data')) ? true : false,
             'dashboard90' =>  mvx_is_module_active('simple') ? true : false,
             'dashboard91' =>  mvx_is_module_active('paypal-payout') || mvx_is_module_active('paypal-marketplace') || mvx_is_module_active('stripe-connect') ? true : false,
-            'dashboard92' =>  get_mvx_older_global_settings('give_tax') ? true : false,
-            'dashboard93' =>  get_mvx_older_global_settings('give_shipping') ? true : false,
-            'dashboard94' =>  get_mvx_older_global_settings('revenue_sharing_mode') && get_mvx_older_global_settings('commission_type') ? true : false,
+            'dashboard92' =>  get_mvx_global_settings('give_tax') ? true : false,
+            'dashboard93' =>  get_mvx_global_settings('give_shipping') ? true : false,
+            'dashboard94' =>  get_mvx_global_settings('revenue_sharing_mode') && get_mvx_global_settings('commission_type') ? true : false,
             'dashboard95'   => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'free' : 'pro',
             'dashboard96'   =>  __('go to settings', 'multivendorx'),
             'dashboard97'   =>  admin_url('admin.php?page=mvx#&submenu=modules'),

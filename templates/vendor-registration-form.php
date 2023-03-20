@@ -229,6 +229,7 @@ if (!empty($mvx_vendor_registration_form_data) && is_array($mvx_vendor_registrat
             case 'vendor_city':
             case 'vendor_postcode':
             case 'vendor_paypal_email':
+            case 'vendor_page_title':
                 ?>
                 <div class="mvx-regi-form-row <?php if (!empty($value['cssClass'])) { echo $value['cssClass']; } else {  echo 'mvx-regi-12'; } ?>">
                     <label><?php echo __($value['label'],'multivendorx'); ?><?php if ($value['required']) { echo ' <span class="required">*</span>'; }?></label>
@@ -271,7 +272,7 @@ if (!empty($mvx_vendor_registration_form_data) && is_array($mvx_vendor_registrat
                 ?>
                 <div class="mvx-regi-form-row <?php if (!empty($value['cssClass'])) { echo $value['cssClass']; } else {  echo 'mvx-regi-12'; } ?>">
                     <label><?php echo __($value['label'],'multivendorx'); ?><?php if ($value['required']) { echo ' <span class="required">*</span>'; }?></label>
-                    <textarea <?php if (!empty($value['limit'])) { echo 'maxlength="'.$value['limit'].'"'; } ?> name="mvx_vendor_fields[<?php echo $key; ?>][value]" placeholder="<?php echo esc_attr($value['defaultValue']); ?>" <?php if ($value['required']) { echo 'required'; }?>><?php if (!empty($form_data['mvx_vendor_fields'][$key]["value"])) { echo esc_attr($form_data['mvx_vendor_fields'][$key]["value"]); } ?></textarea>
+                    <textarea <?php if (!empty($value['limit'])) { echo 'maxlength="'.$value['limit'].'"'; } ?> name="mvx_vendor_fields[<?php echo $key; ?>][value]" placeholder="<?php echo esc_attr($value['placeholder']); ?>" <?php if ($value['required']) { echo 'required'; }?>><?php if (!empty($form_data['mvx_vendor_fields'][$key]["value"])) { echo esc_attr($form_data['mvx_vendor_fields'][$key]["value"]); } ?></textarea>
                     <input type="hidden" name="mvx_vendor_fields[<?php echo $key; ?>][label]" value="<?php echo htmlentities($value['label']); ?>" />
                     <input type="hidden" name="mvx_vendor_fields[<?php echo $key; ?>][type]" value="<?php echo $value['type']; ?>" />
                 </div>

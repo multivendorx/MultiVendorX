@@ -758,6 +758,16 @@ class MVX_User {
                 $user = new WP_User(absint($user_id));
                 $user->set_role('dc_vendor');
             }
+            // change store name if vendor_page_title exist in registration filed
+            $mvx_vendor_fields = isset( $_POST['mvx_vendor_fields'] ) ? array_filter( array_map( 'wc_clean', (array) $_POST['mvx_vendor_fields'] ) ) : '';
+            if ($mvx_vendor_fields && is_array($mvx_vendor_fields)) {
+                foreach ($mvx_vendor_fields as $key => $value) {
+                    if (in_array($value['type'], array('vendor_page_title'))) {
+                        $vendor = get_mvx_vendor($user_id);
+                        if (!$vendor->update_page_title(wc_clean($value['value']))) {}
+                    }
+                }
+            }
             do_action('mvx_after_register_vendor', $user_id);
         }
     }

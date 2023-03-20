@@ -7136,7 +7136,7 @@ if (!function_exists('mvx_list_all_modules')) {
         $thumbnail_dir = $MVX->plugin_url.'assets/images/modules';
         $thumbnail_path = $MVX->plugin_path.'assets/images/modules';
         require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
-        $mvx_pro_is_active = is_plugin_active('mvx-pro/mvx-pro.php') ? true : false;
+        $mvx_pro_is_active = is_plugin_active('mvx-pro_13_03_2023/mvx-pro.php') ? true : false;
                     
         $mvx_all_modules   =   [
             [
@@ -7930,6 +7930,20 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'plugin_link'   => 'https://woocommerce.com/products/product-add-ons/',
                                 'is_active' => is_plugin_active('woocommerce-product-addons/woocommerce-product-addons.php') ? true :false,
                             ),
+                            array(
+                                'plugin_name'   => __('MultivendorX Pro', 'multivendorx'),
+                                'plugin_link'   => 'https://multivendorx.com/',
+                                'is_active'     => $mvx_pro_is_active,
+                            ),
+                        ),
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/mvx-product-addon',
+                    ],
+                    [
+                        'id'           => 'shipstation',
+                        'name'         => __( 'Shipstation', 'multivendorx' ),
+                        'description'  => __( 'Shipstation', 'multivendorx' ),
+                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
+                        'required_plugin_list' => array(
                             array(
                                 'plugin_name'   => __('MultivendorX Pro', 'multivendorx'),
                                 'plugin_link'   => 'https://multivendorx.com/',
