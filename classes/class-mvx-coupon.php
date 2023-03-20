@@ -26,12 +26,68 @@ class MVX_Coupon {
         add_action('woocommerce_coupon_data_panels', array(&$this, 'add_content_in_vendor_tab'), 10, 1);
         //save data in database
         add_action('woocommerce_coupon_options_save', array(&$this, 'save_data_from_vendor_tab'), 10, 2);
+        add_action('transition_post_status', array(&$this, 'on_coupon_status_transitions'), 10, 3);
 
         // coupon delete action
         $this->mvx_delete_coupon_action();
     }
 
-        /**
+    /**
+     * Notify followed customer on publish coupon by vendor
+     *
+     * @return void
+     */
+    function on_coupon_status_transitions($new_status, $old_status, $post) {
+        if ('shop_coupon' !== $post->post_type || $new_status === $old_status) {
+            return;
+        }
+        // skip for new posts and auto drafts
+        if ('new' === $old_status || 'auto-draft' === $new_status) {
+            return;
+        }
+
+        if ($new_status != $old_status && $post->post_status == 'publish') {
+            $current_user = get_current_vendor_id();
+            if ($current_user)
+                $current_user_is_vendor = is_user_mvx_vendor($current_user);
+            if ($current_user_is_vendor) {
+                //send mails to customer for new vendor coupon
+                $vendor = get_mvx_vendor_by_term(get_user_meta($current_user, '_vendor_term_id', true));
+                if ($vendor) {
+                    $vendor_followers = get_user_meta( $vendor->id, 'mvx_vendor_followed_by_customer', true );
+                    if ($vendor_followers) {
+                        foreach ($vendor_followers as $key_followed => $value_followed) {
+                            $user_details = get_user_by( 'ID', $value_followed['user_id'] );
+                            if ($user_details) {
+                                $email_customer = WC()->mailer()->emails['WC_Email_Vendor_New_Coupon_Added_To_Customer'];
+                                $email_customer->trigger($post->post_id, $post, $vendor, $user_details->user_email);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (current_user_can('administrator') && $new_status != $old_status && $post->post_status == 'publish') {
+            if (isset($_POST['select_vendor']) && !empty($_POST['select_vendor'])) {
+                $vendor_id = $_POST['select_vendor'];
+                $vendor = get_mvx_vendor($vendor_id) ? get_mvx_vendor($vendor_id) : '';
+                if ($vendor) {
+                    $vendor_followers = get_user_meta( $vendor->id, 'mvx_vendor_followed_by_customer', true );
+                    if ($vendor_followers) {
+                        foreach ($vendor_followers as $key_followed => $value_followed) {
+                            $user_details = get_user_by( 'ID', $value_followed['user_id'] );
+                            if ($user_details) {
+                                $email_customer = WC()->mailer()->emails['WC_Email_Vendor_New_Coupon_Added_To_Customer'];
+                                $email_customer->trigger($post->post_id, $post, $vendor, $user_details->user_email);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /**
     * validate vendor coupon
     *
     * @param boolean $true
