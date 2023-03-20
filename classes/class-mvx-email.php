@@ -52,6 +52,7 @@ class MVX_Email {
 		include( 'emails/class-mvx-email-vendor-followed.php' );
 		include( 'emails/class-mvx-email-admin-change-order-status.php' );
 		include( 'emails/class-mvx-email-vendor-new-coupon-added.php' );
+		include( 'emails/class-mvx-email-vendor-new-coupon-followed-customer.php' );
 
         $mvx_email = array();
         $mvx_email['WC_Email_Vendor_New_Account'] = new WC_Email_Vendor_New_Account();
@@ -79,6 +80,7 @@ class MVX_Email {
 		$mvx_email['WC_Email_Vendor_Followed'] = new WC_Email_Vendor_Followed();
 		$mvx_email['WC_Email_Admin_Change_Order_Status'] = new WC_Email_Admin_Change_Order_Status();
 		$mvx_email['WC_Email_Vendor_New_Coupon_Added'] = new WC_Email_Vendor_New_Coupon_Added();
+		$mvx_email['WC_Email_Vendor_New_Coupon_Added_To_Customer'] = new WC_Email_Vendor_New_Coupon_Added_To_Customer();
 
         return array_merge( $emails, apply_filters( 'mvx_email_classes', $mvx_email ) );
     }
