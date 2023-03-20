@@ -6663,6 +6663,36 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 ],
                 
             ],
+            'settings-min-max' => [
+                [
+                    'key'    => 'enable_min_max_quantity',
+                    'label'   => __( 'Enable Min/Max Quantities', 'multivendorx' ),
+                    'desc'    => __( 'Activating this will set min and max quantities for selected products.', 'multivendorx' ),
+                    'class'   => 'mvx-toggle-checkbox',
+                    'type'    => 'checkbox',
+                    'options' => array(
+                        array(
+                            'key'=> "enable_min_max_quantity",
+                            'value'=> "enable_min_max_quantity"
+                        )
+                    ),
+                    'database_value' => array(),
+                ],
+                [
+                    'key'    => 'enable_min_max_amount',
+                    'label'   => __( 'Enable Min/Max Amount', 'multivendorx' ),
+                    'desc'    => __( 'Activating this will set min and max amount for selected products.', 'multivendorx' ),
+                    'class'   => 'mvx-toggle-checkbox',
+                    'type'    => 'checkbox',
+                    'options' => array(
+                        array(
+                            'key'=> "enable_min_max_amount",
+                            'value'=> "enable_min_max_amount"
+                        )
+                    ),
+                    'database_value' => array(),
+                ],
+            ],
         ];
 
         return apply_filters('mvx_settings_fields_details', $settings_fields);
@@ -6785,6 +6815,14 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'icon'          =>  'icon-tab-social',
                 'submenu'       =>  'settings',
                 'modulename'    =>  'social'
+            ),
+            array(
+                'tablabel'      =>  __('Minimum-Maximum', 'multivendorx'),
+                'apiurl'        =>  'mvx_module/v1/save_dashpages',
+                'description'   =>  __('Manage minimum and maximum', 'multivendorx'),
+                'icon'          =>  'dashicons dashicons-menu-alt2',
+                'submenu'       =>  'settings',
+                'modulename'    =>  'settings-min-max'
             ),
         );
         
