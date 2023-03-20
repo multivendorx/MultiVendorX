@@ -474,6 +474,10 @@
   content: "\e970";
 }
 
+.icon-tab-minmum-maximum:before {
+  content: "\e973";
+}
+
 /*********** Modules section *********************/
 @font-face {
   font-family: "mvx-module";
