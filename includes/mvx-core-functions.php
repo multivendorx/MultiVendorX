@@ -7938,20 +7938,6 @@ if (!function_exists('mvx_list_all_modules')) {
                         ),
                         'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/mvx-product-addon',
                     ],
-                    [
-                        'id'           => 'shipstation',
-                        'name'         => __( 'Shipstation', 'multivendorx' ),
-                        'description'  => __( 'Shipstation', 'multivendorx' ),
-                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
-                        'required_plugin_list' => array(
-                            array(
-                                'plugin_name'   => __('MultivendorX Pro', 'multivendorx'),
-                                'plugin_link'   => 'https://multivendorx.com/',
-                                'is_active'     => $mvx_pro_is_active,
-                            ),
-                        ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/mvx-product-addon',
-                    ],
                 ]
             ],
         ];
