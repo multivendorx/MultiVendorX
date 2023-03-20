@@ -5,7 +5,7 @@ Donate link: https://multivendorx.com/donate
 Requires at least: 4.4
 Tested up to: 6.1.1
 Requires PHP: 5.6
-Stable tag: 4.0.11
+Stable tag: 4.0.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -291,6 +291,15 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.0.12 - 2023-03-21 =
+* Added     - Compatibility of WooCommerce 7.5.0.
+* Added     - Registration form new field for store name #320.
+* Added     - Minimum Maximum quantity #307.
+* Added     - Followed Vendor Coupon mail #288
+* Fix 		- Dashboard is not showing taxes, commissions, shipping not set up #337.
+* Fix 		- Registration page store description error.
+* Updated   - Language file.
 
 = 4.0.11 - 2023-03-07 =
 * Added     - Compatibility of WooCommerce 7.4.1.
