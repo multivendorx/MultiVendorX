@@ -474,7 +474,7 @@
   content: "\e970";
 }
 
-.icon-tab-minmum-maximum:before {
+.icon-tab-min-max:before {
   content: "\e973";
 }
 
@@ -727,6 +727,10 @@
 
 .module-appointment:before {
   content: "\e92b";
+}
+
+.module-min-max:before {
+  content: "\e93c";
 }
 
 /*icon end*/

@@ -6820,7 +6820,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'tablabel'      =>  __('Min-Max Quantities', 'multivendorx'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'description'   =>  __('Manage Min-Max Quantities/Amount', 'multivendorx'),
-                'icon'          =>  'icon-tab-minmum-maximum',
+                'icon'          =>  'icon-tab-min-max',
                 'submenu'       =>  'settings',
                 'modulename'    =>  'settings-min-max'
             ),
