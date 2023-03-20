@@ -123,6 +123,29 @@ class MVX_Product {
         }
         // Woocommerce Block 
         add_filter( 'woocommerce_blocks_product_grid_item_html', array( $this, 'woocommerce_blocks_product_grid_item_html' ), 99, 3 );
+
+        if (mvx_is_module_active('min_max')) {
+            add_action( 'woocommerce_product_options_general_product_data', array( $this, 'add_meta_fields' ) );
+            add_action( 'save_post_product', array( $this, 'save_min_max_data' ) );
+            add_action( 'woocommerce_product_after_variable_attributes', array( $this, 'variable_attributes' ), 10, 3 );
+            add_action( 'woocommerce_save_product_variation', array( $this, 'save_min_max_variation_data' ), 10, 2 );
+            add_action( 'woocommerce_ajax_save_product_variations', array( $this, 'save_variation_min_max_ajax_data' ), 10 );
+
+            add_action( 'mvx_frontend_dashboard_product_options_pricing', array( $this, 'load_min_max_meta_box' ), 10, 3 );
+            add_action( 'mvx_process_product_object', array( $this, 'save_min_max_product_data' ), 10, 2 );
+            add_action( 'mvx_frontend_product_after_variable_attributes', array( $this, 'mvx_frontend_dashboard_product_min_max_variation' ), 10 , 3 );
+
+            add_filter( 'woocommerce_get_price_html', array( $this, 'add_min_max_to_shop_page' ), 10, 2 );
+            add_filter( 'woocommerce_add_to_cart_validation', array( $this, 'validate_and_update_cart_item' ), 10, 4 );
+            add_filter( 'woocommerce_add_cart_item', array( $this, 'update_cart_quantity' ) );
+            add_filter( 'woocommerce_cart_item_quantity', array( $this, 'check_cart_item_quantity_min_max_quantity' ), 10, 3 );
+            add_filter( 'woocommerce_cart_item_subtotal', array( $this, 'check_cart_item_quantity_min_max_amount' ), 10, 2 );
+            add_filter( 'woocommerce_available_variation', array( $this, 'available_variation_min_max' ), 10, 3 );
+            add_filter( 'woocommerce_quantity_input_args', array( $this, 'update_quantity_args_min_max' ), 10, 2 );
+            add_action( 'wp_enqueue_scripts', array( $this, 'load_scripts_for_min_max' ) );
+            add_filter( 'woocommerce_loop_add_to_cart_link', array( $this, 'add_to_cart_link_min_max' ), 10, 2 );
+            add_action( 'woocommerce_check_cart_items', array( $this, 'action_woocommerce_check_cart_items_min_max' ) );
+        }
     }
     
     public function override_wc_product_post_parent( $data, $postarr ){
@@ -1978,6 +2001,807 @@ class MVX_Product {
 
         $notes = get_comments($args);
         return $notes;
+    }
+    
+    public function add_meta_fields() {
+        if ( ! current_user_can( 'manage_woocommerce' ) ) {
+            return;
+        }
+        // Early return.
+        if ( !get_mvx_vendor_settings('enable_min_max_quantity', 'settings_min_max') && !get_mvx_vendor_settings('enable_min_max_amount', 'settings_min_max') ) {
+            return;
+        }
+        $mvx_min_max_meta = get_post_meta( get_the_ID(), '_mvx_min_max_meta', true );
+
+        echo '<div class="options_group show_if_simple">';
+        // Check if admin active min/max feature.
+        if ( get_mvx_vendor_settings('enable_min_max_quantity', 'settings_min_max') || get_mvx_vendor_settings('enable_min_max_amount', 'settings_min_max') ) {
+            woocommerce_wp_checkbox(
+                [
+                    'id'          => 'product_wise_activation',
+                    'value'       => isset( $mvx_min_max_meta['product_wise_activation'] ) ? $mvx_min_max_meta['product_wise_activation'] : 'no',
+                    'label'       => __( 'Enable Min Max Rule', 'multivendorx' ),
+                    'description' => __( 'Enable Min Max Rule for this product', 'multivendorx' ),
+                ]
+            );
+        }
+        if ( get_mvx_vendor_settings('enable_min_max_quantity', 'settings_min_max') ) {
+            woocommerce_wp_text_input(
+                [
+                    'id'    => 'min_quantity',
+                    'value' => isset( $mvx_min_max_meta['min_quantity'] ) ? $mvx_min_max_meta['min_quantity'] : '',
+                    'type'  => 'number',
+                    'custom_attributes' => array(
+                        'step' => 'any',
+                        'min'  => '1',
+                    ),
+                    'label' => __( 'Minimum quantity to order', 'multivendorx' ),
+                ]
+            );
+            woocommerce_wp_text_input(
+                [
+                    'id'    => 'max_quantity',
+                    'value' => isset( $mvx_min_max_meta['max_quantity'] ) ? $mvx_min_max_meta['max_quantity'] : '',
+                    'type'  => 'number',
+                    'custom_attributes' => array(
+                        'step' => 'any',
+                        'min'  => '1',
+                    ),
+                    'label' => __( 'Maximum quantity to order', 'multivendorx' ),
+                ]
+            );
+        }
+        // Check if admin active min/max feature.
+        if ( get_mvx_vendor_settings('enable_min_max_amount', 'settings_min_max') ) {
+            woocommerce_wp_text_input(
+                [
+                    'id'        => 'min_amount',
+                    'value'     => isset( $mvx_min_max_meta['min_amount'] ) ? $mvx_min_max_meta['min_amount'] : '',
+                    'data_type' => 'price',
+                    'custom_attributes' => array(
+                        'step' => 'any',
+                        'min'  => '1',
+                    ),
+                    'label'     => __( 'Minimum amount to order', 'multivendorx' ),
+                ]
+            );
+            woocommerce_wp_text_input(
+                [
+                    'id'        => 'max_amount',
+                    'value'     => isset( $mvx_min_max_meta['max_amount'] ) ? $mvx_min_max_meta['max_amount'] : '',
+                    'data_type' => 'price',
+                    'custom_attributes' => array(
+                        'step' => 'any',
+                        'min'  => '1',
+                    ),
+                    'label'     => __( 'Maximum amount to order', 'multivendorx' ),
+                ]
+            );
+        }
+        echo '</div>';
+    }
+    
+    public function save_min_max_data( $product_id ) {
+        $product = wc_get_product( $product_id );
+        if ( ! $product instanceof \WC_Product ) {
+            return;
+        }
+    
+        $min_max_meta = [];
+        $min_max_meta['product_wise_activation'] = wc_clean( wp_unslash( $_POST['product_wise_activation'] ) );
+        $min_max_meta['min_quantity']            = isset( $_POST['min_quantity'] ) && $_POST['min_quantity'] > 0 ? absint( wp_unslash( $_POST['min_quantity'] ) ) : 0;
+        $min_max_meta['max_quantity']            = isset( $_POST['max_quantity'] ) && $_POST['max_quantity'] > 0 ? absint( wp_unslash( $_POST['max_quantity'] ) ) : 0;
+        $min_max_meta['min_amount']              = isset( $_POST['min_amount'] ) && $_POST['min_amount'] > 0 ? wc_format_decimal( sanitize_text_field( wp_unslash( $_POST['min_amount'] ) ) ) : 0;
+        $min_max_meta['max_amount']              = isset( $_POST['max_amount'] ) && $_POST['max_amount'] > 0 ? wc_format_decimal( sanitize_text_field( wp_unslash( $_POST['max_amount'] ) ) ) : 0;
+        
+        $product->update_meta_data( '_mvx_min_max_meta', $min_max_meta );
+        $product->save();
+    }
+    
+    public function variable_attributes( $loop, $variation_data, $variation ) {
+        $product_id = ! empty( $variation->ID ) ? $variation->ID : 0;
+        $product    = wc_get_product( $product_id );
+        if ( ! $product instanceof WC_Product ) {
+            return;
+        }
+    
+        $mvx_min_max_meta = $product->get_meta( '_mvx_min_max_meta', true );
+        // Check if admin active min/max feature.
+        if ( get_mvx_vendor_settings('enable_min_max_quantity', 'settings_min_max') || get_mvx_vendor_settings('enable_min_max_amount', 'settings_min_max') ) {
+            woocommerce_wp_checkbox(
+                [
+                    'id'            => "variable_product_wise_activation{$loop}",
+                    'name'          => "variable_product_wise_activation[{$loop}]",
+                    'value'         => isset( $mvx_min_max_meta['product_wise_activation'] ) ? $mvx_min_max_meta['product_wise_activation'] : 'no',
+                    'style'         => 'margin: 2px 5px !important',
+                    'description'   => __( 'Enable Min Max Rule for this product', 'multivendorx' ),
+                ]
+            );
+        }
+        echo '<div class="options_group">';
+        if ( get_mvx_vendor_settings('enable_min_max_quantity', 'settings_min_max') ) {
+            woocommerce_wp_text_input(
+                [
+                    'id'    => "variable_min_quantity{$loop}",
+                    'name'  => "variable_min_quantity[{$loop}]",
+                    'value' => isset( $mvx_min_max_meta['min_quantity'] ) ? $mvx_min_max_meta['min_quantity'] : '',
+                    'type'  => 'number',
+                    'label' => __( 'Minimum quantity to order', 'multivendorx' ),
+                ]
+            );
+            woocommerce_wp_text_input(
+                [
+                    'id'    => "variable_max_quantity{$loop}",
+                    'name'  => "variable_max_quantity[{$loop}]",
+                    'value' => isset( $mvx_min_max_meta['max_quantity'] ) ? $mvx_min_max_meta['max_quantity'] : '',
+                    'type'  => 'number',
+                    'label' => __( 'Maximum quantity to order', 'multivendorx' ),
+                ]
+            );
+        }
+    
+        // Check if admin active min/max feature.
+        if ( get_mvx_vendor_settings('enable_min_max_amount', 'settings_min_max') ) {
+            woocommerce_wp_text_input(
+                [
+                    'id'        => "variable_min_amount{$loop}",
+                    'name'      => "variable_min_amount[{$loop}]",
+                    'value'     => isset( $mvx_min_max_meta['min_amount'] ) ? $mvx_min_max_meta['min_amount'] : '',
+                    'data_type' => 'price',
+                    'label'     => __( 'Minimum amount to order', 'multivendorx' ),
+                ]
+            );
+            woocommerce_wp_text_input(
+                [
+                    'id'        => "variable_max_amount{$loop}",
+                    'name'      => "variable_max_amount[{$loop}]",
+                    'value'     => isset( $mvx_min_max_meta['max_amount'] ) ? $mvx_min_max_meta['max_amount'] : '',
+                    'data_type' => 'price',
+                    'label'     => __( 'Maximum amount to order', 'multivendorx' ),
+                ]
+            );
+        }
+        echo '</div>';
+    }
+    
+    public function save_min_max_variation_data( $product_id, $loop ) {
+        $product = wc_get_product( $product_id );
+        if ( ! $product instanceof \WC_Product ) {
+            return;
+        }
+        // If it's a parent product then, return.
+        if ( ! empty( $product->get_children() ) ) {
+            return;
+        }
+    
+        $min_max_meta = [];
+        if ( ! empty( $_POST['variable_product_wise_activation'][ $loop ] ) && 'yes' === $_POST['variable_product_wise_activation'][ $loop ] ) {
+            $min_max_meta['product_wise_activation'] = wc_clean( wp_unslash( $_POST['variable_product_wise_activation'][ $loop ] ) );
+            $min_max_meta['min_quantity']            = isset( $_POST['variable_min_quantity'][ $loop ] ) && $_POST['variable_min_quantity'][ $loop ] > 0 ? absint( wp_unslash( $_POST['variable_min_quantity'][ $loop ] ) ) : 0;
+            $min_max_meta['max_quantity']            = isset( $_POST['variable_max_quantity'][ $loop ] ) && $_POST['variable_max_quantity'][ $loop ] > 0 ? absint( wp_unslash( $_POST['variable_max_quantity'][ $loop ] ) ) : 0;
+            $min_max_meta['min_amount']              = isset( $_POST['variable_min_amount'][ $loop ] ) && $_POST['variable_min_amount'][ $loop ] > 0 ? wc_format_decimal( sanitize_text_field( wp_unslash( $_POST['variable_min_amount'][ $loop ] ) ) ) : 0;
+            $min_max_meta['max_amount']              = isset( $_POST['variable_max_amount'][ $loop ] ) && $_POST['variable_max_amount'][ $loop ] > 0 ? wc_format_decimal( sanitize_text_field( wp_unslash( $_POST['variable_max_amount'][ $loop ] ) ) ) : 0;
+        }
+    
+        $product->update_meta_data( '_mvx_min_max_meta', $min_max_meta );
+        $product->save();
+    }
+    
+    public function save_variation_min_max_ajax_data( $product_id ) {
+        if ( ! $product_id ) {
+            return;
+        }
+        if ( ! is_user_logged_in() ) {
+            return;
+        }
+        if ( ! isset( $_POST['variable_product_wise_activation'] ) ) {
+            return;
+        }
+        foreach ( $_POST['variable_min_quantity'] as $loop => $data ) {
+            save_min_max_variation_data( $product_id, $loop );
+        }
+    }
+    
+    public function load_min_max_meta_box( $post_id, $product_object, $post ) {
+        $product = wc_get_product( $post_id );
+        if ( get_mvx_vendor_settings('enable_min_max_quantity', 'settings_min_max') || get_mvx_vendor_settings('enable_min_max_amount', 'settings_min_max') ) {
+            $mvx_min_max_meta = $product->get_meta( '_mvx_min_max_meta' );
+           
+            $product_wise_activation = ! empty( $mvx_min_max_meta['product_wise_activation'] ) ? $mvx_min_max_meta['product_wise_activation'] : 'no';
+            $min_quantity            = ! empty( $mvx_min_max_meta['min_quantity'] ) ? $mvx_min_max_meta['min_quantity'] : '';
+            $max_quantity            = ! empty( $mvx_min_max_meta['max_quantity'] ) ? $mvx_min_max_meta['max_quantity'] : '';
+            $min_amount              = ! empty( $mvx_min_max_meta['min_amount'] ) ? $mvx_min_max_meta['min_amount'] : '';
+            $max_amount              = ! empty( $mvx_min_max_meta['max_amount'] ) ? $mvx_min_max_meta['max_amount'] : '';
+            
+            ?>
+            <div class="form-group-row pricing"> 
+                <div class="form-group">
+                    <label class="control-label col-sm-3 col-md-3" for="product_wise_activation"><?php esc_html_e( 'Enable Min Max Rule for this product', 'multivendorx' ); ?></label>
+                    <div class="col-md-6 col-sm-9">
+                        <input type="checkbox" id="product_wise_activation" name="product_wise_activation" class="form-control" value = "yes" <?php checked( $product_wise_activation, 'yes' ); ?>>
+                    </div>
+                </div>  
+                <?php if ( get_mvx_vendor_settings('enable_min_max_quantity', 'settings_min_max') ) { ?>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3 col-md-3" for="min_quantity"><?php esc_html_e( 'Minimum quantity: ', 'multivendorx' ); ?>
+                            <span class="img_tip" data-desc="<?php esc_html_e( 'Set Minimum product quantity to order.', 'multivendorx' ); ?>"></span>
+                        </label>
+                        <div class="col-md-6 col-sm-9">
+                            <input type="number" id="min_quantity" name="min_quantity" value="<?php echo esc_attr($min_quantity); ?>" class="form-control" min="1" step="1">
+                        </div>
+                    </div> 
+    
+                    <div class="form-group">
+                        <label class="control-label col-sm-3 col-md-3" for="max_quantity"><?php esc_html_e( 'Maximum quantity: ', 'multivendorx' ); ?>
+                            <span class="img_tip" data-desc="<?php esc_html_e( 'Set Maximum product quantity to order.', 'multivendorx' ); ?>"></span>
+                        </label>
+                        <div class="col-md-6 col-sm-9">
+                            <input type="number" id="max_quantity" name="max_quantity" value="<?php echo esc_attr($max_quantity); ?>" class="form-control" step="1">
+                        </div>
+                    </div>
+                <?php } 
+                if ( get_mvx_vendor_settings('enable_min_max_amount', 'settings_min_max') ) {?>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3 col-md-3" for="min_amount"><?php esc_html_e( 'Minimum amount: ', 'multivendorx' ); ?>
+                            <span class="img_tip" data-desc="<?php esc_html_e( 'Set Minimum amount to order.', 'multivendorx' ); ?>"></span>
+                        </label>
+                        <div class="col-md-6 col-sm-9">
+                            <input type="number" id="min_amount" name="min_amount" value="<?php echo esc_attr($min_amount); ?>" class="form-control" min="1" step="1">
+                        </div>
+                    </div> 
+    
+                    <div class="form-group">
+                        <label class="control-label col-sm-3 col-md-3" for="max_amount"><?php esc_html_e( 'Maximum amount: ', 'multivendorx' ); ?>
+                            <span class="img_tip" data-desc="<?php esc_html_e( 'Set Maximum amount to order.', 'multivendorx' ); ?>"></span>
+                        </label>
+                        <div class="col-md-6 col-sm-9">
+                            <input type="number" id="max_amount" name="max_amount" value="<?php echo esc_attr($max_amount); ?>" class="form-control" step="1">
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+            <?php
+        }
+    }
+    
+    public function save_min_max_product_data( $product, $post_data ){
+        if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+            if ( ! $product ) {
+                return;
+            }
+            if ( ! is_user_logged_in() ) {
+                return;
+            }
+            $mvx_min_max_meta = [
+                'product_wise_activation' => wc_clean( wp_unslash( $_POST['product_wise_activation'] ) ),
+                'min_quantity'            => isset( $_POST['min_quantity'] ) && $_POST['min_quantity'] > 0 ? absint( wp_unslash( $_POST['min_quantity'] ) ) : 0,
+                'max_quantity'            => isset( $_POST['max_quantity'] ) && $_POST['max_quantity'] > 0 ? absint( wp_unslash( $_POST['max_quantity'] ) ) : 0,
+                'min_amount'              => isset( $_POST['min_amount'] ) && $_POST['min_amount'] > 0 ? wc_format_decimal( sanitize_text_field( wp_unslash( $_POST['min_amount'] ) ) ) : 0,
+                'max_amount'              => isset( $_POST['max_amount'] ) && $_POST['max_amount'] > 0 ? wc_format_decimal( sanitize_text_field( wp_unslash( $_POST['max_amount'] ) ) ) : 0
+            ];
+            update_post_meta( $product->get_id(), '_mvx_min_max_meta', $mvx_min_max_meta );
+    
+            if ( $product->is_type('variable') ) {
+                $min_max_meta = [];
+            
+                if ( isset( $_POST['variable_min_quantity'] ) && !empty( $_POST['variable_min_quantity'] ) ) {
+                    foreach ( $_POST['variable_min_quantity'] as $loop => $data ) {
+                        $variation_id = $_POST['variable_post_id'];
+                        if ( ! empty( $_POST['variable_product_wise_activation'][ $loop ] ) && 'yes' === $_POST['variable_product_wise_activation'][ $loop ] ) {
+                            $min_max_meta = [
+                                'product_wise_activation' => wc_clean( wp_unslash( $_POST['variable_product_wise_activation'][ $loop ] ) ),
+                                'min_quantity'            => isset( $_POST['variable_min_quantity'][ $loop ] ) && $_POST['variable_min_quantity'][ $loop ] > 0 ? absint( wp_unslash( $_POST['variable_min_quantity'][ $loop ] ) ) : 0,
+                                'max_quantity'            => isset( $_POST['variable_max_quantity'][ $loop ] ) && $_POST['variable_max_quantity'][ $loop ] > 0 ? absint( wp_unslash( $_POST['variable_max_quantity'][ $loop ] ) ) : 0,
+                                'min_amount'              => isset( $_POST['variable_min_amount'][ $loop ] ) && $_POST['variable_min_amount'][ $loop ] > 0 ? wc_format_decimal( sanitize_text_field( wp_unslash( $_POST['variable_min_amount'][ $loop ] ) ) ) : 0,
+                                'max_amount'              => isset( $_POST['variable_max_amount'][ $loop ] ) && $_POST['variable_max_amount'][ $loop ] > 0 ? wc_format_decimal( sanitize_text_field( wp_unslash( $_POST['variable_max_amount'][ $loop ] ) ) ) : 0
+                            ];
+                        }
+                        update_post_meta( $variation_id, '_mvx_min_max_meta', $mvx_min_max_meta );
+                    }
+                }
+            }
+        }
+    }
+    
+    public function mvx_frontend_dashboard_product_min_max_variation( $loop, $variation_data, $variation ) {
+        $product = wc_get_product($variation->ID);
+        if ( get_mvx_vendor_settings('enable_min_max_quantity', 'settings_min_max') || get_mvx_vendor_settings('enable_min_max_amount', 'settings_min_max') ) {
+            $mvx_min_max_meta = $product->get_meta( '_mvx_min_max_meta' );
+           
+            $product_wise_activation = ! empty( $mvx_min_max_meta['product_wise_activation'] ) ? $mvx_min_max_meta['product_wise_activation'] : 'no';
+            $min_quantity            = ! empty( $mvx_min_max_meta['min_quantity'] ) ? $mvx_min_max_meta['min_quantity'] : '';
+            $max_quantity            = ! empty( $mvx_min_max_meta['max_quantity'] ) ? $mvx_min_max_meta['max_quantity'] : '';
+            $min_amount              = ! empty( $mvx_min_max_meta['min_amount'] ) ? $mvx_min_max_meta['min_amount'] : '';
+            $max_amount              = ! empty( $mvx_min_max_meta['max_amount'] ) ? $mvx_min_max_meta['max_amount'] : '';
+            ?>
+            <div class="form-group-row pricing"> 
+                <div class="form-group">
+                    <label class="control-label col-sm-3 col-md-3" for="variable_product_wise_activation[<?php echo $loop; ?>]"><?php esc_html_e( 'Enable Min Max Rule for this product', 'multivendorx' ); ?></label>
+                    <div class="col-md-6 col-sm-9">
+                        <input type="checkbox" id="variable_product_wise_activation[<?php echo $loop; ?>]" name="variable_product_wise_activation[<?php echo $loop; ?>]" class="form-control" value = "yes" <?php checked( $product_wise_activation, 'yes' ); ?>>
+                    </div>
+                </div>  
+                <?php if ( get_mvx_vendor_settings('enable_min_max_quantity', 'settings_min_max') ) { ?>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3 col-md-3" for="variable_min_quantity[<?php echo $loop; ?>]"><?php esc_html_e( 'Minimum quantity: ', 'multivendorx' ); ?>
+                            <span class="img_tip" data-desc="<?php esc_html_e( 'Set Minimum product quantity to order.', 'multivendorx' ); ?>"></span>
+                        </label>
+                        <div class="col-md-6 col-sm-9">
+                            <input type="number" id="variable_min_quantity[<?php echo $loop; ?>]" name="variable_min_quantity[<?php echo $loop; ?>]" value="<?php echo esc_attr($min_quantity); ?>" class="form-control" step="1">
+                        </div>
+                    </div> 
+    
+                    <div class="form-group">
+                        <label class="control-label col-sm-3 col-md-3" for="variable_max_quantity[<?php echo $loop; ?>]"><?php esc_html_e( 'Maximum quantity: ', 'multivendorx' ); ?>
+                            <span class="img_tip" data-desc="<?php esc_html_e( 'Set Maximum product quantity to order.', 'multivendorx' ); ?>"></span>
+                        </label>
+                        <div class="col-md-6 col-sm-9">
+                            <input type="number" id="variable_max_quantity[<?php echo $loop; ?>]" name="variable_max_quantity[<?php echo $loop; ?>]" value="<?php echo esc_attr($max_quantity); ?>" class="form-control" step="1">
+                        </div>
+                    </div>
+                <?php } 
+                if ( get_mvx_vendor_settings('enable_min_max_amount', 'settings_min_max') ) {?>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3 col-md-3" for="variable_min_amount[<?php echo $loop; ?>]"><?php esc_html_e( 'Minimum amount: ', 'multivendorx' ); ?>
+                            <span class="img_tip" data-desc="<?php esc_html_e( 'Set Minimum amount to order.', 'multivendorx' ); ?>"></span>
+                        </label>
+                        <div class="col-md-6 col-sm-9">
+                            <input type="number" id="variable_min_amount[<?php echo $loop; ?>]" name="variable_min_amount[<?php echo $loop; ?>]" value="<?php echo esc_attr($min_amount); ?>" class="form-control" min="1" step="1">
+                        </div>
+                    </div> 
+    
+                    <div class="form-group">
+                        <label class="control-label col-sm-3 col-md-3" for="variable_max_amount[<?php echo $loop; ?>]"><?php esc_html_e( 'Maximum amount: ', 'multivendorx' ); ?>
+                            <span class="img_tip" data-desc="<?php esc_html_e( 'Set Maximum amount to order.', 'multivendorx' ); ?>"></span>
+                        </label>
+                        <div class="col-md-6 col-sm-9">
+                            <input type="number" id="variable_max_amount[<?php echo $loop; ?>]" name="variable_max_amount[<?php echo $loop; ?>]" value="<?php echo esc_attr($max_amount); ?>" class="form-control" step="1">
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+            <?php
+        }
+    }
+    
+    public function add_min_max_to_shop_page( $price, $product ) {
+        if ( 'external' === $product->get_type() ) {
+            return $price;
+        }
+        if ( !get_mvx_vendor_settings('enable_min_max_quantity', 'settings_min_max') && !get_mvx_vendor_settings('enable_min_max_amount', 'settings_min_max') ) {
+            return $price;
+        }
+        if ( 'variable' === $product->get_type() ) {
+            if ( is_single() ) {
+                return $price;
+            }
+            $return       = false;
+            $min_quantity = 0;
+            $max_quantity = 0;
+            $min_amount   = 0;
+            $max_amount   = 0;
+            foreach ( $product->get_children() as $child_id ) {
+                $child_product_settings = get_post_meta( $child_id, '_mvx_min_max_meta', true );
+                if ( empty( $child_product_settings ) ) {
+                    continue;
+                }
+                $qty    = [];
+                $amount = [];
+                if ( empty( $min_quantity ) || ( ! empty( $child_product_settings['min_quantity'] ) && ( $min_quantity > $child_product_settings['min_quantity'] ) ) ) {
+                    $return              = true;
+                    $min_quantity        = $child_product_settings['min_quantity'];
+                    $qty['min_quantity'] = $child_product_settings['min_quantity'];
+                }
+                if ( empty( $max_quantity ) || ( ! empty( $child_product_settings['max_quantity'] ) && ( $max_quantity < $child_product_settings['max_quantity'] ) ) ) {
+                    $return              = true;
+                    $max_quantity        = $child_product_settings['max_quantity'];
+                    $qty['max_quantity'] = $child_product_settings['max_quantity'];
+                }
+                if ( empty( $min_amount ) || ( ! empty( $child_product_settings['min_amount'] ) && ( $min_amount > $child_product_settings['min_amount'] ) ) ) {
+                    $return               = true;
+                    $min_amount           = $child_product_settings['min_amount'];
+                    $amount['min_amount'] = wc_price( $child_product_settings['min_amount'] );
+                }
+                if ( empty( $max_amount ) || ( ! empty( $child_product_settings['max_amount'] ) && ( $max_amount < $child_product_settings['max_amount'] ) ) ) {
+                    $return               = true;
+                    $max_amount           = $child_product_settings['max_amount'];
+                    $amount['max_amount'] = wc_price( $child_product_settings['max_amount'] );
+                }
+    
+                $qty_div = '';
+                if ( $max_quantity > 0 && $min_quantity > 0 ) {
+                    $qty_div = "<div class='required'>" . __( 'Quantity ', 'multivendorx' ) . implode( ' - ', $qty ) . '</div>';
+                }
+    
+                $amount_div = '';
+                if ( $max_amount > 0 && $min_amount > 0 ) {
+                    $amount_div = "<div class='required'>" .  __( 'Amount ', 'multivendorx' ) . implode( ' - ', $amount ) . '</div>';
+                }
+                if ( $return ) {
+                    remove_action( 'woocommerce_proceed_to_checkout', 'woocommerce_button_proceed_to_checkout', 20 );
+    
+                    return $price . $qty_div . $amount_div;
+                }
+            }
+            return $price;
+        }
+    
+        $product_settings = get_post_meta( $product->get_id(), '_mvx_min_max_meta', true );
+        if ( ! empty( WC()->cart->cart_contents ) && WC()->cart->cart_contents_count >= 1 && ( is_cart() || is_checkout() ) ) {
+            return $price;
+        }
+        $quantity_error = $this->check_min_max_quantity_or_amount_error( '', $product->get_id(), 'quantity', true );
+        if ( ! empty( $quantity_error ) ) {
+            $html['quantity_error'] = "<span class='min_qty'>" . number_format_i18n( (int) $quantity_error ) . '</span>' . __( ' piece', 'multivendorx' );
+        }
+        $amount_error = $this->check_min_max_quantity_or_amount_error( '', $product->get_id(), 'amount', true );
+        if ( ! empty( $amount_error ) && $amount_error !== 0 ) {
+            $html['amount_error'] = "<span class='min_amount'>" . trim( wc_price( $amount_error ) ) . '</span>';
+        }
+        if ( ( ! empty( $quantity_error ) || ! empty( $amount_error ) ) && ! empty( $html ) ) {
+            remove_action( 'woocommerce_proceed_to_checkout', 'woocommerce_button_proceed_to_checkout', 20 );
+    
+            return "{$price} <div class='required'>" . __( 'Min', 'multivendorx' ) . ' (' . implode( '/', $html ) . ')' . '</div>';
+        }
+        return $price;  
+    }
+    
+    public function validate_and_update_cart_item( $passed, $product_id, $quantity, $variation_id = 0 ) {
+        if ( !get_mvx_vendor_settings('enable_min_max_quantity', 'settings_min_max') ) {
+            return $passed;
+        }
+        $parent_product_id = $product_id;
+        if ( 0 !== $variation_id ) {
+            $product_id = $variation_id;
+        }
+        // Check cart previous quantity to add with new quantity.
+        $cart_key               = '';
+        $cart                   = WC()->cart;
+        $cart_has_other_product = false;
+        foreach ( $cart->get_cart() as $cart_item_key => $cart_item ) {
+            $cart_product_id = $cart_item['product_id'];
+            if ( ! empty( $cart_item['variation_id'] ) ) {
+                $cart_product_id = $cart_item['variation_id'];
+            }
+            if ( $product_id === $cart_product_id ) {
+                // Add previous quantity with new quantity.
+                $quantity += $cart_item['quantity'];
+                $cart_key = $cart_item_key;
+            } else {
+                $cart_has_other_product = true;
+            }
+        }
+    
+        $product_settings = get_post_meta( $product_id, '_mvx_min_max_meta', true );
+        if ( empty( $product_settings ) ) {
+            $product_settings = get_post_meta( $parent_product_id, '_mvx_min_max_meta', true );
+        }
+        $quantity_error = $this->check_min_max_quantity_or_amount_error( $quantity, $product_id, 'quantity', true );
+        if ( ! empty( $quantity_error ) ) {
+            $settings_quantity = (int) $quantity_error;
+            $product = wc_get_product( $product_id );
+            if ( $quantity < $settings_quantity ) {
+                wc_add_notice( sprintf( __( 'Minimum quantity for %1$s to order is %2$s.', 'multivendorx' ), $product->get_title(), $settings_quantity ), 'error' );
+                return $passed;
+            }
+            if ( $quantity > $settings_quantity ) {
+                if ( ! empty( $cart_key ) ) {
+                    $cart->set_quantity( $cart_key, $settings_quantity );
+                } else {
+                    try {
+                        $cart->add_to_cart( $product_id, $settings_quantity );
+                    } catch ( \Exception $e ) {
+                        if ( $e->getMessage() ) {
+                            wc_add_notice( $e->getMessage(), 'error' );
+                        }
+    
+                        return false;
+                    }
+                }
+                wc_add_notice( sprintf( __( 'Maximum quantity for %1$s to order is %2$s.', 'multivendorx' ), $product->get_title(), $settings_quantity ), 'error' );
+                return false;
+            }
+        }
+        return $passed;
+    }
+    
+    public function update_cart_quantity( $cart_item_data ) {
+        if ( !get_mvx_vendor_settings('enable_min_max_quantity', 'settings_min_max') ) {
+            return $cart_item_data;
+        }
+        $product_id = $cart_item_data['product_id'];
+        if ( ! empty( $cart_item_data['variation_id'] ) ) {
+            $product_id = $cart_item_data['variation_id'];
+        }
+        $other_product_found = false;
+        foreach ( WC()->cart->get_cart() as $cart_item ) {
+            if ( $product_id === $cart_item['product_id'] ) {
+                $cart_item_data['quantity'] += $cart_item['quantity'];
+            } else {
+                $other_product_found = true;
+            }
+        }
+        $product_settings = get_post_meta( $product_id, '_mvx_min_max_meta', true );
+        $quantity_error = $this->check_min_max_quantity_or_amount_error( $cart_item_data['quantity'], $product_id, 'quantity', true );
+        if ( ! empty( $quantity_error ) ) {
+            $cart_item_data['quantity'] = $quantity_error;
+        }
+        return $cart_item_data;
+    }
+    
+    public function check_cart_item_quantity_min_max_quantity( $product_quantity, $cart_item_key, $cart_item ) {
+        if ( !get_mvx_vendor_settings('enable_min_max_quantity', 'settings_min_max') ) {
+            return $product_quantity;
+        }
+        $product_id = $cart_item['product_id'];
+        if ( $cart_item['variation_id'] ) {
+            $product_id = $cart_item['variation_id'];
+        }
+        $quantity_error = $this->check_min_max_quantity_or_amount_error( $cart_item['quantity'], $product_id, 'quantity' );
+        if ( ! empty( $quantity_error ) ) {
+            remove_action( 'woocommerce_proceed_to_checkout', 'woocommerce_button_proceed_to_checkout', 20 );
+    
+            return "{$product_quantity} <div class='required'>$quantity_error</div>";
+        }
+        return $product_quantity;
+    }
+    
+    public function check_cart_item_quantity_min_max_amount( $product_price, $cart_item ) {
+        if ( !get_mvx_vendor_settings('enable_min_max_amount', 'settings_min_max') ) {
+            return $product_price;
+        }
+        $product_id = $cart_item['product_id'];
+        if ( $cart_item['variation_id'] ) {
+            $product_id = $cart_item['variation_id'];
+        }
+        $amount_error = $this->check_min_max_quantity_or_amount_error( $cart_item['line_subtotal'], $product_id, 'amount' );
+        if ( ! empty( $amount_error ) ) {
+            remove_action( 'woocommerce_proceed_to_checkout', 'woocommerce_button_proceed_to_checkout', 20 );
+    
+            return "{$product_price} <div class='required'>$amount_error</div>";
+        } else {
+            return $product_price;
+        }
+    }
+    
+    public function check_min_max_quantity_or_amount_error( $product_quantity, $product_id, $context = 'quantity', $return_type_number = false ) {
+        $error = '';
+        $product_settings = get_post_meta( $product_id, '_mvx_min_max_meta', true );
+        if ( ! empty( $product_settings ) && ( isset( $product_settings['product_wise_activation'] ) && 'yes' === $product_settings['product_wise_activation'] ) ) {
+            return $this->mvx_product_wise_min_max_settings( $product_id, $context, $product_quantity, $return_type_number );
+        }
+        return $error;
+    }
+    
+    public function mvx_product_wise_min_max_settings( $product_id, $context, $product_quantity, $return_type_number ) {
+        $error = '';
+        $max = "max_{$context}";
+        $min = "min_{$context}";
+        $product_settings = get_post_meta( $product_id, '_mvx_min_max_meta', true );
+        $max = $product_settings[ "max_{$context}" ];
+        $min = $product_settings[ "min_{$context}" ];
+    
+        $found_other_products = false;
+        if ( ! empty( WC()->cart->cart_contents ) ) {
+            foreach ( WC()->cart->cart_contents as $product ) {
+                if ( $product['product_id'] !== $product_id ) {
+                    $found_other_products = true;
+                }
+            }
+        }
+        if ( empty( $product_quantity ) || $product_quantity < $product_settings[ "min_{$context}" ] ) {
+            $min = $product_settings[ "min_{$context}" ];
+            $error                    = __( 'Min', 'multivendorx' ) . " {$context} {$product_settings["min_{$context}"]}";
+            if ( $return_type_number ) {
+                $error = $product_settings[ "min_{$context}" ];
+            }
+        }
+        if ( $product_quantity > $product_settings[ "max_{$context}" ] ) {
+            $max = $product_settings[ "min_{$context}" ];
+            $error                    = __( 'Max', 'multivendorx' ) . " {$context} {$product_settings["max_{$context}"]}";
+            if ( $return_type_number ) {
+                $error = $product_settings[ "max_{$context}" ];
+            }
+        }
+        return $error;
+    }
+    
+    public function available_variation_min_max( $data, $product, $variation ) {
+        $variation_id                 = $variation->get_id();
+        $mvx_min_max_variation_meta = get_post_meta( $variation_id, '_mvx_min_max_meta', true );
+        $min_max_rules = false;
+        if ( ! empty( $mvx_min_max_variation_meta ) && 'no' !== $mvx_min_max_variation_meta['product_wise_activation'] ) {
+            $min_max_rules              = true;
+            $variation_minimum_quantity = $mvx_min_max_variation_meta['min_quantity'];
+            $variation_maximum_quantity = $mvx_min_max_variation_meta['max_quantity'];
+        }
+        $mvx_min_max_meta = get_post_meta( $product->get_id(), '_mvx_min_max_meta', true );
+        if ( ! empty( $mvx_min_max_meta ) && 'no' !== $mvx_min_max_meta['product_wise_activation'] ) {
+            $min_max_rules    = true;
+            $minimum_quantity = $mvx_min_max_meta['min_quantity'];
+            $maximum_quantity = $mvx_min_max_meta['max_quantity'];
+        }
+    
+        if ( $variation->managing_stock() ) {
+            $product = $variation;
+        }
+        if ( $min_max_rules && ! empty( $variation_minimum_quantity ) ) {
+            $minimum_quantity = $variation_minimum_quantity;
+        }
+        if ( $min_max_rules && ! empty( $variation_maximum_quantity ) ) {
+            $maximum_quantity = $variation_maximum_quantity;
+        }
+        $this->check_min_max_quantity_or_amount_error( 1, $product->get_id(), 'quantity' );
+        if ( empty( $minimum_quantity ) ) {
+            $minimum_quantity = 1;
+        }
+        if ( empty( $maximum_quantity ) ) {
+            $maximum_quantity = '';
+        }
+        if ( ! empty( $minimum_quantity ) ) {
+            if ( $product->managing_stock() && $product->backorders_allowed() && absint( $minimum_quantity ) > $product->get_stock_quantity() ) {
+                $data['min_qty'] = $product->get_stock_quantity();
+            } else {
+                $data['min_qty'] = $minimum_quantity;
+            }
+        }
+        if ( ! empty( $maximum_quantity ) ) {
+            if ( $product->managing_stock() && $product->backorders_allowed() ) {
+                $data['max_qty'] = $maximum_quantity;
+            } elseif ( $product->managing_stock() && absint( $maximum_quantity ) > $product->get_stock_quantity() ) {
+                $data['max_qty'] = $product->get_stock_quantity();
+            } else {
+                $data['max_qty'] = $maximum_quantity;
+            }
+        }
+        if ( ! is_cart() ) {
+            $data['input_value'] = ! empty( $minimum_quantity ) ? $minimum_quantity : 1;
+        }
+        return $data;
+    }
+    
+    public function update_quantity_args_min_max( $data, $product ) {
+        $product_settings = get_post_meta( $product->get_id(), '_mvx_min_max_meta', true );
+        if ( $product_settings ) {
+            $max_quantity = $product_settings['max_quantity'];
+            $min_quantity = $product_settings['min_quantity'];
+            if ( - 1 !== $max_quantity ) {
+                $data['max_value'] = $max_quantity;
+            }
+    
+            if ( - 1 !== $min_quantity ) {
+                $data['min_value'] = $min_quantity;
+            }
+        }
+        return $data;
+    }
+    
+    public function load_scripts_for_min_max() {
+        // Only load on single product page and cart page.
+        if ( is_product() || is_cart() ) {
+            wc_enqueue_js(
+                "
+                    jQuery( 'body' ).on( 'show_variation', function( event, variation ) {
+                        const step = 'undefined' !== typeof variation.step ? variation.step : 1;
+                        $('.min_qty').text(variation.input_value);
+                        jQuery( 'form.variations_form' ).find( 'input[name=quantity]' ).prop( 'step', step ).val( variation.input_value );
+                    });
+                    "
+            );
+        }
+    }
+    
+    public function add_to_cart_link_min_max( $html, $product ) {
+        if ( 'variable' !== $product->get_type() ) {
+            $quantity_error = $this->check_min_max_quantity_or_amount_error( '', $product->get_id(), 'quantity', true );
+            if ( ! empty( $quantity_error ) ) {
+                $quantity_attribute = number_format_i18n( (int) $quantity_error );
+                $html               = str_replace( '<a ', '<a data-quantity="' . $quantity_attribute . '" ', $html );
+            }
+        }
+        return $html;
+    }
+    
+    public function action_woocommerce_check_cart_items_min_max() {
+        $i            = 0;
+        $bad_products = [];
+        foreach ( WC()->cart->get_cart() as $cart_item ) {
+            if ( ! isset( $cart_item['line_total'] ) ) {
+                continue;
+            }
+            $product_id   = $cart_item['product_id'];
+            $variation_id = $cart_item['variation_id'];
+            $product      = $variation_id > 0 ? wc_get_product( $product_id ) : $cart_item['data'];
+            if ( $product->get_type() === 'variable' ) {
+                $product_id = $cart_item['variation_id'];
+            }
+            $quantity_error = $this->check_min_max_quantity_or_amount_error( $cart_item['quantity'], $product_id, 'quantity', true );
+            $quantity_attribute = 1;
+            if ( ! empty( $quantity_error ) ) {
+                $quantity_attribute = number_format_i18n( (int) $quantity_error );
+            }
+            $amount_error = $this->check_min_max_quantity_or_amount_error( $cart_item['line_total'], $product_id, 'amount', true );
+            $amount_attribute = 1;
+            if ( ! empty( $amount_error ) ) {
+                $amount_attribute = $amount_error;
+            }
+        
+            $min_amount = $amount_attribute;
+            $min_qty    = $quantity_attribute;
+            if ( ! empty( $min_qty ) && $min_qty >= 2 ) {
+                $cart_qty = $cart_item['quantity'];
+                if ( $cart_qty < $min_qty ) {
+                    $bad_products[ $i ]['product_id'] = $product_id;
+                    $bad_products[ $i ]['in_cart']    = $cart_qty;
+                    $bad_products[ $i ]['min_req']    = $min_qty;
+                }
+                if ( $cart_qty > $min_qty ) {
+                    $bad_products[ $i ]['product_id'] = $product_id;
+                    $bad_products[ $i ]['in_cart']    = $cart_qty;
+                    $bad_products[ $i ]['max_req']    = $min_qty;
+                }
+            }
+            if ( ! empty( $min_amount ) && $min_amount >= 2 ) {
+                $cart_qty = $cart_item['line_total'];
+                if ( $cart_qty < $min_amount ) {
+                    $bad_products[ $i ]['product_id']     = $product_id;
+                    $bad_products[ $i ]['amount_in_cart'] = $cart_qty;
+                    $bad_products[ $i ]['min_req_amount'] = $min_amount;
+                }
+                if ( $cart_qty > $min_amount ) {
+                    $bad_products[ $i ]['product_id']     = $product_id;
+                    $bad_products[ $i ]['amount_in_cart'] = $cart_qty;
+                    $bad_products[ $i ]['max_req_amount'] = $min_amount;
+                }
+            }
+            $i ++;
+        }
+    
+        if ( count( $bad_products ) > 0 ) {
+            wc_clear_notices();
+            foreach ( $bad_products as $bad_product ) {
+                // Displaying an error notice
+                if ( ! empty( $bad_product['min_req'] ) ) {
+                    wc_add_notice(
+                        sprintf(
+                            __( '%1$s requires a minimum quantity of %2$d. You currently have %3$d in cart', 'multivendorx' ),
+                            get_the_title( $bad_product['product_id'] ),
+                            $bad_product['min_req'],
+                            $bad_product['in_cart']
+                        ), 'error'
+                    );
+                } elseif ( ! empty( $bad_product['max_req'] ) ) {
+                    wc_add_notice(
+                        sprintf(
+                            __( '%1$s requires a maximum quantity of %2$d. You currently have %3$d in cart', 'multivendorx' ),
+                            get_the_title( $bad_product['product_id'] ),
+                            $bad_product['max_req'],
+                            $bad_product['in_cart']
+                        ), 'error'
+                    );
+                }
+                if ( ! empty( $bad_product['min_req_amount'] ) ) {
+                    wc_add_notice(
+                        sprintf(
+                            __( '%1$s requires a minimum amount of %2$s. You currently have %3$d in cart', 'multivendorx' ),
+                            get_the_title( $bad_product['product_id'] ),
+                            wc_price( wc_format_decimal( $bad_product['min_req_amount'] ) ),
+                            $bad_product['amount_in_cart']
+                        ), 'error'
+                    );
+                } elseif ( ! empty( $bad_product['max_req_amount'] ) ) {
+                    wc_add_notice(
+                        sprintf(
+                            __( '%1$s requires a maximum amount of %2$s. You currently have %3$d in cart', 'multivendorx' ),
+                            get_the_title( $bad_product['product_id'] ),
+                            wc_price( wc_format_decimal( $bad_product['max_req_amount'] ) ),
+                            $bad_product['amount_in_cart']
+                        ), 'error'
+                    );
+                }
+            }
+            remove_action( 'woocommerce_proceed_to_checkout', 'woocommerce_button_proceed_to_checkout', 20 );
+        }
     }
     
 }
