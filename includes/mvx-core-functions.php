@@ -7178,7 +7178,7 @@ if (!function_exists('mvx_list_all_modules')) {
         $thumbnail_dir = $MVX->plugin_url.'assets/images/modules';
         $thumbnail_path = $MVX->plugin_path.'assets/images/modules';
         require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
-        $mvx_pro_is_active = is_plugin_active('mvx-pro_13_03_2023/mvx-pro.php') ? true : false;
+        $mvx_pro_is_active = is_plugin_active('mvx-pro/mvx-pro.php') ? true : false;
                     
         $mvx_all_modules   =   [
             [
