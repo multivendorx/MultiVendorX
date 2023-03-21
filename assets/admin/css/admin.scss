@@ -638,7 +638,13 @@ $scroll-color:#ece8f1;
 .icon-modules-price:before {
   content: "\e970";
 }
-.icon-tab-minmum-maximum:before {
+.icon-vacation-on:before {
+  content: "\e971";
+}
+.icon-vacation-off:before {
+  content: "\e972";
+}
+.icon-tab-min-max:before {
   content: "\e973";
 }
 
@@ -673,177 +679,188 @@ $scroll-color:#ece8f1;
 }
 .module-accommodation:before {
   content: "\e900";
-}  
+}
 .module-advance-custom-field:before {
-    content: "\e901";
+  content: "\e901";
 }
 .module-announcement:before {
-    content: "\e902";
+  content: "\e902";
 }
 .module-auction:before {
-    content: "\e903";
+  content: "\e903";
 }
 .module-bank-payment:before {
-    content: "\e904";
+  content: "\e904";
 }
 .module-booking:before {
-    content: "\e905";
+  content: "\e905";
 }
 .module-buddypress:before {
-    content: "\e906";
+  content: "\e906";
 }
 .module-bundle:before {
-    content: "\e907";
+  content: "\e907";
 }
 .module-business-hours:before {
-    content: "\e908";
+  content: "\e908";
 }
 .module-country-shipping:before {
-    content: "\e909";
+  content: "\e909";
 }
 .module-customer-support:before {
-    content: "\e90a";
+  content: "\e90a";
 }
 .module-distance-shipping:before {
-    content: "\e90b";
+  content: "\e90b";
 }
 .module-elementor:before {
-    content: "\e90c";
+  content: "\e90c";
 }
 .module-external:before {
-    content: "\e90d";
+  content: "\e90d";
 }
 .module-follow-store:before {
-    content: "\e90e";
+  content: "\e90e";
 }
 .module-geo-my-wp:before {
-    content: "\e911";
+  content: "\e911";
 }
 .module-grouped:before {
-    content: "\e912";
+  content: "\e912";
 }
 .module-identity-verification:before {
-    content: "\e913";
+  content: "\e913";
 }
 .module-import-export:before {
-    content: "\e914";
+  content: "\e914";
 }
 .module-invoice:before {
-    content: "\e915";
+  content: "\e915";
 }
 .module-knowladgebase:before {
-    content: "\e916";
+  content: "\e916";
 }
 .module-live-chat:before {
-    content: "\e917";
+  content: "\e917";
 }
 .module-mangopay:before {
-    content: "\e918";
+  content: "\e918";
 }
 .module-marketplace-membership:before {
-    content: "\e919";
+  content: "\e919";
 }
 .module-marketplace-refund:before {
-    content: "\e91a";
+  content: "\e91a";
 }
 .module-messaging:before {
-    content: "\e91b";
+  content: "\e91b";
 }
 .module-paypal-marketplace:before {
-    content: "\e91c";
+  content: "\e91c";
 }
 .module-paypal-masspay:before {
-    content: "\e91d";
+  content: "\e91d";
 }
 .module-paypal-payout:before {
-    content: "\e91e";
+  content: "\e91e";
 }
 .module-per-product-shipping:before {
-    content: "\e91f";
+  content: "\e91f";
 }
 .module-product-addon:before {
-    content: "\e920";
+  content: "\e920";
 }
 .module-razorpay:before {
-    content: "\e921";
+  content: "\e921";
 }
-.module-rental-pro:before {
-    content: "\e922";
+.module-rental:before {
+  content: "\e922";
 }
 .module-report-abuse:before {
-    content: "\e923";
+  content: "\e923";
 }
 .module-return-and-warrenty:before {
-    content: "\e924";
+  content: "\e924";
 }
 .module-simple:before {
-    content: "\e925";
+  content: "\e925";
 }
 .module-spmv:before {
-    content: "\e926";
+  content: "\e926";
 }
 .module-staff-manager:before {
-    content: "\e927";
+  content: "\e927";
 }
 .module-store-analytics:before {
-    content: "\e928";
+  content: "\e928";
 }
 .module-store-location:before {
-    content: "\e929";
+  content: "\e929";
 }
 .module-store-policy:before {
-    content: "\e92a";
+  content: "\e92a";
 }
 .module-store-review:before {
-    content: "\e90f";
+  content: "\e90f";
 }
 .module-store-seo:before {
-    content: "\e92d";
+  content: "\e92d";
 }
 .module-stripe-connect:before {
-    content: "\e92e";
+  content: "\e92e";
 }
 .module-stripe-marketplace:before {
-    content: "\e92f";
+  content: "\e92f";
 }
 .module-subscription:before {
-    content: "\e930";
+  content: "\e930";
 }
 .module-toolset-types:before {
-    content: "\e931";
+  content: "\e931";
 }
 .module-vacation:before {
-    content: "\e932";
+  content: "\e932";
 }
 .module-variable:before {
-    content: "\e933";
+  content: "\e933";
 }
 .module-vendor-shipping:before {
-    content: "\e934";
+  content: "\e934";
 }
 .module-weight-shipping:before {
-    content: "\e935";
+  content: "\e935";
 }
 .module-wholesale:before {
-    content: "\e936";
+  content: "\e936";
 }
-
 .module-wp-affiliate:before {
-    content: "\e937";
+  content: "\e937";
 }
-
 .module-wpml:before {
-    content: "\e938";
+  content: "\e938";
 }
 .module-zone-shipping:before {
-    content: "\e939";
+  content: "\e939";
 }
 .module-store-inventory:before {
-    content: "\e910";
+  content: "\e910";
 }
 .module-appointment:before {
-    content: "\e92b";
+  content: "\e92b";
 }
+.module-seller-analytics:before {
+  content: "\e92c";
+}
+.module-woocommerce-table-rate-shipping:before {
+  content: "\e93a";
+}
+.module-product-options:before {
+  content: "\e93b";
+}
+.module-min-max:before {
+  content: "\e93c";
+}
+
 /*icon end*/
  
 // Start - Common CSS

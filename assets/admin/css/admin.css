@@ -474,7 +474,15 @@
   content: "\e970";
 }
 
-.icon-tab-minmum-maximum:before {
+.icon-vacation-on:before {
+  content: "\e971";
+}
+
+.icon-vacation-off:before {
+  content: "\e972";
+}
+
+.icon-tab-min-max:before {
   content: "\e973";
 }
 
@@ -629,7 +637,7 @@
   content: "\e921";
 }
 
-.module-rental-pro:before {
+.module-rental:before {
   content: "\e922";
 }
 
@@ -727,6 +735,22 @@
 
 .module-appointment:before {
   content: "\e92b";
+}
+
+.module-seller-analytics:before {
+  content: "\e92c";
+}
+
+.module-woocommerce-table-rate-shipping:before {
+  content: "\e93a";
+}
+
+.module-product-options:before {
+  content: "\e93b";
+}
+
+.module-min-max:before {
+  content: "\e93c";
 }
 
 /*icon end*/

@@ -6820,7 +6820,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'tablabel'      =>  __('Min-Max Quantities', 'multivendorx'),
                 'apiurl'        =>  'mvx_module/v1/save_dashpages',
                 'description'   =>  __('Manage Min-Max Quantities/Amount', 'multivendorx'),
-                'icon'          =>  'icon-tab-minmum-maximum',
+                'icon'          =>  'icon-tab-min-max',
                 'submenu'       =>  'settings',
                 'modulename'    =>  'settings-min-max'
             ),
@@ -7435,7 +7435,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=settings-store-inventory'),
                     ],
                     [
-                        'id'           => 'min_max',
+                        'id'           => 'min-max',
                         'name'         => __( 'Min Max Quantities', 'multivendorx' ),
                         'description'  => __( 'Set a minimum or maximum purchase quantity or amount for the products of your marketplace.', 'multivendorx' ),
                         'plan'         => 'free',
