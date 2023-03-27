@@ -49,7 +49,7 @@ global $MVX;
                             </div>
                             <div class="col-md-6">
                                 <div class="mvx_displaybox2 text-center">
-                                    <h4><?php esc_html_e('Total number of Order placed', 'multivendorx'); ?></h4>
+                                    <h4><?php esc_html_e('Total number of Orders placed', 'multivendorx'); ?></h4>
                                     <h3><?php echo $total_order_count; ?></h3>
                                 </div>
                             </div>
