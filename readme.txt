@@ -296,6 +296,7 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 * Added     - Compatibility of WooCommerce 7.5.1.
 * Added     - Compatibility of WordPress 6.2.
 * Added     - All commission displayed by using a filter.
+* Added     - Users can choose their shop name on the vendor registration page.
 * Fix     	- Attachment is not visible on the vendor registration section #348.
 * Fix     	- Text update.
 * Fix     	- Error at product page.

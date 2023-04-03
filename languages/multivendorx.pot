@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: MultiVendorX 4.0.12\n"
 "Report-Msgid-Bugs-To: https://github.com/multivendorx/dc-woocommerce-multi-"
 "vendor/issues\n"
-"POT-Creation-Date: 2023-04-03 06:47+0000\n"
+"POT-Creation-Date: 2023-04-03 13:32+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -438,7 +438,7 @@ msgstr ""
 msgid "A:"
 msgstr ""
 
-#: classes/class-mvx-post-transaction.php:188 classes/class-mvx-user.php:597
+#: classes/class-mvx-post-transaction.php:188 classes/class-mvx-user.php:599
 #: templates/vendor-dashboard/vendor-billing.php:66
 msgid "ABA Routing Number"
 msgstr ""
@@ -472,7 +472,7 @@ msgstr ""
 msgid "Account Details"
 msgstr ""
 
-#: classes/class-mvx-post-transaction.php:192 classes/class-mvx-user.php:625
+#: classes/class-mvx-post-transaction.php:192 classes/class-mvx-user.php:627
 #: templates/vendor-dashboard/vendor-billing.php:90
 msgid "Account Holder Name"
 msgstr ""
@@ -664,11 +664,11 @@ msgstr ""
 msgid "Address"
 msgstr ""
 
-#: classes/class-mvx-admin.php:547 classes/class-mvx-user.php:391
+#: classes/class-mvx-admin.php:547 classes/class-mvx-user.php:393
 msgid "Address 1"
 msgstr ""
 
-#: classes/class-mvx-admin.php:552 classes/class-mvx-user.php:397
+#: classes/class-mvx-admin.php:552 classes/class-mvx-user.php:399
 msgid "Address 2"
 msgstr ""
 
@@ -897,8 +897,8 @@ msgid "Apply to become a vendor"
 msgstr ""
 
 #: classes/class-mvx-admin.php:225 classes/class-mvx-admin.php:387
-#: classes/class-mvx-admin.php:636 classes/class-mvx-user.php:823
-#: classes/class-mvx-user.php:830
+#: classes/class-mvx-admin.php:636 classes/class-mvx-user.php:827
+#: classes/class-mvx-user.php:834
 msgid "Approve"
 msgstr ""
 
@@ -1005,20 +1005,20 @@ msgstr ""
 msgid "Balance"
 msgstr ""
 
-#: classes/class-mvx-post-transaction.php:186 classes/class-mvx-user.php:583
+#: classes/class-mvx-post-transaction.php:186 classes/class-mvx-user.php:585
 msgid "Bank Account Number"
 msgstr ""
 
-#: classes/class-mvx-post-transaction.php:185 classes/class-mvx-user.php:575
+#: classes/class-mvx-post-transaction.php:185 classes/class-mvx-user.php:577
 msgid "Bank Account Type"
 msgstr ""
 
-#: classes/class-mvx-post-transaction.php:189 classes/class-mvx-user.php:604
+#: classes/class-mvx-post-transaction.php:189 classes/class-mvx-user.php:606
 #: templates/vendor-dashboard/vendor-billing.php:78
 msgid "Bank Address"
 msgstr ""
 
-#: classes/class-mvx-post-transaction.php:187 classes/class-mvx-user.php:590
+#: classes/class-mvx-post-transaction.php:187 classes/class-mvx-user.php:592
 #: templates/vendor-dashboard/vendor-billing.php:60
 msgid "Bank Name"
 msgstr ""
@@ -1031,7 +1031,7 @@ msgstr ""
 msgid "Banking Overview"
 msgstr ""
 
-#: classes/class-mvx-user.php:489
+#: classes/class-mvx-user.php:491
 #: packages/mvx-elementor/widgets/class-mvx-widget-storebanner.php:67
 msgid "Banner"
 msgstr ""
@@ -1062,7 +1062,7 @@ msgstr ""
 msgid "Billing address"
 msgstr ""
 
-#: classes/class-mvx-user.php:699
+#: classes/class-mvx-user.php:701
 msgid "Block this vendor with all items"
 msgstr ""
 
@@ -1178,7 +1178,7 @@ msgstr[1] ""
 msgid "Cancellation / Return / Exchange Policy"
 msgstr ""
 
-#: classes/class-mvx-frontend.php:790 classes/class-mvx-user.php:643
+#: classes/class-mvx-frontend.php:790 classes/class-mvx-user.php:645
 #: classes/widgets/class-mvx-widget-vendor-policies.php:35
 #: templates/vendor-dashboard/vendor-policy.php:53
 #: templates/vendor-dashboard/product-manager/views/html-product-data-policy.php:63
@@ -1367,7 +1367,7 @@ msgstr ""
 msgid "Choose which format of email to be sent."
 msgstr ""
 
-#: classes/class-mvx-admin.php:572 classes/class-mvx-user.php:403
+#: classes/class-mvx-admin.php:572 classes/class-mvx-user.php:405
 #: templates/vendor-dashboard/shop-front.php:295
 #: templates/vendor-dashboard/vendor-policy.php:97
 msgid "City"
@@ -1428,7 +1428,7 @@ msgstr ""
 msgid "Commission - %s"
 msgstr ""
 
-#: classes/class-mvx-user.php:679
+#: classes/class-mvx-user.php:681
 #: templates/vendor-dashboard/vendor-withdrawal.php:23
 msgid "Commission Amount"
 msgstr ""
@@ -1469,7 +1469,7 @@ msgstr ""
 msgid "Commission Details"
 msgstr ""
 
-#: classes/class-mvx-user.php:733
+#: classes/class-mvx-user.php:735
 msgid "Commission Fixed Per Unit"
 msgstr ""
 
@@ -1508,7 +1508,7 @@ msgstr ""
 msgid "Commission Percentage"
 msgstr ""
 
-#: classes/class-mvx-user.php:711 classes/class-mvx-user.php:727
+#: classes/class-mvx-user.php:713 classes/class-mvx-user.php:729
 msgid "Commission Percentage(%)"
 msgstr ""
 
@@ -1545,7 +1545,7 @@ msgstr ""
 msgid "Commission value"
 msgstr ""
 
-#: classes/class-mvx-user.php:717
+#: classes/class-mvx-user.php:719
 msgid "Commission(fixed), Per Transaction"
 msgstr ""
 
@@ -1624,7 +1624,7 @@ msgstr ""
 msgid "Congratulation: *** Your Request is Accepted *** "
 msgstr ""
 
-#: classes/class-mvx-user.php:280
+#: classes/class-mvx-user.php:282
 #: templates/non-vendor/rejected-vendor-reapply.php:23
 #: templates/shortcode/pending_vendor_dashboard.php:41
 msgid ""
@@ -1689,7 +1689,7 @@ msgid ""
 "has been saved."
 msgstr ""
 
-#: classes/class-mvx-admin.php:562 classes/class-mvx-user.php:433
+#: classes/class-mvx-admin.php:562 classes/class-mvx-user.php:435
 #: templates/vendor-dashboard/vendor-policy.php:91
 msgid "Country"
 msgstr ""
@@ -1799,7 +1799,7 @@ msgstr ""
 msgid "Currency"
 msgstr ""
 
-#: classes/class-mvx-user.php:577
+#: classes/class-mvx-user.php:579
 #: templates/vendor-dashboard/vendor-billing.php:54
 msgid "Current"
 msgstr ""
@@ -1816,11 +1816,11 @@ msgstr ""
 msgid "Customer"
 msgstr ""
 
-#: classes/class-mvx-user.php:497
+#: classes/class-mvx-user.php:499
 msgid "Customer address1"
 msgstr ""
 
-#: classes/class-mvx-user.php:503
+#: classes/class-mvx-user.php:505
 msgid "Customer address2"
 msgstr ""
 
@@ -1828,7 +1828,7 @@ msgstr ""
 msgid "Customer Answer"
 msgstr ""
 
-#: classes/class-mvx-user.php:509
+#: classes/class-mvx-user.php:511
 msgid "Customer Country"
 msgstr ""
 
@@ -1852,7 +1852,7 @@ msgstr ""
 msgid "Customer download link"
 msgstr ""
 
-#: classes/class-mvx-user.php:539
+#: classes/class-mvx-user.php:541
 msgid "Customer Email"
 msgstr ""
 
@@ -1877,7 +1877,7 @@ msgstr ""
 msgid "Customer Order Refund Request."
 msgstr ""
 
-#: classes/class-mvx-user.php:533
+#: classes/class-mvx-user.php:535
 msgid "Customer Phone"
 msgstr ""
 
@@ -1909,15 +1909,15 @@ msgstr ""
 msgid "Customer requested a refund for "
 msgstr ""
 
-#: classes/class-mvx-user.php:521
+#: classes/class-mvx-user.php:523
 msgid "Customer Return City"
 msgstr ""
 
-#: classes/class-mvx-user.php:515
+#: classes/class-mvx-user.php:517
 msgid "Customer Return State"
 msgstr ""
 
-#: classes/class-mvx-user.php:527
+#: classes/class-mvx-user.php:529
 msgid "Customer Return Zip"
 msgstr ""
 
@@ -1957,7 +1957,7 @@ msgstr ""
 msgid "Dashboard"
 msgstr ""
 
-#: classes/class-mvx-user.php:285
+#: classes/class-mvx-user.php:287
 msgid "Dashboard - manage your account here"
 msgstr ""
 
@@ -2037,7 +2037,7 @@ msgstr ""
 msgid "Delivery location from map"
 msgstr ""
 
-#: classes/class-mvx-admin.php:380 classes/class-mvx-user.php:357
+#: classes/class-mvx-admin.php:380 classes/class-mvx-user.php:359
 #: classes/widgets/class-mvx-widget-vendor-quick-info.php:184
 #: packages/mvx-tablerate/mvx-tablerate.php:535
 #: templates/vendor-dashboard/vendor-shipping/vendor-shipping-zone-settings.php:62
@@ -2048,7 +2048,7 @@ msgstr ""
 msgid "Description (optional)"
 msgstr ""
 
-#: classes/class-mvx-post-transaction.php:190 classes/class-mvx-user.php:611
+#: classes/class-mvx-post-transaction.php:190 classes/class-mvx-user.php:613
 #: templates/vendor-dashboard/vendor-billing.php:72
 msgid "Destination Currency"
 msgstr ""
@@ -2069,7 +2069,7 @@ msgstr ""
 msgid "Dimensions (%s)"
 msgstr ""
 
-#: classes/class-mvx-post-transaction.php:184 classes/class-mvx-user.php:563
+#: classes/class-mvx-post-transaction.php:184 classes/class-mvx-user.php:565
 msgid "Direct Bank"
 msgstr ""
 
@@ -2709,7 +2709,7 @@ msgstr ""
 msgid "External Store URL"
 msgstr ""
 
-#: classes/class-mvx-user.php:415 templates/vendor-dashboard/shop-front.php:304
+#: classes/class-mvx-user.php:417 templates/vendor-dashboard/shop-front.php:304
 msgid "External store URL"
 msgstr ""
 
@@ -2717,7 +2717,7 @@ msgstr ""
 msgid "External store URL Label"
 msgstr ""
 
-#: classes/class-mvx-user.php:421
+#: classes/class-mvx-user.php:423
 msgid "External store URL label"
 msgstr ""
 
@@ -2725,7 +2725,7 @@ msgstr ""
 msgid "Facebook"
 msgstr ""
 
-#: classes/class-mvx-user.php:445
+#: classes/class-mvx-user.php:447
 msgid "Facebook Profile"
 msgstr ""
 
@@ -2752,7 +2752,7 @@ msgstr ""
 msgid "File name"
 msgstr ""
 
-#: classes/class-mvx-frontend.php:224 classes/class-mvx-user.php:183
+#: classes/class-mvx-frontend.php:224 classes/class-mvx-user.php:185
 msgid "File upload limit exceeded"
 msgstr ""
 
@@ -3086,15 +3086,15 @@ msgstr ""
 msgid "Hide"
 msgstr ""
 
-#: classes/class-mvx-user.php:363
+#: classes/class-mvx-user.php:365
 msgid "Hide address in frontend"
 msgstr ""
 
-#: classes/class-mvx-user.php:384
+#: classes/class-mvx-user.php:386
 msgid "Hide description in frontend"
 msgstr ""
 
-#: classes/class-mvx-user.php:377
+#: classes/class-mvx-user.php:379
 msgid "Hide email in frontend"
 msgstr ""
 
@@ -3102,7 +3102,7 @@ msgstr ""
 msgid "Hide from guests"
 msgstr ""
 
-#: classes/class-mvx-user.php:370
+#: classes/class-mvx-user.php:372
 msgid "Hide phone in frontend"
 msgstr ""
 
@@ -3151,7 +3151,7 @@ msgstr ""
 msgid "https://multivendorx.com/"
 msgstr ""
 
-#: classes/class-mvx-post-transaction.php:191 classes/class-mvx-user.php:618
+#: classes/class-mvx-post-transaction.php:191 classes/class-mvx-user.php:620
 #: templates/vendor-dashboard/vendor-billing.php:84
 msgid "IBAN"
 msgstr ""
@@ -3246,7 +3246,7 @@ msgstr ""
 msgid "Instagram"
 msgstr ""
 
-#: classes/class-mvx-user.php:475
+#: classes/class-mvx-user.php:477
 msgid "Instagram Profile"
 msgstr ""
 
@@ -3508,7 +3508,7 @@ msgstr ""
 msgid "LinkedIn"
 msgstr ""
 
-#: classes/class-mvx-user.php:457
+#: classes/class-mvx-user.php:459
 msgid "LinkedIn Profile"
 msgstr ""
 
@@ -3529,7 +3529,7 @@ msgstr ""
 msgid "Login URL: %s"
 msgstr ""
 
-#: classes/class-mvx-user.php:481
+#: classes/class-mvx-user.php:483
 msgid "Logo"
 msgstr ""
 
@@ -3629,7 +3629,7 @@ msgstr ""
 msgid "Message"
 msgstr ""
 
-#: classes/class-mvx-user.php:669 templates/vendor-dashboard/shop-front.php:240
+#: classes/class-mvx-user.php:671 templates/vendor-dashboard/shop-front.php:240
 msgid "Message to Buyers"
 msgstr ""
 
@@ -4593,7 +4593,7 @@ msgstr ""
 msgid "Payment method:"
 msgstr ""
 
-#: classes/class-mvx-user.php:552 classes/class-mvx-user.php:567
+#: classes/class-mvx-user.php:554 classes/class-mvx-user.php:569
 #: templates/vendor-dashboard/vendor-billing.php:16
 msgid "Payment Mode"
 msgstr ""
@@ -4618,7 +4618,7 @@ msgid "PayPal"
 msgstr ""
 
 #: classes/class-mvx-admin.php:582 classes/class-mvx-post-transaction.php:195
-#: classes/class-mvx-post-transaction.php:198 classes/class-mvx-user.php:631
+#: classes/class-mvx-post-transaction.php:198 classes/class-mvx-user.php:633
 msgid "PayPal Email"
 msgstr ""
 
@@ -4627,7 +4627,7 @@ msgstr ""
 msgid "Paypal Email"
 msgstr ""
 
-#: classes/class-mvx-post-transaction.php:194 classes/class-mvx-user.php:554
+#: classes/class-mvx-post-transaction.php:194 classes/class-mvx-user.php:556
 msgid "PayPal Masspay"
 msgstr ""
 
@@ -4645,7 +4645,7 @@ msgid ""
 "administrator"
 msgstr ""
 
-#: classes/class-mvx-post-transaction.php:197 classes/class-mvx-user.php:557
+#: classes/class-mvx-post-transaction.php:197 classes/class-mvx-user.php:559
 msgid "PayPal Payout"
 msgstr ""
 
@@ -4715,7 +4715,7 @@ msgstr ""
 msgid "Personal Information"
 msgstr ""
 
-#: classes/class-mvx-admin.php:557 classes/class-mvx-user.php:439
+#: classes/class-mvx-admin.php:557 classes/class-mvx-user.php:441
 #: templates/vendor-dashboard/shop-front.php:249
 #: templates/vendor-dashboard/vendor-policy.php:69
 #: templates/vendor-dashboard/vendor-orders/views/html-order-info.php:123
@@ -4743,7 +4743,7 @@ msgstr ""
 msgid "Pinterest"
 msgstr ""
 
-#: classes/class-mvx-user.php:469
+#: classes/class-mvx-user.php:471
 msgid "Pinterest Profile"
 msgstr ""
 
@@ -4835,12 +4835,12 @@ msgstr ""
 msgid "Please update your paypal email to receive commission"
 msgstr ""
 
-#: classes/class-mvx-frontend.php:217 classes/class-mvx-user.php:177
+#: classes/class-mvx-frontend.php:217 classes/class-mvx-user.php:179
 msgid "Please Upload valid file"
 msgstr ""
 
 #: classes/class-mvx-frontend.php:189 classes/class-mvx-frontend.php:200
-#: classes/class-mvx-user.php:150 classes/class-mvx-user.php:161
+#: classes/class-mvx-user.php:152 classes/class-mvx-user.php:163
 msgid "Please Verify  Recaptcha"
 msgstr ""
 
@@ -4888,7 +4888,7 @@ msgctxt "post type singular name"
 msgid "Transaction"
 msgstr ""
 
-#: classes/class-mvx-admin.php:577 classes/class-mvx-user.php:409
+#: classes/class-mvx-admin.php:577 classes/class-mvx-user.php:411
 msgid "Postcode"
 msgstr ""
 
@@ -5116,7 +5116,7 @@ msgstr ""
 #: classes/class-mvx-admin.php:215 classes/class-mvx-admin.php:311
 #: classes/class-mvx-admin.php:710 classes/class-mvx-endpoints.php:78
 #: classes/class-mvx-frontend.php:908
-#: classes/class-mvx-post-transaction.php:243 classes/class-mvx-user.php:782
+#: classes/class-mvx-post-transaction.php:243 classes/class-mvx-user.php:786
 #: packages/mvx-elementor/includes/Tags/StoreTabs.php:95
 #: templates/vendor-dashboard/coupon-manager/views/html-coupon-data-usage-restriction.php:68
 msgid "Products"
@@ -5412,7 +5412,7 @@ msgstr ""
 msgid "Refund Mangemnt"
 msgstr ""
 
-#: classes/class-mvx-frontend.php:780 classes/class-mvx-user.php:649
+#: classes/class-mvx-frontend.php:780 classes/class-mvx-user.php:651
 #: templates/policies-tab.php:22
 #: classes/widgets/class-mvx-widget-vendor-policies.php:30
 #: classes/widgets/class-mvx-widget-vendor-policies.php:71
@@ -5516,7 +5516,7 @@ msgid "Regular Shipping"
 msgstr ""
 
 #: classes/class-mvx-admin.php:225 classes/class-mvx-admin.php:389
-#: classes/class-mvx-user.php:824
+#: classes/class-mvx-user.php:828
 msgid "Reject"
 msgstr ""
 
@@ -5808,7 +5808,7 @@ msgstr ""
 msgid "Saving.."
 msgstr ""
 
-#: classes/class-mvx-user.php:577
+#: classes/class-mvx-user.php:579
 #: templates/vendor-dashboard/vendor-billing.php:55
 msgid "Savings"
 msgstr ""
@@ -5965,7 +5965,7 @@ msgstr ""
 msgid "Select a state&hellip;"
 msgstr ""
 
-#: classes/class-mvx-user.php:977
+#: classes/class-mvx-user.php:981
 msgid "Select a Vendor."
 msgstr ""
 
@@ -6171,7 +6171,7 @@ msgstr ""
 msgid "Shipping only"
 msgstr ""
 
-#: classes/class-mvx-frontend.php:770 classes/class-mvx-user.php:656
+#: classes/class-mvx-frontend.php:770 classes/class-mvx-user.php:658
 #: templates/policies-tab.php:17
 #: classes/widgets/class-mvx-widget-vendor-policies.php:25
 #: classes/widgets/class-mvx-widget-vendor-policies.php:65
@@ -6404,11 +6404,11 @@ msgctxt "slug"
 msgid "vendor"
 msgstr ""
 
-#: classes/class-mvx-user.php:872
+#: classes/class-mvx-user.php:876
 msgid "Slug Already Exists"
 msgstr ""
 
-#: classes/class-mvx-user.php:882 classes/class-mvx-user.php:919
+#: classes/class-mvx-user.php:886 classes/class-mvx-user.php:923
 msgid "Slug already exists"
 msgstr ""
 
@@ -6557,7 +6557,7 @@ msgstr ""
 msgid "Starter"
 msgstr ""
 
-#: classes/class-mvx-admin.php:567 classes/class-mvx-user.php:427
+#: classes/class-mvx-admin.php:567 classes/class-mvx-user.php:429
 #: templates/vendor-dashboard/vendor-policy.php:94
 msgid "State"
 msgstr ""
@@ -6716,6 +6716,10 @@ msgstr ""
 msgid "Store Name *"
 msgstr ""
 
+#: classes/class-mvx-user.php:1162
+msgid "Store name already exist"
+msgstr ""
+
 #: classes/migration/class-mvx-migration.php:427
 msgid "Store product and vendor migrating ...."
 msgstr ""
@@ -6779,7 +6783,7 @@ msgid "Storefront"
 msgstr ""
 
 #: admin/class-mvx-admin-setup-wizard.php:947
-#: classes/class-mvx-post-transaction.php:200 classes/class-mvx-user.php:560
+#: classes/class-mvx-post-transaction.php:200 classes/class-mvx-user.php:562
 msgid "Stripe Connect"
 msgstr ""
 
@@ -7280,7 +7284,7 @@ msgstr ""
 msgid "Title (optional):"
 msgstr ""
 
-#: classes/class-mvx-user.php:911
+#: classes/class-mvx-user.php:915
 msgid "Title Update Error"
 msgstr ""
 
@@ -7476,7 +7480,7 @@ msgstr ""
 msgid "Twitter"
 msgstr ""
 
-#: classes/class-mvx-user.php:451
+#: classes/class-mvx-user.php:453
 msgid "Twitter Profile"
 msgstr ""
 
@@ -7931,11 +7935,11 @@ msgstr ""
 msgid "Vendor orders stats report"
 msgstr ""
 
-#: classes/class-mvx-user.php:351
+#: classes/class-mvx-user.php:353
 msgid "Vendor Page Slug"
 msgstr ""
 
-#: classes/class-mvx-user.php:345
+#: classes/class-mvx-user.php:347
 msgid "Vendor Page Title"
 msgstr ""
 
@@ -8077,7 +8081,7 @@ msgstr ""
 msgid "Video Link"
 msgstr ""
 
-#: classes/class-mvx-user.php:816
+#: classes/class-mvx-user.php:820
 #: templates/vendor-dashboard/vendor-shipping.php:81
 msgid "View"
 msgstr ""
@@ -8104,7 +8108,7 @@ msgstr ""
 msgid "View the announcement: %s"
 msgstr ""
 
-#: classes/class-mvx-taxonomy.php:51 classes/class-mvx-user.php:851
+#: classes/class-mvx-taxonomy.php:51 classes/class-mvx-user.php:855
 msgid "View Vendor"
 msgstr ""
 
@@ -8267,11 +8271,11 @@ msgstr ""
 msgid "Withdrawal request to Admin from Vendor by BAC"
 msgstr ""
 
-#: classes/class-mvx-user.php:692
+#: classes/class-mvx-user.php:694
 msgid "Withhold Shipping"
 msgstr ""
 
-#: classes/class-mvx-user.php:685
+#: classes/class-mvx-user.php:687
 msgid "Withhold Tax"
 msgstr ""
 
@@ -8554,7 +8558,7 @@ msgstr ""
 msgid "YouTube"
 msgstr ""
 
-#: classes/class-mvx-user.php:463
+#: classes/class-mvx-user.php:465
 msgid "YouTube Channel"
 msgstr ""
 
