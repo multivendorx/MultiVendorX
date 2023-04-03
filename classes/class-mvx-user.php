@@ -764,7 +764,9 @@ class MVX_User {
                 foreach ($mvx_vendor_fields as $key => $value) {
                     if (in_array($value['type'], array('vendor_page_title'))) {
                         $vendor = get_mvx_vendor($user_id);
-                        if (!$vendor->update_page_title(wc_clean($value['value']))) {}
+                        if ($vendor) {
+                            if (!$vendor->update_page_title(wc_clean($value['value']))) {}
+                        }
                     }
                 }
             }
