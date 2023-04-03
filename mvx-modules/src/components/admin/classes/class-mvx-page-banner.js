@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 class MVX_Banner_Adv extends Component {
 	render() {
 		return (
+			<>
+			{appLocalizer.dashboard_string.dashboard95 == 'free' ? 
 			<div className="mvx-sidebar">
 				
 				<div className='mvx-banner-right'>
@@ -31,6 +33,8 @@ class MVX_Banner_Adv extends Component {
 					</p>
 				</div>
 			</div>
+			: ''}
+			</>
 		);
 	}
 }
