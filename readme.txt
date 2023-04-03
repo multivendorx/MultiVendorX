@@ -292,11 +292,13 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 
 == Changelog ==
 
-= 4.0.13 - 2023-04-03 =
+= 4.0.13 - 2023-04-04 =
 * Added     - Compatibility of WooCommerce 7.5.1.
 * Added     - Compatibility of WordPress 6.2.
 * Added     - All commission displayed by using a filter.
 * Fix     	- Attachment is not visible on the vendor registration section #348.
+* Fix     	- Text update.
+* Fix     	- Error at product page.
 * Dev 		- Added `mvx_commission_list_args` filter.
 * Updated   - Language file.
 
