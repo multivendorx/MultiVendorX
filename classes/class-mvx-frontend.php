@@ -183,7 +183,7 @@ class MVX_Frontend {
      * @return void
      */
     function mvx_validate_extra_register_fields($username, $email, $validation_errors) {
-        $mvx_vendor_registration_form_data = mvx_get_option('mvx_vendor_registration_form_data');
+        $mvx_vendor_registration_form_data = mvx_get_option('mvx_new_vendor_registration_form_data');
         if(isset($_POST['g-recaptchatype']) && $_POST['g-recaptchatype'] == 'v2'){
             if (isset($_POST['g-recaptcha-response']) && empty($_POST['g-recaptcha-response'])) {
                 $validation_errors->add('recaptcha is not validate', __('Please Verify  Recaptcha', 'multivendorx'));
