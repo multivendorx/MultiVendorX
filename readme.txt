@@ -3,9 +3,9 @@ Contributors: wcmp, purnendu, rajsekharchatterjee11
 Tags: multi vendor marketplace, woocommerce multivendor marketplace, multi seller store, product vendors, best marketplace plugin, multi seller, one product multi seller, woocommerce vendors, ebay, etsy, amazon, commission rate
 Donate link: https://multivendorx.com/donate
 Requires at least: 4.4
-Tested up to: 6.1.1
+Tested up to: 6.2
 Requires PHP: 5.6
-Stable tag: 4.0.12
+Stable tag: 4.0.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -291,6 +291,14 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.0.13 - 2023-04-03 =
+* Added     - Compatibility of WooCommerce 7.5.1.
+* Added     - Compatibility of WordPress 6.2.
+* Added     - All commission displayed by using a filter.
+* Fix     	- Attachment is not visible on the vendor registration section #348.
+* Dev 		- Added `mvx_commission_list_args` filter.
+* Updated   - Language file.
 
 = 4.0.12 - 2023-03-21 =
 * Added     - Compatibility of WooCommerce 7.5.0.

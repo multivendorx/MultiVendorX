@@ -2088,7 +2088,7 @@ class MVX_Product {
         }
     
         $min_max_meta = [];
-        $min_max_meta['product_wise_activation'] = wc_clean( wp_unslash( $_POST['product_wise_activation'] ) );
+        $min_max_meta['product_wise_activation'] = isset($_POST['product_wise_activation']) ? wc_clean( wp_unslash( $_POST['product_wise_activation'] ) ) : '';
         $min_max_meta['min_quantity']            = isset( $_POST['min_quantity'] ) && $_POST['min_quantity'] > 0 ? absint( wp_unslash( $_POST['min_quantity'] ) ) : 0;
         $min_max_meta['max_quantity']            = isset( $_POST['max_quantity'] ) && $_POST['max_quantity'] > 0 ? absint( wp_unslash( $_POST['max_quantity'] ) ) : 0;
         $min_max_meta['min_amount']              = isset( $_POST['min_amount'] ) && $_POST['min_amount'] > 0 ? wc_format_decimal( sanitize_text_field( wp_unslash( $_POST['min_amount'] ) ) ) : 0;

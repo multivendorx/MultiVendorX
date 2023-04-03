@@ -4911,7 +4911,7 @@ class MVX_REST_API {
 
         }
 
-        $commissions = new WP_Query( $args );
+        $commissions = new WP_Query( apply_filters('mvx_commission_list_args', $args ) );
         if ($commissions->get_posts() && !empty($commissions->get_posts())) {
             foreach ($commissions->get_posts() as $commission_key => $commission_value) {
 

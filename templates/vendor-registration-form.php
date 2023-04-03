@@ -213,7 +213,7 @@ if (!empty($mvx_vendor_registration_form_data) && is_array($mvx_vendor_registrat
                 </div>
                 <?php
                 break;
-            case 'file':
+            case 'attachment':
                 ?>
                 <div class="mvx-regi-form-row <?php if (!empty($value['cssClass'])) { echo $value['cssClass']; } else {  echo 'mvx-regi-12'; } ?>">
                     <label><?php echo __($value['label'],'multivendorx'); ?><?php if ($value['required']) { echo ' <span class="required">*</span>'; }?></label>
