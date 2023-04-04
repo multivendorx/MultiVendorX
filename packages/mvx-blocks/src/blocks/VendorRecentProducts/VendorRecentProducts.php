@@ -74,7 +74,7 @@ class VendorRecentProducts extends AbstractBlock {
             'posts_per_page' => $no_of_product,
             'post_status'    => 'publish',
             'post_type'      => 'product',
-            'author'         => $vendor->id,
+            'author'         => $vendor ? $vendor->id : '',
             'no_found_rows'  => 1,
             'order'          => 'DESC',
             'orderby'        => 'date',
