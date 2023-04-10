@@ -1062,6 +1062,8 @@ class MVX_Ajax {
                     }
                 } else {
                     do_action('mvx_products_list_do_handle_bulk_actions', $vendor->get_products_ids(), $filterActionData['bulk_action'], $filterActionData['selected_products'], $filterActionData, $requestData);
+                    //notice
+                    $notices = apply_filters('mvx_products_list_action_notices', $notices, $vendor->get_products_ids(), $filterActionData, $requestData);
                 }
             }
             $df_post_status = apply_filters('mvx_vendor_dashboard_default_product_list_statues', array('publish', 'pending', 'draft'), $requestData, $vendor);
