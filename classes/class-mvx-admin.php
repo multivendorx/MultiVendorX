@@ -1172,25 +1172,8 @@ class MVX_Admin {
                 'dashboard115'   =>  admin_url('admin.php?page=mvx#&submenu=settings&name=products-capability'),
                 'dashboard116'   =>  admin_url('admin.php?page=mvx#&submenu=settings&name=products'),
             );
-        }
 
-        
-        if (in_array($screen->id, array('product', 'edit-product'))) {
-            wp_register_script('mvx-admin-product-js', $MVX->plugin_url . 'assets/admin/js/product' . $suffix . '.js', array('jquery'), $MVX->version, true);
-            wp_enqueue_script('mvx-admin-product-js');
-
-            $custom_css = "
-                table.form-field.form-table tbody tr td label {margin: 0;}
-            ";
-            wp_add_inline_style( 'woocommerce_admin_styles', $custom_css );
-        }
-        
-
-        if ( in_array($screen->id, array('edit-shop_order'))) {
-            wp_enqueue_style('mvx_admin_order_css', $MVX->plugin_url . 'assets/admin/css/admin-order' . $suffix . '.css', array(), $MVX->version);
-        }
-        
-        wp_localize_script( 'mvx-modules-build-frontend', 'appLocalizer', apply_filters('mvx_module_complete_settings', [
+            wp_localize_script( 'mvx-modules-build-frontend', 'appLocalizer', apply_filters('mvx_module_complete_settings', [
             'apiUrl' => home_url( '/wp-json' ),
             'nonce' => wp_create_nonce( 'wp_rest' ),
             'marker_icon' => $MVX->plugin_url . 'assets/images/store-marker.png',
@@ -1259,6 +1242,23 @@ class MVX_Admin {
             'errors_log'                            =>  $this->get_error_log_rows(100),
             'mvx_tinymce_key'                       =>  get_mvx_vendor_settings('mvx_tinymce_api_section', 'settings_general'),
         ] ) );
+        }
+
+        
+        if (in_array($screen->id, array('product', 'edit-product'))) {
+            wp_register_script('mvx-admin-product-js', $MVX->plugin_url . 'assets/admin/js/product' . $suffix . '.js', array('jquery'), $MVX->version, true);
+            wp_enqueue_script('mvx-admin-product-js');
+
+            $custom_css = "
+                table.form-field.form-table tbody tr td label {margin: 0;}
+            ";
+            wp_add_inline_style( 'woocommerce_admin_styles', $custom_css );
+        }
+        
+
+        if ( in_array($screen->id, array('edit-shop_order'))) {
+            wp_enqueue_style('mvx_admin_order_css', $MVX->plugin_url . 'assets/admin/css/admin-order' . $suffix . '.css', array(), $MVX->version);
+        }
         
         //backend spmv
         if (mvx_is_module_active('spmv')) {
