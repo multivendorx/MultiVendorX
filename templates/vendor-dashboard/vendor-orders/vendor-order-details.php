@@ -83,15 +83,18 @@ $disallow_vendor_order_status = get_mvx_vendor_settings('disallow_vendor_order_s
             ?>
             <!-- Customer refund request -->
             <?php
+            do_action('mvx_action_before_customer_refund_request', $order, $vendor_order, $vendor);
             if( apply_filters( 'mvx_vendor_refund_capability' ,true ) ){
                 $MVX->template->get_template( 'vendor-dashboard/vendor-orders/views/html-order-refund-customer.php', array( 'order' => $order, 'vendor_order' => $vendor_order, 'vendor' => $vendor ) );
             }
+            do_action('mvx_action_after_customer_refund_request', $order, $vendor_order, $vendor);
             ?>
         </div>
         
         <div class="col-md-4">
             <?php
             $MVX->template->get_template( 'vendor-dashboard/vendor-orders/views/html-order-notes.php', array( 'order' => $order, 'vendor_order' => $vendor_order, 'vendor' => $vendor ) );
+            do_action('mvx_action_after_order_notes', $order, $vendor_order, $vendor);
             ?>
         </div>
         
