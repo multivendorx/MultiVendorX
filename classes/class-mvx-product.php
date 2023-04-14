@@ -124,7 +124,7 @@ class MVX_Product {
         // Woocommerce Block 
         add_filter( 'woocommerce_blocks_product_grid_item_html', array( $this, 'woocommerce_blocks_product_grid_item_html' ), 99, 3 );
 
-        if (mvx_is_module_active('min_max')) {
+        if (mvx_is_module_active('min-max')) {
             add_action( 'woocommerce_product_options_general_product_data', array( $this, 'add_meta_fields' ) );
             add_action( 'save_post_product', array( $this, 'save_min_max_data' ) );
             add_action( 'woocommerce_product_after_variable_attributes', array( $this, 'variable_attributes' ), 10, 3 );
@@ -2058,9 +2058,10 @@ class MVX_Product {
                     'id'        => 'min_amount',
                     'value'     => isset( $mvx_min_max_meta['min_amount'] ) ? $mvx_min_max_meta['min_amount'] : '',
                     'data_type' => 'price',
+                    'type'  => 'number',
                     'custom_attributes' => array(
                         'step' => 'any',
-                        'min'  => '1',
+                        'min'  => '0',
                     ),
                     'label'     => __( 'Minimum amount to order', 'multivendorx' ),
                 ]
@@ -2070,9 +2071,10 @@ class MVX_Product {
                     'id'        => 'max_amount',
                     'value'     => isset( $mvx_min_max_meta['max_amount'] ) ? $mvx_min_max_meta['max_amount'] : '',
                     'data_type' => 'price',
+                    'type'  => 'number',
                     'custom_attributes' => array(
                         'step' => 'any',
-                        'min'  => '1',
+                        'min'  => '0',
                     ),
                     'label'     => __( 'Maximum amount to order', 'multivendorx' ),
                 ]
@@ -2089,10 +2091,10 @@ class MVX_Product {
     
         $min_max_meta = [];
         $min_max_meta['product_wise_activation'] = isset($_POST['product_wise_activation']) ? wc_clean( wp_unslash( $_POST['product_wise_activation'] ) ) : '';
-        $min_max_meta['min_quantity']            = isset( $_POST['min_quantity'] ) && $_POST['min_quantity'] > 0 ? absint( wp_unslash( $_POST['min_quantity'] ) ) : 0;
-        $min_max_meta['max_quantity']            = isset( $_POST['max_quantity'] ) && $_POST['max_quantity'] > 0 ? absint( wp_unslash( $_POST['max_quantity'] ) ) : 0;
-        $min_max_meta['min_amount']              = isset( $_POST['min_amount'] ) && $_POST['min_amount'] > 0 ? wc_format_decimal( sanitize_text_field( wp_unslash( $_POST['min_amount'] ) ) ) : 0;
-        $min_max_meta['max_amount']              = isset( $_POST['max_amount'] ) && $_POST['max_amount'] > 0 ? wc_format_decimal( sanitize_text_field( wp_unslash( $_POST['max_amount'] ) ) ) : 0;
+        $min_max_meta['min_quantity']            = isset( $_POST['min_quantity'] ) && $_POST['min_quantity'] > 0 ? absint( wp_unslash( $_POST['min_quantity'] ) ) : '';
+        $min_max_meta['max_quantity']            = isset( $_POST['max_quantity'] ) && $_POST['max_quantity'] > 0 ? absint( wp_unslash( $_POST['max_quantity'] ) ) : '';
+        $min_max_meta['min_amount']              = isset( $_POST['min_amount'] ) && $_POST['min_amount'] > 0 ? wc_format_decimal( sanitize_text_field( wp_unslash( $_POST['min_amount'] ) ) ) : '';
+        $min_max_meta['max_amount']              = isset( $_POST['max_amount'] ) && $_POST['max_amount'] > 0 ? wc_format_decimal( sanitize_text_field( wp_unslash( $_POST['max_amount'] ) ) ) : '';
         
         $product->update_meta_data( '_mvx_min_max_meta', $min_max_meta );
         $product->save();
@@ -2126,6 +2128,10 @@ class MVX_Product {
                     'name'  => "variable_min_quantity[{$loop}]",
                     'value' => isset( $mvx_min_max_meta['min_quantity'] ) ? $mvx_min_max_meta['min_quantity'] : '',
                     'type'  => 'number',
+                    'custom_attributes' => array(
+                        'step' => 'any',
+                        'min'  => '1',
+                    ),
                     'label' => __( 'Minimum quantity to order', 'multivendorx' ),
                 ]
             );
@@ -2135,6 +2141,10 @@ class MVX_Product {
                     'name'  => "variable_max_quantity[{$loop}]",
                     'value' => isset( $mvx_min_max_meta['max_quantity'] ) ? $mvx_min_max_meta['max_quantity'] : '',
                     'type'  => 'number',
+                    'custom_attributes' => array(
+                        'step' => 'any',
+                        'min'  => '1',
+                    ),
                     'label' => __( 'Maximum quantity to order', 'multivendorx' ),
                 ]
             );
@@ -2148,6 +2158,11 @@ class MVX_Product {
                     'name'      => "variable_min_amount[{$loop}]",
                     'value'     => isset( $mvx_min_max_meta['min_amount'] ) ? $mvx_min_max_meta['min_amount'] : '',
                     'data_type' => 'price',
+                    'type'  => 'number',
+                    'custom_attributes' => array(
+                        'step' => 'any',
+                        'min'  => '0',
+                    ),
                     'label'     => __( 'Minimum amount to order', 'multivendorx' ),
                 ]
             );
@@ -2157,6 +2172,11 @@ class MVX_Product {
                     'name'      => "variable_max_amount[{$loop}]",
                     'value'     => isset( $mvx_min_max_meta['max_amount'] ) ? $mvx_min_max_meta['max_amount'] : '',
                     'data_type' => 'price',
+                    'type'  => 'number',
+                    'custom_attributes' => array(
+                        'step' => 'any',
+                        'min'  => '0',
+                    ),
                     'label'     => __( 'Maximum amount to order', 'multivendorx' ),
                 ]
             );
@@ -2198,7 +2218,7 @@ class MVX_Product {
             return;
         }
         foreach ( $_POST['variable_min_quantity'] as $loop => $data ) {
-            save_min_max_variation_data( $product_id, $loop );
+            $this->save_min_max_variation_data( $product_id, $loop );
         }
     }
     

@@ -6842,7 +6842,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
            unset($general_settings_page_endpoint[11]);
         }
 
-        if (!mvx_is_module_active('min_max')) {
+        if (!mvx_is_module_active('min-max')) {
             unset($general_settings_page_endpoint[14]);
         }
         
