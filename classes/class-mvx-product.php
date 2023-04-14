@@ -146,6 +146,12 @@ class MVX_Product {
             add_filter( 'woocommerce_loop_add_to_cart_link', array( $this, 'add_to_cart_link_min_max' ), 10, 2 );
             add_action( 'woocommerce_check_cart_items', array( $this, 'action_woocommerce_check_cart_items_min_max' ) );
         }
+        if (get_mvx_vendor_settings('sku_generator_simple', 'products_capability') || get_mvx_vendor_settings('sku_generator_variation', 'products_capability')  || get_mvx_vendor_settings('sku_generator_attribute_spaces', 'products_capability')) {
+            add_filter( 'mvx_vendor_dashboard_product_list_table_headers', array( $this, 'add_sku_column_in_product_list') );
+            add_filter( 'mvx_vendor_dashboard_product_list_table_rows', array( $this, 'display_value_into_sku_column' ), 10, 2 );
+            add_action( 'mvx_process_product_object', array( $this, 'save_sku') );
+            add_action( 'mvx_process_product_meta_variable', array( $this, 'save_sku') );
+        }
     }
     
     public function override_wc_product_post_parent( $data, $postarr ){
@@ -2821,6 +2827,98 @@ class MVX_Product {
                 }
             }
             remove_action( 'woocommerce_proceed_to_checkout', 'woocommerce_button_proceed_to_checkout', 20 );
+        }
+    }
+
+    function generate_product_sku( $product ) {
+        switch( get_mvx_vendor_settings('sku_generator_simple', 'products_capability')['value'] ) {
+            case 'slugs':
+                $product_sku = urldecode( get_post( $product->get_id() )->post_name );
+            break;
+    
+            case 'ids':
+                $product_sku = $product->get_id();
+            break;
+    
+            default:
+                $product_sku = $product->get_sku();
+        }
+        return $product_sku;
+    }
+
+    function generate_variation_sku( $variation ) {
+        $variation_sku = '';
+        if ( 'slugs' === get_mvx_vendor_settings('sku_generator_variation', 'products_capability')['value'] ) {
+            switch ( get_mvx_vendor_settings('sku_generator_attribute_spaces', 'products_capability')['value'] ) {
+                case 'underscore':
+                    $variation['attributes'] = str_replace( ' ', '_', $variation['attributes'] );
+                break;
+    
+                case 'dash':
+                    $variation['attributes'] = str_replace( ' ', '-', $variation['attributes'] );
+                break;
+    
+                case 'none':
+                    $variation['attributes'] = str_replace( ' ', '', $variation['attributes'] );
+                break;
+            }
+            $separator = apply_filters( 'sku_generator_attribute_separator', $this->get_sku_separator() );
+            $variation_sku = implode( $separator, $variation['attributes'] );
+            $variation_sku = str_replace( 'attribute_', '', $variation_sku );
+        }
+        if ( 'ids' === get_mvx_vendor_settings('sku_generator_variation', 'products_capability')['value'] ) {
+            $variation_sku = $variation['variation_id'];
+        }
+        return $variation_sku;
+    }
+
+    function get_sku_separator() {
+        return apply_filters( 'sku_generator_sku_separator', '-' );
+    }
+    
+    function save_variation_sku( $variation_id, $parent, $parent_sku = null ) {
+        $variation  = wc_get_product( $variation_id );
+        $parent_sku = $parent_sku ? $parent_sku : $parent->get_sku();
+        
+        if ( $variation instanceof WC_Product && $variation->is_type( 'variation' ) || ! empty( $parent_sku ) ) {
+            $variation_data = $parent->get_available_variation( $variation );
+            $variation_sku  = $this->generate_variation_sku( $variation_data );
+            $sku            = $parent_sku . $this->get_sku_separator() . $variation_sku;
+            try {
+                $sku = wc_product_generate_unique_sku( $variation_id, $sku );
+                $variation->set_sku( $sku );
+                $variation->save();
+            } catch ( WC_Data_Exception $exception ) {}
+        }
+    }
+
+    function add_sku_column_in_product_list( $products_table_headers ) {
+        $products_table_headers['sku'] = __( 'SKU', 'multivendorx' );
+        return $products_table_headers;
+    }
+    
+    function display_value_into_sku_column( $row, $product ) {
+        $row['sku'] = '<td>' . $product->get_sku() . '</td>';
+        return $row;
+    }
+
+    function save_sku( $product ) {
+        if ( is_numeric( $product ) ) {
+            $product = wc_get_product( absint( $product ) );
+        }
+        $product_sku = $this->generate_product_sku( $product );
+        if ( $product->is_type( 'variable' ) && 'never' !== get_mvx_vendor_settings('sku_generator_variation', 'products_capability')['value'] ) {
+            $variations = $product->get_children();
+            foreach ( $variations as $variation_id ) {
+                $this->save_variation_sku( $variation_id, $product, $product_sku );
+            }
+        }
+        if ( 'never' !== get_mvx_vendor_settings('sku_generator_simple', 'products_capability')['value'] ) {
+            $product_sku = wc_product_generate_unique_sku( $product->get_id(), $product_sku );
+            try {
+                $product->set_sku( $product_sku );
+                $product->save();
+            } catch ( WC_Data_Exception $exception ) {}
         }
     }
     
