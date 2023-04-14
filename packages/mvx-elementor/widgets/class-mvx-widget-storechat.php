@@ -180,7 +180,7 @@ class MVX_Elementor_StoreChat extends Widget_Button {
             if(get_live_chat_settings('chat_provider') == 'talkjs') {
 
                 $user = wp_get_current_user();
-                $chat_setting = get_option('mvx_live_chat_settings_name');
+                $chat_setting = mvx_get_option('mvx_live_chat_settings_name');
 
                 $online = false;
                 $remote_url = 'https://api.talkjs.com/v1/'.$chat_setting['app_id'].'/users/'.$vendor->id.'/sessions';

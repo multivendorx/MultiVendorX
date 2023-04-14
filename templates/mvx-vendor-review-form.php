@@ -23,7 +23,7 @@ $is_enable = mvx_seller_review_enable($vendor_term_id);
 $current_user = wp_get_current_user();
 $reviews_lists = $vendor->get_reviews_and_rating(0);
 // Multi review
-$review_options_data = get_option('mvx_review_management_tab_settings');
+$review_options_data = mvx_get_option('mvx_review_management_tab_settings');
 $mvx_review_categories = isset($review_options_data['mvx_review_categories']) && !empty(wp_list_pluck($review_options_data['mvx_review_categories'], 'category')) ? wp_list_pluck($review_options_data['mvx_review_categories'], 'category') : array();
 $is_start_with_full_rating = apply_filters('mvx_is_start_with_full_rating', false);
 ?>

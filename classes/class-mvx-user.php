@@ -335,12 +335,12 @@ class MVX_User {
 
         $vendor = new MVX_Vendor($user_id);
         $settings_capabilities = array_merge(
-                (array) get_option('mvx_general_settings_name', array())
-                , (array) get_option('mvx_capabilities_product_settings_name', array())
-                , (array) get_option('mvx_capabilities_order_settings_name', array())
-                , (array) get_option('mvx_capabilities_miscellaneous_settings_name', array())
+                (array) mvx_get_option('mvx_general_settings_name', array())
+                , (array) mvx_get_option('mvx_capabilities_product_settings_name', array())
+                , (array) mvx_get_option('mvx_capabilities_order_settings_name', array())
+                , (array) mvx_get_option('mvx_capabilities_miscellaneous_settings_name', array())
         );
-        $policies_settings = get_option('mvx_general_policies_settings_name');
+        $policies_settings = mvx_get_option('mvx_general_policies_settings_name');
 
         $fields = apply_filters('mvx_vendor_fields', array(
             "vendor_page_title" => array(
@@ -550,7 +550,7 @@ class MVX_User {
             unset($fields['vendor_external_store_label']);
         }
 
-        $payment_admin_settings = get_option('mvx_payment_settings_name');
+        $payment_admin_settings = mvx_get_option('mvx_payment_settings_name');
         $payment_mode = array('' => __('Payment Mode', 'multivendorx'));
         if (isset($payment_admin_settings['payment_method_paypal_masspay']) && $payment_admin_settings['payment_method_paypal_masspay'] = 'Enable') {
             $payment_mode['paypal_masspay'] = __('PayPal Masspay', 'multivendorx');

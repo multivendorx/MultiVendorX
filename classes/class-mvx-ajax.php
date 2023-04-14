@@ -394,7 +394,7 @@ class MVX_Ajax {
         $multi_rate_details = isset($_POST['multi_rate_details']) ? $_POST['multi_rate_details'] : '';
         if ($multi_rate_details) {
             parse_str($multi_rate_details, $mvx_settings_review_details);        
-            $mvx_review_options = get_option( 'mvx_review_settings_option', array() );
+            $mvx_review_options = mvx_get_option( 'mvx_review_settings_option', array() );
             $mvx_review_categories = isset( $mvx_review_options['review_categories'] ) ? $mvx_review_options['review_categories'] : array();
             if (isset($mvx_settings_review_details['mvx_store_review_category']) && !empty($mvx_review_categories)) {
                 $multiple_rating = array_combine($mvx_settings_review_details['mvx_store_review_category'], wp_list_pluck($mvx_review_categories, 'category'));
@@ -625,7 +625,7 @@ class MVX_Ajax {
                     echo '...';
                 }
                 ?> </span><br/>
-                <a href="<?php echo get_permalink(get_option('mvx_product_vendor_messages_page_id')); ?>"><button><?php echo __('DETAILS', 'multivendorx'); ?></button></a>
+                <a href="<?php echo get_permalink(mvx_get_option('mvx_product_vendor_messages_page_id')); ?>"><button><?php echo __('DETAILS', 'multivendorx'); ?></button></a>
                 <div class="clear"></div>
                 <a href="#" id="cross-admin" data-element = "<?php echo $msg->ID; ?>"  class="mvx_cross mvx_delate_message_dashboard"><i class="fa fa-times-circle"></i></a>
                     <?php
@@ -1328,7 +1328,7 @@ class MVX_Ajax {
                         if ($diff < $commission_threshold_time) {
                             continue;
                         }
-                        $payment_settings = get_option('mvx_payment_settings_name', true);
+                        $payment_settings = mvx_get_option('mvx_payment_settings_name', true);
                         if (is_array($payment_settings) && !empty($payment_settings)) {
                             if (array_key_exists('order_withdrawl_status'. $order->get_status('edit'), $payment_settings)) {
                                 continue;

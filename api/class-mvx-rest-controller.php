@@ -1939,7 +1939,7 @@ class MVX_REST_API {
             $install = new MVX_Install();
             if (!get_option("dc_product_vendor_plugin_page_install")) {
                 $install->mvx_product_vendor_plugin_create_pages();
-                update_option("dc_product_vendor_plugin_page_install", 1);
+                mvx_update_option("dc_product_vendor_plugin_page_install", 1);
             }
         }
     }

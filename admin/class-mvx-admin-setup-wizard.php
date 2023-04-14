@@ -394,7 +394,7 @@ class MVX_Admin_Setup_Wizard {
                     <th scope="row"><label for="vendor_store_url"><?php esc_html_e('Store URL', 'multivendorx'); ?></label></th>
                     <td class="mvx-store-setup">
                         <?php
-                        $permalinks = get_option('dc_vendors_permalinks');
+                        $permalinks = mvx_get_option('dc_vendors_permalinks');
                         $vendor_slug = empty($permalinks['vendor_shop_base']) ? _x('', 'slug', 'multivendorx') : $permalinks['vendor_shop_base'];
                         ?>
                         <input type="text" id="vendor_store_url" name="vendor_store_url" placeholder="<?php esc_attr_e('vendor', 'multivendorx'); ?>" value="<?php echo esc_attr( $vendor_slug ); ?>" />
@@ -422,7 +422,7 @@ class MVX_Admin_Setup_Wizard {
      * commission setup content
      */
     public function mvx_setup_commission() {
-        $payment_settings = get_option('mvx_commissions_tab_settings');
+        $payment_settings = mvx_get_option('mvx_commissions_tab_settings');
         ?>
         <h1><?php esc_html_e('Commission Setup', 'multivendorx'); ?></h1>
         <div class="mvx-setting-section-divider">&nbsp;</div>
@@ -507,8 +507,8 @@ class MVX_Admin_Setup_Wizard {
      * payment setup content
      */
     public function mvx_setup_payments() {
-        $payment_settings = get_option('mvx_commissions_tab_settings');
-        $disbursement_settings = get_option('mvx_disbursement_tab_settings');
+        $payment_settings = mvx_get_option('mvx_commissions_tab_settings');
+        $disbursement_settings = mvx_get_option('mvx_disbursement_tab_settings');
         $gateways = $this->get_payment_methods();
         ?>
         <h1><?php esc_html_e('Payments', 'multivendorx'); ?></h1>
@@ -586,7 +586,7 @@ class MVX_Admin_Setup_Wizard {
      * capability setup content
      */
     public function mvx_setup_capability() {
-        $capabilities_settings = get_option('mvx_products_capability_tab_settings');
+        $capabilities_settings = mvx_get_option('mvx_products_capability_tab_settings');
         ?>
         <h1><?php esc_html_e('Capability', 'multivendorx'); ?></h1>
         <div class="mvx-setting-section-divider">&nbsp;</div>
@@ -713,7 +713,7 @@ class MVX_Admin_Setup_Wizard {
      */
     public function mvx_setup_store_save() {
         check_admin_referer('mvx-setup');
-        $general_settings = get_option('mvx_spmv_pages_tab_settings');
+        $general_settings = mvx_get_option('mvx_spmv_pages_tab_settings');
         $vendor_permalink = filter_input(INPUT_POST, 'vendor_store_url');
         $is_single_product_multiple_vendor = filter_input(INPUT_POST, 'is_single_product_multiple_vendor');
         if ($is_single_product_multiple_vendor) {
@@ -723,9 +723,9 @@ class MVX_Admin_Setup_Wizard {
         }
         mvx_update_option('mvx_spmv_pages_tab_settings', $general_settings);
         if ($vendor_permalink) {
-            $permalinks = get_option('dc_vendors_permalinks', array());
+            $permalinks = mvx_get_option('dc_vendors_permalinks', array());
             $permalinks['vendor_shop_base'] = untrailingslashit($vendor_permalink);
-            update_option('dc_vendors_permalinks', $permalinks);
+            mvx_update_option('dc_vendors_permalinks', $permalinks);
             flush_rewrite_rules();
         }
         wp_redirect(esc_url_raw($this->get_next_step_link()));
@@ -737,7 +737,7 @@ class MVX_Admin_Setup_Wizard {
      */
     public function mvx_setup_commission_save() {
         check_admin_referer('mvx-setup');
-        $payment_settings = get_option('mvx_commissions_tab_settings');
+        $payment_settings = mvx_get_option('mvx_commissions_tab_settings');
         $revenue_sharing_mode = filter_input(INPUT_POST, 'revenue_sharing_mode');
         $commission_type = filter_input(INPUT_POST, 'commission_type');
         $default_commission = filter_input(INPUT_POST, 'default_commission');
@@ -778,7 +778,7 @@ class MVX_Admin_Setup_Wizard {
                 'value' => $fixed_with_percentage_qty
             );
         }
-        update_option('mvx_commissions_tab_settings', $payment_settings);
+        mvx_update_option('mvx_commissions_tab_settings', $payment_settings);
         wp_redirect(esc_url_raw($this->get_next_step_link()));
         exit;
     }
@@ -789,9 +789,9 @@ class MVX_Admin_Setup_Wizard {
     public function mvx_setup_payments_save() {
         check_admin_referer('mvx-setup');
         $gateways = $this->get_payment_methods();
-        //$payment_settings = get_option('mvx_commissions_tab_settings');
-        $active_module_list = get_option('mvx_all_active_module_list') ? get_option('mvx_all_active_module_list') : array();
-        $disbursement_settings = get_option('mvx_disbursement_tab_settings');
+        //$payment_settings = mvx_get_option('mvx_commissions_tab_settings');
+        $active_module_list = mvx_get_option('mvx_all_active_module_list') ? get_option('mvx_all_active_module_list') : array();
+        $disbursement_settings = mvx_get_option('mvx_disbursement_tab_settings');
         $mvx_disbursal_mode_admin = filter_input(INPUT_POST, 'mvx_disbursal_mode_admin');
         $mvx_disbursal_mode_vendor = filter_input(INPUT_POST, 'mvx_disbursal_mode_vendor');
         
@@ -835,9 +835,9 @@ class MVX_Admin_Setup_Wizard {
                 unset($active_module_list[$gateway_id]);
             }
         }
-        //update_option('mvx_commissions_tab_settings', $payment_settings);
+        //mvx_update_option('mvx_commissions_tab_settings', $payment_settings);
         mvx_update_option( 'mvx_all_active_module_list', $active_module_list );
-        update_option('mvx_disbursement_tab_settings', $disbursement_settings);
+        mvx_update_option('mvx_disbursement_tab_settings', $disbursement_settings);
         wp_redirect(esc_url_raw($this->get_next_step_link()));
         exit;
     }
@@ -849,7 +849,7 @@ class MVX_Admin_Setup_Wizard {
     public function mvx_setup_capability_save() {
         global $MVX;
         check_admin_referer('mvx-setup');
-        $capability_settings = get_option('mvx_products_capability_tab_settings');
+        $capability_settings = mvx_get_option('mvx_products_capability_tab_settings');
 
         $is_submit_product = filter_input(INPUT_POST, 'is_submit_product');
         $is_published_product = filter_input(INPUT_POST, 'is_published_product');
@@ -894,7 +894,7 @@ class MVX_Admin_Setup_Wizard {
         } else if (isset($capability_settings['is_upload_files'])) {
             unset($capability_settings['is_upload_files']);
         }
-        update_option('mvx_products_capability_tab_settings', $capability_settings);
+        mvx_update_option('mvx_products_capability_tab_settings', $capability_settings);
         $MVX->vendor_caps->update_mvx_vendor_role_capability();
         wp_redirect(esc_url_raw($this->get_next_step_link()));
         exit;

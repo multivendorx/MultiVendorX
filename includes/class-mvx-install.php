@@ -17,18 +17,18 @@ class MVX_Install {
 
     public function __construct() {
 
-        if (!get_option('dc_product_vendor_plugin_db_version')) {
+        if (!mvx_get_option('dc_product_vendor_plugin_db_version')) {
             $this->save_default_plugin_settings();
         }
         $this->mvx_plugin_tables_install();
         $this->remove_other_vendors_plugin_role();
         self::register_user_role();
-        if (!get_option("dc_product_vendor_plugin_page_install")) {
+        if (!mvx_get_option("dc_product_vendor_plugin_page_install")) {
             $this->mvx_product_vendor_plugin_create_pages();
-            update_option("dc_product_vendor_plugin_page_install", 1);
+            mvx_update_option("dc_product_vendor_plugin_page_install", 1);
         }
         //$this->do_mvx_migrate();
-        if(!get_option('dc_product_vendor_plugin_installed') && apply_filters('mvx_enable_setup_wizard', true)){
+        if(!mvx_get_option('dc_product_vendor_plugin_installed') && apply_filters('mvx_enable_setup_wizard', true)){
             set_transient( '_mvx_activation_redirect', 1, 30 );
         }
         $this->do_schedule_cron_events();
@@ -80,14 +80,14 @@ class MVX_Install {
      */
     function mvx_product_vendor_plugin_create_page($slug, $option, $page_title = '', $page_content = '', $post_parent = 0) {
         global $wpdb;
-        $option_value = get_option($option);
+        $option_value = mvx_get_option($option);
         if ($option_value > 0 && get_post($option_value)) {
             return;
         }
         $page_found = $wpdb->get_var($wpdb->prepare( "SELECT ID FROM " . $wpdb->posts . " WHERE post_name = %s LIMIT 1;", $slug ));
         if ($page_found) :
             if (!$option_value) {
-                update_option($option, $page_found);
+                mvx_update_option($option, $page_found);
             }
             return;
         endif;
@@ -102,7 +102,7 @@ class MVX_Install {
             'comment_status' => 'closed'
         );
         $page_id = wp_insert_post($page_data);
-        update_option($option, $page_id);
+        mvx_update_option($option, $page_id);
     }
 
     /**
@@ -114,15 +114,15 @@ class MVX_Install {
     function mvx_product_vendor_plugin_create_pages() {
 
         // MVX Plugin pages
-        $is_trash = wp_trash_post(get_option('mvx_product_vendor_vendor_dashboard_page_id'));
+        $is_trash = wp_trash_post(mvx_get_option('mvx_product_vendor_vendor_dashboard_page_id'));
         if ($is_trash) {
             delete_option('mvx_product_vendor_vendor_dashboard_page_id');
             delete_option('mvx_product_vendor_vendor_page_id');
         }
         $this->mvx_product_vendor_plugin_create_page(esc_sql(_x('dashboard', 'page_slug', 'multivendorx')), 'mvx_product_vendor_vendor_page_id', __('Vendor Dashboard', 'multivendorx'), '[mvx_vendor]');
         $this->mvx_product_vendor_plugin_create_page(esc_sql(_x('vendor-registration', 'page_slug', 'multivendorx')), 'mvx_product_vendor_registration_page_id', __('Vendor Registration', 'multivendorx'), '[vendor_registration]');
-        $mvx_product_vendor_vendor_page_id = get_option('mvx_product_vendor_vendor_page_id');
-        $mvx_product_vendor_registration_page_id = get_option('mvx_product_vendor_registration_page_id');
+        $mvx_product_vendor_vendor_page_id = mvx_get_option('mvx_product_vendor_vendor_page_id');
+        $mvx_product_vendor_registration_page_id = mvx_get_option('mvx_product_vendor_registration_page_id');
         update_mvx_vendor_settings('vendor_dashboard_page', array ( 'value' => $mvx_product_vendor_vendor_page_id, 'label' => 'Vendor Dashboard', 'index' => 1 ), 'settings_general'); 
         update_mvx_vendor_settings('registration_page',  array ( 'value' => $mvx_product_vendor_registration_page_id, 'label' => 'Vendor Registration', 'index' => 2 ) , 'settings_general');
     }
@@ -135,12 +135,12 @@ class MVX_Install {
      */
     function save_default_plugin_settings() {
 
-        $general_settings = get_option('mvx_settings_general_tab_settings');
+        $general_settings = mvx_get_option('mvx_settings_general_tab_settings');
         if (empty($general_settings)) {
             $general_settings = array(
                 'approve_vendor' => 'manually'
             );
-            update_option('mvx_settings_general_tab_settings', $general_settings);
+            mvx_update_option('mvx_settings_general_tab_settings', $general_settings);
         }
 
         if (!get_mvx_vendor_settings('is_upload_files', 'products_capability')) {
@@ -156,23 +156,23 @@ class MVX_Install {
             update_mvx_vendor_settings('type_options', array('downloadable', 'virtual'), 'products');
         }
 
-        $disbursement_settings = get_option('mvx_disbursement_tab_settings');
+        $disbursement_settings = mvx_get_option('mvx_disbursement_tab_settings');
         if (empty($disbursement_settings)) {
             $disbursement_settings = array(
                 'commission_include_coupon' => array('commission_include_coupon'),
                 'give_tax' => array('give_tax'),
                 'give_shipping' => array('give_shipping'), 
             );
-            update_option('mvx_disbursement_tab_settings', $disbursement_settings);
+            mvx_update_option('mvx_disbursement_tab_settings', $disbursement_settings);
         }
-        $commission_settings = get_option('mvx_commissions_tab_settings');
+        $commission_settings = mvx_get_option('mvx_commissions_tab_settings');
         if (empty($commission_settings)) {
             $commission_settings = array(
                 'commission_type' => array( 'value' => 'percent',
                                         'label' => 'Percentage',
                                         'index' => 2
                                     ));
-            update_option('mvx_commissions_tab_settings', $commission_settings);
+            mvx_update_option('mvx_commissions_tab_settings', $commission_settings);
         }
     }
 
@@ -306,7 +306,7 @@ class MVX_Install {
         foreach ($create_tables_query as $create_table_query) {
             $wpdb->query($create_table_query);
         }
-        update_option('mvx_table_created', true);
+        mvx_update_option('mvx_table_created', true);
     }
 
     /**
@@ -317,7 +317,7 @@ class MVX_Install {
     function do_mvx_migrate() {
         global $wpdb;
         #region map existing product in product map table
-        if (!get_option('is_mvx_product_sync_with_multivendor')) {
+        if (!mvx_get_option('is_mvx_product_sync_with_multivendor')) {
             $args_multi_vendor = array(
                 'posts_per_page' => -1,
                 'post_type' => 'product',
@@ -341,7 +341,7 @@ class MVX_Install {
                     $wpdb->query($wpdb->prepare("insert into {$wpdb->prefix}mvx_products_map set product_title=%s, product_ids = %d ", $product_post->post_title, $product_post->ID ));
                 }
             }
-            update_option('is_mvx_product_sync_with_multivendor', 1);
+            mvx_update_option('is_mvx_product_sync_with_multivendor', 1);
         }
         #endregion
     }
@@ -401,7 +401,7 @@ class MVX_Install {
         if (apply_filters('mvx_do_schedule_cron_mvx_spmv_excluded_products_map', true) && !wp_next_scheduled('mvx_spmv_excluded_products_map')) {
             wp_schedule_event(time(), 'every_5minute', 'mvx_spmv_excluded_products_map');
         }
-        if (apply_filters('mvx_do_schedule_cron_mvx_older_settings_migrated_migration', true) && !wp_next_scheduled('mvx_older_settings_migrated_migration') && !get_option('_is_dismiss_mvx40_notice', false)) {
+        if (apply_filters('mvx_do_schedule_cron_mvx_older_settings_migrated_migration', true) && !wp_next_scheduled('mvx_older_settings_migrated_migration') && !mvx_get_option('_is_dismiss_mvx40_notice', false)) {
             wp_schedule_event(time(), 'every_5minute', 'mvx_older_settings_migrated_migration');
         }
         if (apply_filters('mvx_do_masspay_cron_start', true) && !wp_next_scheduled('masspay_cron_start') && get_mvx_vendor_settings('choose_payment_mode_automatic_disbursal', 'disbursement') ) {

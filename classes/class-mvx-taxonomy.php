@@ -18,7 +18,7 @@ class MVX_Taxonomy {
     public $mvx_gtin_taxonomy;
 
     public function __construct() {
-        $permalinks = get_option('dc_vendors_permalinks');
+        $permalinks = mvx_get_option('dc_vendors_permalinks');
         $this->taxonomy_name = 'dc_vendor_shop';
         $this->taxonomy_slug = empty($permalinks['vendor_shop_base']) ? _x('vendor', 'slug', 'multivendorx') : $permalinks['vendor_shop_base'];
         $this->register_post_taxonomy();

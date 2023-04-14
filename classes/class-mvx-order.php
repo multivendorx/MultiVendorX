@@ -1452,7 +1452,7 @@ class MVX_Order {
         if( !is_wc_endpoint_url( 'view-order' ) ) return;
         if( !mvx_get_order( $order->get_id() ) ) return;
         if( !mvx_is_module_active( 'marketplace-refund' ) ) return;
-        $refund_settings = get_option( 'mvx_refund_management_tab_settings', true );
+        $refund_settings = mvx_get_option( 'mvx_refund_management_tab_settings', true );
         if ( get_mvx_vendor_settings('disable_refund_customer_end', 'refund_management') && !empty(get_mvx_vendor_settings('disable_refund_customer_end', 'refund_management')) ) return;
         $refund_reason_options = get_mvx_global_settings('refund_order_msg') ? explode( "||", get_mvx_global_settings('refund_order_msg') ) : array();
         $refund_button_text = apply_filters( 'mvx_customer_my_account_refund_request_button_text', __( 'Request a refund', 'multivendorx' ), $order );
@@ -1553,7 +1553,7 @@ class MVX_Order {
         $reason_option = isset( $_REQUEST['refund_reason_option'] ) ? wc_clean( wp_unslash($_REQUEST['refund_reason_option'])) : '';
         $refund_reason_other = isset( $_REQUEST['refund_reason_other'] ) ? wc_clean( wp_unslash($_REQUEST['refund_reason_other'])) : '';
         $refund_request_addi_info = isset( $_REQUEST['refund_request_addi_info'] ) ? wc_clean( wp_unslash($_REQUEST['refund_request_addi_info'])) : '';
-        $refund_settings = get_option( 'mvx_refund_management_tab_settings', true );
+        $refund_settings = mvx_get_option( 'mvx_refund_management_tab_settings', true );
         $refund_reason_options = ( isset( $refund_settings['refund_order_msg'] ) && $refund_settings['refund_order_msg'] ) ? explode( "||", $refund_settings['refund_order_msg'] ) : array();
         $refund_reason = ( $reason_option == 'others' ) ? $refund_reason_other : (isset( $refund_reason_options[$reason_option] ) ? $refund_reason_options[$reason_option] : ''); 
         $refund_details = array(

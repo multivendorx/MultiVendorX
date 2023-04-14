@@ -9,8 +9,8 @@
  * @version   2.2.0
  */
 global $MVX;
-$mvx_policy_settings = get_option("mvx_general_policies_settings_name");
-$mvx_capabilities_settings_name = get_option("mvx_general_policies_settings_name");
+$mvx_policy_settings = mvx_get_option("mvx_general_policies_settings_name");
+$mvx_capabilities_settings_name = mvx_get_option("mvx_general_policies_settings_name");
 $can_vendor_edit_policy_tab_label_field = apply_filters('can_vendor_edit_policy_tab_label_field', true);
 $can_vendor_edit_cancellation_policy_field = apply_filters('can_vendor_edit_cancellation_policy_field', true);
 $can_vendor_edit_refund_policy_field = apply_filters('can_vendor_edit_refund_policy_field', true);

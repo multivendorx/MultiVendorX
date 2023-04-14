@@ -21,9 +21,9 @@ class MVX_Endpoints {
             add_action('pre_get_posts', array(&$this, 'mvx_pre_get_posts'));
         }
 
-        if (!get_option('mvx_flushed_rewrite_rules')) {
+        if (!mvx_get_option('mvx_flushed_rewrite_rules')) {
             flush_rewrite_rules();
-            update_option('mvx_flushed_rewrite_rules', true);
+            mvx_update_option('mvx_flushed_rewrite_rules', true);
         }
     }
 
@@ -132,8 +132,8 @@ class MVX_Endpoints {
      * @return int
      */
     protected function get_mvx_endpoints_mask() {
-        if ('page' === get_option('show_on_front')) {
-            $page_on_front = get_option('page_on_front');
+        if ('page' === mvx_get_option('show_on_front')) {
+            $page_on_front = mvx_get_option('page_on_front');
             if ($page_on_front == mvx_vendor_dashboard_page_id()) {
                 return EP_ROOT | EP_PAGES;
             }
@@ -190,13 +190,13 @@ class MVX_Endpoints {
      */
     public function mvx_pre_get_posts($q) {
         // Fix for endpoints on the homepage
-        if ($q->is_home() && 'page' === get_option('show_on_front') && absint(get_option('page_on_front')) !== absint($q->get('page_id'))) {
+        if ($q->is_home() && 'page' === mvx_get_option('show_on_front') && absint(mvx_get_option('page_on_front')) !== absint($q->get('page_id'))) {
             $_query = wp_parse_args($q->query);
             if (!empty($_query) && array_intersect(array_keys($_query), array_keys($this->mvx_query_vars))) {
                 $q->is_page = true;
                 $q->is_home = false;
                 $q->is_singular = true;
-                $q->set('page_id', (int) get_option('page_on_front'));
+                $q->set('page_id', (int) mvx_get_option('page_on_front'));
                 add_filter('redirect_canonical', '__return_false');
             }
         }

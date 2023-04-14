@@ -12,7 +12,7 @@ class MVX_Frontend {
 
     public function __construct() {
 
-        $permalinks = get_option('dc_vendors_permalinks');
+        $permalinks = mvx_get_option('dc_vendors_permalinks');
         $this->custom_store_url = empty($permalinks['vendor_shop_base']) ? _x('vendor', 'slug', 'multivendorx') : $permalinks['vendor_shop_base'];
         //enqueue scripts
         add_action('wp_enqueue_scripts', array(&$this, 'frontend_scripts'));
@@ -252,7 +252,7 @@ class MVX_Frontend {
         $items = $order->get_items('line_item');
         $vendor_array = array();
         $author_id = '';
-        $customer_support_details_settings = get_option('mvx_general_customer_support_details_settings_name');
+        $customer_support_details_settings = mvx_get_option('mvx_general_customer_support_details_settings_name');
         $is_csd_by_admin = '';
         foreach ($items as $item_id => $item) {
             $product_id = wc_get_order_item_meta($item_id, '_product_id', true);
@@ -714,7 +714,7 @@ class MVX_Frontend {
                 $vendor = get_mvx_vendor($vendor_id);
                 $formated_languages = array();
                 $default_lang = $sitepress->get_default_language();
-                $permalinks = get_option('dc_vendors_permalinks');
+                $permalinks = mvx_get_option('dc_vendors_permalinks');
                 $vendor_permalink = is_array($permalinks) && isset($permalinks['vendor_shop_base']) && !empty($permalinks['vendor_shop_base']) ? $permalinks['vendor_shop_base'] : 'vendor';
                 if( !empty( $languages ) ) {
                     $is_wpml_configured = apply_filters( 'wpml_setting', 0, 'language_negotiation_type' );
@@ -1138,7 +1138,7 @@ class MVX_Frontend {
     function message_multiple_vendors_cart() {
         $vendorsincart = $this->get_vendors_in_cart();
         if ( count($vendorsincart) > 1 ) {
-            wc_print_notice(esc_html__('The products in your cart are sold by multiple different vendor partners. The order will be placed simultaneously with all vendors and you will receive a package from each of them.','multivendorx'), 'notice' );
+            wc_print_notice(esc_html__('The products in your cart are sold by multiple different vendor partners. The order will be placed simultaneously with all vendors and you will receive a package from each of them.', 'multivendorx'), 'notice' );
         }else if ( count($vendorsincart) === 1 ) {
             $vendorid = reset($vendorsincart);
             echo '<input type="hidden" value="' . esc_attr($vendorid) . '">';

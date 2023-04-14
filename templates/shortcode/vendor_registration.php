@@ -8,7 +8,7 @@
 
         <div class="mvx_regi_form_box">
             <?php if(!is_user_logged_in()) : 
-                $mvx_vendor_general_settings_name = get_option('mvx_vendor_general_settings_name');?>
+                $mvx_vendor_general_settings_name = mvx_get_option('mvx_vendor_general_settings_name');?>
             <h3 class="reg_header2"><?php echo apply_filters('woocommerce_section_label', __('Account Details', 'multivendorx')); ?></h3>
             <?php if ('no' === get_option('woocommerce_registration_generate_username')) : ?>
                 <div class="mvx-regi-12">

@@ -66,7 +66,7 @@ class MVX_Admin {
     }
 
     function mvx_taxonomy_slug_input() {
-        $permalinks = get_option('dc_vendors_permalinks');
+        $permalinks = mvx_get_option('dc_vendors_permalinks');
         ?>
         <input name="dc_product_vendor_taxonomy_slug" type="text" class="regular-text code" value="<?php if (isset($permalinks['vendor_shop_base'])) echo esc_attr($permalinks['vendor_shop_base']); ?>" placeholder="<?php esc_attr_e('vendor slug', 'multivendorx') ?>" />
         <?php
@@ -81,14 +81,14 @@ class MVX_Admin {
 
             // Cat and tag bases
             $dc_product_vendor_taxonomy_slug = wc_clean($_POST['dc_product_vendor_taxonomy_slug']);
-            $permalinks = get_option('dc_vendors_permalinks');
+            $permalinks = mvx_get_option('dc_vendors_permalinks');
 
             if (!$permalinks) {
                 $permalinks = array();
             }
 
             $permalinks['vendor_shop_base'] = untrailingslashit($dc_product_vendor_taxonomy_slug);
-            update_option('dc_vendors_permalinks', $permalinks);
+            mvx_update_option('dc_vendors_permalinks', $permalinks);
         }
     }
 
@@ -182,7 +182,7 @@ class MVX_Admin {
                     foreach ($settings_value as $inter_key => $inter_value) {
                         $change_settings_key    =   str_replace("-", "_", $settings_key);
                         $option_name = 'mvx_'.$change_settings_key.'_tab_settings';
-                        $database_value = get_option($option_name) ? get_option($option_name) : array();
+                        $database_value = mvx_get_option($option_name) ? get_option($option_name) : array();
                         if (!empty($database_value)) {
                             if (isset($inter_value['key']) && array_key_exists($inter_value['key'], $database_value)) {
                                 if (empty($settings_fields[$settings_key][$inter_key]['database_value'])) {

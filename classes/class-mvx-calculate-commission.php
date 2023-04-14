@@ -563,7 +563,7 @@ class MVX_Calculate_Commission {
     }
 
     public function mvx_get_commission_as_per_product_price( $product_id = 0, $line_total = 0, $item_quantity = 0, $commission_rule = array() ) {
-        $mvx_variation_commission_options = get_option( 'mvx_commissions_tab_settings', array() );
+        $mvx_variation_commission_options = mvx_get_option( 'mvx_commissions_tab_settings', array() );
         $vendor_commission_by_products = is_array($mvx_variation_commission_options) && isset( $mvx_variation_commission_options['vendor_commission_by_products'] ) ? $mvx_variation_commission_options['vendor_commission_by_products'] : array();
         $amount = 0;
         $matched_rule_price = 0;
@@ -598,7 +598,7 @@ class MVX_Calculate_Commission {
     }
 
     public function mvx_get_commission_rule_by_quantity_rule($product_id = 0, $line_total = 0, $item_quantity = 0, $commission_rule = array()) {
-        $mvx_variation_commission_options = get_option( 'mvx_variation_commission_options', array() );
+        $mvx_variation_commission_options = mvx_get_option( 'mvx_variation_commission_options', array() );
          $vendor_commission_quantity_rules = is_array($mvx_variation_commission_options) && isset( $mvx_variation_commission_options['vendor_commission_by_quantity'] ) ? $mvx_variation_commission_options['vendor_commission_by_quantity'] : array();
 
         if( !$product_id ) return false;

@@ -214,7 +214,7 @@ $vendor_video = get_user_meta($vendor->id, '_vendor_video', true);
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon3">
                                     <?php
-                                    $dc_vendors_permalinks_array = get_option('dc_vendors_permalinks');
+                                    $dc_vendors_permalinks_array = mvx_get_option('dc_vendors_permalinks');
                                     if (isset($dc_vendors_permalinks_array['vendor_shop_base']) && !empty($dc_vendors_permalinks_array['vendor_shop_base'])) {
                                         $store_slug = trailingslashit($dc_vendors_permalinks_array['vendor_shop_base']);
                                     } else {

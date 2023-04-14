@@ -59,7 +59,7 @@ class MVX_Elementor {
 	 * @return void
 	 */
 	public function on_plugins_loaded() {
-		$is_module_active = get_option('mvx_all_active_module_list', true);
+		$is_module_active = mvx_get_option('mvx_all_active_module_list', true);
         $is_active = $is_module_active && is_array($is_module_active) && in_array('elementor', $is_module_active) ? true : false;
         if ($is_active) {
 			$mvx_elementor = new MVX_Elementor( __FILE__ );

@@ -432,7 +432,7 @@ class MVX_Vendor_Hooks {
     public function mvx_vendor_dashboard_vendor_shipping_endpoint() {
         global $MVX;
         $MVX->library->load_select2_lib();
-        $mvx_payment_settings_name = get_option( 'mvx_payment_settings_name' );
+        $mvx_payment_settings_name = mvx_get_option( 'mvx_payment_settings_name' );
         $_vendor_give_shipping = get_user_meta( get_current_vendor_id(), '_vendor_give_shipping', true );
         if ( is_mvx_shipping_module_active() && empty( $_vendor_give_shipping ) ) {
             if (wp_script_is('mvx-vendor-shipping', 'registered') &&

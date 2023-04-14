@@ -19,13 +19,13 @@ class MVX_Capabilities {
     public function __construct() {
         $this->mvx_capability = array_merge(
                 $this->mvx_capability
-                , (array) get_option('mvx_settings_general_tab_settings', array())
-                , (array) get_option('mvx_products_capability_tab_settings', array())
+                , (array) mvx_get_option('mvx_settings_general_tab_settings', array())
+                , (array) mvx_get_option('mvx_products_capability_tab_settings', array())
         );
         $this->payment_cap = array_merge(
                 $this->payment_cap
-                , (array) get_option('mvx_commissions_tab_settings', array())
-                , (array) get_option('mvx_disbursement_tab_settings', array())
+                , (array) mvx_get_option('mvx_commissions_tab_settings', array())
+                , (array) mvx_get_option('mvx_disbursement_tab_settings', array())
         );
 
         add_filter('product_type_selector', array(&$this, 'mvx_product_type_selector'), 10, 1);
@@ -207,7 +207,7 @@ class MVX_Capabilities {
      */
     public function get_vendor_caps() {
         $caps = array();
-        $capability = get_option('mvx_products_capability_tab_settings', array());
+        $capability = mvx_get_option('mvx_products_capability_tab_settings', array());
         if ($this->vendor_capabilities_settings('is_upload_files', $capability)) {
             $caps['upload_files'] = true;
         } else {

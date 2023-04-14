@@ -380,8 +380,8 @@ class MVX_Migrator {
 
 	public function mvx_migration_third_step($get_next_step_link) {
 		$this->init_migration();
-		$processed_vendors = absint( get_option( '_mvx_migrated_vendor_count', 0 ) );
-		$migration_step = get_option( '_mvx_migration_step', '' );
+		$processed_vendors = absint( mvx_get_option( '_mvx_migrated_vendor_count', 0 ) );
+		$migration_step = mvx_get_option( '_mvx_migration_step', '' );
 		$marketplace_get_vendors = $this->mvx_migration_marketplace->get_marketplace_vendor();
 		if( !empty( $marketplace_get_vendors ) ) {
 			foreach( $marketplace_get_vendors as $vendor_id => $marketplace_vendor ) {
@@ -411,7 +411,7 @@ class MVX_Migrator {
 						$setting_complete = $this->store_setting_migrate(); 
 						if( $setting_complete ) {
 							$migration_step = 'setting';
-							update_option( '_mvx_migration_step', 'setting' );
+							mvx_update_option( '_mvx_migration_step', 'setting' );
 						?>
 							<style>
 								.setting_process{display:none;}
@@ -429,7 +429,7 @@ class MVX_Migrator {
 						$product_complete = $this->mvx_migration_marketplace->store_product_vendor_migrate($marketplace_vendor->ID); 
 						if( $product_complete ) {
 							$migration_step = 'product';
-							update_option( '_mvx_migration_step', 'product' );
+							mvx_update_option( '_mvx_migration_step', 'product' );
 						?>
 							<style>
 								.product_process{display:none;}
@@ -443,9 +443,9 @@ class MVX_Migrator {
 				
 				<?php
 				$processed_vendors++;
-				update_option( '_mvx_migrated_vendor_count', $processed_vendors );
-				update_option( '_mvx_migrated_last_vendor', $vendor_id );
-				update_option( '_mvx_migration_step', '' );
+				mvx_update_option( '_mvx_migrated_vendor_count', $processed_vendors );
+				mvx_update_option( '_mvx_migrated_last_vendor', $vendor_id );
+				mvx_update_option( '_mvx_migration_step', '' );
 				?>
 				<script>
 				setTimeout(function() {

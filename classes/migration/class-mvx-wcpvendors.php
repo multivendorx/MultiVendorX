@@ -156,7 +156,7 @@ class MVX_WCPVendors {
 			// Deactive plugins
 			$this->deactive_previous_multivendor();
 
-			update_option('mvx_migration_orders_table_migrated', true);
+			mvx_update_option('mvx_migration_orders_table_migrated', true);
 			wp_clear_scheduled_hook('migrate_multivendor_order_table');
 		}
 	}

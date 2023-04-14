@@ -29,7 +29,7 @@ class MVX_Cron_Job {
         // MVX order migration
         add_action('mvx_orders_migration', array(&$this, 'mvx_orders_migration'));
         // older wcmp settings migrated to mvx
-        if (!get_option('_is_dismiss_mvx40_notice', false)) {
+        if (!mvx_get_option('_is_dismiss_mvx40_notice', false)) {
             add_action('mvx_older_settings_migrated_migration', array(&$this, 'mvx_older_settings_migrated_migration'));
         }
 
@@ -395,7 +395,7 @@ class MVX_Cron_Job {
             set_transient('mvx_spmv_exclude_products_data', $exclude_spmv_products, YEAR_IN_SECONDS);
 
         }else{
-            update_option('spmv_multivendor_table_migrated', true);
+            mvx_update_option('spmv_multivendor_table_migrated', true);
             wp_clear_scheduled_hook('migrate_spmv_multivendor_table');
         }
     }
@@ -424,7 +424,7 @@ class MVX_Cron_Job {
             do_mvx_spmv_set_object_terms();
             $exclude_spmv_products = get_mvx_spmv_excluded_products_map_data();
             set_transient('mvx_spmv_exclude_products_data', $exclude_spmv_products, YEAR_IN_SECONDS);
-            update_option('mvx_spmv_product_meta_migrated', true);
+            mvx_update_option('mvx_spmv_product_meta_migrated', true);
         }
     }
     
@@ -508,13 +508,13 @@ class MVX_Cron_Job {
                 }
             }
         }
-        update_option('mvx_orders_table_migrated', true);
+        mvx_update_option('mvx_orders_table_migrated', true);
         wp_clear_scheduled_hook('mvx_orders_migration');
     }
 
     public function mvx_older_settings_migrated_migration() {
 
-        if (!get_option('_is_dismiss_mvx40_notice', false)) {
+        if (!mvx_get_option('_is_dismiss_mvx40_notice', false)) {
             //change shortcode content
             $list_of_all_pages = get_pages(array('post_status'   =>  'publish'));
             if ($list_of_all_pages) {
@@ -527,7 +527,7 @@ class MVX_Cron_Job {
 
             $get_managements_data = $seller_dashboard = $store_data = $products_data = $products_capabily_data = $spmv_data = $commission_data = $disbursement_data = $policy_data = $refund_data = $review_data = $social_data = $payemnts_masspay_data = $payemnts_payout_data = $payemnts_stripe_data = $pages_dashboard_array = $pages_array = [];
 
-            $get_managements_data = get_option('mvx_settings_general_tab_settings', array());
+            $get_managements_data = mvx_get_option('mvx_settings_general_tab_settings', array());
             if (get_mvx_older_global_settings('approve_vendor_manually') && get_mvx_older_global_settings('approve_vendor_manually') == 'Enable') {
                 $get_managements_data['approve_vendor'] = 'manually';
                 mvx_update_option('mvx_settings_general_tab_settings', $get_managements_data);
@@ -940,10 +940,10 @@ class MVX_Cron_Job {
                 mvx_update_option('mvx_review_management_tab_settings', $review_data);
             }
 
-            $wcmp_review_options  = get_option( 'wcmp_review_settings_option', array() );
+            $wcmp_review_options  = mvx_get_option( 'wcmp_review_settings_option', array() );
             $wcmp_review_categories = isset( $wcmp_review_options['review_categories'] ) ? $wcmp_review_options['review_categories'] : array();
 
-            $review_options_data = get_option('mvx_review_management_tab_settings');
+            $review_options_data = mvx_get_option('mvx_review_management_tab_settings');
             if ($wcmp_review_categories) {
                 $review_options_data['mvx_review_categories'] = $wcmp_review_categories;
                 update_option('wcmp_review_settings_option', $review_options_data);
@@ -1118,7 +1118,7 @@ class MVX_Cron_Job {
                 mvx_update_option('mvx_social_tab_settings', $social_data);
             }
             // updare data on modules
-            $active_module_list = get_option('mvx_all_active_module_list') ? get_option('mvx_all_active_module_list') : array();
+            $active_module_list = mvx_get_option('mvx_all_active_module_list') ? mvx_get_option('mvx_all_active_module_list') : array();
             if (get_mvx_older_global_settings('payment_method_paypal_masspay')) {
                 array_push($active_module_list, 'paypal-masspay');
                 mvx_update_option( 'mvx_all_active_module_list', $active_module_list );

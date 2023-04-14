@@ -108,7 +108,7 @@ if (!function_exists('update_mvx_vendor_settings')) {
             $settings = get_option("mvx_{$tab}_tab_settings");
         }
         $settings[$key] = $value;
-        update_option($option_name, $settings);
+        mvx_update_option($option_name, $settings);
     }
 
 }
@@ -127,7 +127,7 @@ if (!function_exists('delete_mvx_vendor_settings')) {
             $settings = get_option("mvx_{$tab}_settings_name");
         }
         unset($settings[$name]);
-        update_option($option_name, $settings);
+        mvx_update_option($option_name, $settings);
     }
 
 }
@@ -689,7 +689,7 @@ if (!function_exists('activate_mvx_plugin')) {
         //if (!get_option('dc_product_vendor_plugin_installed')) {
         require_once( 'class-mvx-install.php' );
         new MVX_Install();
-        update_option('dc_product_vendor_plugin_installed', 1);
+        mvx_update_option('dc_product_vendor_plugin_installed', 1);
         //}
     }
 
@@ -1112,11 +1112,11 @@ if (!function_exists('do_mvx_data_migrate')) {
         global $MVX, $wpdb, $wp_roles;
         if ($previous_plugin_version) {
             if ($previous_plugin_version <= '2.6.0' && !get_option('mvx_database_upgrade')) {
-                $old_pages = get_option('mvx_pages_settings_name');
+                $old_pages = mvx_get_option('mvx_pages_settings_name');
                 if (isset($old_pages['vendor_dashboard'])) {
                     wp_update_post(array('ID' => $old_pages['vendor_dashboard'], 'post_content' => '[mvx_vendor]'));
-                    update_option('mvx_product_vendor_vendor_page_id', get_option('mvx_product_vendor_vendor_dashboard_page_id'));
-                    $mvx_product_vendor_vendor_page_id = get_option('mvx_product_vendor_vendor_page_id');
+                    mvx_update_option('mvx_product_vendor_vendor_page_id', get_option('mvx_product_vendor_vendor_dashboard_page_id'));
+                    $mvx_product_vendor_vendor_page_id = mvx_get_option('mvx_product_vendor_vendor_page_id');
                     update_mvx_vendor_settings('mvx_vendor', $mvx_product_vendor_vendor_page_id, 'vendor', 'general');
                 }
                 /* remove unwanted vendor caps */
@@ -1239,7 +1239,7 @@ if (!function_exists('do_mvx_data_migrate')) {
                     update_mvx_vendor_settings('is_edit_delete_published_coupon', 'Enable', 'capabilities', 'product');
                 }
 
-                $mvx_pages = get_option('mvx_pages_settings_name');
+                $mvx_pages = mvx_get_option('mvx_pages_settings_name');
                 $mvx_old_pages = array(
 //                'vendor_dashboard' => 'mvx_product_vendor_vendor_dashboard_page_id'
                     'shop_settings' => 'mvx_product_vendor_shop_settings_page_id'
@@ -1262,7 +1262,7 @@ if (!function_exists('do_mvx_data_migrate')) {
                         unset($mvx_pages[$page_slug]);
                     }
                 }
-                update_option('mvx_pages_settings_name', $mvx_pages);
+                mvx_update_option('mvx_pages_settings_name', $mvx_pages);
 
                 #region update page option
                 if (get_mvx_vendor_settings('mvx_vendor', 'pages')) {
@@ -1276,7 +1276,7 @@ if (!function_exists('do_mvx_data_migrate')) {
                 $endpoints->add_mvx_endpoints();
                 flush_rewrite_rules();
                 delete_option('mvx_pages_settings_name');
-                update_option('mvx_database_upgrade', 'done');
+                mvx_update_option('mvx_database_upgrade', 'done');
                 #endregion
             }
             if ($previous_plugin_version <= '2.6.5') {
@@ -1353,7 +1353,7 @@ if (!function_exists('do_mvx_data_migrate')) {
                 $wpdb->delete($wpdb->prefix . 'mvx_products_map', array('product_title' => 'AUTO-DRAFT'));
             }
             if (version_compare($previous_plugin_version, '2.7.8', '<=')) {
-                update_option('users_can_register', 1);
+                mvx_update_option('users_can_register', 1);
                 delete_option('_is_dismiss_service_notice');
                 if (apply_filters('mvx_do_schedule_cron_vendor_weekly_order_stats', true) && !wp_next_scheduled('vendor_weekly_order_stats')) {
                     wp_schedule_event(time(), 'weekly', 'vendor_weekly_order_stats');
@@ -1477,10 +1477,10 @@ if (!function_exists('do_mvx_data_migrate')) {
                 if (!get_mvx_vendor_settings('is_vendor_shipping_on', 'general') && get_mvx_vendor_settings('give_shipping', 'payment') && 'Enable' === get_mvx_vendor_settings('give_shipping', 'payment')) {
                     update_mvx_vendor_settings('is_vendor_shipping_on', 'Enable', 'general');
                 } else {
-                    $settings = get_option("mvx_general_settings_name");
+                    $settings = mvx_get_option("mvx_general_settings_name");
                     if (isset($settings['is_vendor_shipping_on']))
                         unset($settings['is_vendor_shipping_on']);
-                    update_option('mvx_general_settings_name', $settings);
+                    mvx_update_option('mvx_general_settings_name', $settings);
                 }
             }
             if (version_compare($previous_plugin_version, '3.2.0', '<=')) {
@@ -1505,13 +1505,13 @@ if (!function_exists('do_mvx_data_migrate')) {
                     $dc_role->add_cap('delete_posts');
             }
             if (version_compare($previous_plugin_version, '3.2.1', '<=')) {
-                if (!wp_next_scheduled('mvx_spmv_product_meta_update') && !get_option('mvx_spmv_product_meta_migrated', false)) {
+                if (!wp_next_scheduled('mvx_spmv_product_meta_update') && !mvx_get_option('mvx_spmv_product_meta_migrated', false)) {
                     wp_schedule_event(time(), 'hourly', 'mvx_spmv_product_meta_update');
                 }
             }
             if (version_compare($previous_plugin_version, '3.2.2', '<=')) {
                 // shipping migration for beta
-                if(!get_option('mvx_322_vendor_shipping_data_migrated')){
+                if(!mvx_get_option('mvx_322_vendor_shipping_data_migrated')){
                     $vendors = get_mvx_vendors();
                     $MVX->shipping_gateway->load_shipping_methods();
                     if ($vendors) {
@@ -1560,21 +1560,21 @@ if (!function_exists('do_mvx_data_migrate')) {
                                             $shipping_details = get_option($option_name);
                                             $class = "class_cost_" . $shipping_class_id;
                                             $shipping_details[$class] = '';
-                                            update_option($option_name, $shipping_details);
+                                            mvx_update_option($option_name, $shipping_details);
                                         }
                                     }
                                 }
                             }
                         }
                         WC_Cache_Helper::get_transient_version('shipping', true);
-                        update_option('mvx_322_vendor_shipping_data_migrated', true);
+                        mvx_update_option('mvx_322_vendor_shipping_data_migrated', true);
                     }
                 }
             }
             if (version_compare($previous_plugin_version, '3.4.0', '<=')) {
                 $args = array('role' => 'dc_vendor', 'fields' => 'ids', 'orderby' => 'registered', 'order' => 'ASC');
                 $user_query = new WP_User_Query($args);
-                if ( !get_option( 'user_mvx_vendor_role_updated' ) && !empty( $user_query->results ) ) {
+                if ( !mvx_get_option( 'user_mvx_vendor_role_updated' ) && !empty( $user_query->results ) ) {
                     foreach ( $user_query->results as $vendor_id ) {
                         $user = new WP_User( $vendor_id );
                         $user->add_cap( 'edit_shop_orders' );
@@ -1585,10 +1585,10 @@ if (!function_exists('do_mvx_data_migrate')) {
                         $user->add_cap( 'delete_published_shop_orders' );
                         $user->remove_cap( 'add_shop_orders' );
                     }
-                    update_option( 'user_mvx_vendor_role_updated', true );
+                    mvx_update_option( 'user_mvx_vendor_role_updated', true );
                 }
                 
-                if( !get_option('mvx_orders_table_migrated') && !wp_next_scheduled('mvx_orders_migration') ){
+                if( !mvx_get_option('mvx_orders_table_migrated') && !wp_next_scheduled('mvx_orders_migration') ){
                     wp_schedule_event( time(), 'hourly', 'mvx_orders_migration' );
                 }
             }
@@ -1600,7 +1600,7 @@ if (!function_exists('do_mvx_data_migrate')) {
             /* Migrate commission data into table */
             do_mvx_commission_data_migrate();
         }
-        update_option('dc_product_vendor_plugin_db_version', $new_plugin_version);
+        mvx_update_option('dc_product_vendor_plugin_db_version', $new_plugin_version);
     }
 
 }
@@ -1646,10 +1646,10 @@ if (!function_exists('do_mvx_commission_data_migrate')) {
     function do_mvx_commission_data_migrate() {
         global $wpdb;
         /* Update Commission Order Table */
-        if (get_option('commission_data_migrated')) {
+        if (mvx_get_option('commission_data_migrated')) {
             return;
         }
-        $offset = get_option('dc_commission_offset_to_migrate') ? get_option('dc_commission_offset_to_migrate') : 0;
+        $offset = mvx_get_option('dc_commission_offset_to_migrate') ? mvx_get_option('dc_commission_offset_to_migrate') : 0;
         $args = array(
             'post_type' => 'dc_commission',
             'post_status' => array('private'),
@@ -1751,9 +1751,9 @@ if (!function_exists('do_mvx_commission_data_migrate')) {
                 }
             }
             $offset++;
-            update_option('dc_commission_offset_to_migrate', $offset);
+            mvx_update_option('dc_commission_offset_to_migrate', $offset);
         } else {
-            update_option('commission_data_migrated', '1');
+            mvx_update_option('commission_data_migrated', '1');
         }
     }
 
@@ -3897,7 +3897,7 @@ if (!function_exists('is_mvx_version_less_3_4_0')) {
      * @return boolean true/false
      */
     function is_mvx_version_less_3_4_0() {
-        $current_mvx = get_option('dc_product_vendor_plugin_db_version');
+        $current_mvx = mvx_get_option('dc_product_vendor_plugin_db_version');
         return version_compare( $current_mvx, '3.4.0', '<' );
     }
 }
@@ -4490,10 +4490,10 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
             )
         );
 
-        $review_options_data = get_option('mvx_review_management_tab_settings');
+        $review_options_data = mvx_get_option('mvx_review_management_tab_settings');
         $mvx_review_categories = $review_options_data && isset($review_options_data['mvx_review_categories']) ? $review_options_data['mvx_review_categories'] : $default_nested_data;
 
-        $commission_options_data = get_option('mvx_commissions_tab_settings');
+        $commission_options_data = mvx_get_option('mvx_commissions_tab_settings');
         $mvx_product_commission_variations = isset($commission_options_data['vendor_commission_by_products']) ? $commission_options_data['vendor_commission_by_products'] : $default_nested_data;
         $mvx_quantity_commission_variations = isset($commission_options_data['vendor_commission_by_quantity']) ? $commission_options_data['vendor_commission_by_quantity'] : $default_nested_data;
 

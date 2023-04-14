@@ -97,6 +97,14 @@ final class MVX {
         }
         // Disable woocommerce admin from vendor backend
         //add_filter( 'woocommerce_admin_disabled', array( &$this, 'mvx_remove_woocommerce_admin_from_vendor' ) );
+
+        add_action( 'jwt_auth_token_before_dispatch', array( &$this,'mvx_modify_jwt_auth_plugin_response' ),  20, 2 );
+    }
+
+    public function mvx_modify_jwt_auth_plugin_response($data, $user) {
+        $data['roles'] = $user->roles;
+        $data['store_id'] = $user->ID;
+        return $data;
     }
     
     public function exclude_order_comments($clauses) {
@@ -233,7 +241,7 @@ final class MVX {
      * plugin admin init callback
      */
     function mvx_admin_init() {
-        $previous_plugin_version = get_option('dc_product_vendor_plugin_db_version');
+        $previous_plugin_version = mvx_get_option('dc_product_vendor_plugin_db_version');
         /* Migrate MVX data */
         do_mvx_data_migrate($previous_plugin_version, $this->version);
     }
