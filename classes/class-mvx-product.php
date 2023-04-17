@@ -146,6 +146,13 @@ class MVX_Product {
             add_filter( 'woocommerce_loop_add_to_cart_link', array( $this, 'add_to_cart_link_min_max' ), 10, 2 );
             add_action( 'woocommerce_check_cart_items', array( $this, 'action_woocommerce_check_cart_items_min_max' ) );
         }
+
+        if ( get_mvx_vendor_settings('sku_generator_simple', 'products_capability') || get_mvx_vendor_settings('sku_generator_variation', 'products_capability')  || get_mvx_vendor_settings('sku_generator_attribute_spaces', 'products_capability') ) {
+            add_filter( 'mvx_vendor_dashboard_product_list_table_headers', array( $this, 'add_sku_column_in_product_list') );
+            add_filter( 'mvx_vendor_dashboard_product_list_table_rows', array( $this, 'display_value_into_sku_column' ), 10, 2 );
+            add_action( 'mvx_process_product_object', array( $this, 'mvx_save_generated_sku') );
+            add_action( 'mvx_process_product_meta_variable', array( $this, 'mvx_save_generated_sku') );
+        }
     }
     
     public function override_wc_product_post_parent( $data, $postarr ){
@@ -2824,4 +2831,119 @@ class MVX_Product {
         }
     }
     
+    //Generate a simple / parent product SKU from the product slug or ID.
+    public function generate_product_sku( $product ) {
+        if ( $product ) {
+            switch( mvx_get_settings_value(get_mvx_vendor_settings('sku_generator_simple', 'products_capability')) ) {
+                case 'slugs':
+                    $product_sku = $product->get_slug();
+                break;
+        
+                case 'ids':
+                    $product_sku = $product->get_id();
+                break;
+        
+                // use the original product SKU if we're not generating it
+                default:
+                    $product_sku = $product->get_sku();
+            }
+        }
+        return $product_sku;
+    }
+
+    //Generate a product variation SKU using the product slug or ID.
+    public function generate_variation_sku( $variation = array() ) {
+        if ( $variation ) {
+            $variation_sku = '';
+            if ( 'slugs' === mvx_get_settings_value(get_mvx_vendor_settings('sku_generator_variation', 'products_capability')) ) {
+                // replace spaces in attributes depending on settings
+                switch ( mvx_get_settings_value(get_mvx_vendor_settings('sku_generator_attribute_spaces', 'products_capability')) ) {
+                    case 'underscore':
+                        $variation['attributes'] = str_replace( ' ', '_', $variation['attributes'] );
+                    break;
+        
+                    case 'dash':
+                        $variation['attributes'] = str_replace( ' ', '-', $variation['attributes'] );
+                    break;
+        
+                    case 'none':
+                        $variation['attributes'] = str_replace( ' ', '', $variation['attributes'] );
+                    break;
+                }
+                $separator = apply_filters( 'sku_generator_attribute_separator', $this->get_sku_separator() );
+                $variation_sku = implode( $separator, $variation['attributes'] );
+                $variation_sku = str_replace( 'attribute_', '', $variation_sku );
+            }
+            if ( 'ids' === mvx_get_settings_value(get_mvx_vendor_settings('sku_generator_variation', 'products_capability')) ) {
+                $variation_sku = $variation['variation_id'] ? $variation['variation_id'] : '';
+            }
+        }
+        return $variation_sku;
+    }
+
+    //Get the separator to use between parent / variation SKUs
+    public function get_sku_separator() {
+        //Filters the separator used between parent / variation SKUs
+        return apply_filters( 'sku_generator_sku_separator', '-' );
+    }
+    
+    // generate the variation SKU.
+    public function mvx_save_variation_sku( $variation_id, $parent, $parent_sku = null ) {
+        $variation  = wc_get_product( $variation_id );
+        $parent_sku = $parent_sku ? $parent_sku : $parent->get_sku();
+        if ( $variation ) {
+            if ( $variation instanceof WC_Product && $variation->is_type( 'variation' ) || ! empty( $parent_sku ) ) {
+                $variation_data = $parent->get_available_variation( $variation );
+                if ( !empty($variation_data) ) {
+                    $variation_sku  = $this->generate_variation_sku( $variation_data );
+                    $sku            = $parent_sku . $this->get_sku_separator() . $variation_sku;
+                    try {
+                        $sku = wc_product_generate_unique_sku( $variation_id, $sku );
+                        $variation->set_sku( $sku );
+                        $variation->save();
+                    } catch ( WC_Data_Exception $exception ) {
+                        wc_add_notice(__('Variation SKU is not generated!', 'multivendorx'), 'error');
+                    }
+                }
+            }
+        }
+    }
+
+    public function add_sku_column_in_product_list( $products_table_headers ) {
+        $products_table_headers['sku'] = __( 'SKU', 'multivendorx' );
+        return $products_table_headers;
+    }
+    
+    public function display_value_into_sku_column( $row, $product ) {
+        $row['sku'] = '<td>' . $product->get_sku() . '</td>';
+        return $row;
+    }
+
+    //Update the product with the generated SKU.
+    public function mvx_save_generated_sku( $product ) {
+        if ( is_numeric( $product ) ) {
+            $product = wc_get_product( absint( $product ) );
+        }
+        if ( $product ) {
+            $product_sku = $this->generate_product_sku( $product );
+            if ( $product->is_type( 'variable' ) && 'never' !== mvx_get_settings_value(get_mvx_vendor_settings('sku_generator_variation', 'products_capability')) ) {
+                $variations = $product->get_children();
+                if ( $variations ) {
+                    foreach ( $variations as $variation_id ) {
+                        $this->mvx_save_variation_sku( $variation_id, $product, $product_sku );
+                    }
+                }
+            }
+            if ( 'never' !== mvx_get_settings_value(get_mvx_vendor_settings('sku_generator_simple', 'products_capability')) ) {
+                $product_sku = wc_product_generate_unique_sku( $product->get_id(), $product_sku );
+                try {
+                    $product->set_sku( $product_sku );
+                    $product->save();
+                } catch ( WC_Data_Exception $exception ) {
+                    wc_add_notice(__('SKU is not generated!', 'multivendorx'), 'error');
+                }
+            }
+        }
+    }
+
 }
