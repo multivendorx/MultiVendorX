@@ -408,5 +408,9 @@ class MVX_Install {
             $payment_schedule = get_mvx_vendor_settings('payment_schedule', 'disbursement');
             wp_schedule_event(time(), $payment_schedule, 'masspay_cron_start');
         }
+        $allow_tracking = get_option( 'mvx_plugin_action_block_notice' );
+        if (apply_filters('mvx_update_users_collection_using_cron', true) && !wp_next_scheduled('update_users_collection_using_cron') && $allow_tracking && $allow_tracking == 'yes' ) {
+            wp_schedule_event(time(), 'monthly', 'update_users_collection_using_cron');
+        }
     }
 }

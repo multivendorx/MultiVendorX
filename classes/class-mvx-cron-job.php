@@ -28,6 +28,8 @@ class MVX_Cron_Job {
         add_action('migrate_multivendor_table', array(&$this, 'migrate_multivendor_table'));
         // MVX order migration
         add_action('mvx_orders_migration', array(&$this, 'mvx_orders_migration'));
+        //update users collected data using cron
+        add_action('update_users_collection_using_cron', array(&$this, 'update_users_collection_using_cron'));
         // older wcmp settings migrated to mvx
         if (!mvx_get_option('_is_dismiss_mvx40_notice', false)) {
             add_action('mvx_older_settings_migrated_migration', array(&$this, 'mvx_older_settings_migrated_migration'));
@@ -1187,4 +1189,12 @@ class MVX_Cron_Job {
         wp_clear_scheduled_hook('mvx_older_settings_migrated_migration');
     }
 
+    function update_users_collection_using_cron() {
+        global $MVX;
+        $allow_tracking = get_option( 'mvx_plugin_action_block_notice' );
+        if ( $allow_tracking && $allow_tracking == 'yes' ) {
+            $body = $MVX->mvx_usage_tracker->get_data();
+            $MVX->mvx_usage_tracker->send_data( $body );
+        }
+    }
 }

@@ -235,6 +235,9 @@ final class MVX {
         // Migration
         include_once ($this->plugin_path . "/classes/migration/class-mvx-migration.php" );
         $this->multivendor_migration = new MVX_Migrator();
+        // track users data
+        include_once ($this->plugin_path . "/classes/class-mvx-usage-tracker.php" );
+        $this->mvx_usage_tracker = new MVX_Plugin_Usage_Tracker($this->plugin_path);
     }
 
     /**
