@@ -5395,6 +5395,98 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     ),
                     'database_value' => array(),
                 ],
+                [
+                    'key'       => 'sku_generator_simple',
+                    'type'      => 'select',
+                    'label'     => __( 'Generate Simple / Parent SKUs:', 'multivendorx' ),
+                    'desc'      => __( 'Determine how SKUs for simple, external, or parent products will be generated.', 'multivendorx' ),
+                    'options' => array(
+                        array(
+                            'key'=> "choose_options",
+                            'label'=> __('Choose options', 'multivendorx'),
+                            'value'=> "choose_options",
+                        ),
+                        array(
+                            'key'=> "never",
+                            'label'=> __('Never (let me set them)', 'multivendorx'),
+                            'value'=> "never",
+                        ),
+                        array(
+                            'key'=> "slugs",
+                            'label'=> __('Using the product slug (name)', 'multivendorx'),
+                            'value'=> "slugs",
+                        ),
+                        array(
+                            'key'=> "ids",
+                            'label'=> __('Using the product ID)', 'multivendorx'),
+                            'value'=> "ids",
+                        ),
+                    ),
+                    'database_value' => '',
+                ],
+                [
+                    'key'       => 'sku_generator_variation',
+                    'type'      => 'select',
+                    'label'     => __( 'Generate Variation SKUs:', 'multivendorx' ),
+                    'desc'      => __( 'Determine how SKUs for product variations will be generated.', 'multivendorx' ),
+                    'options' => array(
+                        array(
+                            'key'=> "choose_options",
+                            'label'=> __('Choose options', 'multivendorx'),
+                            'value'=> "choose_options",
+                        ),
+                        array(
+                            'key'=> "never",
+                            'label'=> __('Never (let me set them)', 'multivendorx'),
+                            'value'=> "never",
+                        ),
+                        array(
+                            'key'=> "slugs",
+                            'label'=> __('Using the attribute slugs (names)', 'multivendorx'),
+                            'value'=> "slugs",
+                        ),
+                        array(
+                            'key'=> "ids",
+                            'label'=> __('Using the variation ID)', 'multivendorx'),
+                            'value'=> "ids",
+                        ),
+                    ),
+                    'database_value' => '',
+                ],
+                [
+                    'key'       => 'sku_generator_attribute_spaces',
+                    'type'      => 'select',
+                    'label'     => __( 'Replace spaces in attributes?', 'multivendorx' ),
+                    'desc'      => __( 'Replace spaces in attribute names when used in a SKU.', 'multivendorx' ),
+                    'options' => array(
+                        array(
+                            'key'=> "choose_options",
+                            'label'=> __('Choose options', 'multivendorx'),
+                            'value'=> "choose_options",
+                        ),
+                        array(
+                            'key'=> "no",
+                            'label'=> __('Do not replace spaces in attribute names.', 'multivendorx'),
+                            'value'=> "no",
+                        ),
+                        array(
+                            'key'=> "underscore",
+                            'label'=> __('Replace spaces with underscores', 'multivendorx'),
+                            'value'=> "underscore",
+                        ),
+                        array(
+                            'key'=> "dash",
+                            'label'=> __('Replace spaces with dashes / hyphens', 'multivendorx'),
+                            'value'=> "dash",
+                        ),
+                        array(
+                            'key'=> "none",
+                            'label'=> __('Remove spaces from attribute names', 'multivendorx'),
+                            'value'=> "none",
+                        ),
+                    ),
+                    'database_value' => '',
+                ],
             ],
             'commissions'   =>  [
                 [
