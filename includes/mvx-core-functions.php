@@ -8100,7 +8100,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/mvx-product-addon',
                     ],
                     [
-                        'id'           => 'shipstation',
+                        'id'           => 'shipstation-module',
                         'name'         => __( 'Shipstation', 'multivendorx' ),
                         'description'  => __( 'Shipstation', 'multivendorx' ),
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
@@ -8111,7 +8111,6 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/mvx-shipstation',
                     ],
                 ]
             ],
