@@ -65,7 +65,9 @@ class MVX_Settings {
 
     public function mvx_submenu_count() {
         global $submenu;
-        if (isset($submenu['mvx'])) {
+        $screen = get_current_screen();
+        $page_details = array('toplevel_page_mvx');
+        if (isset($submenu['mvx']) && in_array($screen->id, $page_details)) {
             if (apply_filters('mvx_submenu_show_necesarry_count', true) && current_user_can('manage_woocommerce') ) {
                 foreach ($submenu['mvx'] as $key => $menu_item) {
                     if (isset($menu_item[0]) && strpos($menu_item[0], 'Commission') !== false) {
