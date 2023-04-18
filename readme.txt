@@ -5,7 +5,7 @@ Donate link: https://multivendorx.com/donate
 Requires at least: 4.4
 Tested up to: 6.2
 Requires PHP: 5.6
-Stable tag: 4.0.13
+Stable tag: 4.0.14
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -291,6 +291,18 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.0.14 - 2023-04-18 =
+* Added     - Compatibility of WooCommerce 7.6.0.
+* Added     - Auto SKU Generator.
+* Fix     	- Datepicker not working #353.
+* Fix     	- Cart Page error  #363
+* Fix     	- WPML issue.
+* Fix       - Query optimization.
+* Dev 		- Added `mvx_action_before_customer_refund_request` action.
+* Dev 		- Added `mvx_action_after_customer_refund_request` action.
+* Dev 		- Added `mvx_action_after_order_notes` action.
+* Updated   - Language file.
 
 = 4.0.13 - 2023-04-04 =
 * Added     - Compatibility of WooCommerce 7.5.1.

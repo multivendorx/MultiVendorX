@@ -6,7 +6,7 @@ if (!defined('ABSPATH'))
  * @class       MVX Product Class
  *
  * @version     2.2.0
- * @package MultiVendorX
+ * @package     MultiVendorX
  * @author 		MultiVendorX
  */
 class MVX_Plugin_Usage_Tracker {
@@ -15,12 +15,12 @@ class MVX_Plugin_Usage_Tracker {
 
     public function __construct($plugin_path) {
         $this->plugin_file      = $plugin_path;
-        add_filter( 'plugin_action_links_dc-woocommerce-multi-vendor1/dc_product_vendor.php', array($this, 'deactivate_action_links' ));
+        add_filter( 'plugin_action_links_dc-woocommerce-multi-vendor/dc_product_vendor.php', array($this, 'deactivate_action_links' ));
         add_action( 'admin_print_footer_scripts-plugins.php', array($this, 'deactivate_reasons_form_script' ));
         add_action( 'wp_ajax_deactivation_form_' . esc_attr( 'dc-woocommerce-multi-vendor' ), array($this, 'deactivate_reasons_form_submit' ));
         add_action( 'admin_notices', array($this, 'notice' ) );
-        add_action('admin_notices', array($this, 'review_admin_notice'));
-        add_action('wp_ajax_multivendorx_admin_notice_action', array($this, 'multivendorx_admin_notice_action'), 10);
+        add_action( 'admin_notices', array($this, 'review_admin_notice'));
+        add_action( 'wp_ajax_multivendorx_admin_notice_action', array($this, 'multivendorx_admin_notice_action'), 10);
         add_action( 'admin_print_footer_scripts', array($this, 'notice_script' ) );
         /**
          * Deactivation Hook
@@ -48,7 +48,6 @@ class MVX_Plugin_Usage_Tracker {
         if ( false !== get_option( 'multivendorx_deactivation_details_' . 'dc-woocommerce-multi-vendor' ) ) {
             $body['deactivation_details'] = get_option( 'multivendorx_deactivation_details_' . 'dc-woocommerce-multi-vendor' );
         }
-        
         $this->send_data( $body );
         delete_option( 'multivendorx_deactivation_reason_' . 'dc-woocommerce-multi-vendor' );
         delete_option( 'multivendorx_deactivation_details_' . 'dc-woocommerce-multi-vendor' );
@@ -150,10 +149,6 @@ class MVX_Plugin_Usage_Tracker {
     }
 
     public function deactivate_action_links( $links ) {
-        $allow_tracking = $this->is_tracking_allowed();
-        if ( ! $allow_tracking ) {
-            return $links;
-        }
         if ( isset( $links['deactivate'] ) ) {
             $deactivation_link = $links['deactivate'];
             /**
@@ -196,9 +191,10 @@ class MVX_Plugin_Usage_Tracker {
                 }
             }
             $html .= '</ul></div><!-- .multivendor-xs-' . esc_attr( 'dc-woocommerce-multi-vendor' ) . '-goodbye-options -->';
+            $html .= '<h6 class="mvx-collecting-area">' . __( 'We collect non-sensitive diagnostic data and plugin usage information along with your feedback. This will help us to offer you a better and improved product.', 'multivendorx' ) . '</h6>';
         }
         $html .= '</div><!-- .multivendor-xs-goodbye-form-body -->';
-        $html .= '<p class="deactivating-spinner"><span class="spinner"></span> ' . __( 'Submitting form', 'multivendor-x' ) . '</p>';
+        $html .= '<p class="deactivating-spinner"><span class="spinner"></span> ' . __( 'Submitting form', 'multivendorx' ) . '</p>';
 
         ?>
         <script type="text/javascript">
@@ -389,7 +385,7 @@ class MVX_Plugin_Usage_Tracker {
             'site_version'  => get_bloginfo( 'version' ),
             'site_language' => get_bloginfo( 'language' ),
             'charset'       => get_bloginfo( 'charset' ),
-            'wpins_version' => MVX_PLUGIN_VERSION,
+            'plugin_version' => MVX_PLUGIN_VERSION,
             'php_version'   => phpversion(),
             'multisite'     => is_multisite(),
             'file_location' => __FILE__,
@@ -499,7 +495,7 @@ class MVX_Plugin_Usage_Tracker {
                 }
             }
             if ($body['country'] == 'NOT SET') {
-                $body['country']    =  get_option('woocommerce_default_country');
+                //$body['country']    =  get_option('woocommerce_default_country');
             }
 
             $body['plugin_slug'] = 'dc-woocommerce-multi-vendor';
@@ -517,54 +513,6 @@ class MVX_Plugin_Usage_Tracker {
                 $failed_data = $body;
             }
         }
-
-        /*print_r($site_id_key);die;
-        $site_id_data_key        = "multivendorx_dc-woocommerce-multi-vendor_{$site_id}";
-        $site_id_data_failed_key = "multivendorx_dc-woocommerce-multi-vendor_{$site_id}_send_failed";
-
-        if ( $site_id != false ) {
-            $old_sent_data = get_option( $site_id_data_key, [] );
-            $diff_data     = $this->diff( $body, $old_sent_data );
-            $failed_data   = get_option( $site_id_data_failed_key, [] );
-            if ( ! empty( $failed_data ) && $diff_data != $failed_data ) {
-                $failed_data = array_merge( $failed_data, $diff_data );
-            }
-        }
-
-        if ( ! empty( $failed_data ) && $site_id != false ) {
-            $failed_data['plugin_slug'] = 'dc-woocommerce-multi-vendor';
-            $failed_data['url']         = $site_url;
-            $failed_data['site_id']     = $site_id;
-            if ( $original_site_url != false ) {
-                $failed_data['original_url'] = $original_site_url;
-            }
-
-            $request = $this->remote_post( $failed_data );
-            if ( ! is_wp_error( $request ) ) {
-                delete_option( $site_id_data_failed_key );
-                $replaced_data = array_merge( $old_sent_data, $failed_data );
-                update_option( $site_id_data_key, $replaced_data, 'no' );
-            }
-        }
-
-        if ( ! empty( $diff_data ) && $site_id != false && empty( $failed_data ) ) {
-            $diff_data['plugin_slug'] = 'dc-woocommerce-multi-vendor';
-            $diff_data['url']         = $site_url;
-            $diff_data['site_id']     = $site_id;
-            if ( $original_site_url != false ) {
-                $diff_data['original_url'] = $original_site_url;
-            }
-
-            $request = $this->remote_post( $diff_data );
-            if ( is_wp_error( $request ) ) {
-                update_option( $site_id_data_failed_key, $diff_data, 'no' );
-            } else {
-                $replaced_data = array_merge( $old_sent_data, $diff_data );
-                update_option( $site_id_data_key, $replaced_data, 'no' );
-            }
-        }*/
-
-        //$this->set_track_time();
 
         if ( isset( $request ) && is_wp_error( $request ) ) {
             return $request;
@@ -598,7 +546,7 @@ class MVX_Plugin_Usage_Tracker {
             'user-agent'  => 'PUT/1.0.0; ' . get_bloginfo( 'url' ),
             )
         );
-        $endpoint = 'http://localhost/wordpress_raj2/wp-json/mvx_thirdparty/v1/users_database_update';
+        $endpoint = 'https://multivendorx.com/wp-json/mvx_thirdparty/v1/users_database_update';
         $request = wp_remote_post( esc_url( $endpoint ), $args );
         if ( is_wp_error( $request ) || ( isset( $request['response'], $request['response']['code'] ) && $request['response']['code'] != 200 ) ) {
             return new \WP_Error( 500, 'Something went wrong.' );
@@ -665,6 +613,15 @@ class MVX_Plugin_Usage_Tracker {
                 padding: 18px;
                 box-shadow: 0 0 8px rgba(0, 0, 0, .1);
                 font-size: 15px;
+            }
+            .mvx-collecting-area {
+                font-weight: 500;
+                background: #eee;
+                padding: 1.5rem;
+                border: 0.06rem solid #d1d4d9;
+                border-radius: 0.25rem;
+                text-align: center;
+                font-size: 0.875rem;
             }
 
             .multivendor-xs-goodbye-form-wrapper-dc-woocommerce-multi-vendor .multivendor-xs-goodbye-form .multivendor-xs-goodbye-form-head strong {
@@ -767,6 +724,13 @@ class MVX_Plugin_Usage_Tracker {
                 background: #3f1473;
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
+            }
+            @media screen and (max-width: 768px) {
+                .multivendor-xs-goodbye-form-wrapper-dc-woocommerce-multi-vendor .multivendor-xs-goodbye-form-footer>.multivendor-xs-goodbye-form-buttons {
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    gap: 2rem;
+                }
             }
         </style>
         <?php
