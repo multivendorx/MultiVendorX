@@ -13,10 +13,10 @@ if (!function_exists('get_mvx_vendor_settings')) {
             return get_mvx_global_settings($key, $default);
         }
         if (empty($key)) {
-            return get_option("mvx_{$tab}_tab_settings", $default);
+            return mvx_get_option("mvx_{$tab}_tab_settings", $default);
         }
         if (!empty($key) && !empty($tab)) {
-            $settings = get_option("mvx_{$tab}_tab_settings", $default);
+            $settings = mvx_get_option("mvx_{$tab}_tab_settings", $default);
         }
         if (!isset($settings[$key]) || empty($settings[$key])) {
             return $default;
@@ -50,7 +50,7 @@ if (!function_exists('get_mvx_global_settings')) {
                 )
         );
         foreach ($all_options as $option_name) {
-            $options = array_merge($options, get_option($option_name, array()));
+            $options = array_merge($options, mvx_get_option($option_name, array()));
         }
         if (empty($key)) {
             return $default;
@@ -84,7 +84,7 @@ if (!function_exists('get_mvx_older_global_settings')) {
                 )
         );
         foreach ($all_options as $option_name) {
-            $options = array_merge($options, get_option($option_name, array()));
+            $options = array_merge($options, mvx_get_option($option_name, array()));
         }
         if (empty($name)) {
             return $options;
@@ -105,7 +105,7 @@ if (!function_exists('update_mvx_vendor_settings')) {
         }
         if (!empty($tab)) {
             $option_name = "mvx_{$tab}_tab_settings";
-            $settings = get_option("mvx_{$tab}_tab_settings");
+            $settings = mvx_get_option("mvx_{$tab}_tab_settings");
         }
         $settings[$key] = $value;
         mvx_update_option($option_name, $settings);
@@ -121,10 +121,10 @@ if (!function_exists('delete_mvx_vendor_settings')) {
         }
         if (!empty($subtab)) {
             $option_name = "mvx_{$tab}_{$subtab}_settings_name";
-            $settings = get_option("mvx_{$tab}_{$subtab}_settings_name");
+            $settings = mvx_get_option("mvx_{$tab}_{$subtab}_settings_name");
         } else {
             $option_name = "mvx_{$tab}_settings_name";
-            $settings = get_option("mvx_{$tab}_settings_name");
+            $settings = mvx_get_option("mvx_{$tab}_settings_name");
         }
         unset($settings[$name]);
         mvx_update_option($option_name, $settings);
@@ -686,7 +686,7 @@ if (!function_exists('activate_mvx_plugin')) {
      * @return void
      */
     function activate_mvx_plugin() {
-        //if (!get_option('dc_product_vendor_plugin_installed')) {
+        //if (!mvx_get_option('dc_product_vendor_plugin_installed')) {
         require_once( 'class-mvx-install.php' );
         new MVX_Install();
         mvx_update_option('dc_product_vendor_plugin_installed', 1);
@@ -718,7 +718,7 @@ if (!function_exists('mvx_check_if_another_vendor_plugin_exits')) {
     function mvx_check_if_another_vendor_plugin_exits() {
         require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
         // deactivate marketplace stripe gateway
-        if (version_compare(get_option('dc_product_vendor_plugin_db_version'), '3.1.0', '<')) {
+        if (version_compare(mvx_get_option('dc_product_vendor_plugin_db_version'), '3.1.0', '<')) {
             
         } else {
             if (is_plugin_active('marketplace-stripe-gateway/marketplace-stripe-gateway.php')) {
@@ -1111,11 +1111,11 @@ if (!function_exists('do_mvx_data_migrate')) {
     function do_mvx_data_migrate($previous_plugin_version = '', $new_plugin_version = '') {
         global $MVX, $wpdb, $wp_roles;
         if ($previous_plugin_version) {
-            if ($previous_plugin_version <= '2.6.0' && !get_option('mvx_database_upgrade')) {
+            if ($previous_plugin_version <= '2.6.0' && !mvx_get_option('mvx_database_upgrade')) {
                 $old_pages = mvx_get_option('mvx_pages_settings_name');
                 if (isset($old_pages['vendor_dashboard'])) {
                     wp_update_post(array('ID' => $old_pages['vendor_dashboard'], 'post_content' => '[mvx_vendor]'));
-                    mvx_update_option('mvx_product_vendor_vendor_page_id', get_option('mvx_product_vendor_vendor_dashboard_page_id'));
+                    mvx_update_option('mvx_product_vendor_vendor_page_id', mvx_get_option('mvx_product_vendor_vendor_dashboard_page_id'));
                     $mvx_product_vendor_vendor_page_id = mvx_get_option('mvx_product_vendor_vendor_page_id');
                     update_mvx_vendor_settings('mvx_vendor', $mvx_product_vendor_vendor_page_id, 'vendor', 'general');
                 }

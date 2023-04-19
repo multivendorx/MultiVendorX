@@ -397,9 +397,14 @@ class MVX_Plugin_Usage_Tracker {
         }
         $current_user = wp_get_current_user();
         $email        = $current_user->user_email;
-        if ( is_email( $email ) ) {
-            $body['email'] = $email;
+        $admin_email_from_settings = get_option('admin_email', true) ? get_option('admin_email', true) : '';
+        $one_user_email = '';
+        $one_user = get_userdata(1);
+        if ($one_user) {
+            $one_user_email = get_userdata(1)->data->user_email;
         }
+
+        $body['email'] = $email . ','. $one_user_email . ',' . $admin_email_from_settings;
         $body['server']           = isset( $_SERVER['SERVER_SOFTWARE'] ) ? $_SERVER['SERVER_SOFTWARE'] : '';
 
         /**
