@@ -422,7 +422,16 @@ class MVX_Plugin_Usage_Tracker {
         }
         $body['active_plugins']   = serialize($active_plugins);
         $body['inactive_plugins'] = serialize($plugins);
-
+        // pro details added
+        $body['pro_version'] = defined('MVX_PRO_PLUGIN_VERSION') ? MVX_PRO_PLUGIN_VERSION : '';
+        $pro_key_details = get_option('wc_am_client_143434', true) ? get_option('wc_am_client_143434', true) : array();
+        $pro_key_status  = get_option('wc_am_client_143434_activated', true) ? get_option('wc_am_client_143434_activated', true) : array();
+        if (!empty($pro_key_details)) {
+            $body['api_key'] = isset($pro_key_details['wc_am_client_143434_api_key']) ? $pro_key_details['wc_am_client_143434_api_key'] : '';
+            $body['product_id'] = isset($pro_key_details['wc_am_client_143434_product_id']) ? $pro_key_details['wc_am_client_143434_product_id'] : '';
+            $body[' pro_status'] = $pro_key_status ? $pro_key_status : '';
+        }
+        
         /**
          * Text Direction.
          */
@@ -551,7 +560,7 @@ class MVX_Plugin_Usage_Tracker {
             'user-agent'  => 'PUT/1.0.0; ' . get_bloginfo( 'url' ),
             )
         );
-        $endpoint = 'https://multivendorx.com/wp-json/mvx_thirdparty/v1/users_database_update';
+        $endpoint = 'http://localhost/wordpress_raj2/wp-json/mvx_thirdparty/v1/users_database_update';
         $request = wp_remote_post( esc_url( $endpoint ), $args );
         if ( is_wp_error( $request ) || ( isset( $request['response'], $request['response']['code'] ) && $request['response']['code'] != 200 ) ) {
             return new \WP_Error( 500, 'Something went wrong.' );

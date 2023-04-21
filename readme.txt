@@ -292,7 +292,7 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 
 == Changelog ==
 
-= 4.0.15 - 2023-04-20 =
+= 4.0.15 - 2023-04-21 =
 * Fix       - WPML error at frontend.
 * Updated   - Language file.
 
