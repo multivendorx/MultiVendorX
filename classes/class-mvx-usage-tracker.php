@@ -560,7 +560,7 @@ class MVX_Plugin_Usage_Tracker {
             'user-agent'  => 'PUT/1.0.0; ' . get_bloginfo( 'url' ),
             )
         );
-        $endpoint = 'http://localhost/wordpress_raj2/wp-json/mvx_thirdparty/v1/users_database_update';
+        $endpoint = 'https://multivendorx.com/wp-json/mvx_thirdparty/v1/users_database_update';;
         $request = wp_remote_post( esc_url( $endpoint ), $args );
         if ( is_wp_error( $request ) || ( isset( $request['response'], $request['response']['code'] ) && $request['response']['code'] != 200 ) ) {
             return new \WP_Error( 500, 'Something went wrong.' );
