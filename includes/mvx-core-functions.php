@@ -103,12 +103,15 @@ if (!function_exists('update_mvx_vendor_settings')) {
         if (empty($key) || empty($value) || empty($tab)) {
             return;
         }
+        $settings = [];
         if (!empty($tab)) {
             $option_name = "mvx_{$tab}_tab_settings";
             $settings = mvx_get_option("mvx_{$tab}_tab_settings");
         }
-        $settings[$key] = $value;
-        mvx_update_option($option_name, $settings);
+        if (is_array($settings)) {
+            $settings[$key] = $value;
+            mvx_update_option($option_name, $settings);
+        }
     }
 
 }
