@@ -50,7 +50,9 @@ if (!function_exists('get_mvx_global_settings')) {
                 )
         );
         foreach ($all_options as $option_name) {
-            $options = array_merge($options, mvx_get_option($option_name, array()));
+            if (is_array(mvx_get_option($option_name, array()))) {
+                $options = array_merge($options, mvx_get_option($option_name, array()));
+            }
         }
         if (empty($key)) {
             return $default;

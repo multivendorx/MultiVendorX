@@ -713,7 +713,7 @@ class MVX_Admin_Setup_Wizard {
      */
     public function mvx_setup_store_save() {
         check_admin_referer('mvx-setup');
-        $general_settings = mvx_get_option('mvx_spmv_pages_tab_settings');
+        $general_settings = mvx_get_option('mvx_spmv_pages_tab_settings') ? mvx_get_option('mvx_spmv_pages_tab_settings') : array();
         $vendor_permalink = filter_input(INPUT_POST, 'vendor_store_url');
         $is_single_product_multiple_vendor = filter_input(INPUT_POST, 'is_single_product_multiple_vendor');
         if ($is_single_product_multiple_vendor) {
@@ -849,7 +849,7 @@ class MVX_Admin_Setup_Wizard {
     public function mvx_setup_capability_save() {
         global $MVX;
         check_admin_referer('mvx-setup');
-        $capability_settings = mvx_get_option('mvx_products_capability_tab_settings');
+        $capability_settings = mvx_get_option('mvx_products_capability_tab_settings') ? mvx_get_option('mvx_products_capability_tab_settings') : array();
 
         $is_submit_product = filter_input(INPUT_POST, 'is_submit_product');
         $is_published_product = filter_input(INPUT_POST, 'is_published_product');
