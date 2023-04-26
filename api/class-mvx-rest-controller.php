@@ -771,6 +771,72 @@ class MVX_REST_API {
             'callback' => array( $this, 'mvx_list_of_refund_request' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
+
+        // Specific vendor products
+        register_rest_route( 'mvx/v1', '/vendor_products', [
+            'methods' => WP_REST_Server::READABLE,
+            'callback' => array( $this, 'mvx_list_of_vendor_products' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
+        // Specific vendor orders
+        register_rest_route( 'mvx/v1', '/vendor_orders', [
+            'methods' => WP_REST_Server::READABLE,
+            'callback' => array( $this, 'mvx_list_of_vendor_orders' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+    }
+
+    public function mvx_list_of_vendor_products($request) {
+        $vendor_id = $request && $request->get_param('vendor_id') ? $request->get_param('vendor_id') : '';
+        $vendor = '';
+        $product_list = [];
+        if ($vendor_id) {
+            $vendor = get_mvx_vendor($vendor_id);
+        }
+        if ($vendor) {
+            $products_array = $vendor->get_products(array());
+            if ($products_array) {
+                foreach ($products_array as $key => $value) {
+                    $product_list[] = array(
+                        'ID'            =>  $value->ID,
+                        'name'          =>  $value->post_title,
+                        'price'         =>  get_post_meta($value->ID, '_price', true) ? get_post_meta($value->ID, '_price', true) : ''
+                    );
+                }
+            }
+        }
+        return rest_ensure_response($product_list);
+    }
+
+    public function mvx_list_of_vendor_orders($request) {
+        $vendor_id = $request && $request->get_param('vendor_id') ? $request->get_param('vendor_id') : '';
+        $vendor = '';
+        $order_list = [];
+        if ($vendor_id) {
+            $vendor = get_mvx_vendor($vendor_id);
+        }
+        if ($vendor) {
+            $args = array(
+                'author' => $vendor->id,
+                'post_status' => 'any',
+                
+            );
+            $vendor_all_orders = mvx_get_orders($args);
+            if ($vendor_all_orders) {
+                foreach ($vendor_all_orders as $order_id) {
+                    $order = wc_get_order($order_id);
+                    $vendor_order = mvx_get_order($order_id);
+                    $order_list[] = array(
+                        'order_id'              =>  $order_id,
+                        'order_date'                  =>  mvx_date($order->get_date_created()),
+                        'vendor_earning'                 =>  $vendor_order && $vendor_order->get_commission_total() ? $vendor_order->get_commission_total() : '-',
+                        'order_status' => esc_html(wc_get_order_status_name($order->get_status()))
+                    );
+                }
+            }
+        }
+        return rest_ensure_response($order_list);
     }
 
     public function mvx_list_of_refund_request() {
