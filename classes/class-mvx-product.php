@@ -2832,7 +2832,7 @@ class MVX_Product {
     }
     
     //Generate a simple / parent product SKU from the product slug or ID.
-    public function generate_product_sku( $product ) {
+    protected function generate_product_sku( $product ) {
         if ( $product ) {
             switch( mvx_get_settings_value(get_mvx_vendor_settings('sku_generator_simple', 'products_capability')) ) {
                 case 'slugs':
@@ -2852,7 +2852,7 @@ class MVX_Product {
     }
 
     //Generate a product variation SKU using the product slug or ID.
-    public function generate_variation_sku( $variation = array() ) {
+    protected function generate_variation_sku( $variation = array() ) {
         if ( $variation ) {
             $variation_sku = '';
             if ( 'slugs' === mvx_get_settings_value(get_mvx_vendor_settings('sku_generator_variation', 'products_capability')) ) {
@@ -2882,13 +2882,13 @@ class MVX_Product {
     }
 
     //Get the separator to use between parent / variation SKUs
-    public function get_sku_separator() {
+    private function get_sku_separator() {
         //Filters the separator used between parent / variation SKUs
         return apply_filters( 'sku_generator_sku_separator', '-' );
     }
     
     // generate the variation SKU.
-    public function mvx_save_variation_sku( $variation_id, $parent, $parent_sku = null ) {
+    protected function mvx_save_variation_sku( $variation_id, $parent, $parent_sku = null ) {
         $variation  = wc_get_product( $variation_id );
         $parent_sku = $parent_sku ? $parent_sku : $parent->get_sku();
         if ( $variation ) {
