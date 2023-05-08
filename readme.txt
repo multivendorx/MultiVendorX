@@ -293,6 +293,7 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 == Changelog ==
 
 = 4.0.17 - 2023-05-09 =
+* Added     - Compatibility of WooCommerce 7.6.1.
 * Fix     	- Withdrawal mail trigger #372.
 * Fix     	- Workboard blank screen #368.
 * Fix     	- Customer details not visible on vendor dashboard #371.
