@@ -5,7 +5,7 @@ Donate link: https://multivendorx.com/donate
 Requires at least: 4.4
 Tested up to: 6.2
 Requires PHP: 5.6
-Stable tag: 4.0.16
+Stable tag: 4.0.17
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -291,6 +291,13 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.0.17 - 2023-05-09 =
+* Fix     	- Withdrawal mail trigger #372.
+* Fix     	- Workboard blank screen #368.
+* Fix     	- Customer details not visible on vendor dashboard #371.
+* Fix     	- Issue with Pending transaction appoval #373.
+* Updated   - Language file.
 
 = 4.0.16 - 2023-04-26 =
 * Fix       - Error while activating the plugin.
