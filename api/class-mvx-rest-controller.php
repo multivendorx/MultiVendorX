@@ -1468,6 +1468,7 @@ class MVX_REST_API {
     }
 
     public function mvx_task_board_icons_triggers($request) {
+        global $MVX;
         $value = $request->get_param('value') ? $request->get_param('value') : '';
         $key = $request->get_param('key') ? $request->get_param('key') : '';
         $reject_word = $request->get_param('reject_word') ? $request->get_param('reject_word') : '';
