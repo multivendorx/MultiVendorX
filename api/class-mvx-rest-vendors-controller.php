@@ -269,8 +269,19 @@ class MVX_REST_API_Vendors_Controller extends WC_REST_Controller {
     	$vendor_review_info = mvx_get_vendor_review_info($vendor_term_id);
     	$avg_rating = number_format(floatval($vendor_review_info['avg_rating']), 1);
     	$rating_count = $vendor_review_info['total_rating'];
+    	$vendor = get_mvx_vendor($method->id);
+    	$args = array(
+            'author' => $method->id,
+            'post_status' => 'any',
+            
+        );
+        $mvx_vendor_followed_by_customer = get_user_meta( $method->id, 'mvx_vendor_followed_by_customer', true ) ? get_user_meta( $method->id, 'mvx_vendor_followed_by_customer', true ) : array();
     	$vendor_object = apply_filters("mvx_rest_prepare_vendor_object_args", array(
     		'id' => $method->id,
+    		'avatar_id'	=>	get_avatar_url($method->id),
+    		'products_count'	=>	count($vendor->get_products(array())),
+    		'orders_count'		=>	count(mvx_get_orders($args)),
+    		'followers_count'	=>	count($mvx_vendor_followed_by_customer),
     		'login' => $method->user_data->data->user_login,
     		'first_name' => get_user_meta($method->id, 'first_name', true),
     		'last_name' => get_user_meta($method->id, 'last_name', true),

@@ -180,8 +180,13 @@ abstract class MVX_Payment_Gateway {
     public function email_notify($commission_status = 'mvx_processing') {
         switch ($this->payment_gateway) {
             case 'direct_bank':
-                $email_vendor = WC()->mailer()->emails['WC_Email_Vendor_Direct_Bank'];
-                $email_vendor->trigger($this->transaction_id, $this->vendor->term_id);
+                if (is_user_mvx_vendor(get_current_vendor_id())) {
+                    $email_vendor = WC()->mailer()->emails['WC_Email_Vendor_Direct_Bank'];
+                    $email_vendor->trigger($this->transaction_id, $this->vendor->term_id);
+                } else {
+                    $email_vendor = WC()->mailer()->emails['WC_Email_Vendor_DirectBank_Commission_Transactions'];
+                    $email_vendor->trigger($this->vendor->term_id);
+                }
                 if(!current_user_can('administrator')) :
                 $email_admin = WC()->mailer()->emails['WC_Email_Admin_Widthdrawal_Request'];
                 $email_admin->trigger($this->transaction_id, $this->vendor->term_id);

@@ -785,6 +785,44 @@ class MVX_REST_API {
             'callback' => array( $this, 'mvx_list_of_vendor_orders' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
+
+        // Specific vendor announcement
+        register_rest_route( 'mvx/v1', '/vendor_announcement', [
+            'methods' => WP_REST_Server::READABLE,
+            'callback' => array( $this, 'mvx_list_of_vendor_announcement' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
+        // Specific vendor reports
+        register_rest_route( 'mvx/v1', '/vendor_reports', [
+            'methods' => WP_REST_Server::READABLE,
+            'callback' => array( $this, 'mvx_list_of_vendor_reports' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+    }
+
+    public function mvx_list_of_vendor_reports($request) {
+        $vendor_id = $request && $request->get_param('vendor_id') ? $request->get_param('vendor_id') : '';
+        $status = $request && $request->get_param('status') ? $request->get_param('status') : '';
+        $vendor = '';
+        $reports_list = '';
+        if ($vendor_id) {
+            $vendor = get_mvx_vendor($vendor_id);
+            if ($vendor) {
+                $vendor_report_data = get_mvx_vendor_dashboard_stats_reports_data($vendor);
+                if ($vendor_report_data) {
+                    $reports_list = array(
+                        'traffic_no'    =>  $vendor_report_data[$status]['_raw_stats_data']['current']['traffic_no'],
+                        'coupon_total'  =>  $vendor_report_data[$status]['_raw_stats_data']['current']['coupon_total'],
+                        'withdrawal'    =>  $vendor_report_data[$status]['_raw_stats_data']['current']['withdrawal'],
+                        'earning'       =>  $vendor_report_data[$status]['_raw_stats_data']['current']['earning'],
+                        'sales_total'   =>  $vendor_report_data[$status]['_raw_stats_data']['current']['sales_total'],
+                        'orders_no'     =>  $vendor_report_data[$status]['_raw_stats_data']['current']['orders_no'],
+                    );
+                }
+            }
+        }
+        return rest_ensure_response($reports_list);
     }
 
     public function mvx_list_of_vendor_products($request) {
@@ -837,6 +875,26 @@ class MVX_REST_API {
             }
         }
         return rest_ensure_response($order_list);
+    }
+
+    public function mvx_list_of_vendor_announcement($request) {
+        $vendor_id = $request && $request->get_param('vendor_id') ? $request->get_param('vendor_id') : '';
+        $vendor = '';
+        $announcement_list = [];
+        if ($vendor_id) {
+            $vendor = get_mvx_vendor($vendor_id);
+            $get_announcements = $vendor ? $vendor->get_announcements() : array();
+            if ($get_announcements && isset($get_announcements['all'])) {
+                foreach ($get_announcements['all'] as $key => $value) {
+                    $announcement_list[] = array(
+                        'post_title'                =>  $value->post_title,
+                        'post_content'              =>  $value->post_content,
+                        'post_date'                 =>  $value->post_date
+                    );
+                }
+            }
+        }
+        return rest_ensure_response($announcement_list);
     }
 
     public function mvx_list_of_refund_request() {

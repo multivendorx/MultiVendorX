@@ -1347,7 +1347,7 @@ class MVXworkboard extends Component {
 						</td>
 					    <td>
 
-					    	{data_veri.address_verified ? __( 'Verified', 'multivendorx' ) :
+					    	{data_veri.address_verified ? appLocalizer.workboard_string.workboard35 :
 					    	<>
 					    	<button className="mvx-back-btn" onClick={(e) =>
 								(
@@ -1394,7 +1394,7 @@ class MVXworkboard extends Component {
 							></div>
 						</td>
 					    <td>
-					    	{data_veri.id_verified ? __( 'Verified', 'multivendorx' ) :
+					    	{data_veri.id_verified ? appLocalizer.workboard_string.workboard35 :
 					    	<>
 					    	<button className="mvx-back-btn" onClick={(e) =>
 								(
