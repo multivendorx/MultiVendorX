@@ -105,19 +105,17 @@ $lng = get_post_meta(wp_get_post_parent_id($order->get_id()), '_mvx_user_locatio
                 <h3><?php esc_html_e( 'Customer detail', 'multivendorx' ); ?></h3>
                 <div class="customer-detail">
                     <?php 
-                    $user = '';
-                    $user_id     = '';
+                    $user = $user_id = '';
                     if ( $order->get_user_id() ) {
                         $user_id = absint( $order->get_user_id() );
                         $user    = get_user_by( 'id', $user_id );  
                     }
-                    if( $user ) :
                     ?>
                     <div class="icon">
-                        <?php echo get_avatar( $user->ID, 48 ); ?>
+                        <?php echo $user ? get_avatar( $user->ID, 48 ) : ''; ?>
                     </div>
                     <div class="detail-contnt">
-                        <p><?php echo $user->display_name; ?></p>
+                        <p><?php echo $user ? $user->display_name : ''; ?></p>
                         <?php $billing_fields = apply_filters( 'mvx_vendor_dash_customer_details', array(
                             'email' => array( 'label' => __( 'Email address', 'multivendorx' ) ),
                             'phone' => array( 'label' => __( 'Phone', 'multivendorx' ) )
@@ -149,7 +147,6 @@ $lng = get_post_meta(wp_get_post_parent_id($order->get_id()), '_mvx_user_locatio
                         }
                         ?>
                     </div>
-                    <?php endif; ?>
                 </div>
                 <?php
                 if( $order->get_customer_note() ) :
