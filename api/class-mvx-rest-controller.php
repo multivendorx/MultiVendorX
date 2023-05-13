@@ -799,6 +799,17 @@ class MVX_REST_API {
             'callback' => array( $this, 'mvx_list_of_vendor_reports' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
+
+        // Specific vendor order
+        register_rest_route( 'mvx/v1', '/vendor_order', [
+            'methods' => WP_REST_Server::READABLE,
+            'callback' => array( $this, 'mvx_list_of_vendor_order' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+    }
+
+    public function mvx_list_of_vendor_order($request) {
+        $order_id = $request && $request->get_param('order_id') ? $request->get_param('order_id') : '';
     }
 
     public function mvx_list_of_vendor_reports($request) {
@@ -839,7 +850,8 @@ class MVX_REST_API {
                     $product_list[] = array(
                         'ID'            =>  $value->ID,
                         'name'          =>  $value->post_title,
-                        'price'         =>  get_post_meta($value->ID, '_price', true) ? get_post_meta($value->ID, '_price', true) : ''
+                        'price'         =>  get_post_meta($value->ID, '_price', true) ? get_post_meta($value->ID, '_price', true) . ' ' . get_option('woocommerce_currency') : '',
+                        'status'        =>  $value->post_status
                     );
                 }
             }
@@ -887,6 +899,7 @@ class MVX_REST_API {
             if ($get_announcements && isset($get_announcements['all'])) {
                 foreach ($get_announcements['all'] as $key => $value) {
                     $announcement_list[] = array(
+                        'Id'                        =>  $value->ID,
                         'post_title'                =>  $value->post_title,
                         'post_content'              =>  $value->post_content,
                         'post_date'                 =>  $value->post_date

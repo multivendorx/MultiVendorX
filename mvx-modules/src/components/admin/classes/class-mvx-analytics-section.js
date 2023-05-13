@@ -32,6 +32,7 @@ class MVX_Analytics extends Component {
 		super(props);
 		this.state = {
 			report_overview_data: [],
+			report_distribution_overview_data: [],
 			vendor_loading: false,
 			datacommission: [],
 			details_vendor: [],
@@ -439,6 +440,26 @@ class MVX_Analytics extends Component {
 		});
 	}
 
+	handleDistributionVendorsearch(e) {
+		this.setState({
+			store_vendor_select: e.value,
+		});
+
+		axios({
+			method: 'post',
+			url: `${appLocalizer.apiUrl}/mvx_module/v1/get_report_overview_data`,
+			data: {
+				value: this.state.store_date,
+				product: this.state.store_product_select,
+				vendor: e.value,
+			},
+		}).then((responce) => {
+			this.setState({
+				report_distribution_overview_data: responce.data,
+			});
+		});
+	}
+
 	handleReportStatus(e) {
 		axios({
 			method: 'post',
@@ -451,7 +472,7 @@ class MVX_Analytics extends Component {
 			},
 		}).then((responce) => {
 			this.setState({
-				report_overview_data: responce.data,
+				report_distribution_overview_data: responce.data,
 			});
 		});
 	}
@@ -527,6 +548,7 @@ class MVX_Analytics extends Component {
 			.then((response) => {
 				this.setState({
 					report_overview_data: response.data,
+					report_distribution_overview_data: response.data,
 					vendor_loading: true,
 				});
 			});
@@ -1519,7 +1541,7 @@ class MVX_Analytics extends Component {
 									options={this.state.details_vendor}
 									isClearable={true}
 									className="mvx-wrap-bulk-action"
-									onChange={(e) => this.handlevendorsearch(e)}
+									onChange={(e) => this.handleDistributionVendorsearch(e)}
 								/>
 							: ''}
 						</div>
@@ -1555,11 +1577,11 @@ class MVX_Analytics extends Component {
 					</div>
 
 					<div className="mvx-backend-datatable-wrapper">
-					{this.state.report_overview_data.sales_distribution ? 
+					{this.state.report_distribution_overview_data.sales_distribution ? 
 						<DataTable
 							columns={this.state.columns_sales_distribution_list}
 							data={
-								this.state.report_overview_data.sales_distribution
+								this.state.report_distribution_overview_data.sales_distribution
 							}
 							selectableRows
 							onSelectedRowsChange={
