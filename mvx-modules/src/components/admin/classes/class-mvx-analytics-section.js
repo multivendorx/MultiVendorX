@@ -1496,7 +1496,7 @@ class MVX_Analytics extends Component {
 					.modulename ? (
 				<div className="mvx-report-start-content">
 					{
-						this.state.report_overview_data.sales_distribution && appLocalizer.total_sales_distribution_visible ? this.state.report_overview_data.sales_distribution.map((data_earning, index_earning) => {
+						this.state.report_distribution_overview_data.sales_distribution && appLocalizer.total_sales_distribution_visible ? this.state.report_distribution_overview_data.sales_distribution.map((data_earning, index_earning) => {
 							admin_net += data_earning.raw_data.admin_earning;
 							vendor_commission += data_earning.raw_data.commission;
 							order_sub_total += data_earning.raw_data.total_sales;
