@@ -1539,7 +1539,7 @@ class MVX_Analytics extends Component {
 									}
 									defaultValue={this.state.details_vendor[0]}
 									options={this.state.details_vendor}
-									isClearable={true}
+									isClearable={false}
 									className="mvx-wrap-bulk-action"
 									onChange={(e) => this.handleDistributionVendorsearch(e)}
 								/>
@@ -1553,7 +1553,7 @@ class MVX_Analytics extends Component {
 							{appLocalizer.status_list.length > 0 ?
 								<Select
 									options={appLocalizer.status_list}
-									isClearable={true}
+									isClearable={false}
 									className="mvx-wrap-bulk-action"
 									onChange={(e) => this.handleReportStatus(e)}
 								/>

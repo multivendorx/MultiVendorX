@@ -3885,7 +3885,7 @@ class MVX_REST_API {
         $value = $request && $request->get_param('value') ? ($request->get_param('value')) : 0;
         $product = $request && $request->get_param('product') ? ($request->get_param('product')) : 0;
         $find_1st_vendor_from_rest = $this->mvx_vendor_list_search()->data ? $this->mvx_vendor_list_search()->data[0]['value'] : 0;
-        $selectvendor = $request && $request->get_param('vendor') ? ($request->get_param('vendor')) : $find_1st_vendor_from_rest;
+        $selectvendor = $request && $request->get_param('vendor') ? ($request->get_param('vendor')) : 0;
         $status_sales = $request && $request->get_param('status_sales') ? $request->get_param('status_sales') : '';
 
         // Bydefault last 7 days
@@ -5455,7 +5455,7 @@ class MVX_REST_API {
     }
 
     public function mvx_vendor_list_search() {
-        $user_list = array();
+        $option_lists = $default_data = array();
         $user_query = new WP_User_Query(array('role' => 'dc_vendor', 'orderby' => 'registered', 'order' => 'ASC'));
         $users = $user_query->get_results();
         foreach($users as $user) {
@@ -5464,7 +5464,8 @@ class MVX_REST_API {
                 'label' => sanitize_text_field($user->data->display_name)
             );
         }
-        return rest_ensure_response($option_lists);
+        $default_data[] = array('value'   =>  '', 'label'  =>  __('Please select an option', 'multivendorx'));
+        return rest_ensure_response(array_merge($default_data, $option_lists));
     }
 
     public function mvx_specific_search_vendor($request) {
