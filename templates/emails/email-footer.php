@@ -9,24 +9,26 @@
  * @version   	2.7.3
  */
  
-global $MVX;
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
+defined( 'ABSPATH' ) || exit;
 ?>
-															</div>
+																		</div>
+																	</td>
+																</tr>
+															</table>
+															<!-- End Content -->
 														</td>
 													</tr>
 												</table>
-												<!-- End Content -->
+												<!-- End Body -->
 											</td>
 										</tr>
 									</table>
-									<!-- End Body -->
 								</td>
 							</tr>
 							<tr>
 								<td align="center" valign="top">
 									<!-- Footer -->
-									<table border="0" cellpadding="10" cellspacing="0" width="600" id="template_footer">
+									<table border="0" cellpadding="10" cellspacing="0" width="100%" id="template_footer">
 										<tr>
 											<td valign="top">
 												<table border="0" cellpadding="10" cellspacing="0" width="100%">
@@ -43,9 +45,10 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 								</td>
 							</tr>
 						</table>
-					</td>
-				</tr>
-			</table>
-		</div>
+					</div>
+				</td>
+				<td><!-- Deliberately empty to support consistent sizing and layout across multiple email clients. --></td>
+			</tr>
+		</table>
 	</body>
 </html>
