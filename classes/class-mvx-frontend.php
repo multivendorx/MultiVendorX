@@ -444,8 +444,12 @@ class MVX_Frontend {
         if (mvx_is_store_page()) {
             $MVX->library->load_bootstrap_style_lib();
             $MVX->library->load_bootstrap_script_lib();
-            $MVX->library->load_vlite_lib();
-            wp_enqueue_script( 'mvx_vlite_js', $frontend_script_path . 'vlite_script' . $suffix . '.js', array('jquery' ), $MVX->version, true );
+            $store_id = mvx_find_shop_page_vendor();
+            $vendor = get_mvx_vendor($store_id);
+            if ( $vendor && $vendor->banner_type == 'video' ) {
+                $MVX->library->load_vlite_lib();
+                wp_enqueue_script( 'mvx_vlite_js', $frontend_script_path . 'vlite_script' . $suffix . '.js', array('jquery' ), $MVX->version, true );
+            }
             wp_enqueue_script('mvx_seller_review_rating_js');
             wp_enqueue_script('frontend_js');
         }
