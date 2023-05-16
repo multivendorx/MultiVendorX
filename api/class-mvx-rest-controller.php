@@ -810,6 +810,48 @@ class MVX_REST_API {
 
     public function mvx_list_of_vendor_order($request) {
         $order_id = $request && $request->get_param('order_id') ? $request->get_param('order_id') : '';
+        $order = wc_get_order($order_id);
+        $email_and_phone = '';
+
+        $billing_fields = array(
+            'email' => array( 'label' => __( 'Email address', 'multivendorx' ) ),
+            'phone' => array( 'label' => __( 'Phone', 'multivendorx' ) )
+        );
+        foreach ( $billing_fields as $key => $field ) {
+            if ( isset( $field['show'] ) && false === $field['show'] ) {
+                    continue;
+            }
+
+            $field_name = 'billing_' . $key;
+
+            if ( isset( $field['value'] ) ) {
+                    $field_value = $field['value'];
+            } elseif ( is_callable( array( $order, 'get_' . $field_name ) ) ) {
+                    $field_value = $order->{"get_$field_name"}( 'edit' );
+            } else {
+                    $field_value = $order->get_meta( '_' . $field_name );
+            }
+
+            if ( 'billing_phone' === $field_name ) {
+                    $field_value = $field_value;
+            } else {
+                    $field_value = $field_value;
+            }
+
+            if ( $field_value ) {
+                    $email_and_phone = '<p><strong>' . esc_html( $field['label'] ) . ':</strong> ' . wp_kses_post( $field_value ) . '</p>';
+            }
+        }
+
+        $order_id_details = array(
+            'order_date'                =>  $order->get_date_created()->date_i18n( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ) ),
+            'payment_method'            =>  $order->get_payment_method(),
+            'billing_address'           =>  $order->get_formatted_billing_address(),
+            'shipping_address'          =>  $order->get_formatted_shipping_address(),
+            'email_and_phone'           =>  $email_and_phone,
+        );
+
+        return rest_ensure_response($order_id_details);
     }
 
     public function mvx_list_of_vendor_reports($request) {

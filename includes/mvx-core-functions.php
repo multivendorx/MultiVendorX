@@ -131,8 +131,10 @@ if (!function_exists('delete_mvx_vendor_settings')) {
             $option_name = "mvx_{$tab}_settings_name";
             $settings = mvx_get_option("mvx_{$tab}_settings_name");
         }
-        unset($settings[$name]);
-        mvx_update_option($option_name, $settings);
+        if ($settings && isset($settings[$name])) {
+            unset($settings[$name]);
+            mvx_update_option($option_name, $settings);
+        }
     }
 
 }
