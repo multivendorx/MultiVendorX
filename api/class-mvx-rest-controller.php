@@ -5459,10 +5459,10 @@ class MVX_REST_API {
         $user_query = new WP_User_Query(array('role' => 'dc_vendor', 'orderby' => 'registered', 'order' => 'ASC'));
         $users = $user_query->get_results();
         foreach($users as $user) {
-            $option_lists[] = array(
+            $option_lists[] = apply_filters('mvx_backend_vendor_search_list', array(
                 'value' => sanitize_text_field($user->data->ID),
                 'label' => sanitize_text_field($user->data->display_name)
-            );
+            ), $user);
         }
         $default_data[] = array('value'   =>  '', 'label'  =>  __('Please select an option', 'multivendorx'));
         return rest_ensure_response(array_merge($default_data, $option_lists));

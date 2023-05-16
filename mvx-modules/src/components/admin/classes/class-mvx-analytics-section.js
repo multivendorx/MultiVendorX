@@ -595,6 +595,7 @@ class MVX_Analytics extends Component {
 
 		var admin_net = 0;
 		var vendor_commission = 0;
+		var vendor_net_commission = 0;
 		var order_sub_total = 0;
 		var shipping = 0;
 
@@ -1501,11 +1502,16 @@ class MVX_Analytics extends Component {
 							vendor_commission += data_earning.raw_data.commission;
 							order_sub_total += data_earning.raw_data.total_sales;
 							shipping += data_earning.raw_data.shipping_amount;
-						}) : '',
+							vendor_net_commission += data_earning.raw_data.v_net_commission;
+						}) : ''
+					}
+					{
 						appLocalizer.total_sales_distribution_visible ? <div className="total-net-earning"> 
 						Total Admin Net Earning: {admin_net} 
 						<br/>
 						Total Vendor Commission: {vendor_commission}
+						<br/>
+						Total Vendor Net Commission: {vendor_net_commission}
 						<br/>
 						Total Sub Total: {order_sub_total}
 						<br/>
