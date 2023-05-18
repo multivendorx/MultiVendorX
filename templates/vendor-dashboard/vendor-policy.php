@@ -4,7 +4,7 @@
  *
  * Override this template by copying it to yourtheme/MultiVendorX/vendor-dashboard/vendor-policy.php
  *
- * @author 		MultiVendorX
+ * @author      MultiVendorX
  * @package MultiVendorX/Templates
  * @version   2.2.0
  */
@@ -39,22 +39,19 @@ $_wp_editor_settings = apply_filters('mvx_vendor_policies_wp_editor_settings', $
                             <label class="control-label col-sm-3"><?php _e('Shipping Policy', 'multivendorx'); ?></label>
                             <div class="col-md-6 col-sm-9">
                                 <?php $MVX->mvx_wp_fields->dc_generate_form_field(array("vendor_shipping_policy" => array('name' => 'vendor_shipping_policy', 'type' => 'wpeditor', 'class' => 'regular-textarea', 'value' => $vendor_shipping_policy, 'settings' => $_wp_editor_settings))); ?>
-                                <!--textarea  class="no_input form-control" name="vendor_shipping_policy" cols="" rows=""><?php echo isset($vendor_shipping_policy['value']) ? $vendor_shipping_policy['value'] : $mvx_policy_settings['shipping_policy']; ?></textarea-->
-                            </div>  
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-3"><?php _e('Refund Policy', 'multivendorx'); ?></label>
                             <div class="col-md-6 col-sm-9">
                                 <?php $MVX->mvx_wp_fields->dc_generate_form_field(array("vendor_refund_policy" => array('name' => 'vendor_refund_policy', 'type' => 'wpeditor', 'class' => 'regular-textarea', 'value' => $vendor_refund_policy, 'settings' => $_wp_editor_settings))); ?>
-                                <!--textarea  class="no_input form-control" name="vendor_refund_policy" cols="" rows=""><?php echo isset($vendor_refund_policy['value']) ? $vendor_refund_policy['value'] : $mvx_policy_settings['refund_policy']; ?></textarea-->
-                            </div>  
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-3"><?php _e('Cancellation/Return/Exchange Policy', 'multivendorx'); ?></label>
                             <div class="col-md-6 col-sm-9">
                                 <?php $MVX->mvx_wp_fields->dc_generate_form_field(array("vendor_cancellation_policy" => array('name' => 'vendor_cancellation_policy', 'type' => 'wpeditor', 'class' => 'regular-textarea', 'value' => $vendor_cancellation_policy, 'settings' => $_wp_editor_settings))); ?>
-                                <!--textarea class="no_input form-control" type="text" name="vendor_cancellation_policy" cols="" rows=""><?php echo isset($vendor_cancellation_policy['value']) ? $vendor_cancellation_policy['value'] : ''; ?></textarea-->
-                            </div>  
+                            </div>
                         </div>
                 </div>
             </div>
