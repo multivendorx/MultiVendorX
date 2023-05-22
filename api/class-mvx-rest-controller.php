@@ -811,7 +811,14 @@ class MVX_REST_API {
     public function mvx_list_of_vendor_order($request) {
         $order_id = $request && $request->get_param('order_id') ? $request->get_param('order_id') : '';
         $order = wc_get_order($order_id);
-        $email_and_phone = '';
+        $email_and_phone = $product_name = '';
+
+
+        $line_items          = $order->get_items( 'line_item' );
+        foreach ($line_items as $item_id => $item) {
+            $product_name      .= $item->get_name();
+        }
+
 
         $billing_fields = array(
             'email' => array( 'label' => __( 'Email address', 'multivendorx' ) ),
@@ -849,6 +856,8 @@ class MVX_REST_API {
             'billing_address'           =>  $order->get_formatted_billing_address(),
             'shipping_address'          =>  $order->get_formatted_shipping_address(),
             'email_and_phone'           =>  $email_and_phone,
+            'product_name'              =>  $product_name,
+            "status"                    =>  $order->get_status()
         );
 
         return rest_ensure_response($order_id_details);
