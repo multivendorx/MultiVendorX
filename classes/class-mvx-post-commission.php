@@ -346,7 +346,8 @@ class MVX_Commission {
             $tax_amount = get_post_meta( $commission_id, '_tax', true );
             $commission_refunded_tax = get_post_meta( $commission_id, '_commission_refunded_tax', true );
             $total = floatval($tax_amount) + floatval($commission_refunded_tax);
-            return $context == 'view' ? wc_price($total, array('currency' => $order->get_currency())) : $total;
+            $currency = $order ? $order->get_currency() : get_woocommerce_currency();
+            return $context == 'view' ? wc_price($total, array('currency' => $currency)) : $total;
         }
     }
     
