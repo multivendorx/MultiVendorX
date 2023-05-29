@@ -114,7 +114,7 @@
                  $product = $item->get_product();
  
                  // if vendor is not vendor id, skip.
-                 $product_vendor_id = get_mvx_product_vendors( $product->get_id() )->id;
+                 $product_vendor_id = get_mvx_product_vendors( $product->get_id() ) ? get_mvx_product_vendors( $product->get_id() )->id : 0;
                  if ($vendor_id !== $product_vendor_id){
                      continue;
                  }
