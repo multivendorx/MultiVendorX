@@ -274,13 +274,15 @@ button.mvx-fill-butn{
 }
 // youtube v ideo for all
 .v-vlite.v-playing.v-video {
-    height: 300px;
+    height: 600px;
 }
 .mvx_bannersec_start .banner_area {
     overflow:hidden;
 }
 .mvx_bannersec_start .banner_video {
-    width: 100%;
+  width: 100%;
+  max-height: 18.75rem;
+  overflow: hidden;
 }
 .mvx_bannersec_start .banner_video iframe {
     left: 0 !important;
