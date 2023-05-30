@@ -87,7 +87,7 @@ class MVX_Frontend {
 
         if ( get_mvx_vendor_settings('display_product_seller', 'settings_general') && apply_filters('mvx_display_multiple_vendor_notice_at_cart_chekout_page', true) ){
             add_action( 'woocommerce_before_cart', array( &$this, 'message_multiple_vendors_cart' ), 10 );
-            add_filter( 'woocommerce_locate_template', array( &$this, 'mvx_template_cart' ), 10, 3 );
+            add_filter( 'woocommerce_locate_template', array( &$this, 'mvx_template_cart' ), 10, 5 );
             add_filter( 'wc_get_template', array( &$this, 'mvx_template_orderdetails' ), 10, 5 );
         }
         //display suborder in mail
