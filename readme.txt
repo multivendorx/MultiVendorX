@@ -293,7 +293,7 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 == Changelog ==
 
 = 4.0.19 - 2023-05-09 =
-* Fix     	- Fatal error ata cart page.
+* Fix     	- Fatal error on the cart page.
 
 = 4.0.18 - 2023-05-30 =
 * Added     - Compatibility of WordPress 6.2.2.
