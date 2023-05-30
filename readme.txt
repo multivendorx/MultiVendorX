@@ -3,7 +3,7 @@ Contributors: wcmp, purnendu, rajsekharchatterjee11
 Tags: multi vendor marketplace, woocommerce multivendor marketplace, multi seller store, product vendors, best marketplace plugin, multi seller, one product multi seller, woocommerce vendors, ebay, etsy, amazon, commission rate
 Donate link: https://multivendorx.com/donate
 Requires at least: 4.4
-Tested up to: 6.2
+Tested up to: 6.2.2
 Requires PHP: 5.6
 Stable tag: 4.0.18
 License: GPLv2 or later
@@ -293,12 +293,13 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 == Changelog ==
 
 = 4.0.18 - 2023-05-30 =
-* Added     - Compatibility of WooCommerce 7.7.0.
+* Added     - Compatibility of WordPress 6.2.2.
+* Added     - Compatibility of WooCommerce 7.7.1.
 * Fix     	- Issue frontend for [mvx_vendorslist] shortcode #389.
 * Fix     	- Issue in policies submenu in Vendor dashboard #386.
 * Fix     	- Withdrawal request to Admin from Vendor by BAC change #385.
-* Fix     	- vlite jsin vendor shop page issue #382.
-* Fix     	- email right align issue #380.
+* Fix     	- Vlite jsin vendor shop page issue #382.
+* Fix     	- Email right align issue #380.
 * Fix     	- QnA flow improvement #378.
 * Fix     	- Vendor Banner video #376.
 * Fix     	- My Account page error #392.
