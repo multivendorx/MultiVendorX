@@ -71,7 +71,6 @@ class StoreTabs extends MVX_Elementor_TagBase {
                 ]
             ];
         }
-
         /**
          * Filter to modify tag values
          *
@@ -91,16 +90,22 @@ class StoreTabs extends MVX_Elementor_TagBase {
      */
     protected function get_store_tab_items() {
         return [
-            'products' => [
+            [
+                'id'              => 'products',
                 'title' => __( 'Products', 'multivendorx' ),
+                'show'        => true,
                 'url'   => '#',
             ],
-            'policies' => [
+            [
+                'id'              => 'policies',
                 'title' => __( 'Policies', 'multivendorx' ),
+                'show'        => true,
                 'url'   => '#',
             ],
-            'reviews' => [
+            [
+                'id'              => 'reviews',
                 'title' => __( 'Reviews', 'multivendorx' ),
+                'show'        => true,
                 'url'   => '#'
             ],
         ];

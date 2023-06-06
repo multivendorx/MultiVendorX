@@ -806,6 +806,16 @@ class MVX_REST_API {
             'callback' => array( $this, 'mvx_list_of_vendor_order' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
+        // create products
+        register_rest_route( 'mvx_module/v1', '/create_product', [
+            'methods' => WP_REST_Server::EDITABLE,
+            'callback' => array( $this, 'mvx_create_product' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+    }
+
+    public function mvx_create_product() {
+        
     }
 
     public function mvx_list_of_vendor_order($request) {
