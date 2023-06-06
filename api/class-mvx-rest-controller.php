@@ -814,9 +814,7 @@ class MVX_REST_API {
         ] );
     }
 
-    public function mvx_create_product() {
-        
-    }
+    public function mvx_create_product() {}
 
     public function mvx_list_of_vendor_order($request) {
         $order_id = $request && $request->get_param('order_id') ? $request->get_param('order_id') : '';
