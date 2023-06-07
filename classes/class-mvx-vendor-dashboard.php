@@ -1442,9 +1442,11 @@ Class MVX_Admin_Dashboard {
     }
 
     public function mvx_find_index_by_country_code( $lists, $code = '') {
-        foreach (array_keys($lists) as $key => $value) {
-            if ($value == $code) {
-                return $key;
+        if (is_array($lists) && !empty($lists)) {
+            foreach (array_keys($lists) as $key => $value) {
+                if ($value == $code) {
+                    return $key;
+                }
             }
         }
     }
