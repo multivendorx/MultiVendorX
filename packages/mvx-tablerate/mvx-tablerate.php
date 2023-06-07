@@ -354,7 +354,7 @@ class MVX_Tablerate {
     }
 
     // Hide table rate when no rates are found
-    public function mvx_hide_table_rate_when_disabled( $rates = array(), $package ) {
+    public function mvx_hide_table_rate_when_disabled( $rates = array(), $package = array() ) {
         $table_rate = array();
         foreach ( $rates as $rate_id => $rate ) {
             if ( 'mvx_vendor_shipping' === $rate->method_id  && strpos($rate->id, "table_rate") !== false ) {
