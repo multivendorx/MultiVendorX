@@ -5525,7 +5525,7 @@ class MVX_REST_API {
         $all_vendors = $this->mvx_list_all_vendor('');
         if ($all_vendors) {
             foreach ($all_vendors->data as $vendor_key => $vendor_value) {
-                if (stripos($vendor_value['sample_title'], $vendor_name) !== false) {
+                if (stripos($vendor_value['sample_title'], $vendor_name) !== false || stripos($vendor_value['username'], $vendor_name) !== false || stripos($vendor_value['email'], $vendor_name) !== false) {
                     $search_vendor[]    =   $all_vendors->data[$vendor_key];
                 }
             }
