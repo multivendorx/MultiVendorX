@@ -344,8 +344,8 @@ class MVX_Shipping_By_Country extends WC_Shipping_Method {
            $price[ $vendor_id ]['add_product'] = 0;
          }
 
-         $mvx_country_rates = get_user_meta( $vendor_id, '_mvx_country_rates', true );
-         $mvx_state_rates   = get_user_meta( $vendor_id, '_mvx_state_rates', true );
+         $mvx_country_rates = get_user_meta( $vendor_id, '_mvx_country_rates', true ) ? get_user_meta( $vendor_id, '_mvx_country_rates', true ) : array();
+         $mvx_state_rates   = get_user_meta( $vendor_id, '_mvx_state_rates', true ) ? get_user_meta( $vendor_id, '_mvx_state_rates', true ) : array();
          
          if ( isset( $mvx_state_rates[$destination_country] ) ) {
            if ( $destination_state && array_key_exists( $destination_state, $mvx_state_rates[$destination_country] ) ) {
