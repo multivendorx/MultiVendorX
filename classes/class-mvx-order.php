@@ -33,7 +33,7 @@ class MVX_Order {
             add_filter('wp_count_posts', array($this, 'shop_order_count_orders'), 99, 3 );
             // customer's order list (my account)
             add_filter('woocommerce_my_account_my_orders_query', array($this, 'woocommerce_my_account_my_orders_query'), 99);
-            add_filter('woocommerce_my_account_my_orders_columns', array($this, 'woocommerce_my_account_my_orders_columns'), 99);
+            add_filter('woocommerce_account_orders_columns', array($this, 'woocommerce_my_account_my_orders_columns'), 99);
             add_action('woocommerce_my_account_my_orders_column_mvx_suborder', array($this, 'woocommerce_my_account_my_orders_column_mvx_suborder'), 99);
             add_filter( 'woocommerce_customer_available_downloads', array($this, 'woocommerce_customer_available_downloads'), 99);
             add_action('mvx_frontend_enqueue_scripts', array($this, 'mvx_frontend_enqueue_scripts'));
