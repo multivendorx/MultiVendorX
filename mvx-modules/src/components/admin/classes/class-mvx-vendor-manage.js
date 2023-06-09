@@ -105,9 +105,10 @@ class MVXBackendVendor extends React.Component {
 	handle_Vendor_Approve(e, reload = '') {
 		axios({
 			method: 'post',
-			url: `${appLocalizer.apiUrl}/mvx_module/v1/approve_vendor`,
+			url: `${appLocalizer.apiUrl}/mvx_module/v1/active_suspend_vendor`,
 			data: {
 				vendor_id: e,
+				status: 'activate',
 				section: 'vendor_list',
 			},
 		}).then((response) => {
