@@ -807,14 +807,20 @@ class MVX_REST_API {
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
         // create products
-        register_rest_route( 'mvx_module/v1', '/create_product', [
+        register_rest_route( 'mvx/v1', '/create_product', [
             'methods' => WP_REST_Server::EDITABLE,
             'callback' => array( $this, 'mvx_create_product' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
     }
 
-    public function mvx_create_product() {}
+    public function mvx_create_product($request) {
+        $name = $request->get_param('name') ? $request->get_param('name') : '';
+        $regular_price = $request->get_param('regular_price') ? $request->get_param('regular_price') : '';
+        $sku = $request->get_param('sku') ? $request->get_param('sku') : '';
+        $manage_stock = $request->get_param('manage_stock') ? $request->get_param('manage_stock') : '';
+        $post_id = wp_insert_post( array( 'post_title' => $name, 'post_type' => 'product', 'post_status' => 'publish' ) );
+    }
 
     public function mvx_list_of_vendor_order($request) {
         $order_id = $request && $request->get_param('order_id') ? $request->get_param('order_id') : '';

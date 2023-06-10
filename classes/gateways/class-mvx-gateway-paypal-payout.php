@@ -158,7 +158,7 @@ class MVX_Gateway_Paypal_Payout extends MVX_Payment_Gateway {
         //extract the response details
         $result_array = json_decode(wp_remote_retrieve_body( $response ));
 
-        $batch_status = $result_array->batch_header->batch_status;
+        $batch_status = $result_array ? $result_array->batch_header->batch_status : '';
         if($this->payout_mode == 'true'){
             $transaction_status = is_array($result_array->items) ? $result_array->items[0]->transaction_status : '';
             if ($batch_status == 'SUCCESS' && $transaction_status == 'SUCCESS') {
