@@ -26,7 +26,7 @@ jQuery(document).ready(function ($) {
             .on('click', '#mvx_vendor_reviews #respond #submit', function () {
                 var $rating = $(this).closest('#respond').find('#rating'),
                         rating = $rating.val();
-                if ($rating.size() > 0 && !rating) {
+                if ($rating.length > 0 && !rating) {
                     window.alert(mvx_seller_review_rating_js_script_data.messages.rating_error_msg_txt);
                     return false;
                 }
