@@ -5,7 +5,7 @@ Donate link: https://multivendorx.com/donate
 Requires at least: 4.4
 Tested up to: 6.2.2
 Requires PHP: 5.6
-Stable tag: 4.0.19
+Stable tag: 4.0.20
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -291,6 +291,17 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.0.20 - 2023-06-13 =
+* Added     - Compatibility of WooCommerce 7.7.2.
+* Fix       - Search vendors on their Profile name #256.
+* Fix       - Review js issue #404.
+* Fix       - Deprecated issue #397.
+* Fix       - Issue in plugin's CSS #396.
+* Fix       - Elementor Issue #403.
+* Fix       - MVX table rate error #398.
+* Fix       - Error #406.
+* Updated   - Language file.
 
 = 4.0.19 - 2023-05-09 =
 * Fix     	- Fatal error on the cart page.
