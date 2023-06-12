@@ -11,6 +11,7 @@ import Modules from './class-mvx-modules-listing';
 import StatusTools from './class-mvx-status-tools';
 import Dashboard from './class-mvx-dashboard-section';
 import Membership from './class-mvx-membership';
+import Advertisement from './class-mvx-advertisement';
 
 class Mvx_Backend_Endpoints_Load extends Component {
 	constructor(props) {
@@ -105,6 +106,11 @@ class Mvx_Backend_Endpoints_Load extends Component {
 			new URLSearchParams(useLocation().hash).get('submenu') === 'modules'
 		) {
 			return <Modules />;
+		} else if (
+			new URLSearchParams(useLocation().hash).get('submenu') &&
+			new URLSearchParams(useLocation().hash).get('submenu') === 'advertisement'
+		) {
+			return <Advertisement />;
 		}
 		return <Dashboard />;
 	}

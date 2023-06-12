@@ -220,6 +220,17 @@ class MVX_Admin {
             $commission_status_list_action = mvx_convert_select_structure(mvx_get_commission_statuses());
             $select_option_delete = mvx_convert_select_structure(array('delete' => __('Delete', 'multivendorx')));
             $select_option_delete_for_vendor = mvx_convert_select_structure(array('delete' => __('Delete', 'multivendorx'), 'approve' => __('Approve', 'multivendorx'), 'pending' => __('Pending', 'multivendorx'), 'suspend' => __('Suspend', 'multivendorx'), 'reject' => __('Reject', 'multivendorx')));
+            //advertisement actions
+            $advertisement_bulk_list_action = mvx_convert_select_structure(array('expire' => __('Expire', 'multivendorx'), 'delete' => __('Delete', 'multivendorx')));
+            $advertisement_created_via_action = mvx_convert_select_structure(array('admin' => __('Admin', 'multivendorx'), 'purchase' => __('Purchase', 'multivendorx')));
+            $users = get_users(array( 'role__in' => array('dc_vendor','administrator')));
+            $select_option_store = [];
+            if ($users) {
+                foreach( $users as $value ) {
+                    $select_option_store[$value->ID] = $value->display_name;
+                }
+            }
+            $advertisement_select_option_store = mvx_convert_select_structure($select_option_store);
             // product report chart data for csv
             $report_product_header = mvx_convert_select_structure(
                 apply_filters('mvx_product_report_data_header',array(
@@ -393,6 +404,18 @@ class MVX_Admin {
                 'add_new'  =>  __('Add New', 'multivendorx'),
                 'describe_yourself'  =>  __('Send your rejection note to vendor.', 'multivendorx'),
                 'optional_note'  =>  __('Optional note for acceptance / rejection', 'multivendorx'),
+            );
+
+            $advertising_page_string     =   array(
+                'active'  =>  __('Active', 'multivendorx'),
+                'expire'  =>  __('Expire', 'multivendorx'),
+                'advertisements'  =>  __('Advertisements', 'multivendorx'),
+                'add_advertisement'  =>  __('Add Advertisement', 'multivendorx'),
+                'add_new_advertisement'  =>  __('Add New Advertisement', 'multivendorx'),
+                'search_advertisement'  =>  __('Search Advertisements', 'multivendorx'),
+                'show_created_via_filter'  =>  __('Select Created Via', 'multivendorx'),
+                'show_all_stores'  =>  __('Select Store', 'multivendorx'),
+                'show_all_products'  =>  __('Select Product', 'multivendorx'),
             );
 
             $status_and_tools_string = array(
@@ -727,6 +750,51 @@ class MVX_Admin {
                 'allowOverflow'=> true,
                 'button'=> true,
                 'last_action'   =>  'last_action_trigger'
+            );
+
+            $columns_advertisement = array(
+                array(
+                    'name'      =>  __('Product Name', 'multivendorx'),
+                    'selector'  =>  '',
+                    'sortable'  =>  true,
+                    'selector_choice'  => "product_name",
+                ),
+                array(
+                    'name'      =>  __('Store Name', 'multivendorx'),
+                    'selector'  =>  '',
+                    'sortable'  =>  true,
+                    'selector_choice'  => "store_name",
+                ),
+                array(
+                    'name'      =>  __('Created Via', 'multivendorx'),
+                    'selector'  =>  '',
+                    'sortable'  =>  true,
+                    'selector_choice'  => "created_via",
+                ),
+                array(
+                    'name'      =>  __('Order ID', 'multivendorx'),
+                    'selector'  =>  '',
+                    'sortable'  =>  true,
+                    'selector_choice'  => "order_id",
+                ),
+                array(
+                    'name'      =>  __('Cost', 'multivendorx'),
+                    'selector'  =>  '',
+                    'sortable'  =>  true,
+                    'selector_choice'  => "cost",
+                ),
+                array(
+                    'name'      =>  __('Expires', 'multivendorx'),
+                    'selector'  =>  '',
+                    'sortable'  =>  true,
+                    'selector_choice'  => "expires_at",
+                ),
+                array(
+                    'name'      =>  __('Date', 'multivendorx'),
+                    'selector'  =>  '',
+                    'sortable'  =>  true,
+                    'selector_choice'  => "date",
+                )
             );
 
             $columns_commission = array(
@@ -1242,6 +1310,11 @@ class MVX_Admin {
             'select_module_category_option'         =>  $select_module_category_option,
             'errors_log'                            =>  $this->get_error_log_rows(100),
             'mvx_tinymce_key'                       =>  get_mvx_vendor_settings('mvx_tinymce_api_section', 'settings_general'),
+            'advertisement_select_option_store' =>  $advertisement_select_option_store,
+            'advertisement_bulk_list_action'    =>  $advertisement_bulk_list_action,
+            'advertisement_created_via_action'  =>  $advertisement_created_via_action,
+            'advertising_page_string'           =>  $advertising_page_string,
+            'columns_advertisement'             =>  $columns_advertisement,
         ] ) );
         }
 
