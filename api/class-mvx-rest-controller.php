@@ -817,9 +817,14 @@ class MVX_REST_API {
     public function mvx_create_product($request) {
         $name = $request->get_param('name') ? $request->get_param('name') : '';
         $regular_price = $request->get_param('regular_price') ? $request->get_param('regular_price') : '';
+        $sale_price = $request->get_param('sale_price') ? $request->get_param('sale_price') : '';
         $sku = $request->get_param('sku') ? $request->get_param('sku') : '';
         $manage_stock = $request->get_param('manage_stock') ? $request->get_param('manage_stock') : '';
         $post_id = wp_insert_post( array( 'post_title' => $name, 'post_type' => 'product', 'post_status' => 'publish' ) );
+
+        update_post_meta($post_id, '_regular_price', $regular_price);
+        update_post_meta($post_id, '_sale_price', $sale_price);
+        update_post_meta($post_id, '_sku', $sku);
     }
 
     public function mvx_list_of_vendor_order($request) {
