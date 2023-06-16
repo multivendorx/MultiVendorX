@@ -1608,8 +1608,7 @@ class MVX_Product {
         $commission_percentage = get_term_meta($term->term_id, 'commission_percentage', true);
         $fixed_with_percentage = get_term_meta($term->term_id, 'fixed_with_percentage', true);
         $fixed_with_percentage_qty = get_term_meta($term->term_id, 'fixed_with_percentage_qty', true);
-        $commission_type_value = get_mvx_vendor_settings('commission_type', 'commissions') && !empty(get_mvx_vendor_settings('commission_type', 'commissions')) ? get_mvx_vendor_settings('commission_type', 'commissions')['value'] : '';
-        //print_r($commission_type_value);die;
+        $commission_type_value = get_mvx_vendor_settings('commission_type', 'commissions') && !empty(get_mvx_vendor_settings('commission_type', 'commissions')) ? mvx_get_settings_value(get_mvx_vendor_settings('commission_type', 'commissions')) : '';
         ?>
         <?php if ('fixed' === $commission_type_value || 'percent' === $commission_type_value): ?>
             <tr class="form-field">
