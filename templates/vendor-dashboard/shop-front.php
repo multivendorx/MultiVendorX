@@ -34,6 +34,8 @@ $store_banner_types = apply_filters('mvx_vendor_storefront_banner_types', array(
     ));
 $vendor_banner_type = get_user_meta($vendor->id, '_vendor_banner_type');
 $vendor_video = get_user_meta($vendor->id, '_vendor_video', true);
+$image = $vendor->get_image() ? $vendor->get_image() : $MVX->plugin_url . 'assets/images/WP-stdavatar.png';
+$banner = $vendor->get_image('banner') ? $vendor->get_image('banner') : $MVX->plugin_url . 'assets/images/banner_placeholder.jpg';
 ?>
 <style>
     .store-map-address{
@@ -79,11 +81,11 @@ $vendor_video = get_user_meta($vendor->id, '_vendor_video', true);
                     <label class="control-label col-sm-3 col-md-3"><?php _e('Store Logo', 'multivendorx'); ?></label>
                     <div class="col-md-6 col-sm-9">
                         <div class="vendor-profile-pic-wraper pull-left">
-                            <img id="vendor-profile-img" src="<?php echo (isset($vendor_image['url']) && (!empty($vendor_image['url']))) ? $vendor_image['url'] : $MVX->plugin_url . 'assets/images/logo_placeholder.jpg'; ?>" alt="dp">
+                            <img id="vendor-profile-img" src="<?php echo $image; ?>" alt="dp">
                             <div class="mvx-media profile-pic-btn">
                                 <button type="button" class="mvx_upload_btn" data-target="vendor-profile"><i class="mvx-font ico-edit-pencil-icon"></i> <?php _e('Store Logo', 'multivendorx'); ?></button>
                             </div>
-                            <input type="hidden" name="vendor_image" id="vendor-profile-img-id" class="user-profile-fields" value="<?php echo (isset($vendor_image['value']) && (!empty($vendor_image['value']))) ? $vendor_image['value'] : $MVX->plugin_url . 'assets/images/WP-stdavatar.png'; ?>"  />
+                            <input type="hidden" name="vendor_image" id="vendor-profile-img-id" class="user-profile-fields" value="<?php echo $image; ?>"  />
                         </div>
                     </div>
                 </div>
@@ -127,9 +129,9 @@ $vendor_video = get_user_meta($vendor->id, '_vendor_video', true);
                                     }
 
                                     // need to update slider meta to set new gallery ids
-                                    if ( $update_meta ) {
-                                        update_post_meta( $post->ID, '_slider_image_gallery', implode( ',', $updated_gallery_ids ) );
-                                    }
+                                    // if ( $update_meta ) {
+                                    //     update_post_meta( $post->ID, '_slider_image_gallery', implode( ',', $updated_gallery_ids ) );
+                                    // }
                                 }
                                 ?>
                             </ul>
@@ -156,42 +158,14 @@ $vendor_video = get_user_meta($vendor->id, '_vendor_video', true);
                 <div class="row">
                     <div class="col-md-12">
                         <div class="vendor-cover-wrap">
-                            <img id="vendor-cover-img" src="<?php echo (isset($vendor_banner['url']) && (!empty($vendor_banner['url'])) ) ? $vendor_banner['url'] : $MVX->plugin_url . 'assets/images/banner_placeholder.jpg'; ?>" alt="banner">
+                            <img id="vendor-cover-img" src="<?php echo $banner; ?>" alt="banner">
 
                             <div class="mvx-media cover-pic-button pull-right">
                                 <button type="button" class="mvx_upload_btn" data-target="vendor-cover"><i class="mvx-font ico-edit-pencil-icon"></i> <?php _e('Upload Cover Picture', 'multivendorx'); ?></button>
                             </div>
-                            <input type="hidden" name="vendor_banner" id="vendor-cover-img-id" class="user-profile-fields" value="<?php echo (isset($vendor_banner['value']) && (!empty($vendor_banner['value'])) ) ? $vendor_banner['value'] : $MVX->plugin_url . 'assets/images/banner_placeholder.jpg'; ?>"  />
+                            <input type="hidden" name="vendor_banner" id="vendor-cover-img-id" class="user-profile-fields" value="<?php echo $banner; ?>"  />
                         </div>
                     </div>
-                    <!-- 
-                    <div class="col-md-3">
-                        <div class="mvx_media_block">
-                            <span class="dc-wp-fields-uploader">
-                                <img class="one_third_part" id="vendor_image_display" width="300" src="<?php echo (isset($vendor_image['value']) && (!empty($vendor_image['value']))) ? $vendor_image['value'] : $MVX->plugin_url . 'assets/images/logo_placeholder.jpg'; ?>" class="placeHolder" />
-                                <input type="text" name="vendor_image" id="vendor_image" style="display: none;" class="user-profile-fields" readonly value="<?php echo (isset($vendor_image['value']) && (!empty($vendor_image['value']))) ? $vendor_image['value'] : $MVX->plugin_url . 'assets/images/logo_placeholder.jpg'; ?>"  />
-                            </span>
-                            <div class="button-group">                            
-                                <button class="upload_button mvx_black_btn moregap two_third_part btn btn-primary" name="vendor_image_button" id="vendor_image_button" value="<?php _e('Upload', 'multivendorx') ?>" style=" display: block; "><span class="dashicons dashicons-upload"></span> <?php _e('Upload', 'multivendorx') ?></button>
-                                <button class="remove_button mvx_black_btn moregap two_third_part btn btn-primary" name="vendor_image_remove_button" id="vendor_image_remove_button" value="<?php _e('Replace', 'multivendorx') ?>"><span class="dashicons dashicons-upload"></span> <?php _e('Replace', 'multivendorx') ?></button>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-7 col-md-offset-2">
-                        <div class="mvx_media_block">
-                            <span class="dc-wp-fields-uploader">
-                                <img class="one_third_part" id="vendor_banner_display" width="300" src="<?php echo (isset($vendor_banner['value']) && (!empty($vendor_banner['value'])) ) ? $vendor_banner['value'] : $MVX->plugin_url . 'assets/images/banner_placeholder.jpg'; ?>" class="placeHolder" />
-                                <input type="text" name="vendor_banner" id="vendor_banner" style="display: none;" class="user-profile-fields" readonly value="<?php echo (isset($vendor_banner['value']) && (!empty($vendor_banner['value'])) ) ? $vendor_banner['value'] : $MVX->plugin_url . 'assets/images/banner_placeholder.jpg'; ?>"  />
-                            </span>
-                            <div class="button-group">   
-                                <button class="upload_button mvx_black_btn moregap two_third_part btn btn-primary" name="vendor_banner_button" id="vendor_banner_button"><span class="dashicons dashicons-upload"></span> <?php _e('Upload', 'multivendorx') ?></button>
-                                <button class="remove_button mvx_black_btn moregap two_third_part btn btn-primary" name="vendor_banner_remove_button" id="vendor_banner_remove_button"><span class="dashicons dashicons-upload"></span> <?php _e('Replace', 'multivendorx') ?></button>
-                            </div>
-                            <div class="clear"></div>
-                        </div>       
-                    </div>
-                    -->
                 </div>         
             </div>
         </div>
@@ -232,7 +206,6 @@ $vendor_video = get_user_meta($vendor->id, '_vendor_video', true);
                         <div class="col-md-6 col-sm-9">
                             <?php $vendor_description = isset($vendor_description['value']) ? $vendor_description['value'] : '';
                             $MVX->mvx_wp_fields->dc_generate_form_field(array("vendor_description" => array('name' => 'vendor_description', 'type' => $field_type, 'class' => 'no_input form-control regular-textarea', 'value' => $vendor_description, 'settings' => $_wp_editor_settings))); ?>
-                            <!--textarea class="no_input form-control" name="vendor_description" cols="" rows=""><?php //echo isset($vendor_description['value']) ? $vendor_description['value'] : ''; ?></textarea-->
                         </div>
                     </div>
                     <?php if (apply_filters('can_vendor_add_message_on_email_and_thankyou_page', true)) { ?>
@@ -241,7 +214,6 @@ $vendor_video = get_user_meta($vendor->id, '_vendor_video', true);
                         <div class="col-md-6 col-sm-9">
                             <?php $message_to_buyer = isset($vendor_message_to_buyers['value']) ? $vendor_message_to_buyers['value'] : '';
                             $MVX->mvx_wp_fields->dc_generate_form_field(array("vendor_message_to_buyers" => array('name' => 'vendor_message_to_buyers', 'type' => $field_type, 'class' => 'no_input form-control regular-textarea', 'value' => $message_to_buyer, 'settings' => $_wp_editor_settings))); ?>
-                            <!--textarea class="no_input form-control" name="vendor_message_to_buyers" cols="" rows=""><?php //echo isset($vendor_message_to_buyers['value']) ? $vendor_message_to_buyers['value'] : ''; ?></textarea-->
                         </div>
                     </div>
                     <?php } ?>
@@ -274,7 +246,6 @@ $vendor_video = get_user_meta($vendor->id, '_vendor_video', true);
                                             }
                                         ?>
                                     </select>
-                                    <!--input class="no_input form-control inp-btm-margin" type="text" placeholder="<?php //_e('Country', 'multivendorx'); ?>" name="vendor_country" value="<?php echo isset($vendor_country['value']) ? $vendor_country['value'] : ''; ?>"-->
                                 </div>
                                 <div class="col-md-6">
                                     <?php $country_code = get_user_meta($vendor->id, '_vendor_country_code', true);
@@ -289,7 +260,6 @@ $vendor_video = get_user_meta($vendor->id, '_vendor_video', true);
                                         endif;
                                         ?>
                                     </select>
-                                    <!--input class="no_input form-control inp-btm-margin"  type="text" placeholder="<?php //_e('State', 'multivendorx'); ?>"  name="vendor_state" value="<?php echo isset($vendor_state['value']) ? $vendor_state['value'] : ''; ?>"-->
                                 </div>
                                 <div class="col-md-6">
                                     <input class="no_input form-control inp-btm-margin" type="text" placeholder="<?php _e('City', 'multivendorx'); ?>"  name="vendor_city" value="<?php echo isset($vendor_city['value']) ? $vendor_city['value'] : ''; ?>">

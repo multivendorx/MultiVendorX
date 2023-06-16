@@ -3438,12 +3438,27 @@ class MVX_REST_API {
                 'database_value' => isset($user_vendor->page_slug) ? $user_vendor->page_slug : '',
             ],
             [
+                'key'    => 'vendor_image',
+                'label'   => __( 'Store Logo', 'multivendorx' ),
+                'type'    => 'file',
+                'width' =>  75,
+                'height'    => 75,
+                'database_value' => $user_vendor->get_image() ? $user_vendor->get_image() : '',
+            ],
+            [
+                'key'    => 'vendor_banner',
+                'label'   => __( 'Store Banner', 'multivendorx' ),
+                'type'    => 'file',
+                'width' =>  520,
+                'height'    => 200,
+                'database_value' => $user_vendor->get_image('banner') ? $user_vendor->get_image('banner') : $MVX->plugin_url . 'assets/images/banner_placeholder.jpg',
+            ],
+            [
                 'label' => __('Store Description', 'multivendorx'),
                 'type' => 'textarea', 
                 'key' => 'vendor_description', 
                 'database_value' => isset($vendor_description) ? $vendor_description : ''
             ],
-
             [
                 'label' => __('Phone', 'multivendorx'), 
                 'type' => 'number', 

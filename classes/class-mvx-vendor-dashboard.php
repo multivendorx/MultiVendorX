@@ -1251,6 +1251,15 @@ Class MVX_Admin_Dashboard {
                 }
             }
         }
+        //store image
+        if (isset($_POST['vendor_image']) && !empty($_POST['vendor_image'])) {
+            mvx_update_user_meta($user_id, '_vendor_image', wc_clean($_POST['vendor_image']));
+        }
+
+        //banner image
+        if (isset($_POST['vendor_banner']) && !empty($_POST['vendor_banner'])) {
+            mvx_update_user_meta($user_id, '_vendor_banner', wc_clean($_POST['vendor_banner']));
+        }
         //banner type
         if (isset($_POST['vendor_banner_type']) && !empty($_POST['vendor_banner_type'])) {
             mvx_update_user_meta($user_id, '_vendor_banner_type', wc_clean($_POST['vendor_banner_type']));

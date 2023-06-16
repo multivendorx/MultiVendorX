@@ -479,22 +479,22 @@ class MVX_User {
                 'value' => $vendor->instagram,
                 'class' => "user-profile-fields regular-text"
             ), // Text
-            "vendor_image" => array(
-                'label' => __('Logo', 'multivendorx'),
-                'type' => 'upload',
-                'prwidth' => 125,
-                'url' => $vendor->get_image() ? $vendor->get_image() : '',
-                'value' => $vendor->image,
-                'class' => "user-profile-fields"
-            ), // Upload
-            "vendor_banner" => array(
-                'label' => __('Banner', 'multivendorx'),
-                'type' => 'upload',
-                'prwidth' => 600,
-                'url' => $vendor->get_image('banner') ? $vendor->get_image('banner') : '',
-                'value' => $vendor->banner,
-                'class' => "user-profile-fields"
-            ), // Upload            
+            // "vendor_image" => array(
+            //     'label' => __('Logo', 'multivendorx'),
+            //     'type' => 'upload',
+            //     'prwidth' => 125,
+            //     'url' => $vendor->get_image() ? $vendor->get_image() : '',
+            //     'value' => $vendor->image,
+            //     'class' => "user-profile-fields"
+            // ), // Upload
+            // "vendor_banner" => array(
+            //     'label' => __('Banner', 'multivendorx'),
+            //     'type' => 'upload',
+            //     'prwidth' => 600,
+            //     'url' => $vendor->get_image('banner') ? $vendor->get_image('banner') : '',
+            //     'value' => $vendor->banner,
+            //     'class' => "user-profile-fields"
+            // ), // Upload            
             "vendor_csd_return_address1" => array(
                 'label' => __('Customer address1', 'multivendorx'),
                 'type' => 'text',
