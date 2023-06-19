@@ -81,11 +81,11 @@ $banner = $vendor->get_image('banner') ? $vendor->get_image('banner') : $MVX->pl
                     <label class="control-label col-sm-3 col-md-3"><?php _e('Store Logo', 'multivendorx'); ?></label>
                     <div class="col-md-6 col-sm-9">
                         <div class="vendor-profile-pic-wraper pull-left">
-                            <img id="vendor-profile-img" src="<?php echo $image; ?>" alt="dp">
+                            <img id="vendor-profile-img" src="<?php echo esc_url($image); ?>" alt="dp">
                             <div class="mvx-media profile-pic-btn">
                                 <button type="button" class="mvx_upload_btn" data-target="vendor-profile"><i class="mvx-font ico-edit-pencil-icon"></i> <?php _e('Store Logo', 'multivendorx'); ?></button>
                             </div>
-                            <input type="hidden" name="vendor_image" id="vendor-profile-img-id" class="user-profile-fields" value="<?php echo $image; ?>"  />
+                            <input type="hidden" name="vendor_image" id="vendor-profile-img-id" class="user-profile-fields" value="<?php echo esc_attr($image); ?>"  />
                         </div>
                     </div>
                 </div>
@@ -127,11 +127,6 @@ $banner = $vendor->get_image('banner') ? $vendor->get_image('banner') : $MVX->pl
                                         // rebuild ids to be saved
                                         $updated_gallery_ids[] = $attachment_id;
                                     }
-
-                                    // need to update slider meta to set new gallery ids
-                                    // if ( $update_meta ) {
-                                    //     update_post_meta( $post->ID, '_slider_image_gallery', implode( ',', $updated_gallery_ids ) );
-                                    // }
                                 }
                                 ?>
                             </ul>
@@ -158,12 +153,12 @@ $banner = $vendor->get_image('banner') ? $vendor->get_image('banner') : $MVX->pl
                 <div class="row">
                     <div class="col-md-12">
                         <div class="vendor-cover-wrap">
-                            <img id="vendor-cover-img" src="<?php echo $banner; ?>" alt="banner">
+                            <img id="vendor-cover-img" src="<?php echo esc_url($banner); ?>" alt="banner">
 
                             <div class="mvx-media cover-pic-button pull-right">
                                 <button type="button" class="mvx_upload_btn" data-target="vendor-cover"><i class="mvx-font ico-edit-pencil-icon"></i> <?php _e('Upload Cover Picture', 'multivendorx'); ?></button>
                             </div>
-                            <input type="hidden" name="vendor_banner" id="vendor-cover-img-id" class="user-profile-fields" value="<?php echo $banner; ?>"  />
+                            <input type="hidden" name="vendor_banner" id="vendor-cover-img-id" class="user-profile-fields" value="<?php echo esc_attr($banner); ?>"  />
                         </div>
                     </div>
                 </div>         
