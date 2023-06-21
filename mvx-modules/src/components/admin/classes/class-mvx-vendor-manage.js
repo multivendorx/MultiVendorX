@@ -92,6 +92,7 @@ class MVXBackendVendor extends React.Component {
 			this.handle_rejected_vendor_description.bind(this);
 		this.handle_Vendor_Approve = this.handle_Vendor_Approve.bind(this);
 		this.handle_Vendor_Reject = this.handle_Vendor_Reject.bind(this);
+		this.handle_Vendor_Activate = this.handle_Vendor_Activate.bind(this);
 		this.handle_Vendor_Edit = this.handle_Vendor_Edit.bind(this);
 		this.handle_Vendor_Suspend = this.handle_Vendor_Suspend.bind(this);
 	}
@@ -102,13 +103,13 @@ class MVXBackendVendor extends React.Component {
 		});
 	}
 
+
 	handle_Vendor_Approve(e, reload = '') {
 		axios({
 			method: 'post',
-			url: `${appLocalizer.apiUrl}/mvx_module/v1/active_suspend_vendor`,
+			url: `${appLocalizer.apiUrl}/mvx_module/v1/approve_vendor`,
 			data: {
 				vendor_id: e,
-				status: 'activate',
 				section: 'vendor_list',
 			},
 		}).then((response) => {
@@ -123,6 +124,23 @@ class MVXBackendVendor extends React.Component {
 		});
 	}
 
+	handle_Vendor_Activate(e) {
+		axios({
+			method: 'post',
+			url: `${appLocalizer.apiUrl}/mvx_module/v1/active_suspend_vendor`,
+			data: {
+				vendor_id: e,
+				status: 'activate',
+				section: 'vendor_list',
+			},
+		}).then((response) => {
+			this.handleClose_dynamic();
+			this.setState({
+				datavendor: response.data,
+			});
+		});
+	}
+	
 	handle_Vendor_Suspend(e) {
 		axios({
 			method: 'post',
@@ -1019,11 +1037,28 @@ class MVXBackendVendor extends React.Component {
 													</div>
 
 													<div className="mvx-vendor-multi-action-buttons">
-														{data8.status_raw_text !== 'Approved' ?
+														{data8.status_raw_text !== 'Approved' ? 
+														this.state.list_vendor_roles_data && this.state.list_vendor_roles_data === 'pending_vendor' ?
 														<button
-															className="mvx-btn btn-purple"
+															className="mvx-btn btn-purple hellof"
 															onClick={() =>
 																this.handle_Vendor_Approve(
+																	data8.ID
+																)
+															}
+															color="primary"
+														>
+															{
+																appLocalizer
+																	.vendor_page_string
+																	.approve
+															}
+														</button>
+														:
+														<button
+															className="mvx-btn btn-purple hellof"
+															onClick={() =>
+																this.handle_Vendor_Activate(
 																	data8.ID
 																)
 															}
