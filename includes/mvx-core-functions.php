@@ -7786,6 +7786,21 @@ if (!function_exists('mvx_list_all_modules')) {
                         'description'  => __( 'Lets you add widgets using Gutenberg block editor. Use the block to register our widget area on any page or post using the Gutenberg editor.', 'multivendorx' ),
                         'plan'         => 'free',
                     ],
+                    [
+                        'id'           => 'advertisement',
+                        'name'         => __( 'Advertise Product', 'multivendorx' ),
+                        'description'  => __( 'Enable the option of paid advertisiment by letting vendors advertise their products on your website.', 'multivendorx' ),
+                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
+                        'required_plugin_list' => array(
+                            array(
+                                'plugin_name'   => __('MultivendorX Pro', 'multivendorx'),
+                                'plugin_link'   => 'https://multivendorx.com/',
+                                'is_active'     => $mvx_pro_is_active,
+                            ),
+                        ),
+                        'doc_link'     => 'https://multivendorx.com/docs/non-knowledgebase/advertise-product/',
+                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=settings-advertising'),
+                    ],
                 ]
             ],
             [
