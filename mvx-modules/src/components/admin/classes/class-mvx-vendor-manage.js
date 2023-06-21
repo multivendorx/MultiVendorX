@@ -1037,72 +1037,85 @@ class MVXBackendVendor extends React.Component {
 													</div>
 
 													<div className="mvx-vendor-multi-action-buttons">
-														{data8.status_raw_text !== 'Approved' ? 
-														this.state.list_vendor_roles_data && this.state.list_vendor_roles_data === 'pending_vendor' ?
-														<button
-															className="mvx-btn btn-purple hellof"
-															onClick={() =>
-																this.handle_Vendor_Approve(
-																	data8.ID
-																)
-															}
-															color="primary"
-														>
-															{
-																appLocalizer
-																	.vendor_page_string
-																	.approve
-															}
-														</button>
+														{data8.status_raw_text !== 'Rejected' ? 
+															(data8.status_raw_text !== 'Approved' ? (
+																data8.status_raw_text == 'Pending' ? (
+																<button
+																	className="mvx-btn btn-purple hellof"
+																	onClick={() =>
+																		this.handle_Vendor_Approve(
+																			data8.ID
+																		)
+																	}
+																	color="primary"
+																>
+																	{
+																		appLocalizer
+																			.vendor_page_string
+																			.approve
+																	}
+																</button>)
+																:(
+																<button
+																	className="mvx-btn btn-purple hellof"
+																	onClick={() =>
+																		this.handle_Vendor_Activate(
+																			data8.ID
+																		)
+																	}
+																	color="primary"
+																>
+																	{
+																		appLocalizer
+																			.vendor_page_string
+																			.approve
+																	}
+																</button>))
+															: (
+															<button
+																className="mvx-btn btn-purple"
+																onClick={() =>
+																	this.handle_Vendor_Suspend(
+																		data8.ID
+																	)
+																}
+																color="primary"
+															>
+																{
+																	appLocalizer
+																		.vendor_page_string
+																		.suspend
+																}
+															</button>
+															))
 														:
-														<button
-															className="mvx-btn btn-purple hellof"
-															onClick={() =>
-																this.handle_Vendor_Activate(
-																	data8.ID
-																)
-															}
-															color="primary"
-														>
-															{
-																appLocalizer
-																	.vendor_page_string
-																	.approve
-															}
-														</button>
-														: 
-														<button
-															className="mvx-btn btn-purple"
-															onClick={() =>
-																this.handle_Vendor_Suspend(
-																	data8.ID
-																)
-															}
-															color="primary"
-														>
-															{
-																appLocalizer
-																	.vendor_page_string
-																	.suspend
-															}
-														</button>
+															(
+															' '	
+															)	
 
 														}
-														<button
-															className="mvx-btn btn-red"
-															onClick={() =>
-																this.handle_Vendor_Reject(
-																	data8.ID
-																)
-															}
-															color="primary"
-														>
-															{
-																appLocalizer
-																	.vendor_page_string
-																	.reject
-															}
-														</button>
+														{data8.status_raw_text !== 'Rejected' ? 
+															(<button
+																className="mvx-btn btn-red"
+																onClick={() =>
+																	this.handle_Vendor_Reject(
+																		data8.ID
+																	)
+																}
+																color="primary"
+															>
+																{
+																	appLocalizer
+																		.vendor_page_string
+																		.reject
+																}
+															</button>)
+														:
+															(
+															' '	
+															)	
+
+														}
 														<button
 															className="mvx-btn btn-border"
 															onClick={() =>
