@@ -812,6 +812,30 @@ class MVX_REST_API {
             'callback' => array( $this, 'mvx_create_product' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
+
+        // Create discount coupon for mvx-pro
+        register_rest_route( 'mvx/v1', '/coupon_create_for_pro', [
+            'methods' => WP_REST_Server::EDITABLE,
+            'callback' => array( $this, 'mvx_coupon_create_for_pro' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+    }
+
+    public function mvx_coupon_create_for_pro($request) {
+        $user_name = $_POST['name'] ? $_POST['name'] : '';
+        $user_email_id = $_POST['email'] ? $_POST['email'] : '';
+        if (!empty($user_name)) {
+            $code = $user_name . '_' . @date('Y-m-d');
+            $expire_day_date = date('Y-m-d', strtotime("+2 days"));
+            $coupon = new WC_Coupon();
+            $coupon->set_code( $code ); 
+            $coupon->set_discount_type( 'percent' );
+            $coupon->set_amount( 10 );
+            $coupon->set_date_expires( $expire_day_date );
+            $coupon->set_email_restrictions( $user_email_id ); 
+            $coupon->set_usage_limit( 1 );
+            $coupon->save();
+        }
     }
 
     public function mvx_create_product($request) {

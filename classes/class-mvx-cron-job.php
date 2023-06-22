@@ -34,6 +34,8 @@ class MVX_Cron_Job {
         if (!mvx_get_option('_is_dismiss_mvx40_notice', false)) {
             add_action('mvx_older_settings_migrated_migration', array(&$this, 'mvx_older_settings_migrated_migration'));
         }
+        //The expire coupons will be saved as trash using cron
+        add_action('delete_expired_coupons', array(&$this, 'delete_expired_coupons_callback'));
 
         $this->mvx_clear_scheduled_event();
     }
@@ -1195,6 +1197,33 @@ class MVX_Cron_Job {
         if ( $allow_tracking && $allow_tracking == 'yes' ) {
             $body = $MVX->mvx_usage_tracker->get_data();
             $MVX->mvx_usage_tracker->send_data( $body );
+        }
+    }
+
+    function delete_expired_coupons_callback() {
+        $args = array(
+            'posts_per_page' => -1,
+            'post_type'      => 'shop_coupon',
+            'post_status'    => 'publish',
+            'meta_query'     => array(
+                'relation'   => 'AND',
+                array(
+                    'key'     => 'date_expires',
+                    'value'   => time(),
+                    'compare' => '<'
+                ),
+                array(
+                    'key'     => 'date_expires',
+                    'value'   => '',
+                    'compare' => '!='
+                )
+            )
+        );
+        $coupons = get_posts( $args );
+        if ( ! empty( $coupons ) ) {
+            foreach ( $coupons as $coupon ) {
+                wp_trash_post( $coupon->ID );
+            }
         }
     }
 }
