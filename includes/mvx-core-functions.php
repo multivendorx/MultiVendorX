@@ -7152,6 +7152,14 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'icon'          =>  'icon-tab-question-and-answer',
                 'submenu'       =>  'work-board',
                 'modulename'     =>  'refund-request'
+            ),
+            array(
+                'tablabel'      =>  __('Refunded orders', 'multivendorx'),
+                'description'   =>  __('Records of all refunded orders', 'multivendorx'),
+                'apiurl'        =>  'mvx_module/v1/update_vendor',
+                'icon'          =>  'icon-tab-question-and-answer',
+                'submenu'       =>  'work-board',
+                'modulename'     =>  'refunded-order'
             )
         );
 
@@ -7169,6 +7177,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
         }
         if (!mvx_is_module_active('marketplace-refund')) {
             unset($marketplace_workboard[6]);
+            unset($marketplace_workboard[7]);
         }
 
         $status_tools = array(

@@ -765,10 +765,17 @@ class MVX_REST_API {
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
 
-        // pending shipping for all vendor
+        // all refund request
         register_rest_route( 'mvx_module/v1', '/list_of_refund_request', [
             'methods' => WP_REST_Server::READABLE,
             'callback' => array( $this, 'mvx_list_of_refund_request' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+        
+        // all refunded order
+        register_rest_route( 'mvx_module/v1', '/list_of_refunded_orders', [
+            'methods' => WP_REST_Server::READABLE,
+            'callback' => array( $this, 'mvx_list_of_refunded_orders' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
 
@@ -983,6 +990,55 @@ class MVX_REST_API {
     public function mvx_list_of_refund_request() {
         $lists = [];
         $default = array(
+            'posts_per_page'  => -1,
+            'post_type'       => 'shop_order',
+            'post_status'     => 'any',
+            'fields'          =>  'ids',
+            'meta_query'      => array(
+                    array(
+                        'key'     => '_customer_refund_order',
+                        'value'   => array('refund_request', 'refund_accept', 'refund_reject'),
+                        'compare' => '='
+                    )
+                )
+            );
+        $query = new WP_Query( $default ); 
+        foreach ($query->get_posts() as $post_id) {
+            $refund_status = '';
+            $order = wc_get_order($post_id);
+            $post = get_post($post_id);
+            if (!is_user_mvx_vendor($post->post_author)) continue;
+            if (!$order) continue;
+            $refund_status_raw = $order->get_meta('_customer_refund_order') ? $order->get_meta('_customer_refund_order') : '';
+            switch ($refund_status_raw) {
+                case 'refund_request':
+                    $refund_status = __('Refund Pending','multivendorx');
+                    break;
+                case 'refund_accept':
+                    $refund_status = __('Refund Accepted','multivendorx');
+                    break;
+                case 'refund_reject':
+                    $refund_status = __('Refund Rejected','multivendorx');
+                    break;
+                default:
+                    $refund_status = __('-','multivendorx');
+                    break;
+            }
+
+            $lists[] = array(
+                'order_id'          =>  $order->get_id(),
+                'vendor'            =>  get_user_by('ID', $post->post_author)->display_name,
+                'refund_reason'     =>  $order->get_meta('_customer_refund_reason') ? esc_html($order->get_meta('_customer_refund_reason')) : '-',
+                'refund_status'     =>  $refund_status,
+                'payment_gateway'   =>  $order->get_payment_method_title()
+            );
+        }
+        return rest_ensure_response($lists);
+    }
+
+    public function mvx_list_of_refunded_orders() {
+        $lists = [];
+        $default = array(
             'posts_per_page'   => -1,
             'post_type'        => 'shop_order',
             'post_status' => 'any',
@@ -990,7 +1046,7 @@ class MVX_REST_API {
             );
         $query = new WP_Query( $default ); 
         foreach ($query->get_posts() as $post_id) {
-            $refund_reason = $refund_amount = '';
+            $refund_amount = '';
             $order = wc_get_order($post_id);
             $post = get_post($post_id);
             if (!is_user_mvx_vendor($post->post_author)) continue;
@@ -998,15 +1054,14 @@ class MVX_REST_API {
             if (!$order->get_refunds()) continue;
 
             foreach ( $order->get_refunds() as $id => $refund ) {
-                $refund_reason .= $refund->get_reason() ? $refund->get_reason() : '';
                 $refund_amount .= $refund->get_amount() ? $refund->get_amount() : '';
             }
 
             $lists[] = array(
-                'order_id'    =>  $post_id,
-                'vendor' =>  get_user_by('ID', $post->post_author)->display_name,
-                'refund_reason'   =>  $refund_reason,
-                'refund_amount'    =>  $refund_amount,
+                'order_id'          =>  $post_id,
+                'vendor'            =>  get_user_by('ID', $post->post_author)->display_name,
+                'refund_reason'     =>  $order->get_meta('_customer_refund_reason') ? esc_html($order->get_meta('_customer_refund_reason')) : '-',
+                'refunded_amount'   =>  $refund_amount,
                 'payment_gateway'   =>  $order->get_payment_method_title()
             );
         }
