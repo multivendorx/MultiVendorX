@@ -1317,6 +1317,9 @@ Class MVX_Admin_Dashboard {
             mvx_update_user_meta($user_id, 'timezone_string', wc_clean($_POST['timezone_string']));
             mvx_update_user_meta($user_id, 'gmt_offset', wc_clean($_POST['gmt_offset']));
         }
+        if (isset($_POST['vendor_display_email']) && !empty($_POST['vendor_display_email'])) {
+            update_user_meta($user_id, '_vendor_display_email', wc_clean($_POST['vendor_display_email']));
+        }
         do_action('mvx_save_custom_store', $user_id, $post);
     }
 
