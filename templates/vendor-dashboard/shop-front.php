@@ -225,7 +225,7 @@ $banner = $vendor->get_image('banner') ? $vendor->get_image('banner') : $MVX->pl
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-3 col-md-3"><?php esc_html('Additional Email *', 'multivendorx'); ?></label>
+                        <label class="control-label col-sm-3 col-md-3"><?php _e('Additional Email *', 'multivendorx'); ?></label>
                         <div class="col-md-6 col-sm-9">                            
                             <input class="no_input vendor_display_email form-control" name="vendor_display_email" type="email"  value="<?php echo isset($vendor->user_data->_vendor_display_email) ? esc_attr($vendor->user_data->_vendor_display_email) : ''; ?>">
                         </div>
