@@ -1,3 +1,4 @@
+/* global appLocalizer */
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter as Router, useLocation } from 'react-router-dom';
@@ -18,6 +19,7 @@ class Mvx_Backend_Endpoints_Load extends Component {
 		super(props);
 		this.state = {};
 		this.QueryParamsDemo = this.QueryParamsDemo.bind(this);
+		
 	}
 
 	QueryParamsDemo() {
