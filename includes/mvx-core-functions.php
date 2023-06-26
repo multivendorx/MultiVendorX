@@ -7177,6 +7177,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
         }
         if (!mvx_is_module_active('marketplace-refund')) {
             unset($marketplace_workboard[6]);
+            unset($marketplace_workboard[7]);
         }
 
         $status_tools = array(
