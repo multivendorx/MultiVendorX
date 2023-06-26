@@ -68,7 +68,7 @@ $vendor_profile_image = get_user_meta($user->ID, '_vendor_profile_image', true);
                     <div class="form-group">
                         <label class="control-label col-sm-3 col-md-3"><?php _e('Profile Image', 'multivendorx'); ?></label>
                         <div class="col-md-6 col-sm-9">
-                        	<img id="vendor-profile-img" src="<?php echo (isset($vendor_profile_image) && $vendor_profile_image > 0) ? wp_get_attachment_url($vendor_profile_image) :  get_avatar_url($user->ID, array('size' => 120)); ?>" width="120" alt="dp">
+                        	<img id="vendor-profile-img" src="<?php echo (isset($vendor_profile_image) && $vendor_profile_image > 0) ? $vendor_profile_image :  get_avatar_url($user->ID, array('size' => 120)); ?>" width="120" alt="dp">
 							<div class="mvx-media profile-pic-btn">
 								<button type="button" class="btn btn-secondary mvx_upload_btn" data-target="vendor-profile"><i class="mvx-font ico-edit-pencil-icon"></i> <?php _e('Upload image', 'multivendorx'); ?></button>
 							</div>
