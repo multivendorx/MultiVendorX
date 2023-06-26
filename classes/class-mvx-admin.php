@@ -964,6 +964,39 @@ class MVX_Admin {
                 )
             );
 
+            $columns_refunded_order = array(
+                array(
+                    'name'      =>  __('Order ID', 'multivendorx'),
+                    'selector'  =>  '',
+                    'sortable'  =>  true,
+                    'selector_choice'  => "order_id",
+                ),
+                array(
+                    'name'      =>  __('Vendor', 'multivendorx'),
+                    'selector'  =>  '',
+                    'sortable'  =>  true,
+                    'selector_choice'  => "vendor",
+                ),
+                array(
+                    'name'      =>  __('Refunded Amount', 'multivendorx'),
+                    'selector'  =>  '',
+                    'sortable'  =>  true,
+                    'selector_choice'  => "refunded_amount",
+                ),
+                array(
+                    'name'      =>  __('Refund Reason', 'multivendorx'),
+                    'selector'  =>  '',
+                    'sortable'  =>  true,
+                    'selector_choice'  => "refund_reason",
+                ),
+                array(
+                    'name'      =>  __('Payment Gateway', 'multivendorx'),
+                    'selector'  =>  '',
+                    'sortable'  =>  true,
+                    'selector_choice'  => "payment_gateway",
+                ),
+            );
+
             $columns_refund_request = array(
                 array(
                     'name'      =>  __('Order ID', 'multivendorx'),
@@ -978,10 +1011,10 @@ class MVX_Admin {
                     'selector_choice'  => "vendor",
                 ),
                 array(
-                    'name'      =>  __('Refund Amount', 'multivendorx'),
+                    'name'      =>  __('Refund status', 'multivendorx'),
                     'selector'  =>  '',
                     'sortable'  =>  true,
-                    'selector_choice'  => "refund_amount",
+                    'selector_choice'  => "refund_status",
                 ),
                 array(
                     'name'      =>  __('Refund Reason', 'multivendorx'),
@@ -1237,6 +1270,7 @@ class MVX_Admin {
             'select_option_delete_for_vendor'       =>  $select_option_delete_for_vendor,
             'columns_commission'                    =>  $columns_commission,
             'columns_report_abuse'                  =>  $columns_report_abuse,
+            'columns_refunded_order'                =>  $columns_refunded_order,
             'columns_refund_request'                =>  $columns_refund_request,
             'columns_pending_shipping'              =>  $columns_pending_shipping,
             'select_module_category_option'         =>  $select_module_category_option,
