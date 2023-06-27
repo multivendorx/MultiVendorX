@@ -5,7 +5,7 @@ Donate link: https://multivendorx.com/donate
 Requires at least: 4.4
 Tested up to: 6.2.2
 Requires PHP: 5.6
-Stable tag: 4.0.20
+Stable tag: 4.0.21
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -291,6 +291,12 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.0.21 - 2023-06-27 =
+* Added     - Compatibility of WooCommerce 7.8.0.
+* Fix       - Profile image is not working #423.
+* Fix       - Refund Module not working #413.
+* Updated   - Language file.
 
 = 4.0.20 - 2023-06-13 =
 * Added     - Compatibility of WooCommerce 7.7.2.
