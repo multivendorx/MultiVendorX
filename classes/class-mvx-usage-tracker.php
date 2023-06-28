@@ -293,6 +293,10 @@ class MVX_Plugin_Usage_Tracker {
             update_option( 'multivendorx_deactivation_details_' . 'dc-woocommerce-multi-vendor', $details, 'no' );
         }
         echo 'success';
+        //deactivation mail sent
+        $current_user_id = get_current_user_id();
+        $email = WC()->mailer()->emails['WC_Email_Plugin_Deactivated_Mail'];
+        $email->trigger($current_user_id);
         wp_die();
     }
 
@@ -373,8 +377,42 @@ class MVX_Plugin_Usage_Tracker {
                 $body['status']           = 'Deactivated';
                 $body['deactivated_date'] = time();
                 $this->send_data( $body );
+                // create coupon
+                $current_user = wp_get_current_user();
+                $user_name = $current_user->display_name;
+                $user_email_id = $current_user->user_email;
+                $data['name'] = $user_name;
+                $data['email'] = $user_email_id;
+                $this->create_coupon_for_discount( $data );
+
+                //After share site information sent a mail
+                $current_user_id = get_current_user_id();
+                $email = WC()->mailer()->emails['WC_Email_Send_Site_Information'];
+                $email->trigger($current_user_id);
             }
         }
+    }
+
+    public function create_coupon_for_discount( $data = array(), $args = array() ) {
+        if ( empty( $data ) ) {
+            return;
+        }
+        $args = wp_parse_args( $args, array(
+            'method'      => 'POST',
+            'timeout'     => 30,
+            'redirection' => 5,
+            'httpversion' => '1.1',
+            'blocking'    => true,
+            'body'        => $data,
+            'user-agent'  => 'PUT/1.0.0; ' . get_bloginfo( 'url' ),
+            )
+        );
+        $endpoint = 'https://multivendorx.com/wp-json/mvx_thirdparty/v1/coupon_create_for_pro';
+        $request = wp_remote_post( esc_url( $endpoint ), $args );
+        if ( is_wp_error( $request ) || ( isset( $request['response'], $request['response']['code'] ) && $request['response']['code'] != 200 ) ) {
+            return new \WP_Error( 500, 'Something went wrong.' );
+        }
+        return $request;
     }
 
     public function get_data() {

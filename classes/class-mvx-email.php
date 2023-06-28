@@ -54,6 +54,8 @@ class MVX_Email {
 		include( 'emails/class-mvx-email-vendor-new-coupon-added.php' );
 		include( 'emails/class-mvx-email-vendor-new-coupon-followed-customer.php' );
 		include( 'emails/class-mvx-email-vendor-bank-transfer-transaction.php' );
+		include( 'emails/class-mvx-email-plugin-deactivated.php' );
+		include( 'emails/class-mvx-email-send-site-information.php' );
 
         $mvx_email = array();
         $mvx_email['WC_Email_Vendor_New_Account'] = new WC_Email_Vendor_New_Account();
@@ -83,6 +85,8 @@ class MVX_Email {
 		$mvx_email['WC_Email_Vendor_New_Coupon_Added'] = new WC_Email_Vendor_New_Coupon_Added();
 		$mvx_email['WC_Email_Vendor_New_Coupon_Added_To_Customer'] = new WC_Email_Vendor_New_Coupon_Added_To_Customer();
 		$mvx_email['WC_Email_Vendor_DirectBank_Commission_Transactions'] = new WC_Email_Vendor_DirectBank_Commission_Transactions();
+		$mvx_email['WC_Email_Plugin_Deactivated_Mail'] = new WC_Email_Plugin_Deactivated_Mail();
+		$mvx_email['WC_Email_Send_Site_Information'] = new WC_Email_Send_Site_Information();
 
         return array_merge( $emails, apply_filters( 'mvx_email_classes', $mvx_email ) );
     }
