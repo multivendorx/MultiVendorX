@@ -543,7 +543,7 @@ class MVX_Frontend {
 
                 $address = $vendor->get_formatted_address();
 
-                $MVX->template->get_template('archive-vendor-info.php', array('vendor_id' => $vendor->id, 'banner' => $vendor->get_image('banner'), 'profile' => $image, 'description' => apply_filters('the_content', $description), 'mobile' => $vendor->phone, 'location' => $address, 'email' => $vendor->user_data->user_email));
+                $MVX->template->get_template('archive-vendor-info.php', array('vendor_id' => $vendor->id, 'banner' => $vendor->get_image('banner'), 'profile' => $image, 'description' => apply_filters('the_content', $description), 'mobile' => $vendor->phone, 'location' => $address, 'email' => (isset($vendor->user_data->_vendor_display_email) && !empty($vendor->user_data->_vendor_display_email)) ? $vendor->user_data->_vendor_display_email : $vendor->user_data->user_email));
             }
         }
     }
