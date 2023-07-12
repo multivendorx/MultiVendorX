@@ -465,9 +465,9 @@ $banner = $vendor->get_image('banner') ? $vendor->get_image('banner') : $MVX->pl
                         <label class="control-label col-sm-3 col-md-3"><?php _e('Select store details to hide', 'multivendorx'); ?></label>
                         <div class="col-md-6 col-sm-9">
                             <ul>
-                                <li><label><input type="checkbox" name="vendor_shop_address_hide" value="Enable"<?php if($vendor_hide_address == 'Enable') echo 'checked';?>> Address</label></li>
-                                <li><label><input type="checkbox" name="vendor_shop_phone_hide" value="Enable"<?php if($vendor_hide_phone == 'Enable') echo 'checked';?>> Phone</label></li>
-                                <li><label><input type="checkbox" name="vendor_shop_email_hide" value="Enable"<?php if($vendor_hide_email == 'Enable') echo 'checked';?>> Em@il</label></li>
+                                <li><label><input type="checkbox" name="vendor_shop_address_hide" value="Enable"<?php if($vendor_hide_address == 'Enable') echo 'checked';?>><?php _e(' Address', 'multivendorx'); ?></label></li>
+                                <li><label><input type="checkbox" name="vendor_shop_phone_hide" value="Enable"<?php if($vendor_hide_phone == 'Enable') echo 'checked';?>><?php _e(' Phone', 'multivendorx'); ?></label></li>
+                                <li><label><input type="checkbox" name="vendor_shop_email_hide" value="Enable"<?php if($vendor_hide_email == 'Enable') echo 'checked';?>><?php _e(' Email', 'multivendorx'); ?> </label></li>
                             </ul>
                         </div>
                     </div>
