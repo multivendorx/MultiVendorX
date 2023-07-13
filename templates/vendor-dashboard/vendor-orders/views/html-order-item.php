@@ -42,6 +42,7 @@ $row_class    = apply_filters( 'mvx_vendor_dash_html_order_item_class', ! empty(
                 <?php require 'html-order-item-meta.php'; ?>
                 <?php do_action( 'mvx_vendor_dash_after_order_itemmeta', $item_id, $item, $product ); ?>
             </table>
+            <?php do_action( 'mvx_vendor_dash_after_order_itemmeta_table', $item_id, $item, $product ); ?>
         </div>
     </td>
 

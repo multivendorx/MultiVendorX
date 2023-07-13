@@ -21,7 +21,7 @@ if (!defined('ABSPATH')) {
 global $MVX;
 $vendor = get_mvx_vendor(get_current_vendor_id());
 if ($vendor) {
-    $vendor_logo = $vendor->profile_image ? wp_get_attachment_url($vendor->profile_image) : get_avatar_url(get_current_vendor_id(), array('size' => 80));
+    $vendor_logo = $vendor->profile_image ? $vendor->profile_image : get_avatar_url(get_current_vendor_id(), array('size' => 80));
 } else {
     $vendor_logo = get_avatar_url(get_current_vendor_id(), array('size' => 80));
 }
