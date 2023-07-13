@@ -331,6 +331,7 @@ class MVXBackendVendor extends React.Component {
 			}).then((response) => {
 				this.setState({
 					datavendor: response.data,
+						select_input: 'delete'
 				});
 			});
 		}
