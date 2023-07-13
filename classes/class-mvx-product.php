@@ -707,7 +707,9 @@ class MVX_Product {
                 //send mails to admin for new vendor product
                 $vendor = get_mvx_vendor_by_term(get_user_meta($current_user, '_vendor_term_id', true));
                 $email_admin = WC()->mailer()->emails['WC_Email_Vendor_New_Product_Added'];
-                $email_admin->trigger($post->post_id, $post, $vendor);
+                if (!empty($email_admin)) {
+                    $email_admin->trigger($post->post_id, $post, $vendor);
+                }
             }
         }
         if (current_user_can('administrator') && $new_status != $old_status && $post->post_status == 'publish') {
