@@ -1320,20 +1320,20 @@ Class MVX_Admin_Dashboard {
         if (isset($_POST['vendor_display_email']) && !empty($_POST['vendor_display_email'])) {
             mvx_update_user_meta($user_id, '_vendor_display_email', wc_clean($_POST['vendor_display_email']));
         }
-        if(isset($_POST['vendor_shop_address_hide']) && !empty($_POST['vendor_shop_address_hide'])){
-            mvx_update_user_meta($user_id,'_vendor_hide_address',wc_clean($_POST['vendor_shop_address_hide']));
+        if (isset($_POST['vendor_shop_address_hide']) && !empty($_POST['vendor_shop_address_hide'])) {
+            mvx_update_user_meta($user_id, '_vendor_hide_address', wc_clean($_POST['vendor_shop_address_hide']));
         } else {
-            mvx_update_user_meta($user_id,'_vendor_hide_address','disable');
+            mvx_update_user_meta($user_id, '_vendor_hide_address', 'disable');
         }
-        if(isset($_POST['vendor_shop_phone_hide']) && !empty($_POST['vendor_shop_phone_hide'])){
-            mvx_update_user_meta($user_id,'_vendor_hide_phone',wc_clean($_POST['vendor_shop_phone_hide']));
+        if (isset($_POST['vendor_shop_phone_hide']) && !empty($_POST['vendor_shop_phone_hide'])) {
+            mvx_update_user_meta($user_id, '_vendor_hide_phone', wc_clean($_POST['vendor_shop_phone_hide']));
         } else {
-            mvx_update_user_meta($user_id,'_vendor_hide_phone','disable');
+            mvx_update_user_meta($user_id, '_vendor_hide_phone', 'disable');
         }
-        if(isset($_POST['vendor_shop_email_hide']) && !empty($_POST['vendor_shop_email_hide'])){
-            mvx_update_user_meta($user_id,'_vendor_hide_email',wc_clean($_POST['vendor_shop_email_hide']));
+        if (isset($_POST['vendor_shop_email_hide']) && !empty($_POST['vendor_shop_email_hide'])) {
+            mvx_update_user_meta($user_id, '_vendor_hide_email', wc_clean($_POST['vendor_shop_email_hide']));
         } else {
-            mvx_update_user_meta($user_id,'_vendor_hide_email','disable');
+            mvx_update_user_meta($user_id, '_vendor_hide_email', 'disable');
         }
         do_action('mvx_save_custom_store', $user_id, $post);
     }
