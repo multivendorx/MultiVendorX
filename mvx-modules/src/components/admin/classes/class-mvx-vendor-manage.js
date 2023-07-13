@@ -327,6 +327,7 @@ class MVXBackendVendor extends React.Component {
 				url: `${appLocalizer.apiUrl}/mvx_module/v1/vendor_delete`,
 				data: {
 					vendor_ids: e,
+					select_input: 'delete'
 				},
 			}).then((response) => {
 				this.setState({
