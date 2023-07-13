@@ -5,7 +5,7 @@ Donate link: https://multivendorx.com/donate
 Requires at least: 4.4
 Tested up to: 6.2.2
 Requires PHP: 5.6
-Stable tag: 4.0.21
+Stable tag: 4.0.22
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -291,6 +291,15 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.0.22 - 2023-07-13 =
+* Added     - Compatibility of WooCommerce 7.8.2.
+* Added     - Vendor Shop page fields selection #407.
+* Fix       - Approve/reject button not working #416.
+* Fix       - Delete button to delete vendor does not work #436.
+* Fix       - Issue with restore button in vendor dashboard #438.
+* Dev       - Added `mvx_product_type_option_edit` filter.
+* Updated   - Language file.
 
 = 4.0.21 - 2023-06-27 =
 * Added     - Compatibility of WooCommerce 7.8.0.
