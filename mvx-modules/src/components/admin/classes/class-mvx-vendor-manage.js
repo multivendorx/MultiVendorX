@@ -321,16 +321,21 @@ class MVXBackendVendor extends React.Component {
 	}
 
 	handleVendorDismiss(e) {
+		this.setState({
+			vendor_loading: false
+		});
 		if (confirm(appLocalizer.global_string.confirm_delete) === true) {
 			axios({
 				method: 'post',
 				url: `${appLocalizer.apiUrl}/mvx_module/v1/vendor_delete`,
 				data: {
 					vendor_ids: e,
+					select_input: 'delete'
 				},
 			}).then((response) => {
 				this.setState({
 					datavendor: response.data,
+					vendor_loading: true
 				});
 			});
 		}
