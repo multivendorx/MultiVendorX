@@ -7807,7 +7807,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/non-knowledgebase/advertise-product/',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/advertise-product/',
                         'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=settings-advertising'),
                     ],
                 ]
