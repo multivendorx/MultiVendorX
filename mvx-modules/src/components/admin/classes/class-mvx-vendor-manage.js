@@ -12,6 +12,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 //import Button from '@material-ui/core/Button';
+import {Checkbox, FormControlLabel} from '@mui/material';
 import DynamicForm from '../../../DynamicForm';
 import HeaderSection from './class-mvx-page-header';
 import BannerSection from './class-mvx-page-banner';
@@ -28,6 +29,7 @@ class MVXBackendVendor extends React.Component {
 		this.state = {
 			open_child_model: [],
 			open_vendor_model_dynamic: [],
+			open_vendor_delete_model_dynamic: [],
 			handle_rejected_vendor_description: '',
 			details_vendor: [],
 			add_shipping_options_data: [],
@@ -59,7 +61,10 @@ class MVXBackendVendor extends React.Component {
 			vendor_list_status_pending: false,
 			vendor_list_status_rejected: false,
 			vendor_list_status_suspended: false,
-			vendor_list_status_all: false
+			vendor_list_status_all: false,
+			first_checked: false,
+			second_checked: false,
+			ids: []
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -95,6 +100,10 @@ class MVXBackendVendor extends React.Component {
 		this.handle_Vendor_Activate = this.handle_Vendor_Activate.bind(this);
 		this.handle_Vendor_Edit = this.handle_Vendor_Edit.bind(this);
 		this.handle_Vendor_Suspend = this.handle_Vendor_Suspend.bind(this);
+		this.handleDeleteIcon = this.handleDeleteIcon.bind(this);
+		this.handleClose_delete_modal = this.handleClose_delete_modal.bind(this);
+		this.handleChangeFirstCheckbox = this.handleChangeFirstCheckbox.bind(this);
+		this.handleChangeSecondCheckbox = this.handleChangeSecondCheckbox.bind(this);
 	}
 
 	handle_rejected_vendor_description(e, vendorid) {
@@ -102,7 +111,6 @@ class MVXBackendVendor extends React.Component {
 			handle_rejected_vendor_description: e.target.value,
 		});
 	}
-
 
 	handle_Vendor_Approve(e, reload = '') {
 		axios({
@@ -198,6 +206,46 @@ class MVXBackendVendor extends React.Component {
 		set_vendors_id_data[e] = true;
 		this.setState({
 			open_vendor_model_dynamic: set_vendors_id_data,
+		});
+	}
+	
+	handleDeleteIcon(e) {
+		let set_vendors_id_data = [];
+		set_vendors_id_data = this.state.open_vendor_delete_model_dynamic;
+		if (Array.isArray(e)) {
+			e.forEach(item => {
+			  if (item.ID) {
+				set_vendors_id_data[item.ID] = true;
+			  }
+			});
+		} else {
+			set_vendors_id_data[e] = true;
+		}
+		this.setState({
+			ids: e,
+			open_vendor_delete_model_dynamic: set_vendors_id_data,
+		});
+	}
+
+	handleClose_delete_modal() {
+		const default_vendor_delete_popup = [];
+		this.state.open_vendor_model_dynamic.map((data_ann, index_ann) => {
+			default_vendor_delete_popup[data_ann.ID] = false;
+		});
+		this.setState({
+			open_vendor_delete_model_dynamic: default_vendor_delete_popup,
+		});
+	}
+
+	handleChangeFirstCheckbox(e) {
+		this.setState({
+			first_checked: e.target.checked,
+		});
+	}
+
+	handleChangeSecondCheckbox(e) {
+		this.setState({
+			second_checked: e.target.checked,
 		});
 	}
 
@@ -301,40 +349,61 @@ class MVXBackendVendor extends React.Component {
 
 	handlevendoractionsearch(e) {
 		if (e) {
-			if (
-				confirm(appLocalizer.global_string.sure_text) === true
-			) {
-				axios({
-					method: 'post',
-					url: `${appLocalizer.apiUrl}/mvx_module/v1/vendor_delete`,
-					data: {
-						vendor_ids: this.state.bulkselectlist,
-						select_input: e.value
-					},
-				}).then((response) => {
-					this.setState({
-						datavendor: response.data,
+			if ( e.value == 'delete' ) {
+				this.handleDeleteIcon(this.state.bulkselectlist);
+			} else {
+				if ( confirm(appLocalizer.global_string.sure_text) === true ) {
+					axios({
+						method: 'post',
+						url: `${appLocalizer.apiUrl}/mvx_module/v1/vendor_delete`,
+						data: {
+							vendor_ids: this.state.bulkselectlist,
+							select_input: e.value
+						},
+					}).then((response) => {
+						this.setState({
+							datavendor: response.data,
+						});
 					});
-				});
+				}
 			}
 		}
 	}
 
-	handleVendorDismiss(e) {
+	handleVendorDismiss() {
 		this.setState({
-			vendor_loading: false
+			vendor_loading: false,
 		});
-		if (confirm(appLocalizer.global_string.confirm_delete) === true) {
+		if (this.state.first_checked === true) {
 			axios({
 				method: 'post',
 				url: `${appLocalizer.apiUrl}/mvx_module/v1/vendor_delete`,
 				data: {
-					vendor_ids: e,
-					select_input: 'delete'
+					vendor_ids: this.state.ids,
+					select_input: 'delete_user'
 				},
 			}).then((response) => {
+				this.handleClose_delete_modal();
 				this.setState({
 					datavendor: response.data,
+					first_checked: false,
+					vendor_loading: true
+				});
+			});
+		} 
+		if (this.state.second_checked === true) {
+			axios({
+				method: 'post',
+				url: `${appLocalizer.apiUrl}/mvx_module/v1/vendor_delete`,
+				data: {
+					vendor_ids: this.state.ids,
+					select_input: 'delete_vendor'
+				},
+			}).then((response) => {
+				this.handleClose_delete_modal();
+				this.setState({
+					datavendor: response.data,
+					second_checked: false,
 					vendor_loading: true
 				});
 			});
@@ -598,21 +667,21 @@ class MVXBackendVendor extends React.Component {
 			}).then((response) => {
 				//open_vendor_model_dynamic
 				const default_vendor_eye_popup = [];
+				const default_vendor_delete_popup = [];
 				response.data.map((data_ann, index_ann) => {
 					default_vendor_eye_popup[data_ann.ID] = false;
+					default_vendor_delete_popup[data_ann.ID] = false;
 				});
 				this.setState({
 					datavendor: response.data,
 					data_all_vendor: response.data,
 					open_vendor_model_dynamic: default_vendor_eye_popup,
+					open_vendor_delete_model_dynamic: default_vendor_delete_popup,
 					vendor_loading: true,
 					current_url: window.location.hash
 				});
 			});
 		}
-
-
-
 
 		if (!this.useQuery().get('ID')) {
 			this.state.data_setting_fileds = [];
@@ -651,7 +720,7 @@ class MVXBackendVendor extends React.Component {
 								</div>
 								<div
 									onClick={() =>
-										this.handleVendorDismiss(row.ID)
+										this.handleDeleteIcon(row.ID)
 									}
 									id={row.ID}
 									data-title={appLocalizer.global_string.delete}
@@ -1143,6 +1212,72 @@ class MVXBackendVendor extends React.Component {
 										<DialogActions></DialogActions>
 									</Dialog>
 								))}
+
+								{this.state.datavendor.map((data8, index8) => (
+									<Dialog
+										open={
+											this.state
+												.open_vendor_delete_model_dynamic[
+												data8.ID
+											]
+										}
+										onClose={this.handleClose_delete_modal}
+										aria-labelledby="form-dialog-title"
+									>
+										<DialogTitle id="form-dialog-title">
+											<div className="mvx-module-dialog-title">
+												<div className="mvx-vendor-title">
+													{appLocalizer.vendor_page_string.select_option}
+												</div>
+												<i
+													className="mvx-font icon-no"
+													onClick={
+														this.handleClose_delete_modal
+													}
+												></i>
+											</div>
+										</DialogTitle>
+										<DialogContent>
+											<DialogContentText>
+												<div className="mvx-module-dialog-content">
+													<div className="mvx-vendor-textarea-content">
+														<FormControlLabel
+															control={
+															<Checkbox
+																checked={this.state.first_checked}
+																onChange={this.handleChangeFirstCheckbox}
+																color="primary"
+															/>
+															}
+															label={appLocalizer.vendor_page_string.delete_user}
+														/>
+														<FormControlLabel
+															control={
+															<Checkbox
+																checked={this.state.second_checked}
+																onChange={this.handleChangeSecondCheckbox}
+																color="primary"
+															/>
+															}
+															label={appLocalizer.vendor_page_string.delete_vendor}
+														/>
+													</div>
+
+													<div className="mvx-vendor-multi-action-buttons">
+														<button
+															className="mvx-btn btn-red"
+															onClick={this.handleVendorDismiss}
+															color="primary"
+															>
+															{appLocalizer.vendor_page_string.delete}
+														</button>
+													</div>
+												</div>
+											</DialogContentText>
+										</DialogContent>
+										<DialogActions></DialogActions>
+									</Dialog>
+								))}
 							</div>
 						)
 					) : (
@@ -1229,12 +1364,6 @@ class MVXBackendVendor extends React.Component {
 						});
 					}
 				});
-
-
-
-
-				
-
 
 			if (
 				this.useQuery().get('ID') &&
