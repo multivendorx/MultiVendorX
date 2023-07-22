@@ -1,27 +1,31 @@
 /* fonts */
 @font-face {
   font-family: 'mvx-frontend-font';
-  src: url("../fonts/mvx-frontend-font.eot?vtl65e");
-  src: url("../fonts/mvx-frontend-font.eot?vtl65e#iefix") format("embedded-opentype"), url("../fonts/mvx-frontend-font.ttf?vtl65e") format("truetype"), url("../fonts/mvx-frontend-font.woff?vtl65e") format("woff");
-  font-weight: normal;
-  font-style: normal;
+	src: url("../fonts/mvx-frontend-font.eot?vtl65e");
+	src: url("../fonts/mvx-frontend-font.eot?vtl65e#iefix") format('embedded-opentype'), url("../fonts/mvx-frontend-font.ttf?vtl65e") format('truetype'), url("../fonts/mvx-frontend-font.woff?vtl65e") format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
-
-/* fonts end */
-/************ new *****************/
-/*TYPE 1*/
-/*TYPE 2*/
-/*TYPE 3*/
-i.mvx-font {
+[class^=ico-], [class*=" ico-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'mvx-frontend-font' !important;
-  speak: none;
+  speak: never;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
   text-transform: none;
   line-height: 1;
+  /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.ico-badge-icon:before {
+  content: "\e900";
+}
+
+.ico-call-icon:before {
+  content: "\e901";
 }
 
 .ico-facebook-icon:before {
@@ -40,22 +44,6 @@ i.mvx-font {
   content: "\e905";
 }
 
-.ico-twitter-icon:before {
-  content: "\e908";
-}
-
-.ico-youtube-icon:before {
-  content: "\e909";
-}
-
-.ico-badge-icon:before {
-  content: "\e900";
-}
-
-.ico-call-icon:before {
-  content: "\e901";
-}
-
 .ico-location-icon:before {
   content: "\e906";
 }
@@ -64,7 +52,91 @@ i.mvx-font {
   content: "\e907";
 }
 
-.icon-pinterest:before {
+.ico-twitter-icon:before {
+  content: "\e908";
+}
+
+.ico-youtube-icon:before {
+  content: "\e909";
+}
+
+.ico-store-icon:before {
+  content: "\e90a";
+}
+
+.ico-location-icon2:before {
+  content: "\e90b";
+}
+
+.ico-attachment-icon:before {
+  content: "\e90c";
+}
+
+.ico-close-icon:before {
+  content: "\e90d";
+}
+
+.ico-emoji-icon:before {
+  content: "\e90e";
+}
+
+.ico-send-icon:before {
+  content: "\e90f";
+}
+
+.ico-add-booking:before {
+  content: "\e910";
+}
+
+.ico-message:before {
+  content: "\e911";
+}
+
+.ico-notification:before {
+  content: "\e912";
+}
+
+.ico-quote:before {
+  content: "\e913";
+}
+
+.ico-rental:before {
+  content: "\e914";
+}
+
+.ico-resources:before {
+  content: "\e915";
+}
+
+.ico-subscriptions:before {
+  content: "\e916";
+}
+
+.ico-export:before {
+  content: "\e917";
+}
+
+.ico-import:before {
+  content: "\e918";
+}
+
+.ico-buddypress_icon:before {
+  content: "\e919";
+}
+
+.ico-call_icon:before {
+  content: "\e91a";
+}
+
+.ico-share_icon:before {
+  content: "\e91b";
+}
+
+.ico-at_icon:before {
+  content: "\e91c";
+}
+
+.ico-pinterest-icon:before {
   content: "\e91d";
 }
 
@@ -72,7 +144,6 @@ i.mvx-font {
   position: relative;
   line-height: 0.8;
 }
-
 .vendor_description_background * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -86,7 +157,6 @@ i.mvx-font {
   background-color: rgba(0, 0, 0, 0.5);
   font-weight: bold;
 }
-
 .vendor_description .vendor_img_add {
   float: left;
   width: 280px;
@@ -99,37 +169,29 @@ i.mvx-font {
   bottom: 15px;
   z-index: 1;
 }
-
 .mvx_social_profile a {
   display: inline-block;
   margin: 0 0 0 5px;
 }
-
 .mvx_social_profile .mvx-font {
   background: #fff;
   font-size: 27px;
 }
-
 .mvx_social_profile .ico-facebook-icon {
   color: #4867aa;
 }
-
 .mvx_social_profile .ico-twitter-icon {
   color: #1da1f2;
 }
-
 .mvx_social_profile .ico-linkedin-icon {
   color: #007bb6;
 }
-
 .mvx_social_profile .ico-google-plus-icon {
   color: #dd4c40;
 }
-
 .mvx_social_profile .ico-youtube-icon {
   color: #ff0000;
 }
-
 .mvx_social_profile .ico-instagram-icon {
   color: #517ea3;
 }
@@ -138,7 +200,6 @@ i.mvx-font {
   margin-top: 8px;
   word-break: break-word;
 }
-
 .vendor_address p {
   margin: 0 0 10px;
   text-align: left;
@@ -146,20 +207,17 @@ i.mvx-font {
   font-weight: 400;
   color: inherit;
 }
-
 .vendor_address p img {
   height: 12px;
   margin-right: 14px;
   width: 12px;
   display: inline-block;
 }
-
 .vendor_address p.mvx_vendor_name {
   color: inherit;
   font-weight: 600;
   font-size: 18px;
 }
-
 .vendor_address label {
   font-size: 14px;
   font-weight: 400;
@@ -179,12 +237,10 @@ a.mvx_vendor_detail {
 .mvx_vendor_rating {
   margin: 5px 0;
 }
-
 .mvx_vendor_rating .star-rating {
   float: none;
   display: inline-block;
 }
-
 .mvx_vendor_rating * {
   font-weight: 400;
   color: inherit;
@@ -192,7 +248,6 @@ a.mvx_vendor_detail {
   font-weight: 400;
   color: inherit;
 }
-
 .mvx_vendor_rating p {
   margin: 0;
 }
@@ -212,7 +267,6 @@ a.mvx_vendor_detail {
 .social_profile {
   float: right;
 }
-
 .social_profile a {
   padding: 2px;
   display: inline-block;
@@ -247,7 +301,6 @@ a.mvx_vendor_detail {
 .description_data {
   margin-top: 10px;
 }
-
 .description_data p {
   line-height: 1.2;
 }
@@ -258,7 +311,6 @@ a.mvx_vendor_detail {
   background-repeat: no-repeat;
   position: relative;
 }
-
 .mvx_vendor_banner > img {
   width: 100%;
   border-radius: 0;
@@ -273,17 +325,14 @@ a.mvx_vendor_detail {
 .mvx_vendor_banner_template {
   margin-bottom: 35px;
 }
-
 .mvx_vendor_banner_template .mvx_total_rating_number {
   display: inline-block;
   vertical-align: middle;
 }
-
 .mvx_vendor_banner_template .mvx_total_rating_number + a {
   display: inline-block;
   vertical-align: middle;
 }
-
 .mvx_vendor_banner_template .mvx_total_rating_number + a .star-rating {
   display: inline-block;
   vertical-align: middle;
@@ -295,51 +344,41 @@ a.mvx_vendor_detail {
   left: 0;
   height: 100%;
 }
-
 .mvx_vendor_banner_template.template1 .vendor_description .vendor_img_add {
   width: auto;
   max-width: 100%;
 }
-
 .mvx_vendor_banner_template.template1 .img_div img {
   border: 2px solid #fff;
   max-width: 70px;
   max-height: 70px;
 }
-
 .mvx_vendor_banner_template.template1 .mvx_vendor_banner {
   overflow: hidden;
 }
-
 .mvx_vendor_banner_template.template1 .vendor_address {
   color: #fff;
 }
-
 .mvx_vendor_banner_template.template1 .mvx_vendor_name {
   display: inline-block;
   vertical-align: middle;
   margin-bottom: 5px;
 }
-
 .mvx_vendor_banner_template.template1 .vendor_badge {
   margin: 0 0 5px 10px;
 }
-
 .mvx_vendor_banner_template.template1 .description_data {
   border: 1px solid #ddd;
   margin: 0;
   padding: 20px;
   background: #fbfbfb;
 }
-
 .mvx_vendor_banner_template.template1 .description_data p {
   margin: 0;
 }
-
 .mvx_vendor_banner_template.template1 .external_store_url {
   margin: 1px 0 0;
 }
-
 .mvx_vendor_banner_template.template1 .external_store_url a {
   color: #fff;
 }
@@ -347,7 +386,6 @@ a.mvx_vendor_detail {
 .mvx_vendor_banner_template.template2 {
   border: 1px solid #e8e8e8;
 }
-
 .mvx_vendor_banner_template.template2 .vendor_description {
   position: relative;
   padding-top: 0;
@@ -355,26 +393,21 @@ a.mvx_vendor_detail {
   background: transparent;
   text-align: center;
 }
-
 .mvx_vendor_banner_template.template2 .vendor_description .vendor_img_add {
   margin: 0 auto;
   float: none;
   text-align: center;
   width: 100%;
 }
-
 .mvx_vendor_banner_template.template2 .vendor_address {
   color: #444;
 }
-
 .mvx_vendor_banner_template.template2 .vendor_address p.mvx_vendor_name {
   margin: 7px 0 11px 0;
 }
-
 .mvx_vendor_banner_template.template2 .vendor_address p {
   text-align: center;
 }
-
 .mvx_vendor_banner_template.template2 .img_div img {
   border: 2px solid #fff;
   max-width: 125px;
@@ -387,26 +420,21 @@ a.mvx_vendor_detail {
   -o-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
 }
-
 .mvx_vendor_banner_template.template2 .vendor_description_background {
   border: solid 1px #eaeaea;
 }
-
 .mvx_vendor_banner_template.template2 .mvx_vendor_rating .star-rating {
   float: none;
   display: inline-block;
 }
-
 .mvx_vendor_banner_template.template2 .mvx_total_rating_number {
   float: none;
 }
-
 .mvx_vendor_banner_template.template2 .mvx_vendor_detail {
   display: inline-block;
   padding: 0;
   margin: 5px 10px;
 }
-
 .mvx_vendor_banner_template.template2 .external_store_url {
   margin: 0 0 10px 0;
 }
@@ -415,22 +443,18 @@ a.mvx_vendor_detail {
   border: 1px solid #e8e8e8;
   background: #f3f3f3;
 }
-
 .mvx_vendor_banner_template.template3 .vendor_description {
   position: relative;
   padding-top: 0;
   margin-top: -55px;
   background: transparent;
 }
-
 .mvx_vendor_banner_template.template3 .vendor_description .vendor_img_add {
   width: 100%;
 }
-
 .mvx_vendor_banner_template.template3 .img_div {
   float: left;
 }
-
 .mvx_vendor_banner_template.template3 .img_div img {
   border: 2px solid #fff;
   border-radius: 50%;
@@ -440,32 +464,26 @@ a.mvx_vendor_detail {
   -o-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
 }
-
 .mvx_vendor_banner_template.template3 .vendor_description_background {
   border: solid 1px #eaeaea;
 }
-
 .mvx_vendor_banner_template.template3 .vendor_address {
   color: #444;
   float: left;
   margin-left: 15px;
 }
-
 .mvx_vendor_banner_template.template3 .mvx_vendor_rating .star-rating {
   float: none;
   display: inline-block;
 }
-
 .mvx_vendor_banner_template.template3 .mvx_total_rating_number {
   float: none;
 }
-
 .mvx_vendor_banner_template.template3 .mvx_vendor_detail {
   display: inline-block;
   padding: 0;
   margin: 10px 15px 0 0;
 }
-
 .mvx_vendor_banner_template.template3 .mvx_vendor_name {
   color: #fff;
   margin: 16px 0 21px 0;
@@ -473,17 +491,14 @@ a.mvx_vendor_detail {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
   width: auto;
 }
-
 .mvx_vendor_banner_template.template3 .vendor_img_add {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-
 .mvx_vendor_banner_template.template3 .description_data {
   margin-top: 15px;
 }
-
 .mvx_vendor_banner_template.template3 .external_store_url {
   margin: 10px 0;
 }
@@ -498,7 +513,6 @@ a.mvx_vendor_detail {
   text-align: center;
   display: none;
 }
-
 .mvx_review_loader img {
   margin: 2px auto;
 }
@@ -523,7 +537,6 @@ a.mvx_vendor_detail {
     font-size: 20px;
   }
 }
-
 @media screen and (max-width: 1100px) {
   .mvx_vendor_banner_template.template1 .vendor_description {
     position: relative;
@@ -539,13 +552,11 @@ a.mvx_vendor_detail {
     padding: 0 15px 20px;
   }
 }
-
 @media screen and (max-width: 640px) {
   .mvx_vendor_banner_template.template2 .vendor_description {
     margin-top: 10px;
   }
 }
-
 @media screen and (max-width: 991px) {
   .mvx_vendor_banner_template.template3 .vendor_description {
     margin-top: 10px;
@@ -560,7 +571,6 @@ a.mvx_vendor_detail {
     width: 100%;
   }
 }
-
 @media screen and (max-width: 480px) {
   .mvx_social_profile {
     right: 10px;
@@ -573,5 +583,4 @@ a.mvx_vendor_detail {
     max-width: 70px;
     max-height: 70px;
   }
-}
-/*# sourceMappingURL=frontend.css.map */
+}/*# sourceMappingURL=frontend.css.map */
