@@ -4919,6 +4919,26 @@ class MVX_REST_API {
         $vendor_ids = $request->get_param('vendor_ids') ? $request->get_param('vendor_ids') : '';
         $select_input = $request->get_param('select_input') ? $request->get_param('select_input') : '';
 
+        if ($select_input == 'delete_user') {
+            if ($vendor_ids && is_array($vendor_ids)) {
+                foreach (wp_list_pluck($vendor_ids, "ID") as $key => $value) {
+                    wp_delete_user($value);
+                }
+            } elseif ($vendor_ids) {
+                wp_delete_user($vendor_ids);
+            }
+        }
+        if ($select_input == 'delete_vendor') {
+            if ($vendor_ids && is_array($vendor_ids)) {
+                foreach (wp_list_pluck($vendor_ids, "ID") as $key => $value) {
+                    $user = new WP_User(absint($value));
+                    $user->set_role('customer');
+                }
+            } elseif ($vendor_ids) {
+                $user = new WP_User(absint($vendor_ids));
+                $user->set_role('customer');
+            }
+        }
         if ($select_input == 'delete') {
             if ($vendor_ids && is_array($vendor_ids)) {
                 foreach (wp_list_pluck($vendor_ids, "ID") as $key => $value) {
