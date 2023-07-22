@@ -393,6 +393,9 @@ class MVX_Admin {
                 'add_new'  =>  __('Add New', 'multivendorx'),
                 'describe_yourself'  =>  __('Send your rejection note to vendor.', 'multivendorx'),
                 'optional_note'  =>  __('Optional note for acceptance / rejection', 'multivendorx'),
+                'select_option'  =>  __('Select your desired option', 'multivendorx'),
+                'delete_user'  =>  __('Delete User Permanently', 'multivendorx'),
+                'delete_vendor'  =>  __('Delete Vendor', 'multivendorx'),
             );
 
             $status_and_tools_string = array(
