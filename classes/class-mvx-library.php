@@ -18,7 +18,6 @@ class MVX_Library {
     public $bootstrap_lib_url;
     public $jqvmap;
     public $dataTable_lib_url;
-    public $popper_lib_url;
     public $vlite_lib_url;
 
     public function __construct() {
@@ -46,8 +45,6 @@ class MVX_Library {
         $this->jqvmap = $this->lib_url . 'jqvmap/';
 
         $this->dataTable_lib_url = $this->lib_url . 'dataTable/';
-
-        $this->popper_lib_url = $this->lib_url . 'popper/';
 
         $this->vlite_lib_url = $this->lib_url . 'vlite/';
     }
@@ -161,11 +158,9 @@ class MVX_Library {
     }
 
     public function load_bootstrap_script_lib() {
-        wp_register_script('mvx-bootstrap-script', $this->bootstrap_lib_url . 'js/bootstrap.min.js', array('jquery', 'mvx-popper-js'), '4.6.0');
-        wp_register_script('mvx-popper-js', $this->popper_lib_url . 'popper.min.js', array('jquery'), '1.12.9');
+        wp_register_script('mvx-bootstrap-script', $this->bootstrap_lib_url . 'js/bootstrap.min.js', array('jquery'), '4.6.0');
         if (!defined('MVX_UNLOAD_BOOTSTRAP_LIB')) {
             wp_enqueue_script('mvx-bootstrap-script');
-            wp_enqueue_script('mvx-popper-js');
         }
     }
 
