@@ -45,7 +45,7 @@ if ( $template_class == 'template3') { ?>
                     <?php if ($vendor_google_plus_profile) { ?> <a target="_blank" href="<?php echo esc_url($vendor_google_plus_profile); ?>"><i class="mvx-font ico-google-plus-icon"></i></a><?php } ?>
                     <?php if ($vendor_youtube) { ?> <a target="_blank" href="<?php echo esc_url($vendor_youtube); ?>"><i class="mvx-font ico-youtube-icon"></i></a><?php } ?>
                     <?php if ($vendor_instagram) { ?> <a target="_blank" href="<?php echo esc_url($vendor_instagram); ?>"><i class="mvx-font ico-instagram-icon"></i></a><?php } ?>
-                    <?php if ($vendor_pinterest_profile) { ?> <a target="_blank" href="<?php echo esc_url($vendor_pinterest_profile); ?>"><i class="mvx-font icon-pinterest"></i></a><?php } ?>
+                    <?php if ($vendor_pinterest_profile) { ?> <a target="_blank" href="<?php echo esc_url($vendor_pinterest_profile); ?>"><i class="mvx-font ico-pinterest-icon"></i></a><?php } ?>
                     <?php do_action( 'mvx_vendor_store_header_social_link', $vendor_id ); ?>
                     </div>
                 </div>
@@ -168,7 +168,7 @@ if ( $template_class == 'template3') { ?>
                     <?php if ($vendor_google_plus_profile) { ?> <a target="_blank" href="<?php echo esc_url($vendor_google_plus_profile); ?>"><i class="mvx-font ico-google-plus-icon"></i></a><?php } ?>
                     <?php if ($vendor_youtube) { ?> <a target="_blank" href="<?php echo esc_url($vendor_youtube); ?>"><i class="mvx-font ico-youtube-icon"></i></a><?php } ?>
                     <?php if ($vendor_instagram) { ?> <a target="_blank" href="<?php echo esc_url($vendor_instagram); ?>"><i class="mvx-font ico-instagram-icon"></i></a><?php } ?>
-                    <?php if ($vendor_pinterest_profile) { ?> <a target="_blank" href="<?php echo esc_url($vendor_pinterest_profile); ?>"><i class="mvx-font icon-pinterest"></i></a><?php } ?>
+                    <?php if ($vendor_pinterest_profile) { ?> <a target="_blank" href="<?php echo esc_url($vendor_pinterest_profile); ?>"><i class="mvx-font ico-pinterest-icon"></i></a><?php } ?>
                     <?php do_action( 'mvx_vendor_store_header_social_link', $vendor_id ); ?>
                     </div>
                 </div>
@@ -206,7 +206,7 @@ if ( $template_class == 'template3') { ?>
                         <?php if ($vendor_google_plus_profile) { ?> <a target="_blank" href="<?php echo esc_url($vendor_google_plus_profile); ?>"><i class="mvx-font ico-google-plus-icon"></i></a><?php } ?>
                         <?php if ($vendor_youtube) { ?> <a target="_blank" href="<?php echo esc_url($vendor_youtube); ?>"><i class="mvx-font ico-youtube-icon"></i></a><?php } ?>
                         <?php if ($vendor_instagram) { ?> <a target="_blank" href="<?php echo esc_url($vendor_instagram); ?>"><i class="mvx-font ico-instagram-icon"></i></a><?php } ?>
-                        <?php if ($vendor_pinterest_profile) { ?> <a target="_blank" href="<?php echo esc_url($vendor_pinterest_profile); ?>"><i class="mvx-font icon-pinterest"></i></a><?php } ?>
+                        <?php if ($vendor_pinterest_profile) { ?> <a target="_blank" href="<?php echo esc_url($vendor_pinterest_profile); ?>"><i class="mvx-font ico-pinterest-icon"></i></a><?php } ?>
                         <?php do_action( 'mvx_vendor_store_header_social_link', $vendor_id ); ?>
                         </div>
                     </div>

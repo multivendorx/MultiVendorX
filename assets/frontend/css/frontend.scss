@@ -6,72 +6,114 @@
 	font-weight: normal;
 	font-style: normal;
 }
-/* fonts end */
-/************ new *****************/
-/*TYPE 1*/
-/*TYPE 2*/
-/*TYPE 3*/
-i.mvx-font {
+  
+  [class^="ico-"], [class*=" ico-"] {
+	/* use !important to prevent issues with browser extensions that change fonts */
 	font-family: 'mvx-frontend-font' !important;
-	speak: none;
+	speak: never;
 	font-style: normal;
 	font-weight: normal;
 	font-variant: normal;
 	text-transform: none;
 	line-height: 1;
+  
+	/* Better Font Rendering =========== */
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-}
-.ico-facebook-icon {
-	&:before {
-		content: "\e902";
-	}
-}
-.ico-google-plus-icon {
-	&:before {
-		content: "\e903";
-	}
-}
-.ico-instagram-icon {
-	&:before {
-		content: "\e904";
-	}
-}
-.ico-linkedin-icon {
-	&:before {
-		content: "\e905";
-	}
-}
-.ico-twitter-icon {
-	&:before {
-		content: "\e908";
-	}
-}
-.ico-youtube-icon {
-	&:before {
-		content: "\e909";
-	}
-}
-.ico-badge-icon {
-	&:before {
-		content: "\e900";
-	}
-}
-.ico-call-icon {
-	&:before {
-		content: "\e901";
-	}
-}
-.ico-location-icon {
-	&:before {
-		content: "\e906";
-	}
-}
-.ico-mail-icon {
-	&:before {
-		content: "\e907";
-	}
-}
+  }
+  
+  .ico-badge-icon:before {
+	content: "\e900";
+  }
+  .ico-call-icon:before {
+	content: "\e901";
+  }
+  .ico-facebook-icon:before {
+	content: "\e902";
+  }
+  .ico-google-plus-icon:before {
+	content: "\e903";
+  }
+  .ico-instagram-icon:before {
+	content: "\e904";
+  }
+  .ico-linkedin-icon:before {
+	content: "\e905";
+  }
+  .ico-location-icon:before {
+	content: "\e906";
+  }
+  .ico-mail-icon:before {
+	content: "\e907";
+  }
+  .ico-twitter-icon:before {
+	content: "\e908";
+  }
+  .ico-youtube-icon:before {
+	content: "\e909";
+  }
+  .ico-store-icon:before {
+	content: "\e90a";
+  }
+  .ico-location-icon2:before {
+	content: "\e90b";
+  }
+  .ico-attachment-icon:before {
+	content: "\e90c";
+  }
+  .ico-close-icon:before {
+	content: "\e90d";
+  }
+  .ico-emoji-icon:before {
+	content: "\e90e";
+  }
+  .ico-send-icon:before {
+	content: "\e90f";
+  }
+  .ico-add-booking:before {
+	content: "\e910";
+  }
+  .ico-message:before {
+	content: "\e911";
+  }
+  .ico-notification:before {
+	content: "\e912";
+  }
+  .ico-quote:before {
+	content: "\e913";
+  }
+  .ico-rental:before {
+	content: "\e914";
+  }
+  .ico-resources:before {
+	content: "\e915";
+  }
+  .ico-subscriptions:before {
+	content: "\e916";
+  }
+  .ico-export:before {
+	content: "\e917";
+  }
+  .ico-import:before {
+	content: "\e918";
+  }
+  .ico-buddypress_icon:before {
+	content: "\e919";
+  }
+  .ico-call_icon:before {
+	content: "\e91a";
+  }
+  .ico-share_icon:before {
+	content: "\e91b";
+  }
+  .ico-at_icon:before {
+	content: "\e91c";
+  }
+  .ico-pinterest-icon:before {
+	content: "\e91d";
+  }
+  
+  
 .vendor_description_background {
 	* {
 		box-sizing: border-box;
