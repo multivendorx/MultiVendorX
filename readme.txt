@@ -5,7 +5,7 @@ Donate link: https://multivendorx.com/donate
 Requires at least: 4.4
 Tested up to: 6.2.2
 Requires PHP: 5.6
-Stable tag: 4.0.22
+Stable tag: 4.0.23
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -291,6 +291,16 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.0.23 - 2023-07-25 =
+* Added     - Compatibility of WooCommerce 7.9.0.
+* Added     - Enhancement in the flow of deleting current vendor #443.
+* Fix       - Vendor logo issue #448.
+* Fix       - Issue with pinterest icon #450.
+* Fix       - DevTools failed load source map issue #452.
+* Fix       - Suborder and parent order status synchronization issue #453.
+* Dev       - Added `mvx_vendor_dash_after_order_itemmeta_table` action.
+* Updated   - Language file.
 
 = 4.0.22 - 2023-07-13 =
 * Added     - Compatibility of WooCommerce 7.8.2.
