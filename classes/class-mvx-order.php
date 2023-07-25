@@ -874,7 +874,7 @@ class MVX_Order {
             }
 
             $parent_order = wc_get_order( $parent_order_id );
-            if($parent_order->get_total() == $suborder_totals){
+            if($parent_order->get_total() == wc_format_decimal($suborder_totals)) {
                 if ( $suborder_count == $new_status_count && in_array( $new_status, $status_to_sync ) ) {
                     $parent_order->update_status( $new_status, _x( "Sync from vendor's suborders: ", 'Order note', 'multivendorx' ) );
                 } elseif ( $suborder_count != 0 ) {
