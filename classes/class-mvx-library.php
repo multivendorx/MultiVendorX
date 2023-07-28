@@ -159,8 +159,10 @@ class MVX_Library {
 
     public function load_bootstrap_script_lib() {
         wp_register_script('mvx-bootstrap-script', $this->bootstrap_lib_url . 'js/bootstrap.min.js', array('jquery'), '4.6.0');
+        wp_register_script('mvx-bootstrap-bundle-script', $this->bootstrap_lib_url . 'js/bootstrap.bundle.min.js', array('jquery'), '4.6.0');
         if (!defined('MVX_UNLOAD_BOOTSTRAP_LIB')) {
             wp_enqueue_script('mvx-bootstrap-script');
+            wp_enqueue_script('mvx-bootstrap-bundle-script');
         }
     }
 
