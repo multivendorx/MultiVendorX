@@ -94,7 +94,7 @@ class MVX_Coupon {
     * @return abject $coupon
     */
     public function woocommerce_coupon_is_valid_for_product( $valid, $product, $coupon, $values) {
-      if ( $coupon->is_type(apply_filters('mvx_vendor_coupon_types_valid_for_product', array( 'fixed_product' ), $coupon) ) ) {
+      if ( $coupon->is_type(apply_filters('mvx_vendor_coupon_types_valid_for_product', array( 'fixed_product', 'percent', 'fixed_cart' ), $coupon) ) ) {
         $current_coupon = get_post( $coupon->get_id() );
         if(is_user_mvx_vendor($current_coupon->post_author)) {
           $current_product = get_post($product->get_id());
@@ -113,7 +113,7 @@ class MVX_Coupon {
     public function woocommerce_coupon_is_valid($true, $coupon) {
         $current_coupon = get_post( $coupon->get_id() );
         if(is_user_mvx_vendor($current_coupon->post_author)) {
-            if ($coupon->is_type( apply_filters('mvx_vendor_coupon_types_valid_for_product', array( 'fixed_product' ), $coupon) ) ) {
+            if ($coupon->is_type( apply_filters('mvx_vendor_coupon_types_valid_for_product', array( 'fixed_product', 'percent', 'fixed_cart' ), $coupon) ) ) {
                 $is_coupon_valid = false;
                 if ( ! WC()->cart->is_empty() ) {
                     foreach( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
@@ -290,9 +290,21 @@ class MVX_Coupon {
     
     function save_data_from_vendor_tab( $post_id, $coupon ) {
         $select_vendor = isset( $_POST['select_vendor'] ) ? wc_clean( wp_unslash($_POST['select_vendor'])) : '';
-        if ( !empty($select_vendor) ) {
-            wp_update_post(array('ID' => $post_id, 'post_author' => $select_vendor));
+        if (!empty($select_vendor) ) {
+            $vendor = get_mvx_vendor($select_vendor);
+            if ($vendor) {
+                $vendor_products = wp_list_pluck( $vendor->get_products_ids(), 'ID' );
+                $product_count = count($vendor_products);
+                if ($product_count > 0) {
+                    wp_update_post(array('ID' => $post_id, 'post_author' => $select_vendor));
+                    if (!isset($_POST['product_ids'])) {    
+                        $v_products = implode(',', $vendor_products);
+                        update_post_meta($post_id, 'product_ids', $v_products);       
+                    }
+                } else {
+                    WC_Admin_Meta_Boxes::add_error( __( 'Vendor not assigned, because vendor has no products.', 'multivendorx' ) );
+                }
+            }
         }
     }
 }
-?>
