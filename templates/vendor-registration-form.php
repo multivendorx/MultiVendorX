@@ -129,13 +129,13 @@ if (!empty($mvx_vendor_registration_form_data) && is_array($mvx_vendor_registrat
                     if (!empty($value['options']) && is_array($value['options'])) {
                         foreach ($value['options'] as $option_key => $option_value) {
                             ?>
-                            <p> <input type="checkbox" <?php if ($option_value['selected']) { echo 'checked="checked"'; } ?> name="mvx_vendor_fields[<?php echo $key; ?>][value]" class="mvx-regs-multi-check" value="<?php echo $option_value['value']; ?>"> <?php echo $option_value['label']; ?>
+                            <p> <input type="checkbox" <?php if ($option_value['selected']) { echo 'checked="checked"'; } ?> name="mvx_vendor_fields[<?php echo $key; ?>][value]" class="mvx-regs-multi-check" value="<?php echo esc_attr($option_value['value']); ?>"> <?php echo htmlentities($option_value['label']); ?>
                             </p>
                             
                             <?php
                         }
                     }
-                    if ($value['required']) {
+                    if ($value && isset($value['required'])) {
                         wp_add_inline_script('woocommerce', "(function ($) { 
                             $('.mvx_regi_main .register').submit(function(e) {
                                 checked = $('.mvx-regs-multi-check:checked').length;
