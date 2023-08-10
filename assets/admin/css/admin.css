@@ -765,6 +765,14 @@
   content: "\e93e";
 }
 
+.module-gift-card:before {
+  content: "\e93f";
+}
+
+.module-rental-pro:before {
+  content: "\e940";
+}
+
 /*icon end*/
 textarea, input[type=text], input[type=url], input[type=email], input[type=number], select, input, .default-input, input[type=password] {
   border-radius: 0.25rem;

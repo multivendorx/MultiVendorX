@@ -7480,6 +7480,25 @@ if (!function_exists('mvx_list_all_modules')) {
                         ),
                         'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/rental-product',
                     ],
+                    [
+                        'id'           => 'gift-card',
+                        'name'         => __( 'Gift Cards', 'multivendorx' ),
+                        'description'  => __( "Activate this module to offer gift cards, boosting your store's earnings and attracting fresh clientele.", 'multivendorx' ),
+                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
+                        'required_plugin_list' => array(
+                            array(
+                                'plugin_name'   => __('YITH WooCommerce Gift Cards', 'multivendorx'),
+                                'plugin_link'   => 'https://wordpress.org/plugins/yith-woocommerce-gift-cards/',
+                                'is_active' => is_plugin_active('yith-woocommerce-gift-cards/init.php') ? true :false,
+                            ),
+                            array(
+                                'plugin_name'   => __('MultivendorX Pro', 'multivendorx'),
+                                'plugin_link'   => 'https://multivendorx.com/',
+                                'is_active'     => $mvx_pro_is_active,
+                            ),
+                        ),
+                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/gift-card/',
+                    ],
                 ]
             ],
             [
