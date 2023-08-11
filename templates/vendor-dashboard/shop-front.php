@@ -462,9 +462,9 @@ $banner = $vendor->get_image('banner') ? $vendor->get_image('banner') : $MVX->pl
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-3 col-md-3"><?php _e('Select store details to hide', 'multivendorx'); ?></label>
+                        <label class="control-label col-sm-3 col-md-3"><?php _e('Select Store Details To Hide', 'multivendorx'); ?></label>
                         <div class="col-md-6 col-sm-9">
-                            <ul>
+                            <ul class="select-store-details">
                                 <li>
                                     <label>
                                         <input type="checkbox" name="vendor_shop_address_hide" value="Enable"<?php if ($vendor_hide_address == 'Enable') echo 'checked'; ?>><?php esc_html_e('Address', 'multivendorx'); ?>
