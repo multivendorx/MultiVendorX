@@ -9334,3 +9334,12 @@ a.remove-amount span::before {
 .variation-amount-list .variation-amount:hover a.remove-amount {
     opacity: 1;
 }
+ul.select-store-details {
+    column-gap: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+ul.select-store-details li input {
+    margin-right: 0.5rem;
+}

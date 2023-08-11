@@ -8346,4 +8346,22 @@ a.remove-amount span::before {
 
 .variation-amount-list .variation-amount:hover a.remove-amount {
   opacity: 1;
+}
+
+ul.select-store-details {
+  -webkit-column-gap: 1rem;
+     -moz-column-gap: 1rem;
+          column-gap: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+ul.select-store-details li input {
+  margin-right: 0.5rem;
 }/*# sourceMappingURL=vendor_dashboard.css.map */
