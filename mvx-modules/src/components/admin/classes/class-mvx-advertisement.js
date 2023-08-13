@@ -520,9 +520,7 @@ class Advertisement extends React.Component {
 
   render() {
     return (
-      <Router>
         <this.QueryParamsDemo />
-      </Router>
     );
   }
 }

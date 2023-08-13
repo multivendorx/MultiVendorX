@@ -321,9 +321,7 @@ class MVX_Status_Tools extends Component {
 
 	render() {
 		return (
-			<Router>
-				<this.QueryParamsDemo />
-			</Router>
+			<this.QueryParamsDemo />
 		);
 	}
 }

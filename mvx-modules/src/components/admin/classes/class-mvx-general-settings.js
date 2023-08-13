@@ -1288,9 +1288,7 @@ class MVX_Settings extends Component {
 	}
 	render() {
 		return (
-			<Router>
-				<this.QueryParamsDemo />
-			</Router>
+			<this.QueryParamsDemo />
 		);
 	}
 }

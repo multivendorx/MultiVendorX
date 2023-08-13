@@ -332,7 +332,6 @@ class MVX_Module_Listing extends Component {
 									</div>
 									
 										<div className="mvx-module-option-row">
-										{console.log(student1.options)}
 											{student1.options.map(
 												(student, index) => (
 													<div className="mvx-module-section-options-list">
@@ -479,59 +478,6 @@ class MVX_Module_Listing extends Component {
 																	></label>
 																</div>
 															</div>
-															<Dialog
-																open={
-																	this.state
-																		.open_model_dynamic[
-																		index
-																	]
-																}
-																onClose={
-																	this
-																		.handleClose_dynamic
-																}
-																aria-labelledby="form-dialog-title"
-															>
-																<DialogTitle id="form-dialog-title">
-																	<div className="mvx-module-dialog-title">
-																		{
-																			appLocalizer
-																				.module_page_string
-																				.module9
-																		}
-																	</div>
-																</DialogTitle>
-																<DialogContent>
-																	<DialogContentText>
-																		<div className="mvx-module-dialog-content">
-																			{
-																				appLocalizer
-																					.module_page_string
-																					.module10
-																			}{' '}
-																			{
-																				student.name
-																			}{' '}
-																			module.
-																		</div>
-																	</DialogContentText>
-																</DialogContent>
-																<DialogActions>
-																	<button
-																		onClick={
-																			this
-																				.handleClose_dynamic
-																		}
-																		color="primary"
-																	>
-																		{
-																			appLocalizer
-																				.module_page_string
-																				.module12
-																		}
-																	</button>
-																</DialogActions>
-															</Dialog>
 														</div>
 													</div>
 												)

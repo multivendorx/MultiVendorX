@@ -2136,9 +2136,7 @@ class MVXworkboard extends Component {
 
 	render() {
 		return (
-			<Router>
 				<this.QueryParamsDemo />
-			</Router>
 		);
 	}
 }

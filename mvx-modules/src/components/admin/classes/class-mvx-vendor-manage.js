@@ -2444,9 +2444,7 @@ class MVXBackendVendor extends React.Component {
 
 	render() {
 		return (
-			<Router>
-				<this.QueryParamsDemo />
-			</Router>
+			<this.QueryParamsDemo />
 		);
 	}
 }
