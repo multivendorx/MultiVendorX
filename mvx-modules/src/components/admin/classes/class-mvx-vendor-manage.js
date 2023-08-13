@@ -62,7 +62,14 @@ class MVXBackendVendor extends React.Component {
 			vendor_list_status_suspended: false,
 			vendor_list_status_all: false,
 			selected_option: false,
-			selected_ids: []
+			selected_ids: [],
+
+			add_vendor_modal: false,
+			CurrentActiveNewvendorRouters: '',
+			OnAccountClick: false,
+			OnAddressClick: false,
+			OnPaymentClick: false,
+			validationTrue: true
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -101,7 +108,99 @@ class MVXBackendVendor extends React.Component {
 		this.handleDeleteIcon = this.handleDeleteIcon.bind(this);
 		this.handleClose_delete_modal = this.handleClose_delete_modal.bind(this);
 		this.handleChangeRadioButton = this.handleChangeRadioButton.bind(this);
+
+
+
+
+
+
+
+
+		this.handleOpenVendorDialog = this.handleOpenVendorDialog.bind(this);
+		this.handleCloseVendorDialog = this.handleCloseVendorDialog.bind(this);
+
+		this.OnAccountClick = this.OnAccountClick.bind(this);
+		this.OnAddressClick = this.OnAddressClick.bind(this);
+		this.OnPaymentClick = this.OnPaymentClick.bind(this);
+		this.OnNextClick = this.OnNextClick.bind(this);
+
+		
 	}
+
+	handleOpenVendorDialog(){
+		this.setState({
+			add_vendor_modal: true,
+			OnAccountClick: true,
+			CurrentActiveNewvendorRouters: 'OnAccountClick'
+		});
+	}
+	handleCloseVendorDialog(){
+		this.setState({
+			add_vendor_modal: false,
+			OnAccountClick: false,
+			OnAddressClick: false,
+			OnPaymentClick: false,
+			CurrentActiveNewvendorRouters: ''
+		})
+	}
+	OnAccountClick() {
+		this.setState({
+			OnAccountClick: true,
+			OnAddressClick: false,
+			OnPaymentClick: false,
+			CurrentActiveNewvendorRouters: 'OnAccountClick'
+		})
+	}
+	OnAddressClick() {
+		this.setState({
+			OnAddressClick: true,
+			OnAccountClick: false,
+			OnPaymentClick: false,
+			CurrentActiveNewvendorRouters: 'OnAddressClick'
+		})
+	}
+	OnPaymentClick() {
+		this.setState({
+			OnPaymentClick: true,
+			OnAddressClick: false,
+			OnAccountClick: false,
+			CurrentActiveNewvendorRouters: 'OnPaymentClick'
+		})
+	}
+
+	OnNextClick() {
+		if (this.state.CurrentActiveNewvendorRouters == 'OnAccountClick' && this.state.validationTrue) {
+			this.OnAddressClick();
+		} else if (!this.state.validationTrue) {
+			this.OnAccountClick();
+		} else if (this.state.CurrentActiveNewvendorRouters == 'OnAddressClick') {
+			this.OnPaymentClick();
+		}
+		
+	}
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	handle_rejected_vendor_description(e, vendorid) {
 		this.setState({
@@ -836,17 +935,13 @@ class MVXBackendVendor extends React.Component {
 				loading={true}
 			/>
 		) : user_query.get('name') === 'add-new' ? (
-			<TabSection
-				model={
-					appLocalizer.mvx_all_backend_tab_list[
-						'marketplace-new-vendor'
-					]
-				}
-				query_name={user_query.get('name')}
-				funtion_name={this}
-				default_vendor_funtion
-				no_tabs
-			/>
+			
+
+
+			<>abc</>
+
+
+
 		) : (
 			<div className="mvx-general-wrapper mvx-vendor">
 				<HeaderSection />
@@ -856,24 +951,96 @@ class MVXBackendVendor extends React.Component {
 							''
 						) : (
 							<div className="mvx-middle-container-wrapper">
+
+
+
+
+
+
+
+
+
+
+
 								<div className="mvx-page-title">
-									<p>
-										{
-											appLocalizer.vendor_page_string
-												.vendors
-										}
-									</p>
-									<Link
-										to={`?page=mvx#&submenu=vendor&name=add-new`}
-										className="mvx-btn btn-purple"
-									>
+									<p>{appLocalizer.vendor_page_string.vendors}</p>
+									<div className="mvx-btn btn-purple"
+										onClick={this.handleOpenVendorDialog}>
 										<i className="mvx-font icon-add"></i>
-										{
-											appLocalizer.vendor_page_string
-												.add_vendor
-										}
-									</Link>
+										{appLocalizer.vendor_page_string.add_vendor}
+									</div>
+									<Dialog
+										className="new-vendor-modal-box"
+										open={this.state.add_vendor_modal}
+										onClose={this.handleCloseVendorDialog}
+										aria-labelledby="form-dialog-title"
+									>
+										<DialogTitle>
+											<div className="mvx-module-dialog-title">
+											{appLocalizer.vendor_page_string.add_vendor}
+											<i className="mvx-font icon-no"
+												onClick={this.handleCloseVendorDialog} ></i>
+											</div>
+										</DialogTitle>
+										<DialogContent>
+											<DialogContentText>
+												<div className="mvx-module-dialog-content">
+													<div className="mvx-vendor-textarea-content">
+
+														{/* dialog content */}
+														<div className="account-info">
+															<p onClick={this.OnAccountClick} >account-info</p>
+															{this.state.OnAccountClick ?
+															<p>account-info content</p>
+															: ''}
+														</div>
+
+														<div className="address">
+															<p onClick={this.OnAddressClick} >address-info</p>
+															{this.state.OnAddressClick ?
+															<p>address-info content</p>
+															: ''}
+														</div>
+
+														<div className="payment-info">
+															<p onClick={this.OnPaymentClick} >payment-info</p>
+															{this.state.OnPaymentClick ?
+															<p>payment-info content</p>
+															: ''}
+														</div>
+
+														
+
+														{this.state.OnPaymentClick ? 
+															<div>	Create Vendor	</div>
+														: 
+														<div onClick={this.OnNextClick} style={{color: "red"}}>Next</div>
+														 }
+
+													</div>		
+												</div>
+											</DialogContentText>
+										</DialogContent>
+										<DialogActions></DialogActions>
+									</Dialog>
 								</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 								<div className="mvx-search-and-multistatus-wrap">
 									<ul className="mvx-multistatus-ul">
@@ -2444,7 +2611,7 @@ class MVXBackendVendor extends React.Component {
 
 	render() {
 		return (
-			<this.QueryParamsDemo />
+				<this.QueryParamsDemo />
 		);
 	}
 }
