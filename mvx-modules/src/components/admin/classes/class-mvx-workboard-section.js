@@ -8,11 +8,11 @@ import { BrowserRouter as Router, Link, useLocation } from 'react-router-dom';
 import DynamicForm from '../../../DynamicForm';
 import DataTable from 'react-data-table-component';
 import TabSection from './class-mvx-page-tab';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 //import { __ } from '@wordpress/i18n';
 
 const override = css`

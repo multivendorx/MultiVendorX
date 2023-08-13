@@ -4,8 +4,8 @@ import axios from 'axios';
 import DataTable from 'react-data-table-component';
 import PuffLoader from 'react-spinners/PuffLoader';
 import { css } from '@emotion/react';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 
 const override = css`
     display: block;
