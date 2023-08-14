@@ -106,6 +106,9 @@ global $MVX;
                             </p>
                     <?php } ?>                    
                 </td>
+                <?php if( $vendor_message_to_buyer ) { ?>    
+                    <td><?php echo $vendor_message_to_buyer; ?></td>
+                <?php } ?>
             </tr>
         <?php
         }
