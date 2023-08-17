@@ -306,7 +306,8 @@ class MVX_Admin {
                 'analytics23'             =>  __('Credit', 'multivendorx'),
                 'analytics24'             =>  __('Debit', 'multivendorx'),
                 'analytics25'             =>  __('Balance', 'multivendorx'),
-                'analytics26'                 =>  __('Products', 'multivendorx'),
+                'analytics26'             =>  __('Products', 'multivendorx'),
+                'analytics27'             =>  __('Check Vendor to Generate CSV', 'multivendorx'),
             );
 
             $module_page_string = array(
