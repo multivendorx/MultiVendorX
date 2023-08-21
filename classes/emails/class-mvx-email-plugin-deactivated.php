@@ -52,6 +52,18 @@ if (!class_exists('WC_Email_Plugin_Deactivated_Mail')) :
         }
 
         /**
+         * Get email headers.
+         *
+         * @return string
+         */
+        public function get_headers() {
+            $reply_to_mail = 'contact@multivendorx.com';
+            $header = 'Content-Type: ' . $this->get_content_type() . "\r\n";
+            $header .= 'Reply-to: ' . '<' . $reply_to_mail . ">\r\n";
+            return $header;
+        }
+
+        /**
          * Get email subject.
          *
          * @access  public
