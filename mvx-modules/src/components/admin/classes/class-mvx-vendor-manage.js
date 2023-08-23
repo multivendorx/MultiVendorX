@@ -829,7 +829,7 @@ class MVXBackendVendor extends React.Component {
 				funtion_name={this}
 				vendor
 			/>
-			: <PuffLoader
+			: <PuffLoader className='mvx-pre-loadder'
 				css={override}
 				color={'#cd0000'}
 				size={100}
@@ -1043,7 +1043,7 @@ class MVXBackendVendor extends React.Component {
 										/>
 									</div>
 								) : (
-									<PuffLoader
+									<PuffLoader className='mvx-pre-loadder'
 										css={override}
 										color={'#cd0000'}
 										size={100}
@@ -1456,7 +1456,7 @@ class MVXBackendVendor extends React.Component {
 									}}
 								></div>
 							) : (
-								<PuffLoader
+								<PuffLoader className='mvx-pre-loadder'
 									css={override}
 									color={'#cd0000'}
 									size={100}
@@ -1531,7 +1531,7 @@ class MVXBackendVendor extends React.Component {
 								/>
 							</div>
 						) : (
-							<PuffLoader
+							<PuffLoader className='mvx-pre-loadder'
 								css={override}
 								color={'#cd0000'}
 								size={100}
@@ -2252,7 +2252,7 @@ class MVXBackendVendor extends React.Component {
 									</Dialog>
 								</div>
 							) : (
-								<PuffLoader
+								<PuffLoader className='mvx-pre-loadder'
 									css={override}
 									color={'#cd0000'}
 									size={100}
@@ -2356,7 +2356,7 @@ class MVXBackendVendor extends React.Component {
 							submitbutton="false"
 						/>
 					) : (
-						<PuffLoader
+						<PuffLoader className='mvx-pre-loadder'
 							css={override}
 							color={'#cd0000'}
 							size={100}

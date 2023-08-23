@@ -682,7 +682,7 @@ class MVX_Analytics extends Component {
 									: ''}
 							</div>
 						) : (
-							<PuffLoader
+							<PuffLoader className='mvx-pre-loadder'
 								css={override}
 								color={'#cd0000'}
 								size={100}
@@ -852,7 +852,7 @@ class MVX_Analytics extends Component {
 									/>
 								</div>
 							) : (
-								<PuffLoader
+								<PuffLoader className='mvx-pre-loadder'
 									css={override}
 									color={'#cd0000'}
 									size={100}
@@ -876,7 +876,7 @@ class MVX_Analytics extends Component {
 									/>
 								</div>
 							) : (
-								<PuffLoader
+								<PuffLoader className='mvx-pre-loadder'
 									css={override}
 									color={'#cd0000'}
 									size={100}

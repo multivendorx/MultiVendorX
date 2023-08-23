@@ -1520,7 +1520,7 @@ class MVX_Dashboard extends Component {
                                             dangerouslySetInnerHTML={{ __html: this.state.pending_customer }}
                                         ></div>
                                     :
-                                        this.state.pending_customer_return ? '' : <PuffLoader
+                                        this.state.pending_customer_return ? '' : <PuffLoader className='mvx-pre-loadder'
                                             css={override}
                                             color={'#cd0000'}
                                             size={200}
@@ -1536,7 +1536,7 @@ class MVX_Dashboard extends Component {
                                             ></div>
                                         </div>
                                         :
-                                        this.state.latest_activity_return ? '' : <PuffLoader
+                                        this.state.latest_activity_return ? '' : <PuffLoader className='mvx-pre-loadder'
                                             css={override}
                                             color={'#cd0000'}
                                             size={200}
