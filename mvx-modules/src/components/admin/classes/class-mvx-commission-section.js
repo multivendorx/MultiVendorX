@@ -750,7 +750,7 @@ class MVX_Backend_Commission extends Component {
 																/>
 															</div>
 														) : (
-															<PuffLoader
+															<PuffLoader className='mvx-pre-loadder'
 																css={override}
 																color={
 																	'#cd0000'
@@ -1747,7 +1747,7 @@ class MVX_Backend_Commission extends Component {
 							<BannerSection />
 						</div>
 					) : (
-						<PuffLoader
+						<PuffLoader className='mvx-pre-loadder'
 							css={override}
 							color={'#cd0000'}
 							size={100}
@@ -1998,7 +1998,7 @@ class MVX_Backend_Commission extends Component {
 									/>
 								</div>
 							) : (
-								<PuffLoader
+								<PuffLoader className='mvx-pre-loadder'
 									css={override}
 									color={'#cd0000'}
 									size={100}

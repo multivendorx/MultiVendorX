@@ -3928,10 +3928,10 @@ input.rs-picker-toggle-textbox {
 }
 
 //for loader purpose-----
-.mvx-pre-loadder {
-  display: grid;
-  place-items: center;
-}
+// PuffLoader{
+//  display: grid;
+//  place-items: center;
+// }
 
 //advertisement modal-----
 .mvx-modal-select-box {
@@ -3964,4 +3964,8 @@ input.rs-picker-toggle-textbox {
   *::-webkit-scrollbar-track{
     background-color: #f0f0f1;
   }
+}
+#mvx-admin-dashboard > span, .mvx-pre-loadder{
+  display: block;
+	margin: 0 auto;
 }

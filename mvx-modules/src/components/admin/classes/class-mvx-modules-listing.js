@@ -312,7 +312,7 @@ class MVX_Module_Listing extends Component {
 						</div>
 
 						{this.state.items.length === 0 ? (
-							<PuffLoader
+							<PuffLoader className='mvx-pre-loadder'
 								css={override}
 								color={'#cd0000'}
 								size={200}

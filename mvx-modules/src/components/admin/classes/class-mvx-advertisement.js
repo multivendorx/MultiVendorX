@@ -472,8 +472,8 @@ class Advertisement extends React.Component {
                 />
               </div>
             ) : (
-              <div className="mvx-pre-loadder">
-                <PuffLoader color={"#cd0000"} size={100} loading={true} />
+              <div>
+                <PuffLoader className='mvx-pre-loadder' color={"#cd0000"} size={100} loading={true} />
               </div>
             )}
           </div>

@@ -52,7 +52,7 @@ class App extends Component {
 				funtion_name={this}
 			/>
 		) : (
-			<PuffLoader
+			<PuffLoader className='mvx-pre-loadder'
 				css={override}
 				color={'#cd0000'}
 				size={200}
@@ -94,7 +94,7 @@ class App extends Component {
 									submitbutton="false"
 								/>
 							) : (
-								<PuffLoader
+								<PuffLoader className='mvx-pre-loadder'
 									css={override}
 									color={'#cd0000'}
 									size={200}
