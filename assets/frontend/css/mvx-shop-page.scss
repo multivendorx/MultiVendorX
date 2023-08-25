@@ -882,3 +882,6 @@ and (max-device-width: 1024px) {
         margin-bottom: 0;
     }
 }
+footer .footer-widgets.row-1.col-3.fix {
+    max-width: inherit;
+}

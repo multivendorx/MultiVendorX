@@ -1288,4 +1288,7 @@ form.mvx-short-cls select:focus {
   .mvx-profile-col:nth-child(4) p {
     margin-bottom: 0;
   }
+}
+footer .footer-widgets.row-1.col-3.fix {
+  max-width: inherit;
 }/*# sourceMappingURL=mvx-shop-page.css.map */
