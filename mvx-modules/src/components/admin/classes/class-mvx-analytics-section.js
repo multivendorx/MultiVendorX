@@ -1135,7 +1135,8 @@ class MVX_Analytics extends Component {
 									}
 								</div>
 						<hr role="presentation"></hr>
-
+							{
+							this.state.vendor_report_chart_data && Object.keys(this.state.vendor_report_chart_data).length > 0 ? 
 								<CSVLink
 									data={this.state.vendor_report_chart_data}
 									headers={appLocalizer.report_vendor_header}
@@ -1147,7 +1148,8 @@ class MVX_Analytics extends Component {
 										appLocalizer.report_page_string
 											.download_csv
 									}
-								</CSVLink>
+								</CSVLink> : <div class="mvx-btn btn-purple">{appLocalizer.analytics_page_string.analytics27}</div>
+							}
 							</div>
 						) : (
 							''
