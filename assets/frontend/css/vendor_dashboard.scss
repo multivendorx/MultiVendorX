@@ -306,6 +306,9 @@ i.mvx-font {
   .ico-advertisement-icon:before {
 	content: "\e95e";
   }
+  .ico-gift-card:before {
+	content: "\e95f";
+  }
   
   
 body {
@@ -9204,4 +9207,14 @@ fieldset {
 }
 .mvx_shipping_form .panel.panel-default:first-of-type {
     margin-top: 1rem;
+}
+
+ul.select-store-details {
+    column-gap: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+ul.select-store-details li input {
+    margin-right: 0.5rem;
 }
