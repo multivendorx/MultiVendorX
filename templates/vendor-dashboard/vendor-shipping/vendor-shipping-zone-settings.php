@@ -5,49 +5,50 @@
 		<a href="javascript:void(0);" ><i class="mvx-font ico-back-arrow"></i> <?php  esc_html_e('Shipping Zones', 'multivendorx'); ?></a>
 		<hr>
 	</div>
-	<form action="" method="post">
-		<div class="form-group"> 
-			<label class="control-label col-sm-3 col-md-3"><?php esc_html_e('Zone Name', 'multivendorx'); ?></label>
-			<div class="col-md-6 col-sm-9"><?php echo esc_attr($zones['data']['zone_name']); ?></div>
-		</div>
-		<div class="form-group"> 
-			<label class="control-label col-sm-3 col-md-3"><?php esc_html_e('Zone region', 'multivendorx'); ?></label>
-			<div class="col-md-6 col-sm-9"><?php echo esc_attr($zones['formatted_zone_location']); ?></div>
-		</div>		
+	<div class="form-group"> 
+		<label class="control-label col-sm-3 col-md-3"><?php esc_html_e('Zone Name', 'multivendorx'); ?></label>
+		<div class="col-md-6 col-sm-9"><?php echo esc_attr($zones['data']['zone_name']); ?></div>
+	</div>
+	<div class="form-group"> 
+		<label class="control-label col-sm-3 col-md-3"><?php esc_html_e('Zone region', 'multivendorx'); ?></label>
+		<div class="col-md-6 col-sm-9"><?php echo esc_attr($zones['formatted_zone_location']); ?></div>
+	</div>		
+	<div class="form-group">
+	   	<div class="col-md-6 col-sm-9">
+	    	<input id="zone_id" class="form-control" type="hidden" name="<?php echo esc_attr('mvx_shipping_zone['. $zone_id .'][_zone_id]'); ?>" value="<?php echo esc_attr($zone_id); ?>">
+	   	</div>
+	</div>
+	<?php if ($show_limit_location_link && $zone_id !== 0) { ?>
 		<div class="form-group">
+		   	<label for="" class="control-label col-sm-3 col-md-3"><?php esc_html_e( 'Limit Zone Location', 'multivendorx' ); ?></label>
 		   	<div class="col-md-6 col-sm-9">
-		    	<input id="zone_id" class="form-control" type="hidden" name="<?php echo esc_attr('mvx_shipping_zone['. $zone_id .'][_zone_id]'); ?>" value="<?php echo esc_attr($zone_id); ?>">
+		    	<input id="limit_zone_location" class="form-control" type="checkbox" name="<?php echo esc_attr('mvx_shipping_zone['. $zone_id .'][_limit_zone_location]'); ?>" value="1" <?php checked( $want_to_limit_location, 1 ); ?>>
 		   	</div>
 		</div>
-		<?php if( $show_limit_location_link && $zone_id !== 0 ) { ?>
-			<div class="form-group">
-			   	<label for="" class="control-label col-sm-3 col-md-3"><?php esc_html_e( 'Limit Zone Location', 'multivendorx' ); ?></label>
-			   	<div class="col-md-6 col-sm-9">
-			    	<input id="limit_zone_location" class="form-control" type="checkbox" name="<?php echo esc_attr('mvx_shipping_zone['. $zone_id .'][_limit_zone_location]'); ?>" value="1" <?php checked( $want_to_limit_location, 1 ); ?>>
-			   	</div>
-			</div>
-		<?php } ?>
-		<?php if( $show_state_list ) { ?>
-			<div class="form-group hide_if_zone_not_limited">
-			   	<label for="" class="control-label col-sm-3 col-md-3"><?php esc_html_e( 'Select specific states', 'multivendorx' ); ?></label>
-			   	<div class="col-md-6 col-sm-9">
-			    	<select id="select_zone_states" class="form-control" name="<?php echo esc_attr('mvx_shipping_zone['. $zone_id .'][_select_zone_states][]'); ?>" multiple>
-			    		<?php foreach( $state_key_by_country as $key => $value ) { ?>
-			    			<option value="<?php echo $key; ?>" <?php selected( in_array( $key, $states ), true ); ?>><?php echo esc_html($value); ?></option>
-			    		<?php } ?>
-			    	</select>
-			   	</div>
-			</div>
-		<?php } ?>
-		<?php if( $show_post_code_list ) { ?>
-			<div class="form-group hide_if_zone_not_limited">
-			   	<label for="" class="control-label col-sm-3 col-md-3"><?php esc_html_e( 'Set your postcode', 'multivendorx' ); ?></label>
-			   	<div class="col-md-6 col-sm-9">
-			    	<input id="select_zone_postcodes" class="form-control" type="text" name="<?php echo 'mvx_shipping_zone['. $zone_id .'][_select_zone_postcodes]'; ?>" value="<?php echo $postcodes; ?>" placeholder="<?php esc_attr_e( 'Postcodes need to be comma separated', 'multivendorx' ); ?>">
-			   	</div>
-			</div>
-		<?php } ?>
-	</form>
+	<?php } ?>
+	<?php if ($show_state_list) { ?>
+		<div class="form-group hide_if_zone_not_limited">
+		   	<label for="" class="control-label col-sm-3 col-md-3"><?php esc_html_e( 'Select specific states', 'multivendorx' ); ?></label>
+		   	<div class="col-md-6 col-sm-9">
+		    	<select id="select_zone_states" class="form-control" name="<?php echo esc_attr('mvx_shipping_zone['. $zone_id .'][_select_zone_states][]'); ?>" multiple>
+		    		<?php if ($state_key_by_country) {
+		    			foreach ($state_key_by_country as $key => $value) { ?>
+		    				<option value="<?php echo $key; ?>" <?php selected( in_array( $key, $states ), true ); ?>><?php echo esc_html($value); ?></option>
+		    			<?php 
+		    			}
+		    		} ?>
+		    	</select>
+		   	</div>
+		</div>
+	<?php } ?>
+	<?php if ($show_post_code_list) { ?>
+		<div class="form-group hide_if_zone_not_limited">
+		   	<label for="" class="control-label col-sm-3 col-md-3"><?php esc_html_e( 'Set your postcode', 'multivendorx' ); ?></label>
+		   	<div class="col-md-6 col-sm-9">
+		    	<input id="select_zone_postcodes" class="form-control" type="text" name="<?php echo esc_attr('mvx_shipping_zone['. $zone_id .'][_select_zone_postcodes]'); ?>" value="<?php echo esc_attr($postcodes); ?>" placeholder="<?php esc_attr_e( 'Postcodes need to be comma separated', 'multivendorx' ); ?>">
+		   	</div>
+		</div>
+	<?php } ?>
 	<div class="mvx-zone-method-wrapper form-group mt-10">
 		<label class="control-label col-sm-3 col-md-3 mvx-zone-method-heading" for="_sku">
 			<?php esc_html_e( 'Shipping methods', 'multivendorx' ); ?>
@@ -65,13 +66,13 @@
 				</thead> 
 				<tbody class="sortable">
 					<?php 
-					if(empty($vendor_shipping_methods)) { ?> 
+					if (empty($vendor_shipping_methods)) { ?> 
 						<tr>
 							<td colspan="4"><?php esc_html_e( 'You can add multiple shipping methods within this zone. Only customers within the zone will see them.', 'multivendorx' ); ?></td>
 						</tr>
 						<?php 
 					} else { 
-						foreach ( $vendor_shipping_methods as $vendor_shipping_method ) { ?>
+						foreach ($vendor_shipping_methods as $vendor_shipping_method) { ?>
 							<tr id="item-<?php echo $vendor_shipping_method['instance_id'] ?>">
 								<td><?php echo esc_html($vendor_shipping_method['title']); ?>
 									<div data-instance_id="<?php echo $vendor_shipping_method['instance_id']; ?>" data-method_id="<?php echo $vendor_shipping_method['id']; ?>" data-method-settings='<?php echo json_encode($vendor_shipping_method); ?>' class="row-actions edit_del_actions">
