@@ -1546,7 +1546,8 @@ Class MVX_Admin_Dashboard {
             }
 
             $user_id = wp_update_user($userdata);
-
+            do_action( 'mvx_after_profile_data_update', $user_id, $userdata );
+            
             $profile_updt = update_user_meta($vendor_user_id, '_vendor_profile_image', wc_clean($_POST['vendor_profile_data']['vendor_profile_image']));
 
             if ($profile_updt || $user_id) {
