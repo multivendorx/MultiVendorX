@@ -7,6 +7,7 @@ new window.Vlitejs("#player", {
         autoHide: true,
         bigPlay: false,
         fullscreen: true,
+        loop: true,
         providerParams: {
           responsive: true,
         }
