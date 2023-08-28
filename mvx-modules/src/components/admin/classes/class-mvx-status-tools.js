@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { css } from '@emotion/react';
-import PuffLoader from 'react-spinners/PuffLoader';
+import PageLoader from './class-mvx-page-loader.js';
 import { BrowserRouter as Router, useLocation } from 'react-router-dom';
 import TabSection from './class-mvx-page-tab';
 const override = css`
@@ -169,12 +169,7 @@ class MVX_Status_Tools extends Component {
 							</span>
 						</div>
 					) : (
-						<PuffLoader
-							css={override}
-							color={'#cd0000'}
-							size={100}
-							loading={true}
-						/>
+						<PageLoader/>  
 					)}
 
 					{Object.entries(this.state.list_of_system_info).length > 0

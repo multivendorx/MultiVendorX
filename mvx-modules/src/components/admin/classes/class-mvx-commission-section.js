@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
-import PuffLoader from 'react-spinners/PuffLoader';
+import PageLoader from './class-mvx-page-loader.js';
 import { css } from '@emotion/react';
 import DataTable from 'react-data-table-component';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
@@ -750,14 +750,7 @@ class MVX_Backend_Commission extends Component {
 																/>
 															</div>
 														) : (
-															<PuffLoader
-																css={override}
-																color={
-																	'#cd0000'
-																}
-																size={100}
-																loading={true}
-															/>
+															<PageLoader/>
 														)
 													) : (
 														''
@@ -1747,12 +1740,7 @@ class MVX_Backend_Commission extends Component {
 							<BannerSection />
 						</div>
 					) : (
-						<PuffLoader
-							css={override}
-							color={'#cd0000'}
-							size={100}
-							loading={true}
-						/>
+						<PageLoader/>
 					)
 				) : (
 					<div className="mvx-container">
@@ -1998,12 +1986,7 @@ class MVX_Backend_Commission extends Component {
 									/>
 								</div>
 							) : (
-								<PuffLoader
-									css={override}
-									color={'#cd0000'}
-									size={100}
-									loading={true}
-								/>
+								<PageLoader/>
 							)}
 						</div>
 

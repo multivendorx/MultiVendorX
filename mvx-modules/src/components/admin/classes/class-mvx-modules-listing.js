@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
-import PuffLoader from 'react-spinners/PuffLoader';
+import PageLoader from './class-mvx-page-loader.js';
 import { css } from '@emotion/react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -312,12 +312,7 @@ class MVX_Module_Listing extends Component {
 						</div>
 
 						{this.state.items.length === 0 ? (
-							<PuffLoader
-								css={override}
-								color={'#cd0000'}
-								size={200}
-								loading={true}
-							/>
+							<PageLoader/> 
 						) : (
 							this.state.items.map((student1, index1) => (
 								<div className="mvx-module-list-start">
