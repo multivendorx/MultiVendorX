@@ -66,14 +66,12 @@ $vendor_hide_address = get_user_meta($vendor_id, '_vendor_hide_address', true) ?
                 <div class="mvx-detail-block"></div>
                 <div class="mvx-detail-block"></div>
                 <?php if ($vendor_hide_address != 'Enable') {
-                    if ($vendor) {
-                        if ($vendor->country) : ?>
-                            <div class="mvx-detail-block">
-                                <i class="mvx-font ico-location-icon2" aria-hidden="true"></i>
-                                <span class="descrptn_txt"><?php echo esc_html($vendor->country) . ', ' . esc_html($vendor->city); ?></span>
-                            </div>
-                        <?php endif;
-                    } 
+                    if ($vendor && $vendor->country) : ?>
+                        <div class="mvx-detail-block">
+                            <i class="mvx-font ico-location-icon2" aria-hidden="true"></i>
+                            <span class="descrptn_txt"><?php echo esc_html($vendor->country) . ', ' . esc_html($vendor->city); ?></span>
+                        </div>
+                    <?php endif;
                 } ?>
             </div>
             <?php do_action('mvx_vendor_lists_vendor_top_products', $vendor); ?>
