@@ -20,6 +20,7 @@ $rating_info = mvx_get_vendor_review_info($vendor->term_id);
 $rating = round($rating_info['avg_rating'], 2);
 $review_count = empty(intval($rating_info['total_rating'])) ? '' : intval($rating_info['total_rating']);
 $vendor_phone = $vendor->phone ? $vendor->phone : __('No number yet', 'multivendorx');
+$vendor_hide_address = get_user_meta($vendor_id, '_vendor_hide_address', true);
 ?>
 <div class="mvx-store-list mvx-store-list-vendor">
     <?php do_action('mvx_vendor_lists_single_before_image', $vendor->term_id, $vendor->id); ?>
@@ -64,12 +65,14 @@ $vendor_phone = $vendor->phone ? $vendor->phone : __('No number yet', 'multivend
             <div class="add-call-block">
                 <div class="mvx-detail-block"></div>
                 <div class="mvx-detail-block"></div>
-                <?php if ($vendor->country) : ?>
-                    <div class="mvx-detail-block">
-                        <i class="mvx-font ico-location-icon2" aria-hidden="true"></i>
-                        <span class="descrptn_txt"><?php echo esc_html($vendor->country) . ', ' . esc_html($vendor->city); ?></span>
-                    </div>
-                <?php endif; ?>
+                <?php if ($vendor_hide_address != 'Enable') {
+                    if ($vendor->country) : ?>
+                        <div class="mvx-detail-block">
+                            <i class="mvx-font ico-location-icon2" aria-hidden="true"></i>
+                            <span class="descrptn_txt"><?php echo esc_html($vendor->country) . ', ' . esc_html($vendor->city); ?></span>
+                        </div>
+                    <?php endif; 
+                } ?>
             </div>
             <?php do_action('mvx_vendor_lists_vendor_top_products', $vendor); ?>
         </div>
