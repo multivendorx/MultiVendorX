@@ -3929,8 +3929,8 @@ input.rs-picker-toggle-textbox {
 
 //for loader purpose-----
 .mvx-pre-loadder {
-  display: grid;
-  place-items: center;
+  display: block;
+  margin: 0 auto;
 }
 
 //advertisement modal-----
@@ -3963,5 +3963,19 @@ input.rs-picker-toggle-textbox {
   }
   *::-webkit-scrollbar-track{
     background-color: #f0f0f1;
+  }
+}
+h2 {
+  .mvx-module-dialog-title{
+   display: flex;
+    justify-content: space-between;
+    color: $title-color;
+    margin-bottom: 1rem;
+    .mvx-vendor-title a{
+      color: $title-color;
+    }
+    i {
+      font-size: 0.8rem;
+    }
   }
 }

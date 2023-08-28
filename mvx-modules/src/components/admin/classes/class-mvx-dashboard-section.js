@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import HeaderSection from './class-mvx-page-header';
 import axios from 'axios';
 import DataTable from 'react-data-table-component';
-import PuffLoader from 'react-spinners/PuffLoader';
+import PageLoader from './class-mvx-page-loader.js';
 import { css } from '@emotion/react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -1520,12 +1520,7 @@ class MVX_Dashboard extends Component {
                                             dangerouslySetInnerHTML={{ __html: this.state.pending_customer }}
                                         ></div>
                                     :
-                                        this.state.pending_customer_return ? '' : <PuffLoader
-                                            css={override}
-                                            color={'#cd0000'}
-                                            size={200}
-                                            loading={true}
-                                        />
+                                        this.state.pending_customer_return ? '' :  <PageLoader/>     
                                     }
 
                                     {this.state.latest_activity ? 
@@ -1536,12 +1531,7 @@ class MVX_Dashboard extends Component {
                                             ></div>
                                         </div>
                                         :
-                                        this.state.latest_activity_return ? '' : <PuffLoader
-                                            css={override}
-                                            color={'#cd0000'}
-                                            size={200}
-                                            loading={true}
-                                        />
+                                        this.state.latest_activity_return ? '' :  <PageLoader/>     
                                     }
 
                                 </div>

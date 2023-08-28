@@ -3,7 +3,7 @@ import React from 'react';
 import axios from 'axios';
 import Select from 'react-select';
 import DataTable from 'react-data-table-component';
-import PuffLoader from 'react-spinners/PuffLoader';
+import PageLoader from './class-mvx-page-loader.js';
 import { css } from '@emotion/react';
 import { BrowserRouter as Router, Link, useLocation } from 'react-router-dom';
 import Dialog from '@mui/material/Dialog';
@@ -829,12 +829,7 @@ class MVXBackendVendor extends React.Component {
 				funtion_name={this}
 				vendor
 			/>
-			: <PuffLoader
-				css={override}
-				color={'#cd0000'}
-				size={100}
-				loading={true}
-			/>
+			:   <PageLoader/>
 		) : user_query.get('name') === 'add-new' ? (
 			<TabSection
 				model={
@@ -1043,12 +1038,7 @@ class MVXBackendVendor extends React.Component {
 										/>
 									</div>
 								) : (
-									<PuffLoader
-										css={override}
-										color={'#cd0000'}
-										size={100}
-										loading={true}
-									/>
+									<PageLoader/>
 								)}
 
 								{this.state.datavendor.map((data8, index8) => (
@@ -1456,12 +1446,7 @@ class MVXBackendVendor extends React.Component {
 									}}
 								></div>
 							) : (
-								<PuffLoader
-									css={override}
-									color={'#cd0000'}
-									size={100}
-									loading={true}
-								/>
+								<PageLoader/>
 							)}
 
 							{this.state.list_vendor_roles_data &&
@@ -1531,12 +1516,7 @@ class MVXBackendVendor extends React.Component {
 								/>
 							</div>
 						) : (
-							<PuffLoader
-								css={override}
-								color={'#cd0000'}
-								size={100}
-								loading={true}
-							/>
+							<PageLoader/>
 						)
 					) : name.get('name') === 'vendor-shipping' ? (
 						name.get('zone_id') ? (
@@ -2252,12 +2232,7 @@ class MVXBackendVendor extends React.Component {
 									</Dialog>
 								</div>
 							) : (
-								<PuffLoader
-									css={override}
-									color={'#cd0000'}
-									size={100}
-									loading={true}
-								/>
+								<PageLoader/>
 							)
 						) : this.state.data_setting_fileds.shipping_options ? (
 							<div>
@@ -2356,12 +2331,7 @@ class MVXBackendVendor extends React.Component {
 							submitbutton="false"
 						/>
 					) : (
-						<PuffLoader
-							css={override}
-							color={'#cd0000'}
-							size={100}
-							loading={true}
-						/>
+						<PageLoader/>
 					)
 				) : (
 					''
