@@ -42,7 +42,7 @@
 		<div class="form-group hide_if_zone_not_limited">
 		   	<label for="" class="control-label col-sm-3 col-md-3"><?php esc_html_e( 'Set your postcode', 'multivendorx' ); ?></label>
 		   	<div class="col-md-6 col-sm-9">
-		    	<input id="select_zone_postcodes" class="form-control" type="text" name="<?php echo 'mvx_shipping_zone['. $zone_id .'][_select_zone_postcodes]'; ?>" value="<?php echo $postcodes; ?>" placeholder="<?php esc_attr_e( 'Postcodes need to be comma separated', 'multivendorx' ); ?>">
+		    	<input id="select_zone_postcodes" class="form-control" type="text" name="<?php echo esc_attr('mvx_shipping_zone['. $zone_id .'][_select_zone_postcodes]'); ?>" value="<?php echo $postcodes; ?>" placeholder="<?php esc_attr_e( 'Postcodes need to be comma separated', 'multivendorx' ); ?>">
 		   	</div>
 		</div>
 	<?php } ?>
