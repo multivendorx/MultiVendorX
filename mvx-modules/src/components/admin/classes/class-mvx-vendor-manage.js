@@ -190,7 +190,7 @@ class MVXBackendVendor extends React.Component {
 	handleClose_dynamic() {
 		const default_vendor_eye_popup = [];
 		this.state.open_vendor_model_dynamic.map((data_ann, index_ann) => {
-			default_vendor_eye_popup[data_ann.ID] = false;
+			default_vendor_eye_popup[index_ann] = false;
 		});
 		this.setState({
 			open_vendor_model_dynamic: default_vendor_eye_popup,
@@ -227,7 +227,7 @@ class MVXBackendVendor extends React.Component {
 	handleClose_delete_modal() {
 		const default_vendor_delete_popup = [];
 		{this.state.open_vendor_delete_model_dynamic ? (this.state.open_vendor_delete_model_dynamic.map((data_ann, index_ann) => {
-			default_vendor_delete_popup[data_ann.ID] = false;
+			default_vendor_delete_popup[index_ann] = false;
 		})) : ('')
 		}
 		this.setState({
