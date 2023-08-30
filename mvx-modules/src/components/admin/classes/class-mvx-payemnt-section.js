@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { css } from '@emotion/react';
-import PuffLoader from 'react-spinners/PuffLoader';
+import PageLoader from './class-mvx-page-loader.js';
 
 import { BrowserRouter as Router, useLocation } from 'react-router-dom';
 
@@ -52,12 +52,7 @@ class App extends Component {
 				funtion_name={this}
 			/>
 		) : (
-			<PuffLoader
-				css={override}
-				color={'#cd0000'}
-				size={200}
-				loading={true}
-			/>
+			<PageLoader/>     
 		);
 	}
 
@@ -94,12 +89,7 @@ class App extends Component {
 									submitbutton="false"
 								/>
 							) : (
-								<PuffLoader
-									css={override}
-									color={'#cd0000'}
-									size={200}
-									loading={true}
-								/>
+								<PageLoader/>     
 							)
 						) : (
 							''

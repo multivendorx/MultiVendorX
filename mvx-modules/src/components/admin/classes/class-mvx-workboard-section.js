@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
-import PuffLoader from 'react-spinners/PuffLoader';
+import PageLoader from './class-mvx-page-loader.js';
 import { css } from '@emotion/react';
 import { BrowserRouter as Router, Link, useLocation } from 'react-router-dom';
 import DynamicForm from '../../../DynamicForm';
@@ -774,12 +774,7 @@ class MVXworkboard extends Component {
 				no_banner
 			/>
 		) : (
-			<PuffLoader
-				css={override}
-				color={'#cd0000'}
-				size={200}
-				loading={true}
-			/>
+			<PageLoader/>
 		);
 	}
 
@@ -1217,12 +1212,7 @@ class MVXworkboard extends Component {
 						</div>
 						<div className="mvx-product-box-sec">
 							{this.state.taskboard_loader_on ?
-								<PuffLoader
-									css={override}
-									color={'#3f1473'}
-									size={100}
-									loading={true}
-								/>
+								  <PageLoader/>
 								:
 							 taskboard_data.content.map(
 								(task_lists_data, task_lists_index) => (
@@ -1606,12 +1596,7 @@ class MVXworkboard extends Component {
 							submitbutton="false"
 						/>
 					) : (
-						<PuffLoader
-							css={override}
-							color={'#3f1473'}
-							size={100}
-							loading={true}
-						/>
+						<PageLoader/>
 					)
 				) : (
 					<div className="mvx-knowladgebase-different-funtionality">
@@ -1807,12 +1792,7 @@ class MVXworkboard extends Component {
 							submitbutton="false"
 						/>
 					) : (
-						<PuffLoader
-							css={override}
-							color={'#cd0000'}
-							size={100}
-							loading={true}
-						/>
+						<PageLoader/>
 					)
 				) : (
 					<div className="mvx-knowladgebase-different-funtionality">
