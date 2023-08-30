@@ -3,7 +3,6 @@ import React from "react";
 import axios from "axios";
 import Select from "react-select";
 import DataTable from "react-data-table-component";
-import PuffLoader from "react-spinners/PuffLoader";
 import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -12,6 +11,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import HeaderSection from './class-mvx-page-header';
 import BannerSection from './class-mvx-page-banner';
+import PageLoader from './class-mvx-page-loader.js';
 
 class Advertisement extends React.Component {
   constructor(props) {
@@ -472,9 +472,7 @@ class Advertisement extends React.Component {
                 />
               </div>
             ) : (
-              <div className="mvx-pre-loadder">
-                <PuffLoader color={"#cd0000"} size={100} loading={true} />
-              </div>
+                <PageLoader/>            
             )}
           </div>
           <BannerSection />

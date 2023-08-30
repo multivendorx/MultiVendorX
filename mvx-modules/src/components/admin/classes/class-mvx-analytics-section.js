@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
-import PuffLoader from 'react-spinners/PuffLoader';
+import PageLoader from './class-mvx-page-loader.js';
 import { css } from '@emotion/react';
 import { BrowserRouter as Router, Link, useLocation } from 'react-router-dom';
 import DateRangePicker from 'rsuite/DateRangePicker';
@@ -682,12 +682,7 @@ class MVX_Analytics extends Component {
 									: ''}
 							</div>
 						) : (
-							<PuffLoader
-								css={override}
-								color={'#cd0000'}
-								size={100}
-								loading={true}
-							/>
+							<PageLoader/>    
 						)}
 					</div>
 
@@ -852,12 +847,7 @@ class MVX_Analytics extends Component {
 									/>
 								</div>
 							) : (
-								<PuffLoader
-									css={override}
-									color={'#cd0000'}
-									size={100}
-									loading={true}
-								/>
+								<PageLoader/>    
 							)}
 						</div>
 
@@ -876,12 +866,7 @@ class MVX_Analytics extends Component {
 									/>
 								</div>
 							) : (
-								<PuffLoader
-									css={override}
-									color={'#cd0000'}
-									size={100}
-									loading={true}
-								/>
+								<PageLoader/>    
 							)}
 						</div>
 					</div>
@@ -1135,8 +1120,7 @@ class MVX_Analytics extends Component {
 									}
 								</div>
 						<hr role="presentation"></hr>
-							{
-							this.state.vendor_report_chart_data && Object.keys(this.state.vendor_report_chart_data).length > 0 ? 
+
 								<CSVLink
 									data={this.state.vendor_report_chart_data}
 									headers={appLocalizer.report_vendor_header}
@@ -1148,8 +1132,7 @@ class MVX_Analytics extends Component {
 										appLocalizer.report_page_string
 											.download_csv
 									}
-								</CSVLink> : <div class="mvx-btn btn-purple">{appLocalizer.analytics_page_string.analytics27}</div>
-							}
+								</CSVLink>
 							</div>
 						) : (
 							''
