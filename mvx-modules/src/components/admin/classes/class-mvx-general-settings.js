@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
 import { css } from '@emotion/react';
-import PuffLoader from 'react-spinners/PuffLoader';
+import PageLoader from './class-mvx-page-loader.js';
 import { ReactSortable } from 'react-sortablejs';
 import { BrowserRouter as Router, useLocation } from 'react-router-dom';
 import DynamicForm from '../../../DynamicForm';
@@ -360,12 +360,7 @@ class MVX_Settings extends Component {
 				funtion_name={this}
 			/>
 		) : (
-			<PuffLoader
-				css={override}
-				color={'#cd0000'}
-				size={200}
-				loading={true}
-			/>
+			<PageLoader/>    
 		);
 	}
 
@@ -1274,12 +1269,7 @@ class MVX_Settings extends Component {
 						submitbutton="false"
 					/>
 				) : (
-					<PuffLoader
-						css={override}
-						color={'#cd0000'}
-						size={200}
-						loading={true}
-					/>
+					<PageLoader/>    
 				)
 			) : (
 				''

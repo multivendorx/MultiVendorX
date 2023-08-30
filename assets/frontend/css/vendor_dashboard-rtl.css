@@ -1814,7 +1814,7 @@ ul.nav .login-user {
 
 .top-user-nav {
   height: 100%;
-  width: 100px; }
+ }
   .top-user-nav > li {
     height: 100%; }
     .top-user-nav > li a.dropdown-toggle {
@@ -5461,4 +5461,72 @@ body.rtl table.table-bordered.dataTable th:last-child, body.rtl table.table-bord
     border-right-width: 1px; }
     ul.nav .login-user .dropdown-menu.dropdown-user a{
     text-align: right;
+}
+/*---------------*/
+.navbar-rightside {
+  display: flex;
+}
+.form-group-row{
+  margin-top: 1rem;
+}
+li.nav-item {
+  flex: auto;
+  text-align: right;
+}
+.generate-coupon-code{
+  float: right;
+}
+.form-group{
+  text-align: right;
+}
+.navbar-leftside {
+  display: flex;
+  height: 64px;
+}
+.navbar-light .navbar-toggler {
+  border: none;
+  padding: 0 18px;
+  height: 100%;
+  border-left: 0.06rem solid rgba(0,0,0,.2196078431);
+  border-radius: 0;
+}
+.sidebar.navbar-default a {
+  padding: 16px 35px 16px 55px;
+  font-size: 16px;
+}
+.dropdown-toggle::after{
+  opacity: 0;
+}
+ul.nav .login-user ul li{
+  text-align: right;
+}
+ul.nav .login-user .dropdown-menu.dropdown-user a{
+  display: flex;
+  font-size: 14px;
+}
+ul.nav .login-user .dropdown-menu.dropdown-user a i{
+
+}
+@media (max-width: 768px) {
+  .navbar-leftside {
+    height: 55px;
+}
+.current-endpoint-title-wrapper{
+  display: flex;
+  height: 38px;
+  align-items: center;
+}
+.overlay:after {
+  left: 0;
+  right: unset;
+  z-index: 2;
+  width: calc(100% - 200px);
+  height: calc(100vh - 1%); 
+}
+.navbar-top-links li a i {
+  font-size: 13px;
+}
+.btm-nav-fixed.nav li{
+  width: 32%;
+}
 }
