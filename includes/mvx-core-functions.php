@@ -259,7 +259,9 @@ if (!function_exists('mvx_get_default_commission_amount')) {
                 case "fixed_with_percentage":
                 case "fixed_with_percentage_qty":
                     foreach ($default_commission_settings as $value) {
-                        $commission_amount[$value['key']] = $value['value'];
+                        if (isset($value['key'] ) && isset($value['value'] )) {
+                            $commission_amount[$value['key']] = $value['value'];
+                        }
                     }
                 break;
                 default:
