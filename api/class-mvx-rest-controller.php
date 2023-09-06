@@ -2394,7 +2394,6 @@ class MVX_REST_API {
         $select_option_value = $request && $request->get_param('value') ? $request->get_param('value') : '';
         $type = $request && $request->get_param('type') ? $request->get_param('type') : '';
         $get_product_list = $get_users_list = $get_coupon_list = $get_transaction_list = $get_pending_questions_list = [];
-        print_r($data_list);die;
         if ($type == "pending_product") {
             
             if ($this->mvx_list_of_pending_vendor_product()->data) {
