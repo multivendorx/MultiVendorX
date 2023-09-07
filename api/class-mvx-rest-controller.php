@@ -2449,7 +2449,7 @@ class MVX_REST_API {
             } else {
                 if ($get_users_list) {
                     foreach ($get_users_list as $vendor_key => $vendor_id) {
-                        update_post_meta($vendor_id, '_dismiss_to_do_list', 'true');
+                        update_user_meta($vendor_id, '_dismiss_to_do_list', 'true');
                     }
                 }
             }
