@@ -473,6 +473,7 @@ class MVX_Admin {
                 'registration27'                  =>  __('reCAPTCHA', 'multivendorx'),
                 'registration28'                  =>  __('script, register your site with google account', 'multivendorx'),
                 'registration29'                  =>  __('Register', 'multivendorx'),
+                'registration30'                  =>  __('I agree to these <a href="your-page-link">Terms & Conditions</a>', 'multivendorx'),
                 'question-format'                 => array(
                     array(
                         'icon'  =>  'icon-select-question-type',
@@ -521,8 +522,8 @@ class MVX_Admin {
                     ),
                     array(
                         'icon'  =>  'icon-form-recaptcha',
-                        'value' => 'recapta',
-                        'label' =>  __('Recapta', 'multivendorx')
+                        'value' => 'recaptcha',
+                        'label' =>  __('Recaptcha', 'multivendorx')
                     ),
                     array(
                         'icon'  =>  'icon-form-attachment',
@@ -583,7 +584,12 @@ class MVX_Admin {
                         'icon'  =>  'icon-form-paypal-email',
                         'value' => 'vendor_paypal_email',
                         'label' =>  __('PayPal Email', 'multivendorx')
-                    )
+                    ),
+                    array(
+                        'icon'  =>  'icon-form-checkboxes',
+                        'value' => 'terms_conditions',
+                        'label' =>  __('Terms & Conditions', 'multivendorx')
+                    ),
                 )
 );
 
