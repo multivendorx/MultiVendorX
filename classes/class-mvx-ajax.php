@@ -3557,8 +3557,8 @@ class MVX_Ajax {
         if( isset( $_POST['proid'] ) && !empty( $_POST['proid'] ) ) {
             $product_id = absint($_POST['proid']);
             if( $product_id ) {
-                if( isset( $_POST['lang'] ) && !empty( $_POST['lang'] ) ) {
-                    $lang_code = $_POST['lang'];
+                if( isset( $_POST['language'] ) && !empty( $_POST['language'] ) ) {
+                    $lang_code = $_POST['language'];
                     if( $lang_code ) {
                         $product = wc_get_product( $product_id );
                         if ( false === $product ) {
@@ -3588,7 +3588,7 @@ class MVX_Ajax {
                         wp_update_post( $my_post );
 
                         $source_lang = $_POST['source_lang'];
-                        $dest_lang   = $_POST['lang'];
+                        $dest_lang   = $_POST['language'];
                         $trid        = $_POST['trid'];
 
                         // Connect Translations
