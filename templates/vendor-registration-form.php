@@ -286,7 +286,7 @@ if (!empty($mvx_vendor_registration_form_data) && is_array($mvx_vendor_registrat
                     <label><?php echo __($value['label'],'multivendorx'); ?><?php if ($value['required']) { echo ' <span class="required">*</span>'; }?></label>
                     <input type="hidden" name="mvx_vendor_fields[<?php echo $key; ?>][label]" value="<?php echo htmlentities($value['label']); ?>" />
                     <input type="hidden" name="mvx_vendor_fields[<?php echo $key; ?>][type]" value="selectbox" />
-                    <p> <input type="checkbox" name="mvx_vendor_fields[<?php echo $key; ?>][value]" class="mvx-regs-multi-terms" value="<?php esc_attr_e('Checked', 'multivendorx'); ?>" <?php echo isset($value['required']) ? 'required' : '' ?>> 
+                    <p> <input type="checkbox" name="mvx_vendor_fields[<?php echo $key; ?>][value]" class="mvx-regs-multi-terms" value="<?php esc_attr_e('Checked', 'multivendorx'); ?>" <?php echo isset($value['required']) && $value['required'] ? 'required' : '' ?>> 
                         <?php echo wp_kses_post($value['placeholder']); ?>
                     </p>
                 </div>
