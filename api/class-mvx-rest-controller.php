@@ -37,7 +37,9 @@ class MVX_REST_API {
         // WP REST API.
         $this->rest_api_init();
 
-        add_action( 'rest_api_init', array( $this, 'mvx_rest_routes_react_module' ) );
+        if (current_user_can('manage_options')) {
+            add_action( 'rest_api_init', array( $this, 'mvx_rest_routes_react_module' ) );
+        }
     }
     
 
@@ -202,14 +204,13 @@ class MVX_REST_API {
             ],
         ] );
 
-        if (current_user_can('manage_options')) {
-            // save settings page data on database
-            register_rest_route( 'mvx_module/v1', '/save_dashpages', [
-                'methods' => WP_REST_Server::EDITABLE,
-                'callback' => array( $this, 'mvx_save_dashpages' ),
-                'permission_callback' => array( $this, 'save_settings_permission' )
-            ] );
-        }
+        // save settings page data on database
+        register_rest_route( 'mvx_module/v1', '/save_dashpages', [
+            'methods' => WP_REST_Server::EDITABLE,
+            'callback' => array( $this, 'mvx_save_dashpages' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
         // save registration fileds data from settings page
         register_rest_route( 'mvx_module/v1', '/save_registration', [
             'methods' => WP_REST_Server::EDITABLE,
@@ -5996,7 +5997,7 @@ class MVX_REST_API {
     }
 
     public function mvx_save_registration_forms($request) {
-        $form_data = json_decode(stripslashes_deep($request->get_param( 'form_data' )), true);
+        $form_data = json_decode($request->get_param( 'form_data' ), true);
         if (!empty($form_data) && is_array($form_data)) {
             foreach ($form_data as $key => $value) {
                 $form_data[$key]['hidden'] = false;

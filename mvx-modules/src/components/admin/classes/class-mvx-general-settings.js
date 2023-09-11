@@ -834,7 +834,7 @@ class MVX_Settings extends Component {
 																)}
 
 																{registration_json_value.type ==
-																'recapta' ? (
+																'recaptcha' ? (
 																	registration_json_value.hidden ?
 																	<div>
 																		<div
@@ -1175,6 +1175,35 @@ class MVX_Settings extends Component {
 																) : (
 																	''
 																)}
+
+																{registration_json_value.type ==
+																	'terms_conditions' ? (
+																		<div className="mvx-vendor-form-input-field-container">
+																			<input
+																				type="text"
+																				placeholder={
+																					appLocalizer
+																						.settings_page_string
+																						.registration30
+																				}
+																				value={
+																					registration_json_value.placeholder
+																				}
+																				onChange={(
+																					e
+																				) => {
+																					this.onlebelchange(
+																						e,
+																						registration_json_index,
+																						'placeholder'
+																					);
+																				}}
+																			/>
+																		</div>
+																	) : (
+																		''
+																	)
+																}
 															</div>
 														
 

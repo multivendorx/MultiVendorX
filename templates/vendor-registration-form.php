@@ -280,6 +280,18 @@ if (!empty($mvx_vendor_registration_form_data) && is_array($mvx_vendor_registrat
                 </div>
                 <?php
                 break;
+            case 'terms_conditions':
+                ?>
+                <div class="mvx-regi-form-row <?php if (!empty($value['cssClass'])) { echo $value['cssClass']; } else {  echo 'mvx-regi-12'; } ?>">
+                    <label><?php echo __($value['label'],'multivendorx'); ?><?php if ($value['required']) { echo ' <span class="required">*</span>'; }?></label>
+                    <input type="hidden" name="mvx_vendor_fields[<?php echo $key; ?>][label]" value="<?php echo htmlentities($value['label']); ?>" />
+                    <input type="hidden" name="mvx_vendor_fields[<?php echo $key; ?>][type]" value="selectbox" />
+                    <p> <input type="checkbox" name="mvx_vendor_fields[<?php echo $key; ?>][value]" class="mvx-regs-multi-terms" value="<?php esc_attr_e('Checked', 'multivendorx'); ?>" <?php echo isset($value['required']) && $value['required'] ? 'required' : '' ?>> 
+                        <?php echo wp_kses_post($value['placeholder']); ?>
+                    </p>
+                </div>
+                <?php
+                break;
         }
     }
 }
