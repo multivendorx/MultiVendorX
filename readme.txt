@@ -5,7 +5,7 @@ Donate link: http://multivendorx.com/donate/
 Requires at least: 4.4
 Tested up to: 6.3.1
 Requires PHP: 5.6
-Stable tag: 4.0.25
+Stable tag: 4.0.26
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -291,6 +291,13 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.0.26 - 2023-09-12 =
+* Fix       - Recaptcha not working in vendor registration #488.
+* Fix       - Vulnerability Issue #505.
+* Fix       - Add Terms and condition checkbox #506.
+* Fix       - Bulk Action not working in the Workboard submenu #507.
+* Updated   - Language file.
 
 = 4.0.25 - 2023-08-30 =
 * Added     - Compatibility of WordPress 6.3.1.
