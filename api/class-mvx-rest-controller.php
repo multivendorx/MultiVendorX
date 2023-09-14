@@ -1296,7 +1296,7 @@ class MVX_REST_API {
             }
 
             // Send email as per admin notified
-            $vendor = get_wcmp_vendor($user_id) ? get_wcmp_vendor($user_id) : '';
+            $vendor = get_mvx_vendor($user_id) ? get_mvx_vendor($user_id) : '';
             $verification_type = isset($type) ? wc_clean($type) : '';
             if ($verification_type && $verification_type == 'address_verification') {
                 $verification_title = __('Address Verification', 'multivendorx');
@@ -1305,10 +1305,18 @@ class MVX_REST_API {
             } else {
                 $verification_title = __('Verification', 'multivendorx');
             }
-            $action_status = !empty($action) && $action == 'verified' ? __('Approved', 'multivendorx') : __('Rejected', 'multivendorx');
-            $email = WC()->mailer()->emails['WCMp_Email_Vendor_Notification_Alert'];
-            if ($email) {
-                $email->trigger($vendor, $action_status, $verification_title);
+
+            $verifiedemail = WC()->mailer()->emails['MVX_Email_Vendor_Approve_Alert'];
+            $rejectemail = WC()->mailer()->emails['MVX_Email_Vendor_Reject_Alert'];
+            
+            if (!empty($action) && $action == 'verified') {
+                if ($verifiedemail) {
+                    $verifiedemail->trigger($vendor, $verification_title);
+                }
+            } else {
+                if ($rejectemail) {
+                    $rejectemail->trigger($vendor, $verification_title);
+                }
             }
         }
     }
