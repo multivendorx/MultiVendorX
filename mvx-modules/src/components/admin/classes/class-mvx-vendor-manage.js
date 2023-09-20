@@ -5,6 +5,7 @@ import Select from 'react-select';
 import DataTable from 'react-data-table-component';
 import PageLoader from './class-mvx-page-loader.js';
 import { css } from '@emotion/react';
+import { CSVLink } from 'react-csv';
 import { BrowserRouter as Router, Link, useLocation } from 'react-router-dom';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -41,6 +42,7 @@ class MVXBackendVendor extends React.Component {
 			columns_vendor_followers_list: [],
 			columns_vendor_zone_list: [],
 			list_vendor_application_data: '',
+			list_vendor_application_raw_data: [],
 			data_zone_shipping: [],
 			datavendor: [],
 			data_pending_vendor: [],
@@ -638,6 +640,19 @@ class MVXBackendVendor extends React.Component {
 					this.setState({
 						list_vendor_application_data: response.data,
 						set_tab_name: new URLSearchParams(window.location.hash).get('name'),
+					});
+				});
+
+				axios
+				.get(
+					`${appLocalizer.apiUrl}/mvx_module/v1/list_vendor_application_raw_data`,
+					{
+						params: { vendor_id: new URLSearchParams(window.location.hash).get('ID') },
+					}
+				)
+				.then((response) => {
+					this.setState({
+						list_vendor_application_raw_data: response.data
 					});
 				});
 
@@ -1439,12 +1454,33 @@ class MVXBackendVendor extends React.Component {
 					name.get('name') === 'vendor-application' ? (
 						<div className="mvx-vendor-application-content">
 							{this.state.list_vendor_application_data ? (
+								<div>
+								<div className="pull-right">
+									{
+									this.state.list_vendor_application_raw_data ? 
+										<CSVLink
+										data={this.state.list_vendor_application_raw_data}
+										headers={appLocalizer.mvx_vendor_application_header}
+										filename={'Vendor_application_data.csv'}
+										className="mvx-btn btn-purple"
+										>
+										<i className="mvx-font icon-download"></i>
+										{
+											appLocalizer.global_string
+												.download_csv
+										}
+										</CSVLink>
+									: ''
+									}
+									
+								</div>
 								<div
 									dangerouslySetInnerHTML={{
 										__html: this.state
 											.list_vendor_application_data,
 									}}
 								></div>
+							</div>
 							) : (
 								<PageLoader/>
 							)}

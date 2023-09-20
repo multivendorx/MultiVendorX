@@ -217,6 +217,13 @@ class MVX_Admin {
                     __('Status', 'multivendorx'),
                 )
             ), true);
+
+            $vendor_application_header = mvx_convert_select_structure(
+                apply_filters('mvx_vendor_application_header',array(
+                    __('Fields', 'multivendorx'),
+                    __('Data', 'multivendorx'),
+                )
+            ), true);
             $commission_status_list_action = mvx_convert_select_structure(mvx_get_commission_statuses());
             $select_option_delete = mvx_convert_select_structure(array('delete' => __('Delete', 'multivendorx')));
             $select_option_delete_for_vendor = mvx_convert_select_structure(array('delete' => __('Delete', 'multivendorx'), 'approve' => __('Approve', 'multivendorx'), 'pending' => __('Pending', 'multivendorx'), 'suspend' => __('Suspend', 'multivendorx'), 'reject' => __('Reject', 'multivendorx')));
@@ -1249,6 +1256,7 @@ class MVX_Admin {
             'settings_fields' => apply_filters('mvx-settings-fileds-details', $settings_fields),
             'countries'                 => wp_json_encode( array_merge( WC()->countries->get_allowed_country_states(), WC()->countries->get_shipping_country_states() ) ),
             'mvx_all_backend_tab_list' => $mvx_all_backend_tab_list,
+            'mvx_vendor_application_header' =>  $vendor_application_header,
             'default_logo'                  => $MVX->plugin_url.'assets/images/WP-stdavatar.png',
             'commission_bulk_list_option'   =>  $commission_bulk_list_action,
             'commission_header'             => $commission_header,
