@@ -45,6 +45,7 @@ export default class DynamicForm extends React.Component {
 		this.handle_Vendor_active_suspend = this.handle_Vendor_active_suspend.bind(this);
 		this.ontinyChange = this.ontinyChange.bind(this);
 		this.showHideUpdateRow = this.showHideUpdateRow.bind(this);
+		this.onMultiSelectDeselectChange = this.onMultiSelectDeselectChange.bind(this);
 	}
 
 	ontinyChange(e, target) {
@@ -93,6 +94,29 @@ export default class DynamicForm extends React.Component {
 			const complete_option_value = [];
 			m.options.map((o, index) => {
 				complete_option_value[index] = o.value;
+			});
+
+			this.setState({
+				[m.key]: complete_option_value,
+			});
+		}
+
+		if (this.props.submitbutton && this.props.submitbutton === 'false') {
+			setTimeout(() => {
+				this.onSubmit('');
+			}, 10);
+		}
+	}
+
+	onMultiSelectDeselectChange(e, m) {
+		if (this.state[m.key].length > 0) {
+			this.setState({
+				[m.key]: [],
+			});
+		} else {
+			const complete_option_value = [];
+			m.options.map((o, index) => {
+				complete_option_value[index] = o;
 			});
 
 			this.setState({
@@ -1161,6 +1185,18 @@ export default class DynamicForm extends React.Component {
 				});
 				input = (
 					<div className="mvx-settings-from-multi-select">
+						{m.select_deselect ? (
+							<div
+								className="mvx-select-deselect-trigger"
+								onClick={(e) => {
+									this.onMultiSelectDeselectChange(e, m);
+								}}
+							>
+								Select / Deselect All
+							</div>
+						) : (
+							''
+						)}
 						<Select
 							className={key}
 							value={value}

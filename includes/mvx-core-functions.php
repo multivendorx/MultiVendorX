@@ -6681,6 +6681,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 [
                     'key'       => 'announcement_vendors',
                     'type'      => 'multi-select',
+                    'select_deselect'   =>  true,
                     'label'     => __( 'Vendors', 'multivendorx' ),
                     'options' => ($MVX->vendor_rest_api->mvx_show_vendor_name()->data),
                     'database_value' => '',
