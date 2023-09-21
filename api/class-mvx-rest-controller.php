@@ -3190,6 +3190,7 @@ class MVX_REST_API {
             [
                 'key'       => 'announcement_vendors',
                 'type'      => 'multi-select',
+                'select_deselect'   =>  true,
                 'label'     => __( 'Vendors', 'multivendorx' ),
                 'options'   => ($MVX->vendor_rest_api->mvx_show_vendor_name()->data),
                 'database_value' => isset($show_anouncemnt_vendor) ? $show_anouncemnt_vendor : '',

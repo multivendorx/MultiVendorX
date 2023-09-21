@@ -488,45 +488,40 @@ class MVX_Module_Listing extends Component {
 							onClose={this.handleClose}
 							aria-labelledby="form-dialog-title"
 						>
-							<DialogTitle id="form-dialog-title">
-								<div className="mvx-module-dialog-title">
-									{appLocalizer.module_page_string.module13}
-								</div>
-							</DialogTitle>
 							<DialogContent>
 								<DialogContentText>
 									<div className="mvx-module-dialog-content">
-										{
-											appLocalizer.module_page_string
-												.module14
-										}{' '}
-										<a
-											href={
-												appLocalizer.global_string
-													.multivendorx_url
-											}
-										>
-											{
-												appLocalizer.global_string
-													.multivendorx_text
-											}
-										</a>{' '}
-										{
-											appLocalizer.module_page_string
-												.module15
-										}
-										.
+										<div className="mvx-image-overlay">
+											<div className="mvx-overlay-content">
+												<h1 className="banner-header">
+													{appLocalizer.module_page_string.module12}
+													<span className="banner-pro-tag">
+														{appLocalizer.module_page_string.module14}
+													</span>
+												</h1>
+												<h2 className="mvx-banner-thrd">{appLocalizer.module_page_string.module16}</h2>
+												<div className="mvx-banner-content">
+													{appLocalizer.module_page_string.module17}
+												</div>
+												<div className="mvx-banner-offer">
+													{appLocalizer.module_page_string.module18}
+												</div>
+												<div className="discount-tag">
+													{appLocalizer.module_page_string.module15}
+													<b>{appLocalizer.module_page_string.module20}</b>
+												</div>
+												<p className="">
+													{appLocalizer.module_page_string.module19}
+												</p>
+												<a className="mvx-go-pro-btn" target="_blank" 
+													href={appLocalizer.module_page_string.module21}>
+														{appLocalizer.module_page_string.module13}
+												</a>
+											</div>
+										</div>
 									</div>
 								</DialogContentText>
 							</DialogContent>
-							<DialogActions>
-								<button
-									onClick={this.handleClose}
-									color="primary"
-								>
-									{appLocalizer.module_page_string.module12}
-								</button>
-							</DialogActions>
 						</Dialog>
 					</div>
 
