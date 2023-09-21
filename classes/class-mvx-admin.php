@@ -338,6 +338,7 @@ class MVX_Admin {
                 'module18'             =>  __("Today's Offer", 'multivendorx'),
                 'module19'             =>  __('Why wait, grab the 15% discount and enjoy using Pro with unlimited features.', 'multivendorx'),
                 'module20'             =>  __('UP15', 'multivendorx'),
+                'module21'             => 'https://multivendorx.com/pricing/'
             );
 
             $commission_page_string     =   array(

@@ -514,7 +514,7 @@ class MVX_Module_Listing extends Component {
 													{appLocalizer.module_page_string.module19}
 												</p>
 												<a className="mvx-go-pro-btn" target="_blank" 
-													href={appLocalizer.global_string.multivendorx_url}>
+													href={appLocalizer.module_page_string.module21}>
 														{appLocalizer.module_page_string.module13}
 												</a>
 											</div>
