@@ -693,6 +693,12 @@ class MVX_REST_API {
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
 
+        register_rest_route( 'mvx_module/v1', '/list_vendor_application_raw_data', [
+            'methods' => WP_REST_Server::READABLE,
+            'callback' => array( $this, 'mvx_list_vendor_application_raw_data' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
         register_rest_route( 'mvx_module/v1', '/list_vendor_roles_data', [
             'methods' => WP_REST_Server::READABLE,
             'callback' => array( $this, 'mvx_list_vendor_roles_data' ),
@@ -1296,7 +1302,7 @@ class MVX_REST_API {
             }
 
             // Send email as per admin notified
-            $vendor = get_wcmp_vendor($user_id) ? get_wcmp_vendor($user_id) : '';
+            $vendor = get_mvx_vendor($user_id) ? get_mvx_vendor($user_id) : '';
             $verification_type = isset($type) ? wc_clean($type) : '';
             if ($verification_type && $verification_type == 'address_verification') {
                 $verification_title = __('Address Verification', 'multivendorx');
@@ -1305,10 +1311,17 @@ class MVX_REST_API {
             } else {
                 $verification_title = __('Verification', 'multivendorx');
             }
-            $action_status = !empty($action) && $action == 'verified' ? __('Approved', 'multivendorx') : __('Rejected', 'multivendorx');
-            $email = WC()->mailer()->emails['WCMp_Email_Vendor_Notification_Alert'];
-            if ($email) {
-                $email->trigger($vendor, $action_status, $verification_title);
+            $verifiedemail = WC()->mailer()->emails['MVX_Email_Vendor_Approve_Alert'];
+            $rejectemail = WC()->mailer()->emails['MVX_Email_Vendor_Reject_Alert'];
+
+            if (!empty($action) && $action == 'verified') {
+                if ($verifiedemail) {
+                    $verifiedemail->trigger($vendor, $verification_title);
+                }
+            } else {
+                if ($rejectemail) {
+                    $rejectemail->trigger($vendor, $verification_title);
+                }
             }
         }
     }
@@ -1912,6 +1925,55 @@ class MVX_REST_API {
         }
 
         return $applcation_data_display;
+    }
+
+    public function mvx_list_vendor_application_raw_data($request) {
+        global $MVX;
+        $vendor_id = $request && $request->get_param('vendor_id') ? absint($request->get_param('vendor_id')) : 0;
+        $applcation_data_display = $applcation_data_label = '';
+        $applcation_data_array = [];
+
+        $vendor_application_data = get_user_meta(absint($vendor_id), 'mvx_vendor_fields', true);
+    
+        if (!empty($vendor_application_data) && is_array($vendor_application_data)) {
+            
+            foreach ($vendor_application_data as $key => $value) {
+                if ($value['type'] == 'recaptcha') continue;
+
+                $applcation_data_label =  html_entity_decode($value['label']) . ' : ' ;
+                if ($value['type'] == 'file') {
+                    if (!empty($value['value']) && is_array($value['value'])) {
+                        foreach ($value['value'] as $attacment_id) {
+                            $applcation_data_display =  wp_get_attachment_url($attacment_id);
+                        }
+                    }
+                }  else if ($value['type'] == 'vendor_country') {
+                    $country_code = $value['value'];
+                    $country_data = WC()->countries->get_countries();
+                    $country_name = ( isset( $country_data[ $country_code ] ) ) ? $country_data[ $country_code ] : $country_code; //To get country name by code
+                    $applcation_data_display = $country_name;
+                } else if ($value['type'] == 'vendor_state') {
+                    $country_field_key = array_search('vendor_country', array_column($vendor_application_data, 'type'));
+                    $country_field = $vendor_application_data[$country_field_key];
+                    $country_code = $country_field['value'];
+                    $state_code = $value['value'];
+                    $state_data = WC()->countries->get_states($country_code);
+                    $state_name = ( isset( $state_data[$state_code] ) ) ? $state_data[$state_code] : $state_code; //to get State name by state code
+                    $applcation_data_display = $state_name;
+                } else {
+                    if (is_array($value['value'])) {
+                        $applcation_data_display = implode(', ', $value['value']);
+                    } else {
+                        $applcation_data_display = $value['value'];
+                    }
+                }
+                $applcation_data_array[] = array(
+                    'Fields' => $applcation_data_label,
+                    'Data' => $applcation_data_display,
+                );
+            }
+        }
+        return $applcation_data_array;
     }
 
     public function mvx_active_suspend_vendor($request) {

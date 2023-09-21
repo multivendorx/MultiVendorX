@@ -214,7 +214,7 @@ class MVX_Shortcode {
 
         extract(shortcode_atts(array(
             'id' => '',
-            'vendor' => '',
+            'vendor' => is_user_mvx_vendor(get_current_vendor_id()) ? get_current_vendor_id() : '',
             'columns' => '4',
             'per_page' => get_option('posts_per_page'),
             'orderby' => 'title',
