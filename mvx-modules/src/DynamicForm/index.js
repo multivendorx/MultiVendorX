@@ -115,10 +115,10 @@ export default class DynamicForm extends React.Component {
 			});
 		} else {
 			const complete_option_value = [];
-			m.options.map((o, index) => {
+			{m.options ? m.options.map((o, index) => {
 				complete_option_value[index] = o;
-			});
-
+			}) : ''
+			}
 			this.setState({
 				[m.key]: complete_option_value,
 			});
@@ -1192,7 +1192,7 @@ export default class DynamicForm extends React.Component {
 									this.onMultiSelectDeselectChange(e, m);
 								}}
 							>
-								Select / Deselect All
+							{appLocalizer.global_string.select_deselect_all}
 							</div>
 						) : (
 							''

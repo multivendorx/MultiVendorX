@@ -510,7 +510,7 @@ class MVX_Module_Listing extends Component {
 													{appLocalizer.module_page_string.module15}
 													<b>{appLocalizer.module_page_string.module20}</b>
 												</div>
-												<p className="">
+												<p>
 													{appLocalizer.module_page_string.module19}
 												</p>
 												<a className="mvx-go-pro-btn" target="_blank" 

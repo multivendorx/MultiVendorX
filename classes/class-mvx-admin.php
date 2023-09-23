@@ -271,6 +271,7 @@ class MVX_Admin {
                 'saving'                =>  __('Saving..', 'multivendorx'),
                 'open_uploader'         =>  __('Upload Image', 'multivendorx'),
                 'favorite_color'         =>  __('Select your favorite color', 'multivendorx'),
+                'select_deselect_all'            =>  __('Select / Deselect All', 'multivendorx'),
             );
 
             $workboard_string = array(
