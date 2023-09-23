@@ -329,10 +329,16 @@ class MVX_Admin {
                 'module9'             =>  __('Warning !!', 'multivendorx'),
                 'module10'             =>  __('Please active required first to use', 'multivendorx'),
                 'module11'             =>  __('module', 'multivendorx'),
-                'module12'             =>  __('Cancel', 'multivendorx'),
+                'module12'             =>  __('Unlock ', 'multivendorx'),
                 'module13'             =>  __('Upgrade To Pro', 'multivendorx'),
-                'module14'             =>  __('To use this paid module, Please visit', 'multivendorx'),
-                'module15'             =>  __('Site', 'multivendorx'),
+                'module14'             =>  __('Pro', 'multivendorx'),
+                'module15'             =>  __('Coupon Code: ', 'multivendorx'),
+                'module16'             =>  __('Activate 30+ Pro Modules', 'multivendorx'),
+                'module17'             =>  __("Enable this Modules by upgrading to our Pro Plan, and unleash your preferred modules to supercharge your website's potential!", 'multivendorx'),
+                'module18'             =>  __("Today's Offer", 'multivendorx'),
+                'module19'             =>  __('Why wait, grab the 15% discount and enjoy using Pro with unlimited features.', 'multivendorx'),
+                'module20'             =>  __('UP15', 'multivendorx'),
+                'module21'             => 'https://multivendorx.com/pricing/'
             );
 
             $commission_page_string     =   array(
