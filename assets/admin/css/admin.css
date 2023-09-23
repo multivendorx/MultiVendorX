@@ -4200,4 +4200,96 @@ h2 .mvx-module-dialog-title .mvx-vendor-title a {
 }
 h2 .mvx-module-dialog-title i {
   font-size: 0.8rem;
+}
+
+.MuiDialogContent-root:has(.mvx-image-overlay)::-webkit-scrollbar {
+  width: 0;
+}
+
+.mvx-image-overlay .mvx-overlay-content {
+  background: #fff;
+  padding: 0rem 1rem;
+  text-align: center;
+  border-radius: 0.25rem;
+  max-width: 26rem;
+  position: relative;
+}
+.mvx-image-overlay .mvx-overlay-content .mvx-modal.cross {
+  position: absolute;
+  right: 1.5rem;
+  top: 1.5rem;
+  color: #181819;
+}
+.mvx-image-overlay h1.banner-header {
+  font-size: 2rem;
+}
+.mvx-image-overlay h1.banner-header span.banner-pro-tag {
+  line-height: 0;
+  background: #65438f;
+  color: #f9f8fb !important;
+  padding: 0 0.25rem;
+  border-radius: 0.25rem;
+  margin-left: 0.125rem;
+  box-shadow: 0.25rem 0.25rem 0.875rem rgba(63, 20, 115, 0.25);
+}
+.mvx-image-overlay h2 {
+  font-size: 1.5rem;
+  margin: 1rem 0 1.5rem;
+}
+.mvx-image-overlay h3 {
+  color: #181819;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.mvx-image-overlay .discount-tag {
+  background: #fbedee;
+  color: #e26f76;
+  font-size: 1.25rem;
+  padding: 0.315rem 1.25rem;
+  width: fit-content;
+  margin: 0.5rem auto 1rem;
+  border-radius: 2rem;
+}
+.mvx-image-overlay .discount-tag b {
+  font-weight: 600;
+}
+.mvx-image-overlay p {
+  color: #5e5d60;
+  font-size: 1rem;
+}
+.mvx-image-overlay .mvx-banner-offer {
+  margin: 3rem 0 1rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #181819;
+}
+.mvx-image-overlay .upgrade {
+  color: #181718;
+}
+.mvx-image-overlay .mvx-banner-content {
+  font-size: 1rem;
+  line-height: 1.6;
+  letter-spacing: 0.02rem;
+  font-weight: 500;
+}
+.mvx-image-overlay .mvx-banner-content p {
+  font-size: 0.9rem;
+  margin: 0 0 0.25rem;
+  text-align: left;
+  letter-spacing: 0;
+  font-weight: 400;
+  font-style: italic;
+}
+.mvx-image-overlay a.mvx-go-pro-btn {
+  background: #e35047;
+  color: #f9f8fb;
+  text-decoration: none;
+  padding: 0.5rem 1.5rem;
+  line-height: 1.6;
+  border-radius: 0.25rem;
+  font-size: 1.25rem;
+  margin: 2rem auto 0rem;
+  display: block;
+  width: fit-content;
+  box-shadow: 0.25rem 0.25rem 1.5rem rgba(227, 80, 71, 0.5);
 }/*# sourceMappingURL=admin.css.map */
