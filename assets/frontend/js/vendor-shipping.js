@@ -104,6 +104,14 @@
 
         addShippingMethod: function (event) {
             event.preventDefault();
+            $(this.add_shipping_methods).prop('disabled', true);
+            $( this.add_shipping_methods ).block({
+                message: null,
+                overlayCSS: {
+                        background: '#fff',
+                        opacity: 0.6
+                }
+            });
 
             var appObj = this;
 
