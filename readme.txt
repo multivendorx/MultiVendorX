@@ -5,7 +5,7 @@ Donate link: http://multivendorx.com/donate/
 Requires at least: 4.4
 Tested up to: 6.3.1
 Requires PHP: 5.6
-Stable tag: 4.0.26
+Stable tag: 4.0.27
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -291,6 +291,15 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.0.27 - 2023-09-26 =
+* Added     - Compatibility of WooCommerce 8.1.1.
+* Added     - Vendor application data download #475.
+* Added     - Add Select All button for selecting vendors on Announcement #515.
+* Fix       - All vendor products not showing on the page created with the MVX Vendor products shortcode #510.
+* Fix       - Icons for Rental pro and gift card module are missing #516.
+* Fix       - HTML void element in vendor sales report mail content #517.
+* Updated   - Language file.
 
 = 4.0.26 - 2023-09-12 =
 * Fix       - Recaptcha not working in vendor registration #488.
