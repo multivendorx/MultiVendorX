@@ -299,6 +299,7 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 * Fix       - All vendor products not showing on the page created with the MVX Vendor products shortcode #510.
 * Fix       - Icons for Rental pro and gift card module are missing #516.
 * Fix       - HTML void element in vendor sales report mail content #517.
+* Fix       - Add loading for Add shipping method in vendor shipping #523.
 * Updated   - Language file.
 
 = 4.0.26 - 2023-09-12 =
