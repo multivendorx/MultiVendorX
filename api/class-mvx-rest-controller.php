@@ -2640,6 +2640,62 @@ class MVX_REST_API {
                     }
                 }
             }
+        } elseif ($type == "pending_verification") {
+            if ($this->mvx_fetch_pending_verification_data()->data) {
+                foreach ($this->mvx_fetch_pending_verification_data()->data as $key => $value) {
+                    if ($data_list[$key]) {
+                        $get_pending_verification_list[] = $value['id'];
+                    }
+                }
+            }
+            if ($select_option_value == "dismiss") {
+                if ($get_pending_verification_list) {
+                    foreach ($get_pending_verification_list as $request_vendor_key => $request_vendor_id) {
+                        $user_id = $request_vendor_id;
+                        $verification_settings = get_user_meta($user_id, 'mvx_vendor_verification_settings', true);
+                        if(isset($verification_settings['id_verification']['is_verified']) && $verification_settings['id_verification']['is_verified'] != 'verified') {
+                            $verification_settings['id_verification']['is_verified'] = 'rejected';
+                            $verification_settings['id_verification']['data'] = '';
+                            delete_user_meta($user_id, 'mvx_vendor_is_verified');
+                        }
+                        if(isset($verification_settings['address_verification']['is_verified']) &&  $verification_settings['address_verification']['is_verified'] != 'verified') {
+                            $verification_settings['address_verification']['is_verified'] = 'rejected';
+                            $verification_settings['address_verification']['data'] = '';
+                            delete_user_meta($user_id, 'mvx_vendor_is_verified');
+                        }
+                        
+                        update_user_meta($user_id, 'mvx_vendor_verification_settings', $verification_settings);
+            
+                        if(isset($verification_settings['address_verification']['is_verified']) && $verification_settings['address_verification']['is_verified'] == 'verified' && isset($verification_settings['id_verification']['is_verified']) && $verification_settings['id_verification']['is_verified'] == 'verified'){
+                            update_user_meta($user_id, 'mvx_vendor_is_verified', 'verified');
+            
+                        }else{
+                            delete_user_meta($user_id, 'mvx_vendor_is_verified');
+                        }
+                    }
+                }
+            } else {
+                if ($get_pending_verification_list) {
+                    foreach ($get_pending_verification_list as $request_vendor_key => $request_vendor_id) {
+                        $user_id = $request_vendor_id;
+                        $verification_settings = get_user_meta($user_id, 'mvx_vendor_verification_settings', true);
+                        if(isset($verification_settings['address_verification']['is_verified'])) {
+                            $verification_settings['address_verification']['is_verified'] = 'verified';
+                        }
+                        if(isset($verification_settings['id_verification']['is_verified'])) {
+                            $verification_settings['id_verification']['is_verified'] = 'verified';
+                        }
+                        update_user_meta($user_id, 'mvx_vendor_verification_settings', $verification_settings);
+            
+                        if(isset($verification_settings['address_verification']['is_verified']) && $verification_settings['address_verification']['is_verified'] == 'verified' && isset($verification_settings['id_verification']['is_verified']) && $verification_settings['id_verification']['is_verified'] == 'verified'){
+                            update_user_meta($user_id, 'mvx_vendor_is_verified', 'verified');
+            
+                        }else{
+                            delete_user_meta($user_id, 'mvx_vendor_is_verified');
+                        }
+                    }
+                }
+            }
         }
         return $this->mvx_list_of_work_board_content();
     }
