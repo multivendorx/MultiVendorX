@@ -187,10 +187,12 @@ abstract class MVX_Payment_Gateway {
                     $email_vendor = WC()->mailer()->emails['WC_Email_Vendor_DirectBank_Commission_Transactions'];
                     $email_vendor->trigger($this->vendor->term_id);
                 }
-                if(!current_user_can('administrator') && $commission_status == 'mvx_processing') :
-                $email_admin = WC()->mailer()->emails['WC_Email_Admin_Widthdrawal_Request'];
-                $email_admin->trigger($this->transaction_id, $this->vendor->term_id);
-                endif;
+                if($commission_status) {
+                    if(!current_user_can('administrator') && $commission_status == 'mvx_processing') :
+                        $email_admin = WC()->mailer()->emails['WC_Email_Admin_Widthdrawal_Request'];
+                        $email_admin->trigger($this->transaction_id, $this->vendor->term_id);
+                    endif;
+                }
                 break;
             case 'paypal_masspay':
             case 'paypal_payout':
