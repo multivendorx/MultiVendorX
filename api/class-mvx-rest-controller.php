@@ -2641,12 +2641,10 @@ class MVX_REST_API {
                 }
             }
         } elseif ($type == "pending_verification") {
-            if (function_exists('mvx_fetch_pending_verification_data')) {
-                if (!empty($this->mvx_fetch_pending_verification_data()->data)) {
-                    foreach ($this->mvx_fetch_pending_verification_data()->data as $key => $value) {
-                        if (isset($data_list) && $data_list[$key]) {
-                            $get_pending_verification_list[] = $value['id'];
-                        }
+            if ($this->mvx_fetch_pending_verification_data() && !empty($this->mvx_fetch_pending_verification_data()->data)) {
+                foreach ($this->mvx_fetch_pending_verification_data()->data as $key => $value) {
+                    if (isset($data_list) && $data_list[$key]) {
+                        $get_pending_verification_list[] = $value['id'];
                     }
                 }
             }
