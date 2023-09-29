@@ -2641,10 +2641,12 @@ class MVX_REST_API {
                 }
             }
         } elseif ($type == "pending_verification") {
-            if ($this->mvx_fetch_pending_verification_data()->data) {
-                foreach ($this->mvx_fetch_pending_verification_data()->data as $key => $value) {
-                    if ($data_list[$key]) {
-                        $get_pending_verification_list[] = $value['id'];
+            if (function_exists('mvx_fetch_pending_verification_data')) {
+                if (!empty($this->mvx_fetch_pending_verification_data()->data)) {
+                    foreach ($this->mvx_fetch_pending_verification_data()->data as $key => $value) {
+                        if (isset($data_list) && $data_list[$key]) {
+                            $get_pending_verification_list[] = $value['id'];
+                        }
                     }
                 }
             }
@@ -2653,23 +2655,20 @@ class MVX_REST_API {
                     foreach ($get_pending_verification_list as $request_vendor_key => $request_vendor_id) {
                         $user_id = $request_vendor_id;
                         $verification_settings = get_user_meta($user_id, 'mvx_vendor_verification_settings', true);
-                        if(isset($verification_settings['id_verification']['is_verified']) && $verification_settings['id_verification']['is_verified'] != 'verified') {
+                        if (isset($verification_settings['id_verification']['is_verified']) && $verification_settings['id_verification']['is_verified'] != 'verified') {
                             $verification_settings['id_verification']['is_verified'] = 'rejected';
                             $verification_settings['id_verification']['data'] = '';
                             delete_user_meta($user_id, 'mvx_vendor_is_verified');
                         }
-                        if(isset($verification_settings['address_verification']['is_verified']) &&  $verification_settings['address_verification']['is_verified'] != 'verified') {
+                        if (isset($verification_settings['address_verification']['is_verified']) &&  $verification_settings['address_verification']['is_verified'] != 'verified') {
                             $verification_settings['address_verification']['is_verified'] = 'rejected';
                             $verification_settings['address_verification']['data'] = '';
                             delete_user_meta($user_id, 'mvx_vendor_is_verified');
                         }
-                        
-                        update_user_meta($user_id, 'mvx_vendor_verification_settings', $verification_settings);
-            
-                        if(isset($verification_settings['address_verification']['is_verified']) && $verification_settings['address_verification']['is_verified'] == 'verified' && isset($verification_settings['id_verification']['is_verified']) && $verification_settings['id_verification']['is_verified'] == 'verified'){
+                        update_user_meta($user_id, 'mvx_vendor_verification_settings', wc_clean($verification_settings));
+                        if (isset($verification_settings['address_verification']['is_verified']) && $verification_settings['address_verification']['is_verified'] == 'verified' && isset($verification_settings['id_verification']['is_verified']) && $verification_settings['id_verification']['is_verified'] == 'verified') {
                             update_user_meta($user_id, 'mvx_vendor_is_verified', 'verified');
-            
-                        }else{
+                        } else {
                             delete_user_meta($user_id, 'mvx_vendor_is_verified');
                         }
                     }
@@ -2679,18 +2678,16 @@ class MVX_REST_API {
                     foreach ($get_pending_verification_list as $request_vendor_key => $request_vendor_id) {
                         $user_id = $request_vendor_id;
                         $verification_settings = get_user_meta($user_id, 'mvx_vendor_verification_settings', true);
-                        if(isset($verification_settings['address_verification']['is_verified'])) {
+                        if (isset($verification_settings['address_verification']['is_verified'])) {
                             $verification_settings['address_verification']['is_verified'] = 'verified';
                         }
-                        if(isset($verification_settings['id_verification']['is_verified'])) {
+                        if (isset($verification_settings['id_verification']['is_verified'])) {
                             $verification_settings['id_verification']['is_verified'] = 'verified';
                         }
-                        update_user_meta($user_id, 'mvx_vendor_verification_settings', $verification_settings);
-            
-                        if(isset($verification_settings['address_verification']['is_verified']) && $verification_settings['address_verification']['is_verified'] == 'verified' && isset($verification_settings['id_verification']['is_verified']) && $verification_settings['id_verification']['is_verified'] == 'verified'){
+                        update_user_meta($user_id, 'mvx_vendor_verification_settings', wc_clean($verification_settings));
+                        if (isset($verification_settings['address_verification']['is_verified']) && $verification_settings['address_verification']['is_verified'] == 'verified' && isset($verification_settings['id_verification']['is_verified']) && $verification_settings['id_verification']['is_verified'] == 'verified') {
                             update_user_meta($user_id, 'mvx_vendor_is_verified', 'verified');
-            
-                        }else{
+                        } else {
                             delete_user_meta($user_id, 'mvx_vendor_is_verified');
                         }
                     }
