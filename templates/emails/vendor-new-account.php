@@ -21,4 +21,12 @@ global  $MVX;
 <?php endif; ?>
 <p><?php printf( esc_html__( 'You can access your account area here: %s.',  'multivendorx' ), get_permalink( mvx_vendor_dashboard_page_id() ) ); ?></p>
 
+<?php
+/**
+ * Show user-defined additional content - this is set in each email's settings.
+ */
+if ($additional_content) {
+	echo wp_kses_post(wpautop(wptexturize($additional_content)));
+} ?>
+
 <?php do_action( 'mvx_email_footer' ); ?>
