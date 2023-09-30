@@ -1374,15 +1374,15 @@ class MVX_Admin {
         }        
     }
 
-    public function get_error_log_rows( $limit = -1 ) {
+    public function get_error_log_rows($limit = -1) {
         $wp_filesystem  = $this->get_filesystem();
         $log_path =  WP_CONTENT_DIR . '/debug.log';
         if (file_exists($log_path)) {
-            $contents = $log_path && $wp_filesystem ? $wp_filesystem->get_contents_array( $log_path ) : array();
-            if ( -1 === $limit ) {
-                return join( '', $contents );
+            $contents = $log_path && $wp_filesystem ? $wp_filesystem->get_contents_array($log_path) : array();
+            if (-1 === $limit) {
+                return join('', $contents);
             }
-            return is_array($contents) ? join( '', array_slice( $contents, -$limit ) ) : '';
+            return is_array($contents) ? join('', array_slice($contents, -$limit)) : '';
         }
         return array();
     }
