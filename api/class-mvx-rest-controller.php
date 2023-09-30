@@ -2456,7 +2456,7 @@ class MVX_REST_API {
         $data_list = $request && $request->get_param('data_list') ? $request->get_param('data_list') : '';
         $select_option_value = $request && $request->get_param('value') ? $request->get_param('value') : '';
         $type = $request && $request->get_param('type') ? $request->get_param('type') : '';
-        $get_product_list = $get_users_list = $get_coupon_list = $get_transaction_list = $get_pending_questions_list = [];
+        $get_product_list = $get_users_list = $get_coupon_list = $get_transaction_list = $get_pending_questions_list = $get_pending_verification_list = [];
         if ($type == "pending_product") {
             
             if ($this->mvx_list_of_pending_vendor_product()->data) {
@@ -2636,6 +2636,65 @@ class MVX_REST_API {
                             $MVX->product_qna->updateQuestion( $question_id, $data );
                             $questions = $MVX->product_qna->get_Vendor_Questions($vendor);
                             set_transient('mvx_customer_qna_for_vendor_' . $vendor->id, $questions);
+                        }
+                    }
+                }
+            }
+        } elseif ($type == "pending_verification") {
+            if ($this->mvx_fetch_pending_verification_data() && !empty($this->mvx_fetch_pending_verification_data()->data)) {
+                foreach ($this->mvx_fetch_pending_verification_data()->data as $key => $value) {
+                    if ($data_list[$key]) {
+                        $get_pending_verification_list[] = $value['id'];
+                    }
+                }
+            }
+            if ($get_pending_verification_list) {
+                foreach ($get_pending_verification_list as $request_vendor_key => $request_vendor_id) {
+                    if ($select_option_value == "dismiss") {
+                        $user_id = $request_vendor_id;
+                        $verification_settings = get_user_meta($user_id, 'mvx_vendor_verification_settings', true);
+                        if (is_array($verification_settings) && !empty($verification_settings)) {
+                            if (isset($verification_settings['id_verification']['is_verified']) && $verification_settings['id_verification']['is_verified'] != 'verified') {
+                                $verification_settings['id_verification']['is_verified'] = strtolower('rejected');
+                                $verification_settings['id_verification']['data'] = '';
+                                if (metadata_exists('user', $user_id, 'mvx_vendor_is_verified')) {
+                                    delete_user_meta($user_id, 'mvx_vendor_is_verified');
+                                }
+                            }
+                            if (isset($verification_settings['address_verification']['is_verified']) &&  $verification_settings['address_verification']['is_verified'] != 'verified') {
+                                $verification_settings['address_verification']['is_verified'] = strtolower('rejected');
+                                $verification_settings['address_verification']['data'] = '';
+                                if (metadata_exists('user', $user_id, 'mvx_vendor_is_verified')) {
+                                    delete_user_meta($user_id, 'mvx_vendor_is_verified');
+                                }
+                            }
+                            update_user_meta($user_id, 'mvx_vendor_verification_settings', wc_clean($verification_settings));
+                            if (isset($verification_settings['address_verification']['is_verified']) && $verification_settings['address_verification']['is_verified'] == 'verified' && isset($verification_settings['id_verification']['is_verified']) && $verification_settings['id_verification']['is_verified'] == 'verified') {
+                                update_user_meta($user_id, 'mvx_vendor_is_verified', strtolower('verified'));
+                            } else {
+                                if (metadata_exists('user', $user_id, 'mvx_vendor_is_verified')) {
+                                    delete_user_meta($user_id, 'mvx_vendor_is_verified');
+                                }
+                            }
+                        }
+                    } else {
+                        $user_id = $request_vendor_id;
+                        $verification_settings = get_user_meta($user_id, 'mvx_vendor_verification_settings', true);
+                        if (is_array($verification_settings) && !empty($verification_settings)) {
+                            if (isset($verification_settings['address_verification']['is_verified'])) {
+                                $verification_settings['address_verification']['is_verified'] = strtolower('verified');
+                            }
+                            if (isset($verification_settings['id_verification']['is_verified'])) {
+                                $verification_settings['id_verification']['is_verified'] = strtolower('verified');
+                            }
+                            update_user_meta($user_id, 'mvx_vendor_verification_settings', wc_clean($verification_settings));
+                            if (isset($verification_settings['address_verification']['is_verified']) && $verification_settings['address_verification']['is_verified'] == 'verified' && isset($verification_settings['id_verification']['is_verified']) && $verification_settings['id_verification']['is_verified'] == 'verified') {
+                                update_user_meta($user_id, 'mvx_vendor_is_verified', strtolower('verified'));
+                            } else {
+                                if (metadata_exists('user', $user_id, 'mvx_vendor_is_verified')) {
+                                    delete_user_meta($user_id, 'mvx_vendor_is_verified');
+                                }
+                            }
                         }
                     }
                 }
