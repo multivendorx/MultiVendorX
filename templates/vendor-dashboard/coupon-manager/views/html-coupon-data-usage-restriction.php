@@ -118,8 +118,8 @@ $vendor = apply_filters( 'mvx_vendor_select_product_for_add_coupon' , get_mvx_ve
                         <?php
                         $category_ids = isset($_POST['product_categories']) ? array_filter(wc_clean($_POST['product_categories'])) : $coupon->get_product_categories( 'edit' );
                         $categories = get_terms( 'product_cat', apply_filters('mvx_edit_coupon_product_categories', array(
-                                'orderby'    => 'name',
-                                'hide_empty' => 0
+                                'orderby'   => 'name',
+                                'hide_empty'=> 0
                             ) ) );
 
                         if ( $categories ) {
@@ -141,7 +141,7 @@ $vendor = apply_filters( 'mvx_vendor_select_product_for_add_coupon' , get_mvx_ve
                         <?php
                         $category_ids = isset($_POST['exclude_product_categories']) ? array_filter(wc_clean($_POST['exclude_product_categories'])) : $coupon->get_excluded_product_categories( 'edit' );
                         $categories = get_terms( 'product_cat', apply_filters('mvx_edit_coupon_exclude_product_categories', array(
-                                'orderby' => 'name',
+                                'orderby'   => 'name',
                                 'hide_empty'=> 0
                             ) ) );
 
