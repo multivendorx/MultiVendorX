@@ -2641,6 +2641,7 @@ class MVX_REST_API {
                 }
             }
         }
+        do_action('mvx_task_board_bulk_action_triggers', $type, $data_list, $select_option_value);
         return $this->mvx_list_of_work_board_content();
     }
 
