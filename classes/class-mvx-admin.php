@@ -1388,7 +1388,7 @@ class MVX_Admin {
                 }
                 return is_array($contents) ? join('', array_slice($contents, -$limit)) : '';
             } else {
-                return 'empty';
+                return 1;
             }
         }
         return array();
