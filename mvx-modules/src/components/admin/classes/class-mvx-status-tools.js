@@ -282,31 +282,38 @@ class MVX_Status_Tools extends Component {
 					</header>
 
 					<p>{appLocalizer.status_and_tools_string['copied-text']}</p>
-
-					<div className="site-health-copy-buttons">
-						<button
-							type="button"
-							className="mvx-btn btn-border copy-button"
-							data-clipboard-text={appLocalizer.errors_log}
-						>
-							{
-								appLocalizer.status_and_tools_string[
-									'copy-log-clipboard'
-								]
-							}
-						</button>
-						<span className="success hidden" aria-hidden="true">
-							{appLocalizer.status_and_tools_string.copied}
-						</span>
-					</div>
-					<textarea
-						name="name"
-						rows="10"
-						cols="80"
-						disabled="disabled"
-					>
-						{appLocalizer.errors_log}
-					</textarea>
+						{console.log(appLocalizer.errors_log)}
+					{
+						appLocalizer.errors_log && appLocalizer.errors_log != 'empty' ? 
+						<>
+							<div className="site-health-copy-buttons">
+								<button
+									type="button"
+									className="mvx-btn btn-border copy-button"
+									data-clipboard-text={appLocalizer.errors_log}
+								>
+									{
+										appLocalizer.status_and_tools_string['copy-log-clipboard']
+									}
+								</button>
+								<span className="success hidden" aria-hidden="true">
+									{appLocalizer.status_and_tools_string.copied}
+								</span>
+							</div>
+							<textarea
+								name="name"
+								rows="10"
+								cols="80"
+								disabled="disabled"
+							>
+								{appLocalizer.errors_log}
+							</textarea>
+						</> 
+						: 
+						<p>
+							<h4>{appLocalizer.status_and_tools_string.large_size_log}</h4>
+						</p>					
+					}
 				</div>
 			) : (
 				''
