@@ -283,7 +283,7 @@ class MVX_Status_Tools extends Component {
 
 					<p>{appLocalizer.status_and_tools_string['copied-text']}</p>
 						{ appLocalizer.errors_log ? 
-							appLocalizer.errors_log && appLocalizer.errors_log == 1 ? 
+							appLocalizer.errors_log == 1 ? 
 							<p>
 								<h4>{appLocalizer.status_and_tools_string.large_size_log}</h4>
 							</p>
