@@ -1334,11 +1334,16 @@ class MVX_Ajax {
                                 continue;
                             }
                         }
-                        if (is_commission_requested_for_withdrawals($commission_id) || in_array($order->get_status('edit'), array('on-hold', 'pending', 'failed', 'refunded', 'cancelled'))) {
+                        
+                        $allowd_withdrawals_settings = get_mvx_global_settings('order_withdrawl_status') ? wp_list_pluck(array_filter(get_mvx_global_settings('order_withdrawl_status')), 'value') : array();
+                        if (is_commission_requested_for_withdrawals($commission_id) || empty($allowd_withdrawals_settings)) {
+                            $disabled_reqested_withdrawals = 'disabled';
+                        } elseif (!in_array($order->get_status('edit'), $allowd_withdrawals_settings)) {
                             $disabled_reqested_withdrawals = 'disabled';
                         } else {
                             $disabled_reqested_withdrawals = '';
                         }
+
                         //skip withdrawal for COD order and vendor end shipping
                         if ($order->get_payment_method() == 'cod' && $vendor->is_shipping_enable())
                             continue;
