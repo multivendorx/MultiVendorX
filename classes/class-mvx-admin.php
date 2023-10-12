@@ -447,12 +447,13 @@ class MVX_Admin {
                         'description_text'  =>  __('This tools will install all the missing MultiVendorX pages. Pages already defined and set up will not be replaced', 'multivendorx')
                     ),
                 ),
-                'system-info'   =>  __('System Info', 'multivendorx'),
-                'copy-system-info'   =>  __('Copy System Info to Clipboard', 'multivendorx'),
-                'copied'   =>  __('Copied!', 'multivendorx'),
-                'error-log'   =>  __('Error Log', 'multivendorx'),
-                'copied-text'   =>  __('If you have enabled, errors will be stored in a log file. Here you can find the last 100 lines in reversed order so that you or the MultivendorX support team can view it easily. The file cannot be edited here', 'multivendorx'),
-                'copy-log-clipboard'   =>  __('Copy Log to Clipboard', 'multivendorx'),
+                'system-info'           =>  __('System Info', 'multivendorx'),
+                'copy-system-info'      =>  __('Copy System Info to Clipboard', 'multivendorx'),
+                'copied'                =>  __('Copied!', 'multivendorx'),
+                'error-log'             =>  __('Error Log', 'multivendorx'),
+                'copied-text'           =>  __('If you have enabled, errors will be stored in a log file. Here you can find the last 100 lines in reversed order so that you or the MultivendorX support team can view it easily. The file cannot be edited here', 'multivendorx'),
+                'copy-log-clipboard'    =>  __('Copy Log to Clipboard', 'multivendorx'),
+                'large_size_log'        =>  __('The error log cannot be retrieved: Error log file is too large.', 'multivendorx'),
             );
 
             $settings_page_string = array(
@@ -1377,12 +1378,18 @@ class MVX_Admin {
     public function get_error_log_rows($limit = -1) {
         $wp_filesystem  = $this->get_filesystem();
         $log_path =  WP_CONTENT_DIR . '/debug.log';
+        $max_file_size = 8388608; // 8 MB.
         if (file_exists($log_path)) {
-            $contents = $log_path && $wp_filesystem ? $wp_filesystem->get_contents_array($log_path) : array();
-            if (-1 === $limit) {
-                return join('', $contents);
+            $file_size = filesize($log_path);
+            if ($file_size < $max_file_size) {
+                $contents = $log_path && $wp_filesystem ? $wp_filesystem->get_contents_array($log_path) : array();
+                if (-1 === $limit) {
+                    return join('', $contents);
+                }
+                return is_array($contents) ? join('', array_slice($contents, -$limit)) : '';
+            } else {
+                return 1;
             }
-            return is_array($contents) ? join('', array_slice($contents, -$limit)) : '';
         }
         return array();
     }
