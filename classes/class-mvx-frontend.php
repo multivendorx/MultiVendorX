@@ -756,12 +756,9 @@ class MVX_Frontend {
     }
 
     public function mvx_vendor_shop_page_policies_endpoint( $store_id, $query_vars_name ) {
-        $_vendor_shipping_policy = get_user_meta( $store_id, '_vendor_shipping_policy', true ) ? get_user_meta( $store_id, '_vendor_shipping_policy', true ) : __( 'No policy found', 'multivendorx' );
-
-        $_vendor_refund_policy = get_user_meta( $store_id, '_vendor_refund_policy', true ) ? get_user_meta( $store_id, '_vendor_refund_policy', true ) : __( 'No policy found', 'multivendorx' );
-
-        $_vendor_cancellation_policy = get_user_meta( $store_id, '_vendor_cancellation_policy', true ) ? get_user_meta( $store_id, '_vendor_cancellation_policy', true ) : __( 'No policy found', 'multivendorx' );
-
+        $_vendor_shipping_policy = get_user_meta( $store_id, '_vendor_shipping_policy', true ) ? get_user_meta( $store_id, '_vendor_shipping_policy', true ) : get_mvx_global_settings('shipping_policy');
+        $_vendor_refund_policy = get_user_meta( $store_id, '_vendor_refund_policy', true ) ? get_user_meta( $store_id, '_vendor_refund_policy', true ) : get_mvx_global_settings('refund_policy');
+        $_vendor_cancellation_policy = get_user_meta( $store_id, '_vendor_cancellation_policy', true ) ? get_user_meta( $store_id, '_vendor_cancellation_policy', true ) : get_mvx_global_settings('cancellation_policy');
         ?>
         <div class="mvx-policie-sec">
             <div class="mvx-policies-header mvx-tabcontent-header">
@@ -774,7 +771,7 @@ class MVX_Frontend {
                     <p><?php esc_html_e( 'Shipping Policy', 'multivendorx' ); ?></p>
                 </div>
                 <div class='mvx-policie-sub-area'>
-                    <p><?php echo wp_kses_post( $_vendor_shipping_policy ); ?></p>
+                    <p><?php echo !empty($_vendor_shipping_policy) ? wp_kses_post( $_vendor_shipping_policy ) : __( 'No policy found', 'multivendorx' ); ?></p>
                 </div>
             </div>
             <!-- Refund policy -->
@@ -784,7 +781,7 @@ class MVX_Frontend {
                     <p><?php esc_html_e( 'Refund Policy', 'multivendorx' ); ?></p>
                 </div>
                 <div class='mvx-policie-sub-area'>
-                    <p><?php echo wp_kses_post( $_vendor_refund_policy ); ?></p>
+                    <p><?php echo !empty($_vendor_refund_policy) ? wp_kses_post( $_vendor_refund_policy ) : __( 'No policy found', 'multivendorx' ); ?></p>
                 </div>
             </div>
             <!-- Cancellation policy -->
@@ -794,7 +791,7 @@ class MVX_Frontend {
                     <p><?php esc_html_e( 'Cancellation/Return/Exchange Policy', 'multivendorx' ); ?></p>
                 </div>
                 <div class='mvx-policie-sub-area'>
-                    <p><?php echo wp_kses_post( $_vendor_cancellation_policy ); ?></p>
+                    <p><?php echo !empty($_vendor_cancellation_policy) ? wp_kses_post( $_vendor_cancellation_policy ) : __( 'No policy found', 'multivendorx' ); ?></p>
                 </div>
             </div>
             <?php do_action( 'mvx_vendor_shop_page_policies', $store_id, $query_vars_name  ); ?>
