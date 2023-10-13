@@ -5,7 +5,7 @@ Donate link: http://multivendorx.com/donate/
 Requires at least: 4.4
 Tested up to: 6.3.1
 Requires PHP: 5.6
-Stable tag: 4.0.27
+Stable tag: 4.0.28
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -291,6 +291,16 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.0.28 - 2023-10-13 =
+* Added     - Compatibility of WooCommerce 8.2.0.
+* Added     - Add support for additional content in new vendor account mail #532.
+* Fix       - Withdrawal request to Admin from Vendor by BAC change #385.
+* Fix       - The policies set in the admin dashboard not displayed on vendor dashboard #540.
+* Fix       - Issue with withdrawal request for order status set #539.
+* Fix       - Allowed memory size exhausted issue #546.
+* Dev       - Added `mvx_task_board_bulk_action_triggers` action.
+* Updated   - Language file.
 
 = 4.0.27 - 2023-09-26 =
 * Added     - Compatibility of WooCommerce 8.1.1.
