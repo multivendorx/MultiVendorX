@@ -56,6 +56,9 @@ class MVX_Email {
 		include( 'emails/class-mvx-email-vendor-bank-transfer-transaction.php' );
 		include( 'emails/class-mvx-email-plugin-deactivated.php' );
 		include( 'emails/class-mvx-email-send-site-information.php' );
+		include( 'emails/class-mvx-email-admin-vendor-account-deactivation-request.php' );
+		include( 'emails/class-mvx-email-vendor-delete-profile.php' );
+		include( 'emails/class-mvx-email-vendor-reject-profile.php' );
 
         $mvx_email = array();
         $mvx_email['WC_Email_Vendor_New_Account'] = new WC_Email_Vendor_New_Account();
@@ -87,6 +90,9 @@ class MVX_Email {
 		$mvx_email['WC_Email_Vendor_DirectBank_Commission_Transactions'] = new WC_Email_Vendor_DirectBank_Commission_Transactions();
 		$mvx_email['WC_Email_Plugin_Deactivated_Mail'] = new WC_Email_Plugin_Deactivated_Mail();
 		$mvx_email['WC_Email_Send_Site_Information'] = new WC_Email_Send_Site_Information();
+		$mvx_email['WC_Email_Admin_Vendor_Account_Deactivation_Request_Mail'] = new WC_Email_Admin_Vendor_Account_Deactivation_Request_Mail();
+		$mvx_email['WC_Email_Vendor_Account_Deletion_Mail'] = new WC_Email_Vendor_Account_Deletion_Mail();
+		$mvx_email['WC_Email_Vendor_Account_Deactive_Request_Reject_Mail'] = new WC_Email_Vendor_Account_Deactive_Request_Reject_Mail();
 
         return array_merge( $emails, apply_filters( 'mvx_email_classes', $mvx_email ) );
     }

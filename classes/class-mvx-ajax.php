@@ -132,6 +132,8 @@ class MVX_Ajax {
         add_action('wp_ajax_mvx_vendor_zone_shipping_order', array($this, 'mvx_vendor_zone_shipping_order'));
         //refund table
         add_action('wp_ajax_mvx_datatable_get_vendor_refund', array($this,'mvx_datatable_get_vendor_refund'));
+        //deactivation mail
+        add_action('wp_ajax_mvx_sent_deactivation_request', array($this, 'mvx_sent_deactivation_request'));
     }
 
     /**
@@ -3830,6 +3832,20 @@ class MVX_Ajax {
         );
         $query = new WP_Query( $default ); 
         $MVX->template->get_template( 'vendor-dashboard/product-manager/show_products.php', array('query' => $query) );	
+        die;
+    }
+
+    function mvx_sent_deactivation_request() {
+        $vendor_id = isset( $_REQUEST['vendor_id'] ) ? absint( wp_unslash( $_REQUEST['vendor_id'] ) ) : 0;
+        $reason = isset( $_REQUEST['reason'] ) ? wc_clean( $_REQUEST['reason'] ) : '';
+        if ($vendor_id && !empty($reason)) {
+            update_user_meta($vendor_id, '_deactivate_reason', $reason);
+            $email = WC()->mailer()->emails['WC_Email_Admin_Vendor_Account_Deactivation_Request_Mail'];
+            $email->trigger($vendor_id);
+            wp_send_json_success( "We have submitted a request to the admin for approval. Please await confirmation from the admin's end.", 'multivendorx' );
+        } else {
+            wp_send_json_error( 'Enter your reason.', 'multivendorx' );
+        }
         die;
     }
 }
