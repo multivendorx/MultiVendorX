@@ -9218,3 +9218,21 @@ ul.select-store-details {
 ul.select-store-details li input {
     margin-right: 0.5rem;
 }
+.deactivate-button {
+    display: block;
+    margin-left: auto;
+}
+.modal-body p{
+	margin: 0;
+}
+.sucess-msg, .error-msg{
+    font-weight: 700;
+    background: #c2edc2;
+    padding: 0.875rem 1rem;
+    border-radius: 0.25rem;
+    line-height: 1.6;
+	margin-bottom: 1rem !important;
+}
+.error-msg{
+    background: #f8ad99;
+}
