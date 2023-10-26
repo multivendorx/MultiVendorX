@@ -594,23 +594,21 @@ class MVX_Product {
     function show_related_products($query, $product_id, $args) {
         if ($product_id) {
             $vendor = get_mvx_product_vendors($product_id) ? get_mvx_product_vendors($product_id) : '';
-            $related = get_mvx_global_settings('show_related_products') ? mvx_get_settings_value(get_mvx_global_settings('show_related_products') ): '';
+            $related = get_mvx_global_settings('show_related_products') ? mvx_get_settings_value( get_mvx_global_settings('show_related_products') ) : '';
             if (!empty($related) && 'disable' == $related) {
                 return array();
             } elseif (!empty($related) && 'all_related' == $related) {
                 return $query;
-            } elseif (!empty($related) && 'vendors_related' == $related) {
-                if ($vendor) {
-                    $query = get_posts( array(
-                        'post_type' => 'product',
-                        'post_status' => 'publish',
-                        'author__in' => $vendor->id,
-                        'fields' => 'ids',
-                        'exclude' => $product_id,
-                        'orderby' => 'rand'
-                    ));
-                    return $query;
-                }
+            } elseif (!empty($related) && 'vendors_related' == $related && $vendor) {
+                $query = get_posts( array(
+                    'post_type' => 'product',
+                    'post_status' => 'publish',
+                    'author__in' => $vendor->id,
+                    'fields' => 'ids',
+                    'exclude' => $product_id,
+                    'orderby' => 'rand'
+                ));
+                return $query;
             }
         }
         return $query;
