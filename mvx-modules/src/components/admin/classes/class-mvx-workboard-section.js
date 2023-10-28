@@ -54,8 +54,10 @@ class MVXworkboard extends Component {
 			list_of_all_tabs: [],
 			list_of_work_board_content: [],
 			pending_individual_checkbox: [],
+			open_dialog_popup_for_request_profile_deletion_vendor: [],
 			open_dialog_popup_for_pending_product: [],
 			open_dialog_popup_for_pending_verification: [],
+			request_profile_deletion_vendor_list: [],
 			pending_product_list: [],
 			pending_verification_list: [],
 			current_url: '',
@@ -66,7 +68,9 @@ class MVXworkboard extends Component {
 			workboard_list_knowledgebase_status_all: false,
 			workboard_list_knowledgebase_status_publish: false,
 			workboard_list_knowledgebase_status_pending: false,
-			taskboard_loader_on: false
+			taskboard_loader_on: false,
+			selected_option: false,
+			selected_ids: [],
 		};
 
 		this.QueryParamsDemo = this.QueryParamsDemo.bind(this);
@@ -101,8 +105,79 @@ class MVXworkboard extends Component {
 		this.handleClose_verification_dynamic = this.handleClose_verification_dynamic.bind(this);
 		this.handle_rejected_vendor_product_description = this.handle_rejected_vendor_product_description.bind(this);
 		this.handle_Vendor_Product_Approve = this.handle_Vendor_Product_Approve.bind(this);
+		this.handleChangeRadioButton = this.handleChangeRadioButton.bind(this);
+		this.handleVendorDelete = this.handleVendorDelete.bind(this);
+		this.handleClose_vendor_dynamic = this.handleClose_vendor_dynamic.bind(this);
+		this.handleDeactiveModal = this.handleDeactiveModal.bind(this);
 	}
 
+	handleChangeRadioButton(e) {
+		this.setState({
+			selected_option: e.target.value,
+		});
+	}
+
+	handleVendorDelete() {
+		this.handleClose_vendor_dynamic();
+		this.setState({
+			taskboard_loader_on: true,
+		});
+		if (this.state.selected_ids) {
+			axios({
+				method: 'post',
+				url: `${appLocalizer.apiUrl}/mvx_module/v1/task_board_icons_triggers`,
+				data: {
+					value: this.state.selected_ids,
+					key: this.state.selected_option,
+				},
+			}).then((response) => {
+				if ( response && response.data ) {
+					this.setState({
+						list_of_work_board_content: response.data,
+						taskboard_loader_on: false,
+					});
+				}
+			});
+		} 
+	}
+
+	handleClose_vendor_dynamic() {
+		const default_vendor_delete_eye_popup = [];
+		this.state.request_profile_deletion_vendor_list ? this.state.request_profile_deletion_vendor_list.map((data_ann, index_ann) => {
+			default_vendor_delete_eye_popup[data_ann.id] = false;
+		}) : '';
+		this.setState({
+			open_dialog_popup_for_request_profile_deletion_vendor: default_vendor_delete_eye_popup,
+			taskboard_loader_on: false,	
+		});
+	}
+
+	handleDeactiveModal(e) {
+		if (e) {
+			this.setState({
+				taskboard_loader_on: true,	
+			});
+			axios({
+				method: 'post',
+				url: `${appLocalizer.apiUrl}/mvx_module/v1/bulk_todo_request_profile_deletion`,
+				data: {
+					data_list: e,
+				},
+			}).then((responce) => {
+				if ( responce && responce.data ) {
+					let set_vendor_id_data = [];
+					set_vendor_id_data = this.state.open_dialog_popup_for_request_profile_deletion_vendor,
+					responce.data ? responce.data.map((data_ann, index_ann) => {
+						set_vendor_id_data[data_ann] = true;
+					}) : '';
+					this.setState({
+						selected_ids: responce.data,
+						open_dialog_popup_for_request_profile_deletion_vendor: set_vendor_id_data,
+					});
+				}
+			});
+		}
+	}
 
 	handleClose_dynamic() {
 		const default_vendor_eye_popup = [];
@@ -356,6 +431,9 @@ class MVXworkboard extends Component {
 	}
 
 	handleTaskBoardBulkChenage(e, type) {
+		if (type == 'requested_profile_deletion' && e.value == 'approve') {
+			this.handleDeactiveModal(this.state.pending_individual_checkbox[type]);
+		}
 		axios({
 			method: 'post',
 			url: `${appLocalizer.apiUrl}/mvx_module/v1/bulk_todo_pending_product`,
@@ -365,9 +443,11 @@ class MVXworkboard extends Component {
 				type: type,
 			},
 		}).then((responce) => {
-			this.setState({
-				list_of_work_board_content: responce.data
-			});
+			if (responce.data) {
+				this.setState({
+					list_of_work_board_content: responce.data
+				});
+			}
 		});
 	}
 
@@ -696,6 +776,23 @@ class MVXworkboard extends Component {
 		this.setState({
 			workboard_list_knowledgebase_status_all: true,
 			workboard_list_announcement_status_all: true
+		});
+
+		// request profile deletion vendor popup
+		axios({
+			url: `${appLocalizer.apiUrl}/mvx_module/v1/list_of_request_profile_deletion_vendor`,
+		}).then((response) => {
+			if ( response && response.data ) {
+				const default_vendor_delete_popup = [];
+				response.data ? response.data.map((data_ann, index_ann) => {
+					default_vendor_delete_popup[data_ann.id] = false;
+				}) : '';
+
+				this.setState({
+					open_dialog_popup_for_request_profile_deletion_vendor: default_vendor_delete_popup,
+					request_profile_deletion_vendor_list: response.data,
+				});
+			}
 		});
 
 		// pending product rejection popup
@@ -1165,6 +1262,7 @@ class MVXworkboard extends Component {
 				}
 			);
 		}
+		let set_vendor_id_data = [];
 		let set_vendors_id_data = [];
 		let set_verification_id_data = [];
 		
@@ -1280,6 +1378,18 @@ class MVXworkboard extends Component {
 																className={`mvx-font ${icons_data.icon}`}
 																onClick={(e) =>
 																	(
+																		icons_data.key === 'deactivate_vendor' ? (
+																		set_vendor_id_data = this.state.open_dialog_popup_for_request_profile_deletion_vendor,
+																		set_vendor_id_data[icons_data.value.id] = true,
+																		this.setState({
+																			selected_ids: icons_data.value.id,
+																			open_dialog_popup_for_request_profile_deletion_vendor: set_vendor_id_data,
+																		}))
+																		: 
+																		this.setState({
+																			taskboard_loader_on: true,	
+																		})
+																		,
 
 																		icons_data.key === 'dismiss_product' ? (
 																		set_vendors_id_data = this.state.open_dialog_popup_for_pending_product,
@@ -1531,10 +1641,69 @@ class MVXworkboard extends Component {
 				</Dialog>
 			))}
 
+		{this.state.request_profile_deletion_vendor_list ? this.state.request_profile_deletion_vendor_list.map((data_vendor) => (
+			<Dialog 
+				className='deactivate-pop-up'
+				open={
+					this.state.open_dialog_popup_for_request_profile_deletion_vendor[data_vendor.id]
+				}
+				aria-labelledby="form-dialog-title"
+				onClose={this.handleClose_vendor_dynamic}
+			>
+			<DialogTitle id="form-dialog-title">
+				<div className="mvx-module-dialog-title">
+					{appLocalizer.workboard_string.select_deletion_option}
+				</div>
+				<i className="mvx-font icon-no"
+					onClick={this.handleClose_vendor_dynamic} >
+				</i>
+			</DialogTitle>
+			<DialogContent>
+				<DialogContentText>
+					<div className="mvx-module-dialog-content">
+						<div className="mvx-vendor-textarea-content">
+							<div>
+								<label>
+									<input
+									type="radio"
+									value="product_draft"
+									checked={this.state.selected_option === "product_draft"}
+									onChange={this.handleChangeRadioButton}
+									/>
+									{appLocalizer.workboard_string.product_draft}
+								</label>
+							</div>
+							<div>
+								<label>
+									<input
+									type="radio"
+									value="product_assigned_admin"
+									checked={this.state.selected_option === "product_assigned_admin"}
+									onChange={this.handleChangeRadioButton}
+									/>
+									{appLocalizer.workboard_string.product_assigned_to_admin}
+								</label>
+							</div>
+						</div>
 
-
-
-			</div>
+						<div className="mvx-vendor-multi-action-buttons">
+							<button
+								className="mvx-btn btn-red"
+								onClick={() =>
+									this.handleVendorDelete()
+								}
+								color="primary"
+								>
+								{appLocalizer.vendor_page_string.modal_button_text}
+							</button>
+						</div>
+					</div>
+				</DialogContentText>
+			</DialogContent>
+			<DialogActions></DialogActions>
+			</Dialog>
+		)) : ''}
+		</div>
 
 		) : name === 'announcement' ? (
 			<div className="mvx-module-grid">
