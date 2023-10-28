@@ -3840,10 +3840,8 @@ class MVX_Ajax {
         $reason = isset( $_REQUEST['reason'] ) ? wc_clean( $_REQUEST['reason'] ) : '';
         if ($vendor_id && !empty($reason)) {
             update_user_meta($vendor_id, '_deactivate_reason', $reason);
-            $email = isset(WC()->mailer()->emails['WC_Email_Admin_Vendor_Account_Deactivation_Request_Mail']) ? WC()->mailer()->emails['WC_Email_Admin_Vendor_Account_Deactivation_Request_Mail'] : '';
-            if (!empty($email) && $email->is_enabled()) {
-                $email->trigger($vendor_id);
-            }
+            $email = WC()->mailer()->emails['WC_Email_Admin_Vendor_Account_Deactivation_Request_Mail'];
+            $email->trigger($vendor_id);
             wp_send_json_success( "We have submitted a request to the admin for approval. Please await confirmation from the admin's end.", 'multivendorx' );
         } else {
             wp_send_json_error( 'Enter your reason.', 'multivendorx' );

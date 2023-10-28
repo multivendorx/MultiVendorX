@@ -98,7 +98,7 @@ $vendor_profile_image = get_user_meta($user->ID, '_vendor_profile_image', true);
                         <p id="msg-for-request-sent-sucesss" class="" ></p>
                         <p id="msg-for-request-sent-error" class="" ></p>
                         <div class="form-group">
-                            <textarea class="form-control" rows="5" id="deactivate_reason" placeholder="<?php _e('Type your text here', 'multivendorx') ?>"></textarea>
+                            <textarea class="form-control" rows="5" id="deactivate_reason" placeholder="<?php _e('Type your text here', 'multivendorx') ?>" required></textarea>
                         </div>
                     </div>
                     <input type="hidden" id="mvx-marke-deactivate-vendor-id" />

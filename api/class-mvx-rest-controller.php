@@ -1609,7 +1609,7 @@ class MVX_REST_API {
         /**
          * pending vendor deactivation request list
          */
-        if (function_exists($this->mvx_list_of_request_profile_deletion_vendor()) && is_array($this->mvx_list_of_request_profile_deletion_vendor()->data) && !empty($this->mvx_list_of_request_profile_deletion_vendor()->data)) {
+        if ($this->mvx_list_of_request_profile_deletion_vendor()->data && !empty($this->mvx_list_of_request_profile_deletion_vendor()->data)) {
             foreach ($this->mvx_list_of_request_profile_deletion_vendor()->data as $key => $value) {
                 $get_request_profile_deletion_vendor_list[] = array(
                     'list_datas'    => array(
@@ -1801,10 +1801,8 @@ class MVX_REST_API {
                             wp_update_post($update_post_status);
                         }
                     }
-                    $email = isset(WC()->mailer()->emails['WC_Email_Vendor_Account_Deletion_Mail']) ? WC()->mailer()->emails['WC_Email_Vendor_Account_Deletion_Mail'] : '';
-                    if (!empty($email) && $email->is_enabled() && $vendor_id) {
-                        $email->trigger($vendor_id);
-                    }
+                    $email = WC()->mailer()->emails['WC_Email_Vendor_Account_Deletion_Mail'];
+                    $email->trigger($vendor_id);
                     wp_delete_user($vendor_id);
                 }
             } elseif (!empty($value)) {
@@ -1816,10 +1814,8 @@ class MVX_REST_API {
                         wp_update_post($update_post_status);
                     }
                 }
-                $email = isset(WC()->mailer()->emails['WC_Email_Vendor_Account_Deletion_Mail']) ? WC()->mailer()->emails['WC_Email_Vendor_Account_Deletion_Mail'] : '';
-                if (!empty($email) && $email->is_enabled() && $value) {
-                    $email->trigger($value);
-                }
+                $email = WC()->mailer()->emails['WC_Email_Vendor_Account_Deletion_Mail'];
+                $email->trigger($value);
                 wp_delete_user($value);
             }
         } elseif (!empty($key) && $key == 'product_assigned_admin') {
@@ -1834,10 +1830,8 @@ class MVX_REST_API {
                             wp_update_post($update_post_author);
                         }
                     }
-                    $email = isset(WC()->mailer()->emails['WC_Email_Vendor_Account_Deletion_Mail']) ? WC()->mailer()->emails['WC_Email_Vendor_Account_Deletion_Mail'] : '';
-                    if (!empty($email) && $email->is_enabled() && $vendor_id) {
-                        $email->trigger($vendor_id);
-                    }
+                    $email = WC()->mailer()->emails['WC_Email_Vendor_Account_Deletion_Mail'];
+                    $email->trigger($vendor_id);
                     wp_delete_user($vendor_id);
                 }
             } elseif (!empty($value)) {
@@ -1849,20 +1843,16 @@ class MVX_REST_API {
                         wp_update_post($update_post_author);
                     }
                 }
-                $email = isset(WC()->mailer()->emails['WC_Email_Vendor_Account_Deletion_Mail']) ? WC()->mailer()->emails['WC_Email_Vendor_Account_Deletion_Mail'] : '';
-                if (!empty($email) && $email->is_enabled() && $value) {
-                    $email->trigger($value);
-                }
+                $email = WC()->mailer()->emails['WC_Email_Vendor_Account_Deletion_Mail'];
+                $email->trigger($value);
                 wp_delete_user($value);
             }
         } elseif (!empty($key) && $key == 'reject_request_profile_deletion_vendor') {
             $vendor_id = $value['id'] ? $value['id'] : ''; 
             if (!empty($vendor_id) && metadata_exists('user', $vendor_id, '_deactivate_reason')) {
                 delete_user_meta($vendor_id, '_deactivate_reason');
-                $email = isset(WC()->mailer()->emails['WC_Email_Vendor_Account_Deactive_Request_Reject_Mail']) ? WC()->mailer()->emails['WC_Email_Vendor_Account_Deactive_Request_Reject_Mail'] : '';
-                if (!empty($email) && $email->is_enabled()) {
-                    $email->trigger($vendor_id);
-                }
+                $email = WC()->mailer()->emails['WC_Email_Vendor_Account_Deactive_Request_Reject_Mail'];
+                $email->trigger($vendor_id);
             }           
         } 
         do_action('mvx_task_board_icons_triggers_action', $key, $value);
@@ -2769,7 +2759,7 @@ class MVX_REST_API {
                 }
             }
         } elseif (!empty($type) && $type == "requested_profile_deletion") {
-            if (function_exists($this->mvx_list_of_request_profile_deletion_vendor()) && is_array($this->mvx_list_of_request_profile_deletion_vendor()->data) && !empty($this->mvx_list_of_request_profile_deletion_vendor()->data)) {
+            if ($this->mvx_list_of_request_profile_deletion_vendor()->data && !empty($this->mvx_list_of_request_profile_deletion_vendor()->data)) {
                 foreach ($this->mvx_list_of_request_profile_deletion_vendor()->data as $key => $value) {
                     if (is_array($data_list) && !empty($data_list) && isset($data_list[$key])) {
                         $get_request_profile_deletion_vendor_list[] = $value['id'];
@@ -2781,10 +2771,8 @@ class MVX_REST_API {
                     foreach ($get_request_profile_deletion_vendor_list as $request_vendor_key => $request_vendor_id) { 
                         if (metadata_exists('user', $request_vendor_id, '_deactivate_reason')) {
                             delete_user_meta($request_vendor_id, '_deactivate_reason');
-                            $email = isset(WC()->mailer()->emails['WC_Email_Vendor_Account_Deactive_Request_Reject_Mail']) ? WC()->mailer()->emails['WC_Email_Vendor_Account_Deactive_Request_Reject_Mail'] : '';
-                            if (!empty($email) && $email->is_enabled()) {
-                                $email->trigger($request_vendor_id);  
-                            }
+                            $email = WC()->mailer()->emails['WC_Email_Vendor_Account_Deactive_Request_Reject_Mail'];
+                            $email->trigger($request_vendor_id);  
                         }   
                     }
                 }
@@ -2797,7 +2785,7 @@ class MVX_REST_API {
     function mvx_bulk_todo_request_profile_deletion($request) {
         $data_list = $request && $request->get_param('data_list') ? $request->get_param('data_list') : '';
         $get_request_profile_deletion_vendor_list = [];
-        if (function_exists($this->mvx_list_of_request_profile_deletion_vendor()) && is_array($this->mvx_list_of_request_profile_deletion_vendor()->data) && !empty($this->mvx_list_of_request_profile_deletion_vendor()->data)) {
+        if ($this->mvx_list_of_request_profile_deletion_vendor()->data && !empty($this->mvx_list_of_request_profile_deletion_vendor()->data)) {
             foreach ($this->mvx_list_of_request_profile_deletion_vendor()->data as $key => $value) {
                 if (is_array($data_list) && !empty($data_list) && isset($data_list[$key])) {
                     $get_request_profile_deletion_vendor_list[] = $value['id'];
