@@ -286,6 +286,9 @@ class MVX_Admin {
                 'workboard33'                 =>  __('Search status', 'multivendorx'),
                 'workboard34'                 =>  __('Dismiss', 'multivendorx'),
                 'workboard35'                 =>  __('Verified', 'multivendorx'),
+                'select_deletion_option'      =>  __('Choose Action For Products Upon Vendor Deletion', 'multivendorx'),
+                'product_draft'               =>  __('Set The Products As Draft', 'multivendorx'),
+                'product_assigned_to_admin'   =>  __('Assign The Products To The Admin', 'multivendorx'),
             );
 
             $analytics_page_string = array(
