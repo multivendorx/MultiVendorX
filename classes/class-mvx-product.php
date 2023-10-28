@@ -44,7 +44,7 @@ class MVX_Product {
         //}
         add_filter('wp_count_posts', array(&$this, 'vendor_count_products'), 10, 3);
         /* Related Products */
-        add_filter('woocommerce_product_related_posts_query', array($this, 'show_related_products'), 99, 2);
+        add_filter('woocommerce_related_products', array($this, 'show_related_products'), 99, 3);
         // bulk edit vendor set
         add_action('woocommerce_product_bulk_edit_end', array($this, 'add_product_vendor'));
         add_action('woocommerce_product_bulk_edit_save', array($this, 'save_vendor_bulk_edit'));
@@ -591,18 +591,25 @@ class MVX_Product {
      *
      * @return arg
      */
-    function show_related_products($query, $product_id) {
-        $vendor = get_mvx_product_vendors($product_id);
-        $related = get_mvx_global_settings('show_related_products') ? mvx_get_settings_value(get_mvx_global_settings('show_related_products') ): '';
-        if ('disable' == $related) {
-            return array();
-        } elseif ('all_related' == $related) {
-            return $query;
-        } elseif ('vendors_related' == $related) {
-            if ($vendor) {
-                $query['where'] .= ' AND p.post_author = ' . $vendor->id;
+    function show_related_products($query, $product_id, $args) {
+        if ($product_id) {
+            $vendor = get_mvx_product_vendors($product_id) ? get_mvx_product_vendors($product_id) : '';
+            $related = get_mvx_global_settings('show_related_products') ? mvx_get_settings_value(get_mvx_global_settings('show_related_products')) : '';
+            if (!empty($related) && 'disable' == $related) {
+                return array();
+            } elseif (!empty($related) && 'all_related' == $related) {
+                return $query;
+            } elseif (!empty($related) && 'vendors_related' == $related && !empty($vendor)) {
+                $query = get_posts( array(
+                    'post_type' => 'product',
+                    'post_status' => 'publish',
+                    'author__in' => $vendor->id,
+                    'fields' => 'ids',
+                    'exclude' => $product_id,
+                    'orderby' => 'rand'
+                ));
+                return $query;
             }
-            return $query;
         }
         return $query;
     }
