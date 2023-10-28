@@ -829,6 +829,20 @@ class MVX_REST_API {
             'callback' => array( $this, 'mvx_create_product' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
+
+        // request profile deletion vendor
+        register_rest_route( 'mvx_module/v1', '/list_of_request_profile_deletion_vendor', [
+            'methods' => WP_REST_Server::READABLE,
+            'callback' => array( $this, 'mvx_list_of_request_profile_deletion_vendor' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
+
+        //request profile deletion bulk approve
+        register_rest_route( 'mvx_module/v1', '/bulk_todo_request_profile_deletion', [
+            'methods' => WP_REST_Server::EDITABLE,
+            'callback' => array( $this, 'mvx_bulk_todo_request_profile_deletion' ),
+            'permission_callback' => array( $this, 'save_settings_permission' )
+        ] );
     }
 
     public function mvx_create_product($request) {
@@ -1396,7 +1410,7 @@ class MVX_REST_API {
     }
 
     public function mvx_list_of_work_board_content() {
-        $todo_list = $get_pending_product_list = $get_pending_vendor_list = $get_pending_coupon_list = $get_pending_transaction_list = $get_pending_question_list = [];
+        $todo_list = $get_pending_product_list = $get_pending_vendor_list = $get_pending_coupon_list = $get_pending_transaction_list = $get_pending_question_list = $get_request_profile_deletion_vendor_list = [];
         /**
          * pending product list
          */
@@ -1592,6 +1606,42 @@ class MVX_REST_API {
             }
         }
 
+        /**
+         * pending vendor deactivation request list
+         */
+        if (method_exists($this, 'mvx_list_of_request_profile_deletion_vendor') && is_array($this->mvx_list_of_request_profile_deletion_vendor()->data) && !empty($this->mvx_list_of_request_profile_deletion_vendor()->data)) {
+            foreach ($this->mvx_list_of_request_profile_deletion_vendor()->data as $key => $value) {
+                if (!empty($value)) {
+                    $get_request_profile_deletion_vendor_list[] = array(
+                        'list_datas'    => array(
+                            array(
+                                'label' =>  __('Vendor Name', 'multivendorx'),
+                                'value' =>  $value['vendor_name']
+                            ),
+                            array(
+                                'label' =>  __('Reason', 'multivendorx'),
+                                'value' =>  $value['deactivate_reason']
+                            )
+                        ), 
+                        'left_icons'    =>  array(
+                            array(
+                                'key'   =>  'deactivate_vendor',
+                                'value'  =>  $value,
+                                'icon'  =>  'icon-approve',
+                                'title' =>  __('Accept', 'multivendorx')
+                            ),
+                            array(
+                                'key'   =>  'reject_request_profile_deletion_vendor',
+                                'value'  =>  $value,
+                                'icon'  =>  'icon-no',
+                                'title' =>  __('Reject', 'multivendorx')
+                            )
+                        )
+                    );
+                }
+            }
+        }
+
         $todo_list = apply_filters('mvx_task_board_listing_modules', [
             array(
                 'key'       =>  'pending_product',
@@ -1617,6 +1667,11 @@ class MVX_REST_API {
                 'key'       =>  'pending_question',
                 'header'    =>  __('Pending Question', 'multivendorx'),
                 'content'   =>  $get_pending_question_list
+            ),
+            array(
+                'key'       =>  'requested_profile_deletion',
+                'header'    =>  __('Requested Profile Deletion', 'multivendorx'),
+                'content'   =>  $get_request_profile_deletion_vendor_list
             )
         ]);
         return rest_ensure_response($todo_list);
@@ -1624,6 +1679,7 @@ class MVX_REST_API {
 
     public function mvx_task_board_icons_triggers($request) {
         global $MVX;
+        require_once(ABSPATH.'wp-admin/includes/user.php');
         $value = $request->get_param('value') ? $request->get_param('value') : '';
         $key = $request->get_param('key') ? $request->get_param('key') : '';
         $reject_word = $request->get_param('reject_word') ? $request->get_param('reject_word') : '';
@@ -1736,7 +1792,91 @@ class MVX_REST_API {
                 $MVX->product_qna->deleteQuestion( $question_id );
                 delete_transient('mvx_customer_qna_for_vendor_' . $vendor->id);
             }
-        }
+        } elseif (!empty($key) && $key == 'product_draft') {
+            if (!empty($value) && is_array($value)) {
+                foreach ($value as $vendor_id) {
+                    if ($vendor_id) {
+                        $args = array( 'posts_per_page' => -1, 'author__in' => $vendor_id, 'post_type' => 'product', 'post_status' => 'publish' );
+                        $vendor_query = get_posts($args);
+                        if ($vendor_query) {
+                            foreach ($vendor_query as $product_id){
+                                $update_post_status = array( 'ID' => $product_id->ID, 'post_status' => 'draft' );
+                                wp_update_post($update_post_status);
+                            }
+                        }
+                        $email = isset(WC()->mailer()->emails['WC_Email_Vendor_Account_Deletion_Mail']) ? WC()->mailer()->emails['WC_Email_Vendor_Account_Deletion_Mail'] : '';
+                        if (!empty($email) && $email->is_enabled() && $vendor_id) {
+                            $email->trigger($vendor_id);
+                        }
+                        wp_delete_user($vendor_id);
+                    }
+                }
+            } elseif (!empty($value)) {
+                $args = array( 'posts_per_page' => -1, 'author__in' => $value, 'post_type' => 'product', 'post_status' => 'publish' );
+                $vendor_query = get_posts($args);
+                if ($vendor_query) {
+                    foreach ($vendor_query as $product_id){
+                        if ($product_id) {
+                            $update_post_status = array( 'ID' => $product_id->ID, 'post_status' => 'draft' );
+                            wp_update_post($update_post_status);
+                        }
+                    }
+                }
+                $email = isset(WC()->mailer()->emails['WC_Email_Vendor_Account_Deletion_Mail']) ? WC()->mailer()->emails['WC_Email_Vendor_Account_Deletion_Mail'] : '';
+                if (!empty($email) && $email->is_enabled() && $value) {
+                    $email->trigger($value);
+                }
+                wp_delete_user($value);
+            }
+        } elseif (!empty($key) && $key == 'product_assigned_admin') {
+            $users = get_users(array( 'role__in' => array('administrator')));
+            if (!empty($value) && is_array($value)) {
+                foreach ($value as $vendor_id) {
+                    if ($vendor_id) {
+                        $args = array( 'posts_per_page' => -1, 'author__in' => $vendor_id, 'post_type' => 'product', 'post_status' => 'publish' );
+                        $vendor_query = get_posts($args);
+                        if ($vendor_query) {
+                            foreach ($vendor_query as $product_id){
+                                if (!empty($users) && !empty($product_id->ID)) {
+                                    $update_post_author = array( 'ID' => $product_id->ID, 'post_author' => $users[0]->ID );
+                                    wp_update_post($update_post_author);
+                                }
+                            }
+                        }
+                        $email = isset(WC()->mailer()->emails['WC_Email_Vendor_Account_Deletion_Mail']) ? WC()->mailer()->emails['WC_Email_Vendor_Account_Deletion_Mail'] : '';
+                        if (!empty($email) && $email->is_enabled() && $vendor_id) {
+                            $email->trigger($vendor_id);
+                        }
+                        wp_delete_user($vendor_id);
+                    }
+                }
+            } elseif (!empty($value)) {
+                $args = array( 'posts_per_page' => -1, 'author__in' => $value, 'post_type' => 'product', 'post_status' => 'publish');
+                $vendor_query = get_posts($args);
+                if ($vendor_query) {
+                    foreach ($vendor_query as $product_id){
+                        if (!empty($users) && !empty($product_id)) {
+                            $update_post_author = array( 'ID' => $product_id->ID, 'post_author' => $users[0]->ID );
+                            wp_update_post($update_post_author);
+                        }
+                    }
+                }
+                $email = isset(WC()->mailer()->emails['WC_Email_Vendor_Account_Deletion_Mail']) ? WC()->mailer()->emails['WC_Email_Vendor_Account_Deletion_Mail'] : '';
+                if (!empty($email) && $email->is_enabled() && $value) {
+                    $email->trigger($value);
+                }
+                wp_delete_user($value);
+            }
+        } elseif (!empty($key) && $key == 'reject_request_profile_deletion_vendor') {
+            $vendor_id = $value['id'] ? $value['id'] : ''; 
+            if (!empty($vendor_id) && metadata_exists('user', $vendor_id, '_deactivate_reason')) {
+                delete_user_meta($vendor_id, '_deactivate_reason');
+                $email = isset(WC()->mailer()->emails['WC_Email_Vendor_Account_Deactive_Request_Reject_Mail']) ? WC()->mailer()->emails['WC_Email_Vendor_Account_Deactive_Request_Reject_Mail'] : '';
+                if (!empty($email) && $email->is_enabled()) {
+                    $email->trigger($vendor_id);
+                }
+            }           
+        } 
         do_action('mvx_task_board_icons_triggers_action', $key, $value);
         return $this->mvx_list_of_work_board_content();
     }
@@ -2456,7 +2596,7 @@ class MVX_REST_API {
         $data_list = $request && $request->get_param('data_list') ? $request->get_param('data_list') : '';
         $select_option_value = $request && $request->get_param('value') ? $request->get_param('value') : '';
         $type = $request && $request->get_param('type') ? $request->get_param('type') : '';
-        $get_product_list = $get_users_list = $get_coupon_list = $get_transaction_list = $get_pending_questions_list = [];
+        $get_product_list = $get_users_list = $get_coupon_list = $get_transaction_list = $get_pending_questions_list = $get_request_profile_deletion_vendor_list = [];
         if ($type == "pending_product") {
             
             if ($this->mvx_list_of_pending_vendor_product()->data) {
@@ -2640,9 +2780,43 @@ class MVX_REST_API {
                     }
                 }
             }
-        }
+        } elseif (!empty($type) && $type == "requested_profile_deletion") {
+            if (method_exists($this, 'mvx_list_of_request_profile_deletion_vendor') && is_array($this->mvx_list_of_request_profile_deletion_vendor()->data) && !empty($this->mvx_list_of_request_profile_deletion_vendor()->data)) {
+                foreach ($this->mvx_list_of_request_profile_deletion_vendor()->data as $key => $value) {
+                    if (is_array($data_list) && !empty($data_list) && isset($data_list[$key]) && isset($value['id'])) {
+                        $get_request_profile_deletion_vendor_list[] = $value['id'];
+                    }
+                }
+            }
+            if (!empty($select_option_value) && $select_option_value == "dismiss") {
+                if ($get_request_profile_deletion_vendor_list) {
+                    foreach ($get_request_profile_deletion_vendor_list as $request_vendor_key => $request_vendor_id) { 
+                        if (!empty($request_vendor_id) && metadata_exists('user', $request_vendor_id, '_deactivate_reason')) {
+                            delete_user_meta($request_vendor_id, '_deactivate_reason');
+                            $email = isset(WC()->mailer()->emails['WC_Email_Vendor_Account_Deactive_Request_Reject_Mail']) ? WC()->mailer()->emails['WC_Email_Vendor_Account_Deactive_Request_Reject_Mail'] : '';
+                            if (!empty($email) && $email->is_enabled()) {
+                                $email->trigger($request_vendor_id);  
+                            }
+                        }   
+                    }
+                }
+            }
+        } 
         do_action('mvx_task_board_bulk_action_triggers', $type, $data_list, $select_option_value);
         return $this->mvx_list_of_work_board_content();
+    }
+
+    function mvx_bulk_todo_request_profile_deletion($request) {
+        $data_list = $request && $request->get_param('data_list') ? $request->get_param('data_list') : '';
+        $get_request_profile_deletion_vendor_list = [];
+        if (method_exists($this, 'mvx_list_of_request_profile_deletion_vendor') && is_array($this->mvx_list_of_request_profile_deletion_vendor()->data) && !empty($this->mvx_list_of_request_profile_deletion_vendor()->data)) {
+            foreach ($this->mvx_list_of_request_profile_deletion_vendor()->data as $key => $value) {
+                if (is_array($data_list) && !empty($data_list) && isset($data_list[$key]) && isset($value['id'])) {
+                    $get_request_profile_deletion_vendor_list[] = $value['id'];
+                }
+            }
+        }
+        return rest_ensure_response($get_request_profile_deletion_vendor_list);
     }
 
     public function mvx_dismiss_and_approve_vendor_product_questions($request) {
@@ -3009,6 +3183,41 @@ class MVX_REST_API {
             }
         }
         return rest_ensure_response($pending_list);
+    }
+
+    public function mvx_list_of_request_profile_deletion_vendor() {
+        global $MVX;
+        $request_profile_deletion_list = [];
+        $args = array(
+            'role__in' => array('dc_vendor'),
+            'fields' => 'all',
+            'meta_query' => array(
+                array(
+                    'key'     => '_deactivate_reason',
+                    'value'   => '',
+                    'compare' => '!='
+                ),
+            )
+        );
+        $get_request_profile_deletion_vendors = get_users($args);
+        if (!empty($get_request_profile_deletion_vendors)) {
+            foreach ($get_request_profile_deletion_vendors as $request_profile_deletion_vendor) {
+                if (!empty($request_profile_deletion_vendor)) {
+                    $reason = get_user_meta($request_profile_deletion_vendor->ID, '_deactivate_reason', true) ? get_user_meta($request_profile_deletion_vendor->ID, '_deactivate_reason', true) : '';
+                    $dismiss = get_user_meta($request_profile_deletion_vendor->ID, '_dismiss_to_do_list', true) ? get_user_meta($request_profile_deletion_vendor->ID, '_dismiss_to_do_list', true) : '';
+                    if (!empty($dismiss)) continue;
+                    $request_profile_deletion_list[] = array(
+                        'id'        =>  $request_profile_deletion_vendor->ID,
+                        'vendor_image_src'  =>  get_avatar($request_profile_deletion_vendor->ID, 50),
+                        'vendor_link'   =>  sprintf('?page=%s&ID=%s&name=vendor-application', 'mvx#&submenu=vendor', $request_profile_deletion_vendor->ID),
+                        'vendor'    => "<img src=' " . $MVX->plugin_url . 'assets/images/wp-avatar-frau.jpg' ."' class='avatar avatar-32 photo' height='32' width='32'>" .$request_profile_deletion_vendor->user_login . "",
+                        'vendor_name'    =>  $request_profile_deletion_vendor->user_login,
+                        'deactivate_reason' => $reason,
+                    );
+                }
+            }
+        }
+        return rest_ensure_response($request_profile_deletion_list);
     }
 
     public function mvx_approve_dismiss_pending_question($request) {

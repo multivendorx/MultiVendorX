@@ -77,6 +77,8 @@ $vendor_profile_image = get_user_meta($user->ID, '_vendor_profile_image', true);
                     </div>
                     <?php } ?>
                 </div>
+                <!-- add deactivate button -->
+                <button type="button" id="deactivate_button" class="deactivate-button btn btn-default" data-vendor_id="<?php echo $user->ID ?>" onclick="mvxMarkeAsdeactivate(<?php echo $user->ID ?>)"><?php _e('Deactivate Account', 'multivendorx'); ?></button>
 			</div>
 		</div>
         <?php do_action('mvx_after_vendor_dashboard_profile'); ?>
@@ -84,6 +86,27 @@ $vendor_profile_image = get_user_meta($user->ID, '_vendor_profile_image', true);
         <div class="mvx-action-container">
             <button class="btn btn-default" name="store_save_profile"><?php _e('Save Options', 'multivendorx'); ?></button>
             <div class="clear"></div>
+        </div>
+        <div id="marke-as-deactivate-modal" class="modal fade" role="dialog" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title"><?php _e('Specify Deactivation Reason', 'multivendorx') ?></h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body"> 
+                        <p id="msg-for-request-sent-sucesss" class="" ></p>
+                        <p id="msg-for-request-sent-error" class="" ></p>
+                        <div class="form-group">
+                            <textarea class="form-control" rows="5" id="deactivate_reason" placeholder="<?php _e('Type your text here', 'multivendorx') ?>"></textarea>
+                        </div>
+                    </div>
+                    <input type="hidden" id="mvx-marke-deactivate-vendor-id" />
+                    <div class="modal-footer">
+                        <button type="button" class="mvx-submit-mark-as-deactivate btn btn-default"><?php _e('Sent', 'multivendorx') ?></button>
+                    </div>
+                </div>
+            </div>
         </div>
     </form>
 </div>

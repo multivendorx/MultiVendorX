@@ -236,4 +236,38 @@ jQuery(document).ready(function($){
 			$('.video_container').hide();
 		}
 	});
+	$('.mvx-submit-mark-as-deactivate').on( 'click', function() {
+		var vendor_id = $( '#mvx-marke-deactivate-vendor-id' ).val();
+		var reason = $( '#deactivate_reason' ).val();
+		var data = {
+			action: 'mvx_sent_deactivation_request',
+			vendor_id: vendor_id,
+			reason: reason
+		};
+		$.ajax({
+			type: 'POST',
+			url:  mvx_frontend_vdashboard_js_script_data.ajax_url,
+			data: data,
+			success: function(response) {
+				if (response.success) {
+					$( '#msg-for-request-sent-sucesss' ).html(response.data);
+					$( '#msg-for-request-sent-sucesss' ).addClass("sucess-msg");
+					$( '#msg-for-request-sent-error' ).toggle();
+					setTimeout(function(){
+						location.reload();
+					},3000)
+				} else {
+					$( '#msg-for-request-sent-error' ).html(response.data);
+					$( '#msg-for-request-sent-error' ).addClass("error-msg");
+					$( '#msg-for-request-sent-sucess' ).toggle();
+				}
+			}
+		});
+	});
 });
+
+function mvxMarkeAsdeactivate(user_id) {
+	jQuery('#mvx-marke-deactivate-vendor-id').val(user_id);
+	jQuery('#marke-as-deactivate-modal').modal('show');
+	jQuery('#marke-as-deactivate-modal').slideToggle(3000);
+}
