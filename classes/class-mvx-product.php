@@ -599,7 +599,7 @@ class MVX_Product {
                 return array();
             } elseif (!empty($related) && 'all_related' == $related) {
                 return $query;
-            } elseif (!empty($related) && 'vendors_related' == $related && !empty($vendor)) {
+            } elseif (!empty($related) && 'vendors_related' == $related && $vendor && !empty($vendor->id)) {
                 $query = get_posts( array(
                     'post_type' => 'product',
                     'post_status' => 'publish',
@@ -608,7 +608,9 @@ class MVX_Product {
                     'exclude' => $product_id,
                     'orderby' => 'rand'
                 ));
-                return $query;
+                if ($query) {
+                    return $query;
+                }
             }
         }
         return $query;
