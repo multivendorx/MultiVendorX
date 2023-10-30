@@ -79,7 +79,7 @@ $vendor_profile_image = get_user_meta($user->ID, '_vendor_profile_image', true);
                 </div>
                 <?php if (get_mvx_vendor_settings('vendor_deactivation_enabled')) { ?>
                     <!-- add deactivate button -->
-                    <button type="button" id="deactivate_button" class="deactivate-button btn btn-default" data-vendor_id="<?php echo $user->ID ?>" onclick="mvxMarkeAsdeactivate(<?php echo $user->ID ?>)"> <?php _e('Deactivate Account', 'multivendorx'); ?></button>
+                    <button type="button" id="deactivate_button" class="deactivate-button btn btn-default" data-vendor_id="<?php echo esc_attr($user->ID) ?>" onclick="mvxMarkeAsdeactivate(<?php echo esc_js($user->ID) ?>)"><?php esc_html_e('Deactivate Account', 'multivendorx'); ?></button>
                 <?php } ?>
 			</div>
 		</div>
