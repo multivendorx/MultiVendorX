@@ -1668,12 +1668,15 @@ class MVX_REST_API {
                 'header'    =>  __('Pending Question', 'multivendorx'),
                 'content'   =>  $get_pending_question_list
             ),
-            array(
+        ]);
+        
+        if (get_mvx_vendor_settings('vendor_deactivation_enabled')) {
+            $todo_list[] = array(
                 'key'       =>  'requested_profile_deletion',
                 'header'    =>  __('Requested Profile Deletion', 'multivendorx'),
                 'content'   =>  $get_request_profile_deletion_vendor_list
-            )
-        ]);
+            );
+        }
         return rest_ensure_response($todo_list);
     }
 

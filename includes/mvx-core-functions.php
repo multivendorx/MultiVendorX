@@ -4864,6 +4864,20 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'database_value' => '',
                 ],
                 [
+                    'key'     => 'vendor_deactivation_enabled',
+                    'label'   => __( 'Enable Vendor Profile Deactivation', 'multivendorx' ),
+                    'type'    => 'checkbox',
+                    'class'   => 'mvx-toggle-checkbox',
+                    'options' => array(
+                        array(
+                            'key'   => "vendor_deactivation_enabled",
+                            'label' => sprintf(__('Allows vendors to request the deactivation of their profiles. To know more, please <a href="%s">click here</a>.', 'multivendorx'), 'https://multivendorx.com/docs/knowledgebase/vendor-account-deactivation-flow/'),
+                            'value' => "vendor_deactivation_enabled"
+                        )
+                    ),
+                    'database_value' => array(),
+                ],
+                [
                     'key'       => 'separator_content',
                     'type'      => 'section',
                     'label'     => "",
