@@ -59,6 +59,8 @@ Class MVX_Admin_Dashboard {
         $this->vendor_withdrawl();
 
         $this->export_vendor_orders_csv();
+        // Banking overview review
+        $this->export_vendor_banking_csv();
         // vendor tools handler
         $this->vendor_tools_handler();
         // vendor updater handler
@@ -3062,6 +3064,108 @@ Class MVX_Admin_Dashboard {
         }
         if ($find_payment_methods) return apply_filters('mvx_multi_split_payment_options', $payment_methods);
         return $count && $count > 1 ? $count : false;
+    }
+
+    public function export_vendor_banking_csv() {
+        global $MVX;
+        require_once($MVX->plugin_path . 'classes/data-store/class-mvx-data-store-ledger.php');
+        $MVX_Ledger_Data_Store = new MVX_Ledger_Data_Store();
+        $initial_balance = $ending_balance = $total_credit = $total_debit = 0;
+        
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (isset($_POST['mvx_download_vendor_banking_overview_csv'])) {
+                $vendor = get_mvx_vendor(get_current_vendor_id()) ? get_mvx_vendor(get_current_vendor_id()) : 0;
+                $filename = 'BankingOverviewReport-' . date('Y-m-d') . '.csv';
+                header("Pragma: public");
+                header("Expires: 0");
+                header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+                header("Content-Type: application/force-download");
+                header("Content-Type: application/octet-stream");
+                header("Content-Type: application/download");
+                header("Content-Disposition: attachment;filename={$filename}");
+                header("Content-Transfer-Encoding: binary");
+                header("Content-Type: charset=UTF-8");
+
+                $balance_headers = array(
+                    'initial_balance' => __('Initial Balance', 'multivendorx'),
+                    'ending_balance' => __('Closing Balance', 'multivendorx'),
+                    'total_credit' => __('Total Credit', 'multivendorx'),
+                    'total_debit' => __('Total Debit', 'multivendorx'),
+                );
+                
+                $headers = array(
+                    'date' => __('Date', 'multivendorx'),
+                    'details' => __('Transactions', 'multivendorx'),
+                    'credit' => __('Deposits', 'multivendorx'),
+                    'debit' => __('Withdrawals', 'multivendorx'),
+                    'balance' => __('Balance', 'multivendorx'),
+                );
+                $requestData = ( $_POST ) ? wc_clean( $_POST ) : array();
+                if ($vendor && !empty($requestData)) {
+                    $vendor_all_ledgers = $MVX_Ledger_Data_Store->get_ledger( array( 'vendor_id' => $vendor->id ), '', $requestData );
+                }
+                if (!empty($vendor_all_ledgers)) {
+                    // get initial balance
+                    $inital_data = end( $vendor_all_ledgers );
+                    $initial_balance = ( $inital_data->balance && $inital_data->balance != '' ) ? $inital_data->balance : 0;
+                    //get ending balance
+                    $ending_data = reset( $vendor_all_ledgers );
+                    $ending_balance = ( $ending_data->balance && $ending_data->balance != '' ) ? $ending_data->balance : 0;
+                    foreach ($vendor_all_ledgers as $ledger) {
+                        if ($ledger) {
+                            // total credited balance
+                            $total_credit += floatval( $ledger->credit );
+                            // total debited balance
+                            $total_debit += floatval( $ledger->debit );
+                            $datas[] = array(
+                                'date' => mvx_date($ledger->created),
+                                'details' => strip_tags($ledger->ref_info),
+                                'credit' => $ledger->credit,
+                                'debit' => $ledger->debit,
+                                'balance' => $ledger->balance,
+                            );
+                        }
+                    }
+                }
+                $all_balance_data[] = array(
+                    'initial_balance' => $initial_balance,
+                    'ending_balance' => $ending_balance,
+                    'total_credit' => $total_credit,
+                    'total_debit' => $total_debit,
+                );
+                
+                // Initiate output buffer and open file
+                ob_start();
+                $file = fopen("php://output", 'w');
+                fputcsv($file, $balance_headers);
+                if (!empty($all_balance_data)) {
+                    foreach ($all_balance_data as $data) {
+                        fputcsv($file, $data);
+                    }
+                } else {
+                    fputcsv($file, array(__('Sorry. no data is available', 'multivendorx')));
+                }
+                fputcsv($file, array(' '));
+                fputcsv($file, array(__('Transaction Details Between', 'multivendorx'), $_POST['from_date'], '-', $_POST['to_date']));
+                fputcsv($file, array(' '));
+                // Add headers to file
+                fputcsv($file, $headers);
+                // Add data to file
+                if (!empty($datas)) {
+                    foreach ($datas as $order_data) {
+                        fputcsv($file, $order_data);
+                    }
+                } else {
+                    fputcsv($file, array(__('Sorry. no data is available', 'multivendorx')));
+                }
+                // Close file and get data from output buffer
+                fclose($file);
+                $csv = ob_get_clean();
+                // Send CSV to browser for download
+                echo $csv;
+                die();
+            } 
+        }
     }
 
 }
