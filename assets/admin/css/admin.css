@@ -490,6 +490,10 @@
   content: "\e974";
 }
 
+.icon-store-support:before {
+  content: "\e975";
+}
+
 /*********** Modules section *********************/
 @font-face {
   font-family: "mvx-module";
@@ -499,8 +503,7 @@
   font-style: normal;
   font-display: block;
 }
-[class^=module-],
-[class*=" module-"] {
+[class^=module-], [class*=" module-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: "mvx-module" !important;
   speak: never;
@@ -774,16 +777,12 @@
   content: "\e940";
 }
 
+.module-store-support:before {
+  content: "\e941";
+}
+
 /*icon end*/
-textarea,
-input[type=text],
-input[type=url],
-input[type=email],
-input[type=number],
-select,
-input,
-.default-input,
-input[type=password] {
+textarea, input[type=text], input[type=url], input[type=email], input[type=number], select, input, .default-input, input[type=password] {
   border-radius: 0.25rem;
   width: 100%;
   padding: 0rem 0.75rem;
@@ -793,15 +792,7 @@ input[type=password] {
   background-color: #fdfdfe;
   line-height: 2.375;
 }
-textarea:focus,
-input[type=text]:focus,
-input[type=url]:focus,
-input[type=email]:focus,
-input[type=number]:focus,
-select:focus,
-input:focus,
-.default-input:focus,
-input[type=password]:focus {
+textarea:focus, input[type=text]:focus, input[type=url]:focus, input[type=email]:focus, input[type=number]:focus, select:focus, input:focus, .default-input:focus, input[type=password]:focus {
   box-shadow: none;
   border-color: #d4d1d9;
 }
@@ -814,17 +805,12 @@ input[type=text] {
   color: #181718;
 }
 
-input[type=checkbox]:focus,
-input[type=radio]:focus,
-textarea:focus,
-input[type=text]:focus,
-input[type=number]:focus {
+input[type=checkbox]:focus, input[type=radio]:focus, textarea:focus, input[type=text]:focus, input[type=number]:focus {
   box-shadow: none;
   border-color: #d4d1d9;
 }
 
-.css-furbww-Bt input[type=text],
-.css-1mfkewb-Ur input[type=text] {
+.css-furbww-Bt input[type=text], .css-1mfkewb-Ur input[type=text] {
   margin: -0.125rem 0.25rem !important;
 }
 
@@ -847,12 +833,7 @@ input[type=number]:focus {
   white-space: nowrap;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
   line-height: 1.5;
   color: #181718;
@@ -950,8 +931,7 @@ input[type=checkbox] {
   margin: 0.25rem 0.5rem 0.25rem 0.25rem;
 }
 
-input[type=radio],
-input[type=checkbox] {
+input[type=radio], input[type=checkbox] {
   width: 1rem;
   height: 1rem;
   border-color: #d4d1d9;
@@ -1144,8 +1124,7 @@ div#wpbody-content {
   text-decoration: underline;
   color: #65438f;
 }
-.mvx-container .mvx-module-grid .mvx-back-btn,
-.mvx-container .mvx-dynamic-form-content .mvx-back-btn {
+.mvx-container .mvx-module-grid .mvx-back-btn, .mvx-container .mvx-dynamic-form-content .mvx-back-btn {
   color: #181718;
   vertical-align: middle;
   text-decoration: none;
@@ -1154,8 +1133,7 @@ div#wpbody-content {
   border-radius: 0.25rem;
   background: transparent;
 }
-.mvx-container .mvx-module-grid .mvx-back-btn:hover,
-.mvx-container .mvx-dynamic-form-content .mvx-back-btn:hover {
+.mvx-container .mvx-module-grid .mvx-back-btn:hover, .mvx-container .mvx-dynamic-form-content .mvx-back-btn:hover {
   border-color: #181718;
 }
 .mvx-container p.mvx-settings-metabox-description-code {
@@ -1291,9 +1269,7 @@ div#wpbody-content {
   height: 2.5rem;
   white-space: nowrap;
 }
-.mvx-container .mvx-text-with-line-wrapper,
-.mvx-container .mvx-chart-text-and-bar-line-wrap,
-.mvx-container .mvx-text-with-right-side-line-wrapper {
+.mvx-container .mvx-text-with-line-wrapper, .mvx-container .mvx-chart-text-and-bar-line-wrap, .mvx-container .mvx-text-with-right-side-line-wrapper {
   padding: 2rem 0 1.5rem;
   display: flex;
   align-items: center;
@@ -1427,8 +1403,7 @@ div#wpbody-content {
 .mvx-container .mvx-toggle-checkbox-content.disabled::after {
   border-color: #d4d1d9;
 }
-.mvx-container .mvx-toggle-checkbox-content::after,
-.mvx-container span.wc-wizard-service-toggle::after {
+.mvx-container .mvx-toggle-checkbox-content::after, .mvx-container span.wc-wizard-service-toggle::after {
   content: "";
   position: absolute;
   top: 0.55rem;
@@ -1497,8 +1472,7 @@ div#wpbody-content {
   background-color: #fdfdfe;
   position: relative;
 }
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form tr,
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form th {
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form tr, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form th {
   height: 0;
   text-align: left;
   padding-bottom: 0.5rem;
@@ -1510,8 +1484,7 @@ div#wpbody-content {
   height: 3.75rem;
   color: #5e5d60;
 }
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form .mvx-form-button-group,
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form .mvx-form-actions {
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form .mvx-form-button-group, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form .mvx-form-actions {
   bottom: 0;
   position: absolute;
   width: 100%;
@@ -1520,8 +1493,7 @@ div#wpbody-content {
   background-color: #fbfafc;
   border-top: 0.06rem solid #ece8f1;
 }
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form .mvx-form-button-group .mvx-setting-section-divider,
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form .mvx-form-actions .mvx-setting-section-divider {
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form .mvx-form-button-group .mvx-setting-section-divider, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form .mvx-form-actions .mvx-setting-section-divider {
   display: none;
 }
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-dynamic-form .mvx-form-group {
@@ -1704,8 +1676,7 @@ div#wpbody-content {
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-multi-nested-class .mvx-boarder-parent .horizontal-class .button-controls {
   margin: 0;
 }
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-multi-nested-class .mvx-boarder-parent .horizontal-class .button-controls a,
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-multi-nested-class .mvx-boarder-parent .horizontal-class .button-secondary {
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-multi-nested-class .mvx-boarder-parent .horizontal-class .button-controls a, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-multi-nested-class .mvx-boarder-parent .horizontal-class .button-secondary {
   background: transparent !important;
   border-color: #181718 !important;
   margin: 0.25rem 0;
@@ -1713,8 +1684,7 @@ div#wpbody-content {
   min-width: 1.875rem;
   text-align: center;
 }
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-multi-nested-class .mvx-boarder-parent .horizontal-class .button-controls a:hover,
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-multi-nested-class .mvx-boarder-parent .horizontal-class .button-secondary:hover {
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-multi-nested-class .mvx-boarder-parent .horizontal-class .button-controls a:hover, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-multi-nested-class .mvx-boarder-parent .horizontal-class .button-secondary:hover {
   text-decoration: none;
 }
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-toggle-rectangle-merge ul {
@@ -1785,8 +1755,7 @@ div#wpbody-content {
 .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from ::placeholder {
   color: #181718;
 }
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from input[type=text],
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part.mvx-form-left-line-active input[type=text] {
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from input[type=text], .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part.mvx-form-left-line-active input[type=text] {
   font-size: 0.875rem;
   border: solid #d4d1d9;
   border-width: 0 0 0.06rem 0;
@@ -1802,82 +1771,61 @@ div#wpbody-content {
   border-radius: 0;
   border-width: 0 0 0.06rem 0;
 }
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part,
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from {
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from {
   padding: 1.5rem;
   border-radius: 0.25rem;
   border: 0.06rem solid #f2eff5;
   margin: 0.7rem 0;
   position: relative;
 }
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part input[type=text].mvx-rgistration-form-title,
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from input[type=text].mvx-rgistration-form-title {
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part input[type=text].mvx-rgistration-form-title, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from input[type=text].mvx-rgistration-form-title {
   font-size: 1.25rem;
 }
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part input[type=text].mvx-question-title::placeholder,
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from input[type=text].mvx-question-title::placeholder {
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part input[type=text].mvx-question-title::placeholder, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from input[type=text].mvx-question-title::placeholder {
   color: #181718;
 }
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-form-group,
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-form-group {
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-form-group, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-form-group {
   display: flex;
   align-items: start;
   flex-wrap: wrap;
 }
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-question-input-items,
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-question-input-items {
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-question-input-items, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-question-input-items {
   width: 100%;
   margin: 0 0.5rem 0 0;
 }
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container,
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container {
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container {
   margin: 0 0 0.5rem 0;
 }
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container .mvx-form-type-wrap,
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container .mvx-form-type-wrap {
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container .mvx-form-type-wrap, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container .mvx-form-type-wrap {
   display: flex;
   align-items: center;
   gap: 1rem;
   padding: 0.75rem 0;
   flex-wrap: wrap;
 }
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container select,
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container input[type=number],
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container select,
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container input[type=number] {
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container select, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container input[type=number], .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container select, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container input[type=number] {
   margin: 0.5rem 0 0 0;
 }
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container ul li,
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container ul li {
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container ul li, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container ul li {
   display: flex;
   align-items: start;
   column-gap: 0.8rem;
   padding: 1rem 0;
 }
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container ul li input[type=radio],
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container ul li input[type=checkbox],
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container ul li .mvx-close-icon,
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container ul li input[type=radio],
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container ul li input[type=checkbox],
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container ul li .mvx-close-icon {
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container ul li input[type=radio], .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container ul li input[type=checkbox], .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container ul li .mvx-close-icon, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container ul li input[type=radio], .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container ul li input[type=checkbox], .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container ul li .mvx-close-icon {
   margin-top: 0.563rem;
 }
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container .purple-btn,
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container .purple-btn {
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container .purple-btn, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-vendor-form-input-field-container .purple-btn {
   text-decoration: underline;
   cursor: pointer;
 }
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-registration-fileds-description,
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-registration-form-description,
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-registration-fileds-description,
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-registration-form-description {
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-registration-fileds-description, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-registration-form-description, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-registration-fileds-description, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-registration-form-description {
   padding: 0.625rem 0 1.5rem;
   font-size: 0.75rem;
   color: #8e8b91;
   font-style: italic;
 }
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-footer-icon-form,
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-footer-icon-form {
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-footer-icon-form, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-footer-icon-form {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -1888,24 +1836,20 @@ div#wpbody-content {
   display: flex;
   align-items: center;
 }
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-footer-icon-form .mvx-perple-txt,
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-footer-icon-form .mvx-perple-txt {
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-footer-icon-form .mvx-perple-txt, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-footer-icon-form .mvx-perple-txt {
   margin-left: auto;
 }
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-footer-icon-form .mvx-perple-txt input[type=checkbox],
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-footer-icon-form .mvx-perple-txt input[type=checkbox] {
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-footer-icon-form .mvx-perple-txt input[type=checkbox], .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-footer-icon-form .mvx-perple-txt input[type=checkbox] {
   border: 0.063rem solid #d4d1d9;
   margin: 0 0.5rem 0.25rem;
 }
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-footer-icon-form .mvx-font,
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-footer-icon-form .mvx-font {
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-footer-icon-form .mvx-font, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from .mvx-footer-icon-form .mvx-font {
   color: #65438f;
   padding: 0 0.5rem;
   font-size: 1rem;
   cursor: pointer;
 }
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part select,
-.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from select {
+.mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part select, .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-tab-content .mvx-top-part-registartion-from select {
   height: 2.5rem;
   border-radius: 0.25rem;
   width: 100%;
@@ -1998,8 +1942,7 @@ div#wpbody-content {
   border: 0.063rem solid #d4d1d9;
   color: #181718;
 }
-.mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-charts-graph-content .mvx-box-background-white-wrapper,
-.mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-charts-graph-content .mvx-chart-graph-visible {
+.mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-charts-graph-content .mvx-box-background-white-wrapper, .mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-charts-graph-content .mvx-chart-graph-visible {
   background-color: #fdfdfe;
   border: 0.063rem solid #d4d1d9;
   margin-bottom: 0.25rem;
@@ -2571,8 +2514,7 @@ div#wpbody-content {
 .mvx-container .Question-answer-wrapper .mvx-right-part {
   flex: auto;
 }
-.mvx-container .Question-answer-wrapper .media,
-.mvx-container .Question-answer-wrapper .mvx-vendor-application-content {
+.mvx-container .Question-answer-wrapper .media, .mvx-container .Question-answer-wrapper .mvx-vendor-application-content {
   background: #fdfdfe;
   border-radius: 0.25rem;
   border: 0.06rem solid #d4d1d9;
@@ -2752,8 +2694,7 @@ div#wpbody-content {
 .mvx-container .mvx-module-settings-box ul li .mvx-module-active-plugin-class {
   background: #f7f6f9;
 }
-.mvx-container .mvx-module-settings-box ul li .inactive-plugin-class,
-.mvx-container .mvx-module-settings-box ul li .mvx-module-active-plugin-class {
+.mvx-container .mvx-module-settings-box ul li .inactive-plugin-class, .mvx-container .mvx-module-settings-box ul li .mvx-module-active-plugin-class {
   border-radius: 50rem;
   width: 1rem;
   line-height: 1;
@@ -2761,13 +2702,11 @@ div#wpbody-content {
   margin-right: 0.5rem;
   text-align: center;
 }
-.mvx-container .mvx-module-settings-box ul li .inactive-plugin-class .icon-no,
-.mvx-container .mvx-module-settings-box ul li .mvx-module-active-plugin-class .icon-no {
+.mvx-container .mvx-module-settings-box ul li .inactive-plugin-class .icon-no, .mvx-container .mvx-module-settings-box ul li .mvx-module-active-plugin-class .icon-no {
   font-size: 0.438rem;
   color: #e26f76;
 }
-.mvx-container .mvx-module-settings-box ul li .inactive-plugin-class .icon-yes,
-.mvx-container .mvx-module-settings-box ul li .mvx-module-active-plugin-class .icon-yes {
+.mvx-container .mvx-module-settings-box ul li .inactive-plugin-class .icon-yes, .mvx-container .mvx-module-settings-box ul li .mvx-module-active-plugin-class .icon-yes {
   font-size: 0.438rem;
   color: #9f8ab9;
 }
@@ -2856,13 +2795,11 @@ div#wpbody-content {
   background: #f9f8fb;
   border-top: 0.06rem solid #f2eff5;
 }
-.mvx-product-box-sec .mvx-all-product-box .mvx-white-box-footer .pull-left,
-.mvx-product-box-sec .mvx-all-product-box .mvx-white-box-footer .pull-right {
+.mvx-product-box-sec .mvx-all-product-box .mvx-white-box-footer .pull-left, .mvx-product-box-sec .mvx-all-product-box .mvx-white-box-footer .pull-right {
   display: flex;
   align-items: center;
 }
-.mvx-product-box-sec .mvx-all-product-box .mvx-white-box-footer .pull-left .link-icon,
-.mvx-product-box-sec .mvx-all-product-box .mvx-white-box-footer .pull-right .link-icon {
+.mvx-product-box-sec .mvx-all-product-box .mvx-white-box-footer .pull-left .link-icon, .mvx-product-box-sec .mvx-all-product-box .mvx-white-box-footer .pull-right .link-icon {
   display: block;
   color: #65438f;
   margin-right: 0.25rem;
@@ -2870,12 +2807,10 @@ div#wpbody-content {
   padding: 0.375rem 0.625rem;
   border-radius: 0.25rem;
 }
-.mvx-product-box-sec .mvx-all-product-box .mvx-white-box-footer .pull-left .link-icon:hover .mvxicon-hover-text,
-.mvx-product-box-sec .mvx-all-product-box .mvx-white-box-footer .pull-right .link-icon:hover .mvxicon-hover-text {
+.mvx-product-box-sec .mvx-all-product-box .mvx-white-box-footer .pull-left .link-icon:hover .mvxicon-hover-text, .mvx-product-box-sec .mvx-all-product-box .mvx-white-box-footer .pull-right .link-icon:hover .mvxicon-hover-text {
   display: block;
 }
-.mvx-product-box-sec .mvx-all-product-box .mvx-white-box-footer .pull-left .mvxicon-hover-text,
-.mvx-product-box-sec .mvx-all-product-box .mvx-white-box-footer .pull-right .mvxicon-hover-text {
+.mvx-product-box-sec .mvx-all-product-box .mvx-white-box-footer .pull-left .mvxicon-hover-text, .mvx-product-box-sec .mvx-all-product-box .mvx-white-box-footer .pull-right .mvxicon-hover-text {
   position: absolute;
   border-radius: 0.25rem;
   background: #f9f8fb;
@@ -2945,14 +2880,12 @@ div#wpbody-content {
   width: 1.25rem;
 }
 
-.wc-setup-steps li.done,
-.wc-setup-steps li.active {
+.wc-setup-steps li.done, .wc-setup-steps li.active {
   border-color: #9f8ab9;
   color: #9f8ab9;
   font-weight: 400;
 }
-.wc-setup-steps li.done::before,
-.wc-setup-steps li.active::before {
+.wc-setup-steps li.done::before, .wc-setup-steps li.active::before {
   border-color: #9f8ab9;
   background-color: #9f8ab9;
 }
@@ -2982,9 +2915,7 @@ div#wpbody-content {
 .wc-setup h1#wc-logo img {
   height: 3rem;
 }
-.wc-setup h1,
-.wc-setup h2,
-.wc-setup h3 {
+.wc-setup h1, .wc-setup h2, .wc-setup h3 {
   color: #181718;
 }
 .wc-setup .woocommerce-message {
@@ -2998,13 +2929,11 @@ div#wpbody-content {
   color: #5e5d60;
 }
 
-.wc-setup-content a,
-a {
+.wc-setup-content a, a {
   color: #65438f;
   text-decoration: none;
 }
-.wc-setup-content a:hover,
-a:hover {
+.wc-setup-content a:hover, a:hover {
   color: #65438f;
   text-decoration: underline;
 }
@@ -3093,22 +3022,19 @@ table.form-table td label {
   color: #5e5d60;
   font-weight: 400;
 }
-table.form-table th,
-table.form-table td {
+table.form-table th, table.form-table td {
   text-align: left;
   height: min-content;
 }
 
-.red-btn,
-.button-primary {
+.red-btn, .button-primary {
   background-color: #e35047 !important;
   border: 0.06rem solid #e35047 !important;
   color: #fdfdfe !important;
   text-shadow: none !important;
   box-shadow: none !important;
 }
-.red-btn:hover,
-.button-primary:hover {
+.red-btn:hover, .button-primary:hover {
   border: 0.06rem solid #e35047 !important;
   background-color: #e35047 !important;
   color: #fdfdfe !important;
@@ -3222,12 +3148,10 @@ div.health-check-accordion .health-check-accordion-panel table td {
   margin: 1rem 0 2rem;
 }
 
-.mvx-vendor-transients-button,
-.site-health-copy-buttons {
+.mvx-vendor-transients-button, .site-health-copy-buttons {
   margin-top: 1rem;
 }
-.mvx-vendor-transients-button .btn-border,
-.site-health-copy-buttons .btn-border {
+.mvx-vendor-transients-button .btn-border, .site-health-copy-buttons .btn-border {
   line-height: 1.2;
   background: transparent;
 }
@@ -3370,18 +3294,15 @@ div.health-check-accordion .health-check-accordion-panel table td {
   padding: 0.25rem 0;
   word-break: break-word;
 }
-.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon div:hover,
-.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon a:hover {
+.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon div:hover, .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon a:hover {
   text-decoration: none;
 }
-.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon div i,
-.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon a i {
+.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon div i, .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon a i {
   padding: 0.5rem;
   border-radius: 0.25rem;
   color: #65438f;
 }
-.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon div i:hover,
-.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon a i:hover {
+.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon div i:hover, .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon a i:hover {
   background: #f9f8fb;
 }
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .mvx-vendor-icon-name img {
@@ -3424,14 +3345,10 @@ div.health-check-accordion .health-check-accordion-panel table td {
   border: 0;
 }
 
-.mvx-announcement .mvx-btn,
-.mvx-knowladgebase .mvx-btn,
-.mvx-add-new .mvx-btn {
+.mvx-announcement .mvx-btn, .mvx-knowladgebase .mvx-btn, .mvx-add-new .mvx-btn {
   transition: none;
 }
-.mvx-announcement .mvx-dynamic-fields-wrapper,
-.mvx-knowladgebase .mvx-dynamic-fields-wrapper,
-.mvx-add-new .mvx-dynamic-fields-wrapper {
+.mvx-announcement .mvx-dynamic-fields-wrapper, .mvx-knowladgebase .mvx-dynamic-fields-wrapper, .mvx-add-new .mvx-dynamic-fields-wrapper {
   padding: 3rem 0 0;
 }
 
@@ -3494,30 +3411,22 @@ div.health-check-accordion .health-check-accordion-panel table td {
 .mvx-commission-details-section .mvx-edit-commission-status-wrapper .woocommerce-order-data-meta.order_number p:last-child {
   margin: 0 1rem;
 }
-.mvx-commission-details-section .mvx-edit-commission-status-wrapper .commission-details-data-value,
-.mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-amount,
-.mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-status-wrap {
+.mvx-commission-details-section .mvx-edit-commission-status-wrapper .commission-details-data-value, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-amount, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-status-wrap {
   display: flex;
   align-items: center;
   padding: 0.5rem 0;
   margin: 0;
   height: 2rem;
 }
-.mvx-commission-details-section .mvx-edit-commission-status-wrapper .commission-details-data-value .commission-status-hide-and-show-wrap,
-.mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-amount .commission-status-hide-and-show-wrap,
-.mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-status-wrap .commission-status-hide-and-show-wrap {
+.mvx-commission-details-section .mvx-edit-commission-status-wrapper .commission-details-data-value .commission-status-hide-and-show-wrap, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-amount .commission-status-hide-and-show-wrap, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-status-wrap .commission-status-hide-and-show-wrap {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
-.mvx-commission-details-section .mvx-edit-commission-status-wrapper .commission-details-data-value .mvx-commission-label-class,
-.mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-amount .mvx-commission-label-class,
-.mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-status-wrap .mvx-commission-label-class {
+.mvx-commission-details-section .mvx-edit-commission-status-wrapper .commission-details-data-value .mvx-commission-label-class, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-amount .mvx-commission-label-class, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-status-wrap .mvx-commission-label-class {
   width: 60%;
 }
-.mvx-commission-details-section .mvx-edit-commission-status-wrapper .commission-details-data-value .mvx-commission-value-class,
-.mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-amount .mvx-commission-value-class,
-.mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-status-wrap .mvx-commission-value-class {
+.mvx-commission-details-section .mvx-edit-commission-status-wrapper .commission-details-data-value .mvx-commission-value-class, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-amount .mvx-commission-value-class, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-status-wrap .mvx-commission-value-class {
   color: #181718;
 }
 
@@ -3527,16 +3436,10 @@ div.health-check-accordion .health-check-accordion-panel table td {
   justify-content: space-between;
   flex-wrap: wrap;
 }
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap,
-.mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap {
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap {
   width: 48%;
 }
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-box-background-white-wrapper,
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-commission-vendor-details-class,
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-commission-notes-details-class,
-.mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-box-background-white-wrapper,
-.mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-commission-vendor-details-class,
-.mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-commission-notes-details-class {
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-box-background-white-wrapper, .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-commission-vendor-details-class, .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-commission-notes-details-class, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-box-background-white-wrapper, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-commission-vendor-details-class, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-commission-notes-details-class {
   font-size: 1rem;
   border: 0.063rem solid #d4d1d9;
   background-color: #fdfdfe;
@@ -3546,106 +3449,74 @@ div.health-check-accordion .health-check-accordion-panel table td {
   color: #181718;
   font-weight: 500;
 }
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .woocommerce_order_items,
-.mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .woocommerce_order_items {
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .woocommerce_order_items, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .woocommerce_order_items {
   border: 0.063rem solid #d4d1d9;
 }
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .woocommerce_order_items thead,
-.mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .woocommerce_order_items thead {
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .woocommerce_order_items thead, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .woocommerce_order_items thead {
   background-color: #f9f8fb;
   color: #5e5d60;
   text-align: left;
 }
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .woocommerce_order_items thead th,
-.mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .woocommerce_order_items thead th {
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .woocommerce_order_items thead th, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .woocommerce_order_items thead th {
   padding: 1rem 0.75rem;
 }
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .woocommerce_order_items tbody td,
-.mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .woocommerce_order_items tbody td {
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .woocommerce_order_items tbody td, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .woocommerce_order_items tbody td {
   padding: 1rem 0.75rem;
 }
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .woocommerce_order_items tbody td.thumb,
-.mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .woocommerce_order_items tbody td.thumb {
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .woocommerce_order_items tbody td.thumb, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .woocommerce_order_items tbody td.thumb {
   display: flex;
   align-items: center;
   justify-content: space-between;
   column-gap: 0.5rem;
 }
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .woocommerce_order_items tbody td.thumb .mvx-customer-details a,
-.mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .woocommerce_order_items tbody td.thumb .mvx-customer-details a {
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .woocommerce_order_items tbody td.thumb .mvx-customer-details a, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .woocommerce_order_items tbody td.thumb .mvx-customer-details a {
   word-break: break-word;
 }
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table.mvx-order-totals,
-.mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table.mvx-order-totals {
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table.mvx-order-totals, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table.mvx-order-totals {
   border: 0.063rem solid #d4d1d9;
   background: #fbfafc;
 }
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table.mvx-order-totals tr,
-.mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table.mvx-order-totals tr {
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table.mvx-order-totals tr, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table.mvx-order-totals tr {
   height: auto;
 }
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table.mvx-order-totals tr:last-child,
-.mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table.mvx-order-totals tr:last-child {
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table.mvx-order-totals tr:last-child, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table.mvx-order-totals tr:last-child {
   font-weight: 500;
   height: 2.5rem;
   border-top: 0.06rem solid #f2eff5;
 }
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table.mvx-order-totals tr td.cupon-ntc,
-.mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table.mvx-order-totals tr td.cupon-ntc {
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table.mvx-order-totals tr td.cupon-ntc, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table.mvx-order-totals tr td.cupon-ntc {
   text-align: left;
   font-size: 0.75rem;
 }
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table.mvx-order-totals tr td,
-.mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table.mvx-order-totals tr td {
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap table.mvx-order-totals tr td, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap table.mvx-order-totals tr td {
   text-align: right;
   padding: 0.5rem 0.75rem;
 }
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-child-vendor-details,
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx_commision_note_clm,
-.mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-child-vendor-details,
-.mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx_commision_note_clm {
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-child-vendor-details, .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx_commision_note_clm, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-child-vendor-details, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx_commision_note_clm {
   background-color: #fdfdfe;
   border: 0.063rem solid #d4d1d9;
   border-bottom: 0;
   padding: 1rem;
 }
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-child-vendor-details:last-child,
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx_commision_note_clm:last-child,
-.mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-child-vendor-details:last-child,
-.mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx_commision_note_clm:last-child {
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-child-vendor-details:last-child, .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx_commision_note_clm:last-child, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-child-vendor-details:last-child, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx_commision_note_clm:last-child {
   border-bottom: 0.063rem solid #d4d1d9;
   border-radius: 0 0 0.25rem 0.25rem;
 }
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-child-vendor-details p,
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx_commision_note_clm p,
-.mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-child-vendor-details p,
-.mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx_commision_note_clm p {
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-child-vendor-details p, .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx_commision_note_clm p, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-child-vendor-details p, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx_commision_note_clm p {
   color: #181718;
 }
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-child-vendor-details small,
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx_commision_note_clm small,
-.mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-child-vendor-details small,
-.mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx_commision_note_clm small {
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-child-vendor-details small, .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx_commision_note_clm small, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-child-vendor-details small, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx_commision_note_clm small {
   color: #8e8b91;
 }
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-child-vendor-details .commission-details-data-value,
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx_commision_note_clm .commission-details-data-value,
-.mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-child-vendor-details .commission-details-data-value,
-.mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx_commision_note_clm .commission-details-data-value {
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-child-vendor-details .commission-details-data-value, .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx_commision_note_clm .commission-details-data-value, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-child-vendor-details .commission-details-data-value, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx_commision_note_clm .commission-details-data-value {
   display: flex;
   align-items: center;
   padding: 0.5rem 0;
 }
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-child-vendor-details .commission-details-data-value .mvx-commission-label-class,
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx_commision_note_clm .commission-details-data-value .mvx-commission-label-class,
-.mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-child-vendor-details .commission-details-data-value .mvx-commission-label-class,
-.mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx_commision_note_clm .commission-details-data-value .mvx-commission-label-class {
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-child-vendor-details .commission-details-data-value .mvx-commission-label-class, .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx_commision_note_clm .commission-details-data-value .mvx-commission-label-class, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-child-vendor-details .commission-details-data-value .mvx-commission-label-class, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx_commision_note_clm .commission-details-data-value .mvx-commission-label-class {
   width: 35%;
 }
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-child-vendor-details .commission-details-data-value .mvx-commission-value-class,
-.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx_commision_note_clm .commission-details-data-value .mvx-commission-value-class,
-.mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-child-vendor-details .commission-details-data-value .mvx-commission-value-class,
-.mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx_commision_note_clm .commission-details-data-value .mvx-commission-value-class {
+.mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx-child-vendor-details .commission-details-data-value .mvx-commission-value-class, .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap .mvx_commision_note_clm .commission-details-data-value .mvx-commission-value-class, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx-child-vendor-details .commission-details-data-value .mvx-commission-value-class, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap .mvx_commision_note_clm .commission-details-data-value .mvx-commission-value-class {
   color: #181718;
 }
 
@@ -4040,8 +3911,7 @@ div.health-check-accordion .health-check-accordion-panel table td {
     transform: translatey(-50%);
     right: 0;
   }
-  .mvx-setup-marketing-white-box,
-  .mvx-documentation-quick-link-wrapper {
+  .mvx-setup-marketing-white-box, .mvx-documentation-quick-link-wrapper {
     width: 50%;
   }
   .mvx-documentation-support-forum {
@@ -4054,15 +3924,13 @@ div.health-check-accordion .health-check-accordion-panel table td {
   .mvx-dashboard-slider {
     width: 70%;
   }
-  .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-wrap-vendor-order-status,
-  .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-wrap-amount-shipping-tax {
+  .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-wrap-vendor-order-status, .mvx-commission-details-section .mvx-edit-commission-status-wrapper .mvx-commission-wrap-amount-shipping-tax {
     width: 34%;
   }
   .show-responsive-money-btn-wrapper {
     display: none;
   }
-  .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap,
-  .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap {
+  .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap {
     width: 48%;
   }
   .mvx-container .mvx-vertical-tabs .mvx-middle-child-container .mvx-current-tab-lists {
@@ -4114,8 +3982,7 @@ div.health-check-accordion .health-check-accordion-panel table td {
   .mvx-container .mvx-setup-documentation {
     flex-wrap: wrap;
   }
-  .mvx-container .mvx-setup-documentation .mvx-setup-marketing-white-box,
-  .mvx-container .mvx-setup-documentation .mvx-documentation-quick-link-wrapper {
+  .mvx-container .mvx-setup-documentation .mvx-setup-marketing-white-box, .mvx-container .mvx-setup-documentation .mvx-documentation-quick-link-wrapper {
     width: 100%;
   }
   .mvx-container .mvx-dashboard-slider {
@@ -4123,8 +3990,7 @@ div.health-check-accordion .health-check-accordion-panel table td {
   }
 }
 @media only screen and (max-width: 766px) {
-  .mvx-middle-container-wrapper,
-  .mvx-documentation-support-forum {
+  .mvx-middle-container-wrapper, .mvx-documentation-support-forum {
     width: 100%;
   }
   .mvx-money-table-holder {
@@ -4140,8 +4006,7 @@ div.health-check-accordion .health-check-accordion-panel table td {
     width: 2rem;
     text-overflow: ellipsis;
   }
-  .show-money-btn-wrapper,
-  .show-btn-wrapper {
+  .show-money-btn-wrapper, .show-btn-wrapper {
     display: none;
   }
   .mvx-money-table-coloumn {
@@ -4161,17 +4026,14 @@ div.health-check-accordion .health-check-accordion-panel table td {
   .show-responsive-money-btn-wrapper a.show-link:hover {
     text-decoration: none;
   }
-  .mvx-middle-child-container .mvx-current-tab-lists,
-  .mvx-middle-child-container .mvx-tab-content {
+  .mvx-middle-child-container .mvx-current-tab-lists, .mvx-middle-child-container .mvx-tab-content {
     width: 100%;
     margin-top: -0.06rem;
   }
-  .mvx-middle-child-container .mvx-current-tab-lists .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container ul li,
-  .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container ul li {
+  .mvx-middle-child-container .mvx-current-tab-lists .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container ul li, .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container ul li {
     flex-wrap: wrap;
   }
-  .mvx-middle-child-container .mvx-current-tab-lists .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container ul li .mvx-close-icon,
-  .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container ul li .mvx-close-icon {
+  .mvx-middle-child-container .mvx-current-tab-lists .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container ul li .mvx-close-icon, .mvx-middle-child-container .mvx-tab-content .mvx-form-vendor-register .mvx-option-part .mvx-vendor-form-input-field-container ul li .mvx-close-icon {
     width: 100%;
     text-align: right;
   }
@@ -4181,31 +4043,25 @@ div.health-check-accordion .health-check-accordion-panel table td {
   .mvx-edit-commission-status-wrapper {
     flex-wrap: wrap;
   }
-  .mvx-edit-commission-status-wrapper .mvx-commission-wrap-vendor-order-status,
-  .mvx-edit-commission-status-wrapper .mvx-commission-wrap-amount-shipping-tax {
+  .mvx-edit-commission-status-wrapper .mvx-commission-wrap-vendor-order-status, .mvx-edit-commission-status-wrapper .mvx-commission-wrap-amount-shipping-tax {
     width: 100%;
   }
-  .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap,
-  .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap {
+  .mvx-order-details-vendor-details-wrap .mvx-order-details-wrap, .mvx-order-details-vendor-details-wrap .mvx-vendor-notes-details-wrap {
     width: 100%;
   }
-  .mvx-settings-form-label,
-  .mvx-settings-input-content {
+  .mvx-settings-form-label, .mvx-settings-input-content {
     width: 100% !important;
   }
   .mvx-container .mvx-horizontal-tabs .mvx-tab-content .mvx-wrapper-performance-content {
     flex-wrap: wrap;
   }
-  span.sc-bZkfAO.sc-kLLXSd.lmGpws.OHwJB,
-  span.sc-bZkfAO.sc-ikZpkk.lmGpws.kBhHpT {
+  span.sc-bZkfAO.sc-kLLXSd.lmGpws.OHwJB, span.sc-bZkfAO.sc-ikZpkk.lmGpws.kBhHpT {
     display: none;
   }
-  .mvx-text-with-line-wrapper,
-  .mvx-chart-text-and-bar-line-wrap {
+  .mvx-text-with-line-wrapper, .mvx-chart-text-and-bar-line-wrap {
     flex-wrap: wrap;
   }
-  .mvx-text-with-line-wrapper hr,
-  .mvx-chart-text-and-bar-line-wrap hr {
+  .mvx-text-with-line-wrapper hr, .mvx-chart-text-and-bar-line-wrap hr {
     display: none;
   }
   ul.mvx-compare-table-holder {
@@ -4220,8 +4076,7 @@ div.health-check-accordion .health-check-accordion-panel table td {
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .wc-setup-next-steps-last,
-  .wc-setup-next-steps-first {
+  .wc-setup-next-steps-last, .wc-setup-next-steps-first {
     width: 100% !important;
   }
 }
@@ -4445,39 +4300,4 @@ h2 .mvx-module-dialog-title i {
   display: block;
   width: fit-content;
   box-shadow: 0.25rem 0.25rem 1.5rem rgba(227, 80, 71, 0.5);
-}
-
-.deactivate-pop-up .MuiPaper-root {
-  min-height: 14rem;
-  min-width: 40%;
-  position: relative;
-}
-.deactivate-pop-up .MuiPaper-root .MuiDialogContent-root {
-  padding-bottom: 5rem;
-  padding-top: 5rem;
-}
-.deactivate-pop-up .MuiPaper-root .MuiDialogTitle-root {
-  padding: 1rem 0 0;
-  display: flex;
-  gap: 2rem;
-  justify-content: space-between;
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 1rem 2rem;
-  background: #fbfafc;
-  width: 100%;
-  border-bottom: 0.06rem solid #ece8f1;
-}
-.deactivate-pop-up .MuiPaper-root .MuiDialogTitle-root i {
-  font-size: 0.75rem;
-}
-.deactivate-pop-up .MuiPaper-root .MuiDialogTitle-root .mvx-module-dialog-title {
-  line-height: 1.4;
-  margin-bottom: 0 !important;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }/*# sourceMappingURL=admin.css.map */
