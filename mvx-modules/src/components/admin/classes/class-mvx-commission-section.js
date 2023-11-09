@@ -1297,7 +1297,7 @@ class MVX_Backend_Commission extends Component {
 															this.state
 																.commission_details
 																.commission_include_coupon ? (
-																<td className='cupon-ntc'>
+																<td className='cupon-ntc' colspan="3">
 																	<em>
 																		*
 																		{
@@ -1308,12 +1308,9 @@ class MVX_Backend_Commission extends Component {
 																	</em>
 																</td>
 															) : (
-																''
+																<td colspan="3"></td>
 															)}
-															<td/>
-															<td/>
-															<td/>
-														
+															
 															<td className="mvx-order-label-td">
 																{this.state
 																	.commission_details
@@ -1358,7 +1355,7 @@ class MVX_Backend_Commission extends Component {
 														this.state
 															.commission_details
 															.commission_total_include_shipping ? (
-																<td className='cupon-ntc'>
+																<td className='cupon-ntc' colspan="3">
 																<em>
 																	*
 																	{
@@ -1369,40 +1366,37 @@ class MVX_Backend_Commission extends Component {
 																</em>
 															</td>
 														) : (
-															''
+															<td colspan="3"></td>
 														)}
-																<td/>
-																<td/>
-																<td/>
-																<td className="mvx-order-label-td">
-																	{
-																		appLocalizer
-																			.commission_page_string
-																			.shipping
-																	}
-																	:
-																</td>
-																<td className="total">
-																	<div
-																		dangerouslySetInnerHTML={{
-																			__html:
-																				this
-																					.state
-																					.commission_details
-																					.get_total_shipping_refunded >
-																				0
-																					? this
-																							.state
-																							.commission_details
-																							.refund_shipping_display
-																					: this
-																							.state
-																							.commission_details
-																							.else_shipping,
-																		}}
-																	></div>
-																</td>
 
+															<td className="mvx-order-label-td">
+																{
+																	appLocalizer
+																		.commission_page_string
+																		.shipping
+																}
+																:
+															</td>
+															<td className="total">
+																<div
+																	dangerouslySetInnerHTML={{
+																		__html:
+																			this
+																				.state
+																				.commission_details
+																				.get_total_shipping_refunded >
+																			0
+																				? this
+																						.state
+																						.commission_details
+																						.refund_shipping_display
+																				: this
+																						.state
+																						.commission_details
+																						.else_shipping,
+																	}}
+																></div>
+															</td>
 
 															</tr>
 														) : (
