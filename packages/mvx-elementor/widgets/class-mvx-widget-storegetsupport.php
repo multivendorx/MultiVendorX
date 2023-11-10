@@ -24,7 +24,7 @@ class MVX_Elementor_StoreGetSupport extends Widget_Button {
      * @return string
      */                                                  
     public function get_title() {
-        return __( 'Store Get Support Button', 'multivendorx' );
+        return __('Store Get Support Button', 'multivendorx');
     }
 
     /**
@@ -46,7 +46,7 @@ class MVX_Elementor_StoreGetSupport extends Widget_Button {
      * @return array
      */
     public function get_categories() {
-        return [ 'mvx-store-elements-single' ];
+        return ['mvx-store-elements-single'];
     }
 
     /**
@@ -57,7 +57,7 @@ class MVX_Elementor_StoreGetSupport extends Widget_Button {
      * @return array
      */
     public function get_keywords() {
-        return [ 'mvx', 'store', 'get support', 'button'];
+        return ['mvx', 'store', 'get support', 'button'];
     }
 
     /**
@@ -104,7 +104,7 @@ class MVX_Elementor_StoreGetSupport extends Widget_Button {
             'text',
             [
                 'dynamic'   => [
-                    'default' => $mvx_elementor->mvx_elementor()->dynamic_tags->tag_data_to_tag_text( null, 'mvx-store-get-support-tag' ),
+                    'default' => $mvx_elementor->mvx_elementor()->dynamic_tags->tag_data_to_tag_text(null, 'mvx-store-get-support-tag'),
                     'active'  => true,
                 ],
                 'selectors' => [
@@ -123,7 +123,7 @@ class MVX_Elementor_StoreGetSupport extends Widget_Button {
                 'dynamic' => [
                     'active' => false,
                 ],
-                'placeholder' => __( 'No link required.', 'multivendorx' ),
+                'placeholder' => __('No link required.', 'multivendorx'),
             ]
         );
 
@@ -137,7 +137,7 @@ class MVX_Elementor_StoreGetSupport extends Widget_Button {
      * @return string
      */
     protected function get_button_wrapper_class() {
-        return parent::get_button_wrapper_class() . ' mvx-store-get-support-wrap';
+        return parent::get_button_wrapper_class() . 'mvx-store-get-support-wrap';
     }
     /**
      * Button class
@@ -159,13 +159,12 @@ class MVX_Elementor_StoreGetSupport extends Widget_Button {
      */
     protected function render() {
         global $MVX;
-
-        if ( ! mvx_is_store_page() ) {
+        if (!mvx_is_store_page()) {
             return;
         }
         $current_user = wp_get_current_user() ? wp_get_current_user() : '';
         $vendor_id = mvx_find_shop_page_vendor() ? mvx_find_shop_page_vendor() : '';
-        if (!empty($current_user)) {
+        if (!empty($current_user) && !empty($vendor_id)) {
             $args = array(
                 'posts_per_page' => -1,
                 'post_type' => 'shop_order',
@@ -192,7 +191,7 @@ class MVX_Elementor_StoreGetSupport extends Widget_Button {
                         </div>
                         <div class="modal-body"> 
                             <div class="form-group">
-                                <strong><?php printf( __( 'Hi, %s', 'multivendorx' ), $current_user->display_name ); ?></strong>
+                                <strong><?php printf(__('Hi, %s', 'multivendorx'), $current_user->display_name); ?></strong>
                             </div>
                             <p id="show-sucesss-msg" class="show-sucesss-msg" ></p>
                             <div class="form-group">
@@ -200,14 +199,17 @@ class MVX_Elementor_StoreGetSupport extends Widget_Button {
                                 <input type="text" id="support_topic" ><br>
                             </div>
                             <div class="form-group">
-                                <select class="" id="order_id">
-                                    <option><?php esc_html_e( 'Select Order ID', 'multivendorx' ); ?></option>
+                                <select id="order_id">
+                                    <option><?php esc_html_e('Select Order ID', 'multivendorx'); ?></option>
                                     <?php
-                                    foreach ( $customer_orders as $order ) :
-                                        ?>
-                                        <option value='<?php echo esc_attr( $order->ID ); ?>'><?php esc_html_e( 'Order', 'multivendorx' ); ?> #<?php echo esc_html( $order->ID ); ?></option>
-                                        <?php
-                                    endforeach; ?>
+                                    if (!empty($customer_orders)) {
+                                        foreach ($customer_orders as $order) :
+                                            ?>
+                                            <option value='<?php echo esc_attr($order->ID); ?>'><?php esc_html_e('Order', 'multivendorx'); ?> # <?php echo esc_html($order->ID); ?></option>
+                                            <?php
+                                        endforeach;  
+                                    }
+                                    ?>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -225,6 +227,5 @@ class MVX_Elementor_StoreGetSupport extends Widget_Button {
             <?php
         }
         parent::render();
-    }
-    
+    }  
 }

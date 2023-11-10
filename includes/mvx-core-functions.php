@@ -7518,8 +7518,8 @@ if (!function_exists('mvx_list_all_modules')) {
                     ],
                     [
                         'id'           => 'store-support',
-                        'name'         => __( 'Store Component', 'multivendorx' ),
-                        'description'  => __( "Streamline order support with vendor-customer ticketing system.", 'multivendorx' ),
+                        'name'         => __('Store Component', 'multivendorx'),
+                        'description'  => __('Streamline order support with vendor-customer ticketing system.', 'multivendorx'),
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
                         'required_plugin_list' => array(
                             array(

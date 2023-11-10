@@ -32,7 +32,7 @@ class StoreGetSupport extends MVX_Elementor_TagBase {
      * @return string
      */
     public function get_title() {
-        return __( 'Store Get Support Button', 'multivendorx' );
+        return __('Store Get Support Button', 'multivendorx');
     }
 
     /**
@@ -44,9 +44,8 @@ class StoreGetSupport extends MVX_Elementor_TagBase {
      */
     public function render() {
     	global $MVX;
-    	
-        if ( mvx_is_store_page() ) {
-        	echo esc_html_e( 'Get Support', 'multivendorx' );
+        if (mvx_is_store_page()) {
+        	echo esc_html_e('Get Support', 'multivendorx');
         } else {
             return;
         }
