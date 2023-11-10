@@ -3074,7 +3074,7 @@ Class MVX_Admin_Dashboard {
         
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (isset($_POST['mvx_download_vendor_banking_overview_csv'])) {
-                $vendor = get_mvx_vendor(get_current_vendor_id()) ? get_mvx_vendor(get_current_vendor_id()) : 0;
+                $vendor = get_mvx_vendor(get_current_vendor_id()) ? get_mvx_vendor(get_current_vendor_id()) : '';
                 $filename = 'BankingOverviewReport-' . date('Y-m-d') . '.csv';
                 header("Pragma: public");
                 header("Expires: 0");
@@ -3101,7 +3101,7 @@ Class MVX_Admin_Dashboard {
                     'balance' => __('Balance', 'multivendorx'),
                 );
                 $requestData = ($_POST) ? wc_clean($_POST) : array();
-                if (!empty($vendor) && $vendor->id && !empty($requestData)) {
+                if (!empty($vendor) && !empty($requestData)) {
                     $vendor_all_ledgers = $MVX_Ledger_Data_Store->get_ledger(array('vendor_id' => $vendor->id), '', $requestData);
                 }
                 if (!empty($vendor_all_ledgers)) {
