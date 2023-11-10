@@ -68,7 +68,7 @@ global $MVX;
                     </div>
                     <button type="button" name="order_export_submit" id="do_filter"  class="btn btn-default" ><?php _e('Show', 'multivendorx') ?></button>
                 </div>  
-                <?php if(apply_filters('mvx_can_vendor_export_banking_overview_csv', true, get_current_vendor_id())) : ?>
+                <?php if (apply_filters('mvx_can_vendor_export_banking_overview_csv', true, get_current_vendor_id())) : ?>
                     <div class="mvx-action-container">
                         <input class="btn btn-default" type="submit" id="mvx_download_vendor_banking_overview_csv" name="mvx_download_vendor_banking_overview_csv" value="<?php esc_attr_e('Download CSV', 'multivendorx') ?>" />
                     </div>

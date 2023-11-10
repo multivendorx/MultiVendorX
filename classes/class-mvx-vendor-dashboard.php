@@ -3100,23 +3100,23 @@ Class MVX_Admin_Dashboard {
                     'debit' => __('Withdrawals', 'multivendorx'),
                     'balance' => __('Balance', 'multivendorx'),
                 );
-                $requestData = ( $_POST ) ? wc_clean( $_POST ) : array();
-                if ($vendor && !empty($requestData)) {
-                    $vendor_all_ledgers = $MVX_Ledger_Data_Store->get_ledger( array( 'vendor_id' => $vendor->id ), '', $requestData );
+                $requestData = ($_POST) ? wc_clean($_POST) : array();
+                if (!empty($vendor) && $vendor->id && !empty($requestData)) {
+                    $vendor_all_ledgers = $MVX_Ledger_Data_Store->get_ledger(array('vendor_id' => $vendor->id), '', $requestData);
                 }
                 if (!empty($vendor_all_ledgers)) {
                     // get initial balance
-                    $inital_data = end( $vendor_all_ledgers );
-                    $initial_balance = ( $inital_data->balance && $inital_data->balance != '' ) ? $inital_data->balance : 0;
+                    $inital_data = end($vendor_all_ledgers);
+                    $initial_balance = (!empty($inital_data) && $inital_data->balance && $inital_data->balance != '') ? $inital_data->balance : 0;
                     //get ending balance
-                    $ending_data = reset( $vendor_all_ledgers );
-                    $ending_balance = ( $ending_data->balance && $ending_data->balance != '' ) ? $ending_data->balance : 0;
+                    $ending_data = reset($vendor_all_ledgers);
+                    $ending_balance = (!empty($ending_data) && $ending_data->balance && $ending_data->balance != '') ? $ending_data->balance : 0;
                     foreach ($vendor_all_ledgers as $ledger) {
-                        if ($ledger) {
+                        if (!empty($ledger)) {
                             // total credited balance
-                            $total_credit += floatval( $ledger->credit );
+                            $total_credit += floatval($ledger->credit);
                             // total debited balance
-                            $total_debit += floatval( $ledger->debit );
+                            $total_debit += floatval($ledger->debit);
                             $datas[] = array(
                                 'date' => mvx_date($ledger->created),
                                 'details' => strip_tags($ledger->ref_info),
@@ -3137,29 +3137,37 @@ Class MVX_Admin_Dashboard {
                 // Initiate output buffer and open file
                 ob_start();
                 $file = fopen("php://output", 'w');
-                fputcsv($file, $balance_headers);
-                if (!empty($all_balance_data)) {
-                    foreach ($all_balance_data as $data) {
-                        fputcsv($file, $data);
+                if ($file) {
+                    if (!empty($balance_headers)) {
+                        fputcsv($file, $balance_headers);
                     }
-                } else {
-                    fputcsv($file, array(__('Sorry. no data is available', 'multivendorx')));
-                }
-                fputcsv($file, array(' '));
-                fputcsv($file, array(__('Transaction Details Between', 'multivendorx'), $_POST['from_date'], '-', $_POST['to_date']));
-                fputcsv($file, array(' '));
-                // Add headers to file
-                fputcsv($file, $headers);
-                // Add data to file
-                if (!empty($datas)) {
-                    foreach ($datas as $order_data) {
-                        fputcsv($file, $order_data);
+                    if (!empty($all_balance_data)) {
+                        foreach ($all_balance_data as $data) {
+                            fputcsv($file, $data);
+                        }
+                    } else {
+                        fputcsv($file, array(__('Sorry. no data is available', 'multivendorx')));
                     }
-                } else {
-                    fputcsv($file, array(__('Sorry. no data is available', 'multivendorx')));
+                    fputcsv($file, array(' '));
+                    if (!empty($_POST['from_date']) && !empty($_POST['to_date'])) {
+                        fputcsv($file, array(__('Transaction Details Between', 'multivendorx'), $_POST['from_date'], '-', $_POST['to_date']));
+                    }
+                    fputcsv($file, array(' '));
+                    // Add headers to file
+                    if (!empty($headers)) {
+                        fputcsv($file, $headers);
+                    }
+                    // Add data to file
+                    if (!empty($datas)) {
+                        foreach ($datas as $order_data) {
+                            fputcsv($file, $order_data);
+                        }
+                    } else {
+                        fputcsv($file, array(__('Sorry. no data is available', 'multivendorx')));
+                    }
+                    // Close file and get data from output buffer
+                    fclose($file);
                 }
-                // Close file and get data from output buffer
-                fclose($file);
                 $csv = ob_get_clean();
                 // Send CSV to browser for download
                 echo $csv;
