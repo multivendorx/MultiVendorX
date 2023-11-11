@@ -7516,6 +7516,21 @@ if (!function_exists('mvx_list_all_modules')) {
                         ),
                         'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/gift-card/',
                     ],
+                    [
+                        'id'           => 'store-support',
+                        'name'         => __('Store Component', 'multivendorx'),
+                        'description'  => __('Streamline order support with vendor-customer ticketing system.', 'multivendorx'),
+                        'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
+                        'required_plugin_list' => array(
+                            array(
+                                'plugin_name'   => __('MultivendorX Pro', 'multivendorx'),
+                                'plugin_link'   => 'https://multivendorx.com/',
+                                'is_active'     => $mvx_pro_is_active,
+                            ),
+                        ),
+                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/store-support/',
+                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=settings-store-support'),
+                    ],
                 ]
             ],
             [

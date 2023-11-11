@@ -40,12 +40,16 @@ class MVX_Elementor_Module extends MVX_Elementor_ModuleBase {
             'StoreTabs',
             'StoreTabContents',
             'StoreSocial',
-            'StoreFollow'
+            'StoreFollow',
         ];
 
         require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
         if ( is_plugin_active('mvx-live-chat/mvx_live_chat.php') ) {
             $widgets[] = 'StoreChat';
+        }
+
+        if (mvx_is_module_active('store-support')) {
+            $widgets[] = 'StoreGetSupport';
         }
 
         return $widgets;
@@ -87,7 +91,8 @@ class MVX_Elementor_Module extends MVX_Elementor_ModuleBase {
 					'StoreDummyProducts',
 					'StoreSocial',
                     'StoreFollow',
-                    'StoreChat'
+                    'StoreChat',
+                    'StoreGetSupport'
 			];
 
 			$module = $mvx_elementor->mvx_elementor()->dynamic_tags;
