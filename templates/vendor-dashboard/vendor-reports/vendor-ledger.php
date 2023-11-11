@@ -58,15 +58,22 @@ global $MVX;
                     </div>
                 </div>
             </div>
-            <div id="vendor_ledger_date_filter" class="form-inline datatable-date-filder">
-                <div class="form-group">
-                    <input type="date" id="mvx_from_date" class="form-control" name="from_date" class=" gap1" placeholder="From" value="<?php echo date('Y-m-01'); ?>"/>
-                </div>
-                <div class="form-group">
-                    <input type="date" id="mvx_to_date" class="form-control" name="to_date" class="" placeholder="To" value="<?php echo date('Y-m-d'); ?>"/>
-                </div>
-                <button type="button" name="order_export_submit" id="do_filter"  class="btn btn-default" ><?php _e('Show', 'multivendorx') ?></button>
-            </div>  
+            <form method="POST">
+                <div id="vendor_ledger_date_filter" class="form-inline datatable-date-filder">
+                    <div class="form-group">
+                        <input type="date" id="mvx_from_date" class="form-control" name="from_date" class=" gap1" placeholder="From" value="<?php echo date('Y-m-01'); ?>"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="date" id="mvx_to_date" class="form-control" name="to_date" class="" placeholder="To" value="<?php echo date('Y-m-d'); ?>"/>
+                    </div>
+                    <button type="button" name="order_export_submit" id="do_filter"  class="btn btn-default" ><?php _e('Show', 'multivendorx') ?></button>
+                </div>  
+                <?php if (apply_filters('mvx_can_vendor_export_banking_overview_csv', true, get_current_vendor_id())) : ?>
+                    <div class="mvx-action-container">
+                        <input class="btn btn-default" type="submit" id="mvx_download_vendor_banking_overview_csv" name="mvx_download_vendor_banking_overview_csv" value="<?php esc_attr_e('Download CSV', 'multivendorx') ?>" />
+                    </div>
+                <?php endif; ?>
+            </form>
             <table class="table table-striped table-bordered" id="mvx-vendor-ledger" style="width:100%;">
                 <thead>
                     <tr>
