@@ -527,6 +527,7 @@ class MVX_Vendor_Hooks {
     
     public function mvx_vendor_dashboard_edit_product_endpoint(){
         global $MVX;
+        require_once($MVX->plugin_path . 'classes/products/class-mvx-products-edit-product.php');
         // load scripts & styles
         $suffix = defined( 'MVX_SCRIPT_DEBUG' ) && MVX_SCRIPT_DEBUG ? '' : '.min';
         $MVX->library->load_select2_lib();
