@@ -9,6 +9,7 @@
  * @version   2.2.0
  */
 global $MVX;
+$store_id = get_current_user_id();
 $mvx_policy_settings = mvx_get_option("mvx_general_policies_settings_name");
 $mvx_capabilities_settings_name = mvx_get_option("mvx_general_policies_settings_name");
 $can_vendor_edit_policy_tab_label_field = apply_filters('can_vendor_edit_policy_tab_label_field', true);
@@ -16,9 +17,9 @@ $can_vendor_edit_cancellation_policy_field = apply_filters('can_vendor_edit_canc
 $can_vendor_edit_refund_policy_field = apply_filters('can_vendor_edit_refund_policy_field', true);
 $can_vendor_edit_shipping_policy_field = apply_filters('can_vendor_edit_shipping_policy_field', true);
 
-$vendor_shipping_policy = isset($vendor_shipping_policy['value']) ? $vendor_shipping_policy['value'] : $mvx_policy_settings['shipping_policy'];
-$vendor_refund_policy = isset($vendor_refund_policy['value']) ? $vendor_refund_policy['value'] : $mvx_policy_settings['refund_policy'];
-$vendor_cancellation_policy = isset($vendor_cancellation_policy['value']) ? $vendor_cancellation_policy['value'] : $mvx_policy_settings['cancellation_policy'];
+$vendor_shipping_policy = !empty($vendor_shipping_policy['value']) ? $vendor_shipping_policy['value'] : get_user_meta( $store_id, 'vendor_shipping_policy', true );
+$vendor_refund_policy = !empty($vendor_refund_policy['value']) ? $vendor_refund_policy['value'] : get_user_meta( $store_id, 'vendor_refund_policy', true );
+$vendor_cancellation_policy = !empty($vendor_cancellation_policy['value']) ? $vendor_cancellation_policy['value'] : get_user_meta( $store_id, 'vendor_cancellation_policy', true );
 
 $_wp_editor_settings = array('tinymce' => true);
 if (!$MVX->vendor_caps->vendor_can('is_upload_files')) {

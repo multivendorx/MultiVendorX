@@ -756,9 +756,9 @@ class MVX_Frontend {
     }
 
     public function mvx_vendor_shop_page_policies_endpoint( $store_id, $query_vars_name ) {
-        $_vendor_shipping_policy = get_user_meta( $store_id, '_vendor_shipping_policy', true ) ? get_user_meta( $store_id, '_vendor_shipping_policy', true ) : get_mvx_global_settings('shipping_policy');
-        $_vendor_refund_policy = get_user_meta( $store_id, '_vendor_refund_policy', true ) ? get_user_meta( $store_id, '_vendor_refund_policy', true ) : get_mvx_global_settings('refund_policy');
-        $_vendor_cancellation_policy = get_user_meta( $store_id, '_vendor_cancellation_policy', true ) ? get_user_meta( $store_id, '_vendor_cancellation_policy', true ) : get_mvx_global_settings('cancellation_policy');
+        $_vendor_shipping_policy = get_user_meta( $store_id, 'vendor_shipping_policy', true ) ? get_user_meta( $store_id, 'vendor_shipping_policy', true ) : get_mvx_global_settings('shipping_policy');
+        $_vendor_refund_policy = get_user_meta( $store_id, 'vendor_refund_policy', true ) ? get_user_meta( $store_id, 'vendor_refund_policy', true ) : get_mvx_global_settings('refund_policy');
+        $_vendor_cancellation_policy = get_user_meta( $store_id, 'vendor_cancellation_policy', true ) ? get_user_meta( $store_id, 'vendor_cancellation_policy', true ) : get_mvx_global_settings('cancellation_policy');
         ?>
         <div class="mvx-policie-sec">
             <div class="mvx-policies-header mvx-tabcontent-header">
