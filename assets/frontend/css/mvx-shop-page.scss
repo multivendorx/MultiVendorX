@@ -224,7 +224,7 @@ button.mvx-fill-butn{
 
 .mvx-theme01 .mvx-address a, 
 .mvx-theme03 .mvx-address a{
-    color: map-get($color, dark_primaryColor );
+    color: map-get($color, dark_primaryColor ) !important;
 }
 .mvx-theme01 button.mvx-stroke-butn, 
 .mvx-theme03 button.mvx-stroke-butn{
