@@ -94,6 +94,7 @@ class MVX_Frontend {
         if ( get_mvx_vendor_settings('display_suborder_in_mail', 'order') ) {
             add_filter( 'wc_get_template', array( &$this, 'mvx_template_email_order_details' ), 10, 5 );
         }
+        add_action('mvx_init', array(&$this, 'update_data_record'));
     }
 
     /**
@@ -1217,5 +1218,43 @@ class MVX_Frontend {
             }	
         }
         return $template;
+    }
+
+    function update_data_record() {
+        $users = get_users(array( 'role__in' => array('administrator', 'dc_vendor')));
+        if (!empty($users)) {
+            foreach ($users as $user) {
+                $vendor_shipping = get_user_meta( $user->ID, '_vendor_shipping_policy', true );
+                if (empty($vendor_shipping)) {
+                    $prev_entry_shipping = get_user_meta( $user->ID, 'vendor_shipping_policy', true );
+                    if ($prev_entry_shipping) {
+                        update_user_meta($user->ID, '_vendor_shipping_policy', $prev_entry_shipping);
+                    }
+                    if (metadata_exists('user', $user->ID, 'vendor_shipping_policy')) {
+                        delete_user_meta($user->ID, 'vendor_shipping_policy');
+                    }
+                }
+                $vendor_refund = get_user_meta( $user->ID, '_vendor_refund_policy', true );
+                if (empty($vendor_refund)) {
+                    $prev_entry_refund = get_user_meta( $user->ID, 'vendor_refund_policy', true );
+                    if ($prev_entry_refund) {
+                        update_user_meta($user->ID, '_vendor_refund_policy', $prev_entry_refund);
+                    }
+                    if (metadata_exists('user', $user->ID, 'vendor_refund_policy')) {
+                        delete_user_meta($user->ID, 'vendor_refund_policy');
+                    }
+                }
+                $vendor_cancel = get_user_meta( $user->ID, '_vendor_cancellation_policy', true );
+                if (empty($vendor_cancel)) {
+                    $prev_entry_cancel = get_user_meta( $user->ID, 'vendor_cancellation_policy', true );
+                    if ($prev_entry_cancel) {
+                        update_user_meta($user->ID, '_vendor_cancellation_policy', $prev_entry_cancel);
+                    }
+                    if (metadata_exists('user', $user->ID, 'vendor_cancellation_policy')) {
+                        delete_user_meta($user->ID, 'vendor_cancellation_policy');
+                    }
+                }
+            }   
+        }
     }
 }

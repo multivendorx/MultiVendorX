@@ -3559,9 +3559,9 @@ class MVX_REST_API {
             $vendor_bank_account_number = get_user_meta($vendor_id, '_vendor_bank_account_number', true);
 
 
-            $_vendor_shipping_policy = get_user_meta( $user->data->ID, 'vendor_shipping_policy', true ) ? get_user_meta( $user->data->ID, 'vendor_shipping_policy', true ) : __( 'No policy found', 'multivendorx' );
-            $_vendor_refund_policy = get_user_meta( $user->data->ID, 'vendor_refund_policy', true ) ? get_user_meta( $user->data->ID, 'vendor_refund_policy', true ) : __( 'No policy found', 'multivendorx' );
-            $_vendor_cancellation_policy = get_user_meta( $user->data->ID, 'vendor_cancellation_policy', true ) ? get_user_meta( $user->data->ID, 'vendor_cancellation_policy', true ) : __( 'No policy found', 'multivendorx' );
+            $_vendor_shipping_policy = get_user_meta( $user->data->ID, '_vendor_shipping_policy', true ) ? get_user_meta( $user->data->ID, '_vendor_shipping_policy', true ) : __( 'No policy found', 'multivendorx' );
+            $_vendor_refund_policy = get_user_meta( $user->data->ID, '_vendor_refund_policy', true ) ? get_user_meta( $user->data->ID, '_vendor_refund_policy', true ) : __( 'No policy found', 'multivendorx' );
+            $_vendor_cancellation_policy = get_user_meta( $user->data->ID, '_vendor_cancellation_policy', true ) ? get_user_meta( $user->data->ID, '_vendor_cancellation_policy', true ) : __( 'No policy found', 'multivendorx' );
 
 
             $vendor_phone = get_user_meta( $user->data->ID, '_vendor_phone', true ) ? get_user_meta( $user->data->ID, '_vendor_phone', true ) : '';
@@ -6154,13 +6154,13 @@ class MVX_REST_API {
         // policy details
         if ($modulename == 'vendor-policy') {
             if ( isset( $model['vendor_shipping_policy'] ) ) {
-                update_user_meta( $user_id, 'vendor_shipping_policy', stripslashes( html_entity_decode( $model['vendor_shipping_policy'], ENT_QUOTES, get_bloginfo( 'charset' ) ) ) );
+                update_user_meta( $user_id, '_vendor_shipping_policy', stripslashes( html_entity_decode( $model['vendor_shipping_policy'], ENT_QUOTES, get_bloginfo( 'charset' ) ) ) );
             }
             if ( isset( $model['vendor_refund_policy'] ) ) {
-                update_user_meta( $user_id, 'vendor_refund_policy', stripslashes( html_entity_decode( $model['vendor_refund_policy'], ENT_QUOTES, get_bloginfo( 'charset' ) ) ) );
+                update_user_meta( $user_id, '_vendor_refund_policy', stripslashes( html_entity_decode( $model['vendor_refund_policy'], ENT_QUOTES, get_bloginfo( 'charset' ) ) ) );
             }
             if ( isset( $model['vendor_cancellation_policy'] ) ) {
-                update_user_meta( $user_id, 'vendor_cancellation_policy', stripslashes( html_entity_decode( $model['vendor_cancellation_policy'], ENT_QUOTES, get_bloginfo( 'charset' ) ) ) );
+                update_user_meta( $user_id, '_vendor_cancellation_policy', stripslashes( html_entity_decode( $model['vendor_cancellation_policy'], ENT_QUOTES, get_bloginfo( 'charset' ) ) ) );
             }
         }
 
