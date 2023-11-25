@@ -479,7 +479,9 @@ class MVX_REST_API_Vendors_Controller extends WC_REST_Controller {
 			'_vendor_destination_currency' => isset($request['payment']['destination_currency']) ? wc_clean( wp_unslash( $request['payment']['destination_currency'] ) ) : '',
 			'_vendor_iban' => isset($request['payment']['iban']) ? wc_clean( wp_unslash( $request['payment']['iban'] ) ): '',
 			'_vendor_paypal_email' => isset($request['payment']['paypal_email']) ? wc_clean( wp_unslash( $request['payment']['paypal_email'] ) ) : '',
-			'_vendor_message_to_buyers' => wc_clean( wp_unslash( $request['message_to_buyers'] ) )
+			'_vendor_message_to_buyers' => wc_clean( wp_unslash( $request['message_to_buyers'] ) ),
+			'_vendor_image' => isset($request['shop']['image']) ? wc_clean( wp_unslash( $request['shop']['image'] ) ) : '',
+			'_vendor_banner' => isset($request['shop']['banner']) ? wc_clean( wp_unslash( $request['shop']['banner'] ) ) : '',
 		);
 		foreach($vendor_meta_key_list as $key => $value) {
 			if($value != '') update_user_meta($user_id, $key, $value);
