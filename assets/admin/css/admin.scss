@@ -4098,3 +4098,22 @@ font-weight: 500;
     box-shadow: 0.25rem 0.25rem 1.5rem rgb(227 80 71 / 50%);
   }
 }
+table.mvx-shipping-zone-methods {
+  position: relative;
+
+  td {
+    display: table-cell;
+  }
+
+  td:has(>button) {
+    position: absolute;
+    display: flex;
+    justify-content: end;
+    width: 100%;
+  }
+}
+
+.mvx-actions {
+  display: flex;
+  gap: 0.5rem;
+}

@@ -4300,4 +4300,22 @@ h2 .mvx-module-dialog-title i {
   display: block;
   width: fit-content;
   box-shadow: 0.25rem 0.25rem 1.5rem rgba(227, 80, 71, 0.5);
+}
+
+table.mvx-shipping-zone-methods {
+  position: relative;
+}
+table.mvx-shipping-zone-methods td {
+  display: table-cell;
+}
+table.mvx-shipping-zone-methods td:has(> button) {
+  position: absolute;
+  display: flex;
+  justify-content: end;
+  width: 100%;
+}
+
+.mvx-actions {
+  display: flex;
+  gap: 0.5rem;
 }/*# sourceMappingURL=admin.css.map */
