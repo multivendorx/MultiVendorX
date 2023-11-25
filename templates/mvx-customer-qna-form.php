@@ -24,7 +24,7 @@ do_action('mvx_before_customer_qna_form');
                     <div id="qna-ask-input">
                         <input type="text" name="cust_question" id="cust_question" placeholder="<?php esc_attr_e('Have a question? Search for answer', 'multivendorx');?>">
                         <div id="ask-wrap">
-                            <label class="no-answer-lbl"><?php echo apply_filters('mvx_customer_qna_no_answer_label',esc_html_e("Haven't found any answer you are looking for", 'multivendorx'));?></label>
+                            <label class="no-answer-lbl"><?php echo apply_filters('mvx_customer_qna_no_answer_label',esc_html_e("Have not discovered the information you seek", 'multivendorx'));?></label>
                             <button id="ask-qna" class="btn btn-info btn-lg" type="button"><?php esc_html_e('Ask Now', 'multivendorx');?></button>
                         </div>
                         <input type="hidden" name="product_ID" value="<?php echo esc_attr($product->get_id()); ?>" id="product_ID">
