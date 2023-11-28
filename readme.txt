@@ -4,8 +4,8 @@ Tags: multi vendor marketplace, woocommerce multivendor marketplace, multi selle
 Donate link: http://multivendorx.com/donate/
 Requires at least: 4.4
 Tested up to: 6.4.1
-Requires PHP: 5.6
-Stable tag: 4.0.30
+Requires PHP: 7.2
+Stable tag: 4.0.31
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
