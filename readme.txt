@@ -292,6 +292,13 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 
 == Changelog ==
 
+= 4.0.31 - 2023-11-28 =
+* Added     - Compatibility of WooCommerce 8.3.1.
+*Fix        - Earlier there were some grammatical mistakes in some default texts with some customer facing functions. That mistakes/errors have been rectified in this version. #582
+*Fix        - [vendor store policy] The vendor policies set by the admin from the backend were not getting synced with the policies set by the vendor from the vendor dashboard. Also those vendor policies set by the admin were not getting displayed on the vendor store page either. With this update the vendor policies set by admin and vendor are synced flawlessly and are also getting displayed on the vendor store page. #589.
+*Fix        - [Vendor addional email] There were two issues with the email setting in the vendor storefront. Firstly even after adding both the primary and additional email ids from the vendor dashboard, none of them were getting displayed on the vendor store page and also In the additional email field if we remove the email address and click save settings still that is not removed. #590.
+* Updated   - Language file.
+
 = 4.0.30 - 2023-11-14 =
 * Added     - Compatibility of WordPress 6.4.1.
 * Added     - Compatibility of WooCommerce 8.2.2.
