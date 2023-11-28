@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: MultiVendorX 4.0.12\n"
 "Report-Msgid-Bugs-To: https://github.com/multivendorx/dc-woocommerce-multi-"
 "vendor/issues\n"
-"POT-Creation-Date: 2023-11-11 11:23+0000\n"
+"POT-Creation-Date: 2023-11-28 06:19+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -66,7 +66,7 @@ msgstr ""
 msgid " Refund {refund_status}! "
 msgstr ""
 
-#: classes/class-mvx-frontend.php:368
+#: classes/class-mvx-frontend.php:369
 msgid " Shipping"
 msgstr ""
 
@@ -1097,7 +1097,7 @@ msgstr ""
 msgid "Advanced custom fields"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7851
+#: includes/mvx-core-functions.php:7836
 msgid "Advertise Product"
 msgstr ""
 
@@ -1235,7 +1235,7 @@ msgid ""
 "Allows admin to create custom fields, and taxonomy for vendor's product field"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7824
+#: includes/mvx-core-functions.php:7809
 msgid "Allows customers to rate and review stores and their purchased products"
 msgstr ""
 
@@ -1243,7 +1243,7 @@ msgstr ""
 msgid "Allows for an on demand product field in Add Product section"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7915
+#: includes/mvx-core-functions.php:7900
 msgid "Allows real-time messaging between vendors and customers"
 msgstr ""
 
@@ -1618,7 +1618,7 @@ msgstr ""
 msgid "Bank Name -"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7611
+#: includes/mvx-core-functions.php:7596
 msgid "Bank Transfer"
 msgstr ""
 
@@ -1759,7 +1759,7 @@ msgstr ""
 msgid "Bundle"
 msgstr ""
 
-#: classes/class-mvx-admin.php:1178 includes/mvx-core-functions.php:7831
+#: classes/class-mvx-admin.php:1178 includes/mvx-core-functions.php:7816
 msgid "Business Hours"
 msgstr ""
 
@@ -1801,7 +1801,7 @@ msgstr ""
 msgid "By Shipping"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7717
+#: includes/mvx-core-functions.php:7702
 msgid ""
 "Calculate Rates based on distance between the vendor store and drop location"
 msgstr ""
@@ -1835,7 +1835,7 @@ msgstr[1] ""
 msgid "Cancellation / Return / Exchange Policy"
 msgstr ""
 
-#: api/class-mvx-rest-controller.php:4017 classes/class-mvx-frontend.php:791
+#: api/class-mvx-rest-controller.php:4017 classes/class-mvx-frontend.php:792
 #: classes/class-mvx-product.php:952 classes/class-mvx-user.php:629
 #: classes/widgets/class-mvx-widget-vendor-policies.php:35
 #: templates/vendor-dashboard/vendor-policy.php:51
@@ -2506,7 +2506,7 @@ msgstr ""
 msgid "Congratulations! Your vendor application on %s has been approved!"
 msgstr ""
 
-#: includes/mvx-core-functions.php:6985 includes/mvx-core-functions.php:7650
+#: includes/mvx-core-functions.php:6985 includes/mvx-core-functions.php:7635
 msgid ""
 "Connect to vendors stripe account and make hassle-free transfers as "
 "scheduled."
@@ -2597,7 +2597,7 @@ msgstr ""
 msgid "Country : "
 msgstr ""
 
-#: includes/mvx-core-functions.php:7724
+#: includes/mvx-core-functions.php:7709
 msgid "Country-Wise Shipping"
 msgstr ""
 
@@ -3112,7 +3112,7 @@ msgstr ""
 msgid "Deleted vendor"
 msgstr ""
 
-#: classes/class-mvx-frontend.php:1102
+#: classes/class-mvx-frontend.php:1103
 msgid "Delivery Location"
 msgstr ""
 
@@ -3346,7 +3346,7 @@ msgstr ""
 msgid "Distance Rule"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7716
+#: includes/mvx-core-functions.php:7701
 msgid "Distance Shipping"
 msgstr ""
 
@@ -3684,7 +3684,7 @@ msgstr ""
 msgid "Enable Asynchronous Mode"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7788
+#: includes/mvx-core-functions.php:7773
 msgid "Enable customer refund requests & Let vendors manage customer refund "
 msgstr ""
 
@@ -3738,7 +3738,7 @@ msgstr ""
 msgid "Enable Test Mode"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7852
+#: includes/mvx-core-functions.php:7837
 msgid ""
 "Enable the option of paid advertisiment by letting vendors advertise their "
 "products on your website."
@@ -4184,7 +4184,7 @@ msgstr ""
 msgid "File name"
 msgstr ""
 
-#: classes/class-mvx-frontend.php:224 classes/class-mvx-user.php:185
+#: classes/class-mvx-frontend.php:225 classes/class-mvx-user.php:185
 msgid "File upload limit exceeded"
 msgstr ""
 
@@ -4273,7 +4273,7 @@ msgstr ""
 msgid "Follow"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7816
+#: includes/mvx-core-functions.php:7801
 msgid "Follow Store"
 msgstr ""
 
@@ -4282,11 +4282,11 @@ msgstr ""
 msgid "Followers"
 msgstr ""
 
-#: classes/class-mvx-frontend.php:1027
+#: classes/class-mvx-frontend.php:1028
 msgid "Following"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7688
+#: includes/mvx-core-functions.php:7673
 msgid "For clients looking to pay multiple Indian vendors instantly"
 msgstr ""
 
@@ -4431,7 +4431,7 @@ msgstr ""
 msgid "Gives sellers the ability to publish coupons on your website"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7673
+#: includes/mvx-core-functions.php:7658
 msgid ""
 "Gives the benefit of both realtime split transfer and scheduled distribution"
 msgstr ""
@@ -4445,7 +4445,7 @@ msgid ""
 "Gives vendors the option of selling their product in different languages"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7832
+#: includes/mvx-core-functions.php:7817
 msgid "Gives vendors the option to set and manage business timings"
 msgstr ""
 
@@ -4546,7 +4546,7 @@ msgstr ""
 msgid "GTIN type"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7845
+#: includes/mvx-core-functions.php:7830
 msgid "Gutenberg Blocks"
 msgstr ""
 
@@ -4560,7 +4560,7 @@ msgid "Have a question? Search for answer"
 msgstr ""
 
 #: templates/mvx-customer-qna-form.php:27
-msgid "Haven't found any answer you are looking for"
+msgid "Have not discovered the information you seek"
 msgstr ""
 
 #: templates/vendor-dashboard/product-manager/views/html-product-data-shipping.php:38
@@ -4659,7 +4659,7 @@ msgid ""
 "PayPal. The order details are as follows:"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7570
+#: includes/mvx-core-functions.php:7555
 msgid "Helps vendors seamlessly import or export product data using CSV etc"
 msgstr ""
 
@@ -4876,7 +4876,7 @@ msgid ""
 "admin approval."
 msgstr ""
 
-#: includes/mvx-core-functions.php:7801
+#: includes/mvx-core-functions.php:7786
 msgid "If enabled customers can view a vendor's store location"
 msgstr ""
 
@@ -4937,7 +4937,7 @@ msgstr ""
 msgid "Import Export"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7569
+#: includes/mvx-core-functions.php:7554
 msgid "Import Export  "
 msgstr ""
 
@@ -4975,7 +4975,7 @@ msgstr ""
 msgid "Insert file URL"
 msgstr ""
 
-#: classes/class-mvx-frontend.php:463
+#: classes/class-mvx-frontend.php:464
 msgid "Insert your address .."
 msgstr ""
 
@@ -5070,7 +5070,7 @@ msgid ""
 "membership packages"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7772
+#: includes/mvx-core-functions.php:7757
 msgid "Invoice & Packing slip"
 msgstr ""
 
@@ -5333,11 +5333,11 @@ msgstr ""
 msgid "Let vendor collect & manage tax amount"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7748
+#: includes/mvx-core-functions.php:7733
 msgid "let vendors add shipping cost to specific products"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7725
+#: includes/mvx-core-functions.php:7710
 msgid "Let vendors choose and manage shipping, to countries of their choice"
 msgstr ""
 
@@ -5375,7 +5375,7 @@ msgstr ""
 msgid "Lets customers report false products"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7562
+#: includes/mvx-core-functions.php:7547
 msgid "Lets multiple vendors sell the same products "
 msgstr ""
 
@@ -5384,7 +5384,7 @@ msgid ""
 "Lets sellers can publish products on the website without waiting for approval"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7886
+#: includes/mvx-core-functions.php:7871
 msgid "Lets vendors hire and manage staff to support store"
 msgstr ""
 
@@ -5392,7 +5392,7 @@ msgstr ""
 msgid "Lets vendors manage their store SEOs using Rank Math and Yoast SEO"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7846
+#: includes/mvx-core-functions.php:7831
 msgid ""
 "Lets you add widgets using Gutenberg block editor. Use the block to register "
 "our widget area on any page or post using the Gutenberg editor."
@@ -5432,7 +5432,7 @@ msgstr ""
 msgid "Limit usage to X items"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7708
+#: includes/mvx-core-functions.php:7693
 msgid "Limit vendors to sell in selected zones"
 msgstr ""
 
@@ -5462,7 +5462,7 @@ msgstr ""
 msgid "List a New Product"
 msgstr ""
 
-#: classes/class-mvx-admin.php:1138 includes/mvx-core-functions.php:7914
+#: classes/class-mvx-admin.php:1138 includes/mvx-core-functions.php:7899
 msgid "Live Chat"
 msgstr ""
 
@@ -5484,7 +5484,7 @@ msgstr ""
 msgid "Location Provider"
 msgstr ""
 
-#: classes/class-mvx-frontend.php:1028
+#: classes/class-mvx-frontend.php:1029
 msgid "Log out"
 msgstr ""
 
@@ -5558,7 +5558,7 @@ msgstr ""
 msgid "Manage vendor's order releated capabilities"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7672
+#: includes/mvx-core-functions.php:7657
 msgid "Mangopay"
 msgstr ""
 
@@ -5570,7 +5570,7 @@ msgstr ""
 msgid "Manually"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7612
+#: includes/mvx-core-functions.php:7597
 msgid "Manually transfer money directly to the vendor's bank account."
 msgstr ""
 
@@ -5629,7 +5629,7 @@ msgstr ""
 msgid "Marketplace Products"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7787
+#: includes/mvx-core-functions.php:7772
 msgid "Marketplace Refund"
 msgstr ""
 
@@ -5765,7 +5765,7 @@ msgstr ""
 msgid "Min"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7598
+#: includes/mvx-core-functions.php:7583
 msgid "Min Max Quantities"
 msgstr ""
 
@@ -5961,13 +5961,13 @@ msgstr ""
 #: includes/mvx-core-functions.php:7393 includes/mvx-core-functions.php:7412
 #: includes/mvx-core-functions.php:7436 includes/mvx-core-functions.php:7455
 #: includes/mvx-core-functions.php:7474 includes/mvx-core-functions.php:7493
-#: includes/mvx-core-functions.php:7512 includes/mvx-core-functions.php:7526
-#: includes/mvx-core-functions.php:7546 includes/mvx-core-functions.php:7574
-#: includes/mvx-core-functions.php:7588 includes/mvx-core-functions.php:7639
-#: includes/mvx-core-functions.php:7662 includes/mvx-core-functions.php:7677
-#: includes/mvx-core-functions.php:7757 includes/mvx-core-functions.php:7777
-#: includes/mvx-core-functions.php:7836 includes/mvx-core-functions.php:7856
-#: includes/mvx-core-functions.php:7876 includes/mvx-core-functions.php:7890
+#: includes/mvx-core-functions.php:7512 includes/mvx-core-functions.php:7531
+#: includes/mvx-core-functions.php:7559 includes/mvx-core-functions.php:7573
+#: includes/mvx-core-functions.php:7624 includes/mvx-core-functions.php:7647
+#: includes/mvx-core-functions.php:7662 includes/mvx-core-functions.php:7742
+#: includes/mvx-core-functions.php:7762 includes/mvx-core-functions.php:7821
+#: includes/mvx-core-functions.php:7841 includes/mvx-core-functions.php:7861
+#: includes/mvx-core-functions.php:7875 includes/mvx-core-functions.php:7889
 #: includes/mvx-core-functions.php:7904 includes/mvx-core-functions.php:7919
 #: includes/mvx-core-functions.php:7939 includes/mvx-core-functions.php:7954
 #: includes/mvx-core-functions.php:7974 includes/mvx-core-functions.php:8082
@@ -6009,7 +6009,7 @@ msgstr ""
 msgid "MVX Marketplace Migration"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7692
+#: includes/mvx-core-functions.php:7677
 msgid "MVX Razorpay Split Payment"
 msgstr ""
 
@@ -6422,8 +6422,8 @@ msgstr ""
 
 #: api/class-mvx-rest-controller.php:3562
 #: api/class-mvx-rest-controller.php:3563
-#: api/class-mvx-rest-controller.php:3564 classes/class-mvx-frontend.php:774
-#: classes/class-mvx-frontend.php:784 classes/class-mvx-frontend.php:794
+#: api/class-mvx-rest-controller.php:3564 classes/class-mvx-frontend.php:775
+#: classes/class-mvx-frontend.php:785 classes/class-mvx-frontend.php:795
 msgid "No policy found"
 msgstr ""
 
@@ -6705,7 +6705,7 @@ msgid ""
 "Offer vendor the option to attach location info along with their products"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7809
+#: includes/mvx-core-functions.php:7794
 msgid "Offers vendors the option to set individual store specific policies"
 msgstr ""
 
@@ -6723,7 +6723,7 @@ msgstr ""
 msgid "On hold"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7872
+#: includes/mvx-core-functions.php:7857
 msgid ""
 "On vacation mode, vendor can allow / disable sale & notify customer "
 "accordingly"
@@ -6809,7 +6809,7 @@ msgstr ""
 msgid "Order Link: %s"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7768
+#: includes/mvx-core-functions.php:7753
 msgid "Order Managemnet"
 msgstr ""
 
@@ -6980,7 +6980,7 @@ msgstr ""
 
 #: api/class-mvx-rest-controller.php:6403 classes/class-mvx-admin.php:1106
 #: classes/class-mvx-admin.php:1160 classes/class-mvx-vendor-dashboard.php:2612
-#: includes/mvx-core-functions.php:7060 includes/mvx-core-functions.php:7607
+#: includes/mvx-core-functions.php:7060 includes/mvx-core-functions.php:7592
 msgid "Payment"
 msgstr ""
 
@@ -7088,14 +7088,14 @@ msgstr ""
 msgid "Paypal Email"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7634
+#: includes/mvx-core-functions.php:7619
 msgid "PayPal Marketplace (Real time Split)"
 msgstr ""
 
 #: api/class-mvx-rest-controller.php:3523
 #: classes/class-mvx-post-transaction.php:194 classes/class-mvx-user.php:540
 #: includes/mvx-core-functions.php:3960 includes/mvx-core-functions.php:3980
-#: includes/mvx-core-functions.php:6967 includes/mvx-core-functions.php:7618
+#: includes/mvx-core-functions.php:6967 includes/mvx-core-functions.php:7603
 msgid "PayPal Masspay"
 msgstr ""
 
@@ -7126,7 +7126,7 @@ msgstr ""
 #: api/class-mvx-rest-controller.php:3526
 #: classes/class-mvx-post-transaction.php:197 classes/class-mvx-user.php:543
 #: includes/mvx-core-functions.php:3984 includes/mvx-core-functions.php:6975
-#: includes/mvx-core-functions.php:7626
+#: includes/mvx-core-functions.php:7611
 msgid "PayPal Payout"
 msgstr ""
 
@@ -7208,7 +7208,7 @@ msgstr ""
 msgid "Per Product Additional Price"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7747 includes/mvx-core-functions.php:7752
+#: includes/mvx-core-functions.php:7732 includes/mvx-core-functions.php:7737
 msgid "Per Product Shipping"
 msgstr ""
 
@@ -7272,7 +7272,7 @@ msgstr ""
 msgid "Period"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7817
+#: includes/mvx-core-functions.php:7802
 msgid ""
 "Permit customers to follow store, receive updates & lets vendors keep track "
 "of customers"
@@ -7335,7 +7335,7 @@ msgctxt "placeholder"
 msgid "From&hellip;"
 msgstr ""
 
-#: classes/class-mvx-frontend.php:1103
+#: classes/class-mvx-frontend.php:1104
 msgctxt "placeholder"
 msgid "Insert your address .."
 msgstr ""
@@ -7441,11 +7441,11 @@ msgstr ""
 msgid "Please update your paypal email to receive commission"
 msgstr ""
 
-#: classes/class-mvx-frontend.php:217 classes/class-mvx-user.php:179
+#: classes/class-mvx-frontend.php:218 classes/class-mvx-user.php:179
 msgid "Please Upload valid file"
 msgstr ""
 
-#: classes/class-mvx-frontend.php:189 classes/class-mvx-frontend.php:200
+#: classes/class-mvx-frontend.php:190 classes/class-mvx-frontend.php:201
 #: classes/class-mvx-user.php:152 classes/class-mvx-user.php:163
 msgid "Please Verify  Recaptcha"
 msgstr ""
@@ -7468,7 +7468,7 @@ msgstr ""
 msgid "Plugin subscription plan"
 msgstr ""
 
-#: classes/class-mvx-frontend.php:917 classes/class-mvx-product.php:933
+#: classes/class-mvx-frontend.php:918 classes/class-mvx-product.php:933
 #: classes/class-mvx-product.php:1309 classes/class-mvx-vendor-hooks.php:88
 #: includes/mvx-core-functions.php:5289
 #: classes/products/class-mvx-products-edit-product.php:218
@@ -7536,7 +7536,7 @@ msgstr ""
 msgid "Pre-discount:"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7584
+#: includes/mvx-core-functions.php:7569
 msgid ""
 "Present vendors with the choice to handle normal product quantities, set low "
 "inventory and no inventory alarms and manage a subscriber list for the "
@@ -7741,7 +7741,7 @@ msgstr ""
 msgid "Product is successfully submitted for review"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7557
+#: includes/mvx-core-functions.php:7542
 msgid "Product management "
 msgstr ""
 
@@ -7865,7 +7865,7 @@ msgstr ""
 
 #: api/class-mvx-rest-controller.php:5388 classes/class-mvx-admin.php:212
 #: classes/class-mvx-admin.php:320 classes/class-mvx-admin.php:737
-#: classes/class-mvx-endpoints.php:78 classes/class-mvx-frontend.php:909
+#: classes/class-mvx-endpoints.php:78 classes/class-mvx-frontend.php:910
 #: classes/class-mvx-post-transaction.php:243 classes/class-mvx-user.php:770
 #: includes/mvx-core-functions.php:6856
 #: packages/mvx-elementor/includes/Tags/StoreTabs.php:95
@@ -8096,7 +8096,7 @@ msgstr ""
 msgid "Rating Scale"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7687
+#: includes/mvx-core-functions.php:7672
 msgid "Razorpay"
 msgstr ""
 
@@ -8124,7 +8124,7 @@ msgstr ""
 msgid "Ready!"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7658
+#: includes/mvx-core-functions.php:7643
 msgid "Real-Time Split payments pays vendor directly after a completed order"
 msgstr ""
 
@@ -8274,7 +8274,7 @@ msgstr ""
 msgid "Refund Pending"
 msgstr ""
 
-#: api/class-mvx-rest-controller.php:4011 classes/class-mvx-frontend.php:781
+#: api/class-mvx-rest-controller.php:4011 classes/class-mvx-frontend.php:782
 #: classes/class-mvx-product.php:951 classes/class-mvx-user.php:635
 #: includes/mvx-core-functions.php:6156 templates/policies-tab.php:22
 #: classes/widgets/class-mvx-widget-vendor-policies.php:30
@@ -8713,7 +8713,7 @@ msgstr ""
 msgid "Reviewer name."
 msgstr ""
 
-#: classes/class-mvx-frontend.php:926
+#: classes/class-mvx-frontend.php:927
 #: classes/class-mvx-vendor-dashboard.php:1688 templates/review/rating.php:31
 #: packages/mvx-elementor/includes/Tags/StoreTabs.php:107
 msgid "Reviews"
@@ -8817,7 +8817,7 @@ msgstr ""
 msgid "Schedule"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7619
+#: includes/mvx-core-functions.php:7604
 msgid "Schedule payment to multiple vendors at the same time."
 msgstr ""
 
@@ -9122,7 +9122,7 @@ msgstr ""
 msgid "Seller Dashboard"
 msgstr ""
 
-#: classes/class-mvx-admin.php:1171 includes/mvx-core-functions.php:7541
+#: classes/class-mvx-admin.php:1171 includes/mvx-core-functions.php:7526
 msgid "Seller Identity Verification"
 msgstr ""
 
@@ -9130,7 +9130,7 @@ msgstr ""
 msgid "Seller Knowledgebase Endpoint"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7537
+#: includes/mvx-core-functions.php:7522
 msgid "Seller management "
 msgstr ""
 
@@ -9158,11 +9158,11 @@ msgstr ""
 msgid "Sellers gain the option to edit, re-use or delete a published coupons"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7773
+#: includes/mvx-core-functions.php:7758
 msgid "Send invoice and packaging slips to vendor"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7627
+#: includes/mvx-core-functions.php:7612
 msgid "Send payments automatically to multiple vendors as per scheduled"
 msgstr ""
 
@@ -9196,7 +9196,7 @@ msgstr ""
 msgid "Separately"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7599
+#: includes/mvx-core-functions.php:7584
 msgid ""
 "Set a minimum or maximum purchase quantity or amount for the products of "
 "your marketplace."
@@ -9354,7 +9354,7 @@ msgstr ""
 msgid "Set variation image"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7900
+#: includes/mvx-core-functions.php:7885
 msgid "Set wholesale price and quantity for customers "
 msgstr ""
 
@@ -9405,7 +9405,7 @@ msgstr ""
 #: classes/class-mvx-vendor-dashboard.php:530
 #: classes/class-mvx-vendor-dashboard.php:548
 #: classes/class-mvx-vendor-hooks.php:104 includes/mvx-core-functions.php:6228
-#: includes/mvx-core-functions.php:7703
+#: includes/mvx-core-functions.php:7688
 #: classes/products/class-mvx-products-edit-product.php:151
 #: templates/vendor-dashboard/vendor-orders/views/html-order-shipping.php:20
 msgid "Shipping"
@@ -9531,7 +9531,7 @@ msgstr ""
 msgid "Shipping Options"
 msgstr ""
 
-#: api/class-mvx-rest-controller.php:4005 classes/class-mvx-frontend.php:771
+#: api/class-mvx-rest-controller.php:4005 classes/class-mvx-frontend.php:772
 #: classes/class-mvx-product.php:950 classes/class-mvx-user.php:642
 #: includes/mvx-core-functions.php:6148 templates/policies-tab.php:17
 #: classes/widgets/class-mvx-widget-vendor-policies.php:25
@@ -9562,7 +9562,7 @@ msgstr ""
 msgid "Shipping zones"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7712
+#: includes/mvx-core-functions.php:7697
 msgid "Shipping."
 msgstr ""
 
@@ -9581,7 +9581,7 @@ msgstr ""
 msgid "Shop"
 msgstr ""
 
-#: classes/class-mvx-frontend.php:765
+#: classes/class-mvx-frontend.php:766
 msgid "Shop policies"
 msgstr ""
 
@@ -9753,7 +9753,7 @@ msgid ""
 "respective vendor independently."
 msgstr ""
 
-#: includes/mvx-core-functions.php:7561
+#: includes/mvx-core-functions.php:7546
 msgid "Single Product Multiple Vendor"
 msgstr ""
 
@@ -10035,7 +10035,7 @@ msgstr ""
 msgid "SPMV(Single Product Multiple Vendor)"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7885
+#: includes/mvx-core-functions.php:7870
 msgid "Staff Manager"
 msgstr ""
 
@@ -10181,7 +10181,7 @@ msgstr ""
 msgid "Store Chat Button"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7521 includes/mvx-core-functions.php:7867
+#: includes/mvx-core-functions.php:7852
 msgid "Store Component"
 msgstr ""
 
@@ -10235,11 +10235,11 @@ msgstr ""
 msgid "Store Insights"
 msgstr ""
 
-#: classes/class-mvx-admin.php:1169 includes/mvx-core-functions.php:7583
+#: classes/class-mvx-admin.php:1169 includes/mvx-core-functions.php:7568
 msgid "Store Inventory"
 msgstr ""
 
-#: includes/mvx-core-functions.php:5098 includes/mvx-core-functions.php:7800
+#: includes/mvx-core-functions.php:5098 includes/mvx-core-functions.php:7785
 #: classes/widgets/class-mvx-widget-vendor-location.php:145
 #: templates/vendor-dashboard/shop-front.php:314
 msgid "Store Location"
@@ -10262,7 +10262,7 @@ msgstr ""
 msgid "Store Logo / Profile picture"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7796
+#: includes/mvx-core-functions.php:7781
 msgid "Store Managemnet"
 msgstr ""
 
@@ -10282,7 +10282,7 @@ msgstr ""
 msgid "Store name already exist"
 msgstr ""
 
-#: includes/mvx-core-functions.php:6140 includes/mvx-core-functions.php:7808
+#: includes/mvx-core-functions.php:6140 includes/mvx-core-functions.php:7793
 msgid "Store Policy"
 msgstr ""
 
@@ -10304,7 +10304,7 @@ msgstr ""
 msgid "Store Rating will be calculated based on Store Rating + Product Rating"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7142 includes/mvx-core-functions.php:7823
+#: includes/mvx-core-functions.php:7142 includes/mvx-core-functions.php:7808
 msgid "Store Review"
 msgstr ""
 
@@ -10356,6 +10356,10 @@ msgstr ""
 msgid "Store state"
 msgstr ""
 
+#: includes/mvx-core-functions.php:7914
+msgid "Store Support"
+msgstr ""
+
 #: packages/mvx-elementor/widgets/class-mvx-widget-storetabcontents.php:24
 msgid "Store Tab Contents"
 msgstr ""
@@ -10393,7 +10397,7 @@ msgstr ""
 msgid "Storefront Endpoint"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7522
+#: includes/mvx-core-functions.php:7915
 msgid "Streamline order support with vendor-customer ticketing system."
 msgstr ""
 
@@ -10410,7 +10414,7 @@ msgstr ""
 #: classes/class-mvx-post-transaction.php:200 classes/class-mvx-user.php:546
 #: includes/mvx-core-functions.php:3962 includes/mvx-core-functions.php:3988
 #: includes/mvx-core-functions.php:4562 includes/mvx-core-functions.php:6983
-#: includes/mvx-core-functions.php:7649
+#: includes/mvx-core-functions.php:7634
 msgid "Stripe Connect"
 msgstr ""
 
@@ -10440,7 +10444,7 @@ msgstr ""
 msgid "Stripe Live Secret key"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7657
+#: includes/mvx-core-functions.php:7642
 msgid "Stripe Marketplace (Real time Split)"
 msgstr ""
 
@@ -10625,7 +10629,7 @@ msgstr ""
 msgid "System Status"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7737
+#: includes/mvx-core-functions.php:7722
 msgid "Table Rate Shipping"
 msgstr ""
 
@@ -10831,7 +10835,7 @@ msgid ""
 "product discounts. Leave blank to apply to all qualifying items in cart."
 msgstr ""
 
-#: classes/class-mvx-frontend.php:1142
+#: classes/class-mvx-frontend.php:1143
 msgid ""
 "The products in your cart are sold by multiple different vendor partners. "
 "The order will be placed simultaneously with all vendors and you will "
@@ -11336,7 +11340,7 @@ msgstr ""
 msgid "Transfer Fee"
 msgstr ""
 
-#: classes/class-mvx-frontend.php:684 classes/class-mvx-frontend.php:685
+#: classes/class-mvx-frontend.php:685 classes/class-mvx-frontend.php:686
 msgid "Translations"
 msgstr ""
 
@@ -11670,7 +11674,7 @@ msgstr ""
 msgid "Usernames cannot be changed."
 msgstr ""
 
-#: includes/mvx-core-functions.php:7635
+#: includes/mvx-core-functions.php:7620
 msgid "Using  split payment pay vendors instantly after a completed order "
 msgstr ""
 
@@ -11690,7 +11694,7 @@ msgstr ""
 msgid "Using the variation ID)"
 msgstr ""
 
-#: classes/class-mvx-admin.php:1179 includes/mvx-core-functions.php:7871
+#: classes/class-mvx-admin.php:1179 includes/mvx-core-functions.php:7856
 msgid "Vacation"
 msgstr ""
 
@@ -12181,7 +12185,7 @@ msgstr ""
 msgid "Vendors"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7733
+#: includes/mvx-core-functions.php:7718
 msgid "Vendors can create shipping rates based on price, weight and quantity"
 msgstr ""
 
@@ -12216,7 +12220,7 @@ msgstr ""
 msgid "verified buyer"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7542
+#: includes/mvx-core-functions.php:7527
 msgid ""
 "Verify vendors on the basis of Id documents, Address  and Social Media "
 "Account  "
@@ -12427,7 +12431,7 @@ msgstr ""
 msgid "Weight"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7732
+#: includes/mvx-core-functions.php:7717
 msgid "Weight Wise Shipping (using Table Rate Shipping)"
 msgstr ""
 
@@ -12493,7 +12497,7 @@ msgstr ""
 msgid "Who will bear the Coupon Cost"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7899
+#: includes/mvx-core-functions.php:7884
 msgid "Wholesale"
 msgstr ""
 
@@ -12751,7 +12755,7 @@ msgid ""
 "and try again."
 msgstr ""
 
-#: classes/class-mvx-frontend.php:1050
+#: classes/class-mvx-frontend.php:1051
 msgid "You do not follow any customer till now"
 msgstr ""
 
@@ -12815,7 +12819,7 @@ msgstr ""
 #: templates/archive-vendor-info.php:67 templates/archive-vendor-info.php:178
 #: templates/archive-vendor-info.php:265
 #: packages/mvx-elementor/includes/Tags/StoreFollow.php:53
-msgid "You must logged in to follow"
+msgid "You must log in to follow"
 msgstr ""
 
 #. refund amount
@@ -13040,7 +13044,7 @@ msgstr ""
 msgid "Zone region"
 msgstr ""
 
-#: includes/mvx-core-functions.php:7707
+#: includes/mvx-core-functions.php:7692
 msgid "Zone-Wise Shipping"
 msgstr ""
 
