@@ -243,13 +243,13 @@ Stay connected with MultiVendorX and reap benefits like -
 
 **[A Support team that’s always got your back](https://multivendorx.com/support-forum/)** - MultiVendorX has a round-the-clock support team that is there to help you in case you run into any trouble. 
 
-**[A grade Knowledgebase](https://multivendorx.com/knowledgebase/)** - MultiVendorX has a well-written knowledge base that gives you a fair idea of our plugin 
+**[A grade Knowledgebase](https://multivendorx.com/docs/knowledgebase/)** - MultiVendorX has a well-written knowledge base that gives you a fair idea of our plugin 
 
 **[We Keep Our Ears Open](https://multivendorx.com/custom-development/)** - MultiVendorX is open to new ideas and suggestions as we look forward to the little tit-bits provided by you.
 
 **[Fixing Common Errors](https://github.com/multivendorx/MultiVendorX)** - With MultiVendorX, you can expect to see constant improvement as we try to fix our mistakes as soon as it occurs. 
 
-**[Frequently Asked Questions](https://multivendorx.com/faq/)** - MultiVendorX team is happy to answer any queries you have so expect to receive answers for most of your queries here.
+**[Frequently Asked Questions](https://multivendorx.com/get-help/faqs/)** - MultiVendorX team is happy to answer any queries you have so expect to receive answers for most of your queries here.
 
 == Installation ==
 NOTE: MultiVendorX plugin is an extension of WooCommerce, so the WooCommerce plugin must be installed and activated in your WordPress site for this plugin to work properly.
