@@ -7343,7 +7343,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/extarnal-product',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/external-product/',
                     ],
                     [
                         'id'           => 'grouped',
@@ -7395,7 +7395,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://bookingwp.com/plugins/woocommerce-appointments/',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/appointment-product/',
                     ],
                     [
                         'id'           => 'subscription',
@@ -7692,7 +7692,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'name'         => __( 'Zone-Wise Shipping', 'multivendorx' ),
                         'description'  => __( 'Limit vendors to sell in selected zones', 'multivendorx' ),
                         'plan'         => 'free',
-                        'doc_link'     => 'https://multivendorx.com/knowledgebase/',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/knowledgebase/',
                         'mod_link'     => admin_url('admin.php?page=wc-settings&tab=shipping'),
                         'parent_category' => __( 'Shipping.', 'multivendorx' ),
                     ],
@@ -7823,7 +7823,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/nusiness-hours',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/business-hours/',
                     ],
                     [
                         'id'           => 'mvx-blocks',
@@ -7989,7 +7989,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'name'         => __( 'Announcement', 'multivendorx' ),
                         'description'  => __( 'Lets admin broadcast important news to sellers', 'multivendorx' ),
                         'plan'         => 'free',
-                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/notifictaion',                        
+                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/announcement/',                        
                         'mod_link'     => admin_url('admin.php?page=mvx#&submenu=work-board&name=announcement'),
                     ],
                     [
