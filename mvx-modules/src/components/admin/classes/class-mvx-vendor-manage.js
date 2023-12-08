@@ -1561,7 +1561,7 @@ class MVXBackendVendor extends React.Component {
 								.length > 0 ? (
 								<div>
 									<Link className="mvx-back-btn" to={`?page=mvx#&submenu=vendor&ID=${name.get('ID')}&name=vendor-shipping`}>
-										<i className="mvx-font icon-back"></i>Back
+										<i className="mvx-font icon-back"></i>{appLocalizer.vendor_page_string.back}
 									</Link>
 									<table className="form-table mvx-shipping-zone-settings wc-shipping-zone-settings">
 										<tbody>
