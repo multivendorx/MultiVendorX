@@ -641,8 +641,8 @@ class MVX_REST_API_Vendors_Controller extends WC_REST_Controller {
 			return new WP_Error( "mvx_rest_is_not_a_{$this->post_type}", sprintf( __( 'User is not a %s.', 'multivendorx' ), $this->post_type ), array( 'status' => 400 ) );
 		}
 
+		$user_id = isset( $request['id'] ) ? absint($request['id']) : 0;
 		$userdata = array(
-			'ID' => isset( $request['id'] ) ? absint($request['id']) : 0,
 			'user_email' => isset( $request['email'] ) ? sanitize_email($request['email']) : '',
 			'user_url' => isset( $request['url'] ) ? wc_clean($request['url']) : '',
 			'user_pass' => isset( $request['password'] ) ? wc_clean($request['password']) : '',
@@ -653,14 +653,10 @@ class MVX_REST_API_Vendors_Controller extends WC_REST_Controller {
 			'role' => $this->post_type
 		);
 
-		if ( is_wp_error( $user_id ) ) {
-			return $user_id;
-		}
-
-		if ( $userdata['ID'] > 0 ) {
+		if ( $user_id > 0 ) {
 			foreach ( $userdata as $key => $value ) {
 				if ( !empty($value) ) {
-					wp_update_user( array('ID' => $userdata['ID'], $key => $value) );
+					wp_update_user( array('ID' => $user_id, $key => $value) );
 				}
 			}
 		}
