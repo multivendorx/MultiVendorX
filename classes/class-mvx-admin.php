@@ -415,6 +415,7 @@ class MVX_Admin {
                 'delete_user'  =>  __('Delete User Permanently', 'multivendorx'),
                 'delete_vendor'  =>  __('Delete Vendor Profile', 'multivendorx'),
                 'modal_button_text'  =>  __('Confirm', 'multivendorx'),
+                'back'  =>  __('Back', 'multivendorx'),
             );
 
             $status_and_tools_string = array(
