@@ -463,12 +463,12 @@ class MVX_REST_API_Vendors_Controller extends WC_REST_Controller {
 			'_vendor_state' => isset($request['address']['state']) ? wc_clean( wp_unslash( $request['address']['state'] ) ) : '',
 			'_vendor_country' => isset($request['address']['country']) ? wc_clean( wp_unslash( $request['address']['country'] ) ) : '',
 			'_vendor_postcode' => isset($request['address']['postcode']) ? wc_clean( wp_unslash( $request['address']['postcode'] ) ) : '',
-			'_vendor_phone' => isset($request['address']['phone']) ? absint( $request['address']['phone'] ) : 0,
-			'_vendor_fb_profile' => isset($request['social']['facebook']) ? esc_url( $request['social']['facebook'] ) : '',
-			'_vendor_twitter_profile' => isset($request['social']['twitter']) ? esc_url( $request['social']['twitter'] ) : '',
-			'_vendor_linkdin_profile' => isset($request['social']['linkdin']) ? esc_url( $request['social']['linkdin'] ) : '',
-			'_vendor_youtube' => isset($request['social']['youtube']) ? esc_url( $request['social']['youtube'] ) : '',
-			'_vendor_instagram' => isset($request['social']['instagram']) ? esc_url( $request['social']['instagram'] ) : '',
+			'_vendor_phone' => isset($request['address']['phone']) ? wc_clean( $request['address']['phone'] ) : 0,
+			'_vendor_fb_profile' => (isset($request['social']['facebook']) && $request['social']['facebook']) ? esc_url( $request['social']['facebook'] ) : ' ',
+			'_vendor_twitter_profile' => (isset($request['social']['twitter']) && $request['social']['twitter']) ? esc_url( $request['social']['twitter'] ) : ' ',
+			'_vendor_linkdin_profile' => (isset($request['social']['linkdin']) && $request['social']['linkdin']) ? esc_url( $request['social']['linkdin'] ) : ' ',
+			'_vendor_youtube' => (isset($request['social']['youtube']) && $request['social']['youtube']) ? esc_url( $request['social']['youtube'] ) : ' ',
+			'_vendor_instagram' => (isset($request['social']['instagram']) && $request['social']['instagram']) ? esc_url( $request['social']['instagram'] ) : ' ',
 			'_vendor_payment_mode' => isset($request['payment']['payment_mode']) ? wc_clean( wp_unslash( $request['payment']['payment_mode'] ) ) : '',
 			'_vendor_bank_account_type' => isset($request['payment']['bank_account_type']) ? wc_clean( wp_unslash( $request['payment']['bank_account_type'] ) ): '',
 			'_vendor_bank_name' => isset($request['payment']['bank_name']) ? wc_clean( wp_unslash( $request['payment']['bank_name'] ) ): '',
@@ -479,7 +479,9 @@ class MVX_REST_API_Vendors_Controller extends WC_REST_Controller {
 			'_vendor_destination_currency' => isset($request['payment']['destination_currency']) ? wc_clean( wp_unslash( $request['payment']['destination_currency'] ) ) : '',
 			'_vendor_iban' => isset($request['payment']['iban']) ? wc_clean( wp_unslash( $request['payment']['iban'] ) ): '',
 			'_vendor_paypal_email' => isset($request['payment']['paypal_email']) ? wc_clean( wp_unslash( $request['payment']['paypal_email'] ) ) : '',
-			'_vendor_message_to_buyers' => wc_clean( wp_unslash( $request['message_to_buyers'] ) )
+			'_vendor_message_to_buyers' => wc_clean( wp_unslash( $request['message_to_buyers'] ) ),
+			'_vendor_image' => (isset($request['shop']['image']) && $request['shop']['image']) ? esc_url( $request['shop']['image'] ) : ' ',
+			'_vendor_banner' => (isset($request['shop']['banner']) && $request['shop']['banner']) ? esc_url( $request['shop']['banner'] ) : ' ',
 		);
 		foreach($vendor_meta_key_list as $key => $value) {
 			if($value != '') update_user_meta($user_id, $key, $value);
@@ -639,8 +641,8 @@ class MVX_REST_API_Vendors_Controller extends WC_REST_Controller {
 			return new WP_Error( "mvx_rest_is_not_a_{$this->post_type}", sprintf( __( 'User is not a %s.', 'multivendorx' ), $this->post_type ), array( 'status' => 400 ) );
 		}
 
+		$user_id = isset( $request['id'] ) ? absint($request['id']) : 0;
 		$userdata = array(
-			'ID' => isset( $request['id'] ) ? absint($request['id']) : 0,
 			'user_email' => isset( $request['email'] ) ? sanitize_email($request['email']) : '',
 			'user_url' => isset( $request['url'] ) ? wc_clean($request['url']) : '',
 			'user_pass' => isset( $request['password'] ) ? wc_clean($request['password']) : '',
@@ -651,11 +653,12 @@ class MVX_REST_API_Vendors_Controller extends WC_REST_Controller {
 			'role' => $this->post_type
 		);
 
-		
-		$user_id = wp_update_user( $userdata ) ;
-		
-		if ( is_wp_error( $user_id ) ) {
-			return $user_id;
+		if ( $user_id > 0 ) {
+			foreach ( $userdata as $key => $value ) {
+				if ( !empty($value) ) {
+					wp_update_user( array('ID' => $user_id, $key => $value) );
+				}
+			}
 		}
 
 		$this->update_additional_fields_for_vendor( $user_id, $request );
