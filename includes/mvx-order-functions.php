@@ -1,5 +1,7 @@
 <?php
 
+use Automattic\WooCommerce\Utilities\OrderUtil;
+
 /**
  * MVX Order Functions
  *
@@ -98,7 +100,8 @@ function is_mvx_vendor_order( $order, $current_vendor = false ) {
 function get_refund_commission_amount($refund_id, $context = 'view') {
     if( $refund_id ){
         $order_id = wp_get_post_parent_id( $refund_id );
-        $commission_id = get_post_meta( $order_id, '_commission_id', true );
+        $order = wc_get_order($order_id);
+        $commission_id = $order->get_meta( '_commission_id', true );
         $commission_refunded_data = get_post_meta( $commission_id, '_commission_refunded_data', true );
         if( isset($commission_refunded_data[$refund_id][$commission_id]) ){
             $refund_commission_data = $commission_refunded_data[$refund_id][$commission_id];
@@ -116,7 +119,8 @@ function get_refund_commission_amount($refund_id, $context = 'view') {
  */
 function mvx_get_total_refunded_for_item( $item_id, $order_id ) {
     if( $item_id && $order_id ) {
-        $commission_id = get_post_meta( $order_id, '_commission_id', true );
+        $order = wc_get_order($order_id);
+        $commission_id = $order->get_meta( '_commission_id', true );
         $commission_refunded_items_data = get_post_meta( $commission_id, '_commission_refunded_items_data', true );
         $refunds = wc_get_orders(
             array(
@@ -150,18 +154,32 @@ function mvx_get_total_refunded_for_item( $item_id, $order_id ) {
  * @return object suborders.
  */
 function get_mvx_suborders( $order_id, $args = array(), $object = true ) {
-    $default = array(
-        'post_parent' => $order_id,
-        'post_type' => 'shop_order',
-        'numberposts' => -1,
-        'post_status' => 'any'
-    );
-    $args = ( $args ) ? wp_parse_args( $args, $default ) : $default;
+    global $MVX;
     $orders = array();
-    $posts = get_posts( $args );
-    foreach ( $posts as $post ) {
-        $orders[] = ( $object ) ? wc_get_order( $post->ID ) : $post->ID;
+    if($MVX->hpos_is_enabled){
+        if(is_int($order_id)){
+            $default = array(
+                'parent' => $order_id,
+            );
+            $args = ( $args ) ? wp_parse_args( $args, $default ) : $default;
+            $orders = wc_get_orders($args);
+        } else {
+            $orders = wc_get_orders(array('parent' => $order_id->get_id()));
+        }
+    } else {
+        $default = array(
+            'post_parent' => $order_id,
+            'post_type' => 'shop_order',
+            'numberposts' => -1,
+            'post_status' => 'any'
+        );
+        $args = ( $args ) ? wp_parse_args( $args, $default ) : $default;
+        $posts = get_posts( $args );
+        foreach ( $posts as $post ) {
+            $orders[] = ( $object ) ? wc_get_order( $post->ID ) : $post->ID;
+        }
     }
+    
     return $orders;
 }
 
@@ -216,7 +234,8 @@ function mvx_get_commission_order_id( $commission_id ) {
  * @return commission ID
  */
 function mvx_get_order_commission_id( $order_id ) {
-    $commission_id = get_post_meta( $order_id, '_commission_id', true );
+    $order = wc_get_order( $order_id );
+    $commission_id = $order->get_meta( '_commission_id', true );
     return ( $commission_id ) ? $commission_id : false;
 }
 
@@ -236,7 +255,7 @@ function mvx_get_customer_refund_order_msg( $order, $settings = array() ) {
         'order_refund_request_pending' => __( 'Your Request Is pending', 'multivendorx' ),
         'order_refund_request_accepted' => __( '*** Your Request is Accepted *** ', 'multivendorx' ),
     ), $order, $settings );
-    $cust_refund_status = get_post_meta( $order->get_id(), '_customer_refund_order', true ) ? get_post_meta( $order->get_id(), '_customer_refund_order', true ) : '';
+    $cust_refund_status = $order->get_meta('_customer_refund_order', true ) ?  $order->get_meta('_customer_refund_order', true ) : '';
     $refund_days_limit = get_mvx_global_settings('refund_days') ? absint( get_mvx_global_settings('refund_days') ) : apply_filters( 'mvx_customer_refund_order_default_days_limit', 10, $order );
     $order_date = $order->get_date_created()->format('Y-m-d');
     $order_place_days = time() - strtotime( $order_date );

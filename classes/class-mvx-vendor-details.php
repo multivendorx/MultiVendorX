@@ -457,8 +457,9 @@ class MVX_Vendor {
 
         if ( $vendor_orders ) {
             foreach ( $vendor_orders as $order_id ) {
+                $vendor_order = wc_get_order($order_id);
                 if(get_post_status( $order_id ) === 'wc-cancelled') continue;
-                $commission_id = get_post_meta( $order_id, '_commission_id', true );
+                $commission_id = $vendor_order->get_meta( '_commission_id', true );
                 $order_ids[$commission_id] = $order_id;
             }
         }
@@ -1064,20 +1065,21 @@ public function get_vendor_orders_by_product($vendor_term_id, $product_id, $star
      */
     public function set_order_shipped($order_id, $tracking_id = '', $tracking_url = '') {
         global $wpdb;
-        $shippers = get_post_meta($order_id, 'dc_pv_shipped', true) ? get_post_meta($order_id, 'dc_pv_shipped', true) : array();
+        $order = wc_get_order($order_id);
+        $shippers = $order->get_meta( 'dc_pv_shipped', true) ? $order->get_meta( 'dc_pv_shipped', true) : array();
         if (!in_array($this->id, $shippers)) {
             $shippers[] = $this->id;
             $mails = WC()->mailer()->emails['WC_Email_Notify_Shipped'];
             if (!empty($mails)) {
-                $customer_email = get_post_meta($order_id, '_billing_email', true);
+                $customer_email = $order->get_billing_email();
                 $mails->trigger($order_id, $customer_email, $this->term_id, array('tracking_id' => $tracking_id, 'tracking_url' => $tracking_url));
             }
-            update_post_meta($order_id, 'dc_pv_shipped', $shippers);
+            $order->update_meta_data('dc_pv_shipped', $shippers);
             // set new meta shipped
-            update_post_meta($order_id, 'mvx_vendor_order_shipped', 1);
+            $order->update_meta_data('mvx_vendor_order_shipped', 1);
+            $order->save();
         }
         do_action('mvx_vendors_vendor_ship', $order_id, $this->term_id);
-        $order = wc_get_order($order_id);
         $comment_id = $order->add_order_note(__('Vendor ', 'multivendorx') . $this->page_title . __(' has shipped his part of order to customer.', 'multivendorx') . '<br><span>' . __('Tracking Url : ', 'multivendorx') . '</span> <a target="_blank" href="' . $tracking_url . '">' . $tracking_url . '</a><br><span>' . __('Tracking Id : ', 'multivendorx') . '</span>' . $tracking_id, 0, true);
         // update comment author & email
         wp_update_comment(array('comment_ID' => $comment_id, 'comment_author' => $this->page_title, 'comment_author_email' => $this->user_data->user_email));

@@ -415,7 +415,6 @@ class MVX_Admin {
                 'delete_user'  =>  __('Delete User Permanently', 'multivendorx'),
                 'delete_vendor'  =>  __('Delete Vendor Profile', 'multivendorx'),
                 'modal_button_text'  =>  __('Confirm', 'multivendorx'),
-                'back'  =>  __('Back', 'multivendorx'),
             );
 
             $status_and_tools_string = array(
@@ -1321,8 +1320,7 @@ class MVX_Admin {
             wp_add_inline_style( 'woocommerce_admin_styles', $custom_css );
         }
         
-
-        if ( in_array($screen->id, array('edit-shop_order'))) {
+        if ( in_array($screen->id, array('edit-shop_order')) || in_array($screen->id, array('woocommerce_page_wc-orders'))) {
             wp_enqueue_style('mvx_admin_order_css', $MVX->plugin_url . 'assets/admin/css/admin-order' . $suffix . '.css', array(), $MVX->version);
         }
         
@@ -1448,7 +1446,7 @@ class MVX_Admin {
      * @since 3.0.2
      */
     public function regenerate_order_commissions($order) {
-        if ( !wp_get_post_parent_id( $order->get_id() ) ) {
+        if ( ! $order->get_parent_id() ) {
             return;
         }
         if (!in_array($order->get_status(), apply_filters( 'mvx_regenerate_order_commissions_statuses', array( 'on-hold', 'processing', 'completed' ), $order ))) {
@@ -1456,13 +1454,13 @@ class MVX_Admin {
         }
         
         delete_post_meta($order->get_id(), '_commissions_processed');
-        $commission_id = get_post_meta($order->get_id(), '_commission_id', true) ? get_post_meta($order->get_id(), '_commission_id', true) : '';
+        $commission_id = $order->get_meta( '_commission_id', true) ? $order->get_meta( '_commission_id', true) : '';
         if ($commission_id) {
             wp_delete_post($commission_id, true);
         }
         delete_post_meta($order->get_id(), '_commission_id');
         // create vendor commission
-        $commission_id = MVX_Commission::create_commission($order->get_id());
+        $commission_id = MVX_Commission::create_commission($order);
         if ($commission_id) {
             // Add order note
             $order->add_order_note( __( 'Regenerated order commission.', 'multivendorx') );
@@ -1474,12 +1472,14 @@ class MVX_Admin {
             $recalculate = apply_filters( 'mvx_regenerate_order_commissions_by_new_commission_rate', false, $order );
             // Calculate commission
             MVX_Commission::calculate_commission($commission_id, $order, $recalculate);
+            
             update_post_meta($commission_id, '_paid_status', 'unpaid');
 
             // add commission id with associated vendor order
-            update_post_meta($order->get_id(), '_commission_id', absint($commission_id));
+            $order->update_meta_data('_commission_id', absint($commission_id));
             // Mark commissions as processed
-            update_post_meta($order->get_id(), '_commissions_processed', 'yes');
+            $order->update_meta_data('_commissions_processed', 'yes');
+            $order->save();
         }
     }
 

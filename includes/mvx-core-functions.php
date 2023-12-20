@@ -1686,12 +1686,13 @@ if (!function_exists('do_mvx_commission_data_migrate')) {
                 $product_count = count($data['products']);
                 foreach ($data['products'] as $product_id) {
                     if ($data['vendor_id']) {
+                        $order = wc_get_order($data['order_id']);
                         $vendor = get_mvx_vendor_by_term($data['vendor_id']);
                         $update_data[] = array(
                             'order_id' => $data['order_id'],
                             'commission_id' => $commission_id,
                             'vendor_id' => $vendor->id,
-                            'shipping_status' => in_array($vendor->id, (array) get_post_meta($data['order_id'], 'dc_pv_shipped', true)) ? 1 : 0,
+                            'shipping_status' => in_array($vendor->id, (array) $order->get_meta( 'dc_pv_shipped', true)) ? 1 : 0,
                             'product_id' => $product_id,
                             'commission_amount' => round(($data['commission_amount'] / $product_count), 2),
                             'shipping' => round(($data['shipping_amount'] / $product_count), 2),
@@ -1782,10 +1783,10 @@ if (!function_exists('mvx_process_order')) {
         global $wpdb;
         if (!$order)
             $order = wc_get_order($order_id);
-        if (get_post_meta($order_id, '_mvx_order_processed', true) && !$order) {
+        if ($order->get_meta( '_mvx_order_processed', true) && !$order) {
             return;
         }
-        $vendor_shipping_array = get_post_meta($order_id, 'dc_pv_shipped', true);
+        $vendor_shipping_array = $order->get_meta( 'dc_pv_shipped', true);
         $mark_ship = 0;
         $items = $order->get_items('line_item');
         $shipping_items = $order->get_items('shipping');
@@ -1868,7 +1869,8 @@ if (!function_exists('mvx_process_order')) {
                 }
             }
         }
-        update_post_meta($order_id, '_mvx_order_processed', true);
+        $order->update_meta_data('_mvx_order_processed', true);
+        $order->save();
         do_action('mvx_order_processed', $order);
     }
 
@@ -8317,5 +8319,63 @@ if (!function_exists('mvxArrayToObject')) {
             // Return object
             return $d;
         }
+    }
+}
+
+if(!function_exists('insert_mvx_vendor_order_data')){
+    function insert_mvx_vendor_order_data($data, $parent_order, $vendor_id) {
+        //createing sub order on wc_orders table
+        $order = new WC_Order();
+        $meta = [
+            'cart_hash',
+            'customer_id',
+            'currency',
+            'prices_include_tax',
+            'customer_ip_address',
+            'customer_user_agent',
+            'customer_note',
+            'payment_method',
+            'payment_method_title',
+            'status',
+            'billing_country',
+            'billing_first_name',
+            'billing_last_name',
+            'billing_company',
+            'billing_address_1',
+            'billing_address_2',
+            'billing_city',
+            'billing_state',
+            'billing_postcode',
+            'billing_email',
+            'billing_phone',
+            'shipping_country',
+            'shipping_first_name',
+            'shipping_last_name',
+            'shipping_company',
+            'shipping_address_1',
+            'shipping_address_2',
+            'shipping_city',
+            'shipping_state',
+            'shipping_postcode',
+        ];
+        // save other details
+        $order->set_created_via( 'mvx_vendor_order' );
+        $order->calculate_totals();
+        $order->set_parent_id( $parent_order->get_id() );
+        $order->update_meta_data( '_vendor_id', $vendor_id );
+        $order->save();
+        foreach ( $meta as $key ) {
+            if ( is_callable( [ $order, "set_{$key}" ] ) ) {
+                $order->{"set_{$key}"}( $parent_order->{"get_{$key}"}() );
+            }
+        }
+        $order->save();
+
+        wp_update_post(array(
+            'ID' => $order->get_id(),
+            'post_author' => $vendor_id,
+        ));
+
+        return $order->get_id();
     }
 }

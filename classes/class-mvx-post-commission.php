@@ -74,13 +74,14 @@ class MVX_Commission {
      * @param array $args
      * @return int $commission_id
      */
-    public static function create_commission($order_id, $args = array()) {
+    public static function create_commission($order, $args = array()) {
+        $order_id = $order->get_id();
         if ($order_id) {
-            $vendor_id = get_post_meta($order_id, '_vendor_id', true);
+            $vendor_id = $order->get_meta( '_vendor_id', true);
             // create vendor commission
             $default = array(
                 'post_type' => 'dc_commission',
-                'post_title' => sprintf(__('Commission - %s', 'multivendorx'), strftime(_x('%B %e, %Y @ %I:%M %p', 'Commission date parsed by strftime', 'multivendorx'), current_time('timestamp'))),
+                'post_title' => sprintf(__('Commission - %s', 'multivendorx'), date(_x('F j, Y @ h:i a', 'Commission date parsed by date', 'multivendorx'), current_time('timestamp'))),
                 'post_status' => 'private',
                 'ping_status' => 'closed',
                 'post_excerpt' => '',
@@ -97,6 +98,7 @@ class MVX_Commission {
                 // for BW supports
                 $vendor = get_mvx_vendor( $vendor_id );
                 update_post_meta($commission_id, '_commission_vendor', $vendor->term_id);
+                // add commission id with associated vendor order
                 /**
                  * Action hook to update commission meta data.
                  *
@@ -122,7 +124,7 @@ class MVX_Commission {
         global $MVX;
         if ($commission_id && $order) {
             $commission_type = mvx_get_settings_value($MVX->vendor_caps->payment_cap['commission_type']);
-            $vendor_id = get_post_meta($order->get_id(), '_vendor_id', true);
+            $vendor_id = $order->get_meta( '_vendor_id', true);
              // line item commission
              $commission_amount = $shipping_amount = $tax_amount = $shipping_tax_amount = 0;
              $commission_rates = array();
@@ -143,7 +145,7 @@ class MVX_Commission {
                     $commission_rates[$item_id] = $commission_rate;
                 }
             } else {
-                $commission_rates = get_post_meta($order->get_id(), 'order_items_commission_rates', true);
+                $commission_rates = $order->get_meta( 'order_items_commission_rates', true);
                 foreach ($order->get_items() as $item_id => $item) {
                     $product = $item->get_product();
                     $meta_data = $item->get_meta_data();
@@ -174,8 +176,8 @@ class MVX_Commission {
              *
              * @since 3.4.0
             */
-            update_post_meta($order->get_id(), 'order_items_commission_rates', apply_filters('mvx_vendor_order_items_commission_rates', $commission_rates, $order));
-            
+            $order->update_meta_data('order_items_commission_rates', apply_filters('mvx_vendor_order_items_commission_rates', $commission_rates, $order));
+            $order->save();
             // transfer shipping charges
             if ($MVX->vendor_caps->vendor_payment_settings('give_shipping') && !get_user_meta($vendor_id, '_vendor_give_shipping', true)) {
                 $shipping_amount = $order->get_shipping_total();

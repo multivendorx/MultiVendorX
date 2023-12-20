@@ -1,5 +1,7 @@
 <?php
 
+use Automattic\WooCommerce\Utilities\OrderUtil as WCOrderUtil;
+
 /**
  * MVX Main Class
  *
@@ -51,6 +53,10 @@ final class MVX {
     public $vendor_rest_api;
     public $deprecated_hook_handlers = array();
     public $deprecated_funtions;
+    public $multivendor_migration;
+    public $mvx_usage_tracker ;
+    public $upgrade;
+    public $hpos_is_enabled = false;
 
     /**
      * Class construct
@@ -120,7 +126,9 @@ final class MVX {
      * Initialize plugin on WP init
      */
     function init() {
-
+        if(version_compare(WC_VERSION, '8.3.0', '>=')){
+            $this->hpos_is_enabled = $this->hpos_is_enabled();
+        } 
         if (is_user_mvx_pending_vendor(get_current_vendor_id()) || is_user_mvx_rejected_vendor(get_current_vendor_id()) || is_user_mvx_vendor(get_current_vendor_id())) {
             show_admin_bar(apply_filters('mvx_show_admin_bar', false));
         }
@@ -719,4 +727,18 @@ final class MVX {
         return wp_kses_post($upgrade_notice);
     }
 
+    
+    /**
+     * Helper function to get whether custom order tables are enabled or not.
+     *
+     * This method can be removed, and we can directly use WC OrderUtil::custom_orders_table_usage_is_enabled method in future
+     * if we set the minimum wc version requirements to 8.0
+     *
+     * @since 3.8.0
+     *
+     * @return bool
+     */
+    public static function hpos_is_enabled(): bool {
+        return version_compare( WC_VERSION, '8.3.0', '>=' ) ? WCOrderUtil::custom_orders_table_usage_is_enabled() : false;
+    }
 }
