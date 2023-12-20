@@ -1,6 +1,5 @@
 <?php
 
-use Automattic\WooCommerce\Utilities\OrderUtil;
 
 /**
  * MVX Order Functions
@@ -78,7 +77,9 @@ function mvx_get_order($id){
  * @return boolean
  */
 function is_mvx_vendor_order( $order, $current_vendor = false ) {
+    global $MVX;
     $order_id = 0;
+    remove_filter('woocommerce_orders_table_query_clauses', array($MVX->order, 'wc_order_list_filter'));
     if( is_object( $order ) ){
         $order_id = $order->get_id();
     }else{

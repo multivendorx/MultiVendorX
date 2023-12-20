@@ -2209,7 +2209,6 @@ class MVX_REST_API {
         foreach ($add_modules_details as $key_parent => $value_parent) {
             $total_number_of_modules[] = count($value_parent['options']);
         }
-        die;
         return rest_ensure_response(array_sum($total_number_of_modules));
     }
 

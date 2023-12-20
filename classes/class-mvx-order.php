@@ -87,7 +87,7 @@ class MVX_Order {
             add_filter( 'woocommerce_can_reduce_order_stock', array($this, 'woocommerce_can_reduce_order_stock'), 99, 2 );
             add_filter( 'woocommerce_hidden_order_itemmeta', array($this, 'woocommerce_hidden_order_itemmeta'), 99 );
             add_filter( 'woocommerce_order_item_get_formatted_meta_data', array($this, 'woocommerce_hidden_order_item_get_formatted_meta_data'), 99 );
-            add_action( 'woocommerce_order_status_changed', array($this, 'mvx_vendor_order_status_changed_actions'), 99, 3 );
+            add_action( 'woocommerce_order_status_changed', array($this, 'mvx_vendor_order_status_changed_actions'), 99, 4 );
             add_action( 'woocommerce_rest_shop_order_object_query', array($this, 'mvx_exclude_suborders_from_rest_api_call'), 99, 2 );
             add_filter( "woocommerce_rest_shop_order_object_query", array($this, 'mvx_suborder_hide' ), 99 , 2 );
             // customer list report section
@@ -276,7 +276,7 @@ class MVX_Order {
                         $vendor_page_title = ($vendor) ? $vendor->page_title : __('Deleted vendor', 'multivendorx');
                         $order_uri = apply_filters('mvx_admin_vendor_shop_order_edit_url', esc_url('post.php?post=' . $suborder->get_id() . '&action=edit'), $suborder->get_id());
 
-                        printf('<li><mark class="%s tips" data-tip="%s">%s</mark> <strong><a href="%s">#%s</a></strong> &ndash; <small class="mvx-order-for-vendor">%s %s</small></li>', sanitize_title($suborder->get_status()), $suborder->get_status(), $suborder->get_status(), $order_uri, $suborder->get_id(), _x('for', 'Order table details', 'multivendorx'), $vendor_page_title
+                        printf('<li><mark class="%s tips" data-tip="%s">%s</mark> <strong><a href="%s">#%s</a></strong> &ndash; <small class="mvx-order-for-vendor">%s %s</small></li>', sanitize_title($suborder->get_status()), $suborder->get_status(), $suborder->get_status(), $order_uri, $suborder->get_order_number(), _x('for', 'Order table details', 'multivendorx'), $vendor_page_title
                         );
 
                         do_action('mvx_after_suborder_details', $suborder);
@@ -296,7 +296,6 @@ class MVX_Order {
 
     public function mvx_create_orders($order_id, $posted_data, $order, $backend = false) {
         global $MVX;
-        
         //check parent order exist
         if (wp_get_post_parent_id($order_id) != 0)
             return false;
@@ -505,15 +504,10 @@ class MVX_Order {
             $vendor_order_id = wp_update_post($data);
         } else {
             if($MVX->hpos_is_enabled){
-                $data_new = array(
-                    'post_date' => gmdate('Y-m-d H:i:s', $order->get_date_created('edit')->getOffsetTimestamp()),
-                    // 'post_id' => $vendor_order_id,
-                );
-                $vendor_order_id = insert_mvx_vendor_order_data($data_new, $order, $args['vendor_id']);
+                $vendor_order_id = insert_mvx_vendor_order_data($order, $args['vendor_id']);
             } else {
                 $vendor_order_id = wp_insert_post($data, true);
             }
-            
             $args['vendor_order_id'] = $vendor_order_id;
         }
 
@@ -915,7 +909,6 @@ class MVX_Order {
                      * Otherwise I set the parent order to processing
                      */
                     $status = array_unique(array_keys($suborder_statuses));
-
                     if ( $suborder_count == 1 ) {
                         $new_status = isset($status[0]) ? $status[0] : $new_status;
                         $parent_order->update_status( $new_status, _x( "Sync from vendor's suborders: ", 'Order note', 'multivendorx' ) );
@@ -1117,8 +1110,7 @@ class MVX_Order {
                 }
             }
         }elseif(is_mvx_vendor_order($parent_order_id)){
-            $order_id = $parent_order_id;
-            $order = wc_get_order($order_id);
+            $order = wc_get_order($parent_order_id);
             $assoc_commission_id = $order->get_meta( '_commission_id', true );
             // delete associated refund commission meta data
             $commission_refunded_data = get_post_meta( $assoc_commission_id, '_commission_refunded_data', true );
@@ -1139,7 +1131,7 @@ class MVX_Order {
                 update_post_meta( $assoc_commission_id, '_commission_refunded', ($commission_refunded - $refunded_commission_amount) );
             }
 
-            wc_delete_shop_order_transients($order_id);
+            wc_delete_shop_order_transients($parent_order_id);
             wp_delete_post($refund_id);
         }
     }
@@ -1442,8 +1434,7 @@ class MVX_Order {
         return $formatted_meta;
     }
     
-    public function mvx_vendor_order_status_changed_actions( $order_id, $old_status, $new_status ){
-        $order = wc_get_order( $order_id );
+    public function mvx_vendor_order_status_changed_actions( $order_id, $old_status, $new_status, $order){
         if( !$order_id || !is_mvx_vendor_order( $order ) ) return;
         if( $new_status == 'cancelled' ){
             $commission_id = $order->get_meta( '_commission_id', true );
@@ -1628,7 +1619,7 @@ class MVX_Order {
     public function mvx_order_customer_refund_dd(){
         global $post;
         $sub_order = wc_get_order($post->ID);
-        $refund_status = $sub_order->get_meta('_customer_refund_order', true ) ? $sub_order->get_meta('_customer_refund_order', true ) : '';
+        $refund_status = $sub_order->get_meta('_customer_refund_order', true ) ?? '';
         $refund_statuses = array( 
             '' => __('Refund Status','multivendorx'),
             'refund_request' => __('Refund Requested', 'multivendorx'), 
