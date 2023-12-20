@@ -75,7 +75,7 @@ Build a **WooCommerce multivendor marketplace** that is compatible with most **W
 
 ##### ✓ **Follow Store -** Another latest innovation from MVX is the follow Store feature that let's customers be posted with store updates of their choice.
 
-##### ✓ **Notification Tools** - You can find other management tools with MultiVendorX like **[Announcements](https://multivendorx.com/docs/knowladgebase/announcement-and-knowledgebase/)**, [workboards](https://multivendorx.com/docs/knowladgebase/navigating-multivendorx-workboard/), and **[Knowledgebase](https://multivendorx.com/docs/knowladgebase/knowledgebase/)**. These tools are unique to only the MultiVendorX plugin. 
+##### ✓ **Notification Tools** - You can find other management tools with MultiVendorX like **[Announcements](https://multivendorx.com/docs/knowledgebase/announcement/)**, Workboards, and **[Knowledgebase](https://multivendorx.com/docs/knowladgebase/knowledgebase/)**. These tools are unique to only the MultiVendorX plugin. 
 
 ### Taste Victory with Advanced Features
 Competition requires having the right toolkit. To keep you ahead of your competitors, we bring to you a list of **affordable** and upgraded features with MultiVendorX Pro.
@@ -86,7 +86,7 @@ Competition requires having the right toolkit. To keep you ahead of your competi
 
 ##### ✓ [**Customizable Membership Plan**](https://multivendorx.com/docs/knowladgebase/marketplace-memberhsip/) - **Membership model** businesses have flourished quite well. You can now create membership packages like **Free membership**, **trial membership** or **paid membership** package using our MVX Vendor membership. Here you can decide the **membership fee, adjust price rates** and create **membership benefits** and plans to your desire. 
 
-##### ✓ [**Advanced Product Catalogue**](https://multivendorx.com/woocommerce-request-a-quote-product-catalog/) - With [WooCommerce Quote & Product Catalog Enquiry](https://multivendorx.com/woocommerce-request-a-quote-product-catalog/), you can create a catalog that allows customers to view your products. But what makes this added feature even more unique is the **inquiry cart** option, which lets customers [inquire about multiple products](https://multivendorx.com/woocommerce-request-a-quote-product-catalog/) all at the same time. To make this feature sound more useful, you can create a **catalog list** showcasing all your products along with the add-to-cart option. There is also an enquire now button that allows customers to enquire immediately.
+##### ✓ [**Advanced Product Catalogue**](https://multivendorx.com/woocommerce-product-catalog-mode-pro-quote-request/) - With [WooCommerce Quote & Product Catalog Enquiry](https://multivendorx.com/woocommerce-request-a-quote-product-catalog/), you can create a catalog that allows customers to view your products. But what makes this added feature even more unique is the **inquiry cart** option, which lets customers [inquire about multiple products](https://multivendorx.com/woocommerce-product-catalog-mode-pro-quote-request/) all at the same time. To make this feature sound more useful, you can create a **catalog list** showcasing all your products along with the add-to-cart option. There is also an enquire now button that allows customers to enquire immediately.
 
 ##### ✓ **Advanced Analytics-** Allow your vendors to grow further with advanced features like [Store SEO](https://multivendorx.com/docs/knowladgebase/store-seo/) that gives them the power of **Google Analytics** for actionable and accurate data. Along with this, our plugin is compatible with some of the **best SEO plugins** like **Yoast** and **Rank Math**, which is assured to increase your SERP Ranking. 
 
@@ -128,7 +128,7 @@ Note: MultiVendorX does not set an e-commerce platform, but it converts an e-com
  - **Customizable** Vendors **Registration Form**
 
 - **Managing Multiple Vendors on a Multi-Vendor Site** 
- - **[Seller Verification](https://multivendorx.com/docs/knowladgebase/identity-verifictaion/) (Pro)**
+ - **[Seller Verification](https://multivendorx.com/docs/knowledgebase/identity-verification/) (Pro)**
  - **Vendor List** 
  - Vendor’s Information/ Archive
 
@@ -136,20 +136,20 @@ Note: MultiVendorX does not set an e-commerce platform, but it converts an e-com
  - Effortlessly **upload product** 
  - Product GTINs
  - **Bulk Product Upload**
- - **[Product import-export ](https://multivendorx.com/product/mvx-frontend-manager/)(Pro)**
+ - **Product import-export (Pro)**
 
 - **Multiple Product Type Support**
  - Simple Product
  - Downloadable Product
  - Virtual  Product
- - [Variable Product ](https://multivendorx.com/docs/knowladgebase/variable-product/)(Pro)
- - [Grouped Product ](https://multivendorx.com/docs/knowladgebase/grouped-product/)(Pro)
- - **[Affiliate Product ](https://multivendorx.com/product/mvx-frontend-manager/)(Pro)**
- - **[Bookings ](https://multivendorx.com/docs/knowladgebase/booking-product/)(Pro)**
- - **[Rental ](https://multivendorx.com/docs/knowladgebase/rental-product/)(Pro)**
- - **[Accommodation ](https://multivendorx.com/docs/knowladgebase/accommodation-product/)(Pro)**
- - **[Subscription ](https://multivendorx.com/docs/knowladgebase/subscription-product/)(Pro)**
- - [Bundled ](https://multivendorx.com/product/mvx-frontend-manager/)(Pro)
+ - Variable Product (Pro)
+ - Grouped Product (Pro)
+ - Affiliate Product (Pro)**
+ - Bookings (Pro)**
+ - Rental (Pro)**
+ - Accommodation(Pro)**
+ - **Subscription (Pro)**
+ - Bundled (Pro)
 
 - Stress-free Order Manager
  - **Order Lists**
@@ -157,14 +157,14 @@ Note: MultiVendorX does not set an e-commerce platform, but it converts an e-com
  - **Track Order**
 
 - **Manage Inventory** with MVX Stock Alert
- - **[Inventory list ](https://multivendorx.com/product/mvx-vendor-stock-alert/)(Pro)**
+ - **[Inventory list ](https://multivendorx.com/woocommerce-product-stock-manager-notifier-pro/)(Pro)**
  - [Stock Alert](https://multivendorx.com/docs/knowladgebase/store-inventory/) (Pro)
 
 - **Suitable Payment Gateway** 
  - **[PayPal](https://multivendorx.com/docs/knowladgebase/paypal-marketplace-real-time-split/)** 
  - **MassPay** 
  - **Stripe and [Stripe Add-On](https://multivendorx.com/docs/knowladgebase/stripe-marketplace/)** 
- - **[Mangopay](https://multivendorx.com/product/mvx-mangopay-marketplace/) (Pro)**
+ - **[Mangopay](https://multivendorx.com/docs/knowledgebase/mangopay/) (Pro)**
 
 - **[Flexible Shipping](https://multivendorx.com/docs/knowladgebase/shipping/)** 
  - Weight-Based Shipping
@@ -182,33 +182,33 @@ Note: MultiVendorX does not set an e-commerce platform, but it converts an e-com
  - Fixed+Percentage commission per transaction
  - Fixed+Percentage Commission Per Unit
 
-- **Multiple Reports** 
+- **[Multiple Reports](https://multivendorx.com/docs/knowledgebase/store-analytics/)** 
  - **Sales**
  - **Product**
  - **Vendor**
  - **Earnings**
- - [Category](https://multivendorx.com/docs/knowladgebase/marketplace-analytics/) (Pro)
- - **[Tax](https://multivendorx.com/docs/knowladgebase/marketplace-analytics/) (Pro)**
- - **[Downloads Report (Pro)](https://multivendorx.com/docs/knowladgebase/marketplace-analytics/)**
+ - Category (Pro)
+ - **Tax (Pro)**
+ - **Downloads Report (Pro)**
 
-- [**Advanced Product Catalogue**](https://multivendorx.com/product/woocommerce-catalog-enquiry-pro/)
- - **[Product Catalogue](https://multivendorx.com/docs/knowladgebase/identity-verifictaion/) (Pro)**
- - **[Product inquiry](https://multivendorx.com/woocommerce-request-a-quote-product-catalog/) (Pro)**
+- [**Advanced Product Catalogue**](https://multivendorx.com/woocommerce-product-catalog-mode-pro-quote-request/)
+ - **Product Catalogue (Pro)**
+ - **Product inquiry(Pro)**
 
-- **Personalized Invoice** 
- - **[Auto-Generated Invoice ](https://multivendorx.com/docs/knowladgebase/invoice-packing-slip/) (Pro)**
- - **[PDF and Packaging Slip Download ](https://multivendorx.com/docs/knowladgebase/invoice-packing-slip/) (Pro)**
- - [Fully Customisable](https://multivendorx.com/product/mvx-pdf-invoice/) (Pro)
+- **[Personalized Invoice ](https://multivendorx.com/docs/knowladgebase/invoice-packing-slip/)** 
+ - **Auto-Generated Invoice (Pro)**
+ - **PDF and Packaging Slip Download(Pro)**
+ - Fully Customisable(Pro)
 
-- **SEO and Google Analytics**
- - **[Track Google Analytics data](https://multivendorx.com/docs/knowladgebase/store-seo/) (Pro)**
- - **[Yoast Compatible ](https://multivendorx.com/product/mvx-vendor-seo-and-analytics/) (Pro)**
- - **[Customizable Open-graph Messages](https://multivendorx.com/product/mvx-vendor-seo-and-analytics/) (Pro)**
+- **[SEO and Google Analytics](https://multivendorx.com/docs/knowladgebase/store-seo/)**
+ - **Track Google Analytics data (Pro)**
+ - **Yoast Compatible (Pro)**
+ - **Customizable Open-graph Messages (Pro)**
 
-- **Vendor Shop hours**
- - **[Shop’s Business hours](https://multivendorx.com/docs/knowladgebase/business-hours/) (Pro)**
- - **[Vendor Holiday Calendar](https://multivendorx.com/docs/knowladgebase/vacation-2/) (Pro)**
- - **[Vacation Messages](https://multivendorx.com/docs/knowladgebase/vacation-2/) (Pro)**
+- **[Vendor Shop hours](https://multivendorx.com/docs/knowledgebase/vacation/)**
+ - **Shop’s Business hours(Pro)**
+ - **Vendor Holiday Calendar]**
+ - **Vacation Messages(Pro)**
 
 - **Individual Seller Dashboard**
  - **Product Manager**
@@ -217,10 +217,10 @@ Note: MultiVendorX does not set an e-commerce platform, but it converts an e-com
  - **Reports Manager** 
  - **Payment Manager** 
 
-- **Vendor Staff**
- - **[Manage Staff ](https://multivendorx.com/docs/knowladgebase/staff-manager/) (Pro)**
- - **[Assign Tasks](https://multivendorx.com/product/mvx-vendor-staff/) (Pro)**
- - **[Track Staff Members](https://multivendorx.com/product/mvx-vendor-staff/) (Pro)**
+- **[Vendor Staff](https://multivendorx.com/docs/knowledgebase/staff-manager/)** 
+ - **Manage Staff (Pro)**
+ - **Assign Tasks(Pro)**
+ - **Track Staff Members(Pro)**
 
 
 ## Words of Trust
@@ -235,7 +235,6 @@ To know more on what we learnt from our customer [***read this blog*** ](https:/
 
 ### [Popular Blogs ](https://multivendorx.com/blog/)
 Confused about **how to get started**? Read our Blogs on**e-commerce best practices**, **Multivendor Shops, how to increase your website traffic** and many more. These blogs are powerful, inspirational and detailed enough to educate on anything marketplace. 
-
 ### Stay Connected
 Stay connected with MultiVendorX and reap benefits like - 
 
