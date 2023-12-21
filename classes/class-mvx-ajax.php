@@ -264,7 +264,6 @@ class MVX_Ajax {
                 }
                 // filter order for rwquest refund
                 if( $filterActionData['order_status'] == 'request_refund') {
-                    $vendor_all_orders = mvx_get_orders($args);
                     foreach ($vendor_all_orders as $key_refund => $value_refund) {
                         $refund_order = wc_get_order($value_refund);
                         $cust_refund_status = $refund_order->get_meta('_customer_refund_order', true ) ? $refund_order->get_meta('_customer_refund_order', true ) : '';
