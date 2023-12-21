@@ -1,4 +1,4 @@
-=== MultiVendorX - MultiVendor Marketplace Solution For WooCommerce ===
+=== MultiVendorX Marketplace - WooCommetrce MultiVendor Marketplace Solution ===
 Contributors: wcmp, purnendu, rajsekharchatterjee11
 Tags: multi vendor marketplace, woocommerce multivendor marketplace, multi seller store, product vendors, best marketplace plugin, multi seller, one product multi seller, woocommerce vendors, ebay, etsy, amazon, commission rate, marketplace, multi vendor, woocommerce marketplace, woocommerce multivendor, multivendor
 Donate link: http://multivendorx.com/donate/
