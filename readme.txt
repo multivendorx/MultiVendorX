@@ -1,11 +1,11 @@
 === MultiVendorX - MultiVendor Marketplace Solution For WooCommerce ===
-Contributors: wcmp, purnendu, rajsekharchatterjee11, abhirup23
+Contributors: wcmp, purnendu, rajsekharchatterjee11
 Tags: multi vendor marketplace, woocommerce multivendor marketplace, multi seller store, product vendors, best marketplace plugin, multi seller, one product multi seller, woocommerce vendors, ebay, etsy, amazon, commission rate, marketplace, multi vendor, woocommerce marketplace, woocommerce multivendor, multivendor
 Donate link: http://multivendorx.com/donate/
 Requires at least: 4.4
-Tested up to: 6.4.1
+Tested up to: 6.4.2
 Requires PHP: 7.2
-Stable tag: 4.0.31
+Stable tag: 4.0.32
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -290,6 +290,14 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.0.32 - 2023-12-21 =
+* Added     - Compatibility of WordPress 6.4.2.
+* Added     - Compatibility of WooCommerce 8.4.0.
+*Fix        - There were issues in the vendor shipping option while configuring it from the admin dashboard. The CSS was not correct, the scrollbar was not working while in the add shipping method section. We have fixed those issue in our current update. Also added an option to get back to the previous page in the shipping section. #576
+*Fix        - There were lot of issues in the WPML module. The translation flags were not present in the vendor dashboard, the product url was not showing correctly. But in this new updated version we have fixed those.
+*Fix        - If we set vendor wise commission as 0 and set global commission then the vendor commission gets calculated on global commission. But if the vendor wise commission is set something other than 0 then the commission is calculated as per that. We have fixed this issue with vendor commission and the commission is getting calculated accordingly. #591
+* Updated   - Language file.
 
 = 4.0.31 - 2023-11-28 =
 * Added     - Compatibility of WooCommerce 8.3.1.
