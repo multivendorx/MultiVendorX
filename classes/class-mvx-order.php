@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
 class MVX_Order {
 
     public function __construct() {
-        global $MVX;
+        global $MVX, $PAGE;
         // Init MVX Vendor Order class
         $MVX->load_class('vendor-order');
         // Add extra vendor_id to shipping packages
@@ -26,11 +26,14 @@ class MVX_Order {
             
         } else {
             // filters order list table
-            if($MVX->hpos_is_enabled){
-                add_filter( 'woocommerce_orders_table_query_clauses', array($this, 'wc_order_list_filter') );
-            } else { // before wc version 8.3.0
-                add_filter('request', array($this, 'wc_order_list_filter_old'), 10, 1);
+            if(isset($_GET['page']) && $_GET['page'] == 'wc-orders'){
+                if($MVX->hpos_is_enabled){
+                    add_filter( 'woocommerce_orders_table_query_clauses', array($this, 'wc_order_list_filter') );
+                } else { // before wc version 8.3.0
+                    add_filter('request', array($this, 'wc_order_list_filter_old'), 10, 1);
+                }
             }
+            
             add_action('admin_head', array($this, 'count_processing_order'), 5);
             add_filter('admin_body_class', array( $this, 'add_admin_body_class' ));
             add_filter('views_edit-shop_order', array($this, 'shop_order_statuses_get_views') );
@@ -515,7 +518,7 @@ class MVX_Order {
             return $vendor_order_id;
         }
 
-        $vendor_order = wc_get_order($vendor_order_id);//hpos not supported
+        $vendor_order = wc_get_order($vendor_order_id);
 
         $checkout_fields = array();
         if( !$data_migration ){
