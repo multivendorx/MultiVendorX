@@ -32,15 +32,25 @@ function mvx_get_orders($args = array(), $return_type = 'ids', $subonly = false)
 	'fields'           => 'ids',
     );
     if( $subonly ) {
-        $default['meta_key'] = '_created_via';
-        $default['meta_value'] = 'mvx_vendor_order';
+        $default['meta_query'] = array(
+            array(
+                'key' => '_created_via',
+                'value' => 'mvx_vendor_order',
+            ),
+        );
     }
     $args = wp_parse_args($args, $default);
     $query = new WC_Order_Query( apply_filters( 'mvx_get_orders_query_args', $args ) );
     if(strtolower($return_type) == 'object'){
         $orders = array();
-        foreach ($query->get_orders() as $post_id) {
-            $orders[$post_id] = wc_get_order($post_id);
+        foreach ($query->get_orders() as $order) {
+            if(!is_object($order)){
+                $orders[$order] = wc_get_order($order);
+            }
+            else{
+               $orders [$order->get_id()] = $order;
+            }
+                
         }
         return $orders;
     }
