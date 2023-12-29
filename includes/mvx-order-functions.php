@@ -36,15 +36,15 @@ function mvx_get_orders($args = array(), $return_type = 'ids', $subonly = false)
         $default['meta_value'] = 'mvx_vendor_order';
     }
     $args = wp_parse_args($args, $default);
-    $query = new WP_Query( apply_filters( 'mvx_get_orders_query_args', $args ) );
+    $query = new WC_Order_Query( apply_filters( 'mvx_get_orders_query_args', $args ) );
     if(strtolower($return_type) == 'object'){
         $orders = array();
-        foreach ($query->get_posts() as $post_id) {
+        foreach ($query->get_orders() as $post_id) {
             $orders[$post_id] = wc_get_order($post_id);
         }
         return $orders;
     }
-    return $query->get_posts();
+    return $query->get_orders();
 }
 
 /**
@@ -159,14 +159,14 @@ function get_mvx_suborders( $order_id, $args = array(), $object = true ) {
     $orders = array();
     // remove_filter('woocommerce_orders_table_query_clauses', array($MVX->order, 'wc_order_list_filter'));
     if($MVX->hpos_is_enabled){
-        if(is_int($order_id)){
+        if(is_object($order_id)){
+            $orders = wc_get_orders(array('parent' => $order_id->get_id()));
+        } else {
             $default = array(
                 'parent' => $order_id,
             );
             $args = ( $args ) ? wp_parse_args( $args, $default ) : $default;
             $orders = wc_get_orders($args);
-        } else {
-            $orders = wc_get_orders(array('parent' => $order_id->get_id()));
         }
     } else {
         $default = array(

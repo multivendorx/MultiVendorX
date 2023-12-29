@@ -329,7 +329,7 @@ class MVX_Commission {
             $shipping_amount = get_post_meta( $commission_id, '_shipping', true );
             $commission_refunded_shipping = get_post_meta( $commission_id, '_commission_refunded_shipping', true );
             $total = floatval($shipping_amount) + floatval($commission_refunded_shipping);
-            return $context == 'view' ? wc_price($total, array('currency' => $order->get_currency())) : $total;
+            return $context == 'view' ? ( $order ? (wc_price($total, array('currency' => $order->get_currency()))) : 0 ) : $total;
         }
     }
     

@@ -26,12 +26,14 @@ class MVX_Order {
             
         } else {
             // filters order list table
-            if(isset($_GET['page']) && $_GET['page'] == 'wc-orders'){
-                if($MVX->hpos_is_enabled){
-                    add_filter( 'woocommerce_orders_table_query_clauses', array($this, 'wc_order_list_filter') );
-                } else { // before wc version 8.3.0
-                    add_filter('request', array($this, 'wc_order_list_filter_old'), 10, 1);
-                }
+            if($MVX->hpos_is_enabled){
+                add_action('current_screen', function($screen) {
+                    if('woocommerce_page_wc-orders' === $screen->id) {
+                        add_filter( 'woocommerce_orders_table_query_clauses', array($this, 'wc_order_list_filter') );
+                    }
+                });
+            } else { // before wc version 8.3.0
+                add_filter('request', array($this, 'wc_order_list_filter_old'), 10, 1);
             }
             
             add_action('admin_head', array($this, 'count_processing_order'), 5);
