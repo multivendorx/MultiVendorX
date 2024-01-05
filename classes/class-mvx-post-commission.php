@@ -104,7 +104,7 @@ class MVX_Commission {
                  */
                 do_action('mvx_commission_update_commission_meta', $commission_id);
 
-                self::add_commission_note($commission_id, sprintf(__('Commission for order <a href="%s">(ID : %s)</a> is created.', 'multivendorx'), get_admin_url() . 'post.php?post=' . $order_id . '&action=edit', $order_id), $vendor_id);
+                self::add_commission_note($commission_id, sprintf(__('Commission for order <a href="%s">(ID : %s)</a> is created.', 'multivendorx'), get_admin_url() . 'post.php?post=' . $order->get_id() . '&action=edit', $order->get_id()), $vendor_id);
                 return $commission_id;
             }
         }
@@ -129,7 +129,7 @@ class MVX_Commission {
             // if recalculate is set
             if( $recalculate ) {
                 foreach ($order->get_items() as $item_id => $item) {
-                    $parent_order_id = wp_get_post_parent_id( $order->get_id() );
+                    $parent_order_id = $order->get_parent_id();
                     $parent_order = wc_get_order( $parent_order_id );
                     $variation_id = isset($item['variation_id']) && !empty($item['variation_id']) ? $item['variation_id'] : 0;
                     $item_commission = $MVX->commission->get_item_commission($item['product_id'], $variation_id, $item, $parent_order_id, $item_id);
