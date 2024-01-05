@@ -72,22 +72,21 @@ class MVX_Elementor_StoreData {
 
 			$address = $store->get_formatted_address();
 			if( $address ) {
-				if ( !$vendor_hide_address && !empty( $address ) ) {
+				if ( $vendor_hide_address == 'disable' && !empty( $address ) ) {
 					$this->store_data['address'] = $address;
 				}
 			}
 
 			$phone = $store->phone;
-
 			if( $phone ) {
-				if ( !$vendor_hide_phone && !empty( $phone ) ) {
+				if ( $vendor_hide_phone == 'disable' && !empty( $phone ) ) {
 					$this->store_data['phone'] = $phone;
 				}
 			}
 
 			$email = $store->user_data->user_email;
 			if( $email ) {
-				if ( !$vendor_hide_email && !empty( $email ) ) {
+				if ( $vendor_hide_email == 'disable' && !empty( $email ) ) {
 					$this->store_data['email'] = $email;
 				}
 			}
