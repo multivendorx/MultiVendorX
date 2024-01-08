@@ -8005,7 +8005,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'name'         => __( 'Knowledgebase', 'multivendorx' ),
                         'description'  => __( 'Admin can share tutorials and othe vendor-specific information with vendors', 'multivendorx' ),
                         'plan'         => 'free',
-                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/knowladgebase',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/knowledgebase/',
                         'mod_link'     => admin_url('admin.php?page=mvx#&submenu=work-board&name=knowladgebase'),
                     ],
                 ]
