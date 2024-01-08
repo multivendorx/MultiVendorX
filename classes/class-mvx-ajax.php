@@ -213,18 +213,30 @@ class MVX_Ajax {
         $vendor = get_current_vendor();
         
         $args = array(
-            'author' => $vendor->id,
+            // 'author' => $vendor->id,
             'post_status' => 'any',
             'date_query' => array(
+                        'inclusive' => true,
+                        'after' => array(
+                            'year' => date('Y', $date_start),
+                            'month' => date('n', $date_start),
+                            'day' => date('j', $date_start),
+                        ),
+                        'before' => array(
+                            'year' => date('Y', $date_end),
+                            'month' => date('n', $date_end),
+                            'day' => date('j', $date_end),
+                        ),
+                    ),
+            'meta_query' => array(
                 array(
-                    'after'     => $start_date,
-                    'before'    => $end_date,
-                    'inclusive' => true,
+                    'key' => '_vendor_id',
+                    'value' => $vendor->id,
+                    'compare' => '=',
                 ),
-            )
+            ),
         );
         $vendor_all_orders = apply_filters('mvx_datatable_get_vendor_all_orders', mvx_get_orders($args), $requestData, $_POST);
-        
         $filterActionData = array();
         parse_str($requestData['orders_filter_action'], $filterActionData);
         do_action('mvx_before_orders_list_query_bind', $filterActionData, $requestData, $vendor_all_orders);
@@ -262,9 +274,9 @@ class MVX_Ajax {
                 }
                 // filter order for rwquest refund
                 if( $filterActionData['order_status'] == 'request_refund') {
-                    $vendor_all_orders = mvx_get_orders($args);
                     foreach ($vendor_all_orders as $key_refund => $value_refund) {
-                        $cust_refund_status = get_post_meta( $value_refund, '_customer_refund_order', true ) ? get_post_meta( $value_refund, '_customer_refund_order', true ) : '';
+                        $refund_order = wc_get_order($value_refund);
+                        $cust_refund_status = $refund_order->get_meta('_customer_refund_order', true ) ? $refund_order->get_meta('_customer_refund_order', true ) : '';
                         if ($cust_refund_status != 'refund_request') {
                             unset($vendor_all_orders[$key_refund]);
                         }
@@ -287,10 +299,10 @@ class MVX_Ajax {
         foreach ($vendor_orders as $order_id) {
             $order = wc_get_order($order_id);
             $vendor_order = mvx_get_order($order_id);
-            if ($order) {
+            if ($order && $vendor_order) {
                 if(in_array($order->get_status(), array('draft', 'trash'))) continue;
                 $actions = array();
-                $is_shipped = (array) get_post_meta($order->get_id(), 'dc_pv_shipped', true);
+                $is_shipped = (array) $order->get_meta('dc_pv_shipped', true);
                 if (!in_array($vendor->id, $is_shipped)) {
                     $mark_ship_title = __('Mark as shipped', 'multivendorx');
                 } else {
@@ -780,7 +792,7 @@ class MVX_Ajax {
             if (!$vendor)
                 die('Invalid request');
             $order_data = array();
-            $commission_id = get_post_meta( $order_id, '_commission_id', true );
+            $commission_id = $order->get_meta( '_commission_id', true );
             if (!empty($commission_id)) {
                 //$commission_id = $customer_orders[0]['commission_id'];
                 $order_data[$commission_id] = $order_id;
@@ -972,7 +984,6 @@ class MVX_Ajax {
         $proid = isset($_POST['proid']) ? wc_clean($_POST['proid']) : 0;
         if ($proid) {
             if (wp_delete_post($proid)) {
-                //echo 'success';
                 echo '{"status": "success", "shop_url": "' . get_permalink(wc_get_page_id('shop')) . '"}';
                 die;
             }
@@ -2100,8 +2111,8 @@ class MVX_Ajax {
 
                         $action_html = '';
                         if ($vendor->is_shipping_enable()) {
-                            $is_shipped = (array) get_post_meta($pending_order->get_id(), 'dc_pv_shipped', true);
-                            $vendor_order_shipped = get_post_meta($pending_order->get_id(), 'mvx_vendor_order_shipped');
+                            $is_shipped = (array) $pending_order->get_meta('dc_pv_shipped', true);
+                            $vendor_order_shipped = $pending_order->get_meta('mvx_vendor_order_shipped');
                             if (!in_array($vendor->id, $is_shipped) && !$vendor_order_shipped ) {
                                 $action_html .= '<a href="javascript:void(0)" title="' . __('Mark as shipped', 'multivendorx') . '" onclick="mvxMarkeAsShip(this,' . $pending_order->get_id() . ')"><i class="mvx-font ico-shippingnew-icon action-icon"></i></a> ';
                             } else {
@@ -2903,7 +2914,6 @@ class MVX_Ajax {
         $taxonomy = isset($_POST['taxonomy']) ? wc_clean($_POST['taxonomy']) : '';
         $hierarchy = get_ancestors($term_id, $taxonomy);
         $html_level = $html_hierarchy = '';
-        //print_r($hierarchy);die;
         $level = 1;
         $parent = 0;
         if ($hierarchy) {
@@ -3169,7 +3179,7 @@ class MVX_Ajax {
         try {
             $order = wc_get_order($order_id);
 
-            $parent_order_id = wp_get_post_parent_id($order_id);
+            $parent_order_id = $order->get_parent_id();
             $parent_order = wc_get_order( $parent_order_id );
             $parent_items_ids = array_keys($parent_order->get_items( array( 'line_item', 'fee', 'shipping' ) ));
 

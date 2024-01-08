@@ -4,7 +4,7 @@
  * Plugin URI: https://multivendorx.com/
  * Description: A Free Extension That Transforms Your WooCommerce Site into a Marketplace.
  * Author: MultiVendorX
- * Version: 4.0.32
+ * Version: 4.1.0
  * Author URI: https://multivendorx.com/
  * Requires at least: 4.4
  * Tested up to: 6.4.2
@@ -99,3 +99,8 @@ function mvx_namespace_approve( $value ) {
 	
 	return $return;
 }
+add_action ( 'before_woocommerce_init', function () {  
+    if ( class_exists ( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+        \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility ( 'custom_order_tables', WP_CONTENT_DIR.'/plugins/dc-woocommerce-multi-vendor/dc_product_vendor.php', true );  
+    } 
+});

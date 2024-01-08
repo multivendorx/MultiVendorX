@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
 class MVX_Order {
 
     public function __construct() {
-        global $MVX;
+        global $MVX, $PAGE;
         // Init MVX Vendor Order class
         $MVX->load_class('vendor-order');
         // Add extra vendor_id to shipping packages
@@ -26,7 +26,16 @@ class MVX_Order {
             
         } else {
             // filters order list table
-            add_filter('request', array($this, 'wc_order_list_filter'), 10, 1);
+            if($MVX->hpos_is_enabled){
+                add_action('current_screen', function($screen) {
+                    if('woocommerce_page_wc-orders' === $screen->id) {
+                        add_filter( 'woocommerce_orders_table_query_clauses', array($this, 'wc_order_list_filter') );
+                    }
+                });
+            } else { // before wc version 8.3.0
+                add_filter('request', array($this, 'wc_order_list_filter_old'), 10, 1);
+            }
+            
             add_action('admin_head', array($this, 'count_processing_order'), 5);
             add_filter('admin_body_class', array( $this, 'add_admin_body_class' ));
             add_filter('views_edit-shop_order', array($this, 'shop_order_statuses_get_views') );
@@ -38,16 +47,25 @@ class MVX_Order {
             add_filter( 'woocommerce_customer_available_downloads', array($this, 'woocommerce_customer_available_downloads'), 99);
             add_action('mvx_frontend_enqueue_scripts', array($this, 'mvx_frontend_enqueue_scripts'));
             if( !is_user_mvx_vendor( get_current_user_id() ) ) {
-                add_filter('manage_shop_order_posts_columns', array($this, 'mvx_shop_order_columns'), 99);
-                add_action('manage_shop_order_posts_custom_column', array($this, 'mvx_show_shop_order_columns'), 99, 2);
+                if($MVX->hpos_is_enabled){
+                    add_filter('manage_woocommerce_page_wc-orders_columns', array($this, 'mvx_shop_order_columns'), 99);
+                    add_action('manage_woocommerce_page_wc-orders_custom_column', array($this, 'mvx_show_shop_order_columns'), 99, 2);
+                } else { // before wc version 8.3.0
+                    add_filter('manage_shop_order_posts_columns', array($this, 'mvx_shop_order_columns'), 99);
+                    add_action('manage_shop_order_posts_custom_column', array($this, 'mvx_show_shop_order_columns'), 99, 2);
+                }
             }
             if(apply_filters('mvx_parent_order_to_vendor_order_status_synchronization', true))
-                add_action('woocommerce_order_status_changed', array($this, 'mvx_parent_order_to_vendor_order_status_synchronization'), 90, 3);
+                add_action('woocommerce_order_status_changed', array($this, 'mvx_parent_order_to_vendor_order_status_synchronization'), 90, 4);
             if(apply_filters('mvx_vendor_order_to_parent_order_status_synchronization', true))
-                add_action('woocommerce_order_status_changed', array($this, 'mvx_vendor_order_to_parent_order_status_synchronization'), 99, 3);
+                add_action('woocommerce_order_status_changed', array($this, 'mvx_vendor_order_to_parent_order_status_synchronization'), 99, 4);
             // MVX create orders
             add_action('woocommerce_saved_order_items', array(&$this, 'mvx_create_orders_from_backend'), 10, 2 );
-            add_action('woocommerce_checkout_order_processed', array(&$this, 'mvx_create_orders'), 10, 3);
+            if(version_compare(WC_VERSION, '8.3.0', '>=')){
+                add_action('woocommerce_new_order', array(&$this, 'mvx_create_orders_hpos'), 10, 2);
+            } else { // before wc version 8.3.0
+                add_action('woocommerce_checkout_order_processed', array(&$this, 'mvx_create_orders'), 10, 3);
+            }
             add_action('woocommerce_after_checkout_validation', array($this, 'mvx_check_order_awaiting_payment'));
             add_action( 'woocommerce_rest_insert_shop_order_object',array($this,'mvx_create_orders_via_rest_callback'), 10, 3 );
             // Add product for sub order
@@ -74,7 +92,7 @@ class MVX_Order {
             add_filter( 'woocommerce_can_reduce_order_stock', array($this, 'woocommerce_can_reduce_order_stock'), 99, 2 );
             add_filter( 'woocommerce_hidden_order_itemmeta', array($this, 'woocommerce_hidden_order_itemmeta'), 99 );
             add_filter( 'woocommerce_order_item_get_formatted_meta_data', array($this, 'woocommerce_hidden_order_item_get_formatted_meta_data'), 99 );
-            add_action( 'woocommerce_order_status_changed', array($this, 'mvx_vendor_order_status_changed_actions'), 99, 3 );
+            add_action( 'woocommerce_order_status_changed', array($this, 'mvx_vendor_order_status_changed_actions'), 99, 4 );
             add_action( 'woocommerce_rest_shop_order_object_query', array($this, 'mvx_exclude_suborders_from_rest_api_call'), 99, 2 );
             add_filter( "woocommerce_rest_shop_order_object_query", array($this, 'mvx_suborder_hide' ), 99 , 2 );
             // customer list report section
@@ -92,7 +110,7 @@ class MVX_Order {
      */
 
     public function add_meta_date_in_order_line_item($item, $item_key, $values, $order) {
-        if ( $order && wp_get_post_parent_id( $order->get_id() ) == 0 || (function_exists('wcs_is_subscription') && wcs_is_subscription( $order )) ) {
+        if ( $order &&  $order->get_parent_id() == 0 || (function_exists('wcs_is_subscription') && wcs_is_subscription( $order )) ) {
             $general_cap = apply_filters('mvx_sold_by_text', __('Sold By', 'multivendorx'));
             $vendor = get_mvx_product_vendors($item['product_id']);
             if ($vendor) {
@@ -136,8 +154,7 @@ class MVX_Order {
             } 
         }
     }
-
-    public function wc_order_list_filter($query) {
+    public function wc_order_list_filter_old($query) {
         global $typenow;
         $user = wp_get_current_user();
         if ('shop_order' == $typenow) {
@@ -150,8 +167,13 @@ class MVX_Order {
             }
             return apply_filters("mvx_shop_order_query_request", $query);
         }
-
         return $query;
+    }
+
+    public function wc_order_list_filter($where_cloas) {
+        global $wpdb;
+        $where_cloas['where'] .= ' AND ' . $wpdb->prefix . 'wc_orders.parent_order_id = 0';
+        return $where_cloas;
     }
     
     public function init_prevent_trigger_vendor_order_emails(){
@@ -206,7 +228,7 @@ class MVX_Order {
     
     public function woocommerce_email_recipient($recipient, $object ){
         if(!$object) return $recipient;
-        $is_migrated_order = get_post_meta($object->get_id(), '_order_migration', true);
+        $is_migrated_order = $object->get_meta('_order_migration', true);
         if($is_migrated_order) return false;
         return $object instanceof WC_Order && wp_get_post_parent_id( $object->get_id() ) ? false : $recipient;
     }
@@ -214,7 +236,7 @@ class MVX_Order {
     public function woocommerce_email_disabled($enabled, $object ){
         if(!$object) return $enabled;
         $is_vendor_order = ($object) ? mvx_get_order($object->get_id()) : false;
-        $is_migrated_order = get_post_meta($object->get_id(), '_order_migration', true);
+        $is_migrated_order = $object->get_meta('_order_migration', true);
         if($is_migrated_order) return false;
         return $object instanceof WC_Order && wp_get_post_parent_id( $object->get_id() ) && $is_vendor_order ? false : $enabled;
     }
@@ -222,7 +244,7 @@ class MVX_Order {
     public function woocommerce_email_enabled($enabled, $object ){
         if(!$object) return $enabled;
         $is_vendor_order = ($object) ? mvx_get_order($object->get_id()) : false;
-        $is_migrated_order = get_post_meta($object->get_id(), '_order_migration', true);
+        $is_migrated_order = $object->get_meta('_order_migration', true);
         if($is_migrated_order) return false;
         
         if ( $object instanceof WC_Order && wp_get_post_parent_id( $object->get_id() ) && $is_vendor_order ) return $enabled;
@@ -247,17 +269,22 @@ class MVX_Order {
      * @param  string $column
      */
     public function mvx_show_shop_order_columns($column, $post_id) {
+        global $MVX;
+        remove_filter( 'woocommerce_orders_table_query_clauses', array($this, 'wc_order_list_filter') );
         switch ($column) {
-            case 'mvx_suborder' :
+                case 'mvx_suborder' :
                 $mvx_suborders = get_mvx_suborders($post_id);
-
                 if ($mvx_suborders) {
                     echo '<ul class="mvx-order-vendor" style="margin:0px;">';
                     foreach ($mvx_suborders as $suborder) {
-                        $vendor = get_mvx_vendor(get_post_field('post_author', $suborder->get_id()));
+                        if($suborder->get_type() == 'shop_order_refund') continue;
+                        $vendor = get_mvx_vendor($suborder->get_meta( '_vendor_id', true ));
                         $vendor_page_title = ($vendor) ? $vendor->page_title : __('Deleted vendor', 'multivendorx');
-                        $order_uri = apply_filters('mvx_admin_vendor_shop_order_edit_url', esc_url('post.php?post=' . $suborder->get_id() . '&action=edit'), $suborder->get_id());
-
+                        if($MVX->hpos_is_enabled){
+                            $order_uri = apply_filters('mvx_admin_vendor_shop_order_edit_url', esc_url('admin.php?page=wc-orders&action=edit&id=' . $suborder->get_id() . ''), $suborder->get_id());
+                        } else {
+                            $order_uri = apply_filters('mvx_admin_vendor_shop_order_edit_url', esc_url('post.php?post=' . $suborder->get_id() . '&action=edit'), $suborder->get_id());
+                        }
                         printf('<li><mark class="%s tips" data-tip="%s">%s</mark> <strong><a href="%s">#%s</a></strong> &ndash; <small class="mvx-order-for-vendor">%s %s</small></li>', sanitize_title($suborder->get_status()), $suborder->get_status(), $suborder->get_status(), $order_uri, $suborder->get_order_number(), _x('for', 'Order table details', 'multivendorx'), $vendor_page_title
                         );
 
@@ -270,6 +297,12 @@ class MVX_Order {
                 break;
         }
     }
+    
+    public function mvx_create_orders_hpos($order_id, $order) {
+        $posted_data = array();
+        $this->mvx_create_orders($order_id, $posted_data, $order, false);
+        
+    }
 
     public function mvx_create_orders($order_id, $posted_data, $order, $backend = false) {
         global $MVX;
@@ -277,10 +310,9 @@ class MVX_Order {
         if (wp_get_post_parent_id($order_id) != 0)
             return false;
 
-        $order = wc_get_order($order_id);
+        // $order = wc_get_order($order_id);
         $items = $order->get_items();
         $vendor_items = array();
-
         foreach ($items as $item_id => $item) {
             if (isset($item['product_id']) && $item['product_id'] !== 0) {
                 // check vendor product
@@ -303,11 +335,12 @@ class MVX_Order {
         if (count($vendor_items) == 0)
             return false;
         // update parent order meta
-        update_post_meta($order_id, 'has_mvx_sub_order', true);
+        $order->update_meta_data('has_mvx_sub_order', true);
+        $order->save();
         $vendor_orders = array();
         foreach ($vendor_items as $vendor_id => $items) {
             if (!empty($items)) {
-                $vendor_orders[] = self::create_vendor_order(array(
+                $vendor_orders[] = self::create_vendor_order($order, array(
                             'order_id' => $order_id,
                             'vendor_id' => $vendor_id,
                             'posted_data' => $posted_data,
@@ -345,7 +378,7 @@ class MVX_Order {
             }
         }
         
-        $has_sub_order = get_post_meta($order_id, 'has_mvx_sub_order', true) ? true : false;
+        // $has_sub_order = $order->get_meta( 'has_mvx_sub_order', true) ? true : false;
         $suborders = get_mvx_suborders( $order_id, false, false);
         if ($is_sub_create) {
             if ($suborders) {
@@ -370,7 +403,7 @@ class MVX_Order {
                 }
             }
         }
-        if( $order && get_post_meta( $order->get_id(), '_created_via', true ) !== 'rest-api' ) return;
+        if( $order && $order->get_meta('_created_via', true ) !== 'rest-api' ) return;
         $this->mvx_create_orders($order->get_id(), array(), $order, true);
     }
 
@@ -381,7 +414,7 @@ class MVX_Order {
             $suborders = get_mvx_suborders($order->get_id());
             if (!empty($suborders)) {
                 foreach ($suborders as $key_order => $value_order) {
-                    $vendor_of_order = get_post_meta( $value_order->get_id(), '_vendor_id', true );
+                    $vendor_of_order = $value_order->get_meta('_vendor_id', true );
                     if ($vendor_of_order == get_mvx_product_vendors($item_data->get_product_id())->id) {
                         $suborder_id = $value_order->get_id();
                     }
@@ -441,8 +474,9 @@ class MVX_Order {
      * @param boolean $data_migration (default: false) for data migration
      * @return MVX_Order|WP_Error
      */
-    public static function create_vendor_order($args = array(), $data_migration = false) {
+    public static function create_vendor_order($order, $args = array(), $data_migration = false) {
         global $MVX;
+        
         $default_args = array(
             'vendor_id' => 0,
             'order_id' => 0,
@@ -452,7 +486,7 @@ class MVX_Order {
         );
 
         $args = wp_parse_args($args, $default_args);
-        $order = wc_get_order($args['order_id']);
+        // $order = wc_get_order($args['order_id']);
         if (!$order) return false;
         $data = array();
 
@@ -468,7 +502,7 @@ class MVX_Order {
                 'post_status' => 'wc-' . ( $order->get_status('edit') ? $order->get_status('edit') : apply_filters('mvx_create_vendor_order_default_order_status', 'pending') ),
                 'ping_status' => 'closed',
                 'post_author' => absint($args['vendor_id']),
-                'post_title' => sprintf(__('Vendor Order &ndash; %s', 'multivendorx'), strftime(_x('%B %e, %Y @ %I:%M %p', 'Commission date parsed by strftime', 'multivendorx'), current_time('timestamp'))),
+                'post_title' => sprintf(__('Vendor Order &ndash; %s', 'multivendorx'), date(_x('F j, Y @ h:i a', 'Commission date parsed by date', 'multivendorx'), current_time('timestamp'))),
                 'post_password' => uniqid('mvx_order_'),
                 'post_parent' => absint($args['order_id']),
                 'post_excerpt' => isset($args['posted_data']['order_comments']) ? $args['posted_data']['order_comments'] : '',
@@ -479,7 +513,11 @@ class MVX_Order {
         if ($updating) {
             $vendor_order_id = wp_update_post($data);
         } else {
-            $vendor_order_id = wp_insert_post($data, true);
+            if($MVX->hpos_is_enabled){
+                $vendor_order_id = insert_mvx_vendor_order_data($order, $args['vendor_id']);
+            } else {
+                $vendor_order_id = wp_insert_post($data, true);
+            }
             $args['vendor_order_id'] = $vendor_order_id;
         }
 
@@ -518,8 +556,9 @@ class MVX_Order {
                 if ('account' != $section) {
                     foreach ($checkout_meta_keys as $order_meta_key => $order_meta_values) {
                         $meta_key = 'shipping' == $section || 'billing' == $section ? '_' . $order_meta_key : $order_meta_key;
-                        $meta_value_to_save = isset($args['posted_data'][$order_meta_key]) ? $args['posted_data'][$order_meta_key] : get_post_meta($order->get_id(), $meta_key, true);
-                        update_post_meta($vendor_order_id, $meta_key, $meta_value_to_save);
+                        $meta_value_to_save = isset($args['posted_data'][$order_meta_key]) ? $args['posted_data'][$order_meta_key] : $order->get_meta(  $meta_key, true);
+                        $vendor_order->update_meta_data($meta_key, $meta_value_to_save);
+                        $vendor_order->save();
                     }
                 }
             }
@@ -537,15 +576,14 @@ class MVX_Order {
         ));
 
         foreach ($order_meta as $key) {
-            update_post_meta($vendor_order_id, $key, get_post_meta($order->get_id(), $key, true));
+            $vendor_order->update_meta_data($key, $order->get_meta( $key, true));
         }
 
-        update_post_meta($vendor_order_id, '_mvx_order_version', $MVX->version);
-        update_post_meta($vendor_order_id, '_vendor_id', absint($args['vendor_id']));
-        update_post_meta($vendor_order_id, '_created_via', 'mvx_vendor_order');
-        
+        $vendor_order->update_meta_data('_mvx_order_version', $MVX->version);
+        $vendor_order->update_meta_data('_vendor_id', absint($args['vendor_id']));
+        $vendor_order->update_meta_data('_created_via', 'mvx_vendor_order');
         if($data_migration)
-            update_post_meta($vendor_order_id, '_order_migration', true);
+            $vendor_order->update_meta_data('_order_migration', true);
 
         /**
          * Action hook to adjust order before save.
@@ -571,7 +609,7 @@ class MVX_Order {
     public static function create_mvx_order_line_items($order, $args) {
         $line_items = $args['line_items'];
         $commission_rate_items = array();
-        foreach ($line_items as $item_id => $order_item) {
+        foreach ($line_items as $order_item) {
             if (isset($order_item['product_id']) && $order_item['product_id'] !== 0) {
                 $item = new WC_Order_Item_Product();
                 $product = wc_get_product($order_item['product_id']);
@@ -600,7 +638,7 @@ class MVX_Order {
                 }
 
                 $item->set_backorder_meta();
-                $item->add_meta_data('_vendor_order_item_id', $item_id);
+                $item->add_meta_data('_vendor_order_item_id', $item->get_product_id());
                 // Add commission data
                 $item->add_meta_data('_vendor_item_commission', $order_item['commission']);
                 
@@ -618,12 +656,12 @@ class MVX_Order {
 //                $item->add_meta_data($general_cap, $vendor->page_title);
 
 
-                do_action('mvx_vendor_create_order_line_item', $item, $item_id, $order_item, $order);
+                do_action('mvx_vendor_create_order_line_item', $item, $item->get_product_id(), $order_item, $order);
                 // Add item to order and save.
                 $order->add_item($item);
                 // temporary commission rate save with order_item_id
                 if(isset($order_item['commission_rate']) && $order_item['commission_rate'])
-                    $commission_rate_items[$item_id] = $order_item['commission_rate'];
+                    $commission_rate_items[$item->get_product_id()] = $order_item['commission_rate'];
             }
         }
         /**
@@ -631,8 +669,8 @@ class MVX_Order {
          *
          * @since 3.1.2.0
          */
-        update_post_meta(absint($args['vendor_order_id']), 'order_items_commission_rates', $commission_rate_items);
-        
+        $order->update_meta_data('order_items_commission_rates', $commission_rate_items);
+        $order->save();
     }
 
     /**
@@ -812,46 +850,44 @@ class MVX_Order {
         }
     }
 
-    public function mvx_parent_order_to_vendor_order_status_synchronization($order_id, $old_status, $new_status) {
+    public function mvx_parent_order_to_vendor_order_status_synchronization($order_id, $old_status, $new_status, $order) {
+        global $MVX;
         if(!$order_id) return;
         // Check order have status
         if (empty($new_status)) {
-            $order = wc_get_order($order_id);
             $new_status = $order->get_status('edit');
-        }
-        
+        }    
         $status_to_sync = apply_filters('mvx_parent_order_to_vendor_order_statuses_to_sync',array('on-hold', 'pending', 'processing', 'cancelled', 'failed'));
         if( in_array($new_status, $status_to_sync) ) :
-            if (wp_get_post_parent_id( $order_id ) || get_post_meta($order_id, 'mvx_vendor_order_status_synchronized', true))
+            if (wp_get_post_parent_id( $order_id ) || $order->get_meta( 'mvx_vendor_order_status_synchronized', true))
                 return false;
             
             remove_action( 'woocommerce_order_status_completed', 'wc_paying_customer' );
             // Check if order have sub-order
             $mvx_suborders = get_mvx_suborders($order_id);
-
             if ($mvx_suborders) {
                 foreach ($mvx_suborders as $suborder) {
                     $suborder->update_status($new_status, _x('Update via parent order: ', 'Order note', 'multivendorx'));
                 }
-                update_post_meta($order_id, 'mvx_vendor_order_status_synchronized', true);
-                
+                $order->update_meta_data('mvx_vendor_order_status_synchronized', true);
+                $order->save();
                 add_action( 'woocommerce_order_status_completed', 'wc_paying_customer' );
             }
         endif;
     }
     
-    public function mvx_vendor_order_to_parent_order_status_synchronization($order_id, $old_status, $new_status){
+    public function mvx_vendor_order_to_parent_order_status_synchronization($order_id, $old_status, $new_status, $order){
         $is_vendor_order = ($order_id) ? mvx_get_order($order_id) : false;
         if ($is_vendor_order && current_user_can('administrator') && $new_status != $old_status && apply_filters('mvx_vendor_notified_when_admin_change_status', true)) {
             $email_admin = WC()->mailer()->emails['WC_Email_Admin_Change_Order_Status'];
-            $vendor_id = get_post_meta($order_id, '_vendor_id', true);
+            $vendor_id = $order->get_meta( '_vendor_id', true);
             $vendor = get_mvx_vendor($vendor_id);
             $email_admin->trigger($order_id, $new_status, $vendor);
         }
         // parent order synchronization
-        $parent_order_id = wp_get_post_parent_id( $order_id );
+        $parent_order_id = $order->get_parent_id();
         if($parent_order_id){
-            remove_action('woocommerce_order_status_changed', array($this, 'mvx_parent_order_to_vendor_order_status_synchronization'), 90, 3);
+            remove_action('woocommerce_order_status_changed', array($this, 'mvx_parent_order_to_vendor_order_status_synchronization'), 90, 4);
             $status_to_sync = apply_filters('mvx_vendor_order_to_parent_order_statuses_to_sync',array('completed', 'refunded'));
 
             $mvx_suborders = get_mvx_suborders( $parent_order_id );
@@ -902,7 +938,7 @@ class MVX_Order {
                     }
                 }
             }
-            add_action('woocommerce_order_status_changed', array($this, 'mvx_parent_order_to_vendor_order_status_synchronization'), 90, 3);
+            add_action('woocommerce_order_status_changed', array($this, 'mvx_parent_order_to_vendor_order_status_synchronization'), 90, 4);
         }
     }
 
@@ -917,7 +953,7 @@ class MVX_Order {
                 $mvx_suborders = get_mvx_suborders($order_id);
                 if ($mvx_suborders) {
                     foreach ($mvx_suborders as $suborder) {
-                        $commission_id = get_post_meta( $suborder->get_id(), '_commission_id', true );
+                        $commission_id = $suborder->get_meta('_commission_id', true );
                         wp_delete_post( $commission_id, true );
                         wc_delete_shop_order_transients($suborder->get_id());
                         wp_delete_post($suborder->get_id(), true);
@@ -1059,7 +1095,7 @@ class MVX_Order {
             foreach ($child_refund_ids as $child_refund_id) {
                 if ($child_refund_id && 'shop_order_refund' === get_post_type($child_refund_id)) {
                     $order_id = wp_get_post_parent_id($child_refund_id);
-                    $assoc_commission_id = get_post_meta( $order_id, '_commission_id', true );
+                    $assoc_commission_id = $order->get_meta( '_commission_id', true );
                     // delete associated refund commission meta data
                     $commission_refunded_data = get_post_meta( $assoc_commission_id, '_commission_refunded_data', true );
                     if( isset($commission_refunded_data[$child_refund_id]) ) unset($commission_refunded_data[$child_refund_id]);
@@ -1084,8 +1120,8 @@ class MVX_Order {
                 }
             }
         }elseif(is_mvx_vendor_order($parent_order_id)){
-            $order_id = $parent_order_id;
-            $assoc_commission_id = get_post_meta( $order_id, '_commission_id', true );
+            $order = wc_get_order($parent_order_id);
+            $assoc_commission_id = $order->get_meta( '_commission_id', true );
             // delete associated refund commission meta data
             $commission_refunded_data = get_post_meta( $assoc_commission_id, '_commission_refunded_data', true );
             if( isset($commission_refunded_data[$refund_id]) ) unset($commission_refunded_data[$refund_id]);
@@ -1105,7 +1141,7 @@ class MVX_Order {
                 update_post_meta( $assoc_commission_id, '_commission_refunded', ($commission_refunded - $refunded_commission_amount) );
             }
 
-            wc_delete_shop_order_transients($order_id);
+            wc_delete_shop_order_transients($parent_order_id);
             wp_delete_post($refund_id);
         }
     }
@@ -1208,7 +1244,7 @@ class MVX_Order {
             $mvx_suborders = get_mvx_suborders($order_id);
             if ( $mvx_suborders ) {
                 foreach ( $mvx_suborders as $suborder ) {
-                    $commission_id = get_post_meta( $suborder->get_id(), '_commission_id', true );
+                    $commission_id = $suborder->get_meta('_commission_id', true );
                     wp_delete_post( $commission_id, true );
                     wp_delete_post( $suborder->get_id(), true );
                 }
@@ -1408,16 +1444,16 @@ class MVX_Order {
         return $formatted_meta;
     }
     
-    public function mvx_vendor_order_status_changed_actions( $order_id, $old_status, $new_status ){
-        if( !$order_id || !is_mvx_vendor_order( $order_id ) ) return;
+    public function mvx_vendor_order_status_changed_actions( $order_id, $old_status, $new_status, $order){
+        if( !$order_id || !is_mvx_vendor_order( $order ) ) return;
         if( $new_status == 'cancelled' ){
-            $commission_id = get_post_meta( $order_id, '_commission_id', true );
+            $commission_id = $order->get_meta( '_commission_id', true );
             do_action( 'mvx_vendor_order_on_cancelled_commission', $commission_id, $order_id );
             if( $commission_id ) wp_trash_post( $commission_id );
         }
         // stock increase when suborder mark as completed
         if (wp_get_post_parent_id($order_id) && $new_status == 'completed') {
-            $order = wc_get_order( $order_id );
+            
             $items = $order->get_items();
             foreach ($items as $item_id => $item) {
                 if (isset($item['product_id']) && $item['product_id'] !== 0) {
@@ -1561,8 +1597,9 @@ class MVX_Order {
             'addi_info' => $refund_request_addi_info,
         );
         // update customer refunt request 
-        update_post_meta( $order_id, '_customer_refund_order', wc_clean( wp_unslash( 'refund_request' ) ) );
-        update_post_meta( $order_id, '_customer_refund_reason', wc_clean( wp_unslash( $refund_reason ) ) );
+        $order->update_meta_data('_customer_refund_order', wc_clean( wp_unslash( 'refund_request' ) ));
+        $order->update_meta_data('_customer_refund_reason', wc_clean( wp_unslash( $refund_reason ) ));
+        $order->save();
         $comment_id = $order->add_order_note( __('Customer requested a refund ', 'multivendorx') .$order_id.' .' );
         // user info
         $user_info = get_userdata(get_current_user_id());
@@ -1576,7 +1613,7 @@ class MVX_Order {
 
         $mail = WC()->mailer()->emails['WC_Email_Customer_Refund_Request'];
         // order vendor
-        $vendor_id = get_post_meta( $order_id, '_vendor_id', true );
+        $vendor_id = $order->get_meta( '_vendor_id', true );
         $vendor_user_info = get_userdata($vendor_id);
         $mail->trigger( $vendor_user_info->user_email, $order_id, $refund_details );
         wc_add_notice( __( 'Refund request successfully placed.', 'multivendorx' ) );
@@ -1585,13 +1622,14 @@ class MVX_Order {
     public function mvx_refund_order_status_customer_meta(){
         global $post;
         if( $post && $post->post_type != 'shop_order' ) return;
-        if( !mvx_get_order( $post->ID ) ) return;
+        if( isset($_GET['id']) && !mvx_get_order( $_GET['id'] ) ) return;
         add_meta_box( 'refund_status_customer', __('Customer refund status', 'multivendorx'),  array( $this, 'mvx_order_customer_refund_dd' ), 'shop_order', 'side', 'core' );
     }
 
     public function mvx_order_customer_refund_dd(){
         global $post;
-        $refund_status = get_post_meta( $post->ID, '_customer_refund_order', true ) ? get_post_meta( $post->ID, '_customer_refund_order', true ) : '';
+        $sub_order = wc_get_order($post->ID);
+        $refund_status = $sub_order->get_meta('_customer_refund_order', true ) ?? '';
         $refund_statuses = array( 
             '' => __('Refund Status','multivendorx'),
             'refund_request' => __('Refund Requested', 'multivendorx'), 
@@ -1623,7 +1661,7 @@ class MVX_Order {
 
     public function mvx_refund_order_status_save( $post_id ){
         global $post;
-        if( $post && $post->post_type != 'shop_order' ) return;
+        if( empty($post) || ( $post && $post->post_type != 'shop_order' ) ) return;
         if( !mvx_get_order( $post_id ) ) return;
         if( !isset( $_POST['cust_refund_status'] ) ) $post_id;
         if( isset( $_POST['refund_order_customer'] ) && $_POST['refund_order_customer'] ) {
@@ -1700,19 +1738,23 @@ class MVX_Order {
         $order = wc_get_order($order_id);
 
         if ($wpnonce && wp_verify_nonce($wpnonce, 'mvx_accept_refund') && $order) {
-            update_post_meta( $order_id, '_customer_refund_order', wc_clean( wp_unslash( 'refund_accept' ) ) );
+            $order->update_meta_data('_customer_refund_order', wc_clean( wp_unslash( 'refund_accept' ) ));
+            $order->save();
             wc_add_notice(__('Changed status to Refund Accepted', 'multivendorx'), 'success');
             wp_redirect(esc_url(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_orders_endpoint', 'seller_dashbaord', 'vendor-orders'), $order_id)));
             exit;
         }
         if ($wpnonce && wp_verify_nonce($wpnonce, 'mvx_reject_refund') && $order) {
-            update_post_meta( $order_id, '_customer_refund_order', wc_clean( wp_unslash( 'refund_reject' ) ) );
+            $order->update_meta_data('_customer_refund_order', wc_clean( wp_unslash( 'refund_reject' ) ));
+            $order->save();
             wc_add_notice(__('Changed status to Refund rejected', 'multivendorx'), 'error');
             wp_redirect( $refund_redirect_url );
             exit;
         }
         if ($wpnonce && wp_verify_nonce($wpnonce, 'mvx_pending_refund') && $order) {
             update_post_meta( $order_id, '_customer_refund_order', wc_clean( wp_unslash( 'refund_request' ) ) );
+            $order->update_meta_data('_customer_refund_order', wc_clean( wp_unslash( 'refund_request' ) ));
+            $order->save();
             wc_add_notice(__('Changed status to Refund Pending', 'multivendorx'), 'error');
             wp_redirect( $refund_redirect_url );
             exit;
