@@ -22,7 +22,7 @@ defined( 'ABSPATH' ) || exit;
  * @return array
  */
 function mvx_get_orders($args = array(), $return_type = 'ids', $subonly = false) {
-    
+    global $MVX;
     $default = array(
 	'posts_per_page'   => -1,
 	'orderby'          => 'date',
@@ -40,21 +40,26 @@ function mvx_get_orders($args = array(), $return_type = 'ids', $subonly = false)
         );
     }
     $args = wp_parse_args($args, $default);
-    $query = new WC_Order_Query( apply_filters( 'mvx_get_orders_query_args', $args ) );
+    if($MVX->hpos_is_enabled){
+        $query = new WC_Order_Query( apply_filters( 'mvx_get_orders_query_args', $args ) );
+        $orders = $query->get_orders();
+    }else{
+        $orders = get_posts( apply_filters( 'mvx_get_orders_query_args', $args ) );
+    }
+
     if(strtolower($return_type) == 'object'){
         $orders = array();
-        foreach ($query->get_orders() as $order) {
+        foreach ($orders as $order) {
             if(!is_object($order)){
                 $orders[$order] = wc_get_order($order);
             }
             else{
                $orders [$order->get_id()] = $order;
-            }
-                
+            }  
         }
         return $orders;
     }
-    return $query->get_orders();
+    return $orders;
 }
 
 /**

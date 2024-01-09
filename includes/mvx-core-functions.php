@@ -833,7 +833,7 @@ if (!function_exists('mvx_find_user_purchased_with_vendor')) {
         $is_purchased_with_vendor = false;
         $order_lits = mvx_get_all_order_of_user($user_id);
         foreach ($order_lits as $order) {
-            $vendors = get_vendor_from_an_order($order->ID);
+            $vendors = get_vendor_from_an_order($order->get_id());
             if (!empty($vendors) && is_array($vendors)) {
                 if (in_array($vendor_term_id, $vendors)) {
                     $is_purchased_with_vendor = true;

@@ -1511,7 +1511,6 @@ class MVX_Admin {
         $sub_orders = mvx_get_orders( $args, 'ids', true );
         if ( empty( $sub_orders ) )
             $sub_orders = array();
-
         $processing_orders = count(wc_get_orders(array(
             'status'  => 'processing',
             'return'  => 'ids',
