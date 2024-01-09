@@ -570,7 +570,7 @@ class MVX_Order {
             '_customer_user',
             '_prices_include_tax',
             '_order_currency',
-            '_order_key',
+            // '_order_key',
             '_customer_ip_address',
             '_customer_user_agent',
         ));
