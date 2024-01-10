@@ -734,7 +734,6 @@ final class MVX {
      * This method can be removed, and we can directly use WC OrderUtil::custom_orders_table_usage_is_enabled method in future
      * if we set the minimum wc version requirements to 8.0
      *
-     * @since 3.8.0
      *
      * @return bool
      */

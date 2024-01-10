@@ -48,16 +48,20 @@ function mvx_get_orders($args = array(), $return_type = 'ids', $subonly = false)
     }
 
     if(strtolower($return_type) == 'object'){
-        $orders = array();
+        $orders_rtn = array();
         foreach ($orders as $order) {
             if(!is_object($order)){
-                $orders[$order] = wc_get_order($order);
+                $orders_rtn[$order] = wc_get_order($order);
             }
             else{
-               $orders [$order->get_id()] = $order;
+                if($MVX->hpos_is_enabled){
+                    $orders_rtn [$order->get_id()] = $order;
+                } else {
+                    $orders_rtn [$order->ID] = wc_get_order($order->ID);
+                }
             }  
         }
-        return $orders;
+        return $orders_rtn;
     }
     return $orders;
 }
