@@ -178,14 +178,14 @@ function get_mvx_suborders( $order_id, $args = array(), $object = true ) {
     $orders = array();
     // remove_filter('woocommerce_orders_table_query_clauses', array($MVX->order, 'wc_order_list_filter'));
     if($MVX->hpos_is_enabled){
-        if(is_object($order_id)){
-            $orders = wc_get_orders(array('parent' => $order_id->get_id()));
-        } else {
+        if(!is_object($order_id)){
             $default = array(
                 'parent' => $order_id,
             );
             $args = ( $args ) ? wp_parse_args( $args, $default ) : $default;
             $orders = wc_get_orders($args);
+        } else {
+            $orders = wc_get_orders(array('parent' => $order_id->get_id()));
         }
     } else {
         $default = array(
