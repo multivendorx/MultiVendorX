@@ -67,8 +67,8 @@ if (!class_exists('WC_Email_Admin_Widthdrawal_Request')) :
 
             $this->transaction_mode = get_post_meta($trans_id, 'transaction_mode', true);
 
-            $this->find[] = '{vendor_name}';
-            $this->replace[] = $this->vendor->page_title;
+            $this->find = '{vendor_name}';
+            $this->replace = $this->vendor->page_title;
 
             $user = get_user_by( 'email', get_option('admin_email') );
             $this->admin_name = $user->display_name;
