@@ -3053,7 +3053,8 @@ Class MVX_Admin_Dashboard {
         if ( mvx_is_module_active('paypal-marketplace') && array_key_exists('paypal_masspay', get_mvx_available_payment_gateways()) ) {
             $payment_methods[] = 'paypal_masspay';
             $count++;
-        }if ( mvx_is_module_active('paypal-marketplace') && array_key_exists('paypal_marketplace', get_mvx_available_payment_gateways()) ) {
+        }
+        if ( mvx_is_module_active('paypal-marketplace') && array_key_exists('paypal_marketplace', get_mvx_available_payment_gateways()) ) {
             $payment_methods[] = 'paypal_marketplace';
             $count++;
         }
