@@ -3998,10 +3998,6 @@ if (!function_exists('get_mvx_available_payment_gateways')) {
      */
     function get_mvx_available_payment_gateways() {
         $available_gateways = array();
-        if (mvx_is_module_active('paypal-marketplace')) {
-            $available_gateways['paypal_marketplace'] = __('PayPal Marketplace', 'multivendorx');
-        }
-
         if (mvx_is_module_active('paypal-masspay')) {
             $available_gateways['paypal_masspay'] = __('PayPal Masspay', 'multivendorx');
         }

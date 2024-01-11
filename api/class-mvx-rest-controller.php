@@ -3522,9 +3522,7 @@ class MVX_REST_API {
 
             // set option vendor payment method
             $payment_mode = array('payment_mode' => __('Payment Mode', 'multivendorx'));
-            if (mvx_is_module_active('paypal-marketplace')) {
-                $payment_mode['paypal_marketplace'] = __('PayPal Marketplace', 'multivendorx');
-            }
+            
             if (mvx_is_module_active('paypal-masspay')) {
                 $payment_mode['paypal_masspay'] = __('PayPal Masspay', 'multivendorx');
             }
