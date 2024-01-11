@@ -5,7 +5,7 @@ Donate link: http://multivendorx.com/donate/
 Requires at least: 4.4
 Tested up to: 6.4.2
 Requires PHP: 7.2
-Stable tag: 4.0.32
+Stable tag: 4.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -290,6 +290,14 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.1.0 - 2024-01-11 =
+* Added     - Added HPOS (High-Performance Order Storage) support for MultiVendorX.
+* Added     - We have revised the content of the withdrawal email that is sent to the admin and vendor when the mode of payment is a bank transfer.
+*Fix        - Resolved the issue with store Info widget details not showing in the vendor page and review star icon missing for fontawsome.
+*Fix        - [REST API] Store Image and Store Banner can be updated for the endpoint http://dev.test/wp-json/mvx/v1/vendors.
+* Dev       - Added `mvx_order_item_quantity_text` filter.
+* Updated   - Language file.
 
 = 4.0.32 - 2023-12-21 =
 * Added     - Compatibility of WordPress 6.4.2.
