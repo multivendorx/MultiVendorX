@@ -3052,21 +3052,16 @@ Class MVX_Admin_Dashboard {
         $payment_methods = array();
         if ( mvx_is_module_active('paypal-marketplace') && array_key_exists('paypal_masspay', get_mvx_available_payment_gateways()) ) {
             $payment_methods[] = 'paypal_masspay';
-            $count++;
-        }
-        if ( mvx_is_module_active('paypal-marketplace') && array_key_exists('paypal_marketplace', get_mvx_available_payment_gateways()) ) {
-            $payment_methods[] = 'paypal_marketplace';
-            $count++;
         }
         if ( mvx_is_module_active('stripe-marketplace') && array_key_exists('stripe_masspay', get_mvx_available_payment_gateways()) ) {
             $payment_methods[] = 'stripe_masspay';
-            $count++;
         }
         if ( mvx_is_module_active('razorpay') && array_key_exists('razorpay', get_mvx_available_payment_gateways())) {
             $payment_methods[] = 'razorpay';
-            $count++;
         }
-        if ($find_payment_methods) return apply_filters('mvx_multi_split_payment_options', $payment_methods);
+        $payment_methods = apply_filters('mvx_multi_split_payment_options', $payment_methods);
+        if ($find_payment_methods) return $payment_methods;
+        $count = count($payment_methods);
         return $count && $count > 1 ? $count : false;
     }
 
