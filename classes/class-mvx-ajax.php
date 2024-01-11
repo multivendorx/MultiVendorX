@@ -208,8 +208,6 @@ class MVX_Ajax {
         $requestData = ( $_REQUEST ) ? wp_unslash( $_REQUEST ) : array();
         $date_start = isset( $_POST['start_date'] ) ? wc_clean( $_POST['start_date'] ) : '';
         $date_end = isset( $_POST['end_date'] ) ? wc_clean( $_POST['end_date'] ) : '';
-        $start_date = date('Y-m-d G:i:s', $date_start);
-        $end_date = date('Y-m-d G:i:s', $date_end);
         $vendor = get_current_vendor();
         
         $args = array(

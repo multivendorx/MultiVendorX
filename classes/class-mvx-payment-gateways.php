@@ -30,7 +30,6 @@ class MVX_Payment_Gateways {
     
     public function load_default_gateways(){
         require_once 'gateways/class-mvx-gateway-paypal-masspay.php';
-        // require_once 'gateways/class-mvx-gateway-paypal-marketplace.php';
         require_once 'gateways/class-mvx-gateway-paypal-payout.php';
         require_once 'gateways/class-mvx-gateway-stripe-connect.php';
         require_once 'gateways/class-mvx-gateway-bank-transfer.php';

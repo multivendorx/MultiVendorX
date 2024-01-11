@@ -28,7 +28,7 @@ class MVX_Admin {
 
         add_action('admin_menu', array(&$this, 'mvx_admin_menu'));
         add_action('wp_dashboard_setup', array(&$this, 'mvx_remove_wp_dashboard_widget'));
-        add_filter('woocommerce_order_actions', array(&$this, 'woocommerce_order_actions'));
+        add_filter('woocommerce_order_actions', array(&$this, 'woocommerce_order_actions'),10,2);
         add_action('woocommerce_order_action_regenerate_order_commissions', array(&$this, 'regenerate_order_commissions'));
         add_action('woocommerce_order_action_regenerate_suborders', array(&$this, 'regenerate_suborders'));
         add_filter('woocommerce_screen_ids', array(&$this, 'add_mvx_screen_ids'));
@@ -1426,8 +1426,7 @@ class MVX_Admin {
         }
     }
 
-    public function woocommerce_order_actions($actions) {
-        $order = wc_get_order($_GET['id']);
+    public function woocommerce_order_actions($actions,$order) {
         if ( $order && $order->get_parent_id() )
             $actions['regenerate_order_commissions'] = __('Regenerate order commissions', 'multivendorx');
         if ( $order && !$order->get_parent_id() )

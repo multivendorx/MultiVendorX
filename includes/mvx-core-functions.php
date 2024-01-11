@@ -1707,13 +1707,12 @@ if (!function_exists('do_mvx_commission_data_migrate')) {
                 $product_count = count($data['products']);
                 foreach ($data['products'] as $product_id) {
                     if ($data['vendor_id']) {
-                        $order = wc_get_order($data['order_id']);
                         $vendor = get_mvx_vendor_by_term($data['vendor_id']);
                         $update_data[] = array(
                             'order_id' => $data['order_id'],
                             'commission_id' => $commission_id,
                             'vendor_id' => $vendor->id,
-                            'shipping_status' => in_array($vendor->id, (array) $order->get_meta( 'dc_pv_shipped', true)) ? 1 : 0,
+                            'shipping_status' => in_array($vendor->id, (array) wc_get_order($data['order_id'])->get_meta( 'dc_pv_shipped', true)) ? 1 : 0,
                             'product_id' => $product_id,
                             'commission_amount' => round(($data['commission_amount'] / $product_count), 2),
                             'shipping' => round(($data['shipping_amount'] / $product_count), 2),
