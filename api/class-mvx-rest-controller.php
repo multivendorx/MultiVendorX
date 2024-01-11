@@ -1029,8 +1029,8 @@ class MVX_REST_API {
                     )
                 )
             );
-        $query = new WP_Query( $default ); 
-        foreach ($query->get_posts() as $post_id) {
+        $query = new WC_Order_Query( $default ); 
+        foreach ($query->get_orders() as $post_id) {
             $refund_status = '';
             $order = wc_get_order($post_id);
             $post = get_post($post_id);
@@ -1071,8 +1071,8 @@ class MVX_REST_API {
             'post_status' => 'any',
             'fields'    =>  'ids'
             );
-        $query = new WP_Query( $default ); 
-        foreach ($query->get_posts() as $post_id) {
+        $query = new WC_Order_Query( $default ); 
+        foreach ($query->get_orders() as $post_id) {
             $refund_amount = '';
             $order = wc_get_order($post_id);
             $post = get_post($post_id);
@@ -1149,9 +1149,10 @@ class MVX_REST_API {
                 )
             ),
         );
-        $vendor_query = new WP_Query($args_multi_vendor);
-        if (!empty($vendor_query->get_posts())) {
-            foreach ($vendor_query->get_posts() as $key_post => $value_post) {
+        $vendor_query = new WC_Order_Query($args_multi_vendor);
+        $vendor_orders = $vendor_query->get_orders();
+        if (!empty( $vendor_orders )) {
+            foreach ($vendor_query->get_orders() as $key_post => $value_post) {
                 $order = wc_get_order( $value_post->ID );
                 if (!$order) continue;
                 if (get_post_meta( $value_post->ID, '_customer_refund_order', true )) {
@@ -4393,8 +4394,8 @@ class MVX_REST_API {
             ));
 
 
-        $qry = new WP_Query($args_overview);
-        $orders_overview = apply_filters('mvx_report_admin_overview_orders_overview', $qry->get_posts());
+        $qry = new WC_Order_Query($args_overview);
+        $orders_overview = apply_filters('mvx_report_admin_overview_orders_overview', $qry->get_orders());
         $sales_data_chart = array();
          if ( !empty( $orders_overview ) ) {
             foreach ( $orders_overview as $order ) {
@@ -4537,8 +4538,8 @@ class MVX_REST_API {
             )
         ) );
 
-        $qry_report_product = new WP_Query($args_report_product);
-        $overview_orders_product = apply_filters('mvx_filter_orders_report_product', $qry_report_product->get_posts());
+        $qry_report_product = new WC_Order_Query($args_report_product);
+        $overview_orders_product = apply_filters('mvx_filter_orders_report_product', $qry_report_product->get_orders());
 
         if (!empty($overview_orders_product)) {
             $pro_total = $vendor_total = array();

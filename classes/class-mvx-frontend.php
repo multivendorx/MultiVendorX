@@ -801,7 +801,7 @@ class MVX_Frontend {
     }
 
     public function store_query_filter( $query ) {
-        global $wp_query, $MVX;
+        global $MVX;
         $author = get_query_var( $this->custom_store_url );
         if ( ! is_admin() && $query->is_main_query() && ! empty( $author ) ) {
             $seller_info = '';
