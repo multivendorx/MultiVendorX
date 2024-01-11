@@ -493,9 +493,9 @@ class MVX_Report {
                 )
             ), $vendor);
 
-            $qry = new WP_Query($args);
+            $qry = new WC_Order_Query($args);
 
-            $orders = apply_filters('mvx_filter_orders_report_overview', $qry->get_posts(), $vendor->id);
+            $orders = apply_filters('mvx_filter_orders_report_overview', $qry->get_orders(), $vendor->id);
             if (!empty($orders)) {
                 foreach ($orders as $order_obj) {
 

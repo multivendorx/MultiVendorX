@@ -24,7 +24,7 @@ class MVX_Widget_Vendor_Coupons extends WC_Widget {
     }
 
     public function widget($args, $instance) {
-        global $wp_query, $MVX;
+        global $MVX;
         $store_id = mvx_find_shop_page_vendor();
         $vendor = get_mvx_vendor($store_id);
         if ((!mvx_is_store_page() && !$vendor) || (!$MVX->vendor_caps->vendor_capabilities_settings('is_submit_coupon'))) {
