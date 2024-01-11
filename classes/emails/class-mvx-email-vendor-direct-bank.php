@@ -78,7 +78,7 @@ if (!class_exists('WC_Email_Vendor_Direct_Bank')) :
          * @return string
          */
         public function get_default_subject() {
-            return apply_filters('mvx_vendor_direct_bank_email_subject', __('[{site_title}] Commission Payment Request', 'multivendorx'), $this->object);
+            return apply_filters('mvx_vendor_direct_bank_email_subject', __('[{site_title}] Vendor Commission Withdrawal Request Received', 'multivendorx'), $this->object);
         }
 
         /**

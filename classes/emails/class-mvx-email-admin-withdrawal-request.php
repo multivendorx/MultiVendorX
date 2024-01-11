@@ -20,6 +20,7 @@ if (!class_exists('WC_Email_Admin_Widthdrawal_Request')) :
      */
     class WC_Email_Admin_Widthdrawal_Request extends WC_Email {
 
+        var $admin_name;
         /**
          * Constructor
          */
@@ -66,6 +67,12 @@ if (!class_exists('WC_Email_Admin_Widthdrawal_Request')) :
 
             $this->transaction_mode = get_post_meta($trans_id, 'transaction_mode', true);
 
+            $this->find = '{vendor_name}';
+            $this->replace = $this->vendor->page_title;
+
+            $user = get_user_by( 'email', get_option('admin_email') );
+            $this->admin_name = $user->display_name;
+
             $this->recipient = get_option('admin_email');
             if ( $this->is_enabled() && $this->get_recipient() ) {
                 $this->send($this->get_recipient(), $this->get_subject(), $this->get_content(), $this->get_headers(), $this->get_attachments());
@@ -79,7 +86,7 @@ if (!class_exists('WC_Email_Admin_Widthdrawal_Request')) :
          * @return string
          */
         public function get_default_subject() {
-            return apply_filters('mvx_admin_widthdrawal_request_email_subject', __('[{site_title}] Commission Widthdrawal Request', 'multivendorx'), $this->object);
+            return apply_filters('mvx_admin_widthdrawal_request_email_subject', __('[{site_title}] Commission Withdrawal Request by {vendor_name}', 'multivendorx'), $this->object);
         }
 
         /**
@@ -107,6 +114,7 @@ if (!class_exists('WC_Email_Admin_Widthdrawal_Request')) :
                 'transaction_mode' => $this->transaction_mode,
                 'vendor' => $this->vendor,
                 'transaction_id' => $this->transaction_id,
+                'admin_name' => $this->admin_name,
                 'sent_to_admin' => false,
                 'plain_text' => false,
                 'email'         => $this,
@@ -128,6 +136,7 @@ if (!class_exists('WC_Email_Admin_Widthdrawal_Request')) :
                 'transaction_mode' => $this->transaction_mode,
                 'vendor' => $this->vendor,
                 'transaction_id' => $this->transaction_id,
+                'admin_name' => $this->admin_name,
                 'sent_to_admin' => false,
                 'plain_text' => true,
                 'email'         => $this,

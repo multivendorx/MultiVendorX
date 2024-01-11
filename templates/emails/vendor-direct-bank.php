@@ -19,7 +19,7 @@ do_action( 'woocommerce_email_header', $email_heading, $email );
 $amount = floatval(get_post_meta($transaction_id, 'amount', true)) - floatval(get_post_meta($transaction_id, 'transfer_charge', true)) - floatval(get_post_meta($transaction_id, 'gateway_charge', true));
 ?>
 		
-<p><?php echo apply_filters( 'mvx_thankyou_transaction_received_text', sprintf(__( 'Hello,<br>We have received a new withdrawal request for %s from you and your request is being processed.The order details are as follows:', 'multivendorx'), get_woocommerce_currency().$amount), $transaction_id ); ?></p>
+<p><?php echo apply_filters( 'mvx_thankyou_transaction_received_text', sprintf(__( 'Dear %s,<br>I hope this email finds you well. We would like to inform you that we have received your request for commission withdrawal.<br>Our administrative team will be processing your commission withdrawal shortly.', 'multivendorx'), $vendor->page_title), $transaction_id ); ?></p>
 
 <table cellspacing="0" cellpadding="6" style="width: 100%; border: 1px solid #eee;"  border="1" bordercolor="#eee">
 	<thead>
