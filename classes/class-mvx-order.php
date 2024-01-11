@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
 class MVX_Order {
 
     public function __construct() {
-        global $MVX, $PAGE;
+        global $MVX;
         // Init MVX Vendor Order class
         $MVX->load_class('vendor-order');
         // Add extra vendor_id to shipping packages
@@ -77,7 +77,7 @@ class MVX_Order {
             // Customer Refund request
             add_action( 'woocommerce_order_details_after_order_table', array( $this, 'mvx_refund_btn_customer_my_account'), 10 );
             add_action( 'wp', array( $this, 'mvx_handler_cust_requested_refund' ) );
-            add_action( 'add_meta_boxes', array( $this, 'mvx_refund_order_status_customer_meta' ) );
+            add_action( 'add_meta_boxes', array( $this, 'mvx_refund_order_status_customer_meta' ), 10, 2 );
             add_action( 'save_post', array( $this, 'mvx_refund_order_status_save' ) );
             $this->init_prevent_trigger_vendor_order_emails();
             // Order Trash 
@@ -1619,17 +1619,14 @@ class MVX_Order {
         wc_add_notice( __( 'Refund request successfully placed.', 'multivendorx' ) );
     }
 
-    public function mvx_refund_order_status_customer_meta(){
-        global $post;
-        if( $post && $post->post_type != 'shop_order' ) return;
-        if( isset($_GET['id']) && !mvx_get_order( $_GET['id'] ) ) return;
-        add_meta_box( 'refund_status_customer', __('Customer refund status', 'multivendorx'),  array( $this, 'mvx_order_customer_refund_dd' ), 'shop_order', 'side', 'core' );
+    public function mvx_refund_order_status_customer_meta($page, $order){
+        if( $page && $page != 'woocommerce_page_wc-orders' ) return;
+        if( !mvx_get_order( $order->get_id() ) ) return;
+        add_meta_box( 'refund_status_customer', __('Customer refund status', 'multivendorx'),  array( $this, 'mvx_order_customer_refund_dd' ), $page, 'side', 'core', $order );
     }
 
-    public function mvx_order_customer_refund_dd(){
-        global $post;
-        $sub_order = wc_get_order($post->ID);
-        $refund_status = $sub_order->get_meta('_customer_refund_order', true ) ?? '';
+    public function mvx_order_customer_refund_dd($order){
+        $refund_status = $order->get_meta('_customer_refund_order', true ) ?? '';
         $refund_statuses = array( 
             '' => __('Refund Status','multivendorx'),
             'refund_request' => __('Refund Requested', 'multivendorx'), 
