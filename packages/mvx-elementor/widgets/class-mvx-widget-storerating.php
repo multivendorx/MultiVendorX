@@ -126,10 +126,9 @@ class MVX_Elementor_StoreRating extends Widget_Base {
 				'label' => __( 'Icon', 'multivendorx' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
-					'star_fontawesome' => 'Font Awesome',
 					'star_unicode' => 'Unicode',
 				],
-				'default' => 'star_fontawesome',
+				'default' => 'star_unicode',
 				'render_type' => 'template',
 				'prefix_class' => 'elementor--star-style-',
 				'separator' => 'before',
@@ -365,11 +364,7 @@ class MVX_Elementor_StoreRating extends Widget_Base {
 		$textual_rating = $rating_data[0] . '/' . $rating_data[1];
 		$icon = '&#xE934;';
 
-		if ( 'star_fontawesome' === $settings['star_style'] ) {
-			if ( 'outline' === $settings['unmarked_star_style'] ) {
-				$icon = '&#xE933;';
-			}
-		} elseif ( 'star_unicode' === $settings['star_style'] ) {
+		if ( 'star_unicode' === $settings['star_style'] ) {
 			$icon = '&#9733;';
 
 			if ( 'outline' === $settings['unmarked_star_style'] ) {
@@ -432,11 +427,7 @@ class MVX_Elementor_StoreRating extends Widget_Base {
 			},
 			icon = '&#xE934;';
 
-			if ( 'star_fontawesome' === settings.star_style ) {
-				if ( 'outline' === settings.unmarked_star_style ) {
-					icon = '&#xE933;';
-				}
-			} else if ( 'star_unicode' === settings.star_style ) {
+			if ( 'star_unicode' === settings.star_style ) {
 				icon = '&#9733;';
 
 				if ( 'outline' === settings.unmarked_star_style ) {
