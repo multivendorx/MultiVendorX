@@ -384,8 +384,8 @@ class MVX_Commission {
             );
         }
    
-        $commissions = new WC_Order_Query( $args );
-        if( $commissions->get_orders() ) :
+        $commissions = new WP_Query( $args );
+        if( $commissions->get_posts() ) :
             $commission_amount = $shipping_amount = $tax_amount = $total = 0;
             $commission_posts = apply_filters( 'mvx_before_get_commissions_total_data_commission_posts', $commissions->get_posts(), $vendor_id, $args );
             foreach ( $commission_posts as $commission_id ) {
