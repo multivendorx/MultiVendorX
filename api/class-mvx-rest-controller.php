@@ -13,7 +13,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
-
 /**
  * API class.
  */
@@ -23,6 +22,10 @@ class MVX_REST_API {
      *
      * @since 3.1
      */
+
+    public $MVX_REST_API_Vendors_Controller;
+    public $MVX_REST_API_Vendor_Reviews_Controller;
+
     public function __construct() {
 
         // Add query vars.
@@ -851,11 +854,11 @@ class MVX_REST_API {
         $sale_price = $request->get_param('sale_price') ? $request->get_param('sale_price') : '';
         $sku = $request->get_param('sku') ? $request->get_param('sku') : '';
         $manage_stock = $request->get_param('manage_stock') ? $request->get_param('manage_stock') : '';
-        $post_id = wp_insert_post( array( 'post_title' => $name, 'post_type' => 'product', 'post_status' => 'publish' ) );
+        $product_id = wp_insert_post( array( 'post_title' => $name, 'post_type' => 'product', 'post_status' => 'publish' ) );
 
-        update_post_meta($post_id, '_regular_price', $regular_price);
-        update_post_meta($post_id, '_sale_price', $sale_price);
-        update_post_meta($post_id, '_sku', $sku);
+        update_post_meta($product_id, '_regular_price', $regular_price);
+        update_post_meta($product_id, '_sale_price', $sale_price);
+        update_post_meta($product_id, '_sku', $sku);
     }
 
     public function mvx_list_of_vendor_order($request) {
@@ -3519,6 +3522,9 @@ class MVX_REST_API {
 
             // set option vendor payment method
             $payment_mode = array('payment_mode' => __('Payment Mode', 'multivendorx'));
+            if (mvx_is_module_active('paypal-marketplace')) {
+                $payment_mode['paypal_marketplace'] = __('PayPal Marketplace', 'multivendorx');
+            }
             if (mvx_is_module_active('paypal-masspay')) {
                 $payment_mode['paypal_masspay'] = __('PayPal Masspay', 'multivendorx');
             }
@@ -4228,20 +4234,20 @@ class MVX_REST_API {
         $announcement_url = $fetch_data && isset($fetch_data['announcement_url']) ? $fetch_data['announcement_url'] : '';
         $announcement_content = $fetch_data && isset($fetch_data['announcement_content']) ? $fetch_data['announcement_content'] : '';
         $announcement_vendors = $fetch_data && isset($fetch_data['announcement_vendors']) ? $fetch_data['announcement_vendors'] : '';
-        $post_id = wp_insert_post( array( 'post_title' => $announcement_title, 'post_type' => 'mvx_vendor_notice', 'post_status' => 'publish', 'post_content' => $announcement_content ) );
-        $post = get_post($post_id);
-        update_post_meta( $post_id, '_mvx_vendor_notices_url', wc_clean($announcement_url) );
+        $notice_id = wp_insert_post( array( 'post_title' => $announcement_title, 'post_type' => 'mvx_vendor_notice', 'post_status' => 'publish', 'post_content' => $announcement_content ) );
+        $post = get_post($notice_id);
+        update_post_meta( $notice_id, '_mvx_vendor_notices_url', wc_clean($announcement_url) );
         $email_vendor = WC()->mailer()->emails['WC_Email_Vendor_New_Announcement'];
         $notify_vendors = isset($fetch_data['announcement_vendors']) && !empty($fetch_data['announcement_vendors']) ? wp_list_pluck(array_filter($fetch_data['announcement_vendors']), 'value')  : get_mvx_vendors( array(), 'ids' );
         if (isset($fetch_data['announcement_vendors']) && !empty($fetch_data['announcement_vendors'])) {
-            update_post_meta($post_id, '_mvx_vendor_notices_vendors', $notify_vendors);
+            update_post_meta($notice_id, '_mvx_vendor_notices_vendors', $notify_vendors);
             // send mail
             $single = ( count($notify_vendors) == 1 ) ? __( 'Your', 'multivendorx' ) : __( 'All vendors and their', 'multivendorx' );
             foreach ($notify_vendors as $vendor_id) {
                 $email_vendor->trigger( $post, $vendor_id, $single );
             }
         } else {
-            update_post_meta($post_id, '_mvx_vendor_notices_vendors', get_mvx_vendors( array(), 'ids' ));
+            update_post_meta($notice_id, '_mvx_vendor_notices_vendors', get_mvx_vendors( array(), 'ids' ));
             // send mail
             $single = ( count(get_mvx_vendors( array(), 'ids' )) == 1 ) ? __( 'Your', 'multivendorx' ) : __( 'All vendors and their', 'multivendorx' );
             foreach (get_mvx_vendors( array(), 'ids' ) as $vendor_id) {
@@ -4249,7 +4255,7 @@ class MVX_REST_API {
             }
         }
 
-        $all_details['redirect_link'] = admin_url('admin.php?page=mvx#&submenu=work-board&name=announcement&AnnouncementID='. $post_id .'');
+        $all_details['redirect_link'] = admin_url('admin.php?page=mvx#&submenu=work-board&name=announcement&AnnouncementID='. $notice_id .'');
         return $all_details;
     }
 
@@ -4393,8 +4399,8 @@ class MVX_REST_API {
         $orders_overview = apply_filters('mvx_report_admin_overview_orders_overview', $qry->get_posts());
         $sales_data_chart = array();
          if ( !empty( $orders_overview ) ) {
-            foreach ( $orders_overview as $order_obj ) {
-                $order = wc_get_order($order_obj->ID);
+            foreach ( $orders_overview as $order ) {
+                // $order = wc_get_order($order_obj->ID);
                 $date = date_create($order->order_date);
                 $sales_data_chart[] = array(
                     'name'  =>  date_format($date,"d M"),
@@ -4402,7 +4408,7 @@ class MVX_REST_API {
                 );
                 
                 $overview_sales += $order->get_subtotal();
-                $mvx_suborders = get_mvx_suborders($order_obj->ID);
+                $mvx_suborders = get_mvx_suborders($order);
                 if (!empty($mvx_suborders)) {
                     foreach ($mvx_suborders as $suborder) {
                         $vendor_order = mvx_get_order($suborder->get_id());
@@ -4538,9 +4544,9 @@ class MVX_REST_API {
 
         if (!empty($overview_orders_product)) {
             $pro_total = $vendor_total = array();
-            foreach ($overview_orders_product as $order_obj) {
+            foreach ($overview_orders_product as $order) {
                 try {
-                    $order = wc_get_order($order_obj->ID);
+                    // $order = wc_get_order($order_obj->ID);
                     if ($order) :
                         
                         $date = date_create($order->order_date);
@@ -4563,7 +4569,7 @@ class MVX_REST_API {
                                 $total_sales[$item->get_product_id()]['product_id'] = $item->get_product_id();
                                 $total_sales[$item->get_product_id()]['total_sales'] = $pro_total[$item->get_product_id()];
                                 $total_sales[$item->get_product_id()]['quantities'] = $item->get_quantity();
-                                $total_sales[$item->get_product_id()]['order_id'] = $order_obj->ID;
+                                $total_sales[$item->get_product_id()]['order_id'] = $order->get_id();
 
                                 $total_sales[$item->get_product_id()]['details'][] = array(
                                     'date'  =>  date_format($date,"d M"),
@@ -4691,9 +4697,9 @@ class MVX_REST_API {
                 $orders = apply_filters('mvx_filter_orders_report_vendor', $qry->get_posts());
 
                 if ( !empty( $orders ) ) {
-                    foreach ( $orders as $order_obj ) {
+                    foreach ( $orders as $order ) {
                         try {
-                            $order = wc_get_order($order_obj->ID);
+                            // $order = wc_get_order($order_obj->ID);
                             if ($order) :
 
                                 $date = date_create($order->order_date);
@@ -4708,7 +4714,7 @@ class MVX_REST_API {
                                     'Net Sales'  => $order->get_total( 'edit' ),
                                 );
 
-                                $total_number_orders[] = $order_obj->ID;
+                                $total_number_orders[] = $order->get_id();
                                 $vendor_order = mvx_get_order($order->get_id());
                                 $gross_sales += $order->get_total( 'edit' );
                                 $vendor_earning += $vendor_order->get_commission_total('edit');
@@ -5129,7 +5135,7 @@ class MVX_REST_API {
 
         $commission_total = get_post_meta( $commission_id, '_commission_total', true );
         $order_id = get_post_meta( $commission_id, '_commission_order_id', true );
-        $is_migration_order = get_post_meta($order_id, '_order_migration', true); // backward compatibility
+        $is_migration_order = $order->get_meta('_order_migration', true); // backward compatibility
         $notes = $MVX->postcommission->get_commission_notes($commission_id);
         $notes_data = [];
         if ($notes) {

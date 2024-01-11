@@ -74,13 +74,13 @@ class MVX_Commission {
      * @param array $args
      * @return int $commission_id
      */
-    public static function create_commission($order_id, $args = array()) {
-        if ($order_id) {
-            $vendor_id = get_post_meta($order_id, '_vendor_id', true);
+    public static function create_commission($order, $args = array()) {
+        if (($order)) {
+            $vendor_id = $order->get_meta( '_vendor_id', true);
             // create vendor commission
             $default = array(
                 'post_type' => 'dc_commission',
-                'post_title' => sprintf(__('Commission - %s', 'multivendorx'), strftime(_x('%B %e, %Y @ %I:%M %p', 'Commission date parsed by strftime', 'multivendorx'), current_time('timestamp'))),
+                'post_title' => sprintf(__('Commission - %s', 'multivendorx'), date(_x('F j, Y @ h:i a', 'Commission date parsed by date', 'multivendorx'), current_time('timestamp'))),
                 'post_status' => 'private',
                 'ping_status' => 'closed',
                 'post_excerpt' => '',
@@ -92,7 +92,7 @@ class MVX_Commission {
             $commission_id = wp_insert_post($commission_data);
             if ($commission_id) {
                 // add order id with commission meta
-                update_post_meta($commission_id, '_commission_order_id', $order_id);
+                update_post_meta($commission_id, '_commission_order_id', $order->get_id());
                 update_post_meta($commission_id, '_paid_status', 'unpaid');
                 // for BW supports
                 $vendor = get_mvx_vendor( $vendor_id );
@@ -104,7 +104,7 @@ class MVX_Commission {
                  */
                 do_action('mvx_commission_update_commission_meta', $commission_id);
 
-                self::add_commission_note($commission_id, sprintf(__('Commission for order <a href="%s">(ID : %s)</a> is created.', 'multivendorx'), get_admin_url() . 'post.php?post=' . $order_id . '&action=edit', $order_id), $vendor_id);
+                self::add_commission_note($commission_id, sprintf(__('Commission for order <a href="%s">(ID : %s)</a> is created.', 'multivendorx'), get_admin_url() . 'post.php?post=' . $order->get_id() . '&action=edit', $order->get_id()), $vendor_id);
                 return $commission_id;
             }
         }
@@ -122,7 +122,7 @@ class MVX_Commission {
         global $MVX;
         if ($commission_id && $order) {
             $commission_type = mvx_get_settings_value($MVX->vendor_caps->payment_cap['commission_type']);
-            $vendor_id = get_post_meta($order->get_id(), '_vendor_id', true);
+            $vendor_id = $order->get_meta( '_vendor_id', true);
              // line item commission
              $commission_amount = $shipping_amount = $tax_amount = $shipping_tax_amount = 0;
              $commission_rates = array();
@@ -143,7 +143,7 @@ class MVX_Commission {
                     $commission_rates[$item_id] = $commission_rate;
                 }
             } else {
-                $commission_rates = get_post_meta($order->get_id(), 'order_items_commission_rates', true);
+                $commission_rates = $order->get_meta( 'order_items_commission_rates', true);
                 foreach ($order->get_items() as $item_id => $item) {
                     $product = $item->get_product();
                     $meta_data = $item->get_meta_data();
@@ -174,8 +174,8 @@ class MVX_Commission {
              *
              * @since 3.4.0
             */
-            update_post_meta($order->get_id(), 'order_items_commission_rates', apply_filters('mvx_vendor_order_items_commission_rates', $commission_rates, $order));
-            
+            $order->update_meta_data('order_items_commission_rates', apply_filters('mvx_vendor_order_items_commission_rates', $commission_rates, $order));
+            $order->save();
             // transfer shipping charges
             if ($MVX->vendor_caps->vendor_payment_settings('give_shipping') && !get_user_meta($vendor_id, '_vendor_give_shipping', true)) {
                 $shipping_amount = $order->get_shipping_total();
@@ -329,7 +329,7 @@ class MVX_Commission {
             $shipping_amount = get_post_meta( $commission_id, '_shipping', true );
             $commission_refunded_shipping = get_post_meta( $commission_id, '_commission_refunded_shipping', true );
             $total = floatval($shipping_amount) + floatval($commission_refunded_shipping);
-            return $context == 'view' ? wc_price($total, array('currency' => $order->get_currency())) : $total;
+            return $context == 'view' ? ( $order ? (wc_price($total, array('currency' => $order->get_currency()))) : 0 ) : $total;
         }
     }
     

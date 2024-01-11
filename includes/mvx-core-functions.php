@@ -530,6 +530,27 @@ if (!function_exists('get_vendor_from_an_order')) {
 
 }
 
+if (!function_exists('get_vendor_id_by_order')) {
+
+    /**
+     * Get vendor from a order
+     * @param WC_Order $order or order id
+     * @return type
+     */
+    function get_vendor_id_by_order($order) {
+        $vendors = array();
+        if (!is_object($order)) {
+            $order = new WC_Order($order);
+        }
+        $sub_orders = $order->get_parent_id() == 0 ? get_mvx_suborders($order) : [$order];
+        foreach($sub_orders as $sub_order){
+            $vendors[] = $sub_order->get_meta('_vendor_id');
+        }
+        return $vendors;
+    }
+
+}
+
 if (!function_exists('mvx_action_links')) {
 
     /**
@@ -812,7 +833,7 @@ if (!function_exists('mvx_find_user_purchased_with_vendor')) {
         $is_purchased_with_vendor = false;
         $order_lits = mvx_get_all_order_of_user($user_id);
         foreach ($order_lits as $order) {
-            $vendors = get_vendor_from_an_order($order->ID);
+            $vendors = get_vendor_from_an_order($order->get_id());
             if (!empty($vendors) && is_array($vendors)) {
                 if (in_array($vendor_term_id, $vendors)) {
                     $is_purchased_with_vendor = true;
@@ -1691,7 +1712,7 @@ if (!function_exists('do_mvx_commission_data_migrate')) {
                             'order_id' => $data['order_id'],
                             'commission_id' => $commission_id,
                             'vendor_id' => $vendor->id,
-                            'shipping_status' => in_array($vendor->id, (array) get_post_meta($data['order_id'], 'dc_pv_shipped', true)) ? 1 : 0,
+                            'shipping_status' => in_array($vendor->id, (array) wc_get_order($data['order_id'])->get_meta( 'dc_pv_shipped', true)) ? 1 : 0,
                             'product_id' => $product_id,
                             'commission_amount' => round(($data['commission_amount'] / $product_count), 2),
                             'shipping' => round(($data['shipping_amount'] / $product_count), 2),
@@ -1782,10 +1803,10 @@ if (!function_exists('mvx_process_order')) {
         global $wpdb;
         if (!$order)
             $order = wc_get_order($order_id);
-        if (get_post_meta($order_id, '_mvx_order_processed', true) && !$order) {
+        if ($order->get_meta( '_mvx_order_processed', true) && !$order) {
             return;
         }
-        $vendor_shipping_array = get_post_meta($order_id, 'dc_pv_shipped', true);
+        $vendor_shipping_array = $order->get_meta( 'dc_pv_shipped', true);
         $mark_ship = 0;
         $items = $order->get_items('line_item');
         $shipping_items = $order->get_items('shipping');
@@ -1868,7 +1889,8 @@ if (!function_exists('mvx_process_order')) {
                 }
             }
         }
-        update_post_meta($order_id, '_mvx_order_processed', true);
+        $order->update_meta_data('_mvx_order_processed', true);
+        $order->save();
         do_action('mvx_order_processed', $order);
     }
 
@@ -3976,6 +3998,10 @@ if (!function_exists('get_mvx_available_payment_gateways')) {
      */
     function get_mvx_available_payment_gateways() {
         $available_gateways = array();
+        if (mvx_is_module_active('paypal-marketplace')) {
+            $available_gateways['paypal_marketplace'] = __('PayPal Marketplace', 'multivendorx');
+        }
+
         if (mvx_is_module_active('paypal-masspay')) {
             $available_gateways['paypal_masspay'] = __('PayPal Masspay', 'multivendorx');
         }
@@ -3983,7 +4009,6 @@ if (!function_exists('get_mvx_available_payment_gateways')) {
         if (mvx_is_module_active('paypal-payout')) {
             $available_gateways['paypal_payout'] = __('PayPal Payout', 'multivendorx');
         }
-       
         if (mvx_is_module_active('stripe-connect')) {
             $available_gateways['stripe_masspay'] = __('Stripe Connect', 'multivendorx');
         }
@@ -8299,4 +8324,96 @@ if (!function_exists('mvxArrayToObject')) {
             return $d;
         }
     }
+}
+
+if(!function_exists('insert_mvx_vendor_order_data')){
+    function insert_mvx_vendor_order_data($parent_order, $vendor_id) {
+        //createing sub order on wc_orders table
+        $order = new WC_Order();
+        $meta = [
+            'cart_hash',
+            'customer_id',
+            'currency',
+            'prices_include_tax',
+            'customer_ip_address',
+            'customer_user_agent',
+            'customer_note',
+            'payment_method',
+            'payment_method_title',
+            'status',
+            'billing_country',
+            'billing_first_name',
+            'billing_last_name',
+            'billing_company',
+            'billing_address_1',
+            'billing_address_2',
+            'billing_city',
+            'billing_state',
+            'billing_postcode',
+            'billing_email',
+            'billing_phone',
+            'shipping_country',
+            'shipping_first_name',
+            'shipping_last_name',
+            'shipping_company',
+            'shipping_address_1',
+            'shipping_address_2',
+            'shipping_city',
+            'shipping_state',
+            'shipping_postcode',
+        ];
+        // save other details
+        $order->set_created_via( 'mvx_vendor_order' );
+        $order->calculate_totals();
+        $order->set_parent_id( $parent_order->get_id() );
+        $order->update_meta_data( '_vendor_id', $vendor_id );
+        $order->save();
+        foreach ( $meta as $key ) {
+            if ( is_callable( [ $order, "set_{$key}" ] ) ) {
+                $order->{"set_{$key}"}( $parent_order->{"get_{$key}"}() );
+            }
+        }
+        $order->save();
+
+        wp_update_post(array(
+            'ID' => $order->get_id(),
+            'post_author' => $vendor_id,
+        ));
+
+        return $order->get_id();
+    }
+}
+
+function mvx_get_random_string( $length = 8 ) {
+    // ensure a minimum length
+    if ( ! isset( $length ) || $length < 4 ) {
+        $length = 8;
+    }
+    // make length as even number
+    if ( $length % 2 !== 0 ) {
+        ++$length;
+    }
+    // get random bytes via available methods
+    $random_bytes = '';
+    if ( function_exists( 'random_bytes' ) ) {
+        try {
+            $random_bytes = random_bytes( $length / 2 );
+        } catch ( TypeError $e ) {
+            $random_bytes = '';
+        } catch ( Error $e ) {
+            $random_bytes = '';
+        } catch ( Exception $e ) {
+            $random_bytes = '';
+        }
+    }
+    // random_bytes failed, try another method
+    if ( empty( $random_bytes ) && function_exists( 'openssl_random_pseudo_bytes' ) ) {
+        $random_bytes = openssl_random_pseudo_bytes( $length / 2 );
+    }
+
+    if ( ! empty( $random_bytes ) ) {
+        return bin2hex( $random_bytes );
+    }
+    // builtin method failed, try manual method
+    return substr( str_shuffle( str_repeat( '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', wp_rand( 1, 10 ) ) ), 1, $length );
 }
