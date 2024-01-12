@@ -306,10 +306,9 @@ class mvx_transaction {
         $transactions = new WP_Query($args);
         $transactions = $transactions->get_posts();
         $transaction_details = array();
-
         if ($transactions) {
             foreach ($transactions as $transaction_key => $transaction) {
-
+                
                 $transaction_complete = array('mvx_completed', 'wcmp_completed');
                 $transaction_processing = array('wcmp_processing', 'wcmp_processing');
 

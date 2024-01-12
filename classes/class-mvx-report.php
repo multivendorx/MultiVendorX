@@ -492,16 +492,11 @@ class MVX_Report {
                     ),
                 )
             ), $vendor);
-
-            $qry = new WC_Order_Query($args);
-
-            $orders = apply_filters('mvx_filter_orders_report_overview', $qry->get_orders(), $vendor->id);
+            $orders = apply_filters('mvx_filter_orders_report_overview', mvx_get_orders($args,'object'), $vendor->id);
             if (!empty($orders)) {
-                foreach ($orders as $order_obj) {
-
-                    $order = new WC_Order($order_obj->ID);
+                foreach ($orders as $order) {
                     if ($order) :
-                        $vendor_order = mvx_get_order($order->get_id());
+                        $vendor_order = mvx_get_order($order);
                         $total_sales += $order->get_total();
                         $total_coupon_discount_value += $order->get_total_discount();
                         $total_earnings += $vendor_order->get_commission_total('edit');
