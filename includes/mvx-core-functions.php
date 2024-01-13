@@ -1651,6 +1651,7 @@ if (!function_exists('sksort')) {
             $offset = 0;
             $found = false;
             foreach ($temp_array as $tmp_key => $tmp_val) {
+                if(!isset($val[$subkey]) || !isset($tmp_val[$subkey])) continue;
                 if (!$found and strtolower($val[$subkey]) > strtolower($tmp_val[$subkey])) {
                     $temp_array = array_merge((array) array_slice($temp_array, 0, $offset), array($key => $val), array_slice($temp_array, $offset)
                     );
@@ -7648,7 +7649,7 @@ if (!function_exists('mvx_list_all_modules')) {
                             ),
                         ),
                         'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/paypal-marketplace-real-time-split/',
-                        'mod_link'     => admin_url('admin.php?page=mvx#&submenu=payment&name=payment-payout'),
+                        'mod_link'     => admin_url('admin.php?page=wc-settings&tab=checkout&section=mvx_paypal_marketplace'),
                     ],
                     [
                         'id'           => 'stripe-connect',
