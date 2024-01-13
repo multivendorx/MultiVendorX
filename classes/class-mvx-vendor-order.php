@@ -26,7 +26,7 @@ class mvx_vendor_order {
         if ( is_numeric( $order ) && $order > 0 ) {
             $this->id   = absint( $order );
         } elseif ( $order instanceof WC_Order ) {
-            $this->id = absint( $order->id );
+            $this->id = absint( $order->get_id() );
         }else{
             $this->id = 0;
         }

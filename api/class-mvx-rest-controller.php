@@ -1149,8 +1149,8 @@ class MVX_REST_API {
                 )
             ),
         );
-        $vendor_query = new WC_Order_Query($args_multi_vendor);
-        $vendor_orders = $vendor_query->get_orders();
+        // $vendor_query = new WC_Order_Query($args_multi_vendor);
+        $vendor_orders = mvx_get_orders($args_multi_vendor,'object');
         if (!empty( $vendor_orders )) {
             foreach ($vendor_query->get_orders() as $key_post => $value_post) {
                 $order = wc_get_order( $value_post->ID );
@@ -4691,9 +4691,9 @@ class MVX_REST_API {
                     )
                 ) );
 
-                $qry = new WP_Query($args);
+                // $qry = new WP_Query($args);
 
-                $orders = apply_filters('mvx_filter_orders_report_vendor', $qry->get_posts());
+                $orders = apply_filters('mvx_filter_orders_report_vendor', mvx_get_orders($args,'object'));
 
                 if ( !empty( $orders ) ) {
                     foreach ( $orders as $order ) {
