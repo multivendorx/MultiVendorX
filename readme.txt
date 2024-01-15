@@ -291,7 +291,7 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 
 == Changelog ==
 
-= 4.1.0 - 2024-01-11 =
+= 4.1.0 - 2024-01-15 =
 * Added     - Added HPOS (High-Performance Order Storage) support for MultiVendorX.
 * Added     - We have revised the content of the withdrawal email that is sent to the admin and vendor when the mode of payment is a bank transfer.
 *Fix        - Resolved the issue with store Info widget details not showing in the vendor page and review star icon missing for fontawsome.
