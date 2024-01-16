@@ -538,6 +538,7 @@ class MVX_Order {
             self::create_mvx_order_shipping_lines($vendor_order, array(), array(), $args, $data_migration);
             self::create_mvx_order_coupon_lines( $vendor_order, array(), $args );
         }else{
+            if(!is_admin())
             self::create_mvx_order_shipping_lines($vendor_order, WC()->session->get('chosen_shipping_methods'), WC()->shipping->get_packages(), $args, $data_migration);
             self::create_mvx_order_coupon_lines( $vendor_order, WC()->cart, $args );
         }
