@@ -19,6 +19,11 @@ i.mvx-font {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
+
+  html[dir="rtl"] *{
+    text-align: right !important;
+}
+
 .ico-cancel-status-icon:before {
   content: "\e94f"; }
 
