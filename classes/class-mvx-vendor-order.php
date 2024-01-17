@@ -31,7 +31,7 @@ class mvx_vendor_order {
             $this->id = 0;
         }
         $this->order = wc_get_order( $this->id );
-        $this->vendor_id = absint( $this->order->get_meta( '_vendor_id', true) );
+        $this->vendor_id = $this->order ? absint( $this->order->get_meta( '_vendor_id', true) ) : false;
         
     }
     

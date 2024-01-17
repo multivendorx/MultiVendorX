@@ -538,6 +538,7 @@ class MVX_Order {
             self::create_mvx_order_shipping_lines($vendor_order, array(), array(), $args, $data_migration);
             self::create_mvx_order_coupon_lines( $vendor_order, array(), $args );
         }else{
+            if(!is_admin())
             self::create_mvx_order_shipping_lines($vendor_order, WC()->session->get('chosen_shipping_methods'), WC()->shipping->get_packages(), $args, $data_migration);
             self::create_mvx_order_coupon_lines( $vendor_order, WC()->cart, $args );
         }
@@ -558,10 +559,10 @@ class MVX_Order {
                         $meta_key = 'shipping' == $section || 'billing' == $section ? '_' . $order_meta_key : $order_meta_key;
                         $meta_value_to_save = isset($args['posted_data'][$order_meta_key]) ? $args['posted_data'][$order_meta_key] : $order->get_meta(  $meta_key, true);
                         $vendor_order->update_meta_data($meta_key, $meta_value_to_save);
-                        $vendor_order->save();
                     }
                 }
             }
+            $vendor_order->save();
         }
         // Add vendor order meta data
         $order_meta = apply_filters('mvx_vendor_order_metas', array(
@@ -574,9 +575,13 @@ class MVX_Order {
             '_customer_ip_address',
             '_customer_user_agent',
         ));
-
         foreach ($order_meta as $key) {
-            $vendor_order->update_meta_data($key, $order->get_meta( $key, true));
+            if($MVX->hpos_is_enabled){
+                $vendor_order->update_meta_data($key, $order->get_meta( $key, true));
+            } else {
+                update_post_meta($vendor_order->get_id(), $key, get_post_meta($order->get_id(), $key, true));
+            }
+            $vendor_order->save();
         }
 
         $vendor_order->update_meta_data('_mvx_order_version', $MVX->version);
@@ -1305,7 +1310,7 @@ class MVX_Order {
         if ($mvx_suborders) {
             echo '<ul class="mvx-order-vendor" style="margin:0px;list-style:none;">';
             foreach ($mvx_suborders as $suborder) {
-                $vendor = get_mvx_vendor(get_post_field('post_author', $suborder->get_id()));
+                $vendor = get_mvx_vendor($suborder->get_meta('_vendor_id', true));
                 $order_uri = esc_url( $suborder->get_view_order_url() );
                 printf('<li><strong><a href="%s" title="%s">#%s</a></strong> &ndash; <small class="mvx-order-for-vendor">%s %s</small></li>', $order_uri, sanitize_title($suborder->get_status()), $suborder->get_order_number(), _x('for', 'Order table details', 'multivendorx'), $vendor->page_title
                 );
@@ -1657,8 +1662,7 @@ class MVX_Order {
     }
 
     public function mvx_refund_order_status_save( $post_id ){
-        global $post;
-        if( empty($post) || ( $post && $post->post_type != 'shop_order' ) ) return;
+        if( empty( $post_id ) || ( $post_id && get_post_type( $post_id ) != 'shop_order' )) return;
         if( !mvx_get_order( $post_id ) ) return;
         if( !isset( $_POST['cust_refund_status'] ) ) $post_id;
         if( isset( $_POST['refund_order_customer'] ) && $_POST['refund_order_customer'] ) {

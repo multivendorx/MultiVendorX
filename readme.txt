@@ -5,7 +5,7 @@ Donate link: http://multivendorx.com/donate/
 Requires at least: 5.4
 Tested up to: 6.4.2
 Requires PHP: 8.0
-Stable tag: 4.1.0
+Stable tag: 4.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -291,27 +291,32 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 
 == Changelog ==
 
+= 4.1.1 - 2024-01-17 =
+* Added     - Compatibility of WooCommerce 8.5.1.
+* Fix       - The RTL issue is fixed for the vendor store setup wizard
+* Fix       - There was an issue in the reviews page when a customer was trying  to leave vendor feedback. Now in this version we have added a fix for that issue.
+
 = 4.1.0 - 2024-01-15 =
 * Added     - Added HPOS (High-Performance Order Storage) support for MultiVendorX.
 * Added     - We have revised the content of the withdrawal email that is sent to the admin and vendor when the mode of payment is a bank transfer.
-*Fix        - Resolved the issue with store Info widget details not showing in the vendor page and review star icon missing for fontawsome.
-*Fix        - [REST API] Store Image and Store Banner can be updated for the endpoint http://dev.test/wp-json/mvx/v1/vendors.
+* Fix       - Resolved the issue with store Info widget details not showing in the vendor page and review star icon missing for fontawsome.
+* Fix       - [REST API] Store Image and Store Banner can be updated for the endpoint http://dev.test/wp-json/mvx/v1/vendors.
 * Dev       - Added `mvx_order_item_quantity_text` filter.
 * Updated   - Language file.
 
 = 4.0.32 - 2023-12-21 =
 * Added     - Compatibility of WordPress 6.4.2.
 * Added     - Compatibility of WooCommerce 8.4.0.
-*Fix        - There were issues in the vendor shipping option while configuring it from the admin dashboard. The CSS was not correct, the scrollbar was not working while in the add shipping method section. We have fixed those issue in our current update. Also added an option to get back to the previous page in the shipping section. #576
-*Fix        - There were lot of issues in the WPML module. The translation flags were not present in the vendor dashboard, the product url was not showing correctly. But in this new updated version we have fixed those.
-*Fix        - If we set vendor wise commission as 0 and set global commission then the vendor commission gets calculated on global commission. But if the vendor wise commission is set something other than 0 then the commission is calculated as per that. We have fixed this issue with vendor commission and the commission is getting calculated accordingly. #591
+* Fix       - There were issues in the vendor shipping option while configuring it from the admin dashboard. The CSS was not correct, the scrollbar was not working while in the add shipping method section. We have fixed those issue in our current update. Also added an option to get back to the previous page in the shipping section. #576
+* Fix       - There were lot of issues in the WPML module. The translation flags were not present in the vendor dashboard, the product url was not showing correctly. But in this new updated version we have fixed those.
+* Fix       - If we set vendor wise commission as 0 and set global commission then the vendor commission gets calculated on global commission. But if the vendor wise commission is set something other than 0 then the commission is calculated as per that. We have fixed this issue with vendor commission and the commission is getting calculated accordingly. #591
 * Updated   - Language file.
 
 = 4.0.31 - 2023-11-28 =
 * Added     - Compatibility of WooCommerce 8.3.1.
-*Fix        - Earlier there were some grammatical mistakes in some default texts with some customer facing functions. That mistakes/errors have been rectified in this version. #582
-*Fix        - [vendor store policy] The vendor policies set by the admin from the backend were not getting synced with the policies set by the vendor from the vendor dashboard. Also those vendor policies set by the admin were not getting displayed on the vendor store page either. With this update the vendor policies set by admin and vendor are synced flawlessly and are also getting displayed on the vendor store page. #589.
-*Fix        - [Vendor addional email] There were two issues with the email setting in the vendor storefront. Firstly even after adding both the primary and additional email ids from the vendor dashboard, none of them were getting displayed on the vendor store page and also In the additional email field if we remove the email address and click save settings still that is not removed. #590.
+* Fix       - Earlier there were some grammatical mistakes in some default texts with some customer facing functions. That mistakes/errors have been rectified in this version. #582
+* Fix       - [vendor store policy] The vendor policies set by the admin from the backend were not getting synced with the policies set by the vendor from the vendor dashboard. Also those vendor policies set by the admin were not getting displayed on the vendor store page either. With this update the vendor policies set by admin and vendor are synced flawlessly and are also getting displayed on the vendor store page. #589.
+* Fix       - [Vendor addional email] There were two issues with the email setting in the vendor storefront. Firstly even after adding both the primary and additional email ids from the vendor dashboard, none of them were getting displayed on the vendor store page and also In the additional email field if we remove the email address and click save settings still that is not removed. #590.
 * Updated   - Language file.
 
 = 4.0.30 - 2023-11-14 =
