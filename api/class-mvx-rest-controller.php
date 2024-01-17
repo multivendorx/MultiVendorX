@@ -1033,8 +1033,7 @@ class MVX_REST_API {
         foreach ($query->get_orders() as $post_id) {
             $refund_status = '';
             $order = wc_get_order($post_id);
-            $post = get_post($post_id);
-            if (!is_user_mvx_vendor($post->post_author)) continue;
+            if (!is_user_mvx_vendor($order->get_meta('_vendor_id', true))) continue;
             if (!$order) continue;
             $refund_status_raw = $order->get_meta('_customer_refund_order') ? $order->get_meta('_customer_refund_order') : '';
             switch ($refund_status_raw) {
@@ -1054,7 +1053,7 @@ class MVX_REST_API {
 
             $lists[] = array(
                 'order_id'          =>  $order->get_id(),
-                'vendor'            =>  get_user_by('ID', $post->post_author)->display_name,
+                'vendor'            =>  get_user_by('ID', $order->get_meta('_vendor_id', true))->display_name,
                 'refund_reason'     =>  $order->get_meta('_customer_refund_reason') ? esc_html($order->get_meta('_customer_refund_reason')) : '-',
                 'refund_status'     =>  $refund_status,
                 'payment_gateway'   =>  $order->get_payment_method_title()
@@ -1075,8 +1074,7 @@ class MVX_REST_API {
         foreach ($query->get_orders() as $post_id) {
             $refund_amount = '';
             $order = wc_get_order($post_id);
-            $post = get_post($post_id);
-            if (!is_user_mvx_vendor($post->post_author)) continue;
+            if (!is_user_mvx_vendor($order->get_meta('_vendor_id', true))) continue;
             if (!$order) continue;
             if (!$order->get_refunds()) continue;
 
@@ -1086,7 +1084,7 @@ class MVX_REST_API {
 
             $lists[] = array(
                 'order_id'          =>  $post_id,
-                'vendor'            =>  get_user_by('ID', $post->post_author)->display_name,
+                'vendor'            =>  get_user_by('ID', $order->get_meta('_vendor_id', true))->display_name,
                 'refund_reason'     =>  $order->get_meta('_customer_refund_reason') ? esc_html($order->get_meta('_customer_refund_reason')) : '-',
                 'refunded_amount'   =>  $refund_amount,
                 'payment_gateway'   =>  $order->get_payment_method_title()
