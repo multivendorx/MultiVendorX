@@ -942,13 +942,10 @@ if (!function_exists('mvx_get_all_order_of_user')) {
      */
     function mvx_get_all_order_of_user($user_id) {
         $order_lits = array();
-        $customer_orders = get_posts(array(
-            'numberposts' => -1,
-            'meta_key' => '_customer_user',
-            'meta_value' => $user_id,
-            'post_type' => wc_get_order_types(),
-            'post_status' => array_keys(wc_get_order_statuses()),
-        ));
+        $args = array(
+            'customer_id' => $user_id, 
+            'limit' => -1,
+        );
         if (is_array($customer_orders) && count($customer_orders) > 0) {
             $order_lits = $customer_orders;
         }
