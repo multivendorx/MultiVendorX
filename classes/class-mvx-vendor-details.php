@@ -521,14 +521,17 @@ class MVX_Vendor {
         $order = new WC_Order($order_id);
         if ($order) {
             $items = $order->get_items('line_item');
+            $vendor_id = $order->get_meta('_vendor_id', true);
             if ($items) {
                 foreach ($items as $item_id => $item) {
-                    $product_id = wc_get_order_item_meta($item_id, '_product_id', true);
-
+                    if ($vendor_id == '') {
+                        $item_dtl[$item_id] = $item;
+                    }
+                    $product_id = wc_get_order_item_meta($item_id, '_product_id', true);                    
                     if ($product_id) {
                         if ($term_id > 0) {
                             $product_vendors = get_mvx_product_vendors($product_id);
-                            if (!empty($product_vendors) && $product_vendors->term_id == $term_id) {
+                            if ($product_vendors && !empty($product_vendors) && $product_vendors->term_id == $term_id) {
                                 $item_dtl[$item_id] = $item;
                             }
                         }
@@ -536,6 +539,7 @@ class MVX_Vendor {
                 }
             }
         }
+
         return $item_dtl;
     }
 
