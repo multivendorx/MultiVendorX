@@ -81,7 +81,8 @@ class MVX_Calculate_Commission {
                     if( version_compare( $mvx_order_version, '3.4.2', '>=') && !$already_triggered ){
                         $email_admin = WC()->mailer()->emails['WC_Email_Vendor_New_Order'];
                         $result = $email_admin->trigger( $v_order_id );
-                        if( $result ) update_post_meta( $v_order_id, '_mvx_vendor_new_order_mail_triggered', true );
+                        $vendor_order->update_meta_data('_mvx_vendor_new_order_mail_triggered', true);
+                        $vendor_order->save();
                     }
                 }
             }
@@ -91,7 +92,8 @@ class MVX_Calculate_Commission {
             if( version_compare( $mvx_order_version, '3.4.2', '>=') && !$already_triggered ){
                 $email_admin = WC()->mailer()->emails['WC_Email_Vendor_New_Order'];
                 $result = $email_admin->trigger( $order_id );
-                if( $result ) update_post_meta( $order_id, '_mvx_vendor_new_order_mail_triggered', true );
+                $order->update_meta_data('_mvx_vendor_new_order_mail_triggered', true);
+                $order->save();
             }
         }
         
