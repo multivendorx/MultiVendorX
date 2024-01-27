@@ -73,7 +73,7 @@ class MVX_Frontend {
         flush_rewrite_rules();
 
         // Customer follows vendor list on my account page
-        if ( mvx_is_module_active('store-follow') ) {
+        if ( mvx_is_module_active('follow-store') ) {
             add_filter( 'woocommerce_account_menu_items',array($this, 'mvx_customer_followers_vendor'), 99 );
             add_action( 'woocommerce_account_followers_endpoint', array($this, 'mvx_customer_followers_vendor_callback' ));
         }
