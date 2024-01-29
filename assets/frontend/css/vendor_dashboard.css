@@ -874,7 +874,6 @@ label .tool_tip:after {
 select:not([multiple]) {
   -webkit-appearance: none;
   -moz-appearance: none;
-  -ms-appearance: none;
   -o-appearance: none;
   appearance: none;
   padding-right: 27px !important;
@@ -896,7 +895,6 @@ select:not([multiple])::-ms-expand {
 select.form-control:not([multiple]) {
   -webkit-appearance: none;
   -moz-appearance: none;
-  -ms-appearance: none;
   -o-appearance: none;
   appearance: none;
   padding-right: 27px !important;
@@ -2290,7 +2288,6 @@ mark.mark-red {
   border: 1px solid #ccc;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 4px;
-  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 }
 .add-product #mvx_auto_suggest_product_title ul a {
@@ -2357,7 +2354,6 @@ mark.mark-red {
 }
 .navbar-default .navbar-toggle .icon-bar {
   width: 25px;
-  -webkit-transition: all 0.2s;
   transition: all 0.2s;
   background-color: #3f85b9;
   margin-top: 7px;
@@ -3008,8 +3004,6 @@ span.delete a {
   z-index: 100000;
   left: 50%;
   top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   max-width: 100%;
   min-width: 500px;
@@ -3064,7 +3058,6 @@ span.delete a {
   border: 0;
   border-left: 1px solid #ddd;
   background-color: transparent;
-  -webkit-transition: color 0.1s ease-in-out, background 0.1s ease-in-out;
   transition: color 0.1s ease-in-out, background 0.1s ease-in-out;
 }
 .mvx-modal-main .mvx-modal-header .modal-close-link::before {
@@ -4376,8 +4369,6 @@ td:focus {
   right: 10px;
   bottom: 10px;
   overflow: hidden;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
   border-radius: 3px;
   line-height: 10px;
   text-align: center;
@@ -4954,7 +4945,8 @@ input[type=checkbox]:checked:before {
   -moz-border-top-colors: none;
   background: rgba(0, 0, 0, 0) -moz-linear-gradient(center top, #f74b33 0%, #e1442e 50%, #cf3f2b 100%) repeat scroll 0 0;
   border-color: #ff8877 -moz-use-text-color #9f291a;
-  border-image: none;
+  -o-border-image: none;
+     border-image: none;
   border-radius: 4px;
   border-style: solid none;
   border-width: 2px 0;
@@ -6498,10 +6490,6 @@ select[name=mvx-vendor-orders_length] {
   border-style: solid;
   border-color: #ccc;
   background: #fff;
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
   transform: rotate(45deg);
   content: "";
   position: absolute;
@@ -8112,7 +8100,8 @@ fieldset {
 }
 
 ul.select-store-details {
-  column-gap: 1rem;
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -8289,4 +8278,12 @@ ul.select-store-details li input {
 
 .mvx-filter-dtdd {
   height: 38px !important;
+}
+
+.panel.panel-default.panel-pading.pannel-outer-heading {
+  overflow: scroll;
+}
+
+.mvx-zone-method-content.col-md-9.col-sm-9 {
+  overflow: scroll;
 }/*# sourceMappingURL=vendor_dashboard.css.map */
