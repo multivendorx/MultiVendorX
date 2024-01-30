@@ -5,7 +5,7 @@ Donate link: http://multivendorx.com/donate/
 Requires at least: 5.4
 Tested up to: 6.4.2
 Requires PHP: 8.0
-Stable tag: 4.1.1
+Stable tag: 4.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -290,6 +290,12 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.1.2 - 2024-01-30 =
+* Added     - Compatibility of WooCommerce 8.5.2.
+* Fix       - The warning previously appearing on the WooCommerce shop page for the mvx vendor coupon widget has been resolved in our latest update.
+* Fix       - Responsiveness issue in the vendor shipping section for mobile view has been addressed with the necessary fix.
+* Updated   - We have adjusted the display of the Twitter icon on the vendor shop page to align with the latest specifications.
 
 = 4.1.1 - 2024-01-17 =
 * Added     - Compatibility of WooCommerce 8.5.1.
