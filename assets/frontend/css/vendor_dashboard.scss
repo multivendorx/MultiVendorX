@@ -10,6 +10,7 @@
 /*....................... shipping page .....................*/
 /*********************** Ledger Report *************************/
 /*# sourceMappingURL=vendor_dashboard.css.map */
+
 i.mvx-font {
 	font-family: 'mvx' !important;
 	font-style: normal;
@@ -9430,4 +9431,11 @@ ul.select-store-details li input {
 
 .mvx-filter-dtdd {
 	height: 38px !important;
+}
+
+.panel.panel-default.panel-pading.pannel-outer-heading{
+	overflow: scroll;
+}
+.mvx-zone-method-content.col-md-9.col-sm-9{
+	overflow: scroll;
 }

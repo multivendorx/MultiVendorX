@@ -4202,7 +4202,7 @@ if (!function_exists('mvx_find_shop_page_vendor')) {
      */
     function mvx_find_shop_page_vendor() {
         $store_id = false;
-        if (get_queried_object()) {
+        if (get_queried_object() instanceof WP_Term) {
             $vendor_id = get_queried_object()->term_id;
             $store = get_mvx_vendor_by_term($vendor_id);
             $store_id = $store ? $store->id : false;;
