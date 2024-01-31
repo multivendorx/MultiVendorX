@@ -2310,7 +2310,7 @@ class MVX_Product {
                 return;
             }
             $mvx_min_max_meta = [
-                'product_wise_activation' => wc_clean( wp_unslash( $_POST['product_wise_activation'] ) ),
+                'product_wise_activation' => isset( $_POST['product_wise_activation'] ) ? wc_clean( wp_unslash( $_POST['product_wise_activation'] ) ) : '',
                 'min_quantity'            => isset( $_POST['min_quantity'] ) && $_POST['min_quantity'] > 0 ? absint( wp_unslash( $_POST['min_quantity'] ) ) : 0,
                 'max_quantity'            => isset( $_POST['max_quantity'] ) && $_POST['max_quantity'] > 0 ? absint( wp_unslash( $_POST['max_quantity'] ) ) : 0,
                 'min_amount'              => isset( $_POST['min_amount'] ) && $_POST['min_amount'] > 0 ? wc_format_decimal( sanitize_text_field( wp_unslash( $_POST['min_amount'] ) ) ) : 0,
@@ -2326,14 +2326,14 @@ class MVX_Product {
                         $variation_id = $_POST['variable_post_id'];
                         if ( ! empty( $_POST['variable_product_wise_activation'][ $loop ] ) && 'yes' === $_POST['variable_product_wise_activation'][ $loop ] ) {
                             $min_max_meta = [
-                                'product_wise_activation' => wc_clean( wp_unslash( $_POST['variable_product_wise_activation'][ $loop ] ) ),
+                                'product_wise_activation' => isset( $_POST['variable_product_wise_activation'][ $loop ] ) ? wc_clean( wp_unslash( $_POST['variable_product_wise_activation'][ $loop ] ) ) : '',
                                 'min_quantity'            => isset( $_POST['variable_min_quantity'][ $loop ] ) && $_POST['variable_min_quantity'][ $loop ] > 0 ? absint( wp_unslash( $_POST['variable_min_quantity'][ $loop ] ) ) : 0,
                                 'max_quantity'            => isset( $_POST['variable_max_quantity'][ $loop ] ) && $_POST['variable_max_quantity'][ $loop ] > 0 ? absint( wp_unslash( $_POST['variable_max_quantity'][ $loop ] ) ) : 0,
                                 'min_amount'              => isset( $_POST['variable_min_amount'][ $loop ] ) && $_POST['variable_min_amount'][ $loop ] > 0 ? wc_format_decimal( sanitize_text_field( wp_unslash( $_POST['variable_min_amount'][ $loop ] ) ) ) : 0,
                                 'max_amount'              => isset( $_POST['variable_max_amount'][ $loop ] ) && $_POST['variable_max_amount'][ $loop ] > 0 ? wc_format_decimal( sanitize_text_field( wp_unslash( $_POST['variable_max_amount'][ $loop ] ) ) ) : 0
                             ];
                         }
-                        update_post_meta( $variation_id, '_mvx_min_max_meta', $mvx_min_max_meta );
+                        update_post_meta( $variation_id, '_mvx_min_max_meta', $min_max_meta );
                     }
                 }
             }
