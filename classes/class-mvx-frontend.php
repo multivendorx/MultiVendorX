@@ -1029,33 +1029,57 @@ class MVX_Frontend {
         $items[ 'customer-logout' ] = __( 'Log out', 'multivendorx' );
         return $items;
     }
-    public function mvx_customer_followers_vendor_callback() {
+   public function mvx_customer_followers_vendor_callback() {
+        global $MVX;
+        wp_enqueue_style('frontend_css');
         $mvx_customer_follow_vendor = get_user_meta( get_current_user_id(), 'mvx_customer_follow_vendor', true ) ? get_user_meta( get_current_user_id(), 'mvx_customer_follow_vendor', true ) : array();
         ?>
-        <table>
-            <tbody>
-                <?php 
-                if ($mvx_customer_follow_vendor) {
-                    foreach ($mvx_customer_follow_vendor as $key_follow_vendor => $value_follow_vendor) {
-                        $vendor = get_mvx_vendor($value_follow_vendor['user_id']);
-                        if (!$vendor) continue;
+                <div class="following-table-parent">
+            <table class="woocommerce-orders-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
+                <thead>
+                    <tr>
+                        <th class="woocommerce-orders-table__header"><?php _e( 'Store Name', 'multivendorx' ) ?></th>
+                        <th class="woocommerce-orders-table__header"><?php _e( 'Rating', 'multivendorx' ) ?></th>
+                        <th class="woocommerce-orders-table__header"><?php _e( 'View Store', 'multivendorx' ) ?></th>
+                    </tr>
+                </thead>
+                    <tbody >
+                        <?php 
+                        if ($mvx_customer_follow_vendor) {
+                            foreach ($mvx_customer_follow_vendor as $key_follow_vendor => $value_follow_vendor) {
+                                $vendor = get_mvx_vendor($value_follow_vendor['user_id']);
+                                if (!$vendor) continue;
+                                ?>
+                                <tr class="woocommerce-orders-table__row">
+                                    <td>
+                                        <div class="following-vendor-data">
+                                            <?php 
+                                            $image = $vendor->get_image() ? $vendor->get_image() : $MVX->plugin_url . 'assets/images/WP-stdavatar.png'; ?>
+                                            <img src='<?php echo esc_attr($image); ?>' alt="<?php echo esc_html($vendor->page_title); ?>">
+                                        <strong><a href="<?php echo esc_url($vendor->permalink); ?>"> <?php echo esc_html($vendor->page_title); ?> </a></strong>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        $rating_info = mvx_get_vendor_review_info($vendor->term_id);
+                                        $MVX->template->get_template('review/rating_vendor_lists.php', array('rating_val_array' => $rating_info));
+                                        ?>
+                                    </td>
+                                    <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-actions">
+                                        <a class="woocommerce-button wp-element-button button view" href="<?php echo esc_url($vendor->permalink); ?>">View Store</a>
+                                    </td>
+                                </tr>
+                                <?php
+                            }
+                        } else {
+                            esc_html_e('You do not follow any customer till now', 'multivendorx');
+                        }
                         ?>
-                        <tr>
-                            <td>
-                                <a href="<?php echo esc_url($vendor->permalink); ?>"> <?php echo esc_html($vendor->page_title); ?> </a>
-                            </td>
-                        </tr>
-                        <?php
-                    }
-                } else {
-                    esc_html_e('You do not follow any customer till now', 'multivendorx');
-                }
-                ?>
-            </tbody>
-        </table>
+                    </tbody>
+                </table>
+        </div>
         <?php
     }
-
         /**
      * Checkout User Location Field Save
      */

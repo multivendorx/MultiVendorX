@@ -496,17 +496,13 @@
 
 /*********** Modules section *********************/
 @font-face {
-  font-family: 'mvx-module';
-  src:  url('../fonts/mvx-module.eot?wax3jh');
-  src:  url('../fonts/mvx-module.eot?wax3jh#iefix') format('embedded-opentype'),
-    url('../fonts/mvx-module.ttf?wax3jh') format('truetype'),
-    url('../fonts/mvx-module.woff?wax3jh') format('woff'),
-    url('../fonts/mvx-module.svg?wax3jh#mvx-module') format('svg');
+  font-family: "mvx-module";
+  src: url("../fonts/mvx-module.eot?wax3jh");
+  src: url("../fonts/mvx-module.eot?wax3jh#iefix") format("embedded-opentype"), url("../fonts/mvx-module.ttf?wax3jh") format("truetype"), url("../fonts/mvx-module.woff?wax3jh") format("woff"), url("../fonts/mvx-module.svg?wax3jh#mvx-module") format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
-  
 [class^=module-], [class*=" module-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: "mvx-module" !important;
