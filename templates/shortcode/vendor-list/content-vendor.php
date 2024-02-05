@@ -50,7 +50,7 @@ $vendor_hide_address = get_user_meta($vendor_id, '_vendor_hide_address', true) ?
             </div>
             <!-- star rating -->
             <?php
-            if (mvx_is_module_active('store-review') && get_mvx_vendor_settings('is_sellerreview', 'review_management')) {
+            if (mvx_is_module_active('store-review')) {
             ?>
                 <div class="mvx-rating-block extraCls">
                     <div class="mvx-rating-rate"><?php echo esc_html($rating); ?></div>
