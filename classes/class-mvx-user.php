@@ -735,7 +735,7 @@ class MVX_User {
      */
     public function vendor_registration($user_id) {
         global $MVX;
-        if (mvx_is_module_active('marketplace-membership') && !is_user_mvx_vendor($user_id)) {
+        if (mvx_is_module_active('marketplace-membership')) {
             $user = new WP_User(absint($user_id));
             $user->set_role('dc_pending_vendor');
         } else {
