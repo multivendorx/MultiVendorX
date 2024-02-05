@@ -62,7 +62,7 @@ class MVX_Order {
             // MVX create orders
             add_action('woocommerce_saved_order_items', array(&$this, 'mvx_create_orders_from_backend'), 10, 2 );
             if(version_compare(WC_VERSION, '8.3.0', '>=')){
-                add_action('woocommerce_new_order', array(&$this, 'mvx_create_orders_hpos'), 10, 2);
+                add_action('woocommerce_order_status_changed', array(&$this, 'mvx_create_orders_hpos'), 1, 4);
             } else { // before wc version 8.3.0
                 add_action('woocommerce_checkout_order_processed', array(&$this, 'mvx_create_orders'), 10, 3);
             }
@@ -298,7 +298,10 @@ class MVX_Order {
         }
     }
     
-    public function mvx_create_orders_hpos($order_id, $order) {
+    public function mvx_create_orders_hpos($order_id, $old_status, $new_status, $order) {
+        if ( $order->get_parent_id() || $order->get_meta('has_mvx_sub_order', true) ) {
+            return;
+        } 
         $posted_data = array();
         $this->mvx_create_orders($order_id, $posted_data, $order, false);
         
