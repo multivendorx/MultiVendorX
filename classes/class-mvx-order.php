@@ -61,11 +61,8 @@ class MVX_Order {
                 add_action('woocommerce_order_status_changed', array($this, 'mvx_vendor_order_to_parent_order_status_synchronization'), 99, 4);
             // MVX create orders
             add_action('woocommerce_saved_order_items', array(&$this, 'mvx_create_orders_from_backend'), 10, 2 );
-            if(version_compare(WC_VERSION, '8.3.0', '>=')){
-                add_action('woocommerce_order_status_changed', array(&$this, 'mvx_create_orders_hpos'), 1, 4);
-            } else { // before wc version 8.3.0
-                add_action('woocommerce_checkout_order_processed', array(&$this, 'mvx_create_orders'), 10, 3);
-            }
+            add_action('woocommerce_checkout_order_processed', array(&$this, 'mvx_create_orders'), 10, 3);
+            add_action('woocommerce_store_api_checkout_order_processed', array(&$this, 'mvx_create_orders_block_support'), 10, 1);
             add_action('woocommerce_after_checkout_validation', array($this, 'mvx_check_order_awaiting_payment'));
             add_action( 'woocommerce_rest_insert_shop_order_object',array($this,'mvx_create_orders_via_rest_callback'), 10, 3 );
             // Add product for sub order
@@ -298,15 +295,9 @@ class MVX_Order {
         }
     }
     
-    public function mvx_create_orders_hpos($order_id, $old_status, $new_status, $order) {
-        if ( $order->get_parent_id() || $order->get_meta('has_mvx_sub_order', true) ) {
-            return;
-        } 
-        $posted_data = array();
-        $this->mvx_create_orders($order_id, $posted_data, $order, false);
-        
+    public function mvx_create_orders_block_support($order) {
+        $this->mvx_create_orders($order->get_id(), array(), $order, false); 
     }
-
     public function mvx_create_orders($order_id, $posted_data, $order, $backend = false) {
         global $MVX;
         //check parent order exist
