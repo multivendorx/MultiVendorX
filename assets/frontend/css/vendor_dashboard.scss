@@ -100,6 +100,9 @@ i.mvx-font {
   .ico-knowledgebase-icon:before {
 	content: "\e919";
   }
+  .ico-appointment_icon:before {
+	content: "\e940";
+  }
   .ico-left-arrow-icon:before {
 	content: "\e91a";
   }
@@ -2466,6 +2469,7 @@ label.nolabel {
 	padding: 3px 5px 4px;
 	box-shadow: none;
 	line-height: 20px;
+	cursor: pointer;
 }
 button.button {
 	padding: 3px 5px 4px;
@@ -3077,6 +3081,7 @@ span.delete {
 	position: relative;
 	display: inline-block;
 	vertical-align: middle;
+	overflow: hidden;
 	&:after {
 		content: '\e908';
 		font-family: 'mvx' !important;
@@ -9438,4 +9443,39 @@ ul.select-store-details li input {
 }
 .mvx-zone-method-content.col-md-9.col-sm-9{
 	overflow: scroll;
+}
+.to_date, .from_date{
+    margin-bottom: 10px;
+}
+.to_date, .from_date{
+    margin-bottom: 10px;
+}
+#ui-datepicker-div{
+    background: white !important;
+    max-width: 200px;
+    width: 100%;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+#ui-datepicker-div div:nth-child(1){
+    text-align: right;
+}
+#ui-datepicker-div .ui-datepicker-title{
+    margin-top: 10px;
+}
+#ui-datepicker-div table{
+    width: 100%;
+    margin: 10px 0;
+}
+.ui-widget-header .ui-corner-all, .ui-datepicker-buttonpane.ui-widget-content button{
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #ccc;
+    display: inline-block;
+    outline: none;
+    border: none;
+    color: black;
+}
+.ui-widget-header .ui-corner-all:nth-child(2), .ui-datepicker-buttonpane.ui-widget-content button:nth-child(2){
+    margin-left: 5px;
 }
