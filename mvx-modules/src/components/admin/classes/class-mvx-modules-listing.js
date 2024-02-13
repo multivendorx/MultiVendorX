@@ -503,16 +503,6 @@ class MVX_Module_Listing extends Component {
 												<div className="mvx-banner-content">
 													{appLocalizer.module_page_string.module17}
 												</div>
-												<div className="mvx-banner-offer">
-													{appLocalizer.module_page_string.module18}
-												</div>
-												<div className="discount-tag">
-													{appLocalizer.module_page_string.module15}
-													<b>{appLocalizer.module_page_string.module20}</b>
-												</div>
-												<p>
-													{appLocalizer.module_page_string.module19}
-												</p>
 												<a className="mvx-go-pro-btn" target="_blank" 
 													href={appLocalizer.module_page_string.module21}>
 														{appLocalizer.module_page_string.module13}
