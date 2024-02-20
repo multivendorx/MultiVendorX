@@ -7553,7 +7553,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/identity-verifictaion',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/identity-verification/',
                         'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=settings-identity-verification'),
                     ],
                 ]
@@ -7699,7 +7699,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active' => is_plugin_active('wcmp-razorpay-split-payment/mvx-razorpay-checkout-gateway.php') ? true :false,
                             )
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/razorpay',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/payment/',
                         'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ]
                 ]
@@ -7712,7 +7712,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'name'         => __( 'Zone-Wise Shipping', 'multivendorx' ),
                         'description'  => __( 'Limit vendors to sell in selected zones', 'multivendorx' ),
                         'plan'         => 'free',
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/knowledgebase/',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/shipping-by-zone/',
                         'mod_link'     => admin_url('admin.php?page=wc-settings&tab=shipping'),
                         'parent_category' => __( 'Shipping.', 'multivendorx' ),
                     ],
