@@ -136,7 +136,10 @@ class MVX_Shortcode {
             'columns' => '4',
             'orderby' => 'date',
             'order' => 'desc'
-                        ), $atts));
+                ), $atts));
+
+        // Remove all characters from the column that are not digits.
+        $columns = preg_replace('/[^0-9.]/', '', $columns);
 
         $meta_query = WC()->query->get_meta_query();
 
@@ -220,6 +223,11 @@ class MVX_Shortcode {
             'orderby' => 'title',
             'order' => 'asc'
                         ), $atts));
+
+        // Remove all characters from the column that are not digits.
+        $columns = preg_replace('/[^0-9.]/', '', $columns);
+
+        $columns = is_numeric($columns) ? $columns : '4';
 
         $user = false;
         if (!empty($vendor)) {       
@@ -327,6 +335,9 @@ class MVX_Shortcode {
             'orderby' => 'date',
             'order' => 'DESC'
                         ), $atts));
+            
+        // Remove all characters from the column that are not digits.
+        $columns = preg_replace('/[^0-9.]/', '', $columns);
 
         if (!empty($vendor)) {
             $user = get_user_by('login', $vendor);
@@ -419,6 +430,9 @@ class MVX_Shortcode {
             'order' => 'desc'
                         ), $atts));
 
+        // Remove all characters from the column that are not digits.
+        $columns = preg_replace('/[^0-9.]/', '', $columns);
+
         $args = array(
             'post_type' => 'product',
             'post_status' => 'publish',
@@ -501,6 +515,9 @@ class MVX_Shortcode {
             'orderby' => 'title',
             'order' => 'asc'
                         ), $atts));
+
+        // Remove all characters from the column that are not digits.
+        $columns = preg_replace('/[^0-9.]/', '', $columns);
 
         // Get products on sale
         $product_ids_on_sale = wc_get_product_ids_on_sale();
@@ -587,6 +604,9 @@ class MVX_Shortcode {
             'order' => 'asc'
                         ), $atts));
 
+        // Remove all characters from the column that are not digits.
+        $columns = preg_replace('/[^0-9.]/', '', $columns);
+
         $args = array(
             'post_type' => 'product',
             'post_status' => 'publish',
@@ -664,6 +684,9 @@ class MVX_Shortcode {
             'per_page' => '12',
             'columns' => '4'
                         ), $atts));
+
+        // Remove all characters from the column that are not digits.
+        $columns = preg_replace('/[^0-9.]/', '', $columns);
 
         $args = array(
             'post_type' => 'product',
@@ -749,6 +772,9 @@ class MVX_Shortcode {
         if (!$category) {
             return '';
         }
+
+        // Remove all characters from the column that are not digits.
+        $columns = preg_replace('/[^0-9.]/', '', $columns);
 
         // Default ordering args
         $ordering_args = WC()->query->get_catalog_ordering_args($orderby, $order);
