@@ -122,6 +122,15 @@ class MVX_Shortcode {
         return $author;
     }
 
+    public static function sanitize_attributes( $attributes ) {
+        // Sanitize the shortcode attributs before use.
+        $sanitize_atts = [];
+        foreach($attributes as $key => $value) {
+            $sanitize_atts[$key] = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+        }
+        return $sanitize_atts;
+    }
+
     /**
      * list all recent products
      *
@@ -130,6 +139,8 @@ class MVX_Shortcode {
     public static function mvx_show_recent_products($atts) {
         global $woocommerce_loop, $MVX;
 
+        $atts = self::sanitize_attributes($atts);
+
         extract(shortcode_atts(array(
             'per_page' => '12',
             'vendor' => '',
@@ -137,10 +148,6 @@ class MVX_Shortcode {
             'orderby' => 'date',
             'order' => 'desc'
         ), $atts));
-
-        // Remove all characters from the column that are not digits.
-        $mathes = [];
-        $columns = preg_match('/^\d+/', $columns, $mathes) ? $mathes[0] : '4';
 
         $meta_query = WC()->query->get_meta_query();
 
@@ -213,6 +220,8 @@ class MVX_Shortcode {
     public static function mvx_show_products($atts) {
         global $woocommerce_loop, $MVX;
 
+        $atts = self::sanitize_attributes($atts);
+
         if (empty($atts))
             return '';
 
@@ -224,12 +233,6 @@ class MVX_Shortcode {
             'orderby' => 'title',
             'order' => 'asc'
                         ), $atts));
-
-        // Remove all characters from the column that are not digits.
-        $mathes = [];
-        $columns = preg_match('/^\d+/', $columns, $mathes) ? $mathes[0] : '4';
-
-        $columns = is_numeric($columns) ? $columns : '4';
 
         $user = false;
         if (!empty($vendor)) {       
@@ -326,6 +329,8 @@ class MVX_Shortcode {
     public static function mvx_recent_products($atts) {
         global $woocommerce_loop, $MVX;
 
+        $atts = self::sanitize_attributes($atts);
+
         if (empty($atts))
             return '';
 
@@ -337,10 +342,6 @@ class MVX_Shortcode {
             'orderby' => 'date',
             'order' => 'DESC'
                         ), $atts));
-            
-        // Remove all characters from the column that are not digits.
-        $mathes = [];
-        $columns = preg_match('/^\d+/', $columns, $mathes) ? $mathes[0] : '4'; 
 
         if (!empty($vendor)) {
             $user = get_user_by('login', $vendor);
@@ -425,6 +426,8 @@ class MVX_Shortcode {
     public static function mvx_show_featured_products($atts) {
         global $woocommerce_loop, $MVX;
 
+        $atts = self::sanitize_attributes($atts);
+
         extract(shortcode_atts(array(
             'vendor' => '',
             'per_page' => '12',
@@ -432,10 +435,6 @@ class MVX_Shortcode {
             'orderby' => 'date',
             'order' => 'desc'
                         ), $atts));
-
-        // Remove all characters from the column that are not digits.
-        $mathes = [];
-        $columns = preg_match('/^\d+/', $columns, $mathes) ? $mathes[0] : '4';
 
         $args = array(
             'post_type' => 'product',
@@ -512,6 +511,8 @@ class MVX_Shortcode {
     public static function mvx_show_sale_products($atts) {
         global $woocommerce_loop, $MVX;
 
+        $atts = self::sanitize_attributes($atts);
+
         extract(shortcode_atts(array(
             'vendor' => '',
             'per_page' => '12',
@@ -519,10 +520,6 @@ class MVX_Shortcode {
             'orderby' => 'title',
             'order' => 'asc'
                         ), $atts));
-
-        // Remove all characters from the column that are not digits.
-        $mathes = [];
-        $columns = preg_match('/^\d+/', $columns, $mathes) ? $mathes[0] : '4';
 
         // Get products on sale
         $product_ids_on_sale = wc_get_product_ids_on_sale();
@@ -601,6 +598,8 @@ class MVX_Shortcode {
     public static function mvx_show_top_rated_products($atts) {
         global $woocommerce_loop, $MVX;
 
+        $atts = self::sanitize_attributes($atts);
+
         extract(shortcode_atts(array(
             'vendor' => '',
             'per_page' => '12',
@@ -608,10 +607,6 @@ class MVX_Shortcode {
             'orderby' => 'title',
             'order' => 'asc'
                         ), $atts));
-
-        // Remove all characters from the column that are not digits.
-        $mathes = [];
-        $columns = preg_match('/^\d+/', $columns, $mathes) ? $mathes[0] : '4';
 
         $args = array(
             'post_type' => 'product',
@@ -685,15 +680,13 @@ class MVX_Shortcode {
     public static function mvx_show_best_selling_products($atts) {
         global $woocommerce_loop, $MVX;
 
+        $atts = self::sanitize_attributes($atts);
+
         extract(shortcode_atts(array(
             'vendor' => '',
             'per_page' => '12',
             'columns' => '4'
                         ), $atts));
-
-        // Remove all characters from the column that are not digits.
-        $mathes = [];
-        $columns = preg_match('/^\d+/', $columns, $mathes) ? $mathes[0] : '4';
 
         $args = array(
             'post_type' => 'product',
@@ -766,6 +759,8 @@ class MVX_Shortcode {
     public static function mvx_show_product_category($atts) {
         global $woocommerce_loop, $MVX;
 
+        $atts = self::sanitize_attributes($atts);
+
         extract(shortcode_atts(array(
             'vendor' => '',
             'per_page' => '12',
@@ -779,10 +774,6 @@ class MVX_Shortcode {
         if (!$category) {
             return '';
         }
-
-        // Remove all characters from the column that are not digits.
-        $mathes = [];
-        $columns = preg_match('/^\d+/', $columns, $mathes) ? $mathes[0] : '4';
 
         // Default ordering args
         $ordering_args = WC()->query->get_catalog_ordering_args($orderby, $order);
@@ -874,7 +865,7 @@ class MVX_Shortcode {
      */
     public static function mvx_show_vendorslist($atts) {
         self::load_class('vendor-list');
-        return self::shortcode_wrapper(array('MVX_Shortcode_Vendor_List', 'output'), $atts);
+        return self::shortcode_wrapper(array('MVX_Shortcode_Vendor_List', 'output'), self::sanitize_attributes($atts));
     }
 
 }
