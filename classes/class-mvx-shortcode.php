@@ -122,6 +122,15 @@ class MVX_Shortcode {
         return $author;
     }
 
+    public static function sanitize_attributes( $attributes ) {
+        // Sanitize the shortcode attributs before use.
+        $sanitize_atts = [];
+        foreach($attributes as $key => $value) {
+            $sanitize_atts[$key] = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+        }
+        return $sanitize_atts;
+    }
+
     /**
      * list all recent products
      *
@@ -130,13 +139,15 @@ class MVX_Shortcode {
     public static function mvx_show_recent_products($atts) {
         global $woocommerce_loop, $MVX;
 
+        $atts = self::sanitize_attributes($atts);
+
         extract(shortcode_atts(array(
             'per_page' => '12',
             'vendor' => '',
             'columns' => '4',
             'orderby' => 'date',
             'order' => 'desc'
-                        ), $atts));
+        ), $atts));
 
         $meta_query = WC()->query->get_meta_query();
 
@@ -208,6 +219,8 @@ class MVX_Shortcode {
      */
     public static function mvx_show_products($atts) {
         global $woocommerce_loop, $MVX;
+
+        $atts = self::sanitize_attributes($atts);
 
         if (empty($atts))
             return '';
@@ -316,6 +329,8 @@ class MVX_Shortcode {
     public static function mvx_recent_products($atts) {
         global $woocommerce_loop, $MVX;
 
+        $atts = self::sanitize_attributes($atts);
+
         if (empty($atts))
             return '';
 
@@ -411,6 +426,8 @@ class MVX_Shortcode {
     public static function mvx_show_featured_products($atts) {
         global $woocommerce_loop, $MVX;
 
+        $atts = self::sanitize_attributes($atts);
+
         extract(shortcode_atts(array(
             'vendor' => '',
             'per_page' => '12',
@@ -493,6 +510,8 @@ class MVX_Shortcode {
      */
     public static function mvx_show_sale_products($atts) {
         global $woocommerce_loop, $MVX;
+
+        $atts = self::sanitize_attributes($atts);
 
         extract(shortcode_atts(array(
             'vendor' => '',
@@ -579,6 +598,8 @@ class MVX_Shortcode {
     public static function mvx_show_top_rated_products($atts) {
         global $woocommerce_loop, $MVX;
 
+        $atts = self::sanitize_attributes($atts);
+
         extract(shortcode_atts(array(
             'vendor' => '',
             'per_page' => '12',
@@ -659,6 +680,8 @@ class MVX_Shortcode {
     public static function mvx_show_best_selling_products($atts) {
         global $woocommerce_loop, $MVX;
 
+        $atts = self::sanitize_attributes($atts);
+
         extract(shortcode_atts(array(
             'vendor' => '',
             'per_page' => '12',
@@ -735,6 +758,8 @@ class MVX_Shortcode {
      */
     public static function mvx_show_product_category($atts) {
         global $woocommerce_loop, $MVX;
+
+        $atts = self::sanitize_attributes($atts);
 
         extract(shortcode_atts(array(
             'vendor' => '',
@@ -840,7 +865,7 @@ class MVX_Shortcode {
      */
     public static function mvx_show_vendorslist($atts) {
         self::load_class('vendor-list');
-        return self::shortcode_wrapper(array('MVX_Shortcode_Vendor_List', 'output'), $atts);
+        return self::shortcode_wrapper(array('MVX_Shortcode_Vendor_List', 'output'), self::sanitize_attributes($atts));
     }
 
 }
