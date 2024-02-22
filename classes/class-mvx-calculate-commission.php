@@ -27,7 +27,7 @@ class MVX_Calculate_Commission {
             add_action( 'mvx_checkout_vendor_order_processed', array( $this, 'mvx_create_commission' ), 10, 3);
             add_action( 'woocommerce_order_refunded', array( $this, 'mvx_create_commission_refunds' ), 99, 2);
         }
-        add_action( 'woocommerce_order_status_changed', array( $this, 'mvx_vendor_new_order_mail' ), 99, 3 );
+        add_action( 'woocommerce_order_status_changed', array( $this, 'mvx_vendor_new_order_mail' ), 99, 4 );
 
         // support of WooCommerce subscription plugin
         //add_filter('wcs_renewal_order_meta_query', array(&$this, 'wcs_renewal_order_meta_query'), 10, 1);
@@ -63,38 +63,27 @@ class MVX_Calculate_Commission {
         }
     }
     
-    public function mvx_vendor_new_order_mail( $order_id, $from_status, $to_status ){
+    public function mvx_vendor_new_order_mail( $order_id, $from_status, $to_status, $order ){
         if( !$order_id ) return;
         if( !in_array( $from_status, apply_filters( 'mvx_vendor_new_order_mail_statuses_transition_from', array(
             'pending',
             'failed',
             'cancelled',
         ), $order_id, $from_status, $to_status ) ) || $to_status == 'failed') return;
-        $order = wc_get_order($order_id);
+        // Collect all suborder.
         if( !$order->get_parent_id() && $order->get_meta( 'has_mvx_sub_order', true ) ) {
-            $suborders = get_mvx_suborders( $order_id, false, false);
-            if( $suborders ) {
-                foreach ( $suborders as $v_order_id ) {
-                    $vendor_order = wc_get_order($v_order_id);
-                    $mvx_order_version = $vendor_order->get_meta('_mvx_order_version', true );
-                    $already_triggered = $vendor_order->get_meta('_mvx_vendor_new_order_mail_triggered', true );
-                    if( version_compare( $mvx_order_version, '3.4.2', '>=') && !$already_triggered ){
-                        $email_admin = WC()->mailer()->emails['WC_Email_Vendor_New_Order'];
-                        $result = $email_admin->trigger( $v_order_id );
-                        if( $result ) update_post_meta( $v_order_id, '_mvx_vendor_new_order_mail_triggered', true );
-                    }
-                }
-            }
-        }elseif( is_mvx_vendor_order( $order_id ) ){
-            $mvx_order_version = $order->get_meta( '_mvx_order_version', true );
-            $already_triggered = $order->get_meta( '_mvx_vendor_new_order_mail_triggered', true );
-            if( version_compare( $mvx_order_version, '3.4.2', '>=') && !$already_triggered ){
+            $vendor_orders = get_mvx_suborders( $order_id, false, false );
+        }
+        // Trigger mail for all vendor orders.
+        foreach ( $vendor_orders as $vendor_order ) {
+            $already_triggered = $vendor_order->get_meta('_mvx_vendor_new_order_mail_triggered', true );
+            if( !$already_triggered ){
                 $email_admin = WC()->mailer()->emails['WC_Email_Vendor_New_Order'];
-                $result = $email_admin->trigger( $order_id );
-                if( $result ) update_post_meta( $order_id, '_mvx_vendor_new_order_mail_triggered', true );
+                $email_admin->trigger( $vendor_order->get_id() );
+                $vendor_order->update_meta_data( '_mvx_vendor_new_order_mail_triggered', true );
+                $vendor_order->save();
             }
         }
-        
     }
 
     /**
