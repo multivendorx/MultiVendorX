@@ -2994,7 +2994,9 @@ Class MVX_Admin_Dashboard {
             $vendor_order_id = $wp->query_vars[get_mvx_vendor_settings( 'mvx_vendor_orders_endpoint', 'seller_dashbaord', 'vendor-orders' )];
             if( isset( $postdata['update_cust_refund_status'] ) && $vendor_order_id ) {
                 if( isset( $postdata['refund_order_customer'] ) && $postdata['refund_order_customer'] ) {
-                    update_post_meta( $vendor_order_id, '_customer_refund_order', $postdata['refund_order_customer'] );
+                    $vendor_order = wc_get_order($vendor_order_id);
+                    $vendor_order->update_meta_data( '_customer_refund_order', $postdata['refund_order_customer'] );
+                    $vendor_order->save();
                     // trigger customer email
                     if( in_array( $postdata['refund_order_customer'], array( 'refund_reject', 'refund_accept' ) ) ) {
 
