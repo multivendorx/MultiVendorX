@@ -3494,7 +3494,7 @@ class MVX_Ajax {
                     }
                     // Update commission status
                     if($ledger->ref_type == 'commission' && get_post_meta($ledger->ref_id, '_paid_status', true) == 'paid') 
-                        $status = '<i class="'. get_post_meta($ledger->ref_id, '_paid_status', true).' mvx-font ico-completed-status-icon" title="'. ucfirst(get_post_meta($ledger->ref_id, '_paid_status', true)).'"></i>';
+                    $status = '<i class="'. get_post_meta($ledger->ref_id, '_paid_status', true).' mvx-font ico-completed-status-icon" title="'. __('Paid', 'multivendorx').'"></i>';
                     $row = array();
                     $row ['status'] = $status;
                     $row ['date'] = mvx_date($ledger->created);
