@@ -3486,11 +3486,11 @@ class MVX_Ajax {
                     $type = '<mark class="type ' . $ledger->ref_type . '"><span>' . $ref_type . '</span></mark>';
                     $status = $ledger->ref_status;
                     if( $ledger->ref_status == 'unpaid' ){
-                        $status = '<i class="'. $ledger->ref_status .' mvx-font ico-processing-status-icon" title="'. ucfirst($ledger->ref_status).'"></i>';
+                        $status = '<i class="'. $ledger->ref_status .' mvx-font ico-processing-status-icon" title="'. __('Unpaid', 'multivendorx').'"></i>';
                     }elseif( $ledger->ref_status == 'completed' ){
-                        $status = '<i class="'. $ledger->ref_status.' mvx-font ico-completed-status-icon" title="'. ucfirst($ledger->ref_status).'"></i>';
+                        $status = '<i class="'. $ledger->ref_status.' mvx-font ico-completed-status-icon" title="'. __('Completed', 'multivendorx').'"></i>';
                     }elseif( $ledger->ref_status == 'cancelled' ){
-                        $status = '<i class="'. $ledger->ref_status .' mvx-font ico-processing-status-icon" title="'. ucfirst($ledger->ref_status).'"></i>';
+                        $status = '<i class="'. $ledger->ref_status .' mvx-font ico-processing-status-icon" title="'. __('Cancelled', 'multivendorx').'"></i>';
                     }
                     // Update commission status
                     if($ledger->ref_type == 'commission' && get_post_meta($ledger->ref_id, '_paid_status', true) == 'paid') 
