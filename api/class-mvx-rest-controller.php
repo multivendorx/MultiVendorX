@@ -1025,7 +1025,7 @@ class MVX_REST_API {
                     array(
                         'key'     => '_customer_refund_order',
                         'value'   => array('refund_request', 'refund_accept', 'refund_reject'),
-                        'compare' => '='
+                        'compare' => 'IN'
                     )
                 )
             );
@@ -1083,7 +1083,7 @@ class MVX_REST_API {
             }
 
             $lists[] = array(
-                'order_id'          =>  $post_id,
+                'order_id'          =>  $order->get_id(),
                 'vendor'            =>  get_user_by('ID', $order->get_meta('_vendor_id', true))->display_name,
                 'refund_reason'     =>  $order->get_meta('_customer_refund_reason') ? esc_html($order->get_meta('_customer_refund_reason')) : '-',
                 'refunded_amount'   =>  $refund_amount,
