@@ -1605,7 +1605,7 @@ class MVX_Order {
         wp_update_comment(array('comment_ID' => $comment_id, 'comment_author' => $user_info->user_name, 'comment_author_email' => $user_info->user_email));
 
         // parent order
-        $parent_order_id = wp_get_post_parent_id($order->get_id());
+        $parent_order_id = $order->get_parent_id();
         $parent_order = wc_get_order( $parent_order_id );
         $comment_id_parent = $parent_order->add_order_note( __('Customer requested a refund for ', 'multivendorx') .$order_id.'.'  );
         wp_update_comment(array('comment_ID' => $comment_id_parent, 'comment_author' => $user_info->user_name, 'comment_author_email' => $user_info->user_email));

@@ -2994,7 +2994,9 @@ Class MVX_Admin_Dashboard {
             $vendor_order_id = $wp->query_vars[get_mvx_vendor_settings( 'mvx_vendor_orders_endpoint', 'seller_dashbaord', 'vendor-orders' )];
             if( isset( $postdata['update_cust_refund_status'] ) && $vendor_order_id ) {
                 if( isset( $postdata['refund_order_customer'] ) && $postdata['refund_order_customer'] ) {
-                    update_post_meta( $vendor_order_id, '_customer_refund_order', $postdata['refund_order_customer'] );
+                    $vendor_order = wc_get_order($vendor_order_id);
+                    $vendor_order->update_meta_data( '_customer_refund_order', $postdata['refund_order_customer'] );
+                    $vendor_order->save();
                     // trigger customer email
                     if( in_array( $postdata['refund_order_customer'], array( 'refund_reject', 'refund_accept' ) ) ) {
 
@@ -3016,7 +3018,7 @@ Class MVX_Admin_Dashboard {
                         wp_update_comment(array('comment_ID' => $comment_id, 'comment_author' => $user_info->user_name, 'comment_author_email' => $user_info->user_email));
 
                         // Comment note for parent order
-                        $parent_order_id = wp_get_post_parent_id($vendor_order_id);
+                        $parent_order_id = $order->get_parent_id();
                         $parent_order = wc_get_order( $parent_order_id );
                         $comment_id_parent = $parent_order->add_order_note( __('Vendor ' , 'multivendorx') . $order_status . __(' refund request for order #' , 'multivendorx') . $vendor_order_id .'.' );
                         wp_update_comment(array('comment_ID' => $comment_id_parent, 'comment_author' => $user_info->user_name, 'comment_author_email' => $user_info->user_email));
