@@ -75,13 +75,15 @@ class MVX_Calculate_Commission {
             $vendor_orders = get_mvx_suborders( $order_id, false, false );
         }
         // Trigger mail for all vendor orders.
-        foreach ( $vendor_orders as $vendor_order ) {
-            $already_triggered = $vendor_order->get_meta('_mvx_vendor_new_order_mail_triggered', true );
-            if( !$already_triggered ){
-                $email_admin = WC()->mailer()->emails['WC_Email_Vendor_New_Order'];
-                $email_admin->trigger( $vendor_order->get_id() );
-                $vendor_order->update_meta_data( '_mvx_vendor_new_order_mail_triggered', true );
-                $vendor_order->save();
+        if ($vendor_orders) {
+            foreach ( $vendor_orders as $vendor_order ) {
+                $already_triggered = $vendor_order->get_meta('_mvx_vendor_new_order_mail_triggered', true );
+                if( !$already_triggered ){
+                    $email_admin = WC()->mailer()->emails['WC_Email_Vendor_New_Order'];
+                    $email_admin->trigger( $vendor_order->get_id() );
+                    $vendor_order->update_meta_data( '_mvx_vendor_new_order_mail_triggered', true );
+                    $vendor_order->save();
+                }
             }
         }
     }
