@@ -426,6 +426,7 @@ class MVX_Module_Listing extends Component {
 																)}
 																{student.doc_link ?
 																<a
+																	target ='_blank'
 																	href={
 																		student.doc_link
 																	}
