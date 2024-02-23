@@ -73,9 +73,6 @@ class MVX_Calculate_Commission {
         // Collect all suborder.
         if( !$order->get_parent_id() && $order->get_meta( 'has_mvx_sub_order', true ) ) {
             $vendor_orders = get_mvx_suborders( $order_id, false, false );
-        }
-        // Trigger mail for all vendor orders.
-        if ($vendor_orders) {
             foreach ( $vendor_orders as $vendor_order ) {
                 $already_triggered = $vendor_order->get_meta('_mvx_vendor_new_order_mail_triggered', true );
                 if( !$already_triggered ){
