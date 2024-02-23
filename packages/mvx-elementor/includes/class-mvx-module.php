@@ -3,7 +3,7 @@
 use Elementor\Controls_Manager;
 
 class MVX_Elementor_Module extends MVX_Elementor_ModuleBase {
-
+    public $docs_types;
     public function __construct() {
         parent::init();
 
