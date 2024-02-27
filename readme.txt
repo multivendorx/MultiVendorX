@@ -5,7 +5,7 @@ Donate link: http://multivendorx.com/donate/
 Requires at least: 5.4
 Tested up to: 6.4.3
 Requires PHP: 8.0
-Stable tag: 4.1.3
+Stable tag: 4.1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -290,6 +290,14 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.1.4 - 2024-02-27 =
+* Added     - Compatibility of WooCommerce 8.6.1.
+* Fix       - Issue with new vendor order mail getting triggered multiple times #639.
+* Fix       - Error While rejecting refund from vendor end #670.
+* Fix       - Deprecated message for elementor module #658.
+* Fix       - Error while submitting a refund request from the My account page #663.
+* Fix       - Vulnerability issue with the MultiVendorX vendor list page shortcode and MultiVendorX recent product shortcode.
 
 = 4.1.3 - 2024-02-13 =
 * Added     - Compatibility of WordPress 6.4.3.
