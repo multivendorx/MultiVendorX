@@ -980,7 +980,7 @@ class MVX_Ajax {
     public function delete_fpm_product() {
         check_ajax_referer('mvx-frontend', 'security');
         $proid = isset($_POST['proid']) ? wc_clean($_POST['proid']) : 0;
-        if ($proid) {
+        if (current_user_can( 'delete_posts' ) && $proid) {
             if (wp_delete_post($proid)) {
                 echo '{"status": "success", "shop_url": "' . get_permalink(wc_get_page_id('shop')) . '"}';
                 die;
