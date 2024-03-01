@@ -294,7 +294,7 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 = 4.1.5 - 2024-03-01 =
 * Fix       - Fatal error on the checkout while placing an order.
 * Fix       - Warning message showing in the Vendor list page.
-* Fix       - Tranlation issue with language spanish.
+* Fix       - Translation issue with language spanish.
 * Updated   - Language file.
 
 = 4.1.4 - 2024-02-27 =
