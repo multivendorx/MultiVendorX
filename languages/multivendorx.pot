@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: MultiVendorX 4.0.12\n"
 "Report-Msgid-Bugs-To: https://github.com/multivendorx/dc-woocommerce-multi-"
 "vendor/issues\n"
-"POT-Creation-Date: 2024-02-13 04:35+0000\n"
+"POT-Creation-Date: 2024-03-01 06:01+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -57,8 +57,8 @@ msgid ""
 msgstr ""
 
 #: classes/class-mvx-order.php:1679 classes/class-mvx-order.php:1687
-#: classes/class-mvx-vendor-dashboard.php:3013
-#: classes/class-mvx-vendor-dashboard.php:3021
+#: classes/class-mvx-vendor-dashboard.php:3015
+#: classes/class-mvx-vendor-dashboard.php:3023
 msgid " refund request for order #"
 msgstr ""
 
@@ -662,7 +662,7 @@ msgstr ""
 msgid "Accepted"
 msgstr ""
 
-#: classes/class-mvx-order.php:1673 classes/class-mvx-vendor-dashboard.php:3007
+#: classes/class-mvx-order.php:1673 classes/class-mvx-vendor-dashboard.php:3009
 msgid "accepted"
 msgstr ""
 
@@ -1589,7 +1589,7 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: classes/class-mvx-admin.php:319 classes/class-mvx-vendor-dashboard.php:3100
+#: classes/class-mvx-admin.php:319 classes/class-mvx-vendor-dashboard.php:3102
 #: classes/class-mvx-vendor-hooks.php:483
 msgid "Balance"
 msgstr ""
@@ -1843,7 +1843,7 @@ msgstr ""
 msgid "Cancellation/Return/Exchange Policy"
 msgstr ""
 
-#: classes/class-mvx-post-transaction.php:235
+#: classes/class-mvx-ajax.php:3493 classes/class-mvx-post-transaction.php:235
 msgid "Cancelled"
 msgstr ""
 
@@ -2148,7 +2148,7 @@ msgstr ""
 msgid "Close modal panel"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:3090
+#: classes/class-mvx-vendor-dashboard.php:3092
 msgid "Closing Balance"
 msgstr ""
 
@@ -2194,7 +2194,7 @@ msgstr ""
 msgid "Commission (percentage)"
 msgstr ""
 
-#: classes/class-mvx-calculate-commission.php:448
+#: classes/class-mvx-calculate-commission.php:436
 #: classes/class-mvx-post-commission.php:83
 #, php-format
 msgid "Commission - %s"
@@ -2247,7 +2247,7 @@ msgctxt "Commission date parsed by date"
 msgid "F j, Y @ h:i a"
 msgstr ""
 
-#: classes/class-mvx-calculate-commission.php:448
+#: classes/class-mvx-calculate-commission.php:436
 msgctxt "Commission date parsed by strftime"
 msgid "%B %e, %Y @ %I:%M %p"
 msgstr ""
@@ -2339,7 +2339,7 @@ msgstr ""
 #: includes/mvx-core-functions.php:5706
 #, php-format
 msgid ""
-"Commission rules depending upon product price. e.g 80&#37; commission when "
+"Commission rules depending upon product price. e.g 80%%; commission when "
 "product cost < %s1000, %s100 fixed commission when product cost > %s1000 and "
 "so on. You may define any number of such rules. Please be sure, <b> do not "
 "set conflicting rules.</b>"
@@ -2436,7 +2436,7 @@ msgstr ""
 msgid "Complete!"
 msgstr ""
 
-#: classes/class-mvx-cron-job.php:1048
+#: classes/class-mvx-ajax.php:3491 classes/class-mvx-cron-job.php:1048
 #: classes/class-mvx-post-transaction.php:88
 #: classes/class-mvx-post-transaction.php:231
 #: classes/class-mvx-post-transaction.php:317
@@ -2999,7 +2999,7 @@ msgstr ""
 #: classes/class-mvx-admin.php:802 classes/class-mvx-admin.php:833
 #: classes/class-mvx-admin.php:863 classes/class-mvx-admin.php:899
 #: classes/class-mvx-ajax.php:1022 classes/class-mvx-vendor-dashboard.php:174
-#: classes/class-mvx-vendor-dashboard.php:3096
+#: classes/class-mvx-vendor-dashboard.php:3098
 #: classes/class-mvx-vendor-hooks.php:478
 #: classes/class-mvx-vendor-hooks.php:561
 #: templates/vendor-dashboard/vendor-orders.php:20
@@ -3138,7 +3138,7 @@ msgstr ""
 msgid "Delivery location from map"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:3098
+#: classes/class-mvx-vendor-dashboard.php:3100
 msgid "Deposits"
 msgstr ""
 
@@ -4957,7 +4957,7 @@ msgstr ""
 msgid "Individual use only"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:3089
+#: classes/class-mvx-vendor-dashboard.php:3091
 #: templates/vendor-dashboard/vendor-reports/vendor-ledger.php:24
 msgid "Initial Balance"
 msgstr ""
@@ -6937,7 +6937,7 @@ msgid "vendor-registration"
 msgstr ""
 
 #: api/class-mvx-rest-controller.php:5570 classes/class-mvx-admin.php:370
-#: includes/mvx-core-functions.php:3944
+#: classes/class-mvx-ajax.php:3497 includes/mvx-core-functions.php:3944
 msgid "Paid"
 msgstr ""
 
@@ -8331,7 +8331,7 @@ msgstr ""
 msgid "Refunded"
 msgstr ""
 
-#: classes/class-mvx-calculate-commission.php:235
+#: classes/class-mvx-calculate-commission.php:223
 #, php-format
 msgid "Refunded %s from commission"
 msgstr ""
@@ -8413,7 +8413,7 @@ msgstr ""
 msgid "Rejected"
 msgstr ""
 
-#: classes/class-mvx-order.php:1675 classes/class-mvx-vendor-dashboard.php:3009
+#: classes/class-mvx-order.php:1675 classes/class-mvx-vendor-dashboard.php:3011
 msgid "rejected"
 msgstr ""
 
@@ -9990,8 +9990,8 @@ msgstr ""
 msgid "Sorry, you cannot view this resource."
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:3148
-#: classes/class-mvx-vendor-dashboard.php:3165
+#: classes/class-mvx-vendor-dashboard.php:3150
+#: classes/class-mvx-vendor-dashboard.php:3167
 msgid "Sorry. no data is available"
 msgstr ""
 
@@ -11181,12 +11181,12 @@ msgstr ""
 msgid "Total Coupon Discount"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:3091
+#: classes/class-mvx-vendor-dashboard.php:3093
 #: templates/vendor-dashboard/vendor-reports/vendor-ledger.php:34
 msgid "Total Credit"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:3092
+#: classes/class-mvx-vendor-dashboard.php:3094
 #: templates/vendor-dashboard/vendor-reports/vendor-ledger.php:44
 msgid "Total Debit"
 msgstr ""
@@ -11282,7 +11282,7 @@ msgstr ""
 msgid "Transaction Details"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:3152
+#: classes/class-mvx-vendor-dashboard.php:3154
 msgid "Transaction Details Between"
 msgstr ""
 
@@ -11315,7 +11315,7 @@ msgstr ""
 #: classes/class-mvx-post-transaction.php:45
 #: classes/class-mvx-post-transaction.php:47
 #: classes/class-mvx-post-transaction.php:48
-#: classes/class-mvx-vendor-dashboard.php:3097
+#: classes/class-mvx-vendor-dashboard.php:3099
 msgid "Transactions"
 msgstr ""
 
@@ -11452,7 +11452,8 @@ msgstr ""
 msgid "Unmarked Style"
 msgstr ""
 
-#: classes/class-mvx-admin.php:371 includes/mvx-core-functions.php:3945
+#: classes/class-mvx-admin.php:371 classes/class-mvx-ajax.php:3489
+#: includes/mvx-core-functions.php:3945
 msgid "Unpaid"
 msgstr ""
 
@@ -11747,8 +11748,8 @@ msgstr ""
 msgid "vendor"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:3013
-#: classes/class-mvx-vendor-dashboard.php:3021
+#: classes/class-mvx-vendor-dashboard.php:3015
+#: classes/class-mvx-vendor-dashboard.php:3023
 #: classes/class-mvx-vendor-details.php:1097
 msgid "Vendor "
 msgstr ""
@@ -12576,7 +12577,7 @@ msgstr ""
 msgid "Withdrawal request would be available in case of these order statuses"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:3099
+#: classes/class-mvx-vendor-dashboard.php:3101
 msgid "Withdrawals"
 msgstr ""
 

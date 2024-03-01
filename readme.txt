@@ -5,7 +5,7 @@ Donate link: http://multivendorx.com/donate/
 Requires at least: 5.4
 Tested up to: 6.4.3
 Requires PHP: 8.0
-Stable tag: 4.1.4
+Stable tag: 4.1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -290,6 +290,12 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.1.5 - 2024-03-01 =
+* Fix       - Fatal error on the checkout while placing an order.
+* Fix       - Warning message showing in the Vendor list page.
+* Fix       - Translation issue with Spanish language.
+* Updated   - Language file.
 
 = 4.1.4 - 2024-02-27 =
 * Added     - Compatibility of WooCommerce 8.6.1.
