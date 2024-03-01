@@ -5703,7 +5703,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'depend'    => 'commission_type',
                     'dependvalue'       =>  'commission_by_product_price',
                     'label'     => __( 'Commission By Product Price', 'multivendorx' ),
-                    'desc'      => sprintf( __( 'Commission rules depending upon product price. e.g 80&#37; commission when product cost < %s1000, %s100 fixed commission when product cost > %s1000 and so on. You may define any number of such rules. Please be sure, <b> do not set conflicting rules.</b>', 'multivendorx' ), get_woocommerce_currency_symbol(), get_woocommerce_currency_symbol(), get_woocommerce_currency_symbol() ),
+                    'desc'      => sprintf( __( 'Commission rules depending upon product price. e.g 80%%; commission when product cost < %s1000, %s100 fixed commission when product cost > %s1000 and so on. You may define any number of such rules. Please be sure, <b> do not set conflicting rules.</b>', 'multivendorx' ), get_woocommerce_currency_symbol(), get_woocommerce_currency_symbol(), get_woocommerce_currency_symbol() ),
                     'parent_options' => array(
                         array(
                             'key'=>'cost',
