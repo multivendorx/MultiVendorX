@@ -24,7 +24,7 @@ echo sprintf(  __( "Query for : %s",  'multivendorx' ), $vendor->page_title );
 echo '\n';
 echo sprintf(  __( "Query : %s",  'multivendorx' ), $question );
 echo '\n';
-$question_link = apply_filters( 'admin_plain_question_redirect_link', admin_url( 'admin.php?page=mvx-to-do' ) ); 
+$question_link = apply_filters( 'admin_plain_question_redirect_link', admin_url( 'admin.php?page=mvx#&submenu=work-board&name=activity-reminder' ) ); 
 echo sprintf(  __( "You can approve or reject query from here : %s",  'multivendorx' ), $question_link );
 echo '\n\n';
 echo sprintf( __( 'Note: Quick replies help to maintain a friendly customer-buyer relationship', 'multivendorx'));
