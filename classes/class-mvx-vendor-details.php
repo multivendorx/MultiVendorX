@@ -967,7 +967,13 @@ public function get_vendor_orders_by_product($vendor_term_id, $product_id, $star
                 $args = apply_filters('get_vendor_orders_reports_of_vendor_stats_query_args', wp_parse_args($args, $defaults));
                 
                 $query = array(
-                    'author' => $args['vendor_id'],
+                    'meta_query' => array(
+                        array(
+                            'key' => '_vendor_id',
+                            'value' => $args['vendor_id'],
+                            'compare' => '=',
+                        ),
+                    ),
                     'date_query' => array(
                         array(
                             'after'     => $args['start_date'],
@@ -1061,7 +1067,13 @@ public function get_vendor_orders_by_product($vendor_term_id, $product_id, $star
                 );
                 $args = apply_filters('get_vendor_orders_reports_of_default_query_args', wp_parse_args($args, $defaults));
                 $query = array(
-                    'author' => $args['vendor_id'],
+                    'meta_query' => array(
+                        array(
+                            'key' => '_vendor_id',
+                            'value' => $args['vendor_id'],
+                            'compare' => '=',
+                        ),
+                    ),
                     'date_query' => array(
                         array(
                             'after'     => $args['start_date'],
