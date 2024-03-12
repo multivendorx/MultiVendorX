@@ -662,8 +662,13 @@ class MVX_REST_API_Vendors_Controller extends WC_REST_Controller {
 		// Remove empty values
 		$userdata = array_filter($userdata);
 
-		$userdata['first_name'] = isset( $request['first_name'] ) ? wc_clean($request['first_name']) : '';
-		$userdata['last_name'] = isset( $request['last_name'] ) ? wc_clean($request['last_name']) : '';
+		if (isset($request['first_name'])) {
+			$userdata['first_name'] = wc_clean($request['first_name']);
+		}
+
+		if (isset($request['last_name'])) {
+			$userdata['last_name'] = wc_clean($request['last_name']);
+		}
 		
 		// Update user if there are non-empty values
 		if ($user_id > 0 && !empty($userdata)) {
