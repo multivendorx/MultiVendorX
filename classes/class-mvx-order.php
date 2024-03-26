@@ -1299,12 +1299,11 @@ class MVX_Order {
     }
     
     public function woocommerce_my_account_my_orders_column_mvx_suborder( $order ) {
-        $mvx_suborders = get_mvx_suborders($order->get_id());
+        $mvx_suborders = get_mvx_suborders($order->get_id(), array('type' => 'shop_order'));
 
         if ($mvx_suborders) {
             echo '<ul class="mvx-order-vendor" style="margin:0px;list-style:none;">';
             foreach ($mvx_suborders as $suborder) {
-                if ($suborder instanceof WC_Order_Refund) continue;
                 $vendor = get_mvx_vendor($suborder->get_meta('_vendor_id', true));
                 $order_uri = esc_url( $suborder->get_view_order_url() );
                 printf('<li><strong><a href="%s" title="%s">#%s</a></strong> &ndash; <small class="mvx-order-for-vendor">%s %s</small></li>', $order_uri, sanitize_title($suborder->get_status()), $suborder->get_order_number(), _x('for', 'Order table details', 'multivendorx'), $vendor->page_title
