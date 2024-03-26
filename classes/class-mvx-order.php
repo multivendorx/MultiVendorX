@@ -1299,7 +1299,7 @@ class MVX_Order {
     }
     
     public function woocommerce_my_account_my_orders_column_mvx_suborder( $order ) {
-        $mvx_suborders = get_mvx_suborders($order->get_id());
+        $mvx_suborders = get_mvx_suborders($order->get_id(), array('type' => 'shop_order'));
 
         if ($mvx_suborders) {
             echo '<ul class="mvx-order-vendor" style="margin:0px;list-style:none;">';
