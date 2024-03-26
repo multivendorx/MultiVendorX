@@ -157,6 +157,7 @@ class MVX_Gateway_Stripe_Connect extends MVX_Payment_Gateway {
     
     public function disconnect_stripe_account() {
         if (isset($_POST['disconnect_stripe'])) {
+            $account_type = get_mvx_vendor_settings('stripe_marketplace_connect_account_type', 'payment_stripe_connect');
             $user = wp_get_current_user();
             $user_id = $user->ID;
             $vendor = get_mvx_vendor($user_id);
@@ -178,7 +179,17 @@ class MVX_Gateway_Stripe_Connect extends MVX_Payment_Gateway {
                     );
 
             Stripe::setApiKey($secret_key);
-            
+            if ($account_type == 'express' && !empty($stripe_user_id)) {
+                $stripe = new \Stripe\StripeClient($secret_key);
+                $response = $stripe->accounts->delete( $stripe_user_id, [] );
+                if ($response['deleted'] ) {
+                    delete_user_meta($user_id, 'vendor_connected');
+                    delete_user_meta($user_id, 'admin_client_id');
+                    delete_user_meta($user_id, 'stripe_user_id');
+                    wc_add_notice(__('Your account has been disconnected', 'multivendorx'), 'success');
+                    return;
+                }
+            }
             try {
                 $resp = OAuth::deauthorize($token_request_body);
                 if ($vendor && isset($resp->stripe_user_id)) {
@@ -208,6 +219,20 @@ class MVX_Gateway_Stripe_Connect extends MVX_Payment_Gateway {
             $client_id = $testmode ? get_mvx_vendor_settings('test_client_id') : get_mvx_vendor_settings('live_client_id');
             $secret_key = $testmode ? get_mvx_vendor_settings('test_secret_key') : get_mvx_vendor_settings('live_secret_key');
             if (isset($client_id) && isset($secret_key)) {
+                $type = isset($_REQUEST['type']) ? sanitize_text_field($_REQUEST['type']) : '';
+                $user_id = get_current_user_id();
+                if ($type == 'express' && $user_id) {
+                    $account_id = isset($_REQUEST['account_id']) ? sanitize_text_field($_REQUEST['account_id']) : '';
+                    $stripe = new \Stripe\StripeClient($secret_key);
+                    $retrieve_account = $stripe->accounts->retrieve($account_id, []);
+                    if (!empty($account_id) && $retrieve_account->details_submitted && $retrieve_account->charges_enabled) {
+                        update_user_meta($user_id, 'stripe_user_id', $account_id);
+                        update_user_meta($user_id, 'vendor_connected', 1);
+                        update_user_meta($user_id, 'admin_client_id', $client_id);
+                        wp_redirect(mvx_get_vendor_dashboard_endpoint_url(get_mvx_vendor_settings('mvx_vendor_billing_endpoint', 'seller_dashbaord', 'vendor-billing' )));
+                        exit();
+                    }
+                } 
                 if (isset($_REQUEST['code'])) {
                     $code = wc_clean($_REQUEST['code']);
                     if (!is_user_logged_in()) {
