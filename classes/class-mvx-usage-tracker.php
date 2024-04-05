@@ -639,6 +639,7 @@ class MVX_Plugin_Usage_Tracker {
                 height: 100%;
                 justify-content: center;
                 align-items: center;
+                z-index: 10;
             }
 
             .multivendor-xs-goodbye-form-wrapper-dc-woocommerce-multi-vendor .multivendor-xs-goodbye-form {
