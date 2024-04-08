@@ -888,7 +888,7 @@ class MVX_Order {
             $parent_order_id = $order->get_parent_id();
             if( $parent_order_id ) {
                 // Remove the action to prevent recursion call.
-                remove_action('woocommerce_order_status_changed', [$this, 'parent_order_to_vendor_order_status_sync'], 10, 4);
+                remove_action('woocommerce_order_status_changed', [$this, 'mvx_parent_order_to_vendor_order_status_synchronization'], 90, 4);
 
                 $suborders = get_mvx_suborders($parent_order_id);
                 $all_status_equal = true;
@@ -905,7 +905,7 @@ class MVX_Order {
                 }
 
                 // Add the action back.
-                add_action('woocommerce_order_status_changed', [$this, 'parent_order_to_vendor_order_status_sync'], 10, 4);
+                add_action('woocommerce_order_status_changed', [$this, 'mvx_parent_order_to_vendor_order_status_synchronization'], 90, 4);
             }
         }
     }
