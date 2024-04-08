@@ -49,7 +49,7 @@ defined( 'ABSPATH' ) || exit;
                     <?php foreach ( get_current_vendor_shipping_classes() as $key => $class_name  ) : ?>
                         <option value="<?php echo esc_attr( $key ); ?>" <?php selected( $product_object->get_shipping_class_id( 'edit' ), $key ); ?>><?php echo esc_html( $class_name ); ?></option>
                     <?php endforeach; ?>
-                    <option value="-1"><?php esc_html_e( 'No shipping class', 'multivendorx' ); ?></option>
+                    <option value="-1" <?php selected( $product_object->get_shipping_class_id( 'edit' ), 0 ); ?>><?php esc_html_e( 'No shipping class', 'multivendorx' ); ?></option>
                 </select>
             </div>
         </div> 
