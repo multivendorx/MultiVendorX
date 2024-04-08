@@ -1266,6 +1266,7 @@ class MVX_Admin {
             'mvx_all_backend_tab_list' => $mvx_all_backend_tab_list,
             'mvx_vendor_application_header' =>  $vendor_application_header,
             'default_logo'                  => $MVX->plugin_url.'assets/images/WP-stdavatar.png',
+            'csv_button_alert'              => __('Please select the commission ID for which you want to generate the CSV', 'multivendorx'),
             'commission_bulk_list_option'   =>  $commission_bulk_list_action,
             'commission_header'             => $commission_header,
             'commission_status_list_action' =>  $commission_status_list_action,
