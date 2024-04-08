@@ -1066,7 +1066,7 @@ class MVX_Frontend {
                                         ?>
                                     </td>
                                     <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-actions">
-                                        <a class="woocommerce-button wp-element-button button view" href="<?php echo esc_url($vendor->permalink); ?>">View Store</a>
+                                        <a class="woocommerce-button wp-element-button button view" href="<?php echo esc_url($vendor->permalink); ?>"><?php _e( 'View Store', 'multivendorx' ) ?></a>
                                     </td>
                                 </tr>
                                 <?php
