@@ -78,6 +78,7 @@ class MVX_Product {
             if (!defined('MVX_HIDE_MULTIPLE_PRODUCT')) {
                 add_action('woocommerce_shop_loop', array(&$this, 'woocommerce_shop_loop_callback'), 5);
                 add_action('woocommerce_product_query', array(&$this, 'woocommerce_product_query'), 10);
+                add_filter('pre_get_posts', array(&$this, 'woocommerce_product_query'));
             }
             // SPMV terms updates
             add_action( 'woocommerce_product_quick_edit_save', array( $this, 'mvx_spmv_bulk_quick_edit_save_post' ), 99 );
