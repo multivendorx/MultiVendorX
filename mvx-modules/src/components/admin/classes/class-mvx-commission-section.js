@@ -42,7 +42,8 @@ class MVX_Backend_Commission extends Component {
 			commission_list_status_unpaid: false,
 			commission_list_status_refunded: false,
 			commission_list_status_trash: false,
-			date_range: ''
+			date_range: '',
+			csv_button_enable: false
 		};
 		this.handleSelectRowsChange = this.handleSelectRowsChange.bind(this);
 		this.handlecommissionsearch = this.handlecommissionsearch.bind(this);
@@ -552,6 +553,7 @@ class MVX_Backend_Commission extends Component {
 		}).then((response) => {
 			this.setState({
 				commissiondata: response.data,
+				csv_button_enable: true
 			});
 		});
 	}
@@ -1745,6 +1747,11 @@ class MVX_Backend_Commission extends Component {
 								</p>
 								<div className="pull-right">
 									<CSVLink
+										onClick = {(e)=> {
+											if (!this.state.csv_button_enable ){
+												e.preventDefault();
+												alert(appLocalizer.csv_button_alert);											}
+										}}
 										data={this.state.commissiondata}
 										headers={appLocalizer.commission_header}
 										filename={'Commissions.csv'}
