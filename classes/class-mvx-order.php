@@ -876,6 +876,7 @@ class MVX_Order {
     }
     
     public function mvx_vendor_order_to_parent_order_status_synchronization($order_id, $old_status, $new_status, $order){
+        remove_filter( 'woocommerce_orders_table_query_clauses', array($this, 'wc_order_list_filter') );
         $is_vendor_order = ($order_id) ? mvx_get_order($order_id) : false;
         if( $is_vendor_order ) {
             if ( current_user_can('administrator') && $new_status != $old_status && apply_filters('mvx_vendor_notified_when_admin_change_status', true)) {
