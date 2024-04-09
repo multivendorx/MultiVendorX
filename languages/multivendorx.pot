@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: MultiVendorX 4.0.12\n"
 "Report-Msgid-Bugs-To: https://github.com/multivendorx/dc-woocommerce-multi-"
 "vendor/issues\n"
-"POT-Creation-Date: 2024-03-01 06:01+0000\n"
+"POT-Creation-Date: 2024-04-09 06:41+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -26,7 +26,7 @@ msgstr ""
 msgid " ago"
 msgstr ""
 
-#: classes/class-mvx-vendor-details.php:1097
+#: classes/class-mvx-vendor-details.php:1116
 msgid " has shipped his part of order to customer."
 msgstr ""
 
@@ -47,7 +47,7 @@ msgstr ""
 msgid " No Reviews Yet"
 msgstr ""
 
-#: classes/class-mvx-product.php:2472
+#: classes/class-mvx-product.php:2473
 msgid " piece"
 msgstr ""
 
@@ -56,9 +56,9 @@ msgid ""
 " plugin will be disabled automatically moving forward to avoid conflicts. "
 msgstr ""
 
-#: classes/class-mvx-order.php:1679 classes/class-mvx-order.php:1687
-#: classes/class-mvx-vendor-dashboard.php:3015
-#: classes/class-mvx-vendor-dashboard.php:3023
+#: classes/class-mvx-order.php:1659 classes/class-mvx-order.php:1667
+#: classes/class-mvx-vendor-dashboard.php:3020
+#: classes/class-mvx-vendor-dashboard.php:3028
 msgid " refund request for order #"
 msgstr ""
 
@@ -127,29 +127,29 @@ msgid ""
 "manually by clicking here.</a>"
 msgstr ""
 
-#: classes/class-mvx-product.php:2832
+#: classes/class-mvx-product.php:2833
 #, php-format
 msgid "%1$s requires a maximum amount of %2$s. You currently have %3$d in cart"
 msgstr ""
 
-#: classes/class-mvx-product.php:2813
+#: classes/class-mvx-product.php:2814
 #, php-format
 msgid ""
 "%1$s requires a maximum quantity of %2$d. You currently have %3$d in cart"
 msgstr ""
 
-#: classes/class-mvx-product.php:2823
+#: classes/class-mvx-product.php:2824
 #, php-format
 msgid "%1$s requires a minimum amount of %2$s. You currently have %3$d in cart"
 msgstr ""
 
-#: classes/class-mvx-product.php:2804
+#: classes/class-mvx-product.php:2805
 #, php-format
 msgid ""
 "%1$s requires a minimum quantity of %2$d. You currently have %3$d in cart"
 msgstr ""
 
-#: classes/class-mvx-product.php:338
+#: classes/class-mvx-product.php:339
 #, php-format
 msgid "%1$s review for %2$s"
 msgid_plural "%1$s reviews for %2$s"
@@ -198,7 +198,7 @@ msgstr ""
 msgid "%s"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2639
+#: classes/class-mvx-vendor-dashboard.php:2644
 #, php-format
 msgid "%s &rsaquo; Store Setup Wizard"
 msgstr ""
@@ -254,7 +254,7 @@ msgstr ""
 msgid "%s no of orders: %s"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2909
+#: classes/class-mvx-vendor-dashboard.php:2914
 #, php-format
 msgid "%s offers the following payment methods for you."
 msgstr ""
@@ -662,7 +662,7 @@ msgstr ""
 msgid "Accepted"
 msgstr ""
 
-#: classes/class-mvx-order.php:1673 classes/class-mvx-vendor-dashboard.php:3009
+#: classes/class-mvx-order.php:1653 classes/class-mvx-vendor-dashboard.php:3014
 msgid "accepted"
 msgstr ""
 
@@ -710,7 +710,7 @@ msgstr ""
 #: classes/class-mvx-admin.php:905 classes/class-mvx-admin.php:947
 #: classes/class-mvx-admin.php:983 classes/class-mvx-ajax.php:2461
 #: classes/class-mvx-vendor-dashboard.php:700
-#: classes/class-mvx-vendor-dashboard.php:1840
+#: classes/class-mvx-vendor-dashboard.php:1846
 #: templates/vendor-dashboard/vendor-orders.php:23
 #: templates/vendor-dashboard/vendor-products-qna.php:42
 #: templates/vendor-dashboard/vendor-refund-list.php:23
@@ -766,7 +766,7 @@ msgstr ""
 msgid "Add"
 msgstr ""
 
-#: classes/class-mvx-product.php:894
+#: classes/class-mvx-product.php:895
 #: templates/vendor-dashboard/product-manager/edit-product.php:267
 #: templates/vendor-dashboard/vendor-orders/views/html-order-notes.php:61
 msgid ""
@@ -848,7 +848,7 @@ msgstr ""
 msgid "Add New Vendor"
 msgstr ""
 
-#: classes/class-mvx-product.php:894
+#: classes/class-mvx-product.php:895
 #: templates/vendor-dashboard/product-manager/edit-product.php:267
 #: templates/vendor-dashboard/vendor-orders/views/html-order-notes.php:61
 msgid "Add note"
@@ -863,8 +863,8 @@ msgid "Add policies that are applicable to your site."
 msgstr ""
 
 #: classes/class-mvx-admin.php:1156 classes/class-mvx-endpoints.php:70
-#: classes/class-mvx-vendor-dashboard.php:1577
-#: classes/class-mvx-vendor-dashboard.php:1684
+#: classes/class-mvx-vendor-dashboard.php:1583
+#: classes/class-mvx-vendor-dashboard.php:1690
 #: classes/class-mvx-vendor-hooks.php:138
 #: templates/vendor-dashboard/vendor-products-qna.php:48
 #: templates/vendor-dashboard/product-manager/products.php:132
@@ -920,7 +920,7 @@ msgid ""
 "option Everywhere Else, you can use that."
 msgstr ""
 
-#: classes/class-mvx-product.php:1694 classes/class-mvx-product.php:1702
+#: classes/class-mvx-product.php:1695 classes/class-mvx-product.php:1703
 msgid "Add the GTIN code for this product."
 msgstr ""
 
@@ -985,10 +985,10 @@ msgid "Additional Information: %s"
 msgstr ""
 
 #: api/class-mvx-rest-controller.php:3806 classes/class-mvx-admin.php:1085
-#: classes/class-mvx-vendor-dashboard.php:1838
-#: classes/class-mvx-vendor-dashboard.php:2790
+#: classes/class-mvx-vendor-dashboard.php:1844
+#: classes/class-mvx-vendor-dashboard.php:2795
 #: templates/vendor-dashboard/shop-front.php:234
-#: templates/vendor-dashboard/shop-front.php:470
+#: templates/vendor-dashboard/shop-front.php:473
 #: templates/vendor-dashboard/vendor-policy.php:78
 #: templates/vendor-dashboard/dashboard/vendor-dasboard-pending-shipping-items-header.php:20
 #: packages/mvx-elementor/includes/Tags/StoreInfo.php:43
@@ -1012,7 +1012,7 @@ msgstr ""
 msgid "Address Line 1 : "
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2793
+#: classes/class-mvx-vendor-dashboard.php:2798
 #: templates/vendor-dashboard/shop-front.php:239
 #: templates/vendor-dashboard/vendor-policy.php:85
 msgid "Address line 2"
@@ -1288,7 +1288,7 @@ msgstr ""
 msgid "Amount"
 msgstr ""
 
-#: classes/class-mvx-product.php:2455
+#: classes/class-mvx-product.php:2456
 msgid "Amount "
 msgstr ""
 
@@ -1309,7 +1309,7 @@ msgstr ""
 msgid "Analytics Submenu page"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:1595
+#: classes/class-mvx-vendor-dashboard.php:1601
 #: includes/mvx-core-functions.php:7146 includes/mvx-core-functions.php:8009
 msgid "Announcement"
 msgstr ""
@@ -1589,7 +1589,7 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: classes/class-mvx-admin.php:319 classes/class-mvx-vendor-dashboard.php:3102
+#: classes/class-mvx-admin.php:319 classes/class-mvx-vendor-dashboard.php:3107
 #: classes/class-mvx-vendor-hooks.php:483
 msgid "Balance"
 msgstr ""
@@ -1836,7 +1836,7 @@ msgid "Cancellation / Return / Exchange Policy"
 msgstr ""
 
 #: api/class-mvx-rest-controller.php:4020 classes/class-mvx-frontend.php:792
-#: classes/class-mvx-product.php:952 classes/class-mvx-user.php:629
+#: classes/class-mvx-product.php:953 classes/class-mvx-user.php:629
 #: classes/widgets/class-mvx-widget-vendor-policies.php:35
 #: templates/vendor-dashboard/vendor-policy.php:51
 #: templates/vendor-dashboard/product-manager/views/html-product-data-policy.php:63
@@ -1870,7 +1870,7 @@ msgstr ""
 msgid "category"
 msgstr ""
 
-#: classes/class-mvx-product.php:1850
+#: classes/class-mvx-product.php:1851
 msgid "Category hierarchy"
 msgstr ""
 
@@ -1898,15 +1898,15 @@ msgstr ""
 msgid "Change status to processing"
 msgstr ""
 
-#: classes/class-mvx-order.php:1738
+#: classes/class-mvx-order.php:1718
 msgid "Changed status to Refund Accepted"
 msgstr ""
 
-#: classes/class-mvx-order.php:1753
+#: classes/class-mvx-order.php:1733
 msgid "Changed status to Refund Pending"
 msgstr ""
 
-#: classes/class-mvx-order.php:1745
+#: classes/class-mvx-order.php:1725
 msgid "Changed status to Refund rejected"
 msgstr ""
 
@@ -1918,7 +1918,7 @@ msgstr ""
 msgid "Charge varying rates based on user defined conditions"
 msgstr ""
 
-#: classes/class-mvx-admin.php:1091 classes/class-mvx-vendor-dashboard.php:1839
+#: classes/class-mvx-admin.php:1091 classes/class-mvx-vendor-dashboard.php:1845
 #: templates/vendor-dashboard/dashboard/vendor-dasboard-pending-shipping-items-header.php:21
 msgid "Charges"
 msgstr ""
@@ -1973,11 +1973,11 @@ msgstr ""
 msgid "Checked"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2784
+#: classes/class-mvx-vendor-dashboard.php:2789
 msgid "Choose a country&hellip;"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2805
+#: classes/class-mvx-vendor-dashboard.php:2810
 msgid "Choose a state&hellip;"
 msgstr ""
 
@@ -1993,7 +1993,7 @@ msgstr ""
 msgid "Choose Commission Type"
 msgstr ""
 
-#: classes/class-mvx-product.php:1864
+#: classes/class-mvx-product.php:1865
 #: templates/vendor-dashboard/product-manager/views/html-product-highlights.php:68
 msgid "Choose default"
 msgstr ""
@@ -2026,7 +2026,7 @@ msgid "Choose options"
 msgstr ""
 
 #: api/class-mvx-rest-controller.php:3904
-#: classes/class-mvx-vendor-dashboard.php:2917
+#: classes/class-mvx-vendor-dashboard.php:2922
 #: templates/vendor-dashboard/vendor-billing.php:32
 msgid "Choose Payment Method"
 msgstr ""
@@ -2104,8 +2104,8 @@ msgid "choose_commission_type"
 msgstr ""
 
 #: api/class-mvx-rest-controller.php:3834 classes/class-mvx-admin.php:591
-#: classes/class-mvx-user.php:405 classes/class-mvx-vendor-dashboard.php:2798
-#: templates/vendor-dashboard/shop-front.php:266
+#: classes/class-mvx-user.php:405 classes/class-mvx-vendor-dashboard.php:2803
+#: templates/vendor-dashboard/shop-front.php:269
 #: templates/vendor-dashboard/vendor-policy.php:94
 msgid "City"
 msgstr ""
@@ -2148,7 +2148,7 @@ msgstr ""
 msgid "Close modal panel"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:3092
+#: classes/class-mvx-vendor-dashboard.php:3097
 msgid "Closing Balance"
 msgstr ""
 
@@ -2175,10 +2175,10 @@ msgstr ""
 #: classes/class-mvx-post-commission.php:36
 #: classes/class-mvx-post-commission.php:37
 #: classes/class-mvx-post-commission.php:38
-#: classes/class-mvx-post-commission.php:40 classes/class-mvx-product.php:840
-#: classes/class-mvx-product.php:844 classes/class-mvx-product.php:1246
-#: classes/class-mvx-product.php:1256 classes/class-mvx-product.php:1588
-#: classes/class-mvx-product.php:1626
+#: classes/class-mvx-post-commission.php:40 classes/class-mvx-product.php:841
+#: classes/class-mvx-product.php:845 classes/class-mvx-product.php:1247
+#: classes/class-mvx-product.php:1257 classes/class-mvx-product.php:1589
+#: classes/class-mvx-product.php:1627
 #: classes/class-mvx-vendor-dashboard.php:178
 #: includes/mvx-core-functions.php:4049 includes/mvx-core-functions.php:6900
 #: templates/emails/vendor-new-order.php:28
@@ -2186,11 +2186,11 @@ msgstr ""
 msgid "Commission"
 msgstr ""
 
-#: classes/class-mvx-product.php:1173 classes/class-mvx-product.php:1191
+#: classes/class-mvx-product.php:1174 classes/class-mvx-product.php:1192
 msgid "Commission (fixed) Per Transaction"
 msgstr ""
 
-#: classes/class-mvx-product.php:1163 classes/class-mvx-product.php:1183
+#: classes/class-mvx-product.php:1164 classes/class-mvx-product.php:1184
 msgid "Commission (percentage)"
 msgstr ""
 
@@ -2242,7 +2242,7 @@ msgstr ""
 msgid "Commission data"
 msgstr ""
 
-#: classes/class-mvx-order.php:499 classes/class-mvx-post-commission.php:83
+#: classes/class-mvx-order.php:510 classes/class-mvx-post-commission.php:83
 msgctxt "Commission date parsed by date"
 msgid "F j, Y @ h:i a"
 msgstr ""
@@ -2265,8 +2265,8 @@ msgstr ""
 msgid "Commission Fixed"
 msgstr ""
 
-#: classes/class-mvx-product.php:805 classes/class-mvx-product.php:809
-#: classes/class-mvx-product.php:1600 classes/class-mvx-product.php:1638
+#: classes/class-mvx-product.php:806 classes/class-mvx-product.php:810
+#: classes/class-mvx-product.php:1601 classes/class-mvx-product.php:1639
 msgid "Commission Fixed per transaction"
 msgstr ""
 
@@ -2274,9 +2274,9 @@ msgstr ""
 msgid "Commission Fixed Per Unit"
 msgstr ""
 
-#: classes/class-mvx-product.php:828 classes/class-mvx-product.php:832
-#: classes/class-mvx-product.php:1215 classes/class-mvx-product.php:1234
-#: classes/class-mvx-product.php:1606 classes/class-mvx-product.php:1644
+#: classes/class-mvx-product.php:829 classes/class-mvx-product.php:833
+#: classes/class-mvx-product.php:1216 classes/class-mvx-product.php:1235
+#: classes/class-mvx-product.php:1607 classes/class-mvx-product.php:1645
 msgid "Commission Fixed per unit"
 msgstr ""
 
@@ -2320,11 +2320,11 @@ msgstr ""
 msgid "Commission Percent(%)"
 msgstr ""
 
-#: admin/class-mvx-admin-setup-wizard.php:467 classes/class-mvx-product.php:794
-#: classes/class-mvx-product.php:798 classes/class-mvx-product.php:817
-#: classes/class-mvx-product.php:821 classes/class-mvx-product.php:1204
-#: classes/class-mvx-product.php:1225 classes/class-mvx-product.php:1594
-#: classes/class-mvx-product.php:1632
+#: admin/class-mvx-admin-setup-wizard.php:467 classes/class-mvx-product.php:795
+#: classes/class-mvx-product.php:799 classes/class-mvx-product.php:818
+#: classes/class-mvx-product.php:822 classes/class-mvx-product.php:1205
+#: classes/class-mvx-product.php:1226 classes/class-mvx-product.php:1595
+#: classes/class-mvx-product.php:1633
 msgid "Commission Percentage"
 msgstr ""
 
@@ -2423,7 +2423,7 @@ msgstr ""
 msgid "Commissions"
 msgstr ""
 
-#: classes/class-mvx-product.php:906
+#: classes/class-mvx-product.php:907
 #: templates/vendor-dashboard/product-manager/edit-product.php:279
 msgid "Communication Log"
 msgstr ""
@@ -2521,7 +2521,7 @@ msgstr ""
 msgid "Content"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2337
+#: classes/class-mvx-vendor-dashboard.php:2342
 msgid "Content, title, and excerpt are empty."
 msgstr ""
 
@@ -2529,8 +2529,8 @@ msgstr ""
 #: admin/class-mvx-admin-setup-wizard.php:499
 #: admin/class-mvx-admin-setup-wizard.php:578
 #: admin/class-mvx-admin-setup-wizard.php:669
-#: classes/class-mvx-vendor-dashboard.php:2831
-#: classes/class-mvx-vendor-dashboard.php:2928
+#: classes/class-mvx-vendor-dashboard.php:2836
+#: classes/class-mvx-vendor-dashboard.php:2933
 msgid "Continue"
 msgstr ""
 
@@ -2591,7 +2591,7 @@ msgstr ""
 
 #: api/class-mvx-rest-controller.php:3818
 #: api/class-mvx-rest-controller.php:4183 classes/class-mvx-admin.php:581
-#: classes/class-mvx-user.php:435 classes/class-mvx-vendor-dashboard.php:2784
+#: classes/class-mvx-user.php:435 classes/class-mvx-vendor-dashboard.php:2789
 #: includes/mvx-core-functions.php:2341 includes/mvx-core-functions.php:4433
 #: templates/vendor-dashboard/vendor-policy.php:88
 msgid "Country"
@@ -2631,17 +2631,17 @@ msgstr ""
 msgid "Coupon code"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2385
+#: classes/class-mvx-vendor-dashboard.php:2390
 msgid ""
 "Coupon code already exists - customers will use the latest coupon with this "
 "code."
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2387
+#: classes/class-mvx-vendor-dashboard.php:2392
 msgid "Coupon code already exists - provide a different coupon code."
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2364
+#: classes/class-mvx-vendor-dashboard.php:2369
 msgid "Coupon code can't be empty."
 msgstr ""
 
@@ -2663,11 +2663,11 @@ msgstr ""
 msgid "Coupon expiry date"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2485
+#: classes/class-mvx-vendor-dashboard.php:2490
 msgid "Coupon is successfully drafted"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2487
+#: classes/class-mvx-vendor-dashboard.php:2492
 msgid "Coupon is successfully submitted for review"
 msgstr ""
 
@@ -2691,7 +2691,7 @@ msgstr ""
 msgid "Coupon type"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2489
+#: classes/class-mvx-vendor-dashboard.php:2494
 msgid "Coupon updated and live."
 msgstr ""
 
@@ -2745,7 +2745,7 @@ msgstr ""
 msgid "Create a platform for seller-customer interaction."
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2964
+#: classes/class-mvx-vendor-dashboard.php:2969
 msgid "Create a product"
 msgstr ""
 
@@ -2761,7 +2761,7 @@ msgstr ""
 msgid "Create Sellers Pages using Elementors drag and drop feature "
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2958
+#: classes/class-mvx-vendor-dashboard.php:2963
 msgid "Create some products"
 msgstr ""
 
@@ -2885,7 +2885,7 @@ msgstr ""
 msgid "Customer provided note:"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:1694
+#: classes/class-mvx-vendor-dashboard.php:1700
 #: classes/class-mvx-vendor-hooks.php:112
 msgid "Customer Questions"
 msgstr ""
@@ -2898,15 +2898,15 @@ msgstr ""
 msgid "Customer Refund Request"
 msgstr ""
 
-#: classes/class-mvx-order.php:1624
+#: classes/class-mvx-order.php:1604
 msgid "Customer refund status"
 msgstr ""
 
-#: classes/class-mvx-order.php:1602
+#: classes/class-mvx-order.php:1582
 msgid "Customer requested a refund "
 msgstr ""
 
-#: classes/class-mvx-order.php:1610
+#: classes/class-mvx-order.php:1590
 msgid "Customer requested a refund for "
 msgstr ""
 
@@ -2999,7 +2999,7 @@ msgstr ""
 #: classes/class-mvx-admin.php:802 classes/class-mvx-admin.php:833
 #: classes/class-mvx-admin.php:863 classes/class-mvx-admin.php:899
 #: classes/class-mvx-ajax.php:1022 classes/class-mvx-vendor-dashboard.php:174
-#: classes/class-mvx-vendor-dashboard.php:3098
+#: classes/class-mvx-vendor-dashboard.php:3103
 #: classes/class-mvx-vendor-hooks.php:478
 #: classes/class-mvx-vendor-hooks.php:561
 #: templates/vendor-dashboard/vendor-orders.php:20
@@ -3126,7 +3126,7 @@ msgstr ""
 msgid "Deleted orders or deleted product's orders will not be migrated!"
 msgstr ""
 
-#: classes/class-mvx-order.php:279
+#: classes/class-mvx-order.php:290
 msgid "Deleted vendor"
 msgstr ""
 
@@ -3138,7 +3138,7 @@ msgstr ""
 msgid "Delivery location from map"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:3100
+#: classes/class-mvx-vendor-dashboard.php:3105
 msgid "Deposits"
 msgstr ""
 
@@ -3264,7 +3264,7 @@ msgstr ""
 msgid "Discount Used"
 msgstr ""
 
-#: classes/class-mvx-vendor-details.php:1300
+#: classes/class-mvx-vendor-details.php:1319
 #: templates/vendor-dashboard/vendor-orders/views/html-order-items.php:165
 msgid "Discount:"
 msgstr ""
@@ -3355,7 +3355,7 @@ msgid "Distance"
 msgstr ""
 
 #: api/class-mvx-rest-controller.php:4081
-#: classes/class-mvx-vendor-dashboard.php:1407
+#: classes/class-mvx-vendor-dashboard.php:1413
 #: includes/mvx-core-functions.php:4335
 msgid "Distance more than"
 msgstr ""
@@ -3369,7 +3369,7 @@ msgid "Distance Shipping"
 msgstr ""
 
 #: api/class-mvx-rest-controller.php:4076
-#: classes/class-mvx-vendor-dashboard.php:1406
+#: classes/class-mvx-vendor-dashboard.php:1412
 #: includes/mvx-core-functions.php:4334
 msgid "Distance up to"
 msgstr ""
@@ -3591,8 +3591,8 @@ msgid "Elementor Website Builder"
 msgstr ""
 
 #: classes/class-mvx-admin.php:389 classes/class-mvx-admin.php:506
-#: classes/class-mvx-product.php:1400 templates/vendor-dashboard/profile.php:37
-#: templates/vendor-dashboard/shop-front.php:480
+#: classes/class-mvx-product.php:1401 templates/vendor-dashboard/profile.php:37
+#: templates/vendor-dashboard/shop-front.php:483
 #: templates/vendor-dashboard/vendor-policy.php:72
 #: templates/vendor-dashboard/vendor_followers.php:5
 #: templates/widget/quick-info.php:55
@@ -3710,12 +3710,12 @@ msgstr ""
 msgid "Enable Google Recaptcha"
 msgstr ""
 
-#: classes/class-mvx-product.php:2040
+#: classes/class-mvx-product.php:2041
 msgid "Enable Min Max Rule"
 msgstr ""
 
-#: classes/class-mvx-product.php:2041 classes/class-mvx-product.php:2136
-#: classes/class-mvx-product.php:2256 classes/class-mvx-product.php:2356
+#: classes/class-mvx-product.php:2042 classes/class-mvx-product.php:2137
+#: classes/class-mvx-product.php:2257 classes/class-mvx-product.php:2357
 msgid "Enable Min Max Rule for this product"
 msgstr ""
 
@@ -3845,70 +3845,70 @@ msgid "Ending Balance"
 msgstr ""
 
 #: admin/class-mvx-admin-setup-wizard.php:104
-#: classes/class-mvx-vendor-dashboard.php:2538
+#: classes/class-mvx-vendor-dashboard.php:2543
 #: classes/class-mvx-vendor-hooks.php:645
 msgctxt "enhanced select"
 msgid "Loading failed"
 msgstr ""
 
 #: admin/class-mvx-admin-setup-wizard.php:111
-#: classes/class-mvx-vendor-dashboard.php:2545
+#: classes/class-mvx-vendor-dashboard.php:2550
 #: classes/class-mvx-vendor-hooks.php:652
 msgctxt "enhanced select"
 msgid "Loading more results&hellip;"
 msgstr ""
 
 #: admin/class-mvx-admin-setup-wizard.php:103
-#: classes/class-mvx-vendor-dashboard.php:2537
+#: classes/class-mvx-vendor-dashboard.php:2542
 #: classes/class-mvx-vendor-hooks.php:644
 msgctxt "enhanced select"
 msgid "No matches found"
 msgstr ""
 
 #: admin/class-mvx-admin-setup-wizard.php:108
-#: classes/class-mvx-vendor-dashboard.php:2542
+#: classes/class-mvx-vendor-dashboard.php:2547
 #: classes/class-mvx-vendor-hooks.php:649
 msgctxt "enhanced select"
 msgid "Please delete %qty% characters"
 msgstr ""
 
 #: admin/class-mvx-admin-setup-wizard.php:107
-#: classes/class-mvx-vendor-dashboard.php:2541
+#: classes/class-mvx-vendor-dashboard.php:2546
 #: classes/class-mvx-vendor-hooks.php:648
 msgctxt "enhanced select"
 msgid "Please delete 1 character"
 msgstr ""
 
 #: admin/class-mvx-admin-setup-wizard.php:106
-#: classes/class-mvx-vendor-dashboard.php:2540
+#: classes/class-mvx-vendor-dashboard.php:2545
 #: classes/class-mvx-vendor-hooks.php:647
 msgctxt "enhanced select"
 msgid "Please enter %qty% or more characters"
 msgstr ""
 
 #: admin/class-mvx-admin-setup-wizard.php:105
-#: classes/class-mvx-vendor-dashboard.php:2539
+#: classes/class-mvx-vendor-dashboard.php:2544
 #: classes/class-mvx-vendor-hooks.php:646
 msgctxt "enhanced select"
 msgid "Please enter 1 or more characters"
 msgstr ""
 
 #: admin/class-mvx-admin-setup-wizard.php:112
-#: classes/class-mvx-vendor-dashboard.php:2546
+#: classes/class-mvx-vendor-dashboard.php:2551
 #: classes/class-mvx-vendor-hooks.php:653
 msgctxt "enhanced select"
 msgid "Searching&hellip;"
 msgstr ""
 
 #: admin/class-mvx-admin-setup-wizard.php:110
-#: classes/class-mvx-vendor-dashboard.php:2544
+#: classes/class-mvx-vendor-dashboard.php:2549
 #: classes/class-mvx-vendor-hooks.php:651
 msgctxt "enhanced select"
 msgid "You can only select %qty% items"
 msgstr ""
 
 #: admin/class-mvx-admin-setup-wizard.php:109
-#: classes/class-mvx-vendor-dashboard.php:2543
+#: classes/class-mvx-vendor-dashboard.php:2548
 #: classes/class-mvx-vendor-hooks.php:650
 msgctxt "enhanced select"
 msgid "You can only select 1 item"
@@ -3978,11 +3978,11 @@ msgstr ""
 msgid "Enter some text, or some attributes by \"%s\" separating values."
 msgstr ""
 
-#: templates/vendor-dashboard/shop-front.php:365
+#: templates/vendor-dashboard/shop-front.php:368
 msgid "Enter store location"
 msgstr ""
 
-#: classes/class-mvx-product.php:895
+#: classes/class-mvx-product.php:896
 #: templates/vendor-dashboard/product-manager/edit-product.php:269
 #: templates/vendor-dashboard/vendor-orders/views/html-order-notes.php:63
 msgid "Enter text ..."
@@ -4021,7 +4021,7 @@ msgstr ""
 msgid "Enter your Last Name here"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2781
+#: classes/class-mvx-vendor-dashboard.php:2786
 #: templates/vendor-dashboard/shop-front.php:177
 #: templates/vendor-dashboard/shop-front.php:195
 msgid "Enter your Store Name here"
@@ -4148,11 +4148,11 @@ msgstr ""
 msgid "External Store URL"
 msgstr ""
 
-#: classes/class-mvx-user.php:417 templates/vendor-dashboard/shop-front.php:275
+#: classes/class-mvx-user.php:417 templates/vendor-dashboard/shop-front.php:278
 msgid "External store URL"
 msgstr ""
 
-#: templates/vendor-dashboard/shop-front.php:278
+#: templates/vendor-dashboard/shop-front.php:281
 msgid "External store URL Label"
 msgstr ""
 
@@ -4165,7 +4165,7 @@ msgid "External/Affiliate product"
 msgstr ""
 
 #: api/class-mvx-rest-controller.php:3869
-#: templates/vendor-dashboard/shop-front.php:500
+#: templates/vendor-dashboard/shop-front.php:503
 msgid "Facebook"
 msgstr ""
 
@@ -4295,7 +4295,7 @@ msgstr ""
 msgid "Follow Store"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:1692
+#: classes/class-mvx-vendor-dashboard.php:1698
 #: classes/class-mvx-vendor-hooks.php:245
 msgid "Followers"
 msgstr ""
@@ -4544,7 +4544,7 @@ msgstr ""
 msgid "Grow your business accross the globe with multiple shipping options"
 msgstr ""
 
-#: classes/class-mvx-ajax.php:1178 classes/class-mvx-product.php:1786
+#: classes/class-mvx-ajax.php:1178 classes/class-mvx-product.php:1787
 #: classes/class-mvx-taxonomy.php:185 includes/mvx-core-functions.php:5321
 #: templates/vendor-dashboard/product-manager/views/html-product-highlights.php:140
 #: templates/vendor-dashboard/product-manager/views/html-product-highlights.php:142
@@ -4556,11 +4556,11 @@ msgstr ""
 msgid "GTIN Code"
 msgstr ""
 
-#: classes/class-mvx-product.php:1699
+#: classes/class-mvx-product.php:1700
 msgid "GTIN Code:"
 msgstr ""
 
-#: classes/class-mvx-product.php:1691
+#: classes/class-mvx-product.php:1692
 msgid "GTIN type"
 msgstr ""
 
@@ -4882,7 +4882,7 @@ msgid ""
 "enabled, stock quantity can go below 0."
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2726
+#: classes/class-mvx-vendor-dashboard.php:2731
 msgid ""
 "If you don't want to go through the wizard right now, you can skip and "
 "return to the dashboard. Come back anytime if you change your mind!"
@@ -4957,7 +4957,7 @@ msgstr ""
 msgid "Individual use only"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:3091
+#: classes/class-mvx-vendor-dashboard.php:3096
 #: templates/vendor-dashboard/vendor-reports/vendor-ledger.php:24
 msgid "Initial Balance"
 msgstr ""
@@ -4976,7 +4976,7 @@ msgid "Insert your address .."
 msgstr ""
 
 #: api/class-mvx-rest-controller.php:3893
-#: templates/vendor-dashboard/shop-front.php:528
+#: templates/vendor-dashboard/shop-front.php:531
 msgid "Instagram"
 msgstr ""
 
@@ -4993,12 +4993,12 @@ msgid "Introduce your marketplace or add instructions for registration"
 msgstr ""
 
 #: admin/class-mvx-admin-setup-wizard.php:51
-#: classes/class-mvx-vendor-dashboard.php:2602
+#: classes/class-mvx-vendor-dashboard.php:2607
 #: classes/migration/class-mvx-migration.php:105
 msgid "Introduction"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2407
+#: classes/class-mvx-vendor-dashboard.php:2412
 msgid "Invalid coupon status."
 msgstr ""
 
@@ -5014,11 +5014,11 @@ msgstr ""
 msgid "Invalid payment method"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2116
+#: classes/class-mvx-vendor-dashboard.php:2122
 msgid "Invalid product status."
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2098
+#: classes/class-mvx-vendor-dashboard.php:2104
 msgid "Invalid product."
 msgstr ""
 
@@ -5211,7 +5211,7 @@ msgstr ""
 msgid "Kindly check if the reply is up to your satisfaction : %s"
 msgstr ""
 
-#: classes/class-mvx-order.php:1582
+#: classes/class-mvx-order.php:1562
 msgid "Kindly choose a refund reason"
 msgstr ""
 
@@ -5245,14 +5245,14 @@ msgstr ""
 msgid "Last %d days"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:1667
-#: classes/class-mvx-vendor-dashboard.php:1814
+#: classes/class-mvx-vendor-dashboard.php:1673
+#: classes/class-mvx-vendor-dashboard.php:1820
 #: includes/mvx-core-functions.php:2290 includes/mvx-core-functions.php:2393
 msgid "Last 30 days"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:1666
-#: classes/class-mvx-vendor-dashboard.php:1813
+#: classes/class-mvx-vendor-dashboard.php:1672
+#: classes/class-mvx-vendor-dashboard.php:1819
 #: includes/mvx-core-functions.php:2289 includes/mvx-core-functions.php:2392
 msgid "Last 7 days"
 msgstr ""
@@ -5289,7 +5289,7 @@ msgstr ""
 msgid "Learn more about revenue models"
 msgstr ""
 
-#: classes/class-mvx-product.php:1404
+#: classes/class-mvx-product.php:1405
 msgid "Leave a message explaining the reasons for your abuse report"
 msgstr ""
 
@@ -5353,7 +5353,7 @@ msgid ""
 msgstr ""
 
 #: admin/class-mvx-admin-setup-wizard.php:379
-#: classes/class-mvx-vendor-dashboard.php:2729
+#: classes/class-mvx-vendor-dashboard.php:2734
 msgid "Let's go!"
 msgstr ""
 
@@ -5446,7 +5446,7 @@ msgid "Linked Products"
 msgstr ""
 
 #: api/class-mvx-rest-controller.php:3881
-#: templates/vendor-dashboard/shop-front.php:514
+#: templates/vendor-dashboard/shop-front.php:517
 msgid "LinkedIn"
 msgstr ""
 
@@ -5490,7 +5490,7 @@ msgstr ""
 msgid "Login URL: %s"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:1641
+#: classes/class-mvx-vendor-dashboard.php:1647
 msgid "Logout"
 msgstr ""
 
@@ -5641,7 +5641,7 @@ msgstr ""
 msgid "Marketplace Vendors "
 msgstr ""
 
-#: classes/class-mvx-product.php:2638
+#: classes/class-mvx-product.php:2639
 #: packages/mvx-tablerate/mvx-tablerate.php:463
 #: packages/mvx-tablerate/mvx-tablerate.php:551
 msgid "Max"
@@ -5660,11 +5660,11 @@ msgstr ""
 msgid "max-price"
 msgstr ""
 
-#: classes/class-mvx-product.php:2096 classes/class-mvx-product.php:2197
+#: classes/class-mvx-product.php:2097 classes/class-mvx-product.php:2198
 msgid "Maximum amount to order"
 msgstr ""
 
-#: classes/class-mvx-product.php:2291 classes/class-mvx-product.php:2391
+#: classes/class-mvx-product.php:2292 classes/class-mvx-product.php:2392
 msgid "Maximum amount: "
 msgstr ""
 
@@ -5672,16 +5672,16 @@ msgstr ""
 msgid "Maximum file size"
 msgstr ""
 
-#: classes/class-mvx-product.php:2538
+#: classes/class-mvx-product.php:2539
 #, php-format
 msgid "Maximum quantity for %1$s to order is %2$s."
 msgstr ""
 
-#: classes/class-mvx-product.php:2067 classes/class-mvx-product.php:2165
+#: classes/class-mvx-product.php:2068 classes/class-mvx-product.php:2166
 msgid "Maximum quantity to order"
 msgstr ""
 
-#: classes/class-mvx-product.php:2272 classes/class-mvx-product.php:2372
+#: classes/class-mvx-product.php:2273 classes/class-mvx-product.php:2373
 msgid "Maximum quantity: "
 msgstr ""
 
@@ -5755,7 +5755,7 @@ msgstr ""
 msgid "Miles"
 msgstr ""
 
-#: classes/class-mvx-product.php:2481 classes/class-mvx-product.php:2631
+#: classes/class-mvx-product.php:2482 classes/class-mvx-product.php:2632
 #: packages/mvx-tablerate/mvx-tablerate.php:462
 #: packages/mvx-tablerate/mvx-tablerate.php:550
 msgid "Min"
@@ -5778,11 +5778,11 @@ msgstr ""
 msgid "min-price"
 msgstr ""
 
-#: classes/class-mvx-product.php:2083 classes/class-mvx-product.php:2183
+#: classes/class-mvx-product.php:2084 classes/class-mvx-product.php:2184
 msgid "Minimum amount to order"
 msgstr ""
 
-#: classes/class-mvx-product.php:2282 classes/class-mvx-product.php:2382
+#: classes/class-mvx-product.php:2283 classes/class-mvx-product.php:2383
 msgid "Minimum amount: "
 msgstr ""
 
@@ -5790,16 +5790,16 @@ msgstr ""
 msgid "Minimum order amount for free shipping"
 msgstr ""
 
-#: classes/class-mvx-product.php:2521
+#: classes/class-mvx-product.php:2522
 #, php-format
 msgid "Minimum quantity for %1$s to order is %2$s."
 msgstr ""
 
-#: classes/class-mvx-product.php:2055 classes/class-mvx-product.php:2152
+#: classes/class-mvx-product.php:2056 classes/class-mvx-product.php:2153
 msgid "Minimum quantity to order"
 msgstr ""
 
-#: classes/class-mvx-product.php:2263 classes/class-mvx-product.php:2363
+#: classes/class-mvx-product.php:2264 classes/class-mvx-product.php:2364
 msgid "Minimum quantity: "
 msgstr ""
 
@@ -5847,7 +5847,7 @@ msgstr ""
 msgid "monthly"
 msgstr ""
 
-#: classes/class-mvx-product.php:203
+#: classes/class-mvx-product.php:204
 msgid "More Offers"
 msgstr ""
 
@@ -6087,7 +6087,7 @@ msgstr ""
 msgid "My Earnings"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:1568
+#: classes/class-mvx-vendor-dashboard.php:1574
 msgid "My Shop"
 msgstr ""
 
@@ -6101,7 +6101,7 @@ msgstr ""
 msgid "N/A"
 msgstr ""
 
-#: classes/class-mvx-admin.php:706 classes/class-mvx-product.php:1396
+#: classes/class-mvx-admin.php:706 classes/class-mvx-product.php:1397
 #: templates/emails/report-abuse-email.php:30
 #: templates/emails/vendor-contact-widget-email.php:24
 #: templates/widget/quick-info.php:53
@@ -6210,7 +6210,7 @@ msgstr ""
 msgid "New password"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:1536
+#: classes/class-mvx-vendor-dashboard.php:1542
 msgid "New passwords do not match."
 msgstr ""
 
@@ -6274,7 +6274,7 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2957
+#: classes/class-mvx-vendor-dashboard.php:2962
 msgid "Next step"
 msgstr ""
 
@@ -6327,7 +6327,7 @@ msgstr ""
 msgid "No coupons found!"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:1880
+#: classes/class-mvx-vendor-dashboard.php:1886
 #: templates/vendor-dashboard/vendor_followers.php:33
 msgid "No customer follows you till now."
 msgstr ""
@@ -6470,7 +6470,7 @@ msgid "No shipping address set."
 msgstr ""
 
 #: classes/class-mvx-vendor-dashboard.php:1122
-#: templates/vendor-dashboard/product-manager/views/html-product-data-shipping.php:52
+#: templates/vendor-dashboard/product-manager/views/html-product-data-shipping.php:54
 msgid "No shipping class"
 msgstr ""
 
@@ -6571,7 +6571,7 @@ msgid "Not in the catalog?"
 msgstr ""
 
 #: admin/class-mvx-admin-setup-wizard.php:378
-#: classes/class-mvx-vendor-dashboard.php:2730
+#: classes/class-mvx-vendor-dashboard.php:2735
 msgid "Not right now"
 msgstr ""
 
@@ -6751,7 +6751,7 @@ msgstr ""
 msgid "Order Count"
 msgstr ""
 
-#: classes/class-mvx-admin.php:1079 classes/class-mvx-vendor-dashboard.php:1837
+#: classes/class-mvx-admin.php:1079 classes/class-mvx-vendor-dashboard.php:1843
 #: templates/vendor-dashboard/dashboard/vendor-dasboard-pending-shipping-items-header.php:17
 msgid "Order Date"
 msgstr ""
@@ -6782,7 +6782,7 @@ msgstr ""
 
 #: classes/class-mvx-admin.php:310 classes/class-mvx-admin.php:766
 #: classes/class-mvx-admin.php:995 classes/class-mvx-admin.php:1028
-#: classes/class-mvx-admin.php:1067 classes/class-mvx-vendor-dashboard.php:1835
+#: classes/class-mvx-admin.php:1067 classes/class-mvx-vendor-dashboard.php:1841
 #: templates/emails/customer-order-refund-request.php:25
 #: templates/vendor-dashboard/vendor-orders.php:19
 #: templates/vendor-dashboard/vendor-refund-list.php:18
@@ -6817,13 +6817,12 @@ msgstr ""
 msgid "Order No"
 msgstr ""
 
-#: classes/class-mvx-order.php:914 classes/class-mvx-order.php:923
-#: classes/class-mvx-order.php:935
+#: classes/class-mvx-order.php:915
 msgctxt "Order note"
 msgid "Sync from vendor's suborders: "
 msgstr ""
 
-#: classes/class-mvx-order.php:869
+#: classes/class-mvx-order.php:880
 msgctxt "Order note"
 msgid "Update via parent order: "
 msgstr ""
@@ -6867,7 +6866,7 @@ msgstr ""
 msgid "Order Status Control"
 msgstr ""
 
-#: classes/class-mvx-order.php:285 classes/class-mvx-order.php:1309
+#: classes/class-mvx-order.php:296 classes/class-mvx-order.php:1289
 msgctxt "Order table details"
 msgid "for"
 msgstr ""
@@ -6885,12 +6884,12 @@ msgstr ""
 #: api/class-mvx-rest-controller.php:4863
 #: api/class-mvx-rest-controller.php:4884
 #: classes/class-mvx-vendor-dashboard.php:1092
-#: classes/class-mvx-vendor-dashboard.php:1586
+#: classes/class-mvx-vendor-dashboard.php:1592
 #: classes/class-mvx-vendor-hooks.php:202 includes/mvx-core-functions.php:6924
 msgid "Orders"
 msgstr ""
 
-#: classes/class-mvx-order.php:1526
+#: classes/class-mvx-order.php:1506
 msgid "Others reason"
 msgstr ""
 
@@ -6944,7 +6943,7 @@ msgstr ""
 #. %s: post type
 #: api/class-mvx-rest-vendors-controller.php:608
 #: api/class-mvx-rest-vendors-controller.php:644
-#: api/class-mvx-rest-vendors-controller.php:705
+#: api/class-mvx-rest-vendors-controller.php:710
 #, php-format
 msgid "Parameter insufficient for %s."
 msgstr ""
@@ -6975,12 +6974,12 @@ msgid "Pay via paypal payout"
 msgstr ""
 
 #: api/class-mvx-rest-controller.php:6406 classes/class-mvx-admin.php:1103
-#: classes/class-mvx-admin.php:1157 classes/class-mvx-vendor-dashboard.php:2612
+#: classes/class-mvx-admin.php:1157 classes/class-mvx-vendor-dashboard.php:2617
 #: includes/mvx-core-functions.php:7080 includes/mvx-core-functions.php:7612
 msgid "Payment"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2979
+#: classes/class-mvx-vendor-dashboard.php:2984
 msgid "Payment Configure"
 msgstr ""
 
@@ -7002,7 +7001,7 @@ msgstr ""
 msgid "Payment Gateway Charge"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2903
+#: classes/class-mvx-vendor-dashboard.php:2908
 #: includes/mvx-core-functions.php:1964
 #: templates/vendor-dashboard/vendor-billing.php:28
 msgid "Payment Method"
@@ -7012,7 +7011,7 @@ msgstr ""
 msgid "Payment method"
 msgstr ""
 
-#: classes/class-mvx-vendor-details.php:1343
+#: classes/class-mvx-vendor-details.php:1362
 msgid "Payment method:"
 msgstr ""
 
@@ -7170,7 +7169,7 @@ msgstr ""
 msgid "Pending Refund"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:1681
+#: classes/class-mvx-vendor-dashboard.php:1687
 msgid "Pending Shipping"
 msgstr ""
 
@@ -7284,9 +7283,9 @@ msgstr ""
 
 #: api/class-mvx-rest-controller.php:878 api/class-mvx-rest-controller.php:3800
 #: classes/class-mvx-admin.php:576 classes/class-mvx-user.php:441
-#: classes/class-mvx-vendor-dashboard.php:2814
+#: classes/class-mvx-vendor-dashboard.php:2819
 #: templates/vendor-dashboard/shop-front.php:216
-#: templates/vendor-dashboard/shop-front.php:475
+#: templates/vendor-dashboard/shop-front.php:478
 #: templates/vendor-dashboard/vendor-policy.php:66
 #: templates/vendor-dashboard/vendor-orders/views/html-order-info.php:122
 msgid "Phone"
@@ -7309,7 +7308,7 @@ msgstr ""
 msgid "Pickup from Store"
 msgstr ""
 
-#: templates/vendor-dashboard/shop-front.php:534
+#: templates/vendor-dashboard/shop-front.php:537
 msgid "Pinterest"
 msgstr ""
 
@@ -7366,15 +7365,15 @@ msgstr ""
 msgid "Please connect with stripe account"
 msgstr ""
 
-#: templates/vendor-dashboard/shop-front.php:460
+#: templates/vendor-dashboard/shop-front.php:463
 msgid "Please contact your administrator to enable Google map feature."
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:1528
+#: classes/class-mvx-vendor-dashboard.php:1534
 msgid "Please enter your current password."
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:1524
+#: classes/class-mvx-vendor-dashboard.php:1530
 msgid "Please fill out all password fields."
 msgstr ""
 
@@ -7383,15 +7382,15 @@ msgstr ""
 msgid "Please find your report attachment"
 msgstr ""
 
-#: classes/class-mvx-order.php:1511
+#: classes/class-mvx-order.php:1491
 msgid "Please mention your reason for refund"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:1514
+#: classes/class-mvx-vendor-dashboard.php:1520
 msgid "Please provide a valid email address."
 msgstr ""
 
-#: classes/class-mvx-order.php:1642
+#: classes/class-mvx-order.php:1622
 msgid "Please Provide Some Reason"
 msgstr ""
 
@@ -7399,7 +7398,7 @@ msgstr ""
 msgid "Please rate the vendor"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:1532
+#: classes/class-mvx-vendor-dashboard.php:1538
 msgid "Please re-enter your password."
 msgstr ""
 
@@ -7430,6 +7429,10 @@ msgstr ""
 
 #: classes/class-mvx-vendor-dashboard.php:122
 msgid "Please select atleast one or more commission."
+msgstr ""
+
+#: classes/class-mvx-admin.php:1269
+msgid "Please select the commission ID for which you want to generate the CSV"
 msgstr ""
 
 #: classes/gateways/class-mvx-gateway-paypal-masspay.php:67
@@ -7464,8 +7467,8 @@ msgstr ""
 msgid "Plugin subscription plan"
 msgstr ""
 
-#: classes/class-mvx-frontend.php:918 classes/class-mvx-product.php:933
-#: classes/class-mvx-product.php:1309 classes/class-mvx-vendor-hooks.php:88
+#: classes/class-mvx-frontend.php:918 classes/class-mvx-product.php:934
+#: classes/class-mvx-product.php:1310 classes/class-mvx-vendor-hooks.php:88
 #: includes/mvx-core-functions.php:5309
 #: classes/products/class-mvx-products-edit-product.php:218
 #: packages/mvx-elementor/includes/Tags/StoreTabs.php:101
@@ -7517,7 +7520,7 @@ msgstr ""
 msgid "Postcode"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2808
+#: classes/class-mvx-vendor-dashboard.php:2813
 msgid "Postcode / ZIP"
 msgstr ""
 
@@ -7629,7 +7632,7 @@ msgstr ""
 
 #: classes/class-mvx-admin.php:311 classes/class-mvx-admin.php:772
 #: classes/class-mvx-admin.php:965 classes/class-mvx-admin.php:1073
-#: classes/class-mvx-ajax.php:1018 classes/class-mvx-vendor-dashboard.php:1836
+#: classes/class-mvx-ajax.php:1018 classes/class-mvx-vendor-dashboard.php:1842
 #: classes/class-mvx-vendor-hooks.php:557 includes/mvx-core-functions.php:1968
 #: includes/mvx-core-functions.php:7040 templates/emails/new-product.php:17
 #: templates/emails/product-rejected.php:16
@@ -7693,7 +7696,7 @@ msgstr ""
 msgid "Product cost"
 msgstr ""
 
-#: classes/class-mvx-product.php:1529
+#: classes/class-mvx-product.php:1530
 msgid "Product Deleted!"
 msgstr ""
 
@@ -7723,11 +7726,11 @@ msgstr ""
 msgid "Product image"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2326
+#: classes/class-mvx-vendor-dashboard.php:2331
 msgid "Product is successfully drafted"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2328
+#: classes/class-mvx-vendor-dashboard.php:2333
 msgid "Product is successfully submitted for review"
 msgstr ""
 
@@ -7739,7 +7742,7 @@ msgstr ""
 msgid "Product Manager"
 msgstr ""
 
-#: classes/class-mvx-product.php:1542
+#: classes/class-mvx-product.php:1543
 msgid "Product moved to the Trash"
 msgstr ""
 
@@ -7793,7 +7796,7 @@ msgstr ""
 msgid "Product Rating Sync"
 msgstr ""
 
-#: classes/class-mvx-product.php:1536
+#: classes/class-mvx-product.php:1537
 msgid "Product restored from the Trash"
 msgstr ""
 
@@ -7801,7 +7804,7 @@ msgstr ""
 msgid "Product review"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:1685
+#: classes/class-mvx-vendor-dashboard.php:1691
 msgid "Product Sales Report"
 msgstr ""
 
@@ -7809,7 +7812,7 @@ msgstr ""
 msgid "Product short description"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:1684
+#: classes/class-mvx-vendor-dashboard.php:1690
 msgid "Product Stats"
 msgstr ""
 
@@ -7843,7 +7846,7 @@ msgstr ""
 msgid "Product Types"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2330
+#: classes/class-mvx-vendor-dashboard.php:2335
 #, php-format
 msgid ""
 "Product updated and live. <a href=\"%s\" target=\"_blank\">View Product</a>"
@@ -7904,7 +7907,7 @@ msgstr ""
 msgid "profile"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:1555
+#: classes/class-mvx-vendor-dashboard.php:1561
 msgid "Profile Data Updated"
 msgstr ""
 
@@ -7914,7 +7917,7 @@ msgid "Profile Image"
 msgstr ""
 
 #: classes/class-mvx-endpoints.php:41
-#: classes/class-mvx-vendor-dashboard.php:1623
+#: classes/class-mvx-vendor-dashboard.php:1629
 msgid "Profile management"
 msgstr ""
 
@@ -7922,7 +7925,7 @@ msgstr ""
 msgid "Profile successfully deleted"
 msgstr ""
 
-#: classes/class-mvx-order.php:1544
+#: classes/class-mvx-order.php:1524
 msgid "Provide additional information"
 msgstr ""
 
@@ -7990,7 +7993,7 @@ msgstr ""
 msgid "Quantity"
 msgstr ""
 
-#: classes/class-mvx-product.php:2450
+#: classes/class-mvx-product.php:2451
 msgid "Quantity "
 msgstr ""
 
@@ -8029,7 +8032,7 @@ msgstr ""
 msgid "Question details"
 msgstr ""
 
-#: classes/class-mvx-product.php:1559 templates/mvx-customer-qna-form.php:20
+#: classes/class-mvx-product.php:1560 templates/mvx-customer-qna-form.php:20
 msgid "Questions and Answers"
 msgstr ""
 
@@ -8111,7 +8114,7 @@ msgid "Ready to get started?"
 msgstr ""
 
 #: admin/class-mvx-admin-setup-wizard.php:86
-#: classes/class-mvx-vendor-dashboard.php:2617
+#: classes/class-mvx-vendor-dashboard.php:2622
 msgid "Ready!"
 msgstr ""
 
@@ -8230,7 +8233,7 @@ msgid "Refund %s manually"
 msgstr ""
 
 #: api/class-mvx-rest-controller.php:1044 classes/class-mvx-ajax.php:3708
-#: classes/class-mvx-order.php:1632
+#: classes/class-mvx-order.php:1612
 #: templates/vendor-dashboard/vendor-orders/views/html-order-refund-customer.php:30
 msgid "Refund Accepted"
 msgstr ""
@@ -8266,7 +8269,7 @@ msgid "Refund Pending"
 msgstr ""
 
 #: api/class-mvx-rest-controller.php:4014 classes/class-mvx-frontend.php:782
-#: classes/class-mvx-product.php:951 classes/class-mvx-user.php:635
+#: classes/class-mvx-product.php:952 classes/class-mvx-user.php:635
 #: includes/mvx-core-functions.php:6176 templates/policies-tab.php:22
 #: classes/widgets/class-mvx-widget-vendor-policies.php:30
 #: classes/widgets/class-mvx-widget-vendor-policies.php:71
@@ -8281,7 +8284,7 @@ msgstr ""
 msgid "Refund Reason"
 msgstr ""
 
-#: classes/class-mvx-order.php:1530 classes/class-mvx-order.php:1537
+#: classes/class-mvx-order.php:1510 classes/class-mvx-order.php:1517
 #: templates/vendor-dashboard/vendor-refund-list.php:21
 msgid "Refund reason"
 msgstr ""
@@ -8292,21 +8295,21 @@ msgid "Refund Reason: %s"
 msgstr ""
 
 #: api/class-mvx-rest-controller.php:1047 classes/class-mvx-ajax.php:3712
-#: classes/class-mvx-order.php:1633
+#: classes/class-mvx-order.php:1613
 #: templates/vendor-dashboard/vendor-orders/views/html-order-refund-customer.php:31
 msgid "Refund Rejected"
 msgstr ""
 
-#: classes/class-mvx-order.php:1618
+#: classes/class-mvx-order.php:1598
 msgid "Refund request successfully placed."
 msgstr ""
 
-#: classes/class-mvx-order.php:1631
+#: classes/class-mvx-order.php:1611
 #: templates/vendor-dashboard/vendor-orders/views/html-order-refund-customer.php:29
 msgid "Refund Requested"
 msgstr ""
 
-#: classes/class-mvx-order.php:1630
+#: classes/class-mvx-order.php:1610
 #: templates/emails/customer-order-refund-request.php:30
 #: templates/vendor-dashboard/vendor-orders/views/html-order-refund-customer.php:28
 msgid "Refund Status"
@@ -8348,7 +8351,7 @@ msgstr ""
 msgid "Refunds"
 msgstr ""
 
-#: classes/class-mvx-admin.php:1427
+#: classes/class-mvx-admin.php:1428
 msgid "Regenerate order commissions"
 msgstr ""
 
@@ -8356,11 +8359,11 @@ msgstr ""
 msgid "Regenerate Suborders"
 msgstr ""
 
-#: classes/class-mvx-admin.php:1429
+#: classes/class-mvx-admin.php:1430
 msgid "Regenerate suborders"
 msgstr ""
 
-#: classes/class-mvx-admin.php:1462
+#: classes/class-mvx-admin.php:1463
 msgid "Regenerated order commission."
 msgstr ""
 
@@ -8413,7 +8416,7 @@ msgstr ""
 msgid "Rejected"
 msgstr ""
 
-#: classes/class-mvx-order.php:1675 classes/class-mvx-vendor-dashboard.php:3011
+#: classes/class-mvx-order.php:1655 classes/class-mvx-vendor-dashboard.php:3016
 msgid "rejected"
 msgstr ""
 
@@ -8425,7 +8428,7 @@ msgstr ""
 msgid "Rejected Vendor Account"
 msgstr ""
 
-#: classes/class-mvx-product.php:877
+#: classes/class-mvx-product.php:878
 msgid "Rejection History"
 msgstr ""
 
@@ -8536,11 +8539,11 @@ msgstr ""
 msgid "Reply to "
 msgstr ""
 
-#: classes/class-mvx-product.php:1410
+#: classes/class-mvx-product.php:1411
 msgid "Report"
 msgstr ""
 
-#: classes/class-mvx-product.php:1383 includes/mvx-core-functions.php:7170
+#: classes/class-mvx-product.php:1384 includes/mvx-core-functions.php:7170
 #: includes/mvx-core-functions.php:8017
 #: classes/emails/class-mvx-email-send-report-abuse.php:29
 msgid "Report Abuse"
@@ -8554,7 +8557,7 @@ msgstr ""
 msgid "Report abuse for {product_name}"
 msgstr ""
 
-#: classes/class-mvx-product.php:1392
+#: classes/class-mvx-product.php:1393
 msgid "Report an abuse for product "
 msgstr ""
 
@@ -8570,7 +8573,7 @@ msgstr ""
 msgid "Reported by"
 msgstr ""
 
-#: classes/class-mvx-order.php:1493
+#: classes/class-mvx-order.php:1473
 msgid "Request a refund"
 msgstr ""
 
@@ -8705,7 +8708,7 @@ msgid "Reviewer name."
 msgstr ""
 
 #: classes/class-mvx-frontend.php:927
-#: classes/class-mvx-vendor-dashboard.php:1688 templates/review/rating.php:31
+#: classes/class-mvx-vendor-dashboard.php:1694 templates/review/rating.php:31
 #: packages/mvx-elementor/includes/Tags/StoreTabs.php:107
 msgid "Reviews"
 msgstr ""
@@ -8714,7 +8717,7 @@ msgstr ""
 msgid "Reviews & Rating"
 msgstr ""
 
-#: classes/class-mvx-product.php:348
+#: classes/class-mvx-product.php:349
 msgid "Reviews (%d)"
 msgstr ""
 
@@ -8788,7 +8791,7 @@ msgid "Save changes before changing page?"
 msgstr ""
 
 #: templates/vendor-dashboard/profile.php:89
-#: templates/vendor-dashboard/shop-front.php:574
+#: templates/vendor-dashboard/shop-front.php:577
 #: templates/vendor-dashboard/vendor-billing.php:222
 #: templates/vendor-dashboard/vendor-policy.php:108
 #: templates/vendor-dashboard/vendor-shipping.php:105
@@ -8859,7 +8862,7 @@ msgstr ""
 msgid "Search for a product&hellip;"
 msgstr ""
 
-#: classes/class-mvx-product.php:578
+#: classes/class-mvx-product.php:579
 msgid "Search for vendor"
 msgstr ""
 
@@ -8953,7 +8956,7 @@ msgstr ""
 msgid "Select a category from the list"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:1994
+#: classes/class-mvx-vendor-dashboard.php:2000
 #: templates/vendor-registration-form.php:251
 #: templates/shortcode/vendor_lists.php:113
 #: templates/vendor-dashboard/shop-front.php:243
@@ -8973,9 +8976,9 @@ msgstr ""
 msgid "Select a product category"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2010
+#: classes/class-mvx-vendor-dashboard.php:2016
 #: templates/shortcode/vendor_lists.php:122
-#: templates/vendor-dashboard/shop-front.php:255
+#: templates/vendor-dashboard/shop-front.php:257
 #: templates/shortcode/vendor-list/order-sort.php:61
 msgid "Select a state&hellip;"
 msgstr ""
@@ -8993,7 +8996,7 @@ msgstr ""
 msgid "Select all"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2372
+#: classes/class-mvx-vendor-dashboard.php:2377
 msgid "Select atleast one product or category."
 msgstr ""
 
@@ -9045,7 +9048,7 @@ msgstr ""
 msgid "Select store banner style"
 msgstr ""
 
-#: templates/vendor-dashboard/shop-front.php:465
+#: templates/vendor-dashboard/shop-front.php:468
 msgid "Select Store Details To Hide"
 msgstr ""
 
@@ -9073,7 +9076,7 @@ msgstr ""
 msgid "Select the type of product that best suits your marketplace."
 msgstr ""
 
-#: classes/class-mvx-product.php:1686
+#: classes/class-mvx-product.php:1687
 #: templates/vendor-dashboard/product-manager/views/html-product-highlights.php:151
 msgid "Select type"
 msgstr ""
@@ -9277,19 +9280,19 @@ msgstr ""
 msgid "Set endpoint for vendor widthdrawals page"
 msgstr ""
 
-#: classes/class-mvx-product.php:2292 classes/class-mvx-product.php:2392
+#: classes/class-mvx-product.php:2293 classes/class-mvx-product.php:2393
 msgid "Set Maximum amount to order."
 msgstr ""
 
-#: classes/class-mvx-product.php:2273 classes/class-mvx-product.php:2373
+#: classes/class-mvx-product.php:2274 classes/class-mvx-product.php:2374
 msgid "Set Maximum product quantity to order."
 msgstr ""
 
-#: classes/class-mvx-product.php:2283 classes/class-mvx-product.php:2383
+#: classes/class-mvx-product.php:2284 classes/class-mvx-product.php:2384
 msgid "Set Minimum amount to order."
 msgstr ""
 
-#: classes/class-mvx-product.php:2264 classes/class-mvx-product.php:2364
+#: classes/class-mvx-product.php:2265 classes/class-mvx-product.php:2365
 msgid "Set Minimum product quantity to order."
 msgstr ""
 
@@ -9433,7 +9436,7 @@ msgid "Shipping by Zone"
 msgstr ""
 
 #: classes/class-mvx-vendor-dashboard.php:1130
-#: templates/vendor-dashboard/product-manager/views/html-product-data-shipping.php:46
+#: templates/vendor-dashboard/product-manager/views/html-product-data-shipping.php:48
 msgid "Shipping class"
 msgstr ""
 
@@ -9453,7 +9456,7 @@ msgstr ""
 msgid "Shipping Cost"
 msgstr ""
 
-#: classes/class-mvx-vendor-details.php:1316
+#: classes/class-mvx-vendor-details.php:1335
 msgid "Shipping cost:"
 msgstr ""
 
@@ -9523,7 +9526,7 @@ msgid "Shipping Options"
 msgstr ""
 
 #: api/class-mvx-rest-controller.php:4008 classes/class-mvx-frontend.php:772
-#: classes/class-mvx-product.php:950 classes/class-mvx-user.php:642
+#: classes/class-mvx-product.php:951 classes/class-mvx-user.php:642
 #: includes/mvx-core-functions.php:6168 templates/policies-tab.php:17
 #: classes/widgets/class-mvx-widget-vendor-policies.php:25
 #: classes/widgets/class-mvx-widget-vendor-policies.php:65
@@ -9557,8 +9560,8 @@ msgstr ""
 msgid "Shipping."
 msgstr ""
 
-#: classes/class-mvx-vendor-details.php:1307
-#: classes/class-mvx-vendor-details.php:1332
+#: classes/class-mvx-vendor-details.php:1326
+#: classes/class-mvx-vendor-details.php:1351
 #: templates/vendor-dashboard/vendor-orders/views/html-order-items.php:177
 msgid "Shipping:"
 msgstr ""
@@ -9576,7 +9579,7 @@ msgstr ""
 msgid "Shop policies"
 msgstr ""
 
-#: templates/vendor-dashboard/shop-front.php:547
+#: templates/vendor-dashboard/shop-front.php:550
 msgid "Shop Template"
 msgstr ""
 
@@ -9604,7 +9607,7 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:1694
+#: classes/class-mvx-vendor-dashboard.php:1700
 msgid "Show All Q&As"
 msgstr ""
 
@@ -9756,7 +9759,7 @@ msgstr ""
 msgid "Single Product Multivendor"
 msgstr ""
 
-#: classes/class-mvx-order.php:1679 classes/class-mvx-order.php:1687
+#: classes/class-mvx-order.php:1659 classes/class-mvx-order.php:1667
 msgid "Site admin "
 msgstr ""
 
@@ -9785,7 +9788,7 @@ msgstr ""
 msgid "Size"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2024
+#: classes/class-mvx-vendor-dashboard.php:2030
 msgid "Skip"
 msgstr ""
 
@@ -9793,8 +9796,8 @@ msgstr ""
 #: admin/class-mvx-admin-setup-wizard.php:498
 #: admin/class-mvx-admin-setup-wizard.php:577
 #: admin/class-mvx-admin-setup-wizard.php:668
-#: classes/class-mvx-vendor-dashboard.php:2832
-#: classes/class-mvx-vendor-dashboard.php:2929
+#: classes/class-mvx-vendor-dashboard.php:2837
+#: classes/class-mvx-vendor-dashboard.php:2934
 msgid "Skip this step"
 msgstr ""
 
@@ -9802,17 +9805,17 @@ msgstr ""
 msgid "Skip, Don't Import Now"
 msgstr ""
 
-#: classes/class-mvx-product.php:2923
+#: classes/class-mvx-product.php:2924
 #: templates/vendor-dashboard/dashboard/vendor-dashboard-sales-item-header.php:17
 #: templates/vendor-dashboard/product-manager/views/html-product-data-inventory.php:19
 msgid "SKU"
 msgstr ""
 
-#: classes/class-mvx-product.php:2953
+#: classes/class-mvx-product.php:2954
 msgid "SKU is not generated!"
 msgstr ""
 
-#: classes/class-mvx-product.php:439
+#: classes/class-mvx-product.php:440
 msgid "SKU must be unique"
 msgstr ""
 
@@ -9865,14 +9868,14 @@ msgstr ""
 msgid "Social"
 msgstr ""
 
-#: templates/vendor-dashboard/shop-front.php:494
+#: templates/vendor-dashboard/shop-front.php:497
 msgid "Social Media"
 msgstr ""
 
 #: classes/class-mvx-capabilities.php:156
-#: classes/class-mvx-capabilities.php:176 classes/class-mvx-order.php:111
-#: classes/class-mvx-order.php:363 classes/class-mvx-order.php:392
-#: classes/class-mvx-product.php:1958
+#: classes/class-mvx-capabilities.php:176 classes/class-mvx-order.php:122
+#: classes/class-mvx-order.php:374 classes/class-mvx-order.php:403
+#: classes/class-mvx-product.php:1959
 msgid "Sold By"
 msgstr ""
 
@@ -9990,8 +9993,8 @@ msgstr ""
 msgid "Sorry, you cannot view this resource."
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:3150
-#: classes/class-mvx-vendor-dashboard.php:3167
+#: classes/class-mvx-vendor-dashboard.php:3155
+#: classes/class-mvx-vendor-dashboard.php:3172
 msgid "Sorry. no data is available"
 msgstr ""
 
@@ -10048,8 +10051,8 @@ msgstr ""
 
 #: api/class-mvx-rest-controller.php:3826
 #: api/class-mvx-rest-controller.php:4201 classes/class-mvx-admin.php:586
-#: classes/class-mvx-user.php:429 classes/class-mvx-vendor-dashboard.php:2803
-#: classes/class-mvx-vendor-dashboard.php:2805
+#: classes/class-mvx-user.php:429 classes/class-mvx-vendor-dashboard.php:2808
+#: classes/class-mvx-vendor-dashboard.php:2810
 #: includes/mvx-core-functions.php:4451
 #: templates/vendor-dashboard/vendor-policy.php:91
 msgid "State"
@@ -10176,7 +10179,7 @@ msgstr ""
 msgid "Store Component"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:1992
+#: classes/class-mvx-vendor-dashboard.php:1998
 msgid "Store Country"
 msgstr ""
 
@@ -10184,7 +10187,7 @@ msgstr ""
 msgid "Store Cover Image"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2982
+#: classes/class-mvx-vendor-dashboard.php:2987
 msgid "Store Customize"
 msgstr ""
 
@@ -10232,7 +10235,7 @@ msgstr ""
 
 #: includes/mvx-core-functions.php:5118 includes/mvx-core-functions.php:7805
 #: classes/widgets/class-mvx-widget-vendor-location.php:145
-#: templates/vendor-dashboard/shop-front.php:314
+#: templates/vendor-dashboard/shop-front.php:317
 msgid "Store Location"
 msgstr ""
 
@@ -10258,7 +10261,7 @@ msgid "Store Managemnet"
 msgstr ""
 
 #: classes/class-mvx-admin.php:556 classes/class-mvx-frontend.php:1041
-#: classes/class-mvx-vendor-dashboard.php:2780
+#: classes/class-mvx-vendor-dashboard.php:2785
 #: includes/mvx-core-functions.php:1952
 #: packages/mvx-elementor/widgets/class-mvx-widget-storename.php:28
 #: packages/mvx-elementor/includes/Tags/StoreName.php:35
@@ -10318,12 +10321,12 @@ msgid "Store Settings"
 msgstr ""
 
 #: admin/class-mvx-admin-setup-wizard.php:56
-#: classes/class-mvx-vendor-dashboard.php:2773
+#: classes/class-mvx-vendor-dashboard.php:2778
 msgid "Store Setup"
 msgstr ""
 
 #: admin/class-mvx-admin-setup-wizard.php:389
-#: classes/class-mvx-vendor-dashboard.php:2607
+#: classes/class-mvx-vendor-dashboard.php:2612
 msgid "Store setup"
 msgstr ""
 
@@ -10344,7 +10347,7 @@ msgstr ""
 msgid "Store Social"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2004
+#: classes/class-mvx-vendor-dashboard.php:2010
 msgid "Store state"
 msgstr ""
 
@@ -10376,7 +10379,7 @@ msgstr ""
 
 #: classes/class-mvx-admin.php:120 classes/class-mvx-admin.php:123
 #: classes/class-mvx-endpoints.php:46
-#: classes/class-mvx-vendor-dashboard.php:1614
+#: classes/class-mvx-vendor-dashboard.php:1620
 #: classes/class-mvx-vendor-hooks.php:80
 msgid "Storefront"
 msgstr ""
@@ -10492,7 +10495,7 @@ msgstr ""
 msgid "Subject: "
 msgstr ""
 
-#: classes/class-mvx-order.php:1549 classes/class-mvx-product.php:898
+#: classes/class-mvx-order.php:1529 classes/class-mvx-product.php:899
 #: templates/mvx-vendor-review-form.php:93
 #: classes/widgets/class-mvx-widget-vendor-quick-info.php:152
 #: classes/widgets/class-mvx-widget-vendor-quick-info.php:173
@@ -10559,7 +10562,7 @@ msgstr ""
 msgid "Suborder #"
 msgstr ""
 
-#: classes/class-mvx-order.php:256 classes/class-mvx-order.php:1296
+#: classes/class-mvx-order.php:267 classes/class-mvx-order.php:1276
 msgid "Suborders"
 msgstr ""
 
@@ -10572,7 +10575,7 @@ msgstr ""
 msgid "Subtotal"
 msgstr ""
 
-#: classes/class-mvx-vendor-details.php:1291
+#: classes/class-mvx-vendor-details.php:1310
 msgid "Subtotal:"
 msgstr ""
 
@@ -10729,7 +10732,7 @@ msgstr ""
 msgid "Textbox"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2725
+#: classes/class-mvx-vendor-dashboard.php:2730
 msgid ""
 "Thank you for being the part of us. This quick setup wizard will help you "
 "configure the basic store settings and you will have your marketplace ready "
@@ -10808,7 +10811,7 @@ msgstr ""
 msgid "The error log cannot be retrieved: Error log file is too large."
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2776
+#: classes/class-mvx-vendor-dashboard.php:2781
 msgid ""
 "The following wizard will help you configure your store and get you started "
 "quickly."
@@ -10835,7 +10838,7 @@ msgid ""
 msgstr ""
 
 #. 1: product ID 2: quantity in stock
-#: classes/class-mvx-vendor-dashboard.php:2236
+#: classes/class-mvx-vendor-dashboard.php:2242
 #: includes/class-mvx-woo-helper.php:97
 #, php-format
 msgid ""
@@ -10847,7 +10850,7 @@ msgstr ""
 msgid "The text to appear in the footer of MVX emails."
 msgstr ""
 
-#: api/class-mvx-rest-vendors-controller.php:718
+#: api/class-mvx-rest-vendors-controller.php:723
 msgid "The vendor cannot be deleted."
 msgstr ""
 
@@ -10863,7 +10866,7 @@ msgstr ""
 msgid "The WordPress Multilingual Plugin"
 msgstr ""
 
-#: classes/class-mvx-product.php:923
+#: classes/class-mvx-product.php:924
 #: templates/vendor-dashboard/product-manager/edit-product.php:293
 #: templates/vendor-dashboard/vendor-orders/views/html-order-notes.php:54
 msgid "There are no notes yet."
@@ -10959,7 +10962,7 @@ msgstr ""
 msgid "This controls the title which the user sees during checkout."
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:1517
+#: classes/class-mvx-vendor-dashboard.php:1523
 msgid "This email address is already registered."
 msgstr ""
 
@@ -11015,7 +11018,7 @@ msgstr ""
 msgid "This product does not exists"
 msgstr ""
 
-#: classes/class-mvx-product.php:1864
+#: classes/class-mvx-product.php:1865
 msgid "This product has multiple categories hierarchy."
 msgstr ""
 
@@ -11064,8 +11067,8 @@ msgid "Time Of Purchase"
 msgstr ""
 
 #: api/class-mvx-rest-controller.php:3846
-#: classes/class-mvx-vendor-dashboard.php:2818
-#: templates/vendor-dashboard/shop-front.php:287
+#: classes/class-mvx-vendor-dashboard.php:2823
+#: templates/vendor-dashboard/shop-front.php:290
 msgid "Timezone"
 msgstr ""
 
@@ -11181,12 +11184,12 @@ msgstr ""
 msgid "Total Coupon Discount"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:3093
+#: classes/class-mvx-vendor-dashboard.php:3098
 #: templates/vendor-dashboard/vendor-reports/vendor-ledger.php:34
 msgid "Total Credit"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:3094
+#: classes/class-mvx-vendor-dashboard.php:3099
 #: templates/vendor-dashboard/vendor-reports/vendor-ledger.php:44
 msgid "Total Debit"
 msgstr ""
@@ -11217,7 +11220,7 @@ msgid "Total shipping"
 msgstr ""
 
 #: classes/class-mvx-vendor-details.php:841
-#: classes/class-mvx-vendor-details.php:1348
+#: classes/class-mvx-vendor-details.php:1367
 #: templates/vendor-dashboard/vendor-orders/views/html-order-item.php:107
 #: templates/vendor-dashboard/vendor-orders/views/html-order-item.php:153
 msgid "Total:"
@@ -11228,7 +11231,7 @@ msgstr ""
 msgid "Total: %s"
 msgstr ""
 
-#: classes/class-mvx-vendor-details.php:1097
+#: classes/class-mvx-vendor-details.php:1116
 msgid "Tracking Id : "
 msgstr ""
 
@@ -11240,7 +11243,7 @@ msgstr ""
 msgid "Tracking number"
 msgstr ""
 
-#: classes/class-mvx-vendor-details.php:1097
+#: classes/class-mvx-vendor-details.php:1116
 msgid "Tracking Url : "
 msgstr ""
 
@@ -11278,11 +11281,11 @@ msgstr ""
 
 #: admin/class-mvx-settings.php:53 admin/class-mvx-settings.php:101
 #: classes/class-mvx-endpoints.php:98
-#: classes/class-mvx-vendor-dashboard.php:1664
+#: classes/class-mvx-vendor-dashboard.php:1670
 msgid "Transaction Details"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:3154
+#: classes/class-mvx-vendor-dashboard.php:3159
 msgid "Transaction Details Between"
 msgstr ""
 
@@ -11315,7 +11318,7 @@ msgstr ""
 #: classes/class-mvx-post-transaction.php:45
 #: classes/class-mvx-post-transaction.php:47
 #: classes/class-mvx-post-transaction.php:48
-#: classes/class-mvx-vendor-dashboard.php:3099
+#: classes/class-mvx-vendor-dashboard.php:3104
 msgid "Transactions"
 msgstr ""
 
@@ -11343,7 +11346,7 @@ msgid "Trash"
 msgstr ""
 
 #: api/class-mvx-rest-controller.php:3875
-#: templates/vendor-dashboard/shop-front.php:507
+#: templates/vendor-dashboard/shop-front.php:510
 msgid "Twitter"
 msgstr ""
 
@@ -11369,7 +11372,7 @@ msgstr ""
 msgid "Type your text here"
 msgstr ""
 
-#: classes/gateways/class-mvx-gateway-stripe-connect.php:193
+#: classes/gateways/class-mvx-gateway-stripe-connect.php:204
 msgid "Unable to disconnect your account please try again"
 msgstr ""
 
@@ -11383,7 +11386,7 @@ msgstr ""
 msgid "Unanswered"
 msgstr ""
 
-#: classes/class-mvx-product.php:855
+#: classes/class-mvx-product.php:856
 msgid "Unassign vendor"
 msgstr ""
 
@@ -11477,7 +11480,7 @@ msgstr ""
 msgid "UPC"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2023
+#: classes/class-mvx-vendor-dashboard.php:2029
 #: templates/vendor-dashboard/coupon-manager/add-coupons.php:119
 #: templates/vendor-dashboard/product-manager/edit-product.php:368
 msgid "Update"
@@ -11491,7 +11494,7 @@ msgstr ""
 msgid "Update now"
 msgstr ""
 
-#: classes/class-mvx-order.php:1645
+#: classes/class-mvx-order.php:1625
 #: templates/vendor-dashboard/vendor-orders/views/html-order-refund-customer.php:42
 msgid "Update status"
 msgstr ""
@@ -11500,7 +11503,7 @@ msgstr ""
 msgid "Update Vendor"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:1987
+#: classes/class-mvx-vendor-dashboard.php:1993
 msgid "Update your store country and state."
 msgstr ""
 
@@ -11640,7 +11643,7 @@ msgstr ""
 #. %s: post type
 #: api/class-mvx-rest-vendors-controller.php:613
 #: api/class-mvx-rest-vendors-controller.php:649
-#: api/class-mvx-rest-vendors-controller.php:710
+#: api/class-mvx-rest-vendors-controller.php:715
 #, php-format
 msgid "User is not a %s."
 msgstr ""
@@ -11716,7 +11719,7 @@ msgstr ""
 msgid "Variation menu order (determines position in the list of variations)"
 msgstr ""
 
-#: classes/class-mvx-product.php:2915
+#: classes/class-mvx-product.php:2916
 msgid "Variation SKU is not generated!"
 msgstr ""
 
@@ -11732,9 +11735,9 @@ msgstr ""
 #: classes/class-mvx-admin.php:923 classes/class-mvx-admin.php:971
 #: classes/class-mvx-admin.php:1001 classes/class-mvx-admin.php:1034
 #: classes/class-mvx-coupon.php:242 classes/class-mvx-coupon.php:278
-#: classes/class-mvx-cron-job.php:905 classes/class-mvx-product.php:576
-#: classes/class-mvx-product.php:745 classes/class-mvx-product.php:778
-#: classes/class-mvx-product.php:1277 classes/class-mvx-taxonomy.php:44
+#: classes/class-mvx-cron-job.php:905 classes/class-mvx-product.php:577
+#: classes/class-mvx-product.php:746 classes/class-mvx-product.php:779
+#: classes/class-mvx-product.php:1278 classes/class-mvx-taxonomy.php:44
 #: classes/class-mvx-taxonomy.php:45 includes/class-mvx-install.php:374
 #: includes/mvx-core-functions.php:5936 includes/mvx-core-functions.php:7032
 #: includes/mvx-core-functions.php:7097
@@ -11748,9 +11751,9 @@ msgstr ""
 msgid "vendor"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:3015
-#: classes/class-mvx-vendor-dashboard.php:3023
-#: classes/class-mvx-vendor-details.php:1097
+#: classes/class-mvx-vendor-dashboard.php:3020
+#: classes/class-mvx-vendor-dashboard.php:3028
+#: classes/class-mvx-vendor-details.php:1116
 msgid "Vendor "
 msgstr ""
 
@@ -11956,7 +11959,7 @@ msgstr ""
 msgid "Vendor on sale products"
 msgstr ""
 
-#: classes/class-mvx-order.php:499
+#: classes/class-mvx-order.php:510
 #, php-format
 msgid "Vendor Order &ndash; %s"
 msgstr ""
@@ -12270,7 +12273,7 @@ msgstr ""
 msgid "View reports product sales and order"
 msgstr ""
 
-#: classes/class-mvx-frontend.php:1043
+#: classes/class-mvx-frontend.php:1043 classes/class-mvx-frontend.php:1069
 msgid "View Store"
 msgstr ""
 
@@ -12315,7 +12318,7 @@ msgstr ""
 msgid "Visit"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2976
+#: classes/class-mvx-vendor-dashboard.php:2981
 msgid "Visit Dashboard"
 msgstr ""
 
@@ -12323,7 +12326,7 @@ msgstr ""
 msgid "Visit Documentation Forum"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:1679
+#: classes/class-mvx-vendor-dashboard.php:1685
 msgid "Visitors Map"
 msgstr ""
 
@@ -12432,7 +12435,7 @@ msgstr ""
 msgid "Welcome to MultiVendorX"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2721
+#: classes/class-mvx-vendor-dashboard.php:2726
 #, php-format
 msgid "Welcome to the %s family!"
 msgstr ""
@@ -12466,7 +12469,7 @@ msgstr ""
 msgid "When product stock reaches this amount you will be notified by email"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2783
+#: classes/class-mvx-vendor-dashboard.php:2788
 msgid "Where is your store based?"
 msgstr ""
 
@@ -12528,7 +12531,7 @@ msgstr ""
 msgid "Withdrawable Balance"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:1662
+#: classes/class-mvx-vendor-dashboard.php:1668
 #: classes/class-mvx-vendor-hooks.php:217 includes/mvx-core-functions.php:4051
 #: templates/vendor-dashboard/dashboard-widgets/mvx-vendor-stats-reports.php:49
 msgid "Withdrawal"
@@ -12577,7 +12580,7 @@ msgstr ""
 msgid "Withdrawal request would be available in case of these order statuses"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:3101
+#: classes/class-mvx-vendor-dashboard.php:3106
 msgid "Withdrawals"
 msgstr ""
 
@@ -12614,7 +12617,7 @@ msgstr ""
 msgid "WooCommerce Subscription"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:1632
+#: classes/class-mvx-vendor-dashboard.php:1638
 msgid "WordPress backend"
 msgstr ""
 
@@ -12709,7 +12712,7 @@ msgid ""
 "within the zone will see them."
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2971
+#: classes/class-mvx-vendor-dashboard.php:2976
 msgid "You can also:"
 msgstr ""
 
@@ -12817,11 +12820,11 @@ msgid ""
 "using this."
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2959
+#: classes/class-mvx-vendor-dashboard.php:2964
 msgid "You're ready to add products to your store."
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:2952
+#: classes/class-mvx-vendor-dashboard.php:2957
 msgid "You're ready to start selling!"
 msgstr ""
 
@@ -12835,7 +12838,8 @@ msgstr ""
 msgid "Your %s store orders report stats are as follows:"
 msgstr ""
 
-#: classes/gateways/class-mvx-gateway-stripe-connect.php:191
+#: classes/gateways/class-mvx-gateway-stripe-connect.php:189
+#: classes/gateways/class-mvx-gateway-stripe-connect.php:202
 msgid "Your account has been disconnected"
 msgstr ""
 
@@ -12866,7 +12870,7 @@ msgstr ""
 msgid "Your commission has been paid"
 msgstr ""
 
-#: classes/class-mvx-vendor-dashboard.php:1540
+#: classes/class-mvx-vendor-dashboard.php:1546
 msgid "Your current password is incorrect."
 msgstr ""
 
@@ -12985,7 +12989,7 @@ msgid ""
 msgstr ""
 
 #: api/class-mvx-rest-controller.php:3887
-#: templates/vendor-dashboard/shop-front.php:521
+#: templates/vendor-dashboard/shop-front.php:524
 msgid "YouTube"
 msgstr ""
 
@@ -12999,7 +13003,7 @@ msgstr ""
 
 #: api/class-mvx-rest-controller.php:3840
 #: templates/shortcode/vendor_lists.php:124
-#: templates/vendor-dashboard/shop-front.php:269
+#: templates/vendor-dashboard/shop-front.php:272
 #: templates/shortcode/vendor-list/order-sort.php:63
 msgid "ZIP code"
 msgstr ""
