@@ -876,68 +876,38 @@ class MVX_Order {
     }
     
     public function mvx_vendor_order_to_parent_order_status_synchronization($order_id, $old_status, $new_status, $order){
+        remove_filter( 'woocommerce_orders_table_query_clauses', array($this, 'wc_order_list_filter') );
         $is_vendor_order = ($order_id) ? mvx_get_order($order_id) : false;
-        if ($is_vendor_order && current_user_can('administrator') && $new_status != $old_status && apply_filters('mvx_vendor_notified_when_admin_change_status', true)) {
-            $email_admin = WC()->mailer()->emails['WC_Email_Admin_Change_Order_Status'];
-            $vendor_id = $order->get_meta( '_vendor_id', true);
-            $vendor = get_mvx_vendor($vendor_id);
-            $email_admin->trigger($order_id, $new_status, $vendor);
-        }
-        // parent order synchronization
-        $parent_order_id = $order->get_parent_id();
-        if($parent_order_id){
-            remove_action('woocommerce_order_status_changed', array($this, 'mvx_parent_order_to_vendor_order_status_synchronization'), 90, 4);
-            $status_to_sync = apply_filters('mvx_vendor_order_to_parent_order_statuses_to_sync',array('completed', 'refunded'));
-
-            $mvx_suborders = get_mvx_suborders( $parent_order_id );
-            $new_status_count  = 0;
-            $suborder_count    = count( $mvx_suborders );
-            $suborder_statuses = array();
-            $suborder_totals = 0;
-            foreach ( $mvx_suborders as $suborder ) {
-                $suborder_totals += $suborder->get_total();
-                $suborder_status = $suborder->get_status( 'edit' );
-                if ( $new_status == $suborder_status ) {
-                    $new_status_count ++;
-                }
-
-                if ( ! isset( $suborder_statuses[ $suborder_status ] ) ) {
-                    $suborder_statuses[ $suborder_status ] = 1;
-                } else {
-                    $suborder_statuses[ $suborder_status ] ++;
-                }
+        if( $is_vendor_order ) {
+            if ( current_user_can('administrator') && $new_status != $old_status && apply_filters('mvx_vendor_notified_when_admin_change_status', true)) {
+                $email_admin = WC()->mailer()->emails['WC_Email_Admin_Change_Order_Status'];
+                $vendor_id = $order->get_meta( '_vendor_id', true);
+                $vendor = get_mvx_vendor($vendor_id);
+                $email_admin->trigger($order_id, $new_status, $vendor);
             }
 
-            $parent_order = wc_get_order( $parent_order_id );
-            if($parent_order->get_total() == wc_format_decimal($suborder_totals)) {
-                if ( $suborder_count == $new_status_count && in_array( $new_status, $status_to_sync ) ) {
-                    $parent_order->update_status( $new_status, _x( "Sync from vendor's suborders: ", 'Order note', 'multivendorx' ) );
-                } elseif ( $suborder_count != 0 ) {
-                    /**
-                     * If the parent order have only 1 suborder I can sync it with the same status.
-                     * Otherwise I set the parent order to processing
-                     */
-                    $status = array_unique(array_keys($suborder_statuses));
-                    if ( $suborder_count == 1 ) {
-                        $new_status = isset($status[0]) ? $status[0] : $new_status;
-                        $parent_order->update_status( $new_status, _x( "Sync from vendor's suborders: ", 'Order note', 'multivendorx' ) );
-                    } /**
-                     * Check only for suborder > 1 to exclude orders without suborder
-                     */
-                    elseif ( $suborder_count > 1 ) {
-                        $check = 0;
-//                        foreach ( $status_to_sync as $status ) {
-//                            if ( ! empty( $suborder_statuses[ $status ] ) ) {
-//                                $check += $suborder_statuses[ $status ];
-//                            }
-//                        }
-                        if( count($status) == 1 && isset($status[0]) ) {
-                            $parent_order->update_status( $new_status, _x( "Sync from vendor's suborders: ", 'Order note', 'multivendorx' ) );
-                        }
+            $parent_order_id = $order->get_parent_id();
+            if( $parent_order_id ) {
+                // Remove the action to prevent recursion call.
+                remove_action('woocommerce_order_status_changed', [$this, 'mvx_parent_order_to_vendor_order_status_synchronization'], 90, 4);
+
+                $suborders = get_mvx_suborders($parent_order_id);
+                $all_status_equal = true;
+                foreach( $suborders as $suborder) {
+                    if ($suborder->get_status('edit') != $new_status) {
+                        $all_status_equal = false;
+                        break;
                     }
                 }
+
+                if( $all_status_equal ) {
+                    $parent_order = wc_get_order( $parent_order_id );
+                    $parent_order->update_status( $new_status, _x( "Sync from vendor's suborders: ", 'Order note', 'multivendorx' ) );
+                }
+
+                // Add the action back.
+                add_action('woocommerce_order_status_changed', [$this, 'mvx_parent_order_to_vendor_order_status_synchronization'], 90, 4);
             }
-            add_action('woocommerce_order_status_changed', array($this, 'mvx_parent_order_to_vendor_order_status_synchronization'), 90, 4);
         }
     }
 
