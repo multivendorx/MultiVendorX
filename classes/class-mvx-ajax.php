@@ -790,6 +790,7 @@ class MVX_Ajax {
             if (!$vendor)
                 die('Invalid request');
             $order_data = array();
+            $order = wc_get_order($order_id);
             $commission_id = $order->get_meta( '_commission_id', true );
             if (!empty($commission_id)) {
                 //$commission_id = $customer_orders[0]['commission_id'];
