@@ -96,7 +96,7 @@ function vendor_table($vendor_id){
             foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 
                 // if vendor is not vendor id, skip.
-                $product_vendor_id = get_mvx_product_vendors( $cart_item['product_id'] )->id;
+                $product_vendor_id = get_mvx_product_vendors($cart_item['product_id'])->id ?? '';
                 if ($vendor_id != $product_vendor_id){
                     continue;
                 }
@@ -208,8 +208,8 @@ function get_cart_vendors(){
     $vendors = array();
     if (is_object($cart)){
         foreach($cart->get_cart() as $cart_item){
-            $vendor = get_mvx_product_vendors( $cart_item['product_id'] );
-            $vendor_id = $vendor->id;
+            $vendor = get_mvx_product_vendors($cart_item['product_id']);
+            $vendor_id = $vendor ? $vendor->id : '';
             if (!empty($vendor_id)) {
                 array_push($vendors, $vendor_id);
             }
