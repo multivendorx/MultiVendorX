@@ -364,6 +364,7 @@ export default class DynamicForm extends React.Component {
 				knowladgebase_id: this.props.knowladgebase_id
 					? this.props.knowladgebase_id
 					: '',
+				knowladgebase_status: this.props.knowladgebase_status === 'pending' ? 'true' : 'false',
 				pendingButton: this.state.pending_button_click ? 'true' : 'false',
 			},
 		}).then((res) => {

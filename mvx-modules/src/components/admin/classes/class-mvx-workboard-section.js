@@ -1959,7 +1959,8 @@ class MVXworkboard extends Component {
 							)}
 							modulename="update_knowladgebase"
 							url="mvx_module/v1/update_knowladgebase"
-							submitbutton="false"
+							knowladgebase_status={get_current_name.get('status')}
+							submitbutton={get_current_name.get('status') === 'pending' ? "true" : "false"}
 						/>
 					) : (
 						<PageLoader/>
