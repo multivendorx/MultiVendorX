@@ -2162,7 +2162,6 @@ class MVX_Ajax {
             $last_seven_day_date = date('Y-m-d H:i:s', strtotime("-$days_range days"));
             
             $query = array(
-                'author' => $vendor->id,
                 'date_query' => array(
                     array(
                         'after'     => $last_seven_day_date,
@@ -2170,15 +2169,21 @@ class MVX_Ajax {
                         'inclusive' => true,
                     ),
                 ),
-                'meta_query'    => array(
+                'meta_query' => array(
                     'relation' => 'AND',
                     array(
-                        'key'       => '_commission_id',
+                        'key'     => '_commission_id',
                         'value'   => 0,
-            'compare' => '!=',
-                    )
-                )
+                        'compare' => '!=',
+                    ),
+                    array(
+                        'key'     => '_vendor_id',
+                        'value'   => $vendor->id,
+                        'compare' => '=',
+                    ),
+                ),
             );
+            
             $vendor_orders = apply_filters('mvx_widget_vendor_product_sales_report_orders', mvx_get_orders( $query, 'object' ), $query);
             
             $sold_product_list = array();
