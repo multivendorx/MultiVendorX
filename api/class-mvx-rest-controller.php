@@ -3249,9 +3249,10 @@ class MVX_REST_API {
     public function mvx_create_knowladgebase($request) {
         $all_details = [];
         $fetch_data = $request->get_param('model');
+        $fetch_status = $request->get_param('pendingButton') == 'true' ? 'pending' : 'publish';
         $knowladgebase_title = $fetch_data && isset($fetch_data['knowladgebase_title']) ? $fetch_data['knowladgebase_title'] : '';
         $knowladgebase_content = $fetch_data && isset($fetch_data['knowladgebase_content']) ? $fetch_data['knowladgebase_content'] : '';
-        $post_id = wp_insert_post( array( 'post_title' => $knowladgebase_title, 'post_type' => 'mvx_university', 'post_status' => 'publish', 'post_content' => $knowladgebase_content ) );
+        $post_id = wp_insert_post( array( 'post_title' => $knowladgebase_title, 'post_type' => 'mvx_university', 'post_status' => $fetch_status, 'post_content' => $knowladgebase_content ) );
         $all_details['redirect_link'] = admin_url('admin.php?page=mvx#&submenu=work-board&name=knowladgebase&knowladgebaseID='. $post_id .'');
         return $all_details;
     }

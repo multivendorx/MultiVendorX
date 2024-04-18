@@ -1939,6 +1939,7 @@ class MVXworkboard extends Component {
 						modulename="create_knowladgebase"
 						url="mvx_module/v1/create_knowladgebase"
 						submit_title={appLocalizer.global_string.publish}
+						pending_button = {appLocalizer.global_string.pending}
 					/>
 				) : get_current_name.get('knowladgebaseID') ? (
 					this.state.edit_knowledgebase_fileds &&
