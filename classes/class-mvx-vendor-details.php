@@ -673,7 +673,7 @@ public function get_vendor_orders_by_product($vendor_term_id, $product_id, $star
                 </td>
                 <td scope="col" style="text-align:left; border: 1px solid #eee;">	
                     <?php
-                    echo apply_filters('mvx_order_item_quantity_text', $item->get_quantity());
+                    echo apply_filters('mvx_order_item_quantity_text', $item->get_quantity(), $item);
                     ?>
                 </td>
                 <td scope="col" style="text-align:left; border: 1px solid #eee;">
