@@ -3272,7 +3272,7 @@ class MVX_REST_API {
             $knowladgebase_list[] = array(
                 'id'            =>  $knowladgebasevalue->ID,
                 'sample_title'  =>  $knowladgebasevalue->post_title,
-                'title'         =>  '<a href="' . sprintf('?page=%s&name=%s&knowladgebaseID=%s', 'mvx#&submenu=work-board', 'knowladgebase', $knowladgebasevalue->ID) . '">#' . $knowladgebasevalue->post_title . '</a>',
+                'title'         =>  '<a href="' . sprintf('?page=%s&name=%s&knowladgebaseID=%s&status=%s', 'mvx#&submenu=work-board', 'knowladgebase', $knowladgebasevalue->ID, $knowladgebasevalue->post_status) . '">#' . $knowladgebasevalue->post_title . '</a>',
                 'date'          =>  $knowladgebasevalue->post_modified,
                 'link'          =>  sprintf('?page=%s&name=%s&knowladgebaseID=%s&status=%s', 'mvx#&submenu=work-board', 'knowladgebase', $knowladgebasevalue->ID, $knowladgebasevalue->post_status),
                 'type'          =>  'post_knowladgebase',
