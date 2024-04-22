@@ -3,9 +3,9 @@ Contributors: wcmp, purnendu
 Tags: multi seller, multi vendor marketplace, woocommerce multivendor marketplace, multi seller store, best marketplace plugin
 Donate link: http://multivendorx.com/donate/
 Requires at least: 5.4
-Tested up to: 6.5
+Tested up to: 6.5.2
 Requires PHP: 8.0
-Stable tag: 4.1.8
+Stable tag: 4.1.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -286,6 +286,15 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.1.9 - 2024-04-23 =
+* Added     - Compatibility of WordPress 6.5.2.
+* Added     - Compatibility of WooCommerce 8.8.2.
+* Fix       - Support of adding "Pending" status in Knowledgebase module #721.
+* Fix       - Added addional parameter for mvx_order_item_quantity_text filter #723.
+* Fix       - Product Sales report of all vendors is visible to all #715.
+* Fix       - Warning messages in cart page when the sold by option is enabled #717.
+* Fix       - Critical error in vendor dashboard while downloading orders #713.
 
 = 4.1.8 - 2024-04-09 =
 * Added     - Compatibility of WordPress 6.5.
