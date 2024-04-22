@@ -833,7 +833,7 @@ class MVXworkboard extends Component {
 
 	QueryParamsDemo() {
 		const use_query = this.useQuery();
-		// update announcement table when clock on announcement tab
+		// update announcement table when click on announcement tab
 		if (
 			new URLSearchParams(window.location.hash).get('name') ===
 			'announcement'
@@ -848,7 +848,7 @@ class MVXworkboard extends Component {
 		}
 		// update announcement table end
 
-		// update knowledgebase table when clock on knowledgebase tab
+		// update knowledgebase table when click on knowledgebase tab
 		if (
 			new URLSearchParams(window.location.hash).get('name') ===
 			'knowladgebase'
@@ -1959,8 +1959,8 @@ class MVXworkboard extends Component {
 							)}
 							modulename="update_knowladgebase"
 							url="mvx_module/v1/update_knowladgebase"
-							knowladgebase_status={get_current_name.get('status')}
-							submit_title={get_current_name.get('status') === 'pending' ? appLocalizer.global_string.publish : appLocalizer.global_string.save}
+							submit_title={appLocalizer.global_string.publish}
+							pending_button = {appLocalizer.global_string.pending}
 						/>
 					) : (
 						<PageLoader/>

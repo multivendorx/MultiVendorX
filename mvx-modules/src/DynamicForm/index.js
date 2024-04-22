@@ -364,7 +364,6 @@ export default class DynamicForm extends React.Component {
 				knowladgebase_id: this.props.knowladgebase_id
 					? this.props.knowladgebase_id
 					: '',
-				knowladgebase_status: this.props.knowladgebase_status === 'pending' ? 'true' : 'false',
 				pendingButton: this.state.pending_button_click ? 'true' : 'false',
 			},
 		}).then((res) => {
@@ -2433,9 +2432,9 @@ export default class DynamicForm extends React.Component {
 									
 								)}
 								</button>
-								{this.props.pending_button ? (
+								{!this.state.from_loading && this.props.pending_button ? (
 									<button
-										className="mvx-btn"
+										className="mvx-btn pending-btn"
 										disabled={this.state.from_loading}
 										type="submit"
 										onClick={this.handleButtonClick}
