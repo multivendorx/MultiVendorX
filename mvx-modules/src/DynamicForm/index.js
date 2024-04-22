@@ -32,6 +32,7 @@ export default class DynamicForm extends React.Component {
 			lat: null,
 			lng: null,
 			center: '',
+			pending_button_click: false
 		};
 
 		this.runUploader = this.runUploader.bind(this);
@@ -46,6 +47,7 @@ export default class DynamicForm extends React.Component {
 		this.ontinyChange = this.ontinyChange.bind(this);
 		this.showHideUpdateRow = this.showHideUpdateRow.bind(this);
 		this.onMultiSelectDeselectChange = this.onMultiSelectDeselectChange.bind(this);
+		this.handleButtonClick = this.handleButtonClick.bind(this);
 	}
 
 	ontinyChange(e, target) {
@@ -362,6 +364,7 @@ export default class DynamicForm extends React.Component {
 				knowladgebase_id: this.props.knowladgebase_id
 					? this.props.knowladgebase_id
 					: '',
+				pendingButton: this.state.pending_button_click ? 'true' : 'false',
 			},
 		}).then((res) => {
 			this.setState({
@@ -2369,6 +2372,11 @@ export default class DynamicForm extends React.Component {
 		}
 	}
 
+	handleButtonClick() {
+		this.setState({
+			pending_button_click: true
+		});
+	}
 	render() {
 		const prop_submitbutton =
 			this.props.submitbutton && this.props.submitbutton === 'false'
@@ -2394,7 +2402,6 @@ export default class DynamicForm extends React.Component {
 
 					{this.renderForm()}
 					{prop_submitbutton ? (
-						
 						<div className="mvx-form-actions">
 							<div className="mvx-setting-section-divider">&nbsp;</div>
 							<button
@@ -2422,8 +2429,23 @@ export default class DynamicForm extends React.Component {
 											? this.props.submit_title
 											: appLocalizer.global_string.save}
 									</span>
+									
 								)}
-							</button>
+								</button>
+								{!this.state.from_loading && this.props.pending_button ? (
+									<button
+										className="mvx-btn pending-btn"
+										disabled={this.state.from_loading}
+										type="submit"
+										onClick={this.handleButtonClick}
+									>
+										{!this.state.from_loading && (
+											<span>
+												{this.props.pending_button && this.props.pending_button}
+											</span>
+										)}
+									</button>
+								) : '' }							
 						</div>
 					) : (
 						''

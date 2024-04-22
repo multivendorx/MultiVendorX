@@ -3249,9 +3249,10 @@ class MVX_REST_API {
     public function mvx_create_knowladgebase($request) {
         $all_details = [];
         $fetch_data = $request->get_param('model');
+        $fetch_status = $request->get_param('pendingButton') == 'true' ? 'pending' : 'publish';
         $knowladgebase_title = $fetch_data && isset($fetch_data['knowladgebase_title']) ? $fetch_data['knowladgebase_title'] : '';
         $knowladgebase_content = $fetch_data && isset($fetch_data['knowladgebase_content']) ? $fetch_data['knowladgebase_content'] : '';
-        $post_id = wp_insert_post( array( 'post_title' => $knowladgebase_title, 'post_type' => 'mvx_university', 'post_status' => 'publish', 'post_content' => $knowladgebase_content ) );
+        $post_id = wp_insert_post( array( 'post_title' => $knowladgebase_title, 'post_type' => 'mvx_university', 'post_status' => $fetch_status, 'post_content' => $knowladgebase_content ) );
         $all_details['redirect_link'] = admin_url('admin.php?page=mvx#&submenu=work-board&name=knowladgebase&knowladgebaseID='. $post_id .'');
         return $all_details;
     }
@@ -3271,8 +3272,9 @@ class MVX_REST_API {
             $knowladgebase_list[] = array(
                 'id'            =>  $knowladgebasevalue->ID,
                 'sample_title'  =>  $knowladgebasevalue->post_title,
-                'title'         =>  '<a href="' . sprintf('?page=%s&name=%s&knowladgebaseID=%s', 'mvx#&submenu=work-board', 'knowladgebase', $knowladgebasevalue->ID) . '">#' . $knowladgebasevalue->post_title . '</a>',
-                'date'          =>  $knowladgebasevalue->post_modified,
+                'title'         =>  '<a href="' . sprintf('?page=%s&name=%s&knowladgebaseID=%s', 'mvx#&submenu=work-board', 'knowladgebase', $knowladgebasevalue->ID) . '">' . $knowladgebasevalue->post_title . '</a>',
+                'date'          =>  mvx_date($knowladgebasevalue->post_modified),
+                'status'        =>  ucfirst($knowladgebasevalue->post_status),
                 'link'          =>  sprintf('?page=%s&name=%s&knowladgebaseID=%s', 'mvx#&submenu=work-board', 'knowladgebase', $knowladgebasevalue->ID),
                 'type'          =>  'post_knowladgebase',
             );
@@ -3313,7 +3315,7 @@ class MVX_REST_API {
     public function mvx_update_knowladgebase($request) {
         $knowladgebase_id = $request && $request->get_param('knowladgebase_id') ? ($request->get_param('knowladgebase_id')) : 0;
         $fetch_data = $request->get_param('model');
-        
+        $knowladgebase_status = $request->get_param('pendingButton') == 'true' ? 'pending' : 'publish';
         $knowladgebase_post = array(
             'ID'    =>  $knowladgebase_id,
         );
@@ -3323,6 +3325,9 @@ class MVX_REST_API {
         }
         if (isset($fetch_data['knowladgebase_content']) && !empty($fetch_data['knowladgebase_content'])) {
             $knowladgebase_post['post_content'] = $fetch_data['knowladgebase_content'];
+        }
+        if (!empty($knowladgebase_status)) {
+            $knowladgebase_post['post_status'] = $knowladgebase_status;
         }
         // Update the post into the database
         wp_update_post( $knowladgebase_post );

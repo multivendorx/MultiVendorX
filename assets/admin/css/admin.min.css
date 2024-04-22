@@ -4454,3 +4454,6 @@ table.mvx-shipping-zone-methods td:has(> button) {
     border: none;
     color: #f9f8fb
 }
+.pending-btn{
+    margin-left: 0.75rem;
+  }
