@@ -896,6 +896,12 @@ class MVX_Admin {
                     'selector_choice'  => "title",
                 ),
                 array(
+                    'name'      =>  __('Status', 'multivendorx'),
+                    'selector'  =>  '',
+                    'sortable'  =>  true,
+                    'selector_choice'  => "status",
+                ),
+                array(
                     'name'      =>  __('Date', 'multivendorx'),
                     'selector'  =>  '',
                     'sortable'  =>  true,
