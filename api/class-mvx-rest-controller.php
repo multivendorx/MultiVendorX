@@ -3272,10 +3272,10 @@ class MVX_REST_API {
             $knowladgebase_list[] = array(
                 'id'            =>  $knowladgebasevalue->ID,
                 'sample_title'  =>  $knowladgebasevalue->post_title,
-                'title'         =>  '<a href="' . sprintf('?page=%s&name=%s&knowladgebaseID=%s&status=%s', 'mvx#&submenu=work-board', 'knowladgebase', $knowladgebasevalue->ID, $knowladgebasevalue->post_status) . '">#' . $knowladgebasevalue->post_title . '</a>',
+                'title'         =>  '<a href="' . sprintf('?page=%s&name=%s&knowladgebaseID=%s', 'mvx#&submenu=work-board', 'knowladgebase', $knowladgebasevalue->ID) . '">#' . $knowladgebasevalue->post_title . '</a>',
                 'date'          =>  mvx_date($knowladgebasevalue->post_modified),
                 'status'        =>  ucfirst($knowladgebasevalue->post_status),
-                'link'          =>  sprintf('?page=%s&name=%s&knowladgebaseID=%s&status=%s', 'mvx#&submenu=work-board', 'knowladgebase', $knowladgebasevalue->ID, $knowladgebasevalue->post_status),
+                'link'          =>  sprintf('?page=%s&name=%s&knowladgebaseID=%s', 'mvx#&submenu=work-board', 'knowladgebase', $knowladgebasevalue->ID),
                 'type'          =>  'post_knowladgebase',
             );
         }
@@ -3315,7 +3315,7 @@ class MVX_REST_API {
     public function mvx_update_knowladgebase($request) {
         $knowladgebase_id = $request && $request->get_param('knowladgebase_id') ? ($request->get_param('knowladgebase_id')) : 0;
         $fetch_data = $request->get_param('model');
-        $knowladgebase_status = $request->get_param('knowladgebase_status')  == 'true' ? 'publish' : '';
+        $knowladgebase_status = $request->get_param('pendingButton') == 'true' ? 'pending' : 'publish';
         $knowladgebase_post = array(
             'ID'    =>  $knowladgebase_id,
         );
