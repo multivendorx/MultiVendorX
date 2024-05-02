@@ -8031,7 +8031,7 @@ if (!function_exists('mvx_list_all_modules')) {
                 ]
             ],
             [
-                'label' =>  __('Third Party Compartibility', 'multivendorx'),
+                'label' =>  __('Third Party compatibility', 'multivendorx'),
                 'options'       =>  [
                     [
                         'id'           => 'elementor',
@@ -8051,7 +8051,7 @@ if (!function_exists('mvx_list_all_modules')) {
                             ),
                         ),
                         'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/mvx-elementor',
-                        'parent_category' => __( 'Third Party Compartibility', 'multivendorx' ),
+                        'parent_category' => __( 'Third Party compatibility', 'multivendorx' ),
                     ],
                     [
                         'id'           => 'buddypress',
