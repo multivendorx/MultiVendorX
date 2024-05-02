@@ -143,6 +143,7 @@ class MVX_Admin {
             remove_menu_page('edit.php');
             remove_menu_page('edit-comments.php');
             remove_menu_page('tools.php');
+            remove_submenu_page('woocommerce', 'wc-admin&path=/customers');
         }
     }
 
