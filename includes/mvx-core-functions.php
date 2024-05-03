@@ -8194,6 +8194,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
+                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/shipstation/',
                     ],
                 ]
             ],
