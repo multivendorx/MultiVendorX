@@ -91,7 +91,8 @@ p.mvx-address i {
 .banner-img-cls .mvx-imgcls {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .mvx_bannersec_start {
@@ -311,8 +312,10 @@ button.mvx-fill-butn {
 .carousel-item img {
   height: 100%;
   width: 100%;
-  object-fit: cover;
-  object-position: center;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
 }
 
 .v-vlite.v-playing.v-video {
@@ -415,6 +418,7 @@ button.mvx-fill-butn {
   font-family: "Montserrat", sans-serif;
   font-size: 14px;
   font-weight: 500;
+  min-width: -moz-max-content;
   min-width: max-content;
   cursor: pointer;
 }
@@ -658,7 +662,8 @@ button.mvx-fill-butn {
 .mvx-profile-cls img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .mvx-follower-leftside {

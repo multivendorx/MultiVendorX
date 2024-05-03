@@ -13,7 +13,7 @@ global $MVX, $product;
 $html = '';
 $vendor = get_mvx_product_vendors($product->get_id());
 if ($vendor) {
-    $html .= '<div class="product-vendor">';
+    $html .= '<div class="single-product-vendor">';
     $html .= apply_filters('mvx_before_seller_info_tab', '');
     $html .= '<h2>' . $vendor->page_title . '</h2>';
     echo $html;

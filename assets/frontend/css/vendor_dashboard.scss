@@ -2167,10 +2167,26 @@ input.remove_button {
 		}
 	}
 }
+.panel-body.panel-content-padding.form-group-wrapper label{
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.panel-body.panel-content-padding.form-group-wrapper label input{
+    margin-right: 0.5rem;
+}
 .panel.panel-default.pannel-outer-heading {
 	padding: 0;
-	background-color: transparent;
-	box-shadow: none;
+    background-color: transparent;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+	p{
+		 margin: 0;
+	}
 	.panel-heading {
 		border: none;
 		padding: 0;
