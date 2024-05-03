@@ -138,13 +138,13 @@
   gap: 1rem;
 
   img {
-	width: 60px;
-	height: 60px;
+	width: 3.75rem;
+	height: 3.75rem;
 	border-radius: 50%;
   }
 
   h2 {
-	margin: 0;
+	margin: 0 !important; // To overwrite default css
 	font-size: 2rem;
   }
 
