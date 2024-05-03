@@ -144,6 +144,7 @@ class MVX_Admin {
             remove_menu_page('edit-comments.php');
             remove_menu_page('tools.php');
             remove_submenu_page('woocommerce', 'wc-admin&path=/customers');
+            remove_submenu_page('wc-admin&path=/analytics/overview', 'wc-admin&path=/analytics/orders');
         }
     }
 
