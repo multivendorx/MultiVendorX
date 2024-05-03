@@ -4189,3 +4189,18 @@ table.mvx-shipping-zone-methods {
 .pending-btn{
   margin-left: 0.75rem;
 }
+
+.MuiPaper-root .MuiDialogTitle-root{
+  overflow: visible !important;
+
+  i{
+    position: absolute;
+    top: -0.5rem;
+    right: -1rem;
+    font-size: 0.875rem;
+  }
+}
+
+h2 .mvx-module-dialog-title{
+  padding-right: 1rem;
+}

@@ -409,7 +409,9 @@ class MVX_Admin {
                 'optional_note'  =>  __('Optional note for acceptance / rejection', 'multivendorx'),
                 'select_option'  =>  __('Select your desired option', 'multivendorx'),
                 'delete_user'  =>  __('Delete User Permanently', 'multivendorx'),
-                'delete_vendor'  =>  __('Delete Vendor Profile', 'multivendorx'),
+                'delete_vendor_product_draft'  =>  __('Delete Vendor Profile and make their product draft', 'multivendorx'),
+                'delete_vendor_product_admin'  =>  __('Delete Vendor Profile and assign their product to admin', 'multivendorx'),
+
                 'modal_button_text'  =>  __('Confirm', 'multivendorx'),
                 'back' => __('Back', 'multivendorx'),
             );

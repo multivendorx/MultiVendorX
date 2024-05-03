@@ -389,13 +389,32 @@ class MVXBackendVendor extends React.Component {
 				}
 			});
 		} 
-		if (this.state.selected_option === 'delete_vendor') {
+		if (this.state.selected_option === 'delete_vendor_product_draft') {
 			axios({
 				method: 'post',
 				url: `${appLocalizer.apiUrl}/mvx_module/v1/vendor_delete`,
 				data: {
 					vendor_ids: this.state.selected_ids,
-					select_input: 'delete_vendor'
+					select_input: 'delete_vendor_product_draft'
+				},
+			}).then((response) => {
+				if ( response && response.data ) {
+					this.handleClose_delete_modal();
+					this.setState({
+						datavendor: response.data,
+						selected_option: false,
+						vendor_loading: true
+					});
+				}
+			});
+		}
+		if (this.state.selected_option === 'delete_vendor_product_admin') {
+			axios({
+				method: 'post',
+				url: `${appLocalizer.apiUrl}/mvx_module/v1/vendor_delete`,
+				data: {
+					vendor_ids: this.state.selected_ids,
+					select_input: 'delete_vendor_product_admin'
 				},
 			}).then((response) => {
 				if ( response && response.data ) {
@@ -1261,11 +1280,22 @@ class MVXBackendVendor extends React.Component {
 															<label>
 																<input
 																type="radio"
-																value="delete_vendor"
-																checked={this.state.selected_option === "delete_vendor"}
+																value="delete_vendor_product_draft"
+																checked={this.state.selected_option === "delete_vendor_product_draft"}
 																onChange={this.handleChangeRadioButton}
 																/>
-																{appLocalizer.vendor_page_string.delete_vendor}
+																{appLocalizer.vendor_page_string.delete_vendor_product_draft}
+															</label>
+														</div>
+														<div>
+															<label>
+																<input
+																type="radio"
+																value="delete_vendor_product_admin"
+																checked={this.state.selected_option === "delete_vendor_product_admin"}
+																onChange={this.handleChangeRadioButton}
+																/>
+																{appLocalizer.vendor_page_string.delete_vendor_product_admin}
 															</label>
 														</div>
 													</div>
