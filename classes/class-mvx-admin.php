@@ -1126,7 +1126,7 @@ class MVX_Admin {
                 ),
                 array(
                     'value' => 'third_party_compartibility',
-                    'label' => __('Third Party compatibility', 'multivendorx')
+                    'label' => __('Third Party Compatibility', 'multivendorx')
                 )
             );
 
