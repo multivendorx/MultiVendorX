@@ -16,7 +16,7 @@ if ($vendor) {
     $html .= '<div class="product-vendor">';
     $html .= apply_filters('mvx_before_seller_info_tab', '');
     $profile_image = $vendor->get_image() ? $vendor->get_image() : $MVX->plugin_url . 'assets/images/WP-stdavatar.png';
-    $html .= '<img src="' . esc_attr($profile_image) . '" class="mvx-profile-imgcls" />';
+    $html .= '<img src="' . esc_attr($profile_image) . '" class="single-product-vendor" />';
     $html .= '<h2>' . $vendor->page_title . '</h2>';
     echo $html;
     $term_vendor = wp_get_post_terms($product->get_id(), $MVX->taxonomy->taxonomy_name);
