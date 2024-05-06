@@ -563,8 +563,3 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 * Added - Compatibility of WooCommerce 7.0.0.
 * Added     - MultiVendorX released.
 * Updated   - Language file.
-
-== Upgrade Notice ==
-
-= 4.0.0 =
-4.0.0+ is a major update. Make a full site backup and [review latest release](https://multivendorx.com/latest-release/) before upgrading your marketplace to avoid any undesirable situations.
