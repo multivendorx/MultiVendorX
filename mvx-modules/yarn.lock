@@ -2849,7 +2849,7 @@
   resolved "https://registry.npmjs.org/@wordpress/prettier-config/-/prettier-config-3.13.0.tgz"
   integrity sha512-oNayHsdAhP3ER4T7KjNrmdtEIZjYJAdIDdScjNOKmK3Qvp02VP9TPfDGhLSjiYmOiQcyrIz/uuf9MJ9JCcdGng==
 
-"@wordpress/scripts@^26.10.0":
+"@wordpress/scripts@^26.19.0":
   version "26.19.0"
   resolved "https://registry.npmjs.org/@wordpress/scripts/-/scripts-26.19.0.tgz"
   integrity sha512-m3QYlgpWRfIqCfU4jWKwGeA12Qkt6d9CMewEIxIBGVlEGd/sL5rU1fM7LKNBEbSPQpaOTWJApNGWPcW75Fwp+w==
