@@ -8031,7 +8031,7 @@ if (!function_exists('mvx_list_all_modules')) {
                 ]
             ],
             [
-                'label' =>  __('Third Party Compartibility', 'multivendorx'),
+                'label' =>  __('Third Party Compatibility', 'multivendorx'),
                 'options'       =>  [
                     [
                         'id'           => 'elementor',
@@ -8051,7 +8051,7 @@ if (!function_exists('mvx_list_all_modules')) {
                             ),
                         ),
                         'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/mvx-elementor',
-                        'parent_category' => __( 'Third Party Compartibility', 'multivendorx' ),
+                        'parent_category' => __( 'Third Party Compatibility', 'multivendorx' ),
                     ],
                     [
                         'id'           => 'buddypress',
@@ -8194,6 +8194,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
+                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/shipstation/',
                     ],
                 ]
             ],
