@@ -9479,3 +9479,43 @@ ul.select-store-details li input {
 .ui-widget-header .ui-corner-all:nth-child(2), .ui-datepicker-buttonpane.ui-widget-content button:nth-child(2){
     margin-left: 5px;
 }
+.panel-body.panel-content-padding.form-group-wrapper label{
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.panel-body.panel-content-padding.form-group-wrapper label input{
+    margin-right: 0.5rem;
+}
+.panel.panel-default.pannel-outer-heading {
+    padding: 0;
+    background-color: transparent;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    p{
+         margin: 0;
+    }
+    .panel-heading {
+        border: none;
+        padding: 0;
+        margin: 0 0 12px;
+    }
+    .panel-body {
+        background-color: #fff;
+        padding: 0;
+        border: 1px solid #D3DBE2;
+        .membership-details-container {
+            overflow-x: scroll;
+        }
+    }
+    .panel-footer {
+        background-color: #fff;
+        margin: 0;
+        padding: 14px 20px;
+        border: 1px solid #D3DBE2;
+        border-top: 0;
+    }
+}
