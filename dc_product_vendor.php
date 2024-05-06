@@ -12,6 +12,7 @@
  * WC tested up to: 8.8.2
  *
  * Text Domain: multivendorx
+ * Requires Plugins: woocommerce
  * Domain Path: /languages/
  */
 if (!class_exists('WC_Dependencies_Product_Vendor')) {
