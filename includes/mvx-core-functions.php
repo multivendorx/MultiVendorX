@@ -8172,7 +8172,7 @@ if (!function_exists('mvx_list_all_modules')) {
                             array(
                                 'plugin_name'   => __('Product Add-Ons', 'multivendorx'),
                                 'plugin_link'   => 'https://woocommerce.com/products/product-add-ons/',
-                                'is_active' => is_plugin_active('woocommerce-product-addons/woocommerce-product-addons.php') ? true :false,
+                                'is_active' => is_plugin_active('woocommerce-product-addons/woocommerce-product-addons.php') || is_plugin_active('woocommerce-appointments/woocommerce-appointments.php') ? true :false,
                             ),
                             array(
                                 'plugin_name'   => __('MultivendorX Pro', 'multivendorx'),
