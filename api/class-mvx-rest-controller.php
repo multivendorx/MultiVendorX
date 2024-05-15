@@ -3556,6 +3556,9 @@ class MVX_REST_API {
             }
 
             $commission_value = get_user_meta($vendor_id, '_vendor_commission', true);
+            $commission_percentage_value = get_user_meta($vendor_id, '_vendor_commission_percentage', true);
+            $commission_fixed_with_percentage_value = get_user_meta($vendor_id, '_vendor_commission_fixed_with_percentage', true);
+            $commission_fixed_with_percentage_qty_value = get_user_meta($vendor_id, '_vendor_commission_fixed_with_percentage_qty', true);
             $vendor_paypal_email = get_user_meta($vendor_id, '_vendor_paypal_email', true);
 
             $vendor_bank_name = get_user_meta($vendor_id, '_vendor_bank_name', true);
@@ -4225,6 +4228,43 @@ class MVX_REST_API {
 
         $settings_fields_data['vendor-followers'] =   [];
         
+        if ($MVX->vendor_caps->payment_cap['commission_type']['value'] == 'fixed_with_percentage') {
+            array_splice($settings_fields_data['vendor-payments'], 1, 1);
+            $settings_fields_data['vendor-payments'][] =
+            [
+                'label' => __('Commission Percentage(%)', 'multivendorx'),
+                'key'   => 'vendor_commission_percentage',
+                'type' => 'number',
+                'database_value' => isset($commission_percentage_value) ? $commission_percentage_value : '',
+                'desc'  =>  ''
+            ];
+            $settings_fields_data['vendor-payments'][] = [
+                'label' => __('Commission(fixed), Per Transaction', 'multivendorx'),
+                'key'   => 'vendor_commission_fixed_with_percentage',
+                'type' => 'number',
+                'database_value' => isset($commission_fixed_with_percentage_value) ? $commission_fixed_with_percentage_value : '',
+                'desc'  =>  ''
+            ];
+        }
+
+        if ($MVX->vendor_caps->payment_cap['commission_type']['value'] == 'fixed_with_percentage_qty') {
+            array_splice($settings_fields_data['vendor-payments'], 1, 1);
+            $settings_fields_data['vendor-payments'][] =
+            [
+                'label' => __('Commission Percentage(%)', 'multivendorx'),
+                'key'   => 'vendor_commission_percentage',
+                'type' => 'number',
+                'database_value' => isset($commission_percentage_value) ? $commission_percentage_value : '',
+                'desc'  =>  ''
+            ];
+            $settings_fields_data['vendor-payments'][] = [
+                'label' => __('Commission Fixed Per Unit', 'multivendorx'),
+                'key'   => 'vendor_commission_fixed_with_percentage_qty',
+                'type' => 'number',
+                'database_value' => isset($commission_fixed_with_percentage_qty_value) ? $commission_fixed_with_percentage_qty_value : '',
+                'desc'  =>  ''
+            ];
+        }
         return rest_ensure_response(apply_filters('mvx_vendors_tab_routes', $settings_fields_data, $vendor_id));
     }
 

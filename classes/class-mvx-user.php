@@ -691,7 +691,7 @@ class MVX_User {
 
 
 
-            if ($MVX->vendor_caps->payment_cap['commission_type'] == 'fixed_with_percentage') {
+            if ($MVX->vendor_caps->payment_cap['commission_type']['value'] == 'fixed_with_percentage') {
                 unset($fields['vendor_commission']);
                 $fields['vendor_commission_percentage'] = array(
                     'label' => __('Commission Percentage(%)', 'multivendorx'),
@@ -707,7 +707,7 @@ class MVX_User {
                 );
             }
 
-            if ($MVX->vendor_caps->payment_cap['commission_type'] == 'fixed_with_percentage_qty') {
+            if ($MVX->vendor_caps->payment_cap['commission_type']['value'] == 'fixed_with_percentage_qty') {
                 unset($fields['vendor_commission']);
                 $fields['vendor_commission_percentage'] = array(
                     'label' => __('Commission Percentage(%)', 'multivendorx'),
