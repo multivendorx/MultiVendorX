@@ -319,29 +319,39 @@ class MVX_Vendor_Shipping_Method extends WC_Shipping_Method {
     * @return bool
     */
     public static function free_shipping_is_available( $package, $method ) {
-        $has_met_min_amount = false;
-        $min_amount = ! empty( $method['settings']['min_amount'] ) ? $method['settings']['min_amount'] : 0;
+        if ($method['settings']['requires'] == 'coupon') {
+            $coupon_code = $package['applied_coupons'] ? reset($package['applied_coupons']) : '';
+            $coupon = new WC_Coupon( $coupon_code );
+            $is_free_shipping_enabled = $coupon->get_free_shipping();
+            if ($is_free_shipping_enabled) {
+                return true;
+            }
+        } else if ($method['settings']['requires'] == 'min_amount')  {
+            $has_met_min_amount = false;
+            $min_amount = ! empty( $method['settings']['min_amount'] ) ? $method['settings']['min_amount'] : 0;
 
-        $line_subtotal      = wp_list_pluck( $package['contents'], 'line_subtotal', null );
-        $line_total         = wp_list_pluck( $package['contents'], 'line_total', null );
-        $discount_total     = array_sum( $line_subtotal ) - array_sum( $line_total );
-        $line_subtotal_tax  = wp_list_pluck( $package['contents'], 'line_subtotal_tax', null );
-        $line_total_tax     = wp_list_pluck( $package['contents'], 'line_tax', null );
-        $discount_tax_total = array_sum( $line_subtotal_tax ) - array_sum( $line_total_tax );
+            $line_subtotal      = wp_list_pluck( $package['contents'], 'line_subtotal', null );
+            $line_total         = wp_list_pluck( $package['contents'], 'line_total', null );
+            $discount_total     = array_sum( $line_subtotal ) - array_sum( $line_total );
+            $line_subtotal_tax  = wp_list_pluck( $package['contents'], 'line_subtotal_tax', null );
+            $line_total_tax     = wp_list_pluck( $package['contents'], 'line_tax', null );
+            $discount_tax_total = array_sum( $line_subtotal_tax ) - array_sum( $line_total_tax );
 
-        $total = array_sum( $line_subtotal ) + array_sum( $line_subtotal_tax );
+            $total = array_sum( $line_subtotal ) + array_sum( $line_subtotal_tax );
 
-        if ( WC()->cart->display_prices_including_tax() ) {
-          $total = round( $total - ( $discount_total + $discount_tax_total ), wc_get_price_decimals() );
+            if ( WC()->cart->display_prices_including_tax() ) {
+            $total = round( $total - ( $discount_total + $discount_tax_total ), wc_get_price_decimals() );
+            } else {
+            $total = round( $total - $discount_total, wc_get_price_decimals() );
+            }
+
+            if ( $total >= $min_amount ) {
+            $has_met_min_amount = true;
+            }
+            return apply_filters( 'mvx_shipping_free_shipping_is_available', $has_met_min_amount, $package, $method );
         } else {
-          $total = round( $total - $discount_total, wc_get_price_decimals() );
+            return false;
         }
-
-        if ( $total >= $min_amount ) {
-          $has_met_min_amount = true;
-        }
-
-        return apply_filters( 'mvx_shipping_free_shipping_is_available', $has_met_min_amount, $package, $method );
     }
 
 
