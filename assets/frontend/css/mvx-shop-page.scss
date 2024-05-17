@@ -70,7 +70,7 @@ p.mvx-address i {
 .banner-img-cls{
     .mvx-imgcls{
         @include mvxImg;
-        object-fit: cover;
+        object-fit: contain;
     }
 }
 .mvx_bannersec_start {
