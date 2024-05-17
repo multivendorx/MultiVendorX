@@ -191,7 +191,16 @@
                         $('#mvx_shipping_method_edit_container').show();
                     }
                 },
-            });
+            }).then (()=> {
+                $('#minimum_order_amount_field').hide();
+                $('#requires').change(function(){
+                    if($(this).val() === 'min_amount'){
+                        $('#minimum_order_amount_field').show();
+                    } else {
+                        $('#minimum_order_amount_field').hide();
+                    }
+                }).change();
+            }); 
         },
 
         updateShippingMethod: function (event) {
