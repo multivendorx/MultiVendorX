@@ -1511,18 +1511,29 @@ class MVX_Admin {
     }
 
     public function woocommerce_admin_end_order_menu_count( $processing_orders ) {
+        global $MVX;
         $args = array(
-        'post_status' => array('wc-processing'),
+            'post_status' => array('wc-processing'),
         );
         $sub_orders = mvx_get_orders( $args, 'ids', true );
         if ( empty( $sub_orders ) )
             $sub_orders = array();
-        $processing_orders = count(wc_get_orders(array(
-            'status'  => 'processing',
-            'return'  => 'ids',
-            'limit'   => -1,
-            'exclude' => $sub_orders,
-            )));
+
+        if($MVX->hpos_is_enabled){
+            $params = [
+                'status' => 'processing',
+                'type' => 'shop_order',
+                'parent_order_id' => 0
+            ];
+        } else {
+            $params = [
+                'status'  => 'processing',
+                'return'  => 'ids',
+                'limit'   => -1,
+                'exclude' => $sub_orders,
+            ];
+        }
+        $processing_orders = count(wc_get_orders($params));
 
         return $processing_orders;
     }

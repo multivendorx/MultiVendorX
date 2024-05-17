@@ -30,6 +30,7 @@ class MVX_Order {
                 add_action('current_screen', function($screen) {
                     if('woocommerce_page_wc-orders' === $screen->id) {
                         add_filter( 'woocommerce_orders_table_query_clauses', array($this, 'wc_order_list_filter') );
+                        add_filter( 'woocommerce_shop_order_list_table_order_count', array($this, 'wc_order_count_list_filter'), 10, 2);
                     }
                 });
             } else { // before wc version 8.3.0
@@ -171,6 +172,14 @@ class MVX_Order {
         global $wpdb;
         $where_cloas['where'] .= ' AND ' . $wpdb->prefix . 'wc_orders.parent_order_id = 0';
         return $where_cloas;
+    }
+
+    function wc_order_count_list_filter($count, $status) {
+        $count =  count( wc_get_orders( [
+            'status' => $status,
+            'parent_order_id' => 0, 
+        ]) );
+        return $count;
     }
     
     public function init_prevent_trigger_vendor_order_emails(){
