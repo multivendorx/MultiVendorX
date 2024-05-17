@@ -167,7 +167,9 @@ class MVX_Plugin_Usage_Tracker {
     public function deactivate_reasons_form_script() {
         $form              = $this->deactivation_reasons();
         $html              = '<div class="multivendor-xs-goodbye-form-head"><strong>' . esc_html( $form['heading'] ) . '</strong></div>';
-        $html             .= '<div class="multivendor-xs-goodbye-form-body"><p class="multivendor-xs-goodbye-form-caption">' . esc_html( $form['body'] ) . '</p>';
+        $html             .= '<div class="multivendor-xs-goodbye-form-body"><p class="multivendor-xs-goodbye-form-caption">' . esc_html( $form['body-upper'] ) . '</p>';
+        $html             .= '<div class="support-card"><a href="http://multivendorx.com/support-forum/" target="_blank" class="card-item"><div><svg style="width: 38px; fill: #522c81" class="svg-icon" viewBox="0 0 20 20"><path d="M15.573,11.624c0.568-0.478,0.947-1.219,0.947-2.019c0-1.37-1.108-2.569-2.371-2.569s-2.371,1.2-2.371,2.569c0,0.8,0.379,1.542,0.946,2.019c-0.253,0.089-0.496,0.2-0.728,0.332c-0.743-0.898-1.745-1.573-2.891-1.911c0.877-0.61,1.486-1.666,1.486-2.812c0-1.79-1.479-3.359-3.162-3.359S4.269,5.443,4.269,7.233c0,1.146,0.608,2.202,1.486,2.812c-2.454,0.725-4.252,2.998-4.252,5.685c0,0.218,0.178,0.396,0.395,0.396h16.203c0.218,0,0.396-0.178,0.396-0.396C18.497,13.831,17.273,12.216,15.573,11.624 M12.568,9.605c0-0.822,0.689-1.779,1.581-1.779s1.58,0.957,1.58,1.779s-0.688,1.779-1.58,1.779S12.568,10.427,12.568,9.605 M5.06,7.233c0-1.213,1.014-2.569,2.371-2.569c1.358,0,2.371,1.355,2.371,2.569S8.789,9.802,7.431,9.802C6.073,9.802,5.06,8.447,5.06,7.233 M2.309,15.335c0.202-2.649,2.423-4.742,5.122-4.742s4.921,2.093,5.122,4.742H2.309z M13.346,15.335c-0.067-0.997-0.382-1.928-0.882-2.732c0.502-0.271,1.075-0.429,1.686-0.429c1.828,0,3.338,1.385,3.535,3.161H13.346z"></path></svg></div><div>Contact us over Support Forum.</div></a><a href="https://www.facebook.com/groups/226246620006065" target="_blank" class="card-item"><div><svg style="width: 35px;" class="svg-icon" viewBox="0 0 20 20"><path fill="#522c81" d="M10,0.5c-5.247,0-9.5,4.253-9.5,9.5c0,5.247,4.253,9.5,9.5,9.5c5.247,0,9.5-4.253,9.5-9.5C19.5,4.753,15.247,0.5,10,0.5 M10,18.637c-4.77,0-8.636-3.867-8.636-8.637S5.23,1.364,10,1.364S18.637,5.23,18.637,10S14.77,18.637,10,18.637 M10.858,7.949c0-0.349,0.036-0.536,0.573-0.536h0.719v-1.3H11c-1.38,0-1.866,0.65-1.866,1.743v0.845h-0.86V10h0.86v3.887h1.723V10h1.149l0.152-1.299h-1.302L10.858,7.949z"></path></svg></div><div>Get help from MultiVendorX facebook community.</div></a><a href="https://calendly.com/contact-hkdq/30min" target="_blank" class="card-item"><div><svg xmlns="http://www.w3.org/2000/svg" style="width: 35px; fill: #522c81" viewBox="0 0 24 24"><path d="M21.384,17.752a2.108,2.108,0,0,1-.522,3.359,7.543,7.543,0,0,1-5.476.642C10.5,20.523,3.477,13.5,2.247,8.614a7.543,7.543,0,0,1,.642-5.476,2.108,2.108,0,0,1,3.359-.522L8.333,4.7a2.094,2.094,0,0,1,.445,2.328A3.877,3.877,0,0,1,8,8.2c-2.384,2.384,5.417,10.185,7.8,7.8a3.877,3.877,0,0,1,1.173-.781,2.092,2.092,0,0,1,2.328.445Z"/></svg></div><div>Book a free 15-min call with us.</div></a></div>';
+        $html             .= '<div class="multivendor-xs-goodbye-form-body"><p class="multivendor-xs-goodbye-form-caption">' . esc_html( $form['body-bottom'] ) . '</p>';
         if ( is_array( $form['options'] ) ) {
             $html .= '<div id="multivendor-xs-goodbye-options" class="multivendor-xs-goodbye-options"><ul>';
             foreach ( $form['options'] as $option ) {
@@ -204,7 +206,7 @@ class MVX_Plugin_Usage_Tracker {
                     var url = document.getElementById("multivendor-xs-goodbye-link-<?php echo esc_attr( 'dc-woocommerce-multi-vendor' ); ?>");
                     $('body').toggleClass('multivendor-xs-form-active-<?php echo esc_attr( 'dc-woocommerce-multi-vendor' ); ?>');
                     $(".multivendor-xs-goodbye-form-wrapper-<?php echo esc_attr( 'dc-woocommerce-multi-vendor' ); ?> #multivendor-xs-goodbye-form").fadeIn();
-                    $(".multivendor-xs-goodbye-form-wrapper-<?php echo esc_attr( 'dc-woocommerce-multi-vendor' ); ?> #multivendor-xs-goodbye-form").html( '<?php echo $html; ?>' + '<div class="multivendor-xs-goodbye-form-footer"><div class="multivendor-xs-goodbye-form-buttons"><a id="multivendor-xs-submit-form-<?php echo esc_attr( 'dc-woocommerce-multi-vendor' ); ?>" class="multivendor-xs-submit-btn" href="#"><?php esc_html_e( 'Submit and Deactivate', 'multivendor-x' ); ?> </a>&nbsp;<a class="multivenddorxn-deactivate-btn" href="'+url+'"><?php esc_html_e( 'Skip & Deactivate', 'multivendor-x' ); ?></a></div></div>');
+                    $(".multivendor-xs-goodbye-form-wrapper-<?php echo esc_attr( 'dc-woocommerce-multi-vendor' ); ?> #multivendor-xs-goodbye-form").html( '<?php echo $html; ?>' + '<div class="multivendor-xs-goodbye-form-footer"><div class="multivendor-xs-goodbye-form-buttons"><a class="multivendor-xs-submit-btn" href="'+url+'"><?php esc_html_e( 'Skip & Deactivate', 'multivendor-x' ); ?></a></div></div>');
                     $('#multivendor-xs-submit-form-<?php echo esc_attr( 'dc-woocommerce-multi-vendor' ); ?>').on('click', function(e){
                         // As soon as we click, the body of the form should disappear
                         $("#multivendor-xs-goodbye-form-<?php echo esc_attr( 'dc-woocommerce-multi-vendor' ); ?> .multivendor-xs-goodbye-form-body").fadeOut();
@@ -262,8 +264,9 @@ class MVX_Plugin_Usage_Tracker {
 
     public function deactivation_reasons() {
         $form            = array();
-        $form['heading'] = __( 'Sorry to see you go', 'multivendor-x' );
-        $form['body']    = __( 'Before you deactivate the plugin, would you quickly give us your reason for doing so?', 'multivendor-x' );
+        $form['heading'] = __( 'We\'re sorry to see you leave 😔', 'multivendor-x' );
+        $form['body-upper']    = __( 'Before deactivating, know we\'re here to help. Contact us anytime.', 'multivendor-x' );
+        $form['body-bottom']    = __( 'Before you deactivate the plugin, would you quickly give us your reason for doing so?', 'multivendor-x' );
 
         $form['options'] = array(
             __( 'I no longer need the plugin', 'multivendor-x' ),
@@ -648,23 +651,26 @@ class MVX_Plugin_Usage_Tracker {
 
             .multivendor-xs-form-active-dc-woocommerce-multi-vendor .multivendor-xs-goodbye-form {
                 position: relative !important;
-                width: 550px;
+                width: 34.65rem;
                 max-width: 80%;
                 background: #fff;
-                box-shadow: 2px 8px 23px 3px rgba(0, 0, 0, .2);
-                border-radius: 3px;
+                box-shadow: 0.126rem 0.504rem 1.449rem 0.189rem rgba(0, 0, 0, .2);
+                border-radius: 0.189rem;
                 white-space: normal;
                 overflow: hidden;
                 display: block;
                 z-index: 999999;
+                height: 34.65rem;
+                overflow-y: scroll;
             }
 
             .multivendor-xs-goodbye-form-wrapper-dc-woocommerce-multi-vendor .multivendor-xs-goodbye-form-head {
                 background: #fff;
                 color: #495157;
-                padding: 18px;
-                box-shadow: 0 0 8px rgba(0, 0, 0, .1);
-                font-size: 15px;
+                padding: 1.134rem;
+                box-shadow: 0 0 0.504rem rgba(0, 0, 0, .1);
+                font-size: 0.945rem;
+                text-align: center;
             }
             .mvx-collecting-area {
                 font-weight: 500;
@@ -677,77 +683,79 @@ class MVX_Plugin_Usage_Tracker {
             }
 
             .multivendor-xs-goodbye-form-wrapper-dc-woocommerce-multi-vendor .multivendor-xs-goodbye-form .multivendor-xs-goodbye-form-head strong {
-                font-size: 15px;
+                font-size: 0.945rem;
             }
 
             .multivendor-xs-goodbye-form-wrapper-dc-woocommerce-multi-vendor .multivendor-xs-goodbye-form-body {
-                padding: 8px 18px;
+                padding: 0.504rem 0.756rem 0;
                 color: #333;
             }
 
             .multivendor-xs-goodbye-form-wrapper-dc-woocommerce-multi-vendor .multivendor-xs-goodbye-form-body label {
-                padding-left: 5px;
+                padding-left: 0.315rem;
                 color: #6d7882;
             }
 
             .multivendor-xs-goodbye-form-wrapper-dc-woocommerce-multi-vendor .multivendor-xs-goodbye-form-body .multivendor-xs-goodbye-form-caption {
                 font-weight: 500;
-                font-size: 15px;
+                font-size: 0.945rem;
                 color: #495157;
                 line-height: 1.4;
             }
 
             .multivendor-xs-goodbye-form-wrapper-dc-woocommerce-multi-vendor .multivendor-xs-goodbye-form-body #multivendor-xs-goodbye-options {
-                padding-top: 5px;
+                padding-top: 0.315rem;
             }
 
             .multivendor-xs-goodbye-form-wrapper-dc-woocommerce-multi-vendor .multivendor-xs-goodbye-form-body #multivendor-xs-goodbye-options ul>li {
-                margin-bottom: 15px;
+                margin-bottom: 0.945rem;
             }
 
             .multivendor-xs-goodbye-form-wrapper-dc-woocommerce-multi-vendor .multivendor-xs-goodbye-form-body #multivendor-xs-goodbye-options ul>li>div {
                 display: inline;
-                padding-left: 3px;
+                padding-left: 0.189rem;
             }
 
             .multivendor-xs-goodbye-form-wrapper-dc-woocommerce-multi-vendor .multivendor-xs-goodbye-form-body #multivendor-xs-goodbye-options ul>li>div>input,
             .multivendor-xs-goodbye-form-wrapper-dc-woocommerce-multi-vendor .multivendor-xs-goodbye-form-body #multivendor-xs-goodbye-options ul>li>div>textarea {
-                margin: 10px 18px;
-                padding: 8px;
+                margin: 0.63rem 1.134rem;
+                padding: 0.504rem;
                 width: 80%;
             }
 
             .multivendor-xs-goodbye-form-wrapper-dc-woocommerce-multi-vendor .deactivating-spinner {
                 display: none;
-                padding-bottom: 20px !important;
+                padding-bottom: 1.26rem !important;
             }
 
             .multivendor-xs-goodbye-form-wrapper-dc-woocommerce-multi-vendor .deactivating-spinner .spinner {
                 float: none;
-                margin: 4px 4px 0 18px;
+                margin: 0.252rem 0.252rem 0 1.134rem;
                 vertical-align: bottom;
                 visibility: visible;
             }
 
             .multivendor-xs-goodbye-form-wrapper-dc-woocommerce-multi-vendor .multivendor-xs-goodbye-form-footer {
-                padding: 8px 18px;
-                margin-bottom: 15px;
+                padding: 0.504rem 1.134rem;
+                background-color: #fff;
+                position: sticky;
+                bottom: 0;
             }
 
             .multivendor-xs-goodbye-form-wrapper-dc-woocommerce-multi-vendor .multivendor-xs-goodbye-form-footer>.multivendor-xs-goodbye-form-buttons {
                 display: flex;
                 align-items: center;
-                justify-content: space-between;
+                justify-content: flex-end;
             }
 
             .multivendor-xs-goodbye-form-wrapper-dc-woocommerce-multi-vendor .multivendor-xs-goodbye-form-footer .multivendor-xs-submit-btn {
                 background-image: linear-gradient(-28deg, #db4b54, #af3b74, #3f1473);
-                -webkit-border-radius: 3px;
-                border-radius: 3px;
+                -webkit-border-radius: 0.189rem;
+                border-radius: 0.189rem;
                 color: #f9f8fb;
                 line-height: 1;
-                padding: 15px 20px;
-                font-size: 13px;
+                padding: 0.945rem 1.26rem;
+                font-size: 0.819rem;
                 font-weight: 500;
             }
             .multivendor-xs-goodbye-form-wrapper-dc-woocommerce-multi-vendor .multivendor-xs-goodbye-form-footer .multivendor-xs-submit-btn:hover {
@@ -756,11 +764,11 @@ class MVX_Plugin_Usage_Tracker {
             }
 
             .multivendor-xs-goodbye-form-wrapper-dc-woocommerce-multi-vendor .multivendor-xs-goodbye-form-footer .multivenddorxn-deactivate-btn {
-                font-size: 13px;
+                font-size: 0.819rem;
                 color: #a4afb7;
                 background: none;
                 float: right;
-                padding-right: 10px;
+                padding-right: 0.63rem;
                 width: auto;
             }
 
@@ -777,12 +785,52 @@ class MVX_Plugin_Usage_Tracker {
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
             }
-            @media screen and (max-width: 768px) {
+            @media screen and (max-width: 48.384rem) {
                 .multivendor-xs-goodbye-form-wrapper-dc-woocommerce-multi-vendor .multivendor-xs-goodbye-form-footer>.multivendor-xs-goodbye-form-buttons {
                     justify-content: center;
                     flex-wrap: wrap;
                     gap: 2rem;
                 }
+            }
+            .support-card{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 0.75rem;
+                flex-wrap: wrap;
+                max-width: 100%;
+                margin: auto;
+                margin-top: 0.5rem;
+            }
+            
+            .support-card .card-item {
+                padding: 1.25rem 0.75rem;
+                flex: 1 0 7rem;
+                border: 0.005rem solid rgba(82, 44, 129, 0.4784313725);
+                border-radius: 0.25rem;
+                background: #fff;
+                box-shadow: 0.63rem 0.63rem 1.26rem #ededed, -0.63rem -0.63rem 1.26rem #ffffff;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                flex-direction: column;
+                height: 6.3rem;
+            }
+
+            .support-card .card-item i {
+                font-size: 2rem;
+                color: #522c81;
+                margin-bottom: 0.75rem;
+            }
+            .support-card .card-item div {
+                font-size: 0.875rem;
+                margin-bottom: 0.5rem;
+                text-align: center;
+                display: block;
+                color: #522c81;
+            }
+            .support-card .card-item:hover {
+                background: linear-gradient(-145deg, #ffffff, #e6e6e6);
             }
         </style>
         <?php
