@@ -89,7 +89,6 @@ class MVX_Shipping_Gateway {
                 <label class="control-label"><?php _e( 'Requires', 'multivendorx' ); ?></label>
                 <div class="col-md-9 col-sm-9">
                     <select id="requires" class="form-control" name="requires">
-                        <option value=""><?php _e( 'No requirement', 'multivendorx' ); ?></option>
                         <option value="min_amount" <?php selected( $shipping_method['settings']['requires'] == 'min_amount' ); ?>><?php _e( 'Minimum order amount for free shipping', 'multivendorx' ); ?></option>
                         <option value="coupon" <?php selected( $shipping_method['settings']['requires'] == 'coupon'); ?>><?php _e( 'A valid free shipping coupon', 'multivendorx' ); ?></option>
                     </select>
