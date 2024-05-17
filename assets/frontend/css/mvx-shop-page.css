@@ -91,7 +91,7 @@ p.mvx-address i {
 .banner-img-cls .mvx-imgcls {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .mvx_bannersec_start {
