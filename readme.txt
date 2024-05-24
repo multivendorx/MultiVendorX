@@ -36,7 +36,7 @@ MultiVendorX - Elevate your WooCommerce website into a dynamic multivendor marke
 
 == 🌟 MultiVendorX offers you all the features needed to run a successful marketplace: == 
 
-* 🚀 [**Easy Setup Wizard**](https://multivendorx.com/docs/knowledgebase/admin-setup-wizard/&utm_campaign=multivendorx)
+* 🚀 [**Easy Setup Wizard**](https://multivendorx.com/docs/knowledgebase/admin-setup-wizard/?utm_source=wordpress.org&utm_medium=plugindescription&utm_campaign=MultiVendorxWPOrg)
 - 📝 [**Customizable Vendors Registration Form**](https://multivendorx.com/docs/knowledgebase/vendors-registration/?utm_source=wordpress.org&utm_medium=plugindescription&utm_campaign=MultiVendorxWPOrg)
 - 💰 [**Diverse Commission and Commission Types**](https://multivendorx.com/docs/knowledgebase/types-of-commission/?utm_source=wordpress.org&utm_medium=plugindescription&utm_campaign=MultiVendorxWPOrg)
   - 👉 Product Commission 
@@ -75,7 +75,7 @@ MultiVendorX - Elevate your WooCommerce website into a dynamic multivendor marke
 - 📍 **Track Order**
 - 💰**Tax and Invoicing** (**PRO**)
 - 💾 **[Detailed Sales Report](https://multivendorx.com/docs/knowledgebase/store-analytics/?utm_source=wordpress.org&utm_medium=plugindescription&utm_campaign=MultiVendorxWPOrg)** (**PRO**)
-- 💳 **Realtime Vendor payment using [Stripe and PayPal](https://multivendorx.com/get-help/knowledgebase/payments/&utm_campaign=multivendorx)** (**PRO**)
+- 💳 **Realtime Vendor payment using [Stripe and PayPal](https://multivendorx.com/get-help/knowledgebase/payments/?utm_source=wordpress.org&utm_medium=plugindescription&utm_campaign=MultiVendorxWPOrg)** (**PRO**)
 - 🔔 **[Notification Tools](https://multivendorx.com/get-help/knowledgebase/notification/?utm_source=wordpress.org&utm_medium=plugindescription&utm_campaign=MultiVendorxWPOrg)**
 - 📄 **[PDF and Packaging Slip Download](https://multivendorx.com/docs/knowledgebase/invoice-packing-slip/?utm_source=wordpress.org&utm_medium=plugindescription&utm_campaign=MultiVendorxWPOrg)** (**PRO**)
 - 🔍 SEO and Google Analytics (**PRO**)
