@@ -1281,7 +1281,9 @@ Class MVX_Admin_Dashboard {
             return ! empty( $attachment );
         } );
 
-        mvx_update_user_meta($user_id, '_vendor_slider', implode( ',', $attachment_ids ) );
+        if (!empty($attachment_ids)) {
+            mvx_update_user_meta($user_id, '_vendor_slider', implode( ',', $attachment_ids ) );
+        }
 
         if (isset($_POST['_shop_template']) && !empty($_POST['_shop_template'])) {
             mvx_update_user_meta($user_id, '_shop_template', wc_clean($_POST['_shop_template']));
