@@ -78,7 +78,7 @@ class MVX_Product {
             if (!defined('MVX_HIDE_MULTIPLE_PRODUCT')) {
                 add_action('woocommerce_shop_loop', array(&$this, 'woocommerce_shop_loop_callback'), 5);
                 add_action('woocommerce_product_query', array(&$this, 'woocommerce_product_query'), 10);
-                add_filter('pre_get_posts', array(&$this, 'woocommerce_product_query'));
+                add_filter('pre_get_posts', array(&$this, 'exclude_products_from_search'));
             }
             // SPMV terms updates
             add_action( 'woocommerce_product_quick_edit_save', array( $this, 'mvx_spmv_bulk_quick_edit_save_post' ), 99 );
@@ -1460,6 +1460,22 @@ class MVX_Product {
             $excluded_order = mvx_get_settings_value(get_mvx_vendor_settings('singleproductmultiseller_show_order', 'spmv_pages'), 'min-price');
             $post__not_in = ( isset( $spmv_excludes[$excluded_order] ) ) ? $spmv_excludes[$excluded_order] : array();
             $q->set('post__not_in', $post__not_in );
+        }
+    }
+
+    /**
+     * filter search for single product multiple vendor
+     * @param WC_Query object $q
+     */
+    function exclude_products_from_search( $query ) {
+        if (mvx_is_store_page()) {
+            return;
+        }
+        if (! is_admin() && $query->is_search() && get_transient('mvx_spmv_exclude_products_data')) {
+            $spmv_excludes = get_transient('mvx_spmv_exclude_products_data');
+            $excluded_order = mvx_get_settings_value(get_mvx_vendor_settings('singleproductmultiseller_show_order', 'spmv_pages'), 'min-price');
+            $post__not_in = ( isset( $spmv_excludes[$excluded_order] ) ) ? $spmv_excludes[$excluded_order] : array();
+            $query->set('post__not_in', $post__not_in );
         }
     }
 
