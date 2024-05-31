@@ -59,6 +59,7 @@ class MVX_Email {
 		include( 'emails/class-mvx-email-admin-vendor-account-deactivation-request.php' );
 		include( 'emails/class-mvx-email-vendor-delete-profile.php' );
 		include( 'emails/class-mvx-email-vendor-reject-profile.php' );
+		include( 'emails/class-mvx-email-followed-vendor-from-customer.php' );
 
         $mvx_email = array();
         $mvx_email['WC_Email_Vendor_New_Account'] = new WC_Email_Vendor_New_Account();
@@ -93,6 +94,7 @@ class MVX_Email {
 		$mvx_email['WC_Email_Admin_Vendor_Account_Deactivation_Request_Mail'] = new WC_Email_Admin_Vendor_Account_Deactivation_Request_Mail();
 		$mvx_email['WC_Email_Vendor_Account_Deletion_Mail'] = new WC_Email_Vendor_Account_Deletion_Mail();
 		$mvx_email['WC_Email_Vendor_Account_Deactive_Request_Reject_Mail'] = new WC_Email_Vendor_Account_Deactive_Request_Reject_Mail();
+		$mvx_email['WC_Email_Vendor_Followed_Customer'] = new WC_Email_Vendor_Followed_Customer();
 
         return array_merge( $emails, apply_filters( 'mvx_email_classes', $mvx_email ) );
     }
