@@ -64,7 +64,7 @@ class MVX_Order {
             add_action('woocommerce_saved_order_items', array(&$this, 'mvx_create_orders_from_backend'), 10, 2 );
             add_action('woocommerce_checkout_order_processed', array(&$this, 'mvx_create_orders'), 10, 3);
             add_action('woocommerce_store_api_checkout_order_processed', array(&$this, 'mvx_create_orders_block_support'), 10, 1);
-            add_action('woocommerce_after_checkout_validation', array($this, 'mvx_check_order_awaiting_payment'));
+            // add_action('woocommerce_after_checkout_validation', array($this, 'mvx_check_order_awaiting_payment'));
             add_action( 'woocommerce_rest_insert_shop_order_object',array($this,'mvx_create_orders_via_rest_callback'), 10, 3 );
             // Add product for sub order
             add_action( 'woocommerce_ajax_order_items_added',array($this, 'woocommerce_ajax_order_items_added'), 10, 2 );
@@ -313,6 +313,8 @@ class MVX_Order {
         if (wp_get_post_parent_id($order_id) != 0)
             return false;
 
+        if ($order->get_meta('has_mvx_sub_order', true))
+            return false;
         // $order = wc_get_order($order_id);
         $items = $order->get_items();
         $vendor_items = array();
