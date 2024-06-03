@@ -3656,6 +3656,11 @@ class MVX_Ajax {
         update_user_meta( $current_user_id, 'mvx_customer_follow_vendor', array_filter( array_map( 'wc_clean', (array) $follow_vendors_details ) ) );
         update_user_meta( $store_vendor_id, 'mvx_vendor_followed_by_customer', array_filter( array_map( 'wc_clean', (array) $followed_by_customer ) ) );
 
+        if ($follow_status == 'Follow') {
+            $email = WC()->mailer()->emails['WC_Email_Vendor_Followed_Customer'];
+            $email->trigger($store_vendor_id, $current_user_id);
+        }
+
         if ( is_wp_error( $follow_status ) ) {
             wp_send_json_error( $follow_status, 422 );
         }
