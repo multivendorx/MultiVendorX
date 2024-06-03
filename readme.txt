@@ -208,7 +208,7 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 * Added     - Compatibility of WooCommerce 8.9.1.
 * Added     - Vendors will now receive an email notification when a user follows their store #698.
 * Fix       - Issue with the vendor slider banner image due to a conflict with vendor store policy #751.
-* Fix       - Issue with SPMV products created for the admin products #754.
+* Fix       - Issue when SPMV products created for the admin products #754.
 * Fix       - SPMV products appearing multiple times during search and in the store page #752.
 * Fix       - Vulnerability issue #756.
 * Updated   - Language file.
@@ -217,7 +217,7 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 * Added     - Compatibility of WooCommerce 8.9.0.
 * Added     - Option to add "Free shipping" for coupons #716.
 * Added     - Commission field support for vendor wise commission as per the commission type #742.
-* Fix       - Total order numbers mismatched when the Woocommerce HPOS feature is enabled #734.
+* Fix       - Total order numbers mismatched when the WooCommerce HPOS feature is enabled #734.
 * Fix       - Commission field support for product wise commission as per the commission type #742.
 * Fix       - The issue with the store banner for mobile view #711.
 
