@@ -951,8 +951,8 @@ class MVX_Order {
      * @see woocommerce\includes\class-wc-ajax.php:2295
      */
     public function mvx_order_refunded($order_id, $parent_refund_id) {
-        
-        if (!wp_get_post_parent_id($order_id)) { 
+        $order = wc_get_order($order_id);
+        if (!$order->get_parent_id()) { 
             $create_vendor_refund = false;
             $create_refund = true;
             $refund = false;
@@ -977,6 +977,7 @@ class MVX_Order {
             }
             
             foreach ($mvx_suborders as $suborder) {
+                if($suborder->get_type() == 'shop_order_refund') continue;
                 $suborder_items_ids = array_keys($suborder->get_items( array( 'line_item', 'fee', 'shipping' ) ));
                 $suborder_total = wc_format_decimal($suborder->get_total());
                 $max_refund = wc_format_decimal($suborder_total - $suborder->get_total_refunded());

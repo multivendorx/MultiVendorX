@@ -109,7 +109,7 @@ class MVX_Calculate_Commission {
                 $line_items_refund = $shipping_item_refund = $tax_item_refund = $amount = $refund_item_totals = 0;
                 // if commission refund exists
                 if ($_refund->get_meta('_refunded_commissions', true)) {
-                    $commission_amt = get_post_meta($_refund->get_id(), '_refunded_commissions', true);
+                    $commission_amt = $_refund->get_meta('_refunded_commissions', true);
                     $refunds[$_refund->get_id()][$commission_id] = $commission_amt[$commission_id];
                 }
                 /** WC_Order_Refund items **/
@@ -236,9 +236,10 @@ class MVX_Calculate_Commission {
                         }
                     }
                     $refunded_amt_total += $comm_refunded_amt;
-
-                    update_post_meta( $_refund_id, '_refunded_commissions', $commissions_refunded );
-                    update_post_meta( $_refund_id, '_refunded_commissions_total', $commissions_refunded_total );
+                    $refund_order = wc_get_order($_refund_id);
+                    $refund_order->update_meta_data('_refunded_commissions', $commissions_refunded );
+                    $refund_order->update_meta_data('_refunded_commissions_total', $commissions_refunded_total );
+                    $refund_order->save();
                 }
                 
                 update_post_meta( $commission_id, '_commission_refunded_data', $refunds );
