@@ -121,15 +121,15 @@ class MVX_Calculate_Commission {
                     if ($refund_amount != 0) { 
                         $refunded_total[$commission_id] += $refund_amount;
                         $line_items_refund += $refund_amount;
-                        
+
                         if(isset($items_commission_rates[$refunded_item_id])){
-                            if ($items_commission_rates[$refunded_item_id]['type'] == 'fixed_with_percentage') {
+                            if ($items_commission_rates[$refunded_item_id]['type']['value'] == 'fixed_with_percentage') {
                                 $amount = (float) $refund_amount * ( (float) $items_commission_rates[$refunded_item_id]['commission_val'] / 100 ) + (float) $items_commission_rates[$refunded_item_id]['commission_fixed'];
-                            } else if ($items_commission_rates[$refunded_item_id]['type'] == 'fixed_with_percentage_qty') {
+                            } else if ($items_commission_rates[$refunded_item_id]['type']['value'] == 'fixed_with_percentage_qty') {
                                 $amount = (float) $refund_amount * ( (float) $items_commission_rates[$refunded_item_id]['commission_val'] / 100 ) + ((float) $items_commission_rates[$refunded_item_id]['commission_fixed'] * $item['quantity']);
-                            } else if ($items_commission_rates[$refunded_item_id]['type'] == 'percent') {
+                            } else if ($items_commission_rates[$refunded_item_id]['type']['value'] == 'percent') {
                                 $amount = (float) $refund_amount * ( (float) $items_commission_rates[$refunded_item_id]['commission_val'] / 100 );
-                            } else if ($items_commission_rates[$refunded_item_id]['type'] == 'fixed') {
+                            } else if ($items_commission_rates[$refunded_item_id]['type']['value'] == 'fixed') {
                                 $amount = (float) $items_commission_rates[$refunded_item_id]['commission_val'] * $item['quantity'];
                             }
                             if (isset($items_commission_rates[$refunded_item_id]['mode']) && $items_commission_rates[$refunded_item_id]['mode'] == 'admin') {

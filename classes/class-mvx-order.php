@@ -310,7 +310,7 @@ class MVX_Order {
     public function mvx_create_orders($order_id, $posted_data, $order, $backend = false) {
         global $MVX;
         //check parent order exist
-        if (wp_get_post_parent_id($order_id) != 0)
+        if ($order->get_parent_id() != 0)
             return false;
 
         if ($order->get_meta('has_mvx_sub_order', true))
@@ -384,7 +384,7 @@ class MVX_Order {
         }
         
         // $has_sub_order = $order->get_meta( 'has_mvx_sub_order', true) ? true : false;
-        $suborders = get_mvx_suborders( $order_id, false, false);
+        $suborders = get_mvx_suborders( $order_id, [], false);
         if ($is_sub_create) {
             if ($suborders) {
                 foreach ( $suborders as $v_order_id ) {
@@ -648,7 +648,7 @@ class MVX_Order {
                 }
 
                 $item->set_backorder_meta();
-                $item->add_meta_data('_vendor_order_item_id', $item->get_product_id());
+                $item->add_meta_data('_vendor_order_item_id', $order_item->get_id());
                 // Add commission data
                 $item->add_meta_data('_vendor_item_commission', $order_item['commission']);
                 
@@ -671,7 +671,7 @@ class MVX_Order {
                 $order->add_item($item);
                 // temporary commission rate save with order_item_id
                 if(isset($order_item['commission_rate']) && $order_item['commission_rate'])
-                    $commission_rate_items[$item->get_product_id()] = $order_item['commission_rate'];
+                    $commission_rate_items[$order_item->get_id()] = $order_item['commission_rate'];
             }
         }
         /**
@@ -1053,7 +1053,8 @@ class MVX_Order {
                     );
                     do_action( 'mvx_order_refunded', $order->get_id(), $refund->get_id() );
                     if($refund)
-                        add_post_meta($refund->get_id(), '_parent_refund_id', $parent_refund_id);
+                        $refund->update_meta_data( '_parent_refund_id', $parent_refund_id);
+                        $refund->save();
                 }
             }
         }
@@ -1068,15 +1069,24 @@ class MVX_Order {
         if (!current_user_can('edit_shop_orders')) {
             wp_die( -1 );
         }
-
-        if (!wp_get_post_parent_id($parent_order_id)) {
-            global $wpdb;
-            $child_refund_ids = $wpdb->get_col($wpdb->prepare("SELECT post_id FROM {$wpdb->postmeta} WHERE meta_key=%s AND meta_value=%s", '_parent_refund_id', $refund_id));
+        $parent_order = wc_get_order($parent_order_id);
+        if (!$parent_order->get_parent_id()) {
+            $args = array(
+                'meta_query'  => array(
+                    array(
+                        'key'   => '_parent_refund_id',
+                        'value' => $refund_id,
+                    ),
+                ),
+                'fields'      => 'ids', // Only get post IDs
+            );
+            $child_refund_ids = wc_get_orders($args);
 
             foreach ($child_refund_ids as $child_refund_id) {
-                if ($child_refund_id && 'shop_order_refund' === get_post_type($child_refund_id)) {
-                    $order_id = wp_get_post_parent_id($child_refund_id);
-                    $assoc_commission_id = $order->get_meta( '_commission_id', true );
+                $child_refund = wc_get_order($child_refund_id);
+                if ($child_refund_id && $child_refund->get_type() == 'shop_order_refund') {
+                    $order_id = $child_refund->get_parent_id();
+                    $assoc_commission_id = $child_refund->get_meta( '_commission_id', true );
                     // delete associated refund commission meta data
                     $commission_refunded_data = get_post_meta( $assoc_commission_id, '_commission_refunded_data', true );
                     if( isset($commission_refunded_data[$child_refund_id]) ) unset($commission_refunded_data[$child_refund_id]);
