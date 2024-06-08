@@ -76,7 +76,7 @@ class MVX_Order {
             add_action( 'woocommerce_order_details_after_order_table', array( $this, 'mvx_refund_btn_customer_my_account'), 10 );
             add_action( 'wp', array( $this, 'mvx_handler_cust_requested_refund' ) );
             add_action( 'add_meta_boxes', array( $this, 'mvx_refund_order_status_customer_meta' ), 10, 2 );
-            add_action( 'woocommerce_update_order', array( $this, 'mvx_refund_order_status_save' ) );
+            add_action( 'woocommerce_process_shop_order_meta', array( $this, 'mvx_refund_order_status_save' ) );
             $this->init_prevent_trigger_vendor_order_emails();
             // Order Trash 
             add_action( 'trashed_post', array( $this, 'trash_mvx_suborder' ), 10, 1 );
@@ -1648,12 +1648,13 @@ class MVX_Order {
     }
 
     public function mvx_refund_order_status_save( $order_id ){
-        $order = wc_get_order($order_id);
+        $order = wc_get_order( $order_id );
         if( empty( $order_id ) || ( $order_id && $order->get_type() != 'shop_order' )) return;
         if( !mvx_get_order( $order_id ) ) return;
-        if( !isset( $_POST['cust_refund_status'] ) ) $order_id;
+        if( !isset( $_POST['cust_refund_status'] ) ) return $order_id;
         if( isset( $_POST['refund_order_customer'] ) && $_POST['refund_order_customer'] ) {
             $order->update_meta_data('_customer_refund_order', wc_clean( wp_unslash( $_POST['refund_order_customer'] ) ) );
+            $order->save();
             // trigger customer email
             if( in_array( $_POST['refund_order_customer'], array( 'refund_reject', 'refund_accept' ) ) ) {
 
@@ -1668,7 +1669,6 @@ class MVX_Order {
                     $order_status = __( 'rejected', 'multivendorx' );
                 }
                 // Comment note for suborder
-                $order = wc_get_order( $order_id );
                 $comment_id = $order->add_order_note( __('Site admin ', 'multivendorx') . $order_status. __(' refund request for order #', 'multivendorx') .$order_id.' .' );
                 // user info
                 $user_info = get_userdata(get_current_user_id());
@@ -1683,7 +1683,6 @@ class MVX_Order {
                 $mail = WC()->mailer()->emails['WC_Email_Customer_Refund_Request'];
                 $mail->trigger( sanitize_email($_POST['_billing_email']), $order_id, $refund_details, 'customer' );
             }
-            $order->save();
         }
     }
 
