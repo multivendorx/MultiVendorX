@@ -522,6 +522,7 @@ class MVXBackendVendor extends React.Component {
 		} else if (type === 'tax') {
 			getdata.settings.tax_status = e.target.value;
 		} else if (type === 'min_cost') {
+			getdata.settings.requires = 'min_amount';
 			getdata.settings.min_amount = e.target.value;
 		}
 
