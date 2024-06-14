@@ -319,14 +319,14 @@ class MVX_Vendor_Shipping_Method extends WC_Shipping_Method {
     * @return bool
     */
     public static function free_shipping_is_available( $package, $method ) {
-        if ($method['settings']['requires'] == 'coupon') {
+        if (isset( $method['settings']['requires'] ) && $method['settings']['requires'] == 'coupon') {
             $coupon_code = $package['applied_coupons'] ? reset($package['applied_coupons']) : '';
             $coupon = new WC_Coupon( $coupon_code );
             $is_free_shipping_enabled = $coupon->get_free_shipping();
             if ($is_free_shipping_enabled) {
                 return true;
             }
-        } else if ($method['settings']['requires'] == 'min_amount')  {
+        } else {
             $has_met_min_amount = false;
             $min_amount = ! empty( $method['settings']['min_amount'] ) ? $method['settings']['min_amount'] : 0;
 
@@ -349,8 +349,6 @@ class MVX_Vendor_Shipping_Method extends WC_Shipping_Method {
             $has_met_min_amount = true;
             }
             return apply_filters( 'mvx_shipping_free_shipping_is_available', $has_met_min_amount, $package, $method );
-        } else {
-            return false;
         }
     }
 
