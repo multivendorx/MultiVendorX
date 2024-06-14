@@ -1398,7 +1398,7 @@ class MVX_Order {
     
     public function woocommerce_can_reduce_order_stock( $reduce_stock, $order ){
         $is_vendor_order = ( $order ) ? mvx_get_order( $order->get_id() ) : false;
-        return $order instanceof WC_Order && wp_get_post_parent_id( $order->get_id() ) && $is_vendor_order ? false : $reduce_stock;
+        return $order instanceof WC_Order && $order->get_parent_id() && $is_vendor_order ? false : $reduce_stock;
     }
     
     public function woocommerce_hidden_order_itemmeta( $itemmeta ) {
@@ -1432,7 +1432,7 @@ class MVX_Order {
             if( $commission_id ) wp_trash_post( $commission_id );
         }
         // stock increase when suborder mark as completed
-        if (wp_get_post_parent_id($order_id) && $new_status == 'completed') {
+        if ($order->get_parent_id() && $new_status == 'completed') {
             
             $items = $order->get_items();
             foreach ($items as $item_id => $item) {
