@@ -5,7 +5,7 @@ Donate link: http://multivendorx.com/donate/
 Requires at least: 5.4
 Tested up to: 6.5.2
 Requires PHP: 8.0
-Stable tag: 4.1.12
+Stable tag: 4.1.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -203,6 +203,13 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.1.13 - 2024-06-17 =
+* Added     - Compatibility of WooCommerce 8.9.3.
+* Added     - Option for choosing products for which refund is requested #765.
+* Fix       - Modified the refund management flow and added synchronization between the main order refund and suborder refund #763.
+* Fix       - Vendor store name was coming twice on the vendor store page and we have added fix for this accordingly #759.
+* Fix       - Added fix for the issue with the vendor shipping while adding them from the admin interface #766.
 
 = 4.1.12 - 2024-06-04 =
 * Added     - Compatibility of WooCommerce 8.9.1.
