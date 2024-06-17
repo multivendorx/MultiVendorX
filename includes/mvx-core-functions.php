@@ -3712,13 +3712,13 @@ if ( ! function_exists( 'generate_hierarchical_taxonomy_html' ) ) {
         foreach ( $terms as $term_id => $term_name ) {
             $child_html = '';
             if ( $max_depth > $level ) {
-                $child_terms = get_terms( array(
+                $child_terms = get_terms( apply_filters( "mvx_get_product_terms_{$taxonomy}_query_args", array(
                     'taxonomy'   => $taxonomy,
                     'hide_empty' => false,
                     'orderby'    => 'name',
                     'parent'     => absint( $term_id ),
                     'fields'     => 'id=>name',
-                    ) );
+                    ) ) );
                 if ( ! empty( $child_terms ) && ! is_wp_error( $child_terms ) ) {
                     $child_html = generate_hierarchical_taxonomy_html( $taxonomy, $child_terms, $post_terms, $add_cap, $level + 1 );
                 }
