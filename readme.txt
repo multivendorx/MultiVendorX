@@ -3,7 +3,7 @@ Contributors: wcmp, purnendu
 Tags: multi seller, multi vendor marketplace, woocommerce multivendor marketplace, multi seller store, best marketplace plugin
 Donate link: http://multivendorx.com/donate/
 Requires at least: 5.4
-Tested up to: 6.5.2
+Tested up to: 6.5.4
 Requires PHP: 8.0
 Stable tag: 4.1.13
 License: GPLv2 or later
@@ -204,7 +204,8 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 
 == Changelog ==
 
-= 4.1.13 - 2024-06-17 =
+= 4.1.13 - 2024-06-18 =
+* Added     - Compatibility of WordPress 6.5.4.
 * Added     - Compatibility of WooCommerce 8.9.3.
 * Added     - Option for choosing products for which refund is requested #765.
 * Fix       - Modified the refund management flow and added synchronization between the main order refund and suborder refund #763.
