@@ -71,11 +71,18 @@ if (!class_exists('WC_Email_Customer_Refund_Request')) :
                 }else{
                     $this->status = __( 'Requested', 'multivendorx' );
                 }
+                $refund_product = $refund_details['refund_product'];
+                $product_array = [];
+                foreach ($refund_product as $product_id) {
+                    $product = wc_get_product($product_id);
+                    $product_array[] = $product->get_name();
+                }
                 $details = array(
                     'refund_reason' => isset( $refund_details['refund_reason'] ) ? $refund_details['refund_reason'] : '',
                     'addi_info' => isset( $refund_details['addi_info'] ) ? $refund_details['addi_info'] : '',
                     'admin_reason' => isset( $refund_details['admin_reason'] ) ? $refund_details['admin_reason'] : '',
                     'status' => $this->status,
+                    'refund_product' => $product_array,
                 );
 
                 $this->refund_details = $details;

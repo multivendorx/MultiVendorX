@@ -1495,52 +1495,68 @@ class MVX_Order {
             return;
         }
         ?>
-        <p><button type="button" class="button" id="cust_request_refund_btn" name="cust_request_refund_btn" value="<?php echo $refund_button_text; ?>"><?php echo $refund_button_text; ?></button></p>
+        <p><button type="button" class="button wp-element-button" id="cust_request_refund_btn" name="cust_request_refund_btn" value="<?php echo $refund_button_text; ?>"><?php echo $refund_button_text; ?></button></p>
         <div id="mvx-myac-order-refund-wrap" class="mvx-myac-order-refund-wrap">
             <form method="POST">
-            <?php wp_nonce_field( 'customer_request_refund', 'cust-request-refund-nonce' ); ?>
-            <fieldset>
-                <legend><?php echo apply_filters( 'mvx_customer_my_account_refund_reason_label', __('Please mention your reason for refund', 'multivendorx'), $order ); ?></legend>
-
-                <?php 
-                if( $refund_reason_options ) {
-                    foreach( $refund_reason_options as $index => $reason ) {
-                        echo '<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                        <label class="refund_reason_option" for="refund_reason_option-'.$index.'">
-                            <input type="radio" class="woocommerce-Input input-radio" name="refund_reason_option" id="refund_reason_option-'.$index.'" value="'.$index.'" />
-                            '.esc_html( $reason ).'
+                <?php wp_nonce_field('customer_request_refund', 'cust-request-refund-nonce'); ?>
+                <fieldset>
+                    <label class="section-heading"><?php echo __('Choose the product(s) you want a refund for', 'multivendorx'); ?></label>
+                        <?php
+                        foreach ($order->get_items() as $item) {
+                            $product = $item->get_product();
+                            if ($product) {
+                                $product_image = $product->get_image(); ?>
+                                <div class="order-refund-product-list">
+                                    <input class="product-select-tag" type="checkbox" name="refund_product[]" id="refund_product" value="<?php echo esc_attr($product->get_id()); ?>">
+                                    <label>
+                                        <?php echo $product_image; ?>
+                                        <?php echo esc_html($product->get_name()); ?>
+                                    </label>
+                                </div>
+                        <?php
+                            }
+                        }
+                        ?>
+                    <label class="section-heading"><?php echo apply_filters('mvx_customer_my_account_refund_reason_label', __('Please mention your reason for refund', 'multivendorx'), $order); ?></label>
+                    <?php
+                    if ($refund_reason_options) {
+                        foreach ($refund_reason_options as $index => $reason) {
+                            echo '<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                        <label class="refund_reason_option" for="refund_reason_option-' . $index . '">
+                            <input type="radio" class="woocommerce-Input input-radio" name="refund_reason_option" id="refund_reason_option-' . $index . '" value="' . $index . '" />
+                            ' . esc_html($reason) . '
                         </label></p>';
-                    }
-                    // Add others reason
-                    echo '<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                        }
+                        // Add others reason
+                        echo '<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
                         <label class="refund_reason_option" for="refund_reason_option-other">
                             <input type="radio" class="woocommerce-Input input-radio" name="refund_reason_option" id="refund_reason_option-other" value="others" />
-                            '.__( 'Others reason', 'multivendorx' ).'
+                            ' . __('Others reason', 'multivendorx') . '
                         </label></p>';
-                        ?>
-                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide cust-rr-other">
-                        <label for="refund_reason_other"><?php _e( 'Refund reason', 'multivendorx' ); ?></label>
-                        <input type="text" class="woocommerce-Input input-text" name="refund_reason_other" id="refund_reason_other" autocomplete="off" />
-                    </p>
-                        <?php
-                }else{
+                    ?>
+                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide cust-rr-other">
+                            <label for="refund_reason_other"><?php _e('Refund reason', 'multivendorx'); ?></label>
+                            <input type="text" class="woocommerce-Input input-text" name="refund_reason_other" id="refund_reason_other" autocomplete="off" />
+                        </p>
+                    <?php
+                    } else {
+                    ?>
+                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                            <label for="refund_reason_other"><?php _e('Refund reason', 'multivendorx'); ?></label>
+                            <input type="text" class="woocommerce-Input input-text" name="refund_reason_other" id="refund_reason_other" autocomplete="off" />
+                        </p>
+                    <?php
+                    }
                     ?>
                     <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                        <label for="refund_reason_other"><?php _e( 'Refund reason', 'multivendorx' ); ?></label>
-                        <input type="text" class="woocommerce-Input input-text" name="refund_reason_other" id="refund_reason_other" autocomplete="off" />
+                        <label for="additional_info"><?php _e('Provide additional information', 'multivendorx'); ?></label>
+                        <textarea class="woocommerce-Input input-text" name="refund_request_addi_info" id="refund_request_addi_info"></textarea>
                     </p>
-                    <?php
-                }
-                ?>
-                <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                    <label for="additional_info"><?php _e( 'Provide additional information', 'multivendorx' ); ?></label>
-                    <textarea class="woocommerce-Input input-text" name="refund_request_addi_info" id="refund_request_addi_info"></textarea>
-                </p>
-                
-                <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                    <button type="submit" class="button" name="cust_request_refund_sbmt" value="<?php _e( 'Submit', 'multivendorx' ); ?>"><?php _e( 'Submit', 'multivendorx' ); ?></button>
-                </p>
-            </fieldset>
+
+                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                        <button type="submit" class="button wp-element-button" name="cust_request_refund_sbmt" value="<?php _e('Submit', 'multivendorx'); ?>"><?php _e('Submit', 'multivendorx'); ?></button>
+                    </p>
+                </fieldset>
             </form>
         </div>
         <?php
