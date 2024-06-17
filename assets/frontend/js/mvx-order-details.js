@@ -208,7 +208,7 @@ jQuery(function ($) {
                             // Redirect to same page for show the refunded status
                             window.location.href = window.location.href;
                         } else {
-                            window.alert(response.data.error);
+                            // window.alert(response.data.error);
                             window.location.href = window.location.href;
                             //wc_meta_boxes_order_items.reload_items();
                             mvx_meta_boxes_order_items.unblock();
