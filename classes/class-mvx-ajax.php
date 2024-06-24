@@ -3128,7 +3128,7 @@ class MVX_Ajax {
             $metabox_class[] = $attribute->get_name();
         }
 
-        include( $MVX->plugin_path . 'templates/vendor-dashboard/product-manager/views/html-product-attribute.php' );
+        $MVX->template->get_template('vendor-dashboard/product-manager/views/html-product-attribute.php',  ['attribute' => $attribute, 'metabox_class' => $metabox_class]);
         wp_die();
     }
 
