@@ -75,7 +75,7 @@ if (!class_exists('WC_Email_Customer_Refund_Request')) :
                 $product_array = [];
                 foreach ($refund_product as $product_id) {
                     $product = wc_get_product($product_id);
-                    $product_array[] = $product->get_name();
+                    $product_array[] =  '<a href="' . $product->get_permalink() . '">' . $product->get_name() . '</a>';
                 }
                 $details = array(
                     'refund_reason' => isset( $refund_details['refund_reason'] ) ? $refund_details['refund_reason'] : '',
