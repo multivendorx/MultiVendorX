@@ -1409,7 +1409,25 @@ class MVX_Order {
     
     public function woocommerce_can_reduce_order_stock( $reduce_stock, $order ){
         $is_vendor_order = ( $order ) ? mvx_get_order( $order->get_id() ) : false;
-        return $order instanceof WC_Order && wp_get_post_parent_id( $order->get_id() ) && $is_vendor_order ? false : $reduce_stock;
+        if ($is_vendor_order) {
+            foreach ( $order->get_items() as $item ) {
+                if ( ! $item->is_type( 'line_item' ) ) {
+                    continue;
+                }
+                // Only reduce stock once for each item.
+                $product            = $item->get_product();
+                $item_stock_reduced = $item->get_meta( '_reduced_stock', true );
+                
+                if ( $item_stock_reduced || ! $product || ! $product->managing_stock() ) {
+                    continue;
+                }
+        
+                $qty = $item->get_quantity();
+                $item->add_meta_data( '_reduced_stock', $qty, true );
+                $item->save();
+            }
+        }
+        return $order instanceof WC_Order && $order->get_parent_id() && $is_vendor_order ? false : $reduce_stock;
     }
     
     public function woocommerce_hidden_order_itemmeta( $itemmeta ) {
@@ -1441,23 +1459,6 @@ class MVX_Order {
             $commission_id = $order->get_meta( '_commission_id', true );
             do_action( 'mvx_vendor_order_on_cancelled_commission', $commission_id, $order_id );
             if( $commission_id ) wp_trash_post( $commission_id );
-        }
-        // stock increase when suborder mark as completed
-        if (wp_get_post_parent_id($order_id) && $new_status == 'completed') {
-            
-            $items = $order->get_items();
-            foreach ($items as $item_id => $item) {
-                if (isset($item['product_id']) && $item['product_id'] !== 0) {
-                    // check vendor product
-                    $has_vendor = get_mvx_product_vendors($item['product_id']);
-                    $stock_status = get_post_meta($item['product_id'], '_manage_stock', true) && get_post_meta($item['product_id'], '_manage_stock', true) == 'yes' ? true : false;
-                    if ($has_vendor && $stock_status) {
-                        $product = wc_get_product($item['product_id']);
-                        $quantity = $product->get_stock_quantity();
-                        update_post_meta($item['product_id'], '_stock', absint($quantity + $item['qty']));
-                    }
-                }
-            }
         }
     }
     
