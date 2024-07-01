@@ -1599,14 +1599,17 @@ class MVX_Order {
         $refund_request_addi_info = isset( $_REQUEST['refund_request_addi_info'] ) ? wc_clean( wp_unslash($_REQUEST['refund_request_addi_info'])) : '';
         $refund_settings = mvx_get_option( 'mvx_refund_management_tab_settings', true );
         $refund_reason_options = ( isset( $refund_settings['refund_order_msg'] ) && $refund_settings['refund_order_msg'] ) ? explode( "||", $refund_settings['refund_order_msg'] ) : array();
-        $refund_reason = ( $reason_option == 'others' ) ? $refund_reason_other : (isset( $refund_reason_options[$reason_option] ) ? $refund_reason_options[$reason_option] : ''); 
+        $refund_reason = ( $reason_option == 'others' ) ? $refund_reason_other : (isset( $refund_reason_options[$reason_option] ) ? $refund_reason_options[$reason_option] : '');
+        $refund_product = isset($_REQUEST['refund_product']) ? wc_clean($_REQUEST['refund_product']) : '' ;
         $refund_details = array(
             'refund_reason' => $refund_reason,
             'addi_info' => $refund_request_addi_info,
+            'refund_product'=> $refund_product,
         );
         // update customer refunt request 
         $order->update_meta_data('_customer_refund_order', wc_clean( wp_unslash( 'refund_request' ) ));
         $order->update_meta_data('_customer_refund_reason', wc_clean( wp_unslash( $refund_reason ) ));
+        $order->update_meta_data('_customer_refund_product', wc_clean( wp_unslash($refund_product ) ));
         $order->save();
         $comment_id = $order->add_order_note( __('Customer requested a refund ', 'multivendorx') .$order_id.' .' );
         // user info
