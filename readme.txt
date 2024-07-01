@@ -3,9 +3,9 @@ Contributors: wcmp, purnendu
 Tags: multi seller, multi vendor marketplace, woocommerce multivendor marketplace, multi seller store, best marketplace plugin
 Donate link: http://multivendorx.com/donate/
 Requires at least: 5.4
-Tested up to: 6.5.4
+Tested up to: 6.5.5
 Requires PHP: 8.0
-Stable tag: 4.1.13
+Stable tag: 4.1.14
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -203,6 +203,15 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.1.14 - 2024-04-23 =
+* Added     - Compatibility of WordPress 6.5.5.
+* Added     - Compatibility of WooCommerce 9.0.2.
+* Fix       - The template overriding was not working for the product attribute section in the edit product page #779.
+* Fix       - Product stocks were getting reduced in an incorrect manner after updating order statuses #758.
+* Fix       - Warning messages were coming on the “My account” page for the return flow #776.
+* Fix       - The product link section was coming blank in the refund request mail #777.
+* Updated   - Language file.
 
 = 4.1.13 - 2024-06-18 =
 * Added     - Compatibility of WordPress 6.5.4.
