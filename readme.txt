@@ -204,7 +204,7 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 
 == Changelog ==
 
-= 4.1.14 - 2024-04-23 =
+= 4.1.14 - 2024-07-02 =
 * Added     - Compatibility of WordPress 6.5.5.
 * Added     - Compatibility of WooCommerce 9.0.2.
 * Fix       - The template overriding was not working for the product attribute section in the edit product page #779.
