@@ -61,7 +61,7 @@ global $MVX;
                             $metabox_class[] = 'taxonomy';
                             $metabox_class[] = $attribute->get_name();
                         }
-                        $MVX->template->get_template('vendor-dashboard/product-manager/views/html-product-attribute.php', ['attribute' => $attribute, 'metabox_class' => $metabox_class]);
+                        $MVX->template->get_template('vendor-dashboard/product-manager/views/html-product-attribute.php', ['attribute' => $attribute, 'metabox_class' => $metabox_class, 'i' => $i]);
                     }
                     ?>
                 </div>
