@@ -207,7 +207,6 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 = 4.1.15 - 2024-07-08 =
 * Added     - Translation support for strings using the esc_html() function #789.
 * Fix       - Resolved the issue with attributes not saving on the vendor dashboard's edit product page #788.
-* Updated   - Language file.
 
 = 4.1.14 - 2024-07-02 =
 * Added     - Compatibility of WordPress 6.5.5.
