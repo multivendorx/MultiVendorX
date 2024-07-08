@@ -1865,7 +1865,7 @@ Class MVX_Admin_Dashboard {
                                         <a href="<?php echo esc_url(get_permalink($value_followed['user_id'])); ?>"> <?php echo wp_kses_post(get_avatar($value_followed['user_id'], 50, '', '')) ?> </a>
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="media-heading"><?php echo esc_html($user_details->data->display_name); ?> -- <small><?php echo esc_html(human_time_diff(strtotime($value_followed['timestamp']))) . esc_html(' ago', 'multivendorx') ?> </small></h4>
+                                        <h4 class="media-heading"><?php echo esc_html($user_details->data->display_name); ?> -- <small><?php echo esc_html(human_time_diff(strtotime($value_followed['timestamp']))) . esc_html__(' ago', 'multivendorx') ?> </small></h4>
                                     </div>
                                 </td>
                             </tbody>
