@@ -5,7 +5,7 @@ Donate link: http://multivendorx.com/donate/
 Requires at least: 5.4
 Tested up to: 6.5.5
 Requires PHP: 8.0
-Stable tag: 4.1.14
+Stable tag: 4.1.15
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -203,6 +203,11 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.1.15 - 2024-07-08 =
+* Added     - Translation support for strings using the esc_html() function #789.
+* Fix       - Resolved the issue with attributes not saving on the vendor dashboard's edit product page #788.
+* Updated   - Language file.
 
 = 4.1.14 - 2024-07-02 =
 * Added     - Compatibility of WordPress 6.5.5.
