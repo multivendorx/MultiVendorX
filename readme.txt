@@ -204,7 +204,7 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 
 == Changelog ==
 
-= 4.1.15 - 2024-07-08 =
+= 4.1.15 - 2024-07-09 =
 * Added     - Translation support for strings using the esc_html() function #789.
 * Fix       - Resolved the issue with attributes not saving on the vendor dashboard's edit product page #788.
 
