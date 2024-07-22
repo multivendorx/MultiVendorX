@@ -1324,7 +1324,7 @@ Class MVX_Admin_Dashboard {
         if (isset($_POST['vendor_display_email'])) {
             mvx_update_user_meta($user_id, '_vendor_display_email', wc_clean($_POST['vendor_display_email']));
         }
-        if (isset($_POST['tab_name'])) {
+        if (isset($_POST['tab_name']) && $_POST['tab_name'] == 'storefront') {
             if (isset($_POST['vendor_shop_address_hide']) && !empty($_POST['vendor_shop_address_hide'])) {
                 mvx_update_user_meta($user_id, '_vendor_hide_address', wc_clean($_POST['vendor_shop_address_hide']));
             } else {
