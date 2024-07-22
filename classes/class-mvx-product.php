@@ -789,7 +789,7 @@ class MVX_Product {
         $commission_percentage_per_poduct = get_post_meta($post->ID, '_commission_percentage_per_product', true);
         $commission_fixed_with_percentage = get_post_meta($post->ID, '_commission_fixed_with_percentage', true);
         $commission_fixed_with_percentage_qty = get_post_meta($post->ID, '_commission_fixed_with_percentage_qty', true);
-        if ($MVX->vendor_caps->payment_cap['commission_type']['value'] == 'fixed_with_percentage') {
+        if (isset($MVX->vendor_caps->payment_cap['commission_type']) && $MVX->vendor_caps->payment_cap['commission_type']['value'] == 'fixed_with_percentage') {
 
             if (!$current_user_is_vendor) {
                 $html .= '<tr valign="top"><td scope="row"><label id="vendor-label" for= "Commission">' . __("Commission Percentage", 'multivendorx') . '</label></td><td>';
@@ -812,7 +812,7 @@ class MVX_Product {
                 }
             }
             $html .= '</td></tr>';
-        } else if ($MVX->vendor_caps->payment_cap['commission_type']['value'] == 'fixed_with_percentage_qty') {
+        } else if (isset($MVX->vendor_caps->payment_cap['commission_type']) && $MVX->vendor_caps->payment_cap['commission_type']['value'] == 'fixed_with_percentage_qty') {
 
             if (!$current_user_is_vendor) {
                 $html .= '<tr valign="top"><td scope="row"><label id="vendor-label" for= "Commission">' . __("Commission Percentage", 'multivendorx') . '</label></td><td>';
