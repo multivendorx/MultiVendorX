@@ -5,7 +5,7 @@ Donate link: http://multivendorx.com/donate/
 Requires at least: 5.4
 Tested up to: 6.5.5
 Requires PHP: 8.0
-Stable tag: 4.1.15
+Stable tag: 4.1.16
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -203,6 +203,12 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.1.16 - 2024-07-23 =
+* Added     - Compatibility of WooCommerce 9.1.2.
+* Fix       - Error on the admin edit product page when the commission type was not selected in MultiVendorX Settings #792.
+* Fix       - Conflict between the storefront settings save option and the vendor policies setting #785.
+* Fix       - Small CSS issue #795.
 
 = 4.1.15 - 2024-07-09 =
 * Added     - Translation support for strings using the esc_html() function #789.
