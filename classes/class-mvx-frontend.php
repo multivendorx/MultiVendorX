@@ -493,7 +493,7 @@ class MVX_Frontend {
         wp_style_add_data('product_css', 'rtl', 'replace');
         wp_style_add_data('advance-product-manager', 'rtl', 'replace');
 
-        wp_register_style('my_account_css', $frontend_style_path . 'mvx-my-account' . $suffix . 'css', array(), $MVX->version);
+        wp_register_style('my_account_css', $frontend_style_path . 'mvx-my-account' . $suffix . '.css', array(), $MVX->version);
         wp_enqueue_style('my_account_css');
 
         if (is_vendor_dashboard() && is_user_logged_in() && (is_user_mvx_vendor(get_current_user_id()) || is_user_mvx_pending_vendor(get_current_user_id()) || is_user_mvx_rejected_vendor(get_current_user_id()))) {
