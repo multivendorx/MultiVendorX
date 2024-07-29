@@ -5537,7 +5537,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'type'      => 'toggle_rectangle',
                     'class'     => 'mvx-toggle-radio-switcher',
                     'label'     => __( 'Revenue Sharing Mode', 'multivendorx' ),
-                    'desc'      => __( 'Select how you want the commission to be split. If you are not sure about how to setup commissions and payment options in your marketplace, kindly read this <a href="https://multivendorx.com/doc/knowledgebase/payments/" terget="_blank">article</a> before proceeding.', 'multivendorx' ),
+                    'desc'      => __( 'Select how you want the commission to be split. If you are not sure about how to setup commissions and payment options in your marketplace, kindly read this <a href="https://multivendorx.com/docs/knowledgebase/types-of-commission/" terget="_blank">article</a> before proceeding.', 'multivendorx' ),
                     'options' => array(
                         array(
                             'name'  => 'revenue_sharing_mode',
