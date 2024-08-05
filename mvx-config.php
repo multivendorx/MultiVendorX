@@ -1,7 +1,7 @@
 <?php
 define('MVX_PLUGIN_TOKEN', 'mvx');
 
-define('MVX_PLUGIN_VERSION', '4.1.16');
+define('MVX_PLUGIN_VERSION', '4.1.17');
 
 define('MVX_SCRIPT_DEBUG', false);
 
