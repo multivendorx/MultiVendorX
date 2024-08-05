@@ -195,7 +195,7 @@ class CurlClient implements ClientInterface, StreamingClientInterface
 
     private function constructRequest($method, $absUrl, $headers, $params, $hasFile)
     {
-        $method = \strtolower($method);
+        $method_name = \strtolower($method);
 
         $opts = [];
         if (\is_callable($this->defaultOptions)) { // call defaultOptions callback, set options to return value
@@ -209,7 +209,7 @@ class CurlClient implements ClientInterface, StreamingClientInterface
 
         $params = Util\Util::objectsToIds($params);
 
-        if ('get' === $method) {
+        if ('get' === $method_name) {
             if ($hasFile) {
                 throw new Exception\UnexpectedValueException(
                     'Issuing a GET request with a file parameter'
@@ -220,22 +220,22 @@ class CurlClient implements ClientInterface, StreamingClientInterface
                 $encoded = Util\Util::encodeParameters($params);
                 $absUrl = "{$absUrl}?{$encoded}";
             }
-        } elseif ('post' === $method) {
+        } elseif ('post' === $method_name) {
             $opts[\CURLOPT_POST] = 1;
             $opts[\CURLOPT_POSTFIELDS] = $hasFile ? $params : Util\Util::encodeParameters($params);
-        } elseif ('delete' === $method) {
+        } elseif ('delete' === $method_name) {
             $opts[\CURLOPT_CUSTOMREQUEST] = 'DELETE';
             if (\count($params) > 0) {
                 $encoded = Util\Util::encodeParameters($params);
                 $absUrl = "{$absUrl}?{$encoded}";
             }
         } else {
-            throw new Exception\UnexpectedValueException("Unrecognized method {$method}");
+            throw new Exception\UnexpectedValueException("Unrecognized method {$method_name}");
         }
 
         // It is only safe to retry network failures on POST requests if we
         // add an Idempotency-Key header
-        if (('post' === $method) && (Stripe::$maxNetworkRetries > 0)) {
+        if (('post' === $method_name) && (Stripe::$maxNetworkRetries > 0)) {
             if (!$this->hasHeader($headers, 'Idempotency-Key')) {
                 $headers[] = 'Idempotency-Key: ' . $this->randomGenerator->uuid();
             }
@@ -279,7 +279,7 @@ class CurlClient implements ClientInterface, StreamingClientInterface
         if (!isset($opts[\CURLOPT_IPRESOLVE])) {
             $opts[\CURLOPT_IPRESOLVE] = \CURL_IPRESOLVE_V4;
         }
-
+        
         return [$opts, $absUrl];
     }
 
