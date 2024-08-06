@@ -335,7 +335,7 @@ class MVX_Product {
     }
 
     public function review_title($reviews_title, $count, $product) {
-        $count = get_comments(array('post_id' => $product->get_id(), 'type__not_in' => array('product_note', 'comment'), 'count' => true));
+        $count = get_comments(array('post_id' => $product->get_id(), 'type__not_in' => array('product_note', 'comment', 'mvx_vendor_rating'), 'count' => true));
         $reviews_title = sprintf( esc_html( _n( '%1$s review for %2$s', '%1$s reviews for %2$s', $count, 'multivendorx' ) ), esc_html( $count ), '<span>' . $product->get_title() . '</span>' );
         return $reviews_title;
     }
@@ -343,7 +343,7 @@ class MVX_Product {
     public function review_tab($tabs) {
         global $product;
         if(isset($tabs['reviews'])) {
-            $count = get_comments(array('post_id' => $product->get_id(), 'type__not_in' => array('product_note', 'comment'), 'count' => true));
+            $count = get_comments(array('post_id' => $product->get_id(), 'type__not_in' => array('product_note', 'comment', 'mvx_vendor_rating'), 'count' => true));
 
             $tabs['reviews'] = array(
                     'title'    => sprintf( __( 'Reviews (%d)', 'multivendorx' ), $count),
