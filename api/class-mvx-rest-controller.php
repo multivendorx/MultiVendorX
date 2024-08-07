@@ -4228,7 +4228,7 @@ class MVX_REST_API {
 
         $settings_fields_data['vendor-followers'] =   [];
         
-        if ($MVX->vendor_caps->payment_cap['commission_type']['value'] == 'fixed_with_percentage') {
+        if (isset($MVX->vendor_caps->payment_cap['commission_type']['value']) && $MVX->vendor_caps->payment_cap['commission_type']['value'] == 'fixed_with_percentage') {
             array_splice($settings_fields_data['vendor-payments'], 1, 1);
             $settings_fields_data['vendor-payments'][] =
             [
@@ -4247,7 +4247,7 @@ class MVX_REST_API {
             ];
         }
 
-        if ($MVX->vendor_caps->payment_cap['commission_type']['value'] == 'fixed_with_percentage_qty') {
+        if (isset($MVX->vendor_caps->payment_cap['commission_type']['value']) && $MVX->vendor_caps->payment_cap['commission_type']['value'] == 'fixed_with_percentage_qty') {
             array_splice($settings_fields_data['vendor-payments'], 1, 1);
             $settings_fields_data['vendor-payments'][] =
             [
