@@ -47,6 +47,7 @@ class MVX_Email {
 		include( 'emails/class-mvx-email-vendor-new-announcement.php' );
 		include( 'emails/class-mvx-email-customer-order-refund-request.php' );
 		include( 'emails/class-mvx-email-vendor-product-rejected.php' );
+		include( 'emails/class-mvx-email-vendor-product-approved.php' );
 		include( 'emails/class-mvx-email-suspend-vendor-account.php' );
 		include( 'emails/class-mvx-email-vendor-review.php' );
 		include( 'emails/class-mvx-email-vendor-followed.php' );
@@ -83,6 +84,7 @@ class MVX_Email {
 		$mvx_email['WC_Email_Vendor_New_Announcement'] = new WC_Email_Vendor_New_Announcement();
 		$mvx_email['WC_Email_Customer_Refund_Request'] = new WC_Email_Customer_Refund_Request();
 		$mvx_email['WC_Email_Vendor_Product_Rejected'] = new WC_Email_Vendor_Product_Rejected();
+		$mvx_email['WC_Email_Vendor_Product_Approved'] = new WC_Email_Vendor_Product_Approved();
 		$mvx_email['WC_Email_Suspend_Vendor_Account'] = new WC_Email_Suspend_Vendor_Account();
 		$mvx_email['WC_Email_Vendor_Review'] = new WC_Email_Vendor_Review();
 		$mvx_email['WC_Email_Vendor_Followed'] = new WC_Email_Vendor_Followed();
