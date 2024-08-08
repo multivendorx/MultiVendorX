@@ -315,7 +315,7 @@ class MVX_Coupon {
 
     function coupon_usage_limit( $order_id ) {
         $order = wc_get_order( $order_id );
-        if ( $order->get_parent_id() != 0 && $order->get_meta( 'has_mvx_sub_order', true ) ) {
+        if ( $order->get_parent_id() != 0 ) {
             return;
         }
         
