@@ -1312,7 +1312,7 @@ class MVX_REST_API {
 
             if(isset($verification_settings['address_verification']['is_verified']) && $verification_settings['address_verification']['is_verified'] == 'verified' && isset($verification_settings['id_verification']['is_verified']) && $verification_settings['id_verification']['is_verified'] == 'verified'){
                 update_user_meta($user_id, 'mvx_vendor_is_verified', 'verified');
-
+                update_user_meta($user_id, '_verify_vendor', 'Enable');
             }else{
                 delete_user_meta($user_id, 'mvx_vendor_is_verified');
             }
