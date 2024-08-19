@@ -399,6 +399,7 @@ class MVX_Ajax {
         $rating = isset($_POST['rating']) ? intval( wp_unslash( $_POST['rating'] ) ): false;
         $comment_parent = isset($_POST['comment_parent']) ? absint($_POST['comment_parent']) : 0;
         $vendor_id = isset($_POST['vendor_id']) ? absint( $_POST['vendor_id'] ) : 0;
+        $product_id = isset($_POST['product_id']) ? absint( $_POST['product_id'] ) : '';
         $current_user = wp_get_current_user();
         $comment_approve_by_settings = get_option('comment_moderation') ? 0 : 1;
         // IF vendor given multi rating
@@ -417,7 +418,7 @@ class MVX_Ajax {
             $time = current_time('mysql');
             if ($current_user->ID > 0) {
                 $data = array(
-                    'comment_post_ID' => mvx_vendor_dashboard_page_id(),
+                    'comment_post_ID' => !empty($product_id) ? $product_id : mvx_vendor_dashboard_page_id(),
                     'comment_author' => $current_user->display_name,
                     'comment_author_email' => sanitize_email($current_user->user_email),
                     'comment_author_url' => esc_url($current_user->user_url),
@@ -1772,6 +1773,8 @@ class MVX_Ajax {
         //$vendor_reviews = $vendor->get_reviews_and_rating($requestData['start'], $requestData['length'], $query);
         if ($vendor_reviews_total) {
             $vendor_reviews = array_slice($vendor_reviews_total, $requestData['start'], $requestData['length']);
+            file_put_contents( plugin_dir_path(__FILE__) . "/error.log", date("d/m/Y H:i:s", time()) . ":vendor_reviews:  : " . var_export($vendor_reviews, true) . "\n", FILE_APPEND);
+
             foreach ($vendor_reviews as $comment) :
                 $vendor = get_mvx_vendor($comment->user_id);
                 if ($vendor) {
@@ -1799,6 +1802,7 @@ class MVX_Ajax {
                                         <h4 class="modal-title">' . __('Reply to ', 'multivendorx') . $comment_by . '</h4>
                                     </div>
                                     <div class="mvx-widget-modal modal-body">
+                                            <input type="hidden" id="comment_product_id" value= '. $comment->comment_post_ID .' />
                                             <textarea class="form-control" rows="5" id="comment-content-' . $comment->comment_ID . '" placeholder="' . __('Enter reply...', 'multivendorx') . '"></textarea>
                                     </div>
                                     <div class="modal-footer">
