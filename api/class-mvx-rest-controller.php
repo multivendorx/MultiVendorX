@@ -1702,11 +1702,17 @@ class MVX_REST_API {
             add_comment_meta($comment_id, '_author_id', get_current_user_id());
         } elseif ($key == 'approve_product') {
             $product_id = $value['id'];
+            $vendor_id = $value['vendor_id'];
+            $post = get_post($product_id);
+            $vendor = get_mvx_vendor($vendor_id);
             $post_update = array(
                 'ID'            => $product_id,
                 'post_status'   => 'publish',
             );
             wp_update_post( $post_update );
+            $email_vendor = WC()->mailer()->emails['WC_Email_Vendor_Product_Approved'];
+            $email_vendor->trigger($product_id, $post, $vendor);
+            
         } elseif ($key == 'approve_vendor') {
             $vendor_id = $value['id'];
             if ($vendor_id) {
