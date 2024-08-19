@@ -5,7 +5,7 @@ Donate link: http://multivendorx.com/donate/
 Requires at least: 5.4
 Tested up to: 6.6.1
 Requires PHP: 8.0
-Stable tag: 4.1.17
+Stable tag: 4.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -203,6 +203,13 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.2.0 - 2024-08-20 =
+* Added     - Vendors were not receiving email notifications when their submitted products were approved by the admin. Vendors will now receive an email notification immediately upon approval #783.
+* Fix       - Vendor replies to reviews were not appearing on the "Review" tab of the single product page. Replies now display correctly #778.
+* Fix       - Resolved the issue where the vendor details page was endlessly loading in the admin dashboard.
+* Fix       - Vendor coupons were displaying on the same line in the vendor coupon widget. This issue has been corrected #794.
+* Fix       - Addressed a security vulnerability.
 
 = 4.1.17 - 2024-08-06 =
 * Added     - Compatibility with WordPress 6.6.1.
