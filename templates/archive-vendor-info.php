@@ -31,6 +31,15 @@ $vendor_lists = !empty($mvx_customer_follow_vendor) ? wp_list_pluck( $mvx_custom
 $follow_status = in_array($vendor_id, $vendor_lists) ? __( 'Unfollow', 'multivendorx' ) : __( 'Follow', 'multivendorx' );
 $follow_status_key = in_array($vendor_id, $vendor_lists) ? 'Unfollow' : 'Follow';
 
+//hide vendor details
+$hide_vendor_details = get_mvx_vendor_settings('mvx_hide_vendor_details', 'store');
+$should_hide = false;
+if ($hide_vendor_details == 'All User') {
+    $should_hide = true;
+} elseif ($hide_vendor_details == 'Non Logged-in user' && !is_user_logged_in()) {
+    $should_hide = true;
+}
+
 if ( $template_class == 'template3') { ?>
 <div class='mvx_bannersec_start mvx-theme01'>
     <div class="mvx-banner-wrap">
@@ -68,13 +77,15 @@ if ( $template_class == 'template3') { ?>
                     <?php } ?>
                 </div>
                 <div class="mvx-contact-deatil">
-                    
-                    <?php if (!empty($location) && $vendor_hide_address != 'Enable') { ?><p class="mvx-address"><span><i class="mvx-font ico-location-icon"></i></span><?php echo esc_html($location); ?></p><?php } ?>
+                    <?php if (!$should_hide) { ?>
+                        <?php if (!empty($location) && $vendor_hide_address != 'Enable') { ?><p class="mvx-address"><span><i class="mvx-font ico-location-icon"></i></span><?php echo esc_html($location); ?></p><?php } ?>
 
-                    <?php if (!empty($mobile) && $vendor_hide_phone != 'Enable') { ?><p class="mvx-address"><span><i class="mvx-font ico-call-icon"></i></span><?php echo apply_filters('vendor_shop_page_contact', $mobile, $vendor_id); ?></p><?php } ?>
+                        <?php if (!empty($mobile) && $vendor_hide_phone != 'Enable') { ?><p class="mvx-address"><span><i class="mvx-font ico-call-icon"></i></span><?php echo apply_filters('vendor_shop_page_contact', $mobile, $vendor_id); ?></p><?php } ?>
 
-                    <?php if (!empty($email) && $vendor_hide_email != 'Enable') { ?>
-                    <p class="mvx-address"><a href="mailto:<?php echo apply_filters('vendor_shop_page_email', $email, $vendor_id); ?>" class="mvx_vendor_detail"><i class="mvx-font ico-mail-icon"></i><?php echo apply_filters('vendor_shop_page_email', $email, $vendor_id); ?></a></p><?php } ?>
+                        <?php if (!empty($email) && $vendor_hide_email != 'Enable') { ?>
+                            <p class="mvx-address"><a href="mailto:<?php echo apply_filters('vendor_shop_page_email', $email, $vendor_id); ?>" class="mvx_vendor_detail"><i class="mvx-font ico-mail-icon"></i><?php echo apply_filters('vendor_shop_page_email', $email, $vendor_id); ?></a></p>
+                        <?php } 
+                    } ?>
 
                     <?php
                     if (apply_filters('is_vendor_add_external_url_field', true, $vendor->id)) {
@@ -137,27 +148,28 @@ if ( $template_class == 'template3') { ?>
                     }
                     ?>      
                 </div>
+                <?php if (!$should_hide) { ?>
                     <?php if (!empty($location) && $vendor_hide_address != 'Enable') { ?><p class="mvx-address"><span><i class="mvx-font ico-location-icon"></i></span><?php echo esc_html($location); ?></p><?php } ?>
-
-                <div class="mvx-contact-deatil">
-                    
-                    <?php if (!empty($mobile) && $vendor_hide_phone != 'Enable') { ?><p class="mvx-address"><span><i class="mvx-font ico-call-icon"></i></span><?php echo esc_html(apply_filters('vendor_shop_page_contact', $mobile, $vendor_id)); ?></p><?php } ?>
-
-                    <?php if (!empty($email) && $vendor_hide_email != 'Enable') { ?>
-                    <p class="mvx-address"><a href="mailto:<?php echo apply_filters('vendor_shop_page_email', $email, $vendor_id); ?>" class="mvx_vendor_detail"><i class="mvx-font ico-mail-icon"></i><?php echo esc_html(apply_filters('vendor_shop_page_email', $email, $vendor_id)); ?></a></p><?php } ?>
-                    <?php
-                    if (apply_filters('is_vendor_add_external_url_field', true, $vendor->id)) {
-                        $external_store_url = get_user_meta($vendor_id, '_vendor_external_store_url', true);
-                        $external_store_label = get_user_meta($vendor_id, '_vendor_external_store_label', true);
-                        if (empty($external_store_label))
-                            $external_store_label = __('External Store URL', 'multivendorx');
-                        if (isset($external_store_url) && !empty($external_store_url)) {
-                            ?><p class="external_store_url"><label><a target="_blank" href="<?php echo esc_attr(apply_filters('vendor_shop_page_external_store', esc_url_raw($external_store_url), $vendor_id)); ?>"><?php echo esc_html($external_store_label); ?></a></label></p><?php
+                    <div class="mvx-contact-deatil">
+                        
+                        <?php if (!empty($mobile) && $vendor_hide_phone != 'Enable') { ?><p class="mvx-address"><span><i class="mvx-font ico-call-icon"></i></span><?php echo esc_html(apply_filters('vendor_shop_page_contact', $mobile, $vendor_id)); ?></p><?php } ?>
+                        
+                        <?php if (!empty($email) && $vendor_hide_email != 'Enable') { ?>
+                            <p class="mvx-address"><a href="mailto:<?php echo apply_filters('vendor_shop_page_email', $email, $vendor_id); ?>" class="mvx_vendor_detail"><i class="mvx-font ico-mail-icon"></i><?php echo esc_html(apply_filters('vendor_shop_page_email', $email, $vendor_id)); ?></a></p><?php } ?>
+                        <?php
+                        if (apply_filters('is_vendor_add_external_url_field', true, $vendor->id)) {
+                            $external_store_url = get_user_meta($vendor_id, '_vendor_external_store_url', true);
+                            $external_store_label = get_user_meta($vendor_id, '_vendor_external_store_label', true);
+                            if (empty($external_store_label))
+                                $external_store_label = __('External Store URL', 'multivendorx');
+                            if (isset($external_store_url) && !empty($external_store_url)) {
+                                ?><p class="external_store_url"><label><a target="_blank" href="<?php echo esc_attr(apply_filters('vendor_shop_page_external_store', esc_url_raw($external_store_url), $vendor_id)); ?>"><?php echo esc_html($external_store_label); ?></a></label></p><?php
+                                }
                             }
-                        }
-                        ?>
-                    <?php do_action('mvx_after_vendor_information',$vendor_id);?>   
-                </div>
+                            ?>
+                        <?php do_action('mvx_after_vendor_information',$vendor_id);?>   
+                    </div>
+                <?php } ?>
             </div>
             <div class='mvx-bannerright'>
                 <div class="socialicn-area">
@@ -231,14 +243,15 @@ if ( $template_class == 'template3') { ?>
                 </div>  
 
                 <div class="mvx-contact-deatil">
-                    
-                    <?php if (!empty($location) && $vendor_hide_address != 'Enable') { ?><p class="mvx-address"><span><i class="mvx-font ico-location-icon"></i></span><?php echo esc_html($location); ?></p><?php } ?>
+                    <?php if (!$should_hide) { ?>
+                        <?php if (!empty($location) && $vendor_hide_address != 'Enable') { ?><p class="mvx-address"><span><i class="mvx-font ico-location-icon"></i></span><?php echo esc_html($location); ?></p><?php } ?>
 
-                    <?php if (!empty($mobile) && $vendor_hide_phone != 'Enable') { ?><p class="mvx-address"><span><i class="mvx-font ico-call-icon"></i></span><?php echo apply_filters('vendor_shop_page_contact', $mobile, $vendor_id); ?></p><?php } ?>
-                    
-                    <?php if (!empty($email) && $vendor_hide_email != 'Enable') { ?>
-                    <p class="mvx-address"><a href="mailto:<?php echo apply_filters('vendor_shop_page_email', $email, $vendor_id); ?>" class="mvx_vendor_detail"><i class="mvx-font ico-mail-icon"></i><?php echo apply_filters('vendor_shop_page_email', $email, $vendor_id); ?></a></p><?php } ?>
-
+                        <?php if (!empty($mobile) && $vendor_hide_phone != 'Enable') { ?><p class="mvx-address"><span><i class="mvx-font ico-call-icon"></i></span><?php echo apply_filters('vendor_shop_page_contact', $mobile, $vendor_id); ?></p><?php } ?>
+                        
+                        <?php if (!empty($email) && $vendor_hide_email != 'Enable') { ?>
+                        <p class="mvx-address"><a href="mailto:<?php echo apply_filters('vendor_shop_page_email', $email, $vendor_id); ?>" class="mvx_vendor_detail"><i class="mvx-font ico-mail-icon"></i><?php echo apply_filters('vendor_shop_page_email', $email, $vendor_id); ?></a></p>
+                        <?php } 
+                    } ?>
                     <?php
                     if (apply_filters('is_vendor_add_external_url_field', true, $vendor->id)) {
                         $external_store_url = get_user_meta($vendor_id, '_vendor_external_store_url', true);

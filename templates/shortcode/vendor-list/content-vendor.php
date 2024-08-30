@@ -21,6 +21,13 @@ $rating = round($rating_info['avg_rating'], 2);
 $review_count = empty(intval($rating_info['total_rating'])) ? '' : intval($rating_info['total_rating']);
 $vendor_phone = $vendor->phone ? $vendor->phone : __('No number yet', 'multivendorx');
 $vendor_hide_address = get_user_meta($vendor_id, '_vendor_hide_address', true) ? get_user_meta($vendor_id, '_vendor_hide_address', true) : '';
+$hide_vendor_details = get_mvx_vendor_settings('mvx_hide_vendor_details', 'store');
+$should_hide = false;
+if ($hide_vendor_details == 'All User') {
+    $should_hide = true;
+} elseif ($hide_vendor_details == 'Non Logged-in user' && !is_user_logged_in()) {
+    $should_hide = true;
+}
 ?>
 <div class="mvx-store-list mvx-store-list-vendor">
     <?php do_action('mvx_vendor_lists_single_before_image', $vendor->term_id, $vendor->id); ?>
@@ -64,7 +71,7 @@ $vendor_hide_address = get_user_meta($vendor_id, '_vendor_hide_address', true) ?
             <div class="add-call-block">
                 <div class="mvx-detail-block"></div>
                 <div class="mvx-detail-block"></div>
-                <?php if ($vendor_hide_address != 'Enable') {
+                <?php if (!$should_hide && $vendor_hide_address != 'Enable') {
                     if ($vendor && $vendor->country) : ?>
                         <div class="mvx-detail-block">
                             <i class="mvx-font ico-location-icon2" aria-hidden="true"></i>

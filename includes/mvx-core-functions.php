@@ -5239,6 +5239,27 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     ),
                     'database_value' => '',
                 ],
+                [
+                    'key'       => 'mvx_hide_vendor_details',
+                    'type'      => 'toggle_rectangle',
+                    'label'     => __( 'Hide Vendor Details', 'multivendorx' ),
+                    'desc'      => __( 'Decide vendor details to be displayed', 'multivendorx' ),
+                    'options' => array(
+                        array(
+                            'name'  =>  'mvx_hide_vendor_details',
+                            'key'=> "all_user",
+                            'label'=> __('All User', 'multivendorx'),
+                            'value'=> __('All User', 'multivendorx'),
+                        ),
+                        array(
+                            'name'  =>  'mvx_hide_vendor_details',
+                            'key'=> "non_logged_in_user",
+                            'label'=> __('Non Logged-in user', 'multivendorx'),
+                            'value'=> __('Non Logged-in user', 'multivendorx'),
+                        ),
+                    ),
+                    'database_value' => '',
+                ],
             ],
             'products'  =>  [
                 [
