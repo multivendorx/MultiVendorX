@@ -38,7 +38,7 @@ if ($hide_vendor_details == 'All User') {
                 <div class="mvx-store-picture">
                     <img class="vendor_img" src="<?php echo esc_url($image); ?>" id="vendor_image_display">
                 </div>
-                <<?php
+                <?php
                 if (!$should_hide) { ?>
                     <div class="vendor-header-icon">
                         <?php if ($vendor_hide_address != 'Enable') { ?>

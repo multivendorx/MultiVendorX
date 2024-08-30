@@ -5240,10 +5240,17 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'database_value' => '',
                 ],
                 [
+                    'key'       =>  'vendor_privacy_policy',
+                    'type'      =>  'blocktext',
+                    'label'     =>  __( 'no_label', 'multivendorx' ),
+                    'blocktext'      =>  __( "Vendor Profile Privacy", 'multivendorx' ),
+                    'database_value' => '',
+                ],
+                [
                     'key'       => 'mvx_hide_vendor_details',
                     'type'      => 'toggle_rectangle',
                     'label'     => __( 'Hide Vendor Details', 'multivendorx' ),
-                    'desc'      => __( 'Decide vendor details to be displayed', 'multivendorx' ),
+                    'desc'      => __( 'Manage the visibility of vendor contact information, including email addresses, physical addresses, and phone numbers. You can choose to hide this information for all users or only for users who are not logged in.', 'multivendorx' ),
                     'options' => array(
                         array(
                             'name'  =>  'mvx_hide_vendor_details',
