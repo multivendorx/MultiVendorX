@@ -380,6 +380,10 @@ class MVX_REST_API_Vendors_Controller extends WC_REST_Controller {
 	 * @bank_account_type - Predefined values only	
 	 */
 	public function create_item( $request ) {
+		if ( ! current_user_can( 'create_users' ) ) {
+			return new WP_Error( 'mvx_rest_forbidden', __( 'You do not have permission to create a vendor.', 'multivendorx' ), array( 'status' => 403 ) );
+		}
+		
 		if ( ! empty( $request['id'] ) ) {
 			/* translators: %s: post type */
 			return new WP_Error( "mvx_rest_{$this->post_type}_exists", sprintf( __( 'Cannot create existing %s.', 'multivendorx' ), $this->post_type ), array( 'status' => 400 ) );
@@ -639,6 +643,10 @@ class MVX_REST_API_Vendors_Controller extends WC_REST_Controller {
 	 *
 	 */
 	public function update_item( $request ) {
+		if ( ! is_user_logged_in() || ! current_user_can( 'edit_users' ) ) {
+			return new WP_Error( 'mvx_rest_forbidden', __( 'You do not have permission to update this vendor.', 'multivendorx' ), array( 'status' => 403 ) );
+		}
+
 		if ( empty( $request['id'] ) || $request['id'] == '' ) {
 			/* translators: %s: post type */
 			return new WP_Error( "mvx_rest_{$this->post_type}_insufficient_param", sprintf( __( 'Parameter insufficient for %s.', 'multivendorx' ), $this->post_type ), array( 'status' => 400 ) );
@@ -704,6 +712,10 @@ class MVX_REST_API_Vendors_Controller extends WC_REST_Controller {
 	 */
 	public function delete_item( $request ) {
 		require_once(ABSPATH.'wp-admin/includes/user.php');
+
+		if ( ! is_user_logged_in() || ! current_user_can( 'delete_users' ) ) {
+			return new WP_Error( 'mvx_rest_forbidden', __( 'You do not have permission to delete this vendor.', 'multivendorx' ), array( 'status' => 403 ) );
+		}
 		
 		if ( empty( $request['id'] ) || $request['id'] == '' ) {
 			/* translators: %s: post type */
