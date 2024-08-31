@@ -104,43 +104,38 @@ class MVX_REST_API_Vendors_Controller extends WC_REST_Controller {
 	}
 	
 	public function get_item_permissions_check( $request ) {
-		return true;
 		if ( ! current_user_can( 'list_users' ) ) {
 			return new WP_Error( 'mvx_rest_cannot_access', __( 'Sorry, you cannot check list vendors.', 'multivendorx' ), array( 'status' => rest_authorization_required_code() ) );
 		}
-		return true;
+		return current_user_can( 'list_users' );
 	}
 	
 	public function create_item_permissions_check( $request ) {
-		return true;
 		if ( ! current_user_can( 'create_users' ) ) {
 			return new WP_Error( 'mvx_rest_cannot_create', __( 'Sorry, you cannot create vendors.', 'multivendorx' ), array( 'status' => rest_authorization_required_code() ) );
 		}
-		return true;
+		return current_user_can( 'create_users' );
 	}
 	
 	public function update_item_permissions_check( $request ) {
-		return true;
 		if ( ! current_user_can( 'edit_users' ) ) {
 			return new WP_Error( 'mvx_rest_cannot_update', __( 'Sorry, you cannot update vendors.', 'multivendorx' ), array( 'status' => rest_authorization_required_code() ) );
 		}
-		return true;
+		return current_user_can( 'edit_users' );
 	}
 	
 	public function delete_item_permissions_check( $request ) {
-		return true;
 		if ( ! current_user_can( 'delete_users' ) ) {
 			return new WP_Error( 'mvx_rest_cannot_delete', __( 'Sorry, you cannot delete vendors.', 'multivendorx' ), array( 'status' => rest_authorization_required_code() ) );
 		}
-		return true;
+		return current_user_can( 'delete_users' );
 	}
 	
 	public function batch_items_permissions_check( $request ) {
-		return true;
 		if ( ! current_user_can( 'edit_users' ) ) {
 			return new WP_Error( 'mvx_rest_cannot_do_batch', __( 'Sorry, you cannot process batch.', 'multivendorx' ), array( 'status' => rest_authorization_required_code() ) );
 		}
-		return true;
+		return current_user_can( 'edit_users' );
 	}
 	
 	/**
@@ -178,9 +173,14 @@ class MVX_REST_API_Vendors_Controller extends WC_REST_Controller {
      * @param order order field as per WP_User_Query
      * @param status vendor status like pending - default active vendors 
      *
-     * @return WP_REST_Response $response Response data.
+     * @return WP_REST_Response|WP_Error $response Response data.
      */
 	public function get_items( $request ) {
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return new WP_Error( 'mvx_rest_forbidden', __( 'You do not have permission to view this data.', 'multivendorx' ), array( 'status' => 403 ) );
+		}
+
 		$params = $request->get_params();
 		
         $args = array(
@@ -383,7 +383,7 @@ class MVX_REST_API_Vendors_Controller extends WC_REST_Controller {
 		if ( ! current_user_can( 'create_users' ) ) {
 			return new WP_Error( 'mvx_rest_forbidden', __( 'You do not have permission to create a vendor.', 'multivendorx' ), array( 'status' => 403 ) );
 		}
-		
+
 		if ( ! empty( $request['id'] ) ) {
 			/* translators: %s: post type */
 			return new WP_Error( "mvx_rest_{$this->post_type}_exists", sprintf( __( 'Cannot create existing %s.', 'multivendorx' ), $this->post_type ), array( 'status' => 400 ) );
