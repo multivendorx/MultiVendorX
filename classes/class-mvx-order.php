@@ -1029,7 +1029,7 @@ class MVX_Order {
                 }
 
                 //calculate refund amount percentage
-                $suborder_refund_amount = ( ( ( $refund_amount - $parent_line_item_refund ) * $suborder_total ) / $parent_order_total );
+                $suborder_refund_amount = ( ( ( floatval($refund_amount) - $parent_line_item_refund ) * $suborder_total ) / $parent_order_total );
                 $suborder_total_refund = wc_format_decimal($child_line_item_refund + $suborder_refund_amount);
 
                 if (!$refund_amount || $max_refund < $suborder_total_refund || 0 > $suborder_total_refund) {
