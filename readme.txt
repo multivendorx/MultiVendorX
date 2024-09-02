@@ -5,7 +5,7 @@ Donate link: http://multivendorx.com/donate/
 Requires at least: 5.4
 Tested up to: 6.6.1
 Requires PHP: 8.0
-Stable tag: 4.2.0
+Stable tag: 4.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -203,6 +203,16 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.2.1 - 2024-09-03 =
+* Added     - Compatibility with WooCommerce 9.2.3.
+* Added     - New setting for vendor privacy policy, allowing the admin to control who can view vendor details on the vendor store page #819.
+* Fix       - The "Approved Vendor Account" email template now supports an additional content section #835.
+* Fix       - Resolved a fatal error originating from class-mvx-product.php #818.
+* Fix       - Resolved a fatal error originating from class-mvx-order.php #821.
+* Fix       - Vulnerability issues with Rest API.
+* Fix       - The email field and registration dates were missing on vendor list page in the admin dashboard #829.
+* Updated   - The Stripe library.
 
 = 4.2.0 - 2024-08-20 =
 * Added     - Vendors were not receiving email notifications when their submitted products were approved by the admin. Vendors will now receive an email notification immediately upon approval #783.
