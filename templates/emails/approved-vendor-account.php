@@ -19,4 +19,8 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 	<?php printf( esc_html__( "Applicant Username: %s",  'multivendorx' ), $user_login ); ?>
 </p>
 <p><?php _e('You have been cleared for landing! Congratulations and welcome aboard!', 'multivendorx') ?> <p>
+<?php
+if ($additional_content) {
+	echo wp_kses_post(wpautop(wptexturize($additional_content)));
+} ?>
 <?php do_action( 'mvx_email_footer' );?>
