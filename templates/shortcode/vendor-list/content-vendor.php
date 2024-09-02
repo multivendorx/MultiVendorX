@@ -21,6 +21,14 @@ $rating = round($rating_info['avg_rating'], 2);
 $review_count = empty(intval($rating_info['total_rating'])) ? '' : intval($rating_info['total_rating']);
 $vendor_phone = $vendor->phone ? $vendor->phone : __('No number yet', 'multivendorx');
 $vendor_hide_address = get_user_meta($vendor_id, '_vendor_hide_address', true) ? get_user_meta($vendor_id, '_vendor_hide_address', true) : '';
+$vendor_hide_phone = get_user_meta($vendor_id, '_vendor_hide_phone', true) ? get_user_meta($vendor_id, '_vendor_hide_phone', true) : '';
+$hide_vendor_details = get_mvx_vendor_settings('mvx_hide_vendor_details', 'store');
+$should_hide = false;
+if ($hide_vendor_details == 'All User') {
+    $should_hide = true;
+} elseif ($hide_vendor_details == 'Non Logged-in user' && !is_user_logged_in()) {
+    $should_hide = true;
+}
 ?>
 <div class="mvx-store-list mvx-store-list-vendor">
     <?php do_action('mvx_vendor_lists_single_before_image', $vendor->term_id, $vendor->id); ?>
@@ -30,18 +38,26 @@ $vendor_hide_address = get_user_meta($vendor_id, '_vendor_hide_address', true) ?
                 <div class="mvx-store-picture">
                     <img class="vendor_img" src="<?php echo esc_url($image); ?>" id="vendor_image_display">
                 </div>
-                <div class="vendor-header-icon">
-                    <div class="dashicons dashicons-phone">
-                        <div class="on-hover-cls">
-                            <p><?php echo esc_html($vendor_phone); ?></p>
-                        </div>
-                    </div>
-                    <div class="dashicons dashicons-location">
-                        <div class="on-hover-cls">
-                         <p><?php echo $vendor->get_formatted_address() ? $vendor->get_formatted_address() : __('No Address found', 'multivendorx'); ?></p>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                if (!$should_hide) { ?>
+                    <div class="vendor-header-icon">
+                        <?php if ($vendor_hide_address != 'Enable') { ?>
+                            <div class="dashicons dashicons-phone">
+                                <div class="on-hover-cls">
+                                    <p><?php echo esc_html($vendor_phone); ?></p>
+                                </div>
+                            </div> 
+                        <?php } ?>
+                        <?php if ($vendor_hide_address != 'Enable') { ?>
+                            <div class="dashicons dashicons-location">
+                                <div class="on-hover-cls">
+                                    <p><?php echo $vendor->get_formatted_address() ? $vendor->get_formatted_address() : __('No Address found', 'multivendorx'); ?></p>
+                                </div>
+                            </div>
+                        <?php } ?>
+                    </div> 
+                <?php } ?>
+
             </div>
             <div class="mvx-vendor-name">
                 <a href="<?php echo $vendor->get_permalink(); ?>" class="store-name"><?php echo esc_html($vendor->page_title); ?></a>
@@ -64,7 +80,7 @@ $vendor_hide_address = get_user_meta($vendor_id, '_vendor_hide_address', true) ?
             <div class="add-call-block">
                 <div class="mvx-detail-block"></div>
                 <div class="mvx-detail-block"></div>
-                <?php if ($vendor_hide_address != 'Enable') {
+                <?php if (!$should_hide && $vendor_hide_address != 'Enable') {
                     if ($vendor && $vendor->country) : ?>
                         <div class="mvx-detail-block">
                             <i class="mvx-font ico-location-icon2" aria-hidden="true"></i>
