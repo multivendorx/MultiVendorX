@@ -722,30 +722,30 @@ class MVX_Admin {
                     'button'=> true,
                     'last_action'   =>  'eyeicon_trigger'
                 ),
-            /*array(
-            'name'      =>  __('Email', 'multivendorx'),
-            'selector'  =>  '',
-            'sortable'  =>  true,
-            'selector_choice'  => "email",
-            ),*/
-            /*array(
-            'name'      =>  __('Registered', 'multivendorx'),
-            'selector'  =>  '',
-            'sortable'  =>  true,
-            'selector_choice'  => "registered",
-            ),*/
-            array(
-                'name'      =>  __('Products', 'multivendorx'),
+                array(
+                'name'      =>  __('Email', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
-                'selector_choice'  => "products",
-            ),
-            array(
-                'name'      =>  __('Status', 'multivendorx'),
+                'selector_choice'  => "email",
+                ),
+                array(
+                'name'      =>  __('Registered', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
-                'selector_choice'  => "status",
-            )
+                'selector_choice'  => "registered",
+                ),
+                array(
+                    'name'      =>  __('Products', 'multivendorx'),
+                    'selector'  =>  '',
+                    'sortable'  =>  true,
+                    'selector_choice'  => "products",
+                ),
+                array(
+                    'name'      =>  __('Status', 'multivendorx'),
+                    'selector'  =>  '',
+                    'sortable'  =>  true,
+                    'selector_choice'  => "status",
+                )
             ));
 
             $columns_vendor[] = array(
