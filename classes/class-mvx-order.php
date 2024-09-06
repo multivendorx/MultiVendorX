@@ -576,22 +576,51 @@ class MVX_Order {
             '_customer_user',
             '_prices_include_tax',
             '_order_currency',
-            // '_order_key',
             '_customer_ip_address',
             '_customer_user_agent',
         ));
+        
         foreach ($order_meta as $key) {
-            if($MVX->hpos_is_enabled){
-                $vendor_order->update_meta_data($key, $order->get_meta( $key, true));
-            } else {
-                update_post_meta($vendor_order->get_id(), $key, get_post_meta($order->get_id(), $key, true));
+            // Handle WooCommerce internal meta keys with specific getters and setters
+            switch ($key) {
+                case '_payment_method':
+                    $vendor_order->set_payment_method($order->get_payment_method());
+                    break;
+                case '_payment_method_title':
+                    $vendor_order->set_payment_method_title($order->get_payment_method_title());
+                    break;
+                case '_customer_user':
+                    $vendor_order->set_customer_id($order->get_customer_id());
+                    break;
+                case '_prices_include_tax':
+                    $vendor_order->set_prices_include_tax($order->get_prices_include_tax());
+                    break;
+                case '_order_currency':
+                    $vendor_order->set_currency($order->get_currency());
+                    break;
+                case '_customer_ip_address':
+                    $vendor_order->set_customer_ip_address($order->get_customer_ip_address());
+                    break;
+                case '_customer_user_agent':
+                    $vendor_order->set_customer_user_agent($order->get_customer_user_agent());
+                    break;
+                default:
+                    if ($MVX->hpos_is_enabled) {
+                        $vendor_order->update_meta_data($key, $order->get_meta($key, true));
+                    } else {
+                        update_post_meta($vendor_order->get_id(), $key, get_post_meta($order->get_id(), $key, true));
+                    }
+                    break;
             }
+        
+            // Save the vendor order after each meta update
             $vendor_order->save();
         }
+        
 
         $vendor_order->update_meta_data('_mvx_order_version', $MVX->version);
         $vendor_order->update_meta_data('_vendor_id', absint($args['vendor_id']));
-        $vendor_order->update_meta_data('_created_via', 'mvx_vendor_order');
+        $vendor_order->set_created_via('mvx_vendor_order');
         if($data_migration)
             $vendor_order->update_meta_data('_order_migration', true);
 
