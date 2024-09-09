@@ -9,7 +9,7 @@ Stable tag: 4.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Elevate your WooCommerce store to a thriving multivendor hub with MultiVendorX - ultimate solution for creating dynamic and profitable marketplaces.
+Transform your WooCommerce store into thriving marketplace with MultiVendorX - a powerful and advanced WooCommerce multivendor marketplace solution
 
 == Description ==
 
