@@ -313,7 +313,7 @@ class MVX_Order {
         if ($order->get_parent_id() != 0)
             return false;
 
-        if ($order->get_meta('has_mvx_sub_order', true))
+        if (!$backend && $order->get_meta('has_mvx_sub_order', true))
             return false;
         // $order = wc_get_order($order_id);
         $items = $order->get_items();
