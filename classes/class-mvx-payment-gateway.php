@@ -60,7 +60,7 @@ abstract class MVX_Payment_Gateway {
                 $transaction_total += (float) $commission_amount;
             }
         }
-        return apply_filters('mvx_commission_transaction_amount', $transaction_total, $this->vendor->id, $this->commissions, $this->payment_gateway);
+        return apply_filters('mvx_commission_transaction_amount', $transaction_total, $this->vendor->id ?? null, $this->commissions, $this->payment_gateway);
     }
 
     public function transfer_charge() {
