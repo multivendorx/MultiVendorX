@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<marketplace>
+    <vendors>
+        <vendor>
+            <username>testvendor1</username>
+            <password>dummyPass</password>
+            <firstname>Test</firstname>
+            <lastname>Vendor 1</lastname>
+            <email>testvendor1@gmail.com</email>
+            <nickname>TestVendor1</nickname>
+            <images>
+                <image>
+                    <src>dc-woocommerce-multi-vendor/assets/dummy-data/vendor_images/vendor1_logo.png</src>
+                    <position>store</position>
+                </image>
+                <image>
+                    <src>dc-woocommerce-multi-vendor/assets/dummy-data/vendor_images/vendor1_banner.png</src>
+                    <position>cover</position>
+                </image>
+            </images>
+        </vendor>
+        <vendor>
+            <username>testvendor2</username>
+            <password>dummyPass</password>
+            <firstname>Test</firstname>
+            <lastname>Vendor 2</lastname>
+            <email>testvendor2@gmail.com</email>
+            <nickname>TestVendor2</nickname>
+            <images>
+                <image>
+                    <src>dc-woocommerce-multi-vendor/assets/dummy-data/vendor_images/venodr2_logo.png</src>
+                    <position>store</position>
+                </image>
+                <image>
+                    <src>dc-woocommerce-multi-vendor/assets/dummy-data/vendor_images/vendor2_banner.jpg</src>
+                    <position>cover</position>
+                </image>
+            </images>
+        </vendor>
+    </vendors>
+
+    <products>
+        <product>
+            <title>Modern Art Painting</title>
+            <vendor>testvendor1</vendor>
+            <product_type>simple</product_type>
+            <description>Abstract modern art painting in acrylic.</description>
+            <short_description>Painting</short_description>
+            <category>Art</category>
+            <price>200</price>
+            <sale_price>149</sale_price>
+            <stock_status>instock</stock_status>
+            <manage_stock>yes</manage_stock>
+            <stock>50</stock>
+        </product>
+        <product>
+            <title>Test Vendor Product 3</title>
+            <vendor>testvendor2</vendor>
+            <product_type>simple</product_type>
+            <description>This is a test vendor product</description>
+            <short_description>Test Product</short_description>
+            <category>Electronics</category>
+            <price>299</price>
+            <sale_price>249</sale_price>
+            <stock_status>instock</stock_status>
+            <manage_stock>yes</manage_stock>
+            <stock>30</stock>
+        </product>
+    </products>
+
+    <commissions>
+        <commission>
+            <category>Art</category>
+            <value>5</value>
+        </commission>
+        <commission>
+            <category>Electronics</category>
+            <value>10</value>
+        </commission>
+        <commission>
+            <category>Fashion</category>
+            <value>15</value>
+        </commission>
+    </commissions>
+
+    <orders>
+        <order>
+            <first_name>John</first_name>
+            <last_name>Doe</last_name>
+            <email>john.doe@example.com</email>
+            <address_1>123 Main Street</address_1>
+            <address_2></address_2>
+            <city>Anytown</city>
+            <state>CA</state>
+            <postcode>12345</postcode>
+            <country>United States (US)</country>
+            <quantity>1</quantity>
+            <payment_method>cod</payment_method>
+            <payment_method_title>Cash on delivery</payment_method_title>
+        </order>
+        <order>
+            <first_name>Jane</first_name>
+            <last_name>Smith</last_name>
+            <email>jane.smith@example.com</email>
+            <address_1>123 Main Street</address_1>
+            <address_2></address_2>
+            <city>Anytown</city>
+            <state>CA</state>
+            <postcode>12345</postcode>
+            <country>United States (US)</country>
+            <quantity>2</quantity>
+            <payment_method>cod</payment_method>
+            <payment_method_title>Cash on delivery</payment_method_title>
+        </order>
+    </orders>
+
+    <reviews>
+        <review>
+            <reviewer>John Doe</reviewer>
+            <email>john.doe@example.com</email>
+            <rating>5</rating>
+            <comment>Beautiful painting! Looks amazing in my living room.</comment>
+        </review>
+        <review>
+            <reviewer>Jane Smith</reviewer>
+            <email>jane.smith@example.com</email>
+            <rating>4</rating>
+            <comment>Good Product but package was slightly damaged.</comment>
+        </review>
+    </reviews>
+</marketplace>
