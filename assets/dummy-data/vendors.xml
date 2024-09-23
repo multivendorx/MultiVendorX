@@ -1,0 +1,38 @@
+<vendors>
+    <vendor>
+        <username>testvendor1</username>
+        <password>dummyPass</password>
+        <firstname>Test</firstname>
+        <lastname>Vendor 1</lastname>
+        <email>testvendor1@gmail.com</email>
+        <nickname>TestVendor1</nickname>
+        <images>
+            <image>
+                <src>dc-woocommerce-multi-vendor/assets/dummy-data/vendor_images/vendor1_logo.png</src>
+                <position>store</position>
+            </image>
+            <image>
+                <src>dc-woocommerce-multi-vendor/assets/dummy-data/vendor_images/vendor1_banner.png</src>
+                <position>cover</position>
+            </image>
+        </images>
+    </vendor>
+    <vendor>
+        <username>testvendor2</username>
+        <password>dummyPass</password>
+        <firstname>Test</firstname>
+        <lastname>Vendor 2</lastname>
+        <email>testvendor2@gmail.com</email>
+        <nickname>TestVendor2</nickname>
+        <images>
+            <image>
+                <src>dc-woocommerce-multi-vendor/assets/dummy-data/vendor_images/venodr2_logo.png</src>
+                <position>store</position>
+            </image>
+            <image>
+                <src>dc-woocommerce-multi-vendor/assets/dummy-data/vendor_images/vendor2_banner.jpg</src>
+                <position>cover</position>
+            </image>
+        </images>
+    </vendor>
+</vendors>

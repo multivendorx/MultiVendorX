@@ -452,7 +452,7 @@ class MVX_Admin_Setup_Wizard {
                         ?>
                         <select id="commission_type" name="commission_type" class="wc-enhanced-select">
                             <option value="fixed" data-fields="#tr_default_commission" <?php selected($commission_type, 'fixed'); ?>><?php esc_html_e('Fixed Amount', 'multivendorx'); ?></option>
-                            <option value="percent" data-fields="#tr_default_commission" <?php selected($commission_type, 'percent'); ?>><?php esc_html_e('Percentage', 'multivendorx'); ?></option>
+                            <option value="percent" data-fields="#tr_default_percentage" <?php selected($commission_type, 'percent'); ?>><?php esc_html_e('Percentage', 'multivendorx'); ?></option>
                             <option value="fixed_with_percentage" data-fields="#tr_default_percentage,#tr_fixed_with_percentage" <?php selected($commission_type, 'fixed_with_percentage'); ?>><?php esc_html_e('%age + Fixed (per transaction)', 'multivendorx'); ?></option>
                             <option value="fixed_with_percentage_qty" data-fields="#tr_default_percentage,#tr_fixed_with_percentage_qty" <?php selected($commission_type, 'fixed_with_percentage_qty'); ?>><?php esc_html_e('%age + Fixed (per unit)', 'multivendorx'); ?></option>
                         </select>
@@ -462,7 +462,7 @@ class MVX_Admin_Setup_Wizard {
                     <th scope="row"><label for="default_commission"><?php esc_html_e('Commission value', 'multivendorx'); ?></label></th>
                     <td>
                         <?php
-                        $default_commission = isset($payment_settings['default_commission'][0]['value']) ? $payment_settings['default_commission'][0]['value'] : '';
+                        $default_commission = isset($payment_settings['default_commission'][0]['value']) ? ( $commission_type == 'fixed' ? $payment_settings['default_commission'][0]['value'] : $payment_settings['default_commission'][1]['value'] ) : '';
                         ?>
                         <input type="text" id="default_commission" name="default_commission" placeholder="" value="<?php echo esc_attr($default_commission); ?>" />
                     </td>
@@ -472,7 +472,7 @@ class MVX_Admin_Setup_Wizard {
                     <th scope="row"><label for="default_percentage"><?php esc_html_e('Commission Percentage', 'multivendorx'); ?></label></th>
                     <td>
                         <?php
-                        $default_percentage = isset($payment_settings['default_commission'][0]['value']) ? $payment_settings['default_commission'][0]['value'] : '';
+                        $default_percentage = isset($payment_settings['default_commission'][0]['value']) ? ( $commission_type == 'percent' ? $payment_settings['default_commission'][0]['value'] : $payment_settings['default_commission'][1]['value'] ) : '';
                         ?>
                         <input type="text" id="default_percentage" name="default_percentage" placeholder="" value="<?php echo esc_attr($default_percentage); ?>" />
                     </td>
@@ -482,7 +482,7 @@ class MVX_Admin_Setup_Wizard {
                     <th scope="row"><label for="fixed_with_percentage"><?php esc_html_e('Fixed Amount', 'multivendorx'); ?></label></th>
                     <td>
                         <?php
-                        $fixed_with_percentage = isset($payment_settings['fixed_with_percentage'][0]['value']) ? $payment_settings['fixed_with_percentage'][0]['value'] : '';
+                        $fixed_with_percentage = isset($payment_settings['default_commission'][0]['value']) ? $payment_settings['default_commission'][0]['value'] : '';
                         ?>
                         <input type="text" id="fixed_with_percentage" name="fixed_with_percentage" placeholder="" value="<?php echo esc_attr($fixed_with_percentage); ?>" />
                     </td>
@@ -492,7 +492,7 @@ class MVX_Admin_Setup_Wizard {
                     <th scope="row"><label for="fixed_with_percentage_qty"><?php esc_html_e('Fixed Amount', 'multivendorx'); ?></label></th>
                     <td>
                         <?php
-                        $fixed_with_percentage_qty = isset($payment_settings['fixed_with_percentage_qty'][0]['value']) ? $payment_settings['fixed_with_percentage_qty'][0]['value'] : '';
+                        $fixed_with_percentage_qty = isset($payment_settings['default_commission'][0]['value']) ? $payment_settings['default_commission'][0]['value'] : '';
                         ?>
                         <input type="text" id="fixed_with_percentage_qty" name="fixed_with_percentage_qty" placeholder="" value="<?php echo esc_attr($fixed_with_percentage_qty); ?>" />
                     </td>
@@ -789,66 +789,75 @@ class MVX_Admin_Setup_Wizard {
             switch($commission_type){
                 case 'fixed':
                     $payment_settings['commission_type'] = array(
-                        'value'=> __($commission_type, 'multivendorx'),
+                        'value'=> __('fixed', 'multivendorx'),
                         'label'=> __('Fixed Amount', 'multivendorx'),
                         'index'=> 1,
+                    );
+                    $payment_settings['default_commission'] = $default_commission;
+                    $payment_settings['default_commission'] = array(
+                        0 => array (
+                                'key' => 'fixed_ammount',
+                                'value' => $default_commission,
+                                )
                     );
                     break;
 
                 case 'percent':
                     $payment_settings['commission_type'] = array(
-                        'value'=> __($commission_type, 'multivendorx'),
+                        'value'=> __('percent', 'multivendorx'),
                         'label'=> __('Percentage', 'multivendorx'),
                         'index'=> 2,
+                    );
+                    $payment_settings['default_percentage'] = $default_percentage;
+                    $payment_settings['default_commission'] = array(
+                        0 => array (
+                            'key' => 'percent_amount',
+                            'value' => $default_percentage
+                        )
                     );
                     break;
 
                 case 'fixed_with_percentage':
                     $payment_settings['commission_type'] = array(
-                        'value'=> __($commission_type, 'multivendorx'),
+                        'value'=> __('fixed_with_percentage', 'multivendorx'),
                         'label'=> __('%age + Fixed (per transaction)', 'multivendorx'),
                         'index'=> 3,
+                    );
+                    $payment_settings['fixed_with_percentage'] = $fixed_with_percentage;
+                    $payment_settings['default_commission'] = array(
+                        0 => array (
+                            'key' => 'percent_amount',
+                            'value' => $fixed_with_percentage
+                        ),
+                        1 => array (
+                            'key' => 'percent_amount',
+                            'value' => $default_percentage
+                        )
                     );
                     break;
 
                 case 'fixed_with_percentage_qty':
                     $payment_settings['commission_type'] = array(
-                        'value'=> __($commission_type, 'multivendorx'),
+                        'value'=> __('fixed_with_percentage_qty', 'multivendorx'),
                         'label'=> __('%age + Fixed (per unit)', 'multivendorx'),
                         'index'=> 4,
+                    );
+                    $payment_settings['fixed_with_percentage_qty'] = $fixed_with_percentage_qty;
+                    $payment_settings['default_commission'] = array(
+                        0 => array (
+                            'key' => 'fixed_ammount',
+                            'value' => $fixed_with_percentage_qty
+                        ),
+                        1 => array (
+                            'key' => 'percent_amount',
+                            'value' => $default_percentage
+                        )
                     );
                     break;
             }
         }
-        if ($default_commission) {
-            $payment_settings['default_commission'] = $default_commission;
-            $payment_settings['default_commission'] = array(
-                'key' => 'fixed_ammount',
-                'value' => $default_commission
-            );
-        }
-        if ($default_percentage) {
-            $payment_settings['default_percentage'] = $default_percentage;
-            $payment_settings['default_commission'] = array(
-                'key' => 'percent_amount',
-                'value' => $default_percentage
-            );
-        }
-        if ($fixed_with_percentage) {
-            $payment_settings['fixed_with_percentage'] = $fixed_with_percentage;
-            $payment_settings['default_commission'] = array(
-                'key' => 'percent_amount',
-                'value' => $fixed_with_percentage
-            );
-        }
-        if ($fixed_with_percentage_qty) {
-            $payment_settings['fixed_with_percentage_qty'] = $fixed_with_percentage_qty;
-            $payment_settings['default_commission'] = array(
-                'key' => 'fixed_ammount',
-                'value' => $fixed_with_percentage_qty
-            );
-        }
         mvx_update_option('mvx_commissions_tab_settings', $payment_settings);
+        
         wp_redirect(esc_url_raw($this->get_next_step_link()));
         exit;
     }
@@ -972,20 +981,33 @@ class MVX_Admin_Setup_Wizard {
 
     /**
      * import dummy data
-     * @global object $mvx
      */
     public function mvx_setup_dummy_data_import(){
-        global $MVX;
-
         check_admin_referer('mvx-setup');
         $marketplace_type = filter_input(INPUT_POST, 'marketplace_type');
 
-        // load the dummy data xml file
-        $xml = simplexml_load_file( __DIR__ . '/../assets/dummy-data/' . $marketplace_type . '.xml' );
+        // $this->import_vendors();
+        $product_ids = $this->import_products($marketplace_type);
+    //     $this->import_commissions();
+    //     $this->import_orders($product_ids);
+    //     $this->import_reviews($product_ids);
+
+    //     wp_redirect(esc_url_raw($this->get_next_step_link()));
+    //     exit;
+    }
+
+    /**
+     * Import the Dummy vendors
+     */
+    public function import_vendors(){
+        // load the vendor data xml file
+        $xml = simplexml_load_file( __DIR__ . '/../assets/dummy-data/vendors.xml' );
+        if( ! $xml ){
+            return;
+        }
         
         // importing vendors
-        foreach( $xml->vendors->vendor as $vendor){
-
+        foreach( $xml->vendor as $vendor){
             $userdata = array(
                 'user_login'    => sanitize_user( (string) $vendor->username ),
                 'user_pass'     => sanitize_text_field( (string) $vendor->password ),
@@ -998,39 +1020,42 @@ class MVX_Admin_Setup_Wizard {
 
             $user_id = wp_insert_user( $userdata ) ;
 
-            if ( ! is_wp_error( $user_id ) ) {
-                foreach( $vendor->images->image as $image ){
-                    if ( isset( $image->src ) ) {
-                        $src =  plugins_url( $image->src );
-                        $upload = wc_rest_upload_image_from_url( esc_url_raw($src) );
+            if ( is_wp_error( $user_id ) ) {
 
-                        if(! is_wp_error( $upload )){
-                            $attachment_id = wc_rest_set_uploaded_image_as_attachment( $upload, $user_id );
+                if( ! isset( $vendor->images )) {
+                    foreach( $vendor->images->image as $image ){
 
-                            if ( wp_attachment_is_image( $attachment_id ) ) {
-                                $parent = get_post($attachment_id);
-                                $url = $parent->guid;
+                        if ( isset( $image->src ) ) {
+                            $src =  plugins_url( $image->src );
+                            $upload = wc_rest_upload_image_from_url( esc_url_raw($src) );
 
-                                $size = @getimagesize($url);
-                                $image_type = ( $size ) ? $size['mime'] : 'image/jpeg';
-                                $object = array(
-                                    'ID' => $attachment_id,
-                                    'post_title' => basename($url),
-                                    'post_mime_type' => $image_type,
-                                    'guid' => $url,
-                                    'post_status'    => 'inherit',
-                                    );
+                            if(! is_wp_error( $upload )){
+                                $attachment_id = wc_rest_set_uploaded_image_as_attachment( $upload, $user_id );
 
-                                $attachment_id = wp_insert_attachment($object, $url);
+                                if ( wp_attachment_is_image( $attachment_id ) ) {
+                                    $parent = get_post($attachment_id);
+                                    $url = $parent->guid;
 
-                                $metadata = wp_generate_attachment_metadata($attachment_id, $url);
-                                wp_update_attachment_metadata($attachment_id, $metadata);
+                                    $size = @getimagesize($url);
+                                    $image_type = ( $size ) ? $size['mime'] : 'image/jpeg';
+                                    $object = array(
+                                        'ID' => $attachment_id,
+                                        'post_title' => basename($url),
+                                        'post_mime_type' => $image_type,
+                                        'guid' => $url,
+                                        'post_status'    => 'inherit',
+                                        );
 
-                                if ( 'store' == $image->position ) {
-                                    $usermeta = update_user_meta( $user_id, '_vendor_image', $attachment_id );
-                                    
-                                } elseif ( 'cover' == $image->position ) {
-                                    $usermeta = update_user_meta( $user_id, '_vendor_banner', $attachment_id );
+                                    $attachment_id = wp_insert_attachment($object, $url);
+
+                                    $metadata = wp_generate_attachment_metadata($attachment_id, $url);
+                                    wp_update_attachment_metadata($attachment_id, $metadata);
+
+                                    if ( 'store' == $image->position ) {
+                                        update_user_meta( $user_id, '_vendor_image', $attachment_id );   
+                                    } elseif ( 'cover' == $image->position ) {
+                                        update_user_meta( $user_id, '_vendor_banner', $attachment_id );
+                                    }
                                 }
                             }
                         }
@@ -1038,14 +1063,27 @@ class MVX_Admin_Setup_Wizard {
                 }
             }
         }
+    }
 
+    /**
+     * Import Dummy products
+     * @global object $mvx
+     */
+    public function import_products($marketplace_type){
+        global $MVX;
+
+        $xml = simplexml_load_file( __DIR__ . '/../assets/dummy-data/'. $marketplace_type .'_products.xml' );
+        if( ! $xml ){
+            return;
+        }
+        
         $product_ids = array();
 
         // importing products
-        foreach( $xml->products->product as $product){
+        foreach( $xml->item as $product){
 
             // Get vendor Id
-            $vendor = get_user_by( 'slug', sanitize_text_field( (string) $product->vendor ) );
+            $vendor = get_user_by( 'slug', sanitize_text_field( (string) $product->author ) );
             if ($vendor) {
                 $vendor_id = $vendor->ID;
             }else {
@@ -1055,11 +1093,13 @@ class MVX_Admin_Setup_Wizard {
 
             $product_data = array(
                 'post_title'    => sanitize_text_field( (string) $product->title ), // Product Title
+                'guid'          => sanitize_url( (string) $product->guid ), // Product guid
                 'post_content'  => sanitize_text_field( (string) $product->description ), // Product Description
                 'post_excerpt'  => sanitize_text_field( (string) $product->short_description ), // Short Description
                 'post_author'   => $vendor_id, // Vendor Id
-                'post_status'   => 'publish', // Publish the product
-                'post_type'     => 'product', // WooCommerce product type
+                'post_name'     => sanitize_text_field( (string) $product->post_name ), // post name
+                'post_status'   => sanitize_text_field( (string) $product->status ), // Publish the product
+                'post_type'     => sanitize_text_field( (string) $product->post_type ), // WooCommerce product type
             );
 
             $product_id = wp_insert_post( $product_data );
@@ -1068,39 +1108,86 @@ class MVX_Admin_Setup_Wizard {
                 // set the product type
                 wp_set_object_terms( $product_id, sanitize_text_field( (string) $product->product_type ), 'product_type' );
 
+                // Set product vendor
                 $vendor = get_mvx_vendor( $vendor_id );
                 wp_set_object_terms( $product_id, absint($vendor->term_id), $MVX->taxonomy->taxonomy_name );
 
-                // Set product meta data
-                update_post_meta( $product_id, '_regular_price', sanitize_text_field( (string) $product->price ) ); // Regular price
-                update_post_meta( $product_id, '_sale_price', sanitize_text_field( (string) $product->sale_price ) ); // Sale price
-                update_post_meta( $product_id, '_price', sanitize_text_field( (string) $product->sale_price ) ); // Current price
-                update_post_meta( $product_id, '_stock_status', sanitize_text_field( (string) $product->stock_status ) ); // Stock status
-                update_post_meta( $product_id, '_manage_stock', sanitize_text_field( (string) $product->manage_stock ) ); // Enable stock management
-                update_post_meta( $product_id, '_stock', sanitize_text_field( (string) $product->stock ) ); // Stock quantity
+                // Set product category
+                foreach( $product->categories->category as $category){
+                    $category_name = sanitize_text_field( (string) $category );
+                    $term = term_exists( $category_name, 'product_cat' );
 
-                $category_name = sanitize_text_field( (string) $product->category );
-                $term = term_exists( $category_name, 'product_cat' );
+                    // If the category doesn't exist, create it
+                    if ( ! $term ) {
+                        $term = wp_insert_term( $category_name, 'product_cat' );
+                    }
 
-                // If the category doesn't exist, create it
-                if ( ! $term ) {
-                    $term = wp_insert_term( $category_name, 'product_cat' );
+                    if ( ! is_wp_error( $term ) ) {
+                        // Get the term ID 
+                        $term_id = is_array( $term ) ? $term['term_id'] : $term;
+
+                        // Assign the category to the product
+                        wp_set_object_terms( $product_id, (int)$term_id, 'product_cat', true );
+                    }
                 }
 
-                if ( ! is_wp_error( $term ) ) {
-                    // Get the term ID 
-                    $term_id = is_array( $term ) ? $term['term_id'] : $term;
-
-                    // Assign the category to the product
-                    wp_set_object_terms( $product_id, (int)$term_id, 'product_cat', true );
+                // Set product meta data
+                foreach( $product->meta->postmeta as $meta){
+                    update_post_meta( $product_id, sanitize_text_field( (string) $meta->meta_key ), sanitize_text_field( (string)  $meta->meta_value ) );
                 }
 
                 array_push( $product_ids, $product_id);
+                if( isset( $product->images )) {
+                    foreach( $product->images->image as $image ){
+
+                        if ( isset( $image->src ) ) {
+                            $src =  plugins_url( $image->src );
+                            $upload = wc_rest_upload_image_from_url( esc_url_raw($src) );
+
+                            if(! is_wp_error( $upload )){
+                                $attachment_id = wc_rest_set_uploaded_image_as_attachment( $upload );
+
+                                if ( wp_attachment_is_image( $attachment_id ) ) {
+                                    $parent = get_post($attachment_id);
+                                    $url = $parent->guid;
+
+                                    $size = @getimagesize($url);
+                                    $image_type = ( $size ) ? $size['mime'] : 'image/jpeg';
+                                    $object = array(
+                                        'ID' => $attachment_id,
+                                        'post_title' => basename($url),
+                                        'post_mime_type' => $image_type,
+                                        'guid' => $url,
+                                        'post_status'    => 'inherit',
+                                        );
+
+                                    $attachment_id = wp_insert_attachment($object, $url);
+
+                                    $metadata = wp_generate_attachment_metadata($attachment_id, $url);
+                                    wp_update_attachment_metadata($attachment_id, $metadata);
+
+                                    update_post_meta( $product_id, '_thumbnail_id', $attachment_id );
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
+        return $product_ids;
+    }
 
+    /**
+     * Import commissions data
+     */
+    public function import_commissions(){
         // importing commission structure
-        foreach( $xml->commissions->commission as $commission ) {
+        $xml = simplexml_load_file( __DIR__ . '/../assets/dummy-data/commissions.xml' );
+        if( ! $xml){
+            return;
+        }
+
+        foreach( $xml->commission as $commission ) {
             $category_name = sanitize_text_field( (string) $commission->category );
             $term          = term_exists( $category_name, 'product_cat' );
 
@@ -1119,26 +1206,38 @@ class MVX_Admin_Setup_Wizard {
                     switch($commission_type_value){
                         case 'fixed':        
                         case 'percent':
-                            add_term_meta( $term_id, 'commision', floatval(sanitize_text_field($commission->value)));
+                            add_term_meta( $term_id, 'commision', floatval(sanitize_text_field( (string) $commission->value)));
                             break;
         
                         case 'fixed_with_percentage':        
                         case 'fixed_with_percentage_qty':
-                            add_term_meta( $term_id, 'commission_percentage', floatval(sanitize_text_field($commission->value)));
+                            add_term_meta( $term_id, 'commission_percentage', floatval(sanitize_text_field( (string) $commission->value)));
                             break;
                     }
                 }                
             }
         }
+    }
 
-        $product_ids_for_orders = array_reverse( $product_ids );
+    /**
+     * Import dummy orders
+     * @global object $mvx
+     */
+    public function import_orders( $product_ids ){
+        global $MVX;
+        $product_ids = array_reverse( $product_ids );
 
         // importing orders
-        foreach( $xml->orders->order as $order){
-            $new_order = wc_create_order();
+        $xml = simplexml_load_file( __DIR__ . '/../assets/dummy-data/orders.xml' );
+        if( ! $xml){
+            return;
+        }
 
-            $product_id = array_pop( $product_ids_for_orders );
-            $product    = wc_get_product($product_id);
+        foreach( $xml->order as $order){
+            $new_order = wc_create_order();
+            $order_id = $new_order->get_id();
+
+            $product_id = array_pop( $product_ids );
             $quantity   = $order->quantity;
             $new_order->add_product( wc_get_product( $product_id ), $quantity );
 
@@ -1181,17 +1280,71 @@ class MVX_Admin_Setup_Wizard {
         
             $new_order->set_payment_method( sanitize_text_field( (string) $order->payment_method ) );
             $new_order->set_payment_method_title( sanitize_text_field( (string) $order->payment_method_title ) );
+
+            $new_order->update_meta_data('has_mvx_sub_order', true);
+            $items = $new_order->get_items();
+            $vendor_items = array();
+            foreach ($items as $item_id => $item) {
+                $has_vendor = get_mvx_product_vendors($item['product_id']);
+                if ($has_vendor) {
+                    $variation_id = isset($item['variation_id']) && !empty($item['variation_id']) ? $item['variation_id'] : 0;
+                    $item_commission = $MVX->commission->get_item_commission($item['product_id'], $variation_id, $item, $order_id, $item_id);
+                    $commission_values = $MVX->commission->get_commission_amount($item['product_id'], $has_vendor->term_id, $variation_id, $item_id, $order);
+                    $commission_rate = array('mode' => $MVX->vendor_caps->payment_cap['revenue_sharing_mode'], 'type' => $MVX->vendor_caps->payment_cap['commission_type']);
+                    $commission_rate['commission_val'] = isset($commission_values['commission_val']) ? $commission_values['commission_val'] : 0;
+                    $commission_rate['commission_fixed'] = isset($commission_values['commission_fixed']) ? $commission_values['commission_fixed'] : 0;
+                    $item['commission'] = $item_commission;
+                    $item['commission_rate'] = $commission_rate;
+                    $vendor_items[$has_vendor->id][$item_id] = $item;
+                }
+            }
+
+            if (count($vendor_items) != 0){
+                // update parent order meta
+                $new_order->update_meta_data('has_mvx_sub_order', true);
+                foreach ($vendor_items as $vendor_id => $items) {
+                    if (!empty($items)) {
+                        $vendor_orderid = MVX_Order::create_vendor_order($new_order, array(
+                                    'order_id' => $order_id,
+                                    'vendor_id' => $vendor_id,
+                                    // 'posted_data' => $posted_data,
+                                    'line_items' => $items
+                        ));
+                        $vendor_order = wc_get_order( $vendor_orderid );
+                        $commission_id = MVX_Commission::create_commission($vendor_order);
+                        if ($commission_id) {
+                            // Calculate commission
+                            MVX_Commission::calculate_commission($commission_id, $vendor_order);
+                            // add commission id with associated vendor order
+                            $vendor_order->update_meta_data('_commission_id', $commission_id );
+                            // Mark commissions as processed
+                            $vendor_order->update_meta_data('_commissions_processed', 'yes' );
+                            $vendor_order->save();
+                        }
+                    }
+                }
+            }
         
             $new_order->calculate_totals();
-        
             $new_order->update_status( 'processing', 'Order imported' );
+            $new_order->save();
         }
+    }
 
-        $product_ids_for_reviews = array_reverse( $product_ids );
+    /**
+     * Import dummy reviews
+     */
+    public function import_reviews( $product_ids ){
+        $product_ids = array_reverse( $product_ids );
 
         // importing reviews
-        foreach ( $xml->reviews->review as $review ) {
-            $product_id = array_pop( $product_ids_for_reviews );
+        $xml = simplexml_load_file( __DIR__ . '/../assets/dummy-data/reviews.xml' );
+        if( ! $xml){
+            return;
+        }
+
+        foreach ( $xml->review as $review ) {
+            $product_id = array_pop( $product_ids );
 
             $comment_data = array(
                 'comment_post_ID'      => $product_id,
@@ -1219,9 +1372,6 @@ class MVX_Admin_Setup_Wizard {
                 update_post_meta( $product_id, '_wc_average_rating', $average_rating );
             }
         }
-
-        wp_redirect(esc_url_raw($this->get_next_step_link()));
-        exit;
     }
 
     /**

@@ -1,0 +1,30 @@
+<orders>
+    <order>
+        <first_name>John</first_name>
+        <last_name>Doe</last_name>
+        <email>john.doe@example.com</email>
+        <address_1>123 Main Street</address_1>
+        <address_2></address_2>
+        <city>Anytown</city>
+        <state>CA</state>
+        <postcode>12345</postcode>
+        <country>United States (US)</country>
+        <quantity>1</quantity>
+        <payment_method>cod</payment_method>
+        <payment_method_title>Cash on delivery</payment_method_title>
+    </order>
+    <order>
+        <first_name>Jane</first_name>
+        <last_name>Smith</last_name>
+        <email>jane.smith@example.com</email>
+        <address_1>123 Main Street</address_1>
+        <address_2></address_2>
+        <city>Anytown</city>
+        <state>CA</state>
+        <postcode>12345</postcode>
+        <country>United States (US)</country>
+        <quantity>2</quantity>
+        <payment_method>cod</payment_method>
+        <payment_method_title>Cash on delivery</payment_method_title>
+    </order>
+</orders>

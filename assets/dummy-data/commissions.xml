@@ -1,0 +1,14 @@
+<commissions>
+    <commission>
+        <category>Art</category>
+        <value>5</value>
+    </commission>
+    <commission>
+        <category>Electronics</category>
+        <value>10</value>
+    </commission>
+    <commission>
+        <category>Fashion</category>
+        <value>15</value>
+    </commission>
+</commissions>
