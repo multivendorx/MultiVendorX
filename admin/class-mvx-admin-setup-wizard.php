@@ -986,14 +986,14 @@ class MVX_Admin_Setup_Wizard {
         check_admin_referer('mvx-setup');
         $marketplace_type = filter_input(INPUT_POST, 'marketplace_type');
 
-        // $this->import_vendors();
+        $this->import_vendors();
         $product_ids = $this->import_products($marketplace_type);
-    //     $this->import_commissions();
-    //     $this->import_orders($product_ids);
-    //     $this->import_reviews($product_ids);
+        $this->import_commissions();
+        $this->import_orders($product_ids);
+        $this->import_reviews($product_ids);
 
-    //     wp_redirect(esc_url_raw($this->get_next_step_link()));
-    //     exit;
+        wp_redirect(esc_url_raw($this->get_next_step_link()));
+        exit;
     }
 
     /**
