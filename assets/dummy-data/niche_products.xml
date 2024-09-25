@@ -136,10 +136,6 @@
         <meta_value>no</meta_value>
       </postmeta>
       <postmeta>
-        <meta_key>_product_image_gallery</meta_key>
-        <meta_value>32,33</meta_value>
-      </postmeta>
-      <postmeta>
         <meta_key>_download_limit</meta_key>
         <meta_value>0</meta_value>
       </postmeta>
@@ -178,10 +174,6 @@
       <postmeta>
         <meta_key>_product_version</meta_key>
         <meta_value>3.5.3</meta_value>
-      </postmeta>
-      <postmeta>
-        <meta_key>_thumbnail_id</meta_key>
-        <meta_value>31</meta_value>
       </postmeta>
       <postmeta>
         <meta_key>_price</meta_key>
@@ -305,10 +297,6 @@
         <meta_value>no</meta_value>
       </postmeta>
       <postmeta>
-        <meta_key>_product_image_gallery</meta_key>
-        <meta_value>35,36,37</meta_value>
-      </postmeta>
-      <postmeta>
         <meta_key>_download_limit</meta_key>
         <meta_value>0</meta_value>
       </postmeta>
@@ -347,10 +335,6 @@
       <postmeta>
         <meta_key>_product_version</meta_key>
         <meta_value>3.5.3</meta_value>
-      </postmeta>
-      <postmeta>
-        <meta_key>_thumbnail_id</meta_key>
-        <meta_value>34</meta_value>
       </postmeta>
       <postmeta>
         <meta_key>_price</meta_key>
@@ -479,10 +463,6 @@
         <meta_value>no</meta_value>
       </postmeta>
       <postmeta>
-        <meta_key>_product_image_gallery</meta_key>
-        <meta_value></meta_value>
-      </postmeta>
-      <postmeta>
         <meta_key>_download_limit</meta_key>
         <meta_value>0</meta_value>
       </postmeta>
@@ -525,10 +505,6 @@
       <postmeta>
         <meta_key>_price</meta_key>
         <meta_value>45</meta_value>
-      </postmeta>
-      <postmeta>
-        <meta_key>_thumbnail_id</meta_key>
-        <meta_value>37</meta_value>
       </postmeta>
     </meta>
   </item>
