@@ -64,8 +64,6 @@ class MVX_Cron_Job {
 
     /**
      * Calculate the amount and selete payment method.
-     *
-     *
      */
     function do_mass_payment() {
         global $MVX;

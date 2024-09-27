@@ -23,7 +23,7 @@ extract($vendor_list);
 <div class="mvx-store-map-filter">
     <?php if (!mvx_mapbox_api_enabled()) { ?>
         <div class="mvx-inp-wrap">
-            <input type="text" name="locationText" id="locationText" placeholder="<?php esc_attr_e('Enter Address', 'multivendorx'); ?>" value="<?php echo isset($request['locationText']) ? htmlspecialchars($request['locationText'], ENT_QUOTES, 'UTF-8') : ''; ?>">
+            <input type="text" name="locationText" id="locationText" placeholder="<?php esc_attr_e('Enter Address', 'multivendorx'); ?>" value="<?php echo isset($request['locationText']) ? $request['locationText'] : ''; ?>">
         </div>
     <?php } ?>
     <div class="mvx-inp-wrap">

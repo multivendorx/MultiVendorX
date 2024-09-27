@@ -659,11 +659,11 @@ $scroll-color:#ece8f1;
   
 @font-face {
   font-family: 'mvx-module';
-  src:  url('../fonts/modules/mvx-module.eot?wax3jh');
-  src:  url('../fonts/modules/mvx-module.eot?wax3jh#iefix') format('embedded-opentype'),
-    url('../fonts/modules/mvx-module.ttf?wax3jh') format('truetype'),
-    url('../fonts/modules/mvx-module.woff?wax3jh') format('woff'),
-    url('../fonts/modules/mvx-module.svg?wax3jh#mvx-module') format('svg');
+  src: url('../fonts/modules/mvx-module.eot?ayxl59');
+  src: url('../fonts/modules/mvx-module.eot?ayxl59#iefix') format('embedded-opentype'),
+        url('../fonts/modules/mvx-module.ttf?ayxl59') format('truetype'),
+        url('../fonts/modules/mvx-module.woff?ayxl59') format('woff'),
+        url('../fonts/modules/mvx-module.svg?ayxl59#mvx-module') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -881,11 +881,6 @@ $scroll-color:#ece8f1;
 .module-store-support:before {
   content: "\e941";
 }
-
-.module-mvx-blocks:before {
-  content: "\e942";
-}
-
 
 /*icon end*/
  
@@ -3380,7 +3375,6 @@ padding:0;
   background-color:$fill-color !important;// to set popup and crack inline css
  .MuiDialogContent-root{
     padding:1.5rem 0rem 2.5rem;
-    margin-bottom: 1rem;
   } 
   .MuiDialogTitle-root {
     position: relative;
@@ -4185,23 +4179,4 @@ table.mvx-shipping-zone-methods {
       }
     }
   }
-}
-
-.pending-btn{
-  margin-left: 0.75rem;
-}
-
-.MuiPaper-root .MuiDialogTitle-root{
-  overflow: visible !important;
-
-  i{
-    position: absolute;
-    top: -0.5rem;
-    right: -1rem;
-    font-size: 0.875rem;
-  }
-}
-
-h2 .mvx-module-dialog-title{
-  padding-right: 1rem;
 }

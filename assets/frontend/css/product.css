@@ -20,6 +20,7 @@
   padding: 3px;
   border-radius: 3px;
 }
+
 .mvx_fpm_buttons .mvx_fpm_button {
   display: block;
   float: left;
@@ -33,6 +34,7 @@
   color: #fff;
   text-decoration: none;
 }
+
 .mvx_fpm_buttons .mvx_fpm_button_separator {
   color: #fff;
 }
@@ -47,9 +49,10 @@
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgb(0, 0, 0);
+  background-color: black;
   background-color: rgba(0, 0, 0, 0.4);
 }
+
 .mvx-report-abouse-wrapper .modal-content {
   background-color: #fefefe;
   margin: auto;
@@ -60,21 +63,25 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   max-height: 90vh;
   overflow: auto;
   text-align: left;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
   animation-name: animatetop;
   animation-duration: 0.4s;
 }
+
 .mvx-report-abouse-wrapper .modal-content .modal-header {
   padding: 16px 20px;
   border-bottom: 1px solid #eee;
   position: relative;
 }
+
 .mvx-report-abouse-wrapper .modal-content .modal-footer {
   padding: 10px 20px;
   margin-bottom: 0;
@@ -84,6 +91,7 @@
   z-index: 1;
   position: relative;
 }
+
 .mvx-report-abouse-wrapper .modal-content .modal-body {
   max-height: 52vh;
   overflow: auto;
@@ -91,6 +99,7 @@
   width: 100%;
   padding: 20px 20px 0 20px;
 }
+
 .mvx-report-abouse-wrapper .modal-header button.close {
   padding: 3px;
   cursor: pointer;
@@ -107,11 +116,13 @@
   text-shadow: 0 1px 0 #ffffff;
   opacity: 0.2;
 }
+
 .mvx-report-abouse-wrapper .modal-header h2 {
   margin: 0;
   font-size: 18px;
   display: inline-block;
 }
+
 .mvx-report-abouse-wrapper textarea {
   margin: 0 0 6px;
   font-size: 15px;
@@ -119,30 +130,13 @@
   font-weight: normal;
   color: #616161;
 }
+
 .mvx-report-abouse-wrapper .toggle-content {
   padding: 10px;
   border: 1px solid #ddd;
 }
+
 .mvx-report-abouse-wrapper .toggle-content .close {
   display: none;
 }
-
-.single-product-vendor {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-.single-product-vendor img {
-  width: 3.75rem;
-  height: 3.75rem;
-  border-radius: 50%;
-}
-.single-product-vendor h2 {
-  margin: 0 !important;
-  font-size: 2rem;
-}
-.single-product-vendor p {
-  width: 100%;
-  margin: 0;
-}/*# sourceMappingURL=product.css.map */
+/*# sourceMappingURL=product.css.map */

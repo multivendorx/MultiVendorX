@@ -601,7 +601,7 @@ class MVX_REST_API {
         ] );
 
         //pending products bulk approve or dismiss
-        register_rest_route( 'mvx_module/v1', '/fetch_all_settings_for_searching', [
+        register_rest_route( 'mvx_module/v1', '/search-settings', [
             'methods' => WP_REST_Server::READABLE,
             'callback' => array( $this, 'mvx_fetch_all_settings_for_searching' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
@@ -846,6 +846,38 @@ class MVX_REST_API {
             'callback' => array( $this, 'mvx_bulk_todo_request_profile_deletion' ),
             'permission_callback' => array( $this, 'save_settings_permission' )
         ] );
+
+        // get database setting for a tab.
+        register_rest_route( 'mvx_module/v1', '/tabsettings', [
+            'methods' => WP_REST_Server::ALLMETHODS,
+            'callback' => [ $this, 'get_tabsettings' ],
+            'permission_callback' => [ $this, 'save_settings_permission' ]
+        ] );
+
+        // get database setting for vendor.
+    }
+
+    /**
+     * Get the tab setting of a given tab.
+     * This function will shifed to setting manager class. !!!
+     * @return WP_REST_Response
+     */
+    public function get_tabsettings( $request ) {
+        $tabname    = $request->get_param( 'tabname' );
+        $vendor_id  = $request->get_param( 'vendorid' );
+        $response   = [];
+        
+        // Required vendor related settings.
+        if ( $vendor_id ) {
+            
+        }
+        // Required normal tab settings
+        else if ( $tabname ) {
+            $option_key = 'mvx_' . str_replace( "-", "_", $tabname ) .'_tab_settings';
+            $response   = get_option( $option_key, [] );
+        }
+
+        return rest_ensure_response( ( object )$response );
     }
 
     public function mvx_create_product($request) {
@@ -1025,7 +1057,7 @@ class MVX_REST_API {
                     array(
                         'key'     => '_customer_refund_order',
                         'value'   => array('refund_request', 'refund_accept', 'refund_reject'),
-                        'compare' => 'IN'
+                        'compare' => '='
                     )
                 )
             );
@@ -1083,7 +1115,7 @@ class MVX_REST_API {
             }
 
             $lists[] = array(
-                'order_id'          =>  $order->get_id(),
+                'order_id'          =>  $post_id,
                 'vendor'            =>  get_user_by('ID', $order->get_meta('_vendor_id', true))->display_name,
                 'refund_reason'     =>  $order->get_meta('_customer_refund_reason') ? esc_html($order->get_meta('_customer_refund_reason')) : '-',
                 'refunded_amount'   =>  $refund_amount,
@@ -1312,7 +1344,7 @@ class MVX_REST_API {
 
             if(isset($verification_settings['address_verification']['is_verified']) && $verification_settings['address_verification']['is_verified'] == 'verified' && isset($verification_settings['id_verification']['is_verified']) && $verification_settings['id_verification']['is_verified'] == 'verified'){
                 update_user_meta($user_id, 'mvx_vendor_is_verified', 'verified');
-                update_user_meta($user_id, '_verify_vendor', 'Enable');
+
             }else{
                 delete_user_meta($user_id, 'mvx_vendor_is_verified');
             }
@@ -1702,17 +1734,11 @@ class MVX_REST_API {
             add_comment_meta($comment_id, '_author_id', get_current_user_id());
         } elseif ($key == 'approve_product') {
             $product_id = $value['id'];
-            $vendor_id = $value['vendor_id'];
-            $post = get_post($product_id);
-            $vendor = get_mvx_vendor($vendor_id);
             $post_update = array(
                 'ID'            => $product_id,
                 'post_status'   => 'publish',
             );
             wp_update_post( $post_update );
-            $email_vendor = WC()->mailer()->emails['WC_Email_Vendor_Product_Approved'];
-            $email_vendor->trigger($product_id, $post, $vendor);
-            
         } elseif ($key == 'approve_vendor') {
             $vendor_id = $value['id'];
             if ($vendor_id) {
@@ -2517,7 +2543,7 @@ class MVX_REST_API {
 
     public function mvx_fetch_all_settings_for_searching($request) {
         $value = $request && $request->get_param('value') ? $request->get_param('value') : 0;
-        $list_of_titles = $mvx_parent_tabs_datas = [];
+        $list_of_titles = [];
         $all_fields_data = mvx_admin_backend_settings_fields_details();
 
         $all_tab_fileds = mvx_admin_backend_tab_settings();
@@ -3255,10 +3281,9 @@ class MVX_REST_API {
     public function mvx_create_knowladgebase($request) {
         $all_details = [];
         $fetch_data = $request->get_param('model');
-        $fetch_status = $request->get_param('pendingButton') == 'true' ? 'pending' : 'publish';
         $knowladgebase_title = $fetch_data && isset($fetch_data['knowladgebase_title']) ? $fetch_data['knowladgebase_title'] : '';
         $knowladgebase_content = $fetch_data && isset($fetch_data['knowladgebase_content']) ? $fetch_data['knowladgebase_content'] : '';
-        $post_id = wp_insert_post( array( 'post_title' => $knowladgebase_title, 'post_type' => 'mvx_university', 'post_status' => $fetch_status, 'post_content' => $knowladgebase_content ) );
+        $post_id = wp_insert_post( array( 'post_title' => $knowladgebase_title, 'post_type' => 'mvx_university', 'post_status' => 'publish', 'post_content' => $knowladgebase_content ) );
         $all_details['redirect_link'] = admin_url('admin.php?page=mvx#&submenu=work-board&name=knowladgebase&knowladgebaseID='. $post_id .'');
         return $all_details;
     }
@@ -3278,9 +3303,8 @@ class MVX_REST_API {
             $knowladgebase_list[] = array(
                 'id'            =>  $knowladgebasevalue->ID,
                 'sample_title'  =>  $knowladgebasevalue->post_title,
-                'title'         =>  '<a href="' . sprintf('?page=%s&name=%s&knowladgebaseID=%s', 'mvx#&submenu=work-board', 'knowladgebase', $knowladgebasevalue->ID) . '">' . $knowladgebasevalue->post_title . '</a>',
-                'date'          =>  mvx_date($knowladgebasevalue->post_modified),
-                'status'        =>  ucfirst($knowladgebasevalue->post_status),
+                'title'         =>  '<a href="' . sprintf('?page=%s&name=%s&knowladgebaseID=%s', 'mvx#&submenu=work-board', 'knowladgebase', $knowladgebasevalue->ID) . '">#' . $knowladgebasevalue->post_title . '</a>',
+                'date'          =>  $knowladgebasevalue->post_modified,
                 'link'          =>  sprintf('?page=%s&name=%s&knowladgebaseID=%s', 'mvx#&submenu=work-board', 'knowladgebase', $knowladgebasevalue->ID),
                 'type'          =>  'post_knowladgebase',
             );
@@ -3321,7 +3345,7 @@ class MVX_REST_API {
     public function mvx_update_knowladgebase($request) {
         $knowladgebase_id = $request && $request->get_param('knowladgebase_id') ? ($request->get_param('knowladgebase_id')) : 0;
         $fetch_data = $request->get_param('model');
-        $knowladgebase_status = $request->get_param('pendingButton') == 'true' ? 'pending' : 'publish';
+        
         $knowladgebase_post = array(
             'ID'    =>  $knowladgebase_id,
         );
@@ -3331,9 +3355,6 @@ class MVX_REST_API {
         }
         if (isset($fetch_data['knowladgebase_content']) && !empty($fetch_data['knowladgebase_content'])) {
             $knowladgebase_post['post_content'] = $fetch_data['knowladgebase_content'];
-        }
-        if (!empty($knowladgebase_status)) {
-            $knowladgebase_post['post_status'] = $knowladgebase_status;
         }
         // Update the post into the database
         wp_update_post( $knowladgebase_post );
@@ -3562,9 +3583,6 @@ class MVX_REST_API {
             }
 
             $commission_value = get_user_meta($vendor_id, '_vendor_commission', true);
-            $commission_percentage_value = get_user_meta($vendor_id, '_vendor_commission_percentage', true);
-            $commission_fixed_with_percentage_value = get_user_meta($vendor_id, '_vendor_commission_fixed_with_percentage', true);
-            $commission_fixed_with_percentage_qty_value = get_user_meta($vendor_id, '_vendor_commission_fixed_with_percentage_qty', true);
             $vendor_paypal_email = get_user_meta($vendor_id, '_vendor_paypal_email', true);
 
             $vendor_bank_name = get_user_meta($vendor_id, '_vendor_bank_name', true);
@@ -4234,43 +4252,6 @@ class MVX_REST_API {
 
         $settings_fields_data['vendor-followers'] =   [];
         
-        if (isset($MVX->vendor_caps->payment_cap['commission_type']['value']) && $MVX->vendor_caps->payment_cap['commission_type']['value'] == 'fixed_with_percentage') {
-            array_splice($settings_fields_data['vendor-payments'], 1, 1);
-            $settings_fields_data['vendor-payments'][] =
-            [
-                'label' => __('Commission Percentage(%)', 'multivendorx'),
-                'key'   => 'vendor_commission_percentage',
-                'type' => 'number',
-                'database_value' => isset($commission_percentage_value) ? $commission_percentage_value : '',
-                'desc'  =>  ''
-            ];
-            $settings_fields_data['vendor-payments'][] = [
-                'label' => __('Commission(fixed), Per Transaction', 'multivendorx'),
-                'key'   => 'vendor_commission_fixed_with_percentage',
-                'type' => 'number',
-                'database_value' => isset($commission_fixed_with_percentage_value) ? $commission_fixed_with_percentage_value : '',
-                'desc'  =>  ''
-            ];
-        }
-
-        if (isset($MVX->vendor_caps->payment_cap['commission_type']['value']) && $MVX->vendor_caps->payment_cap['commission_type']['value'] == 'fixed_with_percentage_qty') {
-            array_splice($settings_fields_data['vendor-payments'], 1, 1);
-            $settings_fields_data['vendor-payments'][] =
-            [
-                'label' => __('Commission Percentage(%)', 'multivendorx'),
-                'key'   => 'vendor_commission_percentage',
-                'type' => 'number',
-                'database_value' => isset($commission_percentage_value) ? $commission_percentage_value : '',
-                'desc'  =>  ''
-            ];
-            $settings_fields_data['vendor-payments'][] = [
-                'label' => __('Commission Fixed Per Unit', 'multivendorx'),
-                'key'   => 'vendor_commission_fixed_with_percentage_qty',
-                'type' => 'number',
-                'database_value' => isset($commission_fixed_with_percentage_qty_value) ? $commission_fixed_with_percentage_qty_value : '',
-                'desc'  =>  ''
-            ];
-        }
         return rest_ensure_response(apply_filters('mvx_vendors_tab_routes', $settings_fields_data, $vendor_id));
     }
 
@@ -6348,6 +6329,7 @@ class MVX_REST_API {
         $modulename = str_replace("-", "_", $modulename);
         $get_managements_data = $req->get_param( 'model' );
         $optionname = 'mvx_'.$modulename.'_tab_settings';
+        MVX()->utility->LOG( "Hello" );
         mvx_update_option($optionname, $get_managements_data);
         if ($modulename == 'products_capability') {
             $MVX->vendor_caps->update_mvx_vendor_role_capability();

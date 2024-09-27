@@ -14,7 +14,7 @@ global $MVX;
 
 ?>
 <header class="woocommerce-products-header">
-	<?php if ( apply_filters( 'mvx_show_page_title', false ) ) : ?>
+	<?php if ( apply_filters( 'mvx_show_page_title', true ) ) : ?>
 		<div class="woocommerce-products-header__title page-title"><?php is_tax($MVX->taxonomy->taxonomy_name) ? woocommerce_page_title() : print(get_user_meta( mvx_find_shop_page_vendor(), '_vendor_page_title', true )); ?></div>
 	<?php endif; ?>
 

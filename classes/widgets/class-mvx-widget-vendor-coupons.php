@@ -57,7 +57,7 @@ class MVX_Widget_Vendor_Coupons extends WC_Widget {
 			if ( $coupon->get_date_expires() && ( current_time( 'timestamp', true ) > $coupon->get_date_expires()->getTimestamp() ) ) continue;
 			
 
-			$content .= '<span class="mvx-store-coupon-single tips text_tip" title="' . esc_html( wc_get_coupon_type( $coupon->get_discount_type() ) ) . ': ' . esc_html( wc_format_localized_price( $coupon->get_amount() ) ) . ($coupon->get_date_expires() ? ' ' . __( 'Expiry Date: ', 'multivendorx' ) . $coupon->get_date_expires()->date_i18n( 'F j, Y' ) : '' ) . ' ' . $vendor_coupon->post_excerpt . '">' . $vendor_coupon->post_title . '</span><br>';
+			$content .= '<span class="mvx-store-coupon-single tips text_tip" title="' . esc_html( wc_get_coupon_type( $coupon->get_discount_type() ) ) . ': ' . esc_html( wc_format_localized_price( $coupon->get_amount() ) ) . ($coupon->get_date_expires() ? ' ' . __( 'Expiry Date: ', 'multivendorx' ) . $coupon->get_date_expires()->date_i18n( 'F j, Y' ) : '' ) . ' ' . $vendor_coupon->post_excerpt . '">' . $vendor_coupon->post_title . '</span>';
 		}
 		
 		$content .= '</div>';

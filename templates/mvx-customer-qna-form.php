@@ -93,7 +93,7 @@ do_action('mvx_before_customer_qna_form');
                 </div>
             <?php }
                 if(count($cust_qna_data) > 4){
-                    echo '<div class="qna-item-wrap load-more-qna"><a href="" class="load-more-btn button" style="width:100%;text-align:center;">'.esc_html__('Load More', 'multivendorx').'</a></div>';
+                    echo '<div class="qna-item-wrap load-more-qna"><a href="" class="load-more-btn button" style="width:100%;text-align:center;">'.esc_html('Load More', 'multivendorx').'</a></div>';
                 }
             }
             ?>

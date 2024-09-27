@@ -95,7 +95,6 @@ jQuery(document).ready(function ($) {
     });
 
     $('body').on('click','.mvx-comment-reply', function () {
-        var product_id = $('#comment_product_id').val();
         var comment_id = $(this).data('comment_id');
         var vendor_id = $(this).data('vendor_id');
         var comment = $('#comment-content-' + comment_id).val();
@@ -108,8 +107,7 @@ jQuery(document).ready(function ($) {
             security: mvx_seller_review_rating_js_script_data.review_nonce,
             comment: comment,
             vendor_id: vendor_id,
-            comment_parent : comment_id,
-            product_id: product_id
+            comment_parent : comment_id
         };
         $.post(mvx_seller_review_rating_js_script_data.ajax_url, data, function (response) {
             if (response == 1) {

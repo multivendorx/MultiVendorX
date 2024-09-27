@@ -25,7 +25,7 @@ if ( !empty($mvx_vendor_followed_by_customer) ) {
             $user_details = get_user_by( 'ID', $value_followed['user_id'] );
             if ( !$user_details ) continue;
             echo '<tr><td>' . $row ['customer_name'] = $user_details->data->display_name . '</td>';
-            echo '<td>' . $row ['date'] = esc_html(human_time_diff(strtotime($value_followed['timestamp']))) . esc_html__(' ago', 'multivendorx') . '</td>';
+            echo '<td>' . $row ['date'] = esc_html(human_time_diff(strtotime($value_followed['timestamp']))) . esc_html(' ago', 'multivendorx') . '</td>';
             echo '<td>' . $row ['customer_name'] = $user_details->user_email . '</td></tr>';
         }
     }

@@ -4,19 +4,15 @@
 
 namespace Stripe\Service;
 
-/**
- * @phpstan-import-type RequestOptionsArray from \Stripe\Util\RequestOptions
- * @psalm-import-type RequestOptionsArray from \Stripe\Util\RequestOptions
- */
 class PayoutService extends \Stripe\Service\AbstractService
 {
     /**
-     * Returns a list of existing payouts sent to third-party bank accounts or payouts
-     * that Stripe sent to you. The payouts return in sorted order, with the most
+     * Returns a list of existing payouts sent to third-party bank accounts or that
+     * Stripe has sent you. The payouts are returned in sorted order, with the most
      * recently created payouts appearing first.
      *
      * @param null|array $params
-     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
+     * @param null|array|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -28,13 +24,13 @@ class PayoutService extends \Stripe\Service\AbstractService
     }
 
     /**
-     * You can cancel a previously created payout if its status is
-     * <code>pending</code>. Stripe refunds the funds to your available balance. You
-     * can’t cancel automatic Stripe payouts.
+     * A previously created payout can be canceled if it has not yet been paid out.
+     * Funds will be refunded to your available balance. You may not cancel automatic
+     * Stripe payouts.
      *
      * @param string $id
      * @param null|array $params
-     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
+     * @param null|array|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -46,20 +42,20 @@ class PayoutService extends \Stripe\Service\AbstractService
     }
 
     /**
-     * To send funds to your own bank account, create a new payout object. Your <a
-     * href="#balance">Stripe balance</a> must cover the payout amount. If it doesn’t,
-     * you receive an “Insufficient Funds” error.
+     * To send funds to your own bank account, you create a new payout object. Your <a
+     * href="#balance">Stripe balance</a> must be able to cover the payout amount, or
+     * you’ll receive an “Insufficient Funds” error.
      *
-     * If your API key is in test mode, money won’t actually be sent, though every
-     * other action occurs as if you’re in live mode.
+     * If your API key is in test mode, money won’t actually be sent, though everything
+     * else will occur as if in live mode.
      *
-     * If you create a manual payout on a Stripe account that uses multiple payment
-     * source types, you need to specify the source type balance that the payout draws
-     * from. The <a href="#balance_object">balance object</a> details available and
-     * pending amounts by source type.
+     * If you are creating a manual payout on a Stripe account that uses multiple
+     * payment source types, you’ll need to specify the source type balance that the
+     * payout should draw from. The <a href="#balance_object">balance object</a>
+     * details available and pending amounts by source type.
      *
      * @param null|array $params
-     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
+     * @param null|array|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -72,12 +68,12 @@ class PayoutService extends \Stripe\Service\AbstractService
 
     /**
      * Retrieves the details of an existing payout. Supply the unique payout ID from
-     * either a payout creation request or the payout list. Stripe returns the
+     * either a payout creation request or the payout list, and Stripe will return the
      * corresponding payout information.
      *
      * @param string $id
      * @param null|array $params
-     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
+     * @param null|array|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -89,18 +85,18 @@ class PayoutService extends \Stripe\Service\AbstractService
     }
 
     /**
-     * Reverses a payout by debiting the destination bank account. At this time, you
-     * can only reverse payouts for connected accounts to US bank accounts. If the
-     * payout is manual and in the <code>pending</code> status, use
-     * <code>/v1/payouts/:id/cancel</code> instead.
+     * Reverses a payout by debiting the destination bank account. Only payouts for
+     * connected accounts to US bank accounts may be reversed at this time. If the
+     * payout is in the <code>pending</code> status,
+     * <code>/v1/payouts/:id/cancel</code> should be used instead.
      *
-     * By requesting a reversal through <code>/v1/payouts/:id/reverse</code>, you
-     * confirm that the authorized signatory of the selected bank account authorizes
-     * the debit on the bank account and that no other authorization is required.
+     * By requesting a reversal via <code>/v1/payouts/:id/reverse</code>, you confirm
+     * that the authorized signatory of the selected bank account has authorized the
+     * debit on the bank account and that no other authorization is required.
      *
      * @param string $id
      * @param null|array $params
-     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
+     * @param null|array|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -112,13 +108,13 @@ class PayoutService extends \Stripe\Service\AbstractService
     }
 
     /**
-     * Updates the specified payout by setting the values of the parameters you pass.
-     * We don’t change parameters that you don’t provide. This request only accepts the
+     * Updates the specified payout by setting the values of the parameters passed. Any
+     * parameters not provided will be left unchanged. This request accepts only the
      * metadata as arguments.
      *
      * @param string $id
      * @param null|array $params
-     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
+     * @param null|array|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *

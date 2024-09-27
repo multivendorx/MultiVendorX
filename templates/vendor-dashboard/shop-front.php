@@ -61,7 +61,6 @@ $banner = $vendor->get_image('banner') ? $vendor->get_image('banner') : $MVX->pl
 <div class="col-md-12">
     <!-- <div class="mvx_headding2 card-header"><?php _e('General', 'multivendorx'); ?></div> -->
     <form method="post" name="shop_settings_form" class="mvx_shop_settings_form form-horizontal">
-        <input type="hidden" name= "tab_name" value="storefront" />
         <?php do_action('mvx_before_shop_front'); ?>
         <div class="panel panel-default pannel-outer-heading">
             <div class="panel-heading d-flex">

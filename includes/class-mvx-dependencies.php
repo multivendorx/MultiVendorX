@@ -16,7 +16,7 @@ class WC_Dependencies_Product_Vendor {
 
     /**
      * Check woocommerce exist
-     * @return Boolean
+     * @return bool
      */
     public static function woocommerce_active_check() {
         if (!self::$active_plugins)

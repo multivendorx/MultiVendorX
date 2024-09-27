@@ -4,8 +4,7 @@ namespace Stripe;
 
 /**
  * Class ApiResource.
- *
- * */
+ */
 abstract class ApiResource extends StripeObject
 {
     use ApiOperations\Request;

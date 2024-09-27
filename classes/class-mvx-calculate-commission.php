@@ -24,7 +24,7 @@ class MVX_Calculate_Commission {
             $this->mvx_order_reverse_action();
             $this->mvx_order_complete_action();
         } else {
-            add_action( 'mvx_checkout_vendor_order_processed', array( $this, 'mvx_create_commission' ), 10, 3);
+            // add_action( 'mvx_checkout_vendor_order_processed', array( $this, 'mvx_create_commission' ), 10, 3);
             add_action( 'woocommerce_order_refunded', array( $this, 'mvx_create_commission_refunds' ), 99, 2);
         }
         add_action( 'woocommerce_order_status_changed', array( $this, 'mvx_vendor_new_order_mail' ), 99, 4 );
@@ -42,6 +42,7 @@ class MVX_Calculate_Commission {
      */
     public function mvx_create_commission($vendor_order_id, $posted_data, $order) {
         global $MVX;
+
         $vendor_order = wc_get_order($vendor_order_id);
         $processed = $vendor_order->get_meta('_commissions_processed', true);
         if (!$processed && apply_filters( 'wcmp_create_order_commissions_as_per_statuses', true, $vendor_order_id )) {
@@ -70,17 +71,24 @@ class MVX_Calculate_Commission {
             'failed',
             'cancelled',
         ), $order_id, $from_status, $to_status ) ) || $to_status == 'failed') return;
-        // Collect all suborder.
+
+        // Assume the order is vendor order.
+        $vendor_orders = [ $order->get_id() ];
+
+        // If order is not vendor order then collect all suborder of its.
         if( !$order->get_parent_id() && $order->get_meta( 'has_mvx_sub_order', true ) ) {
-            $vendor_orders = get_mvx_suborders( $order_id );
-            foreach ( $vendor_orders as $vendor_order ) {
-                $already_triggered = $vendor_order->get_meta('_mvx_vendor_new_order_mail_triggered', true );
-                if( !$already_triggered ){
-                    $email_admin = WC()->mailer()->emails['WC_Email_Vendor_New_Order'];
-                    $email_admin->trigger( $vendor_order->get_id() );
-                    $vendor_order->update_meta_data( '_mvx_vendor_new_order_mail_triggered', true );
-                    $vendor_order->save();
-                }
+            $vendor_orders = get_mvx_suborders( $order_id, false, false );
+        }
+
+        // Trigger mail for all vendor orders.
+        foreach ( $vendor_orders as $v_order_id ) {
+            $vendor_order = wc_get_order($v_order_id);
+            $mvx_order_version = $vendor_order->get_meta('_mvx_order_version', true );
+            $already_triggered = $vendor_order->get_meta('_mvx_vendor_new_order_mail_triggered', true );
+            if( version_compare( $mvx_order_version, '3.4.2', '>=') && !$already_triggered ){
+                $email_admin = WC()->mailer()->emails['WC_Email_Vendor_New_Order'];
+                $email_admin->trigger( $v_order_id );
+                update_post_meta( $v_order_id, '_mvx_vendor_new_order_mail_triggered', true );
             }
         }
     }
@@ -109,11 +117,11 @@ class MVX_Calculate_Commission {
                 $line_items_refund = $shipping_item_refund = $tax_item_refund = $amount = $refund_item_totals = 0;
                 // if commission refund exists
                 if ($_refund->get_meta('_refunded_commissions', true)) {
-                    $commission_amt = $_refund->get_meta('_refunded_commissions', true);
+                    $commission_amt = get_post_meta($_refund->get_id(), '_refunded_commissions', true);
                     $refunds[$_refund->get_id()][$commission_id] = $commission_amt[$commission_id];
                 }
                 /** WC_Order_Refund items **/
-                foreach ($_refund->get_items() as $item_id => $item) { 
+                foreach ($_refund->get_items() as $item_id => $item) {
                     $refunded_item_id = $item['refunded_item_id'];
                     $refund_amount = $item['line_total'];
                     $refunded_item_id = $item['refunded_item_id'];
@@ -121,15 +129,15 @@ class MVX_Calculate_Commission {
                     if ($refund_amount != 0) { 
                         $refunded_total[$commission_id] += $refund_amount;
                         $line_items_refund += $refund_amount;
-
+                        
                         if(isset($items_commission_rates[$refunded_item_id])){
-                            if ($items_commission_rates[$refunded_item_id]['type']['value'] == 'fixed_with_percentage') {
+                            if ($items_commission_rates[$refunded_item_id]['type'] == 'fixed_with_percentage') {
                                 $amount = (float) $refund_amount * ( (float) $items_commission_rates[$refunded_item_id]['commission_val'] / 100 ) + (float) $items_commission_rates[$refunded_item_id]['commission_fixed'];
-                            } else if ($items_commission_rates[$refunded_item_id]['type']['value'] == 'fixed_with_percentage_qty') {
+                            } else if ($items_commission_rates[$refunded_item_id]['type'] == 'fixed_with_percentage_qty') {
                                 $amount = (float) $refund_amount * ( (float) $items_commission_rates[$refunded_item_id]['commission_val'] / 100 ) + ((float) $items_commission_rates[$refunded_item_id]['commission_fixed'] * $item['quantity']);
-                            } else if ($items_commission_rates[$refunded_item_id]['type']['value'] == 'percent') {
+                            } else if ($items_commission_rates[$refunded_item_id]['type'] == 'percent') {
                                 $amount = (float) $refund_amount * ( (float) $items_commission_rates[$refunded_item_id]['commission_val'] / 100 );
-                            } else if ($items_commission_rates[$refunded_item_id]['type']['value'] == 'fixed') {
+                            } else if ($items_commission_rates[$refunded_item_id]['type'] == 'fixed') {
                                 $amount = (float) $items_commission_rates[$refunded_item_id]['commission_val'] * $item['quantity'];
                             }
                             if (isset($items_commission_rates[$refunded_item_id]['mode']) && $items_commission_rates[$refunded_item_id]['mode'] == 'admin') {
@@ -236,10 +244,9 @@ class MVX_Calculate_Commission {
                         }
                     }
                     $refunded_amt_total += $comm_refunded_amt;
-                    $refund_order = wc_get_order($_refund_id);
-                    $refund_order->update_meta_data('_refunded_commissions', $commissions_refunded );
-                    $refund_order->update_meta_data('_refunded_commissions_total', $commissions_refunded_total );
-                    $refund_order->save();
+
+                    update_post_meta( $_refund_id, '_refunded_commissions', $commissions_refunded );
+                    update_post_meta( $_refund_id, '_refunded_commissions_total', $commissions_refunded_total );
                 }
                 
                 update_post_meta( $commission_id, '_commission_refunded_data', $refunds );
@@ -470,7 +477,7 @@ class MVX_Calculate_Commission {
      *
      * @param int $product_id
      * @param int $variation_id
-     * @param array $item
+     * @param object $item
      * @param int $order_id
      *
      * @return $commission_amount
@@ -588,7 +595,7 @@ class MVX_Calculate_Commission {
 
     public function mvx_get_commission_rule_by_quantity_rule($product_id = 0, $line_total = 0, $item_quantity = 0, $commission_rule = array()) {
         $mvx_variation_commission_options = mvx_get_option( 'mvx_variation_commission_options', array() );
-         $vendor_commission_quantity_rules = is_array($mvx_variation_commission_options) && isset( $mvx_variation_commission_options['vendor_commission_by_quantity'] ) ? $mvx_variation_commission_options['vendor_commission_by_quantity'] : array();
+        $vendor_commission_quantity_rules = is_array($mvx_variation_commission_options) && isset( $mvx_variation_commission_options['vendor_commission_by_quantity'] ) ? $mvx_variation_commission_options['vendor_commission_by_quantity'] : array();
 
         if( !$product_id ) return false;
 
@@ -806,6 +813,17 @@ class MVX_Calculate_Commission {
         $category_wise_commission->fixed_with_percentage = get_term_meta( $term_id, 'fixed_with_percentage', true ) ? get_term_meta( $term_id, 'fixed_with_percentage', true ) : 0;
         $category_wise_commission->fixed_with_percentage_qty = get_term_meta( $term_id, 'fixed_with_percentage_qty', true ) ? get_term_meta( $term_id, 'fixed_with_percentage_qty', true ) : 0;
         return apply_filters( 'mvx_multiple_category_wise_commission', $category_wise_commission, $product_id );
+    }
+
+    /**
+     * Get the calculated commissions of a order.
+     * It calculate commission before vendor order is created.
+     * @param mixed $order 
+     * @param array $items all items of a vendor order. 
+     * @return void
+     */
+    public function get_items_commissions( $order, $items ) {
+        // $th
     }
 
 }

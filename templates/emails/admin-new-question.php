@@ -22,7 +22,7 @@ do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 	<?php printf( esc_html__( "Query for : %s",  'multivendorx' ), $vendor->page_title ); ?><br>
 	<?php printf( esc_html__( "Query : %s",  'multivendorx' ), $question ); ?><br>
     <?php 
-    	$question_link = apply_filters( 'admin_question_redirect_link', admin_url( 'admin.php?page=mvx#&submenu=work-board&name=activity-reminder' ) ); 
+    	$question_link = apply_filters( 'admin_question_redirect_link', admin_url( 'admin.php?page=mvx-to-do' ) ); 
         printf( esc_html__( "You can approve or reject query from here : %s",  'multivendorx' ), $question_link ); ?><br><br>
 
         <?php printf( esc_html__( 'Note: Quick replies help to maintain a friendly customer-buyer relationship', 'multivendorx' )); ?>

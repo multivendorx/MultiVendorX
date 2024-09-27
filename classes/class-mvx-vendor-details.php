@@ -359,7 +359,7 @@ class MVX_Vendor {
     /**
      * Get all products belonging to vendor
      * @param  $args (default=array())
-     * @return arr Array of product post objects
+     * @return array Array of product post objects
      */
     public function get_products($args = array()) {
         global $MVX;
@@ -384,7 +384,7 @@ class MVX_Vendor {
     /**
      * Get all products ids belonging to vendor
      * @param $clauses SQL clauses
-     * @return arr Array of product ids
+     * @return array Array of product ids
      */
     public function get_products_ids( $clauses = array() ) {
         global $wpdb;
@@ -673,7 +673,7 @@ public function get_vendor_orders_by_product($vendor_term_id, $product_id, $star
                 </td>
                 <td scope="col" style="text-align:left; border: 1px solid #eee;">	
                     <?php
-                    echo apply_filters('mvx_order_item_quantity_text', $item->get_quantity(), $item);
+                    echo apply_filters('mvx_order_item_quantity_text', $item->get_quantity());
                     ?>
                 </td>
                 <td scope="col" style="text-align:left; border: 1px solid #eee;">
@@ -967,13 +967,7 @@ public function get_vendor_orders_by_product($vendor_term_id, $product_id, $star
                 $args = apply_filters('get_vendor_orders_reports_of_vendor_stats_query_args', wp_parse_args($args, $defaults));
                 
                 $query = array(
-                    'meta_query' => array(
-                        array(
-                            'key' => '_vendor_id',
-                            'value' => $args['vendor_id'],
-                            'compare' => '=',
-                        ),
-                    ),
+                    'author' => $args['vendor_id'],
                     'date_query' => array(
                         array(
                             'after'     => $args['start_date'],
@@ -1027,6 +1021,7 @@ public function get_vendor_orders_by_product($vendor_term_id, $product_id, $star
                 $args = apply_filters('get_vendor_orders_reports_of_pending_shipping_query_args', wp_parse_args($args, $defaults));
                 
                 $query = array(
+                    'author' => $args['vendor_id'],
                     'date_query' => array(
                         array(
                             'after'     => $args['start_date'],
@@ -1034,25 +1029,17 @@ public function get_vendor_orders_by_product($vendor_term_id, $product_id, $star
                             'inclusive' => true,
                         ),
                     ),
-                    'meta_query' => array(
-                        'relation' => 'AND',
+                    'meta_query'    => array(
+                        'relation' => 'OR',
                         array(
-                            'relation' => 'OR',
-                            array(
-                                'key'     => 'dc_pv_shipped',
-                                'compare' => 'NOT EXISTS',
-                            ),
-                            array(
-                                'key'     => 'mvx_vendor_order_shipped',
-                                'compare' => 'NOT EXISTS',
-                            ),
+                            'key'       => 'dc_pv_shipped',
+                            'compare'   => 'NOT EXISTS',
                         ),
                         array(
-                            'key'     => '_vendor_id',
-                            'value'   => $args['vendor_id'],
-                            'compare' => '=',
-                        ),
-                    ),                    
+                            'key'       => 'mvx_vendor_order_shipped',
+                            'compare'   => 'NOT EXISTS',
+                        )
+                    )
                 );
                 $vendor_orders = mvx_get_orders( $query, 'object' );
                 $reports = $vendor_orders;
@@ -1067,13 +1054,7 @@ public function get_vendor_orders_by_product($vendor_term_id, $product_id, $star
                 );
                 $args = apply_filters('get_vendor_orders_reports_of_default_query_args', wp_parse_args($args, $defaults));
                 $query = array(
-                    'meta_query' => array(
-                        array(
-                            'key' => '_vendor_id',
-                            'value' => $args['vendor_id'],
-                            'compare' => '=',
-                        ),
-                    ),
+                    'author' => $args['vendor_id'],
                     'date_query' => array(
                         array(
                             'after'     => $args['start_date'],

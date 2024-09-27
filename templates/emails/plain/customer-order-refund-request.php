@@ -22,7 +22,6 @@ if( $user_type != 'customer' ) {
     printf( __( "Refund Reason: %s",  'multivendorx' ), $refund_details['refund_reason']) . "\n";
     printf( __( "Additional Information: %s",  'multivendorx' ), $refund_details['addi_info']) . "\n";
     printf( __( "Refund Status: %s",  'multivendorx' ), $refund_details['status']) . "\n";
-    printf( __( 'Refund Product: %s', 'multivendorx' ), implode( ',', $refund_details['refund_product'] )) . "\n";
 }else{
     printf( __( "Your refund request for order %s is %s",  'multivendorx' ), $order->get_id(), $refund_details['status'] ) . "\n";
 }

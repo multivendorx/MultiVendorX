@@ -143,8 +143,6 @@ class MVX_Admin {
             remove_menu_page('edit.php');
             remove_menu_page('edit-comments.php');
             remove_menu_page('tools.php');
-            remove_submenu_page('woocommerce', 'wc-admin&path=/customers');
-            remove_submenu_page('wc-admin&path=/analytics/overview', 'wc-admin&path=/analytics/orders');
         }
     }
 
@@ -177,22 +175,32 @@ class MVX_Admin {
             wp_enqueue_script( 'site-health' );
             // get all settings fileds
             $settings_fields = mvx_admin_backend_settings_fields_details();
-            // get all tab settings fileds
+            // get all tab of settings fileds
             $mvx_all_backend_tab_list = mvx_admin_backend_tab_settings();
+
+            // if (!empty($settings_fields)) {
+            //     foreach ($settings_fields as $settings_key => $settings_value) {
+            //         foreach ($settings_value as $inter_key => $inter_value) {
+            //             $change_settings_key    =   str_replace("-", "_", $settings_key);
+            //             $option_name = 'mvx_'.$change_settings_key.'_tab_settings';
+            //             $database_value = mvx_get_option($option_name) ? get_option($option_name) : array();
+            //             if (!empty($database_value)) {
+            //                 if (isset($inter_value['key']) && array_key_exists($inter_value['key'], $database_value)) {
+            //                     if (empty($settings_fields[$settings_key][$inter_key]['database_value'])) {
+            //                        $settings_fields[$settings_key][$inter_key]['database_value'] = $database_value[$inter_value['key']];
+            //                     }
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
+            
+            $database_settings = [];
             if (!empty($settings_fields)) {
-                foreach ($settings_fields as $settings_key => $settings_value) {
-                    foreach ($settings_value as $inter_key => $inter_value) {
-                        $change_settings_key    =   str_replace("-", "_", $settings_key);
-                        $option_name = 'mvx_'.$change_settings_key.'_tab_settings';
-                        $database_value = mvx_get_option($option_name) ? get_option($option_name) : array();
-                        if (!empty($database_value)) {
-                            if (isset($inter_value['key']) && array_key_exists($inter_value['key'], $database_value)) {
-                                if (empty($settings_fields[$settings_key][$inter_key]['database_value'])) {
-                                   $settings_fields[$settings_key][$inter_key]['database_value'] = $database_value[$inter_value['key']];
-                                }
-                            }
-                        }
-                    }
+                foreach ($settings_fields as $key => $value) {
+                    $option_key = 'mvx_' . str_replace("-", "_", $key) .'_tab_settings';
+                    $option_value = get_option($option_key, []);
+                    $database_settings[$key] = (object) $option_value;
                 }
             }
 
@@ -338,8 +346,12 @@ class MVX_Admin {
                 'module12'             =>  __('Unlock ', 'multivendorx'),
                 'module13'             =>  __('Upgrade To Pro', 'multivendorx'),
                 'module14'             =>  __('Pro', 'multivendorx'),
+                'module15'             =>  __('Coupon Code: ', 'multivendorx'),
                 'module16'             =>  __('Activate 30+ Pro Modules', 'multivendorx'),
                 'module17'             =>  __("Enable this Modules by upgrading to our Pro Plan, and unleash your preferred modules to supercharge your website's potential!", 'multivendorx'),
+                'module18'             =>  __("Today's Offer", 'multivendorx'),
+                'module19'             =>  __('Why wait, grab the 15% discount and enjoy using Pro with unlimited features.', 'multivendorx'),
+                'module20'             =>  __('UP15', 'multivendorx'),
                 'module21'             => 'https://multivendorx.com/pricing/'
             );
 
@@ -411,9 +423,7 @@ class MVX_Admin {
                 'optional_note'  =>  __('Optional note for acceptance / rejection', 'multivendorx'),
                 'select_option'  =>  __('Select your desired option', 'multivendorx'),
                 'delete_user'  =>  __('Delete User Permanently', 'multivendorx'),
-                'delete_vendor_product_draft'  =>  __('Delete Vendor Profile and make their product draft', 'multivendorx'),
-                'delete_vendor_product_admin'  =>  __('Delete Vendor Profile and assign their product to admin', 'multivendorx'),
-
+                'delete_vendor'  =>  __('Delete Vendor Profile', 'multivendorx'),
                 'modal_button_text'  =>  __('Confirm', 'multivendorx'),
                 'back' => __('Back', 'multivendorx'),
             );
@@ -722,30 +732,30 @@ class MVX_Admin {
                     'button'=> true,
                     'last_action'   =>  'eyeicon_trigger'
                 ),
-                array(
-                'name'      =>  __('Email', 'multivendorx'),
+            /*array(
+            'name'      =>  __('Email', 'multivendorx'),
+            'selector'  =>  '',
+            'sortable'  =>  true,
+            'selector_choice'  => "email",
+            ),*/
+            /*array(
+            'name'      =>  __('Registered', 'multivendorx'),
+            'selector'  =>  '',
+            'sortable'  =>  true,
+            'selector_choice'  => "registered",
+            ),*/
+            array(
+                'name'      =>  __('Products', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
-                'selector_choice'  => "email",
-                ),
-                array(
-                'name'      =>  __('Registered', 'multivendorx'),
+                'selector_choice'  => "products",
+            ),
+            array(
+                'name'      =>  __('Status', 'multivendorx'),
                 'selector'  =>  '',
                 'sortable'  =>  true,
-                'selector_choice'  => "registered",
-                ),
-                array(
-                    'name'      =>  __('Products', 'multivendorx'),
-                    'selector'  =>  '',
-                    'sortable'  =>  true,
-                    'selector_choice'  => "products",
-                ),
-                array(
-                    'name'      =>  __('Status', 'multivendorx'),
-                    'selector'  =>  '',
-                    'sortable'  =>  true,
-                    'selector_choice'  => "status",
-                )
+                'selector_choice'  => "status",
+            )
             ));
 
             $columns_vendor[] = array(
@@ -898,12 +908,6 @@ class MVX_Admin {
                     'selector'  =>  '',
                     'sortable'  =>  true,
                     'selector_choice'  => "title",
-                ),
-                array(
-                    'name'      =>  __('Status', 'multivendorx'),
-                    'selector'  =>  '',
-                    'sortable'  =>  true,
-                    'selector_choice'  => "status",
                 ),
                 array(
                     'name'      =>  __('Date', 'multivendorx'),
@@ -1130,7 +1134,7 @@ class MVX_Admin {
                 ),
                 array(
                     'value' => 'third_party_compartibility',
-                    'label' => __('Third Party Compatibility', 'multivendorx')
+                    'label' => __('Third Party Compartibility', 'multivendorx')
                 )
             );
 
@@ -1243,21 +1247,41 @@ class MVX_Admin {
                 'dashboard116'   =>  admin_url('admin.php?page=mvx#&submenu=settings&name=products'),
             );
 
+            // Preapere page list. Will move to utility function. !!!!!!!!
+            $page_list = [];
+            $pages = get_pages();
+            $woocommerce_pages = array(wc_get_page_id('shop'), wc_get_page_id('cart'), wc_get_page_id('checkout'), wc_get_page_id('myaccount'));
+            if($pages){
+                foreach ($pages as $page) {
+                    if (!in_array($page->ID, $woocommerce_pages)) {
+                        $page_list[] = array(
+                            'value'=> $page->ID,
+                            'label'=> $page->post_title,
+                            'key'=> $page->ID,
+                        );
+                    }
+                }
+            }
+
             wp_localize_script( 'mvx-modules-build-frontend', 'appLocalizer', apply_filters('mvx_module_complete_settings', [
-            'apiUrl' => home_url( '/wp-json' ),
-            'nonce' => wp_create_nonce( 'wp_rest' ),
+                // Required in new code
+                'apiUrl'        => untrailingslashit(get_rest_url()),
+                'nonce'         => wp_create_nonce( 'wp_rest' ),
+                'moduleList'    => mvx_get_option( 'mvx_all_active_module_list', [] ),
+                'pageList'      => $page_list,
+
             'marker_icon' => $MVX->plugin_url . 'assets/images/store-marker.png',
-            'mvx_logo' => $MVX->plugin_url.'assets/images/dclogo.svg',
+            'marketplace_logo' => $MVX->plugin_url.'assets/images/dclogo.svg',
+            'marketplace_text' => __('MultiVendorX', 'multivendorx'),
             'google_api'    =>  get_mvx_global_settings('google_api_key'),
             'mapbox_api'    =>  get_mvx_global_settings('mapbox_api_key'),
             'location_provider'    =>  get_mvx_global_settings('choose_map_api'),
             'store_location_check'    =>  get_mvx_global_settings('enable_store_map_for_vendor') && !empty(get_mvx_global_settings('enable_store_map_for_vendor')) ? true : false,
             'store_location_enabled'    =>  mvx_is_module_active('store-location'),
             'multivendor_right_white_logo' => $MVX->plugin_url.'assets/images/vertical-logo-white.png', 
-            'knowledgebase' => 'https://multivendorx.com/knowledgebase/',
-            'knowledgebase_title' => __('MVX knowledge Base', 'multivendorx'),
+            'knowledgebase_url'     => 'https://multivendorx.com/knowledgebase/',
+            'knowledgebase_title'   => __('MVX knowledge Base', 'multivendorx'),
             'search_module' =>  __('Search Modules', 'multivendorx'),
-            'marketplace_text' => __('MultiVendorX', 'multivendorx'),
             'search_module_placeholder' => __('Search Modules', 'multivendorx'),
             'pro_text' => __('Pro', 'multivendorx'),
             'documentation_extra_text' => __('For more info, please check the', 'multivendorx'),
@@ -1272,11 +1296,11 @@ class MVX_Admin {
             'add_knowladgebase_link' =>  admin_url('admin.php?page=mvx#&submenu=work-board&name=knowladgebase&create=knowladgebase'),
             'knowladgebase_back' =>  admin_url('admin.php?page=mvx#&submenu=work-board&name=knowladgebase'),
             'settings_fields' => apply_filters('mvx-settings-fileds-details', $settings_fields),
+            'databse_settings' => $database_settings,
             'countries'                 => wp_json_encode( array_merge( WC()->countries->get_allowed_country_states(), WC()->countries->get_shipping_country_states() ) ),
             'mvx_all_backend_tab_list' => $mvx_all_backend_tab_list,
             'mvx_vendor_application_header' =>  $vendor_application_header,
             'default_logo'                  => $MVX->plugin_url.'assets/images/WP-stdavatar.png',
-            'csv_button_alert'              => __('Please select the commission ID for which you want to generate the CSV', 'multivendorx'),
             'commission_bulk_list_option'   =>  $commission_bulk_list_action,
             'commission_header'             => $commission_header,
             'commission_status_list_action' =>  $commission_status_list_action,
@@ -1314,7 +1338,7 @@ class MVX_Admin {
             'select_module_category_option'         =>  $select_module_category_option,
             'errors_log'                            =>  $this->get_error_log_rows(100),
             'mvx_tinymce_key'                       =>  get_mvx_vendor_settings('mvx_tinymce_api_section', 'settings_general'),
-        ] ) );
+            ] ) );
         }
 
         
@@ -1511,29 +1535,18 @@ class MVX_Admin {
     }
 
     public function woocommerce_admin_end_order_menu_count( $processing_orders ) {
-        global $MVX;
         $args = array(
-            'post_status' => array('wc-processing'),
+        'post_status' => array('wc-processing'),
         );
         $sub_orders = mvx_get_orders( $args, 'ids', true );
         if ( empty( $sub_orders ) )
             $sub_orders = array();
-
-        if($MVX->hpos_is_enabled){
-            $params = [
-                'status' => 'processing',
-                'type' => 'shop_order',
-                'parent_order_id' => 0
-            ];
-        } else {
-            $params = [
-                'status'  => 'processing',
-                'return'  => 'ids',
-                'limit'   => -1,
-                'exclude' => $sub_orders,
-            ];
-        }
-        $processing_orders = count(wc_get_orders($params));
+        $processing_orders = count(wc_get_orders(array(
+            'status'  => 'processing',
+            'return'  => 'ids',
+            'limit'   => -1,
+            'exclude' => $sub_orders,
+            )));
 
         return $processing_orders;
     }

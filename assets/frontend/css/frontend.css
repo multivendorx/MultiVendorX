@@ -1,14 +1,14 @@
 /* fonts */
 @font-face {
-  font-family: mvx-frontend-font;
-  src: url("../fonts/mvx-frontend-font.eot?o0sqx5");
-  src: url("../fonts/mvx-frontend-font.eot?o0sqx5#iefix") format("embedded-opentype"), url("../fonts/mvx-frontend-font.ttf?o0sqx5") format("truetype"), url("../fonts/mvx-frontend-font.woff?o0sqx5") format("woff"), url("../fonts/mvx-frontend-font.svg?o0sqx5#mvx-frontend-font") format("svg");
-  font-weight: normal;
-  font-style: normal;
+  font-family: 'mvx-frontend-font';
+	src: url("../fonts/mvx-frontend-font.eot?vtl65e");
+	src: url("../fonts/mvx-frontend-font.eot?vtl65e#iefix") format('embedded-opentype'), url("../fonts/mvx-frontend-font.ttf?vtl65e") format('truetype'), url("../fonts/mvx-frontend-font.woff?vtl65e") format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 [class^=ico-], [class*=" ico-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: "mvx-frontend-font" !important;
+  font-family: 'mvx-frontend-font' !important;
   speak: never;
   font-style: normal;
   font-weight: normal;
@@ -53,7 +53,7 @@
 }
 
 .ico-twitter-icon:before {
-  content: "\e91e";
+  content: "\e908";
 }
 
 .ico-youtube-icon:before {
@@ -140,20 +140,13 @@
   content: "\e91d";
 }
 
-.ico-x:before {
-  content: "\e91e";
-}
-
-.ico-twitter:before {
-  content: "\e91e";
-}
-
 .vendor_description_background {
   position: relative;
   line-height: 0.8;
 }
 .vendor_description_background * {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .vendor_description {
@@ -188,7 +181,7 @@
   color: #4867aa;
 }
 .mvx_social_profile .ico-twitter-icon {
-  color: black;
+  color: #1da1f2;
 }
 .mvx_social_profile .ico-linkedin-icon {
   color: #007bb6;
@@ -499,6 +492,8 @@ a.mvx_vendor_detail {
   width: auto;
 }
 .mvx_vendor_banner_template.template3 .vendor_img_add {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 .mvx_vendor_banner_template.template3 .description_data {
@@ -588,32 +583,4 @@ a.mvx_vendor_detail {
     max-width: 70px;
     max-height: 70px;
   }
-}
-.following-table-parent {
-  /* border: 1px solid black !important; */
-  width: 100%;
-  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.2);
-  overflow: none;
-}
-
-@media screen and (max-width: 477px) {
-  .following-table-parent {
-    overflow: scroll;
-  }
-}
-.following-vendor-data {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.following-vendor-data a {
-  text-decoration: none;
-  text-transform: capitalize;
-}
-
-.following-vendor-data img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
 }/*# sourceMappingURL=frontend.css.map */

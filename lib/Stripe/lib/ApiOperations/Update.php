@@ -37,17 +37,13 @@ trait Update
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
      * @return static the saved resource
-     *
-     * @deprecated The `save` method is deprecated and will be removed in a
-     *     future major version of the library. Use the static method `update`
-     *     on the resource instead.
      */
     public function save($opts = null)
     {
         $params = $this->serializeParameters();
         if (\count($params) > 0) {
             $url = $this->instanceUrl();
-            list($response, $opts) = $this->_request('post', $url, $params, $opts, ['save']);
+            list($response, $opts) = $this->_request('post', $url, $params, $opts);
             $this->refreshFrom($response, $opts);
         }
 

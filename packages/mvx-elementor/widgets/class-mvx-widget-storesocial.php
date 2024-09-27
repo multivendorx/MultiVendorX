@@ -123,7 +123,7 @@ class MVX_Elementor_StoreSocial extends Widget_Social_Icons {
         $class_animation = '';
 
         if ( ! empty( $settings['hover_animation'] ) ) {
-            $class_animation = ' elementor-animation-' . esc_attr($settings['hover_animation']);
+            $class_animation = ' elementor-animation-' . $settings['hover_animation'];
         }
         ?>
         <div class="elementor-social-icons-wrapper">

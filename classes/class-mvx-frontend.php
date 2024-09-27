@@ -73,7 +73,7 @@ class MVX_Frontend {
         flush_rewrite_rules();
 
         // Customer follows vendor list on my account page
-        if ( mvx_is_module_active('follow-store') ) {
+        if ( mvx_is_module_active('store-follow') ) {
             add_filter( 'woocommerce_account_menu_items',array($this, 'mvx_customer_followers_vendor'), 99 );
             add_action( 'woocommerce_account_followers_endpoint', array($this, 'mvx_customer_followers_vendor_callback' ));
         }
@@ -492,9 +492,6 @@ class MVX_Frontend {
         wp_style_add_data('frontend_css', 'rtl', 'replace');
         wp_style_add_data('product_css', 'rtl', 'replace');
         wp_style_add_data('advance-product-manager', 'rtl', 'replace');
-
-        wp_register_style('my_account_css', $frontend_style_path . 'mvx-my-account' . $suffix . '.css', array(), $MVX->version);
-        wp_enqueue_style('my_account_css');
 
         if (is_vendor_dashboard() && is_user_logged_in() && (is_user_mvx_vendor(get_current_user_id()) || is_user_mvx_pending_vendor(get_current_user_id()) || is_user_mvx_rejected_vendor(get_current_user_id()))) {
             wp_enqueue_style('dashicons');
@@ -1032,57 +1029,33 @@ class MVX_Frontend {
         $items[ 'customer-logout' ] = __( 'Log out', 'multivendorx' );
         return $items;
     }
-   public function mvx_customer_followers_vendor_callback() {
-        global $MVX;
-        wp_enqueue_style('frontend_css');
+    public function mvx_customer_followers_vendor_callback() {
         $mvx_customer_follow_vendor = get_user_meta( get_current_user_id(), 'mvx_customer_follow_vendor', true ) ? get_user_meta( get_current_user_id(), 'mvx_customer_follow_vendor', true ) : array();
         ?>
-                <div class="following-table-parent">
-            <table class="woocommerce-orders-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
-                <thead>
-                    <tr>
-                        <th class="woocommerce-orders-table__header"><?php _e( 'Store Name', 'multivendorx' ) ?></th>
-                        <th class="woocommerce-orders-table__header"><?php _e( 'Rating', 'multivendorx' ) ?></th>
-                        <th class="woocommerce-orders-table__header"><?php _e( 'View Store', 'multivendorx' ) ?></th>
-                    </tr>
-                </thead>
-                    <tbody >
-                        <?php 
-                        if ($mvx_customer_follow_vendor) {
-                            foreach ($mvx_customer_follow_vendor as $key_follow_vendor => $value_follow_vendor) {
-                                $vendor = get_mvx_vendor($value_follow_vendor['user_id']);
-                                if (!$vendor) continue;
-                                ?>
-                                <tr class="woocommerce-orders-table__row">
-                                    <td>
-                                        <div class="following-vendor-data">
-                                            <?php 
-                                            $image = $vendor->get_image() ? $vendor->get_image() : $MVX->plugin_url . 'assets/images/WP-stdavatar.png'; ?>
-                                            <img src='<?php echo esc_attr($image); ?>' alt="<?php echo esc_html($vendor->page_title); ?>">
-                                        <strong><a href="<?php echo esc_url($vendor->permalink); ?>"> <?php echo esc_html($vendor->page_title); ?> </a></strong>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <?php
-                                        $rating_info = mvx_get_vendor_review_info($vendor->term_id);
-                                        $MVX->template->get_template('review/rating_vendor_lists.php', array('rating_val_array' => $rating_info));
-                                        ?>
-                                    </td>
-                                    <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-actions">
-                                        <a class="woocommerce-button wp-element-button button view" href="<?php echo esc_url($vendor->permalink); ?>"><?php _e( 'View Store', 'multivendorx' ) ?></a>
-                                    </td>
-                                </tr>
-                                <?php
-                            }
-                        } else {
-                            esc_html_e('You do not follow any customer till now', 'multivendorx');
-                        }
+        <table>
+            <tbody>
+                <?php 
+                if ($mvx_customer_follow_vendor) {
+                    foreach ($mvx_customer_follow_vendor as $key_follow_vendor => $value_follow_vendor) {
+                        $vendor = get_mvx_vendor($value_follow_vendor['user_id']);
+                        if (!$vendor) continue;
                         ?>
-                    </tbody>
-                </table>
-        </div>
+                        <tr>
+                            <td>
+                                <a href="<?php echo esc_url($vendor->permalink); ?>"> <?php echo esc_html($vendor->page_title); ?> </a>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                } else {
+                    esc_html_e('You do not follow any customer till now', 'multivendorx');
+                }
+                ?>
+            </tbody>
+        </table>
         <?php
     }
+
         /**
      * Checkout User Location Field Save
      */
