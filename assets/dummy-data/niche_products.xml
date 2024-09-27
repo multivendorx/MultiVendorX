@@ -1,36 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- <products>
-    <product>
-        <title>Modern Art Painting</title>
-        <vendor>testvendor1</vendor>
-        <product_type>simple</product_type>
-        <description>Abstract modern art painting in acrylic.</description>
-        <short_description>Painting</short_description>
-        <category>Art</category>
-        <price>200</price>
-        <sale_price>149</sale_price>
-        <stock_status>instock</stock_status>
-        <manage_stock>yes</manage_stock>
-        <stock>50</stock>
-    </product>
-    <product>
-        <title>Test Vendor Product 3</title>
-        <vendor>testvendor2</vendor>
-        <product_type>simple</product_type>
-        <description>This is a test vendor product</description>
-        <short_description>Test Product</short_description>
-        <category>Electronics</category>
-        <price>299</price>
-        <sale_price>249</sale_price>
-        <stock_status>instock</stock_status>
-        <manage_stock>yes</manage_stock>
-        <stock>30</stock>
-    </product>
-</products> -->
 <items>
   <item>
     <title>V-Neck T-Shirt</title>
-    <guid>https://woocommercecore.mystagingwebsite.com/product/v-neck-t-shirt/</guid>
     <content>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</content>
     <excerpt>This is a variable product.</excerpt>
     <author>testvendor2</author>
@@ -40,7 +11,7 @@
     <product_type>simple</product_type>
     <images>
       <image>
-        <src>dc-woocommerce-multi-vendor\assets\dummy-data\product_images\v_neck_tshirt.jpeg</src>
+        <src>dc-woocommerce-multi-vendor\assets\dummy-data\images\product_images\v_neck_tshirt.jpeg</src>
       </image>
     </images>
     <categories>
@@ -195,7 +166,6 @@
   </item>
   <item>
     <title>Hoodie</title>
-    <guid>https://woocommercecore.mystagingwebsite.com/product/hoodie/</guid>
     <content>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</content>
     <excerpt>This is a variable product.</excerpt>
     <author>testvendor2</author>
@@ -205,7 +175,7 @@
     <product_type>simple</product_type>
     <images>
       <image>
-        <src>dc-woocommerce-multi-vendor\assets\dummy-data\product_images\hoodie.jpg</src>
+        <src>dc-woocommerce-multi-vendor\assets\dummy-data\images\product_images\hoodie.jpg</src>
       </image>
     </images>
     <categories>
@@ -356,7 +326,6 @@
   </item>
   <item>
     <title>Hoodie with Logo</title>
-    <guid>https://woocommercecore.mystagingwebsite.com/product/hoodie-with-logo/</guid>
     <content>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</content>
     <excerpt>This is a simple product.</excerpt>
     <author>testvendor2</author>
@@ -365,7 +334,7 @@
     <post_type>product</post_type>
     <images>
       <image>
-        <src>dc-woocommerce-multi-vendor\assets\dummy-data\product_images\hoodie_with_logo.jpg</src>
+        <src>dc-woocommerce-multi-vendor\assets\dummy-data\images\product_images\hoodie_with_logo.jpg</src>
       </image>
     </images>
     <categories>

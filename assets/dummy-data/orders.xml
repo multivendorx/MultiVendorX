@@ -23,7 +23,7 @@
         <state>CA</state>
         <postcode>12345</postcode>
         <country>United States (US)</country>
-        <quantity>2</quantity>
+        <quantity>1</quantity>
         <payment_method>cod</payment_method>
         <payment_method_title>Cash on delivery</payment_method_title>
     </order>
