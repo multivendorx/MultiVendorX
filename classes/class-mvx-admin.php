@@ -199,7 +199,7 @@ class MVX_Admin {
             wp_enqueue_script(
                 'mvx-modules-build-frontend',
                 $MVX->plugin_url . 'mvx-modules/build/index.js',
-                ['wp-element'],
+                ['wp-element', 'react-jsx-runtime'],
                 time(),
                 true
             );

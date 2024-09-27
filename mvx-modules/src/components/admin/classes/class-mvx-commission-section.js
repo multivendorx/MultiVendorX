@@ -193,6 +193,7 @@ class MVX_Backend_Commission extends Component {
 				});
 			});
 		}
+		this.common_funtions('');
 	}
 
 	handlecommission_paid(e) {
