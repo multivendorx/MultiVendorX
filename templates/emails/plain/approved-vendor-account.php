@@ -25,10 +25,6 @@ echo '\n';
 echo _e('You have been cleared for landing! Congratulations and welcome aboard!', 'multivendorx');
 
 echo "\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n";
-if ($additional_content) {
-	echo esc_html(wp_strip_all_tags(wptexturize($additional_content)));
-	echo "\n\n----------------------------------------\n\n";
-}
 echo apply_filters( 'mvx_email_footer_text', get_option( 'mvx_email_footer_text' ) );
 
 ?>

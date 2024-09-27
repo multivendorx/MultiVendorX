@@ -118,7 +118,7 @@ class MVX_Commission {
      * @param bool $recalculate
      * @return void 
      */
-    public static function calculate_commission( $commission_id, $order, $recalculate = false ) {
+    public static function calculate_commission( $commission_id, $order, $recalculate = true ) {
         global $MVX;
         if ($commission_id && $order) {
             $commission_type = mvx_get_settings_value($MVX->vendor_caps->payment_cap['commission_type']);
@@ -149,10 +149,10 @@ class MVX_Commission {
                     $meta_data = $item->get_meta_data();
                     // get item commission
                     foreach ( $meta_data as $meta ) {
-                        if($meta->key == '_vendor_item_commission'){
+                        if($meta->key == '_vendor_item_commission') {
                             $commission_amount += floatval($meta->value);
                         }
-                        if($meta->key == '_vendor_order_item_id'){
+                        if($meta->key == '_vendor_order_item_id') {
                             $order_item_id = absint($meta->value);
                             if(isset($commission_rates[$order_item_id])){
                                 $rate = $commission_rates[$order_item_id];
@@ -250,12 +250,12 @@ class MVX_Commission {
      * @return value 
      */
     public static function commission_totals( $commission_id, $context = 'view' ) {
-        if($commission_id){
+        if($commission_id) {
             $order_id = get_post_meta($commission_id, '_commission_order_id', true);
             $order = wc_get_order($order_id);
             $commission_total = get_post_meta( $commission_id, '_commission_total', true );
             // backward compatibility added
-            if(!$commission_total){
+            if(!$commission_total) {
                 $commission_amt = get_post_meta($commission_id, '_commission_amount', true);
                 $shipping_amt = get_post_meta($commission_id, '_shipping', true);
                 $tax_amt = get_post_meta($commission_id, '_tax', true);
@@ -293,7 +293,7 @@ class MVX_Commission {
      * @return value 
      */
     public static function commission_refunded_totals( $commission_id, $context = 'view' ) {
-        if($commission_id){
+        if($commission_id) {
             $order_id = get_post_meta($commission_id, '_commission_order_id', true);
             $order = wc_get_order($order_id);
             $commission_refunded = get_post_meta( $commission_id, '_commission_refunded', true );
@@ -323,7 +323,7 @@ class MVX_Commission {
      * @return value 
      */
     public static function commission_shipping_totals( $commission_id, $context = 'view' ) {
-        if($commission_id){
+        if($commission_id) {
             $order_id = get_post_meta($commission_id, '_commission_order_id', true);
             $order = wc_get_order($order_id);
             $shipping_amount = get_post_meta( $commission_id, '_shipping', true );
@@ -560,7 +560,7 @@ class MVX_Commission {
                     'compare' => 'IN'
                 ),
             ),
-	);
+	    );
    
         $commissions = new WP_Query( apply_filters( 'mvx_get_unpaid_commissions_total_data_query_args', $args, $type, $vendor ) );
         if( $commissions->get_posts() ) :
@@ -608,5 +608,4 @@ class MVX_Commission {
             }
         endif;
     }
-
 }

@@ -4,33 +4,27 @@
 
 namespace Stripe\Service;
 
-/**
- * @phpstan-import-type RequestOptionsArray from \Stripe\Util\RequestOptions
- * @psalm-import-type RequestOptionsArray from \Stripe\Util\RequestOptions
- */
 class SourceService extends \Stripe\Service\AbstractService
 {
     /**
-     * List source transactions for a given source.
-     *
      * @param string $id
      * @param null|array $params
-     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
+     * @param null|array|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\Collection<\Stripe\SourceTransaction>
+     * @return \Stripe\Source
      */
-    public function allSourceTransactions($id, $params = null, $opts = null)
+    public function allTransactions($id, $params = null, $opts = null)
     {
-        return $this->requestCollection('get', $this->buildPath('/v1/sources/%s/source_transactions', $id), $params, $opts);
+        return $this->request('get', $this->buildPath('/v1/sources/%s/source_transactions', $id), $params, $opts);
     }
 
     /**
      * Creates a new source object.
      *
      * @param null|array $params
-     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
+     * @param null|array|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -47,11 +41,11 @@ class SourceService extends \Stripe\Service\AbstractService
      * @param string $parentId
      * @param string $id
      * @param null|array $params
-     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
+     * @param null|array|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\Account|\Stripe\BankAccount|\Stripe\Card|\Stripe\Source
+     * @return \Stripe\Source
      */
     public function detach($parentId, $id, $params = null, $opts = null)
     {
@@ -65,7 +59,7 @@ class SourceService extends \Stripe\Service\AbstractService
      *
      * @param string $id
      * @param null|array $params
-     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
+     * @param null|array|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -87,7 +81,7 @@ class SourceService extends \Stripe\Service\AbstractService
      *
      * @param string $id
      * @param null|array $params
-     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
+     * @param null|array|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -103,7 +97,7 @@ class SourceService extends \Stripe\Service\AbstractService
      *
      * @param string $id
      * @param null|array $params
-     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
+     * @param null|array|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *

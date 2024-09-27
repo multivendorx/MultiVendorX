@@ -10,7 +10,6 @@
  * @version   3.3.0
  */
 defined( 'ABSPATH' ) || exit;
-global $MVX;
 ?>
 <div role="tabpanel" class="tab-pane fade collapsable-component-wrapper" id="product_attributes_data">
     <div class="row-padding">
@@ -61,7 +60,8 @@ global $MVX;
                             $metabox_class[] = 'taxonomy';
                             $metabox_class[] = $attribute->get_name();
                         }
-                        $MVX->template->get_template('vendor-dashboard/product-manager/views/html-product-attribute.php', ['attribute' => $attribute, 'metabox_class' => $metabox_class, 'i' => $i]);
+
+                        include( 'html-product-attribute.php' );
                     }
                     ?>
                 </div>

@@ -199,7 +199,7 @@ class CurlClient implements ClientInterface, StreamingClientInterface
 
         $opts = [];
         if (\is_callable($this->defaultOptions)) { // call defaultOptions callback, set options to return value
-            $opts = \call_user_func_array($this->defaultOptions, [$method, $absUrl, $headers, $params, $hasFile]);
+            $opts = \call_user_func_array($this->defaultOptions, \func_get_args());
             if (!\is_array($opts)) {
                 throw new Exception\UnexpectedValueException('Non-array value returned by defaultOptions CurlClient callback');
             }
@@ -269,6 +269,15 @@ class CurlClient implements ClientInterface, StreamingClientInterface
         if (!isset($opts[\CURLOPT_HTTP_VERSION]) && $this->getEnableHttp2()) {
             // For HTTPS requests, enable HTTP/2, if supported
             $opts[\CURLOPT_HTTP_VERSION] = \CURL_HTTP_VERSION_2TLS;
+        }
+
+        // If the user didn't explicitly specify a CURLOPT_IPRESOLVE option, we
+        // force IPv4 resolving as Stripe's API servers are only accessible over
+        // IPv4 (see. https://github.com/stripe/stripe-php/issues/1045).
+        // We let users specify a custom option in case they need to say proxy
+        // through an IPv6 proxy.
+        if (!isset($opts[\CURLOPT_IPRESOLVE])) {
+            $opts[\CURLOPT_IPRESOLVE] = \CURL_IPRESOLVE_V4;
         }
 
         return [$opts, $absUrl];

@@ -30,11 +30,6 @@ class MVX_Coupon {
 
         // coupon delete action
         $this->mvx_delete_coupon_action();
-
-        //coupon usage limit decrease
-        add_action( 'woocommerce_order_status_pending_to_processing', [$this, 'coupon_usage_limit'] );
-        add_action( 'woocommerce_order_status_pending_to_completed', [$this, 'coupon_usage_limit'] );
-        add_action( 'woocommerce_order_status_pending_to_on-hold', [$this, 'coupon_usage_limit'] );
     }
 
     /**
@@ -312,21 +307,4 @@ class MVX_Coupon {
             }
         }
     }
-
-    function coupon_usage_limit( $order_id ) {
-        $order = wc_get_order( $order_id );
-        if ( $order->get_parent_id() != 0 ) {
-            return;
-        }
-        
-        foreach ( $order->get_coupon_codes() as $code ) {
-            $coupon  = new WC_Coupon( $code );
-            $used_by = $order->get_user_id();
-            if ( ! $used_by ) {
-                $used_by = $order->get_billing_email();
-            }
-            $coupon->decrease_usage_count( $used_by );
-        }
-    }
-    
 }

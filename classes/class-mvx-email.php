@@ -47,7 +47,6 @@ class MVX_Email {
 		include( 'emails/class-mvx-email-vendor-new-announcement.php' );
 		include( 'emails/class-mvx-email-customer-order-refund-request.php' );
 		include( 'emails/class-mvx-email-vendor-product-rejected.php' );
-		include( 'emails/class-mvx-email-vendor-product-approved.php' );
 		include( 'emails/class-mvx-email-suspend-vendor-account.php' );
 		include( 'emails/class-mvx-email-vendor-review.php' );
 		include( 'emails/class-mvx-email-vendor-followed.php' );
@@ -60,8 +59,6 @@ class MVX_Email {
 		include( 'emails/class-mvx-email-admin-vendor-account-deactivation-request.php' );
 		include( 'emails/class-mvx-email-vendor-delete-profile.php' );
 		include( 'emails/class-mvx-email-vendor-reject-profile.php' );
-		include( 'emails/class-mvx-email-followed-vendor-from-customer.php' );
-		include( 'emails/class-mvx-email-cancelled-order.php' );
 
         $mvx_email = array();
         $mvx_email['WC_Email_Vendor_New_Account'] = new WC_Email_Vendor_New_Account();
@@ -84,7 +81,6 @@ class MVX_Email {
 		$mvx_email['WC_Email_Vendor_New_Announcement'] = new WC_Email_Vendor_New_Announcement();
 		$mvx_email['WC_Email_Customer_Refund_Request'] = new WC_Email_Customer_Refund_Request();
 		$mvx_email['WC_Email_Vendor_Product_Rejected'] = new WC_Email_Vendor_Product_Rejected();
-		$mvx_email['WC_Email_Vendor_Product_Approved'] = new WC_Email_Vendor_Product_Approved();
 		$mvx_email['WC_Email_Suspend_Vendor_Account'] = new WC_Email_Suspend_Vendor_Account();
 		$mvx_email['WC_Email_Vendor_Review'] = new WC_Email_Vendor_Review();
 		$mvx_email['WC_Email_Vendor_Followed'] = new WC_Email_Vendor_Followed();
@@ -97,8 +93,6 @@ class MVX_Email {
 		$mvx_email['WC_Email_Admin_Vendor_Account_Deactivation_Request_Mail'] = new WC_Email_Admin_Vendor_Account_Deactivation_Request_Mail();
 		$mvx_email['WC_Email_Vendor_Account_Deletion_Mail'] = new WC_Email_Vendor_Account_Deletion_Mail();
 		$mvx_email['WC_Email_Vendor_Account_Deactive_Request_Reject_Mail'] = new WC_Email_Vendor_Account_Deactive_Request_Reject_Mail();
-		$mvx_email['WC_Email_Vendor_Followed_Customer'] = new WC_Email_Vendor_Followed_Customer();
-		$mvx_email['WC_Email_Vendor_Cancelled_Order'] = new WC_Email_Vendor_Cancelled_Order();
 
         return array_merge( $emails, apply_filters( 'mvx_email_classes', $mvx_email ) );
     }

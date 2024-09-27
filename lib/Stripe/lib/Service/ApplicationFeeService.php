@@ -4,10 +4,6 @@
 
 namespace Stripe\Service;
 
-/**
- * @phpstan-import-type RequestOptionsArray from \Stripe\Util\RequestOptions
- * @psalm-import-type RequestOptionsArray from \Stripe\Util\RequestOptions
- */
 class ApplicationFeeService extends \Stripe\Service\AbstractService
 {
     /**
@@ -15,7 +11,7 @@ class ApplicationFeeService extends \Stripe\Service\AbstractService
      * fees are returned in sorted order, with the most recent fees appearing first.
      *
      * @param null|array $params
-     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
+     * @param null|array|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -35,7 +31,7 @@ class ApplicationFeeService extends \Stripe\Service\AbstractService
      *
      * @param string $parentId
      * @param null|array $params
-     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
+     * @param null|array|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -60,7 +56,7 @@ class ApplicationFeeService extends \Stripe\Service\AbstractService
      *
      * @param string $parentId
      * @param null|array $params
-     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
+     * @param null|array|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -77,7 +73,7 @@ class ApplicationFeeService extends \Stripe\Service\AbstractService
      *
      * @param string $id
      * @param null|array $params
-     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
+     * @param null|array|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -96,7 +92,7 @@ class ApplicationFeeService extends \Stripe\Service\AbstractService
      * @param string $parentId
      * @param string $id
      * @param null|array $params
-     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
+     * @param null|array|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -116,7 +112,7 @@ class ApplicationFeeService extends \Stripe\Service\AbstractService
      * @param string $parentId
      * @param string $id
      * @param null|array $params
-     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
+     * @param null|array|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *

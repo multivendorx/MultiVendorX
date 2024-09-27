@@ -9,7 +9,6 @@ namespace Stripe\Service\FinancialConnections;
  *
  * @property AccountService $accounts
  * @property SessionService $sessions
- * @property TransactionService $transactions
  */
 class FinancialConnectionsServiceFactory extends \Stripe\Service\AbstractServiceFactory
 {
@@ -19,7 +18,6 @@ class FinancialConnectionsServiceFactory extends \Stripe\Service\AbstractService
     private static $classMap = [
         'accounts' => AccountService::class,
         'sessions' => SessionService::class,
-        'transactions' => TransactionService::class,
     ];
 
     protected function getServiceClass($name)

@@ -78,7 +78,6 @@ class MVX_Product {
             if (!defined('MVX_HIDE_MULTIPLE_PRODUCT')) {
                 add_action('woocommerce_shop_loop', array(&$this, 'woocommerce_shop_loop_callback'), 5);
                 add_action('woocommerce_product_query', array(&$this, 'woocommerce_product_query'), 10);
-                add_filter('pre_get_posts', array(&$this, 'exclude_products_from_search'));
             }
             // SPMV terms updates
             add_action( 'woocommerce_product_quick_edit_save', array( $this, 'mvx_spmv_bulk_quick_edit_save_post' ), 99 );
@@ -335,7 +334,7 @@ class MVX_Product {
     }
 
     public function review_title($reviews_title, $count, $product) {
-        $count = get_comments(array('post_id' => $product->get_id(), 'type__not_in' => array('product_note', 'comment', 'mvx_vendor_rating'), 'count' => true));
+        $count = get_comments(array('post_id' => $product->get_id(), 'type__not_in' => array('product_note', 'comment'), 'count' => true));
         $reviews_title = sprintf( esc_html( _n( '%1$s review for %2$s', '%1$s reviews for %2$s', $count, 'multivendorx' ) ), esc_html( $count ), '<span>' . $product->get_title() . '</span>' );
         return $reviews_title;
     }
@@ -343,7 +342,7 @@ class MVX_Product {
     public function review_tab($tabs) {
         global $product;
         if(isset($tabs['reviews'])) {
-            $count = get_comments(array('post_id' => $product->get_id(), 'type__not_in' => array('product_note', 'comment', 'mvx_vendor_rating'), 'count' => true));
+            $count = get_comments(array('post_id' => $product->get_id(), 'type__not_in' => array('product_note', 'comment'), 'count' => true));
 
             $tabs['reviews'] = array(
                     'title'    => sprintf( __( 'Reviews (%d)', 'multivendorx' ), $count),
@@ -789,7 +788,7 @@ class MVX_Product {
         $commission_percentage_per_poduct = get_post_meta($post->ID, '_commission_percentage_per_product', true);
         $commission_fixed_with_percentage = get_post_meta($post->ID, '_commission_fixed_with_percentage', true);
         $commission_fixed_with_percentage_qty = get_post_meta($post->ID, '_commission_fixed_with_percentage_qty', true);
-        if (isset($MVX->vendor_caps->payment_cap['commission_type']['value']) && $MVX->vendor_caps->payment_cap['commission_type']['value'] == 'fixed_with_percentage') {
+        if ($MVX->vendor_caps->payment_cap['commission_type'] == 'fixed_with_percentage') {
 
             if (!$current_user_is_vendor) {
                 $html .= '<tr valign="top"><td scope="row"><label id="vendor-label" for= "Commission">' . __("Commission Percentage", 'multivendorx') . '</label></td><td>';
@@ -812,7 +811,7 @@ class MVX_Product {
                 }
             }
             $html .= '</td></tr>';
-        } else if (isset($MVX->vendor_caps->payment_cap['commission_type']['value']) && $MVX->vendor_caps->payment_cap['commission_type']['value'] == 'fixed_with_percentage_qty') {
+        } else if ($MVX->vendor_caps->payment_cap['commission_type'] == 'fixed_with_percentage_qty') {
 
             if (!$current_user_is_vendor) {
                 $html .= '<tr valign="top"><td scope="row"><label id="vendor-label" for= "Commission">' . __("Commission Percentage", 'multivendorx') . '</label></td><td>';
@@ -1460,22 +1459,6 @@ class MVX_Product {
             $excluded_order = mvx_get_settings_value(get_mvx_vendor_settings('singleproductmultiseller_show_order', 'spmv_pages'), 'min-price');
             $post__not_in = ( isset( $spmv_excludes[$excluded_order] ) ) ? $spmv_excludes[$excluded_order] : array();
             $q->set('post__not_in', $post__not_in );
-        }
-    }
-
-    /**
-     * filter search for single product multiple vendor
-     * @param WC_Query object $q
-     */
-    function exclude_products_from_search( $query ) {
-        if (mvx_is_store_page()) {
-            return;
-        }
-        if (! is_admin() && $query->is_search() && get_transient('mvx_spmv_exclude_products_data')) {
-            $spmv_excludes = get_transient('mvx_spmv_exclude_products_data');
-            $excluded_order = mvx_get_settings_value(get_mvx_vendor_settings('singleproductmultiseller_show_order', 'spmv_pages'), 'min-price');
-            $post__not_in = ( isset( $spmv_excludes[$excluded_order] ) ) ? $spmv_excludes[$excluded_order] : array();
-            $query->set('post__not_in', $post__not_in );
         }
     }
 
@@ -2327,7 +2310,7 @@ class MVX_Product {
                 return;
             }
             $mvx_min_max_meta = [
-                'product_wise_activation' => isset( $_POST['product_wise_activation'] ) ? wc_clean( wp_unslash( $_POST['product_wise_activation'] ) ) : '',
+                'product_wise_activation' => wc_clean( wp_unslash( $_POST['product_wise_activation'] ) ),
                 'min_quantity'            => isset( $_POST['min_quantity'] ) && $_POST['min_quantity'] > 0 ? absint( wp_unslash( $_POST['min_quantity'] ) ) : 0,
                 'max_quantity'            => isset( $_POST['max_quantity'] ) && $_POST['max_quantity'] > 0 ? absint( wp_unslash( $_POST['max_quantity'] ) ) : 0,
                 'min_amount'              => isset( $_POST['min_amount'] ) && $_POST['min_amount'] > 0 ? wc_format_decimal( sanitize_text_field( wp_unslash( $_POST['min_amount'] ) ) ) : 0,
@@ -2343,14 +2326,14 @@ class MVX_Product {
                         $variation_id = $_POST['variable_post_id'];
                         if ( ! empty( $_POST['variable_product_wise_activation'][ $loop ] ) && 'yes' === $_POST['variable_product_wise_activation'][ $loop ] ) {
                             $min_max_meta = [
-                                'product_wise_activation' => isset( $_POST['variable_product_wise_activation'][ $loop ] ) ? wc_clean( wp_unslash( $_POST['variable_product_wise_activation'][ $loop ] ) ) : '',
+                                'product_wise_activation' => wc_clean( wp_unslash( $_POST['variable_product_wise_activation'][ $loop ] ) ),
                                 'min_quantity'            => isset( $_POST['variable_min_quantity'][ $loop ] ) && $_POST['variable_min_quantity'][ $loop ] > 0 ? absint( wp_unslash( $_POST['variable_min_quantity'][ $loop ] ) ) : 0,
                                 'max_quantity'            => isset( $_POST['variable_max_quantity'][ $loop ] ) && $_POST['variable_max_quantity'][ $loop ] > 0 ? absint( wp_unslash( $_POST['variable_max_quantity'][ $loop ] ) ) : 0,
                                 'min_amount'              => isset( $_POST['variable_min_amount'][ $loop ] ) && $_POST['variable_min_amount'][ $loop ] > 0 ? wc_format_decimal( sanitize_text_field( wp_unslash( $_POST['variable_min_amount'][ $loop ] ) ) ) : 0,
                                 'max_amount'              => isset( $_POST['variable_max_amount'][ $loop ] ) && $_POST['variable_max_amount'][ $loop ] > 0 ? wc_format_decimal( sanitize_text_field( wp_unslash( $_POST['variable_max_amount'][ $loop ] ) ) ) : 0
                             ];
                         }
-                        update_post_meta( $variation_id, '_mvx_min_max_meta', $min_max_meta );
+                        update_post_meta( $variation_id, '_mvx_min_max_meta', $mvx_min_max_meta );
                     }
                 }
             }

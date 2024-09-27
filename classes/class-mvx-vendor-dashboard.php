@@ -1281,9 +1281,7 @@ Class MVX_Admin_Dashboard {
             return ! empty( $attachment );
         } );
 
-        if (!empty($attachment_ids)) {
-            mvx_update_user_meta($user_id, '_vendor_slider', implode( ',', $attachment_ids ) );
-        }
+        mvx_update_user_meta($user_id, '_vendor_slider', implode( ',', $attachment_ids ) );
 
         if (isset($_POST['_shop_template']) && !empty($_POST['_shop_template'])) {
             mvx_update_user_meta($user_id, '_shop_template', wc_clean($_POST['_shop_template']));
@@ -1324,22 +1322,20 @@ Class MVX_Admin_Dashboard {
         if (isset($_POST['vendor_display_email'])) {
             mvx_update_user_meta($user_id, '_vendor_display_email', wc_clean($_POST['vendor_display_email']));
         }
-        if (isset($_POST['tab_name']) && $_POST['tab_name'] == 'storefront') {
-            if (isset($_POST['vendor_shop_address_hide']) && !empty($_POST['vendor_shop_address_hide'])) {
-                mvx_update_user_meta($user_id, '_vendor_hide_address', wc_clean($_POST['vendor_shop_address_hide']));
-            } else {
-                mvx_update_user_meta($user_id, '_vendor_hide_address', 'disable');
-            }
-            if (isset($_POST['vendor_shop_phone_hide']) && !empty($_POST['vendor_shop_phone_hide'])) {
-                mvx_update_user_meta($user_id, '_vendor_hide_phone', wc_clean($_POST['vendor_shop_phone_hide']));
-            } else {
-                mvx_update_user_meta($user_id, '_vendor_hide_phone', 'disable');
-            }
-            if (isset($_POST['vendor_shop_email_hide']) && !empty($_POST['vendor_shop_email_hide'])) {
-                mvx_update_user_meta($user_id, '_vendor_hide_email', wc_clean($_POST['vendor_shop_email_hide']));
-            } else {
-                mvx_update_user_meta($user_id, '_vendor_hide_email', 'disable');
-            }
+        if (isset($_POST['vendor_shop_address_hide']) && !empty($_POST['vendor_shop_address_hide'])) {
+            mvx_update_user_meta($user_id, '_vendor_hide_address', wc_clean($_POST['vendor_shop_address_hide']));
+        } else {
+            mvx_update_user_meta($user_id, '_vendor_hide_address', 'disable');
+        }
+        if (isset($_POST['vendor_shop_phone_hide']) && !empty($_POST['vendor_shop_phone_hide'])) {
+            mvx_update_user_meta($user_id, '_vendor_hide_phone', wc_clean($_POST['vendor_shop_phone_hide']));
+        } else {
+            mvx_update_user_meta($user_id, '_vendor_hide_phone', 'disable');
+        }
+        if (isset($_POST['vendor_shop_email_hide']) && !empty($_POST['vendor_shop_email_hide'])) {
+            mvx_update_user_meta($user_id, '_vendor_hide_email', wc_clean($_POST['vendor_shop_email_hide']));
+        } else {
+            mvx_update_user_meta($user_id, '_vendor_hide_email', 'disable');
         }
         do_action('mvx_save_custom_store', $user_id, $post);
     }
@@ -1867,7 +1863,7 @@ Class MVX_Admin_Dashboard {
                                         <a href="<?php echo esc_url(get_permalink($value_followed['user_id'])); ?>"> <?php echo wp_kses_post(get_avatar($value_followed['user_id'], 50, '', '')) ?> </a>
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="media-heading"><?php echo esc_html($user_details->data->display_name); ?> -- <small><?php echo esc_html(human_time_diff(strtotime($value_followed['timestamp']))) . esc_html__(' ago', 'multivendorx') ?> </small></h4>
+                                        <h4 class="media-heading"><?php echo esc_html($user_details->data->display_name); ?> -- <small><?php echo esc_html(human_time_diff(strtotime($value_followed['timestamp']))) . esc_html(' ago', 'multivendorx') ?> </small></h4>
                                     </div>
                                 </td>
                             </tbody>
@@ -2998,9 +2994,7 @@ Class MVX_Admin_Dashboard {
             $vendor_order_id = $wp->query_vars[get_mvx_vendor_settings( 'mvx_vendor_orders_endpoint', 'seller_dashbaord', 'vendor-orders' )];
             if( isset( $postdata['update_cust_refund_status'] ) && $vendor_order_id ) {
                 if( isset( $postdata['refund_order_customer'] ) && $postdata['refund_order_customer'] ) {
-                    $vendor_order = wc_get_order($vendor_order_id);
-                    $vendor_order->update_meta_data( '_customer_refund_order', $postdata['refund_order_customer'] );
-                    $vendor_order->save();
+                    update_post_meta( $vendor_order_id, '_customer_refund_order', $postdata['refund_order_customer'] );
                     // trigger customer email
                     if( in_array( $postdata['refund_order_customer'], array( 'refund_reject', 'refund_accept' ) ) ) {
 
@@ -3022,7 +3016,7 @@ Class MVX_Admin_Dashboard {
                         wp_update_comment(array('comment_ID' => $comment_id, 'comment_author' => $user_info->user_name, 'comment_author_email' => $user_info->user_email));
 
                         // Comment note for parent order
-                        $parent_order_id = $order->get_parent_id();
+                        $parent_order_id = wp_get_post_parent_id($vendor_order_id);
                         $parent_order = wc_get_order( $parent_order_id );
                         $comment_id_parent = $parent_order->add_order_note( __('Vendor ' , 'multivendorx') . $order_status . __(' refund request for order #' , 'multivendorx') . $vendor_order_id .'.' );
                         wp_update_comment(array('comment_ID' => $comment_id_parent, 'comment_author' => $user_info->user_name, 'comment_author_email' => $user_info->user_email));

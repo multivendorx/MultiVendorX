@@ -4,17 +4,13 @@
 
 namespace Stripe\Service;
 
-/**
- * @phpstan-import-type RequestOptionsArray from \Stripe\Util\RequestOptions
- * @psalm-import-type RequestOptionsArray from \Stripe\Util\RequestOptions
- */
 class CreditNoteService extends \Stripe\Service\AbstractService
 {
     /**
      * Returns a list of credit notes.
      *
      * @param null|array $params
-     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
+     * @param null|array|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -27,12 +23,12 @@ class CreditNoteService extends \Stripe\Service\AbstractService
 
     /**
      * When retrieving a credit note, you’ll get a <strong>lines</strong> property
-     * containing the first handful of those items. There is also a URL where you can
-     * retrieve the full (paginated) list of line items.
+     * containing the the first handful of those items. There is also a URL where you
+     * can retrieve the full (paginated) list of line items.
      *
      * @param string $parentId
      * @param null|array $params
-     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
+     * @param null|array|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -66,7 +62,7 @@ class CreditNoteService extends \Stripe\Service\AbstractService
      * <code>status</code> at the time of credit note creation.
      *
      * @param null|array $params
-     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
+     * @param null|array|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -81,7 +77,7 @@ class CreditNoteService extends \Stripe\Service\AbstractService
      * Get a preview of a credit note without creating it.
      *
      * @param null|array $params
-     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
+     * @param null|array|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -98,11 +94,11 @@ class CreditNoteService extends \Stripe\Service\AbstractService
      * the full (paginated) list of line items.
      *
      * @param null|array $params
-     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
+     * @param null|array|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\Collection<\Stripe\CreditNoteLineItem>
+     * @return \Stripe\Collection<\Stripe\CreditNote>
      */
     public function previewLines($params = null, $opts = null)
     {
@@ -114,7 +110,7 @@ class CreditNoteService extends \Stripe\Service\AbstractService
      *
      * @param string $id
      * @param null|array $params
-     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
+     * @param null|array|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -130,7 +126,7 @@ class CreditNoteService extends \Stripe\Service\AbstractService
      *
      * @param string $id
      * @param null|array $params
-     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
+     * @param null|array|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -147,7 +143,7 @@ class CreditNoteService extends \Stripe\Service\AbstractService
      *
      * @param string $id
      * @param null|array $params
-     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
+     * @param null|array|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *

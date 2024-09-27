@@ -56,7 +56,7 @@ if (!class_exists('WC_Email_Admin_Change_Order_Status')) :
             if (!$this->is_enabled())
                 return;
             
-            $this->object = wc_get_order($order_id);
+            $this->object = $order_id;
             $this->find[] = '{order_id}';
             $this->order_id = $order_id;
             $this->replace[] = $this->order_id;

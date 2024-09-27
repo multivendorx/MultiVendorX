@@ -13,13 +13,14 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@wordpress/scripts": "^26.19.0"
+    "@wordpress/scripts": "^26.10.0"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.14.4",
-    "@tinymce/tinymce-react": "^5.0.1",
+    "@tinymce/tinymce-react": "^4.3.0",
+    "@wordpress/react-i18n": "^3.50.0",
     "axios": "^1.4.0",
     "google-map-react": "^2.2.1",
     "react": "^18.2.0",

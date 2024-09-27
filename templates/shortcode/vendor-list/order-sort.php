@@ -60,7 +60,7 @@ extract( $vendor_list );
     <select name="vendor_state" id="vendor_state" class="state_select vendors_sort_shipping_fields form-control regular-select" rel="vendor_state">
         <option value=""><?php esc_html_e( 'Select a state&hellip;', 'multivendorx' ); ?></option>
     </select>
-    <input class="vendors_sort_shipping_fields" type="text" placeholder="<?php _e('ZIP code', 'multivendorx'); ?>" name="vendor_postcode_list" value="<?php echo isset($request['vendor_postcode_list']) ? htmlspecialchars($request['vendor_postcode_list'], ENT_QUOTES, 'UTF-8') : ''; ?>">
+    <input class="vendors_sort_shipping_fields" type="text" placeholder="<?php _e('ZIP code', 'multivendorx'); ?>" name="vendor_postcode_list" value="<?php echo isset($request['vendor_postcode_list']) ? $request['vendor_postcode_list'] : ''; ?>">
     <select name="vendor_sort_category" id="vendor_sort_category" class="select"><?php echo $options_html; ?></select>
     <?php do_action( 'mvx_vendor_list_vendor_sort_extra_attributes', $request ); ?>
     <input value="<?php echo __('Sort', 'multivendorx'); ?>" type="submit">

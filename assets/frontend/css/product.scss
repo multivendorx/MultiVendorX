@@ -128,22 +128,3 @@
 		}
 	}
 }
-.single-product-vendor {
-	display: flex;
-	align-items: center;
-	flex-wrap: wrap;
-	gap: 1rem;
-	img {
-	width: 3.75rem;
-	height: 3.75rem;
-	border-radius: 50%;
-	}
-	h2 {
-	margin: 0 !important; // To overwrite default css
-	font-size: 2rem;
-	}
-	p {
-	width: 100%;
-	margin: 0;
-	}
-  }

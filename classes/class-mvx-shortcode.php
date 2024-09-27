@@ -125,11 +125,9 @@ class MVX_Shortcode {
     public static function sanitize_attributes( $attributes ) {
         // Sanitize the shortcode attributs before use.
         $sanitize_atts = [];
-        if (is_array($attributes)) {
-            foreach($attributes as $key => $value) {
-                $sanitize_atts[$key] = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
-            }
-       }
+        foreach($attributes as $key => $value) {
+            $sanitize_atts[$key] = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+        }
         return $sanitize_atts;
     }
 

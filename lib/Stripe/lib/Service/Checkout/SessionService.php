@@ -4,17 +4,13 @@
 
 namespace Stripe\Service\Checkout;
 
-/**
- * @phpstan-import-type RequestOptionsArray from \Stripe\Util\RequestOptions
- * @psalm-import-type RequestOptionsArray from \Stripe\Util\RequestOptions
- */
 class SessionService extends \Stripe\Service\AbstractService
 {
     /**
      * Returns a list of Checkout Sessions.
      *
      * @param null|array $params
-     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
+     * @param null|array|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -31,24 +27,24 @@ class SessionService extends \Stripe\Service\AbstractService
      * items. There is also a URL where you can retrieve the full (paginated) list of
      * line items.
      *
-     * @param string $id
+     * @param string $parentId
      * @param null|array $params
-     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
+     * @param null|array|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
      * @return \Stripe\Collection<\Stripe\LineItem>
      */
-    public function allLineItems($id, $params = null, $opts = null)
+    public function allLineItems($parentId, $params = null, $opts = null)
     {
-        return $this->requestCollection('get', $this->buildPath('/v1/checkout/sessions/%s/line_items', $id), $params, $opts);
+        return $this->requestCollection('get', $this->buildPath('/v1/checkout/sessions/%s/line_items', $parentId), $params, $opts);
     }
 
     /**
      * Creates a Session object.
      *
      * @param null|array $params
-     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
+     * @param null|array|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -67,7 +63,7 @@ class SessionService extends \Stripe\Service\AbstractService
      *
      * @param string $id
      * @param null|array $params
-     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
+     * @param null|array|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -83,7 +79,7 @@ class SessionService extends \Stripe\Service\AbstractService
      *
      * @param string $id
      * @param null|array $params
-     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
+     * @param null|array|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -92,21 +88,5 @@ class SessionService extends \Stripe\Service\AbstractService
     public function retrieve($id, $params = null, $opts = null)
     {
         return $this->request('get', $this->buildPath('/v1/checkout/sessions/%s', $id), $params, $opts);
-    }
-
-    /**
-     * Updates a Session object.
-     *
-     * @param string $id
-     * @param null|array $params
-     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
-     *
-     * @throws \Stripe\Exception\ApiErrorException if the request fails
-     *
-     * @return \Stripe\Checkout\Session
-     */
-    public function update($id, $params = null, $opts = null)
-    {
-        return $this->request('post', $this->buildPath('/v1/checkout/sessions/%s', $id), $params, $opts);
     }
 }

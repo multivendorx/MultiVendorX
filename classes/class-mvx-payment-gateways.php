@@ -21,6 +21,7 @@ class MVX_Payment_Gateways {
             'MVX_Gateway_Stripe_Connect',
             'MVX_Gateway_Bank_Transfer',
         );
+        
         $load_gateways = apply_filters('mvx_payment_gateways', $load_gateways);
         foreach ($load_gateways as $gateway) {
             $load_gateway = is_string($gateway) ? new $gateway() : $gateway;
@@ -28,10 +29,10 @@ class MVX_Payment_Gateways {
         }
     }
     
-    public function load_default_gateways(){
-        require_once 'gateways/class-mvx-gateway-paypal-masspay.php';
-        require_once 'gateways/class-mvx-gateway-paypal-payout.php';
-        require_once 'gateways/class-mvx-gateway-stripe-connect.php';
-        require_once 'gateways/class-mvx-gateway-bank-transfer.php';
+    public function load_default_gateways() {
+        require_once 'gateway/class-mvx-gateway-paypal-masspay.php';
+        require_once 'gateway/class-mvx-gateway-paypal-payout.php';
+        require_once 'gateway/class-mvx-gateway-stripe-connect.php';
+        require_once 'gateway/class-mvx-gateway-bank-transfer.php';
     }
 }

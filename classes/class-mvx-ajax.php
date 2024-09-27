@@ -399,7 +399,6 @@ class MVX_Ajax {
         $rating = isset($_POST['rating']) ? intval( wp_unslash( $_POST['rating'] ) ): false;
         $comment_parent = isset($_POST['comment_parent']) ? absint($_POST['comment_parent']) : 0;
         $vendor_id = isset($_POST['vendor_id']) ? absint( $_POST['vendor_id'] ) : 0;
-        $product_id = isset($_POST['product_id']) ? absint( $_POST['product_id'] ) : '';
         $current_user = wp_get_current_user();
         $comment_approve_by_settings = get_option('comment_moderation') ? 0 : 1;
         // IF vendor given multi rating
@@ -418,7 +417,7 @@ class MVX_Ajax {
             $time = current_time('mysql');
             if ($current_user->ID > 0) {
                 $data = array(
-                    'comment_post_ID' => !empty($product_id) ? $product_id : mvx_vendor_dashboard_page_id(),
+                    'comment_post_ID' => mvx_vendor_dashboard_page_id(),
                     'comment_author' => $current_user->display_name,
                     'comment_author_email' => sanitize_email($current_user->user_email),
                     'comment_author_url' => esc_url($current_user->user_url),
@@ -791,7 +790,6 @@ class MVX_Ajax {
             if (!$vendor)
                 die('Invalid request');
             $order_data = array();
-            $order = wc_get_order($order_id);
             $commission_id = $order->get_meta( '_commission_id', true );
             if (!empty($commission_id)) {
                 //$commission_id = $customer_orders[0]['commission_id'];
@@ -982,7 +980,7 @@ class MVX_Ajax {
     public function delete_fpm_product() {
         check_ajax_referer('mvx-frontend', 'security');
         $proid = isset($_POST['proid']) ? wc_clean($_POST['proid']) : 0;
-        if (current_user_can( 'delete_posts' ) && $proid) {
+        if ($proid) {
             if (wp_delete_post($proid)) {
                 echo '{"status": "success", "shop_url": "' . get_permalink(wc_get_page_id('shop')) . '"}';
                 die;
@@ -1773,8 +1771,6 @@ class MVX_Ajax {
         //$vendor_reviews = $vendor->get_reviews_and_rating($requestData['start'], $requestData['length'], $query);
         if ($vendor_reviews_total) {
             $vendor_reviews = array_slice($vendor_reviews_total, $requestData['start'], $requestData['length']);
-            file_put_contents( plugin_dir_path(__FILE__) . "/error.log", date("d/m/Y H:i:s", time()) . ":vendor_reviews:  : " . var_export($vendor_reviews, true) . "\n", FILE_APPEND);
-
             foreach ($vendor_reviews as $comment) :
                 $vendor = get_mvx_vendor($comment->user_id);
                 if ($vendor) {
@@ -1802,7 +1798,6 @@ class MVX_Ajax {
                                         <h4 class="modal-title">' . __('Reply to ', 'multivendorx') . $comment_by . '</h4>
                                     </div>
                                     <div class="mvx-widget-modal modal-body">
-                                            <input type="hidden" id="comment_product_id" value= '. $comment->comment_post_ID .' />
                                             <textarea class="form-control" rows="5" id="comment-content-' . $comment->comment_ID . '" placeholder="' . __('Enter reply...', 'multivendorx') . '"></textarea>
                                     </div>
                                     <div class="modal-footer">
@@ -2167,6 +2162,7 @@ class MVX_Ajax {
             $last_seven_day_date = date('Y-m-d H:i:s', strtotime("-$days_range days"));
             
             $query = array(
+                'author' => $vendor->id,
                 'date_query' => array(
                     array(
                         'after'     => $last_seven_day_date,
@@ -2174,21 +2170,15 @@ class MVX_Ajax {
                         'inclusive' => true,
                     ),
                 ),
-                'meta_query' => array(
+                'meta_query'    => array(
                     'relation' => 'AND',
                     array(
-                        'key'     => '_commission_id',
+                        'key'       => '_commission_id',
                         'value'   => 0,
-                        'compare' => '!=',
-                    ),
-                    array(
-                        'key'     => '_vendor_id',
-                        'value'   => $vendor->id,
-                        'compare' => '=',
-                    ),
-                ),
+            'compare' => '!=',
+                    )
+                )
             );
-            
             $vendor_orders = apply_filters('mvx_widget_vendor_product_sales_report_orders', mvx_get_orders( $query, 'object' ), $query);
             
             $sold_product_list = array();
@@ -3132,7 +3122,7 @@ class MVX_Ajax {
             $metabox_class[] = $attribute->get_name();
         }
 
-        $MVX->template->get_template('vendor-dashboard/product-manager/views/html-product-attribute.php',  ['attribute' => $attribute, 'metabox_class' => $metabox_class, 'i' => $i]);
+        include( $MVX->plugin_path . 'templates/vendor-dashboard/product-manager/views/html-product-attribute.php' );
         wp_die();
     }
 
@@ -3496,15 +3486,15 @@ class MVX_Ajax {
                     $type = '<mark class="type ' . $ledger->ref_type . '"><span>' . $ref_type . '</span></mark>';
                     $status = $ledger->ref_status;
                     if( $ledger->ref_status == 'unpaid' ){
-                        $status = '<i class="'. $ledger->ref_status .' mvx-font ico-processing-status-icon" title="'. __('Unpaid', 'multivendorx').'"></i>';
+                        $status = '<i class="'. $ledger->ref_status .' mvx-font ico-processing-status-icon" title="'. ucfirst($ledger->ref_status).'"></i>';
                     }elseif( $ledger->ref_status == 'completed' ){
-                        $status = '<i class="'. $ledger->ref_status.' mvx-font ico-completed-status-icon" title="'. __('Completed', 'multivendorx').'"></i>';
+                        $status = '<i class="'. $ledger->ref_status.' mvx-font ico-completed-status-icon" title="'. ucfirst($ledger->ref_status).'"></i>';
                     }elseif( $ledger->ref_status == 'cancelled' ){
-                        $status = '<i class="'. $ledger->ref_status .' mvx-font ico-processing-status-icon" title="'. __('Cancelled', 'multivendorx').'"></i>';
+                        $status = '<i class="'. $ledger->ref_status .' mvx-font ico-processing-status-icon" title="'. ucfirst($ledger->ref_status).'"></i>';
                     }
                     // Update commission status
                     if($ledger->ref_type == 'commission' && get_post_meta($ledger->ref_id, '_paid_status', true) == 'paid') 
-                    $status = '<i class="'. get_post_meta($ledger->ref_id, '_paid_status', true).' mvx-font ico-completed-status-icon" title="'. __('Paid', 'multivendorx').'"></i>';
+                        $status = '<i class="'. get_post_meta($ledger->ref_id, '_paid_status', true).' mvx-font ico-completed-status-icon" title="'. ucfirst(get_post_meta($ledger->ref_id, '_paid_status', true)).'"></i>';
                     $row = array();
                     $row ['status'] = $status;
                     $row ['date'] = mvx_date($ledger->created);
@@ -3659,11 +3649,6 @@ class MVX_Ajax {
 
         update_user_meta( $current_user_id, 'mvx_customer_follow_vendor', array_filter( array_map( 'wc_clean', (array) $follow_vendors_details ) ) );
         update_user_meta( $store_vendor_id, 'mvx_vendor_followed_by_customer', array_filter( array_map( 'wc_clean', (array) $followed_by_customer ) ) );
-
-        if ($follow_status == 'Follow') {
-            $email = WC()->mailer()->emails['WC_Email_Vendor_Followed_Customer'];
-            $email->trigger($store_vendor_id, $current_user_id);
-        }
 
         if ( is_wp_error( $follow_status ) ) {
             wp_send_json_error( $follow_status, 422 );

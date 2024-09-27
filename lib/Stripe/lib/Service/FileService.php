@@ -4,19 +4,15 @@
 
 namespace Stripe\Service;
 
-/**
- * @phpstan-import-type RequestOptionsArray from \Stripe\Util\RequestOptions
- * @psalm-import-type RequestOptionsArray from \Stripe\Util\RequestOptions
- */
 class FileService extends \Stripe\Service\AbstractService
 {
     /**
-     * Returns a list of the files that your account has access to. Stripe sorts and
-     * returns the files by their creation dates, placing the most recently created
-     * files at the top.
+     * Returns a list of the files that your account has access to. The files are
+     * returned sorted by creation date, with the most recently created files appearing
+     * first.
      *
      * @param null|array $params
-     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
+     * @param null|array|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -28,13 +24,14 @@ class FileService extends \Stripe\Service\AbstractService
     }
 
     /**
-     * Retrieves the details of an existing file object. After you supply a unique file
-     * ID, Stripe returns the corresponding file object. Learn how to <a
-     * href="/docs/file-upload#download-file-contents">access file contents</a>.
+     * Retrieves the details of an existing file object. Supply the unique file ID from
+     * a file, and Stripe will return the corresponding file object. To access file
+     * contents, see the <a href="/docs/file-upload#download-file-contents">File Upload
+     * Guide</a>.
      *
      * @param string $id
      * @param null|array $params
-     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
+     * @param null|array|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *

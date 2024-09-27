@@ -5,7 +5,10 @@
 namespace Stripe\Treasury;
 
 /**
- * ReceivedCredits represent funds sent to a <a href="https://stripe.com/docs/api#financial_accounts">FinancialAccount</a> (for example, via ACH or wire). These money movements are not initiated from the FinancialAccount.
+ * ReceivedCredits represent funds sent to a <a
+ * href="https://stripe.com/docs/api#financial_accounts">FinancialAccount</a> (for
+ * example, via ACH or wire). These money movements are not initiated from the
+ * FinancialAccount.
  *
  * @property string $id Unique identifier for the object.
  * @property string $object String representing the object's type. Objects of the same type share the same value.
@@ -15,18 +18,19 @@ namespace Stripe\Treasury;
  * @property string $description An arbitrary string attached to the object. Often useful for displaying to users.
  * @property null|string $failure_code Reason for the failure. A ReceivedCredit might fail because the receiving FinancialAccount is closed or frozen.
  * @property null|string $financial_account The FinancialAccount that received the funds.
- * @property null|string $hosted_regulatory_receipt_url A <a href="https://stripe.com/docs/treasury/moving-money/regulatory-receipts">hosted transaction receipt</a> URL that is provided when money movement is considered regulated under Stripe's money transmission licenses.
  * @property \Stripe\StripeObject $initiating_payment_method_details
  * @property \Stripe\StripeObject $linked_flows
  * @property bool $livemode Has the value <code>true</code> if the object exists in live mode or the value <code>false</code> if the object exists in test mode.
  * @property string $network The rails used to send the funds.
- * @property null|\Stripe\StripeObject $reversal_details Details describing when a ReceivedCredit may be reversed.
  * @property string $status Status of the ReceivedCredit. ReceivedCredits are created either <code>succeeded</code> (approved) or <code>failed</code> (declined). If a ReceivedCredit is declined, the failure reason can be found in the <code>failure_code</code> field.
  * @property null|string|\Stripe\Treasury\Transaction $transaction The Transaction associated with this object.
  */
 class ReceivedCredit extends \Stripe\ApiResource
 {
     const OBJECT_NAME = 'treasury.received_credit';
+
+    use \Stripe\ApiOperations\All;
+    use \Stripe\ApiOperations\Retrieve;
 
     const FAILURE_CODE_ACCOUNT_CLOSED = 'account_closed';
     const FAILURE_CODE_ACCOUNT_FROZEN = 'account_frozen';
@@ -39,41 +43,4 @@ class ReceivedCredit extends \Stripe\ApiResource
 
     const STATUS_FAILED = 'failed';
     const STATUS_SUCCEEDED = 'succeeded';
-
-    /**
-     * Returns a list of ReceivedCredits.
-     *
-     * @param null|array $params
-     * @param null|array|string $opts
-     *
-     * @throws \Stripe\Exception\ApiErrorException if the request fails
-     *
-     * @return \Stripe\Collection<\Stripe\Treasury\ReceivedCredit> of ApiResources
-     */
-    public static function all($params = null, $opts = null)
-    {
-        $url = static::classUrl();
-
-        return static::_requestPage($url, \Stripe\Collection::class, $params, $opts);
-    }
-
-    /**
-     * Retrieves the details of an existing ReceivedCredit by passing the unique
-     * ReceivedCredit ID from the ReceivedCredit list.
-     *
-     * @param array|string $id the ID of the API resource to retrieve, or an options array containing an `id` key
-     * @param null|array|string $opts
-     *
-     * @throws \Stripe\Exception\ApiErrorException if the request fails
-     *
-     * @return \Stripe\Treasury\ReceivedCredit
-     */
-    public static function retrieve($id, $opts = null)
-    {
-        $opts = \Stripe\Util\RequestOptions::parse($opts);
-        $instance = new static($id, $opts);
-        $instance->refresh();
-
-        return $instance;
-    }
 }

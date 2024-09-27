@@ -23,7 +23,6 @@ if (!function_exists('get_mvx_vendor_settings')) {
         }
         return $settings[$key];
     }
-
 }
 
 if (!function_exists('get_mvx_global_settings')) {
@@ -201,7 +200,7 @@ if (!function_exists('is_user_mvx_vendor')) {
 
     /**
      * Check if user is vendor
-     * @param userid or WP_User object
+     * @param  int | WP_User object
      * @return boolean
      */
     function is_user_mvx_vendor($user) {
@@ -214,7 +213,6 @@ if (!function_exists('is_user_mvx_vendor')) {
             return false;
         }
     }
-
 }
 
 if (!function_exists('get_mvx_vendors')) {
@@ -298,7 +296,7 @@ if (!function_exists('get_mvx_vendor')) {
     /**
      * Get individual vendor info by ID
      * @param  int $vendor_id ID of vendor
-     * @return obj            Vendor object
+     * @return object            Vendor object
      */
     function get_mvx_vendor($vendor_id = 0) {
         $vendor = false;
@@ -364,34 +362,33 @@ if (!function_exists('get_mvx_product_vendors')) {
         }
         return $vendor_data;
     }
-
 }
 
-if (!function_exists('doProductVendorLOG')) {
+// if (!function_exists('doProductVendorLOG')) {
 
-    /**
-     * Write to log file
-     */
-    function doProductVendorLOG($str) {
-        global $MVX;
-        $file = $MVX->plugin_path . 'log/product_vendor.log';
-        if (file_exists($file)) {
-            // Open the file to get existing content
-            $current = file_get_contents($file);
-            if ($current) {
-                // Append a new content to the file
-                $current .= "$str" . "\r\n";
-                $current .= "-------------------------------------\r\n";
-            } else {
-                $current = "$str" . "\r\n";
-                $current .= "-------------------------------------\r\n";
-            }
-            // Write the contents back to the file
-            file_put_contents($file, $current);
-        }
-    }
+//     /**
+//      * Write to log file
+//      */
+//     function doProductVendorLOG($str) {
+//         global $MVX;
+//         $file = $MVX->plugin_path . 'log/product_vendor.log';
+//         if (file_exists($file)) {
+//             // Open the file to get existing content
+//             $current = file_get_contents($file);
+//             if ($current) {
+//                 // Append a new content to the file
+//                 $current .= "$str" . "\r\n";
+//                 $current .= "-------------------------------------\r\n";
+//             } else {
+//                 $current = "$str" . "\r\n";
+//                 $current .= "-------------------------------------\r\n";
+//             }
+//             // Write the contents back to the file
+//             file_put_contents($file, $current);
+//         }
+//     }
 
-}
+// }
 
 if (!function_exists('is_vendor_dashboard')) {
 
@@ -755,7 +752,7 @@ if (!function_exists('mvx_check_if_another_vendor_plugin_exits')) {
                 deactivate_plugins('marketplace-stripe-gateway/marketplace-stripe-gateway.php');
             }
         }
-        $vendor_arr = array();
+        $vendor_arr = [];
         $vendor_arr[] = 'dokan-lite/dokan.php';
         $vendor_arr[] = 'wc-vendors/class-wc-vendors.php';
         $vendor_arr[] = 'yith-woocommerce-product-vendors/init.php';
@@ -2831,6 +2828,7 @@ if (!function_exists('mvx_get_vendor_specific_order_charge')) {
                     }
                 }
             }
+
             $vendor_specific_admin_commision['order_marchants'] = array_unique($marchants);
 
             $shipping_items = $order->get_items('shipping');
@@ -3712,13 +3710,13 @@ if ( ! function_exists( 'generate_hierarchical_taxonomy_html' ) ) {
         foreach ( $terms as $term_id => $term_name ) {
             $child_html = '';
             if ( $max_depth > $level ) {
-                $child_terms = get_terms( apply_filters( "mvx_get_product_terms_{$taxonomy}_query_args", array(
+                $child_terms = get_terms( array(
                     'taxonomy'   => $taxonomy,
                     'hide_empty' => false,
                     'orderby'    => 'name',
                     'parent'     => absint( $term_id ),
                     'fields'     => 'id=>name',
-                    ) ) );
+                    ) );
                 if ( ! empty( $child_terms ) && ! is_wp_error( $child_terms ) ) {
                     $child_html = generate_hierarchical_taxonomy_html( $taxonomy, $child_terms, $post_terms, $add_cap, $level + 1 );
                 }
@@ -4202,7 +4200,7 @@ if (!function_exists('mvx_find_shop_page_vendor')) {
      */
     function mvx_find_shop_page_vendor() {
         $store_id = false;
-        if (get_queried_object() instanceof WP_Term) {
+        if (get_queried_object()) {
             $vendor_id = get_queried_object()->term_id;
             $store = get_mvx_vendor_by_term($vendor_id);
             $store_id = $store ? $store->id : false;;
@@ -4733,7 +4731,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'type'      => 'select',
                     'label'     => __( 'Registration Page', 'multivendorx' ),
                     'desc'      => __( 'Select the page on which you have inserted <code>[vendor_registration]</code> shortcode .', 'multivendorx' ),
-                    'options' => $pages_array,
+                    'options'   => $pages_array,
                     'database_value' => '',
                 ],
                 [
@@ -4761,48 +4759,48 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     ),
                     'options' => array(
                         array(
-                            'variable'=> "<code>[mvx_vendor]</code>",
-                            'description'=> __('Enables you to create a seller dashboard ', 'multivendorx'),
+                            "<code>[mvx_vendor]</code>",
+                            __('Enables you to create a seller dashboard ', 'multivendorx'),
                         ),
                         array(
-                            'variable'=> "<code>[vendor_registration]</code>",
-                            'description'=> __('Creates a page where the vendor registration form is available', 'multivendorx'),
+                            "<code>[vendor_registration]</code>",
+                            __('Creates a page where the vendor registration form is available', 'multivendorx'),
                         ),
                         array(
-                            'variable'=> "<code>[vendor_coupons]</code>",
-                            'description'=> __('Lets you view  a brief summary of the coupons created by the seller and number of times it has been used by the customers', 'multivendorx'),
+                            "<code>[vendor_coupons]</code>",
+                            __('Lets you view  a brief summary of the coupons created by the seller and number of times it has been used by the customers', 'multivendorx'),
                         ),
                         array(
-                            'variable'=> "<code>[mvx_recent_products]</code>",
-                            'description'=> __('Allows you to glance at the recent products added by seller', 'multivendorx'),
+                            "<code>[mvx_recent_products]</code>",
+                            __('Allows you to glance at the recent products added by seller', 'multivendorx'),
                         ),
                         array(
-                            'variable'=> "<code>[mvx_products]</code>",
-                            'description'=> __('Displays the products added by seller', 'multivendorx'),
+                            "<code>[mvx_products]</code>",
+                            __('Displays the products added by seller', 'multivendorx'),
                         ),
                         array(
-                            'variable'=> "<code>[mvx_featured_products]</code>",
-                            'description'=> __('Exhibits featured products added by the seller', 'multivendorx'),
+                            "<code>[mvx_featured_products]</code>",
+                            __('Exhibits featured products added by the seller', 'multivendorx'),
                         ),
                         array(
-                            'variable'=> "<code>[mvx_sale_products]</code>",
-                            'description'=> __('Allows you to see the products put on sale by a seller', 'multivendorx'),
+                            "<code>[mvx_sale_products]</code>",
+                            __('Allows you to see the products put on sale by a seller', 'multivendorx'),
                         ),
                         array(
-                            'variable'=> "<code>[mvx_top_rated_products]</code>",
-                            'description'=> __('Displays the top rated products of the seller', 'multivendorx'),
+                            "<code>[mvx_top_rated_products]</code>",
+                            __('Displays the top rated products of the seller', 'multivendorx'),
                         ),
                         array(
-                            'variable'=> "<code>[mvx_best_selling_products]</code>",
-                            'description'=> __('Presents you the option of viewing the best selling products of the vendor', 'multivendorx'),
+                            "<code>[mvx_best_selling_products]</code>",
+                            __('Presents you the option of viewing the best selling products of the vendor', 'multivendorx'),
                         ),
                         array(
-                            'variable'=> "<code>[mvx_product_category]</code>",
-                            'description'=> __('Lets you see the product categories used by the vendor', 'multivendorx'),
+                            "<code>[mvx_product_category]</code>",
+                            __('Lets you see the product categories used by the vendor', 'multivendorx'),
                         ),
                         array(
-                            'variable'=> "<code>[mvx_vendorslist]</code>",
-                            'description'=> __('Shows customers a list of available seller.', 'multivendorx'),
+                            "<code>[mvx_vendorslist]</code>",
+                            __('Shows customers a list of available seller.', 'multivendorx'),
                         ),
                     ),
                     'database_value' => '',
@@ -5239,34 +5237,6 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     ),
                     'database_value' => '',
                 ],
-                [
-                    'key'       =>  'vendor_privacy_policy',
-                    'type'      =>  'blocktext',
-                    'label'     =>  __( 'no_label', 'multivendorx' ),
-                    'blocktext'      =>  __( "Vendor Profile Privacy", 'multivendorx' ),
-                    'database_value' => '',
-                ],
-                [
-                    'key'       => 'mvx_hide_vendor_details',
-                    'type'      => 'toggle_rectangle',
-                    'label'     => __( 'Hide Vendor Details', 'multivendorx' ),
-                    'desc'      => __( 'Manage the visibility of vendor contact information, including email addresses, physical addresses, and phone numbers. You can choose to hide this information for all users or only for users who are not logged in.', 'multivendorx' ),
-                    'options' => array(
-                        array(
-                            'name'  =>  'mvx_hide_vendor_details',
-                            'key'=> "all_user",
-                            'label'=> __('All User', 'multivendorx'),
-                            'value'=> __('All User', 'multivendorx'),
-                        ),
-                        array(
-                            'name'  =>  'mvx_hide_vendor_details',
-                            'key'=> "non_logged_in_user",
-                            'label'=> __('Non Logged-in user', 'multivendorx'),
-                            'value'=> __('Non Logged-in user', 'multivendorx'),
-                        ),
-                    ),
-                    'database_value' => '',
-                ],
             ],
             'products'  =>  [
                 [
@@ -5565,7 +5535,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'type'      => 'toggle_rectangle',
                     'class'     => 'mvx-toggle-radio-switcher',
                     'label'     => __( 'Revenue Sharing Mode', 'multivendorx' ),
-                    'desc'      => __( 'Select how you want the commission to be split. If you are not sure about how to setup commissions and payment options in your marketplace, kindly read this <a href="https://multivendorx.com/docs/knowledgebase/types-of-commission/" terget="_blank">article</a> before proceeding.', 'multivendorx' ),
+                    'desc'      => __( 'Select how you want the commission to be split. If you are not sure about how to setup commissions and payment options in your marketplace, kindly read this <a href="https://multivendorx.com/doc/knowladgebase/payments/" terget="_blank">article</a> before proceeding.', 'multivendorx' ),
                     'options' => array(
                         array(
                             'name'  => 'revenue_sharing_mode',
@@ -5731,7 +5701,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'depend'    => 'commission_type',
                     'dependvalue'       =>  'commission_by_product_price',
                     'label'     => __( 'Commission By Product Price', 'multivendorx' ),
-                    'desc'      => sprintf( __( 'Commission rules depending upon product price. e.g 80%%; commission when product cost < %s1000, %s100 fixed commission when product cost > %s1000 and so on. You may define any number of such rules. Please be sure, <b> do not set conflicting rules.</b>', 'multivendorx' ), get_woocommerce_currency_symbol(), get_woocommerce_currency_symbol(), get_woocommerce_currency_symbol() ),
+                    'desc'      => sprintf( __( 'Commission rules depending upon product price. e.g 80&#37; commission when product cost < %s1000, %s100 fixed commission when product cost > %s1000 and so on. You may define any number of such rules. Please be sure, <b> do not set conflicting rules.</b>', 'multivendorx' ), get_woocommerce_currency_symbol(), get_woocommerce_currency_symbol(), get_woocommerce_currency_symbol() ),
                     'parent_options' => array(
                         array(
                             'key'=>'cost',
@@ -6039,7 +6009,6 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 ],
             ],
             'dashbaord-pages'   => [
-               
                 [
                     'key'       => 'mvx_vendor',
                     'type'      => 'select',
@@ -6874,7 +6843,7 @@ if (!function_exists('mvx_admin_backend_tab_settings')) {
                 'apiurl'         =>  'mvx_module/v1/save_dashpages',
                 'description'    =>  __('Configure the basic setting of the marketplace.', 'multivendorx'),
                 'icon'           =>  'icon-tab-general',
-                'submenu'       =>  'settings',
+                'submenu'        =>  'settings',
                 'modulename'     =>  'settings-general'
             ),
             array(
@@ -7362,7 +7331,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'name'         => __( 'Simple (Downloadable & Virtual)', 'multivendorx' ),
                         'description'  => __( 'Covers the vast majority of any tangible products you may sell or ship i.e books', 'multivendorx' ),
                         'plan'         => 'free',
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/simple-product',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/simple-product',
                         'parent_category' => __( 'Marketplace Types.', 'multivendorx' ),
                     ],
                     [
@@ -7377,7 +7346,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/variable-product',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/variable-product',
                     ],
                     [
                         'id'           => 'external',
@@ -7405,7 +7374,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/grouped-product',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/grouped-product',
                     ],
                     [
                         'id'           => 'booking',
@@ -7415,7 +7384,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'required_plugin_list' => array(
                             array(
                                 'plugin_name'   => __('WooCommerce Booking', 'multivendorx'),
-                                'plugin_link'   => 'https://multivendorx.com/docs/knowledgebase/appointment-product/',
+                                'plugin_link'   => 'https://multivendorx.com/docs/knowladgebase/appointment-product/',
                                 'is_active' => is_plugin_active('woocommerce-bookings/woocommerce-bookings.php') ? true :false,
                             ),
                             array(
@@ -7424,7 +7393,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/booking-product',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/booking-product',
                     ],
                     [
                         'id'           => 'appointment',
@@ -7462,7 +7431,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/subscription-product',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/subscription-product',
                     ],
                     [
                         'id'           => 'accommodation',
@@ -7486,7 +7455,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/accommodation-product',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/accommodation-product',
                     ],
                     [
                         'id'           => 'bundle',
@@ -7505,7 +7474,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/bundle-product',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/bundle-product',
                     ],
                     [
                         'id'           => 'auction',
@@ -7524,7 +7493,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/auction-product',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/auction-product',
                     ],
                     [
                         'id'           => 'rental-pro',
@@ -7543,7 +7512,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/rental-product',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/rental-product',
                     ],
                     [
                         'id'           => 'gift-card',
@@ -7581,7 +7550,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/identity-verification/',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/identity-verifictaion',
                         'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=settings-identity-verification'),
                     ],
                 ]
@@ -7594,7 +7563,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'name'         => __( 'Single Product Multiple Vendor', 'multivendorx' ),
                         'description'  => __( 'Lets multiple vendors sell the same products ', 'multivendorx' ),
                         'plan'         => 'free',
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/single-product-multiple-vendors-spmv',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/single-product-multiple-vendors-spmv',
                         'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=spmv-pages'),
                     ],
                     [
@@ -7609,7 +7578,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/import-export',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/import-export',
                     ],
                     [
                         'id'           => 'store-inventory',
@@ -7623,7 +7592,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/store-inventory',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/store-inventory',
                         'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=settings-store-inventory'),
                     ],
                     [
@@ -7644,7 +7613,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'name'         => __( 'Bank Transfer', 'multivendorx' ),
                         'description'  => __( "Manually transfer money directly to the vendor's bank account.", 'multivendorx' ),
                         'plan'         => 'free',
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/direct-bank-transfer/',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/direct-bank-transfer/',
                     ],
                     [
                         'id'           => 'paypal-masspay',
@@ -7652,14 +7621,14 @@ if (!function_exists('mvx_list_all_modules')) {
                         'description'  => __( 'Schedule payment to multiple vendors at the same time.', 'multivendorx' ),
                         'plan'         => 'free',
                        
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/paypal-masspay/',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/paypal-masspay/',
                     ],
                     [
                         'id'           => 'paypal-payout',
                         'name'         => __( 'PayPal Payout', 'multivendorx' ),
                         'description'  => __( 'Send payments automatically to multiple vendors as per scheduled', 'multivendorx' ),
                         'plan'         => 'free',
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/paypal-payout',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/paypal-payout',
                         'mod_link'     => admin_url('admin.php?page=mvx#&submenu=payment&name=payment-payout'),
                     ],
                     [
@@ -7674,7 +7643,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active' => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/paypal-marketplace-real-time-split/',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/paypal-marketplace-real-time-split/',
                         'mod_link'     => admin_url('admin.php?page=wc-settings&tab=checkout&section=mvx_paypal_marketplace'),
                     ],
                     [
@@ -7682,7 +7651,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'name'         => __( 'Stripe Connect', 'multivendorx' ),
                         'description'  => __( 'Connect to vendors stripe account and make hassle-free transfers as scheduled.', 'multivendorx' ),
                         'plan'         => 'free',
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/stripe-connect',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/stripe-connect',
                         'mod_link'     => admin_url('admin.php?page=mvx#&submenu=payment&name=payment-stripe-connect'),
                     ],
                     [
@@ -7697,7 +7666,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active' => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/stripe-marketplace',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/stripe-marketplace',
                         'mod_link'     => admin_url('admin.php?page=mvx#&submenu=payment&name=payment-stripe-connect'),
                     ],
                     [
@@ -7712,7 +7681,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active' => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/mangopay',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/mangopay',
                         'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
@@ -7727,7 +7696,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active' => is_plugin_active('wcmp-razorpay-split-payment/mvx-razorpay-checkout-gateway.php') ? true :false,
                             )
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/payment/',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/razorpay',
                         'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ]
                 ]
@@ -7740,7 +7709,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'name'         => __( 'Zone-Wise Shipping', 'multivendorx' ),
                         'description'  => __( 'Limit vendors to sell in selected zones', 'multivendorx' ),
                         'plan'         => 'free',
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/shipping-by-zone/',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/knowledgebase/',
                         'mod_link'     => admin_url('admin.php?page=wc-settings&tab=shipping'),
                         'parent_category' => __( 'Shipping.', 'multivendorx' ),
                     ],
@@ -7749,7 +7718,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'name'         => __( 'Distance Shipping', 'multivendorx' ),
                         'description'  => __( 'Calculate Rates based on distance between the vendor store and drop location', 'multivendorx' ),
                         'plan'         => 'free',
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/distance-shipping',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/distance-shipping',
                         'mod_link'     => admin_url('admin.php?page=wc-settings&tab=shipping&section=mvx_product_shipping_by_distance'),
                     ],
                     [
@@ -7757,7 +7726,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'name'         => __( 'Country-Wise Shipping', 'multivendorx' ),
                         'description'  => __( 'Let vendors choose and manage shipping, to countries of their choice', 'multivendorx' ),
                         'plan'         => 'free',
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/country-shipping',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/country-shipping',
                         'mod_link'     => admin_url('admin.php?page=wc-settings&tab=shipping&section=mvx_product_shipping_by_country'),
                     ],
                     [
@@ -7772,7 +7741,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active' => is_plugin_active('woocommerce-table-rate-shipping/woocommerce-table-rate-shipping.php') ?true : false,
                             )
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/weight-shipping',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/weight-shipping',
                         'mod_link'     => admin_url('admin.php?page=wc-settings&tab=shipping'),
                     ],
                     [
@@ -7792,7 +7761,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/per-product-shipping',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/per-product-shipping',
                         'mod_link'     => admin_url('admin.php?page=wc-settings&tab=shipping'),
                     ],
                 ]
@@ -7812,7 +7781,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/invoice-packing-slip',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/invoice-packing-slip',
                         'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=settings-vendor-invoice'),
                     ],
                     [
@@ -7820,7 +7789,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'name'         => __( 'Marketplace Refund', 'multivendorx' ),
                         'description'  => __( 'Enable customer refund requests & Let vendors manage customer refund ', 'multivendorx' ),
                         'plan'         => 'free',
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/marketplace-refund',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/marketplace-refund',
                         'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=refund-management'),
                     ],
                 ]
@@ -7833,7 +7802,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'name'         => __( 'Store Location', 'multivendorx' ),
                         'description'  => __( "If enabled customers can view a vendor's store location", 'multivendorx' ),
                         'plan'         => 'free',
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/store-location',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/store-location',
                         'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=store'),
                     ],
                     [
@@ -7841,7 +7810,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'name'         => __( 'Store Policy', 'multivendorx' ),
                         'description'  => __( 'Offers vendors the option to set individual store specific policies', 'multivendorx' ),
                         'plan'         => 'free',
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/store-policy',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/store-policy',
                         'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=policy'),
                     ],
                     [
@@ -7849,14 +7818,14 @@ if (!function_exists('mvx_list_all_modules')) {
                         'name'         => __( 'Follow Store', 'multivendorx' ),
                         'description'  => __( 'Permit customers to follow store, receive updates & lets vendors keep track of customers', 'multivendorx' ),
                         'plan'         => 'free',
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/follow-store',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/follow-store',
                     ],
                     [
                         'id'           => 'store-review',
                         'name'         => __( 'Store Review', 'multivendorx' ),
                         'description'  => __( 'Allows customers to rate and review stores and their purchased products', 'multivendorx' ),
                         'plan'         => 'free',
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/store-review',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/store-review',
                         'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=review-management'),
                     ],
                     [
@@ -7911,7 +7880,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/vacation',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/vacation',
                     ],
                     [
                         'id'           => 'staff-manager',
@@ -7925,7 +7894,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/staff-manager',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/staff-manager',
                     ],
                     [
                         'id'           => 'wholesale',
@@ -7939,7 +7908,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/wholesale',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/wholesale',
                         'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=settings-wholesale'),
                     ],
                     [
@@ -7954,7 +7923,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/live-chat',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/live-chat',
                         'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=settings-live-chat'),
                     ],
                     [
@@ -7989,7 +7958,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/store-analytics',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/store-analytics',
                         'mod_link'     => admin_url('admin.php?page=mvx-setting-admin'),
                     ],
                     [
@@ -8004,7 +7973,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/store-seo',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/store-seo',
                         'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=settings-seo'),
                     ],
                 ]
@@ -8024,7 +7993,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/marketplace-memberhsip',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/marketplace-memberhsip',
                         'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=settings-vendor-membership'),
                     ],
                 ]
@@ -8045,7 +8014,7 @@ if (!function_exists('mvx_list_all_modules')) {
                         'name'         => __( 'Report Abuse', 'multivendorx' ),
                         'description'  => __( 'Lets customers report false products', 'multivendorx' ),
                         'plan'         => 'free',
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/report-abuse',                        
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/report-abuse',                        
                         'mod_link'     => admin_url('admin.php?page=mvx#&submenu=work-board&name=report-abuse'),
                     ],
                     [
@@ -8059,7 +8028,7 @@ if (!function_exists('mvx_list_all_modules')) {
                 ]
             ],
             [
-                'label' =>  __('Third Party Compatibility', 'multivendorx'),
+                'label' =>  __('Third Party Compartibility', 'multivendorx'),
                 'options'       =>  [
                     [
                         'id'           => 'elementor',
@@ -8078,8 +8047,8 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active' => is_plugin_active('elementor-pro/elementor-pro.php') ? true : false,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/mvx-elementor',
-                        'parent_category' => __( 'Third Party Compatibility', 'multivendorx' ),
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/mvx-elementor',
+                        'parent_category' => __( 'Third Party Compartibility', 'multivendorx' ),
                     ],
                     [
                         'id'           => 'buddypress',
@@ -8093,7 +8062,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active' => is_plugin_active('buddypress/bp-loader.php') ? true : false,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/mvx-buddypress',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/mvx-buddypress',
                         'mod_link'     => admin_url('admin.php?page=mvx#&submenu=settings&name=social'),
                     ],
                     [
@@ -8113,7 +8082,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => is_plugin_active('woocommerce-multilingual/wpml-woocommerce.php') ? true : false,
                             )
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/mvx-wpml',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/mvx-wpml',
                     ],
                     [
                         'id'           => 'advance-custom-field',
@@ -8132,7 +8101,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/mvx-acf',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/mvx-acf',
                         'category'  => 'store boosters',
                     ],
                     [
@@ -8152,7 +8121,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/geo-my-wp',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/geo-my-wp',
                     ],
                     [
                         'id'           => 'toolset-types',
@@ -8208,7 +8177,7 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/mvx-product-addon',
+                        'doc_link'     => 'https://multivendorx.com/docs/knowladgebase/mvx-product-addon',
                     ],
                     [
                         'id'           => 'shipstation-module',
@@ -8222,7 +8191,6 @@ if (!function_exists('mvx_list_all_modules')) {
                                 'is_active'     => $mvx_pro_is_active,
                             ),
                         ),
-                        'doc_link'     => 'https://multivendorx.com/docs/knowledgebase/shipstation/',
                     ],
                 ]
             ],
@@ -8392,7 +8360,7 @@ if(!function_exists('insert_mvx_vendor_order_data')){
         $order->calculate_totals();
         $order->set_parent_id( $parent_order->get_id() );
         $order->update_meta_data( '_vendor_id', $vendor_id );
-        $order->save();
+        // $order->save();
         foreach ( $meta as $key ) {
             if ( is_callable( [ $order, "set_{$key}" ] ) ) {
                 $order->{"set_{$key}"}( $parent_order->{"get_{$key}"}() );
@@ -8441,4 +8409,17 @@ function mvx_get_random_string( $length = 8 ) {
     }
     // builtin method failed, try manual method
     return substr( str_shuffle( str_repeat( '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', wp_rand( 1, 10 ) ) ), 1, $length );
+}
+
+function mvx_namespace_approve( $value ) {
+	
+	$rest_prefix = trailingslashit( rest_get_url_prefix() );
+	
+	// Allow third party plugins use our authentication methods.
+	$mvx_support = ( false !== strpos( $_SERVER['REQUEST_URI'], $rest_prefix . 'mvx' ) );
+	
+	if($value || $mvx_support) $return = true;
+	else $return = false;
+	
+	return $return;
 }

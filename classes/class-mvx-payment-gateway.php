@@ -60,7 +60,7 @@ abstract class MVX_Payment_Gateway {
                 $transaction_total += (float) $commission_amount;
             }
         }
-        return apply_filters('mvx_commission_transaction_amount', $transaction_total, $this->vendor->id ?? null, $this->commissions, $this->payment_gateway);
+        return apply_filters('mvx_commission_transaction_amount', $transaction_total, $this->vendor->id, $this->commissions, $this->payment_gateway);
     }
 
     public function transfer_charge() {
@@ -120,7 +120,7 @@ abstract class MVX_Payment_Gateway {
                     $gateway_charge += $order_gateway_charge; 
                 }
                 
-                if($carrier == 'separate'){
+                if($carrier == 'separate') {
                     //$gateway_charge = 0;
                     if ('percent' === $payment_gateway_charge_type) {
                         $gateway_charge = ($this->get_transaction_total() * $payment_gateway_percent_value) / 100;

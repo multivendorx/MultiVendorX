@@ -1311,4 +1311,6 @@ class MVX_Settings extends Component {
 		);
 	}
 }
-export default MVX_Settings;
+// export default MVX_Settings;
+import Settings from '../Settings/Settings.jsx';
+export default Settings;

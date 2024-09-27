@@ -22,8 +22,8 @@ class Stripe
     /** @var string The base URL for the Stripe API uploads endpoint. */
     public static $apiUploadBase = 'https://files.stripe.com';
 
-    /** @var string The version of the Stripe API to use for requests. */
-    public static $apiVersion = \Stripe\Util\ApiVersion::CURRENT;
+    /** @var null|string The version of the Stripe API to use for requests. */
+    public static $apiVersion = null;
 
     /** @var null|string The account ID for connected accounts requests. */
     public static $accountId = null;
@@ -58,7 +58,7 @@ class Stripe
     /** @var float Initial delay between retries, in seconds */
     private static $initialNetworkRetryDelay = 0.5;
 
-    const VERSION = '15.8.0';
+    const VERSION = '8.8.0';
 
     /**
      * @return string the API key used for requests
@@ -90,7 +90,7 @@ class Stripe
     }
 
     /**
-     * @param \Psr\Log\LoggerInterface|Util\LoggerInterface $logger the logger to which the library
+     * @param Util\LoggerInterface $logger the logger to which the library
      *   will produce messages
      */
     public static function setLogger($logger)
@@ -119,7 +119,8 @@ class Stripe
     }
 
     /**
-     * @return string the API version used for requests
+     * @return string The API version used for requests. null if we're using the
+     *    latest version.
      */
     public static function getApiVersion()
     {
@@ -184,7 +185,7 @@ class Stripe
     }
 
     /**
-     * @param null|string $accountId the Stripe account ID to set for connected
+     * @param string $accountId the Stripe account ID to set for connected
      *   account requests
      */
     public static function setAccountId($accountId)

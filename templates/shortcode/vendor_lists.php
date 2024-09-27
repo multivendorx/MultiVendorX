@@ -27,7 +27,7 @@ mvx_mapbox_design_switcher();
             <div class="mvx-store-map-filter">
                 <?php if (!mvx_mapbox_api_enabled()) { ?>
                     <div class="mvx-inp-wrap">
-                        <input type="text" name="locationText" id="locationText" placeholder="<?php esc_attr_e('Enter Address', 'multivendorx'); ?>" value="<?php echo isset($request['locationText']) ? htmlspecialchars($request['locationText'], ENT_QUOTES, 'UTF-8') : ''; ?>">
+                        <input type="text" name="locationText" id="locationText" placeholder="<?php esc_attr_e('Enter Address', 'multivendorx'); ?>" value="<?php echo isset($request['locationText']) ? $request['locationText'] : ''; ?>">
                     </div>
                 <?php } ?>
                 <div class="mvx-inp-wrap">
@@ -121,7 +121,7 @@ mvx_mapbox_design_switcher();
                     <select name="vendor_state" id="vendor_state" class="state_select vendors_sort_shipping_fields form-control regular-select" rel="vendor_state">
                         <option value=""><?php esc_html_e( 'Select a state&hellip;', 'multivendorx' ); ?></option>
                     </select>
-                    <input class="vendors_sort_shipping_fields" type="text" placeholder="<?php esc_attr_e('ZIP code', 'multivendorx'); ?>" name="vendor_postcode_list" value="<?php echo isset($request['vendor_postcode_list']) ? htmlspecialchars($request['vendor_postcode_list'], ENT_QUOTES, 'UTF-8') : ''; ?>">
+                    <input class="vendors_sort_shipping_fields" type="text" placeholder="<?php esc_attr_e('ZIP code', 'multivendorx'); ?>" name="vendor_postcode_list" value="<?php echo isset($request['vendor_postcode_list']) ? $request['vendor_postcode_list'] : ''; ?>">
                     <!-- Sort by Category -->
                     <select name="vendor_sort_category" id="vendor_sort_category" class="select"><?php echo $options_html; ?></select>
                     <?php do_action( 'mvx_vendor_list_vendor_sort_extra_attributes', $request ); ?>
