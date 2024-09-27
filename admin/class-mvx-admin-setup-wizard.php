@@ -719,7 +719,7 @@ class MVX_Admin_Setup_Wizard {
                         </select>
                         <p class="description"><?php esc_html_e('Dummy data will be imported based on the marketplace type.', 'multivendorx')?></p>
                         <p id="booking-error" class="woocommerce-error" style="display: none;"><?php esc_html_e('WooCommerce Bookings pulgin is required to continue.', 'multivendorx')?></p>
-                        <p id="subscription-error" class="woocommerce-error" style="display: none;"><?php esc_html_e('WooCommerce Subscriptions is required to continue.', 'multivendorx')?></p>
+                        <p id="subscription-error" class="woocommerce-error" style="display: none;"><?php esc_html_e('WooCommerce Subscriptions pulgin is required to continue.', 'multivendorx')?></p>
                         <p id="rental-error" class="woocommerce-error" style="display: none;"><?php esc_html_e('WooCommerce Booking & Rental pulgin is required to continue.', 'multivendorx')?></p>
                         <p id="auction-error" class="woocommerce-error" style="display: none;"><?php esc_html_e('WooCommerce Simple Auction pulgin is required to continue.', 'multivendorx')?></p>
                         
@@ -1038,10 +1038,10 @@ class MVX_Admin_Setup_Wizard {
         $marketplace_type = filter_input(INPUT_POST, 'marketplace_type');
 
         $this->import_vendors();
-        $product_ids = $this->import_products($marketplace_type);
+        $product_ids = $this->import_products( $marketplace_type );
         $this->import_commissions();
         if( $product_ids ){
-            $this->import_orders($product_ids);
+            $this->import_orders( $product_ids, $marketplace_type );
             $this->import_reviews($product_ids);
         }
         
@@ -1143,9 +1143,8 @@ class MVX_Admin_Setup_Wizard {
 
             $product_data = array(
                 'post_title'    => (string) $product->title, // Product Title
-                'guid'          => (string) $product->guid, // Product guid
-                'post_content'  => (string) $product->description, // Product Description
-                'post_excerpt'  => (string) $product->short_description, // Short Description
+                'post_content'  => (string) $product->content, // Product Description
+                'post_excerpt'  => (string) $product->excerpt, // Short Description
                 'post_author'   => $vendor_id, // Vendor Id
                 'post_name'     => (string) $product->post_name, // post name
                 'post_status'   => (string) $product->status, // Publish the product
@@ -1162,8 +1161,9 @@ class MVX_Admin_Setup_Wizard {
 
             // Set product vendor
             $vendor = get_mvx_vendor( $vendor_id );
-            wp_set_object_terms( $product_id, absint($vendor->term_id), $MVX->taxonomy->taxonomy_name );
-
+            if($vendor){
+                wp_set_object_terms( $product_id, absint($vendor->term_id), $MVX->taxonomy->taxonomy_name );
+            }
             // Set product category
             foreach( $product->categories->category as $category){
                 $category_name = (string) $category;
@@ -1272,7 +1272,7 @@ class MVX_Admin_Setup_Wizard {
      * Import dummy orders
      * @global object $mvx
      */
-    public function import_orders( $product_ids ){
+    public function import_orders( $product_ids, $marketplace_type ){
         global $MVX;
         $product_ids = array_reverse( $product_ids );
 
@@ -1290,7 +1290,7 @@ class MVX_Admin_Setup_Wizard {
             $quantity   = $order->quantity;
             $new_order->add_product( wc_get_product( $product_id ), $quantity );
 
-            $billing_address = array(
+            $address = array(
                 'first_name' => (string) $order->first_name,
                 'last_name'  => (string) $order->last_name,
                 'email'      => (string) $order->email,
@@ -1302,8 +1302,34 @@ class MVX_Admin_Setup_Wizard {
                 'country'    => (string) $order->country,
             );
 
-            $new_order->set_billing_address( $billing_address );
-            $new_order->set_shipping_address( $billing_address );
+            $new_order->set_billing_address( $address );
+            $new_order->set_shipping_address( $address );
+            $order_items = $new_order->get_items();
+            $cost = intval(get_post_meta( $product_id, '_wc_booking_block_cost', true )) + intval(get_post_meta( $product_id, '_wc_booking_cost', true ));
+
+            if( $marketplace_type == 'booking' ){
+                $props = array(
+                    'customer_id'   => '1',
+                    'product_id'    => $product_id,
+                    'resource_id'   => '',
+                    'person_counts' => 'a:0:{}',
+                    'cost'          => $cost,
+                    'start'         => strtotime( current_time( 'Y-m-d' ). '00:00:00' ),
+                    'end'           => strtotime( current_time( 'Y-m-d' ). '23:59:59' ),
+                    'all_day'       => 1,
+                );
+
+                $booking = new WC_Booking( $props );
+                $booking->set_order_id( $order_id );
+                $item = reset( $order_items );
+                $item['subtotal'] = $cost;
+                $item['total'] = $cost;
+                $item_id = key( $order_items );
+                $booking->set_order_item_id( $item_id );
+                $booking->set_cost(intval(get_post_meta( $product_id, '_wc_booking_block_cost', true )) + intval(get_post_meta( $product_id, '_wc_booking_cost', true )));
+                $booking->set_status( 'unpaid' );
+                $booking->save();
+            }
 
             $shipping_item = new WC_Order_Item_Shipping();
             $shipping_item->set_method_title( 'Free shipping' );
@@ -1312,7 +1338,6 @@ class MVX_Admin_Setup_Wizard {
             // Set the shipping cost to 0
             $shipping_item->set_total( 0 );
 
-            $order_items = $new_order->get_items();
             foreach( $order_items as $item_id => $item ){
                 $vendor = get_mvx_product_vendors( $item['product_id'] );
                 if ($vendor) {
@@ -1331,9 +1356,8 @@ class MVX_Admin_Setup_Wizard {
             $new_order->set_payment_method_title( (string) $order->payment_method_title );
 
             $new_order->update_meta_data('has_mvx_sub_order', true);
-            $items = $new_order->get_items();
             $vendor_items = array();
-            foreach ($items as $item_id => $item) {
+            foreach ($order_items as $item_id => $item) {
                 $has_vendor = get_mvx_product_vendors($item['product_id']);
                 if ($has_vendor) {
                     $variation_id = isset($item['variation_id']) && !empty($item['variation_id']) ? $item['variation_id'] : 0;
@@ -1356,7 +1380,6 @@ class MVX_Admin_Setup_Wizard {
                     $vendor_orderid = MVX_Order::create_vendor_order($new_order, array(
                                 'order_id' => $order_id,
                                 'vendor_id' => $vendor_id,
-                                // 'posted_data' => $posted_data,
                                 'line_items' => $items
                     ));
 
