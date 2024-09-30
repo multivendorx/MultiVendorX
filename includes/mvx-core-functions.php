@@ -3724,7 +3724,7 @@ if ( ! function_exists( 'generate_hierarchical_taxonomy_html' ) ) {
                 }
             }
 
-            $tax_html .= '<li><label><input type="checkbox" name="tax_input[' . $taxonomy . '][]" value="' . $term_id . '" ' . checked( in_array( $term_id, $post_terms ), true, false ) . '> ' . $term_name . $child_html . '</label></li>';
+            $tax_html .= '<li><label><input type="checkbox" name="tax_input[' . $taxonomy . '][]" value="' . $term_id . '" ' . checked( in_array( $term_id, $post_terms ), true, false ) . '> ' . $term_name . '</label>' . $child_html . '</li>';
         }
         $tax_html .= '</ul>';
         if ( $add_cap ) {
