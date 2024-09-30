@@ -423,6 +423,23 @@ class MVX_Admin_Setup_Wizard {
      */
     public function mvx_setup_commission() {
         $payment_settings = mvx_get_option('mvx_commissions_tab_settings');
+        if( isset($payment_settings['commission_type']['value']) ){
+            $commission_type = $payment_settings['commission_type']['value'];
+        }else{
+            $commission_type = 'percent';
+        }
+
+        $default_commission = '';
+        $fixed_with_percentage = '';
+
+        if( isset($payment_settings['default_commission'][0]['value']) ){
+            if( $commission_type === 'fixed' || $commission_type === 'percent' ){
+                $default_commission    = $payment_settings['default_commission'][0]['value'];
+            }else{
+                $default_commission    = $payment_settings['default_commission'][1]['value'];
+                $fixed_with_percentage = $payment_settings['default_commission'][0]['value'];
+            }
+        }
         ?>
         <h1><?php esc_html_e('Commission Setup', 'multivendorx'); ?></h1>
         <div class="mvx-setting-section-divider">&nbsp;</div>
@@ -442,12 +459,9 @@ class MVX_Admin_Setup_Wizard {
                 <tr>
                     <th scope="row"><label for="commission_type"><?php esc_html_e('Commission Type', 'multivendorx'); ?></label></th>
                     <td>
-                        <?php
-                        $commission_type = isset($payment_settings['commission_type']['value']) ? $payment_settings['commission_type']['value'] : 'percent';
-                        ?>
                         <select id="commission_type" name="commission_type" class="wc-enhanced-select">
                             <option value="fixed" data-fields="#tr_default_commission" <?php selected($commission_type, 'fixed'); ?>><?php esc_html_e('Fixed Amount', 'multivendorx'); ?></option>
-                            <option value="percent" data-fields="#tr_default_commission" <?php selected($commission_type, 'percent'); ?>><?php esc_html_e('Percentage', 'multivendorx'); ?></option>
+                            <option value="percent" data-fields="#tr_default_percentage" <?php selected($commission_type, 'percent'); ?>><?php esc_html_e('Percentage', 'multivendorx'); ?></option>
                             <option value="fixed_with_percentage" data-fields="#tr_default_percentage,#tr_fixed_with_percentage" <?php selected($commission_type, 'fixed_with_percentage'); ?>><?php esc_html_e('%age + Fixed (per transaction)', 'multivendorx'); ?></option>
                             <option value="fixed_with_percentage_qty" data-fields="#tr_default_percentage,#tr_fixed_with_percentage_qty" <?php selected($commission_type, 'fixed_with_percentage_qty'); ?>><?php esc_html_e('%age + Fixed (per unit)', 'multivendorx'); ?></option>
                         </select>
@@ -456,9 +470,6 @@ class MVX_Admin_Setup_Wizard {
                 <tr id="tr_default_commission" class="mvx_commission_type_fields">
                     <th scope="row"><label for="default_commission"><?php esc_html_e('Commission value', 'multivendorx'); ?></label></th>
                     <td>
-                        <?php
-                        $default_commission = isset($payment_settings['default_commission'][0]['value']) ? $payment_settings['default_commission'][0]['value'] : '';
-                        ?>
                         <input type="text" id="default_commission" name="default_commission" placeholder="" value="<?php echo esc_attr($default_commission); ?>" />
                     </td>
                 </tr>
@@ -466,19 +477,13 @@ class MVX_Admin_Setup_Wizard {
                 <tr id="tr_default_percentage" class="mvx_commission_type_fields">
                     <th scope="row"><label for="default_percentage"><?php esc_html_e('Commission Percentage', 'multivendorx'); ?></label></th>
                     <td>
-                        <?php
-                        $default_percentage = isset($payment_settings['default_commission'][0]['value']) ? $payment_settings['default_commission'][0]['value'] : '';
-                        ?>
-                        <input type="text" id="default_percentage" name="default_percentage" placeholder="" value="<?php echo esc_attr($default_percentage); ?>" />
+                        <input type="text" id="default_percentage" name="default_percentage" placeholder="" value="<?php echo esc_attr($default_commission); ?>" />
                     </td>
                 </tr>
 
                 <tr id="tr_fixed_with_percentage" class="mvx_commission_type_fields">
                     <th scope="row"><label for="fixed_with_percentage"><?php esc_html_e('Fixed Amount', 'multivendorx'); ?></label></th>
                     <td>
-                        <?php
-                        $fixed_with_percentage = isset($payment_settings['fixed_with_percentage'][0]['value']) ? $payment_settings['fixed_with_percentage'][0]['value'] : '';
-                        ?>
                         <input type="text" id="fixed_with_percentage" name="fixed_with_percentage" placeholder="" value="<?php echo esc_attr($fixed_with_percentage); ?>" />
                     </td>
                 </tr>
@@ -486,10 +491,7 @@ class MVX_Admin_Setup_Wizard {
                 <tr id="tr_fixed_with_percentage_qty" class="mvx_commission_type_fields">
                     <th scope="row"><label for="fixed_with_percentage_qty"><?php esc_html_e('Fixed Amount', 'multivendorx'); ?></label></th>
                     <td>
-                        <?php
-                        $fixed_with_percentage_qty = isset($payment_settings['fixed_with_percentage_qty'][0]['value']) ? $payment_settings['fixed_with_percentage_qty'][0]['value'] : '';
-                        ?>
-                        <input type="text" id="fixed_with_percentage_qty" name="fixed_with_percentage_qty" placeholder="" value="<?php echo esc_attr($fixed_with_percentage_qty); ?>" />
+                        <input type="text" id="fixed_with_percentage_qty" name="fixed_with_percentage_qty" placeholder="" value="<?php echo esc_attr($fixed_with_percentage); ?>" />
                     </td>
                 </tr>
 
@@ -748,37 +750,78 @@ class MVX_Admin_Setup_Wizard {
             $payment_settings['revenue_sharing_mode'] = $revenue_sharing_mode;
         }
         if ($commission_type) {
-            $payment_settings['commission_type'] = $commission_type;
-        }
-        if ($default_commission) {
-            $payment_settings['default_commission'] = $default_commission;
-            $payment_settings['default_commission'] = array(
-                'key' => 'fixed_ammount',
-                'value' => $default_commission
-            );
-        }
-        if ($default_percentage) {
-            $payment_settings['default_percentage'] = $default_percentage;
-            $payment_settings['default_commission'] = array(
-                'key' => 'percent_amount',
-                'value' => $default_percentage
-            );
-        }
-        if ($fixed_with_percentage) {
-            $payment_settings['fixed_with_percentage'] = $fixed_with_percentage;
-            $payment_settings['default_commission'] = array(
-                'key' => 'percent_amount',
-                'value' => $fixed_with_percentage
-            );
-        }
-        if ($fixed_with_percentage_qty) {
-            $payment_settings['fixed_with_percentage_qty'] = $fixed_with_percentage_qty;
-            $payment_settings['default_commission'] = array(
-                'key' => 'fixed_ammount',
-                'value' => $fixed_with_percentage_qty
-            );
+            switch($commission_type){
+                case 'fixed':
+                    $payment_settings['commission_type'] = array(
+                        'value'=> __('fixed', 'multivendorx'),
+                        'label'=> __('Fixed Amount', 'multivendorx'),
+                        'index'=> 1,
+                    );
+                    $payment_settings['default_commission'] = $default_commission;
+                    $payment_settings['default_commission'] = array(
+                        0 => array (
+                                'key' => 'fixed_ammount',
+                                'value' => $default_commission,
+                                )
+                    );
+                    break;
+
+                case 'percent':
+                    $payment_settings['commission_type'] = array(
+                        'value'=> __('percent', 'multivendorx'),
+                        'label'=> __('Percentage', 'multivendorx'),
+                        'index'=> 2,
+                    );
+                    $payment_settings['default_percentage'] = $default_percentage;
+                    $payment_settings['default_commission'] = array(
+                        0 => array (
+                            'key' => 'percent_amount',
+                            'value' => $default_percentage
+                        )
+                    );
+                    break;
+
+                case 'fixed_with_percentage':
+                    $payment_settings['commission_type'] = array(
+                        'value'=> __('fixed_with_percentage', 'multivendorx'),
+                        'label'=> __('%age + Fixed (per transaction)', 'multivendorx'),
+                        'index'=> 3,
+                    );
+                    $payment_settings['fixed_with_percentage'] = $fixed_with_percentage;
+                    $payment_settings['default_commission'] = array(
+                        0 => array (
+                            'key' => 'percent_amount',
+                            'value' => $fixed_with_percentage
+                        ),
+                        1 => array (
+                            'key' => 'percent_amount',
+                            'value' => $default_percentage
+                        )
+                    );
+                    break;
+
+                case 'fixed_with_percentage_qty':
+                    $payment_settings['commission_type'] = array(
+                        'value'=> __('fixed_with_percentage_qty', 'multivendorx'),
+                        'label'=> __('%age + Fixed (per unit)', 'multivendorx'),
+                        'index'=> 4,
+                    );
+                    $payment_settings['fixed_with_percentage_qty'] = $fixed_with_percentage_qty;
+                    $payment_settings['default_commission'] = array(
+                        0 => array (
+                            'key' => 'fixed_ammount',
+                            'value' => $fixed_with_percentage_qty
+                        ),
+                        1 => array (
+                            'key' => 'percent_amount',
+                            'value' => $default_percentage
+                        )
+                    );
+                    break;
+            }
         }
         mvx_update_option('mvx_commissions_tab_settings', $payment_settings);
+        
         wp_redirect(esc_url_raw($this->get_next_step_link()));
         exit;
     }
