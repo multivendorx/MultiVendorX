@@ -17,8 +17,6 @@ defined('ABSPATH') || exit;
 final class MultiVendorX {
     private static $instance = null;
     private $file            = '';
-    private $plugin_url      = '';
-    private $plugin_path     = '';
     private $container       = [];
 
     /**
@@ -27,8 +25,10 @@ final class MultiVendorX {
      */
     public function __construct($file) {
         $this->file = $file;
-        $this->plugin_url = trailingslashit(plugins_url('', $file));
-        $this->plugin_path = trailingslashit(dirname($file));
+        $this->container[ 'plugin_url' ]     = trailingslashit( plugins_url( '', $file ) );
+        $this->container[ 'plugin_path' ]    = trailingslashit( dirname( $file ) );
+        $this->container[ 'version' ]        = MVX_PLUGIN_VERSION;
+        $this->container[ 'rest_namespace' ] = MVX_REST_NAMESPACE;
 
         register_activation_hook( $file, [ $this, 'activate' ] );
         register_deactivation_hook( $file, [ $this, 'deactivate' ] );
@@ -113,7 +113,8 @@ final class MultiVendorX {
         $this->container['utility']     = new Utility\Utility();
         $this->container['order']       = new Order\OrderManager();
         $this->container['commission']  = new Commission\CommissionManager();
-        $this->container['gateways']     = new Gateways\GatewaysManager();
+        $this->container['gateways']    = new Gateways\GatewaysManager();
+        $this->container['restapi']	 	= new Api\Rest();
     }
 
     
