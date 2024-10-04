@@ -4,7 +4,9 @@ import axios from "axios";
 
 const DummydataSetup = (props) => {
     const [ marketplaceType, setMarketplaceType ] = useState('niche');
+    const [ isSubmitActive, setIsSubmitActive ] = useState(false);
     const [ isPluginActive, setIsPluginActive ] = useState({
+        niche: true,
         booking : false,
         subscription : false,
         rental : false,
@@ -30,7 +32,14 @@ const DummydataSetup = (props) => {
     }, [] );
 
     const handleMarketplaceTypeChange = (e) => {
-        setMarketplaceType(e.target.value);
+        const value = e.target.value;
+        setMarketplaceType(value);
+        
+        if( !isPluginActive[value] ){
+            setIsSubmitActive(true);
+        }else{
+            setIsSubmitActive(false);
+        }
     }
 
     const submitForm = (e) => {
@@ -79,7 +88,7 @@ const DummydataSetup = (props) => {
                 </table>
                 <p className="wc-setup-actions step">
                     <a onClick={props.onNext} className="button button-large button-next">Skip this step</a>
-                    <input onClick={submitForm} type="submit" className="button-primary button button-large button-next" value="Continue" name="save_step" />
+                    <input onClick={submitForm} disabled={isSubmitActive} type="submit" className="button-primary button button-large button-next" value="Continue" name="save_step" />
                 </p>
             </form>
         </>
