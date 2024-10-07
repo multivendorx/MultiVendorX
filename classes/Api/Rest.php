@@ -344,7 +344,6 @@ class Rest {
         foreach ($gateways as $gateway_id => $gateway) {
             $is_enable_gateway = $is_module_active[$gateway_id];
             if ($is_enable_gateway) {
-                //$payment_settings['payment_method_disbursement'][$gateway_id] = str_replace('payment_method_', '', $is_enable_gateway);
                 array_push($active_module_list, $gateway_id);
                 if (!empty($gateway['repo-slug'])) {
                     wp_schedule_single_event(time() + 10, 'woocommerce_plugin_background_installer', array($gateway_id, $gateway));
@@ -356,7 +355,6 @@ class Rest {
             }
         }
 
-        //mvx_update_option('mvx_commissions_tab_settings', $payment_settings);
         mvx_update_option( 'mvx_all_active_module_list', $active_module_list );
         mvx_update_option('mvx_disbursement_tab_settings', $disbursement_settings);
 
