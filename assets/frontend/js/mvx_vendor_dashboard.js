@@ -248,6 +248,7 @@ jQuery(document).ready(function($){
 			type: 'POST',
 			url:  mvx_frontend_vdashboard_js_script_data.ajax_url,
 			data: data,
+			security : mvx_frontend_vdashboard_js_script_data.dashboard_nonce,
 			success: function(response) {
 				if (response.success) {
 					$( '#msg-for-request-sent-sucesss' ).html(response.data);
