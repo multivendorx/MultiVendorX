@@ -95,6 +95,10 @@ class MVX_Frontend {
             add_filter( 'wc_get_template', array( &$this, 'mvx_template_email_order_details' ), 10, 5 );
         }
         add_action('mvx_init', array(&$this, 'update_data_record'));
+
+        if (is_mvx_shipping_module_active()) {
+            add_action('woocommerce_order_details_after_order_table', array($this, 'display_shipping_details'), 90);
+        }
     }
 
     /**
@@ -1284,6 +1288,16 @@ class MVX_Frontend {
                     }
                 }
             }   
+        }
+    }
+
+    public function display_shipping_details($order) {
+        if ($order && $order->get_meta( 'dc_pv_shipped', true)) {
+            ?>
+            <h2><?php _e( 'Shipment Tracking Details',  'multivendorx' ); ?></h2>
+            <p><strong><?php _e( 'Tracking Url:',  'multivendorx' ); ?></strong> <?php echo $order->get_meta('mvx_tracking_url', true); ?></p>
+            <p><strong><?php _e( 'Tracking Id:',  'multivendorx' ); ?></strong> <?php echo $order->get_meta('mvx_tracking_id', true); ?></p>
+            <?php
         }
     }
 }
