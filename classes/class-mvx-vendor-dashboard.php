@@ -455,8 +455,9 @@ Class MVX_Admin_Dashboard {
                 $order = wc_get_order($_POST['order_id']);
                 $comment = isset($_POST['comment_text']) ? wp_kses_post( trim( wp_unslash( $_POST['comment_text'] ) ) ) : '';
                 $note_type = isset($_POST['note_type']) ? wc_clean( wp_unslash( $_POST['note_type'] ) ) : '';
+                $is_customer_note = ( 'customer' === $note_type ) ? 1 : 0;
                 $comment_id = $order->add_order_note($comment, $is_customer_note, true);
-                if ( $note_type === 'customer' ){
+                if ( $is_customer_note ){
                     $email_note = WC()->mailer()->emails['WC_Email_Customer_Note'];
                     $email_note->trigger(array(
                         'order_id'      => $order,
