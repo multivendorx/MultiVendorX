@@ -74,6 +74,7 @@ class MVX_Order {
             add_action('woocommerce_refund_deleted', array($this, 'mvx_refund_deleted'), 10, 2);
             // Customer Refund request
             add_action( 'woocommerce_order_details_after_order_table', array( $this, 'mvx_refund_btn_customer_my_account'), 10 );
+            add_action( 'wp_enqueue_scripts', array( $this, 'add_scripts' ) );
             add_action( 'wp', array( $this, 'mvx_handler_cust_requested_refund' ) );
             add_action( 'add_meta_boxes', array( $this, 'mvx_refund_order_status_customer_meta' ), 10, 2 );
             add_action( 'woocommerce_process_shop_order_meta', array( $this, 'mvx_refund_order_status_save' ) );
@@ -1590,7 +1591,9 @@ class MVX_Order {
             </form>
         </div>
         <?php
-        // scripts
+    }
+
+    public function add_scripts() {
         wp_add_inline_script( 'woocommerce', '( function( $ ) {
             $("#mvx-myac-order-refund-wrap").hide();
             $("#mvx-myac-order-refund-wrap .cust-rr-other").hide();

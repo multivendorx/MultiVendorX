@@ -1110,6 +1110,8 @@ public function get_vendor_orders_by_product($vendor_term_id, $product_id, $star
             $order->update_meta_data('dc_pv_shipped', $shippers);
             // set new meta shipped
             $order->update_meta_data('mvx_vendor_order_shipped', 1);
+            $order->update_meta_data('mvx_tracking_id', wc_clean($tracking_id));
+            $order->update_meta_data('mvx_tracking_url', esc_url($tracking_url));
             $order->save();
         }
         do_action('mvx_vendors_vendor_ship', $order_id, $this->term_id);
