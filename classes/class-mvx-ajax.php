@@ -3778,10 +3778,9 @@ class MVX_Ajax {
     }
 
     function mvx_sent_deactivation_request() {
-        check_ajax_referer('mvx-dashboard', 'security');
         $vendor_id = isset( $_REQUEST['vendor_id'] ) ? absint( wp_unslash( $_REQUEST['vendor_id'] ) ) : 0;
         $reason = isset( $_REQUEST['reason'] ) ? wc_clean( $_REQUEST['reason'] ) : '';
-        if ($vendor_id && !empty($reason)) {
+        if (is_user_logged_in() && is_user_mvx_vendor( $vendor_id ) && $vendor_id && !empty($reason)) {
             update_user_meta($vendor_id, '_deactivate_reason', $reason);
             $email = isset(WC()->mailer()->emails['WC_Email_Admin_Vendor_Account_Deactivation_Request_Mail']) ? WC()->mailer()->emails['WC_Email_Admin_Vendor_Account_Deactivation_Request_Mail'] : '';
             if (!empty($email) && $email->is_enabled()) {
