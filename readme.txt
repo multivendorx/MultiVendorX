@@ -5,7 +5,7 @@ Donate link: http://multivendorx.com/donate/
 Requires at least: 5.4
 Tested up to: 6.6.2
 Requires PHP: 8.0
-Stable tag: 4.2.3
+Stable tag: 4.2.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -203,6 +203,11 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.2.4 - 2024-10-15 =
+* Added     - Customers can now view the order tracking information shared by vendors directly from their order details page #849.
+* Fixed     - Resolved a security vulnerability.
+* Dev       - Added `mvx_vendor_private_comment` filter #856.
 
 = 4.2.3 - 2024-10-01 =
 * Added     - Compatibility of WooCommerce 9.3.3.
