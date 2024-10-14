@@ -64,7 +64,7 @@ global $MVX;
                         </div>
                         <input type="hidden" name="order_id" value="<?php echo $order->get_id(); ?>">
                         <select name="note_type" id="order_note_type" class="form-control inline-input">
-                                <option value=""><?php esc_html_e( 'Private note', 'multivendorx' ); ?></option>
+                                <option value="private"><?php esc_html_e( 'Private note', 'multivendorx' ); ?></option>
                                 <option value="customer"><?php esc_html_e( 'Note to customer', 'multivendorx' ); ?></option>
                         </select>
                         <input class="btn btn-default mvx-add-order-note" type="submit" name="mvx_submit_comment" value="<?php _e('Submit', 'multivendorx'); ?>">
