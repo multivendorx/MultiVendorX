@@ -457,13 +457,13 @@ Class MVX_Admin_Dashboard {
                 $note_type = isset($_POST['note_type']) ? wc_clean( wp_unslash( $_POST['note_type'] ) ) : '';
                 $is_customer_note = ( 'customer' === $note_type ) ? 1 : 0;
                 $comment_id = $order->add_order_note($comment, $is_customer_note, true);
-                if ( $is_customer_note ){
+                if ( $note_type === 'customer' ){
                     $email_note = WC()->mailer()->emails['WC_Email_Customer_Note'];
                     $email_note->trigger(array(
                         'order_id'      => $order,
                         'customer_note' => $comment,
                     ));
-                } else {
+                } elseif ( $note_type === 'private' ){
                     apply_filters( 'mvx_vendor_private_comment', array(
                         'order_id'     => $order,
                         'private_note' => $comment,
