@@ -204,7 +204,7 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 
 == Changelog ==
 
-= 4.2.4 - 2024-10-14 =
+= 4.2.4 - 2024-10-15 =
 * Added     - Customers can now view the order tracking information shared by vendors directly from their order details page #849.
 * Fixed     - Resolved a security vulnerability.
 * Dev       - Added `mvx_vendor_private_comment` filter #856.
