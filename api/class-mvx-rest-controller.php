@@ -5248,6 +5248,10 @@ class MVX_REST_API {
     }
 
     public function mvx_vendor_delete($request) {
+        $nonce = $request->get_header( 'X-WP-Nonce' );
+        if ( ! wp_verify_nonce( $nonce, 'wp_rest' ) ) {
+            return new WP_Error( 'invalid_nonce', __('Invalid nonce', 'multivendorx'), array( 'status' => 403 ) );
+        }
         require_once(ABSPATH.'wp-admin/includes/user.php');
         $vendor_ids = $request->get_param('vendor_ids') ? $request->get_param('vendor_ids') : '';
         $select_input = $request->get_param('select_input') ? $request->get_param('select_input') : '';
@@ -5995,6 +5999,10 @@ class MVX_REST_API {
     }
 
     public function mvx_create_vendor($request) {
+        $nonce = $request->get_header( 'X-WP-Nonce' );
+        if ( ! wp_verify_nonce( $nonce, 'wp_rest' ) ) {
+            return new WP_Error( 'invalid_nonce', __('Invalid nonce', 'multivendorx'), array( 'status' => 403 ) );
+        }
         $fetch_data = $request->get_param('model');
         $all_details = array();
         $userdata = array(
@@ -6029,6 +6037,10 @@ class MVX_REST_API {
     }
 
     public function mvx_update_vendor($request) {
+        $nonce = $request->get_header( 'X-WP-Nonce' );
+        if ( ! wp_verify_nonce( $nonce, 'wp_rest' ) ) {
+            return new WP_Error( 'invalid_nonce', __('Invalid nonce', 'multivendorx'), array( 'status' => 403 ) );
+        }
         $user_id = $request->get_param('vendor_id') ? absint( $request->get_param('vendor_id') ) : 0;
         $model = $request->get_param('model') ? ( $request->get_param('model') ) : 0;
         $modulename = $request->get_param('modulename') ? ( $request->get_param('modulename') ) : 0;
