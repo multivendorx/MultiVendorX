@@ -354,6 +354,7 @@ export default class DynamicForm extends React.Component {
 		axios({
 			method: this.props.method,
 			url: appLocalizer.apiUrl + '/' + this.props.url,
+			headers: { "X-WP-Nonce": appLocalizer.nonce },
 			data: {
 				model: this.state,
 				modulename: this.props.modulename,
