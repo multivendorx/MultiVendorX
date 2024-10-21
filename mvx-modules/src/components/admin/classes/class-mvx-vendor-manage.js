@@ -350,6 +350,7 @@ class MVXBackendVendor extends React.Component {
 					axios({
 						method: 'post',
 						url: `${appLocalizer.apiUrl}/mvx_module/v1/vendor_delete`,
+						headers: { "X-WP-Nonce": appLocalizer.nonce },
 						data: {
 							vendor_ids: this.state.bulkselectlist,
 							select_input: e.value
@@ -374,6 +375,7 @@ class MVXBackendVendor extends React.Component {
 			axios({
 				method: 'post',
 				url: `${appLocalizer.apiUrl}/mvx_module/v1/vendor_delete`,
+				headers: { "X-WP-Nonce": appLocalizer.nonce },
 				data: {
 					vendor_ids: this.state.selected_ids,
 					select_input: 'delete_user'
@@ -393,6 +395,7 @@ class MVXBackendVendor extends React.Component {
 			axios({
 				method: 'post',
 				url: `${appLocalizer.apiUrl}/mvx_module/v1/vendor_delete`,
+				headers: { "X-WP-Nonce": appLocalizer.nonce },
 				data: {
 					vendor_ids: this.state.selected_ids,
 					select_input: 'delete_vendor_product_draft'
@@ -412,6 +415,7 @@ class MVXBackendVendor extends React.Component {
 			axios({
 				method: 'post',
 				url: `${appLocalizer.apiUrl}/mvx_module/v1/vendor_delete`,
+				headers: { "X-WP-Nonce": appLocalizer.nonce },
 				data: {
 					vendor_ids: this.state.selected_ids,
 					select_input: 'delete_vendor_product_admin'
@@ -434,6 +438,7 @@ class MVXBackendVendor extends React.Component {
 			axios({
 				method: 'post',
 				url: `${appLocalizer.apiUrl}/mvx_module/v1/vendor_delete`,
+				headers: { "X-WP-Nonce": appLocalizer.nonce },
 				data: {
 					vendor_ids: this.state.bulkselectlist,
 				},
