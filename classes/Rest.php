@@ -1,6 +1,6 @@
 <?php
 
-namespace MultiVendorX\Api;
+namespace MultiVendorX;
 
 use MultiVendorX\Order\OrderManager;
 
@@ -438,7 +438,6 @@ class Rest {
         }
         mvx_update_option('mvx_products_capability_tab_settings', $capability_settings);
         $MVX->vendor_caps->update_mvx_vendor_role_capability();
-        file_put_contents( plugin_dir_path(__FILE__) . "/error.log", date("d/m/Y H:i:s", time()) . ":orders:  : " . var_export($capability_settings, true) . "\n", FILE_APPEND);
 
         return rest_ensure_response(array(
             'success' => true,

@@ -114,7 +114,7 @@ final class MultiVendorX {
         $this->container['order']       = new Order\OrderManager();
         $this->container['commission']  = new Commission\CommissionManager();
         $this->container['gateways']    = new Gateways\GatewaysManager();
-        $this->container['restapi']	 	= new Api\Rest();
+        $this->container['restapi']	 	= new Rest();
     }
 
     
