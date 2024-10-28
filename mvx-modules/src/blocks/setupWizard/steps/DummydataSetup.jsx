@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { getApiLink } from "../../../services/apiService";
 import axios from "axios";
+import Button from "../../../components/AdminLibrary/Inputs/Button";
+import SelectInput from "../../../components/AdminLibrary/Inputs/SelectInput";
 
 const DummydataSetup = (props) => {
     const [ marketplaceType, setMarketplaceType ] = useState('niche');
@@ -12,6 +14,14 @@ const DummydataSetup = (props) => {
         rental : false,
         auction : false,
     });
+
+    const marketplaceOptions = [
+        { value: 'niche', label: 'Niche Marketplace' },
+        { value: 'booking', label: 'Booking Marketplace' },
+        { value: 'subscription', label: 'Subscription Marketplace' },
+        { value: 'rental', label: 'Rental Marketplace' },
+        { value: 'auction', label: 'Auction Marketplace' },
+    ];
 
     useEffect(() => {
         axios({
@@ -31,8 +41,8 @@ const DummydataSetup = (props) => {
         });
     }, [] );
 
-    const handleMarketplaceTypeChange = (e) => {
-        const value = e.target.value;
+    const handleMarketplaceTypeChange = (option) => {
+        const value = option.value;
         setMarketplaceType(value);
         
         if( !isPluginActive[value] ){
@@ -69,26 +79,26 @@ const DummydataSetup = (props) => {
                     <tr>
                         <th scope="row"><label htmlFor="marketplace_type">Marketplace Type</label></th>
                         <td>
-                            <select onChange={handleMarketplaceTypeChange} name="marketplace_type" id="marketplace_type" className="wc-enhanced-select">
-                                <option selected={marketplaceType === 'niche'} value="niche">Niche Marketplace</option>
-                                <option selected={marketplaceType === 'booking'} value="booking" >Booking Marketplace</option>
-                                <option selected={marketplaceType === 'subscription'} value="subscription">Subscription Marketplace</option>
-                                <option selected={marketplaceType === 'rental'} value="rental">Rental Marketplace</option>
-                                <option selected={marketplaceType === 'auction'} value="auction">Auction Marketplace</option>
-                            </select>
-                            <p className="description">Dummy data will be imported based on the marketplace type.</p>
+                            <SelectInput
+                                options={marketplaceOptions}
+                                value={marketplaceType}
+                                onChange={handleMarketplaceTypeChange}
+                                inputClass="wc-enhanced-select"
+                                description="Dummy data will be imported based on the marketplace type."
+                                descClass="description"
+                            />
                             {marketplaceType === 'booking' && !isPluginActive.booking && <p id="booking-error" className="woocommerce-error">WooCommerce Bookings pulgin is required to continue.</p>}
                             {marketplaceType === 'subscription' && !isPluginActive.subscription && <p id="subscription-error" className="woocommerce-error">WooCommerce Subscriptions pulgin is required to continue.</p>}
                             {marketplaceType === 'rental' && !isPluginActive.rental && <p id="rental-error" className="woocommerce-error">WooCommerce Booking & Rental pulgin is required to continue.</p>}
-                            {marketplaceType === 'auction' && !isPluginActive.auction && <p id="auction-error" className="woocommerce-error">WooCommerce Simple Auction pulgin is required to continue.</p>}
+                            {marketplaceType === 'auction' && !isPluginActive.auction && <p className="woocommerce-error">WooCommerce Simple Auction pulgin is required to continue.</p>}
                             
                         </td>
                     </tr>
                     
                 </table>
                 <p className="wc-setup-actions step">
-                    <a onClick={props.onNext} className="button button-large button-next">Skip this step</a>
-                    <input onClick={submitForm} disabled={isSubmitActive} type="submit" className="button-primary button button-large button-next" value="Continue" name="save_step" />
+                    <Button type="button" onClick={props.onNext} inputClass="button button-large button-next" value="Skip this step"/>
+                    <input onClick={submitForm} disabled={isSubmitActive} type="submit" className="button-primary button button-large button-next" value="Continue"/>
                 </p>
             </form>
         </>

@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import CommissionField from "../components/CommissionField";
+import ToggleRectangle from "../../../components/AdminLibrary/Inputs/ToggleRectangle";
+import SelectInput from "../../../components/AdminLibrary/Inputs/SelectInput";
+import Button from "../../../components/AdminLibrary/Inputs/Button";
 import { getApiLink } from "../../../services/apiService";
 import axios from "axios";
 
@@ -8,6 +11,18 @@ const CommissionSetup = (props) => {
     const [ commissionType, setCommissionType ] = useState('');
     const [ commission, setFixedCommission ] = useState();
     const [ percentCommission, setPercentCommission ] = useState();
+
+    const revenueOptions = [
+        { key: "admin", value: "revenue_sharing_mode_admin", label: "Admin fees", name: "revenue_sharing_mode" },
+        { key: "vendor", value: "revenue_sharing_mode_vendor", label: "Vendor Commissions", name: "revenue_sharing_mode" }
+    ];
+
+    const commissionOptions = [
+        { value: 'fixed', label: 'Fixed Amount' },
+        { value: 'percent', label: 'Percentage' },
+        { value: 'fixed_with_percentage', label: '%age + Fixed (per transaction)' },
+        { value: 'fixed_with_percentage_qty', label: '%age + Fixed (per unit)' },
+    ];
 
     useEffect(() => {
         axios({
@@ -31,8 +46,8 @@ const CommissionSetup = (props) => {
         setRevenueSharingMode(e.target.value);
     }
 
-    const handleCommissionTypeChange = (e) => {
-        setCommissionType(e.target.value);
+    const handleCommissionTypeChange = (option) => {
+        setCommissionType(option.value);
     }
 
     const handleCommissionValueChange = (value, type) => {
@@ -122,46 +137,43 @@ const CommissionSetup = (props) => {
                     <tr>
                         <th scope="row"><label htmlFor="revenue_sharing_mode">Revenue Sharing Mode</label></th>
                         <td>
-                            <label><input 
-                            onClick={handleRevenueSharingModeChange}
-                            type="radio" 
-                            checked={revenueSharingMode === 'revenue_sharing_mode_admin'} 
-                            id="revenue_sharing_mode" 
-                            name="revenue_sharing_mode" 
-                            className="input-radio" 
-                            value="revenue_sharing_mode_admin" /> 
-                                Admin fees
-                            </label><br/>
-                            <label><input
-                            onClick={handleRevenueSharingModeChange} 
-                            type="radio" 
-                            checked={revenueSharingMode === 'revenue_sharing_mode_vendor'} 
-                            id="revenue_sharing_mode" 
-                            name="revenue_sharing_mode" 
-                            className="input-radio" 
-                            value="revenue_sharing_mode_vendor" /> 
-                                Vendor Commissions
-                            </label>
+                            <ToggleRectangle
+                                inputClass="input-radio"
+                                idPrefix="toggle"
+                                options={revenueOptions}
+                                value={revenueSharingMode}
+                                onChange={handleRevenueSharingModeChange}
+                            />
                         </td>
                     </tr>
 
                     <tr>
                         <th scope="row"><label htmlFor="commission_type">Commission Type</label></th>
                         <td>
-                            <select onChange={handleCommissionTypeChange} id="commission_type" name="commission_type" className="wc-enhanced-select">
-                                <option value="fixed" selected={commissionType === 'fixed'}>Fixed Amount</option>
-                                <option value="percent" selected={commissionType === 'percent'}>Percentage</option>
-                                <option value="fixed_with_percentage" selected={commissionType === 'fixed_with_percentage'}>%age + Fixed (per transaction)</option>
-                                <option value="fixed_with_percentage_qty" selected={commissionType === 'fixed_with_percentage_qty'}>%age + Fixed (per unit)</option>
-                            </select>
+                            <SelectInput
+                                options={commissionOptions}
+                                value={commissionType}
+                                onChange={handleCommissionTypeChange}
+                                inputClass="wc-enhanced-select"
+                            />
                         </td>
                     </tr>
                     {
                         commissionFields(commissionType)}
                 </table>
                 <p className="wc-setup-actions step">
-                    <a onClick={props.onNext} className="button button-large button-next">Skip this step</a>
-                    <input onClick={submitForm} type="submit" className="button-primary button button-large button-next" value="Continue" name="save_step" />
+                    <Button 
+                        onClick={props.onNext}
+                        type="button"
+                        inputClass="button button-large button-next"
+                        value="Skip this step"
+                    />
+                    <Button 
+                        onClick={submitForm} 
+                        type="submit" 
+                        inputClass="button-primary button button-large button-next" 
+                        value="Continue"
+                    />
                 </p>
             </form>
         </>

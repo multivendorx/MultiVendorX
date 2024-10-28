@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios, { Axios } from 'axios';
 import { getApiLink } from "../../../services/apiService";
+import BasicInput from "../../../components/AdminLibrary/Inputs/BasicInput";
+import CheckBox from "../../../components/AdminLibrary/Inputs/CheckBox";
+import Button from "../../../components/AdminLibrary/Inputs/Button";
 
 const StoreSetup = (props) => {
     const [ vendorSlug, setVendorSlug ] = useState('');
@@ -60,36 +63,41 @@ const StoreSetup = (props) => {
                     <tr>
                         <th scope="row"><label for="vendor_store_url">Store URL</label></th>
                         <td className="mvx-store-setup">
-                            <input 
-                            onChange={handleStoreUrlChange} 
-                            type="text" id="vendor_store_url" 
-                            name="vendor_store_url" placeholder="vendor" 
-                            value={vendorSlug} />
-                            <p className="description">Define vendor store URL ({siteUrl}/[this-text]/[seller-name])</p>
+                            <BasicInput 
+                                onChange={handleStoreUrlChange}
+                                id="vendor_store_url" 
+                                name="vendor_store_url" 
+                                placeholder="vendor" 
+                                value={vendorSlug} 
+                                description={`Define vendor store URL (${siteUrl}/[this-text]/[seller-name])`}
+                            />
                         </td>
                     </tr>
                     <tr>
                         <th scope="row"><label for="is_single_product_multiple_vendor">Single Product Multiple Vendors</label></th>
                         <td>
-                            <input 
-                            onChange={handleIsSingleProductMultipleVendorChange} 
-                            type="checkbox" 
-                            checked={isSingleProductMultipleVendor} 
-                            id="is_single_product_multiple_vendor" 
-                            name="is_single_product_multiple_vendor" 
-                            className="input-checkbox" 
+                            <CheckBox 
+                                onChange={handleIsSingleProductMultipleVendorChange}
+                                checked={isSingleProductMultipleVendor} 
+                                name="is_single_product_multiple_vendor" 
+                                className="input-checkbox" 
                              />
                         </td>
                     </tr>
                 </table>
                 <p className="wc-setup-actions step">
-                    <a onClick={props.onNext} className="button button-large button-next">Skip this step</a>
-                    <input 
-                    onClick={submitForm} 
-                    type="submit" 
-                    className="button-primary button button-large button-next" 
-                    value="Continue" 
-                    name="save_step" />
+                    <Button 
+                        onClick={props.onNext} 
+                        type="button"
+                        inputClass="button button-large button-next" 
+                        value="Skip this step"
+                    />
+                    <Button 
+                        onClick={submitForm} 
+                        type="submit" 
+                        inputClass="button-primary button button-large button-next" 
+                        value="Continue"
+                    />
                 </p>
             </form>
         </>
