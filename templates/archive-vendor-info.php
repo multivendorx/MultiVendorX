@@ -31,6 +31,10 @@ $vendor_lists = !empty($mvx_customer_follow_vendor) ? wp_list_pluck( $mvx_custom
 $follow_status = in_array($vendor_id, $vendor_lists) ? __( 'Unfollow', 'multivendorx' ) : __( 'Follow', 'multivendorx' );
 $follow_status_key = in_array($vendor_id, $vendor_lists) ? 'Unfollow' : 'Follow';
 
+$mvx_vendor_followed_by_customer = get_user_meta( $vendor_id, 'mvx_vendor_followed_by_customer', true ) ? get_user_meta( $vendor_id, 'mvx_vendor_followed_by_customer', true ) : array();
+$vendor_follow_lists = !empty($mvx_vendor_followed_by_customer) ? wp_list_pluck( $mvx_vendor_followed_by_customer, 'user_id' ) : array();
+$count_vendor_lists = count($vendor_follow_lists);
+
 //hide vendor details
 $hide_vendor_details = get_mvx_vendor_settings('mvx_hide_vendor_details', 'store');
 $should_hide = false;
@@ -74,6 +78,7 @@ if ( $template_class == 'template3') { ?>
                     <!-- Follow button will be added here -->
                     <?php if (mvx_is_module_active('follow-store')) { ?>
                     <button type="button" class="mvx-butn <?php echo is_user_logged_in() ? 'mvx-stroke-butn' : ''; ?>" data-vendor_id=<?php echo esc_attr($vendor_id); ?> data-status=<?php echo esc_attr($follow_status_key); ?> ><span></span><?php echo is_user_logged_in() ? esc_attr($follow_status) : esc_html_e('You must log in to follow', 'multivendorx'); ?></button>
+                    <p><?php echo esc_html__('Followers : ', 'multivendorx') . esc_html($count_vendor_lists); ?></p>
                     <?php } ?>
                 </div>
                 <div class="mvx-contact-deatil">
@@ -188,6 +193,7 @@ if ( $template_class == 'template3') { ?>
                     <!-- Follow button will be added here -->
                     <?php if (mvx_is_module_active('follow-store')) { ?>
                     <button type="button" class="mvx-butn <?php echo is_user_logged_in() ? 'mvx-stroke-butn' : ''; ?>" data-vendor_id=<?php echo esc_attr($vendor_id); ?> data-status=<?php echo esc_attr($follow_status_key); ?> ><span></span><?php echo is_user_logged_in() ? esc_attr($follow_status) : esc_html_e('You must log in to follow', 'multivendorx'); ?></button>
+                    <p><?php echo esc_html__('Followers : ', 'multivendorx') . esc_html($count_vendor_lists); ?></p>
                     <?php } ?>
                     <?php do_action( 'mvx_additional_button_at_banner' ); ?>
                 </div>
@@ -276,6 +282,7 @@ if ( $template_class == 'template3') { ?>
                     <!-- Follow button will be added here -->
                     <?php if (mvx_is_module_active('follow-store')) { ?>
                     <button type="button" class="mvx-butn <?php echo is_user_logged_in() ? 'mvx-stroke-butn' : ''; ?>" data-vendor_id=<?php echo esc_attr($vendor_id); ?> data-status=<?php echo esc_attr($follow_status_key); ?> ><span></span><?php echo is_user_logged_in() ? esc_attr($follow_status) : esc_html_e('You must log in to follow', 'multivendorx'); ?></button>
+                    <p><?php echo esc_html__('Followers : ', 'multivendorx') . esc_html($count_vendor_lists); ?></p>
                     <?php } ?>
                     <?php do_action( 'mvx_additional_button_at_banner' ); ?>
                 </div>
