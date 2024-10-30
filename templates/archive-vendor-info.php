@@ -193,6 +193,7 @@ if ( $template_class == 'template3') { ?>
                     <!-- Follow button will be added here -->
                     <?php if (mvx_is_module_active('follow-store')) { ?>
                     <button type="button" class="mvx-butn <?php echo is_user_logged_in() ? 'mvx-stroke-butn' : ''; ?>" data-vendor_id=<?php echo esc_attr($vendor_id); ?> data-status=<?php echo esc_attr($follow_status_key); ?> ><span></span><?php echo is_user_logged_in() ? esc_attr($follow_status) : esc_html_e('You must log in to follow', 'multivendorx'); ?></button>
+                    <p><?php echo esc_html__('Followers : ', 'multivendorx') . esc_html($count_vendor_lists); ?></p>
                     <?php } ?>
                     <?php do_action( 'mvx_additional_button_at_banner' ); ?>
                 </div>
@@ -281,6 +282,7 @@ if ( $template_class == 'template3') { ?>
                     <!-- Follow button will be added here -->
                     <?php if (mvx_is_module_active('follow-store')) { ?>
                     <button type="button" class="mvx-butn <?php echo is_user_logged_in() ? 'mvx-stroke-butn' : ''; ?>" data-vendor_id=<?php echo esc_attr($vendor_id); ?> data-status=<?php echo esc_attr($follow_status_key); ?> ><span></span><?php echo is_user_logged_in() ? esc_attr($follow_status) : esc_html_e('You must log in to follow', 'multivendorx'); ?></button>
+                    <p><?php echo esc_html__('Followers : ', 'multivendorx') . esc_html($count_vendor_lists); ?></p>
                     <?php } ?>
                     <?php do_action( 'mvx_additional_button_at_banner' ); ?>
                 </div>
