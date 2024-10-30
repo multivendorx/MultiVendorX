@@ -243,7 +243,7 @@ $banner = $vendor->get_image('banner') ? $vendor->get_image('banner') : $MVX->pl
                                     <select name="vendor_country" id="vendor_country" class="country_to_state user-profile-fields form-control inp-btm-margin regular-select" rel="vendor_country">
                                         <option value=""><?php _e( 'Select a country&hellip;', 'multivendorx' ); ?></option>
                                         <?php $country_code = get_user_meta($vendor->id, '_vendor_country_code', true);
-                                            foreach ( WC()->countries->get_allowed_countries() as $key => $value ) {
+                                            foreach ( WC()->countries->get_countries() as $key => $value ) {
                                                 echo '<option value="' . esc_attr( $key ) . '"' . selected( esc_attr( $country_code ), esc_attr( $key ), false ) . '>' . esc_html( $value ) . '</option>';
                                             }
                                         ?>
