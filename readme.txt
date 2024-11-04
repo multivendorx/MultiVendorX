@@ -5,7 +5,7 @@ Donate link: http://multivendorx.com/donate/
 Requires at least: 5.4
 Tested up to: 6.6.2
 Requires PHP: 8.0
-Stable tag: 4.2.5
+Stable tag: 4.2.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -203,6 +203,10 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.2.6 - 2024-11-05 =
+* Added     - We’ve introduced a new section next to the store follow button to display the follower count for each vendor store #823.
+* Fix       - Previously, when a country was selected in the WooCommerce settings’ Sell exception section, it didn’t appear in the vendor address selection options. This issue is now resolved #862.
 
 = 4.2.5 - 2024-10-22 =
 * Fixed     - Resolved a security vulnerability.
