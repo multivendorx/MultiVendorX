@@ -123,6 +123,7 @@ final class MVX_Woo_Helper {
                         'image_id'          => wc_clean( $data['upload_image_id'][$i] ),
                         'attributes'        => $this->prepare_set_attributes( $parent->get_attributes(), 'attribute_', $data, $i ),
                         'sku'               => isset( $data['variable_sku'][$i] ) ? wc_clean( $data['variable_sku'][$i] ) : '',
+                        'global_unique_id'  => isset( $data['variable_global_unique_id'][ $i ] ) ? wc_clean( wp_unslash( $data['variable_global_unique_id'][ $i ] ) ) : '',
                         'weight'            => isset( $data['variable_weight'][$i] ) ? wc_clean( $data['variable_weight'][$i] ) : '',
                         'length'            => isset( $data['variable_length'][$i] ) ? wc_clean( $data['variable_length'][$i] ) : '',
                         'width'             => isset( $data['variable_width'][$i] ) ? wc_clean( $data['variable_width'][$i] ) : '',
