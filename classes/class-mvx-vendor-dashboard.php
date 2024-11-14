@@ -2830,6 +2830,9 @@ Class MVX_Admin_Dashboard {
                         </select>
                     </div>
                 </div>
+                <?php 
+                //add additional fields
+                do_action('mvx_vendor_store_setup_additional_fields', $this->vendor); ?>
             </div>
             <script type="text/javascript">
                 var wc_setup_currencies = JSON.parse( decodeURIComponent( '<?php echo rawurlencode( wp_json_encode( $currency_by_country ) ); ?>' ) );
@@ -2898,6 +2901,8 @@ Class MVX_Admin_Dashboard {
         }
         // set flag
         update_user_meta( $this->vendor->id, '_vendor_is_completed_setup_wizard', true );
+        // save additional fields
+        do_action('mvx_vendor_store_setup_additional_fields_save', $this->vendor->id, $_POST);
         wp_safe_redirect( esc_url_raw( $this->get_next_step_link() ) );
         exit;
     }
