@@ -93,7 +93,6 @@ class MVX_Admin {
         .mvx_admin_new_banner img{
             object-fit:cover;
             object-position:center;
-            height:100%;
             width:100%
         }
         .mvx-banner-content{
