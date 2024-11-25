@@ -76,7 +76,7 @@ class MVX_Plugin_Usage_Tracker {
             $user_id = $current_user->ID;
             add_user_meta($user_id, 'multivendorx_wp_review_request', 'true', true);
         } elseif (isset($_POST['multivendorx_admin_notice_action_type']) && 'review_closed' === $_POST['multivendorx_admin_notice_action_type']) {
-            set_transient('multivendorx_wp_review_request', 'yes', MONTH_IN_SECONDS);
+            set_transient('multivendorx_wp_review_request', 'yes', YEAR_IN_SECONDS);
         } elseif (isset($_POST['multivendorx_admin_notice_action_type']) && 'multivendorx_wp_billing_phone_notice' === $_POST['multivendorx_admin_notice_action_type']) {
             $user_id = $current_user->ID;
             add_user_meta($user_id, 'multivendorx_wp_billing_phone_notice', 'true', true);

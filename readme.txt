@@ -3,9 +3,9 @@ Contributors: wcmp, purnendu
 Tags: multi seller, multi vendor marketplace, woocommerce multivendor marketplace, multi seller store, best marketplace plugin
 Donate link: http://multivendorx.com/donate/
 Requires at least: 5.4
-Tested up to: 6.7.0
+Tested up to: 6.7.1
 Requires PHP: 8.0
-Stable tag: 4.2.7
+Stable tag: 4.2.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -203,6 +203,10 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.2.8 - 2024-11-26 =
+* Added     - Compatibility with WordPress 6.7.1.
+* Added     - Compatibility with WooCommerce 9.4.2.
 
 = 4.2.7 - 2024-11-19 =
 * Added     - Compatibility with WordPress 6.7.0.
