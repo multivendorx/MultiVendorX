@@ -58,7 +58,7 @@ class MVX_Admin {
                 <div class="mvx-paragraph-btn-wrap">
                     <p class="mvx-banner-description">
                         Unlock Premium Features with Up to 50% OFF – Limited Time Offer!
-                        <a target="__blank" href="https://multivendorx.com/deals/?utm_source=website&utm_medium=website&utm_campaign=pro">Grab the Deal Now</a> 
+                        <a target="__blank" href="https://multivendorx.com/deals/?utm_source=mvxplugin&utm_medium=website&utm_campaign=pro">Grab the Deal Now</a> 
                        
                     </p>
                 </div>
