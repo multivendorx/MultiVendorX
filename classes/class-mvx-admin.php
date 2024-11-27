@@ -142,24 +142,26 @@ class MVX_Admin {
         }
         </style>
         <script type="text/javascript">
-            document.getElementById('dismiss_service_notice').addEventListener('click', function() {
-                // Send AJAX request to dismiss the notice
-                fetch(ajaxurl, {
-                    method: 'POST',
-                    body: 'action=dismiss_admin_service_notice',
-                })
-                .then(() => {
-                    var banner = document.getElementById('mvx_service_banner');
-                    if (banner) {
-                        banner.remove(); // Remove the banner element
-                    }
-                })
-                .catch((error) => {
-                    console.error('Error dismissing the notice:', error);
+            jQuery(document).ready(function($) {
+                $('#dismiss_service_notice').on('click', function() {
+                    var data = {
+                        action: 'dismiss_admin_service_notice'
+                    };
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '<?php echo esc_url(admin_url("admin-ajax.php")); ?>',
+                        data: data,
+                        success: function(response) {
+                            var banner = $('#mvx_service_banner');
+                            if (banner) {
+                                banner.remove();
+                            }
+                        }
+                    });
                 });
             });
         </script>
-    
         
         <?php
     }
@@ -1331,7 +1333,7 @@ class MVX_Admin {
                 'dashboard60' =>  __('Simple Product', 'multivendorx'),
                 'dashboard61' =>  __('Recommend', 'multivendorx'),
                 'dashboard62' =>  __('All', 'multivendorx'),
-                'dashboard63' =>  __('30 Days', 'multivendorx'),
+                'dashboard63' =>  __('15 Days', 'multivendorx'),
                 'dashboard64' =>  __('Money-Back Guarantee', 'multivendorx'),
                 'dashboard65' =>  __("Make an investment for a better marketplace by saying 'yes' to your desired plans.", 'multivendorx'),
                 'dashboard69' =>  __('Buy Now', 'multivendorx'),
