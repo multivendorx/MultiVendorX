@@ -2382,6 +2382,7 @@ hr{
         .mvx-btn{
           width: 100%;
           margin: 1rem 0;
+          display: block;
         }
         .mvx-price-component {
           text-align: left;
@@ -3632,7 +3633,7 @@ padding:0;
     margin: 0;
     width: 45%;
 }
-.mvx-container .mvx-left-container .mvx-text-center .mvx-money-table-holder .mvx-money-table-coloumn:nth-child(3) {
+.mvx-container .mvx-left-container .mvx-text-center .mvx-money-table-holder .mvx-money-table-coloumn:nth-child(2) {
   border: 0.06rem solid #d4d1d9;
   padding:2rem !important; 
   box-shadow:none;
@@ -3647,7 +3648,7 @@ padding:0;
     border-right: 0;
     border-radius: 0.25rem 0 0 0.25rem;
   }
-  &:nth-child(2){
+  &:nth-child(3){
     border-width: 0.06rem 0 0.06rem 0;
     border-radius: 0;
   }
@@ -3655,7 +3656,7 @@ padding:0;
     border-left: 0;
     border-radius:0 0.25rem 0.25rem 0;
   }
-  &:nth-child(3) {
+  &:nth-child(2) {
     border: none;
     padding: 4rem 2rem;
     box-shadow: 0rem 0rem 0.9375rem 0.0625rem #0000001a;
@@ -3744,7 +3745,7 @@ li.mvx-compare-table-row{
 .mvx-money-table-coloumn{
   width: 100% !important;
 }
-.mvx-container .mvx-left-container .mvx-text-center .mvx-money-table-holder .mvx-money-table-coloumn:nth-child(3) {
+.mvx-container .mvx-left-container .mvx-text-center .mvx-money-table-holder .mvx-money-table-coloumn:nth-child(2) {
   padding: 2rem 2rem 4rem !important;
 }
 }
