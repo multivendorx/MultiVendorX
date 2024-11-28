@@ -660,109 +660,14 @@ class MVX_Dashboard extends Component {
                             <ul className="mvx-money-table-holder active-money-table">
                                 <li className='mvx-money-table-coloumn' >
                                     <ul>
-                                        <li>{appLocalizer.dashboard_string.dashboard106}</li>
-                                        <li>
-                                            <div className="m-price">
-                                                <h1>{appLocalizer.dashboard_string.dashboard107} </h1>
-                                            </div>
-                                        </li>
-                                        <li className="mvx-btn btn-border">
-                                            <a
-                                                href="https://downloads.wordpress.org/plugin/dc-woocommerce-multi-vendor.zip"
-                                            >
-                                                {appLocalizer.dashboard_string.dashboard69}
-                                            </a>
-                                        </li>
-                                        <div className='mvx-price-component'>
-                                            <span>        
-                                                <p>
-                                                    <i className="mvx-font icon-site-price" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard101}
-                                                </p>
-                                                <p>
-                                                    <i className="mvx-font icon-modules-price" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard102}
-                                                </p>
-                                                <p>
-                                                    <i className="mvx-font icon-support-price" />{' '}
-                                                     {appLocalizer.dashboard_string.dashboard72}
-
-                                                </p>
-                                                <p>
-                                                    <i className="mvx-font icon-updates-price" />{' '}
-                                                    {appLocalizer.dashboard_string.dashboard73}
-                                                </p>
-                                                        
-                                            </span>
-                                            {this.state.money_back_show_more_yearly ?
-                                                <span>    
-                                                    <p>
-                                                        <i className="mvx-font icon-site-price" />{' '}
-                                                        {appLocalizer.dashboard_string.dashboard101}
-                                                    </p>
-                                                    <p>
-                                                        <i className="mvx-font icon-modules-price" />{' '}
-                                                        {appLocalizer.dashboard_string.dashboard102}
-                                                    </p>
-                                                    <p>
-                                                        <i className="mvx-font icon-support-price" />{' '}
-                                                         {appLocalizer.dashboard_string.dashboard72}
-
-                                                    </p>
-                                                    <p>
-                                                        <i className="mvx-font icon-updates-price" />{' '}
-                                                        {appLocalizer.dashboard_string.dashboard73}
-                                                    </p>
-                                                </span>
-                                            : ''}
-
-                                           
-                                        </div>
-                                       
-                                    </ul>
-                                    <div className='show-responsive-money-btn-wrapper'>
-                                             {this.state.money_back_show_more_yearly ?
-
-                                                <a className="show-link" onClick={(e) =>
-                                                                (
-                                                                    this.setState({
-                                                                        money_back_show_more_yearly: false
-                                                                    })
-                                                                )
-                                                            }>
-                                                    <span>
-                                                        <i className="mvx-font icon-eye-see-more" />
-                                                    </span>{' '}
-                                                    {appLocalizer.dashboard_string.dashboard74}
-                                                </a>
-
-                                                :
-
-                                                <a className="show-link" onClick={(e) =>
-                                                                (
-                                                                    this.setState({
-                                                                        money_back_show_more_yearly: true
-                                                                    })
-                                                                )
-                                                            }>
-                                                    <span>
-                                                        <i className="mvx-font icon-eye-see-more" />
-                                                    </span>{' '}
-                                                    {appLocalizer.dashboard_string.dashboard75}
-                                                </a>
-                                                }
-                                        </div>
-                                </li>
-                                <li className='mvx-money-table-coloumn' >
-                                    <ul>
                                         <li>Growth</li>
                                         <li>
                                             <div className="m-price">
                                             <p><s>$899</s> </p>&nbsp;<h1>$399 </h1> &nbsp;<p>/Year</p>
                                             </div>
                                         </li>
-                                        <li className="mvx-btn btn-border">
-                                            <a
+                                        <li>
+                                            <a className="mvx-btn btn-border"
                                                 href="https://multivendorx.com/cart/?add-to-cart=143434&variation_id=143445&attribute_pa_site-license=3-site-yearly"
                                             >
                                                 {appLocalizer.dashboard_string.dashboard69}
@@ -860,8 +765,8 @@ class MVX_Dashboard extends Component {
                                             <p><s>$999</s> </p>&nbsp;<h1>$499 </h1> &nbsp;<p>/Year</p>
                                             </div>
                                         </li>
-                                        <li className="mvx-btn btn-red">
-                                            <a
+                                        <li>
+                                            <a className="mvx-btn btn-red"
                                                 href="https://multivendorx.com/cart/?add-to-cart=143434&variation_id=143440&attribute_pa_site-license=10-site-yearly"
                                             >
                                                 {appLocalizer.dashboard_string.dashboard69}
@@ -954,8 +859,8 @@ class MVX_Dashboard extends Component {
                                             <p><s>$499</s> </p>&nbsp;<h1>$299 </h1> &nbsp;<p>/Year</p>
                                             </div>
                                         </li>
-                                        <li className="mvx-btn btn-border">
-                                            <a
+                                        <li>
+                                            <a className="mvx-btn btn-border"
                                                 href="https://multivendorx.com/cart/?add-to-cart=143434&variation_id=143443&attribute_pa_site-license=1-site-yearly"
                                             >
                                                 {appLocalizer.dashboard_string.dashboard69}
