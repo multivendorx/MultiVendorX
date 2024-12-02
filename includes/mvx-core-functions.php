@@ -5214,7 +5214,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                     'type'      =>  'blocktext',
                     'depend_checkbox'    => 'is_enable_store_sidebar_position',
                     'label'     =>  __( 'no_label', 'multivendorx' ),
-                    'blocktext'      =>  __( "If you are not sure where to add widget, just go to admin <a href=".admin_url("widgets.php")." terget='_blank'>widget</a> section and add your preferred widgets to <b>vendor store sidebar</b>.", 'multivendorx' ),
+                    'blocktext' => sprintf(__( "If you are not sure where to add widget, just go to admin <a href='%s' target='_blank'>widget</a> section and add your preferred widgets to <b>vendor store sidebar</b>.", 'multivendorx' ), admin_url("widgets.php")),
                     'database_value' => '',
                 ],
                 [
@@ -5925,7 +5925,7 @@ if (!function_exists('mvx_admin_backend_settings_fields_details')) {
                 [
                     'key'    => 'payment_method_disbursement',
                     'label'   => __( 'Commission Disbursement Method', 'multivendorx' ),
-                    'desc'  =>  __( "Kindly activate your preferred payment method in the <a href='". admin_url( '?page=mvx#&submenu=modules' ) ."'>Module section</a>", 'multivendorx' ),
+                    'desc' => sprintf(__( "Kindly activate your preferred payment method in the <a href='%s'>Module section</a>", 'multivendorx' ), admin_url( '?page=mvx#&submenu=modules' )),
                     'class'     => 'mvx-toggle-checkbox',
                     'type'    => 'checkbox',
                     'right_content' =>  true,

@@ -206,6 +206,8 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 
 = 4.2.10 - 2024-12-03 =
 * Fix       - Suborder remove from mobile app #876.
+* Fix       - Translation issue fixed.
+* Updated   - Language file.
 
 = 4.2.9 - 2024-11-28 =
 * Fix       - Ajax issue fixed.
