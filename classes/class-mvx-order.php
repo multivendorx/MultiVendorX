@@ -92,8 +92,8 @@ class MVX_Order {
             add_filter( 'woocommerce_hidden_order_itemmeta', array($this, 'woocommerce_hidden_order_itemmeta'), 99 );
             add_filter( 'woocommerce_order_item_get_formatted_meta_data', array($this, 'woocommerce_hidden_order_item_get_formatted_meta_data'), 99 );
             add_action( 'woocommerce_order_status_changed', array($this, 'mvx_vendor_order_status_changed_actions'), 99, 4 );
-            add_action( 'woocommerce_rest_shop_order_object_query', array($this, 'mvx_exclude_suborders_from_rest_api_call'), 99, 2 );
-            add_filter( "woocommerce_rest_shop_order_object_query", array($this, 'mvx_suborder_hide' ), 99 , 2 );
+            add_action( 'woocommerce_rest_orders_prepare_object_query', array($this, 'mvx_exclude_suborders_from_rest_api_call'), 99, 2 );
+            add_filter( "woocommerce_rest_orders_prepare_object_query", array($this, 'mvx_suborder_hide' ), 99 , 2 );
             // customer list report section
             add_filter( "woocommerce_customer_get_total_spent_query", array($this, 'woocommerce_customer_exclude_suborder_query' ), 10 , 2 );
             //refund table action
