@@ -82,7 +82,7 @@ if (!class_exists('MVX') && WC_Dependencies_Product_Vendor::is_woocommerce_activ
     function mvx_admin_notice() {
         ?>
         <div class="error">
-            <p><?php sprintf(__( 'MultiVendorX plugin requires <a href="%s">WooCommerce</a> plugin to be active! and <a href="%s">permalink</a> structure should be configured', 'multivendorx'), 'https://wordpress.org/plugins/woocommerce/', admin_url('options-permalink.php') );
+            <p><?php printf(__( 'MultiVendorX plugin requires <a href="%s">WooCommerce</a> plugin to be active! and <a href="%s">permalink</a> structure should be configured', 'multivendorx'), 'https://wordpress.org/plugins/woocommerce/', admin_url('options-permalink.php') );
             ?></p>
         </div>
         <?php
