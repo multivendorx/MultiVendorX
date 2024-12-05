@@ -294,7 +294,7 @@ final class MVX {
         $locale = is_admin() && function_exists('get_user_locale') ? get_user_locale() : get_locale();
         $locale = apply_filters('plugin_locale', $locale, 'multivendorx');
         unload_textdomain( 'multivendorx' );
-        load_textdomain('multivendorx', WP_LANG_DIR . '/dc-woocommerce-multi-vendor/multivendorx-' . $locale . '.mo');
+        load_textdomain('multivendorx', WP_LANG_DIR . '/plugins/dc-woocommerce-multi-vendor-' . $locale . '.mo');
         load_plugin_textdomain('multivendorx', false, plugin_basename(dirname(dirname(__FILE__))) . '/languages');
     }
 
