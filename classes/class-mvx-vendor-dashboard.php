@@ -2747,12 +2747,12 @@ Class MVX_Admin_Dashboard {
     public function vendor_store_setup() {
         
         $store_name     = ( $this->vendor->page_title ) ? $this->vendor->page_title : '';
-        $address        = ( $this->vendor->address_1 ) ? $this->vendor->address_1 : WC()->countries->get_base_address();
-        $address_2      = ( $this->vendor->address_2 ) ? $this->vendor->address_2 : WC()->countries->get_base_address_2();
-        $city           = ( $this->vendor->city ) ? $this->vendor->city : WC()->countries->get_base_city();
-        $state          = ( $this->vendor->state_code ) ? $this->vendor->state_code : WC()->countries->get_base_state();
-        $country        = ( $this->vendor->country_code ) ? $this->vendor->country_code : WC()->countries->get_base_country();
-        $postcode       = ( $this->vendor->postcode ) ? $this->vendor->postcode : WC()->countries->get_base_postcode();
+        $address        = ( $this->vendor->address_1 ) ? $this->vendor->address_1 : '';
+        $address_2      = ( $this->vendor->address_2 ) ? $this->vendor->address_2 : '';
+        $city           = ( $this->vendor->city ) ? $this->vendor->city : '';
+        $state          = ( $this->vendor->state_code ) ? $this->vendor->state_code : '';
+        $country        = ( $this->vendor->country_code ) ? $this->vendor->country_code : '';
+        $postcode       = ( $this->vendor->postcode ) ? $this->vendor->postcode : '';
         $store_phone    = ( $this->vendor->phone ) ? $this->vendor->phone : '';
         if ( empty( $country ) ) {
             $user_location = WC_Geolocation::geolocate_ip();
@@ -2792,7 +2792,7 @@ Class MVX_Admin_Dashboard {
                 <label for="store_country" class="location-prompt"><?php esc_html_e( 'Where is your store based?', 'multivendorx' ); ?></label>
                 <select id="store_country" name="store_country" data-placeholder="<?php esc_attr_e( 'Choose a country&hellip;', 'multivendorx' ); ?>" aria-label="<?php esc_attr_e( 'Country', 'multivendorx' ); ?>" class="location-input wc-enhanced-select dropdown">
                 <?php foreach ( WC()->countries->get_countries() as $code => $label ) : ?>
-                    <option <?php selected( $code, $country ); ?> value="<?php echo esc_attr( $code ); ?>"><?php echo esc_html( $label ); ?></option>
+                    <option value="<?php echo esc_attr( $code ); ?>"><?php echo esc_html( $label ); ?></option>
                 <?php endforeach; ?>
                 </select>
 
