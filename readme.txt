@@ -5,7 +5,7 @@ Donate link: http://multivendorx.com/donate/
 Requires at least: 5.4
 Tested up to: 6.7.1
 Requires PHP: 8.0
-Stable tag: 4.2.11
+Stable tag: 4.2.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -203,6 +203,10 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.2.12 - 2024-12-17 =
+* Added     - Compatibility of WooCommerce 9.4.3.
+* Fixed     - The store's default address was appearing in the vendor setup wizard. This issue has been resolved, and the address section now appears blank as intended #623.
 
 = 4.2.11 - 2024-12-03 =
 * Fix       - Translation issue fixed.
