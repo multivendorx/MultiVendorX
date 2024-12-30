@@ -227,7 +227,6 @@ if (!empty($mvx_vendor_registration_form_data) && is_array($mvx_vendor_registrat
                 break;
             case 'vendor_address_1':
             case 'vendor_address_2':
-            case 'vendor_phone':
             case 'vendor_city':
             case 'vendor_postcode':
             case 'vendor_paypal_email':
@@ -236,6 +235,16 @@ if (!empty($mvx_vendor_registration_form_data) && is_array($mvx_vendor_registrat
                 <div class="mvx-regi-form-row <?php if (!empty($value['cssClass'])) { echo $value['cssClass']; } else {  echo 'mvx-regi-12'; } ?>">
                     <label><?php echo __($value['label'],'multivendorx'); ?><?php if ($value['required']) { echo ' <span class="required">*</span>'; }?></label>
                     <input type="text" value="<?php if (!empty($form_data['mvx_vendor_fields'][$key]["value"])) echo esc_attr($form_data['mvx_vendor_fields'][$key]["value"]); ?>" name="mvx_vendor_fields[<?php echo $key; ?>][value]" placeholder="<?php echo $value['placeholder']; ?>" <?php if ($value['required']) { echo 'required="required"'; }?> />
+                    <input type="hidden" name="mvx_vendor_fields[<?php echo $key; ?>][label]" value="<?php echo htmlentities($value['label']); ?>" />
+                    <input type="hidden" name="mvx_vendor_fields[<?php echo $key; ?>][type]" value="<?php echo $value['type']; ?>" />
+                </div>
+                <?php
+                break;
+            case 'vendor_phone':
+                ?>
+                <div class="mvx-regi-form-row <?php if (!empty($value['cssClass'])) { echo $value['cssClass']; } else {  echo 'mvx-regi-12'; } ?>">
+                    <label><?php echo __($value['label'],'multivendorx'); ?><?php if ($value['required']) { echo ' <span class="required">*</span>'; }?></label>
+                    <input type="number" value="<?php if (!empty($form_data['mvx_vendor_fields'][$key]["value"])) echo esc_attr($form_data['mvx_vendor_fields'][$key]["value"]); ?>" name="mvx_vendor_fields[<?php echo $key; ?>][value]" placeholder="<?php echo $value['placeholder']; ?>" <?php if ($value['required']) { echo 'required="required"'; }?> />
                     <input type="hidden" name="mvx_vendor_fields[<?php echo $key; ?>][label]" value="<?php echo htmlentities($value['label']); ?>" />
                     <input type="hidden" name="mvx_vendor_fields[<?php echo $key; ?>][type]" value="<?php echo $value['type']; ?>" />
                 </div>
