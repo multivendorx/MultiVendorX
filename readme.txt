@@ -5,7 +5,7 @@ Donate link: http://multivendorx.com/donate/
 Requires at least: 5.4
 Tested up to: 6.7.1
 Requires PHP: 8.0
-Stable tag: 4.2.12
+Stable tag: 4.2.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -203,6 +203,11 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.2.13 - 2024-12-31 =
+* Added     - Compatibility of WooCommerce 9.5.1.
+* Fixed     - Issue where existing questions were not appearing in the Question & Answer tab while searching on the single product page #378.
+* Fixed     - Issue with the validation of  vendor registration form fields such as Phone number #611.
 
 = 4.2.12 - 2024-12-17 =
 * Added     - Compatibility of WooCommerce 9.4.3.
