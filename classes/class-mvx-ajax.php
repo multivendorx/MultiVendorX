@@ -1592,6 +1592,7 @@ class MVX_Ajax {
                 //$vendor = get_mvx_product_vendors( $product->get_id() );
                 $qnas_data = $MVX->product_qna->get_Product_QNA($product->get_id(), array('sortby' => 'vote'));
                 if ($keyword) {
+                    $keyword = strtolower(trim($keyword));
                     $qnas_data = array_filter($qnas_data, function($data) use ($keyword) {
                         return ( strpos(strtolower($data->ques_details), $keyword) !== false );
                     });
