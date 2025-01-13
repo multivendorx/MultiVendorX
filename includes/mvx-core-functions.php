@@ -8014,7 +8014,7 @@ if (!function_exists('mvx_list_all_modules')) {
                 'options'       =>  [
                     [
                         'id'           => 'marketplace-membership',
-                        'name'         => __( 'Makertplace Membership', 'multivendorx' ),
+                        'name'         => __( 'Marketplace Membership', 'multivendorx' ),
                         'description'  => __( 'Lets Admin create marketplace memberships levels and manage vendor-wise individual capablity  ', 'multivendorx' ),
                         'plan'         => apply_filters('is_mvx_pro_plugin_inactive', true) ? 'pro' : 'free',
                         'required_plugin_list' => array(
