@@ -53,7 +53,7 @@ class TopRatedVendors extends AbstractBlock {
 		$output = '';
     	ob_start();
     	?>
-		<div class="mvx-block-wrapper <?php echo isset ($attributes['className'] ) ? $attributes['className'] : ''; ?>">
+		<div class="mvx-block-wrapper <?php echo isset ($attributes['className'] ) ? esc_attr($attributes['className']) : ''; ?>">
 		<?php if ( $topvendors ) : 
 			if( $attributes['block_title'] ) echo '<h4 class="mvx-block-heading">' . $attributes['block_title'] . '</h4>'; 
 		?>

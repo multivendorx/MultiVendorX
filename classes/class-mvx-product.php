@@ -143,6 +143,7 @@ class MVX_Product {
             add_filter( 'woocommerce_cart_item_subtotal', array( $this, 'check_cart_item_quantity_min_max_amount' ), 10, 2 );
             add_filter( 'woocommerce_available_variation', array( $this, 'available_variation_min_max' ), 10, 3 );
             add_filter( 'woocommerce_quantity_input_args', array( $this, 'update_quantity_args_min_max' ), 10, 2 );
+            add_action( 'woocommerce_cart_updated', array( $this, 'restrict_cart_quantity_on_update' ) );
             add_action( 'wp_enqueue_scripts', array( $this, 'load_scripts_for_min_max' ) );
             add_filter( 'woocommerce_loop_add_to_cart_link', array( $this, 'add_to_cart_link_min_max' ), 10, 2 );
             add_action( 'woocommerce_check_cart_items', array( $this, 'action_woocommerce_check_cart_items_min_max' ) );
@@ -2728,6 +2729,25 @@ class MVX_Product {
             }
         }
         return $data;
+    }
+
+    public function restrict_cart_quantity_on_update() {
+        $cart = WC()->cart->get_cart();
+        foreach ($cart as $cart_item_key => $cart_item) {
+            $product_id = $cart_item['product_id'];
+            $product_settings = get_post_meta( $product_id, '_mvx_min_max_meta', true );
+            if ( $product_settings ) {
+                $max_quantity = $product_settings['max_quantity'];
+                $min_quantity = $product_settings['min_quantity'];
+                if ($cart_item['quantity'] > $max_quantity) {
+                    WC()->cart->set_quantity($cart_item_key, $max_quantity);  // Set quantity to max
+                    wc_add_notice(__('You can only purchase a maximum of ' . $max_quantity . ' of this item.'), 'error');
+                } elseif ($cart_item['quantity'] < $min_quantity) {
+                    WC()->cart->set_quantity($cart_item_key, $min_quantity);  // Set quantity to min
+                    wc_add_notice(__('You can only purchase a minimum of ' . $min_quantity . ' of this item.'), 'error');
+                }
+            }
+        }
     }
     
     public function load_scripts_for_min_max() {
