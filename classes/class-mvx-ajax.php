@@ -657,7 +657,7 @@ class MVX_Ajax {
 
     public function mvx_msg_refresh_tab_data() {
         global $wpdb, $MVX;
-        $tab = filter_input(INPUT_POST, 'tabname', FILTER_SANITIZE_STRING) ?: '';
+        $tab = sanitize_file_name( filter_input( INPUT_POST, 'tabname', FILTER_DEFAULT ) ?: '' );
         $MVX->template->get_template('vendor-dashboard/vendor-announcements/vendor-announcements' . str_replace("_", "-", $tab) . '.php');
         die;
     }
