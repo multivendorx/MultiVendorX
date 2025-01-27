@@ -2720,11 +2720,11 @@ class MVX_Product {
         if ( $product_settings ) {
             $max_quantity = $product_settings['max_quantity'];
             $min_quantity = $product_settings['min_quantity'];
-            if ( 0 !== $max_quantity ) {
+            if ( $max_quantity > 0 ) {
                 $data['max_value'] = $max_quantity;
             }
     
-            if ( 0 !== $min_quantity ) {
+            if ( $min_quantity > 0 ) {
                 $data['min_value'] = $min_quantity;
             }
         }
