@@ -2644,14 +2644,14 @@ class MVX_Product {
                 }
             }
         }
-        if ( empty( $product_quantity ) || $product_quantity < $product_settings[ "min_{$context}" ] ) {
+        if ( empty( $product_quantity ) || $product_quantity < $product_settings[ "min_{$context}" ] && $product_settings[ "min_{$context}" ] > 0 ) {
             $min = $product_settings[ "min_{$context}" ];
             $error                    = __( 'Min', 'multivendorx' ) . " {$context} {$product_settings["min_{$context}"]}";
             if ( $return_type_number ) {
                 $error = $product_settings[ "min_{$context}" ];
             }
         }
-        if ( $product_quantity > $product_settings[ "max_{$context}" ] ) {
+        if ( $product_quantity > $product_settings[ "max_{$context}" ] && $product_settings[ "max_{$context}" ] > 0 ) {
             $max = $product_settings[ "min_{$context}" ];
             $error                    = __( 'Max', 'multivendorx' ) . " {$context} {$product_settings["max_{$context}"]}";
             if ( $return_type_number ) {
@@ -2720,11 +2720,11 @@ class MVX_Product {
         if ( $product_settings ) {
             $max_quantity = $product_settings['max_quantity'];
             $min_quantity = $product_settings['min_quantity'];
-            if ( - 1 !== $max_quantity ) {
+            if ( 0 !== $max_quantity ) {
                 $data['max_value'] = $max_quantity;
             }
     
-            if ( - 1 !== $min_quantity ) {
+            if ( 0 !== $min_quantity ) {
                 $data['min_value'] = $min_quantity;
             }
         }
@@ -2739,10 +2739,10 @@ class MVX_Product {
             if ( $product_settings ) {
                 $max_quantity = $product_settings['max_quantity'];
                 $min_quantity = $product_settings['min_quantity'];
-                if ($cart_item['quantity'] > $max_quantity) {
+                if ($max_quantity > 0 && $cart_item['quantity'] > $max_quantity) {
                     WC()->cart->set_quantity($cart_item_key, $max_quantity);  // Set quantity to max
                     wc_add_notice(__('You can only purchase a maximum of ' . $max_quantity . ' of this item.'), 'error');
-                } elseif ($cart_item['quantity'] < $min_quantity) {
+                } elseif ($min_quantity > 0 && $cart_item['quantity'] < $min_quantity) {
                     WC()->cart->set_quantity($cart_item_key, $min_quantity);  // Set quantity to min
                     wc_add_notice(__('You can only purchase a minimum of ' . $min_quantity . ' of this item.'), 'error');
                 }
