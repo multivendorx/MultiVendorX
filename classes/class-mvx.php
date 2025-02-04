@@ -132,8 +132,7 @@ final class MVX {
         if (is_user_mvx_pending_vendor(get_current_vendor_id()) || is_user_mvx_rejected_vendor(get_current_vendor_id()) || is_user_mvx_vendor(get_current_vendor_id())) {
             show_admin_bar(apply_filters('mvx_show_admin_bar', false));
         }
-        // Init Text Domain
-        $this->load_plugin_textdomain();
+       
         // Init MVX API
         $this->init_mvx_rest_api();
         // Init library
@@ -229,6 +228,9 @@ final class MVX {
             wp_schedule_event(time(), 'every_5minute', 'migrate_spmv_multivendor_table');
         }
         do_action('mvx_init');
+
+         // Init Text Domain
+         $this->load_plugin_textdomain();
     }
     
     // Initializing Rest API
@@ -291,10 +293,11 @@ final class MVX {
      * @return void
      */
     public function load_plugin_textdomain() {
-        $locale = is_admin() && function_exists('get_user_locale') ? get_user_locale() : get_locale();
-        $locale = apply_filters('plugin_locale', $locale, 'multivendorx');
-        load_textdomain('multivendorx', WP_LANG_DIR . '/dc-woocommerce-multi-vendor/multivendorx-' . $locale . '.mo');
-        load_plugin_textdomain('multivendorx', false, plugin_basename(dirname(dirname(__FILE__))) . '/languages');
+        if ( version_compare( $GLOBALS['wp_version'], '6.7', '<' ) ) {
+            load_plugin_textdomain('multivendorx', false, plugin_basename(dirname(dirname(__FILE__))) . '/languages');
+        } else {
+            load_textdomain( 'multivendorx', WP_LANG_DIR . '/dc-woocommerce-multi-vendor/multivendorx-' . determine_locale() . '.mo' );
+        }
     }
 
     /**
