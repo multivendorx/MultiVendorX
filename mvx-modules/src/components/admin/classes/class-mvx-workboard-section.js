@@ -71,6 +71,7 @@ class MVXworkboard extends Component {
 			taskboard_loader_on: false,
 			selected_option: false,
 			selected_ids: [],
+			question_bulk_choose: [],
 		};
 
 		this.QueryParamsDemo = this.QueryParamsDemo.bind(this);
@@ -109,6 +110,9 @@ class MVXworkboard extends Component {
 		this.handleVendorDelete = this.handleVendorDelete.bind(this);
 		this.handleClose_vendor_dynamic = this.handleClose_vendor_dynamic.bind(this);
 		this.handleDeactiveModal = this.handleDeactiveModal.bind(this);
+		this.handleDeactiveModal = this.handleDeactiveModal.bind(this);
+		this.handleSelectRowsChange = this.handleSelectRowsChange.bind(this);
+		this.handleBulkActionQuestionDelete = this.handleBulkActionQuestionDelete.bind(this);
 	}
 
 	handleChangeRadioButton(e) {
@@ -256,6 +260,31 @@ class MVXworkboard extends Component {
 					});
 				});
 		}
+	}
+
+	handleSelectRowsChange(e) {
+		const question_list = {};
+		e.selectedRows.forEach((data) => {
+			question_list[data.id] = data.question_product_id;
+		});
+		this.setState({
+			question_bulk_choose: question_list,
+		});
+	}
+	
+	handleBulkActionQuestionDelete() {
+		axios({
+			method: 'post',
+			url: `${appLocalizer.apiUrl}/mvx_module/v1/approve_dismiss_pending_question`,
+			data: {
+				type: 'bulk_action',
+				question_list : this.state.question_bulk_choose
+			},
+		}).then((responce) => {
+			this.setState({
+				list_of_publish_question: responce.data,
+			});
+		});
 	}
 
 	handleQuestionDelete(e, questionId, productId, type, row) {
@@ -2264,6 +2293,13 @@ class MVXworkboard extends Component {
 						className="mvx-wrap-bulk-action"
 						onChange={this.handleQuestionBulkStatusChange}
 					/>
+					<Select
+						placeholder={appLocalizer.workboard_string.workboard36}
+						options={appLocalizer.question_bulk_action_wordpboard}
+						isClearable={true}
+						className="mvx-wrap-bulk-action"
+						onChange={this.handleBulkActionQuestionDelete}
+					/>
 				</div>
 
 				{this.state.columns_questions_new &&
@@ -2273,6 +2309,9 @@ class MVXworkboard extends Component {
 							columns={this.state.columns_questions_new}
 							data={this.state.list_of_publish_question}
 							selectableRows
+							onSelectedRowsChange={
+								this.handleSelectRowsChange
+							}
 							pagination
 						/>
 					</div>
