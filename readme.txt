@@ -208,6 +208,7 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 * Added     - Compatibility of WooCommerce 9.6.1.
 * Added     - Bulk delete option in the "Question & Answer" section #890.
 * Fixed     - Issue with loading text domain.
+* Updated   - Language file.
 
 = 4.2.15 - 2025-01-28 =
 * Added     - Compatibility of WooCommerce 9.6.0.
