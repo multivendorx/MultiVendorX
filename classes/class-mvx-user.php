@@ -735,7 +735,7 @@ class MVX_User {
      */
     public function vendor_registration($user_id) {
         global $MVX;
-        if (mvx_is_module_active('marketplace-membership') && !wc_get_endpoint_url('myaccount')) {
+        if (mvx_is_module_active('marketplace-membership') && filter_input(INPUT_POST, 'create_vendor_membership_payment', FILTER_DEFAULT) === 'yes') {
             $user = new WP_User(absint($user_id));
             $user->set_role('dc_pending_vendor');
         } else {
