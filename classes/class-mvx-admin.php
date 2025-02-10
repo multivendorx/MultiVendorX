@@ -289,6 +289,7 @@ class MVX_Admin {
                 'workboard33'                 =>  __('Search status', 'multivendorx'),
                 'workboard34'                 =>  __('Dismiss', 'multivendorx'),
                 'workboard35'                 =>  __('Verified', 'multivendorx'),
+                'workboard36'                 =>  __('Bulk Action', 'multivendorx'),
                 'select_deletion_option'      =>  __('Choose Action For Products Upon Vendor Deletion', 'multivendorx'),
                 'product_draft'               =>  __('Set The Products As Draft', 'multivendorx'),
                 'product_assigned_to_admin'   =>  __('Assign The Products To The Admin', 'multivendorx'),
@@ -656,6 +657,13 @@ class MVX_Admin {
                 array(
                     'value' => 'all',
                     'label' => __('All Q&As', 'multivendorx')
+                ),
+            );
+
+            $question_bulk_action_wordpboard = array(
+                array(
+                    'value' => 'delete',
+                    'label' => __('Delete', 'multivendorx')
                 ),
             );
 
@@ -1295,6 +1303,7 @@ class MVX_Admin {
             'report_page_string'            =>  $report_page_string,
             'post_bulk_status'              =>  $post_bulk_status,
             'question_selection_wordpboard' =>  $question_selection_wordpboard,
+            'question_bulk_action_wordpboard' =>  $question_bulk_action_wordpboard,
             'question_product_selection_wordpboard' =>  $question_product_selection_wordpboard,
             'pending_question_bulk'         =>  $pending_question_bulk,
             'task_board_bulk_status'        =>  $task_board_bulk_status,

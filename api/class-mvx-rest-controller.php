@@ -3236,7 +3236,16 @@ class MVX_REST_API {
         $productId = $request && $request->get_param('productId') ? $request->get_param('productId') : 0;
         $questionId = $request && $request->get_param('questionId') ? $request->get_param('questionId') : 0;
         $type = $request && $request->get_param('type') ? $request->get_param('type') : '';
+        $question_list = $request && $request->get_param('question_list') ? $request->get_param('question_list') : '';
         $data = array();
+        if ($type == 'bulk_action' && !empty($question_list)) {
+            foreach ($question_list as $question_id => $product_id) {
+                $vendor = get_mvx_product_vendors(absint($product_id));
+                $MVX->product_qna->deleteQuestion( $question_id );
+                delete_transient('mvx_customer_qna_for_vendor_' . $vendor->id);
+            }
+        }
+
         if (!empty($productId)) {
             $vendor = get_mvx_product_vendors(absint($productId));
             if ($type == 'rejected') {
