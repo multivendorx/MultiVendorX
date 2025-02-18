@@ -5569,7 +5569,37 @@ class MVX_REST_API {
 
                 $order = wc_get_order($order_id);
                 $vendor_order = ( $order ) ? mvx_get_order( $order->get_id() ) : array();
-                $product_list = $vendor_list = $net_earning = $vendor_link = '';
+                $product_list = $vendor_list = $net_earning = $vendor_link = $commission_type='';
+                // Find Applied commission
+                $commission_rates = $order->get_meta('order_items_commission_rates',true);
+                if(is_array($commission_rates)){
+                    $commission_rates = $commission_rates[key($commission_rates)];
+                    if ( is_array( $commission_rates ) ) {
+                        if (isset($commission_rates['type']['value'])) {
+                            if ($commission_rates['type']['value'] === 'percent') {
+                                $commission_type = $commission_rates['commission_val'] . "%";
+                            } elseif ($commission_rates['type']['value'] === 'fixed') {
+                                $commission_type = $commission_rates['commission_val'] . " Fixed";
+                            } elseif ($commission_rates['type']['value'] === 'fixed_with_percentage') {
+                                $commission_type = ($commission_rates['commission_val'] . "%").(" + Fixed " . ($commission_rates['commission_fixed']===""?0:$commission_rates['commission_fixed']));
+                            } elseif ($commission_rates['type']['value'] === 'fixed_with_percentage_qty') {
+                                $commission_type = ($commission_rates['commission_val'] . "%") .
+                                (" + Fixed " . $commission_rates['commission_fixed'] ." per unit");
+                            }elseif ($commission_rates['type']['value'] === 'commission_by_product_price') {
+                                $commission_type = ($commission_rates['commission_val'] . "%") .
+                                (" + Fixed " . $commission_rates['commission_fixed'] ." by product price");
+                            }
+                            elseif ($commission_rates['type']['value'] === 'commission_by_purchase_quantity') {
+                                $commission_type = ($commission_rates['commission_val'] . "%") .
+                                (" + Fixed " . $commission_rates['commission_fixed'] ." by purchase quantity");
+                            }elseif ($commission_rates['type']['value'] === 'fixed_with_percentage_per_vendor') {
+                                $commission_type = ($commission_rates['commission_val'] . "%") .
+                                (" + Fixed " . $commission_rates['commission_fixed'] ." per vendor");
+                            }
+                        }
+                        
+                    }   
+                }
 
                 // find vendor 
                 $vendor_user_id = get_post_meta($commission_value, '_commission_vendor', true);
@@ -5647,6 +5677,7 @@ class MVX_REST_API {
                     'net_earning'   =>  $net_earning,
                     'status'        =>  $status_display,
                     'date'          =>  $commission_details->post_modified,
+                    'applied_commission'=> $commission_type,
                     'action'        =>  $action_display,
                     'edit_net_earning'  => MVX_Commission::commission_totals($commission_value, 'edit')
                 ), $commission_value);

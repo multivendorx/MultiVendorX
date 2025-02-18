@@ -3310,6 +3310,11 @@ div.health-check-accordion .health-check-accordion-panel table td {
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon div i:hover, .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell .mvx-vendor-action-icon a i:hover {
   background: #f9f8fb;
 }
+.mvx-backend-datatable-wrapper .rdt_TableHeadRow .rdt_TableCol:nth-child(9),
+.mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell:nth-child(9){
+  overflow: visible;
+  min-width: 200px;
+}
 .mvx-backend-datatable-wrapper .rdt_Table .rdt_TableBody .rdt_TableRow .mvx-vendor-icon-name img {
   border-radius: 0.25rem;
   margin-right: 0.4rem;
