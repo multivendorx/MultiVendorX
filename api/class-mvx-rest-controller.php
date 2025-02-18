@@ -5593,8 +5593,7 @@ class MVX_REST_API {
                                 $commission_type = ($commission_rates['commission_val'] . "%") .
                                 (" + Fixed " . $commission_rates['commission_fixed'] ." by purchase quantity");
                             }elseif ($commission_rates['type']['value'] === 'fixed_with_percentage_per_vendor') {
-                                $commission_type = ($commission_rates['commission_val'] . "%") .
-                                (" + Fixed " . $commission_rates['commission_fixed'] ." per vendor");
+                                $commission_type = ($commission_rates['commission_val'] . "% per vendor");
                             }
                         }
                         
