@@ -1,4 +1,4 @@
-=== MultiVendorX - The Ultimate WooCommerce Multivendor Marketplace Solution  ===
+=== MultiVendorX - Transforming WooCommerce into Your Dream Marketplace  ===
 Contributors: wcmp, purnendu
 Tags: multi seller, multi vendor marketplace, woocommerce multivendor marketplace, multi seller store, best marketplace plugin
 Donate link: http://multivendorx.com/donate/
