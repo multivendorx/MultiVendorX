@@ -13,7 +13,7 @@ Transform your WooCommerce store into thriving marketplace with MultiVendorX - a
 
 == Description ==
 
-= Leading MULTIVENDOR MARKETPLACE PLUGIN - BASED ON WOOCOMMERCE POWERED BY WORDPRESS =
+= Marketplace for WordPress: The Advanced Multivendor plugin for WooCommerce =
 
 **MultiVendorX** is a powerful WordPress multivendor plugin seamlessly integrated with WooCommerce, empowering you to build a full-fledged multi-vendor marketplace. With **MultiVendorX**, you can effortlessly bring your dream marketplace to life in just minutes, with minimal setup. Ideal for entrepreneurs aiming to establish their own multivendor platform reminiscent of popular marketplaces like  <strong> Amazon,  eBay, Etsy,  Airbnb , or Flipkart. </strong>
 
