@@ -5573,32 +5573,43 @@ class MVX_REST_API {
                 // Find Applied commission
                 $commission_rates = $order->get_meta('order_items_commission_rates',true);
                 if(is_array($commission_rates)){
-                    $commission_rates = $commission_rates[key($commission_rates)];
-                    if ( is_array( $commission_rates ) ) {
-                        if (isset($commission_rates['type']['value'])) {
-                            if ($commission_rates['type']['value'] === 'percent') {
-                                $commission_type = $commission_rates['commission_val'] . "%";
-                            } elseif ($commission_rates['type']['value'] === 'fixed') {
-                                $commission_type = $commission_rates['commission_val'] . " Fixed";
-                            } elseif ($commission_rates['type']['value'] === 'fixed_with_percentage') {
-                                $commission_type = ($commission_rates['commission_val'] . "%").(" + Fixed " . ($commission_rates['commission_fixed']===""?0:$commission_rates['commission_fixed']));
-                            } elseif ($commission_rates['type']['value'] === 'fixed_with_percentage_qty') {
-                                $commission_type = ($commission_rates['commission_val'] . "%") .
-                                (" + Fixed " . $commission_rates['commission_fixed'] ." per unit");
-                            }elseif ($commission_rates['type']['value'] === 'commission_by_product_price') {
-                                $commission_type = ($commission_rates['commission_val'] . "%") .
-                                (" + Fixed " . $commission_rates['commission_fixed'] ." by product price");
-                            }
-                            elseif ($commission_rates['type']['value'] === 'commission_by_purchase_quantity') {
-                                $commission_type = ($commission_rates['commission_val'] . "%") .
-                                (" + Fixed " . $commission_rates['commission_fixed'] ." by purchase quantity");
-                            }elseif ($commission_rates['type']['value'] === 'fixed_with_percentage_per_vendor') {
-                                $commission_type = ($commission_rates['commission_val'] . "% per vendor");
+                    foreach ($commission_rates as $key => $commission_rate) {
+                        if (is_array($commission_rate) && isset($commission_rate['type']['value'])) {
+                            switch ($commission_rate['type']['value']) {
+                                case 'percent':
+                                    $commission_type .= ($commission_rate['commission_val']===""?0:$commission_rate['commission_val']) . "%\n";
+                                    break;
+                                case 'fixed':
+                                    $commission_type .= ($commission_rate['commission_val']===""?0:$commission_rate['commission_val']) . " Fixed\n";
+                                    break;
+                                case 'fixed_with_percentage':
+                                    $commission_type .= ($commission_rate['commission_val']===""?0:$commission_rate['commission_val']) . "% + Fixed " . 
+                                                        ($commission_rate['commission_fixed'] === "" ? 0 : $commission_rate['commission_fixed']) . "\n";
+                                    break;
+                                case 'fixed_with_percentage_qty':
+                                    $commission_type .= ($commission_rate['commission_val']===""?0:$commission_rate['commission_val']) . "% + Fixed " . 
+                                    ($commission_rate['commission_fixed'] === "" ? 0 : $commission_rate['commission_fixed']) . " per unit\n";
+                                    break;
+                                case 'commission_by_product_price':
+                                    $commission_type .= ($commission_rate['commission_val']===""?0:$commission_rate['commission_val']) . "% + Fixed " . 
+                                    ($commission_rate['commission_fixed'] === "" ? 0 : $commission_rate['commission_fixed']) . " by product price\n";
+                                    break;
+                                case 'commission_by_purchase_quantity':
+                                    $commission_type .= ($commission_rate['commission_val']===""?0:$commission_rate['commission_val']) . "% + Fixed " . 
+                                    ($commission_rate['commission_fixed'] === "" ? 0 : $commission_rate['commission_fixed']) . " by purchase quantity\n";
+                                    break;
+                                case 'fixed_with_percentage_per_vendor':
+                                    $commission_type .= ($commission_rate['commission_val']===""?0:$commission_rate['commission_val']) . "% per vendor\n";
+                                    break;
+                                case 'commission_calculation_on_tax':
+                                    $commission_type .= ($commission_rate['commission_val']===""?0:$commission_rate['commission_val']) . "% + Fixed " . 
+                                    ($commission_rate['commission_fixed'] === "" ? 0 : $commission_rate['commission_fixed']) . "(From Tax)\n";
+                                    break;
                             }
                         }
-                        
-                    }   
+                    }
                 }
+                $commission_type = nl2br($commission_type);
 
                 // find vendor 
                 $vendor_user_id = get_post_meta($commission_value, '_commission_vendor', true);
