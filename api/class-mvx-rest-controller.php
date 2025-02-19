@@ -5580,30 +5580,30 @@ class MVX_REST_API {
                                     $commission_type .= ($commission_rate['commission_val']===""?0:$commission_rate['commission_val']) . "%\n";
                                     break;
                                 case 'fixed':
-                                    $commission_type .= ($commission_rate['commission_val']===""?0:$commission_rate['commission_val']) . " Fixed\n";
+                                    $commission_type .= " Fixed ".($commission_rate['commission_val']===""?wc_price(0):wc_price($commission_rate['commission_val'])) . "\n";
                                     break;
                                 case 'fixed_with_percentage':
                                     $commission_type .= ($commission_rate['commission_val']===""?0:$commission_rate['commission_val']) . "% + Fixed " . 
-                                                        ($commission_rate['commission_fixed'] === "" ? 0 : $commission_rate['commission_fixed']) . "\n";
+                                                        ($commission_rate['commission_fixed'] === "" ? wc_price(0): wc_price($commission_rate['commission_fixed'])) . "\n";
                                     break;
                                 case 'fixed_with_percentage_qty':
                                     $commission_type .= ($commission_rate['commission_val']===""?0:$commission_rate['commission_val']) . "% + Fixed " . 
-                                    ($commission_rate['commission_fixed'] === "" ? 0 : $commission_rate['commission_fixed']) . " per unit\n";
+                                    ($commission_rate['commission_fixed'] === "" ? wc_price(0): wc_price($commission_rate['commission_fixed'])) . " per unit\n";
                                     break;
                                 case 'commission_by_product_price':
                                     $commission_type .= ($commission_rate['commission_val']===""?0:$commission_rate['commission_val']) . "% + Fixed " . 
-                                    ($commission_rate['commission_fixed'] === "" ? 0 : $commission_rate['commission_fixed']) . " by product price\n";
+                                    ($commission_rate['commission_fixed'] === "" ? wc_price(0): wc_price($commission_rate['commission_fixed'])) . " by product price\n";
                                     break;
                                 case 'commission_by_purchase_quantity':
                                     $commission_type .= ($commission_rate['commission_val']===""?0:$commission_rate['commission_val']) . "% + Fixed " . 
-                                    ($commission_rate['commission_fixed'] === "" ? 0 : $commission_rate['commission_fixed']) . " by purchase quantity\n";
+                                    ($commission_rate['commission_fixed'] === "" ? wc_price(0): wc_price($commission_rate['commission_fixed'])) . " by purchase quantity\n";
                                     break;
                                 case 'fixed_with_percentage_per_vendor':
                                     $commission_type .= ($commission_rate['commission_val']===""?0:$commission_rate['commission_val']) . "% per vendor\n";
                                     break;
                                 case 'commission_calculation_on_tax':
                                     $commission_type .= ($commission_rate['commission_val']===""?0:$commission_rate['commission_val']) . "% + Fixed " . 
-                                    ($commission_rate['commission_fixed'] === "" ? 0 : $commission_rate['commission_fixed']) . "(From Tax)\n";
+                                    ($commission_rate['commission_fixed'] === "" ? wc_price(0): wc_price($commission_rate['commission_fixed'])) . "(From Tax)\n";
                                     break;
                             }
                         }
