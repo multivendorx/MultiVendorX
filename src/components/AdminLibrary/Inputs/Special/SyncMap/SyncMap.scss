@@ -1,0 +1,93 @@
+@import '/src/components/config.scss';
+
+.sync-map-container{
+    .container-wrapper{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        align-items: flex-end;
+
+        .main-wrapper{
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 0.5rem;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            position: relative;
+
+            .main-wrapper-heading{
+                display: flex;
+                flex-wrap: wrap;
+                column-gap: 2.25rem;
+                row-gap: 0.5rem;
+
+                span{
+                    width: 6.93rem;
+                }
+            }
+    
+            .map-content-wrapper{
+                display: flex;
+                align-content: center;
+                justify-content: flex-start;
+                gap: 0.5rem;
+                flex-wrap: wrap;
+        
+                select{
+                    background-color: transparent;
+                    border: $border-light-medium;
+                    border-radius: $border-radius-small;
+                    padding: 0.125rem 1.5rem 0.15rem 0.5rem;
+                    -webkit-appearance: listbox !important;
+                    width: 6.93rem;
+        
+                    &:active, &:focus{
+                        box-shadow: none;
+                    }
+                }
+        
+                .connection-icon{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 1.25rem;
+                }
+        
+                .remove-mapping{
+                    background: #e34f4720 !important; // To overwrite common btn style
+                    color: $accent-color !important; // To overwrite common btn style
+                    gap: 0.75rem;
+
+                    .icon{
+                        display: flex;
+                        align-items: center;
+                        margin-top: 0.126rem;
+                    }
+                }
+            }
+        }
+    
+        .btn-container{
+            .add-mapping-container{
+                min-width: 8.19rem;
+                position: relative;
+        
+                .add-mapping{
+                    gap: 0.75rem;
+
+                    &.not-allow{
+                        opacity: 0.5;
+                        cursor: not-allowed;
+                    }
+        
+                    .icon{
+                        display: flex;
+                        align-items: center;
+                        margin-top: 0.126rem;
+                    }
+                }
+            }
+        }
+    }      
+}

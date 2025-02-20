@@ -1,0 +1,59 @@
+@import '/src/components/config.scss';
+
+.connection-test-wrapper {
+  .fetch-details-wrapper {
+    margin-top: 0.75rem;
+    max-width: 18rem;
+    width: 100%;
+
+    .details-status-row {
+      i{
+        font-size: 1.125rem;
+        line-height: 0;
+      }
+
+      &:after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 0.189rem;
+        background-color: blue;
+        content: "";
+        animation: loader 3s linear;
+      }
+
+      @keyframes loader {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+.failed.details-status-row {
+  color: red;
+
+  &::after{
+    background-color: red !important;
+  }
+}
+.success.details-status-row {
+  color: #007400;
+
+  &::after{
+    background-color: green !important;
+  }
+}
+.errorlog-link{
+  font-weight: 600;
+  color: red;
+  
+  &:hover{
+    color: red;
+  }
+}

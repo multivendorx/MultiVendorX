@@ -1,0 +1,171 @@
+@import '/src/components/config.scss';
+
+.log-section {
+  flex-wrap: wrap;
+
+  .settings-input-content {
+    width: 100% !important; // To overwrite dynamicForm.scss
+
+    .section-log-container{
+      position: relative;
+      width: 100%;
+
+      .button-section {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin: 0.5rem 0;
+  
+        .download-btn {
+          position: relative;
+          padding-left: 2.2rem;
+  
+          &:hover {
+            background-color: $color-active;
+            color: $color-white;
+  
+            &:before {
+              border-color: #cdefbd;
+            }
+  
+            &:after {
+              border-top-color: #cdefbd;
+              animation-play-state: running;
+            }
+          }
+  
+          &:before,
+          &:after {
+            content: " ";
+            display: block;
+            position: absolute;
+            left: 0.945rem;
+            top: 52%;
+          }
+  
+          &:before {
+            width: 0.63rem;
+            height: 0.125rem;
+            border-style: solid;
+            border-width: 0 0.125rem 0.125rem;
+          }
+  
+          &:after {
+            width: 0;
+            height: 0;
+            margin-left: 0.25rem;
+            margin-top: -0.438rem;
+            border-style: solid;
+            border-width: 0.25rem 0.25rem 0 0.25 rem;
+            border-color: transparent;
+            border-top-color: inherit;
+            animation: downloadArrow 1s linear infinite;
+            animation-play-state: paused;
+          }
+          @keyframes downloadArrow {
+            0% {
+              margin-top: -0.438rem;
+              opacity: 1;
+            }
+  
+            0.001% {
+              margin-top: -0.945rem;
+              opacity: 0.4;
+            }
+  
+            50% {
+              opacity: 1;
+            }
+  
+            100% {
+              margin-top: 0;
+              opacity: 0.4;
+            }
+          }
+        }
+  
+        .button-clear {
+          background: $accent-color !important; // overwrite common btn color
+          gap: 0.75rem;
+  
+          &:hover {
+            background-color: $accent-color;
+          }
+  
+          .icon {
+            display: flex;
+            align-items: center;
+            margin-top: 0.125rem;
+          }
+        }
+      }
+  
+      .log-container-wrapper {
+        max-height: 22rem;
+        min-height: 6.25rem;
+        height: 100%;
+        width: 100%;
+        border-radius: $border-radius-small;
+        padding: 0.5rem;
+        padding-bottom: 1rem;
+        position: relative;
+        font-size: 0.875rem;
+        line-height: 1.173rem;
+        word-break: normal;
+        background-color: rgb(21, 23, 24);
+
+        .wrapper-header{
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          padding: 0.5rem 0;
+
+          .log-viewer-text{
+            color: $color-white;
+            font-weight: 500;
+          }
+        }
+
+        
+        .wrapper-body{
+          padding: 0 0 0.75rem 0;
+          height: 18.875rem;
+          overflow: hidden;
+          color: $color-white;
+
+          &::-webkit-scrollbar-track {
+            background: $color-black;
+            border-radius: $border-radius-small;
+          }
+          
+          &::-webkit-scrollbar {
+            width: 0.438rem;
+            height: 0.438rem;
+          }
+          
+          &::-webkit-scrollbar-thumb {
+            background-color: rgba($color: #666666cd, $alpha: 1.0);
+            border-radius: $border-radius-small;
+          }
+
+          &::-webkit-scrollbar-corner{
+            width: 0;
+            height: 0;
+            overflow: hidden;
+            visibility: hidden;
+          }
+        }
+
+      }
+  
+      .copy-btn {
+        background: $color-white !important;
+          .tooltip{
+            i{
+              color: $color-white;
+            }
+          }
+      }
+    }
+  }
+}
