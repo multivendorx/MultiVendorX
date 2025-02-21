@@ -203,10 +203,10 @@ class MVX_Elementor_StoreRating extends Widget_Base {
 			[
 				'label' => __( 'Text Color', 'multivendorx' ),
 				'type' => Controls_Manager::COLOR,
-				'scheme' => [
-					'type' => Color::get_type(),
-					'value' => Color::COLOR_3,
-				],
+				// 'scheme' => [
+				// 	'type' => Color::get_type(),
+				// 	'value' => Color::COLOR_3,
+				// ],
 				'selectors' => [
 					'{{WRAPPER}} .elementor-star-rating__title' => 'color: {{VALUE}}',
 				],
@@ -218,7 +218,7 @@ class MVX_Elementor_StoreRating extends Widget_Base {
 			[
 				'name' => 'title_typography',
 				'selector' => '{{WRAPPER}} .elementor-star-rating__title',
-				'scheme' => Typography::TYPOGRAPHY_3,
+				// 'scheme' => Typography::TYPOGRAPHY_3,
 			]
 		);
 
