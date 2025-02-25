@@ -3094,6 +3094,14 @@ div.health-check-accordion{
           font-size: 0.875rem;
           background-color:$fill-color;
           color:$title-color;
+
+          .rdt_TableCol{
+
+            &:nth-child(9){
+              overflow: visible;
+              min-width: 200px;
+            }
+          }
           .sc-crXcEl {
             justify-content: start;
         }
@@ -3110,6 +3118,11 @@ div.health-check-accordion{
         font-size: 0.813rem;
         position: relative;
         .rdt_TableCell {
+
+          &:nth-child(9){
+            overflow: visible;
+            min-width: 200px;
+          }
           img{
             margin: 0 0.5rem 0 0;
           }
