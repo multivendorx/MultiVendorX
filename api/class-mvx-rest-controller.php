@@ -5569,7 +5569,47 @@ class MVX_REST_API {
 
                 $order = wc_get_order($order_id);
                 $vendor_order = ( $order ) ? mvx_get_order( $order->get_id() ) : array();
-                $product_list = $vendor_list = $net_earning = $vendor_link = '';
+                $product_list = $vendor_list = $net_earning = $vendor_link = $commission_type='';
+                // Find Applied commission
+                $commission_rates = $order->get_meta('order_items_commission_rates',true);
+                if(is_array($commission_rates)){
+                    foreach ($commission_rates as $key => $commission_rate) {
+                        if (is_array($commission_rate) && isset($commission_rate['type']['value'])) {
+                            switch ($commission_rate['type']['value']) {
+                                case 'percent':
+                                    $commission_type .= ($commission_rate['commission_val']===""?0:$commission_rate['commission_val']) . "%\n";
+                                    break;
+                                case 'fixed':
+                                    $commission_type .= " Fixed ".($commission_rate['commission_val']===""?wc_price(0):wc_price($commission_rate['commission_val'])) . "\n";
+                                    break;
+                                case 'fixed_with_percentage':
+                                    $commission_type .= ($commission_rate['commission_val']===""?0:$commission_rate['commission_val']) . "% + Fixed " . 
+                                                        ($commission_rate['commission_fixed'] === "" ? wc_price(0): wc_price($commission_rate['commission_fixed'])) . "\n";
+                                    break;
+                                case 'fixed_with_percentage_qty':
+                                    $commission_type .= ($commission_rate['commission_val']===""?0:$commission_rate['commission_val']) . "% + Fixed " . 
+                                    ($commission_rate['commission_fixed'] === "" ? wc_price(0): wc_price($commission_rate['commission_fixed'])) . " per unit\n";
+                                    break;
+                                case 'commission_by_product_price':
+                                    $commission_type .= ($commission_rate['commission_val']===""?0:$commission_rate['commission_val']) . "% + Fixed " . 
+                                    ($commission_rate['commission_fixed'] === "" ? wc_price(0): wc_price($commission_rate['commission_fixed'])) . " by product price\n";
+                                    break;
+                                case 'commission_by_purchase_quantity':
+                                    $commission_type .= ($commission_rate['commission_val']===""?0:$commission_rate['commission_val']) . "% + Fixed " . 
+                                    ($commission_rate['commission_fixed'] === "" ? wc_price(0): wc_price($commission_rate['commission_fixed'])) . " by purchase quantity\n";
+                                    break;
+                                case 'fixed_with_percentage_per_vendor':
+                                    $commission_type .= ($commission_rate['commission_val']===""?0:$commission_rate['commission_val']) . "% per vendor\n";
+                                    break;
+                                case 'commission_calculation_on_tax':
+                                    $commission_type .= ($commission_rate['commission_val']===""?0:$commission_rate['commission_val']) . "% + Fixed " . 
+                                    ($commission_rate['commission_fixed'] === "" ? wc_price(0): wc_price($commission_rate['commission_fixed'])) . "(From Tax)\n";
+                                    break;
+                            }
+                        }
+                    }
+                }
+                $commission_type = nl2br($commission_type);
 
                 // find vendor 
                 $vendor_user_id = get_post_meta($commission_value, '_commission_vendor', true);
@@ -5647,6 +5687,7 @@ class MVX_REST_API {
                     'net_earning'   =>  $net_earning,
                     'status'        =>  $status_display,
                     'date'          =>  $commission_details->post_modified,
+                    'applied_commission'=> $commission_type,
                     'action'        =>  $action_display,
                     'edit_net_earning'  => MVX_Commission::commission_totals($commission_value, 'edit')
                 ), $commission_value);

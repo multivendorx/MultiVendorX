@@ -21,56 +21,53 @@
     };
 
     var keyup_timeout;
-    $( '#cust_question' ).on( 'keyup' , function () {
-        var this_ele_val = $(this).val();
-    clearTimeout( keyup_timeout );
-    keyup_timeout = setTimeout( function() {
-            $( '#qna-result-msg' ).html('');
-            block( $( '#cust_qna_form' ) );
-            if( this_ele_val.length > 3 ){
-                var data = {
-                    action: 'mvx_customer_ask_qna_handler',
-                    handler: 'search',
-                    product_ID: $( '#product_ID' ).val(),
-                    keyword: this_ele_val
-                };
-                $.post(mvx_customer_qna_js_script_data.ajax_url, data, function (response) { 
-                    unblock($('#cust_qna_form') );
-                    if (response.no_data == 1) {
-                        $('#qna-result-msg').html(response.message);
-                        $('#qna-result-wrap').html('');
-                        if(response.is_user == false){
-                            $('#ask-wrap #ask-qna').hide();
-                            $('#ask-wrap .no-answer-lbl').html(response.message);
-                        }
-                        $('#ask-wrap').show();
-                    }else{
-                        $('#qna-result-wrap').html(response.data);
-                    }
-                });
-            }else{
+    // Code for searching questions and answers
+    $('#cust_question').on('keyup', function () {
+        var this_ele_val = $(this).val().trim(); // Trim whitespace
+        // Exit early if the input length is 3 or less
+        if (this_ele_val.length <= 2 && this_ele_val.length!=0) {
+            // If the input length is less than 3 hide the ask now butto
+            $('#ask-wrap').hide();
+            return; // Exit the function
+        }
+        clearTimeout(keyup_timeout); // Clear previous timeout
+        keyup_timeout = setTimeout(function () {
+            $('#qna-result-msg').html(''); // Clear previous messages
+            block($('#cust_qna_form')); // Block the form
+            var data = {
+                action: 'mvx_customer_ask_qna_handler',
+                handler: 'search',
+                product_ID: $('#product_ID').val(),
+                keyword: (this_ele_val.length==3||this_ele_val.length==0)?'':this_ele_val // Send the keyword
+            };
+
+            // If the input length is less than 3 hide the ask now button
+            if(this_ele_val.length==3||this_ele_val.length==0){
                 $('#ask-wrap').hide();
-                var data = {
-                    action: 'mvx_customer_ask_qna_handler',
-                    handler: 'search',
-                    product_ID: $('#product_ID').val(),
-                    keyword: ''
-                };
-                $.post(mvx_customer_qna_js_script_data.ajax_url, data, function (response) {
-                    unblock($('#cust_qna_form') );
-                    if (response.no_data == 1) {
-                        $('#qna-result-msg').html(response.message);
-                        $('#qna-result-wrap').html('');
-                        $('#ask-wrap').show();
-                    }else{
-                        $('#qna-result-wrap').html(response.data);
-                        $("#qna-result-wrap .qna-item-wrap").not(".load-more-qna").hide();
-                        $("#qna-result-wrap .qna-item-wrap").slice(0, 4).show();
-                    }
-                });
             }
-        }, 500);
+
+            // Perform AJAX request
+            $.post(mvx_customer_qna_js_script_data.ajax_url, data, function (response) {
+                unblock($('#cust_qna_form')); // Unblock the form
+
+                if (response.no_data == 1) {
+                    // Handle no data response
+                    $('#qna-result-msg').html(response.message);
+                    $('#qna-result-wrap').html('');
+
+                    if (response.is_user == false) {
+                        $('#ask-wrap #ask-qna').hide();
+                        $('#ask-wrap .no-answer-lbl').html(response.message);
+                    }
+                    $('#ask-wrap').show();
+                } else {
+                    // Handle successful response
+                    $('#qna-result-wrap').html(response.data);
+                }
+            });
+        }, 500); // Delay of 500ms
     });
+
    
     $('body').on('click', '#ask-qna', function () {
         $('#qna-result-msg').html('');
@@ -120,7 +117,7 @@
 
     $('body').on('click', '.mvx_vendor_question .do_verify', function(e){
         e.preventDefault();
-        var $this = $(this);
+        // var $this = $(this);
         var question_type = $(this).attr('data-verification');
         var question_id = $(this).attr('data-question_id');
         var data_action = $(this).attr('data-action');

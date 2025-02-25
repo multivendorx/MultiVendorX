@@ -812,6 +812,12 @@ class MVX_Admin {
                     'selector_choice'  => "status",
                 ),
                 array(
+                    'name'      =>  __('Applied Commission', 'multivendorx'),
+                    'selector'  =>  '',
+                    'sortable'  =>  true,
+                    'selector_choice'  => "applied_commission",
+                ),
+                array(
                     'name'      =>  __('Date', 'multivendorx'),
                     'selector'  =>  '',
                     'sortable'  =>  true,
