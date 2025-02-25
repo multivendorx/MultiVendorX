@@ -1,0 +1,431 @@
+@import '/src/components/config.scss';
+
+.load-table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-color: rgba(0, 0, 0, 0.2);
+  width: 100%;
+
+  td {
+    padding: 0.4rem;
+    border-style: solid;
+    border-width: 0;
+    overflow: hidden;
+    word-break: normal;
+    border-color: rgba(0, 0, 0, 0.2);
+    color: #333;
+    background-color: $color-white;
+    flex-grow: 1;
+
+    &:first-child {
+      display: block;
+    }
+  }
+
+  tr:first-child .load-table-td {
+    font-weight: normal;
+    padding: 0.4rem;
+    border-style: solid;
+    border-width: 0;
+    overflow: hidden;
+    word-break: normal;
+    border-color: rgba(0, 0, 0, 0.2);
+    color: #333;
+    background-color: #e7e7e7;
+  }
+}
+
+.line {
+  float: left;
+  width: 100%;
+  height: 1rem;
+  margin-top: 0.4rem;
+  border-radius: 0.438rem;
+  background-image: linear-gradient(90deg,
+      #f4f4f4 0rem,
+      rgba(229, 229, 229, 0.8) 2.5rem,
+      #f4f4f4 5.04rem);
+  background-size: 37.5rem;
+  animation: shine-lines 2s infinite ease-out;
+}
+
+@keyframes shine-lines {
+  0% {
+    background-position: -1rem;
+  }
+
+  40%,
+  100% {
+    background-position: 8.813rem;
+  }
+}
+
+
+.filter-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+
+  .wrap-bulk-all-date {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    position: relative;
+    width: 100%;
+
+    input,
+    select{
+      padding: 0.1rem 0.5rem;
+    }
+
+    &>div {
+      flex: 1 0 9.45rem;
+      width: 100%;
+      max-width: 10rem;
+
+      div {
+        background-color: transparent;
+
+        input{
+          width: fit-content;
+        }
+      }
+
+
+      .date-picker-section-wrapper {
+        position: absolute;
+        left: 0;
+        top: 105%;
+        background: $color-white;
+        z-index: 5;
+        padding: 1rem;
+        border: $border-light-small;
+
+          input{
+            width: 100%;
+          }
+        .rdrDateRangePickerWrapper {
+
+          .rdrDefinedRangesWrapper {
+            .rdrInputRanges {
+              .rdrInputRange {
+                input {
+                  width: 3.15rem;
+                }
+              }
+            }
+          }
+
+
+          &>div {
+            .rdrDateDisplay {
+              span {
+                border-radius: 0;
+                box-shadow: none;
+                border: none;
+              }
+            }
+          }
+        }
+
+        @media screen and (max-width: 41.58rem) {
+          .rdrDateRangePickerWrapper {
+            flex-direction: column;
+
+            &>div {
+              width: 100%;
+            }
+          }
+        }
+      }
+
+      input,
+      select {
+        background-color: $color-white;
+        outline: none;
+        border: $border-light-medium;
+        width: 100%;
+
+        &:focus {
+          box-shadow: none;
+        }
+      }
+
+      .rdrMonthAndYearPickers{
+        select{
+          padding: 0.313rem 1.25rem ;
+        }
+      }
+    }
+
+
+    .course-bulk-action {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+
+      select {
+        background-color: transparent !important;
+        border: 0.115rem solid rgba(0, 0, 0, 0.125) !important;
+        border-radius: $border-radius-small !important;
+        padding: 0.125rem 1.5rem 0.15rem 0.5rem;
+        width: 100%;
+
+        &:hover,
+        &:active {
+          box-shadow: none;
+        }
+      }
+
+      button {
+        gap: 0.5rem;
+        background-color: $color-active;
+        height: fit-content;
+        color: $color-white;
+      }
+    }
+  }
+}
+
+.rdt_Table {
+  border-radius: $border-radius-small;
+  overflow: hidden;
+  box-shadow: 0 0 1rem rgba($color: #000000, $alpha: 0.125);
+  width: 100%;
+  z-index: 1;
+
+  .rdt_TableHead {
+    border-radius: $border-radius-small;
+    background-color: $color-white;
+    font-size: 0.875rem;
+
+    .rdt_TableHeadRow {
+      padding: 0.313rem;
+      font-weight: 400;
+
+      .rdt_TableCol {
+        padding: 0 0.5rem;
+
+        &:first-child {
+          min-width: 2.25rem;
+          max-width: 2.25rem;
+
+          input[type=checkbox] {
+            margin: 0;
+          }
+        }
+
+        &:last-child {
+          display: none; // Hide extra div in table header
+        }
+      }
+    }
+  }
+
+  .rdt_TableBody {
+    .rdt_TableRow {
+      position: relative;
+      padding: 0 0.313rem;
+      align-items: start;
+
+      &:nth-child(odd) {
+        background: $background-color;
+      }
+
+      .rdt_TableCell {
+        padding: 0.5rem;
+        font-size: 0.875rem;
+        
+
+        &:first-child {
+          min-width: 2.5rem;
+          max-width: 2.5rem;
+        }
+
+        &:last-child {
+          position: absolute;
+          top: 1.15rem;
+          right: 0.938rem;
+          display: none; // Hide arrow for desktop
+          border-radius: 0.188rem;
+
+          .table-dropdown_btn {
+            width: 100%;
+
+            button {
+              width: 100%;
+              height: 1.563rem;
+              padding: 0;
+
+              i {
+                font-size: 0.75rem !important; // To overwrite default table font size
+              }
+            }
+          }
+        }
+        .table-row-custom {
+          display: flex;
+          justify-content: flex-start;
+          gap: 0.5rem;
+          padding: 0;
+
+          .hide-title{
+            display: none;
+          }
+          img {
+            width: 3.15rem;
+            height: 3.15rem;
+            padding: 0.25rem;
+            border-radius: $border-radius-small;
+            box-shadow: 0 0 .125rem rgba($color: #000000, $alpha: 0.125);
+          }
+
+          &:has(.action-section) {
+            align-items: flex-start;
+
+            .action-section {
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+              gap: 0.25rem;
+
+              .action-btn {
+                display: flex;
+                gap: 0.5rem;
+                visibility: hidden;
+                transition: all 0.3s linear;
+                align-items: flex-start;
+                justify-content: flex-start;
+
+                button,
+                a {
+                  background: transparent;
+                  font-size: 0.75rem;
+                  font-weight: 500;
+                  color: $theme-color;
+                  background: transparent;
+                  padding: 0;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.rdt_Pagination {
+  display: grid !important; // For overwrite defauld grid system
+  grid-template-columns: 7rem 1fr 6rem 10rem;
+  place-content: center;
+  
+  span{
+    margin: 0;
+  }
+  select{
+    background: none; // For hide defauld pagination icon
+  }
+    div{
+      width: fit-content;
+
+      svg{
+        right: 0.125rem;
+        top: 0.063rem;
+      }
+    }
+}
+
+@media only screen and (max-width: 85.365rem) {
+  .rdt_Table {
+    .rdt_TableHead {
+      .rdt_TableHeadRow {
+        display: flex;
+
+        .rdt_TableCol {
+          display:none;
+          &:nth-child(1),
+          &:nth-child(2),
+          &:nth-child(3) {
+            display: inline-flex;
+            max-width: 33% !important; // To overwrite default table width for only responsive device
+            min-width: 5% !important; // To overwrite default table width for only responsive device            
+          }
+        }
+      }
+    }
+
+    .rdt_TableBody {
+      .rdt_TableRow {
+        display: flex;
+        position: relative;
+        max-height: 4.25rem;
+        transition: max-height 0.4s linear;
+        overflow: hidden;
+        flex-wrap: wrap;
+        padding: 0 0.313rem 0.313rem;
+
+        &.active {
+          max-height: 62.5rem;
+        }
+
+        .rdt_TableCell {
+          min-width: 100% !important; // force to set width for laptop screen
+          display: flex;
+          background: rgb(238, 238, 238);
+
+          &:nth-child(1),
+          &:nth-child(2),
+          &:nth-child(3) {
+            background: transparent;
+            display: inline-flex !important; // force to set display type for laptop screen
+            max-width: 33% !important; // To overwrite default table cell size only responsive device
+            min-width: 5% !important; // To overwrite default table cell size only responsive device
+            display: inline;
+
+            .order-status{
+              .hide-title{
+                display: none; // Hide 1st 3 columns title only responsive device
+              }
+            }
+          }
+
+          &:last-child {
+            display: flex;
+            padding: 0;
+            width: 2.205rem !important; // To overwrite as a drop-down button width
+            min-width: 1.26rem !important; // To overwrite as a drop-down button width
+            height: 1.89rem !important; // To overwrite as a drop-down button height
+          }
+
+          .table-row-custom {
+            max-width: 18.75rem;
+            position: relative;
+            word-wrap: unset;
+            text-wrap: nowrap;
+            overflow: hidden;
+            padding: 0.313rem 0.625rem;
+
+            .hide-title{
+              display: block;
+              margin: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width:37.737rem) {
+  .rdt_Pagination {
+    display: flex !important; // For responsive design only
+  }
+}

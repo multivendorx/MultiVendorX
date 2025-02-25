@@ -1,0 +1,40 @@
+@import '/src/components/config.scss';
+
+.support-card {
+    display: flex;
+    gap: 1%;
+    margin: 1.5rem 0 0 16rem;
+  
+    .card-item {
+      padding: 2.5rem;
+      flex: 1 0 12.5rem;
+      border: $border-light-small;
+      border-radius: $border-radius-small;
+      background: $color-white;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      flex-direction: column;
+  
+      &:hover {
+        background: linear-gradient(-145deg, $color-white, #e6e6e6);
+      }
+  
+      i {
+        font-size: 2rem;
+        color: $theme-color;
+        margin-bottom: 0.75rem;
+      }
+  
+      a {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+        display: block;
+        color: $theme-color;
+      }
+  
+      p {
+        color: $color-black
+      }
+    }
+  }

@@ -1,0 +1,119 @@
+@import '/src/components/config.scss';
+
+.MuiDialogContent-root:has(.admin-image-overlay) {
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+  }
+  
+  .admin-image-overlay {
+    .admin-overlay-content {
+      background: $color-white;
+      padding: 0rem 1rem;
+      text-align: center;
+      border-radius: $border-radius-small;
+      max-width: 26rem;
+      position: relative;
+  
+      .admin-modal.cross {
+        position: absolute;
+        right: 1.5rem;
+        top: 1.5rem;
+        color: $color-black;
+      }
+    }
+  
+    h1.banner-header {
+      font-size: 2rem;
+  
+      span.banner-pro-tag {
+        line-height: 0;
+        background: $color-active;
+        color: $menu-color !important; // To adjust pro tag text color
+        padding: 0 0.25rem;
+        border-radius: $border-radius-small;
+        margin-left: 0.125rem;
+        box-shadow: 0.25rem 0.25rem 0.875rem rgb(63 20 115 / 25%);
+      }
+    }
+  
+    h2 {
+      font-size: 1.5rem;
+      margin: 1rem 0 1.5rem;
+    }
+  
+    h3 {
+      color: $color-black;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+      
+    .admin-banner-offer {
+      margin: 1.5rem 0 1rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: $color-black;
+    }
+  
+    .upgrade {
+      color: #181718;
+    }
+  
+    .admin-banner-content {
+      font-size: 1rem;
+      line-height: 1.6;
+      letter-spacing: 0.02rem;
+      font-weight: 500;
+      &.list-popup{
+        p{
+          text-align: left;
+        }
+      }
+      p {
+        font-style: italic;
+        text-align: center;
+      }
+    }
+  
+    a.admin-go-pro-btn {
+      background: $accent-color;
+      color: $menu-color;
+      text-decoration: none;
+      padding: 0.5rem 1.5rem;
+      line-height: 1.6;
+      border-radius: $border-radius-small;
+      font-size: 1.25rem;
+      margin: 2rem auto 0rem;
+      display: block;
+      width: fit-content;
+      box-shadow: 0.25rem 0.25rem 1.5rem rgb(227 80 71 / 50%);
+    }
+  }
+  
+  .MuiPaper-root {
+    padding: 2rem;
+
+    span{
+      text-align: right;
+      cursor: pointer;
+    }
+  }
+  
+  .admin-module-dialog-title {
+    text-align: center;
+  }
+  
+  span.stock-manager-pro-tag {
+    position: absolute;
+    right: 0.5rem;
+    background: $theme-color;
+    color: #fdfdfe;
+    padding: 0.125rem 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 0.625rem;
+    font-size: 0.625rem;
+    text-align: center;
+    line-height: 1;
+    text-transform: capitalize;
+  }

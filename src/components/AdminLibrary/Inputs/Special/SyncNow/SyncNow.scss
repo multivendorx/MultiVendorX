@@ -1,0 +1,29 @@
+@import '/src/components/config.scss';
+
+.section-synchronize-now {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+
+  .details-status-row {  
+    &.sync-now {
+      max-width: 18.75rem;
+
+      .status-meta {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+    }
+
+    .progress-bar {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 0.189rem;
+      background-color: #007400;
+      width: 50%;
+      transition: width 0.3s linear;
+    }
+  }
+}
