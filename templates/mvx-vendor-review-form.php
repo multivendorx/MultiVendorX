@@ -121,7 +121,7 @@ $is_start_with_full_rating = apply_filters('mvx_is_start_with_full_rating', fals
                         echo '</ol>';
                         if ($total_pages > 1) {
                             echo '<div class="mvx_review_loader"><img src="' . $MVX->plugin_url . 'assets/images/ajax-loader.gif" alt="ajax-loader" /></div>';
-                            echo '<input name="loadmore" type="button" id="mvx_review_load_more" class="submit mvx_load_more" style="float:right;" value="' . esc_attr('Load More', 'multivendorx') . '">';
+                            echo '<input name="loadmore" type="button" id="mvx_review_load_more" class="submit mvx_load_more" style="float:right;" value="' . esc_attr__('Load More', 'multivendorx') . '">';
                         }
                     }
                 } elseif ($count == 0) {

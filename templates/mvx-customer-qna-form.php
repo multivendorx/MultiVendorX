@@ -64,9 +64,9 @@ do_action('mvx_before_customer_qna_form');
                                 <a href="javascript:void(0)" title="<?php esc_attr_e('You already gave a thumbs down.', 'multivendorx');?>" class="give-down-vote" data-vote="down" data-ans="<?php echo esc_attr($qna->ans_ID); ?>"><i class="vote-sprite vote-sprite-dislike"></i></a>
                                     <?php } 
                                 }else{ ?>
-                                <a href="" title="<?php esc_attr('Give a thumbs up', 'multivendorx');?>" class="give-vote-btn give-up-vote" data-vote="up" data-ans="<?php echo esc_attr($qna->ans_ID); ?>"><i class="vote-sprite vote-sprite-like"></i></a>
+                                <a href="" title="<?php esc_attr_e('Give a thumbs up', 'multivendorx');?>" class="give-vote-btn give-up-vote" data-vote="up" data-ans="<?php echo esc_attr($qna->ans_ID); ?>"><i class="vote-sprite vote-sprite-like"></i></a>
                                 <span class="vote-count"><?php echo esc_html($count); ?></span>
-                                <a href="" title="<?php esc_attr('Give a thumbs down', 'multivendorx');?>" class="give-vote-btn give-down-vote" data-vote="down" data-ans="<?php echo esc_attr($qna->ans_ID); ?>"><i class="vote-sprite vote-sprite-dislike"></i></a>
+                                <a href="" title="<?php esc_attr_e('Give a thumbs down', 'multivendorx');?>" class="give-vote-btn give-down-vote" data-vote="down" data-ans="<?php echo esc_attr($qna->ans_ID); ?>"><i class="vote-sprite vote-sprite-dislike"></i></a>
                                 <?php } 
                             }else{ ?>
                                 <a href="javascript:void(0)" class="non_loggedin"><i class="vote-sprite vote-sprite-like"></i></a><span class="vote-count"><?php echo esc_html($count); ?></span><a href="javascript:void(0)" class="non_loggedin"><i class="vote-sprite vote-sprite-dislike"></i></a>
