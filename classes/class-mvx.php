@@ -296,7 +296,7 @@ final class MVX {
         if ( version_compare( $GLOBALS['wp_version'], '6.7', '<' ) ) {
             load_plugin_textdomain('multivendorx', false, plugin_basename(dirname(dirname(__FILE__))) . '/languages');
         } else {
-            load_textdomain( 'multivendorx', WP_LANG_DIR . '/dc-woocommerce-multi-vendor/multivendorx-' . determine_locale() . '.mo' );
+            load_textdomain( 'multivendorx', WP_LANG_DIR . '/plugins/dc-woocommerce-multi-vendor-' . determine_locale() . '.mo' );
         }
     }
 
