@@ -2,13 +2,14 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 
 import Settings from './components/Settings/Settings.jsx';
-import TableComponent from './components/TableComponent/TableComponent.jsx';
 import Modules from './components/Modules/Modules.jsx';
 import { ModuleProvider } from './contexts/ModuleContext.jsx';
 // for react tour
 import { TourProvider } from '@reactour/tour';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import Tour from './components/TourSteps/Settings/TourSteps.jsx';
+import Dashboard from './components/Dashboard/Dashboard.jsx';
+import { ThemeProvider } from '@emotion/react';
 
 const disableBody = (target) => disableBodyScroll(target);
 const enableBody = (target) => enableBodyScroll(target);
@@ -18,17 +19,15 @@ const Route = () => {
     return (
         <>
             { currentTab.get('tab') === 'settings' && <Settings id="settings"/> }
-            { currentTab.get('tab') === 'custom_table' && <TableComponent/> }
+            { currentTab.get('tab') === 'dashboard' && <Dashboard/> }
             { currentTab.get('tab') === 'modules' && <Modules/> }
         </>
     );
 }
 
 const App = () => {
-
     const currentTabParams = new URLSearchParams(useLocation().hash);
-    
-    document.querySelectorAll('#toplevel_page_plugin-elements>ul>li>a').forEach((menuItem) => {
+    document.querySelectorAll('#toplevel_page_multivendorx>ul>li>a').forEach((menuItem) => {
         const menuItemUrl = new URL(menuItem.href);
         const menuItemHashParams = new URLSearchParams(menuItemUrl.hash.substring(1));
 
@@ -40,8 +39,7 @@ const App = () => {
    
     return (
         <>
-            <ModuleProvider modules = {appLocalizer.active_modules}>
-                {/*this is for tour provider */}
+            <ModuleProvider  modules={ appLocalizer.moduleList }>
                 <TourProvider
                     steps={[]}
                     afterOpen={disableBody}
@@ -52,7 +50,7 @@ const App = () => {
                 >
                     <Tour />
                 </TourProvider>
-                <Route/>
+                <Route />
             </ModuleProvider>
         </>
     )
