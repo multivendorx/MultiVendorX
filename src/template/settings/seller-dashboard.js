@@ -220,7 +220,86 @@ export default {
             type: "textarea",
             label: __( 'Custom CSS', 'multivendorx' ),
             desc: __( "Apply custom CSS to change dashboard design", 'multivendorx' ),
-        }
+        },
         // Premimum features
+        // Required module Name : Seller Identity Verification
+        {
+            key: "mvx_vendor_verification_endpoint",
+            type: "text",
+            label: __( 'Vendor Verification', 'mvx-pro' ),
+            desc: __( 'Set endpoint for vendor verification page', 'mvx-pro' ),
+            placeholder:__('vendor-verification', 'mvx-pro'),
+            moduleEnabled: 'identity-verification',
+            proSetting: true,
+        },
+        // Required module Name : Import Export
+        {
+            key: "mvx_product_export_endpoint",
+            type: "text",
+            label: __( 'Import export', 'mvx-pro' ),
+            desc: __( 'Set endpoint for import export', 'mvx-pro' ),
+            placeholder:__('product-export', 'mvx-pro'),
+            moduleEnabled: 'import-export',
+            proSetting: true,
+        },
+        // Required module Name : Invoice & Packing Slip
+        {
+            key: "mvx_vendor_pdf_invoice_endpoint",
+            type: "text",
+            label: __( 'PDF Invoice', 'mvx-pro' ),
+            desc: __( 'Set endpoint for vendor pdf page', 'mvx-pro' ),
+            placeholder:__('pdf-invoice', 'mvx-pro'),
+            moduleEnabled: 'invoice',
+            proSetting: true,
+        },
+        // Required module Name : Staff Manager
+        {
+            key: "mvx_add_vendor_staff_endpoint",
+            type: "text",
+            label: __( 'Add Vendor Staff', 'mvx-pro' ),
+            desc: __( 'Set endpoint for vendor add staff page', 'mvx-pro' ),
+            placeholder:__('add-staff', 'mvx-pro'),
+            moduleEnabled: 'staff-manager',
+            proSetting: true,
+        },
+        {
+            key: "mvx_manage_vendor_staff_endpoint",
+            type: "text",
+            label: __( 'Manage Vendor Staff', 'mvx-pro' ),
+            desc: __( 'Set endpoint for vendor manage staff page', 'mvx-pro' ),
+            placeholder:__('manage-staff', 'mvx-pro'),
+            moduleEnabled: 'staff-manager',
+            proSetting: true,
+        },
+        // Required module Name : Business Hours
+        {
+            key: "mvx_business_hours_endpoint",
+            type: "text",
+            label: __( 'Business Hours', 'mvx-pro' ),
+            desc: __( 'Set endpoint for business hours page', 'mvx-pro' ),
+            placeholder:__('business-hours', 'mvx-pro'),
+            moduleEnabled: 'business-hours',
+            proSetting: true,
+        },
+        // Required module Name : Vacation
+        {
+            key: "mvx_vendor_vacation_endpoint",
+            type: "text",
+            label: __( 'Vendor Vacation', 'mvx-pro' ),
+            desc: __( 'Set endpoint for vendor vacation page', 'mvx-pro' ),
+            placeholder:__('vendor-vacation', 'mvx-pro'),
+            moduleEnabled: 'vacation',
+            proSetting: true,
+        },
+        // Required module Name : Live Chat
+        {
+            key: "mvx_live_chat_endpoint",
+            type: "text",
+            label: __( 'Live Chat', 'mvx-pro' ),
+            desc: __( 'Set endpoint for live chat page', 'mvx-pro' ),
+            placeholder:__('live-chat', 'mvx-pro'),
+            moduleEnabled: 'live-chat',
+            proSetting: true,
+        },
     ]
 }

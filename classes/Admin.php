@@ -170,6 +170,35 @@ class Admin{
             $settings_value[ $tab_name ] = MVX()->setting->mvx_get_option( 'mvx_' . $tab_name . '_settings' );
         }
 
+        // MVX-PRO feature
+        $available_emails = apply_filters('mvx_pdf_invoice_attachment_to_email_available', array(
+            'new_order'                 => __('New order','mvx-pro'),
+            'cancelled_order'           => __('Cancelled order','mvx-pro'), 
+            'customer_processing_order' => __('Customer processing order','mvx-pro'),
+            'customer_completed_order'  => __('Customer completed order','mvx-pro'),
+            'customer_invoice'          => __('Customer invoice','mvx-pro'),
+            'customer_refunded_order'   => __('Customer refunded order','mvx-pro'))
+        );
+
+        $available_emails_filtered = array();
+        if (!empty($available_emails)) {
+            $available_emails_filtered[] = array('key' => 'disabled', 'label' => __('Disabled', 'mvx-pro'), 'value' => 'disabled');
+            foreach ($available_emails as $key => $available_email) {
+                $available_emails_filtered[] = array('key' => $key, 'label' => $available_email, 'value' => $key );
+            }
+        }
+
+        // Get order status
+        $order_statuses = array();
+        if (function_exists('wc_get_order_statuses')) {
+            $wc_get_order_statuses = wc_get_order_statuses();
+            if (empty($wc_get_order_statuses)) {
+                $wc_get_order_statuses = array();
+            }
+            foreach ($wc_get_order_statuses as $key => $value) {
+                $order_statuses[] = array('key' => $key, 'label' => $value, 'value' => $key );
+            }
+        }
         
         wp_localize_script( 'mvx_admin_script', 'appLocalizer', apply_filters('mvx_module_complete_settings', [
             // Required in new code
@@ -183,7 +212,11 @@ class Admin{
             'template1'     => MVX()->plugin_url . 'src/assets/images/template1.jpg',
             'template2'     => MVX()->plugin_url  . 'src/assets/images/template2.jpg',
             'template3'     => MVX()->plugin_url  . 'src/assets/images/template3.jpg',
-
+            'admin_widget_url'=> admin_url("widgets.php"),
+            'modules_page_url'=>admin_url( '?page=mvx#&submenu=modules' ),
+            'available_emails_filtered'=>$available_emails_filtered ,
+            'order_statuses'=>$order_statuses,
+            'woocommerce_currency'=> get_woocommerce_currency(),
         // 'marker_icon' => $MVX->plugin_url . 'assets/images/store-marker.png',
         // 'marketplace_logo' => $MVX->plugin_url.'assets/images/dclogo.svg',
         // 'marketplace_text' => __('MultiVendorX', 'multivendorx'),
