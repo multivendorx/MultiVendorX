@@ -56,7 +56,6 @@ final class MVX {
     public $multivendor_migration;
     public $mvx_usage_tracker ;
     public $upgrade;
-    public $mvx_modules;
     public $hpos_is_enabled = false;
 
     /**
