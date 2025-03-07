@@ -31,8 +31,8 @@ export default {
         {
             key: 'vendors_backend_access',
             type: 'checkbox',
-            label: __( "Vendor's Backend Access", 'multivendorx' ),
-            desc: __('Upgrade to MultiVendorX Pro to offer an all-purpose dashboard while eliminating the requirenment for Wordpress backend access.', 'multivendorx'),
+            label: __( "Vendor's Backend Access___", 'multivendorx' ),
+            desc: __('Unlock an all-in-one vendor dashboard that allows vendors to manage everything in one place—no need for WordPress backend access.', 'multivendorx'),
             options: [
                 {
                     key: "vendors_backend_access",
