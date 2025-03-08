@@ -4,7 +4,7 @@ export default {
     id: 'verification',
     priority: 11,
     name: __('Verification', 'mvx-pro'),
-    desc: __("Identity verification", 'mvx-pro'),
+    desc: __("Enable various forms of identity verification for vendors and ensure a trusted marketplace.", 'mvx-pro'),
     icon: 'adminLib-clock2',
     submitUrl: 'save_dashpages',
     modal: [
@@ -14,7 +14,7 @@ export default {
             label: __( 'Verified badge', 'mvx-pro' ),
             width:75,
             height:75,
-            desc: __('Upload (32px height) size badge image for best view.', 'mvx-pro'),
+            desc: __('Upload (32px height) size badge that will appear next to verified vendors for credibility.', 'mvx-pro'),
             proSetting:true,
             moduleEnabled: 'identity-verification',
         },
@@ -22,7 +22,7 @@ export default {
             key: "address_verification",
             label: __( 'Address Verification', 'mvx-pro' ),
             type: "checkbox",
-            desc: __("Enable address verification for vendor.", 'mvx-pro'),
+            desc: __("Enable vendors to verify their physical address to enhance trust in the marketplace.", 'mvx-pro'),
             options: [
                 {
                     key: "address_verification",
@@ -37,7 +37,7 @@ export default {
             key: "id_verification",
             label: __( 'Identity Verification', 'mvx-pro' ),
             type: "checkbox",
-            desc: __("Enable identity verification for vendor.", 'mvx-pro'),
+            desc: __("Require vendors to verify their identity to increase marketplace security and legitimacy.", 'mvx-pro'),
             options: [
                 {
                     key: "id_verification",
@@ -56,13 +56,13 @@ export default {
             key:  'admin_template_settings',
             type:  'blocktext',
             label: __( 'no_label', 'mvx-pro' ),
-            blocktext: __( "Settings Capability Verification", 'mvx-pro' ),
+            blocktext: __( "Verification-only access", 'mvx-pro' ),
         },
         {
             key: "endpoint_control",
-            label: __( 'Disabled other endpoints except verification', 'mvx-pro' ),
+            label: __( 'Restrict access to other pages', 'mvx-pro' ),
             type: "checkbox",
-            desc: __("", 'mvx-pro'),
+            desc: __("Allow unverified vendors to access only the verification page. Once they complete the verification process, they can access the rest of the dashboard.", 'mvx-pro'),
             options: [
                 {
                     key: "endpoint_control",
@@ -77,7 +77,7 @@ export default {
             key: "redirect_verification_page",
             label: __( 'Redirect to verification page', 'mvx-pro' ),
             type: "checkbox",
-            desc: __("", 'mvx-pro'),
+            desc: __("Automatically redirect unverified vendors to the verification page.", 'mvx-pro'),
             options: [
                 {
                     key: "redirect_verification_page",
@@ -92,7 +92,7 @@ export default {
             key: "disable_add_product_endpoint",
             label: __( 'Disable add product', 'mvx-pro' ),
             type: "checkbox",
-            desc: __("", 'mvx-pro'),
+            desc: __("Block vendors from adding products or accessing certain sections until verified.  ", 'mvx-pro'),
             options: [
                 {
                     key: "disable_add_product_endpoint",

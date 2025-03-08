@@ -4,7 +4,7 @@ export default {
     id: 'registration',
     priority: 11,
     name: "Registration Form",
-    desc: __("Customise personalised seller registration form for marketplace.","multivendorx"),
+    desc: __("Customize the registration form to gather personalized information from sellers when they join your marketplace.","multivendorx"),
     icon: 'adminLib-form-section',
     submitUrl: 'save-settings',
     modal: [

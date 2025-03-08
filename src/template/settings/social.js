@@ -4,7 +4,7 @@ export default {
     id: 'social',
     priority: 10,
     name:  __('Social', 'multivendorx'),
-    desc: __('Create a platform for seller-customer interaction.', 'multivendorx'),
+    desc: __('Enable features that allow direct engagement between sellers and customers on your platform.', 'multivendorx'),
     icon: 'adminLib-social-media-content',
     submitUrl: 'save_dashpages',
     modal: [
@@ -12,7 +12,7 @@ export default {
             key: "buddypress_enabled",
             label: __( 'Buddypress', 'multivendorx' ),
             type: "checkbox",
-            desc: __('Allows sellers to sell products on their BuddyPress profile while connecting with their customers', 'multivendorx'),
+            desc: __('Allow sellers to showcase and sell their products directly from their BuddyPress profile, fostering a closer connection with their customers.', 'multivendorx'),
             options: [
                 {
                     key: "buddypress_enabled",
