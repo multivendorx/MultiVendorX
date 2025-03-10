@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 
 export default {
     id: 'registration',
-    priority: 11,
+    priority: 2,
     name: "Registration Form",
     desc: __("Customize the registration form to gather personalized information from sellers when they join your marketplace.","multivendorx"),
     icon: 'adminLib-form-section',

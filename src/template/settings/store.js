@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 
 export default {
     id: 'store',
-    priority: 13,
+    priority: 4,
     name: __('Store', 'multivendorx'),
     desc: __("Customize and manage the appearance and functionality of vendor shops within your marketplace.", 'multivendorx'),
     icon: 'adminLib-storefront',

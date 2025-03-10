@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 
 export default {
     id: 'settings_general',
-    priority: 10,
+    priority: 1,
     name: __("General",'multivendorx'),
     desc: __( 'Configure the basic setting of the marketplace.', 'multivendorx' ),
     icon: 'adminLib-general-tab',
