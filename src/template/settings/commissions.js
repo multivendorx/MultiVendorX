@@ -4,7 +4,7 @@ export default {
     id: 'commissions',
     priority: 7,
     name: __('Commission', 'multivendorx'),
-    desc:  __("Configure commission settings to customise your commission plan.", 'multivendorx'),
+    desc:  __("Tailor your marketplace's commission plan to fit your revenue-sharing preferences.", 'multivendorx'),
     icon: 'adminLib-dynamic-pricing',
     submitUrl: 'save_dashpages',
     modal: [
@@ -30,7 +30,7 @@ export default {
             key: "commission_type",
             type: "select",
             label: __('Commission Type', 'multivendorx'),
-            desc: __('Choose the Commission Option prefered by you. For better undrestanding read doc', 'multivendorx'),
+            desc: __('Choose the type of commission structure that best fits your marketplace model.', 'multivendorx'),
             options: [
                 {
                     key: "choose_commission_type",
@@ -84,7 +84,7 @@ export default {
         {
             key: "payment_method_disbursement",
             label: __('Commission Disbursement Method', 'multivendorx'),
-            desc: __(`Kindly activate your preferred payment method in the <a href="${appLocalizer.modules_page_url}">Module section</a>`, 'multivendorx'),
+            desc: __(`Decide how vendors will receive their commissions, such as via Stripe, PayPal, or Bank Transfer. This setting determines the method through which payments are processed and transferred to your vendors. <li>Important: Kindly activate your preferred payment method in the <a href="${appLocalizer.modules_page_url}">Module section</a>`, 'multivendorx'),
             type: "checkbox",
             right_content: true,
             options: [],
@@ -96,7 +96,7 @@ export default {
         {
             key: "payment_gateway_charge",
             label: __('Payment Gateway Charge', 'multivendorx'),
-            desc: __("Add the payment gateway charges incurred while paying online.", 'multivendorx'),
+            desc: __("Include any additional fees charged by the payment gateway during online transactions.", 'multivendorx'),
             type: "checkbox",
             options: [
                 {
@@ -110,8 +110,8 @@ export default {
         {
             key: "gateway_charges_cost_carrier",
             type: "select",
-            label: __('Who bear the gateway charges', 'multivendorx'),
-            desc: __('When it comes to automated payments, you can decide who will be responsible for the gateway charges.', 'multivendorx'),
+            label: __('Gateway charges responsibility', 'multivendorx'),
+            desc: __('Decide who will bear the payment gateway charges (e.g., admin or vendor) when making automated payment', 'multivendorx'),
             options: [
                 {
                     key: "vendor",
@@ -137,8 +137,8 @@ export default {
         {
             key: "payment_gateway_charge_type",
             type: "select",
-            label: __('Gateway Charge Type', 'multivendorx'),
-            desc: __('Choose your preferred gateway charge type.', 'multivendorx'),
+            label: __('Gateway charge structure', 'multivendorx'),
+            desc: __('Choose how payment gateway fees will be calculated.', 'multivendorx'),
             options: [
                 {
                     key: "percent",
@@ -147,7 +147,7 @@ export default {
                 },
                 {
                     key: "fixed",
-                    label: __('Fixed Amount', 'multivendorx'),
+                    label: __('Fixed amount', 'multivendorx'),
                     value: "fixed",
                 },
                 {
@@ -165,8 +165,8 @@ export default {
         {
             key:'default_gateway_charge_value',
             type :'multi-number',
-            label:__( 'Gateway Value', 'multivendorx' ),
-            desc :__('The commission amount added here will be applicable for all commissions. In case the your commission type is fixed the', 'multivendorx'),
+            label:__( 'Gateway charge value', 'multivendorx' ),
+            desc :__('Set specific values for gateway fees based on the selected charge structure.', 'multivendorx'),
             options :[
                 {
                     key :'fixed_gayeway_amount_paypal_masspay',

@@ -3,16 +3,16 @@ import { __ } from '@wordpress/i18n';
 export default {
     id: 'products_capability',
     priority: 6,
-    name: __('Products Capability', 'multivendorx'),
-    desc:  __("Manage product-related capabilities that you want sellers to have.", 'multivendorx'),
+    name: __('Product permissions', 'multivendorx'),
+    desc:  __("Control what sellers are allowed to do with their products in your marketplace.", 'multivendorx'),
     icon: 'adminLib-wholesale',
     submitUrl: 'save_dashpages',
     modal: [
         {
             key: 'is_submit_product',
             type: 'checkbox',
-            label: __( 'Submit Products', 'multivendorx' ),
-            desc:  __('Enables sellers to add new products and submit them for admin approval', 'multivendorx'),
+            label: __( 'Submit products for approval', 'multivendorx' ),
+            desc:  __('Allow sellers to add new products, which will need admin approval before going live.', 'multivendorx'),
             options: [
                 {
                     key: "is_submit_product",
@@ -51,7 +51,7 @@ export default {
             key: 'publish_and_submit_products',
             type: 'checkbox',
             label: __( 'Publish and Submit Re-edited Products', 'multivendorx' ),
-            desc:  __('Allows sellers to list their products while submitting them to your for revision', 'multivendorx'),
+            desc:  __('Sellers can make changes to their products and either submit them for revision or publish them directly, depending on their permissions.', 'multivendorx'),
             options: [
                 {
                     key: "publish_and_submit_products",
@@ -63,8 +63,8 @@ export default {
         {
             key: 'is_submit_coupon',
             type: 'checkbox',
-            label: __( 'Submit Coupons', 'multivendorx' ),
-            desc:  __('Equips sellers with the ability to create their own coupons', 'multivendorx'),
+            label: __( 'Create coupons', 'multivendorx' ),
+            desc:  __('Enable sellers to create their own discount coupons for their products.', 'multivendorx'),
             options: [
                 {
                     key: "is_submit_coupon",
@@ -76,8 +76,8 @@ export default {
         {
             key: 'is_published_coupon',
             type: 'checkbox',
-            label: __( 'Publish Coupons', 'multivendorx' ),
-            desc:  __('Gives sellers the ability to publish coupons on your website', 'multivendorx'),
+            label: __( 'Publish coupons', 'multivendorx' ),
+            desc:  __('Allow sellers to publish their coupons directly on the marketplace.', 'multivendorx'),
             options: [
                 {
                     key: "is_published_coupon",
@@ -89,8 +89,8 @@ export default {
         {
             key: 'is_edit_delete_published_coupon',
             type: 'checkbox',
-            label: __( 'Edit Coupons', 'multivendorx' ),
-            desc:  __('Sellers gain the option to edit, re-use or delete a published coupons', 'multivendorx'),
+            label: __( 'Edit coupons', 'multivendorx' ),
+            desc:  __('Grant sellers the ability to edit, reuse, or delete any coupons they have already published.', 'multivendorx'),
             options: [
                 {
                     key: "is_edit_delete_published_coupon",
@@ -102,8 +102,8 @@ export default {
         {
             key: 'is_upload_files',
             type: 'checkbox',
-            label: __( 'Upload Media Files', 'multivendorx' ),
-            desc:  __('Let Vendors upload media like ebooks, music, video, images etc', 'multivendorx'),
+            label: __( 'Upload media files', 'multivendorx' ),
+            desc:  __('Let sellers upload media files such as images, videos, eBooks, and music to enhance their product listings.', 'multivendorx'),
             options: [
                 {
                     key: "is_upload_files",

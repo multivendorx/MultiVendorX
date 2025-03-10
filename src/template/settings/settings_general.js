@@ -11,8 +11,8 @@ export default {
         {
             key: "approve_vendor",
             type: "settingToggle",
-            label: __( 'Approve Vendor', 'multivendorx' ),
-            desc: __( 'Evaluate sellers before granting dashboard access or grant immediate dashboard access', 'multivendorx' ),
+            label: __( 'Vendor approval', 'multivendorx' ),
+            desc: __( 'Decide how you want to approve new vendors for your marketplace: <li>Manual Approval: Review and approve vendors manually. <li>Automatic Approval: Automatically approve vendors without review.', 'multivendorx' ),
             options: [
                 {
                     name:'approve_vendor',
@@ -31,8 +31,8 @@ export default {
         {
             key: 'vendors_backend_access',
             type: 'checkbox',
-            label: __( "Vendor's Backend Access", 'multivendorx' ),
-            desc: __('Upgrade to MultiVendorX Pro to offer an all-purpose dashboard while eliminating the requirenment for Wordpress backend access.', 'multivendorx'),
+            label: __( "Vendor backend access", 'multivendorx' ),
+            desc: __('Unlock an all-in-one vendor dashboard that allows vendors to manage everything in one place', 'multivendorx'),
             options: [
                 {
                     key: "vendors_backend_access",
@@ -45,8 +45,8 @@ export default {
         {
             key: 'display_product_seller',
             type: 'checkbox',
-            label: __( "Display Product Seller", 'multivendorx' ),
-            desc: __("Showcase the product vendor's name", 'multivendorx'),
+            label: __( "Display vendor name on products", 'multivendorx' ),
+            desc: __("show the vendor’s name on their product listings. This helps customers identify who they’re buying from.", 'multivendorx'),
             options: [
                 {
                     key: "display_product_seller",
@@ -58,8 +58,8 @@ export default {
         {
             key: 'category_pyramid_guide',
             type: 'checkbox',
-            label: __( "Category Pyramid Guide (CPG)", 'multivendorx' ),
-            desc: __("CPG option helps vendor's to identify the correct categories for their products", 'multivendorx'),
+            label: __( "Category assistance (CPG)", 'multivendorx' ),
+            desc: __("Help vendors categorize their products accurately with the Category Pyramid Guide.", 'multivendorx'),
             options: [
                 {
                     key: "category_pyramid_guide",
@@ -71,8 +71,8 @@ export default {
         {
             key: 'is_customer_support_details',
             type: 'checkbox',
-            label: __( "Customer Support", 'multivendorx' ),
-            desc: __("Show support channel details in \"Thank You\" page and new order email", 'multivendorx'),
+            label: __( "Customer support information", 'multivendorx' ),
+            desc: __("Display customer support details on the \"Thank You\" page and in new order confirmation emails. This can improve customer satisfaction by making support easily accessible.", 'multivendorx'),
             options: [
                 {
                     key: "is_customer_support_details",
@@ -94,27 +94,27 @@ export default {
         {
             key: 'registration_page',
             type: 'select',
-            label: __( 'Registration Page', 'multivendorx' ),
-            desc: __( 'Select the page on which you have inserted <code>[vendor_registration]</code> shortcode .', 'multivendorx' ),
+            label: __( 'Registration page', 'multivendorx' ),
+            desc: __( 'Select the page on which you have inserted <code>[vendor_registration]</code> shortcode.This is the page where new vendors can sign up.', 'multivendorx' ),
             options: appLocalizer.pageList,
         },
         {
             key: 'vendor_dashboard_page',
             type: 'select',
-            label: __( 'Vendor Dashboard Page', 'multivendorx' ),
-            desc: __( 'Select the page on which you have inserted <code>[mvx_vendor]</code> shortcode .', 'multivendorx' ),
+            label: __( 'Vendor dashboard page', 'multivendorx' ),
+            desc: __( 'Select the page on which you have inserted <code>[mvx_vendor]</code> shortcode. This will be the main dashboard page for your vendors to manage their store.', 'multivendorx' ),
             options: appLocalizer.pageList,
         },
         {
             key: "mvx_tinymce_api_section",
             type: "text",
             label: __( 'TinyMCE Api', 'multivendorx' ),
-            desc: __( 'Set TinyMCE Api key <a href="https://www.tiny.cloud/blog/how-to-get-tinymce-cloud-up-in-less-than-5-minutes/" target="_blank">Click here to generate key</a>', 'multivendorx' ),
+            desc: __( 'Set TinyMCE Api key <a href="https://www.tiny.cloud/blog/how-to-get-tinymce-cloud-up-in-less-than-5-minutes/" target="_blank">Click here to generate key</a> to enable the text editor for vendors. This allows them to format their product descriptions and other content with ease.', 'multivendorx' ),
         },
         {
             key: 'avialable_shortcodes',
             type: 'shortCode-table',
-            label: __( 'Avialable Shortcodes', 'multivendorx' ),
+            label: __( 'Avialable shortcodes', 'multivendorx' ),
             desc: __('', "multivendorx"),
             optionLabel: [
                 'Shortcodes',

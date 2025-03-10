@@ -4,15 +4,15 @@ export default {
     id: 'store',
     priority: 13,
     name: __('Store', 'multivendorx'),
-    desc: __("Manage setting related to the sellers shop.", 'multivendorx'),
+    desc: __("Customize and manage the appearance and functionality of vendor shops within your marketplace.", 'multivendorx'),
     icon: 'adminLib-storefront',
     submitUrl: 'save_dashpages',
     modal: [
         {
             key: "mvx_vendor_shop_template",
             type: "radio-select",
-            label: __( 'Store Header', 'multivendorx' ),
-            desc: __( "Select store banner style", 'multivendorx' ),
+            label: __( 'Store header', 'multivendorx' ),
+            desc: __( "Select a banner style for your vendors’ store headers. This allows you to choose how vendor stores will visually appear on the platform.", 'multivendorx' ),
             options: [
                 {
                     key: "template1",
@@ -37,8 +37,8 @@ export default {
         {
             key: 'enable_store_map_for_vendor',
             type: 'checkbox',
-            label: __( 'Store Location', 'multivendorx' ),
-            desc:__("Tap to display the location of sellers' shops.", 'multivendorx'),
+            label: __( 'Store location', 'multivendorx' ),
+            desc:__("Enable or disable the option for displaying the store’s physical location on the store page. <li> ' shops.", 'multivendorx'),
             options: [
                 {
                     key: "enable_store_map_for_vendor",

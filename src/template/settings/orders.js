@@ -4,15 +4,15 @@ export default {
     id: 'orders',
     priority: 9,
     name:  __('Orders', 'multivendorx'),
-    desc: __("Manage vendor's order releated capabilities", 'multivendorx'),
+    desc: __("Control what actions vendors can take regarding their orders and how order details are displayed.", 'multivendorx'),
     icon: 'adminLib-order',
     submitUrl: 'save_dashpages',
     modal: [
         {
             key: "disallow_vendor_order_status",
-            label: __( 'Order Status Control', 'multivendorx' ),
+            label: __( 'Order status control', 'multivendorx' ),
             type: "checkbox",
-            desc: __('Disallow sellers to change their order status', 'multivendorx'),
+            desc: __('Decide whether vendors have the ability to change the status of their orders.', 'multivendorx'),
             options: [
                 {
                     key: "disallow_vendor_order_status",
@@ -23,9 +23,9 @@ export default {
         },
         {
             key: "display_suborder_in_mail",
-            label: __( 'Display Suborder in mail', 'multivendorx' ),
+            label: __( 'Display suborder in mail', 'multivendorx' ),
             type: "checkbox",
-            desc: __('Display suborder number in mail.', 'multivendorx'),
+            desc: __('Choose whether to include suborder numbers in order confirmation emails.', 'multivendorx'),
             options: [
                 {
                     key: "display_suborder_in_mail",
