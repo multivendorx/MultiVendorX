@@ -1,0 +1,14 @@
+<reviews>
+    <review>
+        <reviewer>John Doe</reviewer>
+        <email>john.doe@example.com</email>
+        <rating>5</rating>
+        <comment>Very good product, fits perfectly.</comment>
+    </review>
+    <review>
+        <reviewer>Jane Smith</reviewer>
+        <email>jane.smith@example.com</email>
+        <rating>4</rating>
+        <comment>Good Product but package was slightly damaged.</comment>
+    </review>
+</reviews>
