@@ -40,16 +40,29 @@ final class MultiVendorX {
          * Should be romoved letter 
          */
         $this->init_classes();
+        add_action( 'init', [ $this, 'multivendorx_setup_wizard' ] );
         do_action( 'multivendorx_loaded' );
     }
 
     public function init_classes() {
+        $this->container['setting']     = new Setting();
         $this->container['admin']    	= new Admin();
 		$this->container['modules']	 	= new Modules();
-        $this->container['setting']     = new Setting();
 		// Load all active modules
 		// $this->container['modules']->load_active_modules();
 	}
+
+     /**
+     * Load admin setup wizard class.
+     * @return void
+     */
+    public function multivendorx_setup_wizard() {
+        $current_page = filter_input(INPUT_GET, 'page');
+        if ($current_page && $current_page == 'multivendorx_setup') {
+            $this->container['SetupWizard'] = new SetupWizard();
+        }
+    }
+    
     
     /**
      * Magic getter function to get the reference of class.

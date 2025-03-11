@@ -48,16 +48,16 @@ class Admin{
             __( 'Work Board', 'multivendorx' ),
             __( 'Work Board', 'multivendorx' ),
             'manage_woocommerce',
-            'multivendorx#&tab=work-board&name=activity-reminder',
+            'multivendorx#&tab=work-board&subtab=activity-reminder',
             '__return_null'
         );
 
         add_submenu_page(
             'multivendorx',
-            __( 'Commissions', 'multivendorx' ),
-            __( 'Commissions', 'multivendorx' ),
+            __( 'Modules', 'multivendorx' ),
+            __( 'Modules', 'multivendorx' ),
             'manage_woocommerce',
-            'multivendorx#&tab=Commissions',
+            'multivendorx#&tab=modules',
             '__return_null'
         );
 
@@ -75,7 +75,7 @@ class Admin{
             __( 'Payments', 'multivendorx' ),
             __( 'Payments', 'multivendorx' ),
             'manage_woocommerce',
-            'multivendorx#&tab=payment&name=payment-masspay',
+            'multivendorx#&tab=payment&subtab=payment-masspay',
             '__return_null'
         );
 
@@ -84,7 +84,7 @@ class Admin{
             __( 'Commissions', 'multivendorx' ),
             __( 'Commissions', 'multivendorx' ),
             'manage_woocommerce',
-            'multivendorx#&tab=commission',
+            'multivendorx#&tab=Commissions',
             '__return_null'
         );
 
@@ -102,7 +102,7 @@ class Admin{
             __( 'Analytics', 'multivendorx' ),
             __( 'Analytics', 'multivendorx' ),
             'manage_woocommerce',
-            'multivendorx#&tab=analytics&name=admin-overview',
+            'multivendorx#&tab=analytics&subtab=admin-overview',
             '__return_null'
         );
 
@@ -111,7 +111,7 @@ class Admin{
             __( 'Status and Tools', 'multivendorx' ),
             __( 'Status and Tools', 'multivendorx' ),
             'manage_woocommerce',
-            'multivendorx#&tab=status-tools&name=database-tools',
+            'multivendorx#&tab=status-tools&subtab=database-tools',
             '__return_null'
         );
 

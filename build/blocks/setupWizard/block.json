@@ -1,0 +1,7 @@
+{
+  "apiVersion": 2,
+  "name": "multivendorx/setup-wizard",
+  "category": "multivendorx",
+  "title": "Setup Wizard",
+  "editorScript": "file:./index.js"
+}

@@ -1,0 +1,6 @@
+{
+    "apiVersion": 2,
+    "name": "multivendorx",
+    "title": "MultivendorX",
+    "editorScript": "file:./index.js"
+}
