@@ -613,11 +613,9 @@ class MVX_Order {
                     }
                     break;
             }
-        
-            // Save the vendor order after each meta update
-            $vendor_order->save();
         }
-        
+
+        $vendor_order->save();
 
         $vendor_order->update_meta_data('_mvx_order_version', $MVX->version);
         $vendor_order->update_meta_data('_vendor_id', absint($args['vendor_id']));
