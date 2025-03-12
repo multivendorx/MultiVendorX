@@ -53,8 +53,7 @@ class MVX_Coupon {
 
         if ($new_status != $old_status && $post->post_status == 'publish') {
             $current_user = get_current_vendor_id();
-            if ($current_user)
-                $current_user_is_vendor = is_user_mvx_vendor($current_user);
+            $current_user_is_vendor = is_user_mvx_vendor($current_user);
             if ($current_user_is_vendor) {
                 //send mails to customer for new vendor coupon
                 $vendor = get_mvx_vendor_by_term(get_user_meta($current_user, '_vendor_term_id', true));
