@@ -2604,6 +2604,7 @@ class MVX_REST_API {
     }
 
     public function mvx_bulk_todo_pending_product($request) {
+        global $MVX;
         $data_list = $request && $request->get_param('data_list') ? $request->get_param('data_list') : '';
         $select_option_value = $request && $request->get_param('value') ? $request->get_param('value') : '';
         $type = $request && $request->get_param('type') ? $request->get_param('type') : '';
