@@ -1774,7 +1774,6 @@ class MVX_Ajax {
         //$vendor_reviews = $vendor->get_reviews_and_rating($requestData['start'], $requestData['length'], $query);
         if ($vendor_reviews_total) {
             $vendor_reviews = array_slice($vendor_reviews_total, $requestData['start'], $requestData['length']);
-            file_put_contents( plugin_dir_path(__FILE__) . "/error.log", date("d/m/Y H:i:s", time()) . ":vendor_reviews:  : " . var_export($vendor_reviews, true) . "\n", FILE_APPEND);
 
             foreach ($vendor_reviews as $comment) :
                 $vendor = get_mvx_vendor($comment->user_id);
