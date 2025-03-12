@@ -1513,8 +1513,7 @@ class MVX_Order {
         $refund_reason_options = get_mvx_global_settings('refund_order_msg') ? explode( "||", get_mvx_global_settings('refund_order_msg') ) : array();
         $refund_button_text = apply_filters( 'mvx_customer_my_account_refund_request_button_text', __( 'Request a refund', 'multivendorx' ), $order );
         // Print refund messages, if any
-        if( mvx_get_customer_refund_order_msg( $order, $refund_settings ) ) {
-            $msg_data = mvx_get_customer_refund_order_msg( $order, $refund_settings );
+        if( $msg_data = mvx_get_customer_refund_order_msg( $order, $refund_settings ) ) {
             $type = isset( $msg_data['type'] ) ? $msg_data['type'] : 'info';
             ?>
             <div class="woocommerce-Message woocommerce-Message--<?php echo $type; ?> woocommerce-<?php echo $type; ?>">
