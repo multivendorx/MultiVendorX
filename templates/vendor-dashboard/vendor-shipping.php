@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
 }
 global $woocommerce, $MVX, $wpdb;
 
-$vendor = get_mvx_vendor(get_current_user_id());
+$vendor = get_current_vendor();
 $vendor_all_shipping_zones = mvx_get_shipping_zone();
 $vendor_shipping_data = get_user_meta($vendor->id, 'vendor_shipping_data', true);
 ?>

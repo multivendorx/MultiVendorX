@@ -87,7 +87,7 @@ Class MVX_Admin_Dashboard {
         global $MVX;
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (isset($_POST['vendor_get_paid'])) {
-                $vendor = get_mvx_vendor(get_current_vendor_id());
+                $vendor = get_current_vendor();
                 $commissions = isset($_POST['commissions']) ? array_filter(wc_clean($_POST['commissions'])) : array();
                 if (!empty($commissions)) {
                     $payment_method = get_user_meta($vendor->id, '_vendor_payment_mode', true);
@@ -1664,7 +1664,7 @@ Class MVX_Admin_Dashboard {
      * @since 3.0.0
      */
     public function mvx_dashboard_setup() {
-        $vendor = get_mvx_vendor(get_current_user_id());
+        $vendor = get_current_vendor();
         $this->mvx_add_dashboard_widget('mvx_vendor_stats_reports', '', array(&$this, 'mvx_vendor_stats_reports'), 'full');
         $trans_details_widget_args = array();
         if (apply_filters('mvx_vendor_dashboard_menu_vendor_withdrawal_capability', false)) {
@@ -1829,7 +1829,7 @@ Class MVX_Admin_Dashboard {
 
         public function mvx_vendor_pending_shipping($args = array()) {
             global $MVX;
-            $vendor = get_mvx_vendor(get_current_user_id());
+            $vendor = get_current_vendor();
             $today = @date('Y-m-d 00:00:00', strtotime("+1 days"));
             $last_seven_day_date = date('Y-m-d H:i:s', strtotime('-7 days'));
             // Mark as shipped
@@ -1897,7 +1897,7 @@ Class MVX_Admin_Dashboard {
         public function mvx_vendor_product_stats($args = array()) {
             global $MVX, $wpdb;
             $publish_products_count = $pending_products_count = $draft_products_count = $trashed_products_count = 0;
-            $vendor = get_mvx_vendor(get_current_user_id());
+            $vendor = get_current_vendor();
             $args = array('post_status' => array('publish', 'pending', 'draft', 'trash'));
             $product_stats = array();
             if($vendor) :
@@ -1938,7 +1938,7 @@ Class MVX_Admin_Dashboard {
             global $MVX;
             $total_amount = 0;
             $transaction_display_array = array();
-            $vendor = get_mvx_vendor(get_current_vendor_id());
+            $vendor = get_current_vendor();
             $requestData = isset($_REQUEST) ? wc_clean($_REQUEST) : '';
             $vendor = apply_filters('mvx_transaction_vendor', $vendor);
             $start_date = isset($requestData['from_date']) ? $requestData['from_date'] : date('01-m-Y');
@@ -2093,9 +2093,9 @@ Class MVX_Admin_Dashboard {
                 return;
             }
             
-            $vendor_id = get_current_user_id();
+            $vendor_id = get_current_vendor_id();
 
-            if ( !is_user_mvx_vendor($vendor_id) || ! current_user_can( 'edit_products' ) || empty( $_POST['post_ID'] ) || ! wp_verify_nonce( $_POST['mvx_product_nonce'], 'mvx-product' ) ) {
+            if ( !$vendor_id || !is_user_mvx_vendor($vendor_id) || ! current_user_can( 'edit_products' ) || empty( $_POST['post_ID'] ) || ! wp_verify_nonce( $_POST['mvx_product_nonce'], 'mvx-product' ) ) {
                 wp_die( -1 );
             }
             $errors = array();
@@ -3089,7 +3089,7 @@ Class MVX_Admin_Dashboard {
         
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (isset($_POST['mvx_download_vendor_banking_overview_csv'])) {
-                $vendor = get_mvx_vendor(get_current_vendor_id()) ? get_mvx_vendor(get_current_vendor_id()) : '';
+                $vendor = get_current_vendor() ? get_current_vendor() : '';
                 $filename = 'BankingOverviewReport-' . date('Y-m-d') . '.csv';
                 header("Pragma: public");
                 header("Expires: 0");

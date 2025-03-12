@@ -19,7 +19,7 @@
  */
 defined( 'ABSPATH' ) || exit;
 global $wpdb;
-$vendor = apply_filters( 'mvx_vendor_select_product_for_add_coupon' , get_mvx_vendor( get_current_user_id() ) );
+$vendor = apply_filters( 'mvx_vendor_select_product_for_add_coupon' , get_current_vendor() );
 ?>
 <div role="tabpanel" class="tab-pane fade" id="usage_restriction_coupon_data">
     <div class="row-padding">
