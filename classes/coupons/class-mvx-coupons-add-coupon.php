@@ -78,8 +78,7 @@ class MVX_Coupons_Add_Coupon {
     }
 
     private function create_coupon_draft( $post_type ) {
-        $current_vendor_id = get_current_user_id();
-        $vendor = get_mvx_vendor( $current_vendor_id );
+        $vendor = get_current_vendor();
         if ( $vendor ) {
             $post_id = wp_insert_post( array( 'post_title' => __( 'Auto Draft', 'multivendorx' ), 'post_type' => $post_type, 'post_status' => 'auto-draft' ) );
             return get_post( $post_id );

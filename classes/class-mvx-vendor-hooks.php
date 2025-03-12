@@ -368,7 +368,7 @@ class MVX_Vendor_Hooks {
             wp_enqueue_script( 'jquery-ui-accordion' );
             wp_enqueue_script( 'mvx_new_vandor_announcements_js', $frontend_script_path . 'mvx_vendor_announcements' . $suffix . '.js', array( 'jquery' ), $MVX->version, true );
             $MVX->localize_script( 'mvx_new_vandor_announcements_js', array('grant_access_nonce' => wp_create_nonce( 'grant-access' ) ) );
-            $vendor = get_mvx_vendor( get_current_vendor_id() );
+            $vendor = get_current_vendor();
             $MVX->template->get_template( 'vendor-dashboard/vendor-announcements.php', array( 'vendor_announcements' => $vendor->get_announcements() ) );
         }
     }
@@ -380,7 +380,7 @@ class MVX_Vendor_Hooks {
     public function mvx_vendor_dashboard_storefront_endpoint() {
         global $MVX;
         $suffix = defined('MVX_SCRIPT_DEBUG') && MVX_SCRIPT_DEBUG ? '' : '.min';
-        $vendor = get_mvx_vendor( get_current_vendor_id() );
+        $vendor = get_current_vendor();
         $user_array = $MVX->user->get_vendor_fields( $vendor->id );
         $MVX->library->load_dashboard_upload_lib();
         $MVX->library->load_gmap_api();
@@ -406,7 +406,7 @@ class MVX_Vendor_Hooks {
      */
     public function mvx_vendor_dashboard_vendor_policies_endpoint() {
         global $MVX;
-        $vendor = get_mvx_vendor( get_current_vendor_id() );
+        $vendor = get_current_vendor();
         $user_array = $MVX->user->get_vendor_fields( $vendor->id );
         if ( ! wp_script_is( 'tiny_mce', 'enqueued' ) ) {
             wp_enqueue_editor();
@@ -420,7 +420,7 @@ class MVX_Vendor_Hooks {
      */
     public function mvx_vendor_dashboard_vendor_billing_endpoint() {
         global $MVX;
-        $vendor = get_mvx_vendor( get_current_vendor_id() );
+        $vendor = get_current_vendor();
         $user_array = $MVX->user->get_vendor_fields( $vendor->id );
         $MVX->template->get_template( 'vendor-dashboard/vendor-billing.php', $user_array );
     }
@@ -465,7 +465,7 @@ class MVX_Vendor_Hooks {
             // hard-coded '01' for first day
             $end_date = date( 'Y-m-d' );
         }
-        $vendor = get_mvx_vendor( get_current_vendor_id() );
+        $vendor = get_current_vendor();
         $MVX_Plugin_Post_Reports = new MVX_Report();
         $array_report = $MVX_Plugin_Post_Reports->vendor_sales_stat_overview( $vendor, $start_date, $end_date );
         $MVX->template->get_template( 'vendor-dashboard/vendor-report.php', $array_report );
@@ -730,7 +730,7 @@ class MVX_Vendor_Hooks {
      */
     public function mvx_vendor_dashboard_vendor_withdrawal_endpoint() {
         global $MVX;
-        $vendor = get_mvx_vendor( get_current_vendor_id() );
+        $vendor = get_current_vendor();
         if ( $vendor ) {
             $MVX->library->load_dataTable_lib();
             $meta_query['meta_query'] = array(
@@ -846,7 +846,7 @@ class MVX_Vendor_Hooks {
 
     public function save_vendor_dashboard_data() {
         global $MVX;
-        $vendor = get_mvx_vendor( get_current_vendor_id() );
+        $vendor = get_current_vendor();
         if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
             $post_data = isset($_POST) ? wp_unslash($_POST) : false;
             switch ( $MVX->endpoints->get_current_endpoint() ) {
@@ -922,7 +922,7 @@ class MVX_Vendor_Hooks {
     }
 
     public function mvx_vendor_dashboard_menu_vendor_shipping_capability( $cap ) {
-        $vendor = get_mvx_vendor( get_current_vendor_id() );
+        $vendor = get_current_vendor();
         if ( $vendor ) {
             return $vendor->is_shipping_enable();
         } else {
@@ -947,7 +947,7 @@ class MVX_Vendor_Hooks {
         if ( $key !== $MVX->endpoints->get_current_endpoint() ) {
             return;
         }
-        $vendor = get_mvx_vendor( get_current_vendor_id() );
+        $vendor = get_current_vendor();
         if ( $vendor && apply_filters( 'mvx_vendor_dashboard_show_progress_bar', true, $vendor ) ) {
             $vendor_progress = mvx_get_vendor_profile_completion( $vendor->id );
             if ( $vendor_progress['progress'] < 100 ) {

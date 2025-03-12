@@ -87,7 +87,7 @@ Class MVX_Admin_Dashboard {
         global $MVX;
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (isset($_POST['vendor_get_paid'])) {
-                $vendor = get_mvx_vendor(get_current_vendor_id());
+                $vendor = get_current_vendor();
                 $commissions = isset($_POST['commissions']) ? array_filter(wc_clean($_POST['commissions'])) : array();
                 if (!empty($commissions)) {
                     $payment_method = get_user_meta($vendor->id, '_vendor_payment_mode', true);
@@ -1938,7 +1938,7 @@ Class MVX_Admin_Dashboard {
             global $MVX;
             $total_amount = 0;
             $transaction_display_array = array();
-            $vendor = get_mvx_vendor(get_current_vendor_id());
+            $vendor = get_current_vendor();
             $requestData = isset($_REQUEST) ? wc_clean($_REQUEST) : '';
             $vendor = apply_filters('mvx_transaction_vendor', $vendor);
             $start_date = isset($requestData['from_date']) ? $requestData['from_date'] : date('01-m-Y');
@@ -3089,7 +3089,7 @@ Class MVX_Admin_Dashboard {
         
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (isset($_POST['mvx_download_vendor_banking_overview_csv'])) {
-                $vendor = get_mvx_vendor(get_current_vendor_id()) ? get_mvx_vendor(get_current_vendor_id()) : '';
+                $vendor = get_current_vendor() ? get_current_vendor() : '';
                 $filename = 'BankingOverviewReport-' . date('Y-m-d') . '.csv';
                 header("Pragma: public");
                 header("Expires: 0");

@@ -19,7 +19,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 global $MVX;
-$vendor = get_mvx_vendor(get_current_vendor_id());
+$vendor = get_current_vendor();
 if ($vendor) {
     $vendor_logo = $vendor->profile_image ? $vendor->profile_image : get_avatar_url(get_current_vendor_id(), array('size' => 80));
 } else {
