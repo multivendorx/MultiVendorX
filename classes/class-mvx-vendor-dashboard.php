@@ -2475,8 +2475,7 @@ Class MVX_Admin_Dashboard {
             $status_for_send_mail_to_admin = apply_filters('mvx_send_coupon_mail_admin_status', array('draft'));
             if ( !in_array( $status, $status_for_send_mail_to_admin) ) {
                 $current_user = get_current_vendor_id();
-                if ($current_user)
-                    $current_user_is_vendor = is_user_mvx_vendor($current_user);
+                $current_user_is_vendor = is_user_mvx_vendor($current_user);
                 if ($current_user_is_vendor && !get_post_meta($post_id, 'mvx_coupon_mail_send_to_admin')) {
                     //send mails to admin for new vendor coupon
                     $vendor = get_mvx_vendor_by_term(get_user_meta($current_user, '_vendor_term_id', true));
