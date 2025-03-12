@@ -2093,9 +2093,9 @@ Class MVX_Admin_Dashboard {
                 return;
             }
             
-            $vendor_id = get_current_user_id();
+            $vendor_id = get_current_vendor_id();
 
-            if ( !is_user_mvx_vendor($vendor_id) || ! current_user_can( 'edit_products' ) || empty( $_POST['post_ID'] ) || ! wp_verify_nonce( $_POST['mvx_product_nonce'], 'mvx-product' ) ) {
+            if ( !$vendor_id || !is_user_mvx_vendor($vendor_id) || ! current_user_can( 'edit_products' ) || empty( $_POST['post_ID'] ) || ! wp_verify_nonce( $_POST['mvx_product_nonce'], 'mvx-product' ) ) {
                 wp_die( -1 );
             }
             $errors = array();
