@@ -539,7 +539,7 @@ class MVX_Commission {
      */
     public static function get_unpaid_commissions_total_data( $type = 'withdrawable' ) {
         global $MVX;
-        $vendor = get_mvx_vendor( get_current_user_id() );
+        $vendor = get_current_vendor();
         if( !$vendor ) return false;
         $vendor_id = $vendor->id;
         $args = array(

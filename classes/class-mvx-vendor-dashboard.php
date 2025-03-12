@@ -1664,7 +1664,7 @@ Class MVX_Admin_Dashboard {
      * @since 3.0.0
      */
     public function mvx_dashboard_setup() {
-        $vendor = get_mvx_vendor(get_current_user_id());
+        $vendor = get_current_vendor();
         $this->mvx_add_dashboard_widget('mvx_vendor_stats_reports', '', array(&$this, 'mvx_vendor_stats_reports'), 'full');
         $trans_details_widget_args = array();
         if (apply_filters('mvx_vendor_dashboard_menu_vendor_withdrawal_capability', false)) {
@@ -1829,7 +1829,7 @@ Class MVX_Admin_Dashboard {
 
         public function mvx_vendor_pending_shipping($args = array()) {
             global $MVX;
-            $vendor = get_mvx_vendor(get_current_user_id());
+            $vendor = get_current_vendor();
             $today = @date('Y-m-d 00:00:00', strtotime("+1 days"));
             $last_seven_day_date = date('Y-m-d H:i:s', strtotime('-7 days'));
             // Mark as shipped
@@ -1897,7 +1897,7 @@ Class MVX_Admin_Dashboard {
         public function mvx_vendor_product_stats($args = array()) {
             global $MVX, $wpdb;
             $publish_products_count = $pending_products_count = $draft_products_count = $trashed_products_count = 0;
-            $vendor = get_mvx_vendor(get_current_user_id());
+            $vendor = get_current_vendor();
             $args = array('post_status' => array('publish', 'pending', 'draft', 'trash'));
             $product_stats = array();
             if($vendor) :

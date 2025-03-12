@@ -239,7 +239,7 @@ class MVX_BuddyPress {
 
     				// for profile name
     				if( isset( $_POST['profile_name'] ) ) {
-    					$currentvendor = get_mvx_vendor(get_current_user_id());
+    					$currentvendor = get_current_vendor();
     					// update shop page name
     					wp_update_term($currentvendor->term_id, $MVX->taxonomy->taxonomy_name, array('name' => bp_activity_get_user_mentionname( get_current_user_id() )));
     				}

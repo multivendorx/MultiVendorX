@@ -1667,7 +1667,7 @@ class MVX_Ajax {
         } elseif ($handler == 'answer') {
             $ques_ID = isset($_POST['key']) ? wc_clean( $_POST['key'] ) : '';
             $reply = isset($_POST['reply']) ? sanitize_textarea_field($_POST['reply']) : '';
-            $vendor = get_mvx_vendor(get_current_user_id());
+            $vendor = get_current_vendor();
             $question_info = $MVX->product_qna->get_Question($ques_ID);
             $product_id = $question_info->product_ID;
             $customer = get_userdata($question_info->ques_by);
@@ -3322,7 +3322,7 @@ class MVX_Ajax {
             }
             
             if (is_user_mvx_vendor(get_current_user_id() ) ) {
-                $vendor = get_mvx_vendor(get_current_user_id() );
+                $vendor = get_current_vendor();
                 $vendor_product_ids = wp_list_pluck( $vendor->get_products_ids(), 'ID' );
                 $ids = array_intersect( $ids, (array) $vendor_product_ids );
             }
@@ -3370,7 +3370,7 @@ class MVX_Ajax {
         }
         
         if (is_user_mvx_vendor(get_current_user_id() ) ) {
-            $vendor = get_mvx_vendor(get_current_user_id() );
+            $vendor = get_current_vendor();
             $vendor_product_ids = wp_list_pluck( $vendor->get_products_ids(), 'ID' );
             $ids = array_intersect( $ids, (array) $vendor_product_ids );
         }

@@ -1041,7 +1041,7 @@ class MVX_Product {
                     }elseif(!isset($_POST['woocommerce-process-checkout-nonce'])){
                         // vendor assign with product
                         if(is_user_mvx_vendor(get_current_user_id())){
-                            $vendor = get_mvx_vendor(get_current_user_id());
+                            $vendor = get_current_vendor();
                             wp_delete_object_term_relationships($product, $MVX->taxonomy->taxonomy_name);
                             $term = get_term($vendor->term_id, $MVX->taxonomy->taxonomy_name);
                             //wp_set_post_terms($post_id, $term->name, $MVX->taxonomy->taxonomy_name, false);
