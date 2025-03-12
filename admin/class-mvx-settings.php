@@ -50,7 +50,7 @@ class MVX_Settings {
 
             $submenu[ $slug ][] = [ __( '<div id="help-and-support">Help & Support</div>', 'multivendorx' ), 'manage_woocommerce', 'https://multivendorx.com/' ];
 
-            add_submenu_page( null, __( 'Transaction Details', 'multivendorx' ), __( 'Transaction Details', 'multivendorx' ), 'manage_woocommerce', 'mvx-transaction-details', array( $this, 'mvx_transaction_details' ) );
+            add_submenu_page( '', __( 'Transaction Details', 'multivendorx' ), __( 'Transaction Details', 'multivendorx' ), 'manage_woocommerce', 'mvx-transaction-details', array( $this, 'mvx_transaction_details' ) );
         }
     }
 
