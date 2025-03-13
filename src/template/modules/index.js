@@ -1,5 +1,14 @@
 import { __ } from '@wordpress/i18n';
 
+ /**
+   * Check whether a plugin is active or not.
+   * @param {*} pluginName 
+   * @returns 
+   */
+ const isPluginActive = (pluginName)=>{
+    return appLocalizer.active_plugins_list[pluginName]===true;
+  }
+
 export default [
     {
         parent_category:__( 'Marketplace Types', 'multivendorx' ),
@@ -26,7 +35,7 @@ export default [
                     {
                         plugin_name  : __('MultivendorX Pro', 'multivendorx'),
                         plugin_link  : 'https://multivendorx.com/pricing',
-                        is_active    :  false,
+                        is_active    :  isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: true
@@ -42,7 +51,7 @@ export default [
                     {
                         plugin_name  : __('MultivendorX Pro', 'multivendorx'),
                         plugin_link  : 'https://multivendorx.com/pricing',
-                        is_active    :  false,
+                        is_active    :  isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: true
@@ -58,7 +67,7 @@ export default [
                     {
                         plugin_name  : __('MultivendorX Pro', 'multivendorx'),
                         plugin_link  : 'https://multivendorx.com/',
-                        is_active    :  false,
+                        is_active    :  isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: true
@@ -74,12 +83,12 @@ export default [
                     {
                         plugin_name  : __('WooCommerce Booking', 'multivendorx'),
                         plugin_link  : 'https://multivendorx.com/docs/knowledgebase/appointment-product/',
-                        is_active    :  false,
+                        is_active    :  isPluginActive('woocommerce-bookings'),
                     },
                     {
                         plugin_name  : __('MultivendorX Pro', 'multivendorx'),
                         plugin_link  : 'https://multivendorx.com/',
-                        is_active    :  false,
+                        is_active    :  isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: true
@@ -95,12 +104,12 @@ export default [
                     {
                         plugin_name  : __('WooCommerce Appointment', 'multivendorx'),
                         plugin_link  : 'https://bookingwp.com/plugins/woocommerce-appointments/',
-                        is_active    :  false,
+                        is_active    :  isPluginActive('woocommerce-appointments'),
                     },
                     {
                         plugin_name  : __('MultivendorX Pro', 'multivendorx'),
                         plugin_link  : 'https://multivendorx.com/',
-                        is_active    :  false,
+                        is_active    :  isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: true
@@ -116,12 +125,12 @@ export default [
                     {
                         plugin_name  : __('WooCommerce Subscription', 'multivendorx'),
                         plugin_link  : 'https://woocommerce.com/products/woocommerce-subscriptions/',
-                        is_active    :  false,
+                        is_active    :  isPluginActive('woocommerce-subscriptions'),
                     },
                     {
                         plugin_name  : __('MultivendorX Pro', 'multivendorx'),
                         plugin_link  : 'https://multivendorx.com/pricing',
-                        is_active    :  false,
+                        is_active    :  isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: true
@@ -137,17 +146,17 @@ export default [
                     {
                         plugin_name  : __('WooCommerce Accommodation & Booking', 'multivendorx'),
                         plugin_link  : 'https://woocommerce.com/products/woocommerce-accommodation-bookings/',
-                        is_active    :  false,
+                        is_active    :  isPluginActive('woocommerce-bookings'),
                     },
                     {
                         plugin_name  : __('WooCommerce Booking', 'multivendorx'),
                         plugin_link  : 'https://woocommerce.com/products/woocommerce-bookings/',
-                        is_active    :  false,
+                        is_active    :  isPluginActive('woocommerce-bookings'),
                     },
                     {
                         plugin_name  : __('MultivendorX Pro', 'multivendorx'),
                         plugin_link  : 'https://multivendorx.com/',
-                        is_active    :  false,
+                        is_active    :  isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: true
@@ -163,12 +172,12 @@ export default [
                     {
                         plugin_name  : __('Product Bundle', 'multivendorx'),
                         plugin_link  : 'https://woocommerce.com/products/product-bundles/',
-                        is_active    :  false,
+                        is_active    :  isPluginActive('woocommerce-product-bundles'),
                     },
                     {
                         plugin_name  : __('MultivendorX Pro', 'multivendorx'),
                         plugin_link  : 'https://multivendorx.com/',
-                        is_active    :  false,
+                        is_active    :  isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: true
@@ -184,12 +193,12 @@ export default [
                     {
                         plugin_name  : __('Simple Auction', 'multivendorx'),
                         plugin_link  : '',
-                        is_active    :  false,
+                        is_active    :  isPluginActive('woocommerce-simple-auctions'),
                     },
                     {
                         plugin_name  : __('MultivendorX Pro', 'multivendorx'),
                         plugin_link  : 'https://multivendorx.com/',
-                        is_active    :  false,
+                        is_active    :  isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: true
@@ -205,12 +214,12 @@ export default [
                     {
                         plugin_name  : __('Rental Pro', 'multivendorx'),
                         plugin_link  : 'https://codecanyon.net/item/rnb-woocommerce-rental-booking-system/14835145?ref=redqteam',
-                        is_active    :  false,
+                        is_active    :  isPluginActive('woocommerce-rental-and-booking'),
                     },
                     {
                         plugin_name  : __('MultivendorX Pro', 'multivendorx'),
                         plugin_link  : 'https://multivendorx.com/',
-                        is_active    :  false,
+                        is_active    :  isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: true
@@ -226,12 +235,12 @@ export default [
                     {
                         plugin_name  : __('YITH WooCommerce Gift Cards', 'multivendorx'),
                         plugin_link  : 'https://wordpress.org/plugins/yith-woocommerce-gift-cards/',
-                        is_active    :  false,
+                        is_active    :  isPluginActive('yith-woocommerce-gift-cards'),
                     },
                     {
                         plugin_name  : __('MultivendorX Pro', 'multivendorx'),
                         plugin_link  : 'https://multivendorx.com/',
-                        is_active    :  false,
+                        is_active    :  isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: true
@@ -253,7 +262,7 @@ export default [
                     {
                         plugin_name  : __('MultivendorX Pro', 'multivendorx'),
                         plugin_link  : 'https://multivendorx.com/',
-                        is_active    :  false,
+                        is_active    :  isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: true
@@ -285,7 +294,7 @@ export default [
                     {
                         plugin_name: __('MultivendorX Pro', 'multivendorx'),
                         plugin_link: 'https://multivendorx.com/',
-                        is_active: false,
+                        is_active: isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: true
@@ -301,7 +310,7 @@ export default [
                     {
                         plugin_name: __('MultivendorX Pro', 'multivendorx'),
                         plugin_link: 'https://multivendorx.com/',
-                        is_active: false,
+                        is_active: isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: true
@@ -363,7 +372,7 @@ export default [
                     {
                         plugin_name: __('MultivendorX Pro', 'multivendorx'),
                         plugin_link: 'https://multivendorx.com/',
-                        is_active: false,
+                        is_active: isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: true
@@ -389,7 +398,7 @@ export default [
                     {
                         plugin_name: __('MultivendorX Pro', 'multivendorx'),
                         plugin_link: 'https://multivendorx.com/',
-                        is_active: false,
+                        is_active: isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: true
@@ -405,7 +414,7 @@ export default [
                     {
                         plugin_name: __('MultivendorX Pro', 'multivendorx'),
                         plugin_link: 'https://multivendorx.com/',
-                        is_active: false,
+                        is_active: isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: true
@@ -421,7 +430,7 @@ export default [
                     {
                         plugin_name: __('MVX Razorpay Split Payment', 'multivendorx'),
                         plugin_link: 'https://wordpress.org/plugins/mvx-razorpay-split-payment/',
-                        is_active: false
+                        is_active: isPluginActive('wcmp-razorpay-split-payment'),
                     }
                 ],
                 pro_module: false
@@ -473,7 +482,7 @@ export default [
                     {
                         plugin_name: __('Table Rate Shipping', 'multivendorx'),
                         plugin_link: 'https://woocommerce.com/products/table-rate-shipping/',
-                        is_active: false
+                        is_active: isPluginActive('woocommerce-table-rate-shipping'),
                     }
                 ],
                 pro_module: false
@@ -489,12 +498,12 @@ export default [
                     {
                         plugin_name: __('Per Product Shipping', 'multivendorx'),
                         plugin_link: 'https://woocommerce.com/products/per-product-shipping/',
-                        is_active: false
+                        is_active: isPluginActive('woocommerce-shipping-per-product'),
                     },
                     {
                         plugin_name: __('MultivendorX Pro', 'multivendorx'),
                         plugin_link: 'https://multivendorx.com/',
-                        is_active: false
+                        is_active: isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: true
@@ -516,7 +525,7 @@ export default [
                     {
                         plugin_name: __('MultivendorX Pro', 'multivendorx'),
                         plugin_link: 'https://multivendorx.com/',
-                        is_active: false
+                        is_active: isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: true
@@ -588,7 +597,7 @@ export default [
                     {
                         plugin_name: __('MultivendorX Pro', 'multivendorx'),
                         plugin_link: 'https://multivendorx.com/',
-                        is_active: false
+                        is_active: isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: true
@@ -614,7 +623,7 @@ export default [
                     {
                         plugin_name: __('MultivendorX Pro', 'multivendorx'),
                         plugin_link: 'https://multivendorx.com/',
-                        is_active: false
+                        is_active: isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: true
@@ -636,7 +645,7 @@ export default [
                     {
                         plugin_name: __('MultivendorX Pro', 'multivendorx'),
                         plugin_link: 'https://multivendorx.com/',
-                        is_active: false
+                        is_active: isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: true
@@ -652,7 +661,7 @@ export default [
                     {
                         plugin_name: __('MultivendorX Pro', 'multivendorx'),
                         plugin_link: 'https://multivendorx.com/',
-                        is_active: false
+                        is_active: isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: true
@@ -668,7 +677,7 @@ export default [
                     {
                         plugin_name: __('MultivendorX Pro', 'multivendorx'),
                         plugin_link: 'https://multivendorx.com/',
-                        is_active: false
+                        is_active: isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: true
@@ -684,7 +693,7 @@ export default [
                     {
                         plugin_name: __('MultivendorX Pro', 'multivendorx'),
                         plugin_link: 'https://multivendorx.com/',
-                        is_active: false
+                        is_active: isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: true
@@ -700,7 +709,7 @@ export default [
                     {
                         plugin_name: __('MultivendorX Pro', 'multivendorx'),
                         plugin_link: 'https://multivendorx.com/',
-                        is_active: false
+                        is_active: isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: true
@@ -722,7 +731,7 @@ export default [
                     {
                         plugin_name: __('MultivendorX Pro', 'multivendorx'),
                         plugin_link: 'https://multivendorx.com/',
-                        is_active: false
+                        is_active: isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: true
@@ -738,7 +747,7 @@ export default [
                     {
                         plugin_name: __('MultivendorX Pro', 'multivendorx'),
                         plugin_link: 'https://multivendorx.com/',
-                        is_active: false
+                        is_active: isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: true
@@ -760,7 +769,7 @@ export default [
                     {
                         plugin_name: __('MultivendorX Pro', 'multivendorx'),
                         plugin_link: 'https://multivendorx.com/',
-                        is_active: false
+                        is_active: isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: true
@@ -815,12 +824,12 @@ export default [
                     {
                         plugin_name: __('Elementor Website Builder', 'multivendorx'),
                         plugin_link: 'https://wordpress.org/plugins/elementor/',
-                        is_active: false
+                        is_active: isPluginActive('elementor'),
                     },
                     {
                         plugin_name: __('Elementor Pro', 'multivendorx'),
                         plugin_link: 'https://elementor.com/pricing/',
-                        is_active: false
+                        is_active: isPluginActive('elementor-pro'),
                     }
                 ],
                 pro_module: false
@@ -836,7 +845,7 @@ export default [
                     {
                         plugin_name: __('Buddypress', 'multivendorx'),
                         plugin_link: 'https://wordpress.org/plugins/buddypress/',
-                        is_active: false
+                        is_active: isPluginActive('buddypress'),
                     }
                 ],
                 pro_module: false
@@ -852,12 +861,12 @@ export default [
                     {
                         plugin_name: __('The WordPress Multilingual Plugin', 'multivendorx'),
                         plugin_link: 'https://wpml.org/',
-                        is_active: false
+                        is_active: appLocalizer.is_SitePress_active,
                     },
                     {
                         plugin_name: __('WooCommerce Multilingual – run WooCommerce with WPML', 'multivendorx'),
                         plugin_link: 'https://wordpress.org/plugins/woocommerce-multilingual/',
-                        is_active: false
+                        is_active: isPluginActive('woocommerce-multilingual'),
                     }
                 ],
                 pro_module: false
@@ -873,12 +882,12 @@ export default [
                     {
                         plugin_name: __('Advanced custom fields', 'multivendorx'),
                         plugin_link: 'https://wordpress.org/plugins/advanced-custom-fields/',
-                        is_active: false
+                        is_active: appLocalizer.is_ACF_active,
                     },
                     {
                         plugin_name: __('MultivendorX Pro', 'multivendorx'),
                         plugin_link: 'https://multivendorx.com/',
-                        is_active: false
+                        is_active: isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: true
@@ -894,12 +903,12 @@ export default [
                     {
                         plugin_name: __('Geo My WP', 'multivendorx'),
                         plugin_link: 'https://wordpress.org/plugins/geo-my-wp/',
-                        is_active: false
+                        is_active: isPluginActive('geo-my-wp'),
                     },
                     {
                         plugin_name: __('MultivendorX Pro', 'multivendorx'),
                         plugin_link: 'https://multivendorx.com/',
-                        is_active: false
+                        is_active: isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: false
@@ -915,12 +924,12 @@ export default [
                     {
                         plugin_name: __('Toolset', 'multivendorx'),
                         plugin_link: 'https://toolset.com/',
-                        is_active: false
+                        is_active: isPluginActive('types'),
                     },
                     {
                         plugin_name: __('MultivendorX Pro', 'multivendorx'),
                         plugin_link: 'https://multivendorx.com/',
-                        is_active: false
+                        is_active: isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: true
@@ -936,12 +945,12 @@ export default [
                     {
                         plugin_name: __('AffiliateWP', 'multivendorx'),
                         plugin_link: 'https://affiliatewp.com/',
-                        is_active: false
+                        is_active: isPluginActive('affiliate-wp'),
                     },
                     {
                         plugin_name: __('MultivendorX Pro', 'multivendorx'),
                         plugin_link: 'https://multivendorx.com/',
-                        is_active: false
+                        is_active: isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: true 
@@ -957,12 +966,12 @@ export default [
                     {
                         plugin_name: __('Product Add-Ons', 'multivendorx'),
                         plugin_link: 'https://woocommerce.com/products/product-add-ons/',
-                        is_active: false
+                        is_active: isPluginActive('woocommerce-product-addons'),
                     },
                     {
                         plugin_name: __('MultivendorX Pro', 'multivendorx'),
                         plugin_link: 'https://multivendorx.com/',
-                        is_active: false
+                        is_active: isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: true
@@ -978,7 +987,7 @@ export default [
                     {
                         plugin_name: __('MultivendorX Pro', 'multivendorx'),
                         plugin_link: 'https://multivendorx.com/',
-                        is_active: false
+                        is_active: isPluginActive('mvx-pro'),
                     }
                 ],
                 pro_module: true

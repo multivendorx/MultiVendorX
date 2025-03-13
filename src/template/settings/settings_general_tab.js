@@ -1,12 +1,12 @@
 import { __ } from '@wordpress/i18n';
 
 export default {
-    id: 'settings_general',
+    id: 'settings_general_tab',
     priority: 1,
     name: __("General",'multivendorx'),
     desc: __( 'Configure the basic setting of the marketplace.', 'multivendorx' ),
     icon: 'adminLib-general-tab',
-    submitUrl: 'save-settings',
+    submitUrl: 'settings',
     modal: [
         {
             key: "approve_vendor",
@@ -39,7 +39,6 @@ export default {
                     value: 'vendors_backend_access'
                 },
             ],
-            proSetting: true,
             look: 'toggle',
         },
         {

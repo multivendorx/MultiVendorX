@@ -93,7 +93,7 @@ class Admin{
             __( 'Settings', 'multivendorx' ),
             __( 'Settings', 'multivendorx' ),
             'manage_woocommerce',
-            'multivendorx#&tab=settings&subtab=settings_general',
+            'multivendorx#&tab=settings&subtab=settings_general_tab',
             '__return_null'
         );
 
@@ -167,7 +167,7 @@ class Admin{
         $settings_value = [];
         $tabs_names     = [ 'settings_general_tab', 'disbursement_tab', 'commissions_tab', 'spmv_pages_tab', 'products_capability_tab', 'products_tab', 'payment_masspay_tab'];
         foreach ( $tabs_names as $tab_name ) {
-            $settings_value[ $tab_name ] = MVX()->setting->mvx_get_option( 'mvx_' . $tab_name . '_settings' );
+            $settings_value[ $tab_name ] = MVX()->setting->get_option( 'mvx_' . $tab_name . '_settings' );
         }
 
         // MVX-PRO feature
@@ -199,21 +199,31 @@ class Admin{
                 $order_statuses[] = array('key' => $key, 'label' => $value, 'value' => $key );
             }
         }
-        
+
+        // Get active plugin lists
+        $active_plugins_list = array();
+        $plugins_list = MVX()->setting->get_option('active_plugins');
+        foreach ($plugins_list as $item) {
+            $parts = explode("/", $item); // Split string by "/"
+            $key = strtolower($parts[0]); // Convert to lowercase
+            $active_plugins_list[$key] = true; // Assign true as value
+        }
+        error_log("Settings database value : ".print_r($settings_value,true));
         wp_localize_script( 'mvx_admin_script', 'appLocalizer', apply_filters('mvx_module_complete_settings', [
             // Required in new code
             'apiUrl'        => untrailingslashit(get_rest_url()),
-            'restUrl'       => 'mvx_module/v1',
+            'restUrl'       => MVX()->rest_namespace,
             'nonce'         => wp_create_nonce( 'wp_rest' ),
             'moduleList'    => MVX()->modules->get_active_modules(),
             'pageList'      => $page_list,
             'settings_databases_value'  => $settings_value,
             'pro_settings_list'=> '',
+            'active_plugins_list'=>$active_plugins_list,
             'template1'     => MVX()->plugin_url . 'src/assets/images/template1.jpg',
             'template2'     => MVX()->plugin_url  . 'src/assets/images/template2.jpg',
             'template3'     => MVX()->plugin_url  . 'src/assets/images/template3.jpg',
             'admin_widget_url'=> admin_url("widgets.php"),
-            'modules_page_url'=>admin_url( '?page=mvx#&submenu=modules' ),
+            'modules_page_url'=>admin_url( '?page=multivendorx#&tab=modules' ),
             'available_emails_filtered'=>$available_emails_filtered ,
             'order_statuses'=>$order_statuses,
             'woocommerce_currency'=> get_woocommerce_currency(),
@@ -236,74 +246,8 @@ class Admin{
             'store_support_settings_url' => admin_url('admin.php?page=multivendorx#&tab=settings&subtab=store_support'),
             'seo_settings_url' => admin_url('admin.php?page=multivendorx#&tab=settings&subtab=seo'),
             'social_settings_url' => admin_url('admin.php?page=multivendorx#&tab=settings&subtab=social'),
-        // 'marker_icon' => $MVX->plugin_url . 'assets/images/store-marker.png',
-        // 'marketplace_logo' => $MVX->plugin_url.'assets/images/dclogo.svg',
-        // 'marketplace_text' => __('MultiVendorX', 'multivendorx'),
-        // 'google_api'    =>  get_mvx_global_settings('google_api_key'),
-        // 'mapbox_api'    =>  get_mvx_global_settings('mapbox_api_key'),
-        // 'location_provider'    =>  get_mvx_global_settings('choose_map_api'),
-        // 'store_location_check'    =>  get_mvx_global_settings('enable_store_map_for_vendor') && !empty(get_mvx_global_settings('enable_store_map_for_vendor')) ? true : false,
-        // 'store_location_enabled'    =>  mvx_is_module_active('store-location'),
-        // 'multivendor_right_white_logo' => $MVX->plugin_url.'assets/images/vertical-logo-white.png', 
-        // 'knowledgebase_url'     => 'https://multivendorx.com/knowledgebase/',
-        // 'knowledgebase_title'   => __('MVX knowledge Base', 'multivendorx'),
-        // 'search_module' =>  __('Search Modules', 'multivendorx'),
-        // 'search_module_placeholder' => __('Search Modules', 'multivendorx'),
-        // 'pro_text' => __('Pro', 'multivendorx'),
-        // 'documentation_extra_text' => __('For more info, please check the', 'multivendorx'),
-        // 'documentation_text' => __('DOC', 'multivendorx'),
-        // 'settings_text' => __('Settings', 'multivendorx'),
-        // 'admin_mod_url' => admin_url('admin.php?page=modules'),
-        // 'admin_setup_widget_option' => admin_url( 'index.php?page=mvx-setup' ),
-        // 'admin_migration_widget_option' => admin_url( 'index.php?page=mvx-setup' ),
-        // 'multivendor_migration_link' => admin_url('index.php?page=mvx-migrator'),
-        // 'add_announcement_link' =>  admin_url('admin.php?page=mvx#&submenu=work-board&name=announcement&create=announcement'),
-        // 'announcement_back' =>  admin_url('admin.php?page=mvx#&submenu=work-board&name=announcement'),
-        // 'add_knowladgebase_link' =>  admin_url('admin.php?page=mvx#&submenu=work-board&name=knowladgebase&create=knowladgebase'),
-        // 'knowladgebase_back' =>  admin_url('admin.php?page=mvx#&submenu=work-board&name=knowladgebase'),
-        // 'settings_fields' => apply_filters('mvx-settings-fileds-details', $settings_fields),
-        // 'databse_settings' => $database_settings,
-        // 'countries'                 => wp_json_encode( array_merge( WC()->countries->get_allowed_country_states(), WC()->countries->get_shipping_country_states() ) ),
-        // 'mvx_all_backend_tab_list' => $mvx_all_backend_tab_list,
-        // 'mvx_vendor_application_header' =>  $vendor_application_header,
-        // 'default_logo'                  => $MVX->plugin_url.'assets/images/WP-stdavatar.png',
-        // 'commission_bulk_list_option'   =>  $commission_bulk_list_action,
-        // 'commission_header'             => $commission_header,
-        // 'commission_status_list_action' =>  $commission_status_list_action,
-        // 'commission_page_string'        =>  $commission_page_string,
-        // 'vendor_page_string'            =>  $vendor_page_string,
-        // 'status_and_tools_string'       =>  $status_and_tools_string,
-        // 'settings_page_string'          =>  $settings_page_string,
-        // 'global_string'                 =>  $global_string,
-        // 'workboard_string'              =>  $workboard_string,
-        // 'dashboard_string'              =>  $dashboard_page_string,
-        // 'module_page_string'            =>  $module_page_string,
-        // 'analytics_page_string'         =>  $analytics_page_string,
-        // 'report_product_header'         =>  $report_product_header,
-        // 'report_vendor_header'          =>  $report_vendor_header,
-        // 'report_page_string'            =>  $report_page_string,
-        // 'post_bulk_status'              =>  $post_bulk_status,
-        // 'question_selection_wordpboard' =>  $question_selection_wordpboard,
-        // 'question_product_selection_wordpboard' =>  $question_product_selection_wordpboard,
-        // 'pending_question_bulk'         =>  $pending_question_bulk,
-        // 'task_board_bulk_status'        =>  $task_board_bulk_status,
-        // 'columns_announcement'          =>  $columns_announcement,
-        // 'columns_questions'             =>  $columns_questions,
-        // 'columns_knowledgebase'         =>  $columns_knowledgebase,
-        // 'columns_store_review'          =>  $columns_store_review,
-        // 'columns_vendor'                =>  $columns_vendor,
-        // 'columns_followers'             =>  $columns_followers,
-        // 'columns_zone_shipping'         =>  $columns_zone_shipping,
-        // 'select_option_delete'          =>  $select_option_delete,
-        // 'select_option_delete_for_vendor'       =>  $select_option_delete_for_vendor,
-        // 'columns_commission'                    =>  $columns_commission,
-        // 'columns_report_abuse'                  =>  $columns_report_abuse,
-        // 'columns_refunded_order'                =>  $columns_refunded_order,
-        // 'columns_refund_request'                =>  $columns_refund_request,
-        // 'columns_pending_shipping'              =>  $columns_pending_shipping,
-        // 'select_module_category_option'         =>  $select_module_category_option,
-        // 'errors_log'                            =>  $this->get_error_log_rows(100),
-        // 'mvx_tinymce_key'                       =>  get_mvx_vendor_settings('mvx_tinymce_api_section', 'settings_general'),
+            'is_SitePress_active' => class_exists( 'SitePress' ) ? true : false,
+            'is_ACF_active' => class_exists( 'ACF' ) ? true : false,
         ] ) );
 
      }

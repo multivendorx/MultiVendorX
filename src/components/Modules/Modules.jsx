@@ -18,6 +18,7 @@ const Modules = () => {
   const [searchingValue, setSearchingValue] = useState("");
   const [categorySearchValue, setCategorySearchValue] = useState("");
   const categories = [];
+
   /**
    * Check whether a module is active or not.
    * @param {*} moduleId 
@@ -25,8 +26,9 @@ const Modules = () => {
    */
   const isModuleAvialable = ( moduleId ) => {
     const module = modulesArray.flatMap(category=>category.modules).find((module) => module.id === moduleId);
+    const activeAllRequiredPlugins = [...new Set(module.required_plugin_list?.map(plugin=>plugin.is_active))];
     if ( ! module?.pro_module ) return true;
-    if ( module?.pro_module && appLocalizer.khali_dabba ) return true;
+    if ( module?.pro_module && activeAllRequiredPlugins.length<2 && activeAllRequiredPlugins[0]===true) return true;
     return false;
   }
 
@@ -49,11 +51,14 @@ const Modules = () => {
       removeModule(moduleId);
     }
     
-    const response = await sendApiResponse(getApiLink("module_manage"), {
+    const response = await sendApiResponse(getApiLink("modules"), {
       id: moduleId,
       action,
     });
-
+    if(!response){
+      removeModule(moduleId);
+      return;
+    }
     setSuccessMsg('Module activated');
     setTimeout(() => setSuccessMsg(''), 2000);
   };
@@ -145,13 +150,13 @@ const Modules = () => {
                         <i class="adminLib-pro-tab">
                         </i> Pro Plugins
                       </legend>
-                      {module.required_plugin_list.map((plugins)=>{
+                      {module.required_plugin_list.map((plugin)=>{
                         return <>
                           <span>
                             {/*for close : adminLib-close */}
                             {/*for correct : adminLib-check */}
-                            <span className={plugins.is_active?'adminLib-check':'adminLib-close'}></span>
-                            <a href={plugins.plugin_link} >{plugins.plugin_name}</a>
+                            <span className={plugin.is_active?'adminLib-check':'adminLib-close'}></span>
+                            <a href={plugin.plugin_link} >{plugin.plugin_name}</a>
                           </span>
                           <br />
                         </>

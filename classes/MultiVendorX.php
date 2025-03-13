@@ -48,6 +48,7 @@ final class MultiVendorX {
         $this->container['setting']     = new Setting();
         $this->container['admin']    	= new Admin();
 		$this->container['modules']	 	= new Modules();
+        $this->container['restapi']	 	= new Rest();
 		// Load all active modules
 		// $this->container['modules']->load_active_modules();
 	}

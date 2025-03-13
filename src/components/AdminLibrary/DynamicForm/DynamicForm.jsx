@@ -261,7 +261,7 @@ const DynamicForm = (props) => {
   }
 
   const renderForm = () => {
-    return modal.map((inputField, index) => {
+    return modal?.map((inputField, index) => {
       let value = setting[inputField.key] ?? "";
       let input = "";
 
