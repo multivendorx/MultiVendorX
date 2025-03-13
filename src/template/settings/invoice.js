@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 
 export default {
     id: 'invoice',
-    priority: 12,
+    priority: 14,
     name: __('Invoice', 'mvx-pro'),
     desc: __("Select the PDF outupt mode.", 'mvx-pro'),
     icon: 'adminLib-clock2',

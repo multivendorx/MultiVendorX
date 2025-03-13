@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 
 export default {
     id: 'verification',
-    priority: 11,
+    priority: 13,
     name: __('Verification', 'mvx-pro'),
     desc: __("Enable various forms of identity verification for vendors and ensure a trusted marketplace.", 'mvx-pro'),
     icon: 'adminLib-clock2',

@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 
 export default {
     id: 'orders',
-    priority: 9,
+    priority: 10,
     name:  __('Orders', 'multivendorx'),
     desc: __("Control what actions vendors can take regarding their orders and how order details are displayed.", 'multivendorx'),
     icon: 'adminLib-order',

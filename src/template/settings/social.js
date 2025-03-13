@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 
 export default {
     id: 'social',
-    priority: 10,
+    priority: 11,
     name:  __('Social', 'multivendorx'),
     desc: __('Enable features that allow direct engagement between sellers and customers on your platform.', 'multivendorx'),
     icon: 'adminLib-social-media-content',
@@ -20,6 +20,7 @@ export default {
                 }
             ],
             look: 'toggle',
+            moduleEnabled: 'buddypress',
         }
         
     ]

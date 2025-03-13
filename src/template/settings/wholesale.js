@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 
 export default {
     id: 'wholesale',
-    priority: 14,
+    priority: 16,
     name: __('Wholesale', 'mvx-pro'),
     desc: __('Wholesale', 'mvx-pro'),
     icon: 'adminLib-wholesale',

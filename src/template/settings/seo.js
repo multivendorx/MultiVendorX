@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 
 export default {
     id: 'seo',
-    priority: 16,
+    priority: 18,
     name: __('SEO', 'mvx-pro'),
     desc: __('Manage and Process vendor seo', 'mvx-pro'),
     icon: 'adminLib-support',

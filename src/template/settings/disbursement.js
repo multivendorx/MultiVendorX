@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 
 export default {
     id: 'disbursement',
-    priority: 8,
+    priority: 9,
     name: __('Disbursement', 'multivendorx'),
     desc:  __('Manage payment and disbursement setting of your site.', 'multivendorx'),
     icon: 'adminLib-price',

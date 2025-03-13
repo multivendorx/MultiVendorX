@@ -3209,6 +3209,24 @@ div:has(.hhh) {
   line-height: normal;
   font-weight: 500;
 }
+.module-container .setting-section-divider {
+  margin: 2rem 0;
+  padding: 0;
+  border-top: 0.05rem solid rgba(82, 44, 129, 0.09);
+  position: relative;
+}
+.module-container .setting-section-divider .section-hint {
+  text-align: center;
+  margin-top: 0.813rem;
+}
+.module-container .setting-section-divider span {
+  position: absolute;
+  top: -0.063rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0 1rem;
+  background: #fff;
+}
 .module-container .module-option-row {
   display: flex;
   justify-content: flex-start;
@@ -3222,6 +3240,7 @@ div:has(.hhh) {
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.125);
   padding-top: 1.5rem;
   max-width: 20rem;
+  min-width: 20rem;
   display: flex;
   align-items: center;
   justify-content: flex-start;

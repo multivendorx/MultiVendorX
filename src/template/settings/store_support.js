@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 
 export default {
     id: 'store_support',
-    priority: 15,
+    priority: 17,
     name: __('Store Support', 'mvx-pro'),
     desc: __('Manage store support', 'mvx-pro'),
     icon: 'adminLib-support',
