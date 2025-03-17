@@ -105,7 +105,7 @@ function is_mvx_vendor_order( $order, $current_vendor = false ) {
     }
     $vendor_order = mvx_get_order( $order_id );
     if( $current_vendor ){
-        return ( $vendor_order && $vendor_order->vendor_id === get_current_user_id() ) ? true : false;
+        return ( $vendor_order && $vendor_order->vendor_id === get_current_vendor_id() ) ? true : false;
     }
     return ( $vendor_order ) ? true : false;
 }
