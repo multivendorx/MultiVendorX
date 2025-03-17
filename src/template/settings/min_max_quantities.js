@@ -1,12 +1,12 @@
 import { __ } from '@wordpress/i18n';
 
 export default {
-    id: 'min_max_quantities',
-    priority: 12,
+    id: 'settings_min_max_tab',
+    priority: 15,
     name: __('Min-Max Quantities', 'multivendorx'),
     desc: __("Manage Min-Max Quantities/Amount", 'multivendorx'),
     icon: 'adminLib-form-section',
-    submitUrl: 'save-settings',
+    submitUrl: 'settings',
     modal: [
         {
             key: 'enable_min_max_quantity',

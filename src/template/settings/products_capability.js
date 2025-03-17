@@ -1,12 +1,12 @@
 import { __ } from '@wordpress/i18n';
 
 export default {
-    id: 'product_permissions',
+    id: 'products_capability_tab',
     priority: 6,
     name: __('Product permissions', 'multivendorx'),
     desc:  __("Manage what sellers are allowed to do with their products in your marketplace.", 'multivendorx'),
     icon: 'adminLib-wholesale',
-    submitUrl: 'save_dashpages',
+    submitUrl: 'settings',
     modal: [
         {
             key: 'separator_content',

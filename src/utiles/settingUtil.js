@@ -91,7 +91,7 @@ const filterSettingByIds = (settings, ids) => {
  * @returns {*}
  */
 const getDefaultSettings = ( settings ) => {
-    console.log("Settings : ",settings);
+    // console.log("Settings : ",settings);
 
     if ( Array.isArray( settings ) ) {
         

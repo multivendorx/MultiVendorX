@@ -1,12 +1,12 @@
 import { __ } from '@wordpress/i18n';
 
 export default {
-    id: 'commissions',
+    id: 'commissions_tab',
     priority: 8,
     name: __('Commission', 'multivendorx'),
     desc:  __("Tailor your marketplace's commission plan to fit your revenue-sharing preferences.", 'multivendorx'),
     icon: 'adminLib-dynamic-pricing',
-    submitUrl: 'save_dashpages',
+    submitUrl: 'settings',
     modal: [
         {
             key: 'revenue_sharing_mode',

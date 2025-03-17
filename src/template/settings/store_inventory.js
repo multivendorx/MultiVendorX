@@ -1,12 +1,12 @@
 import { __ } from '@wordpress/i18n';
 
 export default {
-    id: 'store_inventory',
-    priority: 19,
+    id: 'settings_store_inventory_tab',
+    priority: 22,
     name: __('Store Inventory', 'multivendorx'),
     desc: __('Store Inventory', 'multivendorx'),
     icon: 'adminLib-support',
-    submitUrl: 'save_dashpages',
+    submitUrl: 'settings',
     modal: [
         {
             key: "low_stock_enabled",

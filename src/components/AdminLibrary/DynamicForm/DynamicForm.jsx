@@ -103,11 +103,11 @@ const DynamicForm = (props) => {
   }, [setting]);
 
   const isProSetting = (proDependent) => {
-    return proDependent && !appLocalizer.khali_dabba;
+    return proDependent;
   }
 
   const proSettingChanged = (isProSetting) => {
-    if (isProSetting && !appLocalizer.khali_dabba) {
+    if (isProSetting) {
       setModelOpen(true);
       return true;
     }
@@ -377,7 +377,9 @@ const DynamicForm = (props) => {
                 }
               }}
               onButtonClick={(e) => {
-                runUploader(inputField.key);
+                if (!proSettingChanged(inputField.proSetting) && !moduleEnabledChanged(inputField.moduleEnabled)) {
+                  runUploader(inputField.key);
+                }
               }}
             />
           );
@@ -689,9 +691,11 @@ const DynamicForm = (props) => {
                   handleChange(e, inputField.key, "multiple");
                 }
               }}
-              onMultiSelectDeselectChange={(e) =>
-                handlMultiSelectDeselectChange( inputField.key, inputField.options )
-              }
+              onMultiSelectDeselectChange={(e) =>{
+                if ( !proSettingChanged(inputField.proSetting) && !moduleEnabledChanged(inputField.moduleEnabled) ) {
+                  handlMultiSelectDeselectChange( inputField.key, inputField.options );
+                }
+              }}
               proChanged={() => setModelOpen(true)}
             />
           );

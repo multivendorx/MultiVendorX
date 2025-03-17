@@ -1,12 +1,12 @@
 import { __ } from '@wordpress/i18n';
 
 export default {
-    id: 'live_chat',
-    priority: 20,
+    id: 'settings_live_chat_tab',
+    priority: 23,
     name: __('Live Chat', 'mvx-pro'),
     desc: __('Live Chat', 'mvx-pro'),
     icon: 'adminLib-wholesale',
-    submitUrl: 'save_dashpages',
+    submitUrl: 'settings',
     modal: [
         {
             key: "enable_chat",

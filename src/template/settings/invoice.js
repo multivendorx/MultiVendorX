@@ -1,12 +1,12 @@
 import { __ } from '@wordpress/i18n';
 
 export default {
-    id: 'invoice',
-    priority: 14,
+    id: 'settings_vendor_invoice_tab',
+    priority: 17,
     name: __('Invoice', 'mvx-pro'),
     desc: __("Select the PDF outupt mode.", 'mvx-pro'),
     icon: 'adminLib-clock2',
-    submitUrl: 'save_dashpages',
+    submitUrl: 'settings',
     modal: [
         {
             key: "pdf_output",

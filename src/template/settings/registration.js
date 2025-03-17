@@ -1,12 +1,12 @@
 import { __ } from '@wordpress/i18n';
 
 export default {
-    id: 'registration',
+    id: 'new_vendor_registration_form',
     priority: 2,
     name: "Registration Form",
-    desc: __("Customize the registration form to gather personalized information from sellers when they join your marketplace.","multivendorx"),
+    desc: __("Customise personalised seller registration form for marketplace.","multivendorx"),
     icon: 'adminLib-form-section',
-    submitUrl: 'save-settings',
+    submitUrl: 'settings',
     modal: [
         {
             key:  'registration page',
@@ -17,8 +17,7 @@ export default {
         {
             key: 'from_builder',
             type: 'from-builder',
-            desc: 'From builder',
-            classes: 'catalog-customizer-wrapper',
+            desc: 'Customise personalised seller registration form for marketplace.',
         }
     ]
 }

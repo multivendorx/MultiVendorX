@@ -1,12 +1,12 @@
 import { __ } from '@wordpress/i18n';
 
 export default {
-    id: 'product_advertising',
-    priority: 15,
+    id: 'settings_advertising_tab',
+    priority: 18,
     name: __('Product Advertising', 'mvx-pro'),
     desc: __('Control how vendors can advertise their products within your marketplace.', 'mvx-pro'),
     icon: 'adminLib-clock2',
-    submitUrl: 'save_dashpages',
+    submitUrl: 'settings',
     modal: [
         {
             key: "total_available_slot",

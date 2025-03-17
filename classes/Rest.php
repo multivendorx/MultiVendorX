@@ -42,7 +42,7 @@ class Rest {
         $get_settings_data  = $request->get_param( 'setting' );
         $settingsname       = $request->get_param( 'settingName' );
         $settingsname       = str_replace( "-", "_", $settingsname );
-        $optionname         = 'mvx_' . $settingsname . '_tab_settings';
+        $optionname         = 'mvx_' . $settingsname . '_settings';
 
         error_log("Settings data : ".print_r($get_settings_data,true));
         error_log("Settings name : ".print_r($settingsname ,true));

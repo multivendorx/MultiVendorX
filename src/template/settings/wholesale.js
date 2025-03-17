@@ -1,12 +1,12 @@
 import { __ } from '@wordpress/i18n';
 
 export default {
-    id: 'wholesale',
-    priority: 16,
+    id: 'settings_wholesale_tab',
+    priority: 19,
     name: __('Wholesale', 'mvx-pro'),
     desc: __('Wholesale', 'mvx-pro'),
     icon: 'adminLib-wholesale',
-    submitUrl: 'save_dashpages',
+    submitUrl: 'settings',
     modal: [
         {
             key: "wholesale_price_display",

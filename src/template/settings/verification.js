@@ -1,12 +1,12 @@
 import { __ } from '@wordpress/i18n';
 
 export default {
-    id: 'verification',
-    priority: 13,
+    id: 'settings_identity_verification_tab',
+    priority: 16,
     name: __('Verification', 'mvx-pro'),
     desc: __("Enable various forms of identity verification for vendors and ensure a trusted marketplace.", 'mvx-pro'),
     icon: 'adminLib-clock2',
-    submitUrl: 'save_dashpages',
+    submitUrl: 'settings',
     modal: [
         {
             key: "badge_img",

@@ -1,12 +1,12 @@
 import { __ } from '@wordpress/i18n';
 
 export default {
-    id: 'store',
+    id: 'store_tab',
     priority: 4,
     name: __('Store', 'multivendorx'),
     desc: __("Customize and manage the appearance and functionality of vendor shops within your marketplace.", 'multivendorx'),
     icon: 'adminLib-storefront',
-    submitUrl: 'save_dashpages',
+    submitUrl: 'settings',
     modal: [
         {
             key: "mvx_vendor_shop_template",

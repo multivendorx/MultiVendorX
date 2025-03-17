@@ -1,12 +1,12 @@
 import { __ } from '@wordpress/i18n';
 
 export default {
-    id: 'refunds',
-    priority: 22,
+    id: 'refund_management_tab',
+    priority: 12,
     name: __('Refunds', 'multivendorx'),
     desc: __('Set conditions for refund requests.', 'multivendorx'),
     icon: 'adminLib-form-section',
-    submitUrl: 'save-settings',
+    submitUrl: 'settings',
     modal: [
         {
             key: 'customer_refund_status',

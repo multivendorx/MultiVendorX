@@ -142,10 +142,14 @@ class Admin{
      */
 
      public function enqueue_script() {
+        if ( get_current_screen()->id !== 'toplevel_page_multivendorx' ) return ;
+
+        // Support for media
+        wp_enqueue_media();
+
         // Enque script and style
         wp_enqueue_style('mvx_admin_css', MVX()->plugin_url . 'build/index.css');
         wp_enqueue_script('mvx_admin_script', MVX()->plugin_url. 'build/index.js', [ 'wp-element'], '1.0.0', true);
-
 
         // Preapere page list. Will move to utility function. !!!!!!!!
         $page_list = [];
@@ -165,7 +169,7 @@ class Admin{
 
         // Get all tab setting's database value
         $settings_value = [];
-        $tabs_names     = [ 'settings_general_tab', 'disbursement_tab', 'commissions_tab', 'spmv_pages_tab', 'products_capability_tab', 'products_tab', 'payment_masspay_tab'];
+        $tabs_names     = [ 'settings_general_tab','new_vendor_registration_form','seller_dashboard_tab','store_tab','disbursement_tab', 'commissions_tab', 'spmv_pages_tab', 'products_capability_tab','order_tab','products_tab','settings_min_max_tab','social_tab','settings_identity_verification_tab','settings_vendor_invoice_tab','settings_advertising_tab','settings_wholesale_tab','settings_store_support_tab','settings_store_inventory_tab','settings_live_chat_tab','refund_management_tab','policy_tab','review_management_tab','payment_masspay_tab'];
         foreach ( $tabs_names as $tab_name ) {
             $settings_value[ $tab_name ] = MVX()->setting->get_option( 'mvx_' . $tab_name . '_settings' );
         }
@@ -208,7 +212,9 @@ class Admin{
             $key = strtolower($parts[0]); // Convert to lowercase
             $active_plugins_list[$key] = true; // Assign true as value
         }
-        error_log("Settings database value : ".print_r($settings_value,true));
+
+        error_log("Sttings Database value : ".print_r($settings_value,true));
+
         wp_localize_script( 'mvx_admin_script', 'appLocalizer', apply_filters('mvx_module_complete_settings', [
             // Required in new code
             'apiUrl'        => untrailingslashit(get_rest_url()),
@@ -226,6 +232,7 @@ class Admin{
             'modules_page_url'=>admin_url( '?page=multivendorx#&tab=modules' ),
             'available_emails_filtered'=>$available_emails_filtered ,
             'order_statuses'=>$order_statuses,
+            'open_uploader'            =>  'Upload Image',
             'woocommerce_currency'=> get_woocommerce_currency(),
             'identity_verification_settings_url'=> admin_url('admin.php?page=multivendorx#&tab=settings&subtab=verification'),
             'spmv_settings_url'  => admin_url('admin.php?page=multivendorx#&tab=settings&subtab=spmv_pages'),

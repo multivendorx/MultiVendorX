@@ -1,12 +1,12 @@
 import { __ } from '@wordpress/i18n';
 
 export default {
-    id: 'review_management',
-    priority: 24,
+    id: 'review_management_tab',
+    priority: 13,
     name: __('Reviews & Rating', 'multivendorx'),
     desc:  __('Manage settings for product and store review.', 'multivendorx'),
     icon: 'adminLib-settings',
-    submitUrl: 'save-settings',
+    submitUrl: 'settings',
     modal: [
         {
             key:  'vendor_rating_page',

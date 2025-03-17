@@ -1,12 +1,12 @@
 import { __ } from '@wordpress/i18n';
 
 export default {
-    id: 'disbursement',
+    id: 'disbursement_tab',
     priority: 9,
     name: __('Disbursement', 'multivendorx'),
     desc:  __('Manage payment and disbursement setting of your site.', 'multivendorx'),
     icon: 'adminLib-price',
-    submitUrl: 'save_dashpages',
+    submitUrl: 'settings',
     modal: [
         {
             key: "commission_include_coupon",

@@ -1,12 +1,12 @@
 import { __ } from '@wordpress/i18n';
 
 export default {
-    id: 'spmv_pages',
+    id: 'spmv_pages_tab',
     priority: 7,
     name: __('SPMV(Single Product Multiple Vendor)', 'multivendorx'),
     desc: __("Give sellers the option to add other seller's products into their store inventory.", 'multivendorx'),
     icon: 'adminLib-form-section',
-    submitUrl: 'save-settings',
+    submitUrl: 'settings',
     modal: [
         {
             key: 'is_singleproductmultiseller',

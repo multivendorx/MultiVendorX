@@ -1,12 +1,12 @@
 import { __ } from '@wordpress/i18n';
 
 export default {
-    id: 'seller-dashboard',
+    id: 'seller_dashboard_tab',
     priority: 3,
     name: __('Seller Dashboard', 'multivendorx'),
     desc: __("Manage the appearance of your seller's dashboard.", 'multivendorx'),
     icon: 'adminLib-clock2',
-    submitUrl: 'save-settings',
+    submitUrl: 'settings',
     modal: [
         {
             key: "mvx_new_dashboard_site_logo",

@@ -1,12 +1,12 @@
 import { __ } from '@wordpress/i18n';
 
 export default {
-    id: 'social',
-    priority: 11,
+    id: 'social_tab',
+    priority: 14,
     name:  __('Social', 'multivendorx'),
     desc: __('Enable features that allow direct engagement between sellers and customers on your platform.', 'multivendorx'),
     icon: 'adminLib-social-media-content',
-    submitUrl: 'save_dashpages',
+    submitUrl: 'settings',
     modal: [
         {
             key: "buddypress_enabled",

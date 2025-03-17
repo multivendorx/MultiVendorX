@@ -1,12 +1,12 @@
 import { __ } from '@wordpress/i18n';
 
 export default {
-    id: 'orders',
-    priority: 10,
+    id: 'order_tab',
+    priority: 11,
     name:  __('Orders', 'multivendorx'),
     desc: __("Control what actions vendors can take regarding their orders and how order details are displayed.", 'multivendorx'),
     icon: 'adminLib-order',
-    submitUrl: 'save_dashpages',
+    submitUrl: 'settings',
     modal: [
         {
             key: "disallow_vendor_order_status",

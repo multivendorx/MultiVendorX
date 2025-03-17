@@ -1,12 +1,12 @@
 import { __ } from '@wordpress/i18n';
 
 export default {
-    id: 'seo',
-    priority: 18,
+    id: 'settings_seo_tab',
+    priority: 21,
     name: __('SEO', 'mvx-pro'),
     desc: __('Manage and Process vendor seo', 'mvx-pro'),
     icon: 'adminLib-support',
-    submitUrl: 'save_dashpages',
+    submitUrl: 'settings',
     modal: [
         {
             key: "is_yoast_allowed_for_vendors",

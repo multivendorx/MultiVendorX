@@ -1,12 +1,12 @@
 import { __ } from '@wordpress/i18n';
 
 export default {
-    id: 'policy',
-    priority: 23,
+    id: 'policy_tab',
+    priority: 10,
     name: __('Policy', 'mvx-pro'),
     desc: __('Add policies that are applicable to your site.', 'mvx-pro'),
     icon: 'adminLib-support',
-    submitUrl: 'save_dashpages',
+    submitUrl: 'settings',
     modal: [
         {
             key: 'store-policy',

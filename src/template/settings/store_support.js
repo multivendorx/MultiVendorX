@@ -1,12 +1,12 @@
 import { __ } from '@wordpress/i18n';
 
 export default {
-    id: 'store_support',
-    priority: 17,
+    id: 'settings_store_support_tab',
+    priority: 20,
     name: __('Store Support', 'mvx-pro'),
     desc: __('Manage store support', 'mvx-pro'),
     icon: 'adminLib-support',
-    submitUrl: 'save_dashpages',
+    submitUrl: 'settings',
     modal: [
         {
             key: "display_in_order_details",

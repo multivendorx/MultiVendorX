@@ -1,12 +1,12 @@
 import { __ } from '@wordpress/i18n';
 
 export default {
-    id: 'products',
+    id: 'products_tab',
     priority: 5,
     name: __('Products', 'multivendorx'),
     desc:  __("Choose the product types and options that best fit your marketplace.", 'multivendorx'),
     icon: 'adminLib-warehousing-icon',
-    submitUrl: 'save_dashpages',
+    submitUrl: 'settings',
     modal: [
         {
             key: 'type_options',

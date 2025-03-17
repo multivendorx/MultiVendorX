@@ -41,7 +41,7 @@ const getTemplateData = () => {
     const settings = importAll( context );
     
     // Debugg here...
-    console.log(settings);
+    // console.log(settings);
 
     return settings;
 };
