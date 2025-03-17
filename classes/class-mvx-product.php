@@ -702,8 +702,7 @@ class MVX_Product {
 
         if ($new_status != $old_status && $post->post_status == 'pending') {
             $current_user = get_current_vendor_id();
-            if ($current_user)
-                $current_user_is_vendor = is_user_mvx_vendor($current_user);
+            $current_user_is_vendor = is_user_mvx_vendor($current_user);
             if ($current_user_is_vendor) {
                 //send mails to admin for new vendor product
                 $vendor = get_mvx_vendor_by_term(get_user_meta($current_user, '_vendor_term_id', true));
@@ -712,8 +711,7 @@ class MVX_Product {
             }
         } else if ($new_status != $old_status && $post->post_status == 'publish') {
             $current_user = get_current_vendor_id();
-            if ($current_user)
-                $current_user_is_vendor = is_user_mvx_vendor($current_user);
+            $current_user_is_vendor = is_user_mvx_vendor($current_user);
             if ($current_user_is_vendor) {
                 //send mails to admin for new vendor product
                 $vendor = get_mvx_vendor_by_term(get_user_meta($current_user, '_vendor_term_id', true));
@@ -759,8 +757,7 @@ class MVX_Product {
         $vendor = get_mvx_product_vendors($post->ID);
         $commission_per_poduct = get_post_meta($post->ID, '_commission_per_product', true);
         $current_user = get_current_vendor_id();
-        if ($current_user)
-            $current_user_is_vendor = is_user_mvx_vendor($current_user);
+        $current_user_is_vendor = is_user_mvx_vendor($current_user);
         $html .= '<div class="options_group" > <table class="form-field form-table">';
         $html .= '<tbody>';
         if ($vendor) {
