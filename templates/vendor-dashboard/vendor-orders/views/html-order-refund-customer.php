@@ -37,7 +37,7 @@ global $MVX;
                 <?php } ?>
             </select>
             <div class="reason_select_by_admin" id="reason_select_by_admin" style='display:none;'>
-                <textarea class="woocommerce-Input input-text" name="refund_admin_reason_text" id="refund_admin_reason_text" placeholder="Please Enter some massage"></textarea>
+                <textarea class="woocommerce-Input input-text" name="refund_admin_reason_text" id="refund_admin_reason_text" placeholder="<?php esc_attr_e('Enter your reason here', 'multivendorx'); ?>"></textarea>
             </div>
             <button class="button grant_access btn btn-default" name="update_cust_refund_status"><?php echo __('Update status', 'multivendorx'); ?></button>
         </div>
