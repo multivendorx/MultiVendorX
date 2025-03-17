@@ -107,7 +107,7 @@ do_action('mvx_before_vendor_dashboard_product_list_table');
                     endif;
                     ?>
                 </select>
-                <select id="" name="product_stock" class="mvx-filter-dtdd mvx_filter_product_types form-control inline-input">
+                <select id="product_stock" name="product_stock" class="mvx-filter-dtdd mvx_filter_product_stock form-control inline-input">
                     <option value=""><?php _e('Filter by product stock', 'multivendorx'); ?></option>
                     <?php 
                     $product_stocks = wc_get_product_stock_status_options();
