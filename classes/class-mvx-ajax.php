@@ -1105,6 +1105,10 @@ class MVX_Ajax {
             if (isset($filterActionData['product_cat']) && $filterActionData['product_cat'] != '') {
                 $tax_query[] = array('taxonomy' => 'product_cat', 'field' => 'term_id', 'terms' => $filterActionData['product_cat']);
             }
+            if (isset($filterActionData['product_stock']) && $filterActionData['product_stock'] != '') {
+                $args['meta_value'] = $filterActionData['product_stock'];
+                $args['meta_key'] = '_stock_status';
+            }
             if (isset($filterActionData['product_type']) && $filterActionData['product_type'] != '') {
                 if ('downloadable' === $filterActionData['product_type']) {
                     $args['meta_value'] = 'yes';
