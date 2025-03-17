@@ -786,7 +786,7 @@ class MVX_Ajax {
             if (!wp_verify_nonce($nonce, $action))
                 die('Invalid request');
 
-            $vendor = get_mvx_vendor(get_current_vendor_id());
+            $vendor = get_current_vendor();
             $vendor = apply_filters('mvx_csv_download_per_order_vendor', $vendor);
             if (!$vendor)
                 die('Invalid request');
@@ -1318,7 +1318,7 @@ class MVX_Ajax {
         global $MVX;
         check_ajax_referer('mvx-withdrawal', 'security');
         if (is_user_logged_in() && is_user_mvx_vendor(get_current_vendor_id())) {
-            $vendor = get_mvx_vendor(get_current_vendor_id());
+            $vendor = get_current_vendor();
             $requestData = ( $_REQUEST ) ? wc_clean( $_REQUEST ) : array();
             $meta_query['meta_query'] = array(
                 array(
@@ -1399,7 +1399,7 @@ class MVX_Ajax {
     public function mvx_vendor_coupon_list() {
         check_ajax_referer('mvx-coupon', 'security');
         if (is_user_logged_in() && is_user_mvx_vendor(get_current_vendor_id())) {
-            $vendor = get_mvx_vendor(get_current_vendor_id());
+            $vendor = get_current_vendor();
             $requestData = ( $_REQUEST ) ? wc_clean( $_REQUEST ) : array();
             $args = apply_filters( 'mvx_get_vendor_coupon_list_query_args', array(
                 'posts_per_page' => -1,
@@ -1501,7 +1501,7 @@ class MVX_Ajax {
         global $MVX;
         check_ajax_referer('mvx-transaction', 'security');
         if (is_user_logged_in() && is_user_mvx_vendor(get_current_vendor_id())) {
-            $vendor = get_mvx_vendor(get_current_vendor_id());
+            $vendor = get_current_vendor();
             $requestData = ( $_REQUEST ) ? wc_clean( $_REQUEST ) : array();
             $vendor = apply_filters('mvx_transaction_vendor', $vendor);
             $start_date = isset($requestData['from_date']) ? $requestData['from_date'] : date('Y-m-01');
@@ -1673,7 +1673,7 @@ class MVX_Ajax {
         } elseif ($handler == 'answer') {
             $ques_ID = isset($_POST['key']) ? wc_clean( $_POST['key'] ) : '';
             $reply = isset($_POST['reply']) ? sanitize_textarea_field($_POST['reply']) : '';
-            $vendor = get_mvx_vendor(get_current_user_id());
+            $vendor = get_current_vendor();
             $question_info = $MVX->product_qna->get_Question($ques_ID);
             $product_id = $question_info->product_ID;
             $customer = get_userdata($question_info->ques_by);
@@ -2093,7 +2093,7 @@ class MVX_Ajax {
     function mvx_widget_vendor_pending_shipping() {
         check_ajax_referer('mvx-pending-shipping', 'security');
         if (is_user_logged_in() && is_user_mvx_vendor(get_current_vendor_id())) {
-            $vendor = get_mvx_vendor(get_current_vendor_id());
+            $vendor = get_current_vendor();
             $requestData = ( $_REQUEST ) ? wc_clean( $_REQUEST ) : array();
             $today = @date('Y-m-d 00:00:00', strtotime("+1 days"));
             $days_range = apply_filters('mvx_widget_vendor_pending_shipping_days_range', 7, $requestData, $vendor);
@@ -2167,7 +2167,7 @@ class MVX_Ajax {
         check_ajax_referer('mvx-sales', 'security');
         if (is_user_logged_in() && is_user_mvx_vendor(get_current_vendor_id())) {
 
-            $vendor = get_mvx_vendor(get_current_vendor_id());
+            $vendor = get_current_vendor();
             $requestData = ( $_REQUEST ) ? wc_clean( $_REQUEST ) : array();
             $today = @date('Y-m-d 00:00:00', strtotime("+1 days"));
             $days_range = apply_filters('mvx_widget_vendor_product_sales_report_days_range', 7, $requestData, $vendor);
@@ -3328,7 +3328,7 @@ class MVX_Ajax {
             }
             
             if (is_user_mvx_vendor(get_current_user_id() ) ) {
-                $vendor = get_mvx_vendor(get_current_user_id() );
+                $vendor = get_current_vendor();
                 $vendor_product_ids = wp_list_pluck( $vendor->get_products_ids(), 'ID' );
                 $ids = array_intersect( $ids, (array) $vendor_product_ids );
             }
@@ -3376,7 +3376,7 @@ class MVX_Ajax {
         }
         
         if (is_user_mvx_vendor(get_current_user_id() ) ) {
-            $vendor = get_mvx_vendor(get_current_user_id() );
+            $vendor = get_current_vendor();
             $vendor_product_ids = wp_list_pluck( $vendor->get_products_ids(), 'ID' );
             $ids = array_intersect( $ids, (array) $vendor_product_ids );
         }
@@ -3472,7 +3472,7 @@ class MVX_Ajax {
         global $MVX;
         check_ajax_referer('mvx-ledger', 'security');
         if (is_user_logged_in() && is_user_mvx_vendor(get_current_vendor_id())) {
-            $vendor = get_mvx_vendor(get_current_vendor_id());
+            $vendor = get_current_vendor();
             $requestData = ( $_REQUEST ) ? wc_clean( $_REQUEST ) : array();
             $data_store = $MVX->ledger->load_ledger_data_store();
             $vendor_all_ledgers = $data_store->get_ledger( array( 'vendor_id' => $vendor->id ), '', $requestData );

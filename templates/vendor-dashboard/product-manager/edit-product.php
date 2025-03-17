@@ -250,7 +250,7 @@ if ($default_types && !empty($default_types)) {
                 
                 <?php 
                 do_action( 'mvx_before_product_note_metabox_panel', $post->ID );
-                $vendor = get_mvx_vendor(get_current_user_id() ); 
+                $vendor = get_current_vendor();
                 $notes = MVX_Product::get_product_note($post->ID);
                 ?>
                 <?php if($post->post_status == 'pending') { ?>

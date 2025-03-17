@@ -26,7 +26,7 @@ if ($today_or_weekly == 'today') {
 }
 
 foreach ($pending_orders_items as $pending_orders_item) {
-    $vendor = get_mvx_vendor(get_current_vendor_id());
+    $vendor = get_current_vendor();
     try {
         $order = new WC_Order($pending_orders_item->order_id);
         $pending_shipping_products = get_mvx_vendor_orders(array('vendor_id' => $vendor->id, 'order_id' => $order->get_id(), 'shipping_status' => 0, 'is_trashed' => ''));

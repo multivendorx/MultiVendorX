@@ -458,7 +458,7 @@ class MVX_Report {
         $total_coupon_discount_value = 0;
         $total_earnings = 0;
         $total_customers = array();
-        $vendor = get_mvx_vendor(get_current_vendor_id());
+        $vendor = get_current_vendor();
         $vendor = apply_filters('mvx_dashboard_sale_stats_vendor', $vendor);
         for ($date = strtotime($start_date); $date <= strtotime('+1 day', strtotime($end_date)); $date = strtotime('+1 day', $date)) {
 

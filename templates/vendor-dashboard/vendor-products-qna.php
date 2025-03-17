@@ -12,7 +12,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 global $MVX;
-$vendor = get_mvx_vendor(get_current_vendor_id());
+$vendor = get_current_vendor();
 do_action('mvx_before_vendor_dashboard_products_qna_table');
 ?>
 <div class="col-md-12 vendor-products-qna-wrapper">
