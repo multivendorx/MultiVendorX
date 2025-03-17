@@ -544,7 +544,7 @@ class MVX_REST_API_Vendors_Controller extends WC_REST_Controller {
 					throw new WC_REST_Exception( 'mvx_vendor_invalid_image_id', sprintf( __( '#%s is an invalid image ID.', 'multivendorx' ), $attachment_id ), 400 );
 				}
 				// For crop section start
-				$cropped == false;
+				$cropped = false;
 				if ( isset( $image['position'] ) && 'store' === $image['position'] ) {
 					$cropped = wp_crop_image( $attachment_id, 0, 0, 1000,1000, 100, 100 );
 				} elseif ( isset( $image['position'] ) && 'cover' === $image['position'] ) {
