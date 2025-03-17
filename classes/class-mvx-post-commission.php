@@ -145,7 +145,6 @@ class MVX_Commission {
             } else {
                 $commission_rates = $order->get_meta( 'order_items_commission_rates', true);
                 foreach ($order->get_items() as $item_id => $item) {
-                    $product = $item->get_product();
                     $meta_data = $item->get_meta_data();
                     // get item commission
                     foreach ( $meta_data as $meta ) {
