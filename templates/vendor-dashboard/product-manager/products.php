@@ -107,6 +107,17 @@ do_action('mvx_before_vendor_dashboard_product_list_table');
                     endif;
                     ?>
                 </select>
+                <select id="product_stock" name="product_stock" class="mvx-filter-dtdd mvx_filter_product_stock form-control inline-input">
+                    <option value=""><?php _e('Filter by product stock', 'multivendorx'); ?></option>
+                    <?php 
+                    $product_stocks = wc_get_product_stock_status_options();
+                    if($product_stocks) :
+                        foreach ($product_stocks as $key => $label) {
+                            echo '<option value="'.$key.'">'.$label.'</option>';
+                        }
+                    endif;
+                    ?>
+                </select>
                 <?php do_action( 'mvx_products_list_add_extra_filters' ); ?>
                 <button class="mvx_black_btn btn btn-secondary" type="button" id="product_list_do_filter"><?php _e('Filter', 'multivendorx'); ?></button>
             </div>
