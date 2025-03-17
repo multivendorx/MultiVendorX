@@ -204,7 +204,8 @@ class MVX_Vendor {
      */
     public function generate_term() {
         global $MVX;
-        if (!$this->term_id) {
+        $this->term_id = get_user_meta($this->id, '_vendor_term_id', true);
+        if (!$this->term_id || !term_exists($this->user_data->user_login, $MVX->taxonomy->taxonomy_name)) {
             $term = wp_insert_term($this->user_data->user_login, $MVX->taxonomy->taxonomy_name);
             if (!is_wp_error($term)) {
                 update_user_meta($this->id, '_vendor_term_id', $term['term_id']);
@@ -243,10 +244,7 @@ class MVX_Vendor {
      */
     public function update_page_title($title = '') {
         global $MVX;
-        $this->term_id = get_user_meta($this->id, '_vendor_term_id', true);
-        if (!$this->term_id) {
-            $this->generate_term();
-        }
+        $this->generate_term();
         if (!empty($title) && isset($this->term_id)) {
             if (!is_wp_error(wp_update_term($this->term_id, $MVX->taxonomy->taxonomy_name, array('name' => $title)))) {
                 return true;
@@ -263,10 +261,7 @@ class MVX_Vendor {
      */
     public function update_page_slug($slug = '') {
         global $MVX;
-        $this->term_id = get_user_meta($this->id, '_vendor_term_id', true);
-        if (!$this->term_id) {
-            $this->generate_term();
-        }
+        $this->generate_term();
         if (!empty($slug) && isset($this->term_id)) {
             if (!is_wp_error(wp_update_term($this->term_id, $MVX->taxonomy->taxonomy_name, array('slug' => $slug)))) {
                 return true;
