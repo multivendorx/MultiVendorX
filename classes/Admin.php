@@ -114,13 +114,37 @@ class Admin{
             'multivendorx#&tab=status-tools&subtab=database-tools',
             '__return_null'
         );
-
+        add_submenu_page(
+            'multivendorx',
+            __( 'Advertising', 'multivendorx' ),
+            __( 'Advertising', 'multivendorx' ),
+            'manage_woocommerce',
+            'multivendorx#&tab=advertisement',
+            '__return_null'
+        );
+        add_submenu_page(
+            'multivendorx',
+            __( 'Membership', 'multivendorx' ),
+            __( 'Membership', 'multivendorx' ),
+            'manage_woocommerce',
+            'multivendorx#&tab=membership&subtab=payment-membership-message',
+            '__return_null'
+        );
+        
         add_submenu_page(
             'multivendorx',
             __( '<div id="help-and-support">Help & Support</div>', 'multivendorx' ),
             __( '<div id="help-and-support">Help & Support</div>', 'multivendorx' ),
             'manage_woocommerce',
             'https://multivendorx.com/'
+        );
+        add_submenu_page(
+            'multivendorx',
+            __( 'License', 'multivendorx' ),
+            __( 'License', 'multivendorx' ),
+            'manage_woocommerce',
+            'multivendorx#&tab=pro-license',
+            '__return_null'
         );
 
         remove_submenu_page( 'multivendorx', 'multivendorx' );
@@ -213,7 +237,7 @@ class Admin{
             $active_plugins_list[$key] = true; // Assign true as value
         }
 
-        error_log("Sttings Database value : ".print_r($settings_value,true));
+        // error_log("Sttings Database value : ".print_r($settings_value,true));
 
         wp_localize_script( 'mvx_admin_script', 'appLocalizer', apply_filters('mvx_module_complete_settings', [
             // Required in new code
@@ -255,6 +279,7 @@ class Admin{
             'social_settings_url' => admin_url('admin.php?page=multivendorx#&tab=settings&subtab=social'),
             'is_SitePress_active' => class_exists( 'SitePress' ) ? true : false,
             'is_ACF_active' => class_exists( 'ACF' ) ? true : false,
+            'is_mvx_pro_active' => is_plugin_active('mvx-pro/mvx-pro.php') ? true : false,
         ] ) );
 
      }

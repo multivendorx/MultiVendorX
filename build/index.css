@@ -3417,6 +3417,36 @@ div:has(.hhh) {
     left: 100%;
   }
 }
+/*!********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/components/Advertising/Advertising.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************************************/
+.enquiry-img {
+  background-image: url(images/subscriber-list.6b75735a.jpg);
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: contain;
+  height: 100vh;
+}
+/*!******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/components/Membership/Membership.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************/
+.enquiry-img {
+  background-image: url(images/subscriber-list.6b75735a.jpg);
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: contain;
+  height: 100vh;
+}
+/*!************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/components/License/License.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************/
+.enquiry-img {
+  background-image: url(images/subscriber-list.6b75735a.jpg);
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: contain;
+  height: 100vh;
+}
 /*!**********************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/style/common.scss ***!
   \**********************************************************************************************************************************************************************************************************************************************/

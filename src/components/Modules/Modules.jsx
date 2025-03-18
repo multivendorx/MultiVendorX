@@ -148,7 +148,7 @@ const Modules = () => {
                     <fieldset>
                       <legend>
                         <i class="adminLib-pro-tab">
-                        </i> Pro Plugins
+                        </i> Requires
                       </legend>
                       {module.required_plugin_list.map((plugin)=>{
                         return <>
