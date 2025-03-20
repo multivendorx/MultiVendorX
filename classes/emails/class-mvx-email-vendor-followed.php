@@ -50,7 +50,7 @@ class WC_Email_Vendor_Followed extends WC_Email {
      * @return string
      */
     public function get_default_heading() {
-        return apply_filters('mvx_vendor_new_order_email_heading', __('Vendor Followed', 'multivendorx'), $this->object);
+        return apply_filters('mvx_vendor_followed_email_heading', __('Vendor Followed', 'multivendorx'), $this->object);
     }
 
     /**
