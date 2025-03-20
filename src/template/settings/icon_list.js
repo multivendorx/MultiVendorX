@@ -1,6 +1,6 @@
 export default {
     id: 'icon_list',
-    priority: 8,
+    priority: 21,
     name: "Icon List",
     desc: "Drag-and-drop to create and customize single product page elements.",
     icon: 'adminLib-settings',

@@ -1,16 +1,46 @@
 {
+  "name": "mvx-modules",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "wp-scripts build",
+    "check-engines": "wp-scripts check-engines",
+    "start": "wp-scripts start",
+    "lint:js": "wp-scripts lint-js"
+  },
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
-    "grunt": "^1.6.1",
-    "grunt-checktextdomain": "^1.0.1",
-    "grunt-contrib-cssmin": "^4.0.0",
-    "grunt-contrib-uglify": "^5.2.1",
-    "grunt-rtlcss": "^2.0.2",
-    "grunt-uncss": "^0.10.1",
-    "grunt-wp-i18n": "^1.0.3"
+    "@wordpress/scripts": "^26.10.0"
   },
   "dependencies": {
-    "autoprefixer": "^10.4.7",
-    "grunt-contrib-uglify-es": "github:gruntjs/grunt-contrib-uglify#harmony",
-    "uglify-js": "^3.16.0"
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mapbox/mapbox-gl-geocoder": "^5.0.3",
+    "@mui/material": "^5.14.4",
+    "@reactour/tour": "^3.7.0",
+    "@tinymce/tinymce-react": "^4.3.0",
+    "@wordpress/react-i18n": "^3.50.0",
+    "axios": "^1.4.0",
+    "body-scroll-lock": "^4.0.0-beta.0",
+    "google-map-react": "^2.2.1",
+    "mapbox-gl": "^3.10.0",
+    "react": "^18.2.0",
+    "react-csv": "^2.2.2",
+    "react-data-table-component": "^7.5.3",
+    "react-dom": "^18.2.0",
+    "react-drag-listview": "^2.0.0",
+    "react-draggable": "^4.4.6",
+    "react-icons": "^5.5.0",
+    "react-modal": "^3.16.3",
+    "react-multi-date-picker": "^4.1.2",
+    "react-router-dom": "^6.15.0",
+    "react-select": "^5.7.4",
+    "react-sortablejs": "^6.1.4",
+    "react-spinners": "^0.13.8",
+    "recharts": "^2.7.3",
+    "rsuite": "^5.37.4"
   }
 }

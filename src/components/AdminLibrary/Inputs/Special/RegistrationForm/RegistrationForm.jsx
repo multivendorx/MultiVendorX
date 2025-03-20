@@ -27,7 +27,7 @@ const DEFAULT_OPTIONS = [
 const DEFAULT_PLACEHOLDER = (type) => `${type}`;
 const DEFAULT_LABEL_SIMPLE = (type) => `Enter your ${type}`;
 const DEFAULT_LABEL_SELECT = 'Nature of Business';
-const DEFAULT_FORM_TITLE = 'Demo Form';
+const DEFAULT_FORM_TITLE = 'Registration form title';
 
 const selectOptions = [
     {
