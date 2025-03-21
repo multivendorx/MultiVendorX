@@ -7,10 +7,12 @@ import App from './app.js';
  */
 import './style/common.scss';
 
-// Render the App component into the DOM
-render(
-    <BrowserRouter>
+const MainApp=()=>{
+    return <BrowserRouter>
        <App/>
-    </BrowserRouter>,
-    document.getElementById('admin-main-wrapper')
-);
+    </BrowserRouter>
+}
+
+// Render the App component into the DOM
+
+render(<MainApp/>,document.getElementById('mvx-admin-dashboard'));

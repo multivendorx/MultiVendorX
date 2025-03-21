@@ -31,7 +31,6 @@ const Settings = () => {
         // get the setting context
         const { setting, settingName, setSetting } = useSetting();
         const settingModal = getSettingById( settingsArray, currentTab );
-
         if ( settingName != currentTab ) {
             setSetting( currentTab, appLocalizer.settings_databases_value[currentTab] || {} );
         }
@@ -64,7 +63,7 @@ const Settings = () => {
                     currentTab={ location.get( 'subtab' ) }
                     getForm={getForm}
                     BannerSection = { BannerSection }
-                    prepareUrl={(subTab) => `?page=plugin-elements#&tab=settings&subtab=${subTab}` }
+                    prepareUrl={(subTab) => `?page=multivendorx#&tab=settings&subtab=${subTab}` }
                 />
             </SettingProvider>
         </>
