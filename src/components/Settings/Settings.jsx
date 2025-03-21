@@ -10,7 +10,6 @@ import BannerSection from '../Banner/banner';
 import { SettingProvider, useSetting } from "../../contexts/SettingContext";
 
 // import services function
-import { getApiLink, sendApiResponse } from "../../services/apiService";
 import { getTemplateData } from "../../services/templateService";
 
 // import utility function
@@ -27,7 +26,6 @@ const Settings = () => {
     
     // Render the dinamic form.
     const getForm = (currentTab) => {
-
         // get the setting context
         const { setting, settingName, setSetting } = useSetting();
         const settingModal = getSettingById( settingsArray, currentTab );
@@ -50,7 +48,7 @@ const Settings = () => {
 
         return (
             <>
-                { settingName === currentTab ? <DynamicForm setting={ settingModal } proSetting={appLocalizer.pro_settings_list} /> : <>Loading</> }
+                { settingName === currentTab ? <DynamicForm setting={ settingModal } proSetting={ appLocalizer.pro_settings_list } /> : <>Loading</> }
             </>
         );
     }
@@ -61,7 +59,7 @@ const Settings = () => {
                 <Tabs
                     tabData={ settingsArray }
                     currentTab={ location.get( 'subtab' ) }
-                    getForm={getForm}
+                    getForm={ getForm }
                     BannerSection = { BannerSection }
                     prepareUrl={(subTab) => `?page=multivendorx#&tab=settings&subtab=${subTab}` }
                 />

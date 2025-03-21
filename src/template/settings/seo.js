@@ -1,42 +1,42 @@
 import { __ } from '@wordpress/i18n';
 
 export default {
-    id: 'settings_seo_tab',
+    id: 'settings-seo',
     priority: 21,
-    name: __('SEO', 'mvx-pro'),
-    desc: __('Manage and Process vendor seo', 'mvx-pro'),
+    name: __( 'SEO', 'multivendorx' ),
+    desc: __( 'Manage and Process vendor seo', 'multivendorx' ),
     icon: 'adminLib-support',
     submitUrl: 'settings',
     modal: [
         {
-            key: "is_yoast_allowed_for_vendors",
-            label: __( "Enable SEO Support", 'mvx-pro' ),
-            type: "checkbox",
-            desc: __("Enable SEO Support for Vendors", 'mvx-pro'),
+            key: 'is_yoast_allowed_for_vendors',
+            label: __( 'Enable SEO Support', 'multivendorx' ),
+            type: 'checkbox',
+            desc: __( 'Enable SEO Support for Vendors', 'multivendorx' ),
             options: [
                 {
-                    key: "is_yoast_allowed_for_vendors",
-                    value: "is_yoast_allowed_for_vendors"
+                    key: 'is_yoast_allowed_for_vendors',
+                    value: 'is_yoast_allowed_for_vendors'
                 }
             ],
-            look: "toggle",
+            look: 'toggle',
             moduleEnabled: 'store-seo',
             proSetting: true,
         },
         {
-            key: "vendor_seo_options",
-            type: "radio",
-            label: __( 'SEO Mode', 'mvx-pro' ),
+            key: 'vendor_seo_options',
+            type: 'radio',
+            label: __( 'SEO Mode', 'multivendorx' ),
             options: [
                 {
-                    key: "yoast",
-                    label: __('Yoast', 'mvx-pro'),
-                    value: "yoast"
+                    key: 'yoast',
+                    label: __( 'Yoast', 'multivendorx' ),
+                    value: 'yoast'
                 },
                 {
-                    key: "rank_math",
-                    label:  __('Rank Math', 'mvx-pro'),
-                    value: "rank_math"
+                    key: 'rank_math',
+                    label:  __( 'Rank Math', 'multivendorx' ),
+                    value: 'rank_math'
                 }
             ],
             moduleEnabled: 'store-seo',

@@ -17,23 +17,23 @@ class Rest {
     function register_rest_apis() {
 
         // save settings page data on database
-        register_rest_route( MVX()->rest_namespace, '/settings', [
+        register_rest_route( MultiVendorX()->rest_namespace, '/settings', [
             'methods'               => \WP_REST_Server::ALLMETHODS,
             'callback'              => [ $this, 'save_settings' ],
             'permission_callback'   => [ $this, 'multivenodrx_permission' ]
         ] );
 
         // // enable/disable the module
-        register_rest_route( MVX()->rest_namespace, '/modules', [
+        register_rest_route( MultiVendorX()->rest_namespace, '/modules', [
             'methods'               => \WP_REST_Server::EDITABLE,
             'callback'              => [ $this, 'manage_module' ],
             'permission_callback'   => [ $this, 'multivenodrx_permission' ]
         ] );
 
         // fetch registration fileds data from settings page
-        register_rest_route( MVX()->rest_namespace, '/get_registration', [
+        register_rest_route( MultiVendorX()->rest_namespace, '/get_registration', [
             'methods' => \WP_REST_Server::READABLE,
-            'callback' => [$this, 'mvx_get_registration_forms_data' ],
+            'callback' => [$this, 'multivenodrx_get_registration_forms_data' ],
             'permission_callback' => [$this, 'multivenodrx_permission']
         ] );
 
@@ -48,15 +48,14 @@ class Rest {
         $all_details        = [];
         $get_settings_data  = $request->get_param( 'setting' );
         $settingsname       = $request->get_param( 'settingName' );
-        $settingsname       = str_replace( "-", "_", $settingsname );
-        $optionname         = 'mvx_' . $settingsname . '_settings';
+        $optionname         = 'multivendorx-' . $settingsname . '-settings';
 
         // save the settings in database
-        MVX()->setting->update_option( $optionname, $get_settings_data );
+        MultiVendorX()->setting->update_option( $optionname, $get_settings_data );
 
         do_action( 'multivendorx_settings_after_save', $settingsname, $get_settings_data );
 
-        $all_details[ 'error' ] = __( 'Settings Saved', 'MVX' );
+        $all_details[ 'error' ] = __( 'Settings Saved', 'multivendorx' );
 
         //setup wizard settings
         // $action = $request->get_param('action');
@@ -64,13 +63,13 @@ class Rest {
         // if ($action == 'enquiry') {
         //     $display_option = $request->get_param('displayOption');
         //     $restrict_user = $request->get_param('restrictUserEnquiry');
-        //     MVX()->setting->update_setting('is_disable_popup', $display_option, 'catalog_all_settings_settings');
-        //     MVX()->setting->update_setting('enquiry_user_permission', $restrict_user, 'catalog_all_settings_settings');
+        //     MultiVendorX()->setting->update_setting('is_disable_popup', $display_option, 'catalog_all_settings_settings');
+        //     MultiVendorX()->setting->update_setting('enquiry_user_permission', $restrict_user, 'catalog_all_settings_settings');
         // }
         
         // if ($action == 'quote') {
         //     $restrict_user = $request->get_param('restrictUserQuote');
-        //     MVX()->setting->update_setting('quote_user_permission', $restrict_user, 'catalog_all_settings_settings');
+        //     MultiVendorX()->setting->update_setting('quote_user_permission', $restrict_user, 'catalog_all_settings_settings');
         // }
 
         return rest_ensure_response($all_details);
@@ -88,22 +87,22 @@ class Rest {
         // Setup wizard module
         $modules = $request->get_param('modules');
         // foreach ($modules as $module_id) {
-        //     MVX()->modules->activate_modules([$module_id]);
+        //     MultiVendorX()->modules->activate_modules([$module_id]);
         // }
         // // Handle the actions
         switch ( $action ) {
             case 'activate':
-                MVX()->modules->activate_modules([$moduleId]);
+                MultiVendorX()->modules->activate_modules([$moduleId]);
                 break;
             
             default:
-                MVX()->modules->deactivate_modules([$moduleId]);
+                MultiVendorX()->modules->deactivate_modules([$moduleId]);
                 break;
         }
     }
 
-    public function mvx_get_registration_forms_data() {
-        $mvx_vendor_registration_form_data = MVX()->setting->get_option( 'mvx_new_vendor_registration_form_settings');
+    public function multivenodrx_get_registration_forms_data() {
+        $mvx_vendor_registration_form_data = MultiVendorX()->setting->get_option( 'multivendorx_new_vendor_registration_form_settings');
         return rest_ensure_response( $mvx_vendor_registration_form_data );
     }
     /**

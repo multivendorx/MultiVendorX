@@ -21,7 +21,7 @@ final class MultiVendorX {
      * @param object $file
      */
     public function __construct($file) {
-        require_once trailingslashit(dirname($file)).'mvx-config.php';
+        require_once trailingslashit(dirname($file)).'multivendorx-config.php';
         $this->file = $file;
         $this->container[ 'plugin_url' ]     = trailingslashit( plugins_url( '', $plugin = $file ) );
         $this->container[ 'plugin_path' ]    = trailingslashit( dirname( $file ) );

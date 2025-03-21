@@ -64,30 +64,30 @@ class Setting {
          * @var array setting keys
          */
         $this->settings_keys = apply_filters( 'multivendorx_register_settings_keys', [
-            'mvx_settings_general_tab_settings',
-            'mvx_disbursement_tab_settings',
-            'mvx_commissions_tab_settings',
-            'mvx_spmv_pages_tab_settings',
-            'mvx_products_capability_tab_settings',
-            'mvx_seller_dashboard_tab_settings',
-            'mvx_products_tab_settings',
-            'mvx_refund_management_tab_settings',
-            'mvx_settings_identity_verification_tab_settings',
-            'mvx_invoice_default_settings',
-            'mvx_store_tab_settings',
-            'mvx_settings_advertising_tab_settings',
-            'mvx_settings_live_chat_tab_settings',
-            'mvx_settings_store_inventory_tab_settings',
-            'mvx_settings_min_max_tab_settings',
-            'mvx_review_management_tab_settings',
-            'mvx_new_vendor_registration_form_settings',
-            'mvx_order_tab_settings',
-            'mvx_social_tab_settings',
-            'mvx_settings_vendor_invoice_tab_settings',
-            'mvx_settings_wholesale_tab_settings',
-            'mvx_settings_store_support_tab_settings',
-            'mvx_policy_tab_settings',
-            'mvx_payment_masspay_tab_settings'
+            'multivendorx-settings-general-settings',
+            'multivendorx-disbursement-settings',
+            'multivendorx-commissions-settings',
+            'multivendorx-spmv-pages-settings',
+            'multivendorx-products-capability-settings',
+            'multivendorx-seller-dashboard-settings',
+            'multivendorx-products-settings',
+            'multivendorx-refund-management-settings',
+            'multivendorx-settings-identity-verification-settings',
+            'multivendorx-invoice-default-settings',
+            'multivendorx-store-settings',
+            'multivendorx-settings-advertising-settings',
+            'multivendorx-settings-live-chat-settings',
+            'multivendorx-settings-store-inventory-settings',
+            'multivendorx-settings-min-max-settings',
+            'multivendorx-review-management-settings',
+            'multivendorx-new-vendor-registration-form-settings',
+            'multivendorx-order-settings',
+            'multivendorx-social-settings',
+            'multivendorx-settings-vendor-invoice-settings',
+            'multivendorx-settings-wholesale-settings',
+            'multivendorx-settings-store-support-settings',
+            'multivendorx-policy-settings',
+            'multivendorx-payment-masspay-settings'
         ]);
 
         return $this->settings_keys;
@@ -188,6 +188,6 @@ class Setting {
             }
         }
 
-        return 'mvx_extra_settings';
+        return 'multivendorx-extra-settings';
     }
 }

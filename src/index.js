@@ -15,4 +15,4 @@ const MainApp=()=>{
 
 // Render the App component into the DOM
 
-render(<MainApp/>,document.getElementById('mvx-admin-dashboard'));
+render(<MainApp/>,document.getElementById('multivendorx-admin-dashboard'));

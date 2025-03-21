@@ -115,7 +115,7 @@ const DynamicForm = (props) => {
   }
 
   const moduleEnabledChanged = (moduleEnabled) => {
-    if (moduleEnabled && !modules.includes( moduleEnabled )) {
+    if (moduleEnabled && !modules?.includes( moduleEnabled )) {
       setModelModuleOpen(true);
       setModuleName(moduleEnabled);
       return true;
