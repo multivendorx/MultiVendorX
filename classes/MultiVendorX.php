@@ -13,14 +13,38 @@ defined('ABSPATH') || exit;
 
 
 final class MultiVendorX {
-
+    private static $instance = null;
+    private $file = '';
+    private $container = [];
     /**
      * Class construct
      * @param object $file
      */
     public function __construct($file) {
-        
+        require_once trailingslashit(dirname($file)).'multivendorx-config.php';
+        $this->file = $file;
+        $this->container[ 'plugin_url' ]     = trailingslashit( plugins_url( '', $plugin = $file ) );
+        $this->container[ 'plugin_path' ]    = trailingslashit( dirname( $file ) );
+        $this->container[ 'version' ]        = MVX_PLUGIN_VERSION;
+        $this->container[ 'rest_namespace' ] = MVX_REST_NAMESPACE;
+		$this->container[ 'block_paths' ]    = [];
+        add_action( 'woocommerce_loaded', [ $this, 'init_plugin' ] );
     }
+
+    public function init_plugin() {
+        
+        /**
+         * Should be romoved letter 
+         */
+        $this->init_classes();
+        do_action( 'multivendorx_loaded' );
+    }
+
+    public function init_classes() {
+        $this->container['setting']     = new Setting();
+        $this->container['admin']    	= new Admin();
+        $this->container['restapi']	 	= new Rest();
+	}
 
 
     /**

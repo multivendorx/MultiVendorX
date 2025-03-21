@@ -4,7 +4,7 @@ const SelectInput = (props) => {
     const optionsData = [];
     let defaulValue = '';
 
-    props.options.forEach((option, index) => {
+    props.options?.forEach((option, index) => {
         optionsData[index] = {
             value: option.value,
             label: option.label,

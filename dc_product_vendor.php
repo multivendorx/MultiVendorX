@@ -22,8 +22,8 @@ if (!defined('ABSPATH')) {
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-function MVX() {
+function MultiVendorX() {
     return \MultiVendorX\MultiVendorX::init(__FILE__);
 }
 
-MVX();
+MultiVendorX();
