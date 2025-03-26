@@ -210,9 +210,14 @@ class MVX_Tablerate {
 
     public function delete_table_rate_shipping_row() {
         global $wpdb;
-        if (!current_user_can('administrator') && !current_user_can('dc_vendor')) {
+        $user = wp_get_current_user();
+        $user_roles = (array) $user->roles;
+
+        // Allow only administrators and vendors, otherwise exit
+        if (!array_intersect($user_roles, ['administrator', 'dc_vendor'])) {
             exit;
         }
+        
         if (is_array($_POST['rate_id'])) {
             $rate_ids = array_map('intval', $_POST['rate_id']);
         } else {
