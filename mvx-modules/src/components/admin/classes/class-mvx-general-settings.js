@@ -860,7 +860,7 @@ class MVX_Settings extends Component {
 																							.registration16
 																					}
 																				</label>
-																				<select>
+																				<select defaultValue={registration_json_value.recaptchatype}>
 																					<option value="v3">
 																						{
 																							appLocalizer
