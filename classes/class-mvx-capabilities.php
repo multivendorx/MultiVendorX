@@ -47,7 +47,18 @@ class MVX_Capabilities {
      */
     public function vendor_can($cap) {
         if (is_array($this->mvx_capability) && !empty($cap)) {
-            if (get_mvx_global_settings($cap)) {
+            if($cap == 'downloadable' || $cap == 'virtual'){
+                $returned_setting = get_mvx_global_settings('type_options');
+                if($returned_setting){
+                    if(in_array($cap, $returned_setting)){
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } else {
+                    return false;
+                }
+            }else if (get_mvx_global_settings($cap)) {
                 return true;
             } else {
                 return false;
