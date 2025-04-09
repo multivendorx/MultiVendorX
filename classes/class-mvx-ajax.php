@@ -265,8 +265,8 @@ class MVX_Ajax {
             }
         } else {
             if (isset($filterActionData['order_status']) && $filterActionData['order_status'] != 'all') {
-                foreach ($vendor_all_orders as $key => $id) { 
-                    if (get_post_status( $id ) != $filterActionData['order_status']) { 
+                foreach ($vendor_all_orders as $key => $order) { 
+                    if ($order->get_status() != preg_replace('/^wc-/', '', $filterActionData['order_status'])) { 
                         unset($vendor_all_orders[$key]);
                     }
                 }
