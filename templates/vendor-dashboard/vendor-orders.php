@@ -61,9 +61,14 @@ $orders_list_table_headers = apply_filters('mvx_datatable_order_list_table_heade
                     </select>
                     <button class="mvx_black_btn btn btn-secondary" type="button" id="order_list_do_bulk_action"><?php esc_html_e('Apply', 'multivendorx'); ?></button>
                     <?php 
+                    $wc_order_statuses_without_wc = [];
+                    foreach(wc_get_order_statuses() as $key => $value){
+                        $status_key = str_replace("wc-", '', $key);
+                        $wc_order_statuses_without_wc[$status_key] = $value;
+                    }
                     $filter_by_status = apply_filters( 'mvx_vendor_dashboard_order_filter_status_array', array_merge( 
                         array( 'all' => __('All', 'multivendorx'), 'request_refund' => __('Request Refund', 'multivendorx') ), 
-                        wc_get_order_statuses()
+                        $wc_order_statuses_without_wc
                     ) ); 
                     echo '<select id="filter_by_order_status" name="order_status" class="mvx-filter-dtdd mvx_filter_order_status form-control inline-input">';
                     if( $filter_by_status ) :
