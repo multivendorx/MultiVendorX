@@ -1,4 +1,4 @@
-=== MultiVendorX - Empower Your WooCommerce Store with a Dynamic Multivendor Marketplace – Build the Next Amazon, eBay, Etsy  ===
+=== MultiVendorX - WooCommerce Multivendor – WooCommerce Marketplace - Build Next Amazon, eBay, Etsy, Airbnb  ===
 Contributors: wcmp, purnendu
 Tags: multi seller, multi vendor marketplace, woocommerce multivendor marketplace, multi seller store, best marketplace plugin
 Donate link: http://multivendorx.com/donate/
