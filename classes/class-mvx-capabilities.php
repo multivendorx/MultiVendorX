@@ -45,12 +45,15 @@ class MVX_Capabilities {
      * @param capability
      * @return boolean 
      */
-    public function vendor_can($cap) {
-        if (is_array($this->mvx_capability) && !empty($cap)) {
-            if (get_mvx_global_settings($cap)) {
+    public function vendor_can( $cap ) {
+        if ( is_array( $this->mvx_capability ) && !empty( $cap ) ) {
+            if( $cap == 'downloadable' || $cap == 'virtual' ) {
+                $returned_setting = get_mvx_global_settings( 'type_options' );
+                if ( $returned_setting && in_array( $cap, $returned_setting ) ) {
+                    return true;
+                }
+            } else if ( get_mvx_global_settings( $cap ) ) {
                 return true;
-            } else {
-                return false;
             }
         }
         return false;
