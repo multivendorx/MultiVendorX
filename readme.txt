@@ -1,6 +1,6 @@
-=== MultiVendorX - WooCommerce Multivendor – WooCommerce Marketplace - Build Next Amazon, eBay, Etsy, Airbnb  ===
+=== MultiVendorX - WooCommerce Multivendor - WooCommerce Marketplace  ===
 Contributors: wcmp, purnendu
-Tags: multi seller, multi vendor marketplace, woocommerce multivendor marketplace, multi seller store, best marketplace plugin
+Tags: multiseller, multi-vendor marketplace, woocommerce multivendor marketplace, multi seller store, best marketplace plugin
 Donate link: http://multivendorx.com/donate/
 Requires at least: 5.4
 Tested up to: 6.7.2
@@ -9,13 +9,13 @@ Stable tag: 4.2.21
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Transform your WooCommerce store into thriving marketplace with MultiVendorX - a powerful and advanced WooCommerce multivendor marketplace solution
+Transform your WooCommerce store into marketplace with MultiVendorX - a powerful WooCommerce multi-vendor marketplace solution
 
 == Description ==
 
-= Marketplace for WordPress: The Advanced Multivendor plugin for WooCommerce =
+= Marketplace for WordPress: The Best Multivendor Marketplace plugin for WooCommerce =
 
-**MultiVendorX** is a powerful WordPress multivendor plugin seamlessly integrated with WooCommerce, empowering you to build a full-fledged multi-vendor marketplace. With **MultiVendorX**, you can effortlessly bring your dream marketplace to life in just minutes, with minimal setup. Ideal for entrepreneurs aiming to establish their own multivendor platform reminiscent of popular marketplaces like  <strong> Amazon,  eBay, Etsy,  Airbnb , or Flipkart. </strong>
+**MultiVendorX** is a powerful WordPress multivendor plugin seamlessly integrated with WooCommerce, empowering you to build a full-fledged multi-vendor marketplace. With **MultiVendorX**, you can effortlessly bring your dream marketplace to life in just minutes, with minimal setup. Ideal for entrepreneurs aiming to establish their own multivendor platform reminiscent of popular multivendor marketplaces like  <strong> Amazon,  eBay, Etsy,  Airbnb , or Flipkart. </strong>
 
 = Try us because we provide: =
 * **Code-free** solution to effortlessly set up a multi-vendor marketplace.
