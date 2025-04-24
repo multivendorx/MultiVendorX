@@ -96,7 +96,7 @@ Discover everything **MultiVendorX's Features** [here](https://multivendorx.com/
 
 
 = 🌟 Taste Victory of Advanced Features of MultiVendorX Pro: =
-Competition requires the right toolkit. To thrive in today’s dynamic multivendor marketplace, you need features that empower vendors and streamline marketplace management. That’s where [MultiVendorX Pro](https://multivendorx.com/pricing/?utm_source=wordpress.org&utm_medium=plugindescription&utm_campaign=MultiVendorxWPOrg) comes in — a feature-rich solution built to elevate your WooCommerce marketplace.
+Competition requires the right toolkit. To thrive in today’s dynamic multi vendor marketplace, you need features that empower vendors and streamline woocommerce marketplace management. That’s where [MultiVendorX Pro](https://multivendorx.com/pricing/?utm_source=wordpress.org&utm_medium=plugindescription&utm_campaign=MultiVendorxWPOrg) comes in — a feature-rich solution built to elevate your WooCommerce marketplace.
 
 * 📋 **[Customizable Membership Plan](https://multivendorx.com/docs/knowledgebase/marketplace-memberhsip/?utm_source=wordpress.org&utm_medium=plugindescription&utm_campaign=MultiVendorxWPOrg)** – Offer Free, trial, or paid memberships with MultiVendorX Vendor membership. Customize fees, rates, and benefits.
 * 💳 **Real-Time Payment**: Enable instant payment processing for vendors using following payment gateways : 
