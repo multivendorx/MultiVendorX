@@ -177,8 +177,35 @@ Plugins > Add new > Upload plugin > Upload dc-woocommerce-multi-vendor.zip > Ins
 5. View reports MultiVendorX / Reports.
 
 == Frequently Asked Questions ==
+= How does a WooCommerce multivendor marketplace work? =
+Ans. Vendors sign up, manage their products and orders from a dashboard. The admin oversees vendor activities, commissions, and site management.
+= What are the benefits of using a multivendor marketplace plugin? =
+Ans. It converts your WooCommerce store into a marketplace with vendor frontend dashboards, order tracking, and commission management.
+= Can vendors manage their own products and orders? =
+Ans. Yes, vendors can upload products, process orders, and view reports from their frontend dashboard.
+= How does vendor registration work? =
+Ans. Vendors register through a [Vendor Registration page](https://multivendorx.com/docs/knowledgebase/vendors-registration/). Once approved, they access their dashboard to manage products and orders.
+= Can I set different commission rates for each vendor? =
+Ans. Yes, you can set fixed, percentage, or tiered commissions per vendor or category.To know more, click [here]((https://multivendorx.com/docs/knowledgebase/types-of-commission/?utm_source=wordpress.org&utm_medium=plugindescription&utm_campaign=MultiVendorxWPOrg))
+
+= Can I approve vendors and products before they go live? =
+Ans. Yes, admins can manually approve or reject vendor accounts and products.
+= Does MultiVendorX support different product types? =
+Ans. Yes, it supports physical, digital, downloadable, grouped, external, booking, rental, and subscription products.
+= Is MultiVendorX compatible with themes? =
+Ans. Yes, it's built for WordPress and works well with most popular WooCommerce supported themes, if they are coded with proper WooCommerce format.
+= How do payments and vendor payouts work? =
+Ans. Customers pay via WooCommerce gateways. Admins handle vendor payouts manually or automatically using PayPal Marketplace and Stripe Marketplace module.
+= Can vendors contact the admin or customers? =
+Ans. Yes, vendors can message the admin. Some setups also allow vendor-customer communication.
+= Is there a mobile app for vendors and admins? =
+Ans. Yes, MultiVendorX supports mobile access or app integrations for easy marketplace management.
+= How can I get support for MultiVendorX? =
+Ans. We offer documentation, a knowledge base, and active community support.
+= Can I migrate from another plugin to MultiVendorX? =
+Ans. Yes, MultiVendorX provides tools to migrate from other multivendor plugins.
 = Does this plugin work with newest WP version and also older versions? =
-Ans. Yes, this plugin works fine with WordPress 6.1.1! It is also compatible for older WordPress versions upto 4.2.
+Ans. Yes, this plugin works fine with WordPress 6.8.0! It is also compatible for older WordPress versions upto 6.4.
 = Up to which version of WooCommerce this plugin compatible with? =
 Ans. This plugin is compatible with the latest version of WooCommerce.
 = Up to which version of PHP this plugin is compatible with? =
