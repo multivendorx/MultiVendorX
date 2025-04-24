@@ -36,7 +36,7 @@ From digital downloads to physical products, everything you need is included—e
 * 🌐 Local Online Marketplace like eBay, Rakuten, AliExpress
 
 
-== 🌟 MultiVendorX offers you all the features needed to run a successful multivendor marketplace: == 
+== 🌟 MultiVendorX offers you all the features needed to run a successful multivendor marketplace in WordPress: == 
 
 * 🚀 [**Easy Setup Wizard**](https://multivendorx.com/docs/knowledgebase/admin-setup-wizard/?utm_source=wordpress.org&utm_medium=plugindescription&utm_campaign=MultiVendorxWPOrg)
 - 📝 [**Customizable Vendors Registration Form**](https://multivendorx.com/docs/knowledgebase/vendors-registration/?utm_source=wordpress.org&utm_medium=plugindescription&utm_campaign=MultiVendorxWPOrg)
@@ -120,7 +120,7 @@ Competition requires having the right toolkit. To keep you ahead of your competi
 
 = Migrate to MultiVendorX worry-free! =
 
-If you're currently using WCFM Marketplace, WC Vendors, or Dokan Multivendor and want to make the switch, our seamless [**migration tool**](https://multivendorx.com/docs/knowledgebase/migration/?utm_source=wordpress.org&utm_medium=plugindescription&utm_campaign=MultiVendorxWPOrg) makes it easy. You can sample everything before committing, ensuring a smooth transition without losing any valuable data. Our tool effortlessly transfers data from Dokan or any other WooCommerce-compatible marketplace plugin to MultiVendorX, so you can become a MultiVendorXian with confidence.
+If you're currently using WCFM Marketplace, WC Vendors, or Dokan Multivendor and want to make the switch, our seamless [**migration tool**](https://multivendorx.com/docs/knowledgebase/migration/?utm_source=wordpress.org&utm_medium=plugindescription&utm_campaign=MultiVendorxWPOrg) makes it easy. You can sample everything before committing, ensuring a smooth transition without losing any valuable data. Our tool effortlessly transfers data from Dokan or any other WooCommerce-compatible marketplace plugin of WordPress to MultiVendorX, so you can become a MultiVendorXian with confidence.
 
 = Third party compatibility = 
 
