@@ -1898,8 +1898,8 @@ class MVX_REST_API {
         $lng = $request->get_param('lng') ? $request->get_param('lng') : 0;
         $places = $request->get_param('places') ? $request->get_param('places') : '';
         mvx_update_user_meta($vendor_id, '_store_location', wc_clean($places));
-        mvx_update_user_meta($vendor_id, '_store_lat', wc_clean($lat));
-        mvx_update_user_meta($vendor_id, '_store_lng', wc_clean($lng));
+        mvx_update_user_meta($vendor_id, '_store_lat', wc_clean($lng));
+        mvx_update_user_meta($vendor_id, '_store_lng', wc_clean($lat));
     }
 
     public function mvx_list_of_all_tabs() {
