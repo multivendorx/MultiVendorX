@@ -89,6 +89,7 @@ class MVX_Order {
             add_action( 'admin_menu', array( $this, 'remove_admin_menu' ), 99 );
             // restrict stock managements for sub-orders
             add_filter( 'woocommerce_can_reduce_order_stock', array($this, 'woocommerce_can_reduce_order_stock'), 99, 2 );
+            add_filter( 'woocommerce_can_restore_order_stock', array($this, 'woocommerce_can_restore_order_stock'), 99, 2 );
             add_filter( 'woocommerce_hidden_order_itemmeta', array($this, 'woocommerce_hidden_order_itemmeta'), 99 );
             add_filter( 'woocommerce_order_item_get_formatted_meta_data', array($this, 'woocommerce_hidden_order_item_get_formatted_meta_data'), 99 );
             add_action( 'woocommerce_order_status_changed', array($this, 'mvx_vendor_order_status_changed_actions'), 99, 4 );
@@ -1452,6 +1453,28 @@ class MVX_Order {
         
                 $qty = $item->get_quantity();
                 $item->add_meta_data( '_reduced_stock', $qty, true );
+                $item->save();
+            }
+        }
+        return $order instanceof WC_Order && $order->get_parent_id() && $is_vendor_order ? false : $reduce_stock;
+    }
+    
+    public function woocommerce_can_restore_order_stock( $reduce_stock, $order ){
+        $is_vendor_order = ( $order ) ? mvx_get_order( $order->get_id() ) : false;
+        if ($is_vendor_order) {
+            foreach ( $order->get_items() as $item ) {
+                if ( ! $item->is_type( 'line_item' ) ) {
+                    continue;
+                }
+                // Only restore stock once for each item.
+                $product            = $item->get_product();
+                $item_stock_reduced = $item->get_meta( '_reduced_stock', true );
+
+                if ( ! $item_stock_reduced || ! $product || ! $product->managing_stock() ) {
+                    continue;
+                }
+
+                $item->delete_meta_data( '_reduced_stock' );
                 $item->save();
             }
         }
