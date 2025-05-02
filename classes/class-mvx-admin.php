@@ -1469,15 +1469,48 @@ class MVX_Admin {
      * @since 3.0.2
      */
     public function regenerate_order_commissions($order) {
+        global $MVX;
+        $order_id = $order->get_id();
+        $commission_id = $order->get_meta( '_commission_id', true) ? $order->get_meta( '_commission_id', true) : '';
+        $status = MVX_Commission::get_status($commission_id, 'edit');
+        
+        if( $status == 'paid' ) {
+            return;
+        }
         if ( ! $order->get_parent_id() ) {
             return;
         }
-        if (!in_array($order->get_status(), apply_filters( 'mvx_regenerate_order_commissions_statuses', array( 'on-hold', 'processing', 'completed' ), $order ))) {
+        if (!in_array($order->get_status(), apply_filters( 'mvx_regenerate_order_commissions_statuses', array( 'on-hold', 'pending', 'processing', 'completed' ), $order ))) {
             return;
         }
         
+        $commission_rate_items = array();
+
+        foreach($order->get_items() as $item){
+            $has_vendor = get_mvx_product_vendors($item['product_id']);
+            if ($has_vendor) {
+                $variation_id = isset($item['variation_id']) && !empty($item['variation_id']) ? $item['variation_id'] : 0;
+                $variation = isset($item['variation']) && !empty($item['variation']) ? $item['variation'] : array();
+                $item_commission = $MVX->commission->get_item_commission($item['product_id'], $variation_id, $item, $order_id, $item_id);
+                $commission_values = $MVX->commission->get_commission_amount($item['product_id'], $has_vendor->term_id, $variation_id, $item_id, $order);
+                $commission_rate = array('mode' => $MVX->vendor_caps->payment_cap['revenue_sharing_mode'], 'type' => $MVX->vendor_caps->payment_cap['commission_type']);
+                $commission_rate['commission_val'] = isset($commission_values['commission_val']) ? $commission_values['commission_val'] : 0;
+                $commission_rate['commission_fixed'] = isset($commission_values['commission_fixed']) ? $commission_values['commission_fixed'] : 0;
+                $item['commission'] = $item_commission;
+                $item['commission_rate'] = $commission_rate;
+
+                $item->update_meta_data('_vendor_item_commission', $item['commission']);
+            }
+
+            if(isset($item['commission_rate']) && $item['commission_rate']) {
+                $commission_rate_items[$item->get_id()] = $item['commission_rate'];
+            }
+
+            $order->update_meta_data('order_items_commission_rates', $commission_rate_items);
+        }
+
         delete_post_meta($order->get_id(), '_commissions_processed');
-        $commission_id = $order->get_meta( '_commission_id', true) ? $order->get_meta( '_commission_id', true) : '';
+        
         if ($commission_id) {
             wp_delete_post($commission_id, true);
         }
