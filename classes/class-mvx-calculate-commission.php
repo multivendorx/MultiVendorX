@@ -27,7 +27,10 @@ class MVX_Calculate_Commission {
             add_action( 'mvx_checkout_vendor_order_processed', array( $this, 'mvx_create_commission' ), 10, 3);
             add_action( 'woocommerce_order_refunded', array( $this, 'mvx_create_commission_refunds' ), 99, 2);
         }
-        add_action( 'woocommerce_order_status_changed', array( $this, 'mvx_vendor_new_order_mail' ), 99, 4 );
+        add_action( 'woocommerce_order_status_pending_to_processing_notification', array( $this, 'mvx_vendor_new_order_mail' ), 99, 4 );
+        add_action( 'woocommerce_order_status_on-hold_to_processing_notification', array( $this, 'mvx_vendor_new_order_mail' ), 99, 4 );
+        add_action( 'woocommerce_order_status_pending_to_completed_notification', array( $this, 'mvx_vendor_new_order_mail' ), 99, 4 );
+        add_action( 'woocommerce_order_status_on-hold_to_completed_notification', array( $this, 'mvx_vendor_new_order_mail' ), 99, 4 );
 
         // support of WooCommerce subscription plugin
         //add_filter('wcs_renewal_order_meta_query', array(&$this, 'wcs_renewal_order_meta_query'), 10, 1);
@@ -63,13 +66,8 @@ class MVX_Calculate_Commission {
         }
     }
     
-    public function mvx_vendor_new_order_mail( $order_id, $from_status, $to_status, $order ){
+    public function mvx_vendor_new_order_mail( $order_id, $order ) {
         if( !$order_id ) return;
-        if( !in_array( $from_status, apply_filters( 'mvx_vendor_new_order_mail_statuses_transition_from', array(
-            'pending',
-            'failed',
-            'cancelled',
-        ), $order_id, $from_status, $to_status ) ) || $to_status == 'failed') return;
         // Collect all suborder.
         if( !$order->get_parent_id() && $order->get_meta( 'has_mvx_sub_order', true ) ) {
             $vendor_orders = get_mvx_suborders( $order_id );
