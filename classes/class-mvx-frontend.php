@@ -421,6 +421,12 @@ class MVX_Frontend {
         $MVX->localize_script('mvx_seller_review_rating_js');
         $MVX->localize_script('mvx_customer_qna_js');
         $MVX->localize_script('mvx-vendor-shipping');
+
+        wp_localize_script('mvx-vendor-shipping', 'mvx_vendor_dashboard',
+            array(
+                'ajax_url' => admin_url('admin-ajax.php'),
+            )
+        );
         
         if (is_vendor_dashboard()) {
             wp_enqueue_script('jquery-ui-core');

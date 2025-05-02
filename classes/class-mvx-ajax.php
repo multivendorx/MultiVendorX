@@ -101,6 +101,7 @@ class MVX_Ajax {
         add_action('wp_ajax_mvx-toggle-shipping-method', array($this, 'mvx_toggle_shipping_method'));
         add_action('wp_ajax_mvx-configure-shipping-method', array($this, 'mvx_configure_shipping_method'));
         add_action('wp_ajax_mvx-vendor-configure-shipping-method', array($this, 'mvx_vendor_configure_shipping_method'));
+        add_action('wp_ajax_mvx-update-distance-shipping-unit-method', array($this, 'mvx_update_distance_shipping_unit_method'));
         
         // product add new listing
         add_action('wp_ajax_mvx_product_classify_next_level_list_categories', array($this, 'mvx_product_classify_next_level_list_categories'));
@@ -2881,6 +2882,17 @@ class MVX_Ajax {
             }
             wp_send_json(array('settings_html' => $settings_html));
             die;
+    }
+
+    public function mvx_update_distance_shipping_unit_method(){
+        $current_vendor_id = get_current_user_id();
+        $unit = sanitize_text_field($_POST['unit']);
+
+        update_user_meta($current_vendor_id, '_mvx_distance_shipping_unit_method', $unit);
+
+        mvx_vendor_distance_by_shipping_settings($current_vendor_id);
+
+        wp_die();
     }
     
     

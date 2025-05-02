@@ -388,6 +388,23 @@
         $('#mvx-vendor-shipping-by-country-section').show();
     } else {}
 
+    $('#mvx-vendor-shipping-by-distance-section').on('change', '#mvx_distance_unit_method', function() {
+        var selectedUnit = $(this).val();
+        var data = {
+            action: 'mvx-update-distance-shipping-unit-method',
+            unit: selectedUnit,
+        };
+
+        $.post(mvx_vendor_dashboard.ajax_url, data, function(response) {
+            $('#mvx-vendor-shipping-by-distance-section').html(response);
+
+            $('.multi_input_holder').each(function() {
+                var multi_input_holder = $(this);
+                addMultiInputProperty(multi_input_holder);
+              });
+        });
+    });
+
     $('.mvx_country_to_select').select2();
     $('.mvx-select').select2();
     $('.mvx_country_to_select').each(function() {
