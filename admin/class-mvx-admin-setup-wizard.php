@@ -72,6 +72,11 @@ class MVX_Admin_Setup_Wizard {
                 'view' => array($this, 'mvx_setup_capability'),
                 'handler' => array($this, 'mvx_setup_capability_save')
             ),
+            'import-dummy-data' => array(
+                'name' => __('Import Dummy Data', 'multivendorx'),
+                'view' => array($this, 'mvx_setup_dummy_data'),
+                'handler' => array($this, 'mvx_setup_dummy_data_import')
+            ),
             'introduction-migration' => array(
                 'name' => __('Migration', 'multivendorx' ),
                 'view' => array($this, 'mvx_migration_introduction'),
@@ -676,6 +681,88 @@ class MVX_Admin_Setup_Wizard {
     }
 
     /**
+     * Dummy data setup content
+     */
+    public function mvx_setup_dummy_data(){
+        $plugin_check = array(
+            'booking' => '',
+            'subscription' => '',
+            'rental' => '',
+            'auction' => ''
+        );
+        if(! is_plugin_active('woocommerce-bookings/woocommerce-bookings.php')){
+            $plugin_check['booking'] = 'inactive';
+        }
+        if(! is_plugin_active('woocommerce-subscriptions/woocommerce-subscriptions.php')){
+            $plugin_check['subscription'] = 'inactive';
+        }
+        if(! is_plugin_active('woocommerce-rental-and-booking/redq-rental-and-bookings.php')){
+            $plugin_check['rental'] = 'inactive';
+        }
+        if(! is_plugin_active('woocommerce-simple-auctions/woocommerce-simple-auctions.php')){
+            $plugin_check['auction'] = 'inactive';
+        }
+        ?>
+        <h1><?php esc_html_e('Import Dummy Data', 'multivendorx'); ?></h1>
+        <div class="mvx-setting-section-divider">&nbsp;</div>
+        <form method="post">
+            <table class="form-table">
+                <tr>
+                    <th scope="row"><label for="marketplace_type"><?php esc_html_e('Marketplace Type', 'multivendorx'); ?></label></th>
+                    <td>
+                        <select name="marketplace_type" id="marketplace_type" class="wc-enhanced-select">
+                            <option value="niche"><?php esc_html_e('Niche Marketplace', 'multivendorx'); ?></option>
+                            <option value="booking" data-plugin="<?php echo $plugin_check['booking']; ?>"><?php esc_html_e('Booking Marketplace', 'multivendorx'); ?></option>
+                            <option value="subscription" data-plugin="<?php echo $plugin_check['subscription']; ?>"><?php esc_html_e('Subscription Marketplace', 'multivendorx'); ?></option>
+                            <option value="rental" data-plugin="<?php echo $plugin_check['rental']; ?>"><?php esc_html_e('Rental Marketplace', 'multivendorx'); ?></option>
+                            <option value="auction" data-plugin="<?php echo $plugin_check['auction']; ?>"><?php esc_html_e('Auction Marketplace', 'multivendorx'); ?></option>
+                        </select>
+                        <p class="description"><?php esc_html_e('Dummy data will be imported based on the marketplace type.', 'multivendorx')?></p>
+                        <p id="booking-error" class="woocommerce-error" style="display: none;"><?php esc_html_e('WooCommerce Bookings pulgin is required to continue.', 'multivendorx')?></p>
+                        <p id="subscription-error" class="woocommerce-error" style="display: none;"><?php esc_html_e('WooCommerce Subscriptions pulgin is required to continue.', 'multivendorx')?></p>
+                        <p id="rental-error" class="woocommerce-error" style="display: none;"><?php esc_html_e('WooCommerce Booking & Rental pulgin is required to continue.', 'multivendorx')?></p>
+                        <p id="auction-error" class="woocommerce-error" style="display: none;"><?php esc_html_e('WooCommerce Simple Auction pulgin is required to continue.', 'multivendorx')?></p>
+                        
+                    </td>
+                </tr>
+                
+            </table>
+            <p class="wc-setup-actions step">
+                <a href="<?php echo esc_url($this->get_next_step_link()); ?>" class="button button-large button-next"><?php esc_html_e('Skip this step', 'multivendorx'); ?></a>
+                <input type="submit" class="button-primary button button-large button-next" value="<?php esc_attr_e('Continue', 'multivendorx'); ?>" name="save_step" />
+                <?php wp_nonce_field('mvx-setup'); ?>
+            </p>
+            <script>
+            jQuery(document).ready(function($) {
+                $('#marketplace_type').change(function() {
+                    $('.woocommerce-error').hide();
+                    $('.button-next').prop('disabled', false);
+
+                    var selectedValue = $(this).val();
+                    var selectedOption = $(this).find('option:selected');
+                    var pluginCheck = selectedOption.data('plugin');
+
+                    if (selectedValue === 'booking' && pluginCheck === 'inactive') {
+                        $('#booking-error').show();
+                        $('.button-next').prop('disabled', true);
+                    } else if (selectedValue === 'subscription' && pluginCheck === 'inactive') {
+                        $('#subscription-error').show();
+                        $('.button-next').prop('disabled', true);
+                    } else if (selectedValue === 'rental' && pluginCheck === 'inactive') {
+                        $('#rental-error').show();
+                        $('.button-next').prop('disabled', true);
+                    } else if (selectedValue === 'auction' && pluginCheck === 'inactive') {
+                        $('#auction-error').show();
+                        $('.button-next').prop('disabled', true);
+                    }
+                });
+            });
+            </script>
+        </form>
+        <?php
+    }
+
+    /**
      * Ready to go content
      */
     public function mvx_setup_ready() {
@@ -941,6 +1028,423 @@ class MVX_Admin_Setup_Wizard {
         $MVX->vendor_caps->update_mvx_vendor_role_capability();
         wp_redirect(esc_url_raw($this->get_next_step_link()));
         exit;
+    }
+
+    /**
+     * import dummy data
+     */
+    public function mvx_setup_dummy_data_import(){
+        check_admin_referer('mvx-setup');
+        $marketplace_type = filter_input(INPUT_POST, 'marketplace_type');
+
+        $this->import_vendors();
+        $product_ids = $this->import_products( $marketplace_type );
+        $this->import_commissions();
+        if( $product_ids ){
+            $this->import_orders( $product_ids, $marketplace_type );
+            $this->import_reviews($product_ids);
+        }
+        
+        wp_redirect(esc_url_raw($this->get_next_step_link()));
+        exit;
+    }
+
+    /**
+     * Import the Dummy vendors
+     */
+    public function import_vendors(){
+        // load the vendor data xml file
+        $xml = simplexml_load_file( MVX_PLUGIN_DUMMY_DATA . '\vendors.xml' );
+        if( ! $xml ){
+            return;
+        }
+        
+        // importing vendors
+        foreach( $xml->vendor as $vendor){
+            $userdata = array(
+                'user_login'    => (string) $vendor->username,
+                'user_pass'     => (string) $vendor->password,
+                'user_email'    => (string) $vendor->email,
+                'user_nicename' => (string) $vendor->nickname,
+                'first_name'    => (string) $vendor->firstname,
+                'last_name'     => (string) $vendor->lastname,
+                'role'          => 'dc_vendor',
+            );
+
+            $user_id = wp_insert_user( $userdata ) ;
+
+            if ( is_wp_error( $user_id ) ) {
+                return;
+            }
+
+            foreach( $vendor->images->image as $image ){
+                $src    =  plugins_url( $image->src );
+                $upload = wc_rest_upload_image_from_url( esc_url_raw($src) );
+
+                if( is_wp_error( $upload )){
+                    continue;
+                }
+                $attachment_id = wc_rest_set_uploaded_image_as_attachment( $upload, $user_id );
+
+                if ( wp_attachment_is_image( $attachment_id ) ) {
+                    $parent = get_post($attachment_id);
+                    $url    = $parent->guid;
+
+                    $size       = @getimagesize($url);
+                    $image_type = ( $size ) ? $size['mime'] : 'image/jpeg';
+                    $object     = array(
+                        'ID'             => $attachment_id,
+                        'post_title'     => basename($url),
+                        'post_mime_type' => $image_type,
+                        'guid'           => $url,
+                        'post_status'    => 'inherit',
+                        );
+
+                    $attachment_id = wp_insert_attachment($object, $url);
+
+                    $metadata = wp_generate_attachment_metadata($attachment_id, $url);
+                    wp_update_attachment_metadata($attachment_id, $metadata);
+
+                    if ( 'store' == $image->position ) {
+                        update_user_meta( $user_id, '_vendor_image', $attachment_id );   
+                    } elseif ( 'cover' == $image->position ) {
+                        update_user_meta( $user_id, '_vendor_banner', $attachment_id );
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Import Dummy products
+     * @global object $mvx
+     */
+    public function import_products($marketplace_type){
+        global $MVX;
+
+        $xml = simplexml_load_file( MVX_PLUGIN_DUMMY_DATA . '\\'. $marketplace_type .'_products.xml' );
+        if( ! $xml ){
+            return;
+        }
+        
+        $product_ids = array();
+
+        // importing products
+        foreach( $xml->item as $product){
+
+            // Get vendor Id
+            $vendor = get_user_by( 'slug', (string) $product->author );
+            if ($vendor) {
+                $vendor_id = $vendor->ID;
+            }else {
+                $vendor    = get_user_by( 'slug', 'admin');
+                $vendor_id = $vendor->ID;
+            }
+
+            $product_data = array(
+                'post_title'    => (string) $product->title, // Product Title
+                'post_content'  => (string) $product->content, // Product Description
+                'post_excerpt'  => (string) $product->excerpt, // Short Description
+                'post_author'   => $vendor_id, // Vendor Id
+                'post_name'     => (string) $product->post_name, // post name
+                'post_status'   => (string) $product->status, // Publish the product
+                'post_type'     => (string) $product->post_type, // WooCommerce product type
+            );
+
+            $product_id = wp_insert_post( $product_data );
+
+            if ( is_wp_error( $product_id ) ) {
+                return null;
+            }
+            // set the product type
+            wp_set_object_terms( $product_id, (string) $product->product_type, 'product_type' );
+
+            // Set product vendor
+            $vendor = get_mvx_vendor( $vendor_id );
+            if($vendor){
+                wp_set_object_terms( $product_id, absint($vendor->term_id), $MVX->taxonomy->taxonomy_name );
+            }
+            // Set product category
+            foreach( $product->categories->category as $category){
+                $category_name = (string) $category;
+                $term          = term_exists( $category_name, 'product_cat' );
+
+                // If the category doesn't exist, create it
+                if ( ! $term ) {
+                    $term = wp_insert_term( $category_name, 'product_cat' );
+                }
+
+                if ( ! is_wp_error( $term ) ) {
+                    // Get the term ID 
+                    $term_id = is_array( $term ) ? $term['term_id'] : $term;
+
+                    // Assign the category to the product
+                    wp_set_object_terms( $product_id, (int)$term_id, 'product_cat', true );
+                }
+            }
+
+            // Set product meta data
+            foreach( $product->meta->postmeta as $meta){
+                update_post_meta( $product_id, (string) $meta->meta_key, (string) $meta->meta_value );
+            }
+
+            array_push( $product_ids, $product_id);
+            
+            foreach( $product->images->image as $image ){
+                $src    = plugins_url( $image->src );
+                $upload = wc_rest_upload_image_from_url( esc_url_raw($src) );
+
+                if( is_wp_error( $upload )){
+                    continue;
+                }
+                $attachment_id = wc_rest_set_uploaded_image_as_attachment( $upload );
+
+                if ( wp_attachment_is_image( $attachment_id ) ) {
+                    $parent = get_post($attachment_id);
+                    $url    = $parent->guid;
+
+                    $size       = @getimagesize($url);
+                    $image_type = ( $size ) ? $size['mime'] : 'image/jpeg';
+                    $object     = array(
+                        'ID' => $attachment_id,
+                        'post_title' => basename($url),
+                        'post_mime_type' => $image_type,
+                        'guid' => $url,
+                        'post_status'    => 'inherit',
+                        );
+
+                    $attachment_id = wp_insert_attachment($object, $url);
+
+                    $metadata = wp_generate_attachment_metadata($attachment_id, $url);
+                    wp_update_attachment_metadata($attachment_id, $metadata);
+
+                    update_post_meta( $product_id, '_thumbnail_id', $attachment_id );
+                }
+            }
+        }
+        return $product_ids;
+    }
+
+    /**
+     * Import commissions data
+     */
+    public function import_commissions(){
+        // importing commission structure
+        $xml = simplexml_load_file( MVX_PLUGIN_DUMMY_DATA . '\commissions.xml' );
+        if( ! $xml){
+            return;
+        }
+
+        foreach( $xml->commission as $commission ) {
+            $category_name = (string) $commission->category;
+            $term          = term_exists( $category_name, 'product_cat' );
+
+            // If the category doesn't exist, create it
+            if ( ! $term ) {
+                $term = wp_insert_term( $category_name, 'product_cat' );
+            }
+
+            if ( is_wp_error( $term ) ) {
+                return;
+            }
+            // Get the term ID 
+            $term_id = is_array( $term ) ? $term['term_id'] : $term;
+
+            // Get commission type
+            $commission_type_value = get_mvx_vendor_settings('commission_type', 'commissions') && !empty(get_mvx_vendor_settings('commission_type', 'commissions')) ? mvx_get_settings_value(get_mvx_vendor_settings('commission_type', 'commissions')) : '';
+            if ($commission_type_value) {
+                switch($commission_type_value){
+                    case 'fixed':        
+                    case 'percent':
+                        add_term_meta( $term_id, 'commision', floatval((string) $commission->value));
+                        break;
+    
+                    case 'fixed_with_percentage':        
+                    case 'fixed_with_percentage_qty':
+                        add_term_meta( $term_id, 'commission_percentage', floatval((string) $commission->value));
+                        break;
+                }
+            }
+        }
+    }
+
+    /**
+     * Import dummy orders
+     * @global object $mvx
+     */
+    public function import_orders( $product_ids, $marketplace_type ){
+        global $MVX;
+        $product_ids = array_reverse( $product_ids );
+
+        // importing orders
+        $xml = simplexml_load_file( MVX_PLUGIN_DUMMY_DATA . '\orders.xml' );
+        if( ! $xml){
+            return;
+        }
+
+        foreach( $xml->order as $order){
+            $new_order = wc_create_order();
+            $order_id = $new_order->get_id();
+
+            $product_id = array_pop( $product_ids );
+            $quantity   = $order->quantity;
+            $new_order->add_product( wc_get_product( $product_id ), $quantity );
+
+            $address = array(
+                'first_name' => (string) $order->first_name,
+                'last_name'  => (string) $order->last_name,
+                'email'      => (string) $order->email,
+                'address_1'  => (string) $order->address_1,
+                'address_2'  => (string) $order->address_2,
+                'city'       => (string) $order->city,
+                'state'      => (string) $order->state,
+                'postcode'   => (string) $order->postcode,
+                'country'    => (string) $order->country,
+            );
+
+            $new_order->set_billing_address( $address );
+            $new_order->set_shipping_address( $address );
+            $order_items = $new_order->get_items();
+            $cost = intval(get_post_meta( $product_id, '_wc_booking_block_cost', true )) + intval(get_post_meta( $product_id, '_wc_booking_cost', true ));
+
+            if( $marketplace_type == 'booking' ){
+                $props = array(
+                    'customer_id'   => '1',
+                    'product_id'    => $product_id,
+                    'resource_id'   => '',
+                    'person_counts' => 'a:0:{}',
+                    'cost'          => $cost,
+                    'start'         => strtotime( current_time( 'Y-m-d' ). '00:00:00' ),
+                    'end'           => strtotime( current_time( 'Y-m-d' ). '23:59:59' ),
+                    'all_day'       => 1,
+                );
+
+                $booking = new WC_Booking( $props );
+                $booking->set_order_id( $order_id );
+                $item = reset( $order_items );
+                $item['subtotal'] = $cost;
+                $item['total'] = $cost;
+                $item_id = key( $order_items );
+                $booking->set_order_item_id( $item_id );
+                $booking->set_cost(intval(get_post_meta( $product_id, '_wc_booking_block_cost', true )) + intval(get_post_meta( $product_id, '_wc_booking_cost', true )));
+                $booking->set_status( 'unpaid' );
+                $booking->save();
+            }
+
+            $shipping_item = new WC_Order_Item_Shipping();
+            $shipping_item->set_method_title( 'Free shipping' );
+            $shipping_item->set_method_id( 'free shipping' );
+
+            // Set the shipping cost to 0
+            $shipping_item->set_total( 0 );
+
+            foreach( $order_items as $item_id => $item ){
+                $vendor = get_mvx_product_vendors( $item['product_id'] );
+                if ($vendor) {
+                    if ( !wc_get_order_item_meta( $item_id, 'Sold by') ) 
+                        wc_add_order_item_meta( $item_id, 'Sold by', $vendor->page_title);
+                    if ( !wc_get_order_item_meta( $item_id, '_vendor_id' ) ) 
+                        wc_add_order_item_meta( $item_id, '_vendor_id', $vendor->id);
+                }
+            }
+
+            // Add the shipping item to the order
+            $shipping_item->save();
+            $new_order->add_item( $shipping_item );
+        
+            $new_order->set_payment_method( (string) $order->payment_method );
+            $new_order->set_payment_method_title( (string) $order->payment_method_title );
+
+            $new_order->update_meta_data('has_mvx_sub_order', true);
+            $vendor_items = array();
+            foreach ($order_items as $item_id => $item) {
+                $has_vendor = get_mvx_product_vendors($item['product_id']);
+                if ($has_vendor) {
+                    $variation_id = isset($item['variation_id']) && !empty($item['variation_id']) ? $item['variation_id'] : 0;
+                    $item_commission = $MVX->commission->get_item_commission($item['product_id'], $variation_id, $item, $order_id, $item_id);
+                    $commission_values = $MVX->commission->get_commission_amount($item['product_id'], $has_vendor->term_id, $variation_id, $item_id, $order);
+                    $commission_rate = array('mode' => $MVX->vendor_caps->payment_cap['revenue_sharing_mode'], 'type' => $MVX->vendor_caps->payment_cap['commission_type']);
+                    $commission_rate['commission_val'] = isset($commission_values['commission_val']) ? $commission_values['commission_val'] : 0;
+                    $commission_rate['commission_fixed'] = isset($commission_values['commission_fixed']) ? $commission_values['commission_fixed'] : 0;
+                    $item['commission'] = $item_commission;
+                    $item['commission_rate'] = $commission_rate;
+                    $vendor_items[$has_vendor->id][$item_id] = $item;
+                }
+            }
+
+            if (count($vendor_items) != 0){
+                // update parent order meta
+                $new_order->update_meta_data('has_mvx_sub_order', true);
+
+                foreach ($vendor_items as $vendor_id => $items) {
+                    $vendor_orderid = MVX_Order::create_vendor_order($new_order, array(
+                                'order_id' => $order_id,
+                                'vendor_id' => $vendor_id,
+                                'line_items' => $items
+                    ));
+
+                    $vendor_order = wc_get_order( $vendor_orderid );
+                    $commission_id = MVX_Commission::create_commission($vendor_order);
+                    if ($commission_id) {
+                        // Calculate commission
+                        MVX_Commission::calculate_commission($commission_id, $vendor_order);
+                        // add commission id with associated vendor order
+                        $vendor_order->update_meta_data('_commission_id', $commission_id );
+                        // Mark commissions as processed
+                        $vendor_order->update_meta_data('_commissions_processed', 'yes' );
+                        $vendor_order->save();
+                    }
+                }
+            }
+        
+            $new_order->calculate_totals();
+            $new_order->update_status( 'processing', 'Order imported' );
+            $new_order->save();
+        }
+    }
+
+    /**
+     * Import dummy reviews
+     */
+    public function import_reviews( $product_ids ){
+        $product_ids = array_reverse( $product_ids );
+
+        // importing reviews
+        $xml = simplexml_load_file( MVX_PLUGIN_DUMMY_DATA . '\reviews.xml' );
+        if( ! $xml){
+            return;
+        }
+
+        foreach ( $xml->review as $review ) {
+            $product_id = array_pop( $product_ids );
+
+            $comment_data = array(
+                'comment_post_ID'      => $product_id,
+                'comment_author'       => (string) $review->reviewer,
+                'comment_author_email' => (string) $review->email,
+                'comment_content'      => (string) $review->comment,
+                'comment_type'         => 'review',
+                'comment_approved'     => 1,
+            );
+        
+            $comment_id = wp_insert_comment( $comment_data );
+
+            if ( is_wp_error( $comment_id ) ) {
+                return;
+            }
+            update_comment_meta( $comment_id, 'rating', intval( $review->rating ) );
+
+            $average_rating = intval( get_post_meta( $product_id, '_wc_average_rating', true ) );
+            $review_count   = intval( get_post_meta( $product_id, '_wc_review_count', true ) );
+
+            if($review_count == 1){
+                $average_rating = intval( $review->rating );
+            } else{
+                $average_rating = ( ( $average_rating * ( $review_count - 1 ) ) + intval( $review->rating ) ) / $review_count;
+            }
+
+            update_post_meta( $product_id, '_wc_average_rating', $average_rating );
+        }
     }
 
     /**
