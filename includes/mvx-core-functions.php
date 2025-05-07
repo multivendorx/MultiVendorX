@@ -1386,7 +1386,7 @@ if (!function_exists('do_mvx_data_migrate')) {
                 if (apply_filters('mvx_do_schedule_cron_vendor_weekly_order_stats', true) && !wp_next_scheduled('vendor_weekly_order_stats')) {
                     wp_schedule_event(time(), 'weekly', 'vendor_weekly_order_stats');
                 }
-                if (apply_filters('mvx_do_schedule_cron_vendor_weekly_order_stats', true) && !wp_next_scheduled('vendor_monthly_order_stats')) {
+                if (apply_filters('mvx_do_schedule_cron_vendor_monthly_order_stats', true) && !wp_next_scheduled('vendor_monthly_order_stats')) {
                     wp_schedule_event(time(), 'monthly', 'vendor_monthly_order_stats');
                 }
                 $collate = '';
