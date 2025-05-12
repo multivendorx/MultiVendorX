@@ -1424,7 +1424,7 @@ Class MVX_Admin_Dashboard {
             if (isset($value_distance['mvx_distance_rule'])) {
                 $mvx_shipping_by_distance_rates[$key_distance]['mvx_distance_rule'] = array('label' =>  $select_data[$value_distance['mvx_distance_rule']]['label'], 'value' => $value_distance['mvx_distance_rule'], 'index'   => $select_data[$value_distance['mvx_distance_rule']]['index'] );
             }
-            if ( isset($value_distance['mvx_distance_unit']) && $mvx_distance_unit_method == 'mile' ) {
+            if ( isset($value_distance['mvx_distance_unit']) && $mvx_distance_unit_method == 'mile' && !empty( $mvx_shipping_by_distance_rates[$key_distance]['mvx_distance_unit'] ) ) {
                 $mvx_shipping_by_distance_rates[$key_distance]['mvx_distance_unit'] = $mvx_shipping_by_distance_rates[$key_distance]['mvx_distance_unit'] * $mile_to_km_ratio;
             }
         }
