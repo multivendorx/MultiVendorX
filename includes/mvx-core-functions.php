@@ -4335,7 +4335,7 @@ if (!function_exists('mvx_vendor_distance_by_shipping_settings')) {
             if (isset($value_distance['mvx_distance_rule']['value'])) {
                 $mvx_shipping_by_distance_rates[$key_distance]['mvx_distance_rule'] = $value_distance['mvx_distance_rule']['value'];
             }
-            if ( isset($value_distance['mvx_distance_unit']) && $mvx_distance_shipping_unit_method == 'mile' ) {
+            if ( isset($value_distance['mvx_distance_unit']) && $mvx_distance_shipping_unit_method == 'mile' && !empty( $mvx_shipping_by_distance_rates[$key_distance]['mvx_distance_unit'] ) ) {
                 $mvx_shipping_by_distance_rates[$key_distance]['mvx_distance_unit'] = $mvx_shipping_by_distance_rates[$key_distance]['mvx_distance_unit'] / $mile_to_km_ratio;
             }
         }
