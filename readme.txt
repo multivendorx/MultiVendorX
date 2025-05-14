@@ -1,21 +1,23 @@
-=== MultiVendorX - WooCommerce Multivendor – WooCommerce Marketplace - Build Next Amazon, eBay, Etsy, Airbnb  ===
+=== MultiVendorX - WooCommerce Multivendor Marketplace Solutions ===
 Contributors: wcmp, purnendu
-Tags: multi seller, multi vendor marketplace, woocommerce multivendor marketplace, multi seller store, best marketplace plugin
+Tags: multiseller, multi-vendor marketplace, woocommerce multivendor marketplace, multi seller store, best marketplace plugin
 Donate link: http://multivendorx.com/donate/
 Requires at least: 5.4
-Tested up to: 6.7.2
+Tested up to: 6.8.0
 Requires PHP: 8.0
-Stable tag: 4.2.21
+Stable tag: 4.2.22
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Transform your WooCommerce store into thriving marketplace with MultiVendorX - a powerful and advanced WooCommerce multivendor marketplace solution
+Transform your WooCommerce store into marketplace with MultiVendorX - most recommended WooCommerce multi-vendor marketplace solution
 
 == Description ==
 
-= Marketplace for WordPress: The Advanced Multivendor plugin for WooCommerce =
+= MultiVendorX - Most Recommended WooCommerce Multivendor Marketplace Plugin for WordPress =
+Build your own multivendor marketplace in minutes—no code required.
+**MultiVendorX** is a flexible and powerful WooCommerce multivendor marketplace plugin for WordPress, built to help you launch and manage a full-featured marketplace with ease.
 
-**MultiVendorX** is a powerful WordPress multivendor plugin seamlessly integrated with WooCommerce, empowering you to build a full-fledged multi-vendor marketplace. With **MultiVendorX**, you can effortlessly bring your dream marketplace to life in just minutes, with minimal setup. Ideal for entrepreneurs aiming to establish their own multivendor platform reminiscent of popular marketplaces like  <strong> Amazon,  eBay, Etsy,  Airbnb , or Flipkart. </strong>
+From digital downloads to physical products, everything you need is included—even in the free version. With fast setup, seamless vendor management, and built-in commission control, MultiVendorX is designed to grow with your business. Ideal for entrepreneurs aiming to establish their own multivendor platform reminiscent of popular multivendor marketplaces like  <strong> Amazon,  eBay, Etsy,  Airbnb , or Flipkart. </strong>
 
 = Try us because we provide: =
 * **Code-free** solution to effortlessly set up a multi-vendor marketplace.
@@ -34,7 +36,7 @@ Transform your WooCommerce store into thriving marketplace with MultiVendorX - a
 * 🌐 Local Online Marketplace like eBay, Rakuten, AliExpress
 
 
-== 🌟 MultiVendorX offers you all the features needed to run a successful marketplace: == 
+== 🌟 MultiVendorX offers you all the features needed to run a successful multivendor marketplace in WordPress: == 
 
 * 🚀 [**Easy Setup Wizard**](https://multivendorx.com/docs/knowledgebase/admin-setup-wizard/?utm_source=wordpress.org&utm_medium=plugindescription&utm_campaign=MultiVendorxWPOrg)
 - 📝 [**Customizable Vendors Registration Form**](https://multivendorx.com/docs/knowledgebase/vendors-registration/?utm_source=wordpress.org&utm_medium=plugindescription&utm_campaign=MultiVendorxWPOrg)
@@ -81,7 +83,7 @@ Transform your WooCommerce store into thriving marketplace with MultiVendorX - a
 - 🔍 SEO and Google Analytics (**PRO**)
 - 📦 Store Inventory Management (**PRO**)
 
-Explore all **MultiVendorX's Features** [here](https://multivendorx.com/features/?utm_source=wordpress.org&utm_medium=plugindescription&utm_campaign=MultiVendorxWPOrg).
+Discover everything **MultiVendorX's Features** [here](https://multivendorx.com/features/?utm_source=wordpress.org&utm_medium=plugindescription&utm_campaign=MultiVendorxWPOrg) offers to power your multivendor marketplace.
 
 
 👉 Official Demo Link: Try out Free and Pro [**MultiVendorX**](https://multivendordemo.com/mvx/wp-admin) 
@@ -94,7 +96,7 @@ Explore all **MultiVendorX's Features** [here](https://multivendorx.com/features
 
 
 = 🌟 Taste Victory of Advanced Features of MultiVendorX Pro: =
-Competition requires having the right toolkit. To keep you ahead of your competitors, we bring to you a list of affordable and upgraded features with [MultiVendorX Pro](https://multivendorx.com/pricing/?utm_source=wordpress.org&utm_medium=plugindescription&utm_campaign=MultiVendorxWPOrg).
+Competition requires the right toolkit. To thrive in today’s dynamic multi vendor marketplace, you need features that empower vendors and streamline woocommerce marketplace management. That’s where [MultiVendorX Pro](https://multivendorx.com/pricing/?utm_source=wordpress.org&utm_medium=plugindescription&utm_campaign=MultiVendorxWPOrg) comes in — a feature-rich solution built to elevate your WooCommerce marketplace.
 
 * 📋 **[Customizable Membership Plan](https://multivendorx.com/docs/knowledgebase/marketplace-memberhsip/?utm_source=wordpress.org&utm_medium=plugindescription&utm_campaign=MultiVendorxWPOrg)** – Offer Free, trial, or paid memberships with MultiVendorX Vendor membership. Customize fees, rates, and benefits.
 * 💳 **Real-Time Payment**: Enable instant payment processing for vendors using following payment gateways : 
@@ -114,13 +116,19 @@ Competition requires having the right toolkit. To keep you ahead of your competi
 
 👉 UPGRADE TO [**MultiVendorX Pro**](https://multivendorx.com/pricing/?utm_source=wordpress.org&utm_medium=plugindescription&utm_campaign=MultiVendorxWPOrg)
 
-👉 Official Demo Link: Try out Free and Pro [**MultiVendorX**](https://multivendordemo.com/mvx/wp-admin) 
+👉 Official Demo Link: Try out Free and Pro [**MultiVendorX**](https://multivendordemo.com/mvx/) 
 
 = Migrate to MultiVendorX worry-free! =
 
-If you're currently using WCFM Marketplace, WC Vendors, or Dokan Multivendor and want to make the switch, our seamless [**migration tool**](https://multivendorx.com/docs/knowledgebase/migration/?utm_source=wordpress.org&utm_medium=plugindescription&utm_campaign=MultiVendorxWPOrg) makes it easy. You can sample everything before committing, ensuring a smooth transition without losing any valuable data. Our tool effortlessly transfers data from Dokan or any other WooCommerce-compatible marketplace plugin to MultiVendorX, so you can become a MultiVendorXian with confidence.
+Migrate to MultiVendorX Without a Hitch!
+Thinking of switching from WCFM Marketplace, WC Vendors, or Dokan Multivendor? With our [**migration tool**](https://multivendorx.com/docs/knowledgebase/migration/?utm_source=wordpress.org&utm_medium=plugindescription&utm_campaign=MultiVendorxWPOrg), making the move to MultiVendorX is as smooth as it gets.
+
+Experience everything our multivendor marketplace plugin has to offer — risk-free. Test the waters before committing, and rest easy knowing that all your vital WordPress data is safe.
+Our seamless migration process transfers all vendor, product, and order data from your current WooCommerce marketplace plugin — whether it’s Dokan, WCFM, or WC Vendors — to MultiVendorX without data loss or downtime.
+Start your journey as a confident MultiVendorXian and build your dream WordPress marketplace today!
 
 = Third party compatibility = 
+MultiVendorX enhances your WordPress multivendor marketplace with seamless compatibility across popular tools and plugins of WordPress. Whether you're building with WooCommerce, supporting diverse vendors, or expanding your marketplace capabilities, our platform integrates effortlessly with top third-party solutions to ensure flexibility, scalability, and growth.
 
 🌐 **[Multiple Language Support](https://multivendorx.com/docs/knowledgebase/mvx-wpml/?utm_source=wordpress.org&utm_medium=plugindescription&utm_campaign=MultiVendorxWPOrg)** – With the latest addition of the WPML integration, vendors can now organize their product data in various languages.
 🛠️ **[Elementor Compatibility](https://multivendorx.com/docs/knowledgebase/mvx-elementor/?utm_source=wordpress.org&utm_medium=plugindescription&utm_campaign=MultiVendorxWPOrg)** – MultiVendorX’s Elementor compatibility brings an easy page builder feature. Vendors can effortlessly create shop pages by dragging and dropping elements.
@@ -175,8 +183,35 @@ Plugins > Add new > Upload plugin > Upload dc-woocommerce-multi-vendor.zip > Ins
 5. View reports MultiVendorX / Reports.
 
 == Frequently Asked Questions ==
+= How does a WooCommerce multivendor marketplace work? =
+Ans. Vendors sign up, manage their products and orders from a dashboard. The admin oversees vendor activities, commissions, and site management.
+= What are the benefits of using a multivendor marketplace plugin? =
+Ans. It converts your WooCommerce store into a marketplace with vendor frontend dashboards, order tracking, and commission management.
+= Can vendors manage their own products and orders? =
+Ans. Yes, vendors can upload products, process orders, and view reports from their frontend dashboard.
+= How does vendor registration work? =
+Ans. Vendors register through a [Vendor Registration page](https://multivendorx.com/docs/knowledgebase/vendors-registration/). Once approved, they access their dashboard to manage products and orders.
+= Can I set different commission rates for each vendor? =
+Ans. Yes, you can set fixed, percentage, or tiered commissions per vendor or category.To know more, click [here]((https://multivendorx.com/docs/knowledgebase/types-of-commission/?utm_source=wordpress.org&utm_medium=plugindescription&utm_campaign=MultiVendorxWPOrg))
+
+= Can I approve vendors and products before they go live? =
+Ans. Yes, admins can manually approve or reject vendor accounts and products.
+= Does MultiVendorX support different product types? =
+Ans. Yes, it supports physical, digital, downloadable, grouped, external, booking, rental, and subscription products.
+= Is MultiVendorX compatible with themes? =
+Ans. Yes, it's built for WordPress and works well with most popular WooCommerce supported themes, if they are coded with proper WooCommerce format.
+= How do payments and vendor payouts work? =
+Ans. Customers pay via WooCommerce gateways. Admins handle vendor payouts manually or automatically using PayPal Marketplace and Stripe Marketplace module.
+= Can vendors contact the admin or customers? =
+Ans. Yes, vendors can message the admin. Some setups also allow vendor-customer communication.
+= Is there a mobile app for vendors and admins? =
+Ans. Yes, MultiVendorX supports mobile access or app integrations for easy marketplace management.
+= How can I get support for MultiVendorX? =
+Ans. We offer documentation, a knowledge base, and active community support.
+= Can I migrate from another plugin to MultiVendorX? =
+Ans. Yes, MultiVendorX provides tools to migrate from other multivendor plugins.
 = Does this plugin work with newest WP version and also older versions? =
-Ans. Yes, this plugin works fine with WordPress 6.1.1! It is also compatible for older WordPress versions upto 4.2.
+Ans. Yes, this plugin works fine with WordPress 6.8.0! It is also compatible for older WordPress versions upto 6.4.
 = Up to which version of WooCommerce this plugin compatible with? =
 Ans. This plugin is compatible with the latest version of WooCommerce.
 = Up to which version of PHP this plugin is compatible with? =
@@ -203,6 +238,11 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 14. Show Multiple Seller in Single Product.
 
 == Changelog ==
+
+= 4.2.22 - 2025-04-29 =
+* Added     - Compatibility with WordPress 6.8.0.
+* Added     - Compatibility of WooCommerce 9.8.2.
+* Fixed     - Issue with reverse saving of latitude and longitude in the database for vendor store address #943.
 
 = 4.2.21 - 2025-04-15 =
 * Added     - Compatibility of WooCommerce 9.8.1.
