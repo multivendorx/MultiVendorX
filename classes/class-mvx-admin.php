@@ -1476,9 +1476,8 @@ class MVX_Admin {
         }
         
         $commission_id = $order->get_meta( '_commission_id', true) ? $order->get_meta( '_commission_id', true) : '';
-        $status = MVX_Commission::get_status($commission_id, 'edit');
         
-        if( $status == 'paid' ) {
+        if( MVX_Commission::get_status($commission_id, 'edit') == 'paid' ) {
             return;
         }
         if (!in_array($order->get_status(), apply_filters( 'mvx_regenerate_order_commissions_statuses', array( 'on-hold', 'pending', 'processing', 'completed' ), $order ))) {
