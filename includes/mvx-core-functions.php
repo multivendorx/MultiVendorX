@@ -4339,12 +4339,32 @@ if (!function_exists('mvx_mapbox_design_switcher')) {
 if (!function_exists('mvx_vendor_distance_by_shipping_settings')) {
     function mvx_vendor_distance_by_shipping_settings( $vendor_id = 0 ) {
         global $MVX;
-        $mvx_shipping_by_distance = get_user_meta( $vendor_id, '_mvx_shipping_by_distance', true ) ? get_user_meta( $vendor_id, '_mvx_shipping_by_distance', true ) : array();
-        $MVX->mvx_wp_fields->dc_generate_form_field( apply_filters( 'mvx_marketplace_settings_fields_shipping_distance', array(
-            "mvx_byd_default_cost" => array('label' => __('Default Cost', 'multivendorx'), 'name' => 'mvx_shipping_by_distance[_default_cost]', 'placeholder' => '0.00', 'type' => 'text', 'class' => 'col-md-6 col-sm-9', 'label_class' => 'mvx_title mvx_ele mvx_store_shipping_distance_fields', 'value' => isset($mvx_shipping_by_distance['_default_cost']) ? $mvx_shipping_by_distance['_default_cost'] : '' ),
+        $mile_to_km_ratio = $MVX->mile_to_km_ratio;
 
-            "mvx_byd_max_distance" => array('label' => __('Max Distance (km)', 'multivendorx'), 'name' => 'mvx_shipping_by_distance[_max_distance]', 'placeholder' => __('No Limit', 'multivendorx'), 'type' => 'text', 'class' => 'col-md-6 col-sm-9', 'label_class' => 'mvx_title mvx_ele mvx_store_shipping_distance_fields', 'value' => isset($mvx_shipping_by_distance['_max_distance']) ? $mvx_shipping_by_distance['_max_distance'] : '' ),
-            "mvx_byd_local_pickup_cost" => array('label' => __('Local Pickup Cost', 'multivendorx'), 'name' => 'mvx_shipping_by_distance[_local_pickup_cost]', 'placeholder' => '0.00', 'type' => 'text', 'class' => 'col-md-6 col-sm-9', 'label_class' => 'mvx_title mvx_ele mvx_store_shipping_distance_fields', 'value' => isset($mvx_shipping_by_distance['_local_pickup_cost']) ? $mvx_shipping_by_distance['_local_pickup_cost'] : '' ),
+        $mvx_distance_shipping_unit_method = get_user_meta( $vendor_id, '_mvx_distance_shipping_unit_method', true ) ? get_user_meta( $vendor_id, '_mvx_distance_shipping_unit_method', true ) : 'km';
+        $MVX->mvx_wp_fields->dc_generate_form_field( apply_filters( 'mvx_settings_fields_distance_shipping_unit_method', array(
+            "mvx_distance_unit_method" => array(
+                                'label' => __('Select Distance Unit', 'multivendorx'),
+                                'type' => 'select',
+                                'class' => 'col-md-6 col-sm-9 form-control',
+                                'label_class' => '',
+                                'value' => $mvx_distance_shipping_unit_method,
+                                'options' => array(
+                                    'km' => __('Kilometers', 'multivendorx'),
+                                    'mile' => __('Miles', 'multivendorx')
+                                )
+                            )
+        ) ) );
+
+        $mvx_shipping_by_distance = get_user_meta( $vendor_id, '_mvx_shipping_by_distance', true ) ? get_user_meta( $vendor_id, '_mvx_shipping_by_distance', true ) : array();
+        if ( isset($mvx_shipping_by_distance['_max_distance']) && $mvx_distance_shipping_unit_method == 'mile' ) {
+            $mvx_shipping_by_distance['_max_distance'] = $mvx_shipping_by_distance['_max_distance'] / $mile_to_km_ratio;
+        }
+        $MVX->mvx_wp_fields->dc_generate_form_field( apply_filters( 'mvx_marketplace_settings_fields_shipping_distance', array(
+            "mvx_byd_default_cost" => array('label' => __('Default Cost', 'multivendorx'), 'name' => 'mvx_shipping_by_distance[_default_cost]', 'placeholder' => '0.00', 'type' => 'text', 'class' => 'col-md-6 col-sm-9 form-control', 'label_class' => 'mvx_title mvx_ele mvx_store_shipping_distance_fields', 'value' => isset($mvx_shipping_by_distance['_default_cost']) ? $mvx_shipping_by_distance['_default_cost'] : '' ),
+
+            "mvx_byd_max_distance" => array('label' => __("Max Distance ($mvx_distance_shipping_unit_method)", 'multivendorx'), 'name' => 'mvx_shipping_by_distance[_max_distance]', 'placeholder' => __('No Limit', 'multivendorx'), 'type' => 'text', 'class' => 'col-md-6 col-sm-9 form-control', 'label_class' => 'mvx_title mvx_ele mvx_store_shipping_distance_fields', 'value' => isset($mvx_shipping_by_distance['_max_distance']) ? $mvx_shipping_by_distance['_max_distance'] : '' ),
+            "mvx_byd_local_pickup_cost" => array('label' => __('Local Pickup Cost', 'multivendorx'), 'name' => 'mvx_shipping_by_distance[_local_pickup_cost]', 'placeholder' => '0.00', 'type' => 'text', 'class' => 'col-md-6 col-sm-9 form-control', 'label_class' => 'mvx_title mvx_ele mvx_store_shipping_distance_fields', 'value' => isset($mvx_shipping_by_distance['_local_pickup_cost']) ? $mvx_shipping_by_distance['_local_pickup_cost'] : '' ),
         ) ) );
 
         $mvx_shipping_by_distance_rates = get_user_meta( $vendor_id, '_mvx_shipping_by_distance_rates', true ) ? get_user_meta( $vendor_id, '_mvx_shipping_by_distance_rates', true ) : array();
@@ -4352,6 +4372,9 @@ if (!function_exists('mvx_vendor_distance_by_shipping_settings')) {
         foreach ($mvx_shipping_by_distance_rates as $key_distance => $value_distance) {
             if (isset($value_distance['mvx_distance_rule']['value'])) {
                 $mvx_shipping_by_distance_rates[$key_distance]['mvx_distance_rule'] = $value_distance['mvx_distance_rule']['value'];
+            }
+            if ( isset($value_distance['mvx_distance_unit']) && $mvx_distance_shipping_unit_method == 'mile' && !empty( $mvx_shipping_by_distance_rates[$key_distance]['mvx_distance_unit'] ) ) {
+                $mvx_shipping_by_distance_rates[$key_distance]['mvx_distance_unit'] = $mvx_shipping_by_distance_rates[$key_distance]['mvx_distance_unit'] / $mile_to_km_ratio;
             }
         }
 
@@ -4366,7 +4389,7 @@ if (!function_exists('mvx_vendor_distance_by_shipping_settings')) {
                             "mvx_distance_rule" => array( 
                                 'label' => __('Distance Rule', 'multivendorx'), 
                                 'type' => 'select', 
-                                'class' => 'col-md-6 col-sm-9', 
+                                'class' => 'col-md-6 col-sm-9 form-control', 
                                 'label_class' => '', 
                                 'options' => array(
                                     'up_to' => __('Distance up to', 'multivendorx'),
@@ -4374,16 +4397,19 @@ if (!function_exists('mvx_vendor_distance_by_shipping_settings')) {
                                 )
                             ),
                             "mvx_distance_unit" => array( 
-                                'label' => __('Distance', 'multivendorx') . ' ( '. __('km', 'multivendorx') .' )', 
+                                'label' => __('Distance', 'multivendorx') . ' ('. __($mvx_distance_shipping_unit_method, 'multivendorx') .')', 
                                 'type' => 'number', 
-                                'class' => 'col-md-6 col-sm-9', 
-                                'label_class' => ''
+                                'class' => 'col-md-6 col-sm-9 form-control', 
+                                'label_class' => '',
+                                'attributes' => array(
+                                    "step" => "any"
+                                )
                             ),
                             "mvx_distance_price" => array( 
                                 'label' => __('Cost', 'multivendorx') . ' ('.get_woocommerce_currency_symbol().')', 
                                 'type' => 'number', 
                                 'placeholder' => '0.00 (' . __('Free Shipping', 'multivendorx') . ')',
-                                'class' => 'col-md-6 col-sm-9', 
+                                'class' => 'col-md-6 col-sm-9 form-control', 
                                 'label_class' => '' 
                             ),
                         )

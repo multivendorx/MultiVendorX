@@ -57,6 +57,7 @@ final class MVX {
     public $mvx_usage_tracker ;
     public $upgrade;
     public $hpos_is_enabled = false;
+    public $mile_to_km_ratio = 1.609344;
 
     /**
      * Class construct

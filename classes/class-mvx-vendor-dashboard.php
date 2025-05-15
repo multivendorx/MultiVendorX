@@ -1357,6 +1357,7 @@ Class MVX_Admin_Dashboard {
      */
     public function save_vendor_shipping($vendor_user_id, $post) {
         global $MVX;
+        $mile_to_km_ratio = $MVX->mile_to_km_ratio;
         $all_allowed_countries = WC()->countries->get_allowed_countries();
         $location = array();
         $zone_id = 0;
@@ -1407,6 +1408,9 @@ Class MVX_Admin_Dashboard {
             mvx_update_user_meta( $vendor_user_id, '_mvx_country_shipping_rates', array_values($mvx_shipping_rates) );
         }
 
+        // Distance unit method
+        $mvx_distance_unit_method = isset($_POST['mvx_distance_unit_method']) ? $_POST['mvx_distance_unit_method'] : '';
+        
         // Distance by shipping
         $mvx_shipping_by_distance_rates = isset($_POST['mvx_shipping_by_distance_rates']) ?  array_filter( array_map( 'wc_clean', $_POST['mvx_shipping_by_distance_rates'] ) ) : '';
 
@@ -1420,11 +1424,17 @@ Class MVX_Admin_Dashboard {
             if (isset($value_distance['mvx_distance_rule'])) {
                 $mvx_shipping_by_distance_rates[$key_distance]['mvx_distance_rule'] = array('label' =>  $select_data[$value_distance['mvx_distance_rule']]['label'], 'value' => $value_distance['mvx_distance_rule'], 'index'   => $select_data[$value_distance['mvx_distance_rule']]['index'] );
             }
+            if ( isset($value_distance['mvx_distance_unit']) && $mvx_distance_unit_method == 'mile' && !empty( $mvx_shipping_by_distance_rates[$key_distance]['mvx_distance_unit'] ) ) {
+                $mvx_shipping_by_distance_rates[$key_distance]['mvx_distance_unit'] = $mvx_shipping_by_distance_rates[$key_distance]['mvx_distance_unit'] * $mile_to_km_ratio;
+            }
         }
 
         update_user_meta($vendor_user_id, '_mvx_shipping_by_distance_rates', array_values($mvx_shipping_by_distance_rates));
 
         $mvx_shipping_by_distance = isset($_POST['mvx_shipping_by_distance']) ? array_filter( array_map( 'wc_clean', $_POST['mvx_shipping_by_distance'] ) ) : '';
+        if ( isset($mvx_shipping_by_distance['_max_distance']) && $mvx_distance_unit_method == 'mile' ) {
+            $mvx_shipping_by_distance['_max_distance'] = $mvx_shipping_by_distance['_max_distance'] * $mile_to_km_ratio;
+        }
         update_user_meta($vendor_user_id, '_mvx_shipping_by_distance', $mvx_shipping_by_distance);
 
         $vendor_shipping_options = isset($_POST['shippping-options']) ? wc_clean($_POST['shippping-options']) : '';
