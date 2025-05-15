@@ -1470,14 +1470,15 @@ class MVX_Admin {
      */
     public function regenerate_order_commissions($order) {
         global $MVX;
-        $order_id = $order->get_id();
+
+        if ( ! $order->get_parent_id() ) {
+            return;
+        }
+        
         $commission_id = $order->get_meta( '_commission_id', true) ? $order->get_meta( '_commission_id', true) : '';
         $status = MVX_Commission::get_status($commission_id, 'edit');
         
         if( $status == 'paid' ) {
-            return;
-        }
-        if ( ! $order->get_parent_id() ) {
             return;
         }
         if (!in_array($order->get_status(), apply_filters( 'mvx_regenerate_order_commissions_statuses', array( 'on-hold', 'pending', 'processing', 'completed' ), $order ))) {
@@ -1491,7 +1492,7 @@ class MVX_Admin {
             if ($has_vendor) {
                 $variation_id = isset($item['variation_id']) && !empty($item['variation_id']) ? $item['variation_id'] : 0;
                 $variation = isset($item['variation']) && !empty($item['variation']) ? $item['variation'] : array();
-                $item_commission = $MVX->commission->get_item_commission($item['product_id'], $variation_id, $item, $order_id, $item_id);
+                $item_commission = $MVX->commission->get_item_commission($item['product_id'], $variation_id, $item, $order->get_id(), $item_id);
                 $commission_values = $MVX->commission->get_commission_amount($item['product_id'], $has_vendor->term_id, $variation_id, $item_id, $order);
                 $commission_rate = array('mode' => $MVX->vendor_caps->payment_cap['revenue_sharing_mode'], 'type' => $MVX->vendor_caps->payment_cap['commission_type']);
                 $commission_rate['commission_val'] = isset($commission_values['commission_val']) ? $commission_values['commission_val'] : 0;
