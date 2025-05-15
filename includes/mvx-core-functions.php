@@ -372,23 +372,61 @@ if (!function_exists('doProductVendorLOG')) {
     /**
      * Write to log file
      */
-    function doProductVendorLOG($str) {
-        global $MVX;
-        $file = $MVX->plugin_path . 'log/product_vendor.log';
-        if (file_exists($file)) {
-            // Open the file to get existing content
-            $current = file_get_contents($file);
-            if ($current) {
-                // Append a new content to the file
-                $current .= "$str" . "\r\n";
-                $current .= "-------------------------------------\r\n";
-            } else {
-                $current = "$str" . "\r\n";
-                $current .= "-------------------------------------\r\n";
-            }
-            // Write the contents back to the file
-            file_put_contents($file, $current);
+    function doProductVendorLOG($message) {
+        global $wp_filesystem;
+
+        $message = var_export( $message, true );
+        $dir = trailingslashit( wp_upload_dir(null, false)['basedir'] ) . 'mvx-logs';
+
+        $log_file_name = get_option( 'mvx_log_file' );
+
+        if ( ! $log_file_name ) {
+            $log_file_name = uniqid('error') . '.txt';
+            update_option( 'mvx_log_file', $log_file_name );
         }
+
+        $log_file = $dir . '/' . $log_file_name;
+
+        // Init filesystem
+        if ( empty( $wp_filesystem ) ) {
+            require_once ABSPATH . '/wp-admin/includes/file.php';
+            WP_Filesystem();
+        }
+
+        // log folder create
+        if ( ! file_exists($dir . '/.htaccess') ) {
+            $result = wp_mkdir_p( $dir );	
+            if ( true === $result ) {
+                // Create infrastructure to prevent listing contents of the logs directory.
+                try {
+                    $wp_filesystem->put_contents( $dir . '/.htaccess', 'deny from all' );
+                    $wp_filesystem->put_contents( $dir . '/index.html', '' );
+                } catch ( Exception $exception ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
+                    // Creation failed.
+                }
+            }
+            $message = "MVX Log file Created\n";
+        }
+
+        // Clear log file
+        if ( filter_input( INPUT_POST, 'clearlog', FILTER_DEFAULT ) !== null ) {
+            $message = "MVX Log file Cleared\n";
+        }
+
+        // Write Log
+        if( $message != '' ) {
+            $log_entry 		  = gmdate( "d/m/Y H:i:s", time() ) . ': ' . $message;
+            $existing_content = $wp_filesystem->get_contents( get_site_url( null, str_replace( ABSPATH, '', $log_file ) ) );
+            
+            // Append existing content
+            if ( ! empty( $existing_content ) ) {
+                $log_entry = "\n" . $log_entry;
+            }
+
+            return $wp_filesystem->put_contents( $log_file, $existing_content . $log_entry );
+        }
+
+        return false;
     }
 
 }
@@ -1386,7 +1424,7 @@ if (!function_exists('do_mvx_data_migrate')) {
                 if (apply_filters('mvx_do_schedule_cron_vendor_weekly_order_stats', true) && !wp_next_scheduled('vendor_weekly_order_stats')) {
                     wp_schedule_event(time(), 'weekly', 'vendor_weekly_order_stats');
                 }
-                if (apply_filters('mvx_do_schedule_cron_vendor_weekly_order_stats', true) && !wp_next_scheduled('vendor_monthly_order_stats')) {
+                if (apply_filters('mvx_do_schedule_cron_vendor_monthly_order_stats', true) && !wp_next_scheduled('vendor_monthly_order_stats')) {
                     wp_schedule_event(time(), 'monthly', 'vendor_monthly_order_stats');
                 }
                 $collate = '';
