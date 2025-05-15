@@ -51,7 +51,7 @@ class VendorLists extends AbstractBlock {
     	ob_start();
     	
         ?>
-        <div class="mvx-block-wrapper <?php echo isset ($attributes['className'] ) ? $attributes['className'] : ''; ?>">
+        <div class="mvx-block-wrapper <?php echo isset ($attributes['className'] ) ? esc_attr($attributes['className']) : ''; ?>">
 		<?php if( $attributes['block_title'] ) echo '<h4 class="mvx-block-heading">' . $attributes['block_title'] . '</h4>';
 		if (!empty($vendors) && is_array($vendors)) {
 			$MVX->template->get_template('widget/vendor-list.php', array('vendors' => $vendors));
