@@ -164,6 +164,7 @@ class MVXworkboard extends Component {
 			axios({
 				method: 'post',
 				url: `${appLocalizer.apiUrl}/mvx_module/v1/bulk_todo_request_profile_deletion`,
+				headers: { "X-WP-Nonce": appLocalizer.nonce },
 				data: {
 					data_list: e,
 				},
@@ -510,6 +511,7 @@ class MVXworkboard extends Component {
 			axios({
 				method: 'post',
 				url: `${appLocalizer.apiUrl}/mvx_module/v1/delete_post_details`,
+				headers: { "X-WP-Nonce": appLocalizer.nonce },
 				data: {
 					ids: e,
 					title,

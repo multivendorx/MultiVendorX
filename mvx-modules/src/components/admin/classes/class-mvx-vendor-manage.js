@@ -459,6 +459,7 @@ class MVXBackendVendor extends React.Component {
 		axios({
 			method: 'post',
 			url: `${appLocalizer.apiUrl}/mvx_module/v1/update_specific_vendor_shipping_option`,
+			headers: { "X-WP-Nonce": appLocalizer.nonce },
 			data: {
 				value: e.value,
 				vendor_id,

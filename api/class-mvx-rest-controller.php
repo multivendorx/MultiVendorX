@@ -2819,6 +2819,10 @@ class MVX_REST_API {
     }
 
     function mvx_bulk_todo_request_profile_deletion($request) {
+        $nonce = $request->get_header( 'X-WP-Nonce' );
+        if ( ! wp_verify_nonce( $nonce, 'wp_rest' ) ) {
+            return new WP_Error( 'invalid_nonce', __('Invalid nonce', 'multivendorx'), array( 'status' => 403 ) );
+        }
         $data_list = $request && $request->get_param('data_list') ? $request->get_param('data_list') : '';
         $get_request_profile_deletion_vendor_list = [];
         if (method_exists($this, 'mvx_list_of_request_profile_deletion_vendor') && is_array($this->mvx_list_of_request_profile_deletion_vendor()->data) && !empty($this->mvx_list_of_request_profile_deletion_vendor()->data)) {
@@ -2923,6 +2927,10 @@ class MVX_REST_API {
     }
 
     public function mvx_delete_post_details($request) {
+        $nonce = $request->get_header( 'X-WP-Nonce' );
+        if ( ! wp_verify_nonce( $nonce, 'wp_rest' ) ) {
+            return new WP_Error( 'invalid_nonce', __('Invalid nonce', 'multivendorx'), array( 'status' => 403 ) );
+        }
         $ids = $request && $request->get_param('ids') ? $request->get_param('ids') : 0;
         $title = $request && $request->get_param('title') ? $request->get_param('title') : 0;
         if ($title == 'post_announcement') {
@@ -5344,6 +5352,10 @@ class MVX_REST_API {
     }
 
     public function mvx_commission_delete($request) {
+        $nonce = $request->get_header( 'X-WP-Nonce' );
+        if ( ! wp_verify_nonce( $nonce, 'wp_rest' ) ) {
+            return new WP_Error( 'invalid_nonce', __('Invalid nonce', 'multivendorx'), array( 'status' => 403 ) );
+        }
         $commission_ids = $request->get_param('commission_ids') ? $request->get_param('commission_ids') : '';
         if ($commission_ids && is_array($commission_ids)) {
             foreach (wp_list_pluck($commission_ids, "ID") as $key => $value) {
@@ -5356,6 +5368,10 @@ class MVX_REST_API {
     }
 
     public function mvx_update_specific_vendor_shipping_option($request) {
+        $nonce = $request->get_header( 'X-WP-Nonce' );
+        if ( ! wp_verify_nonce( $nonce, 'wp_rest' ) ) {
+            return new WP_Error( 'invalid_nonce', __('Invalid nonce', 'multivendorx'), array( 'status' => 403 ) );
+        }
         $value = $request->get_param('value') ? ($request->get_param('value')) : 0;
         $vendor_id = $request->get_param('vendor_id') ? ($request->get_param('vendor_id')) : 0;
         mvx_update_user_meta($vendor_id, 'vendor_shipping_options', wc_clean($value));
@@ -5379,6 +5395,10 @@ class MVX_REST_API {
 
     public function mvx_export_csv_for_report_vendor_chart($request) {
         global $MVX;
+        $nonce = $request->get_header( 'X-WP-Nonce' );
+        if ( ! wp_verify_nonce( $nonce, 'wp_rest' ) ) {
+            return new WP_Error( 'invalid_nonce', __('Invalid nonce', 'multivendorx'), array( 'status' => 403 ) );
+        }
         $vendor_list = $request->get_param('vendor_list') ? ($request->get_param('vendor_list')) : array();
         $csv_data_data = array();
 
