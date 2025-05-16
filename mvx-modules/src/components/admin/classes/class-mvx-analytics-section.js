@@ -505,6 +505,7 @@ class MVX_Analytics extends Component {
 		axios({
 			method: 'post',
 			url: `${appLocalizer.apiUrl}/mvx_module/v1/export_csv_for_report_vendor_chart`,
+			headers: { "X-WP-Nonce": appLocalizer.nonce },
 			data: {
 				vendor_list: list_vendor_chart_list,
 			},

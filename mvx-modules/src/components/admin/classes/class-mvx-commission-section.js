@@ -236,6 +236,7 @@ class MVX_Backend_Commission extends Component {
 			axios({
 				method: 'post',
 				url: `${appLocalizer.apiUrl}/mvx_module/v1/commission_delete`,
+				headers: { "X-WP-Nonce": appLocalizer.nonce },
 				data: {
 					commission_ids: e,
 				},
