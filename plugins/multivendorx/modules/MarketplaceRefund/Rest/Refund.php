@@ -19,7 +19,7 @@ defined( 'ABSPATH' ) || exit;
  * @version     5.0.0
  * @author      MultiVendorX
  */
-class Rest extends \WP_REST_Controller {
+class Refund extends \WP_REST_Controller {
 
 
     /**
@@ -275,13 +275,12 @@ class Rest extends \WP_REST_Controller {
         }
     }
 
-
     /**
      * Create a new refund.
      *
      * @param object $request Full data about the request.
      */
-    public function update_item( $request ) {
+        public function update_item( $request ) {
         $refund_info = $request->get_param( 'payload' );
 
         $order_id               = $refund_info['orderId'] ? absint( $refund_info['orderId'] ) : 0;
@@ -397,7 +396,7 @@ class Rest extends \WP_REST_Controller {
             return new \WP_Error( 'refund_failed', __( 'Refund Failed', 'multivendorx' ), array( 'status' => 400 ) );
         }
     }
-
+    
 	/**
 	 * Get parent order item id from store order item id
 	 *
