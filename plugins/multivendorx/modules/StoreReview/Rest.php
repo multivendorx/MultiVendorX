@@ -8,6 +8,7 @@
 namespace MultiVendorX\StoreReview;
 
 use MultiVendorX\Store\Store;
+use MultiVendorX\Store\StoreUtil;
 use MultiVendorX\StoreReview\Util;
 use MultiVendorX\Utill;
 
@@ -47,12 +48,12 @@ class Rest extends \WP_REST_Controller {
                 array(
                     'methods'             => \WP_REST_Server::READABLE,
                     'callback'            => array( $this, 'get_items' ),
-                    'permission_callback' => array( $this, 'permissions_check' ),
+                    'permission_callback' => '__return_true',
                 ),
                 array(
                     'methods'             => \WP_REST_Server::CREATABLE,
                     'callback'            => array( $this, 'create_item' ),
-                    'permission_callback' => array( $this, 'permissions_check' ),
+                    'permission_callback' => array( $this, 'create_item_permissions_check' ),
                 ),
             )
         );
@@ -64,7 +65,7 @@ class Rest extends \WP_REST_Controller {
                 array(
                     'methods'             => \WP_REST_Server::READABLE,
                     'callback'            => array( $this, 'get_item' ),
-                    'permission_callback' => array( $this, 'permissions_check' ),
+                    'permission_callback' => array( $this, 'update_item_permissions_check' ),
                     'args'                => array(
                         'id' => array( 'required' => true ),
                     ),
@@ -77,7 +78,7 @@ class Rest extends \WP_REST_Controller {
                 array(
                     'methods'             => \WP_REST_Server::DELETABLE,
                     'callback'            => array( $this, 'delete_item' ),
-                    'permission_callback' => array( $this, 'update_item_permissions_check' ),
+                    'permission_callback' => array( $this, 'delete_item_permissions_check' ),
                     'args'                => array(
                         'id' => array( 'required' => true ),
                     ),
@@ -92,8 +93,8 @@ class Rest extends \WP_REST_Controller {
      * @param object $request Request data.
      * @return true|\WP_Error
      */
-    public function permissions_check( $request ) {
-        return Utill::current_user_has_capability( array( 'read', 'edit_stores' ) );
+    public function create_item_permissions_check( $request ) {
+        return Utill::current_user_has_capability( array( 'customer', 'edit_stores', 'manage_options' ) );
     }
 
     /**
@@ -103,7 +104,17 @@ class Rest extends \WP_REST_Controller {
      * @return bool
      */
     public function update_item_permissions_check( $request ) {
-        return Utill::current_user_has_capability( array( 'edit_stores' ) );
+        return Utill::current_user_has_capability( array( 'edit_stores', 'manage_options' ) );
+    }
+
+    /**
+     * Delete permission.
+     *
+     * @param object $request Request data.
+     * @return bool
+     */
+    public function delete_item_permissions_check( $request ) {
+        return Utill::current_user_has_capability( array( 'manage_options' ) );
     }
 
     /**
@@ -137,6 +148,14 @@ class Rest extends \WP_REST_Controller {
             $overall_rating = $request->get_param( 'overall_rating' );
             $sec_fetch_site = $request->get_header( 'sec_fetch_site' );
             $referer        = $request->get_header( 'referer' );
+
+            $can_manage = $store_id
+                ? StoreUtil::current_user_can_manage_store( intval( $store_id ) )
+                : Utill::current_user_has_capability( array( 'manage_options' ) );
+
+            if ( ! $can_manage ) {
+                $status = 'approved';
+            }
 
             $range = Utill::normalize_date_range(
                 $request->get_param( 'start_date' ),
@@ -278,6 +297,15 @@ class Rest extends \WP_REST_Controller {
             if ( ! $review ) {
                 return $response;
             }
+
+            if ( ! StoreUtil::current_user_can_manage_store( $review['store_id'] ?? 0 ) ) {
+                return new \WP_Error(
+                    'rest_forbidden',
+                    __( 'You are not allowed to view this review.', 'multivendorx' ),
+                    array( 'status' => 403 )
+                );
+            }
+
             $response->set_data( $this->prepare_rest_item_for_response( $review ) );
             return $response;
         } catch ( \Exception $e ) {
@@ -286,6 +314,7 @@ class Rest extends \WP_REST_Controller {
             return new \WP_Error( 'server_error', __( 'Unexpected server error', 'multivendorx' ), array( 'status' => 500 ) );
         }
     }
+
 	/**
 	 * Create a new store review via REST API.
 	 *
@@ -364,6 +393,7 @@ class Rest extends \WP_REST_Controller {
                         'size'     => $size,
                     );
                     $upload = wp_handle_upload( $file, array( 'test_form' => false ) );
+
                     if ( ! empty( $upload['error'] ) || empty( $upload['url'] ) ) {
                         continue;
                     }
@@ -448,6 +478,14 @@ class Rest extends \WP_REST_Controller {
                     'not_found',
                     __( 'Review not found', 'multivendorx' ),
                     array( 'status' => 404 )
+                );
+            }
+
+            if ( ! StoreUtil::current_user_can_manage_store( $review['store_id'] ?? 0 ) ) {
+                return new \WP_Error(
+                    'rest_forbidden',
+                    __( 'You are not allowed to manage this review.', 'multivendorx' ),
+                    array( 'status' => 403 )
                 );
             }
 
@@ -579,6 +617,7 @@ class Rest extends \WP_REST_Controller {
             return new \WP_Error( 'server_error', __( 'Unexpected server error', 'multivendorx' ), array( 'status' => 500 ) );
         }
     }
+
     /**
      * Prepare a review item for REST API response.
      *

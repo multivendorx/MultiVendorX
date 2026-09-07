@@ -5,7 +5,7 @@ Donate link: http://multivendorx.com/donate/?utm_source=wporg&utm_medium=plugind
 Requires at least: 6.4.0
 Tested up to: 7.1.0
 Requires PHP: 8.0
-Stable tag: 5.0.15
+Stable tag: 5.0.16
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -245,6 +245,18 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 15. Store-admin-list.
 
 == Changelog ==
+
+= 5.0.16 - 2026-09-08 =
+* Added     - Compatibility with WooCommerce 11.1.0
+* Fixed     - Issue with draft products being displayed on the store listing page #2329
+* Fixed     - Country-wise shipping issue where free shipping was being applied to countries that were not configured #2322
+* Fixed     - Data loading issue with pagination on the seller order list page #2340
+* Fixed     - Currency symbol being hardcoded as $ in Storefront Order Details #2339
+* Fixed     - Issue with store registration details not appearing in the admin dashboard for review #2336
+* Fixed     - Shipping method overlapping/loading issue for zone-wise shipping in the store dashboard #2335
+* Fixed     - Gallery image replacement flow issue
+* Fixed     - Security vulnerabilities reported by members of the WordPress community
+* Updated   - Language file.
 
 = 5.0.15 - 2026-08-26 =
 * Added     - Compatibility with WordPress 7.1.0

@@ -1,24 +1,53 @@
 #moodle-enrollment-mapping-tab {
-	.form-field{
+	.form-field {
 		display: flex;
 		align-items: center;
+		position: relative;
 
-		.components-radio-control{
+		.components-radio-control {
 			margin-right: 0.625rem;
 		}
 
-		label{
+		label {
 			width: 15%;
 		}
-		input{
-			width: 30%;
+
+		&.input input {
+			width: 55%;
+		}
+
+		.select-item {
+			width: 55%;
+		}
+
+
+		.pro-tag {
+			top: -0.625rem;
+			right: -1.25rem;
+			font-size: 0.75rem;
+			color: #fff;
+			background-color: #e10000;
+			padding: 0.125rem 0.5rem;
+			border-radius: 0.313rem;
+			margin-top: -2rem;
+			margin-left: -0.5rem;
+			z-index: 1;
 		}
 	}
 
-	.components-notice__content{
+	.components-radio {
+		.css-iqemdn-disabledStyles {
+			display: flex;
+			gap: 0.5rem;
+			flex-direction: row-reverse;
+			align-items: center;
+		}
+	}
+
+	.components-notice__content {
 		display: flex;
 
-		p{
+		p {
 			margin: 0;
 			font-size: 0.875rem;
 		}

@@ -385,10 +385,9 @@ const Orders: React.FC = () => {
 		};
 
 		if (includePagination) {
-			params.page = query.page || 1;
+			params.page = query.paged || 1;
 			params.per_page = query.per_page || 10;
 		}
-
 		return params;
 	};
 

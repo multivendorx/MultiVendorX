@@ -74,6 +74,7 @@ class Endpoint {
      */
 	public function enqueue_assets() {
 		if ( is_account_page() ) {
+			FrontendScripts::enqueue_script( 'moowoodle-vendor' );
 			FrontendScripts::enqueue_script( 'moowoodle-my-courses' );
 			FrontendScripts::localize_scripts( 'moowoodle-my-courses' );
 			FrontendScripts::enqueue_style( 'moowoodle-my-courses' );

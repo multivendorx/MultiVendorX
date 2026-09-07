@@ -5,7 +5,7 @@ Donate link: https://dualcube.com/?utm_source=wporg&utm_medium=plugindescription
 Requires at least: 6.0.0
 Tested up to: 7.1.0
 Requires PHP: 8.0
-Stable tag: 3.4.8
+Stable tag: 3.4.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -230,6 +230,11 @@ This project might have bugs and may be lacking certain features. If you'd like 
 11. View the log file to detect any errors related to MooWoodle configuration.
 
 == Changelog ==
+
+= 3.4.9 - 2026-09-08 =
+* Added     - Compatibility of WooCommerce 11.1.0.
+* Added     - Course search when manually assigning courses to a product, making it easier for admins to quickly find and select the required course.
+* Updated   - Language file.
 
 = 3.4.8 - 2026-08-25 =
 * Added     - Compatibility with WordPress 7.1.0.

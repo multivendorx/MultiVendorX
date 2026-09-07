@@ -357,7 +357,6 @@ class Rest {
         }
 
         $private_post_types = array(
-            'shop_order',
             'user',
             'bookable_resource',
             'wc_appointment',
