@@ -851,8 +851,8 @@ const AddProduct = () => {
 
 												const urls = Array.isArray(val) ? val : [val];
 
-												const formatted = urls.map((file) => ({
-													id: file?.id,
+												const formatted = urls.map((file, index) => ({
+													id: file?.id || galleryImages[index]?.id,
 													src: file?.url,
 													thumbnail: file?.url,
 												}));

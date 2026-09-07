@@ -107,9 +107,13 @@ class Country_Shipping extends \WC_Shipping_Method {
             return;
         }
 
-        $amount = $this->calculate_per_seller( $products, $destination_country, $destination_state, $store_id );
+        $result = $this->calculate_per_seller( $products, $destination_country, $destination_state, $store_id );
 
-        $this->add_store_shipping_rates( $store_id, $amount );
+        if ( ! $result['is_shipping_available'] ) {
+            return;
+        }
+
+        $this->add_store_shipping_rates( $store_id, $result['amount'], $result['is_free_shipping'] );
     }
 
     /**
@@ -133,7 +137,7 @@ class Country_Shipping extends \WC_Shipping_Method {
      * @param string $destination_state   Destination state.
      * @param int    $store_id            Store ID.
      *
-     * @return float
+     * @return array
      */
     public function calculate_per_seller( $products, $destination_country, $destination_state, $store_id ) {
         $amount = 0.0;
@@ -148,6 +152,57 @@ class Country_Shipping extends \WC_Shipping_Method {
         $default_shipping_price     = isset( $meta[ Utill::STORE_SETTINGS_KEYS['country_shipping_type_price'] ] ) ? $meta[ Utill::STORE_SETTINGS_KEYS['country_shipping_type_price'] ] : 0;
         $default_shipping_add_price = isset( $meta[ Utill::STORE_SETTINGS_KEYS['country_additional_product'] ] ) ? $meta[ Utill::STORE_SETTINGS_KEYS['country_additional_product'] ] : 0;
         $default_shipping_qty_price = isset( $meta[ Utill::STORE_SETTINGS_KEYS['country_additional_qty'] ] ) ? $meta[ Utill::STORE_SETTINGS_KEYS['country_additional_qty'] ] : 0;
+
+        // Resolve country/state shipping rates first, so we know whether this destination is covered at all.
+        $raw_data                    = $meta[ Utill::STORE_SETTINGS_KEYS['country_shipping_rates'] ] ?? array();
+        $multivendorx_shipping_rates = is_string( $raw_data ) ? json_decode( $raw_data, true ) : $raw_data;
+        $multivendorx_shipping_rates = is_array( $multivendorx_shipping_rates ) ? $multivendorx_shipping_rates : array();
+
+        $state_rate      = 0;
+        $country_rate    = null;
+        $everywhere_rate = null;
+
+        foreach ( $multivendorx_shipping_rates as $rate ) {
+            if ( empty( $rate['country'] ) ) {
+                continue;
+            }
+            if ( $rate['country'] === $destination_country ) {
+                $country_rate = $rate;
+                break;
+            }
+            if ( 'everywhere' === $rate['country'] ) {
+                $everywhere_rate = $rate;
+            }
+        }
+
+        // If rate rules exist but neither the destination country nor an "everywhere" rule matches, shipping isn't available.
+        if ( ! empty( $multivendorx_shipping_rates ) && ! $country_rate && ! $everywhere_rate ) {
+            return array(
+                'amount'                => 0,
+                'is_shipping_available' => false,
+                'is_free_shipping'      => false,
+            );
+        }
+
+        if ( $country_rate ) {
+            if ( $destination_state && ! empty( $country_rate['states'] ) ) {
+                $state_found = false;
+                foreach ( $country_rate['states'] as $state ) {
+                    if ( $state['state'] === $destination_state ) {
+                        $state_rate  = floatval( $state['cost'] );
+                        $state_found = true;
+                        break;
+                    }
+                }
+                if ( ! $state_found && isset( $everywhere_rate ) ) {
+                    $state_rate = floatval( $everywhere_rate['cost'] );
+                }
+            } else {
+                $state_rate = floatval( $country_rate['cost'] );
+            }
+        } elseif ( $everywhere_rate ) {
+            $state_rate = floatval( $everywhere_rate['cost'] );
+        }
 
         $downloadable_count  = 0;
         $products_total_cost = 0;
@@ -200,52 +255,19 @@ class Country_Shipping extends \WC_Shipping_Method {
             }
         }
 
-        // Check free shipping threshold.
+        // Check free shipping threshold (destination is already confirmed available above).
         if ( $multivendorx_free_shipping_amount && ( $multivendorx_free_shipping_amount <= $products_total_cost ) ) {
-            return apply_filters( 'multivendorx_shipping_country_calculate_amount', 0, $price, $products, $destination_country, $destination_state );
+            return array(
+                'amount'                => 0,
+                'is_shipping_available' => true,
+                'is_free_shipping'      => true,
+            );
         }
 
         // Additional product cost.
         $price[ $store_id ]['add_product'] = count( $products ) > 1
             ? floatval( $default_shipping_add_price ) * ( count( $products ) - ( 1 + $downloadable_count ) )
             : 0;
-
-        $raw_data                    = $meta[ Utill::STORE_SETTINGS_KEYS['country_shipping_rates'] ] ?? array();
-        $multivendorx_shipping_rates = is_string( $raw_data ) ? json_decode( $raw_data, true ) : $raw_data;
-
-        $state_rate      = 0;
-        $country_rate    = null;
-        $everywhere_rate = null;
-
-        foreach ( $multivendorx_shipping_rates as $rate ) {
-            if ( $rate['country'] === $destination_country ) {
-                $country_rate = $rate;
-                break;
-            }
-            if ( 'everywhere' === $rate['country'] ) {
-                $everywhere_rate = $rate;
-            }
-        }
-
-        if ( $country_rate ) {
-            if ( $destination_state && ! empty( $country_rate['states'] ) ) {
-                $state_found = false;
-                foreach ( $country_rate['states'] as $state ) {
-                    if ( $state['state'] === $destination_state ) {
-                        $state_rate  = floatval( $state['cost'] );
-                        $state_found = true;
-                        break;
-                    }
-                }
-                if ( ! $state_found && isset( $everywhere_rate ) ) {
-                    $state_rate = floatval( $everywhere_rate['cost'] );
-                }
-            } else {
-                $state_rate = floatval( $country_rate['cost'] );
-            }
-        } elseif ( $everywhere_rate ) {
-            $state_rate = floatval( $everywhere_rate['cost'] );
-        }
 
         $price[ $store_id ]['state_rates'] = $state_rate;
 
@@ -261,19 +283,26 @@ class Country_Shipping extends \WC_Shipping_Method {
             }
         }
 
-        return apply_filters( 'multivendorx_shipping_country_calculate_amount', $amount, $price, $products, $destination_country, $destination_state );
+        $amount = apply_filters( 'multivendorx_shipping_country_calculate_amount', $amount, $price, $products, $destination_country, $destination_state );
+
+        return array(
+            'amount'                => $amount,
+            'is_shipping_available' => true,
+            'is_free_shipping'      => false,
+        );
     }
 
 
     /**
      * Add shipping rates for a store.
      *
-     * @param int   $store_id Store ID.
-     * @param float $amount   Shipping amount.
+     * @param int   $store_id         Store ID.
+     * @param float $amount           Shipping amount.
+     * @param bool  $is_free_shipping Whether free shipping applies.
      *
      * @return void
      */
-    public function add_store_shipping_rates( $store_id, $amount ) {
+    public function add_store_shipping_rates( $store_id, $amount, $is_free_shipping = false ) {
         $store = new \MultiVendorX\Store\Store( $store_id );
         $meta  = $store->meta_data;
 
@@ -281,21 +310,21 @@ class Country_Shipping extends \WC_Shipping_Method {
         $tax_rate = apply_filters( 'multivendorx_is_apply_tax_on_shipping_rates', $tax_rate );
 
         // Country-wise shipping.
-        if ( $amount > 0 ) {
-            $this->add_rate(
-                array(
-                    'id'    => $this->id . ':' . $store_id,
-                    'label' => $this->title,
-                    'cost'  => $amount,
-                    'taxes' => $tax_rate,
-                )
-            );
-        } elseif ( ! empty( $meta[ Utill::STORE_SETTINGS_KEYS['country_free_shipping_amount'] ] ) ) {
+        if ( $is_free_shipping ) {
             $this->add_rate(
                 array(
                     'id'    => $this->id . ':' . $store_id,
                     'label' => __( 'Free Shipping', 'multivendorx' ),
                     'cost'  => 0,
+                    'taxes' => $tax_rate,
+                )
+            );
+        } elseif ( $amount > 0 ) {
+            $this->add_rate(
+                array(
+                    'id'    => $this->id . ':' . $store_id,
+                    'label' => $this->title,
+                    'cost'  => $amount,
                     'taxes' => $tax_rate,
                 )
             );

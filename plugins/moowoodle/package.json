@@ -3,7 +3,7 @@
     "displayName": "MooWoodle",
     "pluginSlug": "moowoodle",
     "description": "MooWoodle – WordPress Moodle LMS Integration, Sell Moodle Courses via WooCommerce",
-    "version": "3.4.8",
+    "version": "3.4.9",
     "license": "GPL-2.0-or-later",
     "author": "MultiVendorX",
     "homepage": "https://github.com/multivendorx/multivendorx#readme",
@@ -106,7 +106,7 @@
         "react": "19.2.6",
         "react-dom": "19.2.6",
         "react-router-dom": "^7.15.1",
-        "@multivendorx/zyra": "^1.0.14"
+        "@multivendorx/zyra": "^1.0.41"
     },
     "devDependencies": {
         "wireit": "^0.14.12"

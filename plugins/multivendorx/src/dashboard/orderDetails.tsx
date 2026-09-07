@@ -458,7 +458,7 @@ const OrderDetails: React.FC = () => {
 			label: __('Cost', 'multivendorx'),
 			render: (row) => {
 				if (row.rowType === 'line_item') {
-					return `$${parseFloat(row.price).toFixed(2)}`;
+					return `${appLocalizer.currency_symbol}${parseFloat(row.price).toFixed(2)}`;
 				}
 				return '';
 			},
@@ -502,7 +502,7 @@ const OrderDetails: React.FC = () => {
 					return (
 						<div>
 							<div className="price">
-								${parseFloat(row.subtotal).toFixed(2)}
+								{appLocalizer.currency_symbol}{parseFloat(row.subtotal).toFixed(2)}
 							</div>
 							{isRefund && (
 								<TextInput

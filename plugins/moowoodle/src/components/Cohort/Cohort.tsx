@@ -47,10 +47,10 @@ const Cohort: React.FC = () => {
 				<>
 					{row.products && Object.keys(row.products).length
 						? Object.entries(row.products).map(([name], index) => (
-								<React.Fragment key={index}>
-									{name}
-								</React.Fragment>
-							))
+							<React.Fragment key={index}>
+								{name}
+							</React.Fragment>
+						))
 						: '-'}
 				</>
 			),
@@ -78,9 +78,9 @@ const Cohort: React.FC = () => {
 					label: (row: CohortRow) => {
 						return row?.products && Object.keys(row.products).length
 							? __(
-									'Sync Cohort Data & Update Product',
-									'moowoodle'
-								)
+								'Sync Cohort Data & Update Product',
+								'moowoodle'
+							)
 							: __('Create Product', 'moowoodle');
 					},
 
@@ -143,7 +143,9 @@ const Cohort: React.FC = () => {
 			<ContainerComponent general>
 				<ColumnComponent>
 					<div className="demo-wrapper" onClick={handleTableWrapperClick}>
-						<div className="watermark">{__('This is sample Data','moowoodle' )}</div>
+						{!appLocalizer.khali_dabba && (
+							<div className="watermark">{__('This is sample Data', 'moowoodle')}</div>
+						)}
 						<TableCard {...tableProps} />
 					</div>
 				</ColumnComponent>

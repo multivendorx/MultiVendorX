@@ -120,6 +120,7 @@ const MarketplaceStoreList: React.FC<StoresListProps> = ({
 	useEffect(() => {
 		const params = {
 			per_page: 50,
+			status: 'publish',
 			meta_key: 'multivendorx_store_id',
 		};
 
@@ -145,6 +146,7 @@ const MarketplaceStoreList: React.FC<StoresListProps> = ({
 					per_page: 3,
 					meta_key: 'multivendorx_store_id',
 					value: storeId,
+					status: 'publish',
 					orderby: 'date',
 					order: 'desc',
 				},

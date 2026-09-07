@@ -842,7 +842,7 @@ const AddOrder = () => {
 											<span>
 												{__('Subtotal:', 'multivendorx')}
 											</span>
-											<span>${subtotal.toFixed(2)}</span>
+											<span>{appLocalizer.currency_symbol}{subtotal.toFixed(2)}</span>
 										</div>
 
 										<div className="row">
@@ -850,7 +850,7 @@ const AddOrder = () => {
 												{__('Tax:', 'multivendorx')}
 											</span>
 											<span>
-												$
+												{appLocalizer.currency_symbol}
 												{addedProducts
 													.reduce(
 														(sum, p) =>
@@ -876,7 +876,7 @@ const AddOrder = () => {
 												{__('Grand Total:', 'multivendorx')}
 											</strong>
 											<strong>
-												${grandTotal.toFixed(2)}
+												{appLocalizer.currency_symbol}{grandTotal.toFixed(2)}
 											</strong>
 										</div>
 									</div>

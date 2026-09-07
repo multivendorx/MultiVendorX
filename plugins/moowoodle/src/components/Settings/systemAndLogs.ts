@@ -30,7 +30,7 @@ export default {
 		{
 			key: 'section',
 			type: 'section',
-			title: __('Lorem Ipsum is simply dummy text of', 'moowoodle'),
+			title: __('System Operations', 'moowoodle'),
 		},
 		{
 			key: 'moodle_timeout',
