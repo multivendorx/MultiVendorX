@@ -113,7 +113,7 @@
         "react-router-dom": "^7.15.1",
         "react-simple-maps": "^3.0.0",
         "recharts": "^3.8.1",
-        "@multivendorx/zyra": "^1.0.29"
+        "@multivendorx/zyra": "1.0.29"
     },
     "devDependencies": {
         "wireit": "^0.14.12"
