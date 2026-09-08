@@ -3,7 +3,7 @@
     "displayName": "MultiVendorX",
     "pluginSlug": "dc-woocommerce-multi-vendor",
     "description": "MultiVendorX - WooCommerce Multivendor Marketplace AI Powered Solutions",
-    "version": "5.0.16",
+    "version": "5.0.17",
     "license": "GPL-2.0-or-later",
     "author": "MultiVendorX",
     "homepage": "https://github.com/multivendorx/multivendorx#readme",
@@ -113,7 +113,7 @@
         "react-router-dom": "^7.15.1",
         "react-simple-maps": "^3.0.0",
         "recharts": "^3.8.1",
-        "@multivendorx/zyra": "^1.0.29"
+        "@multivendorx/zyra": "1.0.29"
     },
     "devDependencies": {
         "wireit": "^0.14.12"
