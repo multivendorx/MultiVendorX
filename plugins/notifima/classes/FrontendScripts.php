@@ -43,10 +43,10 @@ class FrontendScripts {
 	 */
     public static function get_asset_path( $path_type = 'url', $plugin_path = '', $plugin_url = '' ) {
         $build_path = 'assets/';
-        if ( $plugin_path === '' ) {
+        if ( '' === $plugin_path ) {
             $plugin_path = Notifima()->plugin_path;
         }
-        if ( $plugin_url === '' ) {
+        if ( '' === $plugin_url ) {
             $plugin_url = Notifima()->plugin_url;
         }
 
@@ -87,12 +87,7 @@ class FrontendScripts {
 	 * Loads block assets and additional scripts defined through the `notifima_register_scripts` filter.
 	 */
     public static function register_frontend_scripts() {
-        $version      = Notifima()->version;
-        $index_asset  = include self::get_asset_path( 'file' ) . 'js/index.asset.php';
-        $vendor_asset = include self::get_asset_path( 'file' ) . 'js/vendors.asset.php';
-
-        $base_url    = self::get_asset_path() . 'js/';
-        $common_deps = array( 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n', 'wp-blocks' );
+        $version = Notifima()->version;
 
         $block_scripts = array(
             'subscribe-form',
@@ -303,23 +298,23 @@ class FrontendScripts {
         $localize_scripts = apply_filters( 'notifima_localize_scripts', $localize_scripts );
         $config           = $localize_scripts[ $handle ] ?? array();
 
-        $data = array();
+        $localized_data = array();
 
         if ( ! empty( $config['use_rest'] ) ) {
-            $data = array_merge( $data, $base_rest );
+            $localized_data = array_merge( $localized_data, $base_rest );
         }
 
         if ( ! empty( $config['use_settings'] ) ) {
-            $data = array_merge( $data, $settings_data );
+            $localized_data = array_merge( $localized_data, $settings_data );
         }
 
         if ( ! empty( $config['data'] ) ) {
-            $data = array_merge( $data, $config['data'] );
+            $localized_data = array_merge( $localized_data, $config['data'] );
         }
 
         if ( isset( $localize_scripts[ $handle ] ) ) {
             $props = $localize_scripts[ $handle ];
-            self::localize_script( $handle, $props['object_name'], $data );
+            self::localize_script( $handle, $props['object_name'], $localized_data );
         }
     }
 

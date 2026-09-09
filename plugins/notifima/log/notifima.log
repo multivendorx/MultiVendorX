@@ -1,0 +1,26 @@
+{
+    "errors": {
+        "invalid_nonce": [
+            "Invalid nonce."
+        ]
+    },
+    "error_data": {
+        "invalid_nonce": {
+            "status": 403
+        }
+    }
+}
+---------------------------
+{
+    "errors": {
+        "invalid_nonce": [
+            "Invalid nonce."
+        ]
+    },
+    "error_data": {
+        "invalid_nonce": {
+            "status": 403
+        }
+    }
+}
+---------------------------

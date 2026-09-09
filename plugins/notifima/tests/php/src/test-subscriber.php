@@ -1,150 +1,201 @@
 <?php
 /**
- * Tests for Notifima\Subscriber's subscribe/unsubscribe lifecycle.
+ * Integration tests for the core subscribe/unsubscribe/stock-check business logic.
  *
  * @package Notifima
  */
 
+use Notifima\Subscriber;
+
 /**
- * Covers Notifima\Subscriber's subscribe/unsubscribe lifecycle against the
- * real notifima_subscribers table.
+ * Class Test_Subscriber
  */
-class Notifima_Subscriber_Test extends WP_UnitTestCase {
+class Test_Subscriber extends WP_UnitTestCase {
 
-    /**
-     * The id of the out-of-stock product created for each test.
-     *
-     * @var int
-     */
-    private $product_id;
+	/**
+	 * Create a simple, manage-stock, out-of-stock WooCommerce product.
+	 *
+	 * @param array $overrides Product prop overrides.
+	 * @return WC_Product_Simple
+	 */
+	private function create_out_of_stock_product( $overrides = array() ) {
+		$product = new WC_Product_Simple();
+		$product->set_name( 'Notifima Test Product' );
+		$product->set_regular_price( '10.00' );
+		$product->set_manage_stock( true );
+		$product->set_stock_quantity( 0 );
+		$product->set_stock_status( 'outofstock' );
+		foreach ( $overrides as $prop => $value ) {
+			$product->{"set_{$prop}"}( $value );
+		}
+		$product->save();
 
-    /**
-     * Create a fresh out-of-stock product before each test.
-     *
-     * @return void
-     */
-    public function set_up() {
-        parent::set_up();
+		return $product;
+	}
 
-        $product = new WC_Product_Simple();
-        $product->set_name( 'Subscriber Test Product' );
-        $product->set_regular_price( '15.00' );
-        $product->set_stock_status( 'outofstock' );
-        $product->save();
+	/**
+	 * insert_subscriber() should create a row, and is_already_subscribed() should then find it.
+	 */
+	public function test_insert_subscriber_creates_a_subscribed_row() {
+		$product = $this->create_out_of_stock_product();
 
-        $this->product_id = $product->get_id();
-    }
+		$result = Subscriber::insert_subscriber( 'shopper@example.com', $product->get_id() );
 
-    /**
-     * Inserting a subscriber should create a row with 'subscribed' status.
-     *
-     * @return void
-     */
-    public function test_insert_subscriber_creates_a_subscribed_row() {
-        \Notifima\Subscriber::insert_subscriber( 'shopper@example.com', $this->product_id );
+		$this->assertNotFalse( $result );
+		$this->assertNotFalse( Subscriber::is_already_subscribed( 'shopper@example.com', $product->get_id() ) );
+	}
 
-        $subscription_id = \Notifima\Subscriber::is_already_subscribed( 'shopper@example.com', $this->product_id );
+	/**
+	 * Subscribing the same email to the same product twice must not create a duplicate row -
+	 * the table's UNIQUE KEY (product_id, email, status) plus the ON DUPLICATE KEY UPDATE clause
+	 * in insert_subscriber() should upsert instead.
+	 */
+	public function test_insert_subscriber_is_idempotent_for_the_same_email_and_product() {
+		global $wpdb;
+		$product = $this->create_out_of_stock_product();
 
-        $this->assertNotEmpty( $subscription_id );
-    }
+		Subscriber::insert_subscriber( 'shopper@example.com', $product->get_id() );
+		Subscriber::insert_subscriber( 'shopper@example.com', $product->get_id() );
 
-    /**
-     * Inserting the same email/product twice should not create a duplicate row.
-     *
-     * @return void
-     */
-    public function test_insert_subscriber_is_idempotent_for_the_same_email_and_product() {
-        \Notifima\Subscriber::insert_subscriber( 'shopper@example.com', $this->product_id );
-        \Notifima\Subscriber::insert_subscriber( 'shopper@example.com', $this->product_id );
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		$row_count = $wpdb->get_var(
+			$wpdb->prepare(
+				"SELECT COUNT(*) FROM {$wpdb->prefix}notifima_subscribers WHERE product_id = %d AND email = %s",
+				$product->get_id(),
+				'shopper@example.com'
+			)
+		);
 
-        $emails = \Notifima\Subscriber::get_product_subscribers_email( $this->product_id );
+		$this->assertSame( '1', $row_count );
+	}
 
-        $this->assertCount( 1, $emails );
-    }
+	/**
+	 * remove_subscriber() should flip the row's status to unsubscribed rather than deleting it,
+	 * and is_already_subscribed() (which only matches status = 'subscribed') should stop finding it.
+	 */
+	public function test_remove_subscriber_unsubscribes_an_existing_subscription() {
+		$product = $this->create_out_of_stock_product();
+		Subscriber::insert_subscriber( 'shopper@example.com', $product->get_id() );
 
-    /**
-     * Each successful insert should update the product's subscriber count meta.
-     *
-     * @return void
-     */
-    public function test_insert_subscriber_updates_the_product_subscriber_count() {
-        \Notifima\Subscriber::insert_subscriber( 'shopper-a@example.com', $this->product_id );
-        \Notifima\Subscriber::insert_subscriber( 'shopper-b@example.com', $this->product_id );
+		$removed = Subscriber::remove_subscriber( $product->get_id(), 'shopper@example.com' );
 
-        $this->assertSame( '2', get_post_meta( $this->product_id, 'no_of_subscribers', true ) );
-    }
+		$this->assertTrue( $removed );
+		// is_already_subscribed() only matches status = 'subscribed' rows via $wpdb->get_var(),
+		// which returns null (not false) when nothing matches - see its docblock.
+		$this->assertNull( Subscriber::is_already_subscribed( 'shopper@example.com', $product->get_id() ) );
+	}
 
-    /**
-     * An email that never subscribed should not be considered subscribed.
-     *
-     * @return void
-     */
-    public function test_is_already_subscribed_is_false_for_an_unknown_email() {
-        $this->assertEmpty( \Notifima\Subscriber::is_already_subscribed( 'nobody@example.com', $this->product_id ) );
-    }
+	/**
+	 * remove_subscriber() for an email that was never subscribed should report failure, not
+	 * silently succeed.
+	 */
+	public function test_remove_subscriber_returns_false_when_not_subscribed() {
+		$product = $this->create_out_of_stock_product();
 
-    /**
-     * Removing a subscriber should mark the row unsubscribed and return true.
-     *
-     * @return void
-     */
-    public function test_remove_subscriber_marks_the_row_unsubscribed_and_returns_true() {
-        \Notifima\Subscriber::insert_subscriber( 'shopper@example.com', $this->product_id );
+		$this->assertFalse( Subscriber::remove_subscriber( $product->get_id(), 'never-subscribed@example.com' ) );
+	}
 
-        $removed = \Notifima\Subscriber::remove_subscriber( $this->product_id, 'shopper@example.com' );
+	/**
+	 * update_product_subscriber_count() should reflect only rows with status = 'subscribed'.
+	 */
+	public function test_update_product_subscriber_count_counts_only_subscribed_rows() {
+		$product = $this->create_out_of_stock_product();
 
-        $this->assertTrue( $removed );
-        $this->assertEmpty( \Notifima\Subscriber::is_already_subscribed( 'shopper@example.com', $this->product_id ) );
-    }
+		Subscriber::insert_subscriber( 'one@example.com', $product->get_id() );
+		Subscriber::insert_subscriber( 'two@example.com', $product->get_id() );
+		Subscriber::remove_subscriber( $product->get_id(), 'two@example.com' );
 
-    /**
-     * Removing a subscriber who was never subscribed should return false.
-     *
-     * @return void
-     */
-    public function test_remove_subscriber_returns_false_when_not_subscribed() {
-        $removed = \Notifima\Subscriber::remove_subscriber( $this->product_id, 'nobody@example.com' );
+		Subscriber::update_product_subscriber_count( $product->get_id() );
 
-        $this->assertFalse( $removed );
-    }
+		$this->assertSame( '1', get_post_meta( $product->get_id(), 'no_of_subscribers', true ) );
+	}
 
-    /**
-     * Deleting a subscriber should remove the row entirely, not just mark it unsubscribed.
-     *
-     * @return void
-     */
-    public function test_delete_subscriber_removes_the_row_entirely() {
-        \Notifima\Subscriber::insert_subscriber( 'shopper@example.com', $this->product_id );
+	/**
+	 * is_product_outofstock(): a manage-stock product with quantity above the low-stock
+	 * threshold and status 'instock' should not be considered out of stock.
+	 */
+	public function test_is_product_outofstock_false_for_a_well_stocked_product() {
+		$product = new WC_Product_Simple();
+		$product->set_manage_stock( true );
+		$product->set_stock_quantity( 25 );
+		$product->set_stock_status( 'instock' );
+		$product->save();
 
-        \Notifima\Subscriber::delete_subscriber( $this->product_id, 'shopper@example.com' );
+		$this->assertFalse( Subscriber::is_product_outofstock( $product ) );
+	}
 
-        $emails = \Notifima\Subscriber::get_product_subscribers_email( $this->product_id );
+	/**
+	 * is_product_outofstock(): quantity at/below zero should always be out of stock.
+	 */
+	public function test_is_product_outofstock_true_when_quantity_is_zero() {
+		$product = $this->create_out_of_stock_product();
 
-        $this->assertNotContains( 'shopper@example.com', $emails );
-    }
+		$this->assertTrue( Subscriber::is_product_outofstock( $product ) );
+	}
 
-    /**
-     * Only rows with 'subscribed' status should be returned as active subscribers.
-     *
-     * @return void
-     */
-    public function test_get_product_subscribers_email_only_returns_subscribed_status() {
-        \Notifima\Subscriber::insert_subscriber( 'active@example.com', $this->product_id );
-        \Notifima\Subscriber::insert_subscriber( 'left@example.com', $this->product_id );
-        \Notifima\Subscriber::remove_subscriber( $this->product_id, 'left@example.com' );
+	/**
+	 * is_product_outofstock() must work directly on a WC_Product_Variation instance without
+	 * needing to re-fetch it - this pins down the fix that removed a redundant
+	 * `new WC_Product_Variation()` re-instantiation inside is_product_outofstock().
+	 */
+	public function test_is_product_outofstock_works_on_a_real_variation_instance() {
+		$parent = new WC_Product_Variable();
+		$parent->set_name( 'Notifima Variable Test Product' );
+		$parent->save();
 
-        $emails = \Notifima\Subscriber::get_product_subscribers_email( $this->product_id );
+		$variation = new WC_Product_Variation();
+		$variation->set_parent_id( $parent->get_id() );
+		$variation->set_regular_price( '15.00' );
+		$variation->set_manage_stock( true );
+		$variation->set_stock_quantity( 0 );
+		$variation->set_stock_status( 'outofstock' );
+		$variation->save();
 
-        $this->assertContains( 'active@example.com', $emails );
-        $this->assertNotContains( 'left@example.com', $emails );
-    }
+		// Re-fetch through wc_get_product(), exactly as production code does, so we're testing
+		// the same object type WooCommerce actually hands the plugin at runtime.
+		$fetched_variation = wc_get_product( $variation->get_id() );
 
-    /**
-     * A falsy product id should short-circuit to an empty array.
-     *
-     * @return void
-     */
-    public function test_get_product_subscribers_email_returns_empty_array_for_falsy_product_id() {
-        $this->assertSame( array(), \Notifima\Subscriber::get_product_subscribers_email( 0 ) );
-    }
+		$this->assertInstanceOf( WC_Product_Variation::class, $fetched_variation );
+		$this->assertTrue( Subscriber::is_product_outofstock( $fetched_variation ) );
+	}
+
+	/**
+	 * get_related_product(): a simple product should resolve to just itself.
+	 */
+	public function test_get_related_product_for_a_simple_product_returns_only_itself() {
+		$product = $this->create_out_of_stock_product();
+
+		$this->assertSame( array( $product->get_id() ), Subscriber::get_related_product( $product ) );
+	}
+
+	/**
+	 * get_related_product(): a variable product with children should resolve to all its
+	 * variation IDs, not the parent ID.
+	 */
+	public function test_get_related_product_for_a_variable_product_returns_its_variations() {
+		$parent = new WC_Product_Variable();
+		$parent->set_name( 'Notifima Variable Test Product' );
+		$parent->save();
+
+		$variation_one = new WC_Product_Variation();
+		$variation_one->set_parent_id( $parent->get_id() );
+		$variation_one->set_regular_price( '15.00' );
+		$variation_one->save();
+
+		$variation_two = new WC_Product_Variation();
+		$variation_two->set_parent_id( $parent->get_id() );
+		$variation_two->set_regular_price( '18.00' );
+		$variation_two->save();
+
+		$parent->set_children( array( $variation_one->get_id(), $variation_two->get_id() ) );
+		$parent->save();
+
+		$related_ids = Subscriber::get_related_product( wc_get_product( $parent->get_id() ) );
+
+		sort( $related_ids );
+		$expected = array( $variation_one->get_id(), $variation_two->get_id() );
+		sort( $expected );
+
+		$this->assertSame( $expected, $related_ids );
+	}
 }

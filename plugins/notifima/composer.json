@@ -11,6 +11,12 @@
         }
     ],
     "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Notifima\\": "classes/"
@@ -24,23 +30,33 @@
             "php": "8.0"
         },
         "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "composer/installers": true
         }
     },
     "require-dev": {
         "wp-coding-standards/wpcs": "dev-develop",
         "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
         "phpcompatibility/phpcompatibility-wp": "dev-master",
+        "automattic/jetpack-changelogger": "^6.0@dev",
         "phpunit/phpunit": "9.6.x-dev",
         "wp-phpunit/wp-phpunit": "dev-master",
         "yoast/phpunit-polyfills": "^4.0@dev",
         "brain/monkey": "^2.0@dev",
-        "automattic/jetpack-changelogger": "^6.0@dev"
+        "composer/installers": "^2.0",
+        "wpackagist-plugin/woocommerce": "*@stable"
+    },
+    "extra": {
+        "installer-paths": {
+            "vendor/wpackagist-plugin/{$name}/": [
+                "type:wordpress-plugin"
+            ]
+        }
     },
     "scripts": {
         "phpcs": "vendor/bin/phpcs . --standard=../../phpcs.xml.dist -p -s",
         "phpfix": "vendor/bin/phpcbf . --standard=../../phpcs.xml.dist -p",
         "phpcs:report": "vendor/bin/phpcs . --standard=../../phpcs.xml.dist --report-file=phpreport.txt",
-        "test": "vendor/bin/phpunit"
+        "test": "bash bin/setup-test-env.sh phpunit && vendor/bin/phpunit -c phpunit.xml.dist"
     }
 }

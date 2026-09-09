@@ -50,7 +50,7 @@ class Notifima {
         require_once trailingslashit( dirname( $file ) ) . '/config.php';
 
         $this->file                     = $file;
-        $this->container['plugin_url']  = trailingslashit( plugins_url( '', $plugin = $file ) );
+        $this->container['plugin_url']  = trailingslashit( plugins_url( '', $file ) );
         $this->container['plugin_path'] = trailingslashit( dirname( $file ) );
         $this->container['plugin_base'] = plugin_basename( $file );
 
@@ -116,7 +116,7 @@ class Notifima {
             );
 
             if ( ! Utill::is_khali_dabba() ) {
-                $row_meta['go_pro'] = '<a href="' . NOTIFIMA_PRO_SHOP_URL . '" class="notifima-pro-plugin" target="_blank" style="font-weight: 700;background: linear-gradient(110deg, rgb(63, 20, 115) 0%, 25%, rgb(175 59 116) 50%, 75%, rgb(219 75 84) 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">' . __( 'Upgrade to Pro', 'notifima' ) . '</a>';
+                $row_meta['go_pro'] = self::get_upgrade_to_pro_link();
             }
 
             return array_merge( $links, $row_meta );
@@ -267,7 +267,7 @@ class Notifima {
      * @return void
      */
     public static function database_migration_notice() {
-        // check if plugin vertion in databse is not same to current notifima version.
+        // Check if the plugin version stored in the database differs from the current Notifima version.
         $plugin_version = get_option( 'notifima_version', '' );
 
         if ( Install::is_migration_running() ) {
@@ -297,10 +297,20 @@ class Notifima {
         );
 
         if ( ! Utill::is_khali_dabba() ) {
-            $links['go_pro'] = '<a href="' . NOTIFIMA_PRO_SHOP_URL . '" class="notifima-pro-plugin" target="_blank" style="font-weight: 700;background: linear-gradient(110deg, rgb(63, 20, 115) 0%, 25%, rgb(175 59 116) 50%, 75%, rgb(219 75 84) 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">' . __( 'Upgrade to Pro', 'notifima' ) . '</a>';
+            $links['go_pro'] = self::get_upgrade_to_pro_link();
         }
 
         return array_merge( $plugin_links, $links );
+    }
+
+    /**
+     * Build the "Upgrade to Pro" link markup shared by the plugin row meta
+     * and the plugin action links (both only shown when Pro isn't active).
+     *
+     * @return string HTML anchor tag.
+     */
+    private static function get_upgrade_to_pro_link() {
+        return '<a href="' . NOTIFIMA_PRO_SHOP_URL . '" class="notifima-pro-plugin" target="_blank" style="font-weight: 700;background: linear-gradient(110deg, rgb(63, 20, 115) 0%, 25%, rgb(175 59 116) 50%, 75%, rgb(219 75 84) 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">' . __( 'Upgrade to Pro', 'notifima' ) . '</a>';
     }
 
     /**

@@ -40,6 +40,7 @@
         "fix:php": "composer run-script phpfix",
         "test": "pnpm run test:php",
         "test:php": "./vendor/bin/phpunit -c phpunit.xml.dist",
+        "test:e2e": "bash bin/setup-test-env.sh e2e && playwright test",
         "env:create": "NODE_OPTIONS='--no-network-family-autoselection' pnpm wp-env start && pnpm run env:start:database",
         "env:start": "NODE_OPTIONS='--no-network-family-autoselection' pnpm wp-env start && pnpm run env:start:database",
         "env:start:database": "node ../../tools/scripts/docker-compose.mjs && docker compose up -d",
@@ -109,6 +110,7 @@
         "@multivendorx/zyra": "^1.0.14"
     },
     "devDependencies": {
-        "wireit": "^0.14.12"
+        "wireit": "^0.14.12",
+        "@playwright/test": "1.62.0"
     }
 }

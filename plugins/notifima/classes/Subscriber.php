@@ -404,7 +404,7 @@ class Subscriber {
 
         // Migration is over use custom subscription table for information.
         // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-        $emails_data = $wpdb->get_results(
+        $subscriber_rows = $wpdb->get_results(
             $wpdb->prepare(
                 "SELECT id, email from {$wpdb->prefix}notifima_subscribers
                 WHERE product_id = %d AND status = %s",
@@ -412,9 +412,9 @@ class Subscriber {
             )
         );
 
-        // Prepare email data.
-        foreach ( $emails_data as $email ) {
-            $emails[ $email->id ] = $email->email;
+        // Key the email list by subscriber row ID.
+        foreach ( $subscriber_rows as $subscriber_row ) {
+            $emails[ $subscriber_row->id ] = $subscriber_row->email;
         }
 
         return $emails;
@@ -476,11 +476,12 @@ class Subscriber {
      */
     public static function is_product_outofstock( $product ) {
 
+        // A variation product is already a WC_Product_Variation instance when is_type() reports
+        // 'variation', so its own stock methods can be used directly - no need to re-fetch it by ID.
         if ( $product->is_type( 'variation' ) ) {
-            $child_obj      = new \WC_Product_Variation( $product->get_id() );
-            $manage_stock   = $child_obj->managing_stock();
-            $stock_quantity = intval( $child_obj->get_stock_quantity() );
-            $stock_status   = $child_obj->get_stock_status();
+            $manage_stock   = $product->managing_stock();
+            $stock_quantity = intval( $product->get_stock_quantity() );
+            $stock_status   = $product->get_stock_status();
         } else {
             $manage_stock   = $product->get_manage_stock();
             $stock_quantity = $product->get_stock_quantity();
@@ -490,15 +491,13 @@ class Subscriber {
         $is_enable_backorders = Notifima()->setting->get_setting( 'is_enable_backorders' );
 
         if ( $manage_stock ) {
-            if ( $stock_quantity <= (int) get_option( 'woocommerce_notify_no_stock_amount' ) ) {
-                return true;
-            } elseif ( $stock_quantity <= 0 ) {
+            if ( $stock_quantity <= 0 || $stock_quantity <= (int) get_option( 'woocommerce_notify_no_stock_amount' ) ) {
                 return true;
             }
         } elseif ( 'onbackorder' === $stock_status && 'out_of_stock_and_backorder' === $is_enable_backorders ) {
-                return true;
-		} elseif ( 'outofstock' === $stock_status ) {
-			return true;
+            return true;
+        } elseif ( 'outofstock' === $stock_status ) {
+            return true;
         }
 
         return false;

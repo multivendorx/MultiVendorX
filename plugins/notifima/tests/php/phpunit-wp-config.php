@@ -1,50 +1,46 @@
 <?php
+/**
+ * WP core test config consumed by wp-phpunit's bootstrap (via WP_PHPUNIT__TESTS_CONFIG).
+ *
+ * Every value below can be overridden with an environment variable so the same test setup
+ * works unmodified on any machine/CI runner - nothing here is specific to one developer's box.
+ */
 
-$wordpress_dir = dirname( __DIR__, 2 ) . '/wordpress/';
-if ( ! is_dir( $wordpress_dir ) ) {
-    $wordpress_dir = dirname( __DIR__, 5 ) . '/';
+$wordpress_dir = getenv( 'WP_CORE_DIR' );
+if ( ! $wordpress_dir ) {
+	// Default: a WordPress core checkout kept outside the repo (see tests/php/bootstrap.php
+	// for why - the repo itself must not carry a full WP install).
+	$wordpress_dir = rtrim( getenv( 'HOME' ), '/\\' ) . '/.cache/mvx-test-vendor/wordpress';
 }
 
 /* Path to the WordPress codebase you'd like to test. Add a forward slash in the end. */
-define( 'ABSPATH', $wordpress_dir );
+define( 'ABSPATH', rtrim( $wordpress_dir, '/\\' ) . '/' );
 
-/*
- * Path to the theme to test with.
- *
- * The 'default' theme is symlinked from test/phpunit/data/themedir1/default into
- * the themes directory of the WordPress installation defined above.
- */
 define( 'WP_DEFAULT_THEME', 'default' );
 
-// Test with multisite enabled.
-// Alternatively, use the tests/phpunit/multisite.xml configuration file.
-// define( 'WP_TESTS_MULTISITE', true );
-
-// Force known bugs to be run.
-// Tests with an associated Trac ticket that is still open are normally skipped.
-// define( 'WP_TESTS_FORCE_KNOWN_BUGS', true );
-
-// Test with WordPress debug mode (default).
 define( 'WP_DEBUG', true );
 define( 'WP_DEBUG_LOG', true );
 
 // ** MySQL settings ** //
-
-// This configuration file will be used by the copy of WordPress being tested.
-// wordpress/wp-config.php will be ignored.
-
+//
 // WARNING WARNING WARNING!
 // These tests will DROP ALL TABLES in the database with the prefix named below.
 // DO NOT use a production database or one that is shared with something else.
+//
+// DB_HOST defaults to 127.0.0.1 (forces TCP) rather than 'localhost' - PHP's mysqli/pdo_mysql
+// drivers silently switch to a local Unix socket for the literal string 'localhost', which
+// fails on a machine with no local MySQL socket (e.g. a DB reachable only via a Docker port).
+$db_host = getenv( 'WP_DB_HOST' ) ?: '127.0.0.1';
+$db_port = getenv( 'WP_DB_PORT' ) ?: '33061';
 
 define( 'DB_NAME', getenv( 'WP_DB_NAME' ) ?: 'wordpress_test' );
 define( 'DB_USER', getenv( 'WP_DB_USER' ) ?: 'root' );
 define( 'DB_PASSWORD', getenv( 'WP_DB_PASS' ) ?: '' );
-define( 'DB_HOST', 'localhost' );
+define( 'DB_HOST', $db_port ? "{$db_host}:{$db_port}" : $db_host );
 define( 'DB_CHARSET', 'utf8' );
 define( 'DB_COLLATE', '' );
 
-$table_prefix = 'unit_';   // Only numbers, letters, and underscores please!
+$table_prefix = 'unit_';
 
 define( 'WP_TESTS_DOMAIN', 'example.org' );
 define( 'WP_TESTS_EMAIL', 'admin@example.org' );

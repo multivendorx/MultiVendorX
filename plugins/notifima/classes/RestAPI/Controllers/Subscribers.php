@@ -176,23 +176,31 @@ class Subscribers extends \WP_REST_Controller {
 
             $subscriber_items = array();
 
+            // Built once - the same product is commonly shared by many subscriber rows,
+            // so this avoids a repeated wc_get_product() lookup per row (see performance.md).
+            $product_cache = array();
+
+            $status_labels = array(
+                'mailsent'     => __( 'Mail Sent', 'notifima' ),
+                'subscribed'   => __( 'Subscribed', 'notifima' ),
+                'unsubscribed' => __( 'Unsubscribed', 'notifima' ),
+            );
+
             foreach ( $subscriber_records as $subscriber ) {
-                $product = wc_get_product( $subscriber->product_id );
-                $image   = get_the_post_thumbnail_url( $subscriber->product_id, 'full' );
-                $user    = get_user_by( 'email', $subscriber->email );
-                $date    = wp_date(
+                if ( ! array_key_exists( $subscriber->product_id, $product_cache ) ) {
+                    $product_cache[ $subscriber->product_id ] = wc_get_product( $subscriber->product_id );
+                }
+                $product = $product_cache[ $subscriber->product_id ];
+
+                $image = get_the_post_thumbnail_url( $subscriber->product_id, 'full' );
+                $user  = get_user_by( 'email', $subscriber->email );
+                $date  = wp_date(
                     get_option( 'date_format' ),
                     strtotime( $subscriber->create_time )
                 );
 
-                $statuses = array(
-                    'mailsent'     => __( 'Mail Sent', 'notifima' ),
-                    'subscribed'   => __( 'Subscribed', 'notifima' ),
-                    'unsubscribed' => __( 'Unsubscribed', 'notifima' ),
-                );
-
                 $status_key        = $subscriber->status;
-                $subscriber_status = $statuses[ $status_key ] ?? '-';
+                $subscriber_status = $status_labels[ $status_key ] ?? '-';
 
                 $subscriber_items[] = apply_filters(
                     'notifima_all_subscribers_list',
@@ -206,7 +214,7 @@ class Subscribers extends \WP_REST_Controller {
                         'user_link'  => $user ? get_edit_user_link( $user->ID ) : '',
                         'product'    => $product ? $product->get_name() : '',
                         'product_id' => $product ? $product->get_id() : '',
-                        'image'      => $image ?: wc_placeholder_img_src(),
+                        'image'      => $image ? $image : wc_placeholder_img_src(),
                     ),
                     $subscriber
                 );

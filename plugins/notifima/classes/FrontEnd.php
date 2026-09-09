@@ -78,6 +78,7 @@ class FrontEnd {
             return;
         }
 
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_subscription_form() already runs every dynamic value through esc_attr(); the surrounding markup is static.
         echo $this->get_subscription_form( $product_obj );
     }
 
@@ -88,9 +89,7 @@ class FrontEnd {
      * @param object $child individual child of grouped product.
      */
     public function append_grouped_product_subscription_form( $value, $child ) {
-        $value = $value . $this->get_subscription_form( $child );
-
-        return $value;
+        return $value . $this->get_subscription_form( $child );
     }
 
     /**

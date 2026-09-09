@@ -40,7 +40,7 @@ class Install {
      * Class constructor
      */
     public function __construct() {
-		// phpcs:ignore WordPress.WP.CronInterval.ChangeDetected
+		// phpcs:ignore WordPress.WP.CronInterval.ChangeDetected, WordPress.WP.CronInterval.CronSchedulesInterval -- 10-minute interval is intentional; the stock-notification cron batches subscribers and needs to run more often than the default schedules allow.
         add_filter( 'cron_schedules', array( $this, 'register_custom_schedule' ) );
         add_action( 'init', array( $this, 'run_migration' ) );
     }
@@ -193,7 +193,7 @@ class Install {
         try {
             // Get woosubscribe post and post meta.
             // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.SlowDBQuery.slow_db_query_meta_key
-            $subscribe_datas = $wpdb->get_results(
+            $legacy_subscriber_rows = $wpdb->get_results(
                 "SELECT posts.ID as id,
                     posts.post_date as date,
                     posts.post_title as email,
@@ -208,33 +208,34 @@ class Install {
                 ARRAY_A
             );
 
-            // Prepare insert value.
-            $values = '';
+            // Prepare insert placeholders and values (kept separate so every value is passed through $wpdb->prepare()).
+            $row_placeholders = array();
+            $row_values       = array();
 
-            foreach ( $subscribe_datas as $subscribe_data ) {
-                $product_id = $subscribe_data['product_id'];
-                $user_id    = $subscribe_data['user_id'];
-                $email      = $subscribe_data['email'];
-                $status     = self::STATUS_MAP[ $subscribe_data['status'] ];
-                $date       = $subscribe_data['date'];
-
-                $values .= "( {$product_id}, {$user_id},  '{$email}', '{$status}', '{$date}' ),";
+            foreach ( $legacy_subscriber_rows as $legacy_subscriber_row ) {
+                $row_placeholders[] = '( %d, %d, %s, %s, %s )';
+                $row_values[]       = $legacy_subscriber_row['product_id'];
+                $row_values[]       = $legacy_subscriber_row['user_id'];
+                $row_values[]       = $legacy_subscriber_row['email'];
+                $row_values[]       = self::STATUS_MAP[ $legacy_subscriber_row['status'] ];
+                $row_values[]       = $legacy_subscriber_row['date'];
             }
 
             // If result exist then insert those result into custom table.
-            if ( $values ) {
-                // Remove last ','.
-                $values = substr( $values, 0, -1 );
-
+            if ( $row_values ) {
                 // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
                 $wpdb->query(
-                    "INSERT IGNORE INTO {$wpdb->prefix}notifima_subscribers (product_id, user_id, email, status, create_time ) VALUES {$values} "
+                    $wpdb->prepare(
+                        // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare -- placeholder count is built dynamically (5 per row) and always matches $row_values; phpcs can't verify that statically.
+                        "INSERT IGNORE INTO {$wpdb->prefix}notifima_subscribers (product_id, user_id, email, status, create_time ) VALUES " . implode( ', ', $row_placeholders ),
+                        $row_values
+                    )
                 );
             }
 
             // Delete the post seperatly, If there is problem in migration post will not delete permanently.
-            foreach ( $subscribe_datas as $subscribe_data ) {
-                wp_delete_post( $subscribe_data['id'] );
+            foreach ( $legacy_subscriber_rows as $legacy_subscriber_row ) {
+                wp_delete_post( $legacy_subscriber_row['id'] );
             }
 
             // Get subscriber count.
@@ -406,7 +407,7 @@ class Install {
 
             // Equevelent to check plugin version <= 2.3.0.
             if ( $dc_was_installed || $woo_was_installed ) {
-                $all_product_ids = get_posts(
+                $product_ids_with_legacy_subscriber_meta = get_posts(
                     array(
 						'post_type'   => 'product',
 						'post_status' => 'publish',
@@ -422,8 +423,8 @@ class Install {
                 );
 
                 // Database migration for subscriber data before version 2.3.0.
-                foreach ( $all_product_ids as $product_id ) {
-                    $current_product_ids = Subscriber::get_related_product( wc_get_product( $product_id ) );
+                foreach ( $product_ids_with_legacy_subscriber_meta as $parent_product_id ) {
+                    $current_product_ids = Subscriber::get_related_product( wc_get_product( $parent_product_id ) );
                     foreach ( $current_product_ids as $product_id ) {
                         $product_subscribers = get_post_meta( $product_id, '_product_subscriber', true );
                         if ( $product_subscribers && ! empty( $product_subscribers ) ) {
