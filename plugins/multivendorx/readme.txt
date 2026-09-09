@@ -5,7 +5,7 @@ Donate link: http://multivendorx.com/donate/?utm_source=wporg&utm_medium=plugind
 Requires at least: 6.4.0
 Tested up to: 7.1.0
 Requires PHP: 8.0
-Stable tag: 5.0.16
+Stable tag: 5.0.17
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -245,6 +245,11 @@ Ans. Obviously, you can! Join in on our [GitHub repository](https://github.com/m
 15. Store-admin-list.
 
 == Changelog ==
+
+= 5.0.17 - 2026-09-08 =
+* Fixed     - Structural CSS issues
+* Fixed     - Symbol static issue on the Order Details page for the Tax and Refund Amount fields
+* Updated   - Language file.
 
 = 5.0.16 - 2026-09-08 =
 * Added     - Compatibility with WooCommerce 11.1.0
