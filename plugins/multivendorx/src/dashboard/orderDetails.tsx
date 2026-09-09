@@ -550,7 +550,7 @@ const OrderDetails: React.FC = () => {
 					return (
 						<div>
 							<div className="price">
-								${parseFloat(row.subtotal_tax).toFixed(2)}
+								{appLocalizer.currency_symbol}{parseFloat(row.subtotal_tax).toFixed(2)}
 							</div>
 							{isRefund && (
 								<TextInput
@@ -979,7 +979,7 @@ const OrderDetails: React.FC = () => {
 												</div>
 												<div className="details">
 													<div className="title">
-														$
+														{appLocalizer.currency_symbol}
 														{orderData.line_items
 															.filter((item) =>
 																orderData.meta_data
@@ -1034,7 +1034,7 @@ const OrderDetails: React.FC = () => {
 															key={item.id}
 														>
 															{item.name} x{' '}
-															{item.quantity} ($
+															{item.quantity} ({appLocalizer.currency_symbol}
 															{parseFloat(
 																item.total
 															).toFixed(2)}
