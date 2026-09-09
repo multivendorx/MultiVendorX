@@ -57,6 +57,6 @@
         "phpcs": "vendor/bin/phpcs . --standard=../../phpcs.xml.dist -p -s",
         "phpfix": "vendor/bin/phpcbf . --standard=../../phpcs.xml.dist -p",
         "phpcs:report": "vendor/bin/phpcs . --standard=../../phpcs.xml.dist --report-file=phpreport.txt",
-        "test": "vendor/bin/phpunit -c phpunit.xml.dist"
+        "test": "bash bin/setup-test-env.sh phpunit && vendor/bin/phpunit -c phpunit.xml.dist"
     }
 }

@@ -9,8 +9,9 @@ import { defineConfig, devices } from '@playwright/test';
  * ("WordPress development site started at http://..."); override WP_BASE_URL if it differs
  * from the default below.
  *
- * This suite does not start wp-env itself - run `pnpm run env:start` (or `env:dev`) first, the
- * same way you would before manually testing the plugin in a browser.
+ * `pnpm run test:e2e` ensures wp-env is running before invoking Playwright (see
+ * bin/setup-test-env.sh) - running `playwright test` directly still expects it already up, same
+ * as before manually testing the plugin in a browser.
  */
 export default defineConfig( {
 	testDir: './tests/playwright',
