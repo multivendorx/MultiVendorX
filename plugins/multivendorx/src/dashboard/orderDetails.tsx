@@ -458,7 +458,7 @@ const OrderDetails: React.FC = () => {
 			label: __('Cost', 'multivendorx'),
 			render: (row) => {
 				if (row.rowType === 'line_item') {
-					return `${appLocalizer.currency_symbol}${parseFloat(row.price).toFixed(2)}`;
+					return formatCurrency(row.price);
 				}
 				return '';
 			},
@@ -502,7 +502,7 @@ const OrderDetails: React.FC = () => {
 					return (
 						<div>
 							<div className="price">
-								{appLocalizer.currency_symbol}{parseFloat(row.subtotal).toFixed(2)}
+								{formatCurrency(row.subtotal)}
 							</div>
 							{isRefund && (
 								<TextInput
@@ -550,7 +550,7 @@ const OrderDetails: React.FC = () => {
 					return (
 						<div>
 							<div className="price">
-								{appLocalizer.currency_symbol}{parseFloat(row.subtotal_tax).toFixed(2)}
+								{formatCurrency(row.subtotal_tax)}
 							</div>
 							{isRefund && (
 								<TextInput
@@ -979,32 +979,22 @@ const OrderDetails: React.FC = () => {
 												</div>
 												<div className="details">
 													<div className="title">
-														{appLocalizer.currency_symbol}
-														{orderData.line_items
-															.filter((item) =>
-																orderData.meta_data
-																	.find(
-																		(
-																			meta
-																		) =>
-																			meta.key ===
-																			'multivendorx_customer_refund_product'
-																	)
-																	?.value.includes(
-																		String(
-																			item.product_id
+														{formatCurrency(
+															orderData.line_items
+																.filter((item) =>
+																	orderData.meta_data
+																		.find(
+																			(meta) =>
+																				meta.key ===
+																				'multivendorx_customer_refund_product'
 																		)
-																	)
-															)
-															.reduce(
-																(sum, item) =>
-																	sum +
-																	parseFloat(
-																		item.total
-																	),
-																0
-															)
-															.toFixed(2)}
+																		?.value.includes(String(item.product_id))
+																)
+																.reduce(
+																	(sum, item) => sum + parseFloat(item.total),
+																	0
+																)
+														)}
 													</div>
 													<div className="desc">
 														{__("Requested amount", 'multivendorx')}
@@ -1033,12 +1023,7 @@ const OrderDetails: React.FC = () => {
 															className="admin-badge blue"
 															key={item.id}
 														>
-															{item.name} x{' '}
-															{item.quantity} ({appLocalizer.currency_symbol}
-															{parseFloat(
-																item.total
-															).toFixed(2)}
-															)
+															{item.name} x {item.quantity} ({formatCurrency(item.total)})
 														</div>
 													))}
 											</div>
