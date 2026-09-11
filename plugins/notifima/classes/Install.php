@@ -167,6 +167,18 @@ class Install {
             );
             update_option( Utill::NOTIFIMA_SETTINGS['subscription-form-designer'], $registration_from_settings );
         }
+        
+        if ( version_compare( $previous_version, '3.1.6', '<' ) ) {
+            $automation_settings = get_option( Utill::NOTIFIMA_SETTINGS['automation'], array() );
+
+            if ( 'out_of_stock' === $automation_settings['is_enable_backorders'] ) {
+                $automation_settings['is_enable_backorders'] = array( 'outofstock' );
+            } elseif ( 'out_of_stock_and_backorder' === $automation_settings['is_enable_backorders'] ) {
+                $automation_settings['is_enable_backorders'] = array( 'outofstock', 'onbackorder' );
+            }
+
+            update_option( Utill::NOTIFIMA_SETTINGS['automation'], $automation_settings );
+        }
     }
 
     /**
@@ -322,7 +334,7 @@ class Install {
 
         // Default messages for settings array.
         $automation_settings = array(
-            'is_enable_backorders'          => 'out_of_stock',
+            'is_enable_backorders'          => array( 'outofstock' ),
             'is_enable_no_interest'         => 'hide_count',
             'is_double_optin'               => 'subscribe_immediately',
             'is_remove_admin_email'         => false,

@@ -35,29 +35,30 @@ export default {
         },
         {
             key: 'is_enable_backorders',
-            type: 'choice-toggle',
+            type: 'checkbox',
             label: __('Show subscription form for', 'notifima'),
             settingDescription: __(
                 'Choose when the restock subscription form should be displayed.',
                 'notifima'
             ),
             desc: __(
-                '<ul><li>Out of stock products - Display the subscription form only for products that are out of stock.</li><li>Out of stock &amp; backorder products - Display the subscription form for products that are out of stock or available on backorder.</li></ul>',
+                '<ul><li>Out of stock - Display the subscription form when a product is out of stock.</li><li>On backorder - Display the subscription form when a product is available on backorder.</li></ul>',
                 'notifima'
             ),
 
             options: [
                 {
-                    key: 'out_of_stock',
-                    label: __('Out of stock products', 'notifima'),
-                    value: 'out_of_stock',
+                    key: 'outofstock',
+                    value: 'outofstock',
+                    label: __('Out of stock', 'notifima'),
                 },
                 {
-                    key: 'out_of_stock_and_backorder',
-                    label: __('Out of stock & backorder products', 'notifima'),
-                    value: 'out_of_stock_and_backorder',
-                },
+                    key: 'onbackorder',
+                    value: 'onbackorder',
+                    label: __('On backorder', 'notifima'),
+                }
             ],
+            selectDeselect: true,
         },
         {
             key: 'section',
@@ -337,7 +338,7 @@ export default {
                 'notifima'
             ),
             desc: __(
-                'Generate an API key from your Mailchimp account and paste it here to enable audience synchronization.',
+                'Generate an API key from your Mailchimp account and paste it here to enable audience synchronization. <a href="https://admin.mailchimp.com/account/api/" target="_blank" rel="noopener noreferrer">Get your API key</a>.',
                 'notifima'
             ),
             dependent: {

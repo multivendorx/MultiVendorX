@@ -487,7 +487,7 @@ class Subscriber {
             $stock_status   = $product->get_stock_status();
         }
 
-        $is_enable_backorders = Notifima()->setting->get_setting( 'is_enable_backorders' );
+        $is_enable_backorders = Notifima()->setting->get_setting( 'is_enable_backorders', array() );
 
         if ( $manage_stock ) {
             if ( $stock_quantity <= (int) get_option( 'woocommerce_notify_no_stock_amount' ) ) {
@@ -495,10 +495,10 @@ class Subscriber {
             } elseif ( $stock_quantity <= 0 ) {
                 return true;
             }
-        } elseif ( 'onbackorder' === $stock_status && 'out_of_stock_and_backorder' === $is_enable_backorders ) {
-                return true;
-		} elseif ( 'outofstock' === $stock_status ) {
-			return true;
+        } elseif ( 'onbackorder' === $stock_status && in_array( 'onbackorder', $is_enable_backorders, true ) ) {
+            return true;
+        } elseif ( 'outofstock' === $stock_status ) {
+            return true;
         }
 
         return false;
